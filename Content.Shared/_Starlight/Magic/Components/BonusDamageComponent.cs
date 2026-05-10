@@ -3,11 +3,15 @@ using Content.Shared._Starlight.Magic.Systems;
 using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
+using Content.Shared.Damage;
 
 namespace Content.Shared._Starlight.Magic.Components;
 
 /// <summary>
-/// Allows applying various multipliers to target entities as a StatusEffect. See <see cref="BonusDamageStatusEffectComponent"/> and <see cref="SharedBonusDamageSystem"/>.
+/// Allows applying various flat damage bonuses to target entities as a StatusEffect.
+/// See <see cref="BonusDamageStatusEffectComponent"/> and <see cref="SharedBonusDamageSystem"/>.
+/// If you want to apply bonus damage as a permanent trait instead of via a status effect,
+/// consider wizden's original <see cref="BonusMeleeDamageComponent"/>.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 [Access(typeof(SharedBonusDamageSystem))]
@@ -16,9 +20,8 @@ public sealed partial class BonusDamageComponent : Component
     public Dictionary<EntityUid, BonusDamageMod> modifiers = new();
 
     // computed totals:
-    public Dictionary<string, float> UnarmedBonusDamage = new();
-    public Dictionary<string, float> MeleeWeaponBonusDamage = new();
-    public Dictionary<string, float> RangedWeaponBonusDamage = new();
+    public DamageSpecifier? UnarmedBonusDamage;
+    public DamageSpecifier? MeleeWeaponBonusDamage;
 }
 
 [DataDefinition]
@@ -26,18 +29,13 @@ public sealed partial class BonusDamageComponent : Component
 [Access(typeof(SharedBonusDamageSystem))]
 public partial struct BonusDamageMod
 {
-    [DataField("damageTypes", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, DamageTypePrototype>), required: true)]
-    public Dictionary<string, float> DamageTypes = new();
+    public DamageSpecifier Damage;
 
-    [DataField]
     public bool AffectsUnarmed = false;
 
-    [DataField]
     public bool AffectsMeleeWeapons = false;
 
-    [DataField]
-    public bool AffectsRangedWeapons = false;
+    // todo:    public bool AffectsRangedWeapons = false;
 
-    [DataField]
     public bool OverwriteOnRefresh = false;
 }

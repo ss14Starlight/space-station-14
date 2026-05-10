@@ -1,5 +1,8 @@
 using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Damage;
+using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Mobs.Components;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
@@ -16,6 +19,28 @@ public sealed class SharedBonusScalarSystem : EntitySystem
 
         SubscribeLocalEvent<BonusScalarStatusEffectComponent, StatusEffectAppliedEvent>(BonusScalarStatusEffectApplied);
         SubscribeLocalEvent<BonusScalarStatusEffectComponent, StatusEffectRemovedEvent>(BonusScalarStatusEffectRemoved);
+        SubscribeLocalEvent<BonusScalarComponent, GetMeleeDamageEvent>(OnGetBonusMeleeDamage);
+        SubscribeLocalEvent<BonusScalarComponent, GetMeleeAttackRateEvent>(OnGetBonusMeleeAttackRate);
+    }
+
+    private void OnGetBonusMeleeDamage(EntityUid uid, BonusScalarComponent component, ref GetMeleeDamageEvent args)
+    {
+        if (HasComp<MobStateComponent>(uid)) {
+            args.Damage *= component.unarmedDamage;
+        }
+        else
+        {
+            args.Damage *= component.meleeWeaponDamage;
+        }
+    }
+
+    private void OnGetBonusMeleeAttackRate(EntityUid uid, BonusScalarComponent component, ref GetMeleeAttackRateEvent args)
+    {
+        if (HasComp<MobStateComponent>(uid)) {
+            args.Multipliers *= component.unarmedAttackRate;
+        } else {
+            args.Multipliers *= component.meleeWeaponAttackRate;
+        }
     }
 
     private void Recalculate(EntityUid ent, BonusScalarComponent component)
@@ -24,8 +49,9 @@ public sealed class SharedBonusScalarSystem : EntitySystem
         component.unarmedDamage = 1.0f;
         component.meleeWeaponAttackRate = 1.0f;
         component.meleeWeaponDamage = 1.0f;
+        /* // TODO
         component.rangedWeaponDamage = 1.0f;
-        component.rangedWeaponAttackRate = 1.0f;
+        component.rangedWeaponAttackRate = 1.0f; */
         component.doAfterDelay = 1.0f;
         foreach (var modifier in component.modifiers)
         {
@@ -33,8 +59,11 @@ public sealed class SharedBonusScalarSystem : EntitySystem
             component.unarmedDamage *= modifier.Value.unarmedDamage;
             component.meleeWeaponAttackRate *= modifier.Value.meleeWeaponAttackRate;
             component.meleeWeaponDamage *= modifier.Value.meleeWeaponDamage;
+            /*
+            // TODO
             component.rangedWeaponDamage *= modifier.Value.rangedWeaponDamage;
             component.rangedWeaponAttackRate *= modifier.Value.rangedWeaponAttackRate;
+            */
             component.doAfterDelay *= modifier.Value.doAfterDelay;
         }
         // Dirty(ent, component);
@@ -46,7 +75,7 @@ public sealed class SharedBonusScalarSystem : EntitySystem
             component = AddComp<BonusScalarComponent>(args.Target);
 
         if (!component.modifiers.ContainsKey(ent) || effect.OverwriteOnRefresh) {
-            if(component.modifiers.ContainsKey(ent))
+            if (component.modifiers.ContainsKey(ent))
             {
                 // refresh the buff only if OverwriteOnRefresh applies and the key was found:
                 component.modifiers.Remove(ent);
@@ -69,7 +98,7 @@ public sealed class SharedBonusScalarSystem : EntitySystem
 
         if (component.modifiers.Count == 0)
             RemComp<BonusScalarComponent>(args.Target);
-
-        Recalculate(ent, component);
+        else
+            Recalculate(ent, component);
     }
 }

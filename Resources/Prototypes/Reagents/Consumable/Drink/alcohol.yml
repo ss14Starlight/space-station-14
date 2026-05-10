@@ -1026,6 +1026,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: BonusDamageBraveBull # +10 Structural
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: Bronx
@@ -1041,6 +1049,22 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  # starlight - dwarf drink effects
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:AdjustReagent
+        reagent: Ethanol
+        amount: 0.06
+      - !type:ModifyStatusEffect
+        effectProto: BonusScalarBronx # x1.5 unarmed damage
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+  # end starlight
 
 - type: reagent
   id: CoconutRum
@@ -1613,6 +1637,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: BonusScalarIrishCarBomb # +20% damage with melee weapons
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+    # end starlight
 
 - type: reagent
   id: IrishCream
@@ -2626,6 +2658,14 @@
           effectProto: StatusEffectDrowsiness
           time: 1
           type: Remove
+  # starlight - dwarf drink effects
+        - !type:ModifyStatusEffect
+          effectProto: BonusScalarXenoBasher # +10% attack speed with melee weapons
+          time: 3
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
+  # end starlight
   fizziness: 0.15
 
 - type: reagent

@@ -1,6 +1,9 @@
 using Content.Shared._Starlight.Magic.Components;
 
 using Content.Shared.StatusEffectNew;
+using Content.Shared.Damage;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Weapons.Melee.Events;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
@@ -17,6 +20,37 @@ public sealed class SharedBonusDamageSystem : EntitySystem
 
         SubscribeLocalEvent<BonusDamageStatusEffectComponent, StatusEffectAppliedEvent>(BonusDamageStatusEffectApplied);
         SubscribeLocalEvent<BonusDamageStatusEffectComponent, StatusEffectRemovedEvent>(BonusDamageStatusEffectRemoved);
+        SubscribeLocalEvent<BonusDamageComponent, GetMeleeDamageEvent>(OnGetBonusMeleeDamage);
+    }
+
+    private void OnGetBonusMeleeDamage(EntityUid uid, BonusDamageComponent component, ref GetMeleeDamageEvent args)
+    {
+        if (HasComp<MobStateComponent>(uid)) {
+            if(component.UnarmedBonusDamage != null)
+                args.Damage += component.UnarmedBonusDamage;
+        }
+        else
+        {
+            if(component.MeleeWeaponBonusDamage != null)
+                args.Damage += component.MeleeWeaponBonusDamage;
+        }
+    }
+
+    private void Recalculate(BonusDamageComponent comp)
+    {
+        comp.MeleeWeaponBonusDamage = new();
+        // todo: comp.RangedWeaponBonusDamage = new();
+        comp.UnarmedBonusDamage = new();
+        foreach (var modifier in comp.modifiers)
+        {
+            if (modifier.Value.AffectsMeleeWeapons)
+                comp.MeleeWeaponBonusDamage += modifier.Value.Damage;
+            // todo:
+            /*if (modifier.Value.AffectsRangedWeapons)
+                comp.RangedWeaponBonusDamage += modifier.Value.Damage;*/
+            if (modifier.Value.AffectsUnarmed)
+                comp.UnarmedBonusDamage += modifier.Value.Damage;
+        }
     }
 
     private void BonusDamageStatusEffectApplied(EntityUid ent, BonusDamageStatusEffectComponent effect, ref StatusEffectAppliedEvent args)
@@ -25,7 +59,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
             component = AddComp<BonusDamageComponent>(args.Target);
 
         if (!component.modifiers.ContainsKey(ent) || effect.OverwriteOnRefresh) {
-            if(component.modifiers.ContainsKey(ent))
+            if (component.modifiers.ContainsKey(ent))
             {
                 // refresh the buff only if OverwriteOnRefresh applies and the key was found:
                 component.modifiers.Remove(ent);
@@ -33,12 +67,15 @@ public sealed class SharedBonusDamageSystem : EntitySystem
 
             // must be careful to copy these by value since future work may make them change dynamically:
             component.modifiers[ent] = new() {
-                DamageTypes = new Dictionary<string, float>(effect.DamageTypes),
+                Damage = new DamageSpecifier(effect.Damage),
                 AffectsUnarmed = effect.AffectsUnarmed,
-                AffectsMeleeWeapons = effect.AffectsMeleeWeapons,
-                AffectsRangedWeapons = effect.AffectsRangedWeapons
+                AffectsMeleeWeapons = effect.AffectsMeleeWeapons //,
+                // todo:
+                // AffectsRangedWeapons = effect.AffectsRangedWeapons
             };
         }
+
+        Recalculate(component);
     }
 
     private void BonusDamageStatusEffectRemoved(EntityUid ent, BonusDamageStatusEffectComponent effect, ref StatusEffectRemovedEvent args)
@@ -51,5 +88,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
 
         if (component.modifiers.Count == 0)
             RemComp<BonusDamageComponent>(args.Target);
+        else
+            Recalculate(component);
     }
 }

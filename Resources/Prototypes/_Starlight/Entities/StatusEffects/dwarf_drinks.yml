@@ -349,8 +349,6 @@
       unarmedDamage: 1.0
       meleeWeaponAttackRate: 1.0
       meleeWeaponDamage: 1.0
-      rangedWeaponAttackRate: 1.0
-      rangedWeaponDamage: 1.0
       doAfterDelay: 1.0
   - type: SoundStatusEffect
     startSound:
@@ -365,9 +363,11 @@
     # reference example of all possible effects for BonusDamageStatusEffect:
     affectsUnarmed: true
     affectsMeleeWeapons: false
-    affectsRangedWeapons: false
-    damageTypes:
-      Structural: 10
+    damage:
+      types:
+        Structural: 10
+      groups:
+        Brute: 0
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
@@ -391,7 +391,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      meleeWeaponAttackRate: 0.91 # +10% speed
+      meleeWeaponAttackRate: 0.1 #0.91 # +10% speed
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
