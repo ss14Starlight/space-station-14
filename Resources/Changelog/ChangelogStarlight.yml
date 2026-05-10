@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Saltern) About 20 non-plating tiles under walls.
-    type: Fix
-  id: 404464
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
   - message: (Saltern) Replaced firelocks that overlapped turnstiles with edge firelocks.
     type: Fix
   id: 404465
@@ -2799,4 +2792,11 @@ Entries:
   id: 404863
   time: '2026-05-10T06:45:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4394
+- author: Xale
+  changes:
+  - message: Washing at sinks to remove pie, lube, and glue.
+    type: Add
+  id: 404864
+  time: '2026-05-10T07:12:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4377
 Order: -1
