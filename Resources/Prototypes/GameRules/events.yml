@@ -240,7 +240,7 @@
     - spawnerPrototype: SpawnPointGhostDragon
       min: 1
       max: 3 # Starlight, for alpha.
-      playerRatio: 85 # Starlight. Realistically, Alpha shouldn't ever see more than 2, but future proofing's future proofing...
+      playerRatio: 95 # Starlight. Realistically, Alpha shouldn't ever see more than 2, but future proofing's future proofing...
       pickPlayer: false
       mindRoles:
       - MindRoleDragon
@@ -331,7 +331,7 @@
     - spawnerPrototype: SpawnPointGhostParadoxClone
       min: 1
       max: 4 # Starlight. Future proofing.
-      playerRatio: 65 # Starlight. Paradoxes really aren't that impactful, so we can just scale them off of Beta's maxpop.
+      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
@@ -632,7 +632,7 @@
     - spawnerPrototype: SpawnPointLoneNukeOperative
       min: 1
       max: 3 # Starlight, for Alpha.
-      playerRatio: 65 # Starlight. 1 vs 130 is essentially impossible. 2 vs 130 might stand a chance. 3 vs 195 is funny.
+      playerRatio: 75 # Starlight. 1 vs 150 is essentially impossible. 2 vs 150 might stand a chance. 3 vs 225 is funny.
       prefRoles: [ Nukeops ]
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
