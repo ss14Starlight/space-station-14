@@ -25,6 +25,7 @@ using Robust.Shared.Timing;
 
 #region Starlight
 using Content.Server._Starlight.Lock;
+using Content.Server.GameTicking;
 #endregion Starlight
 
 namespace Content.Server.Nuke;
@@ -50,7 +51,10 @@ public sealed class NukeSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    [Dependency] private readonly DigitalLockSystem _digitalLock = default!; // Starlight-edit
+    #region Starlight
+    [Dependency] private readonly DigitalLockSystem _digitalLock = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    #endregion
 
     /// <summary>
     ///     Used to calculate when the nuke song should start playing for maximum kino with the nuke sfx
@@ -510,8 +514,18 @@ public sealed class NukeSystem : EntitySystem
         var y = (int) pos.Y;
         var posText = $"({x}, {y})";
 
-        // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
-        _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
+        // Starlight-start
+        if (_gameTicker.IsGameRuleActive("Nukeops"))
+        {
+            // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
+            _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
+        }
+        else
+        {
+            //special music for loneops
+            _selectedNukeSong = _audio.ResolveSound(component.ArmMusicLone);
+        }
+        // Starlight-end
 
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-armed",
@@ -622,6 +636,7 @@ public sealed class NukeSystem : EntitySystem
         RaiseLocalEvent(new NukeExplodedEvent()
         {
             OwningStation = transform.GridUid,
+            EndRound = component.EndRound, // Starlight, for ending the round
         });
 
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
@@ -694,6 +709,7 @@ public sealed class NukeSystem : EntitySystem
 public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningStation;
+    public bool EndRound; // Starlight, for ending the round
 }
 
 /// <summary>

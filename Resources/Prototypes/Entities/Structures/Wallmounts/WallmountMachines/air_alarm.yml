@@ -109,6 +109,13 @@
     guides:
     - AirAlarms
     - DeviceMonitoringAndControl
+  # Starlight Start: RPD
+  - type: RCDDeconstructable
+    cost: 3
+    delay: 2
+    fx: EffectRCDDeconstruct2
+    rpd: true
+  # Starlight End: RPD
 
 - type: entity
   parent: BaseWallmountMetallic

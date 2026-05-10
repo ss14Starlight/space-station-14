@@ -1,0 +1,58 @@
+- type: entity
+  parent: FoodMeatBase
+  id: TP14FoodMeatFishFingers
+  suffix: Trieste, Food
+  name: fish fingers
+  description: Fried strips of fish. Doctors love it with custard.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - fishy
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+  - type: Sprite
+    sprite: _TP/Objects/Consumable/fried-food.rsi
+    state: Fish_Sticks
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Protein
+          Quantity: 5
+
+- type: entity
+  parent: FoodMeatBase
+  id: TP14FoodMeatSausage
+  name: raw sausage
+  description: Let's sausage!
+  components:
+  - type: Tag
+    tags:
+    - Raw
+    - Meat
+  - type: Sprite
+    state: sausage
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 3
+        - ReagentId: Fat
+          Quantity: 2
+  - type: Construction
+    graph: Cutlet
+    node: start # starlight
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    inhandVisuals:
+      left:
+      - state: sausage-inhand-left
+      right:
+      - state: sausage-inhand-right

@@ -29,6 +29,7 @@ namespace Content.Client.Chemistry.UI
         private readonly SpriteSystem _sprite;
 
         public event Action<BaseButton.ButtonEventArgs, ReagentButton>? OnReagentButtonPressed;
+        public event Action? OnToggleValveButtonPressed; // Starlight-edit: Plumbing valve
         public readonly Button[] PillTypeButtons;
 
         private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
@@ -97,6 +98,10 @@ namespace Content.Client.Chemistry.UI
 
             Tabs.SetTabTitle(0, Loc.GetString("chem-master-window-input-tab"));
             Tabs.SetTabTitle(1, Loc.GetString("chem-master-window-output-tab"));
+
+            // Starlight-start: Plumbing valve
+            ValveButton.OnPressed += _ => OnToggleValveButtonPressed?.Invoke();
+            // Starlight-end
         }
 
         private ReagentButton MakeReagentButton(string text, ChemMasterReagentAmount amount, ReagentId id, bool isBuffer, string styleClass)
@@ -170,7 +175,13 @@ namespace Content.Client.Chemistry.UI
             CreateBottleButton.Disabled = castState.OutputContainerInfo?.Reagents == null;
             CreatePillButton.Disabled = castState.OutputContainerInfo?.PillEntities == null; // Starlight-edit
             CreatePatchButton.Disabled = castState.OutputContainerInfo?.PatchEntities == null; // Starlight-edit
-            
+
+            // Starlight-start: Plumbing valve
+            ValveButton.Text = Loc.GetString(castState.ValveOpen
+                ? "chem-master-window-valve-open"
+                : "chem-master-window-valve-closed");
+            // Starlight-end
+
             UpdateDosageFields(castState);
         }
 
@@ -191,7 +202,7 @@ namespace Content.Client.Chemistry.UI
 
             PillDosage.Value = (int)Math.Min(outputVolume, castState.PillDosageLimit);
             PatchDosage.Value = (int)Math.Min(outputVolume, castState.PatchDosageLimit); // Starlight
-            
+
             PillTypeButtons[castState.SelectedPillType].Pressed = true;
 
             PillNumber.IsValid = x => x >= 0 && x <= pillNumberMax;
@@ -206,7 +217,7 @@ namespace Content.Client.Chemistry.UI
                 PillNumber.Value = pillNumberMax;
             if (BottleDosage.Value > bottleAmountMax)
                 BottleDosage.Value = bottleAmountMax;
-            
+
             if (PatchNumber.Value > pillNumberMax)
                 PatchNumber.Value = pillNumberMax;
 
@@ -219,7 +230,7 @@ namespace Content.Client.Chemistry.UI
             {
                 PillNumber.Value = 0;
             }
-            
+
             // Starlight-start
             if (PatchDosage.Value > 0)
             {

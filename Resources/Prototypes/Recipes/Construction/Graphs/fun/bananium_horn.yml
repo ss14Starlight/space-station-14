@@ -9,7 +9,7 @@
             - tag: Pipe
               name: construction-graph-tag-pipe
               icon:
-                sprite: Structures/Piping/Atmospherics/pipe.rsi
+                sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
                 state: pipeStraight
               doAfter: 2
             - material: Bananium

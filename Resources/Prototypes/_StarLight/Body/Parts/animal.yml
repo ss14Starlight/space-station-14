@@ -1,6 +1,0 @@
-- type: entity
-  id: OrganCorgiLungs
-  parent: OrganAnimalLungs
-  components:
-  - type: Lung
-    alert: CorgiLowOxygen

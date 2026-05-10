@@ -69,7 +69,7 @@
         children:
         - id: WeaponShotgunBulldog
         - id: MagazineShotgun
-          amount: 3
+          amount: 4 #SL 3 > 4
         - id: MagazineShotgunSlug
 #       - id: ThermalImagingGoggles
 
@@ -85,7 +85,7 @@
         children:
         - id: WeaponSubMachineGunC20r
         - id: MagazinePistolSubMachineGunSP
-          amount: 2
+          amount: 3 #SL 2 > 3
 #       - id: SMGSuppressor
 
 - type: entity
@@ -100,7 +100,7 @@
         children:
         - id: WeaponRifleEstoc
         - id: MagazineRifleSP
-          amount: 2
+          amount: 3 #SL 2 > 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -128,24 +128,23 @@
         children:
         - id: WeaponLightMachineGunL6
         - id: MagazineBoxLightRifleSP
+          amount: 2 #SL 1 > 2
         - id: MagazineLightRifleBoxSP
-        - id: MagazineLightRifleBoxSP
+          amount: 2 #SL cleanup
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   name: China-Lake bundle
-  description: "An old China-Lake grenade launcher bundled with 11 rounds of various destruction capability."
+  description: "An old China-Lake grenade launcher bundled with 10 rounds of various destruction capability."
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: WeaponLauncherChinaLake
-        - id: GrenadeBlast
-          amount: 4
-        - id: GrenadeFrag
-          amount: 4
+        - id: MagazineGrenadeBlast #SL
+        - id: MagazineGrenadeFrag  #SL
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -184,7 +183,7 @@
         - id: MagazineRifleSP
           amount: 3
         - id: MagazineRifleSP #Starlight, for the estoc
-          amount: 2 
+          amount: 2
         - id: MagazineLightRifleBoxSP
           amount: 3
         - id: MagazineShotgunSlug
@@ -293,6 +292,27 @@
         - id: ClothingMiscChameleon # Starlight Removed the Implanter from the backpack to make space for the Medal slot item.
 
 - type: entity
+  parent: ClothingBackpackChameleon
+  id: ClothingBackpackChameleonFillAgent
+  suffix: Fill, Chameleon, Syndie
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChameleonAgentPDA
+        - id: ClothingUniformJumpsuitChameleon
+        - id: ClothingOuterChameleon
+        - id: ClothingNeckChameleon
+        - id: ClothingMaskGasChameleon
+        - id: ClothingHeadHatChameleon
+        - id: ClothingHandsChameleon
+        - id: ClothingEyesChameleon
+        - id: ClothingHeadsetChameleon
+        - id: ClothingShoesChameleon
+        - id: ChameleonControllerImplanter
+
+- type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateEVABundle
   name: syndicate EVA bundle
@@ -308,6 +328,7 @@
         - id: ClothingHandsGlovesColorYellowBudget
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -356,6 +377,7 @@
     - id: ClothingHandsGlovesCombat
     - id: DoubleEmergencyOxygenTankFilled
     - id: DoubleEmergencyNitrogenTankFilled
+    - id: EmergencyCoolingUnit # Starlight
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -446,7 +468,7 @@
         children:
         - id: WeaponSubMachineGunC20r
         - id: MagazinePistolSubMachineGunSP
-          amount: 3
+          amount: 4 #SL 3 > 4
         - id: MagazinePistolSP
         - id: SyndicateJawsOfLife
         - id: C4
@@ -460,12 +482,13 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledHushpup
   name: Hushpup bundle
-  description: Contains the Hushpup, bundled with a box of buckshot. Quarter included.
+  description: Contains the Hushpup, bundled with a box of buckshot and a speedloader. Quarter included.
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: WeaponShotgunHushpup
+        - id: SpeedLoaderMagnumBasic # SL - Speedload > Extra box
         - id: BoxLethalshot
         - id: TreasureCoinIron

@@ -15,11 +15,12 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - DogEmotes # Starlight
   chatMessages: ["chat-emote-msg-cough"]
   chatTriggers:
     - cough
     - coughs
-    - coughed 
+    - coughed
     - cough.
     - coughs.
     - coughed.
@@ -62,6 +63,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - DogEmotes # Starlight
   chatMessages: ["chat-emote-msg-yawn"]
   chatTriggers:
     - yawn

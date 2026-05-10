@@ -1,0 +1,24 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BasePirateObjective
+  components:
+  - type: Objective
+    difficulty: 1
+    issuer: objective-issuer-pirate
+  - type: RoleRequirement
+    roles:
+    - PirateRole
+
+- type: entity
+  parent: BasePirateObjective
+  id: PirateSurviveObjective
+  name: Survive the raid
+  description: You are a pirate. Stay alive and make it back to the ship when the raid is over.
+  components:
+  - type: Objective
+    unique: true
+    icon:
+      sprite: Clothing/Head/Hats/pirate.rsi
+      state: icon
+  - type: SurviveCondition

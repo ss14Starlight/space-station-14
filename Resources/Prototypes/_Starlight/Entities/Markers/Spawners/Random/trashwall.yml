@@ -1,0 +1,56 @@
+﻿- type: entity
+  id: TrashWallLootSpawner
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: _Starlight/Structures/Walls/trash.rsi
+          state: trash
+    - type: RandomSpawner
+      prototypes:
+      - ScrapSteel
+      - ScrapGlass
+      - ScrapBucket
+      - ScrapCamera
+      - ScrapCloset
+      - ScrapFaxMachine
+      - ScrapFireExtinguisher
+      - ScrapMedkit
+      - DrinkColaCanEmpty
+      - FoodPacketBoritosTrash
+      - FoodPacketCnDsTrash
+      - FoodPacketCheesieTrash
+      - FoodPacketChipsTrash
+      - FoodPacketPistachioTrash
+      - FoodPacketCupRamenTrash
+      - BrokenBottle
+      - MicroManipulatorStockPart
+      - SpaceCash10
+      - TrackingImplanter
+      - BikeHornImplanter
+      - Implanter
+      - ModularReceiver
+      - RifleStock
+      - BaseBallBat
+      - Handcuffs
+      - PartRodMetal10
+      - MaterialCardboard10
+      - MaterialCloth10
+      - MaterialDurathread1
+      - MaterialWoodPlank10
+      - MaterialBiomass1
+      - MaterialDiamond1
+      - MaterialBones1
+      - MaterialGunpowder
+      - SheetGlass10
+      - SheetSteel10
+      - SheetBrass10
+      - SheetPlasteel1
+      - ScrewdriverImprovised
+      - WirecutterImprovised
+      - WrenchImprovised
+      - MultitoolImprovised
+      - CrowbarImprovised
+      - WeaponPistolImprovised
+      offset: 0.15

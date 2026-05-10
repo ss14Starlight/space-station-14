@@ -1,0 +1,52 @@
+# Funky atmos - /tg/ gases
+- type: reagent
+  id: NitrosylPlasmide
+  name: reagent-name-nitrosyl-plasmide
+  group: Narcotics
+  desc: reagent-desc-nitrosyl-plasmide
+  physicalDesc: reagent-physical-desc-translucent
+  flavor: sour
+  color: "#e1a116"
+  metabolisms:
+    Gas:
+      effects:
+      - !type:Jitter
+    Narcotic:
+      effects:
+      - !type:Jitter
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 0.3 # Starlight
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 0.3 # Starlight
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Drowsiness
+        time: 10
+        type: Remove
+      - !type:GenericStatusEffect
+        conditions:
+        key: ForcedSleep
+        type: Remove
+        time: 10
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.1
+      # Starlight BEGIN
+      - !type:AdjustReagent
+        reagent: NitrosylPlasmide
+        amount: -1.5
+        conditions:
+          - !type:ReagentCondition
+            reagent: NitrosylPlasmide
+            min: 30
+      # Starlight END
+    Medicine:
+      effects:
+      - !type:ResetNarcolepsy
+        conditions:
+        - !type:ReagentCondition
+          reagent: NitrosylPlasmide
+          min: 0.1

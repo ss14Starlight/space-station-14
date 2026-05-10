@@ -35,6 +35,7 @@
     visMask:
       - Normal
       - Ghost
+      - NullSpace # Starlight
   - type: ContentEye
     maxZoom: 1.2, 1.2
   - type: NameIdentifier
@@ -44,6 +45,7 @@
     name: ghost-role-information-revenant-name
     description: ghost-role-information-revenant-description
     rules: ghost-role-information-antagonist-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleSoloAntagonist
     raffle:
@@ -70,7 +72,7 @@
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
   - type: Visibility
-    layer: 2 #ghost vis layer
+    layer: 32 # Starlight - nullspace vis layer (1 << 5)
   - type: ActionGrant
     actions:
     - ActionRevenantShop

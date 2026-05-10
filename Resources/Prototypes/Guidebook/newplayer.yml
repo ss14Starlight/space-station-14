@@ -26,6 +26,7 @@
   children:
   - YourFirstCharacter
   - Species
+  - Records # Starlight
 
 - type: guideEntry
   id: YourFirstCharacter

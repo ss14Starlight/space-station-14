@@ -7,7 +7,8 @@ using Content.Shared.Atmos;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Physics;
 
-namespace Content.Server.Starlight.Energy.Supermatter;
+namespace Content.Server._Starlight.Energy.Supermatter;
+
 internal static class Const
 {
     public static FixedPoint2 HeatPercent = 0.82f;
@@ -25,7 +26,7 @@ internal static class Const
         new (0.60f, 0.61f, 1.3f), // plasma
         new (0.30f, 0.45f, 1.2f), // tritium
         new (0.14f, 2.31f, 2.5f), // vapor
-        new (0.16f, 2.11f, 4.4f), // ommonium
+        new (0.16f, 2.11f, 4.4f), // ammonia
         new (0.13f, 2.19f, 2.2f), // nitrous oxide
         new (1.00f, 0.01f, 1.1f), // frezon
     ];

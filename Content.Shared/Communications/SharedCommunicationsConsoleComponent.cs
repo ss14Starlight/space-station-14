@@ -11,7 +11,7 @@ namespace Content.Shared.Communications
     public sealed class CommunicationsConsoleInterfaceState : BoundUserInterfaceState
     {
         public readonly bool CanAnnounce;
-        public readonly bool CanBroadcast = true;
+        public readonly bool CanBroadcast; // Starlight
         public readonly bool CanCall;
         public readonly TimeSpan? ExpectedCountdownEnd;
         public readonly bool CountdownStarted;
@@ -25,6 +25,7 @@ namespace Content.Shared.Communications
         public readonly TimeSpan? CallRecallCooldownEnd;
         public readonly bool ShuttleCallsAllowed;
         public readonly TimeSpan? LastCountdownStart;
+        public readonly bool HasSecureTerminal; // Starlight: SCT enabled
 
         public CommunicationsConsoleInterfaceState(
             bool canAnnounce,
@@ -32,12 +33,14 @@ namespace Content.Shared.Communications
             List<string>? alertLevels,
             string currentAlert,
             float currentAlertDelay,
+            bool canBroadcast,
             TimeSpan? expectedCountdownEnd = null,
             TimeSpan? announcementCooldownEnd = null,
             TimeSpan? callRecallCooldownEnd = null,
             TimeSpan? shuttleCountdownEnd = null,
             bool shuttleCallsAllowed = true,
-            TimeSpan? lastCountdownStart = null
+            TimeSpan? lastCountdownStart = null,
+            bool hasSecureTerminal = false
         )
         // Starlight edit End
         {
@@ -49,11 +52,13 @@ namespace Content.Shared.Communications
             CurrentAlert = currentAlert;
             CurrentAlertDelay = currentAlertDelay;
             // Starlight Start
+            CanBroadcast = canBroadcast;
             AnnouncementCooldownEnd = announcementCooldownEnd;
             CallRecallCooldownEnd = callRecallCooldownEnd;
             ShuttleCountdownEnd = shuttleCountdownEnd;
             ShuttleCallsAllowed = shuttleCallsAllowed;
             LastCountdownStart = lastCountdownStart;
+            HasSecureTerminal = hasSecureTerminal;
             // Starlight End
         }
     }
@@ -105,4 +110,10 @@ namespace Content.Shared.Communications
     {
         Key
     }
+
+    // Starlight Start: Secure Command Terminal
+    /// <summary>Sent from the client when the player presses the "Secure Terminal" button.</summary>
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleOpenSecureTerminalMessage : BoundUserInterfaceMessage { }
+    // Starlight End
 }

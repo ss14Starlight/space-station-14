@@ -45,8 +45,10 @@
   cost: 7500
   recipeUnlocks:
   - PowerCellHigh
+  - MechReactorHigh #Starlight
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESHyperAdvancedMachineCircuitboard #SL
   radioChannels:
   - Engineering
 
@@ -146,6 +148,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - ElectrolyzerMachineCircuitboard # Funky atmos = /tg/ gases
   technologyPrerequisites:
   - AtmosphericTech
   radioChannels:
@@ -165,6 +168,7 @@
     - PowerDrill
     - JawsOfLife
     - BorgModuleAdvancedTool
+    - BorgModuleAdvancedPlumbing
     - Fulton
     - FultonBeacon
   radioChannels:
@@ -181,7 +185,6 @@
   tier: 2
   cost: 12500
   recipeUnlocks:
-    - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
@@ -203,6 +206,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
+  - OreBagOfHolding # SL - Moved to BluespaceStorage.
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
@@ -223,8 +227,34 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  - MechReactorMicro #Starlight
+  - MechReactorHyper #Starlight
   technologyPrerequisites:
   - AdvancedPowercells
   - PowerGeneration # starlight
   radioChannels:
   - Engineering # starlight
+
+# Tier 4
+
+- type: technology
+  id: ExosuitExoticReactor
+  name: research-technology-exotic-reactor
+  icon:
+    sprite: _Starlight/Objects/Power/mech_reactors.rsi
+    state: paladin
+  discipline: Industrial
+  tier: 4
+  cost: 20000
+  recipeUnlocks:
+    - MechReactorShielded
+    - MechReactorBurnout
+    - MechReactorCavalier
+  technologyPrerequisites:
+    - OptimizedMicrogalvanism
+    - Gygax
+    - Durand
+    - EnergyBarriers
+  radioChannels:
+    - Engineering
+    - Security

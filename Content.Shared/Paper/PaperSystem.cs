@@ -18,6 +18,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared._Starlight.Time;
 // Starlight-end
 
 namespace Content.Shared.Paper;
@@ -34,6 +35,7 @@ public sealed class PaperSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedTimeSystem _timeSystem = default!; // Starlight-edit
 
     private static readonly ProtoId<TagPrototype> WriteIgnoreStampsTag = "WriteIgnoreStamps";
     private static readonly ProtoId<TagPrototype> WriteTag = "Write";
@@ -58,6 +60,7 @@ public sealed class PaperSystem : EntitySystem
         // Umbra - Signing alt verb event listener.
         SubscribeLocalEvent<PaperComponent, GetVerbsEvent<AlternativeVerb>>(AddSignVerb);
         SubscribeLocalEvent<PaperComponent, PaperSignatureRequestMessage>(OnSignatureRequest); // Starlight-edit
+        SubscribeLocalEvent<PaperComponent, PaperDateTimeRequestMessage>(OnDateTimeRequest); // Starlight-edit
 
         _paperQuery = GetEntityQuery<PaperComponent>();
     }
@@ -286,13 +289,13 @@ public sealed class PaperSystem : EntitySystem
         if (!entity.Comp.StampedBy.Contains(stampInfo))
         {
             entity.Comp.StampedBy.Add(stampInfo);
-            
+
             // Starlight-start: Clean unfilled form and signature tags when stamping to finalize the document
             var cleanedContent = CleanUnfilledTags(entity.Comp.Content);
             if (cleanedContent != entity.Comp.Content)
                 SetContent(entity, cleanedContent);
             // Starlight-end
-            
+
             Dirty(entity);
             if (entity.Comp.StampState == null && TryComp<AppearanceComponent>(entity, out var appearance))
             {
@@ -446,6 +449,18 @@ public sealed class PaperSystem : EntitySystem
             $"{ToPrettyString(args.Actor):player} signed {ToPrettyString(entity):entity} with signature: {signature}");
     }
 
+    private void OnDateTimeRequest(Entity<PaperComponent> entity, ref PaperDateTimeRequestMessage args)
+    {
+        var date = _timeSystem.GetDate();
+        var shiftTime = _timeSystem.GetShiftDuration();
+
+        // shift time is more helpful than the date for rounds, date is still included for the flavor
+        var formatted = $"{date} // {(int)shiftTime.TotalHours:D2}:{shiftTime.Minutes:D2} Shift Time";
+
+        var newText = ReplaceNthDateTimeTag(entity.Comp.Content, args.DateTimeIndex, formatted);
+        SetContent(entity, newText);
+    }
+
     /// <summary>
     /// Gets the player's signature using the identity system, including rank, name, and role.
     /// </summary>
@@ -454,7 +469,7 @@ public sealed class PaperSystem : EntitySystem
         var name = string.Empty;
         var rank = string.Empty;
         var role = string.Empty;
-        
+
         // Get the identity entity (ID card, etc.)
         var identityEntity = player;
         if (TryComp<IdentityComponent>(player, out var identity) &&
@@ -462,10 +477,10 @@ public sealed class PaperSystem : EntitySystem
         {
             identityEntity = idEntity;
         }
-        
+
         // Get name from identity or fallback to entity name
         name = MetaData(identityEntity).EntityName;
-        
+
         // Get role from mind system
         if (TryComp<MindContainerComponent>(player, out var mindContainer) &&
             mindContainer.Mind != null)
@@ -477,7 +492,7 @@ public sealed class PaperSystem : EntitySystem
                 role = Loc.GetString(roleInfo[0].Name);
             }
         }
-        
+
         // Format: "Rank Name, Role" or fallback combinations
         var signature = string.Empty;
         if (!string.IsNullOrEmpty(rank) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(role))
@@ -496,7 +511,7 @@ public sealed class PaperSystem : EntitySystem
         {
             signature = name;
         }
-        
+
         return signature;
     }
 
@@ -527,7 +542,33 @@ public sealed class PaperSystem : EntitySystem
     }
 
     /// <summary>
-    /// Removes any unfilled [form] and [signature] tags, and converts [check] tags to ☐.
+    /// Replaces the nth occurrence of [datetime] tag with replacement text.
+    /// </summary>
+    private static string ReplaceNthDateTimeTag(string text, int index, string replacement)
+    {
+        const string dateTimeTag = "[datetime]";
+        var currentIndex = 0;
+        var pos = 0;
+
+        while (pos < text.Length)
+        {
+            var foundPos = text.IndexOf(dateTimeTag, pos);
+            if (foundPos == -1) break;
+
+            if (currentIndex == index)
+            {
+                return text.Substring(0, foundPos) + replacement + text.Substring(foundPos + dateTimeTag.Length);
+            }
+
+            currentIndex++;
+            pos = foundPos + dateTimeTag.Length;
+        }
+
+        return text;
+    }
+
+    /// <summary>
+    /// Removes any unfilled [form], [signature], and [datetime] tags, and converts [check] tags to ☐.
     /// Called when the paper is stamped to finalize the document.
     /// </summary>
     /// <param name="text">The paper text to clean</param>
@@ -536,9 +577,10 @@ public sealed class PaperSystem : EntitySystem
     {
         return text.Replace("[form]", string.Empty)
                   .Replace("[signature]", string.Empty)
+                  .Replace("[datetime]", string.Empty)
                   .Replace("[check]", "☐");
     }
-    
+
     # endregion
 
 }

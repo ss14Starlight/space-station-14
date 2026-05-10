@@ -1,20 +1,8 @@
-using System.Linq;
 using Content.Client.Eui;
 using Content.Client.Lobby;
-using Content.Client.Players.PlayTimeTracking;
-using Content.Shared.Starlight.GhostTheme;
+using Content.Shared._Starlight.GhostTheme;
 using Content.Shared.Eui;
-using Content.Shared.Ghost.Roles;
-using Content.Shared.Humanoid.Markings;
-using Robust.Shared.Player;
 using JetBrains.Annotations;
-using Robust.Client.GameObjects;
-using Robust.Client.ResourceManagement;
-using Robust.Client.State;
-using Robust.Client.UserInterface;
-using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.GhostTheme;
 
@@ -28,16 +16,12 @@ public sealed class GhostThemeEui : BaseEui
     public GhostThemeEui()
     {
         _window = new GhostThemeWindow(_preferencesManager);
-        
-        _window.SelectTheme += slot =>
-        {
-            base.SendMessage(new GhostThemeSelectedMessage(slot));
-        };
-        
-        _window.SelectColor += color =>
-        {
-            base.SendMessage(new GhostThemeColorSelectedMessage(color));
-        };
+
+        _window.SelectTheme += slot
+            => SendMessage(new GhostThemeSelectedMessage(slot));
+
+        _window.SelectColor += color
+            => SendMessage(new GhostThemeColorSelectedMessage(color));
     }
 
     public override void Opened()
@@ -55,7 +39,7 @@ public sealed class GhostThemeEui : BaseEui
     public override void HandleState(EuiStateBase state)
     {
         base.HandleState(state);
-        
+
         if (state is not GhostThemeEuiState ghostThemeState)
             return;
         _window.UpdateThemes(ghostThemeState.AvailableThemes);

@@ -10,11 +10,6 @@ using Robust.Client.Player;
 using Robust.Client.State;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-// Starlight Start
-using static Robust.Client.Placement.PlacementManager;
-using Robust.Client.Graphics;
-using Content.Shared.Atmos.Components;
-// Starlight End
 
 namespace Content.Client.RCD;
 
@@ -28,11 +23,9 @@ public sealed class AlignRCDConstruction : PlacementMode
     private readonly SharedTransformSystem _transformSystem;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IStateManager _stateManager = default!;
-    [Dependency] private readonly IEyeManager _eyeManager = default!; // Starlight: RPD
 
     private const float SearchBoxSize = 2f;
     private const float PlaceColorBaseAlpha = 0.5f;
-    private const float MouseDeadzoneRadius = 0.25f; // Starlight: RPD
 
     private EntityCoordinates _unalignedMouseCoords = default;
 
@@ -60,7 +53,6 @@ public sealed class AlignRCDConstruction : PlacementMode
         if (!_entityManager.TryGetComponent<MapGridComponent>(gridId, out var mapGrid))
             return;
 
-        var gridRotation = _transformSystem.GetWorldRotation(gridId.Value); // Starlight: RPD
         CurrentTile = _mapSystem.GetTileRef(gridId.Value, mapGrid, MouseCoords);
 
         float tileSize = mapGrid.TileSize;
@@ -76,34 +68,6 @@ public sealed class AlignRCDConstruction : PlacementMode
             MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + tileSize / 2 + pManager.PlacementOffset.X,
                 CurrentTile.Y + tileSize / 2 + pManager.PlacementOffset.Y));
         }
-
-    // Starlight Start: RPD
-        ApplyRpdLayerSelection(gridId.Value, gridRotation);
-    }
-    private void ApplyRpdLayerSelection(EntityUid gridUid, Angle gridRotation)
-    {
-        if (pManager.PlacementType != PlacementTypes.None)
-            return;
-
-        var rcdUid = pManager.CurrentPermission?.MobUid;
-
-        if (rcdUid == null)
-            return;
-
-        if (!_entityManager.TryGetComponent<RCDComponent>(rcdUid.Value, out var rcd) || !rcd.IsRPD)
-            return;
-
-        var mouseCoordsDiff = _unalignedMouseCoords.Position - MouseCoords.Position;
-        var layer = AtmosPipeLayer.Primary;
-
-        if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
-        {
-            var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-            layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
-        }
-
-        _rcdSystem.SetGhostPipeLayer(rcdUid.Value, layer);
-    // Starlight End
     }
 
     public override bool IsValidPosition(EntityCoordinates position)

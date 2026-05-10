@@ -1,0 +1,43 @@
+- type: entity
+  name: organ pod
+  description: Strangest salad you've ever seen.
+  parent: FoodProduceBase
+  id: FoodOrganTree
+  components:
+    - type: FlavorProfile
+      flavors:
+        - strange
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/organtree.rsi
+      state: produce
+    - type: Produce
+      seedId: organTree
+    - type: Butcherable
+      butcheringType: Knife
+      spawned:
+        - id: EffectOrganTree
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 5
+          reagents:
+            - ReagentId: Nutriment
+              Quantity: 2
+            - ReagentId: Vitamin
+              Quantity: 2
+    - type: Tag
+      tags:
+        - Fruit
+
+- type: entity
+  id: TrashMimanaPeelStealthy
+  parent: TrashMimanaPeel
+  name: mimana peel
+  suffix: Stealthy
+  components:
+  - type: Stealth
+    minVisibility: .15
+    maxVisibility: 1
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.37
+    movementVisibilityRate: 0.50

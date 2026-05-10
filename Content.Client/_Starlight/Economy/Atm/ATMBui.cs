@@ -1,11 +1,6 @@
-﻿using Content.Client._Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Economy.Atm;
+﻿using Content.Shared.Starlight.Economy.Atm;
 using JetBrains.Annotations;
-using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
-using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
 namespace Content.Client._Starlight.Economy.Atm;
 
@@ -38,9 +33,7 @@ public sealed class ATMBui : BoundUserInterface
     }
 
     private void Update(ATMBuiState state)
-    {
-        RefreshUI(state);
-    }
+        => RefreshUI(state);
 
     private void TryInitWindow()
     {
@@ -69,7 +62,7 @@ public sealed class ATMBui : BoundUserInterface
         _window.WithdrawInput.OnTextChanged += _ =>
             _window.WithdrawButton.Disabled = !int.TryParse(_window.WithdrawInput.Text, out _amount)
                 || _amount <= 0 || _amount > _currentBalance;
-        
+
         _window.WithdrawButton.OnPressed += _ =>
         {
             SendMessage(new ATMWithdrawBuiMsg { Amount = _amount });

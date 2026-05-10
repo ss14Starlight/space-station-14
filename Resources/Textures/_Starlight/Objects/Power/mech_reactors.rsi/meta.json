@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Citrea",
+    "states": [
+        {
+            "name": "medium"
+        },
+        {
+            "name": "high"
+        },
+        {
+            "name": "hyper"
+        },
+        {
+            "name": "microreactor"
+        },
+        {
+            "name": "burnout"
+        },
+        {
+            "name": "antique",
+			"delays": [[0.3, 0.3, 0.3, 0.3]]
+        },
+        {
+            "name": "cavalier",
+			"delays": [[0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+            "name": "paladin",
+			"delays": [[0.4, 0.2, 0.4, 0.2]]
+        },
+        {
+            "name": "o1",
+			"delays": [[0.2, 0.2]]
+        },
+        {
+            "name": "o2",
+			"delays": [[0.1, 0.1]]
+        }
+    ]
+}

@@ -1,0 +1,28 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Resprited from emergency rollerbed by TacoLlama (github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "emergency_rollerbed"
+        },
+        {
+            "name": "emergency_rollerbed_buckled"
+        },
+        {
+            "name": "emergency_rollerbed_folded"
+        },
+        {
+            "name": "emergency_rollerbed-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "emergency_rollerbed-inhand-right",
+            "directions": 4
+        }
+    ]
+}

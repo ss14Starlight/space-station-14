@@ -329,3 +329,11 @@
   - type: GuideHelp
     guides:
     - AnomalousResearch
+# SL Start: Lighting Update
+  - type: PointLight
+    autoRot: true
+    color: "#9933c4"
+    radius: 5
+    energy: 0.5
+    castShadows: true
+# SL End

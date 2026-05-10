@@ -1,0 +1,8 @@
+# Funky atmos - Metal Hydrogen
+- type: construction
+  id: MetalHydrogenAxeConstruct
+  graph: MetalHydrogenAxeConstruct
+  startNode: start
+  targetNode: icon
+  category: construction-category-weapons
+  objectType: Item

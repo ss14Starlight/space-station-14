@@ -97,7 +97,7 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
 
                 var v = new Verb
                 {
-                    Priority = 1,
+                    Priority = ent.Comp.NumberOfPipeLayers - i, // Carpmosia-edit - 5 pipe layers
                     Category = VerbCategory.Adjust,
                     Text = label,
                     Disabled = index == (int)ent.Comp.CurrentPipeLayer,
@@ -177,6 +177,16 @@ public abstract partial class SharedAtmosPipeLayersSystem : EntitySystem
     public void SetNextPipeLayer(Entity<AtmosPipeLayersComponent> ent, EntityUid? user = null, EntityUid? used = null)
     {
         var newLayer = ((int)ent.Comp.CurrentPipeLayer + 1) % ent.Comp.NumberOfPipeLayers;
+        // Carpmosia-start - 5 pipe layers // Remapping to 1 2 4 5 3 for screwing convenience
+        if (ent.Comp.NumberOfPipeLayers == 5) {
+            if (ent.Comp.CurrentPipeLayer == AtmosPipeLayer.Secondary)
+                newLayer = 3;
+            if (ent.Comp.CurrentPipeLayer == AtmosPipeLayer.Quinary)
+                newLayer = 2;
+            if (ent.Comp.CurrentPipeLayer == AtmosPipeLayer.Tertiary)
+                newLayer = 0;
+        }
+        // Carpmosia-end - 5 pipe layers
         SetPipeLayer(ent, (AtmosPipeLayer)newLayer, user, used);
     }
 

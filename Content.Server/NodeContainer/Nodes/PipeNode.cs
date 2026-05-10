@@ -5,6 +5,7 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Atmos; // Starlight
 
 namespace Content.Server.NodeContainer.Nodes
 {
@@ -14,7 +15,7 @@ namespace Content.Server.NodeContainer.Nodes
     /// </summary>
     [DataDefinition]
     [Virtual]
-    public partial class PipeNode : Node, IGasMixtureHolder, IRotatableNode
+    public partial class PipeNode : Node, IGasMixtureHolder, IRotatableNode, IPipeNode // Starlight Edit: Added IPipeNode
     {
         /// <summary>
         ///     The directions in which this pipe can connect to other pipes around it.
@@ -162,6 +163,11 @@ namespace Content.Server.NodeContainer.Nodes
             MapGridComponent? grid,
             IEntityManager entMan)
         {
+            // Starlight Start: Moved to before if alwaysReachable
+            if (!xform.Anchored || grid == null)
+                yield break;
+            // Starlight End: Moved to before if alwaysReachable
+
             if (_alwaysReachable != null)
             {
                 var remQ = new RemQueue<PipeNode>();
@@ -180,8 +186,10 @@ namespace Content.Server.NodeContainer.Nodes
                 }
             }
 
-            if (!xform.Anchored || grid == null)
-                yield break;
+            // Starlight edit Start: Moved to before if alwaysReachable
+            // if (!xform.Anchored || grid == null)
+            //     yield break;
+            // Starlight edit End: Moved to before if alwaysReachable
 
             var pos = grid.TileIndicesFor(xform.Coordinates);
 
@@ -237,5 +245,9 @@ namespace Content.Server.NodeContainer.Nodes
             }
         }
         public HashSet<PipeNode>? GetAlwaysReachable() => _alwaysReachable; // Starlight: DockPipeSystem
+        // Starlight Start: RPD
+        PipeDirection IPipeNode.Direction => OriginalPipeDirection;
+        AtmosPipeLayer IPipeNode.Layer => CurrentPipeLayer;
+        // Starlight End: RPD
     }
 }

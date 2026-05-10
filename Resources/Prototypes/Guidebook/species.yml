@@ -3,12 +3,12 @@
   name: guide-entry-species
   text: "/ServerInfo/Guidebook/Mobs/Species.xml"
   children:
+  - Elf # Starlight
   - Arachnid
   - Avali
   - Cyclorite
   - Diona
   - Dwarf
-  - Elf # Starlight
   - Felionoid
   - Human
   - Lagomorph #Afterlight
@@ -20,6 +20,7 @@
   - Vox
   - Vulpkanin
   - Thaven #Starlight
+  - IPC #FH
 
 - type: guideEntry
   id: Arachnid

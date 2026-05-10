@@ -18,7 +18,7 @@
 
 - type: entity
   id: NTDefaultCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (NT Default)
   # description: An electronics board containing the NT Default lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -27,7 +27,7 @@
 
 - type: entity
   id: AsimovCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Crewsimov)
   # description: An electronics board containing the Crewsimov lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -37,7 +37,7 @@
 
 - type: entity
   id: CorporateCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Corporate)
   # description: An electronics board containing the Corporate lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -47,7 +47,7 @@
 
 - type: entity
   id: CommandmentCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Ten Commandments)
   # description: An electronics board containing the Ten Commandments lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -57,7 +57,7 @@
 
 - type: entity
   id: PaladinCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Paladin)
   # description: An electronics board containing the Paladin lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -67,7 +67,7 @@
 
 - type: entity
   id: LiveLetLiveCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Live and Let Live)
   # description: An electronics board containing the Live and Let Live lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   id: StationEfficiencyCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Station Efficiency)
   # description: An electronics board containing the Station Efficiency lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -87,7 +87,7 @@
 
 - type: entity
   id: RobocopCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Robocop)
   # description: An electronics board containing the Robocop lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -97,7 +97,7 @@
 
 - type: entity
   id: OverlordCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Overlord)
   # description: An electronics board containing the Overlord lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -107,7 +107,7 @@
 
 - type: entity
   id: GameMasterCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Game Master)
   # description: An electronics board containing the Game Master lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -117,7 +117,7 @@
 
 - type: entity
   id: ArtistCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Artist)
   # description: An electronics board containing the Artist lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -140,7 +140,7 @@
 
 - type: entity
   id: NutimovCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
   name: law board (Nutimov)
   # description: An electronics board containing the Nutimov lawset. # Starlight Edit: Removed for Dynamic Description
   components:
@@ -150,7 +150,7 @@
 
 - type: entity
   id: XenoborgCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] #SL Edit made Xenoborg Contra
   name: law board (Xenoborg)
   suffix: Admeme
   # description: An electronics board containing the Xenoborg lawset. # Starlight Edit: Removed for Dynamic Description
@@ -163,7 +163,7 @@
 
 - type: entity
   id: MothershipCircuitBoard
-  parent: BaseSiliconLawboard
+  parent: [ BaseSiliconLawboard, BaseXenoborgContraband ] #SL Edit made Xenoborg Contra
   name: law board (Mothership Core)
   suffix: Admeme
   # description: An electronics board containing the Mothership Core lawset. # Starlight Edit: Removed for Dynamic Description

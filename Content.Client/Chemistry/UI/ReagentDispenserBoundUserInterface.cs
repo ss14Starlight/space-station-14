@@ -42,6 +42,7 @@ namespace Content.Client.Chemistry.UI
 
             _window.OnDispenseReagentButtonPressed += (data) => SendMessage(new ReagentDispenserDispenseReagentMessage(data)); // Starlight-edit
             _window.OnEjectJugButtonPressed += (location) => SendMessage(new ReagentDispenserEjectContainerMessage(location));
+            _window.OnToggleValveButtonPressed += () => SendMessage(new ReagentDispenserToggleValveMessage()); // Starlight-edit: Plumbing valve
         }
 
         /// <summary>

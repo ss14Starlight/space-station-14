@@ -16,6 +16,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
+    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
 
     public override void Initialize()
     {
@@ -37,9 +38,17 @@ public sealed class CharacterInfoSystem : EntitySystem
         string? briefing = null;
 
         // 🌟Starlight🌟 start
-        Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>? collectiveMinds = null;
+        var collectiveMinds = new Dictionary<CollectiveMindPrototype, CollectiveMindMemberData>();
         if (TryComp<CollectiveMindComponent>(entity, out var mindsComp))
-            collectiveMinds = mindsComp.Minds;
+        {
+            foreach (var collectiveMind in mindsComp.Minds)
+            {
+                if (!_collectiveMind.CheckCanSpeak(entity, collectiveMind.Key))
+                    continue;
+
+                collectiveMinds.Add(collectiveMind.Key, collectiveMind.Value);
+            }
+        }
 
         var @event = new CollectObjectivesEvent(objectives);
         RaiseLocalEvent(entity, ref @event);

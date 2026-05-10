@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.UI;
 using Content.Shared.Alert;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Robust.Client.Player;
@@ -14,6 +15,7 @@ public sealed partial class BatteryAlertSystem : EntitySystem
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
 
     // How often to update the battery alert.
     // Also gets updated instantly when switching bodies or a battery is inserted or removed.
@@ -24,7 +26,7 @@ public sealed partial class BatteryAlertSystem : EntitySystem
     private TimeSpan _nextAlertUpdate = TimeSpan.Zero;
     private EntityQuery<BatteryAlertComponent> _alertQuery;
     private EntityQuery<PowerCellSlotComponent> _slotQuery;
-    
+
     public override void Initialize()
     {
         SubscribeLocalEvent<BatteryAlertComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
@@ -34,8 +36,8 @@ public sealed partial class BatteryAlertSystem : EntitySystem
         _alertQuery = GetEntityQuery<BatteryAlertComponent>();
         _slotQuery = GetEntityQuery<PowerCellSlotComponent>();
     }
-    
-    private void OnPlayerAttached(EntityUid uid, BatteryAlertComponent component, LocalPlayerAttachedEvent args) 
+
+    private void OnPlayerAttached(EntityUid uid, BatteryAlertComponent component, LocalPlayerAttachedEvent args)
         => TryUpdateBatteryAlert(uid, component);
 
     private void OnPlayerDetached(Entity<BatteryAlertComponent> ent, ref LocalPlayerDetachedEvent args)
@@ -44,15 +46,15 @@ public sealed partial class BatteryAlertSystem : EntitySystem
         _alerts.ClearAlert(ent.Owner, ent.Comp.BatteryAlert);
         _alerts.ClearAlert(ent.Owner, ent.Comp.NoBatteryAlert);
     }
-    
-    private void OnPowerCellChanged(EntityUid uid, BatteryAlertComponent component, PowerCellChangedEvent args) 
+
+    private void OnPowerCellChanged(EntityUid uid, BatteryAlertComponent component, PowerCellChangedEvent args)
         => TryUpdateBatteryAlert(uid, component);
-    
+
     public bool TryUpdateBatteryAlert(EntityUid uid, BatteryAlertComponent? comp = null, PowerCellSlotComponent? slotComponent = null)
     {
         if (!Resolve(uid, ref comp, ref slotComponent, false))
             return false;
-        
+
         if (!_powerCell.TryGetBatteryFromSlot((uid, slotComponent), out var battery))
         {
             _alerts.ClearAlert(uid, comp.BatteryAlert);
@@ -61,7 +63,7 @@ public sealed partial class BatteryAlertSystem : EntitySystem
         }
 
         // Alert levels from 0 to 10.
-        var chargePercent = (short)MathF.Round(battery.Value.Comp.LastCharge / battery.Value.Comp.MaxCharge * 10f);
+        var chargePercent = (short)MathF.Round(_battery.GetChargeLevel(battery.Value.AsNullable()) * 10f);
 
         // we make sure 0 only shows if they have absolutely no battery.
         // also account for floating point imprecision

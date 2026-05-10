@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken and edited from Paradise Station wiki https://paradisestation.org/wiki/index.php/Changeling , sting_transform and sting_armblade retextures made by whateverusername0, heat/starve, night/thermal, and desoxyephedrine/amalgam modified from their base by wonderfulnewworld (GitHub)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "night_eyesight",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "thermal_eyesight",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "desoxyephedrine_overdose",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "amalgam_overdose",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "sting_heat",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "sting_starve",
+			"copyright": "Paradise Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

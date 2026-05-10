@@ -1,0 +1,93 @@
+- type: entity
+  id: CCMoproachGlasses
+  parent: ClothingEyesGlassesCentComm
+  categories: [HideSpawnMenu]
+  description: Centcomm officer glasses that are compatible with mothroaches. Unfortunately as a result, these are stuck to their face.
+  components:
+    - type: Unremoveable
+
+- type: startingGear
+  id: CCMoproachGear
+  equipment:
+    eyes: CCMoproachGlasses
+
+- type: startingGear
+  id: CCMoproachGearHat
+  equipment:
+    head: ClothingHeadHatCentcomcap
+    eyes: CCMoproachGlasses
+
+- type: entity
+  parent: MobMoproach
+  id: MobCCMoproach
+  suffix: Jani ERT
+  name: cc moproach
+  description: A moproach specially trained in the ways of janitorial duties by the best NT has to offer.
+  components:
+    - type: CanEscapeInventory
+      baseResistTime: 2 # better at escaping grasps
+#    - type: Inventory
+#      displacements:
+#        head:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: head
+#        mask:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: mask
+#        suitstorage:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: suitstorage
+#        eyes:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: eyes
+#        neck:
+#          sizeMaps:
+#            32:
+#              sprite: Mobs/Animals/mothroach/displacement.rsi
+#              state: neck
+    - type: ComplexInteraction
+    - type: NoSlip
+    - type: LanguageKnowledge
+      speaks:
+        - GalacticCommon
+        - Mothroach
+      understands:
+        - GalacticCommon
+        - Moffic
+        - Mothroach
+    - type: Access
+      worksWhileHeld: false
+      groups:
+        - AllAccess
+        - CentralCommand
+    - type: Loadout
+      prototypes: [ CCMoproachGearHat ]
+    - type: NpcFactionMember
+      factions:
+        - NanoTrasen
+
+- type: entity
+  parent: MobCCMoproach
+  id: MobCCMoproachHat
+  suffix: Jani ERT, hat
+  components:
+    - type: Loadout
+      prototypes: [ CCMoproachGearHat ]
+
+- type: entity
+  parent: MoproachCubeWrapped
+  id: CCMoproachCubeWrapped
+  name: cc moproach cube
+  description: Just add water! *chitters*
+  components:
+    - type: SpawnItemsOnUse
+      items:
+        - id: CCMoproachCube

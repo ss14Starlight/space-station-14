@@ -1,0 +1,35 @@
+- type: entity
+  name: flash
+  parent: Flash
+  suffix: 0 charges
+  id: Flash0Use
+  components:
+    - type: LimitedCharges
+      maxCharges: 0
+
+- type: entity
+  name: flash
+  parent: Flash
+  suffix: 1 charge
+  id: Flash1Use
+  components:
+    - type: LimitedCharges
+      maxCharges: 1
+
+- type: entity
+  name: flash
+  parent: Flash
+  suffix: 3 charges
+  id: Flash3Use
+  components:
+    - type: LimitedCharges
+      maxCharges: 3
+
+- type: entity
+  name: flash
+  parent: Flash
+  suffix: 4 charges
+  id: Flash4Use
+  components:
+    - type: LimitedCharges
+      maxCharges: 4

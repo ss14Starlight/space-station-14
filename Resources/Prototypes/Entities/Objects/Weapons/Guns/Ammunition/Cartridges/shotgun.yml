@@ -154,7 +154,7 @@
     proto: PelletShotgunPracticeSpreadTrace
 
 - type: entity
-  parent: [ BaseShellShotgun, BaseSecurityContraband ]
+  parent: [ BaseShellShotgun, BaseSecurityZookeeperContraband ]
   id: ShellTranquilizer
   name: 12 gauge tranquilizer slug # Starlight change: .50 -> 12 gauge
   description: The standard cartridge used by most modern shotguns. Tranquilizer ammunition contains a single ballistic syringe loaded with a strong sedative that harmlessly puts targets to sleep.

@@ -80,7 +80,10 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
             {
                 foreach (var collide in rayCastResults)
                 {
-                    if (collide.HitEntity != args.Target && CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true)
+                    // FOR ANYONE TOUCHING HITSCAN ONCE MORE, DO NOT FORGET THE CHECK NullSpaceComponent, This is the Third time i have to FIX IT!
+                    if (CompOrNull<NullSpaceComponent>(collide.HitEntity) != null)
+                        continue;
+                    if (collide.HitEntity != args.Target && (CompOrNull<RequireProjectileTargetComponent>(collide.HitEntity)?.Active == true))
                         continue;
                     if(!(collide.Distance >= ent.Comp.MinDistance || _tag.HasAnyTag(collide.HitEntity, ent.Comp.NotArmedCollideWith)))
                         continue;
@@ -111,7 +114,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         // Do visuals without an event. They should always happen and putting it on the attempt event is weird!
         // If more stuff gets added here, it should probably be turned into an event.
         // FireEffects(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), ent.Owner); // Starlight - comment out, as we want to aggregate these
-        
+
         args.OutputTrace.Add(GenerateTraceStep(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), result?.HitEntity)); // Starlight - add the visuals for this particular leg of the hitscan into the trace
 
         // Admin logging

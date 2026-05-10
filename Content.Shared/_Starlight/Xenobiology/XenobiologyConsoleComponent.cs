@@ -14,7 +14,7 @@ public sealed partial class XenobiologyConsoleComponent : Component
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
     public ProtoId<TagPrototype> MonkeyTag = default!;
-    
+
     /// <summary>
     /// Tag for monkey cubes. Required in order to determine what is a monkey cube.
     /// </summary>
@@ -26,12 +26,12 @@ public sealed partial class XenobiologyConsoleComponent : Component
     /// </summary>
     [DataField(required: true), AutoNetworkedField]
     public EntProtoId MonkeyProtoId = default!;
-    
+
     /// <summary>
     /// The name of the container the slime corpses are stored in.
     /// </summary>
     public const string SlimeContainerName = "slimes";
-    
+
     /// <summary>
     /// Container for slimes stored in the console.
     /// Slimes don't "pause" while in the console, so they will get hungry and might even die.

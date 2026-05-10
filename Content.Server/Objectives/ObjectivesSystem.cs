@@ -20,6 +20,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
+using Content.Shared._Starlight.Station; // Starlight
 
 namespace Content.Server.Objectives;
 
@@ -140,12 +142,17 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 continue;
 
             var cardsToProcess = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
+            var cards = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
 
             if (railroadable.Completed is not null)
-                cardsToProcess.AddRange(railroadable.Completed);
+                cards.AddRange(railroadable.Completed);
 
             if (railroadable.ActiveCard is { } activeCard)
-                cardsToProcess.Add(activeCard);
+                cards.Add(activeCard);
+
+            foreach (var card in cards)
+                if (!card.Comp1.ShowObjective)
+                    cardsToProcess.Add(card);
 
             if (cardsToProcess.Count == 0)
                 continue;
@@ -163,8 +170,25 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 foreach (var objective in collect.Objectives)
                     WriteObjective(ref completedObjectives, builder, objective.Title, objective.Progress);
             }
+            builder.AppendLine();
         }
         ev.AddLine(builder.AppendLine().ToString());
+
+        var stationStatsQuery = EntityQueryEnumerator<StationCrewStatisticsComponent>();
+        while (stationStatsQuery.MoveNext(out var stationUid, out var stats))
+        {
+            var stationName = MetaData(stationUid).EntityName;
+            var stationBuilder = new StringBuilder();
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-header", ("station", stationName)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-crew", ("count", stats.Crew)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-borgs", ("count", stats.Borgs)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-lost-crew", ("count", stats.LostCrew)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-lost-borgs", ("count", stats.LostBorgs)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-evacuated", ("count", stats.EvacuatedCrew)));
+            stationBuilder.AppendLine(Loc.GetString("station-crew-stats-stolen-borgs", ("count", stats.StolenBorgs)));
+            ev.AddLine(stationBuilder.ToString());
+        }
+
         // 🌟Starlight🌟 end
     }
 
@@ -181,7 +205,25 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
             var custody = IsInCustody(mindId, mind) ? Loc.GetString("objectives-in-custody") : string.Empty;
 
             var objectives = mind.Objectives;
-            if (objectives.Count == 0)
+            var cardsToProcess = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
+
+            if ((mind.OwnedEntity is { } ent)
+                && TryComp<RailroadableComponent>(ent, out var railroadable))
+            {
+                var cards = new List<Entity<RailroadCardComponent, RuleOwnerComponent>>();
+
+                if (railroadable.Completed is not null)
+                    cards.AddRange(railroadable.Completed);
+
+                if (railroadable.ActiveCard is { } activeCard)
+                    cards.Add(activeCard);
+
+                foreach (var card in cards)
+                    if (card.Comp1.ShowObjective)
+                        cardsToProcess.Add(card);
+            }
+
+            if (objectives.Count == 0 && cardsToProcess.Count == 0)
             {
                 agentSummaries.Add((Loc.GetString("objectives-no-objectives", ("custody", custody), ("title", title), ("agent", agent)), 0f, 0));
                 continue;
@@ -212,7 +254,42 @@ public sealed class ObjectivesSystem : SharedObjectivesSystem
                 }
             }
 
+            foreach (var card in cardsToProcess)
+            {
+                var collect = new CollectObjectiveInfoEvent([]);
+                RaiseLocalEvent(card, ref collect);
+                foreach (var objective in collect.Objectives)
+                {
+                    totalObjectives++;
+                    WriteObjective(ref completedObjectives, agentSummary, objective.Title, objective.Progress);
+                }
+            }
+
             var successRate = totalObjectives > 0 ? (float)completedObjectives / totalObjectives : 0f;
+
+            // Starlight Start: Custom objective response (pink text)
+            if (TryComp<CustomObjectiveSummaryComponent>(mindId, out var customComp))
+            {
+                // We have to split it like this to make it readable. Yeah, it sucks but for some reason the entire thing
+                // is just one long string...
+                var words = customComp.ObjectiveSummary.Split(" ");
+                var currentLine = "";
+                foreach (var word in words)
+                {
+                    currentLine += word + " ";
+
+                    // magic number
+                    if (currentLine.Length <= 50)
+                        continue;
+
+                    agentSummary.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
+                    currentLine = "";
+                }
+
+                agentSummary.AppendLine(Loc.GetString("custom-objective-format", ("line", currentLine)));
+            }
+            // Starlight End
+
             agentSummaries.Add((agentSummary.ToString(), successRate, completedObjectives));
         }
 

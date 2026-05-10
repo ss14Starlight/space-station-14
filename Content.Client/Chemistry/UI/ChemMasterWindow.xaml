@@ -10,7 +10,10 @@
             <BoxContainer Orientation="Horizontal">
                 <Label Text="{Loc 'chem-master-window-container-label'}" />
                 <Control HorizontalExpand="True" />
-                <Button MinSize="80 0" Name="InputEjectButton" Access="Public" Text="{Loc 'chem-master-window-eject-button'}" />
+                <!-- Starlight-start: Plumbing valve -->
+                <Button MinSize="80 0" Name="ValveButton" Access="Public" Text="{Loc 'chem-master-window-valve-closed'}" StyleClasses="OpenRight" />
+                <Button MinSize="80 0" Name="InputEjectButton" Access="Public" Text="{Loc 'chem-master-window-eject-button'}" StyleClasses="OpenLeft" />
+                <!-- Starlight-end -->
             </BoxContainer>
 
             <PanelContainer VerticalExpand="True" MinSize="0 200">

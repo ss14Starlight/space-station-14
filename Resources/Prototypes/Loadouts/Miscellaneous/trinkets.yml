@@ -13,11 +13,13 @@
   id: FlowerWreath
   equipment:
     neck: ClothingHeadHatFlowerWreath # Starlight: Roundstart equipped
+  groupBy: "flowers" # Starlight
 
 - type: loadout
   id: Hairflower
   equipment:
-    head: ClothingHeadHatHairflower # Starlight: Roundstart equipped
+    head: ClothingHeadHatHairFlowerWhite  # Moffstation - Color changing hairflower + Starlight: Roundstart equipped
+  groupBy: "flowers" # Starlight
 
 # Headphones
 - type: loadout
@@ -25,6 +27,7 @@
   storage:
     back:
     - ClothingMultipleHeadphones
+  groupBy: "Headphones" # Starlight
 
 # Toys
 - type: loadout
@@ -32,12 +35,14 @@
   storage:
     back:
     - PlushieLizard
+  groupBy: "wehzards" # Starlight
 
 - type: loadout
   id: PlushieSpaceLizard
   storage:
     back:
     - PlushieSpaceLizard
+  groupBy: "wehzards" # Starlight
 
 - type: loadout
   id: ThreeCandles
@@ -318,6 +323,8 @@
     - TowelColorWhite
   groupBy: "towels"
 
+#Starlight Start - Towel Restoration
+
 - type: loadout
   id: TowelColorGray
   effects:
@@ -425,11 +432,8 @@
 - type: loadout
   id: TowelColorLightBlue
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Medical
-      time: 100h
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
   storage:
     back:
     - TowelColorLightBlue
@@ -512,3 +516,4 @@
     back:
     - TowelColorGold
   groupBy: "towels"
+# Starlight End

@@ -2,6 +2,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Containers; // Starlight-edit: relay from item slot container to parent dispenser
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -80,6 +81,7 @@ public abstract partial class SharedSolutionContainerSystem
         SubscribeLocalEvent<ContainedSolutionComponent, SolutionChangedEvent>(OnSolutionChanged);
         SubscribeLocalEvent<ContainedSolutionComponent, SolutionOverflowEvent>(OnSolutionOverflow);
         SubscribeLocalEvent<ContainedSolutionComponent, ReactionAttemptEvent>(RelaySolutionRefEvent);
+        SubscribeLocalEvent<FitsInDispenserComponent, SolutionContainerChangedEvent>(OnFitsInDispenserSolutionChanged); // Starlight-edit: relay to parent
     }
 
     #region Event Handlers
@@ -107,6 +109,16 @@ public abstract partial class SharedSolutionContainerSystem
         RaiseLocalEvent(entity.Comp.Container, ref relayEv);
         args.Handled = relayEv.Handled;
     }
+
+    // Starlight-start: relay solution changes from beakers to parent dispenser
+    private void OnFitsInDispenserSolutionChanged(Entity<FitsInDispenserComponent> entity, ref SolutionContainerChangedEvent args)
+    {
+        if (ContainerSystem.TryGetContainingContainer(entity.Owner, out var container))
+        {
+            RaiseLocalEvent(container.Owner, ref args);
+        }
+    }
+    // Starlight-end
 
     #region Relay Event Handlers
 

@@ -1,0 +1,95 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc nano-chat-emote-selector}"
+               MinSize="350 450"
+               MaxSize="500 600">
+    <PanelContainer StyleClasses="AngleRect">
+        <BoxContainer Orientation="Vertical" Margin="6">
+            <!-- Search bar with clear button -->
+            <BoxContainer Orientation="Horizontal"
+                          HorizontalExpand="True"
+                          Margin="0 0 0 6">
+                <LineEdit Name="SearchInput"
+                          PlaceHolder="{Loc nano-chat-emote-search}"
+                          HorizontalExpand="True"
+                          StyleClasses="OpenRight" />
+                <Button Name="ClearSearchButton"
+                        Text="✕"
+                        MinSize="28 0"
+                        StyleClasses="OpenLeft"
+                        ToolTip="{Loc nano-chat-emote-clear-search}" />
+            </BoxContainer>
+
+            <!-- Category tabs -->
+            <ScrollContainer HorizontalExpand="True"
+                             VerticalExpand="False"
+                             Margin="0 0 0 6"
+                             HScroll="1"
+                             VScroll="0"
+                             MinSize="0 32">
+                <BoxContainer Name="CategoryTabs"
+                              Orientation="Horizontal"
+                              HorizontalExpand="True" />
+            </ScrollContainer>
+
+            <!-- Recently used section (shown when no search) -->
+            <BoxContainer Name="RecentlyUsedSection"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          Margin="0 0 0 4"
+                          Visible="False">
+                <Label Text="{Loc nano-chat-recent-emotes}"
+                       StyleClasses="LabelSubText"
+                       Margin="2 0 0 2" />
+                <GridContainer Name="RecentEmotesGrid"
+                               Columns="7"
+                               HorizontalExpand="True"
+                               Margin="0 2 0 4" />
+            </BoxContainer>
+
+            <!-- Main emote grid with loading/empty states -->
+            <BoxContainer Orientation="Vertical"
+                          VerticalExpand="True"
+                          HorizontalExpand="True">
+                <!-- Loading indicator -->
+                <Label Name="LoadingLabel"
+                       Text="{Loc nano-chat-loading-emotes}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       VerticalExpand="True"
+                       Visible="False" />
+
+                <!-- Empty state -->
+                <Label Name="EmptyLabel"
+                       Text="{Loc nano-chat-no-emotes-found}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       VerticalExpand="True"
+                       Visible="False" />
+
+                <!-- Emote grid -->
+                <ScrollContainer Name="EmoteScrollContainer"
+                                 VerticalExpand="True"
+                                 HorizontalExpand="True"
+                                 HScroll="0"
+                                 VScroll="1">
+                    <GridContainer Name="EmoteGrid"
+                                   HorizontalExpand="True" />
+                </ScrollContainer>
+            </BoxContainer>
+
+            <!-- Footer with emote count and close button -->
+            <BoxContainer Orientation="Horizontal"
+                          HorizontalAlignment="Stretch"
+                          Margin="0 6 0 0">
+                <Label Name="EmoteCountLabel"
+                       Text="0 emotes"
+                       StyleClasses="LabelSubText"
+                       VerticalAlignment="Center"
+                       HorizontalExpand="True" />
+                <Button Name="FooterCloseButton"
+                        Text="{Loc nano-chat-emote-close}"
+                        MinSize="80 0" />
+            </BoxContainer>
+        </BoxContainer>
+    </PanelContainer>
+</DefaultWindow>

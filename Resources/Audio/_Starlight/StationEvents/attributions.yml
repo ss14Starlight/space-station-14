@@ -2,3 +2,28 @@
   license: "CC-BY-SA-3.0"
   copyright: "Created by pigeonbeans"
   source: "https://soundcloud.com/pigeonbeans/moodswings"
+
+- files: ["nuclearoperations.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by A-Guy173"
+  source: "https://github.com/A-Guy173/Music/tree/main"
+
+- files: ["Burn_The_Hive_by_Bolgarich.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by Bolgarich edited by scarlet lightweaver to use the omega_alt alert level at the start"
+  source: "https://m.youtube.com/watch?v=1I6DJjMMuc8"
+
+- files: ["One_Against_All.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by mrjajkes"
+  source: "https://www.youtube.com/@mrjajkes"
+
+- files: ["nuclearoperations_infil.ogg"]
+  license: "CC0-1.0"
+  copyright: "Created by A-Guy173"
+  source: "https://github.com/A-Guy173/Music/tree/main"
+
+- files: ["War_Inevitable.ogg"]
+  license: "CC-BY-NC-3.0"
+  copyright: "Created by Bobik6003"
+  source: "https://github.com/A-Guy173/Music/tree/main"

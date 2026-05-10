@@ -173,12 +173,12 @@
     capacity: 5
     proto: CartridgeAntiMateriel
   - type: SpeedModifiedOnWield
-    walkModifier: 0.25
-    sprintModifier: 0.25
+    walkModifier: 0.30 #SL 25% -> 30% speed
+    sprintModifier: 0.30 #SL 25% -> 30% speed
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
-    maxOffset: 3
-    pvsIncrease: 0.3
+    maxOffset: 4 #SL 3 -> 4
+    pvsIncrease: 0.4 #SL 0.3 -> 0.4
   - type: StaticPrice
     price: 3500
 

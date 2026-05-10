@@ -134,7 +134,7 @@ public sealed class UmbraeSystem : EntitySystem
         var pick = _rand.Pick(list);
 
         if (TryComp<PoweredLightComponent>(pick, out var pl))
-            _poweredLightSystem.SetState(pick, false, pl);
+            _poweredLightSystem.TryDestroyBulb(pick, pl);
     }
 
     private void OnCloakOfDarkness(EntityUid uid, VampireComponent comp, ref VampireCloakOfDarknessActionEvent args)
@@ -313,7 +313,7 @@ public sealed class UmbraeSystem : EntitySystem
 
             if (TryComp<PoweredLightComponent>(ent, out var light))
             {
-                _poweredLightSystem.SetState(ent, false, light);
+                _poweredLightSystem.TryDestroyBulb(ent, light);
                 count++;
             }
         }
@@ -362,7 +362,7 @@ public sealed class UmbraeSystem : EntitySystem
             }
 
             StartEternalDarknessLoop(uid, args.MaxTicks, 0, args.BloodPerTick, args.TempDropInterval, args.FreezeRadius, args.TargetFreezeTemp,
-                args.TempDropPerInterval, args.LightOffRadius);
+                args.TempDropPerInterval);
         }
         else
         {
@@ -382,8 +382,7 @@ public sealed class UmbraeSystem : EntitySystem
         int dropInterval,
         float freezeRadius,
         float targetTemp,
-        float tempDrop,
-        float radius)
+        float tempDrop)
     {
         if (tick >= maxTicks
             || !Exists(uid)
@@ -394,8 +393,8 @@ public sealed class UmbraeSystem : EntitySystem
             || !ConsumeEternalDarknessBlood(uid, comp, umbrae, bloodPerTick))
             return;
 
-        ProcessEternalDarknessEffects(uid, tick, dropInterval, freezeRadius, targetTemp, tempDrop, radius);
-        ScheduleNextEternalDarknessTick(uid, umbrae, maxTicks, tick, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop, radius);
+        ProcessEternalDarknessEffects(uid, tick, dropInterval, freezeRadius, targetTemp, tempDrop);
+        ScheduleNextEternalDarknessTick(uid, umbrae, maxTicks, tick, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop);
     }
 
     private bool ValidateEternalDarknessConditions(EntityUid uid, VampireComponent comp, UmbraeComponent umbrae)
@@ -441,8 +440,7 @@ public sealed class UmbraeSystem : EntitySystem
         int dropInterval,
         float freezeRadius,
         float targetTemp,
-        float tempDrop,
-        float radius)
+        float tempDrop)
     {
         var vampXform = Transform(uid);
         var center = _transform.GetWorldPosition(vampXform);
@@ -450,8 +448,6 @@ public sealed class UmbraeSystem : EntitySystem
         var doCoolingThisTick = (tick % dropInterval) == 0;
         if (doCoolingThisTick)
             ProcessTemperatureEffects(uid, vampXform, center, freezeRadius, targetTemp, tempDrop);
-
-        ProcessLightEffects(vampXform, radius);
     }
 
     private void ProcessTemperatureEffects(EntityUid uid,
@@ -482,13 +478,6 @@ public sealed class UmbraeSystem : EntitySystem
         }
     }
 
-    private void ProcessLightEffects(TransformComponent vampXform, float radius)
-    {
-        foreach (var ent in _lookup.GetEntitiesInRange(vampXform.Coordinates, radius))
-            if (TryComp<PoweredLightComponent>(ent, out var light))
-                _poweredLightSystem.SetState(ent, false, light);
-    }
-
     private void ScheduleNextEternalDarknessTick(EntityUid uid,
         UmbraeComponent umbrae,
         int maxTicks,
@@ -497,8 +486,7 @@ public sealed class UmbraeSystem : EntitySystem
         int dropInterval,
         float freezeRadius,
         float targetTemp,
-        float tempDrop,
-        float radius)
+        float tempDrop)
     {
         var expectedLoopId = umbrae.EternalDarknessLoopId;
         Timer.Spawn(TimeSpan.FromSeconds(1), () =>
@@ -509,7 +497,7 @@ public sealed class UmbraeSystem : EntitySystem
             if (!c2.EternalDarknessActive || c2.EternalDarknessLoopId != expectedLoopId)
                 return;
 
-            StartEternalDarknessLoop(uid, maxTicks, tick + 1, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop, radius);
+            StartEternalDarknessLoop(uid, maxTicks, tick + 1, bloodPerTick, dropInterval, freezeRadius, targetTemp, tempDrop);
         });
     }
 

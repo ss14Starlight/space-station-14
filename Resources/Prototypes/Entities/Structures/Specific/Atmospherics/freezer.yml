@@ -12,7 +12,7 @@
   id: AirSensorFreezer
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentPump]
+  parent: [AirSensorFreezerBase, GasVentPumpFreezerBase, GasVentPump] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentPumpFreezer
   # Starlight Start
   components:
@@ -21,10 +21,12 @@
       Primary: GasVentPumpFreezer
       Secondary: GasVentPumpFreezerAlt1
       Tertiary: GasVentPumpFreezerAlt2
+      Quaternary: GasVentPumpFreezerAlt3
+      Quinary: GasVentPumpFreezerAlt4
   # Starlight End
 
 - type: entity
-  parent: [AirSensorFreezerBase, GasVentScrubber]
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezerBase, GasVentScrubber] # Carpmosia-edit - Atmos Alt Prototypes
   id: GasVentScrubberFreezer
   # Starlight Start
   components:
@@ -33,6 +35,8 @@
       Primary: GasVentScrubberFreezer
       Secondary: GasVentScrubberFreezerAlt1
       Tertiary: GasVentScrubberFreezerAlt2
+      Quaternary: GasVentScrubberFreezerAlt3
+      Quinary: GasVentScrubberFreezerAlt4
   # Starlight End
 
 # air alarm proto with auto: false to prevent the automatic switching of modes overriding the default values

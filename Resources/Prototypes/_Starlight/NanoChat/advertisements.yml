@@ -1,0 +1,125 @@
+# - type: nanoChatAdvertisement
+#   id: Testing
+#   senderName: "TESTING ADVERTISEMENT"
+#   messageKey: nanochat-ad-test-all
+#   weight: 999.9
+
+- type: nanoChatAdvertisement
+  id: CarWarranty
+  senderName: "NenoTrensan"
+  messageKey: nanochat-ad-car-warranty
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: ClassAction
+  senderName: "Settlement Services"
+  messageKey: nanochat-ad-class-action
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: ChainLetter
+  senderName: "Unknown"
+  messageKey: nanochat-ad-chain-letter
+  weight: 0.5
+
+- type: nanoChatAdvertisement
+  id: AbundanceAngel
+  senderName: "Financial Angel"
+  messageKey: nanochat-ad-abundance-angel
+  weight: 0.5
+
+- type: nanoChatAdvertisement
+  id: TruckAscii
+  senderName: "Unknown"
+  messageKey: nanochat-ad-truck-ascii
+  weight: 0.3
+
+- type: nanoChatAdvertisement
+  id: BombThreat
+  senderName: "Unknown"
+  messageKey: nanochat-ad-bomb-threat
+  weight: 0.2
+
+- type: nanoChatAdvertisement
+  id: DonkoWholesale
+  senderName: "Donko Wholesale"
+  messageKey: nanochat-ad-donko-wholesale
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: Nanomichi
+  senderName: "Nanomichi Music"
+  messageKey: nanochat-ad-nanomichi
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: ComradeComputing
+  senderName: "Comrade Computing"
+  messageKey: nanochat-ad-comrade-computing
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: GorlexShipping
+  senderName: "Gorlex Shipping Solutions"
+  messageKey: nanochat-ad-gorlex-shipping
+  weight: 0.8
+
+- type: nanoChatAdvertisement
+  id: HRNotice
+  senderName: "Human Resources"
+  messageKey: nanochat-ad-hr-notice
+  weight: 0.8
+
+- type: nanoChatAdvertisement
+  id: PrizeWinner
+  senderName: "Prize Committee"
+  messageKey: nanochat-ad-prize-winner
+  weight: 0.8
+
+- type: nanoChatAdvertisement
+  id: RadnorPhotonics
+  senderName: "Radnor Photonics"
+  messageKey: nanochat-ad-radnor-photonics
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: HoggeWylde
+  senderName: "Hogge & Wylde Law"
+  messageKey: nanochat-ad-hogge-wylde
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: ComitasSystems
+  senderName: "Comitas Systems"
+  messageKey: nanochat-ad-comitas-systems
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: VioletSkyPlasma
+  senderName: "Violet Sky Systems"
+  messageKey: nanochat-ad-violet-sky-plasma
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: SilverclawTour
+  senderName: "Galactic Events"
+  messageKey: nanochat-ad-silverclaw-tour
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: ShuttleGlassRepair
+  senderName: "ShuttleGlass Drydock Corp."
+  messageKey: nanochat-ad-shuttleglass-repair
+  weight: 1.0
+
+- type: nanoChatAdvertisement
+  id: WeBuyYourStation
+  senderName: "webuyyourstation.gal"
+  messageKey: nanochat-ad-webuyyourstation
+  weight: 0.8
+
+- type: nanoChatAdvertisement
+  id: HugbotInitiative
+  senderName: "Hugbot Initiative"
+  messageKey: nanochat-ad-hugbot-initiative
+  weight: 1.0
