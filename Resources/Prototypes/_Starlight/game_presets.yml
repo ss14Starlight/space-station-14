@@ -100,26 +100,6 @@
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
-# Vampling kept in files in case people want to use it, since it is something you'd have to set up prior to round start.
-- type: gamePreset
-  id: Vampling
-  alias:
-    - vampling
-    - lingvamp
-    - changepire
-    - pirechange
-  name: vampling-title
-  description: vampling-description
-  showInVote: true
-  minPlayers: 50
-  rules:
-    - SLChangeling
-    - SLChangelingLess
-    - Vampire
-    - SubGamemodesRuleVampLing
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-
 - type: gamePreset
   id: Vamptraitorling
   alias:

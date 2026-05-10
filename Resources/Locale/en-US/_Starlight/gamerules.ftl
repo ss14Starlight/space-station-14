@@ -10,9 +10,6 @@ shitstation-description = The last shift was full of slobs.
 vampire-gamemode-title = Vampires
 vampire-gamemode-description = Blood-drinkers in space! Don't let it get out of hand...
 
-vampling-title = Vamplings
-vampling-description = The endless feast begins.
-
 vamptraitorling-title = Vamptraitorlings
 vamptraitorling-description = What a horrible night to have a curse.
 

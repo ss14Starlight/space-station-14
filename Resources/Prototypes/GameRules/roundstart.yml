@@ -63,13 +63,13 @@
     - id: Thief
       prob: 0.62 # Starlight. Its a tamer mode, high thief chance.
     - id: SLChangeling # Starlight Lings
-      prob: 0.15 # Starlight
+      prob: 0.25 # Starlight, Xenoborgs need a little bit of a distraction
     - id: VampireLess # Starlight reworked
-      prob: 0.15 # Starlight
+      prob: 0.25 # Starlight, Xenoborgs need a little bit of a distraction
     - id: SubWizard
       prob: 0.05 # Starlight Space is dangerous, yo.
     - id: Brighteye # Starlight
-      prob: 0.08
+      prob: 0.05
     - id: SiliconLiberation #Starlight
       prob: 0.2 #Starlight
 
