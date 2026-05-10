@@ -161,6 +161,6 @@
       - MindRoleXenoborg
       min: 4
       max: 8 # Starlight
-      playerRatio: 20 # Starlight. 1 for every 20 players. Min 4, so beta will always get the base 4, at least.
+      playerRatio: 17 # Starlight. 1 for every 17 players.
   - type: DynamicRuleCost
     cost: 200

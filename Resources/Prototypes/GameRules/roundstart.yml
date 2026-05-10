@@ -28,7 +28,7 @@
       prob: 0.25 # Starlight
     - id: SubWizard
       prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
-    - id: Xenoborgs
+    - id: XenoborgsLP # Starlight, subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight start
     - id: Brighteye
       prob: 0.05
@@ -47,7 +47,7 @@
       prob: 0.25 #0.4 -> 0.25 to account for more subgamemodes existing now
     - id: VampireLess # Reworked
       prob: 0.25
-    - id: Xenoborgs
+    - id: XenoborgsLP # Starlight, subgamemode replaced with XenoborgsLP
       prob: 0.08
     - id: Brighteye
       prob: 0.05

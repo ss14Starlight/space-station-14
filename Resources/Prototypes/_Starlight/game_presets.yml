@@ -100,6 +100,7 @@
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
+# Vampling kept in files in case people want to use it, since it is something you'd have to set up prior to round start.
 - type: gamePreset
   id: Vampling
   alias:

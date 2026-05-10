@@ -27,7 +27,7 @@
       prob: 0.25
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: Xenoborgs
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
@@ -48,7 +48,7 @@
       prob: 0.22
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: Xenoborgs
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
@@ -66,7 +66,7 @@
       prob: 0.25 # To be equal to the chance Vampires spawn in Changeling.
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: Xenoborgs
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
@@ -83,7 +83,7 @@
       prob: 0.60 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
-    - id: Xenoborgs
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
@@ -100,7 +100,7 @@
       prob: 0.85 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
       prob: 0.05
-    - id: Xenoborgs
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
       prob: 0.05
@@ -119,7 +119,7 @@
       prob: 0.20
     - id: VampireLess # This is probably the most interesting sub-gamemode for them.
       prob: 0.32
-    - id: Xenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
+    - id: XenoborgsLP # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
       prob: 0.08
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
@@ -140,7 +140,7 @@
       prob: 0.20
     - id: SubWizard
       prob: 0.05
-    - id: Xenoborgs
+    - id: XenoborgsLP
       prob: 0.08
     - id: SiliconLiberation
       prob: 0.20
