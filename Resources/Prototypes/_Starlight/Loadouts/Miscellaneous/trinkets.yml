@@ -50,6 +50,51 @@
     - TrumpetInstrument
   groupBy: "Instruments"
 
+- type: loadout
+  id: CoderSocks
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    shoes: ClothingUnderSocksCoder
+
+# Meow mrrp ## shut up ### no :3
+
+- type: loadout
+  id: CatEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatWhiteCatEars
+  groupBy: "cat ears"
+
+- type: loadout
+  id: BunnyEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatBunny
+  groupBy: "cat ears"
+
+- type: loadout
+  id: DogEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatDogEars
+  groupBy: "cat ears"
+
 # Headphones
 - type: loadout
   id: ReporterHeadphonesTrinket
@@ -63,6 +108,12 @@
     back:
     - ClothingMultipleHeadphonesReporter
   groupBy: "Headphones"
+
+- type: loadout
+  id: PawBootTrinket
+  equipment:
+    shoes: ClothingShoesPawBoots
+  groupBy: "Paw Boots"
 
 - type: loadout
   id: HighEndHeadphones
