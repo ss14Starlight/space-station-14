@@ -87,13 +87,12 @@
 
 - type: entity
   parent: PosterBase
-  id: PosterContrabandHereticalExomorph # Starlight
-  name: "Heretical Exomorph" # Starlight
-  description: "They come out at night." # Starlight
+  id: PosterContrabandLustyExomorph
+  name: "Lusty Exomorph"
+  description: "A heretical poster depicting the titular star of an equally heretical book."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/hereticalexomorph.rsi # Starlight
-    state: hereticalexomorph # Starlight
+    state: poster4_contraband
 
 - type: entity
   parent: PosterBase
@@ -356,14 +355,14 @@
   - type: Sprite
     state: poster35_contraband
 
-#- type: entity # Starlight start
-#  parent: PosterBase
-#  id: PosterContrabandBustyBackdoorExoBabes6 -------- Will be made DO NOT MAP in the future, once it's removed from every map.
-#  name: "Exomorphs: Not What They Seem?"
-#  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
-#  components:
-#  - type: Sprite
-#    state: poster36_contraband # Starlight end
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandBustyBackdoorExoBabes6
+  name: "Exomorphs: Not What They Seem?"
+  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
+  components:
+  - type: Sprite
+    state: poster36_contraband
 
 - type: entity
   parent: PosterBase
