@@ -26,6 +26,7 @@ public sealed class NuclearReactorBuiState : BoundUserInterfaceState
     public float ControlRodSet = 0;
 
     public float ReactionRatio = 0.5f;
+    public bool AckAvailable = false;
 }
 
 [Serializable, NetSerializable, DataDefinition]
@@ -55,3 +56,6 @@ public sealed class ReactorControlRodModifyMessage(float change) : BoundUserInte
 {
     public float Change { get; } = change;
 }
+
+[Serializable, NetSerializable]
+public sealed class ReactorAlarmAckMessage() : BoundUserInterfaceMessage;

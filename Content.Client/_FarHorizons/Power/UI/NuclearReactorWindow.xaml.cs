@@ -57,6 +57,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
 
     public event Action<Vector2i>? ItemActionButtonPressed;
     public event Action? EjectButtonPressed;
+    public event Action? AckButtonPressed;
 
     public event Action<float>? ControlRodModify;
 
@@ -86,6 +87,7 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         YDecrement.OnPressed += _ => MoveTarget(0, -1);
         ItemAction.OnPressed += _ => ItemActionButtonPressed?.Invoke(new(_targetY, _targetX));
         EjectItem.OnPressed += _ => EjectButtonPressed?.Invoke();
+        AlarmAck.OnPressed += _ => AckButtonPressed?.Invoke();
 
         ControlRodsInsertLarge.OnPressed += _ => AdjustControlRods(0.1f);
         ControlRodsInsertLarge.OnButtonDown += _ => _repeatQueue.Add(ControlRodsInsertLarge, _repeatDelay);
@@ -127,13 +129,17 @@ public sealed partial class NuclearReactorWindow : FancyWindow
         ControlRodsActual.Value = msg.ControlRodActual;
         ControlRodsSet.Value = msg.ControlRodSet;
 
+        AlarmAck.Disabled = !msg.AckAvailable;
+
         var locktarget = _isMonitor ? _monitor : _reactor;
 
         ControlRodsButtons.Visible = !_lock.IsLocked(locktarget);
         ItemAction.Visible = !_lock.IsLocked(_reactor) && !_isMonitor;
+        AlarmAck.Visible = !_lock.IsLocked(locktarget);
 
         ItemActionLock.Visible = _lock.IsLocked(_reactor) && !_isMonitor;
         ControlRodsLock.Visible = _lock.IsLocked(locktarget);
+        AlarmAckLock.Visible = _lock.IsLocked(locktarget);
 
         Shelf.Visible = !_isMonitor;
 
