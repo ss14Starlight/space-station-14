@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Saltern) Departmental communications consoles to their respective Heads' office.
-    type: Add
-  id: 404458
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Removed the interior wall between Captain's Office and their bedroom to make the space less cramped.
-    type: Tweak
-  id: 404459
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
   - message: (Saltern) Improved tiling and detailing work lots of around doors and firelocks.
     type: Tweak
   id: 404460
@@ -2799,4 +2785,18 @@ Entries:
   id: 404857
   time: '2026-05-09T10:23:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4263
+- author: wonderfulnewworld
+  changes:
+  - message: The Captain's Tablet steal objective is now traitors only.
+    type: Tweak
+  id: 404858
+  time: '2026-05-09T20:39:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4402
+- author: wonderfulnewworld
+  changes:
+  - message: The Captain's Tablet steal objective no longer causes rounds to fail to start.
+    type: Fix
+  id: 404859
+  time: '2026-05-09T20:39:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4402
 Order: -1
