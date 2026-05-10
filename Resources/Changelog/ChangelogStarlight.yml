@@ -1,181 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Saltern) Doubled the size of Atmos.
-    type: Add
-  id: 404441
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Second burn chamber for Atmos.
-    type: Add
-  id: 404442
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Electrolyzer for Atmos.
-    type: Add
-  id: 404443
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added two publicly accessible portable scrubbers outside of engineering.
-    type: Add
-  id: 404444
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added a desktop computer to the Library.
-    type: Add
-  id: 404445
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Security now has a fax machine.
-    type: Add
-  id: 404446
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) NanoMed Security added to Brigmedic.
-    type: Add
-  id: 404447
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Added a second medical bed to Brigmedic.
-    type: Add
-  id: 404448
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Donut vending machine added to Security.
-    type: Add
-  id: 404449
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Some more decals in Medical Reception.
-    type: Add
-  id: 404450
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Some (regular) non-hostile slimes to Xenobio's test chambers.
-    type: Add
-  id: 404451
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Re-hauled Engineering's AME room to reflect how players actually build the AME.
-    type: Add
-  id: 404452
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Re-hauled where the generators in Engineering were placed, they're more obvious now.
-    type: Add
-  id: 404453
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Way more detailing for Engineering to make it feel less barren.
-    type: Add
-  id: 404454
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Replaced the all-in-one Captain Locker with a regular Captain Locker, antique laser case, and Captain's suit storage locker.
-    type: Add
-  id: 404455
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Pride-o-Mat added by Dorms.
-    type: Add
-  id: 404456
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Mail Tech lockers.
-    type: Add
-  id: 404457
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Departmental communications consoles to their respective Heads' office.
-    type: Add
-  id: 404458
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Removed the interior wall between Captain's Office and their bedroom to make the space less cramped.
-    type: Tweak
-  id: 404459
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Improved tiling and detailing work lots of around doors and firelocks.
-    type: Tweak
-  id: 404460
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Moved the cell charger in Brigmed so it's easier to see.
-    type: Tweak
-  id: 404461
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Opening either side of the Security doors now signal for the opposite side to close, similar to Box Station.
-    type: Tweak
-  id: 404462
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Adjusted positioning and naming of many station beacons across the station.
-    type: Tweak
-  id: 404463
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) About 20 non-plating tiles under walls.
-    type: Fix
-  id: 404464
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
-  - message: (Saltern) Replaced firelocks that overlapped turnstiles with edge firelocks.
-    type: Fix
-  id: 404465
-  time: '2026-04-21T11:18:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4220
-- author: Caws
-  changes:
   - message: (Saltern) Duplicate air sensor in the TEG chamber.
     type: Fix
   id: 404466
@@ -2799,4 +2624,179 @@ Entries:
   id: 404840
   time: '2026-05-08T05:49:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4368
+- author: Kirb, honeyed-lemons
+  changes:
+  - message: Quick Construct, use a construction material in your hand to access a radial menu of common blueprints.
+    type: Add
+  id: 404841
+  time: '2026-05-08T09:32:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4351
+- author: Unknown
+  changes:
+  - message: Completely changed most of the backgrounds wordings as to encourage RP rather than grant Meta-Info.
+    type: Tweak
+  id: 404842
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "USSP" Background.
+    type: Add
+  id: 404843
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Paradox Clone" Background.
+    type: Add
+  id: 404844
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Corporate Frontier" Background.
+    type: Add
+  id: 404845
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: Added "Outer Fringe" Background.
+    type: Add
+  id: 404846
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Unknown
+  changes:
+  - message: You can now have 2 Backgrounds.
+    type: Add
+  id: 404847
+  time: '2026-05-08T10:23:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4312
+- author: Huaqas, Centronias
+  changes:
+  - message: Go Fish! A new card game can be found in the Games Clean Fun Vendor!
+    type: Add
+  id: 404848
+  time: '2026-05-08T10:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4348
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Changed ParticleDecelerator to deal 10 rad damage.
+    type: Tweak
+  id: 404849
+  time: '2026-05-09T09:11:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4396
+- author: EWanderer
+  changes:
+  - message: You can now compost biomass for ammonia.
+    type: Add
+  id: 404850
+  time: '2026-05-09T10:23:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4347
+- author: EWanderer
+  changes:
+  - message: Ammonia can now be electrolysed into nitrogen and hydrogen.
+    type: Add
+  id: 404851
+  time: '2026-05-09T10:23:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4347
+- author: EWanderer
+  changes:
+  - message: You now need to heat nitrogen and hydrogen to get ammonia.
+    type: Tweak
+  id: 404852
+  time: '2026-05-09T10:23:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4347
+- author: bynddark8
+  changes:
+  - message: Adds new sprites for the Captain's command tablet.
+    type: Add
+  id: 404853
+  time: '2026-05-09T10:23:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4296
+- author: bynddark8
+  changes:
+  - message: Adds an admeme only command tablet for Centcomm operators.
+    type: Add
+  id: 404854
+  time: '2026-05-09T10:23:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4296
+- author: bynddark8
+  changes:
+  - message: Adds the Captain's command tablet as a steal objective for both thieves and traitors.
+    type: Tweak
+  id: 404855
+  time: '2026-05-09T10:23:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4296
+- author: bynddark8
+  changes:
+  - message: Fixed a bug where the battery on the command tablet would drain absurdly quickly.
+    type: Fix
+  id: 404856
+  time: '2026-05-09T10:23:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4296
+- author: SevenShades, teapoterror
+  changes:
+  - message: Cheese compatibility for MedTak.
+    type: Add
+  id: 404857
+  time: '2026-05-09T10:23:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4263
+- author: wonderfulnewworld
+  changes:
+  - message: The Captain's Tablet steal objective is now traitors only.
+    type: Tweak
+  id: 404858
+  time: '2026-05-09T20:39:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4402
+- author: wonderfulnewworld
+  changes:
+  - message: The Captain's Tablet steal objective no longer causes rounds to fail to start.
+    type: Fix
+  id: 404859
+  time: '2026-05-09T20:39:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4402
+- author: Caws
+  changes:
+  - message: Brigmed no longer requires Chemist job time.
+    type: Fix
+  id: 404860
+  time: '2026-05-10T06:24:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4408
+- author: CrazyPhantom
+  changes:
+  - message: VGroid now spawns almost double the distance to potentially help its spawning.
+    type: Tweak
+  id: 404861
+  time: '2026-05-10T06:45:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4394
+- author: CrazyPhantom
+  changes:
+  - message: Added a spawn validator to VGroid to try help its spawning.
+    type: Add
+  id: 404862
+  time: '2026-05-10T06:45:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4394
+- author: CrazyPhantom
+  changes:
+  - message: Changed VGroids spawning to try fix its many bugs.
+    type: Fix
+  id: 404863
+  time: '2026-05-10T06:45:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4394
+- author: Xale
+  changes:
+  - message: Washing at sinks to remove pie, lube, and glue.
+    type: Add
+  id: 404864
+  time: '2026-05-10T07:12:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4377
+- author: CrazyPhantom
+  changes:
+  - message: Vox and Vulps can now use the correct colours.
+    type: Fix
+  id: 404865
+  time: '2026-05-10T09:08:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4409
 Order: -1
