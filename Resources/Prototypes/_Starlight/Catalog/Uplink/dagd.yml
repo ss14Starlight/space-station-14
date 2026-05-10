@@ -619,7 +619,7 @@
   id: UplinkNukeCodesDAGD
   name: uplink-nuke-codes-name
   description: uplink-nuke-codes-desc
-  productEntity: NukeCodePaperStation
+  productEntity: TraitorNuclearCodes
   categories:
   - UplinkDAGD
   restockTime: 2700 # 45 minutes to prepare for complete and total extermination

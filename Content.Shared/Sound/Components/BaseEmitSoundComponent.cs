@@ -20,4 +20,13 @@ public abstract partial class BaseEmitSoundComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Positional;
+    #region Starlight
+    /// <summary>
+    /// Play the sound globally.
+    /// Don't use unless you have a good reason.
+    /// That said, if you do have that reason, then you can use a stereo sound for this.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Global;
+    #endregion Starlight
 }
