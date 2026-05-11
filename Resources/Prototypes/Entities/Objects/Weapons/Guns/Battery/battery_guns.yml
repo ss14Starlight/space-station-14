@@ -948,7 +948,7 @@
   name: energy magnum
   parent: [BaseWeaponBatterySmall, BaseDetectiveGrandTheftContraband] # Starlight - detective grand contra
   id: WeaponEnergyMagnum
-  description: A high powered self-charging energy pistol designed for elite security personnel. It has has two firing modes allowing for either high damage window piercing, or non-lethal disabling.
+  description: A high powered self-charging energy pistol designed for elite security personnel. It has two firing modes allowing for either high-damage window piercing or non-lethal disabling.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/energy_magnum.rsi
