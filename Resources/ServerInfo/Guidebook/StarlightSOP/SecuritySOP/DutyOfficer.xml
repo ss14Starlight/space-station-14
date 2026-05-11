@@ -8,6 +8,7 @@ Standard [color=#00a933]Code Green[/color] equipment is:
 
 <Box>
 	<GuideEntityEmbed Entity="Stunbaton"/>
+	<GuideEntityEmbed Entity="WeaponDisabler"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="HoloprojectorSecurity"/>
@@ -15,25 +16,16 @@ Standard [color=#00a933]Code Green[/color] equipment is:
 	<GuideEntityEmbed Entity="RadioHandheldSecurity"/>
 </Box>
 <Box>
-	<GuideEntityEmbed Entity="ClothingHeadHelmetRiot"/>
-	<GuideEntityEmbed Entity="ClothingOuterArmorRiot"/>
-    <GuideEntityEmbed Entity="RiotShield"/>
-</Box>
-<Box>
     <GuideEntityEmbed Entity="GrenadeFlashBang"/>
-    or
 	<GuideEntityEmbed Entity="TearGasGrenade"/>
-    x4
 </Box>
 <Box>
     <GuideEntityEmbed Entity="Handcuffs"/>
-	x2
 	<GuideEntityEmbed Entity="Zipties"/>
-    x2
 </Box>
 
 - 2.\n
-The Duty Officer is allowed to use and wear riot equipment and weaponry on green alert if needed to quell unrest in the brig.\n\n
+The Duty Officer is allowed to use and wear riot equipment and weaponry on green alert if needed to quell unrest in the brig.
 - 3.\n
 The Duty Officer's duty is to assist the Warden with all of their duties and they report directly to them. In the absence of orders from the Warden their primary responsibilities are, in order of importance:\n\n
 3.1\n
@@ -45,7 +37,7 @@ Assisting with the maintenance of the Criminal Records System.\n\n
 3.4\n
 Seeing to the well-being and health of prisoners and detainees.\n\n
 3.5\n
-Assisting officers in the field via utilisation of the Criminal Records System and the Crew Monitoring System from inside the Security Department.\n\n
+Assisting officers in the field via utilisation of the Criminal Records System and the Crew Monitoring System from inside the Security Department.
 - 4.\n
 The Duty Officer is cleared to confine sentenced criminals in the brig for up to [bold]15 minutes[/bold].\n\n
 4.1\n
