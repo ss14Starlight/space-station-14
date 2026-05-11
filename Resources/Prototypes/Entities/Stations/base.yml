@@ -3,6 +3,7 @@
   abstract: true
   components:
     - type: StationData
+    - type: StationCrewStatistics # Starlight
 
 - type: entity
   id: BaseStationCargo
@@ -58,7 +59,7 @@
             - type: ProtectedGrid
             - type: TradeStation
           paths:
-            - /Maps/Shuttles/trading_outpost.yml
+            - /Maps/_Starlight/trading_outpost.yml # Starlight Edit, new ATS
 #        mining: !type:GridSpawnGroup # 🌟Starlight begin🌟
 #          paths:
 #            - /Maps/Shuttles/mining.yml
@@ -99,8 +100,8 @@
           minimumDistance: 150
           maximumDistance: 300
           stationGrid: false
-          minCount: 12
-          maxCount: 16
+          minCount: 16 #SL Edit 12 > 16
+          maxCount: 20 #SL Edit 16 > 20
           addComponents:
           - type: Gravity
             enabled: true
@@ -114,15 +115,37 @@
           - ChunkDebrisSmall
           - ChunkDebrisSmall
           - ChunkDebris
+          # Starlight Start
+          - ClusterAsteroid
+          - SpindlyAsteroid
+          - BlobAsteroid
+          - SwissCheeseAsteroid
+          - ClusterTrash
+          - SpindlyTrash
+          - BlobAsteroidTrash
+          - SwissCheeseTrash
+          - ClusterTrash
+          - SpindlyTrash
+          - BlobAsteroidTrash
+          - ClusterMeat
+          - SpindlyMeat
+          - BlobAsteroidSnow
+          - ClusterSnow
+          - SwissCheeseSnow
+          - ChunkDebrisSmall
+          - ChunkDebrisSmall
+          #Starlight End
         vgroid: !type:DungeonSpawnGroup
-          minimumDistance: 300
-          maximumDistance: 350
+          minimumDistance: 600 # Starlight Edit: 300 -> 600
+          maximumDistance: 650 # Starlight Edit: 350 -> 650
+          directDungeonSpawn: true # Starlight: Avoid temp-map/FTL placement for this large guaranteed grid.
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:
           - type: Gravity
             enabled: true
             inherent: true
+          - type: VGRoidSpawnMarker # Starlight
           protos:
           - VGRoid
 

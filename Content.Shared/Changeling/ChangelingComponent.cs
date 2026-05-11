@@ -45,7 +45,7 @@ public sealed partial class ChangelingComponent : Component
     public bool StrainedMusclesActive = false;
 
     public bool IsInLesserForm = false;
-    
+
     public bool StealthEnabled = false;
 
     [DataField]
@@ -80,7 +80,7 @@ public sealed partial class ChangelingComponent : Component
     ///     How much biomass should be removed per cycle.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float BiomassDrain = 1f;
+    public float BiomassDrain = 0.5f; // Starlight, gives them double time to eat.
 
     /// <summary>
     ///     Current amount of chemicals changeling currently has.

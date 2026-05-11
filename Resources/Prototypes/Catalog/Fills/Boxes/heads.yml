@@ -25,6 +25,7 @@
         - id: PowerComputerCircuitboard
         - id: SolarControlComputerCircuitboard
         - id: BluespaceHarvesterMachineCircuitboard # Starlight
+        - id: EngineeringCommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: ToteBase
@@ -37,6 +38,7 @@
         children:
         - id: MedicalTechFabCircuitboard
         - id: CargoRequestMedicalComputerCircuitboard
+        - id: MedicalCommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: ToteBase
@@ -50,6 +52,7 @@
         - id: IDComputerCircuitboard
         - id: FundingAllocationComputerCircuitboard
         - id: CargoRequestServiceComputerCircuitboard
+        - id: ServiceCommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: BoxStamps
@@ -75,6 +78,7 @@
         children:
         - id: SecurityTechFabCircuitboard
         - id: CargoRequestSecurityComputerCircuitboard
+        - id: SecurityCommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: ToteBase
@@ -92,6 +96,7 @@
         - id: SalvageMagnetMachineCircuitboard
         - id: SalvageJobBoardComputerCircuitboard
         - id: MailTeleporterMachineCircuitboard
+        - id: CargoCommsComputerCircuitboard # Starlight
 
 - type: entity
   parent: BoxStamps
@@ -123,3 +128,4 @@
         - id: AnalysisComputerCircuitboard #Because sometimes round start artis just fucking explode on the pad.
         - id: ArtifactAnalyzerMachineCircuitboard
         - id: StationAiFixerCircuitboard
+        - id: ScienceCommsComputerCircuitboard # Starlight

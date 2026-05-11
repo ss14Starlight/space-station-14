@@ -484,15 +484,17 @@ public sealed class RevSupplyRiftSystem : EntitySystem
 
         if (activeRiftCount == _config.GetCVar(StarlightCCVars.AutogammaRiftCount) && _config.GetCVar(StarlightCCVars.AutogammaRiftEnabled)) //#region Starlight Autogamma
         {
-            var xform = Transform(rift);
-            var station = _station.GetStationInMap(xform.MapID);
-            if (station != null)
+            var station = _station.GetNearestStation(rift, true);
+            if (station.Owner != EntityUid.Invalid)
             {
-                _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString("centcomm-revs-gammarift"),
-                    Loc.GetString("cmd-announce-sender"));
-                _alert.SetLevel(station.Value, "gamma", true, true, true, true);
-                _roundEnd.SetShuttleCallsEnabled(false);
+                if (_alert.GetLevel(station) != "gamma")
+                {
+                    _chat.DispatchStationAnnouncement(station,
+                        Loc.GetString("centcomm-revs-gammarift"),
+                        Loc.GetString("cmd-announce-sender"));
+                    _alert.SetLevel(station, "gamma", true, true, true, true);
+                    _roundEnd.SetShuttleCallsEnabled(false);
+                }
             }
         } //#endregion Starlight Autogamma
 

@@ -358,8 +358,8 @@
 - type: entity
   parent: PosterBase
   id: PosterContrabandBustyBackdoorExoBabes6
-  name: "Busty Backdoor Exo Babes 6"
-  description: "Get a load, or give, of these all natural Exos!"
+  name: "Exomorphs: Not What They Seem?"
+  description: "A poster debating the common misconceptions about Exomorphs. Or at least, that's what you think this poster's about."
   components:
   - type: Sprite
     state: poster36_contraband
@@ -578,8 +578,9 @@
   name: "Interdyne Pharmaceutics: For the Health of Humankind"
   description: "An advertisement for Interdyne Pharmaceutics' GeneClean clinics. 'Become the master of your own body!'"
   components:
-    - type: Sprite
-      state: poster61_contraband
+    - type: Sprite # Starlight start
+      sprite: _Starlight/Structures/Wallmounts/posters/interdyne.rsi #  To match the flippo
+      state: interdyne # Starlight end
 
 - type: entity
   parent: PosterBase

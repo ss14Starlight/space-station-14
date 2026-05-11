@@ -21,6 +21,7 @@ using Robust.Shared.Random;
 #region Starlight
 using Content.Server.Chat;
 using Content.Server.Hands.Systems;
+using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
 using Content.Shared.Damage;
@@ -50,6 +51,8 @@ namespace Content.Server.Bible
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly HandsSystem _hands = default!; //Starlight
         [Dependency] private readonly TagSystem _tags = default!; //Starlight
+        [Dependency] private readonly NameModifierSystem _nameModifier = default!; //Starlight
+
 
         public override void Initialize()
         {
@@ -195,8 +198,10 @@ namespace Content.Server.Bible
                 {
                     var target = args.Target.Value;
                     RemComp<CluwneComponent>(target);
-                    RemComp<ClumsyComponent>(uid);
-                    RemComp<AutoEmoteComponent>(uid);
+                    RemComp<ClumsyComponent>(target);
+                    RemComp<AutoEmoteComponent>(target);
+                    _nameModifier.RefreshNameModifiers(target);
+
                     if (TryComp<InventoryComponent>(target, out var inv))
                     {
                         var slots = _invSystem.GetSlotEnumerator((target, inv));

@@ -174,10 +174,10 @@
         conditions:
         - !type:ReagentCondition
           reagent: Stimulants
-          min: 50
+          min: 45
         damage:
           types:
-            Poison: 1
+            Poison: 3
       # Interactions
       - !type:ModifyStatusEffect
         conditions:
@@ -340,7 +340,7 @@
           reagent: Nocturine
           min: 8
         effectProto: StatusEffectForcedSleeping
-        time: 6
+        time: 9
         delay: 5
 
 - type: reagent
@@ -356,11 +356,13 @@
   metabolisms:
     Narcotic:
       effects:
-      - !type:GenericStatusEffect
-        key: Muted
-        component: Muted
+      # Starlight BEGIN
+      # Migrated to new status system to be able to cap it. Undo when WizDen finally migrates it.
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectMuted
         type: Add
         time: 10
+      # Starlight END
 
 - type: reagent
   id: NorepinephricAcid

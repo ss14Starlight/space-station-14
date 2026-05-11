@@ -8,9 +8,6 @@
     },
     "states": [
         {
-            "name": "vampire_full"
-        },
-        {
             "name": "vampire_well_fed"
         },
         {

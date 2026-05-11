@@ -55,12 +55,12 @@
     temperature: 1000
   # 🌟Starlight-start🌟
   - type: SurgeryTool
+  - type: Cautery
     successRate: 0.1
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
-  - type: Cautery
   # 🌟Starlight-end🌟
   - type: LightBehaviour
     behaviours:

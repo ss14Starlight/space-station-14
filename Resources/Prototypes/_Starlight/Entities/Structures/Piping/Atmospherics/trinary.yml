@@ -1,0 +1,37 @@
+- type: entity
+  parent: GasFilter
+  id: GasFilterInline
+  name: inline gas filter
+  description: Filters gases from a pipenet without splitting it in two.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
+      layers:
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
+          state: pipeTrinaryConnectors
+          map: [ "enum.PipeVisualLayers.Pipe" ]
+        - state: gasFilter
+          map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasFilterInline
+        Secondary: GasFilterInlineAlt1
+        Tertiary: GasFilterInlineAlt2
+        Quaternary: GasFilterInlineAlt3
+        Quinary: GasFilterInlineAlt4
+    - type: GasFilter
+      inlet: pipe
+      outlet: pipe
+    - type: NodeContainer
+      nodes:
+        pipe:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: Longitudinal
+        filter:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: West
+    - type: Construction
+      graph: GasTrinaryStarlight
+      node: inline_filter

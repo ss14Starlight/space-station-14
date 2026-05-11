@@ -1,0 +1,794 @@
+- type: entity
+  name: carpet deco tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemCarpetDeco
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_carpet_deco
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorCarpetDeco
+  - type: Stack
+    stackType: FloorTileCarpetDeco
+
+- type: entity
+  name: dark bitile tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemDarkBitile
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_dark_bitile
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorDarkBitile
+  - type: Stack
+    stackType: FloorTileDarkBitile
+
+- type: entity
+  name: steel bitile tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemSteelBitile
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_steel_bitile
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSteelBitile
+  - type: Stack
+    stackType: FloorTileSteelBitile
+
+- type: entity
+  name: white bitile tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemWhiteBitile
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_white_bitile
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWhiteBitile
+  - type: Stack
+    stackType: FloorTileWhiteBitile
+
+- type: entity
+  name: hierophant tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemHierophant
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_hierophant
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorHierophant
+  - type: Stack
+    stackType: FloorTileHierophant
+
+- type: entity
+  name: sepia tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemSepia
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_sepia
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSepia
+  - type: Stack
+    stackType: FloorTileSepia
+
+- type: entity
+  name: terracotta tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemTerracotta
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_terracotta
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTerracotta
+  - type: Stack
+    stackType: FloorTileTerracotta
+
+- type: entity
+  name: terracotta diagonal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemTerracottaDiagonal
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_terracotta_diagonal
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTerracottaDiagonal
+  - type: Stack
+    stackType: FloorTileTerracottaDiagonal
+
+- type: entity
+  name: terracotta small tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemTerracottaSmall
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_terracotta_small
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTerracottaSmall
+  - type: Stack
+    stackType: FloorTileTerracottaSmall
+
+- type: entity
+  name: dark wood floor
+  parent: FloorTileItemBase
+  id: FloorTileItemDarkWood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: darkwood
+  - type: Item
+    heldPrefix: darkwood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorDarkWood
+  - type: Stack
+    stackType: FloorTileDarkWood
+
+- type: entity
+  name: dark wood pattern floor
+  parent: FloorTileItemBase
+  id: FloorTileItemDarkWoodPattern
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: darkwoodpatternfloor
+  - type: Item
+    heldPrefix: darkwood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorDarkWoodTile
+  - type: Stack
+    stackType: FloorTileDarkWoodPattern
+
+- type: entity
+  name: large dark wood floor
+  parent: FloorTileItemBase
+  id: FloorTileItemDarkWoodLarge
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: darkwood-large
+  - type: Item
+    heldPrefix: darkwood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorDarkWoodLarge
+  - type: Stack
+    stackType: FloorTileDarkWoodLarge
+
+- type: entity
+  name: wooden parquet
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodParquet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_parquet
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodParquet
+  - type: Stack
+    stackType: FloorTileWood
+
+- type: entity
+  name: black wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodBlack
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_black
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-black
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodBlack
+  - type: Stack
+    stackType: FloorTileItemWoodBlack
+
+- type: entity
+  name: dark wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_dark
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodDark
+  - type: Stack
+    stackType: FloorTileItemWoodDark
+
+- type: entity
+  name: light wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodLight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_light
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-light
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodLight
+  - type: Stack
+    stackType: FloorTileItemWoodLight
+
+- type: entity
+  name: red wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_red
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-red
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodRed
+  - type: Stack
+    stackType: FloorTileItemWoodRed
+
+- type: entity
+  name: large black wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodLargeBlack
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_large_black
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-black
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodLargeBlack
+  - type: Stack
+    stackType: FloorTileItemWoodLargeBlack
+
+- type: entity
+  name: large dark wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodLargeDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_large_dark
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodLargeDark
+  - type: Stack
+    stackType: FloorTileItemWoodLargeDark
+
+- type: entity
+  name: large light wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodLargeLight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_large_light
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-light
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodLargeLight
+  - type: Stack
+    stackType: FloorTileItemWoodLargeLight
+
+- type: entity
+  name: large red wooden floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodLargeRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_large_red
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-red
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodLargeRed
+  - type: Stack
+    stackType: FloorTileItemWoodLargeRed
+
+- type: entity
+  name: black wooden parquet
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodParquetBlack
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_parquet_black
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-black
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodParquetBlack
+  - type: Stack
+    stackType: FloorTileItemWoodParquetBlack
+
+- type: entity
+  name: dark wooden parquet
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodParquetDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_parquet_dark
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodParquetDark
+  - type: Stack
+    stackType: FloorTileItemWoodParquetDark
+
+- type: entity
+  name: light wooden parquet
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodParquetLight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_parquet_light
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-light
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodParquetLight
+  - type: Stack
+    stackType: FloorTileItemWoodParquetLight
+
+- type: entity
+  name: red wooden parquet
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodParquetRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_parquet_red
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-red
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodParquetRed
+  - type: Stack
+    stackType: FloorTileItemWoodParquetRed
+
+- type: entity
+  name: wooden chess floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodChess
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_chess
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodChess
+  - type: Stack
+    stackType: FloorTileItemWoodChess
+
+- type: entity
+  name: black wooden chess floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodChessBlack
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_chess_black
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-black
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodChessBlack
+  - type: Stack
+    stackType: FloorTileItemWoodChessBlack
+
+- type: entity
+  name: dark wooden chess floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodChessDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_chess_dark
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodChessDark
+  - type: Stack
+    stackType: FloorTileItemWoodChessDark
+
+- type: entity
+  name: light wooden chess floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodChessLight
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_chess_light
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-light
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodChessLight
+  - type: Stack
+    stackType: FloorTileItemWoodChessLight
+
+- type: entity
+  name: red wooden chess floor
+  parent: FloorTileItemBase
+  id: FloorTileItemWoodChessRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    state: wood_chess_red
+  - type: Item
+    sprite: _Starlight/Objects/Tiles/wood.rsi
+    heldPrefix: wood-red
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorWoodChessRed
+  - type: Stack
+    stackType: FloorTileItemWoodChessRed
+
+# Metal
+
+- type: entity
+  name: dark metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalDark
+  - type: Stack
+    stackType: FloorTileMetalDark
+
+- type: entity
+  name: brown metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalBrown
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_engie
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalBrown
+  - type: Stack
+    stackType: FloorTileMetalBrown
+
+- type: entity
+  name: blue  metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalBlue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_med
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalBlue
+  - type: Stack
+    stackType: FloorTileMetalBlue
+
+- type: entity
+  name: purple metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalPurple
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_sci
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalPurple
+  - type: Stack
+    stackType: FloorTileMetalPurple
+
+- type: entity
+  name: red metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_sec
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalRed
+  - type: Stack
+    stackType: FloorTileMetalRed
+
+- type: entity
+  name: green metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalGreen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_service
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalGreen
+  - type: Stack
+    stackType: FloorTileMetalGreen
+
+- type: entity
+  id: FloorTileItem3x3Black
+  parent: FloorTileItemBase
+  name: 3x3 black tile
+  description: A 3 by 3 set of black tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3black
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3Black
+  - type: Stack
+    stackType: FloorTile3x3Black
+
+- type: entity
+  id: FloorTileItem3x3Brown
+  parent: FloorTileItemBase
+  name: 3x3 brown tile
+  description: A 3 by 3 set of brown tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3brown
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3Brown
+  - type: Stack
+    stackType: FloorTile3x3Brown
+
+- type: entity
+  id: FloorTileItem3x3Steel
+  parent: FloorTileItemBase
+  name: 3x3 steel tile
+  description: A 3 by 3 set of steel tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3steel
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3Steel
+  - type: Stack
+    stackType: FloorTile3x3Steel
+
+- type: entity
+  id: FloorTileItem3x3White
+  parent: FloorTileItemBase
+  name: 3x3 white tile
+  description: A 3 by 3 set of steel tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3white
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3White
+  - type: Stack
+    stackType: FloorTile3x3White
+
+- type: entity
+  id: FloorTileItemOldConcreteBricks
+  parent: FloorTileItemBase
+  name: old concrete bricks
+  description: Old, heavily worn concrete bricks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: old_concrete_bricks
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorOldConcreteBricks
+  - type: Stack
+    stackType: FloorTileOldConcreteBricks
+
+- type: entity
+  id: FloorTileItemOldConcreteTile
+  parent: FloorTileItemBase
+  name: old concrete tiles
+  description: Old, heavily worn concrete tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: old_concrete_tiles
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorOldConcreteTile
+  - type: Stack
+    stackType: FloorTileOldConcreteTile
+
+- type: entity
+  id: FloorTileItemOrnate
+  parent: FloorTileItemBase
+  name: ornate tile
+  description: Old orante tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: ornate
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorOrnate
+  - type: Stack
+    stackType: FloorTileOrnate
+
+- type: entity
+  id: FloorTileItemRoughMetal
+  parent: FloorTileItemBase
+  name: rough metal tile
+  description: Its seen a lot of use.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: rough_metal
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorRoughMetal
+  - type: Stack
+    stackType: FloorTileRoughMetal
+
+- type: entity
+  id: FloorTileItemRustyMetal
+  parent: FloorTileItemBase
+  name: rusty metal tile
+  description: Its seen a lot of use.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: rusty_metal
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorRustyMetal
+  - type: Stack
+    stackType: FloorTileRustyMetal
+
+- type: entity
+  id: FloorTileItemSteelGrate
+  parent: FloorTileItemBase
+  name: steel grate tile
+  description: A steel grate.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: steel_grate
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSteelGrate
+  - type: Stack
+    stackType: FloorTileSteelGrate
+
+- type: entity
+  id: FloorTileItemTechGreeb
+  parent: FloorTileItemBase
+  name: tech maints tile
+  description: Over designed and dirty.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: techfloor_greeb
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTechGreeb
+  - type: Stack
+    stackType: FloorTileTechGreeb
+
+# Terrain
+- type: entity
+  id: FloorTileItemAstroDirt
+  parent: FloorTileItemBase
+  name: astro-dirt tile
+  description: Fake dirt. It's easily removable, but completely devoid of the nutrients that plants crave.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_astro_dirt
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorAstroDirt
+  - type: Stack
+    stackType: FloorTileAstroDirt

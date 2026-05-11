@@ -16,7 +16,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 {
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly SharedIdCardSystem _card = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -85,7 +85,7 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
     {
         if (component.AllowedAccesses == null)
             return true;
-        
+
         _card.TryFindIdCard(wearer, out var card);
         TryComp<AccessComponent>(card.Owner, out var access);
         return access != null && access.Tags.Overlaps(component.AllowedAccesses);

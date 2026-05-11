@@ -41,6 +41,7 @@
   - MobCombat
   - MobBloodstream
   - MobFlammable
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   id: SimpleSpaceMobBase # Mob without barotrauma, freezing and asphyxiation (for space carps!?)
   suffix: AI
   components:
@@ -53,8 +54,10 @@
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Climbing
   - type: NameIdentifier
     group: GenericNumber
@@ -107,3 +110,5 @@
   - type: MobPrice
     price: 150
   - type: FloatingVisuals
+  - type: GhostOnMove
+    mustBeDead: true

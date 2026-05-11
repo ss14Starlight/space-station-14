@@ -1,0 +1,244 @@
+
+- type: constructionGraph
+  id: ComputerCircuitBoard
+  start: alert
+  graph:
+  - node: alert
+    entity: AlertsComputerCircuitboard
+    edges:
+    - to: alertDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: alertDesktop
+    entity: AlertsComputerCircuitboardDesktop
+    edges:
+    - to: alert
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: tank
+    entity: AtmosMonitoringComputerCircuitboard
+    edges:
+    - to: tankDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: tankDesktop
+    entity: AtmosMonitoringComputerCircuitboardDesktop
+    edges:
+    - to: tank
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: camera
+    entity: SurveillanceCameraMonitorCircuitboard
+    edges:
+    - to: cameraDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: cameraDesktop
+    entity: SurveillanceCameraMonitorCircuitboardDesktop
+    edges:
+    - to: camera
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: cargoBounty
+    entity: CargoBountyComputerCircuitboard
+    edges:
+    - to: cargoBountyDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: cargoBountyDesktop
+    entity: CargoBountyComputerCircuitboardDesktop
+    edges:
+    - to: cargoBounty
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: crew
+    entity: CrewMonitoringComputerCircuitboard
+    edges:
+    - to: crewDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: crewDesktop
+    entity: CrewMonitoringComputerCircuitboardDesktop
+    edges:
+    - to: crew
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: crime
+    entity: CriminalRecordsComputerCircuitboard
+    edges:
+    - to: crimeDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: crimeDesktop
+    entity: CriminalRecordsComputerCircuitboardDesktop
+    edges:
+    - to: crime
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: stationRecords
+    entity: StationRecordsComputerCircuitboard
+    edges:
+    - to: stationRecordsDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: stationRecordsDesktop
+    entity: StationRecordsComputerCircuitboardDesktop
+    edges:
+    - to: stationRecords
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: news
+    entity: ComputerMassMediaCircuitboard
+    edges:
+    - to: newsDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: newsDesktop
+    entity: ComputerMassMediaCircuitboardDesktop
+    edges:
+    - to: news
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: power
+    entity: PowerComputerCircuitboard
+    edges:
+    - to: powerDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: powerDesktop
+    entity: PowerComputerCircuitboardDesktop
+    edges:
+    - to: power
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: salvageJob
+    entity: SalvageJobBoardComputerCircuitboard
+    edges:
+    - to: salvageJobDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: salvageJobDesktop
+    entity: SalvageJobBoardComputerCircuitboardDesktop
+    edges:
+    - to: salvageJob
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: cargoRequest
+    entity: CargoRequestComputerCircuitboard
+    edges:
+    - to: cargoRequestDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: cargoRequestDesktop
+    entity: CargoRequestComputerCircuitboardDesktop
+    edges:
+    - to: cargoRequest
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: medicalRequest
+    entity: CargoRequestMedicalComputerCircuitboard
+    edges:
+    - to: medicalRequestDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: medicalRequestDesktop
+    entity: CargoRequestMedicalComputerCircuitboardDesktop
+    edges:
+    - to: medicalRequest
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: scienceRequest
+    entity: CargoRequestScienceComputerCircuitboard
+    edges:
+    - to: scienceRequestDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: scienceRequestDesktop
+    entity: CargoRequestScienceComputerCircuitboardDesktop
+    edges:
+    - to: scienceRequest
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: securityRequest
+    entity: CargoRequestSecurityComputerCircuitboard
+    edges:
+    - to: securityRequestDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: securityRequestDesktop
+    entity: CargoRequestSecurityComputerCircuitboardDesktop
+    edges:
+    - to: securityRequest
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: serviceRequest
+    entity: CargoRequestServiceComputerCircuitboard
+    edges:
+    - to: serviceRequestDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: serviceRequestDesktop
+    entity: CargoRequestServiceComputerCircuitboardDesktop
+    edges:
+    - to: serviceRequest
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: engineeringRequest
+    entity: CargoRequestEngineeringComputerCircuitboard
+    edges:
+    - to: engineeringRequestDesktop
+      steps:
+      - tool: Screwing
+        doAfter: 2
+  - node: engineeringRequestDesktop
+    entity: CargoRequestEngineeringComputerCircuitboardDesktop
+    edges:
+    - to: engineeringRequest
+      steps:
+      - tool: Screwing
+        doAfter: 2

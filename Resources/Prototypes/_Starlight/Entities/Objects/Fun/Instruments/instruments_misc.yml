@@ -1,0 +1,42 @@
+﻿- type: entity
+  parent: BaseHandheldInstrument
+  id: WehpetInstrument
+  name: weh-pet
+  description: A lizard had too much time on their hands when they made this.
+  components:
+  - type: Instrument
+    program: 5
+    bank: 1
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Instruments/wehpet.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Fun/Instruments/wehpet.rsi
+    storedRotation: -90
+  - type: Tag
+    tags:
+    - BrassInstrument
+
+- type: entity
+  parent: BaseHandheldInstrument
+  id: NT4PlayerInstrument
+  name: nt4 player
+  description: The 4th iteration of NanoTrasen's portable music player. One day, everyone will have one of these in their pockets.
+  components:
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    program: 2
+    bank: 100
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Instruments/nt4player.rsi
+    layers:
+    - state: icon-base
+    - state: icon-screen
+      shader: unshaded
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: ActivatableUI
+    inHandsOnly: false

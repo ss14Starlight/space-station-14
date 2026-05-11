@@ -266,6 +266,46 @@
     {
       "name": "antlers-tall-ears",
       "directions": 4
+    },
+    {
+      "name": "deer",
+      "directions": 4
+    },
+    {
+      "name": "antler-small",
+      "directions": 4
+    },
+    {
+      "name": "antler-jolly",
+      "directions": 4
+    },
+    {
+      "name": "antler-w",
+      "directions": 4
+    },
+    {
+      "name": "antler-driedbush",
+      "directions": 4
+    },
+    {
+      "name": "airplane",
+      "directions": 4
+    },
+    {
+      "name": "inner_airplane",
+      "directions": 4
+    },
+    {
+      "name": "long_tail_twotone",
+      "directions": 4
+    },
+    {
+      "name": "fluffy_tail_twotone",
+      "directions": 4
+    },
+    {
+      "name": "cotton_tail_twotone",
+      "directions": 4
     }
   ]
 }
