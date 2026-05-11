@@ -355,6 +355,6 @@
       storagebase: !type:AllSelector
         children:
         - id: CigaretteBub
-          amount: 20 #STARLIGHT
+          amount: 10
 
 ### end SL
