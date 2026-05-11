@@ -6,6 +6,7 @@ using Robust.Shared.Map; // Starlight
 using Robust.Shared.Player; // Starlight
 using System.Linq; // Starlight
 using Robust.Shared.Timing; // Starlight
+using Content.Shared.Medical.SuitSensors; //Starlight
 
 namespace Content.Client.Medical.CrewMonitoring;
 
@@ -83,6 +84,13 @@ public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
                             }
                         }
                     }
+
+                    // Filter for what factions the console can detect
+                    filteredSensors = filteredSensors
+                        .Where(sensor => {
+                                var clientEntity = EntMan.GetEntity(sensor.SuitSensorUid);
+                                return EntMan.TryGetComponent<SuitSensorComponent>(clientEntity, out var suitSensor) && filter.ShownFactions.Contains(suitSensor.Faction);
+                                }).ToList();
 
                     if (filter.OnlyShowWoundedOrDead)
                     {
