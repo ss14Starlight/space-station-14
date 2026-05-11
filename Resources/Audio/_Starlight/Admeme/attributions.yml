@@ -22,3 +22,15 @@
   license: "CC-BY-3.0"
   copyright: "Goon Station"
   source: "https://github.com/goonstation/goonstation/tree/master/sound/radio_station"
+
+- files: ["icarus_alarm.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Skyrat"
+  source: "https://github.com/Skyrat-SS13/Skyrat-tg"
+
+- files: ["omega.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "made by stickycheZ101"
+  source: "https://github.com/stickycheZ101"
+
+

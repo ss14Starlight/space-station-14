@@ -24,6 +24,7 @@
       - Radio
       - HolofanProjector
       - Multitool
+      - GrappleGun #FH
       - AppraisalTool
       - JawsOfLife
       - GPS
@@ -54,6 +55,11 @@
       - TrayScanner
       - GasAnalyzer
       - HandLabeler
+    #Starlight Start
+    blacklist:
+      tags:
+      - MechReactor
+    #Starlight End
   - type: ItemMapper
     sprite: &BeltOverlay Clothing/Belt/belt_overlay.rsi
     mapLayers:
@@ -67,7 +73,7 @@
           - Wirecutter
 
           #Starlight
-          - ImprovisedWirecutter          
+          - ImprovisedWirecutter
       crowbar:
         whitelist:
           tags:
@@ -208,6 +214,7 @@
       tags:
       - Wrench
       - Bottle
+      - Vial
       - Spray
       - Brutepack
       - Bloodpack
@@ -258,8 +265,6 @@
           tags:
           - Wrench
   - type: Appearance
-  - type: StealTarget # Starlight
-    stealGroup: MedicalBeltCollection # Starlight. There's a lot of things that inherit this, so it's not as hard as you think.
 
 - type: entity
   parent: ClothingBeltMedical
@@ -273,10 +278,14 @@
     sprite: Clothing/Belt/emt.rsi
   - type: Storage #Starlight start
     maxItemSize: Large
+    defaultStorageOrientation: Vertical #SL
+    grid: #SL
+    - 0,0,8,1 #SL
     whitelist:
       tags:
         - Crowbar
         - Bottle
+        - Vial
         - Spray
         - Brutepack
         - Bloodpack
@@ -291,6 +300,7 @@
         - Medkit
         - BodyBag
         - ParaKnife
+        - JawsOfLife #Starlight
       components:
         - Injector
         - Pill

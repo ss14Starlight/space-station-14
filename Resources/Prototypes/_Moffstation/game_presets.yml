@@ -1,0 +1,17 @@
+- type: gamePreset
+  id: WizardDuel
+  alias:
+  - MagicFistFight
+  - ThreeStooges
+  name: wizard-duel-title
+  description: wizard-duel-description
+  minPlayers: 35
+  showInVote: false
+  rules:
+#   - DummyNonAntagChance # Starlight
+  - WizardDuel
+  - SubGamemodesRuleNoWizard
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation

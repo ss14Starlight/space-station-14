@@ -13,9 +13,9 @@ public sealed partial class CustomObjectiveSummaryWindow : FancyWindow
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
 
-    private SharedMindSystem? _mind;
+    private readonly SharedMindSystem? _mind;
 
-    private readonly int _maxLength = 128;
+    private readonly int _maxLength = 256;
 
     public event Action<string>? OnSubmitted;
 

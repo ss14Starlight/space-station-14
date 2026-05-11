@@ -7,6 +7,7 @@ store-category-medical-surgery = Surgery
 store-category-enginery-main = Enginery
 store-category-service-clown = Clown
 store-category-security-main = Security
+store-category-secret = Secret
 
 # Changeling
 store-ling-category-combat = Combat
@@ -14,3 +15,6 @@ store-ling-category-sting = Stings
 store-ling-category-utility = Utility
 
 store-category-cantrips-standard = Standard Cantrips
+
+# Uplinks
+store-category-cybernetics = Cybernetics

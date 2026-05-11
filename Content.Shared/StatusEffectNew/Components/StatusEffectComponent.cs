@@ -33,6 +33,12 @@ public sealed partial class StatusEffectComponent : Component
     public TimeSpan? EndEffectTime;
 
     /// <summary>
+    ///     STARLIGHT: Maximum duration of this status effect that it can stack up to. Relative to now, not start time.
+    /// </summary>
+    [DataField]
+    public TimeSpan? MaximumDuration { get; private set; }
+
+    /// <summary>
     /// If true, this status effect has been applied. Used to ensure that <see cref="StatusEffectAppliedEvent"/> only fires once.
     /// </summary>
     /// We actually don't want to network this, that way client can apply an effect it's receiving properly!
@@ -50,4 +56,10 @@ public sealed partial class StatusEffectComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
+
+    /// <summary>
+    /// QoL function, returns total duration of this status effect.
+    /// </summary>
+    [ViewVariables]
+    public TimeSpan Duration => EndEffectTime == null ? TimeSpan.MaxValue : EndEffectTime.Value - StartEffectTime;
 }

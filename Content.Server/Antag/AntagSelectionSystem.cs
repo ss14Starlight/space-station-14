@@ -36,7 +36,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
 using Content.Server.Body.Components;
 using Content.Server.Bible.Components;
 using Content.Server.GameTicking.Rules.Components;
@@ -45,12 +44,24 @@ using Content.Shared.Tag;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
+using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 // Starlight End
 
 namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelectionComponent>
 {
+    // Starlight edit start
+    #region Starlight data collection
+    private static readonly Counter _antagsSpawned = Metrics.CreateCounter(
+        "sl_antags_spawned",
+        "Number of antagonists spawned by type",
+        ["type"]
+    );
+    #endregion
+    // Starlight edit end
+
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IBanManager _ban = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -533,6 +544,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             Log.Debug($"Assigned {ToPrettyString(curMind)} as antagonist: {ToPrettyString(ent)}");
             _adminLogger.Add(LogType.AntagSelection, $"Assigned {ToPrettyString(curMind)} as antagonist: {ToPrettyString(ent)}");
         }
+
+        // Starlight edit start - add stats
+        _antagsSpawned.WithLabels(Prototype(ent)?.ID ?? "unknown").Inc();
+        // Starlight edit end
 
         var afterEv = new AfterAntagEntitySelectedEvent(session, player, ent, def);
         RaiseLocalEvent(ent, ref afterEv, true);

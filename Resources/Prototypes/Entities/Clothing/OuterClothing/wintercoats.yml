@@ -10,11 +10,7 @@
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
   - type: TemperatureProtection
     heatingCoefficient: 1.1
-    coolingCoefficient: 0.1
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,1,2 # Starlight: Make them 2x3
+    coolingCoefficient: 0.35 # Starlight, 0.1 -> 0.35
   - type: Pierceable
     level: Metal
   - type: Armor
@@ -113,20 +109,22 @@
     clothingPrototype: ClothingHeadHatHoodWinterBartender
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband, AllowSuitStorageClothing]
+  parent: ClothingOuterWinterCapUnarmored #SL Edit
   id: ClothingOuterWinterCap
   name: captain's winter coat
+  suffix: Armored #SL Edit
   components:
-  - type: Sprite
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    layers:
-    - state: CAP-icon
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: CAP-inhand-left
-      right:
-      - state: CAP-inhand-right
+  ### SL Comment Out
+  # - type: Sprite
+    # sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    # layers:
+    # - state: CAP-icon
+  # - type: Item
+    # inhandVisuals:
+      # left:
+      # - state: CAP-inhand-left
+      # right:
+      # - state: CAP-inhand-right
   - type: Armor
     modifiers:
       coefficients:
@@ -136,13 +134,14 @@
         Heat: 0.45
   - type: ExplosionResistance
     damageCoefficient: 0.80
-  - type: Clothing
-    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
-    clothingVisuals:
-      outerClothing:
-      - state: CAP-equipped-OUTERCLOTHING
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHatHoodWinterCaptain
+  ### SL Comment Out
+  # - type: Clothing
+    # sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    # clothingVisuals:
+      # outerClothing:
+      # - state: CAP-equipped-OUTERCLOTHING
+  # - type: ToggleableClothing
+    # clothingPrototype: ClothingHeadHatHoodWinterCaptain
 
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
@@ -393,6 +392,7 @@
   parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
   id: ClothingOuterWinterHoS
   name: head of security's armored winter coat
+  suffix: Armored #SL Edit
   description: A sturdy, utilitarian winter coat designed to protect a head of security from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
@@ -401,12 +401,18 @@
     sprite: Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterHOS
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]
 ##########################################################
 
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
   id: ClothingOuterWinterHoSUnarmored
   name: head of security's winter coat
+  suffix: Unarmored #SL Edit
   description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
@@ -773,6 +779,7 @@
   parent: [ClothingOuterArmorWarden, ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
   id: ClothingOuterWinterWarden
   name: warden's armored winter coat
+  suffix: Armored #SL Edit
   description: A sturdy, utilitarian winter coat designed to protect a warden from any brig-bound threats and hypothermic events.
   components:
   - type: Sprite
@@ -781,12 +788,18 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]
 ################################################################
 
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
   id: ClothingOuterWinterWardenUnarmored
   name: warden's winter coat
+  suffix: Unarmored #SL Edit
   description: A sturdy coat, a warm coat, but not an armored coat.
   components:
   - type: Sprite
@@ -808,7 +821,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterWarden
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSyndicateContraband]
+  parent: [ClothingOuterWinterCoatToggleable, BaseMinorContraband] #SL Edit Syndie > Minor contra
   id: ClothingOuterWinterSyndieCap
   name: syndicate's winter coat
   description: "The syndicate's winter coat is made of durable fabric, with gilded patterns, and coarse wool."
@@ -847,7 +860,7 @@
 ##############################################################
 
 - type: entity
-  parent: [ClothingOuterWinterCoatToggleable, BaseSyndicateContraband]
+  parent: [ClothingOuterWinterCoatToggleable, BaseMinorContraband] #SL edit Syndie > Minor contra
   id: ClothingOuterWinterSyndie
   name: syndicate's winter coat
   description: Insulated winter coat, looks like a merch from "Syndieland".

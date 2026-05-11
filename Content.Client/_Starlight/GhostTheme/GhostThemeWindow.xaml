@@ -1,4 +1,4 @@
-<DefaultWindow 
+<DefaultWindow
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Title="{Loc 'ghost-gui-ghost-theme-window-title'}"
@@ -15,6 +15,6 @@
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Name="GhostThemeDescriptionContainer" VerticalExpand="True">
             </BoxContainer>
-        </ScrollContainer>      
+        </ScrollContainer>
     </SplitContainer>
 </DefaultWindow>

@@ -25,7 +25,7 @@ public sealed partial class TerminatorRuleSystem : GameRuleSystem<TerminatorRule
     private EntProtoId TerminatorEntityPrototype = "MobHumanTerminator";
     private EntProtoId PinpointerPrototype = "PinpointerTerminator";
     private EntProtoId SpawnEffectPrototype = "EffectTerminatorChronospace";
-    
+
     private const float EmpPower = 2.5f;
 
     public override void Initialize()

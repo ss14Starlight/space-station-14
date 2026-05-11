@@ -12,6 +12,12 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stacks;
+using Content.Shared._Starlight.Railroading.Events;
+using Content.Server._Starlight.Objectives.Events;
+using Content.Shared._Starlight.Railroading;
+using Content.Shared.Objectives;
+using Content.Server._Starlight.Railroading;
+using Content.Server._Starlight.Shadekin;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -24,6 +30,9 @@ public sealed class StealConditionSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!; // Starlight
+    [Dependency] private readonly RailroadingSystem _railroad = default!; // Starlight
+    [Dependency] private readonly ShadekinSystem _shadekin = default!; // Starlight
 
     private EntityQuery<ContainerManagerComponent> _containerQuery;
 
@@ -39,10 +48,60 @@ public sealed class StealConditionSystem : EntitySystem
         SubscribeLocalEvent<StealConditionComponent, ObjectiveAssignedEvent>(OnAssigned);
         SubscribeLocalEvent<StealConditionComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
         SubscribeLocalEvent<StealConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
+
+        // Starlight - Start
+        SubscribeLocalEvent<StealConditionComponent, RailroadingAssignedEvent>(OnRailroadingAssigned);
+        SubscribeLocalEvent<StealConditionComponent, RailroadingCardChosenEvent>(OnRailroadingAfterAssign);
+        SubscribeLocalEvent<StealConditionComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
+        SubscribeLocalEvent<StealConditionComponent, RailroadingCardCompletionQueryEvent>((ent, ref args) => args.IsCompleted = true);
+        // Starlight - End
+    }
+
+    // Starlight - Start
+    private void OnRailroadingAssigned(Entity<StealConditionComponent> condition, ref RailroadingAssignedEvent args)
+    {
+        if (!Assign(condition))
+            args.Cancelled = true;
+    }
+
+    private void OnRailroadingAfterAssign(Entity<StealConditionComponent> ent, ref RailroadingCardChosenEvent args)
+    {
+        if (!TryComp<RailroadableComponent>(args.Subject, out var railroadable)
+            || railroadable.ActiveCard is null)
+            return;
+
+        _railroad.InvalidateProgress((args.Subject, railroadable));
     }
 
     /// start checks of target acceptability, and generation of start values.
     private void OnAssigned(Entity<StealConditionComponent> condition, ref ObjectiveAssignedEvent args)
+    {
+        if (!Assign(condition))
+            args.Cancelled = true;
+    }
+
+    private void OnCollectObjectiveInfo(Entity<StealConditionComponent> ent, ref CollectObjectiveInfoEvent args)
+    {
+        if (!TryComp<RailroadCardComponent>(ent.Owner, out var card) || !_mindSystem.TryGetMind(card.Subject, out var mindid, out var mind))
+            return;
+
+        var group = _proto.Index(ent.Comp.StealGroup);
+        string localizedName = Loc.GetString(group.Name);
+
+        var title = ent.Comp.OwnerText == null
+            ? Loc.GetString(ent.Comp.ObjectiveNoOwnerText, ("itemName", localizedName))
+            : Loc.GetString(ent.Comp.ObjectiveText, ("owner", Loc.GetString(ent.Comp.OwnerText)), ("itemName", localizedName));
+
+        args.Objectives.Add(new ObjectiveInfo
+        {
+            Title = title,
+            Icon = group.Sprite,
+            Progress = GetProgress((mindid, mind), ent),
+        });
+    }
+
+
+    private bool Assign(Entity<StealConditionComponent> condition)
     {
         List<StealTargetComponent?> targetList = new();
 
@@ -57,10 +116,7 @@ public sealed class StealConditionSystem : EntitySystem
 
         // cancel if the required items do not exist
         if (targetList.Count == 0 && condition.Comp.VerifyMapExistence)
-        {
-            args.Cancelled = true;
-            return;
-        }
+            return false;
 
         //setup condition settings
         var maxSize = condition.Comp.VerifyMapExistence
@@ -71,7 +127,10 @@ public sealed class StealConditionSystem : EntitySystem
             : condition.Comp.MinCollectionSize;
 
         condition.Comp.CollectionSize = _random.Next(minSize, maxSize);
+
+        return true;
     }
+    // Starlight - End
 
     //Set the visual, name, icon for the objective.
     private void OnAfterAssign(Entity<StealConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
@@ -96,7 +155,7 @@ public sealed class StealConditionSystem : EntitySystem
         args.Progress = GetProgress((args.MindId, args.Mind), condition);
     }
 
-    private float GetProgress(Entity<MindComponent> mind, StealConditionComponent condition)
+    private float GetProgress(Entity<MindComponent> mind, Entity<StealConditionComponent> condition)
     {
         if (!_containerQuery.TryGetComponent(mind.Comp.OwnedEntity, out var currentManager))
             return 0;
@@ -107,7 +166,7 @@ public sealed class StealConditionSystem : EntitySystem
         _countedItems.Clear();
 
         //check stealAreas
-        if (condition.CheckStealAreas)
+        if (condition.Comp.CheckStealAreas)
         {
             var areasQuery = AllEntityQuery<StealAreaComponent, TransformComponent>();
             while (areasQuery.MoveNext(out var uid, out var area, out var xform))
@@ -123,6 +182,17 @@ public sealed class StealConditionSystem : EntitySystem
                         continue;
 
                     CheckEntity(ent, condition, ref containerStack, ref count);
+                }
+            }
+
+            // Starlight
+            if (HasComp<RailroadKeepEntityInTheDarkTaskComponent>(condition.Owner))
+            {
+                var TheDarkQuery = AllEntityQuery<StealTargetComponent>();
+                while (TheDarkQuery.MoveNext(out var uid, out var target))
+                {
+                    if (_shadekin.AreWeInTheDark(uid))
+                        CheckEntity(uid, condition, ref containerStack, ref count);
                 }
             }
         }
@@ -155,7 +225,7 @@ public sealed class StealConditionSystem : EntitySystem
             }
         } while (containerStack.TryPop(out currentManager));
 
-        var result = count / (float)condition.CollectionSize;
+        var result = count / (float)condition.Comp.CollectionSize;
         result = Math.Clamp(result, 0, 1);
         return result;
     }

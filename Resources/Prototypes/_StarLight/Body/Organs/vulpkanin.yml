@@ -1,8 +1,0 @@
-﻿- type: entity
-  id: OrganVulpkaninHeart
-  parent: OrganAnimalHeart
-  name: heart
-  description: "A disgustingly hyperactive pump designed to keep things animate."
-  components:
-    - type: Metabolizer
-      updateInterval: 0.8

@@ -1,0 +1,30 @@
+- type: constructionGraph
+  id: ClothingGlassesNullSpace
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: glasses
+          steps:
+          - tag: Meson
+            name: construction-graph-tag-meson
+            icon:
+              sprite: Clothing/Eyes/Glasses/meson.rsi
+              state: icon
+            doAfter: 5
+          - material: Cable
+            amount: 5
+            doAfter: 5
+          - material: Manipulator
+            amount: 2
+            doAfter: 5
+          - material: BluespaceCrystal
+            amount: 10
+            doAfter: 10
+          - tag: ShadekinEyes
+            name: construction-graph-tag-shadekin-eye
+            icon:
+              sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
+              state: eyes
+    - node: glasses
+      entity: ClothingEyesGlassesNullSpace

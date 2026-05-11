@@ -1,0 +1,161 @@
+- type: entity
+  name: honeybar
+  parent: BaseItem
+  id: FoodHoneybar
+  description: A sticky and sweet grain bar coated in honey.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honey_bar.rsi
+    state: honey_bar
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - sweet
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  name: honey frame
+  parent: BaseItem
+  id: FoodHoneyFrame
+  description: A wooden slate with honeycombs built inside.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honey_frame.rsi
+    state: honey_frame
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - fiber
+      - terrible
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  name: honey loaf
+  parent: BaseItem
+  id: FoodHoneyLoaf
+  description: A warm and soft loaf of bread drizzled with honey.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honey_loaf.rsi
+    state: honey_loaf
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  name: honey roll
+  parent: BaseItem
+  id: FoodHoneyRoll
+  description: Whats the matter, someone steal your honey roll?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honey_roll.rsi
+    state: honey_roll
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  name: honey slice
+  parent: BaseItem
+  id: FoodHoneyLoafSlice
+  description: A warm and soft slice of bread drizzled with honey.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honey_slice.rsi
+    state: honey_slice
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+      - bread
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Tag
+    tags:
+      - FoodSnack
+
+- type: entity
+  name: honeycomb
+  parent: BaseItem
+  id: Honeycomb
+  description: A comb of honey. It took a lot of bees a lot of time to make this.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/honeycomb.rsi
+    state: honeycomb
+  - type: Item
+    size: Tiny
+  - type: Edible
+  - type: FlavorProfile
+    flavors:
+      - honey
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: Tag
+    tags:
+      - FoodSnack

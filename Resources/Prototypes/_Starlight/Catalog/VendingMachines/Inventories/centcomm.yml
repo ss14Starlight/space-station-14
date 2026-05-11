@@ -1,0 +1,30 @@
+# CAD
+- type: vendingMachineInventory
+  id: AdmiMaxInventory
+  startingInventory:
+    BoxStampsCCDepartments: 3
+    BoxStampsCCAdministrative: 3
+    PenCentcom: 4
+    BoxFolderCentComClipboardThreePapers: 4
+    BoxFolderCentCom: 8
+    HandLabeler: 4
+    RubberStampCentcom: 5
+    RubberStampCAD: 5
+    RubberStampCCD: 5
+    RubberStampCED: 5
+    RubberStampCID: 5
+    RubberStampCMD: 5
+    RubberStampCRD: 5
+    RubberStampCDD: 5
+    RubberStampCSOD: 5
+    RubberStampCSD: 5
+    RubberStampAcknowledged: 5
+    RubberStampMissingStamps: 5
+    RubberStampIncorrectStamps: 5
+    RubberStampIncorrectForm: 5
+    RubberStampIncompleteForm: 5
+    RubberStampSentToATS: 5
+    RubberStampDeferToCommand: 5
+    RubberStampStandby: 5
+    RubberStampApproved: 5
+    RubberStampDenied: 5

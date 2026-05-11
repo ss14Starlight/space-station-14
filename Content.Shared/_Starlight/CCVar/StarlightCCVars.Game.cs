@@ -33,16 +33,27 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<float> SalaryMultiplier =
         CVarDef.Create("game.salary_multiplier", 1f, CVar.SERVERONLY);
-  
+
     /// <summary>
     /// Amount of required fully charged rifts for automatic gamma calling
     /// </summary>
     public static readonly CVarDef<int> AutogammaRiftCount =
         CVarDef.Create("game.autogamma_minimum_rifts", 2, CVar.SERVERONLY);
-    
+
     /// <summary>
     /// Whether gamma will automatically be called upon <see cref="AutogammaRiftCount"/> fully charged rifts
     /// </summary>
     public static readonly CVarDef<bool> AutogammaRiftEnabled =
         CVarDef.Create("game.autogamma_enabled", false, CVar.SERVERONLY);
+
+    /// <summary>
+    /// Whether the Shipyard is enabled.
+    /// </summary>
+    public static readonly CVarDef<bool> Shipyard =
+        CVarDef.Create("shuttle.shipyard", true, CVar.SERVERONLY);
+
+    /// The time in seconds that it will take the round to end after the nuke explodes durign nukies.
+    /// </summary>
+    public static readonly CVarDef<float> NukeRoundRestartTime =
+        CVarDef.Create("game.nuke_round_restart_time", 20f, CVar.SERVERONLY);
 }

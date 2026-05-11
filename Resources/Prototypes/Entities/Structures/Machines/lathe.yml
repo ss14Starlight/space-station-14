@@ -50,6 +50,16 @@
   - type: ResearchClient
   - type: TechnologyDatabase
   - type: StationAiWhitelist #Starlight
+# SL Start: Lighting Update
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#2f6b2b"
+    radius: 2
+    energy: 1.5
+    castShadows: false
+# SL End
+
 
 # a lathe that can be sped up with space lube / slowed down with glue
 - type: entity
@@ -134,14 +144,18 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
-    dynamicPacks: # Starlight start
+    # Starlight Start
+    - CassetteTape
+    - TapeRecorder
+    dynamicPacks:
     - StarlightAutolatheLootable
   - type: EmagLatheRecipes
     emagStaticPacks:
     - StarlightSyndicateAmmoStatic
     - StarlightSecurityEmagWeaponsStatic
     - StarlightSecurityAmmoStatic
-    - StarlightSecurityAmmoEmagStatic # Starlight end
+    - StarlightSecurityAmmoEmagStatic
+    # Starlight end
     #- SecurityAmmoStatic # SL disable in favor of prior three lines
     - SyndicateAmmoStatic
   - type: BlueprintReceiver
@@ -203,6 +217,7 @@
     - ChemistryStatic
     dynamicPacks:
     - ScienceBlueSpace # Starlight
+    - ScienceDarkBreacher # Starlight
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -353,6 +368,7 @@
     - BorgModules
     - MechParts
     - MechEquipment
+    - StarlightMechReactors
     - StarlightMechEquipment
     - StarlightSecurityMechs
     - StarlightMechParts

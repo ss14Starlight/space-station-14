@@ -1,0 +1,68 @@
+- type: entity
+  parent: BasePlushie
+  id: BottleShip
+  name: ship in a bottle
+  description: How did they get it in there?
+  components:
+  - type: Item
+    size: Small
+    sprite: _Starlight/Objects/Fun/bottleship.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/bottleship.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/glass_smack.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      path: /Audio/Effects/glass_smash.ogg
+
+# Fashion-O-Mat-Start
+- type: entity
+  parent: BasePlushie
+  id: PlushieDarkForest
+  name: dark forest entity # Even though it's a plushie, it belongs in Fashion-O-Mat, since it's 2 main sprites are the ones that are equipped to body
+  description: Apocalypse holding a lantern...
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: darkforest-inhand-left
+      right:
+      - state: darkforest-inhand-right
+    size: Normal
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/darkforest.rsi
+    state: darkforest
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Starlight/Items/Toys/darkforest_scream.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Starlight/Items/Toys/darkforest_scream.ogg
+  - type: UseDelay
+    delay: 20
+  - type: PointLight
+    radius: 1.5
+    energy: 2
+    color: "#e6b400"
+  - type: Clothing
+    slots:
+    - neck
+    - head
+    clothingVisuals:
+      head:
+      - state: darkforest-equipped-HELMET
+      neck:
+      - state: darkforest-equipped-NECK
+# Fashion-O-Mat-End

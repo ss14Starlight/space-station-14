@@ -24,7 +24,7 @@
     sprite: Clothing/Mask/breath.rsi
     state: icon
   product: CrateEmergencyInternals
-  cost: 600
+  cost: 1000
   category: cargoproduct-category-name-emergency
   group: market
 
@@ -34,7 +34,7 @@
     sprite: Clothing/Mask/breath.rsi
     state: icon
   product: CrateEmergencyInternalsLarge
-  cost: 1200
+  cost: 1800
   category: cargoproduct-category-name-emergency
   group: market
 

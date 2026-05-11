@@ -37,7 +37,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
     {
         if (!TryComp<LimbItemStorageComponent>(ent, out var storage))
             return;
-            
+
         ent.Comp.Toggled = !ent.Comp.Toggled && (!ent.Comp.IsCybernetic || !TryComp(args.Performer, out CyberneticDisruptionComponent? _));
 
         if (ent.Comp.Toggled)

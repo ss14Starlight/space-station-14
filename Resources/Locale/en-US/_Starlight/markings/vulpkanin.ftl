@@ -126,3 +126,4 @@ marking-VulpPointsFadeArms-points_fade-arms = Points (fade)
 marking-VulpPointsFadeArms = Vulpkanin Points Arms (fade)
 marking-VulpPointsSharpArms-points_sharp-arms = Points (sharp)
 marking-VulpPointsSharpArms = Vulpkanin Points Arms (sharp)
+marking-ExtraFluffyTail = Extra fluffy tail

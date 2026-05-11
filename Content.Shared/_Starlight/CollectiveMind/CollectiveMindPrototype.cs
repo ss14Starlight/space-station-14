@@ -10,7 +10,7 @@ public sealed partial class CollectiveMindPrototype : IPrototype
 {
     [IdDataField, ViewVariables]
     public string ID { get; private set; } = default!;
-    
+
     [DataField("name")]
     public LocId Name { get; private set; } = string.Empty;
 
@@ -22,10 +22,10 @@ public sealed partial class CollectiveMindPrototype : IPrototype
 
     [DataField("color")]
     public Color Color { get; private set; } = Color.Lime;
-    
+
     [DataField("requiredComponents")]
     public List<string> RequiredComponents { get; set; } = new();
-    
+
     [DataField("requiredTags")]
     public List<ProtoId<TagPrototype>> RequiredTags { get; set; } = new();
 
@@ -43,7 +43,7 @@ public sealed partial class CollectiveMindPrototype : IPrototype
 
     [DataField]
     public List<string> CanSpeakComponents { get; set; } = new();
-    
+
     [DataField]
     public List<ProtoId<TagPrototype>> CanSpeakTags { get; set; } = new();
 }

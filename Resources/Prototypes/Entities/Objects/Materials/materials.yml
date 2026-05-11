@@ -4,6 +4,12 @@
   id: MaterialBase
   description: A raw material.
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Sprite
     sprite: Objects/Materials/materials.rsi
   - type: Item

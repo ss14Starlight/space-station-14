@@ -1,0 +1,2 @@
+station-event-solarflare-start-announcement = A solar flare has been detected on collision course with the station. Do not conduct space walks or approach windows until the flare has passed!
+station-event-solarflare-end-announcement = The solar flare has passed.

@@ -43,9 +43,11 @@ public sealed partial class MechMenu : FancyWindow
 
         if (mechComp.MaxEnergy != 0f)
         {
-            var energyPercent = mechComp.Energy / mechComp.MaxEnergy;
+            //Starlight start: It's heat now <3
+            var energyPercent = 1-(mechComp.Energy / mechComp.MaxEnergy);
             EnergyDisplayBar.Value = energyPercent.Float();
-            EnergyDisplay.Text = Loc.GetString("mech-energy-display", ("amount", (energyPercent * 100).Int()));
+            EnergyDisplay.Text = Loc.GetString("mech-heat-display", ("amount", (energyPercent * 100).Int()));
+            //Starlight End
         }
         else
         {

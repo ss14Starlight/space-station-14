@@ -43,11 +43,15 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
 
     protected override void Added(EntityUid uid, RailroadRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        if (TryGetActiveRule(out var rule) && rule is Entity<RailroadRuleComponent> ent)
+        if (TryGetActiveRule(out var rule))
         {
-            foreach (var card in ent.Comp.Cards)
-                comp.Cards.Add(card);
-            _gameTicker.EndGameRule(ent.Owner);
+            if(rule.Value.Owner == uid)
+                return;
+            foreach (var card in comp.Cards)
+                rule.Value.Comp.DynamicCards.Enqueue(card);
+            _gameTicker.EndGameRule(uid);
+            comp.Stage = RailroadStage.Stopped;
+            return;
         }
         base.Added(uid, comp, gameRule, args);
         comp.Timer = comp.PreSpawnDelay;
@@ -130,27 +134,38 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
 
     private bool TickCardIssuance(Entity<RailroadRuleComponent> ruleEnt)
     {
-        if (ruleEnt.Comp.Pool.Count > 0 && ruleEnt.Comp.IssuanceQueue.TryDequeue(out var subject))
+        if (ruleEnt.Comp.IssuanceQueue.TryDequeue(out var subject))
         {
             if (!Deleted(subject.Owner)
                 && !subject.Comp.Restricted
+                && (subject.Comp.IssuedCards is not { } cards || cards.Count < CardPerUser)
                 && (subject.Comp.ActiveCard == null || Deleted(subject.Comp.ActiveCard)))
             {
                 subject.Comp.IssuedCards ??= new List<Entity<RailroadCardComponent, RuleOwnerComponent>>(CardPerUser);
-                var cardsToIssue = CardPerUser - subject.Comp.IssuedCards.Count;
-                for (var i = 0; i < cardsToIssue; i++)
-                {
-                    if(subject.Comp.IssuedCards.Count == 1
-                        && TryGetJobSpecificPool(ruleEnt, subject, out var jobPool))
-                    {
-                        var jobCard = PopRandomFromPool(jobPool, subject);
-                        if (jobCard is not null)
-                        {
-                            subject.Comp.IssuedCards.Add(jobCard.Value);
-                            continue;
-                        }
-                    }
 
+                // Try to pick a job-specific card first (at most 1, placed in center).
+                Entity<RailroadCardComponent, RuleOwnerComponent>? jobCard = null;
+                if (TryGetJobSpecificPool(ruleEnt, subject, out var jobPool))
+                    jobCard = PopRandomFromPool(jobPool, subject);
+
+                var generalSlots = CardPerUser - subject.Comp.IssuedCards.Count - (jobCard != null ? 1 : 0);
+
+                // Fill first general slot, then place job card in center if possible.
+                if (generalSlots > 0)
+                {
+                    var card = PopRandomFromPool(ruleEnt.Comp.Pool, subject);
+                    if (card != null)
+                    {
+                        subject.Comp.IssuedCards.Add(card.Value);
+                        generalSlots--;
+                    }
+                }
+
+                if (jobCard != null)
+                    subject.Comp.IssuedCards.Add(jobCard.Value);
+
+                for (var i = 0; i < generalSlots; i++)
+                {
                     var card = PopRandomFromPool(ruleEnt.Comp.Pool, subject);
                     if (card == null)
                         break;
@@ -255,7 +270,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         var query = EntityQueryEnumerator<RailroadRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var comp1, out var comp2))
         {
-            if (!GameTicker.IsGameRuleActive(uid, comp2))
+            if (!GameTicker.IsGameRuleActive(uid, comp2) || comp1.Stage == RailroadStage.Stopped)
                 continue;
 
             rule = (uid, comp1);

@@ -112,9 +112,27 @@
   # Starlight - Plumbing integration
   - type: PlumbingOutlet
     solutionName: output
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
   - type: NodeContainer
     nodes:
-      outlet:
+      outletNorth:
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: Fourway
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
