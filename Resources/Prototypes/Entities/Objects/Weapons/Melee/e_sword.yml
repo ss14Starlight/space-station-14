@@ -41,7 +41,7 @@
         Slash: 15
         Heat: 15
         Structural: 20
-    activatedAmputateChance: 0.01 # Starlight-edit
+    activatedAmputateChance: 0.03 # Starlight-edit
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1

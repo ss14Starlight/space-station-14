@@ -160,6 +160,10 @@
     damage:
       types:
         Slash: 30
+  #Starlight edit start
+  - type: AmputateOnHit
+    chance: 0.05
+  #Starlight edit end
   - type: Item
     storedSprite:
       state: storage
