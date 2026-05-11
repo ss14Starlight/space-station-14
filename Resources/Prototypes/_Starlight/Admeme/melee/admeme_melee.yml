@@ -24,7 +24,7 @@
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
       params:
         variation: 0.250
-    noDamageSound:
+    soundNoDamage:
       path: /Audio/_Starlight/Weapons/marriage_swing.ogg
       params:
         variation: 0.250
