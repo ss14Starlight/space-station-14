@@ -34,7 +34,6 @@
       - PosterContrabandFreeTonto
       - PosterContrabandAtmosiaDeclarationIndependence
       - PosterContrabandFunPolice
-      - PosterContrabandHereticalExomorph # Starlight
       - PosterContrabandSyndicateRecruitment
       - PosterContrabandClown
       - PosterContrabandSmoke
@@ -64,7 +63,8 @@
       - PosterContrabandPunchShit
       - PosterContrabandTheGriffin
       - PosterContrabandFreeDrone
-#      - PosterContrabandBustyBackdoorExoBabes6 # Starlight
+      - PosterContrabandBustyBackdoorExoBabes6 # Starlight
+      - PosterContrabandLustyExomorph # Starlight
       - PosterContrabandRobustSoftdrinks
       - PosterContrabandShamblersJuice
       - PosterContrabandPwrGame
@@ -114,6 +114,9 @@
       - PosterContrabandInterdyneSyndicate
       - PosterContrabandComitas
       - PosterContrabandWaffleCorpTwo
+      - PosterContrabandARFRadio
+      - PosterContrabandGEC
+      - PosterContrabandHereticalExomorph
       #endregion Starlight
     chance: 1
 
@@ -201,5 +204,13 @@
       - PosterLegitClock
       - PosterLegitBonk
       - PosterLegitDeforestMedical
+      - PosterLegitDuty
+      - PosterLegitEarth
+      - PosterLegitLuna
+      - PosterLegitRecycle
+      - PosterLegitSerene
+      - PosterLegitSpaceCops2
+      - PosterLegitStarkistFancy
+      - PosterLegitTSPDRangers
       #endregion Starlight
     chance: 1
