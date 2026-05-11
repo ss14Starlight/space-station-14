@@ -29,7 +29,7 @@
         volume: -3
   # Starlight edit start
   - type: AmputateOnHit
-    chance: 0.05
+    chance: 0.01
     parts:
       - RightArmHuman
       - LeftArmHuman

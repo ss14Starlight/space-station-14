@@ -233,6 +233,7 @@
       types:
         Slash: 10
         Heat: 10
+    activatedAmputateChance: 0.01 # Starlight-edit
   - type: ComponentToggler
     components:
     - type: Sharp
