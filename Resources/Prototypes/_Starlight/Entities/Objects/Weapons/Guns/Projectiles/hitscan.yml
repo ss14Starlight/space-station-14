@@ -1579,7 +1579,7 @@
   - type: HitscanBasicDamage
     damage:
       types:
-        Heat: 20
+        Heat: 30
 # USSP maints garbage for Toz (Zoz-106)
 
 - type: entity
