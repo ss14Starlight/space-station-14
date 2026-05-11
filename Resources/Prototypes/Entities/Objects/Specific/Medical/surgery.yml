@@ -636,7 +636,6 @@
       - LeftLegHuman
       - RightFootHuman
       - LeftFootHuman
-      - HeadHuman #1/9 chance for instant death!!! lets go gambling
   # Starlight edit end
   - type: Tool
     speedModifier: 1.5

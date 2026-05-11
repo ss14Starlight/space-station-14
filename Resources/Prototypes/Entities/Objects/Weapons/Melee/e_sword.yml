@@ -101,7 +101,6 @@
       - LeftHandHuman
       - RightArmHuman
       - LeftArmHuman
-      - HeadHuman
   - type: SurgeryTool
   - type: Scalpel
     successRate: 0.6
