@@ -61,12 +61,14 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
     public void OnExamineDamage(EntityUid uid, AmputateOnHitComponent component, ref DamageExamineEvent args)
     {
+        const int ToPercentage = 100;
+
         if (component.Hidden || component.Chance == 0)
             return;
         var markup = new FormattedMessage();
         if (!args.Message.IsEmpty)
             markup.PushNewline();
-        markup.AddMarkupOrThrow(Loc.GetString("damage-examine-amputate", ("chance", component.Chance*100)));
+        markup.AddMarkupOrThrow(Loc.GetString("damage-examine-amputate", ("chance", component.Chance*ToPercentage)));
 
         args.Message.AddMessage(markup);
     }

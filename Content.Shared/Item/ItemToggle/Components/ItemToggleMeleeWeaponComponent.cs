@@ -68,7 +68,7 @@ public sealed partial class ItemToggleMeleeWeaponComponent : Component
     public float? ActivatedAmputateChance = 0;
 
     /// <summary>
-    ///     Chance to amputate when activated
+    ///     Chance to amputate when Deactivated
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public float? DeactivatedAmputateChance = 0;
