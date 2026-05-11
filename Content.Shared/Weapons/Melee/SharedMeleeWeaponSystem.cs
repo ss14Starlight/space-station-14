@@ -45,6 +45,7 @@ using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components
 using Content.Shared.Wieldable.Components; // Starlight
 using Content.Shared._Starlight.Combat.Disarming; // Starlight
 using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
+using Content.Shared._Starlight.Damage.Components; // Starlight | Amputate
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -1066,6 +1067,15 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             {
                 meleeWeapon.Hidden = false;
             }
+            // Starlight edit start
+            if (TryComp(uid, out AmputateOnHitComponent? comp) && itemToggleMelee.ActivatedAmputateChance != null)
+            {
+                //Setting deactivated chance to the weapon's regular value before changing it.
+                itemToggleMelee.DeactivatedAmputateChance ??= comp.Chance;
+                comp.Chance = itemToggleMelee.ActivatedAmputateChance.Value;
+            }
+            // starlight edit end
+
         }
         else
         {
@@ -1094,6 +1104,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             {
                 meleeWeapon.Hidden = true;
             }
+
+            // Starlight edit start
+            if (TryComp(uid, out AmputateOnHitComponent? comp) && itemToggleMelee.DeactivatedAmputateChance != null)
+            {
+                comp.Chance = itemToggleMelee.DeactivatedAmputateChance.Value;
+            }
+            // starlight edit end
         }
     }
 

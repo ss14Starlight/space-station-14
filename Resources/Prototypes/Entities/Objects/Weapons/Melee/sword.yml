@@ -19,8 +19,22 @@
   - type: Tool
     qualities:
     - Slicing
-  - type: Engraveable # Starlight
+  # Starlight Start
+  - type: Engraveable
     engraveVerb: "engraving-verb-engrave"
+  - type: AmputateOnHit
+    chance: 0.01
+    parts:
+      - RightHandHuman
+      - LeftHandHuman
+      - RightHandHuman
+      - LeftHandHuman
+      - RightHandHuman
+      - LeftHandHuman
+      - RightArmHuman
+      - LeftArmHuman
+      - HeadHuman #1/9 chance for instant death!!! lets go gambling!!!
+    # Starlight end
 
 #Shortswords
 - type: entity

@@ -5,10 +5,12 @@ using Content.Server.Administration.Systems;
 using Content.Shared._Starlight.Damage.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage.Events;
 using Content.Shared.Humanoid;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Damage.Systems;
 
@@ -20,7 +22,10 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
-        => SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
+    {
+        SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
+        SubscribeLocalEvent<AmputateOnHitComponent, DamageExamineEvent>(OnExamineDamage);
+    }
 
     private void OnMeleeHit(Entity<AmputateOnHitComponent> weapon, ref MeleeHitEvent args)
     {
@@ -52,5 +57,17 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
                 }
             }
         }
+    }
+
+    public void OnExamineDamage(EntityUid uid, AmputateOnHitComponent component, ref DamageExamineEvent args)
+    {
+        if (component.Hidden || component.Chance == 0)
+            return;
+        var markup = new FormattedMessage();
+        if (!args.Message.IsEmpty)
+            markup.PushNewline();
+        markup.AddMarkupOrThrow(Loc.GetString("damage-examine-amputate", ("chance", component.Chance*100)));
+
+        args.Message.AddMessage(markup);
     }
 }

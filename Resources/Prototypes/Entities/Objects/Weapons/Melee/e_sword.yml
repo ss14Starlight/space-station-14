@@ -41,6 +41,7 @@
         Slash: 15
         Heat: 15
         Structural: 20
+    activatedAmputateChance: 0.01 # Starlight-edit
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1
@@ -91,6 +92,16 @@
   - type: IgnitionSource
     temperature: 700
   # 🌟Starlight-start🌟
+  - type: AmputateOnHit
+    chance: 0
+    parts:
+      - RightHandHuman #wonder what this is a reference to
+      - RightHandHuman
+      - RightHandHuman
+      - LeftHandHuman
+      - RightArmHuman
+      - LeftArmHuman
+      - HeadHuman
   - type: SurgeryTool
   - type: Scalpel
     successRate: 0.6
@@ -151,6 +162,7 @@
         types:
             Slash: 10
             Heat: 10
+    activatedAmputateChance: 0.01 # Starlight-edit
     deactivatedSecret: true
   - type: ItemToggleActiveSound
     activeSound:
@@ -178,6 +190,8 @@
     damage:
       types:
         Blunt: 1
+  - type: AmputateOnHit # Starlight edit
+    chance: 0
   - type: Item
     size: Tiny
     sprite: Objects/Weapons/Melee/e_dagger_loud.rsi

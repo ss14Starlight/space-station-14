@@ -621,9 +621,23 @@
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 15
+        Brute: 4
     soundHit:
       path: /Audio/Items/drill_hit.ogg
+  # Starlight edit start
+  - type: AmputateOnHit
+    chance: 0.25
+    parts:
+      - RightArmHuman
+      - LeftArmHuman
+      - RightHandHuman
+      - LeftHandHuman
+      - RightLegHuman
+      - LeftLegHuman
+      - RightFootHuman
+      - LeftFootHuman
+      - HeadHuman #1/9 chance for instant death!!! lets go gambling
+  # Starlight edit end
   - type: Tool
     speedModifier: 1.5
   - type: BoneSaw

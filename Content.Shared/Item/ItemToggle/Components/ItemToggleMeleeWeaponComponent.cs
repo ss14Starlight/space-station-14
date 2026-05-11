@@ -60,7 +60,19 @@ public sealed partial class ItemToggleMeleeWeaponComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public DamageSpecifier? DeactivatedDamage = null;
+    // Starlight edit start
+    /// <summary>
+    ///     Chance to amputate when activated
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    public float? ActivatedAmputateChance = 0;
 
+    /// <summary>
+    ///     Chance to amputate when activated
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
+    public float? DeactivatedAmputateChance = 0;
+    // Starlight edit end
     /// <summary>
     ///     Does this become hidden when deactivated
     /// </summary>
