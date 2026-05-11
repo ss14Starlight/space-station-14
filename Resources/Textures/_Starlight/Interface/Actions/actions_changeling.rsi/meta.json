@@ -1,0 +1,16 @@
+﻿{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Created by TiniestShark (github), armblade recolored by wonderfulnewworld (GitHub)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "armblade-plus",
+			"copyright": "TiniestShark, wonderfulnewworld",
+			"license": "CC0-1.0"
+        }
+    ]
+}

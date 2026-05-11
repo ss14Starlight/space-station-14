@@ -96,7 +96,9 @@
     - id: SubTraitor # Special traitors with a curated set of objectives; they do not have Kill/Lesson/DAGD, and scale a lot less.
       prob: 0.20
     - id: VampireLess # This is probably the most interesting sub-gamemode for them.
-      prob: 0.32
+      prob: 0.25
+    - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
+      prob: 0.25
     - id: Xenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
       prob: 0.08
     - id: Brighteye
