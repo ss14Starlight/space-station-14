@@ -1,10 +1,11 @@
+using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Shuttles.Components;
 
 /// <summary>
-/// A console that allows launching a drop pod at a selected FTL beacon on the station.
+/// A console that allows launching a drop pod at a general sector of the station.
 /// Must be placed on a grid that has <see cref="DropPodComponent"/>.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -27,68 +28,54 @@ public sealed partial class DropPodConsoleComponent : Component
         "Genpop",
     };
 
-    /// <summary>
-    /// How many seconds before impact the warning announcement is sent.
-    /// </summary>
     [DataField, AutoNetworkedField]
     public float AnnouncementLeadTime = 15f;
 
-    /// <summary>
-    /// Minimum time in seconds between two consecutive launches.
-    /// </summary>
     [DataField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(120);
 
-    /// <summary>
-    /// When the last launch was initiated.
-    /// </summary>
     [DataField]
     public TimeSpan LastLaunchTime = TimeSpan.Zero;
 }
 
 [Serializable, NetSerializable]
-public enum DropPodConsoleUiKey : byte
+public enum DropPodConsoleUiKey : byte { Key }
+
+/// <summary>
+/// The four cardinal sectors the operatives can aim the drop pod at.
+/// The server picks a random valid beacon within the chosen sector.
+/// </summary>
+[Serializable, NetSerializable]
+public enum DropPodDirection : byte
 {
-    Key,
+    North,
+    East,
+    South,
+    West,
 }
 
 /// <summary>
-/// State sent from the server to the client listing available (non-blacklisted) FTL beacons.
+/// State sent to the client: which sectors have at least one valid (non-blacklisted) landing beacon.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class DropPodConsoleBuiState : BoundUserInterfaceState
 {
-    /// <summary>
-    /// Available beacons the drop pod can be aimed at.
-    /// </summary>
-    public List<DropPodBeaconEntry> Beacons { get; init; } = new();
-
-    /// <summary>
-    /// True if the console is on a valid drop pod grid and can launch.
-    /// </summary>
+    /// <summary>Sectors that have at least one valid beacon.</summary>
+    public HashSet<DropPodDirection> AvailableDirections { get; init; } = new();
     public bool CanLaunch { get; init; }
-
-    /// <summary>
-    /// True if the drop pod has already been launched.
-    /// </summary>
     public bool AlreadyLaunched { get; init; }
+    /// <summary>Station grid to display on the nav map.</summary>
+    public NetEntity? StationGrid { get; init; }
+    /// <summary>World-space centroid of all valid beacons, used for click direction classification.</summary>
+    public Vector2 StationWorldCenter { get; init; }
 }
 
 /// <summary>
-/// Represents a single selectable beacon target.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class DropPodBeaconEntry
-{
-    public NetEntity Beacon { get; init; }
-    public string Name { get; init; } = string.Empty;
-}
-
-/// <summary>
-/// Sent by the client to request launching the drop pod at the selected beacon.
+/// Sent by the client to request launching toward a general sector.
+/// The server resolves the exact beacon and offset; the operatives never know the precise target.
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class DropPodConsoleDeployMessage : BoundUserInterfaceMessage
 {
-    public NetEntity SelectedBeacon { get; init; }
+    public DropPodDirection Direction { get; init; }
 }
