@@ -207,7 +207,6 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         filteredSensors = filteredSensors.Distinct().ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
-    // Starlight-start
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)
