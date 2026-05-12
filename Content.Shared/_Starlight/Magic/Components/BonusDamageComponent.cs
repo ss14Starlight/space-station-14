@@ -20,7 +20,10 @@ public sealed partial class BonusDamageComponent : Component
     public Dictionary<EntityUid, BonusDamageMod> modifiers = new();
 
     // computed totals:
+    [DataField]
     public DamageSpecifier? UnarmedBonusDamage;
+
+    [DataField]
     public DamageSpecifier? MeleeWeaponBonusDamage;
 }
 
@@ -29,13 +32,16 @@ public sealed partial class BonusDamageComponent : Component
 [Access(typeof(SharedBonusDamageSystem))]
 public partial struct BonusDamageMod
 {
+    // [DataField]
     public DamageSpecifier Damage;
 
+    // [DataField]
     public bool AffectsUnarmed = false;
 
+    // [DataField]
     public bool AffectsMeleeWeapons = false;
 
     // todo:    public bool AffectsRangedWeapons = false;
-
+    // [DataField]
     public bool OverwriteOnRefresh = false;
 }

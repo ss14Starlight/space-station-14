@@ -18,21 +18,25 @@ public sealed partial class BonusScalarComponent : Component
     /// <summary>
     /// The effective total inverse speed multiplier for attacking with unarmed (innate) weapons like punches.
     /// </summary>
+    [DataField]
     public float unarmedAttackRate = 1.0f;
 
     /// <summary>
     /// The effective total multiplier for damage from unarmed (innate) weapons like punches.
     /// </summary>
+    [DataField]
     public float unarmedDamage = 1.0f;
 
     /// <summary>
     /// The effective total inverse speed multiplier for attacking with melee weapons provided by equipment.
     /// </summary>
+    [DataField]
     public float meleeWeaponAttackRate = 1.0f;
 
     /// <summary>
     /// The effective total multiplier for damage with melee weapons provided by equipment.
     /// </summary>
+    [DataField]
     public float meleeWeaponDamage = 1.0f;
 
     /* // TODO:
@@ -50,6 +54,7 @@ public sealed partial class BonusScalarComponent : Component
     /// < summary>
     /// Coefficient for scaling the duration of DoAfters (interactions).
     /// </summary>
+    [DataField]
     public float doAfterDelay = 1.0f;
 }
 
@@ -58,24 +63,25 @@ public sealed partial class BonusScalarComponent : Component
 [Access(typeof(SharedBonusScalarSystem))]
 public partial struct BonusScalarCoefficients
 {
-    [DataField]
+    // [DataField]
     public float unarmedAttackRate = 1.0f;
 
-    [DataField]
+    // [DataField]
     public float unarmedDamage = 1.0f;
 
-    [DataField]
+    // [DataField]
     public float meleeWeaponAttackRate = 1.0f;
 
-    [DataField]
+    // [DataField]
     public float meleeWeaponDamage = 1.0f;
 
+    /* // TODO
     [DataField]
     public float rangedWeaponAttackRate = 1.0f;
 
     [DataField]
-    public float rangedWeaponDamage = 1.0f;
+    public float rangedWeaponDamage = 1.0f; */
 
-    [DataField]
+    // [DataField]
     public float doAfterDelay = 1.0f;
 }

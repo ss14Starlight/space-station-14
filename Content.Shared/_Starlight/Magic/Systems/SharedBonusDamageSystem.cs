@@ -25,7 +25,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
 
     private void OnGetBonusMeleeDamage(EntityUid uid, BonusDamageComponent component, ref GetMeleeDamageEvent args)
     {
-        if (HasComp<MobStateComponent>(uid)) {
+        if (args.User == args.Weapon) {
             if(component.UnarmedBonusDamage != null)
                 args.Damage += component.UnarmedBonusDamage;
         }

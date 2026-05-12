@@ -25,18 +25,16 @@ public sealed class SharedBonusScalarSystem : EntitySystem
 
     private void OnGetBonusMeleeDamage(EntityUid uid, BonusScalarComponent component, ref GetMeleeDamageEvent args)
     {
-        if (HasComp<MobStateComponent>(uid)) {
+        if (args.User == args.Weapon) {
             args.Damage *= component.unarmedDamage;
-        }
-        else
-        {
+        } else {
             args.Damage *= component.meleeWeaponDamage;
         }
     }
 
     private void OnGetBonusMeleeAttackRate(EntityUid uid, BonusScalarComponent component, ref GetMeleeAttackRateEvent args)
     {
-        if (HasComp<MobStateComponent>(uid)) {
+        if (args.User == args.Weapon) {
             args.Multipliers *= component.unarmedAttackRate;
         } else {
             args.Multipliers *= component.meleeWeaponAttackRate;

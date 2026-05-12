@@ -303,7 +303,8 @@ flavor-complex-b52 = like an Irish pub
 flavor-complex-bahama-mama = like sunbathing in the Caribbean
 flavor-complex-barefoot = like a cassis milkshake
 flavor-complex-booger = like snot
-flavor-complex-brave-bull = like being ran over by a truck
+# Starlight: fix grammar
+flavor-complex-brave-bull = like being run over by a truck
 flavor-complex-demons-blood = like the seventh circle of Hell
 flavor-complex-devils-kiss = like cannibalism
 flavor-complex-driest-martini = like a drunk mimic
