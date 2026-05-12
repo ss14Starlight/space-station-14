@@ -401,7 +401,6 @@ public sealed partial class AntagSelectionSystem
             return;
         }
 
-
         if (!TryGetValidSpawnPosition(gameRule, proto, out var coordinates))
         {
             Log.Error(

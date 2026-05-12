@@ -22,7 +22,6 @@ using Content.Shared.Clothing;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
@@ -156,8 +155,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         // Antags haven't been selected so we need to select them! Only if we select when the game rule starts though!
         if (component.PreSelectionsComplete)
             AssignPreSelectedSessions((uid, component));
-        else if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
-            AssignAntags((uid, component));
+            return;
+        }
+
+        // If pre-selections haven't completed, then we need to select and assign antags.
+        var players = GetActivePlayers().ToArray();
+
+        if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
+            AssignAntags((uid, component), players);
+        else // Otherwise, we only spawn the ghost roles!
+            SpawnGhostRoles((uid, component), players.Length);
     }
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
@@ -174,8 +181,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!Exists(rule) || !RuleQuery.TryComp(rule, out var select))
             return;
 
-        // This likely means player was banned or lacks playtime.
-        if (!CanBeAntag(args.Player, (rule, select), def, false))
+        // Ensure the player is allowed to play this antagonist!
+        if (IsAntagBanned(args.Player, def) || !_playTime.IsAllowed(args.Player, def.PrefRoles))
             return;
 
         if (!TrySpawnAntagonist((rule, select), def, args.Player, _transform.GetMapCoordinates(ent), out var uid))
@@ -792,6 +799,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 if (!IsSessionValid(session, gameRule, def))
                 {
                     DeSelectSession(gameRule, proto, session, set);
+                    SpawnGhostRole(gameRule, def);
                     continue;
                 }
 
