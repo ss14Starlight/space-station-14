@@ -2,7 +2,9 @@ using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Medical.Body;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Limbs;
+using Content.Shared.Alert;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Hands.Components;
@@ -21,6 +23,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()
@@ -32,6 +35,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
             return false;
         AddLimbVisual(body, limb);
         AddLimb(body, slot, limb);
+        UpdateLimbAlert(body);
         return true;
     }
 
@@ -56,6 +60,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
         }
         AddItemLimb(body, slot, item);
         AddItemHand(body, item, BodySystem.GetPartSlotContainerId(slot));
+        UpdateLimbAlert(body);
         return true;
     }
 
@@ -72,6 +77,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
             RemoveLimbVisual(body, limb);
             RemoveLimb(body, limb);
         }
+        UpdateLimbAlert(body.Owner);
     }
 
     private void AddItemLimb(EntityUid body, string slot, Entity<MetaDataComponent> item)
@@ -117,5 +123,14 @@ public sealed partial class LimbSystem : SharedLimbSystem
         RemComp<UnremoveableComponent>(itemId);
         _hands.DoDrop(itemId, handId);
         _hands.RemoveHand(bodyId, handId);
+    }
+
+    private void UpdateLimbAlert(EntityUid entityUid)
+    {
+        var (root, comp) = _body.GetRootPartOrNull(entityUid)!.Value;
+        if (_body.TryGetFreePartSlot(root, out var _))
+            _alerts.ShowAlert(entityUid, "LostLimb");
+        else
+            _alerts.ClearAlert(entityUid, "LostLimb");
     }
 }

@@ -1,0 +1,29 @@
+﻿- type: alert
+  id: LostLimb
+  icons:
+    - sprite: _Starlight/Interface/Alerts/limb_status.rsi
+      state: base
+  alertViewEntity: AlertLostLimbSpriteView
+  name: alerts-vampire-blood-name
+  description: alerts-vampire-blood-desc
+
+- type: entity
+  id: AlertLostLimbSpriteView
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      sprite: _Starlight/Interface/Alerts/limb_status.rsi
+      layers:
+        - state : base
+        - map: [ "enum.LimbAlertVisualLayers.ArmRight" ]
+          state: "rightarm"
+          visible: false
+        - map: [ "enum.LimbAlertVisualLayers.ArmLeft" ]
+          state : "leftarm"
+          visible: false
+        - map: [ "enum.LimbAlertVisualLayers.LegRight" ]
+          state : "rightleg"
+          visible: false
+        - map: [ "enum.LimbAlertVisualLayers.LegLeft" ]
+          state : "leftleg"
+          visible: false

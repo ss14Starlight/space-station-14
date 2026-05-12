@@ -1,0 +1,30 @@
+﻿{
+  "version": 0.5,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by swonki",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "base"
+    },
+    {
+      "name": "leftarm",
+      "delays": [[0.5, 0.5]]
+    },
+    {
+      "name": "leftleg",
+      "delays": [[0.5, 0.5]]
+    },
+    {
+      "name": "rightarm",
+      "delays": [[0.5, 0.5]]
+    },
+    {
+      "name": "rightleg",
+      "delays": [[0.5, 0.5]]
+    }
+  ]
+}

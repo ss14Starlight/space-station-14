@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
+using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Damage.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
@@ -20,6 +21,8 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
@@ -31,7 +34,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     {
         if (!args.IsHit || _delay.IsDelayed(weapon.Owner) || args.HitEntities.Count == 0)
             return;
-
+        const float BleedAmount = 100;
         if (_random.Prob(weapon.Comp.Chance))
         {
             foreach (var target in args.HitEntities)
@@ -49,8 +52,9 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
                                TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
                             {
                                 Entity<TransformComponent, MetaDataComponent, BodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
-                                _limbSystem.Amputatate(body, PartToDelete);
                                 _limbSystem.Amputate(body, PartToDelete);
+                                _chatSystem.TryEmoteWithChat(target, "Scream");
+                                _bloodstreamSystem.TryModifyBleedAmount(target, BleedAmount);
                             }
                         }
                         Del(basepart);
