@@ -116,7 +116,8 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         var payload = args.Data;
         if (!payload.TryGetValue(SuitSensorConstants.NET_PAGING_SINCE, out TimeSpan? since) ||
-            !payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments))
+            !payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments) ||
+            !payload.TryGetValue(SuitSensorConstants.NET_FACTION, out string? faction))
             return;
 
         // Check if this event applies to this console based on the filters.
@@ -126,6 +127,9 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
             // If department filter is specified and doesn't match, we will not alert.
             if (filter.ShownDepartments.Count > 0 && !filter.ShownDepartments.Any(dept => jobDepartments.Contains(dept)))
+                return;
+
+            if (filter.ShownFactions.Count > 0 && !filter.ShownFactions.Contains(faction))
                 return;
         }
 
