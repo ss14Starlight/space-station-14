@@ -842,7 +842,7 @@ public sealed partial class AdminVerbSystem
                     if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
                         && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(rightArm.Id, out var partEnt))
                     {
-                        _limbSystem.Amputatate(body, partEnt);
+                        _limbSystem.Amputate(body, partEnt);
                         var reaper = Spawn("RightArmCyberReaper", body.Comp1.Coordinates);
                         if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var reaperEnt))
                             _limbSystem.AttachLimb((body.Owner, body.Comp2), "right arm", torso, reaperEnt);
@@ -870,7 +870,7 @@ public sealed partial class AdminVerbSystem
                     if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
                         && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(leftArm.Id, out var partEnt))
                     {
-                        _limbSystem.Amputatate(body, partEnt);
+                        _limbSystem.Amputate(body, partEnt);
                         var reaper = Spawn("LeftArmCyberEngineer", body.Comp1.Coordinates);
                         if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var engineerEnt))
                             _limbSystem.AttachLimb((body.Owner, body.Comp2), "left arm", torso, engineerEnt);
@@ -898,7 +898,7 @@ public sealed partial class AdminVerbSystem
                     if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
                         && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(leftLeg.Id, out var partEnt))
                     {
-                        _limbSystem.Amputatate(body, partEnt);
+                        _limbSystem.Amputate(body, partEnt);
                         var reaper = Spawn("LeftLegCyberSpeed", body.Comp1.Coordinates);
                         if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var reaperEnt))
                             _limbSystem.AttachLimb((body.Owner, body.Comp2), "left leg", torso, reaperEnt);
@@ -926,7 +926,7 @@ public sealed partial class AdminVerbSystem
                     if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
                         && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(rightLeg.Id, out var partEnt))
                     {
-                        _limbSystem.Amputatate(body, partEnt);
+                        _limbSystem.Amputate(body, partEnt);
                         var reaper = Spawn("RightLegCyberSpeed", body.Comp1.Coordinates);
                         if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var reaperEnt))
                             _limbSystem.AttachLimb((body.Owner, body.Comp2), "right leg", torso, reaperEnt);

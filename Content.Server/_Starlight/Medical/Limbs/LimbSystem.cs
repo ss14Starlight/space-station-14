@@ -59,7 +59,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
         return true;
     }
 
-    public void Amputatate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    public void Amputate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
     {
         if (!_containers.TryGetContainingContainer((limb.Owner, limb.Comp1, limb.Comp2), out var container)
          || _body.GetParentPartAndSlotOrNull(limb.Owner) is not var (_, slotId)

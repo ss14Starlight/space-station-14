@@ -11,13 +11,13 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Starlight.Trigger.Systems;
 
-public sealed class AmputatateOnTriggerSystem : XOnTriggerSystem<AmputatateOnTriggerComponent>
+public sealed class AmputateOnTriggerSystem : XOnTriggerSystem<AmputateOnTriggerComponent>
 {
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    protected override void OnTrigger(Entity<AmputatateOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
+    protected override void OnTrigger(Entity<AmputateOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
         // Override the normal target if we target the container
         if (ent.Comp.TargetContainer)
@@ -42,7 +42,7 @@ public sealed class AmputatateOnTriggerSystem : XOnTriggerSystem<AmputatateOnTri
                        TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
                     {
                         Entity<TransformComponent, MetaDataComponent, BodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
-                        _limbSystem.Amputatate(body, PartToDelete);
+                        _limbSystem.Amputate(body, PartToDelete);
                     }
                 }
                 Del(basepart);

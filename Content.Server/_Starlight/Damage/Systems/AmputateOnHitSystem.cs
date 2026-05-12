@@ -50,6 +50,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
                             {
                                 Entity<TransformComponent, MetaDataComponent, BodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
                                 _limbSystem.Amputatate(body, PartToDelete);
+                                _limbSystem.Amputate(body, PartToDelete);
                             }
                         }
                         Del(basepart);

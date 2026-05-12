@@ -341,7 +341,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 continue;
             }
 
-            _limbSystem.Amputatate(body, oldPart);
+            _limbSystem.Amputate(body, oldPart);
             Del(oldPartId.Id);
             _limbSystem.AttachLimb((entity, appearance), slot, (parentUid.Value, parentBodyPart), (newPart, bodyPartComp));
         }

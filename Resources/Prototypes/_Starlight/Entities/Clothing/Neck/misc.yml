@@ -55,7 +55,7 @@
     stripDelay: 10
     equipDelay: 5
   - type: SelfUnremovableClothing
-  - type: AmputatateOnTrigger
+  - type: AmputateOnTrigger
     targetContainer: true
     parts:
     - HeadHuman
