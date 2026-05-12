@@ -806,7 +806,7 @@
     - type: ExplosionResistance
       damageCoefficient: 0.3
     - type: FireProtection
-      reduction: 0.8
+      reduction: 1
     - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
       damageCoefficient: 0.0 # 100% stamina resistance
     - type: Pierceable
@@ -817,9 +817,9 @@
           Blunt: 0.35 # 65% resistance
           Slash: 0.35
           Piercing: 0.30 # 70% pierce resistance
-          Heat: 0.35
-          Radiation: 0.35
-          Caustic: 0.35
+          Heat: 0.20
+          Radiation: 0.00
+          Caustic: 0.20
       staminaModifier: 0.0
     - type: ClothingSpeedModifier
       walkModifier: 1.0
@@ -852,7 +852,7 @@
       heatingCoefficient: 0.001
       coolingCoefficient: 0.001
     - type: ExplosionResistance
-      damageCoefficient: 0.3
+      damageCoefficient: 0.2
     - type: FireProtection
       reduction: 0.8
     - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
@@ -933,9 +933,188 @@
 
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitNTSFSeptimus
+  name: NTSF septimus hardsuit
+  description: I am pest control guy. *Grabs Pulse Rifle* - and THIS is my pest control.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit_Septimus.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit_Septimus.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.001
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
+    - type: FireProtection
+      reduction: 0.8
+    - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+      damageCoefficient: 0.0 # 100% stamina resistance
+    - type: Pierceable
+      level: Rock
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.25 # 65% resistance
+          Slash: 0.25
+          Piercing: 0.30 # 70% pierce resistance
+          Heat: 0.30
+          Radiation: 0.35
+          Caustic: 0.35
+      staminaModifier: 0.0
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
+    - type: FootstepModifier #starlight
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -7
+          pitch: 0.7
+          variation: 0.025
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitNTSFSeptimus
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  id: ClothingOuterHardsuitNTSFOctavius
+  name: NTSF octavius hardsuit
+  description: Start prayin', commie.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit_Octavius.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit_Octavius.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.001
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
+    - type: FireProtection
+      reduction: 0.8
+    - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+      damageCoefficient: 0.0 # 100% stamina resistance
+    - type: Pierceable
+      level: Rock
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.35 # 65% resistance
+          Slash: 0.35
+          Piercing: 0.20 # 80% pierce resistance
+          Heat: 0.35
+          Radiation: 0.35
+          Caustic: 0.35
+      staminaModifier: 0.0
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
+    - type: FootstepModifier #starlight
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -7
+          pitch: 0.7
+          variation: 0.025
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitNTSFOctavius
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase, BaseToggleClothing]
+  id: ClothingOuterHardsuitNTSFNonus
+  name: NTSF nonus hardsuit
+  description: May NanoTrasen have mercy, for I have none.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit_Nonus.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Hardsuits/NTSF_Hardsuit_Nonus.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.02
+      lowPressureMultiplier: 1000
+    - type: TemperatureProtection
+      heatingCoefficient: 0.001
+      coolingCoefficient: 0.001
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
+    - type: ToggleClothing
+      action: ActionTogglePhaseCloak
+      disableOnUnequip: true
+    - type: ComponentToggler
+      parent: true
+      components:
+        - type: Stealth
+          minVisibility: 0.07
+          maxVisibility: 0.07
+          lastVisibility: 0.07
+    - type: PowerCellDraw
+      drawRate: 14 # roughly 200 seconds on the default cell
+    - type: ToggleCellDraw
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+      fitsInCharger: false
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+        storagebase: !type:Container
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMicroreactor
+          disableEject: true
+          whitelist:
+            tags:
+              - PowerCell
+          blacklist:
+            tags:
+            - MechReactor
+    - type: Tag
+      tags:
+      - Hardsuit
+    - type: FireProtection
+      reduction: 0.8
+    - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+      damageCoefficient: 0.0 # 100% stamina resistance
+    - type: Pierceable
+      level: Rock
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.35 # 65% resistance
+          Slash: 0.35
+          Piercing: 0.30 # 70% pierce resistance
+          Heat: 0.35
+          Radiation: 0.35
+          Caustic: 0.35
+      staminaModifier: 0.0
+    - type: ClothingSpeedModifier
+      walkModifier: 1.0
+      sprintModifier: 1.0
+    - type: HeldSpeedModifier
+    - type: FootstepModifier #starlight
+      footstepSoundCollection:
+        path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+        params:
+          volume: -30
+          pitch: 0.7
+          variation: 0.025
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitNTSFNonus
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitDecimus
   name: decimus hardsuit
-  description: An advanced hardsuit favored by commandos for use in special operations.
+  description: If you can read this, it's already too late.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Hardsuits/Decimus_Hardsuit.rsi
