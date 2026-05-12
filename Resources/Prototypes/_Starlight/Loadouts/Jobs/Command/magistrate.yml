@@ -28,9 +28,9 @@
     outerClothing: ClothingOuterRobesJudge
 
 - type: loadout
-  id: NanoTrasenLongcoat
+  id: MagistrateLongcoat
   equipment:
-    outerClothing: ClothingOuterCoatMagiNTR
+    outerClothing: ClothingOuterCoatMagi
 
 #Headwear
 - type: loadout

@@ -302,7 +302,7 @@
   minLimit: 0
   loadouts:
   - MagistrateRobes
-  - NanoTrasenLongcoat
+  - MagistrateLongcoat
 
 - type: loadoutGroup
   id: MagistrateHead
