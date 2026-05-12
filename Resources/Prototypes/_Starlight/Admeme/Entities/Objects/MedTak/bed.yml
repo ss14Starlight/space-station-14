@@ -68,3 +68,10 @@
     radius: 2
     energy: 1
     castShadows: false
+  - type: OperatingTable # So I can link it to an operating computer
+  - type: DeviceList
+  - type: DeviceNetwork
+    deviceNetId: Wired
+  - type: DeviceLinkSink
+    ports:
+      - BodyScannerReceiver
