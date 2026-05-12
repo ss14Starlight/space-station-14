@@ -170,7 +170,7 @@ namespace Content.Shared.Damage
                     newValue = Math.Max(0f, newValue - (reduction - (reduction * armorPenetration))); // flat reductions can't heal you
 
                 // ??Starlight?? start
-                if (canHeal)  
+                if (canHeal)
                 {
                     if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                         newValue *= (coefficient + ((1f - coefficient) * armorPenetration)); // coefficients can heal you, e.g. cauterizing bleeding, Starlight change: removed maximum coefficent allowing for weaknesses

@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponRevolver
-  parent: [ BaseItem, BaseGunWieldable ] # Starlight-edit
+  parent: BaseItem
   id: BaseWeaponRevolver
   description: A rooty tooty point and shooty.
   abstract: true
@@ -24,12 +24,6 @@
     - Belt
   - type: AmmoCounter
   - type: Gun
-    # Starlight-start
-    minAngle: 5
-    maxAngle: 20
-    angleDecay: 22.5
-    angleIncrease: 15
-    # Starlight-end
     selectedMode: SemiAuto
     fireRate: 1.5
     availableModes:
@@ -58,12 +52,6 @@
     dualWieldInaccuracyPenalty: 27
   - type: StaticPrice
     price: 500
-  # Starlight-start
-  - type: GunWieldBonus
-    angleIncreaseDivider: 1.5
-    minAngleDivider: 1.5
-    maxAngleDivider: 1.5
-  # Starlight-end
 
 - type: entity
   name: Deckard
@@ -144,7 +132,7 @@
   name: Python
   parent: [BaseWeaponRevolver, BaseSyndicateContraband]
   id: WeaponRevolverPython
-  description: A powerful double-action revolver manufactured by the Syndicate. Loud and flashy, perfect for any agent looking to make a statement. Loads 6 rounds of .45 magnum.
+  description: A powerful double-action revolver manufactured by the Syndicate. Loud and flashy, perfect for any agent looking to make a statement. Loads 6 rounds of .45 magnum. Can be double-shot burst fired to really bring the pain. # Starlight
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
@@ -157,6 +145,10 @@
     fireRate: 2
     availableModes:
     - SemiAuto
+    - Burst # Starlight start
+    shotsPerBurst: 2
+    burstCooldown: 0.65
+    burstFireRate: 5 # Starlight end
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg
       params:

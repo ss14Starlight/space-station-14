@@ -14,4 +14,3 @@ public enum SwitchableVisuals : byte
     Switched,
     Layer
 }
-                            

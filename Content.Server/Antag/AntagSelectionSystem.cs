@@ -36,7 +36,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
 using Content.Server.Body.Components;
 using Content.Server.Bible.Components;
 using Content.Server.GameTicking.Rules.Components;
@@ -46,6 +45,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Prometheus;
+using Content.Server._Starlight.Medical.Body.Systems;
 // Starlight End
 
 namespace Content.Server.Antag;
@@ -386,10 +386,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
-        /* Starlight start - disable upstream antag check logic
-        if (checkPref && !ValidAntagPreference(session, def.PrefRoles))
+        if (checkPref && !ValidAntagPreference(session, def.PrefRoles, ent.Comp.SelectionTime))
             return false;
-        */// Starlight end of disable
 
         if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
             return false;

@@ -99,8 +99,11 @@ public sealed partial class TTSSystem : EntitySystem
                     && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+            var languageradio = args.Channel == args.Language.Speech.RadioChannel;
+            var type = languageradio ? TTSType.Mind : TTSType.Radio;
+            var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Radio;
 
-            await GenerateAndStream(TTSType.Radio, voice, text, filter, TTSEffect.Walkie, chime, null, channel);
+            await GenerateAndStream(type, voice, text, filter, effect, chime, null, channel);
         }
         catch (TaskCanceledException ex)
         {
@@ -169,7 +172,8 @@ public sealed partial class TTSSystem : EntitySystem
         args.Message.Tts ??= args.Message.Text;
         if (!_isEnabled
             || args.Message.Tts.Length > MaxChars
-            || !args.Language.SpeechOverride.RequireSpeech)
+            || (!args.Language.Speech.RequireSpeech && !args.Language.Speech.RequireSound)
+            )
             return;
 
         await Task.Yield();

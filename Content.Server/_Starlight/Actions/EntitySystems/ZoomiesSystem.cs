@@ -21,7 +21,7 @@ public sealed class ZoomiesSystem : SharedZoomiesSystem
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<ZoomiesComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ZoomiesComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ZoomiesComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
@@ -39,7 +39,7 @@ public sealed class ZoomiesSystem : SharedZoomiesSystem
         if (_timing.CurTime < comp.EffectEndTime && comp.SpeedModifier is not null)
             ev.ModifySpeed(comp.SpeedModifier.Value);
     }
-    
+
     private void OnAction(ZoomiesActionEvent ev)
     {
         if (ev.Handled) return;
@@ -52,13 +52,13 @@ public sealed class ZoomiesSystem : SharedZoomiesSystem
 
         if (comp.SpeedModifier is not null)
             _speed.RefreshMovementSpeedModifiers(uid);
-        
+
         if(comp.HungerDrain is not null)
             _hunger.AddHungerDrain(uid, comp.HungerDrain.Value, endTime);
-        
+
         if(comp.ThirstDrain is not null)
             _thirst.AddThirstDrain(uid, comp.ThirstDrain.Value, endTime);
-        
+
         _alert.ShowAlert(uid, comp.ZoomiesAlert);
         ev.Handled = true;
         comp.Active = true;

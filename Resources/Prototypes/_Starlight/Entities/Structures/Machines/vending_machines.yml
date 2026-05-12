@@ -103,6 +103,7 @@
     - SLPlushies
     - SLSpecies
     - SLCrew
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -120,6 +121,7 @@
     - SLFashionSuit
     - SLFashionHead
     - SLFashionOther
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -136,6 +138,7 @@
     - SLChemistry
     - SLMedical
     - SLSurgery
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -150,6 +153,7 @@
     name: vendor-engineering-dispenser
     categories:
     - SLEnginery
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -163,6 +167,7 @@
     name: vendor-clown-dispenser
     categories:
     - SLClown
+    - SLSecret
   - type: Sprite
     sprite: _Starlight/Structures/Machines/VendingMachines/hohohonkers.rsi
 
@@ -180,6 +185,7 @@
     categories:
     - SLSecurity
     - SLBrigmedic
+    - SLSecret
 
 - type: entity
   parent: SLVendingMachine
@@ -198,6 +204,7 @@
     - SalvageConsumeables
     - SalvageMercenaryEquipment
     - SalvageCybernetics
+    - SLSecret
     currencyWhitelist:
     - SalvageTicket
 
@@ -215,6 +222,7 @@
       categories:
         - MiningEquipment
         - MiningConsumeables
+        - SLSecret
       currencyWhitelist:
         - SalvageTicket # Same currency as salvage vendor to promote sharing
 
@@ -316,6 +324,200 @@
     radius: 1.5
     energy: 1.6
     color: "#aee8f5"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineLegalDrobe
+  name: LegalDrobe
+  description: Objection! This wardrobe dispenses the rule of law... wait, haven't you seen this before?
+  components:
+  - type: VendingMachine
+    pack: LegalDrobeInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineLegalDrobeCircuitboard # Starlight-edit: Vending Machine boards
+  - type: DatasetVocalizer
+    dataset: LegalDrobeAds
+  - type: SpeakOnUIClosed
+    pack: LegalDrobeGoodbyes
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/legaldrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Lawyer"]] # Starlight
+
+# Syndicate stuff for Serpentcrest and any other uses
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalBaseSyndicate
+  name: Interdyne Commercial
+  description: It's a medical drug dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
+  components:
+  - type: VendingMachine
+    pack: InterdyneCommercialInventory
+    offState: off-civilian
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+    showPrices: True
+  - type: DatasetVocalizer
+    dataset: InterdyneAds
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_medical.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#9dc5c9" # TODO: Change color
+
+- type: entity
+  parent: VendingMachineMedicalBaseSyndicate
+  id: VendingMachineMedicalSyndicate
+  name: Interdyne Enterprise
+  components:
+  - type: VendingMachine
+    pack: InterdyneEnterpriseInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["SyndicateAgent"]]
+
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalSecurity
+  name: NanoMed Security
+  description: It's a medical drug dispenser. Natural chemicals only!
+  components:
+  - type: VendingMachine
+    pack: NanoMedSecurityInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/medical_sec.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Security"]]
+
+# Wallmounts
+- type: entity
+  parent: VendingMachineWallmount
+  id: VendingMachineWallMedicalCivilianSyndicate
+  name: Interdyne life-aid commercial
+  description: It's a wall-mounted medical equipment dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
+  components:
+  - type: VendingMachine
+    pack: InterdyneCommercialWallInventory
+    offState: off-civilian
+    showPrices: True # Starlight-edit: Vending Machines Prices
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/interdyne_wallmed.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.3
+    energy: 3.0
+    color: "#43ccb5"
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianSyndicate
+  id: VendingMachineWallMedicalSyndicate
+  name: Interdyne life-aid enterprise
+  components:
+  - type: VendingMachine
+    pack: InterdyneEnterpriseWallInventory
+    offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["SyndicateAgent"]]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineCAD
+  name: AdmiMax
+  description: Need to manage some documents? CAD has you covered!
+  components:
+    - type: VendingMachine
+      pack: AdmiMaxInventory
+      showPrices: false
+      offState: off
+      brokenState: broken
+      normalState: normal-unshaded
+    - type: Sprite
+      sprite: _Starlight/Structures/Machines/VendingMachines/admimax.rsi
+      layers:
+        - state: "off"
+          map: ["enum.VendingMachineVisualLayers.Base"]
+        - state: "off"
+          map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+          shader: unshaded
+        - state: panel
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: PointLight
+      radius: 1.5
+      energy: 3.0
+      color: "#568ef0"
+    - type: AccessReader
+      access: [["CentralCommand"]]
 
 # Empty
 - type: entity
@@ -496,6 +698,20 @@
 - type: entity
   parent: VendingMachineMedical
   id: VendingMachineMedicalEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalBaseSyndicate
+  id: VendingMachineMedicalBaseSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalSyndicate
+  id: VendingMachineMedicalSyndicateEmpty
   suffix: Empty
   components:
     - type: EmptyVendingMachine
@@ -830,6 +1046,20 @@
     - type: EmptyVendingMachine
 
 - type: entity
+  parent: VendingMachineWallMedicalCivilianSyndicate
+  id: VendingMachineWallMedicalCivilianSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalSyndicate
+  id: VendingMachineWallMedicalSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
   parent: VendingMachineDonk
   id: VendingMachineDonkEmpty
   suffix: Empty
@@ -842,3 +1072,18 @@
   suffix: Empty
   components:
     - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineLegalDrobe
+  id: VendingMachineLegalDrobeEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalSecurity
+  id: VendingMachineMedicalSecurityEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+

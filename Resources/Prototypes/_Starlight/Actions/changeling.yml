@@ -4,7 +4,7 @@
 - type: entity
   id: ActionEvolutionMenu
   name: Open evolution menu
-  description: Opens the evolution menu.
+  description: Opens the evolution menu. Can be used while unconscious.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -12,6 +12,8 @@
     icon:
       sprite: Changeling/changeling_abilities.rsi
       state: evolution_menu
+    checkCanInteract: false # Let them shop while cuffed/unconscious. Could be neat.
+    checkConsciousness: false
   - type: InstantAction
     event: !type:OpenEvolutionMenuEvent {}
   - type: ChangelingAction
@@ -40,6 +42,7 @@
   - type: ChangelingAction
     chemicalCost: 25
     useInLesserForm: true
+  - type: EorgPreventAction
 
 
 - type: entity
@@ -84,9 +87,34 @@
 
 # combat
 - type: entity
+  parent: BaseAction
+  id: ActionRetractableItemArmBladePlus
+  name: True Arm Blade
+  description: Shed your flesh and reform it into a truly beautiful blade. Costs 30 chemicals to summon, and 30 chemicals to retract.
+  components:
+  - type: Action
+    useDelay: 2
+    raiseOnAction: true
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Interface/Actions/actions_changeling.rsi
+      state: armblade-plus
+  - type: InstantAction
+    event: !type:OnRetractableItemActionEvent
+  - type: RetractableItemAction
+    spawnedPrototype: ArmBladePlus
+    summonSounds:
+      collection: gib # Placeholder
+    retractSounds:
+      collection: gib # Placeholder
+  - type: ChangelingAction
+    chemicalCost: 30 # It's *very* strong. This is your *final* upgrade.
+    requireAbsorbed: 6
+
+- type: entity
   id: ActionCreateBoneShard
   name: Form Bone Shard
-  description: Break off shards of your bone and shape them into a throwing star. Costs 15 chemicals.
+  description: Break off shards of your bone and shape them into a throwing star, laced with a disorienting neurotoxin. Costs 15 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -142,7 +170,7 @@
       collection: gib # Placeholder
   - type: ChangelingAction
     chemicalCost: 20
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionShriekDissonant
@@ -161,12 +189,12 @@
   - type: ChangelingAction
     chemicalCost: 30
     useInLesserForm: true
-    requireAbsorbed: 1
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionShriekResonant
   name: Resonant Shriek
-  description: Disorient people and break lights, with just your voice. Costs 30 chemicals.
+  description: Disorient people and break lights, with just your voice. Costs 25 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -178,9 +206,8 @@
   - type: InstantAction
     event: !type:ShriekResonantEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 25
     useInLesserForm: true
-    requireAbsorbed: 1
 
 - type: entity
   id: ActionToggleStrainedMuscles
@@ -228,7 +255,7 @@
 - type: entity
   id: ActionStingCryo
   name: Cryogenic Sting
-  description: Silently sting your target, constantly slowing and freezing them. Costs 35 chemicals.
+  description: Silently sting your target, constantly slowing and freezing them. Costs 30 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -246,15 +273,38 @@
     event: !type:StingChemEvent {
       chems: { Fresium: 20, ChloralHydrate: 20 }
     }
+  - type: ChangelingAction
+    chemicalCost: 30
+    useInLesserForm: true
 
+- type: entity
+  id: ActionStingBurn
+  name: Bloodburn Sting
+  description: Silently sting your target, disorienting them while burning them from the inside out. Costs 35 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: sting_heat
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:StingChemEvent {chems: {Licoxide: 15, Barozine: 10, ChlorineTrifluoride: 5}}
   - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionStingLethargic
   name: Lethargic Sting
-  description: Silently inject a cocktail of anesthetics into the target. Costs 35 chemicals.
+  description: Silently inject a cocktail of anesthetics into the target. Costs 25 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -271,8 +321,32 @@
     canTargetSelf: false
     event: !type:StingChemEvent { chems: {Impedrezene: 10, MuteToxin: 5}}
   - type: ChangelingAction
+    chemicalCost: 25
+    useInLesserForm: true
+
+- type: entity
+  id: ActionStingDrain
+  name: Draining Sting
+  description: Silently sting your target, draining them of all their hunger and thirst. Costs 35 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: sting_starve
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    event: !type:StingChemEvent {chems: {Lipolicide: 15, SodiumPolyacrylate: 30}}
+  - type: ChangelingAction
     chemicalCost: 35
     useInLesserForm: true
+    requireAbsorbed: 2
 
 - type: entity
   id: ActionStingMute
@@ -342,6 +416,7 @@
   - type: ChangelingAction
     chemicalCost: 75
     useInLesserForm: true
+  - type: EorgPreventAction
 
 # utility
 - type: entity
@@ -367,7 +442,7 @@
 - type: entity
   id: ActionAugmentedEyesight
   name: Augmented Eyesight
-  description: Toggle flash protection.
+  description: Toggle flash protection. Must be disabled in order to use other eye augments. # Starlight
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -382,6 +457,44 @@
     chemicalCost: 0
 
 - type: entity
+  id: ActionNightEyesight
+  name: Night Vision Eyesight
+  description: Toggle night vision.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: night_eyesight
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionNightEyesightEvent {}
+  - type: ChangelingAction
+    chemicalCost: 15
+    requireAbsorbed: 2
+    useInLesserForm: true
+
+- type: entity
+  id: ActionThermalEyesight
+  name: Thermal Eyesight
+  description: Toggle thermal vision.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: thermal_eyesight
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionThermalEyesightEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30 # Should have some cost associated with it.
+    requireAbsorbed: 4 # Tier 3 Ability.
+    useInLesserForm: true
+
+- type: entity
   id: ActionBiodegrade
   name: Biodegrade
   description: Vomit a caustic substance onto any restraints, or someone's face. Costs 30 chemicals.
@@ -394,15 +507,17 @@
       sprite: Changeling/changeling_abilities.rsi
       state: biodegrade
     checkCanInteract: false
+    checkConsciousness: false # Break out while unconscious, to encourage people not letting changelings linger around for too long.
   - type: InstantAction
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
     chemicalCost: 30
+  - type: EorgPreventAction
 
 - type: entity
   id: ActionChameleonSkin
   name: Chameleon Skin
-  description: Slowly blend in with the environment. Costs 25 chemicals.
+  description: Slowly blend in with the environment. Costs 15 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -416,12 +531,12 @@
   - type: InstantAction
     event: !type:ActionChameleonSkinEvent {}
   - type: ChangelingAction
-    chemicalCost: 20
+    chemicalCost: 15 # Takes energy to disable, so we can make it a little cheaper.
 
 - type: entity
   id: ActionEphedrineOverdose
   name: Ephedrine Overdose
-  description: Inject some stimulants into yourself. Costs 30 chemicals.
+  description: Inject some stimulants into yourself. Costs 20 chemicals.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -434,7 +549,47 @@
   - type: InstantAction
     event: !type:ActionEphedrineOverdoseEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 20 # It's the weakest one of the stimulants, so it can be cheaper.
+    useInLesserForm: true
+
+- type: entity
+  id: ActionDesoxyephedrineOverdose
+  name: Desoxyephedrine Overdose
+  description: Inject some stronger stimulants into yourself, poisoning yourself mildly. Costs 30 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: desoxyephedrine_overdose
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionDesoxyephedrineOverdoseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 30 # It injects enough Desoxy to hurt you, so it doesn't need to be that more expensive.
+    requireAbsorbed: 2 # It's not that great... but it's a faster stimulant than Ephedrine, so it requires you to have absorbed a bit more.
+    useInLesserForm: true
+
+- type: entity
+  id: ActionAmalgamOverdose
+  name: Amalgam Overdose
+  description: Inject some incredibly strong stimulants into yourself. Costs 40 chemicals.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    useDelay: 20
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Actions/changeling.rsi
+      state: amalgam_overdose
+    checkCanInteract: false
+  - type: InstantAction
+    event: !type:ActionAmalgamOverdoseEvent {}
+  - type: ChangelingAction
+    chemicalCost: 40
+    requireAbsorbed: 4 # It's strong. Tier 3 Ability.
     useInLesserForm: true
 
 - type: entity

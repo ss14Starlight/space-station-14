@@ -160,3 +160,21 @@
   components:
     - type: Implanter
       implant: MindControlImplant
+
+#MedTak
+- type: entity
+  id: MedTakMindShieldImplanter
+  name: MedTak mindshield implanter
+  parent: MindShieldImplanter
+  components:
+  - type: Implanter
+    implant: MedTakMindShieldImplant
+
+- type: entity
+  id: MedTakDeathRattleImplanter
+  name: MedTak beacon implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: DeathRattleImplantMedTak
+

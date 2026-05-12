@@ -7,7 +7,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: brigmed
-    
+
 - type: entity
   parent: BaseSign
   id: SignDisposalProper
@@ -17,7 +17,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: disposals_proper
-    
+
 - type: entity
   parent: BaseSign
   id: SignSecureAreaSmall
@@ -27,7 +27,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: secureareasmall
-    
+
 - type: entity
   parent: BaseSign
   id: SignWallBiohazard
@@ -37,7 +37,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: wall_biohazard
-    
+
 - type: entity
   parent: BaseSign
   id: SignWallExtremeHeat
@@ -47,7 +47,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: wall_extremeheat
-    
+
 - type: entity
   parent: BaseSign
   id: SignNoSmoking
@@ -57,7 +57,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: nosmoking
-    
+
 - type: entity
   parent: BaseSign
   id: SignYesSmoking
@@ -67,7 +67,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/signs.rsi
     state: yessmoking
-    
+
 - type: entity
   parent: BaseSignDirectional
   id: SignDirectionalMining
@@ -129,3 +129,72 @@
     - type: Sprite
       sprite: _Starlight/Structures/Wallmounts/xeno_signs.rsi
       state: space
+
+# Emergency
+- type: entity
+  parent: BaseWallmountMachine
+  id: SignEmergencyExit
+  name: exit
+  description: A sign indicating that an exit is this way.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/safety_signs.rsi
+    layers:
+    - state: exit
+    - state: exit_unlit
+      shader: unshaded
+
+- type: entity
+  parent: BaseWallmountMachine
+  id: SignEmergencyEvac
+  name: evac
+  description: A sign indicating that Evac is this way
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/safety_signs.rsi
+    layers:
+    - state: evac
+    - state: evac_unlit
+      shader: unshaded
+
+# Law
+- type: entity
+  parent: BaseSign
+  id: SignIAA
+  name: internal affairs sign
+  description: A sign indicating Internal Affairs and their impending audit of your department.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: iaa
+
+- type: entity
+  parent: BaseSign
+  id: SignLawyerOffice
+  name: lawyer sign
+  description: A sign indicating the presence of someone you better call.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: lawyer
+
+- type: entity
+  parent: BaseSign
+  id: SignMagistrate
+  name: magistrate sign
+  description: A sign indicating the presence of the ultimate authority of Corporate Law.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: magistrate
+
+# NT
+- type: entity
+  parent: BaseSign
+  id: SignNTR
+  name: NTR sign
+  description: A sign indicating the physical presence of NanoTrasen aboard the station.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/signs.rsi
+    state: ntr

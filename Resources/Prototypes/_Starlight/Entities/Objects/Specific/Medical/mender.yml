@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: Sprite
-    layers: 
+    layers:
     - state: mender
       map: ["enum.SolutionContainerLayers.Base"]
     - state: mender1
@@ -32,7 +32,11 @@
   - type: Tag
     tags:
       - AutoMender
-    
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
 - type: entity
   id: AutoMenderBrute
   name: brute automender
@@ -58,7 +62,7 @@
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
-      
+
 - type: entity
   suffix: Filled
   parent: AutoMenderBrute
@@ -71,7 +75,7 @@
         reagents:
         - ReagentId: Bicaridine
           Quantity: 30
-      
+
 - type: entity
   id: AutoMenderBurn
   name: burn automender
@@ -96,7 +100,7 @@
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
-      
+
 - type: entity
   suffix: Filled
   parent: AutoMenderBurn

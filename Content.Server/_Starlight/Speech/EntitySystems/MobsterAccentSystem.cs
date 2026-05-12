@@ -105,6 +105,6 @@ public sealed partial class MobsterAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccentGet(EntityUid uid, MobsterAccentComponent component, AccentGetEvent args) 
+    private void OnAccentGet(EntityUid uid, MobsterAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message, component);
 }

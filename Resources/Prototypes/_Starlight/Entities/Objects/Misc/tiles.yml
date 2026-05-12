@@ -507,3 +507,288 @@
       - FloorWoodChessRed
   - type: Stack
     stackType: FloorTileItemWoodChessRed
+
+# Metal
+
+- type: entity
+  name: dark metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalDark
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_dark
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalDark
+  - type: Stack
+    stackType: FloorTileMetalDark
+
+- type: entity
+  name: brown metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalBrown
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_engie
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalBrown
+  - type: Stack
+    stackType: FloorTileMetalBrown
+
+- type: entity
+  name: blue  metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalBlue
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_med
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalBlue
+  - type: Stack
+    stackType: FloorTileMetalBlue
+
+- type: entity
+  name: purple metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalPurple
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_sci
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalPurple
+  - type: Stack
+    stackType: FloorTileMetalPurple
+
+- type: entity
+  name: red metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalRed
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_sec
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalRed
+  - type: Stack
+    stackType: FloorTileMetalRed
+
+- type: entity
+  name: green metal tile
+  parent: FloorTileItemSteel
+  id: FloorTileItemMetalGreen
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_metal_service
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorMetalGreen
+  - type: Stack
+    stackType: FloorTileMetalGreen
+
+- type: entity
+  id: FloorTileItem3x3Black
+  parent: FloorTileItemBase
+  name: 3x3 black tile
+  description: A 3 by 3 set of black tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3black
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3Black
+  - type: Stack
+    stackType: FloorTile3x3Black
+
+- type: entity
+  id: FloorTileItem3x3Brown
+  parent: FloorTileItemBase
+  name: 3x3 brown tile
+  description: A 3 by 3 set of brown tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3brown
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3Brown
+  - type: Stack
+    stackType: FloorTile3x3Brown
+
+- type: entity
+  id: FloorTileItem3x3Steel
+  parent: FloorTileItemBase
+  name: 3x3 steel tile
+  description: A 3 by 3 set of steel tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3steel
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3Steel
+  - type: Stack
+    stackType: FloorTile3x3Steel
+
+- type: entity
+  id: FloorTileItem3x3White
+  parent: FloorTileItemBase
+  name: 3x3 white tile
+  description: A 3 by 3 set of steel tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: 3x3white
+  - type: FloorTile
+    outputs:
+      - Plating
+      - Floor3x3White
+  - type: Stack
+    stackType: FloorTile3x3White
+
+- type: entity
+  id: FloorTileItemOldConcreteBricks
+  parent: FloorTileItemBase
+  name: old concrete bricks
+  description: Old, heavily worn concrete bricks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: old_concrete_bricks
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorOldConcreteBricks
+  - type: Stack
+    stackType: FloorTileOldConcreteBricks
+
+- type: entity
+  id: FloorTileItemOldConcreteTile
+  parent: FloorTileItemBase
+  name: old concrete tiles
+  description: Old, heavily worn concrete tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: old_concrete_tiles
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorOldConcreteTile
+  - type: Stack
+    stackType: FloorTileOldConcreteTile
+
+- type: entity
+  id: FloorTileItemOrnate
+  parent: FloorTileItemBase
+  name: ornate tile
+  description: Old orante tiles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: ornate
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorOrnate
+  - type: Stack
+    stackType: FloorTileOrnate
+
+- type: entity
+  id: FloorTileItemRoughMetal
+  parent: FloorTileItemBase
+  name: rough metal tile
+  description: Its seen a lot of use.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: rough_metal
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorRoughMetal
+  - type: Stack
+    stackType: FloorTileRoughMetal
+
+- type: entity
+  id: FloorTileItemRustyMetal
+  parent: FloorTileItemBase
+  name: rusty metal tile
+  description: Its seen a lot of use.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: rusty_metal
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorRustyMetal
+  - type: Stack
+    stackType: FloorTileRustyMetal
+
+- type: entity
+  id: FloorTileItemSteelGrate
+  parent: FloorTileItemBase
+  name: steel grate tile
+  description: A steel grate.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: steel_grate
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorSteelGrate
+  - type: Stack
+    stackType: FloorTileSteelGrate
+
+- type: entity
+  id: FloorTileItemTechGreeb
+  parent: FloorTileItemBase
+  name: tech maints tile
+  description: Over designed and dirty.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: techfloor_greeb
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorTechGreeb
+  - type: Stack
+    stackType: FloorTileTechGreeb
+
+# Terrain
+- type: entity
+  id: FloorTileItemAstroDirt
+  parent: FloorTileItemBase
+  name: astro-dirt tile
+  description: Fake dirt. It's easily removable, but completely devoid of the nutrients that plants crave.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tiles/tiles.rsi
+    state: tile_astro_dirt
+  - type: FloorTile
+    outputs:
+      - Plating
+      - FloorAstroDirt
+  - type: Stack
+    stackType: FloorTileAstroDirt

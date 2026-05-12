@@ -69,7 +69,7 @@ public sealed class TTSClient : ITTSClient
         {
             if (string.IsNullOrEmpty(connectionString))
             {
-                _sawmill.Warning("Redis TTS connection string is null, skipping connection");
+                _sawmill.Info("Redis TTS connection string is null, skipping connection");
                 return;
             }
 

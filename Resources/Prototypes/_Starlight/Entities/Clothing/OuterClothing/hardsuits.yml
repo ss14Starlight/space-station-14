@@ -43,7 +43,7 @@
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
   id: ClothingOuterHardsuitNtrep
-  name: nanotrasen representative hardsuit
+  name: NanoTrasen representative hardsuit
   description: It used to be blue, but too many premium cigars turned it tobacco brown.
   components:
     - type: Sprite
@@ -587,7 +587,7 @@
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSF
-  name: nanotrasen special forces hardsuit
+  name: NanoTrasen special forces hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.
   components:
     - type: Sprite

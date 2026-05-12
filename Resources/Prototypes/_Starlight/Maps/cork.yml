@@ -67,11 +67,12 @@
             Musician: [ 2, 2 ]
             Reporter: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
+            Performer: [ 2, 2 ]
             Assistant: [ -1, -1 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

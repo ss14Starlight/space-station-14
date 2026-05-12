@@ -20,3 +20,4 @@
     sentence: action-speech-spell-forcewall
     tts: action-speech-spell-forcewall-tts
     modifier: Spell
+  - type: EorgPreventAction # Starlight

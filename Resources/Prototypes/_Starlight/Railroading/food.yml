@@ -13,7 +13,9 @@
       - Abductor
       - Moth
       - Skeleton
+      - Terminator
       - Reptilian
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -33,6 +35,8 @@
       - Abductor
       - Moth
       - Skeleton
+      - Terminator
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -43,7 +47,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 1
       max: 3
   - type: RailroadCard
@@ -60,7 +64,7 @@
       sprite: Objects/Consumable/Food/Baked/pie.rsi
       state: apple
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 10
       max: 25
 
@@ -70,7 +74,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 1
       max: 3
   - type: RailroadCard
@@ -87,7 +91,7 @@
       sprite: Objects/Consumable/Food/Baked/misc.rsi
       state: dumplings
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 10
       max: 25
 
@@ -97,7 +101,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 1
       max: 3
   - type: RailroadCard
@@ -114,7 +118,7 @@
       sprite: Objects/Consumable/Food/bowl.rsi
       state: herb
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 10
       max: 25
 
@@ -124,7 +128,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 1
       max: 3
   - type: RailroadCard
@@ -141,7 +145,7 @@
       sprite: Objects/Consumable/Food/meals.rsi
       state: melonfruitbowl
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 10
       max: 25
 
@@ -151,7 +155,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 1
       max: 3
   - type: RailroadCard
@@ -168,7 +172,7 @@
       sprite: Objects/Consumable/Food/bowl.rsi
       state: stew
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 10
       max: 25
 
@@ -178,7 +182,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow
-    count: 
+    count:
       min: 0
       max: 3
   - type: RailroadCard

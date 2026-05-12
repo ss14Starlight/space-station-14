@@ -16,16 +16,12 @@ public sealed class GhostThemeEui : BaseEui
     public GhostThemeEui()
     {
         _window = new GhostThemeWindow(_preferencesManager);
-        
-        _window.SelectTheme += slot =>
-        {
-            base.SendMessage(new GhostThemeSelectedMessage(slot));
-        };
-        
-        _window.SelectColor += color =>
-        {
-            base.SendMessage(new GhostThemeColorSelectedMessage(color));
-        };
+
+        _window.SelectTheme += slot
+            => SendMessage(new GhostThemeSelectedMessage(slot));
+
+        _window.SelectColor += color
+            => SendMessage(new GhostThemeColorSelectedMessage(color));
     }
 
     public override void Opened()
@@ -43,7 +39,7 @@ public sealed class GhostThemeEui : BaseEui
     public override void HandleState(EuiStateBase state)
     {
         base.HandleState(state);
-        
+
         if (state is not GhostThemeEuiState ghostThemeState)
             return;
         _window.UpdateThemes(ghostThemeState.AvailableThemes);

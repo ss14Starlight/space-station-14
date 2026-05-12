@@ -22,7 +22,7 @@ public sealed partial class NullLinkPlayerManager
     }
     public string GetDiscordAuthUrl(string customState)
     {
-        if (string.IsNullOrEmpty(_discordCallback) || string.IsNullOrEmpty(_discordKey) || string.IsNullOrEmpty(_secret)) 
+        if (string.IsNullOrEmpty(_discordCallback) || string.IsNullOrEmpty(_discordKey) || string.IsNullOrEmpty(_secret))
             return "";
 
         var secretKeyBytes = Encoding.UTF8.GetBytes(_secret);

@@ -1,7 +1,6 @@
-using Content.Server._Starlight; // SL
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Disposal.Tube;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Item;
@@ -11,6 +10,10 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+#region Starlight
+using Content.Server._Starlight;
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.Disposal.Unit
 {

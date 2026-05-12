@@ -153,3 +153,113 @@
   name: chess-red-wood-floor
   spawn: FloorTileItemWoodChessRed
   maxCount: 30
+
+# METAL
+
+- type: stack
+  id: FloorTileMetalDark
+  name: stack-metal-dark-floor
+  spawn: FloorTileItemMetalDark
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalBrown
+  name: stack-metal-brown-floor
+  spawn: FloorTileItemMetalBrown
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalBlue
+  name: stack-metal-blue-floor
+  spawn: FloorTileItemMetalBlue
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalPurple
+  name: stack-metal-purple-floor
+  spawn: FloorTileItemMetalPurple
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalRed
+  name: stack-metal-red-floor
+  spawn: FloorTileItemMetalRed
+  maxCount: 30
+
+- type: stack
+  id: FloorTileMetalGreen
+  name: stack-metal-green-floor
+  spawn: FloorTileItemMetalGreen
+  maxCount: 30
+
+- type: stack
+  id: FloorTileAstroDirt
+  name: stack-astro-dirt-floor
+  spawn: FloorTileItemAstroDirt
+  maxCount: 30
+
+- type: stack
+  id: FloorTile3x3Black
+  name: stack-3x3black-floor
+  spawn: FloorTileItem3x3Black
+  maxCount: 30
+
+- type: stack
+  id: FloorTile3x3Brown
+  name: stack-3x3brown-floor
+  spawn: FloorTileItem3x3Brown
+  maxCount: 30
+
+- type: stack
+  id: FloorTile3x3Steel
+  name: stack-3x3steel-floor
+  spawn: FloorTileItem3x3Steel
+  maxCount: 30
+
+- type: stack
+  id: FloorTile3x3White
+  name: stack-3x3white-floor
+  spawn: FloorTileItem3x3White
+  maxCount: 30
+
+- type: stack
+  id: FloorTileOldConcreteBricks
+  name: stack-old-concrete-bricks-floor
+  spawn: FloorTileItemOldConcreteBricks
+  maxCount: 30
+
+- type: stack
+  id: FloorTileOldConcreteTile
+  name: stack-old-concrete-tile-floor
+  spawn: FloorTileItemOldConcreteTile
+  maxCount: 30
+
+- type: stack
+  id: FloorTileOrnate
+  name: stack-ornate-floor
+  spawn: FloorTileItemOrnate
+  maxCount: 30
+
+- type: stack
+  id: FloorTileRoughMetal
+  name: stack-rough-metal-floor
+  spawn: FloorTileItemRoughMetal
+  maxCount: 30
+
+- type: stack
+  id: FloorTileRustyMetal
+  name: stack-rusty-metal-floor
+  spawn: FloorTileItemRustyMetal
+  maxCount: 30
+
+- type: stack
+  id: FloorTileSteelGrate
+  name: stack-steel-grate-floor
+  spawn: FloorTileItemSteelGrate
+  maxCount: 30
+
+- type: stack
+  id: FloorTileTechGreeb
+  name: stack-tech-greeb-floor
+  spawn: FloorTileItemTechGreeb
+  maxCount: 30

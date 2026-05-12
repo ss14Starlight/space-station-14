@@ -503,6 +503,7 @@
       radius: 1.5
       energy: 2
       color: blue
+      castShadows: false #SL lighting optimization
     - type: ItemTogglePointLight
     - type: Reflect
       reflectProb: 0.95
@@ -654,7 +655,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 60
+            damage: 80 # Starlight
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -667,3 +668,24 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalBreak
+    - type: Blocking # Starlight start
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.75 # It costs biomass to use, and makes you a target. A bit worse than the Paladin Shield.
+          Piercing: 0.85
+          Slash: 0.75
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.6
+          Piercing: 0.65
+          Slash: 0.6
+        flatReductions:
+          Blunt: 1
+          Piercing: 0.5
+          Slash: 1
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 12 # I mean, you can swing it if you want.
+      soundHit:
+        path: "/Audio/Weapons/smash.ogg" # Starlight end

@@ -12,7 +12,7 @@
   id: evil
   flavorType: Base
   description: flavor-basic-evil
-  
+
 - type: flavor
   id: thaslop
   flavorType: complex
@@ -42,3 +42,8 @@
   id: festive
   flavorType: Base
   description: flavor-base-festive
+
+- type: flavor
+  id: thelastcall
+  flavorType: Complex
+  description: flavor-complex-the-last-call
