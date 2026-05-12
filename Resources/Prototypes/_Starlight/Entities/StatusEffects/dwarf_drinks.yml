@@ -345,11 +345,11 @@
   - type: BonusScalarStatusEffect
     # reference example of all possible effects for BonusScalarStatusEffect:
     coefficients:
-      unarmedAttackRate: 0.8
+      unarmedAttackRate: 1.25 # bigger is faster
       unarmedDamage: 1.0
       meleeWeaponAttackRate: 1.0
       meleeWeaponDamage: 1.0
-      doAfterDelay: 1.0
+      doAfterDelay: 1.0 # smaller is faster!
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
@@ -359,13 +359,13 @@
   id: BonusDamageBraveBull
   name: <<Brave Bull Status Effect>>
   components:
-  - type: BonusDamageStatusEffect 
+  - type: BonusDamageStatusEffect
     # reference example of all possible effects for BonusDamageStatusEffect:
     affectsUnarmed: true
     affectsMeleeWeapons: false
     damage:
       types:
-        Structural: 10
+        Structural: 10 # you will never actually see this number because structural objects have damage reduction
       groups:
         Brute: 0
   - type: SoundStatusEffect
@@ -379,7 +379,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      unarmedDamage: 1.5
+      unarmedDamage: 1.5 # bigger is more damaging
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
@@ -391,7 +391,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      meleeWeaponAttackRate: 0.1 #0.91 # +10% speed
+      meleeWeaponAttackRate: 100.1 # 1.1 # +10% speed
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
@@ -403,7 +403,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      meleeWeaponDamage: 1.2
+      meleeWeaponDamage: 1.2 # bigger is faster
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
@@ -415,7 +415,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      doAfterDelay: 0.75
+      doAfterDelay: 0.75 # smaller is faster
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg

@@ -1668,6 +1668,14 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.2
+    # starlight - dwarf drink effects
+      - !type:ModifyStatusEffect
+        effectProto: BonusScalarIrishCream # +25% unarmed attack speed
+        time: 3
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+     # end starlight
 
 - type: reagent
   id: IrishCoffee

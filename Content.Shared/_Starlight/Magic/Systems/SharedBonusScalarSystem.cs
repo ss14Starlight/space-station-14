@@ -2,7 +2,7 @@ using Content.Shared._Starlight.Magic.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Mobs.Components;
+using Content.Shared.Item;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
@@ -53,18 +53,18 @@ public sealed class SharedBonusScalarSystem : EntitySystem
         component.doAfterDelay = 1.0f;
         foreach (var modifier in component.modifiers)
         {
-            component.unarmedAttackRate *= modifier.Value.unarmedAttackRate;
-            component.unarmedDamage *= modifier.Value.unarmedDamage;
-            component.meleeWeaponAttackRate *= modifier.Value.meleeWeaponAttackRate;
-            component.meleeWeaponDamage *= modifier.Value.meleeWeaponDamage;
+            if(modifier.Value.unarmedAttackRate != 0) component.unarmedAttackRate *= modifier.Value.unarmedAttackRate;
+            if(modifier.Value.unarmedDamage != 0) component.unarmedDamage *= modifier.Value.unarmedDamage;
+            if(modifier.Value.meleeWeaponAttackRate != 0) component.meleeWeaponAttackRate *= modifier.Value.meleeWeaponAttackRate;
+            if(modifier.Value.meleeWeaponDamage != 0) component.meleeWeaponDamage *= modifier.Value.meleeWeaponDamage;
             /*
             // TODO
-            component.rangedWeaponDamage *= modifier.Value.rangedWeaponDamage;
-            component.rangedWeaponAttackRate *= modifier.Value.rangedWeaponAttackRate;
+            if(modifier.Value.rangedWeaponDamage != 0) component.rangedWeaponDamage *= modifier.Value.rangedWeaponDamage;
+            if(modifier.Value.rangedWeaponAttackRate != 0) component.rangedWeaponAttackRate *= modifier.Value.rangedWeaponAttackRate;
             */
-            component.doAfterDelay *= modifier.Value.doAfterDelay;
+            if(modifier.Value.doAfterDelay != 0) component.doAfterDelay *= modifier.Value.doAfterDelay;
         }
-        // Dirty(ent, component);
+        Dirty(ent, component);
     }
 
     private void BonusScalarStatusEffectApplied(EntityUid ent, BonusScalarStatusEffectComponent effect, ref StatusEffectAppliedEvent args)
