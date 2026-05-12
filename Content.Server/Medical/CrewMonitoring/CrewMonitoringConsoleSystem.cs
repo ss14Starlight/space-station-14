@@ -10,14 +10,16 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
-using Content.Shared.Implants.Components; // Starlight
-using Content.Server.Power.Components; // Starlight
-using Content.Shared.Power.EntitySystems; // Starlight
-using Content.Shared.Silicons.StationAi; // Starlight
-using Robust.Shared.Audio.Systems; // Starlight
-using Robust.Shared.Map; // Starlight
+#region Starlight
+using Content.Shared.Implants.Components;
+using Content.Server.Power.Components;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
-using System.ComponentModel.DataAnnotations; // Starlight
+using System.ComponentModel.DataAnnotations;
+#endregion
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -177,6 +179,8 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         if (xform.GridUid != null)
             EnsureComp<NavMapComponent>(xform.GridUid.Value);
 
+        #region Starlight
+        // Moving all crew monitor filtering serverside
         // Filter and update all sensors info
         var hasFilter = TryComp<CrewMonitoringFilterComponent>(uid, out var filter);
         var allSensors = component.ConnectedSensors.Values.ToList();
@@ -201,7 +205,7 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
             }
         }
         filteredSensors = filteredSensors.Distinct().ToList();
-        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight: Add two timestamps
+        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
     // Starlight-start
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
@@ -234,5 +238,5 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
             _sawmill.Debug($"Crew monitor warp request from {Name(actor)} ({actor}) to {coordinates} was rejected.");
         }
     }
-    // Starlight-end
+    #endregion
 }

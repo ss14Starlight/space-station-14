@@ -1,12 +1,14 @@
 using Content.Shared.Medical.CrewMonitoring;
 using Robust.Client.UserInterface;
-using Content.Shared.Implants.Components; // Starlight
-using Content.Shared.Silicons.StationAi; // Starlight
-using Robust.Shared.Map; // Starlight
-using Robust.Shared.Player; // Starlight
-using System.Linq; // Starlight
-using Robust.Shared.Timing; // Starlight
-using Content.Shared.Medical.SuitSensors; //Starlight
+#region Starlight
+using Content.Shared.Implants.Components;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Map;
+using Robust.Shared.Player;
+using System.Linq;
+using Robust.Shared.Timing;
+using Content.Shared.Medical.SuitSensors;
+#endregion
 
 namespace Content.Client.Medical.CrewMonitoring;
 
