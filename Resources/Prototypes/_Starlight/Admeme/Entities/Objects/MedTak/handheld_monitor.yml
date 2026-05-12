@@ -1,13 +1,11 @@
 - type: entity
   name: MedTak handheld monitor
-  parent: [ PowerCellSlotMediumItem, BaseHandheldComputer, BaseMedTakContraband ]
+  parent: [ PowerCellSlotHighItem, BaseHandheldComputer, BaseMedTakContraband ]
   id: HandheldMedTakMonitor
   description: The Interdyne M7 monitor can track the vital signs and coordinates of any implants on its secure frequency, to ensure rapid location of your clients.
   components:
-  - type: Item
-    heldPrefix: scanner
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/handheld_brigmedic_crewmonitor.rsi # Still to be changed I have jusst been lazy with the sprite
+    sprite: _Starlight/Admeme/Objects/MedTak/monitor.rsi
     layers:
       - state: frame
         map: ["enum.CrewMonitorLayers.Frame"]
