@@ -392,7 +392,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
         // finally, form suit sensor status
         var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments);
-        status.Faction = sensor.Faction;
+        status.Faction = sensor.Faction; // Starlight
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:
