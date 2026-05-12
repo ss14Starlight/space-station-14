@@ -10,10 +10,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  name: TCA M27 Annie 
-  parent: [BaseTSFContraband, BaseWeaponRifle] 
+  name: M27A1
+  parent: [BaseTSFContraband, BaseWeaponRifle]
   id: WeaponRifleAnnie
-  description: A beast designed to shoulder the weight of impossible missions. Uses .45 magnum ammo.
+  description: A heavy automatic rifle chambered in .45 Magnum for suppression and hard-target interdiction. Originally fielded by TSF expeditionary units, the M27A1 later became a common sight in corporate armories supporting hazardous frontier and terraforming operations.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/annie.rsi # Mono
@@ -71,10 +71,10 @@
 
 
 - type: entity
-  name: CS KMP-WSPR 
-  parent: [BaseSyndicateContraband, BaseWeaponRifle] # Mono - C3
+  name: CS WSPR-45
+  parent: [BaseSyndicateContraband, BaseWeaponRifle]
   id: WeaponRifleWSPR
-  description: A cutting-edge rifle from Cybersun with an integrated barrel suppressor. Versatile, reliable, Syndicate-approved. Uses .45 magnum ammo.
+  description: A suppressed .45 Magnum battle rifle developed by Cybersun for covert interdiction teams and deniable security operations. The WSPR-45 combines an integrated barrel suppressor with a compact burst-fire action, making it a favorite wherever discretion and overkill are both mission requirements.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr.rsi # Mono
@@ -86,7 +86,7 @@
   - type: Item # Mono
     sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr_inhands_32x.rsi
   - type: Clothing
-    sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr_inhands_32x.rsi # Mono
+    sprite: _Mono/Objects/Weapons/Guns/Rifles/wspr_inhands_32x.rsi 
   - type: GunWieldBonus
     minAngle: -14
     maxAngle: -41
@@ -94,12 +94,12 @@
     availableModes:
     - Burst
     selectedMode: Burst
-    burstFireRate: 20 # Mono
-    burstCooldown: 0.4 # Mono
-    projectileSpeed: 45 # Mono
-    fireRate: 7.5 # Mono, does nothing because its burst only but it makes it clear it can fire at this rate.
+    burstFireRate: 14
+    burstCooldown: 0.4 
+    projectileSpeed: 45 
+    fireRate: 7.5 
     soundGunshot:
-      path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg # Mono change - Changed audio path
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/1suppres.ogg 
   - type: ItemSlots
     slots:
       gun_magazine:

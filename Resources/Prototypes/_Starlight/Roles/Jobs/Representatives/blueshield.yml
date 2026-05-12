@@ -56,6 +56,7 @@
     #gloves: ClothingHandsGlovesCombat
     #outerClothing: ClothingOuterVestRetroOfficer
     #belt: ClothingBeltTSFMarineWebbing
+    ears: ClothingHeadsetAltBSO
     pocket1: WeaponPistolTSFModel17
     pocket2: HandheldBSOCrewMonitor
   storage:

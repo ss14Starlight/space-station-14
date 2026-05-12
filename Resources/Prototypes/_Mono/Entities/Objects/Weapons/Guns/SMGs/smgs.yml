@@ -12,9 +12,9 @@
 
 - type: entity
   name: SKR-WS MLA-73
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable,BaseSecurityContraband] 
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponSubMachineGunMla73
-  description: A lightweight, reliable submachine gun designed for close-quarters combat.
+  description: A compact submachine gun from Sokolov-Rhein Waffen Systeme, designed for close protection teams and shipboard security. Lightweight, controllable, and easy to maintain, the MLA-73 is often found in the hands of corporate contractors working far from standard armory support.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/SMGs/mla73.rsi
@@ -62,10 +62,10 @@
   - type: Appearance
 
 - type: entity
-  name: NCI AK-220
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable,BaseSovietContraband]
+  name: NCI AK-220K
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSovietContraband]
   id: WeaponSubMachineGunAK220
-  description: A mass produced 35. bullpup SMG. The design originates from the USSP.
+  description: A shortened bullpup submachine gun derived from USSP service designs and chambered in .35 Auto. Its rugged construction and cheap stamped components make it popular with frontier garrisons, surplus brokers, and security units that value reliability over refinement.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/SMGs/ak220.rsi
@@ -121,10 +121,10 @@
     price: 500
 
 - type: entity
-  name: LWC Vector (35.)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable,BaseSecurityContraband] 
+  name: LWC Vector-35
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponSubMachineGunVector9x19mm
-  description: An excellent fully automatic SMG. Uses 35. ammo.
+  description: A high-performance submachine gun chambered in .35 Auto, produced for security forces requiring compact automatic fire in confined environments. Its burst-control system and high cyclic rate make it effective in corridors, facilities, and other places where missing is expensive.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
@@ -139,7 +139,7 @@
   - type: Clothing
     sprite: _Mono/Objects/Weapons/Guns/SMGs/vector.rsi
   - type: Gun
-    fireRate: 7.5
+    fireRate: 9
     selectedMode: Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
@@ -174,12 +174,11 @@
     zeroVisible: true
   - type: Appearance
 
-#Pre-corpowar 45 magnum rare vector 
 - type: entity
-  name: NTSF-HCLM-45 (.45 magnum)
-  parent: [BaseWeaponSubMachineGun, BaseGunWieldable,BaseSecurityContraband]
+  name: LWC Vector-45M
+  parent: [BaseWeaponSubMachineGun, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponSubMachineGunVectorNtsfHclm
-  description: The NTSF Heavy Caliber Light Machinegun. A very high-quality heavy SMG chambered in .45 magnum for use for the Nano Trasen Security Force and NT spec-ops.
+  description: A limited-production .45 Magnum Vector variant originally developed by TSF arms producers and licensed to NanoTrasen for use by the NTSF. Compact, expensive, and punishingly powerful, it was built for special security units that needed heavy stopping power in close quarters.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/SMGs/NTSF-HCLM-45rsi

@@ -1,0 +1,36 @@
+- type: entity
+  name: E-77 vibro katana
+  parent: [ BaseSword, BaseCommandContraband ]
+  id: E77VibroKatana
+  description: A high-end Eclipse vibro-energy katana, standard-issued to Eclipse agents and operatives. Its oscillating energy edge cuts cleanly and burns through anyone unfortunate enough to stand in its path.
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Weapons/Melee/E-77.rsi
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    attackRate: 2
+    range: 1.6
+    damage:
+      types:
+        Slash: 20
+        Heat: 30
+  - type: Item
+    storedSprite:
+      state: storage
+      sprite: _PV/Objects/Weapons/Melee/E-77.rsi
+    shape:
+    - 0,0,0,3
+  - type: EnergyKatana
+  - type: DashAbility
+  - type: LimitedCharges
+    maxCharges: 3
+  - type: AutoRecharge
+    rechargeDuration: 20
+  - type: Clothing
+    sprite: _PV/Objects/Weapons/Melee/E-77.rsi
+    slots:
+    - Back
+    - Belt
+  - type: Reflect
+    slotFlags:
+    - NONE

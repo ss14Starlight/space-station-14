@@ -1,0 +1,31 @@
+# When adding new plushies, also add them to id: AllPlushiesTable
+- type: entity
+  parent: PlushieShadekin
+  id: Desiresplushies
+  name: Desires Plushie
+  description: This plush looks like Desires The CEO of Verdant Terrasolutions. He is very soft.
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Fun/Plushies/Desires_plushie.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _PV/Objects/Fun/Plushies/Desires_plushie.rsi
+
+- type: entity
+  parent: PlushieVulp
+  id: Randallplushie
+  name: Randall Hunt Plushie
+  description: A perfect plushie copy of Randall Hunt. Extremely soft, perfect to put on your head.
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Fun/Plushies/Randall_Hunt_plushie.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: _PV/Objects/Fun/Plushies/Randall_Hunt_plushie.rsi
+  - type: Clothing
+    quickEquip: false
+    sprite: _PV/Objects/Fun/Plushies/Randall_Hunt_plushie.rsi
+    slots:
+    - HEAD

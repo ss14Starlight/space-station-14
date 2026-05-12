@@ -14,10 +14,10 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 - type: entity
-  name: VFD MR-8C DMR
+  name: VFD MR-8C Watchman
   parent: [BaseWeaponRifle, BaseGunWieldable, BaseMajorContraband]
   id: WeaponMR8CDMR
-  description: A TSF-designed MR-8C designated marksman rifle chambered in .45 Magnum.
+  description: A TSF-designed MR-8C designated marksman rifle chambered in .45 Magnum. Originally intended for frontier patrol and overwatch teams, the platform has found steady use among corporate security forces assigned to long-term terraforming contracts.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/mr8c.rsi
@@ -85,10 +85,10 @@
     pvsIncrease: 1
 
 - type: entity
-  name: NCI AK-502
+  name: NCI AK-502M
   parent: [BaseWeaponRifle, BaseSovietContraband]
   id: WeaponRifleAK502USSP
-  description: A standard-issue USSP combat rifle.
+  description: A modernized AK-502 combat rifle built for harsh colonial environments. Its simple construction and forgiving tolerances make it a common sight among military surplus shipments, frontier contractors, and security teams operating far from proper supply chains.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/ak502.rsi
@@ -142,10 +142,10 @@
   - type: Appearance
 
 - type: entity
-  name: VFD XLR-556 ICWS
+  name: VFD XLR 
   parent: [BaseWeaponRifle, BaseGunWieldable, BaseSecurityContraband]
-  id: WeaponRifleXlr556TSF
-  description: A proposed next-gen "rifle" for TSF standard infantry. Chambered in .20 rifle rounds, its RPM is incredible - but with great firerate comes great fire control...
+  id: WeaponRifleXlrTSF
+  description: A high-cyclic-rate infantry weapon developed for TSF trials and corporate security procurement. Chambered in .20 rifle, it offers exceptional volume of fire at the cost of demanding strict recoil discipline from the operator.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/xlr556.rsi
@@ -205,12 +205,12 @@
     zeroVisible: true
   - type: Appearance
 
-#Mercenary vulcan
+# Mercenary vulcan
 - type: entity
-  name: HWM FCM-C "Vulcan"
+  name: H&W FCM-C Vulcan
   parent: [BaseWeaponRifle, BaseGunWieldable, BaseSecuritySalvageContraband]
   id: WeaponRifleVulcan
-  description: The Herstal Weapon Manufacture "Vulcan" Civilian Medium combat rifle, this civilian version only has semi-automatic mode and reduced firerate.
+  description: A civilian medium combat rifle from Hessler & Woch, sold primarily to private security firms and licensed expeditionary contractors. This model is limited to semi-automatic fire with a reduced cyclic rate to satisfy most corporate arms restrictions.
   components:
   - type: Sprite
     sprite: _Mono/Objects/Weapons/Guns/Rifles/WeaponRifleVulcanFCMC.rsi

@@ -1,0 +1,89 @@
+
+
+- type: entity
+  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  id: AegisHardsuit
+  name: Aegis C-04 Hardsuit
+  description: A heavily modified Eclipse hardsuit designed to keep its wearer alive when everything else fails. Built to protect agents and operators alike, the Aegis C-04 pairs Decimus-grade armor with an integrated power-cell shield projector for hostile environments and hostile people.
+  components:
+  - type: Sprite
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/aegis_hardsuit.rsi
+  - type: Clothing
+    sprite: _Mono/Clothing/OuterClothing/Hardsuits/aegis_hardsuit.rsi
+
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.0
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.20
+        Heat: 0.25
+        Radiation: 0.25
+        Caustic: 0.25
+    staminaModifier: 0.0
+
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 1.0
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+      params:
+        volume: -7
+        pitch: 0.7
+        variation: 0.025
+
+
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellUltra
+        whitelist:
+          tags:
+          - PowerCell
+
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallPink
+
+  - type: PowerCellDraw
+    enabled: false
+    drawRate: 6
+    useCharge: 0
+
+  - type: UseDelay
+    delay: 10.0
+
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitAegis
+
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - CorgiWearable
+    - IPCExternalCooling
