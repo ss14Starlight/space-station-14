@@ -11,19 +11,20 @@ namespace Content.Shared._Starlight.Magic.Components;
 /// Allows applying various flat damage bonuses to target entities as a StatusEffect.
 /// See <see cref="BonusDamageStatusEffectComponent"/> and <see cref="SharedBonusDamageSystem"/>.
 /// If you want to apply bonus damage as a permanent trait instead of via a status effect,
-/// consider wizden's original <see cref="BonusMeleeDamageComponent"/>.
+/// consider Wizden's original <see cref="BonusMeleeDamageComponent"/>.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedBonusDamageSystem))]
 public sealed partial class BonusDamageComponent : Component
 {
     public Dictionary<EntityUid, BonusDamageMod> modifiers = new();
 
     // computed totals:
-    [DataField]
+    [DataField, AutoNetworkedField]
     public DamageSpecifier? UnarmedBonusDamage;
 
-    [DataField]
+    [DataField, AutoNetworkedField]
     public DamageSpecifier? MeleeWeaponBonusDamage;
 }
 
@@ -32,16 +33,16 @@ public sealed partial class BonusDamageComponent : Component
 [Access(typeof(SharedBonusDamageSystem))]
 public partial struct BonusDamageMod
 {
-    // [DataField]
+    [DataField, AutoNetworkedField]
     public DamageSpecifier Damage;
 
-    // [DataField]
+    [DataField, AutoNetworkedField]
     public bool AffectsUnarmed = false;
 
-    // [DataField]
+    [DataField, AutoNetworkedField]
     public bool AffectsMeleeWeapons = false;
 
     // todo:    public bool AffectsRangedWeapons = false;
-    // [DataField]
+    [DataField, AutoNetworkedField]
     public bool OverwriteOnRefresh = false;
 }

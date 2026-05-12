@@ -2,8 +2,8 @@ using Content.Shared._Starlight.Magic.Components;
 
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Damage;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Item;
 
 namespace Content.Shared._Starlight.Magic.Systems;
 
@@ -36,7 +36,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
         }
     }
 
-    private void Recalculate(BonusDamageComponent comp)
+    private void Recalculate(EntityUid ent, BonusDamageComponent comp)
     {
         comp.MeleeWeaponBonusDamage = new();
         // todo: comp.RangedWeaponBonusDamage = new();
@@ -51,6 +51,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
             if (modifier.Value.AffectsUnarmed)
                 comp.UnarmedBonusDamage += modifier.Value.Damage;
         }
+        Dirty(ent, comp);
     }
 
     private void BonusDamageStatusEffectApplied(EntityUid ent, BonusDamageStatusEffectComponent effect, ref StatusEffectAppliedEvent args)
@@ -75,7 +76,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
             };
         }
 
-        Recalculate(component);
+        Recalculate(ent, component);
     }
 
     private void BonusDamageStatusEffectRemoved(EntityUid ent, BonusDamageStatusEffectComponent effect, ref StatusEffectRemovedEvent args)
@@ -89,6 +90,6 @@ public sealed class SharedBonusDamageSystem : EntitySystem
         if (component.modifiers.Count == 0)
             RemComp<BonusDamageComponent>(args.Target);
         else
-            Recalculate(component);
+            Recalculate(ent, component);
     }
 }
