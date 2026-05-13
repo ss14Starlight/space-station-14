@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: NamesBlackstarFirst
+  values:
+    prefix: names-blackstar-first-dataset-
+    count: 6
+
+- type: localizedDataset
+  id: NamesBlackstarLast
+  values:
+    prefix: names-blackstar-last-dataset-
+    count: 25

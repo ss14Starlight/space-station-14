@@ -1,0 +1,69 @@
+# Blackstar Operative Ghost Role
+# Admin spawns RandomHumanoidSpawnerBlackstarOperative via the Spawn Entities panel.
+# Ghosts claim the role and spawn fully equipped.
+
+- type: entity
+  id: RandomHumanoidSpawnerBlackstarOperative
+  name: Blackstar Dreadwalker
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarFirst
+    - NamesBlackstarLast
+    nameFormat: name-format-ert
+  - type: RandomHumanoidSpawner
+    settings: BlackstarOperative
+
+- type: randomHumanoidSettings
+  id: BlackstarOperative
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-blackstar-operative-name
+    description: ghost-role-information-blackstar-operative-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ BlackstarOperativeGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarFirst
+    - NamesBlackstarLast
+    nameFormat: name-format-ert
+  - type: NpcFactionMember
+    factions:
+    - Blackstar
+
+# Starting gear for Blackstar Dreadwalker operatives
+- type: startingGear
+  id: BlackstarOperativeGear
+  equipment:
+    head: ClothingHeadHelmetBlackstar
+    outerClothing: ClothingOuterHardsuitBlackstar
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltMilitaryWebbing
+    pocket1: WeaponTaser
+    pocket2: PinpointerUniversal
+    suitstorage: WeaponRiflePrometheus
+  storage:
+    back:
+    - RegenerativeMesh
+    - MedicatedSuture
+    - JawsOfLife
+    - WelderIndustrialAdvanced
+    - PowerDrill
+    belt:
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - Handcuffs
