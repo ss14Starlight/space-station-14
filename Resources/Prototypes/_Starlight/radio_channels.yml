@@ -78,6 +78,6 @@
   id: MedTak
   name: chat-radio-medtak
   keycode: 'k'
-  frequency: 1452
+  frequency: 1505
   color: "#880606"
   longRange: true

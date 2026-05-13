@@ -186,6 +186,13 @@
     stealGroup: AccessConfigurator
 
 - type: entity
+  parent: BaseTraitorCommandStealObjective
+  id: CaptainTabletStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CaptainTablet
+
+- type: entity
   parent: BaseTraitorStealObjective
   id: EncryptionKeyHybridStealObjective
   components:
