@@ -385,7 +385,6 @@
 
 - type: entity
   id: Biofabricator
-  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLathe
   name: biocube fabricator
   description: Produces animal cubes using biomass.
@@ -616,6 +615,7 @@
 
 - type: entity
   id: Biogenerator
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLathe
   name: biogenerator
   description: Converts plants into biomass, which can be used to construct useful items.
