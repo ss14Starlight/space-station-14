@@ -36,6 +36,7 @@ plumbing-filter-filtered = Filtered Reagents
 plumbing-filter-clear = Clear All
 plumbing-filter-remove-selected = Remove Selected
 plumbing-filter-invalid-reagent = Unknown reagent: {$reagent}
+plumbing-filter-max-reagents = You can only filter up to {$count} reagents.
 
 # Synthesizer UI
 plumbing-synthesizer-window-title = Plumbing Synthesizer

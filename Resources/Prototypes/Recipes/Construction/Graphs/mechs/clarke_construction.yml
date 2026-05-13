@@ -85,17 +85,18 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 10
-
-      - component: PowerCell
-        name: construction-graph-tag-power-cell
+      #Starlight Start - Mech Reactors
+      - tag: MechReactor
+        name: construction-graph-tag-mech-reactor
         store: battery-container
         icon:
-          sprite: Objects/Power/power_cells.rsi
-          state: small
+          sprite: _Starlight/Objects/Power/mech_reactors.rsi
+          state: medium
         completed:
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 11
+      #Starlight End
 
       - tool: Screwing
         doAfter: 1

@@ -40,7 +40,7 @@
     <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo Nightvision\nHas flash immunity"/>
     <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNightvision\nNo flash immunity"/>
   </Box>
-  
+
   ## LIGHT SENSITIVITY
   [color=yellow]Light Exposure: Dark[/color]
   - Passive Regeneration is buffed.

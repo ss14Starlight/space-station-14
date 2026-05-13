@@ -16,6 +16,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitEVA
     - id: ClothingHeadHelmetEVA
     - id: ClothingMaskBreath
@@ -37,6 +38,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitEVA
     - id: ClothingHeadHelmetEVALarge
     - id: ClothingMaskBreath
@@ -58,6 +60,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterSuitEmergency
     - id: ClothingMaskBreath
 
@@ -78,6 +81,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitEVAPrisoner
     - id: ClothingHeadHelmetEVALarge
     - id: ClothingMaskBreath
@@ -99,6 +103,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterEVASuitSyndicate
     - id: ClothingHeadHelmetSyndicate
     - id: ClothingMaskGasSyndicate
@@ -120,6 +125,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitPirateEVA
     - id: ClothingMaskGas
 
@@ -189,6 +195,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitSecurity
     - id: ClothingMaskBreath
     - id: ClothingShoesBootsMagSec
@@ -301,6 +308,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitSyndie
     - id: ClothingShoesBootsMagSyndie
     - id: ClothingMaskGasSyndicate
@@ -322,6 +330,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingOuterHardsuitPirateCap
     - id: ClothingMaskGas
 
@@ -342,6 +351,7 @@
     children:
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingMaskBreath
     # TODO: Gone until reworked to have no space protection
     #- id: ClothingOuterHardsuitWizard #Starlight, fixed with change below

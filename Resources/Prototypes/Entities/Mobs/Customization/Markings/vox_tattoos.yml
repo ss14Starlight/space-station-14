@@ -175,7 +175,7 @@
   sprites:
   - sprite: Mobs/Customization/vox_tattoos.rsi
     state: eyeshadow_large
-    
+
 - type: marking
   id: VoxTattooEyeliner
   bodyPart: Eyes

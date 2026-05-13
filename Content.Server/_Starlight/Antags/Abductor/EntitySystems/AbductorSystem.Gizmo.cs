@@ -46,7 +46,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnGizmoInteract(Entity<AbductorGizmoComponent> ent, ref AfterInteractEvent args)
     {
-        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target) 
+        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)
             || !args.Target.HasValue)
             return;
 
@@ -89,6 +89,11 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         EnsureComp<AbductorVictimComponent>(args.Target.Value, out var victimComponent);
         victimComponent.LastActivation = _time.CurTime + TimeSpan.FromMinutes(5);
 
-        victimComponent.Position ??= EnsureComp<TransformComponent>(args.Target.Value).Coordinates;
+        // Turns out this just works?? Thought it would just convert to the same entitycoords but fuckin apparently not
+        var coords =
+            _xformSys.ToCoordinates(
+                _xformSys.ToMapCoordinates(EnsureComp<TransformComponent>(args.Target.Value).Coordinates));
+
+        victimComponent.Position ??= coords;
     }
 }

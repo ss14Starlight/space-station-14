@@ -1,0 +1,33 @@
+# Head
+
+- type: loadout
+  id: RoboticistCap
+  equipment:
+    head: ClothingHeadHatCorpsoft
+
+- type: loadout
+  id: SkullBandana
+  equipment:
+    head: ClothingHeadBandSkull
+
+- type: loadout
+  id: RoboticistBlackCapFlipped
+  equipment:
+    head: ClothingHeadHatBlacksoftFlipped
+
+# Back
+
+- type: loadout
+  id: RoboticistBackpack
+  equipment:
+    back: ClothingBackpackRoboticist
+
+- type: loadout
+  id: RoboticistSatchel
+  equipment:
+    back: ClothingBackpackSatchelRoboticist
+
+- type: loadout
+  id: RoboticistDuffel
+  equipment:
+    back: ClothingBackpackDuffelRoboticist

@@ -1,0 +1,112 @@
+- type: ghostTheme
+  id: Morph
+  name: Morph
+  description: a morph.
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/morph.rsi
+      state: morph
+    color: "#ffffff"
+  requirements:
+  - !type:UsernameRequirement
+    username: Grapegifter
+
+- type: ghostTheme
+  id: Cateor
+  name: Cateor
+  description: a cute cateor.
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/cateor.rsi
+      state: cateor
+    color: "#ffffff"
+  requirements:
+  - !type:UsernameRequirement
+    username: darkrell
+
+- type: ghostTheme
+  id: Firewraith
+  name: Firewraith
+  description: a cute firewraith.
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-firewraith
+    color: "#ffffff"
+  requirements:
+  - !type:UsernameRequirement
+    username: Killerdash
+
+
+- type: ghostTheme
+  id: Robot
+  name: Robot
+  description: a funny robot.
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-rinary
+    color: "#ffffff"
+  requirements:
+  - !type:UsernameRequirement
+    username: Rinary
+
+- type: ghostTheme
+  id: pai_fox
+  name: pai fox
+  description: a cyber kitsune
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/pai_fox.rsi
+      state: pai_fox
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: KarmaKitsuna
+
+- type: ghostTheme
+  id: sombrero_penguin
+  name: sombrero penguin
+  description: A penguin, but with sombrero
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/sombrero_penguin.rsi
+      state: sombrero_penguin
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: Bird_
+
+- type: ghostTheme
+  id: TessTheEvil
+  name: Tess the Evil
+  description: Why is she smiling like that?
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/tess_the_evil.rsi
+      state: tess_the_evil
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: Tess_the_Evil
+
+- type: ghostTheme
+  id: ghost-kamila
+  name: Avali Ghost
+  description: a ghostly Avali.
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghost-kamila.rsi
+      state: ghost-kamila
+    color: "#ffffff"
+  requirements:
+  - !type:UsernameRequirement
+    username: KamilaAvali

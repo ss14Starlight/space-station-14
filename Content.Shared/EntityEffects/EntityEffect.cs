@@ -22,6 +22,12 @@ public abstract partial class EntityEffect
     public virtual float MinScale { get; private set; }
 
     /// <summary>
+    /// STARLIGHT: If our scale is greater than this value, the effect is clamped.
+    /// </summary>
+    [DataField]
+    public virtual float? MaxScale { get; private set; }
+
+    /// <summary>
     /// If true, then it allows the scale multiplier to go above 1.
     /// </summary>
     [DataField]
@@ -34,7 +40,7 @@ public abstract partial class EntityEffect
     [DataField]
     public float Probability = 1.0f;
 
-    public virtual string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
+    public virtual string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => null; // Starlight
 
     /// <summary>
     /// If this effect is logged, how important is the log?

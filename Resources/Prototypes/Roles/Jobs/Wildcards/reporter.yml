@@ -19,6 +19,13 @@
   #storage:
     #back:
     #- Stuff
+  # Starlight Start
+  storage:
+    back:
+    - TapeRecorder
+    - CassetteTape
+    - CassetteTape
+  # Starlight End
 
 - type: chameleonOutfit
   id: ReporterChameleonOutfit

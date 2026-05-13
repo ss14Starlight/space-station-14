@@ -11,7 +11,6 @@ using Content.Server.Database;
 using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
-using Content.Shared.Starlight.MHelp;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
@@ -44,7 +43,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
+        //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at BanManager
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
@@ -78,7 +77,7 @@ namespace Content.Server.Administration.Systems
         // Maximum length a message can be before it is cut off
         // Should be shorter than DescriptionMax
         private const ushort MessageLengthCap = 3000;
-        
+
         private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
 
         private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
@@ -181,7 +180,7 @@ namespace Content.Server.Administration.Systems
                 }
 
                 // Check if the user has been banned
-                var ban = await _dbManager.GetServerBanAsync(null, e.Session.UserId, null, null);
+                var ban = await _banManager.GetServerBanAsync(null, e.Session.UserId, null, null);
                 if (ban != null)
                 {
                     var banMessage = Loc.GetString("bwoink-system-player-banned", ("banReason", ban.Reason));
@@ -655,12 +654,12 @@ namespace Content.Server.Administration.Systems
                 // Unauthorized bwoink (log?)
                 return;
             }
-            
+
             var currentTime = _timing.RealTime;
 
             if (IsOnCooldown(message.UserId, currentTime) && senderAdmin == null)
                 return;
-            
+
             if (IsSpam(message.UserId, message.Text) && senderAdmin == null)
                 _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
 
@@ -879,7 +878,7 @@ namespace Content.Server.Administration.Systems
             /// </summary>
             public bool OnCall;
         }
-        
+
         private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
         {
             _recentMessages.Enqueue((channelId, text, timestamp));
@@ -889,7 +888,7 @@ namespace Content.Server.Administration.Systems
                 _recentMessages.Dequeue();
             }
         }
-        
+
         private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
         {
             var lastMessage = _recentMessages
@@ -899,7 +898,7 @@ namespace Content.Server.Administration.Systems
 
             return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
         }
-        
+
         private bool IsSpam(NetUserId channelId, string text)
         {
             var recentMessages = _recentMessages

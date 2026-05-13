@@ -32,8 +32,8 @@
       - behavior: Screwing
         useSound: /Audio/Items/screwdriver.ogg
         SpeedModifier: 0.05
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.9
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
@@ -267,12 +267,8 @@
     sprite: Objects/Weapons/Melee/shiv.rsi
   - type: DisarmMalus
     malus: 0.225
-  - type: SurgeryTool #Starlight
+  - type: Scalpel #Starlight
     successRate: 0.7
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: Fixtures
     fixtures:
       fix1:

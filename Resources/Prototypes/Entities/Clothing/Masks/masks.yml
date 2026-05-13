@@ -41,6 +41,9 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: Tag
+    tags:
+    - CorgiWearable #Starlight edit
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -169,6 +172,8 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: ZombificationResistance # Starlight
+    zombificationResistanceCoefficient: 0.95 #Starlight
 
 - type: entity
   parent: ClothingMaskPullableBase

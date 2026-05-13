@@ -70,6 +70,7 @@ public sealed partial class AdminNotesLine : BoxContainer
 
         TimeLabel.Text = Note.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss");
         ServerLabel.Text = Note.ServerName ?? "Unknown";
+        ProjectLabel.Text = Note.ProjectName ?? "This project"; // Starlight-edit
         RoundLabel.Text = Note.Round == null ? "Unknown round" : "Round " + Note.Round;
         AdminLabel.Text = Note.CreatedByName;
         PlaytimeLabel.Text = $"{Note.PlaytimeAtNote.TotalHours: 0.0}h";

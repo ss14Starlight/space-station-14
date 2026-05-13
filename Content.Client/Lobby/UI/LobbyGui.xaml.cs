@@ -14,7 +14,7 @@ namespace Content.Client.Lobby.UI
     {
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-        
+
         private string _serverName = string.Empty;
 
         public LobbyGui()
@@ -28,14 +28,14 @@ namespace Content.Client.Lobby.UI
 
             LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
-            
+
             CollapseButton.OnPressed += _ => TogglePanel(false);
             ExpandButton.OnPressed += _ => TogglePanel(true);
 
             //Starlight start
             _serverName = _configurationManager.GetCVar(StarlightCCVars.ServerName);
             _configurationManager.OnValueChanged(StarlightCCVars.ServerName, OnServerNameChanged, true);
-            
+
             ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _serverName));
             //Starlight end
         }
@@ -67,7 +67,7 @@ namespace Content.Client.Lobby.UI
                     break;
             }
         }
-        
+
         private void OnServerNameChanged(string serverName)
         {
             ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", serverName));

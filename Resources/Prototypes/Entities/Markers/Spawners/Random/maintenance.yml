@@ -69,7 +69,10 @@
       - id: ClothingOuterCoatLab
       - !type:AllSelector
         children:
-        - id: ClothingOuterCoatPirate
+        - !type:GroupSelector # Starlight start
+          children:
+          - id: ClothingOuterCoatPirate
+          - id: ClothingOuterCoatPirateDark # Starlight end
         - id: ClothingHeadHatPirateTricord
         - id: Spyglass #Starlight
       - id: ClothingHeadHatTophat
@@ -213,6 +216,10 @@
         children:
         - id: NitrogenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+      - !type:GroupSelector #Starlight
+        children:
+        - id: CoolingUnit
+        - id: EmergencyCoolingUnit
       - id: EmergencyFunnyOxygenTankFilled
         weight: 0.5
       - !type:GroupSelector
@@ -278,6 +285,12 @@
         weight: 0.4 # Starlight. Fake galoshes to crush your spirit.
       - id: ClothingBeltUtility
       - id: ToolboxArtisticFilled
+      - id: ClothingHeadHatHoodBioGeneral # Starlight
+      - id: ClothingOuterBioGeneral # Starlight
+      - id: PillCanisterNitrogen # Starlight, homebrew zombie cure kit
+      - id: PillCanisterDylovene # Starlight, homebrew zombie cure kit
+      - id: PillCanisterHydrogen # Starlight
+        weight: 0.8 # Starlight, lower because you can make an explosion with it
       - id: GeigerCounter
       - id: trayScanner
       - id: HandheldGPSBasic
@@ -290,6 +303,13 @@
       - id: WeaponFlareGun
       - id: BarberScissors
       - id: TwinPointerKit # Starlight: Added twinpointer to maints loot
+      - id: JetpackImprovisedFilled #Starlight
+      - id: Flash0Use # Starlight
+        weight: 0.6 # Starlight
+      - id: Flash1Use # Starlight
+        weight: 0.7 # Starlight
+      - id: SciFlash # Starlight
+        weight: 0.5 # Starlight
       - !type:GroupSelector
         children:
         - id: DrinkSpaceGlue
@@ -313,6 +333,13 @@
       - id: WehpetInstrument
       - id: LidSalami
         weight: 0.05
+      - id: MakeshiftID # Starlight
+      - id: Flash3Use # Starlight
+        weight: 0.3 # Starlight
+      - id: Flash4Use # Starlight
+        weight: 0.15 # Starlight
+      - id: Flash # Starlight
+        weight: 0.05 # Starlight
 
 - type: entity
   name: Maint Loot Spawner
@@ -354,8 +381,11 @@
         weight: .8
       - id: WeaponShotgunMakeshift
         weight: .8
+      - id: WeaponLaserSvalinn # Starlight- The svalinn's 14 dps... I think it's maints loot worthy.
+        weight: .8
       - id: ClothingOuterArmorMakeshift
-      - id: WeaponMeleeSwitchblade #Starlight End:
+      - id: WeaponMeleeSwitchblade
+      - id: SpearSteel #Starlight End:
     # Rare Group
     - !type:GroupSelector
       weight: 5

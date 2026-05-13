@@ -41,6 +41,7 @@ using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.TextToSpeech;
 using Content.Client._Starlight.TTS;
 using Content.Shared._Starlight.Traits;
+using Content.Client._Starlight.Lobby.UI;
 #endregion Starlight
 
 namespace Content.Client.Lobby.UI
@@ -127,9 +128,17 @@ namespace Content.Client.Lobby.UI
 
         private readonly ISawmill _sawmill;
 
+        #region Starlight
+
         private List<VoicePrototype> _voices = [];
 
-        private List<VoicePrototype> _siliconVoices = []; // 🌟Starlight🌟
+        private VoiceSelectorWindow _voiceSelectorWindow;
+
+        private List<VoicePrototype> _siliconVoices = [];
+
+        private VoiceSelectorWindow _voiceSiliconSelectorWindow;
+
+        #endregion
 
         // Cosmatic Drift Record System-start
         private readonly RecordEditorGui _recordsTab; // Tracks CD records UI state
@@ -272,6 +281,17 @@ namespace Content.Client.Lobby.UI
                 OnSkinColorOnValueChanged();
                 UpdateCustomSpecieNameEdit(); // Starlight
             };
+
+            UpdateSubspecies();
+            // Far Horizons start
+            SubspeciesButton.OnItemSelected += args =>
+            {
+                SubspeciesButton.SelectId(args.Id);
+                SetSpecies(_subspecies[args.Id].ID);
+                UpdateHairPickers();
+                UpdateCustomSpecieNameEdit(); // Starlight
+            };
+            // Far Horizons end
 
             //starlight start
             #region Size
@@ -539,34 +559,38 @@ namespace Content.Client.Lobby.UI
             IsDirty = false;
 
             //🌟Starlight🌟
-            _voices = _prototypeManager
+            _voices = [.. _prototypeManager
                 .EnumeratePrototypes<VoicePrototype>()
-                .Where(o => !o.Silicon)
-                .ToList();
+                .Where(o => !o.Silicon)];
 
-            VoiceButton.OnItemSelected += args =>
+            _voiceSelectorWindow = new(_voices);
+            _voiceSelectorWindow.OnVoiceSelected += voice =>
             {
-                VoiceButton.SelectId(args.Id);
-                Profile = Profile?.WithVoice(_voices[args.Id].ID);
+                Profile = Profile?.WithVoice(voice.ID);
                 IsDirty = true;
             };
-            VoicePreviewButton.OnPressed +=
-                _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
+
+            _voiceSelectorWindow.OnPreviewRequested += () =>
+                _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.Voice ?? "");
+
+            VoiceButton.OnPressed += _ => _voiceSelectorWindow.OpenCentered();
 
             // 🌟Starlight🌟 start
-            _siliconVoices = _prototypeManager
+            _siliconVoices = [.. _prototypeManager
                 .EnumeratePrototypes<VoicePrototype>()
-                .Where(o => o.Silicon)
-                .ToList();
+                .Where(o => o.Silicon)];
 
-            SiliconVoiceButton.OnItemSelected += args =>
+            _voiceSiliconSelectorWindow = new(_siliconVoices);
+            _voiceSiliconSelectorWindow.OnVoiceSelected += voice =>
             {
-                SiliconVoiceButton.SelectId(args.Id);
-                Profile = Profile?.WithSiliconVoice(_siliconVoices[args.Id].ID);
+                Profile = Profile?.WithSiliconVoice(voice.ID);
                 IsDirty = true;
             };
-            SiliconVoicePreviewButton.OnPressed +=
-                _ => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
+
+            _voiceSiliconSelectorWindow.OnPreviewRequested
+                += () => _entManager.System<TextToSpeechSystem>().RequestPreviewTts(Profile?.SiliconVoice ?? "");
+
+            SiliconVoiceButton.OnPressed += _ => _voiceSiliconSelectorWindow.OpenCentered();
 
             SetupTabs();
 
@@ -582,14 +606,7 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
-            VoiceButton.Clear();
-
-            for (var i = 0; i < _voices.Count; i++)
-            {
-                var voice = _voices[i];
-
-                VoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-            }
+            _voiceSelectorWindow.UpdateVoices(_voices, updateVoice: false);
 
             if (string.IsNullOrEmpty(Profile.Voice))
             {
@@ -600,9 +617,9 @@ namespace Content.Client.Lobby.UI
                     Profile.Voice = available[index].ID;
                 }
             }
-            var voiceChoiceId = _voices.FindIndex(x => x.ID == Profile.Voice);
-            if (voiceChoiceId != -1)
-                VoiceButton.TrySelectId(voiceChoiceId);
+            var voiceChoice = _voices.FirstOrDefault(x => x.ID == Profile.Voice);
+            if (voiceChoice != default)
+                _voiceSelectorWindow.SelectVoice(voiceChoice);
         }
         // 🌟Starlight🌟 Start
 
@@ -639,14 +656,7 @@ namespace Content.Client.Lobby.UI
             if (Profile is null)
                 return;
 
-            SiliconVoiceButton.Clear();
-
-            for (var i = 0; i < _siliconVoices.Count; i++)
-            {
-                var voice = _siliconVoices[i];
-
-                SiliconVoiceButton.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", i);
-            }
+            _voiceSiliconSelectorWindow.UpdateVoices(_siliconVoices, updateVoice: false);
 
             if (string.IsNullOrEmpty(Profile.SiliconVoice))
             {
@@ -658,9 +668,9 @@ namespace Content.Client.Lobby.UI
                 }
             }
 
-            var siliconVoiceChoiceId = _siliconVoices.FindIndex(x => x.ID == Profile.SiliconVoice);
-            if (siliconVoiceChoiceId != -1)
-                SiliconVoiceButton.TrySelectId(siliconVoiceChoiceId);
+            var siliconVoiceChoice = _siliconVoices.FirstOrDefault(x => x.ID == Profile.SiliconVoice);
+            if (siliconVoiceChoice != default)
+                _voiceSiliconSelectorWindow.SelectVoice(siliconVoiceChoice);
         }
 
 
@@ -873,10 +883,15 @@ namespace Content.Client.Lobby.UI
 
             for (var i = 0; i < _species.Count; i++)
             {
+                // Far Horizons, hide subspecies from list
+                if (_species[i].SubspeciesOf != null)
+                    continue;
+
                 var name = Loc.GetString(_species[i].Name);
                 SpeciesButton.AddItem(name, i);
 
-                if (Profile?.Species.Equals(_species[i].ID) == true)
+                if (Profile?.Species.Equals(_species[i].ID) == true ||
+                    _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf == _species[i].ID) // Far Horizons
                 {
                     SpeciesButton.SelectId(i);
                 }
@@ -885,7 +900,10 @@ namespace Content.Client.Lobby.UI
             // If our species isn't available then reset it to default.
             if (Profile != null)
             {
-                if (!speciesIds.Contains(Profile.Species))
+                // Far Horizons Start
+                var parentSpecies = _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf ?? Profile.Species;
+                if (!speciesIds.Contains(parentSpecies))
+                //  Far Horizons End
                 {
                     SetSpecies(SharedHumanoidAppearanceSystem.DefaultSpecies);
                 }
@@ -918,9 +936,8 @@ namespace Content.Client.Lobby.UI
                 selector.OnOpenGuidebook += OnOpenGuidebook;
 
                 var title = Loc.GetString(antag.Name);
-                var description = Loc.GetString(antag.Objective);
-                selector.Setup(items, title, 250, description, guides: antag.Guides);
-                selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
+                var description = FormattedMessage.FromMarkupPermissive(Loc.GetString(antag.Objective)); // Starlight
+                // Starlight: Setup & Select call moved down since we append requirements to the description.
 
                 if (!_requirements.IsAllowed(
                         antag,
@@ -938,6 +955,21 @@ namespace Content.Client.Lobby.UI
                 {
                     selector.UnlockRequirements();
                 }
+
+                // Starlight BEGIN: Always show job requirements, even when they're met
+                // Append requirement details to description, separated by a clear line
+                if (!reason.IsEmpty)
+                {
+                    if (!description.IsEmpty)
+                    {
+                        description.PushNewline();
+                        description.PushNewline();
+                    }
+                    description.AddMessage(reason);
+                }
+                selector.Setup(items, title, 250, description, guides: antag.Guides);
+                selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
+                // Starlight END
 
                 selector.OnSelected += preference =>
                 {
@@ -1043,6 +1075,7 @@ namespace Content.Client.Lobby.UI
             AntagOverride = null; // Starlight: Antag Loadouts
 
             UpdateNameEdit();
+            UpdateSubspecies(); // Far Horizons
             UpdateCustomSpecieNameEdit(); // Starlight
             UpdateCharacterInfoEditorText(); //Starlight
             UpdateSexControls();
@@ -1060,6 +1093,7 @@ namespace Content.Client.Lobby.UI
             UpdateVoicesControls();
             UpdateSiliconVoicesControls(); // 🌟Starlight🌟
             UpdateCybernetics(); // Starlight
+            UpdateSpeciesLoadout(); // Far Horizons
 
             UpdateTraitsSelection(); // Starlight
             RefreshAntags();
@@ -1107,7 +1141,11 @@ namespace Content.Client.Lobby.UI
             // I.e., do what jobs/antags do.
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
-            var species = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
+            // Far Horizons start
+            var speciesId = Profile?.Species ?? SharedHumanoidAppearanceSystem.DefaultSpecies;
+            var speciesProto = _species.Find(p => p.ID == speciesId) ?? _species.First();
+            var species = speciesProto.SubspeciesOf ?? speciesProto.ID;
+            // Far Horizons end
             var page = DefaultSpeciesGuidebook;
             if (_prototypeManager.HasIndex<GuideEntryPrototype>(species))
                 page = new ProtoId<GuideEntryPrototype>(species.Id); // Gross. See above todo comment.
@@ -1219,11 +1257,26 @@ namespace Content.Client.Lobby.UI
                     };
                     var jobIcon = _prototypeManager.Index(job.Icon);
                     icon.Texture = _sprite.Frame0(jobIcon.Icon);
-                    selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                    // Starlight BEGIN: Always show job requirements
+                    var description = job.LocalizedDescription != null
+                        ? FormattedMessage.FromUnformatted(job.LocalizedDescription)
+                        : FormattedMessage.Empty;
+                    var allowed = _requirements.IsAllowed(job, Profile, out var reason);
 
-                    if (!_requirements.IsAllowed(job, Profile, out var reason))
+                    // Append the reason to the description.
+                    if (!description.IsEmpty)
                     {
-                        selector.LockRequirements(reason);
+                        description.PushNewline();
+                        description.PushNewline();
+                    }
+                    description.AddMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
+
+                    selector.Setup(items, job.LocalizedName, 200, description, icon, job.Guides);
+
+                    if (!allowed)
+                    {
+                        selector.LockRequirements(description);
+                        // Starlight END
                         Profile = Profile?.WithoutJob(job);
                         SetDirty();
                     }
@@ -1600,6 +1653,7 @@ namespace Content.Client.Lobby.UI
         private void SetSpecies(string newSpecies)
         {
             Profile = Profile?.WithSpecies(newSpecies);
+            UpdateSubspecies(); // Far Horizons
             OnSkinColorOnValueChanged(); // Species may have special color prefs, make sure to update it.
             Markings.SetSpecies(newSpecies); // Repopulate the markings tab as well.
             // In case there's job restrictions for the species
@@ -1609,6 +1663,7 @@ namespace Content.Client.Lobby.UI
             UpdateSexControls(); // update sex for new species
             UpdateSpeciesGuidebookIcon();
             UpdateSizeControls(); //starlight
+            UpdateSpeciesLoadout(); // Far Horizons
             ReloadPreview();
         }
 
@@ -1800,15 +1855,14 @@ namespace Content.Client.Lobby.UI
         {
             SpeciesInfoButton.StyleClasses.Clear();
 
-            var species = Profile?.Species;
-            if (species is null)
-                return;
+            var species = Profile?.Species ?? _species.First(); // Far Horizons
 
             if (!_prototypeManager.Resolve<SpeciesPrototype>(species, out var speciesProto))
                 return;
 
             // Don't display the info button if no guide entry is found
-            if (!_prototypeManager.HasIndex<GuideEntryPrototype>(species))
+            // Far Horizons, guide book from paren species
+            if (!_prototypeManager.HasIndex<GuideEntryPrototype>(speciesProto.SubspeciesOf ?? species))
                 return;
 
             const string style = "SpeciesInfoDefault";

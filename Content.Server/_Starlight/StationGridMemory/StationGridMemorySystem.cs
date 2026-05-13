@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.StationGridMemory;
 public sealed class StationGridMemorySystem : EntitySystem
 {
     [Dependency] private readonly MetaDataSystem _meta = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();

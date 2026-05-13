@@ -1,0 +1,16 @@
+reagent-label-dexalin-10 = dexalin 10u
+reagent-label-dylovene-10 = dylovene 10u
+reagent-label-hyronalin-10 = hyronalin 10u
+reagent-label-potassium-iodine-10 = potassium iodine 10u
+reagent-label-iron-10 = iron 10u
+reagent-label-copper-10 = copper 10u
+reagent-label-kelotane-10 = kelotane 10u
+reagent-label-dermaline-10 = dermaline 10u
+reagent-label-tricordrazine-10 = tricordrazine 10u
+reagent-label-bicaridine-10 = bicaridine 10u
+reagent-label-charcoal-10 = charcoal 10u
+reagent-label-psicodine-10 = psicodine 10u
+reagent-label-nitrogen-5 = nitrogen 5u
+reagent-label-nitrogen-10 = nitrogen 10u
+reagent-label-hydrogen-5 = hydrogen 5u
+reagent-label-hydrogen-10 = hydrogen 10u

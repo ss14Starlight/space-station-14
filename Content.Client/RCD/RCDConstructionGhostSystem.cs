@@ -30,6 +30,7 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
     [Dependency] private readonly HandsSystem _hands = default!;
 
     private Direction _placementDirection = default;
+    private EntityUid? _lastHeldRcd; // Starlight Edit: RPD/RPLD held-tool rotation sync
     // Starlight Start: RPD
     private bool _useMirrorPrototype = false;
     public event EventHandler? FlipConstructionPrototype;
@@ -105,6 +106,7 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
             if (placerIsRCD)
                 _placementManager.Clear();
 
+            _lastHeldRcd = null; // Starlight Edit: reset last held tool so next tool switch resyncs rotation immediately.
             return;
         }
         // Starlight edit Start: RPD - use the mirrored prototype if the flip state is toggled on
@@ -115,19 +117,28 @@ public sealed class RCDConstructionGhostSystem : EntitySystem
         var wantMirror = _useMirrorPrototype && !string.IsNullOrEmpty(cachedProto.MirrorPrototype);
         var prototype = wantMirror ? cachedProto.MirrorPrototype : cachedProto.Prototype;
 
-        bool isLayered = rcd.IsRpd
+        bool isLayered = (rcd.IsRpd || rcd.IsRPLD)
             && _protoManager.TryIndex<RCDPrototype>(cachedProto.ID, out var rcdProto)
             && rcdProto.HasLayers;
 
         var desiredMode = isLayered ? RpdPlacementMode : PlacementMode;
         // Starlight edit End: RPD - use the mirrored prototype if the flip state is toggled on
 
+        // Starlight Start: ensure a freshly switched RCD/RPLD gets an initial rotation sync event,
+        // even if the placement direction value itself did not change.
+        if (_lastHeldRcd != heldEntity)
+        {
+            _lastHeldRcd = heldEntity;
+            _placementDirection = _placementManager.Direction;
+            RaiseNetworkEvent(new RCDConstructionGhostRotationEvent(GetNetEntity(heldEntity.Value), _placementDirection));
+        }
         // Update the direction the RCD prototype based on the placer direction
-        if (_placementDirection != _placementManager.Direction)
+        else if (_placementDirection != _placementManager.Direction)
         {
             _placementDirection = _placementManager.Direction;
             RaiseNetworkEvent(new RCDConstructionGhostRotationEvent(GetNetEntity(heldEntity.Value), _placementDirection));
         }
+        // Starlight End: held-tool rotation resync
 
         // If the placer has not changed, exit
         // Starlight edit Start

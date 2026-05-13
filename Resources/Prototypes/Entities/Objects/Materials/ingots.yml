@@ -11,6 +11,12 @@
     size: Normal
   - type: StaticPrice
     price: 0
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Tag
     tags:
     - Ingot

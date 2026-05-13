@@ -24,6 +24,17 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
+    # Starlight Start
+    - id: PsychicScreach
+    - id: SecurityDrill
+    - id: DoorRuntime
+    - id: RadStorm
+    - id: AuroraCaelus
+    - id: SpaceWhale
+    - id: CommunicationBlackout
+    - id: NightShift
+    - id: SyndicateDeadDrop
+    # Starlight End
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -63,12 +74,13 @@
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
-        - id: DerelictBorgiSpawn # Starlight
+        - id: DerelictPurrfusCyborgSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
-        - id: DerelictSyndicateAssaultCyborgSpawn
-    
+        - id: DerelictBorgiSpawn # Starlight
+   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight - no more derelict Syndicate borgs
+
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
@@ -344,15 +356,15 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 30
+    minimumPlayers: 45 # 🌟Starlight🌟 Casualization
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
     - spawnerPrototype: SpawnPointGhostWizard
       min: 1
-      max: 1
+      max: 3 # Starlight
       prefRoles: [ Wizard ] #starlight
-      playerRatio: 1
+      playerRatio: 60 # Starlight, you know, could be neat for multiple wizards to late spawn.
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
@@ -360,8 +372,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       # TODO: WizardComp as needed
       components:
       - type: UniversalLanguageSpeaker
@@ -378,6 +389,7 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
       # Starlight-end
 
 # disabled until event is rewritten to be more interesting
@@ -431,33 +443,34 @@
     maxDuration: 120
   - type: PowerGridCheckRule
 
-- type: entity
-  parent: BaseGameRule
-  id: SolarFlare
-  components:
-  - type: StationEvent
-    weight: 8
-    startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
-    startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    duration: 120
-    maxDuration: 240
-  - type: SolarFlareRule
-    onlyJamHeadsets: true
-    affectedChannels:
-    - Common
-    extraChannels:
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    extraCount: 2
-    lightBreakChancePerSecond: 0.0003
-    doorToggleChancePerSecond: 0.001
+# SL - Moved to WIP
+# - type: entity
+#   parent: BaseGameRule
+#   id: SolarFlare
+#   components:
+#   - type: StationEvent
+#     weight: 8
+#     startAnnouncement: station-event-solar-flare-start-announcement
+#     endAnnouncement: station-event-solar-flare-end-announcement
+#     startAudio:
+#       path: /Audio/_Starlight/Announcements/attention.ogg
+#     duration: 120
+#     maxDuration: 240
+#   - type: SolarFlareRule
+#     onlyJamHeadsets: true
+#     affectedChannels:
+#     - Common
+#     extraChannels:
+#     - Command
+#     - Engineering
+#     - Medical
+#     - Science
+#     - Security
+#     - Service
+#     - Supply
+#     extraCount: 2
+#     lightBreakChancePerSecond: 0.0003
+#     doorToggleChancePerSecond: 0.001
 
 - type: entity
   id: VentClog
@@ -597,7 +610,7 @@
   - type: StationEvent
     earliestStart: 55 # 🌟Starlight🌟 Casualization
     weight: 3 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 20
+    minimumPlayers: 35 # 🌟Starlight🌟 Casualization
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
@@ -732,7 +745,7 @@
     weight: 2
     minimumPlayers: 25
     reoccurrenceDelay: 20
-    maxOccurrences: 2 
+    maxOccurrences: 2
   - type: GreytideVirusRule
     accessGroups:
     - Cargo
@@ -869,7 +882,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: DerelictSyndicateAssaultCyborgSpawn
+  id: DerelictSyndicateAssaultCyborgSpawn # Starlight - admeme only, not rollable
   components:
   - type: StationEvent
     globalAnnouncement: false # Starlight

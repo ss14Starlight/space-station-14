@@ -11,7 +11,7 @@ public sealed class RmStationCommand : LocalizedCommands
 {
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    
+
     public override string Command => "rmstation";
     public override string Description => "Deletes a station.";
 

@@ -25,7 +25,7 @@ public sealed partial class ReagentCardControl : Control
         ReagentNameLabel.Text = item.ReagentLabel;
         FillLabel.Text = Loc.GetString("reagent-dispenser-window-quantity-label-text", ("quantity", item.Generatable ? "∞" : item.Quantity));; // Starlight-edit
         EjectButtonIcon.Text = Loc.GetString("reagent-dispenser-window-eject-container-button");
-        
+
         // Starlight-start
         if (StorageLocation != null)
             EjectButton.OnPressed += args => OnEjectButtonPressed?.Invoke(StorageLocation.Value);

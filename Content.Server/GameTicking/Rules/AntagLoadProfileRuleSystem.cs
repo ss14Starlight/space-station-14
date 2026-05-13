@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Traits;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
@@ -23,6 +24,7 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
     [Dependency] private readonly TraitSystem _traitSystem = default!; //Starlight
     [Dependency] private readonly SLSharedCharacterInfoSystem _sLSharedCharacterInfoSystem = default!; //Starlight
     [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
 
     public override void Initialize()
     {
@@ -67,6 +69,8 @@ public sealed class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfile
             var resolvedEntity = (EntityUid)args.Entity;
             var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
+
+            _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));
         }
         else
         {
