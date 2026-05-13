@@ -14,19 +14,19 @@ namespace Content.Client.UserInterface.RichText;
 public sealed class CheckTagHandler : IMarkupTagHandler
 {
     public string Name => "check";
-    private static int _checkCounter = 0;
+    private static int s_checkCounter = 0;
 
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>
     public static float FontLineHeight { get; set; } = 16.0f; // Default fallback
 
-    private static int GetCheckIndex(MarkupNode node) => _checkCounter++;
+    private static int GetCheckIndex(MarkupNode _) => s_checkCounter++;
 
     /// <summary>
     /// Resets the check counter to ensure consistent indexing across renders.
     /// </summary>
-    public static void ResetCheckCounter() => _checkCounter = 0;
+    public static void ResetCheckCounter() => s_checkCounter = 0;
 
     /// <summary>
     /// Counts check buttons before the clicked button to determine which [check] tag it represents.
@@ -93,7 +93,7 @@ public sealed class CheckTagHandler : IMarkupTagHandler
         {
             // Find the PaperWindow parent
             var parent = btn.Parent;
-            while (parent != null && parent is not PaperWindow)
+            while (parent is not null and not PaperWindow)
                 parent = parent.Parent;
 
             if (parent is PaperWindow paperWindow)
@@ -113,22 +113,22 @@ public sealed class CheckTagHandler : IMarkupTagHandler
     /// </summary>
     private static string ReplaceNthCheckTag(string text, int index, string replacement)
     {
-        const string checkTag = "[check]";
+        const string CheckTag = "[check]";
         var currentIndex = 0;
         var pos = 0;
 
         while (pos < text.Length)
         {
-            var foundPos = text.IndexOf(checkTag, pos);
+            var foundPos = text.IndexOf(CheckTag, pos);
             if (foundPos == -1) break;
 
             if (currentIndex == index)
             {
-                return text.Substring(0, foundPos) + replacement + text.Substring(foundPos + checkTag.Length);
+                return text[..foundPos] + replacement + text[(foundPos + CheckTag.Length)..];
             }
 
             currentIndex++;
-            pos = foundPos + checkTag.Length;
+            pos = foundPos + CheckTag.Length;
         }
 
         return text;

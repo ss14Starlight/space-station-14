@@ -26,6 +26,7 @@
             Janitor: [ 3, 4 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 2, 2 ]
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 4, 5 ]
             Reporter: [ 2, 2 ]
             #engineering
@@ -35,10 +36,11 @@
             TechnicalAssistant: [ 3, 4 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
-            Chemist: [ 2, 2 ]
+            Chemist: [ 3, 3 ]
             MedicalDoctor: [ 4, 6 ]
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ 3, 3 ]
+            Psychologist: [ 1, 1 ]
             Surgeon: [ 2, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
