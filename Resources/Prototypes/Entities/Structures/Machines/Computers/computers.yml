@@ -685,7 +685,7 @@
   parent: BaseComputerAiAccess
   id: ComputerId
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming NanoTrasen employee ID cards to access parts of the station. # SL
   components:
   - type: IdCardConsole
   # Starlight-edit: Start
