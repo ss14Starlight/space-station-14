@@ -17,6 +17,7 @@
   - ClothingUniformJumpskirtCargoFormal
   - ClothingUniformJumpsuitCargoAlt
   - ClothingUniformJumpsuitCargoFormal
+  - ClothingUniformJumpsuitCargoInformal # DeltaV
   - ClothingUniformJumpsuitSalvageFormal
   - ClothingUniformJumpsuitSalvageSpecialist
   - ClothingHeadHatQMsoft
@@ -26,6 +27,7 @@
   - ClothingUniformJumpsuitQMTurtleneck
   - ClothingUniformJumpskirtQMTurtleneck
   - ClothingUniformJumpsuitQMFormal
+  - ClothingUniformJumpskirtQmFormal # DeltaV
   - ClothingHeadHatBeretCargo # starlight
   - ClothingHeadHatBeretCargoFormal # starlight
 
@@ -47,6 +49,8 @@
   - ClothingUniformJumpskirtHoP
   - ClothingUniformJumpsuitHoPTurtleneck # afterlight
   - ClothingUniformJumpskirtHoPTurtleneck # afterlight
+  - ClothingUniformJumpsuitHopFormal # DeltaV
+  - ClothingUniformJumpskirtHopFormal # DeltaV
   # BSO ## afterlight start
   - ClothingUniformJumpskirtBlueShield
   - ClothingUniformJumpskirtEliteBlueShield
@@ -88,6 +92,11 @@
   - ClothingUniformJumpskirtCMO
   - ClothingUniformJumpsuitCMOTurtle
   - ClothingUniformJumpskirtCMOTurtle
+  - ClothingUniformJumpsuitCmoFormal # DeltaV
+  - ClothingUniformJumpskirtCmoFormal # DeltaV
+  - ClothingUniformJumpsuitCmoVest # DeltaV
+  - ClothingUniformJumpskirtCmoVest # DeltaV
+  - ClothingUniformJumpsuitCmoSummer # DeltaV
   - ClothingHeadHatBeretSeniorPhysician
   - ClothingUniformJumpsuitMedicalDoctor
   - ClothingUniformJumpskirtMedicalDoctor
@@ -146,8 +155,11 @@
   - ClothingUniformJumpskirtBrigmedic
   - ClothingHeadHatBeretDutyOfficer # Starlight
   - ClothingHeadHatDutyOfficer # Starlight
+  - ClothingHeadHatDutyOfficerOrange # DeltaV
   - ClothingUniformJumpsuitDutyOfficer # Starlight
   - ClothingUniformJumpskirtDutyOfficer # Starlight
+  - ClothingUniformJumpsuitDutyOfficerOrange # DeltaV
+  - ClothingUniformJumpskirtDutyOfficerOrange # DeltaV
   - ClothingHeadHatBeretWarden
   - ClothingHeadHatWarden
   - ClothingUniformJumpsuitWarden
