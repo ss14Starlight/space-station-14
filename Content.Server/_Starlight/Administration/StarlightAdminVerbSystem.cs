@@ -44,7 +44,9 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
             Act = () =>
             {
                 _antagSelection.ForceMakeAntag<CosmicCultRuleComponent>(targetPlayer, "CosmicCult");
-                _autolog.LogToDiscord(string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")), player.Name);
+                _autolog.LogToDiscord(
+                    string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),
+                    player.Name);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),

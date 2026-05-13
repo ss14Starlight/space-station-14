@@ -17,8 +17,6 @@ public sealed class MailCompanionSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [DataField]
-    private static readonly TimeSpan _sensorDataTimeout = TimeSpan.FromSeconds(10);
 
     public override void Initialize()
     {
@@ -306,7 +304,7 @@ public sealed class MailCompanionSystem : EntitySystem
         if (component.LastSensorDataReceivedAt == TimeSpan.Zero)
             return;
 
-        if (component.LastSensorDataReceivedAt + _sensorDataTimeout > _timing.CurTime)
+        if (component.LastSensorDataReceivedAt + component.CooldownDuration > _timing.CurTime)
             return;
 
         component.ConnectedSensors.Clear();

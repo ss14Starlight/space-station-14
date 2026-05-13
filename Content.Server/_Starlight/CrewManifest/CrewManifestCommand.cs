@@ -91,7 +91,7 @@ public sealed class CrewManifestCommand : ToolshedCommand
             // this next part can fail based off if the prototype sucks ass and id names are inconsistent. womp womp. i'm not editing every single id prototype.
             var iconId = card.JobIcon.Id;
             var parsed = iconId.Replace("Icon", "").Replace("Job", "");
-            if(_proto.HasIndex<JobPrototype>(parsed)) return _proto.Index<JobPrototype>(parsed); // pray.
+            if (_proto.HasIndex<JobPrototype>(parsed)) return parsed; // pray.
         }
 
         return _assistantPrototypeId;
