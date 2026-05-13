@@ -1,72 +1,22 @@
 - type: entity
-  parent: [GasPipeLayerAlt1, GasVentPumpVox]
+  parent: [GasVentPumpAlt1, GasVentPumpVox]
   id: GasVentPumpVoxAlt1
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventpumpvoxAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasVentPumpVox]
+  parent: [GasVentPumpAlt2, GasVentPumpVox]
   id: GasVentPumpVoxAlt2
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventpumpvoxAlt2
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasVentScrubberVox]
+  parent: [GasVentScrubberAlt1, GasVentScrubberVox]
   id: GasVentScrubberVoxAlt1
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: scrub_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventscrubberVoxAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasVentScrubberVox]
+  parent: [GasVentScrubberAlt2, GasVentScrubberVox]
   id: GasVentScrubberVoxAlt2
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: scrub_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventscrubberVoxAlt2
 
 - type: entity
   parent: [AirSensorVoxBase, GasDualPortVentPump]
@@ -78,37 +28,25 @@
       Primary: GasDualPortVentPumpVox
       Secondary: GasDualPortVentPumpVoxAlt1
       Tertiary: GasDualPortVentPumpVoxAlt2
+      Quaternary: GasDualPortVentPumpVoxAlt3
+      Quinary: GasDualPortVentPumpVoxAlt4
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasDualPortVentPumpVox]
+  parent: [GasDualPortVentPumpAlt1, GasDualPortVentPumpVox]
   id: GasDualPortVentPumpVoxAlt1
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeBinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: dualportventpumpVoxAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasDualPortVentPumpVox]
+  parent: [GasDualPortVentPumpAlt2, GasDualPortVentPumpVox]
   id: GasDualPortVentPumpVoxAlt2
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeBinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: dualportventpumpVoxAlt2
+
+- type: entity
+  parent: [GasDualPortVentPumpAlt3, GasDualPortVentPumpVox]
+  id: GasDualPortVentPumpVoxAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [GasDualPortVentPumpAlt4, GasDualPortVentPumpVox]
+  id: GasDualPortVentPumpVoxAlt4
+  categories: [ HideSpawnMenu ]

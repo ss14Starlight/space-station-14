@@ -49,7 +49,5 @@ public sealed class EventSelectorRadialMenuBoundUserInterface(EntityUid owner, E
     }
 
     private void TrySendTriggerSelectMessage(int index)
-    {
-        SendMessage(new EventSelectorOnRadialMenuSelectMessage(index));
-    }
+        => SendMessage(new EventSelectorOnRadialMenuSelectMessage(index));
 }
