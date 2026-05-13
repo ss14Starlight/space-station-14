@@ -32,7 +32,7 @@
       enum.EncryptionKeyHolderUiKey.Key:
         type: EncryptionKeyHolderBoundUserInterface
   - type: ActivatableUI
-    inHandsOnly: true
+    inHandsOnly: false
     key: enum.EncryptionKeyHolderUiKey.Key
   # Starlight End
 
