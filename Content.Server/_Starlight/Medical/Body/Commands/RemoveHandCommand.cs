@@ -14,6 +14,8 @@ public sealed class RemoveHandCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     public string Command => "removehand";
     public string Description => "Removes a hand from your entity.";
@@ -42,8 +44,7 @@ public sealed class RemoveHandCommand : IConsoleCommand
             return;
         }
 
-        var bodySystem = _entManager.System<BodySystem>();
-        var hand = bodySystem.GetBodyChildrenOfType(player.AttachedEntity.Value, BodyPartType.Hand, body).FirstOrDefault();
+        var hand = _bodySystem.GetBodyChildrenOfType(player.AttachedEntity.Value, BodyPartType.Hand, body).FirstOrDefault();
 
         if (hand == default)
         {
@@ -51,7 +52,7 @@ public sealed class RemoveHandCommand : IConsoleCommand
         }
         else
         {
-            _entManager.System<SharedTransformSystem>().AttachToGridOrMap(hand.Id);
+            _transformSystem.AttachToGridOrMap(hand.Id);
         }
     }
 }

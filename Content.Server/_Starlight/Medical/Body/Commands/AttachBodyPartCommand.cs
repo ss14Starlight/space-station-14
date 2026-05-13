@@ -11,6 +11,7 @@ namespace Content.Server._Starlight.Medical.Body.Commands;
 public sealed class AttachBodyPartCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
 
     public string Command => "attachbodypart";
     public string Description => "Attaches a body part to you or someone else.";
@@ -87,12 +88,11 @@ public sealed class AttachBodyPartCommand : IConsoleCommand
 
         if (!_entManager.TryGetComponent(partUid, out BodyPartComponent? part))
         {
-            shell.WriteLine($"Entity {_entManager.GetComponent<MetaDataComponent>(partUid.Value).EntityName} with uid {args[0]} does not have a {nameof(BodyPartComponent)}.");
+            shell.WriteLine($"Entity {_entManager.GetComponent<MetaDataComponent>(partUid.Value).EntityName} with uid {partUid.Value} does not have a {nameof(BodyPartComponent)}.");
             return;
         }
 
-        var bodySystem = _entManager.System<BodySystem>();
-        if (bodySystem.BodyHasChild(bodyId, partUid.Value, body, part))
+        if (_bodySystem.BodyHasChild(bodyId, partUid.Value, body, part))
         {
             shell.WriteLine($"Body part {_entManager.GetComponent<MetaDataComponent>(partUid.Value).EntityName} with uid {partUid} is already attached to entity {_entManager.GetComponent<MetaDataComponent>(bodyId).EntityName} with uid {bodyId}");
             return;
@@ -100,14 +100,14 @@ public sealed class AttachBodyPartCommand : IConsoleCommand
 
         var slotId = $"AttachBodyPartVerb-{partUid}";
 
-        if (body.RootContainer.ContainedEntity is null && !bodySystem.AttachPartToRoot(bodyId, partUid.Value, body, part))
+        if (body.RootContainer.ContainedEntity is null && !_bodySystem.AttachPartToRoot(bodyId, partUid.Value, body, part))
         {
             shell.WriteError("Body container does not have a root entity to attach to the body part!");
             return;
         }
 
-        var (rootPartId, rootPart) = bodySystem.GetRootPartOrNull(bodyId, body)!.Value;
-        if (!bodySystem.TryCreatePartSlotAndAttach(rootPartId,
+        var (rootPartId, rootPart) = _bodySystem.GetRootPartOrNull(bodyId, body)!.Value;
+        if (!_bodySystem.TryCreatePartSlotAndAttach(rootPartId,
                 slotId,
                 partUid.Value,
                 part.PartType,

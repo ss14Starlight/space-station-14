@@ -211,7 +211,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 {
                     if (scale < effect.MinScale)
                         continue;
-                    scale = Math.Min(scale, effect.MaxScale ?? scale);
+                    var effectScale = Math.Min(scale, effect.MaxScale ?? scale);
 
                     if (effect.Probability < 1.0f && !_random.Prob(effect.Probability))
                         continue;
@@ -220,23 +220,23 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                     if (effect.Conditions != null && !CanMetabolizeEffect(actualEntity, ent, soln.Value, effect.Conditions))
                         continue;
 
-                    ApplyEffect(effect);
+                    ApplyEffect(effect, effectScale);
 
                 }
 
                 // TODO: We should have to do this with metabolism. ReagentEffect struct needs refactoring and so does metabolism!
-                void ApplyEffect(EntityEffect effect)
+                void ApplyEffect(EntityEffect effect, float effectScale)
                 {
                     switch (effect)
                     {
                         case ModifyLungGas:
-                            _entityEffects.ApplyEffect(ent, effect, scale);
+                            _entityEffects.ApplyEffect(ent, effect, effectScale);
                             break;
                         case AdjustReagent:
-                            _entityEffects.ApplyEffect(soln.Value, effect, scale);
+                            _entityEffects.ApplyEffect(soln.Value, effect, effectScale);
                             break;
                         default:
-                            _entityEffects.ApplyEffect(actualEntity, effect, scale);
+                            _entityEffects.ApplyEffect(actualEntity, effect, effectScale);
                             break;
                     }
                 }

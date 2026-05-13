@@ -17,6 +17,8 @@ sealed class AddHandCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
+    [Dependency] private readonly BodySystem _bodySystem = default!;
 
     private static readonly EntProtoId _defaultHandPrototype = "LeftHandHuman";
     private static int s_handIdAccumulator;
@@ -77,6 +79,12 @@ sealed class AddHandCommand : IConsoleCommand
                             return;
                         }
 
+                        if (!_protoManager.HasIndex<EntityPrototype>(args[0]))
+                        {
+                            shell.WriteLine($"No hand entity exists with id {args[0]}.");
+                            return;
+                        }
+
                         entity = player.AttachedEntity.Value;
                         hand = _entManager.SpawnEntity(args[0], _entManager.GetComponent<TransformComponent>(entity).Coordinates);
                     }
@@ -126,7 +134,7 @@ sealed class AddHandCommand : IConsoleCommand
             _entManager.DeleteEntity(hand);
 
             // You have no body and you must scream.
-            _entManager.System<HandsSystem>().AddHand(entity, $"{hand}-cmd-{s_handIdAccumulator++}", location);
+            _handsSystem.AddHand(entity, $"{hand}-cmd-{s_handIdAccumulator++}", location);
             return;
         }
 
@@ -136,15 +144,20 @@ sealed class AddHandCommand : IConsoleCommand
             return;
         }
 
-        var bodySystem = _entManager.System<BodySystem>();
-
-        var attachAt = bodySystem.GetBodyChildrenOfType(entity, BodyPartType.Arm, body).FirstOrDefault();
+        var attachAt = _bodySystem.GetBodyChildrenOfType(entity, BodyPartType.Arm, body).FirstOrDefault();
         if (attachAt == default)
-            attachAt = bodySystem.GetBodyChildren(entity, body).First();
+            attachAt = _bodySystem.GetBodyChildren(entity, body).FirstOrDefault();
+
+        if (attachAt == default)
+        {
+            shell.WriteError($"No attachment point found on entity {_entManager.ToPrettyString(entity)}");
+            _entManager.DeleteEntity(hand);
+            return;
+        }
 
         var slotId = part.GetHashCode().ToString();
 
-        if (!bodySystem.TryCreatePartSlotAndAttach(attachAt.Id, slotId, hand, BodyPartType.Hand, attachAt.Component, part))
+        if (!_bodySystem.TryCreatePartSlotAndAttach(attachAt.Id, slotId, hand, BodyPartType.Hand, attachAt.Component, part))
         {
             shell.WriteError($"Couldn't create a slot with id {slotId} on entity {_entManager.ToPrettyString(entity)}");
             return;
