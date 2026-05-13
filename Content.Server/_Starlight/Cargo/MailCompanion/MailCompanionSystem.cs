@@ -304,7 +304,7 @@ public sealed class MailCompanionSystem : EntitySystem
         if (component.LastSensorDataReceivedAt == TimeSpan.Zero)
             return;
 
-        if (component.LastSensorDataReceivedAt + component.CooldownDuration > _timing.CurTime)
+        if (component.LastSensorDataReceivedAt + component.SensorTimeout > _timing.CurTime)
             return;
 
         component.ConnectedSensors.Clear();
