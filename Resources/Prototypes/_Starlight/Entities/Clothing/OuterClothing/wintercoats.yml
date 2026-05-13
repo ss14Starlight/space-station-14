@@ -1,3 +1,4 @@
+# Medical
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterChemSenior
@@ -30,7 +31,7 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterChemSenior
 
-
+# Cargo
 - type: entity
   parent: ClothingOuterWinterCoatToggleable
   id: ClothingOuterWinterCargoSenior
@@ -62,6 +63,40 @@
     priceMultiplier: 0.15
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterSeniorCourier
+
+# Security
+## Duty Officer
+- type: entity
+  parent: [ClothingOuterWinterCoatToggleable, BaseSecurityContraband]
+  id: ClothingOuterWinterDutyOfficer
+  name: duty officer's armored winter coat
+  description: A sturdy, utilitarian winter coat designed to protect a duty officer from any uppity perma prisoners.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatdutyofficerarmored.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/WinterCoats/coatdutyofficerarmored.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterDutyOfficer
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.65
+        Piercing: 0.80
+        Heat: 0.75
+        Caustic: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]
+
+# Command
 
 - type: entity
   parent: [ClothingOuterWinterCoatToggleable, BaseCommandContraband, AllowSuitStorageClothing]

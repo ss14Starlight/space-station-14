@@ -962,12 +962,12 @@
   defaultSelected: 1
   loadouts:
   - DutyOfficerArmorRiot
+  - DutyOfficerWintercoat
   - ArmorVest
   - ArmorVestSlim
   - ArmorVestPlate
   - ArmorVestStab
   - ArmorVestHeatAbsorb
-  - SecurityOfficerWintercoat
   - SecurityBomber
   - WindbreakerSecurity
 
