@@ -71,6 +71,39 @@
         },
         {
             "name": "tile_astro_dirt"
+        },
+        {
+            "name": "3x3black"
+        },
+        {
+            "name": "3x3brown"
+        },
+        {
+            "name": "3x3steel"
+        },
+        {
+            "name": "3x3white"
+        },
+        {
+            "name": "old_concrete_tiles"
+        },
+        {
+            "name": "old_concrete_bricks"
+        },
+        {
+            "name": "ornate"
+        },
+        {
+            "name": "rough_metal"
+        },
+        {
+            "name": "rusty_metal"
+        },
+        {
+            "name": "steel_grate"
+        },
+        {
+            "name": "techfloor_greeb"
         }
     ]
 }
