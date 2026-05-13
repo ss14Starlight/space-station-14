@@ -26,6 +26,13 @@
   - type: GuideHelp
     guides:
     - Radio
+  - type: UserInterface
+    interfaces:
+      enum.EncryptionKeyHolderUiKey.Key:
+        type: EncryptionKeyHolderBoundUserInterface
+  - type: ActivatableUI
+    inHandsOnly: true
+    key: enum.EncryptionKeyHolderUiKey.Key
 
 - type: entity
   parent: ClothingHeadset

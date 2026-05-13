@@ -49,56 +49,28 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntRemovedFromContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionRemovalFinishedEvent>(OnKeyRemoval);
 
-        SubscribeLocalEvent<EncryptionKeyHolderComponent, GetVerbsEvent<Verb>>(AddMuteVerb);
+        SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionKeyToggleMessage>(OnEncryptionKeyToggle);
     }
 
     // Starlight
-    private void AddMuteVerb(EntityUid uid, EncryptionKeyHolderComponent comp, GetVerbsEvent<Verb> args)
+    private void OnEncryptionKeyToggle(EntityUid uid, EncryptionKeyHolderComponent comp, ref EncryptionKeyToggleMessage args)
     {
         foreach (var key in comp.KeyContainer.ContainedEntities)
         {
             if (!TryComp<EncryptionKeyComponent>(key, out var keyComp))
                 continue;
 
-            var locString = Loc.GetString("encryption-key-mute");
-            foreach (var channel in keyComp.Channels)
+            if (keyComp.Channels.Contains(args.ProtoId))
             {
-                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel, out var channelPrototype))
-                    continue;
-
-                var muteVerb = new Verb
-                {
-                    Text = $"{locString} {channelPrototype.LocalizedName}",
-                    Act = () =>
-                    {
-                        keyComp.Channels.Remove(channelPrototype);
-                        keyComp.MutedChannels.Add(channelPrototype);
-                        UpdateChannels(uid, comp);
-                    },
-                    Category = VerbCategory.ManageChannels
-                };
-                args.Verbs.Add(muteVerb);
+                keyComp.Channels.Remove(args.ProtoId);
+                keyComp.MutedChannels.Add(args.ProtoId);
+                UpdateChannels(uid, comp);
             }
-
-            locString = Loc.GetString("encryption-key-unmute");
-            foreach (var channel in keyComp.MutedChannels)
+            else if (keyComp.MutedChannels.Contains(args.ProtoId))
             {
-                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel, out var channelPrototype))
-                    continue;
-
-                var unmuteVerb = new Verb
-                {
-                    Text = $"{locString} {channelPrototype.LocalizedName}",
-                    Act = () =>
-                    {
-                        keyComp.MutedChannels.Remove(channelPrototype);
-                        keyComp.Channels.Add(channelPrototype);
-                        UpdateChannels(uid, comp);
-                    },
-                    Category = VerbCategory.ManageChannels
-                };
-
-                args.Verbs.Add(unmuteVerb);
+                keyComp.MutedChannels.Remove(args.ProtoId);
+                keyComp.Channels.Add(args.ProtoId);
+                UpdateChannels(uid, comp);
             }
         }
     }
