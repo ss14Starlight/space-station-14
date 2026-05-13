@@ -14,8 +14,6 @@ public sealed class RemoveHandCommand : IConsoleCommand
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     public string Command => "removehand";
     public string Description => "Removes a hand from your entity.";
@@ -23,6 +21,9 @@ public sealed class RemoveHandCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var bodySystem = _entManager.System<BodySystem>();
+        var transformSystem = _entManager.System<SharedTransformSystem>();
+
         var player = shell.Player;
         if (player == null)
         {
@@ -44,15 +45,14 @@ public sealed class RemoveHandCommand : IConsoleCommand
             return;
         }
 
-        var hand = _bodySystem.GetBodyChildrenOfType(player.AttachedEntity.Value, BodyPartType.Hand, body).FirstOrDefault();
+        var hand = bodySystem.GetBodyChildrenOfType(player.AttachedEntity.Value, BodyPartType.Hand, body).FirstOrDefault();
 
         if (hand == default)
         {
             shell.WriteLine("You have no hands.");
+            return;
         }
-        else
-        {
-            _transformSystem.AttachToGridOrMap(hand.Id);
-        }
+
+        transformSystem.AttachToGridOrMap(hand.Id);
     }
 }
