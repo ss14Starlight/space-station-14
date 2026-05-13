@@ -11,6 +11,8 @@
         "!type:ActionChameleonSkinEvent mapping",
         "!type:ActionComponentChangeEvent mapping",
         "!type:ActionEphedrineOverdoseEvent mapping",
+        "!type:ActionDesoxyephedrineOverdoseEvent mapping",
+        "!type:ActionAmalgamOverdoseEvent mapping",
         "!type:ActionFleshmendEvent mapping",
         "!type:ActionGunShootEvent mapping",
         "!type:ActionHivemindAccessEvent mapping",

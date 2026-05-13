@@ -49,6 +49,10 @@
   equipment:
     outerClothing: ClothingOuterArmorRiot
 
+- type: loadout
+  id: DutyOfficerWintercoat
+  equipment:
+    outerClothing: ClothingOuterWinterDutyOfficer
 
 # Belt
 - type: loadout
