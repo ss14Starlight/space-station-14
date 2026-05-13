@@ -1,14 +1,10 @@
-using Content.Client.Stylesheets.Palette;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Radio;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
-using Content.Shared.Radio.EntitySystems;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
-using Content.Shared.Radio.EntitySystems;
-using Robust.Client.GameObjects;
 using Robust.Shared.Player;
 
 namespace Content.Client._Starlight.Radio.UI;
