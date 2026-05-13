@@ -110,7 +110,9 @@ namespace Content.IntegrationTests.Tests
         /// </summary>
         private static readonly string[] ShouldMapWhitelist =
         {
-            "/Maps/_Starlight/Stations/StationBuilding.yml"
+            "/Maps/_Starlight/Stations/StationBuilding.yml", // event map
+            "/Maps/_Starlight/Stations/Reach.yml", // very small, can't fit everything
+            "/Maps/_Starlight/Stations/Cork.yml"   // very small, can't fit everything
         };
         // starlight end
 
