@@ -4,8 +4,8 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/13/2026 01:28:33
-  entityCount: 19319
+  time: 05/13/2026 01:50:59
+  entityCount: 19327
 maps:
 - 1
 grids:
@@ -10293,8 +10293,9 @@ entities:
           -13,-4:
             0: 65024
           -12,-3:
-            0: 6415
+            0: 4367
             2: 33792
+            3: 2048
           -13,-3:
             0: 61071
           -12,-2:
@@ -13594,7 +13595,7 @@ entities:
       pos: 14.5,32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -35103.06
+      secondsUntilStateChange: -36445.86
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18162,6 +18163,18 @@ entities:
       rot: 3.141592653589793 rad
       pos: 7.5,43.5
       parent: 2
+  - uid: 19320
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,43.5
+      parent: 2
+  - uid: 19321
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 10.5,43.5
+      parent: 2
 - proto: AtmosFixBlockerMarker
   entities:
   - uid: 779
@@ -21989,6 +22002,11 @@ entities:
     - type: Transform
       pos: 32.5,-47.5
       parent: 2
+  - uid: 19322
+    components:
+    - type: Transform
+      pos: -44.5,-9.5
+      parent: 2
 - proto: AtmosFixFreezerMarker
   entities:
   - uid: 1545
@@ -22906,6 +22924,18 @@ entities:
       - Arsenal
       - Experimental
       - CivilianServices
+  - uid: 19325
+    components:
+    - type: Transform
+      pos: 14.5,3.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: BlastDoor
   entities:
   - uid: 1695
@@ -53804,12 +53834,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -20.304087,-42.155655
       parent: 2
-  - uid: 7693
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 16.032242,11.783791
-      parent: 2
   - uid: 7694
     components:
     - type: Transform
@@ -53850,6 +53874,12 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -49.704323,-8.467328
+      parent: 2
+  - uid: 19324
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.618775,11.613402
       parent: 2
 - proto: ChairOfficeLight
   entities:
@@ -54185,7 +54215,7 @@ entities:
   - uid: 7753
     components:
     - type: Transform
-      pos: 14.810062,3.8827004
+      pos: 14.755977,4.314948
       parent: 2
 - proto: ChemistryBottleHydrogen
   entities:
@@ -58015,6 +58045,13 @@ entities:
     - type: Transform
       pos: -2.5,-38.5
       parent: 2
+- proto: DefaultStationBeaconIAA
+  entities:
+  - uid: 8372
+    components:
+    - type: Transform
+      pos: -19.5,-42.5
+      parent: 2
 - proto: DefaultStationBeaconJanitorsCloset
   entities:
   - uid: 8370
@@ -58028,13 +58065,6 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-0.5
-      parent: 2
-- proto: DefaultStationBeaconLawOffice
-  entities:
-  - uid: 8372
-    components:
-    - type: Transform
-      pos: -20.5,-42.5
       parent: 2
 - proto: DefaultStationBeaconLawyer
   entities:
@@ -63919,6 +63949,13 @@ entities:
     components:
     - type: Transform
       pos: 27.72451,34.243202
+      parent: 2
+- proto: Electrolyzer
+  entities:
+  - uid: 19323
+    components:
+    - type: Transform
+      pos: 31.5,-41.5
       parent: 2
 - proto: EmergencyFunnyOxygenTankFilled
   entities:
@@ -92864,6 +92901,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 38.5,-17.5
       parent: 2
+- proto: KitchenElectricGrill
+  entities:
+  - uid: 19327
+    components:
+    - type: Transform
+      pos: 11.5,-1.5
+      parent: 2
 - proto: KitchenMicrowave
   entities:
   - uid: 13210
@@ -99641,7 +99685,7 @@ entities:
   - uid: 14216
     components:
     - type: Transform
-      pos: 11.441388,-1.238104
+      pos: 11.413022,-1.977381
       parent: 2
   - uid: 14217
     components:
@@ -127295,6 +127339,27 @@ entities:
       - 18931
       - 18930
       - 18933
+- proto: WeaponEnergyTurretSecurity
+  entities:
+  - uid: 19326
+    components:
+    - type: Transform
+      pos: 6.5,-30.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 7693
+- proto: WeaponEnergyTurretSecurityControlPanel
+  entities:
+  - uid: 7693
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,-32.5
+      parent: 2
+    - type: DeviceList
+      devices:
+      - 19326
 - proto: WeaponRifleFoam
   entities:
   - uid: 18939
