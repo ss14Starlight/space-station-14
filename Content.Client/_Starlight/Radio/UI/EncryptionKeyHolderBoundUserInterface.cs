@@ -1,3 +1,4 @@
+using Content.Client.Stylesheets.Palette;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Radio;
 using Content.Shared.Radio;
@@ -69,7 +70,7 @@ public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
                 {
                     IconSpecifier = RadialMenuIconSpecifier.With(key),
                     ToolTip = $"{locString} {channelPrototype.LocalizedName}",
-                    BackgroundColor = channelPrototype.Color.WithAlpha(128)
+                    BackgroundColor = channelPrototype.Color.WithAlpha(32),
                 };
                 options.Add(button);
             }
