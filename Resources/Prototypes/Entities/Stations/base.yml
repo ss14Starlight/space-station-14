@@ -59,7 +59,7 @@
             - type: ProtectedGrid
             - type: TradeStation
           paths:
-            - /Maps/Shuttles/trading_outpost.yml
+            - /Maps/_Starlight/trading_outpost.yml # Starlight Edit, new ATS
 #        mining: !type:GridSpawnGroup # 🌟Starlight begin🌟
 #          paths:
 #            - /Maps/Shuttles/mining.yml
@@ -136,14 +136,16 @@
           - ChunkDebrisSmall
           #Starlight End
         vgroid: !type:DungeonSpawnGroup
-          minimumDistance: 300
-          maximumDistance: 350
+          minimumDistance: 600 # Starlight Edit: 300 -> 600
+          maximumDistance: 650 # Starlight Edit: 350 -> 650
+          directDungeonSpawn: true # Starlight: Avoid temp-map/FTL placement for this large guaranteed grid.
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:
           - type: Gravity
             enabled: true
             inherent: true
+          - type: VGRoidSpawnMarker # Starlight
           protos:
           - VGRoid
 

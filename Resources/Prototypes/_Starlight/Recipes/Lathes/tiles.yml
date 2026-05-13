@@ -132,3 +132,58 @@
   parent: BaseWoodTileRecipe
   id: FloorTileItemAstroDirt
   result: FloorTileItemAstroDirt
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3Black
+  result: FloorTileItem3x3Black
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3Brown
+  result: FloorTileItem3x3Brown
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3Steel
+  result: FloorTileItem3x3Steel
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItem3x3White
+  result: FloorTileItem3x3White
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemOldConcreteBricks
+  result: FloorTileItemOldConcreteBricks
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemOldConcreteTile
+  result: FloorTileItemOldConcreteTile
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemOrnate
+  result: FloorTileItemOrnate
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemRoughMetal
+  result: FloorTileItemRoughMetal
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemRustyMetal
+  result: FloorTileItemRustyMetal
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemSteelGrate
+  result: FloorTileItemSteelGrate
+
+- type: latheRecipe
+  parent: BaseSteelTileRecipe
+  id: FloorTileItemTechGreeb
+  result: FloorTileItemTechGreeb

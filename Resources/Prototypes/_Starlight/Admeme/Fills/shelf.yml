@@ -21,7 +21,7 @@
         - id: ChemistryBottleDiphenhydramine
         - id: ChemistryBottleDylovene
         - id: ChemistryBottleHyronalin
-        - id: ChemistryBottlePyrazine
+        - id: ChemistryBottleArithrazine
         - id: ChemistryBottleOmnizine
         - id: EmergencyMedipen
         - id: ChemistryBottleAmoxla
@@ -50,3 +50,19 @@
           amount: 2
         - id: Bloodpack
           amount: 2
+
+- type: entity
+  id: ShelfMedTakSecureFilledCryo
+  suffix: Secure, Filled, Cryo Chems
+  parent: ShelfMedTakSecure
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ArcryoxBeakerLarge
+        - id: CryoxadoneBeakerLarge
+        - id: DoxarubixadoneBeakerLarge
+        - id: AloxadoneBeakerLarge
+        - id: NecrosolBeakerLarge
+        - id: ChronexalineBeakerLarge
