@@ -636,3 +636,25 @@
       - NewsReaderCartridge
       - MedTekCartridge
       - AstroNavCartridge
+
+# Blackstar
+
+- type: entity
+  parent: [BaseSecurityPDA, BaseMajorContraband]
+  id: BlackstarPDA
+  name: Blackstar operative PDA
+  description: A ruggedized, encrypted PDA issued to Blackstar Dreadwalker operatives.
+  components:
+  - type: Pda
+    id: BlackstarIDCard
+  - type: PdaBorderColor
+    borderColor: "#24123b"
+    accentHColor: "#6a3fa0"
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - WantedListCartridge

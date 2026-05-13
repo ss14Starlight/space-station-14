@@ -52,6 +52,9 @@
     jumpsuit: ClothingUniformJumpsuitColorBlack
     back: ClothingBackpackSatchel
     belt: ClothingBeltMilitaryWebbing
+    id: BlackstarPDA
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
     pocket1: WeaponTaser
     pocket2: PinpointerUniversal
     suitstorage: WeaponRiflePrometheus

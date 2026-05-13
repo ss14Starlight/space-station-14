@@ -37,6 +37,7 @@
       params:
         volume: -6
         variation: 0.09
+  - type: AllowSuitStorage
   - type: Tag
     tags:
     - MonkeyWearable

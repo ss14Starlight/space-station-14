@@ -258,3 +258,22 @@
     - type: EyeProtection
     - type: IdentityBlocker
       coverage: EYES
+
+# Blackstar
+
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseMajorContraband]
+  id: ClothingEyesGlassesBlackstar
+  name: Blackstar tactical visor
+  description: A flash-resistant tactical visor issued to Blackstar Dreadwalker operatives. Provides complete flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological

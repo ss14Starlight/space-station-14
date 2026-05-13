@@ -494,3 +494,20 @@
     tags:
     - DoorBumpOpener
   - type: NCTDataChip
+
+# Blackstar
+
+- type: entity
+  parent: [IDCardStandard, BaseMajorContraband]
+  id: BlackstarIDCard
+  name: Blackstar operative ID card
+  description: A matte-black ID card bearing no station markings. Grants access to Blackstar-secured areas.
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+  - type: Item
+    heldPrefix: blue
+  - type: Access
+    tags:
+    - BlackstarAgent
