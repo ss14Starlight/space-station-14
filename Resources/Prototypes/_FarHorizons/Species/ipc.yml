@@ -8,7 +8,6 @@
   markingLimits: MobIPCMarkingLimits
   dollPrototype: AppearanceIPC
   skinColoration: Hues
-  eyeColoration: FullWhite
   customName: true
   roundstartCyberwareCapacity: 6
   sexes:

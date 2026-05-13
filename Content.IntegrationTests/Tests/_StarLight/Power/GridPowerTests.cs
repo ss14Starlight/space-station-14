@@ -22,6 +22,11 @@ public sealed class GridPowerTests
 
     private static readonly ResPath[] GridPaths =
     [
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Full.yml"),
         new("/Maps/_Starlight/Ruins/Salv_Sus.yml"),
         new("/Maps/_Starlight/Salvage/Salv_Cargo_01.yml"),
         new("/Maps/_Starlight/Salvage/Salv_Cargo_02.yml"),
@@ -83,6 +88,11 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/romeo.yml"),
         new("/Maps/_Starlight/Shuttles/cargo_syndicate.yml"),
         new("/Maps/_Starlight/Shuttles/emergency_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/MedTak-AV-40.yml"),
+        new("/Maps/_Starlight/EventMaps/MedTakPointAlpha.yml"),
+        new("/Maps/_Starlight/Shuttles/pts.yml"),
+        new("/Maps/_Starlight/Shuttles/barge.yml"),
+        new("/Maps/_Starlight/Shuttles/prospector.yml")
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]

@@ -26,7 +26,7 @@ public sealed partial class MechComponent : Component
     /// Starlight: How long to wait before checking again. Moved from MechThrustersComponent.
     /// </summary>
     [DataField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(1);
+    public TimeSpan Delay = TimeSpan.FromSeconds(.5);
 
     /// <summary>
     /// Whether or not an emag disables it.
@@ -55,20 +55,6 @@ public sealed partial class MechComponent : Component
     [DataField("light")]
     [AutoNetworkedField]
     public bool Light = false;
-
-    /// <summary>
-    /// is the mech siren are toggled?
-    /// </summary>
-    [DataField("sirenToggled")]
-    [AutoNetworkedField]
-    public bool Siren = false;
-
-    /// <summary>
-    /// is the mech has siren?
-    /// </summary>
-    [DataField("siren")]
-    [AutoNetworkedField]
-    public bool SirenAvailable = false;
 
     /// <summary>
     /// How much "health" the mech has left.
@@ -222,10 +208,6 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechToggleLightAction = "ActionMechToggleLights";
     [DataField]
     public EntProtoId MechToggleInternalsAction = "ActionMechToggleInternals";
-    [DataField]
-    public EntProtoId MechToggleSirenAction = "ActionMechToggleSirens";
-    [DataField]
-    public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
     #endregion
 
     #region Visualizer States
@@ -282,6 +264,4 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechEjectActionEntity;
     [DataField] public EntityUid? MechToggleLightActionEntity;
     [DataField] public EntityUid? MechToggleInternalsActionEntity;
-    [DataField] public EntityUid? MechToggleSirenActionEntity;
-    [DataField] public EntityUid? MechToggleThrustersActionEntity;
 }

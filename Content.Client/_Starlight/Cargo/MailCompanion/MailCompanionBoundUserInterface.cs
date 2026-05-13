@@ -1,18 +1,13 @@
 using Content.Shared._Starlight.Cargo.MailCompanion;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Shared.GameObjects;
 
 namespace Content.Client._Starlight.Cargo.MailCompanion;
 
 [UsedImplicitly]
-public sealed class MailCompanionBoundUserInterface : BoundUserInterface
+public sealed class MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
     private MailCompanionWindow? _window;
-
-    public MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {

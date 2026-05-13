@@ -25,6 +25,7 @@ namespace Content.Shared.Communications
         public readonly TimeSpan? CallRecallCooldownEnd;
         public readonly bool ShuttleCallsAllowed;
         public readonly TimeSpan? LastCountdownStart;
+        public readonly bool HasSecureTerminal; // Starlight: SCT enabled
 
         public CommunicationsConsoleInterfaceState(
             bool canAnnounce,
@@ -38,7 +39,8 @@ namespace Content.Shared.Communications
             TimeSpan? callRecallCooldownEnd = null,
             TimeSpan? shuttleCountdownEnd = null,
             bool shuttleCallsAllowed = true,
-            TimeSpan? lastCountdownStart = null
+            TimeSpan? lastCountdownStart = null,
+            bool hasSecureTerminal = false
         )
         // Starlight edit End
         {
@@ -56,6 +58,7 @@ namespace Content.Shared.Communications
             ShuttleCountdownEnd = shuttleCountdownEnd;
             ShuttleCallsAllowed = shuttleCallsAllowed;
             LastCountdownStart = lastCountdownStart;
+            HasSecureTerminal = hasSecureTerminal;
             // Starlight End
         }
     }
@@ -107,4 +110,10 @@ namespace Content.Shared.Communications
     {
         Key
     }
+
+    // Starlight Start: Secure Command Terminal
+    /// <summary>Sent from the client when the player presses the "Secure Terminal" button.</summary>
+    [Serializable, NetSerializable]
+    public sealed class CommunicationsConsoleOpenSecureTerminalMessage : BoundUserInterfaceMessage { }
+    // Starlight End
 }
