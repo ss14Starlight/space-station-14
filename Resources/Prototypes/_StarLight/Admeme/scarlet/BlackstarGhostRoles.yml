@@ -48,8 +48,11 @@
   id: BlackstarOperativeGear
   equipment:
     head: ClothingHeadHelmetBlackstar
+    mask: ClothingMaskGasSwat
     outerClothing: ClothingOuterHardsuitBlackstar
     jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
     back: ClothingBackpackSatchel
     belt: ClothingBeltMilitaryWebbing
     id: BlackstarPDA
@@ -65,6 +68,8 @@
     - JawsOfLife
     - WelderIndustrialAdvanced
     - PowerDrill
+    - DoubleEmergencyOxygenTankFilled
+    - DoubleEmergencyNitrogenTankFilled
     belt:
     - MagazineRifleSP
     - MagazineRifleSP

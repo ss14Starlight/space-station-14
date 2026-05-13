@@ -19,6 +19,10 @@
     burstFireRate: 18
     shotsPerBurst: 3
     burstCooldown: 0.375
+    minAngle: 21
+    maxAngle: 32
+    angleIncrease: 3
+    angleDecay: 16
     selectedMode: Burst
     availableModes:
     - Burst
@@ -31,7 +35,7 @@
     steps: 5
     zeroVisible: true
   - type: GunWieldBonus
-    minAngle: -15
-    maxAngle: -15
+    minAngle: -19
+    maxAngle: -16
   - type: SpeedModifiedOnWield
     walkModifier: 0.80

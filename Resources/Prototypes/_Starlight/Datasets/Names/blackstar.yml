@@ -2,7 +2,7 @@
   id: NamesBlackstarFirst
   values:
     prefix: names-blackstar-first-dataset-
-    count: 6
+    count: 3
 
 - type: localizedDataset
   id: NamesBlackstarLast

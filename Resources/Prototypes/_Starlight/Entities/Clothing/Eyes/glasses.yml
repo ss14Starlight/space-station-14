@@ -326,7 +326,7 @@
   description: A flash-resistant tactical visor issued to Blackstar Dreadwalker operatives. Provides complete flash immunity and a security HUD.
   components:
   - type: Sprite
-    sprite: Clothing/Eyes/Glasses/secglasses.rsi
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi #WILL BE REPLACED AT A LATER DATE WHEN I HAVE SPRITES!!! - scarletlightweaver_ss14
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/secglasses.rsi
   - type: FlashImmunity
