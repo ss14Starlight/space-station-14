@@ -26,6 +26,7 @@
   - type: GuideHelp
     guides:
     - Radio
+  # Starlight, channel muting
   - type: UserInterface
     interfaces:
       enum.EncryptionKeyHolderUiKey.Key:
@@ -33,6 +34,7 @@
   - type: ActivatableUI
     inHandsOnly: true
     key: enum.EncryptionKeyHolderUiKey.Key
+  # Starlight End
 
 - type: entity
   parent: ClothingHeadset
