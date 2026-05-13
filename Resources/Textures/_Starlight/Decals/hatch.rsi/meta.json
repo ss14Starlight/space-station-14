@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Wayiscute",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "steel_hatch_center"
+    },
+    {
+      "name": "steel_hatch_wall"
+    },
+    {
+      "name": "steel_hatch_small"
+    }
+  ]
+}

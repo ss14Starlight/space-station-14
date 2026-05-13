@@ -5,11 +5,12 @@ evolutionmenu-combat-armblade-name = Arm Blade
 evolutionmenu-combat-armblade-desc =
     Reform one of your arms into a grotesque blade, composed of bone and flesh, able to pry open airlocks and cut through your foes like butter.
     WARNING: Requires you to absorb at least 2 organics to use the ability.
-    Costs 15 chemicals.
+    Costs 20 chemicals each time you summon it, and each time you retract it.
 
 evolutionmenu-combat-boneshard-name = Bone Shard
 evolutionmenu-combat-boneshard-desc =
-    Break off shards of your bone and shape them into a throwing star which embeds into your foes. But a one timer opportinuty.
+    Break off shards of your bone and shape them into a throwing star which embeds into your foes and disorients them.
+    You only get one with each use.
     Costs 15 chemicals.
 
 evolutionmenu-combat-armor-name = Chitinous Armor
@@ -24,14 +25,14 @@ evolutionmenu-combat-shield-name = Organic Shield
 evolutionmenu-combat-shield-desc =
     Reforms one of your arms into a large, fleshy shield.
     Blocks attacks automatically, but very brittle.
-    WARNING: Requires you to absorb at least 1 organic to use the ability.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 20 chemicals.
 
 evolutionmenu-combat-shriek-dissonant-name = Dissonant Shriek
 evolutionmenu-combat-shriek-dissonant-desc =
     You emit an EMP blast, which disables technology in the surrounding area, including radio headsets.
     Good for escaping cyborgs and security.
-    WARNING: Requires you to absorb at least 1 organic to use the ability.
+    WARNING: Requires you to absorb at least 2 organics to use the ability.
     Costs 30 chemicals.
 
 evolutionmenu-combat-shriek-resonant-name = Resonant Shriek
@@ -39,8 +40,7 @@ evolutionmenu-combat-shriek-resonant-desc =
     You emit a tone beyond the range of human hearing,
     bursting lights and causing disorientation in an area around yourself.
     Good for escaping groups, or hindering people from fleeing.
-    WARNING: Requires you to absorb at least 1 organic to use the ability.
-    Costs 30 chemicals.
+    Costs 25 chemicals.
 
 evolutionmenu-combat-strainedmuscles-name = Strained Muscles
 evolutionmenu-combat-strainedmuscles-desc =
@@ -60,13 +60,13 @@ evolutionmenu-sting-cryo-name = Cryogenic Sting
 evolutionmenu-sting-cryo-desc =
     Inject an organic target with a cocktail of chemicals that chills the blood.
     May be used while under the effects of Lesser Form.
-    Costs 35 chemicals.
+    Costs 30 chemicals.
 
 evolutionmenu-sting-lethargic-name = Lethargic Sting
 evolutionmenu-sting-lethargic-desc =
     Inject an organic target with a cocktail of anesthetics, slowing the victim down for a decent amount of time.
     May be used while under the effects of Lesser Form.
-    Costs 35 chemicals.
+    Costs 25 chemicals.
 
 evolutionmenu-sting-mute-name = Mute Sting
 evolutionmenu-sting-mute-desc =
@@ -95,24 +95,26 @@ evolutionmenu-utility-panacea-desc =
 evolutionmenu-utility-eyesight-name = Augmented Eyesight
 evolutionmenu-utility-eyesight-desc =
     Evolve additional features in your eyes, such as flash protection.
+    Must be disabled in order to use other eye augments.
     Cost-free.
 
 evolutionmenu-utility-biodegrade-name = Biodegrade
 evolutionmenu-utility-biodegrade-desc =
     Vomit a caustic substance onto any restraints you may be wearing, allowing yourself to break free.
     Using this ability while being grabbed will spit acid in your attackers face.
+    Can be used while unconscious.
     Costs 30 chemicals.
 
 evolutionmenu-utility-chameleon-name = Chameleon Skin
 evolutionmenu-utility-chameleon-desc =
     Alter the pigment in your skin to match your surroundings, rendering you invisible.
-    Costs 20 chemicals.
+    Costs 15 chemicals.
 
 evolutionmenu-utility-stims-name = Ephedrine Overdose
 evolutionmenu-utility-stims-desc =
     Inject a cocktail of stimulants into yourself, quickly removing any stuns and giving yourself a speed boost.
     Continuous injection is poisonous.
-    Costs 30 chemicals.
+    Costs 20 chemicals.
 
 evolutionmenu-utility-fleshmend-name = Fleshmend
 evolutionmenu-utility-fleshmend-desc =
