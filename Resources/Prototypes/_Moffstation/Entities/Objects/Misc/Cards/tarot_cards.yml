@@ -1,0 +1,61 @@
+- type: entity
+  parent: BasePlayingCardDeckBox
+  id: TarotCardDeckBox
+  name: box of major arcana tarot cards
+  description: A small carton containing a set of the Major Arcana cards from the cartomantic tarot deck.
+  suffix: Tarot
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_tarot.rsi
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - TarotCardDeck
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: TarotCardDeck
+  name: deck of cards
+  suffix: Tarot
+  components:
+  - type: PlayingCardDeck
+    prototype: StandardTarotCards
+
+# Tarot Deck Definition
+- type: playingCardDeck
+  id: StandardTarotCards
+  sprite: _Moffstation/Objects/Misc/Cards/card_tarot.rsi
+  commonReverseLayers:
+  - state: singlecard_down_tarot
+  cardNameLoc: tarot-card-name
+  cardDescLoc: tarot-card-desc
+  cardReverseNameLoc: tarot-card-name-reverse
+  cardReverseDescLoc: tarot-card-desc-reverse
+  suitLoc: tarot-card      # suitLoc is required even if you don't use it.
+  cardValueLoc: tarot-card-value-name
+  commonObverseLayers:
+  - state: background_gold
+  defaultObverseLayerState: "{card}"
+  cards:
+  - id: "the_fool"
+  - id: "the_magician"
+  - id: "the_high_priestess"
+  - id: "the_empress"
+  - id: "the_emperor"
+  - id: "the_hierophant"
+  - id: "the_lovers"
+  - id: "the_chariot"
+  - id: "strength"
+  - id: "the_hermit"
+  - id: "the_wheel_of_fortune"
+  - id: "justice"
+  - id: "the_hanged_man"
+  - id: "death"
+  - id: "temperance"
+  - id: "the_devil"
+  - id: "the_tower"
+  - id: "the_star"
+  - id: "the_moon"
+  - id: "the_sun"
+  - id: "judgement"
+  - id: "the_world"

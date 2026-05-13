@@ -285,6 +285,12 @@
         weight: 0.4 # Starlight. Fake galoshes to crush your spirit.
       - id: ClothingBeltUtility
       - id: ToolboxArtisticFilled
+      - id: ClothingHeadHatHoodBioGeneral # Starlight
+      - id: ClothingOuterBioGeneral # Starlight
+      - id: PillCanisterNitrogen # Starlight, homebrew zombie cure kit
+      - id: PillCanisterDylovene # Starlight, homebrew zombie cure kit
+      - id: PillCanisterHydrogen # Starlight
+        weight: 0.8 # Starlight, lower because you can make an explosion with it
       - id: GeigerCounter
       - id: trayScanner
       - id: HandheldGPSBasic
