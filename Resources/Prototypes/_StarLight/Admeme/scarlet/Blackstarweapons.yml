@@ -21,7 +21,7 @@
     burstCooldown: 0.375
     minAngle: 21
     maxAngle: 32
-    angleIncrease: 3
+    angleIncrease: 2
     angleDecay: 16
     selectedMode: Burst
     availableModes:
