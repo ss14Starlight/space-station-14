@@ -17655,7 +17655,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 2021.4646452
-    - type: Timer
   - uid: 2856
     components:
     - type: Transform
