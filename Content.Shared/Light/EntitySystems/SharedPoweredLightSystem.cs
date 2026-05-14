@@ -445,6 +445,29 @@ public abstract class SharedPoweredLightSystem : EntitySystem
         UpdateLight(uid, light);
     }
 
+    // Starlight Start
+    public void ToggleBlinkingLight(EntityUid uid, PoweredLightComponent? light = null, bool value = true, TimeSpan? duration = null)
+    {
+        if (!Resolve(uid, ref light, false))
+            return;
+
+        if (value)
+        {
+            var blinking = EnsureComp<BlinkingPoweredLightComponent>(uid);
+
+            if (duration != null)
+                blinking.StopBlinkingTime = GameTiming.CurTime + duration.Value;
+            else
+                blinking.StopBlinkingTime = null;
+
+            Dirty(uid, blinking);
+            return;
+        }
+
+        RemCompDeferred<BlinkingPoweredLightComponent>(uid);
+    }
+    // Starlight End
+
     private void OnDoAfter(EntityUid uid, PoweredLightComponent component, DoAfterEvent args)
     {
         if (args.Handled || args.Cancelled || args.Args.Target == null)
