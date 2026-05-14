@@ -13,7 +13,7 @@
     DraganSpecial: 3
 
 - type: reaction
-  id: TheHighlander
+  id: Highlander
   reactants:
     BacchusBlessing:
       amount: 1
@@ -26,7 +26,7 @@
     Omnizine:
       amount: 1
   products:
-    TheHighlander: 1
+    Highlander: 1
 
 - type: reaction
   id: TheLastCall
