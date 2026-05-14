@@ -453,3 +453,22 @@
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+# Small Stairs
+- type: entity
+  id: StairsSmallSteel
+  parent: RMCStairs
+  suffix: Small, Steel
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/small_stairs.rsi
+    state: small_stairs
+
+- type: entity
+  id: StairsSmallWood
+  parent: RMCStairsWood
+  suffix: Small, Wood
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/small_stairs.rsi
+    state: small_stairs_wood

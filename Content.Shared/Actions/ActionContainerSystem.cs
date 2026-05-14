@@ -272,6 +272,22 @@ public sealed class ActionContainerSystem : EntitySystem
         if (_actions.GetAction(action, logMissing) is not {} ent)
             return;
 
+        // Starlight Start
+        if (TerminatingOrDeleted(ent.Owner))
+        {
+            if (ent.Comp.AttachedEntity is {} performer && !TerminatingOrDeleted(performer))
+                _actions.RemoveAction(performer, (ent, ent));
+
+            if (ent.Comp.Container is not null)
+            {
+                ent.Comp.Container = null;
+                DirtyField(ent, ent.Comp, nameof(ActionComponent.Container));
+            }
+
+            return;
+        }
+        // Starlight End
+
         if (ent.Comp.Container == null)
             return;
 

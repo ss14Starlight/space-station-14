@@ -39,7 +39,7 @@ book-text-agrichemkit-manual = Thank you for choosing the safe-for-all-ages Nano
       A little bottle of EZ Nutrient replaces a big stack of produce you'd otherwise compost to keep your plants growing strong. And crops you compost are crops you didn't make a profit on, so keep that EZ Nutrient flowing.
 
       Second Experiment: Ammonia and Diethylamine
-      Mix 3 parts hydrogen to 1 part nitrogen to make ammonia. It's a healthy, nutritious treat for your crops that aren't at their best.
+      Mix 3 parts hydrogen to 1 part nitrogen and microwave for 30 seconds to make ammonia. It's a healthy, nutritious treat for your crops that aren't at their best.
       But if you want to impress the judges at your local NanoTrasen-sponsored County Fair, you'll need to add an equal amount of ethanol to your ammonia.
       This will mix into Diethylamine, a miracle fertilizer that can make plants grow faster AND live longer! Keep the crops you love with you longer thanks to Diethylamine.
 
