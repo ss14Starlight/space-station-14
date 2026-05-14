@@ -209,7 +209,7 @@
     modifiers:
       coefficients:
         Heat: 1.0
-    explosionCoefficient: 0.75
+    explosionResistance: 0.75
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-cognac.ogg

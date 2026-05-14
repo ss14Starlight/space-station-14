@@ -26,6 +26,21 @@
   <Table Columns="3">
     <ColorBox>
       <Box>
+        <GuideEntityEmbed Entity="DrinkWaterBottleFull" Caption="" />
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        Water
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
+        equivalent to Ipecac (causes vomiting)
+      </Box>
+    </ColorBox>
+    <ColorBox>
+      <Box>
         <GuideEntityEmbed Entity="DrinkAleBottleFull" Caption="" />
       </Box>
     </ColorBox>
