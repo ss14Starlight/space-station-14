@@ -681,3 +681,14 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingHeadHatBunny
+  productEntity: ClothingHeadHatBunny
+  cost:
+    NTCredit: 50
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
