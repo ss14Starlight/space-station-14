@@ -18,7 +18,7 @@ reagent-desc-weed-killer = A mixture that targets weeds. Very effective against 
 
 # Starlight Start
 reagent-name-ammonia = ammonia
-reagent-desc-ammonia = An effective fertilizer, it gives your plants some nutrients. Mildy effective at treating airloss in Avali.
+reagent-desc-ammonia = An effective fertilizer, it gives your plants some nutrients. Mildly effective at treating airloss in Avali and Resomi.
 # Starlight End
 
 reagent-name-diethylamine = diethylamine
