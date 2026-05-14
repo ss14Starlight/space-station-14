@@ -41,6 +41,11 @@
   id: ClothingUniformJumpskirtHopFormal
   result: ClothingUniformJumpskirtHopFormal
 
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatHopCapFormal
+  result: ClothingHeadHatHopCapFormal
+
 #Duty officer
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
