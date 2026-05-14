@@ -56,10 +56,10 @@
             SecurityCadet: [ 4, 6 ]
             Brigmedic: [ 1, 1 ]
             #supply
-            SalvageSpecialist: [ 6, 6 ]
-            CargoTechnician: [ 3, 3 ]
-            MiningSpecialist: [ 3, 3 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 3, 3 ]
             MailTech: [ 2, 2 ]
             #civilian
             Assistant: [ -1, -1 ]
