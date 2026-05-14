@@ -51,18 +51,16 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
     {
         SubscribeLocalEvent<DefibrillatorComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<DefibrillatorComponent, DefibrillatorZapDoAfterEvent>(OnDoAfter);
-        SubscribeLocalEvent<DefibrillatorComponent, DefibActionEvent>(OnDefibAction); // Starlight - wearable defib
-        SubscribeLocalEvent<DefibrillatorComponent, GetItemActionsEvent>(OnGetActions); // Starlight - wearable defib
-        SubscribeLocalEvent<DefibrillatorComponent, GotUnequippedEvent>(OnUnequipped); // Starlight - wearable defib
+        SubscribeLocalEvent<WearableDefibrillatorComponent, DefibActionEvent>(OnDefibAction); // Starlight - wearable defib
+        SubscribeLocalEvent<WearableDefibrillatorComponent, GetItemActionsEvent>(OnGetActions); // Starlight - wearable defib
+        SubscribeLocalEvent<WearableDefibrillatorComponent, GotUnequippedEvent>(OnUnequipped); // Starlight - wearable defib
     }
 
     /// <summary>
     /// Starlight: Adds the defib action to the user.
     /// </summary>
-    private void OnGetActions(Entity<DefibrillatorComponent> ent, ref GetItemActionsEvent args)
+    private void OnGetActions(Entity<WearableDefibrillatorComponent> ent, ref GetItemActionsEvent args)
     {
-        if (!ent.Comp.IsWearable)
-            return;
 
         if (args.SlotFlags?.HasFlag(ent.Comp.RequiredSlot) != true)
             return;
@@ -73,17 +71,18 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
     /// <summary>
     /// Starlight: Tries to start the defib when the action is used on someone.
     /// </summary>
-    private void OnDefibAction(Entity<DefibrillatorComponent> ent, ref DefibActionEvent args)
+    private void OnDefibAction(Entity<WearableDefibrillatorComponent> ent, ref DefibActionEvent args)
     {
-        args.Handled = TryStartZap(ent.AsNullable(), args.Target, args.Performer);
+        TryComp<DefibrillatorComponent>(ent, out var defibComp);
+        args.Handled = TryStartZap((ent.Owner, defibComp), args.Target, args.Performer);
     }
 
     /// <summary>
     /// Starlight: Cancels an active defib doafter if the defib is unequipped midway through.
     /// </summary>
-    private void OnUnequipped(Entity<DefibrillatorComponent> ent, ref GotUnequippedEvent args)
+    private void OnUnequipped(Entity<WearableDefibrillatorComponent> ent, ref GotUnequippedEvent args)
     {
-        if (!ent.Comp.IsWearable)
+        if (!TryComp<WearableDefibrillatorComponent>(ent, out _))
             return;
 
         if (!args.SlotFlags.HasFlag(ent.Comp.RequiredSlot))
@@ -137,7 +136,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (!ent.Comp.IsWearable && !_toggle.IsActivated(ent.Owner)) // Starlight edit - check for wearable field
+        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_toggle.IsActivated(ent.Owner)) // Starlight edit - check for wearable field
         {
             _popup.PopupClient(Loc.GetString("defibrillator-not-on"), ent.Owner, user);
             return false;
@@ -149,7 +148,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         if (!TryComp<MobStateComponent>(target, out var mobState))
             return false;
 
-        if (!ent.Comp.IsWearable && !_powerCell.HasActivatableCharge(ent.Owner, user: user, predicted: true))  // Starlight edit - check for wearable field
+        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_powerCell.HasActivatableCharge(ent.Owner, user: user, predicted: true))  // Starlight edit - check for wearable field
             return false;
 
         if (!targetCanBeAlive && _mobState.IsAlive(target, mobState))
@@ -183,7 +182,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
             new DoAfterArgs(EntityManager, user, ent.Comp.DoAfterDuration, new DefibrillatorZapDoAfterEvent(),
             ent.Owner, target, ent.Owner)
             {
-                NeedHand = !ent.Comp.IsWearable,  // Starlight edit - check for wearable field
+                NeedHand = !TryComp<WearableDefibrillatorComponent>(ent, out _),  // Starlight edit - check for wearable field
                 BreakOnMove = !ent.Comp.AllowDoAfterMovement
             });
     }
@@ -199,7 +198,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        if (!ent.Comp.IsWearable && !_powerCell.TryUseActivatableCharge(ent.Owner, user: user))  // Starlight edit - check for wearable field
+        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_powerCell.TryUseActivatableCharge(ent.Owner, user: user))  // Starlight edit - check for wearable field
             return;
 
         var selfEvent = new SelfBeforeDefibrillatorZapsEvent(user, ent.Owner, target);
@@ -286,7 +285,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         _audio.PlayPredicted(sound, ent.Owner, user);
 
         // if we don't have enough power left for another shot, turn it off
-        if (!ent.Comp.IsWearable && !_powerCell.HasActivatableCharge(ent.Owner))  // Starlight edit - check for wearable field
+        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_powerCell.HasActivatableCharge(ent.Owner))  // Starlight edit - check for wearable field
             _toggle.TryDeactivate(ent.Owner);
 
         var ev = new TargetDefibrillatedEvent(user, (ent.Owner, ent.Comp));

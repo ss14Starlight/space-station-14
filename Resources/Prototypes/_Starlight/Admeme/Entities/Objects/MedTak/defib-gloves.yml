@@ -26,14 +26,11 @@
     fiberMaterial: fibers-insulative
   - type: FingerprintMask
   - type: Defibrillator
-    isWearable: true
     zapHeal:
       types:
         Asphyxiation: -40
+  - type: WearableDefibrillator
   - type: UseDelay
-    delays:
-      defib-delay:
-        length: 5
 
 - type: entity
   parent: [ ClothingHandsGlovesDefibBase, BaseMedTakContraband ]

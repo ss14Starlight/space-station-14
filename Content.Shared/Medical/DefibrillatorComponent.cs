@@ -91,37 +91,7 @@ public sealed partial class DefibrillatorComponent : Component
 
     [DataField]
     public SoundSpecifier? ReadySound = new SoundPathSpecifier("/Audio/Items/Defib/defib_ready.ogg");
-
-    #region Starlight
-    /// <summary>
-    /// Starlight: If this defibrillator works while equipped to a clothing slot.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public bool IsWearable = false;
-
-    /// <summary>
-    /// Starlight: What slot the defib will give an action when equipped in.
-    /// Only used when IsWearable = true
-    /// </summary>
-    [DataField]
-    public SlotFlags RequiredSlot = SlotFlags.GLOVES;
-    /// <summary>
-    /// Only used when IsWearable = true
-    /// </summary>
-    [DataField]
-    public EntProtoId Action = "ActionDefib";
-    /// <summary>
-    /// Only used when IsWearable = true
-    /// </summary>
-    [DataField]
-    public EntityUid? ActionEntity;
 }
-
-/// <summary>
-/// Starlight: Event for the defib action, only used when IsWearable = true.
-/// </summary>
-public sealed partial class DefibActionEvent : EntityTargetActionEvent { }
-#endregion
 
 /// <summary>
 /// DoAfterEvent for defibrilator use windup.
