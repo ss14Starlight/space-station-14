@@ -346,9 +346,9 @@
     # reference example of all possible effects for BonusScalarStatusEffect:
     coefficients:
       unarmedAttackRate: 1.25 # bigger is faster
-      unarmedDamage: 1.0
-      meleeWeaponAttackRate: 1.0
-      meleeWeaponDamage: 1.0
+      unarmedDamage: 1.0 # bigger is more damaging
+      meleeWeaponAttackRate: 1.0 # bigger is faster
+      meleeWeaponDamage: 1.0 # bigger is more damaging
       doAfterDelay: 1.0 # smaller is faster!
   - type: SoundStatusEffect
     startSound:
@@ -365,7 +365,7 @@
     affectsMeleeWeapons: false
     damage:
       types:
-        Structural: 10 # you will never actually see this number because structural objects have damage reduction
+        Structural: 10 # you will rarely actually see this number, because most structures have damage reduction
       groups:
         Brute: 0
   - type: SoundStatusEffect
@@ -391,7 +391,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      meleeWeaponAttackRate: 100.1 # 1.1 # +10% speed
+      meleeWeaponAttackRate: 1.1 # 1.1 # +10% speed; bigger is faster
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
@@ -403,7 +403,7 @@
   components:
   - type: BonusScalarStatusEffect
     coefficients:
-      meleeWeaponDamage: 1.2 # bigger is faster
+      meleeWeaponDamage: 1.2 # bigger is more damaging
   - type: SoundStatusEffect
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
