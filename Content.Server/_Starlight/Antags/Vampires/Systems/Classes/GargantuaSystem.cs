@@ -40,9 +40,8 @@ using Content.Shared.Physics;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class GargantuaSystem : SharedGargantuaSystem
+public sealed class GargantuaSystem : EntitySystem
 {
-    private const string OverwhelmingForceActionId = "ActionVampireOverwhelmingForce";
     private const string ChargeActionId = "ActionVampireCharge";
 
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
@@ -64,6 +63,7 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _rand = default!;
 
@@ -71,10 +71,9 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VampireComponent, VampireSeismicStompActionEvent>(OnSeismicStomp);
-        SubscribeLocalEvent<VampireComponent, VampireOverwhelmingForceActionEvent>(OnOverwhelmingForce);
-        SubscribeLocalEvent<VampireComponent, VampireDemonicGraspActionEvent>(OnDemonicGrasp);
-        SubscribeLocalEvent<VampireComponent, VampireChargeActionEvent>(OnCharge);
+        SubscribeLocalEvent<VampireSeismicStompActionEvent>(OnSeismicStomp);
+        SubscribeLocalEvent<VampireDemonicGraspActionEvent>(OnDemonicGrasp);
+        SubscribeLocalEvent<VampireChargeActionEvent>(OnCharge);
 
         SubscribeLocalEvent<GargantuaComponent, StartCollideEvent>(OnChargeCollide);
 
@@ -96,18 +95,15 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
 
         var now = _timing.CurTime;
 
-        var query = EntityQueryEnumerator<GargantuaComponent, VampireComponent>();
-        while (query.MoveNext(out var uid, out var gargantua, out var vampire))
+        var query = EntityQueryEnumerator<GargantuaComponent>();
+        while (query.MoveNext(out var uid, out var gargantua))
         {
             if (gargantua.IsCharging)
-                ProcessChargeMovement(uid, gargantua, vampire);
+                ProcessChargeMovement(uid, gargantua);
         }
 
         ProcessActiveDemonicGrasps(now);
     }
-
-    protected override bool TryUseVampireAction(EntityUid uid, EntityUid actionEntity)
-        => _vampire.CheckAndConsumeGrantedVampireAction(uid, actionEntity);
 
     private void OnBloodDrank(EntityUid uid, GargantuaComponent gargantua, ref VampireBloodDrankEvent args)
     {
@@ -207,14 +203,16 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
 
     #region Seismic Stomp
 
-    private void OnSeismicStomp(EntityUid uid, VampireComponent comp, ref VampireSeismicStompActionEvent args)
+    private void OnSeismicStomp(VampireSeismicStompActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!comp.ActionEntities.TryGetValue("ActionVampireSeismicStomp", out var actionEntity)
+        var uid = args.Performer;
+        var actionEntity = args.Action.Owner;
+        if (!Exists(actionEntity)
             || !HasComp<GargantuaComponent>(uid)
-            || !_vampire.CheckAndConsumeBloodCost(uid, comp, actionEntity))
+            || !_vampireActions.TryUse(uid, actionEntity))
             return;
 
         var xform = Transform(uid);
@@ -262,47 +260,6 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
 
     #region Overwhelming Force
 
-    private void OnOverwhelmingForce(EntityUid uid, VampireComponent comp, ref VampireOverwhelmingForceActionEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!HasComp<GargantuaComponent>(uid))
-            return;
-
-        if (!TryComp(uid, out GargantuaComponent? gargantua))
-            return;
-
-        gargantua.OverwhelmingForceActive = !gargantua.OverwhelmingForceActive;
-
-        if (gargantua.OverwhelmingForceActive)
-        {
-            // Add PryingComponent to enable door prying
-            var prying = EnsureComp<PryingComponent>(uid);
-            prying.PryPowered = true;
-            prying.Force = true;
-            prying.SpeedModifier = gargantua.OverwhelmingForcePrySpeedModifier;
-
-            _popup.PopupEntity(Loc.GetString("vampire-overwhelming-force-start"), uid, uid);
-        }
-        else
-        {
-            RemComp<PryingComponent>(uid);
-
-            _popup.PopupEntity(Loc.GetString("vampire-overwhelming-force-stop"), uid, uid);
-        }
-
-        // Update action toggle state
-        if (comp.ActionEntities.TryGetValue(OverwhelmingForceActionId, out var actionEntity)
-            && _actions.GetAction(actionEntity) is { } action)
-        {
-            _actions.SetToggled(action.AsNullable(), gargantua.OverwhelmingForceActive);
-        }
-
-        Dirty(uid, gargantua);
-        args.Handled = true;
-    }
-
     private void OnDoorPried(EntityUid uid, GargantuaComponent component, ref UserPriedDoorEvent args)
     {
 
@@ -321,14 +278,13 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
 
     #region Demonic Grasp
 
-    private void OnDemonicGrasp(EntityUid uid, VampireComponent comp, ref VampireDemonicGraspActionEvent args)
+    private void OnDemonicGrasp(VampireDemonicGraspActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!comp.ActionEntities.TryGetValue("ActionVampireDemonicGrasp", out var actionEntity))
-            return;
-
+        var uid = args.Performer;
+        var actionEntity = args.Action.Owner;
         if (!HasComp<GargantuaComponent>(uid))
             return;
 
@@ -350,7 +306,8 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         if (direction == Vector2.Zero)
             return;
 
-        if (!_vampire.CheckAndConsumeBloodCost(uid, comp, actionEntity))
+        if (!Exists(actionEntity)
+            || !_vampireActions.TryUse(uid, actionEntity))
             return;
 
         args.Handled = true;
@@ -476,25 +433,18 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
 
     #region Charge
 
-    private void OnCharge(EntityUid uid, VampireComponent comp, ref VampireChargeActionEvent args)
+    private void OnCharge(VampireChargeActionEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!comp.FullPower)
-        {
-            _popup.PopupEntity(Loc.GetString("action-vampire-not-enough-power"), uid, uid);
-            args.Handled = true;
-            return;
-        }
+        var uid = args.Performer;
+        var actionEntity = args.Action.Owner;
 
-        if (!TryComp(uid, out GargantuaComponent? gargantua))
+        if (!TryComp<GargantuaComponent>(uid, out var gargantua))
             return;
 
         if (gargantua.IsCharging)
-            return;
-
-        if (!comp.ActionEntities.TryGetValue(ChargeActionId, out var actionEntity))
             return;
 
         if (TryComp<EnsnareableComponent>(uid, out var ensnareable) && ensnareable.IsEnsnared)
@@ -515,14 +465,20 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         if (!TryComp<PhysicsComponent>(uid, out var physics))
             return;
 
-        if (!_vampire.CheckAndConsumeBloodCost(uid, comp, actionEntity))
+        if (!Exists(actionEntity)
+            || !_vampireActions.TryUse(uid, actionEntity))
             return;
 
         gargantua.IsCharging = true;
         gargantua.ChargeDirectionVector = direction;
+        gargantua.ChargeSpeed = args.ChargeSpeed;
+        gargantua.ChargeCreatureDamage = args.CreatureDamage;
+        gargantua.ChargeCreatureThrowDistance = args.CreatureThrowDistance;
+        gargantua.ChargeStructuralDamage = args.StructuralDamage;
+        gargantua.ChargeSound = args.Sound;
 
         // Kick off movement immediately so the charge feels responsive
-        _physics.SetLinearVelocity(uid, direction * args.ChargeSpeed, body: physics);
+        _physics.SetLinearVelocity(uid, direction * gargantua.ChargeSpeed, body: physics);
 
         _popup.PopupEntity(Loc.GetString("vampire-charge-start"), uid, uid);
 
@@ -530,15 +486,9 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         args.Handled = true;
     }
 
-    private void ProcessChargeMovement(EntityUid uid, GargantuaComponent gargantua, VampireComponent vampire)
+    private void ProcessChargeMovement(EntityUid uid, GargantuaComponent gargantua)
     {
         if (!TryComp<PhysicsComponent>(uid, out var physics))
-        {
-            EndCharge(uid, gargantua);
-            return;
-        }
-
-        if (!TryGetVampireActionEvent<VampireChargeActionEvent>(vampire, ChargeActionId, out var chargeEv))
         {
             EndCharge(uid, gargantua);
             return;
@@ -561,7 +511,7 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
         }
 
         // Keep pushing forward at a constant speed
-        _physics.SetLinearVelocity(uid, gargantua.ChargeDirectionVector * chargeEv.ChargeSpeed, body: physics);
+        _physics.SetLinearVelocity(uid, gargantua.ChargeDirectionVector * gargantua.ChargeSpeed, body: physics);
     }
 
     private void OnChargeCollide(EntityUid uid, GargantuaComponent gargantua, ref StartCollideEvent args)
@@ -585,13 +535,6 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
             return;
         }
 
-        if (!TryComp<VampireComponent>(uid, out var vampire)
-            || !TryGetVampireActionEvent<VampireChargeActionEvent>(vampire, ChargeActionId, out var chargeEv))
-        {
-            EndCharge(uid, gargantua);
-            return;
-        }
-
         if (!TryComp<PhysicsComponent>(uid, out var ourPhysics))
         {
             EndCharge(uid, gargantua);
@@ -607,7 +550,7 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
             // Static obstacle
             var obstacleCoords = Transform(other).Coordinates;
 
-            _audio.PlayPvs(chargeEv.Sound, obstacleCoords, AudioParams.Default.WithVolume(3f));
+            _audio.PlayPvs(gargantua.ChargeSound, obstacleCoords, AudioParams.Default.WithVolume(3f));
 
             if (HasComp<DestructibleComponent>(other))
                 _destructible.DestroyEntity(other);
@@ -618,18 +561,14 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
 
     private void HandleChargeImpact(EntityUid uid, EntityUid target, GargantuaComponent gargantua)
     {
-        if (!TryComp<VampireComponent>(uid, out var vampire)
-            || !TryGetVampireActionEvent<VampireChargeActionEvent>(vampire, ChargeActionId, out var chargeEv))
-            return;
-
-        _audio.PlayPvs(chargeEv.Sound, target, AudioParams.Default.WithVolume(3f));
+        _audio.PlayPvs(gargantua.ChargeSound, target, AudioParams.Default.WithVolume(3f));
 
         var damageSpec = new DamageSpecifier();
-        damageSpec.DamageDict["Blunt"] = chargeEv.CreatureDamage;
+        damageSpec.DamageDict["Blunt"] = gargantua.ChargeCreatureDamage;
         _damageableSystem.TryChangeDamage(target, damageSpec, true, origin: uid);
 
         // Throw the target
-        _throwing.TryThrow(target, gargantua.ChargeDirectionVector * chargeEv.CreatureThrowDistance, 6f, uid);
+        _throwing.TryThrow(target, gargantua.ChargeDirectionVector * gargantua.ChargeCreatureThrowDistance, 6f, uid);
 
         _stun.TryKnockdown(target, TimeSpan.FromSeconds(2), true);
 
@@ -640,6 +579,11 @@ public sealed class GargantuaSystem : SharedGargantuaSystem
     {
         gargantua.IsCharging = false;
         gargantua.ChargeDirectionVector = default;
+        gargantua.ChargeSpeed = 0f;
+        gargantua.ChargeCreatureDamage = 0f;
+        gargantua.ChargeCreatureThrowDistance = 0f;
+        gargantua.ChargeStructuralDamage = 0f;
+        gargantua.ChargeSound = null;
         if (TryComp<PhysicsComponent>(uid, out var physics))
             _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
         Dirty(uid, gargantua);

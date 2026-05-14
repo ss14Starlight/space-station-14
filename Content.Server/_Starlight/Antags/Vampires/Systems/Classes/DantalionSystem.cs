@@ -36,7 +36,7 @@ using Content.Server.Roles;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class DantalionSystem : SharedDantalionSystem
+public sealed class DantalionSystem : EntitySystem
 {
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
@@ -79,6 +79,10 @@ public sealed class DantalionSystem : SharedDantalionSystem
 
         SubscribeLocalEvent<DantalionComponent, VampireRallyThrallsActionEvent>(OnRallyThralls);
         SubscribeLocalEvent<DantalionComponent, VampireMassHysteriaActionEvent>(OnMassHysteria);
+        SubscribeLocalEvent<VampireDecoyActivatedEvent>(OnDecoyActivated);
+        SubscribeLocalEvent<VampireBloodBondStartAttemptEvent>(OnBloodBondStartAttempt);
+        SubscribeLocalEvent<VampireBloodBondStartedEvent>(OnBloodBondStarted);
+        SubscribeLocalEvent<VampireBloodBondStoppedEvent>(OnBloodBondStopped);
 
         SubscribeLocalEvent<DantalionComponent, VampireBloodDrankEvent>(OnBloodDrank);
 
@@ -104,10 +108,20 @@ public sealed class DantalionSystem : SharedDantalionSystem
         }
 
         ProcessActiveBloodBonds(now);
+        ProcessActiveHysteriaVision(now);
     }
 
-    protected override bool TryUseVampireAction(EntityUid uid, EntityUid actionEntity)
-        => _vampire.CheckAndConsumeGrantedVampireAction(uid, actionEntity);
+    private void ProcessActiveHysteriaVision(TimeSpan now)
+    {
+        var query = EntityQueryEnumerator<HysteriaVisionComponent>();
+        while (query.MoveNext(out var uid, out var hysteria))
+        {
+            if (now < hysteria.EndTime)
+                continue;
+
+            RemComp<HysteriaVisionComponent>(uid);
+        }
+    }
 
     private void CheckThrallBreakFree(Entity<VampireThrallComponent> ent)
     {
@@ -541,9 +555,20 @@ public sealed class DantalionSystem : SharedDantalionSystem
 
     #region Decoy
 
-    protected override void OnPredictedDecoy(Entity<DantalionComponent> ent, VampireDecoyActionEvent args)
+    private void OnDecoyActivated(ref VampireDecoyActivatedEvent ev)
     {
+        var ent = ev.Dantalion;
+        var args = ev.Action;
         var uid = ent.Owner;
+
+        if (ev.InvisibilityDuration > TimeSpan.Zero)
+        {
+            var active = EnsureComp<ActiveVampireInvisibilityComponent>(uid);
+            active.EndTime = _timing.CurTime + ev.InvisibilityDuration;
+            active.HadStealthComponent = ev.HadStealthComponent;
+            active.PreviousStealthEnabled = ev.PreviousStealthEnabled;
+            active.PreviousStealthVisibility = ev.PreviousStealthVisibility;
+        }
 
         var xform = Transform(uid);
         var spawnCoords = _transform.GetMapCoordinates(xform);
@@ -654,20 +679,25 @@ public sealed class DantalionSystem : SharedDantalionSystem
 
     #region Blood Bond
 
-    protected override bool CanStartBloodBond(Entity<DantalionComponent> ent)
+    private void OnBloodBondStartAttempt(ref VampireBloodBondStartAttemptEvent ev)
     {
+        var ent = ev.Dantalion;
         if (ent.Comp.Thralls.Count != 0)
-            return true;
+            return;
 
         _popup.PopupEntity(Loc.GetString("vampire-blood-bond-no-thralls"), ent, ent, PopupType.MediumCaution);
-        return false;
+        ev.Cancelled = true;
     }
 
-    protected override void OnPredictedBloodBondStarted(Entity<DantalionComponent> ent, VampireBloodBondActionEvent args)
-        => ActivateBloodBond(ent.Owner, ent.Comp, args.Action.Owner, args.Range, args.BloodCostPerTick, args.TickInterval, args.BeamPrototype);
+    private void OnBloodBondStarted(ref VampireBloodBondStartedEvent ev)
+    {
+        var ent = ev.Dantalion;
+        var args = ev.Action;
+        ActivateBloodBond(ent.Owner, ent.Comp, args.Action.Owner, args.Range, args.BloodCostPerTick, args.TickInterval, args.BeamPrototype);
+    }
 
-    protected override void OnPredictedBloodBondStopped(Entity<DantalionComponent> ent)
-        => DeactivateBloodBond(ent.Owner, ent.Comp);
+    private void OnBloodBondStopped(ref VampireBloodBondStoppedEvent ev)
+        => DeactivateBloodBond(ev.Dantalion.Owner, ev.Dantalion.Comp);
 
     private void ActivateBloodBond(
         EntityUid uid,
@@ -722,13 +752,19 @@ public sealed class DantalionSystem : SharedDantalionSystem
         var query = EntityQueryEnumerator<ActiveVampireBloodBondComponent, DantalionComponent>();
         while (query.MoveNext(out var uid, out var active, out var dantalion))
         {
-            if (now < active.NextTick)
+            if (active.TickInterval <= TimeSpan.Zero)
+            {
+                DeactivateBloodBond(uid, dantalion);
                 continue;
+            }
 
-            if (!ProcessBloodBondTick(uid, active, dantalion))
-                continue;
+            while (now >= active.NextTick)
+            {
+                if (!ProcessBloodBondTick(uid, active, dantalion))
+                    break;
 
-            active.NextTick = now + active.TickInterval;
+                active.NextTick += active.TickInterval;
+            }
         }
     }
 

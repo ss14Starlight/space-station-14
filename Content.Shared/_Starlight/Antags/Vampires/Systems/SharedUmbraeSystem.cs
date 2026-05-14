@@ -12,13 +12,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;
 
-public abstract class SharedUmbraeSystem : EntitySystem
+public sealed class SharedUmbraeSystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedStealthSystem _stealth = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
@@ -61,23 +62,13 @@ public abstract class SharedUmbraeSystem : EntitySystem
         }
     }
 
-    protected virtual bool TryUseVampireAction(EntityUid uid, EntityUid actionEntity)
-        => true;
-
-    protected virtual bool CanStartShadowBoxing(EntityUid uid, EntityUid target)
-        => true;
-
-    protected virtual void OnPredictedShadowBoxingStopped(EntityUid uid, UmbraeComponent umbrae)
-    {
-    }
-
     private void OnCloakOfDarkness(VampireCloakOfDarknessActionEvent args)
     {
         var uid = args.Performer;
         var actionEntity = args.Action.Owner;
         if (args.Handled
             || !Exists(actionEntity)
-            || !TryUseVampireAction(uid, actionEntity))
+            || !_vampireActions.TryUse(uid, actionEntity))
         {
             return;
         }
@@ -100,7 +91,7 @@ public abstract class SharedUmbraeSystem : EntitySystem
         args.Handled = true;
     }
 
-    protected void ActivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
+    public void ActivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
     {
         comp.CloakOfDarknessActive = true;
         comp.NextCloakOfDarknessVisibilityUpdate = _timing.CurTime;
@@ -115,7 +106,7 @@ public abstract class SharedUmbraeSystem : EntitySystem
         _stealth.SetVisibility(uid, comp.CloakOfDarknessMinVisibility, stealth);
     }
 
-    protected void DeactivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
+    public void DeactivateCloakOfDarkness(EntityUid uid, UmbraeComponent comp)
     {
         comp.CloakOfDarknessActive = false;
         Dirty(uid, comp);
@@ -177,8 +168,7 @@ public abstract class SharedUmbraeSystem : EntitySystem
             return;
         }
 
-        var umbrae = EnsureComp<UmbraeComponent>(uid);
-        if (umbrae.ShadowBoxingActive)
+        if (TryComp<UmbraeComponent>(uid, out var umbrae) && umbrae.ShadowBoxingActive)
         {
             StopShadowBoxing(uid, umbrae, "action-vampire-shadow-boxing-ends");
             args.Handled = true;
@@ -191,12 +181,17 @@ public abstract class SharedUmbraeSystem : EntitySystem
             || !HasComp<HumanoidAppearanceComponent>(target)
             || !TryComp<DamageableComponent>(target, out _)
             || (TryComp<MobStateComponent>(target, out var mob) && mob.CurrentState == MobState.Dead)
-            || !TryUseVampireAction(uid, actionEntity)
-            || !CanStartShadowBoxing(uid, target))
+            || !_vampireActions.TryUse(uid, actionEntity))
         {
             return;
         }
 
+        var attempt = new VampireShadowBoxingStartAttemptEvent(uid, target);
+        RaiseLocalEvent(uid, ref attempt, true);
+        if (attempt.Cancelled)
+            return;
+
+        umbrae = EnsureComp<UmbraeComponent>(uid);
         var now = _timing.CurTime;
         umbrae.ShadowBoxingActive = true;
         umbrae.ShadowBoxingEndTime = now + args.Duration;
@@ -218,7 +213,7 @@ public abstract class SharedUmbraeSystem : EntitySystem
         args.Handled = true;
     }
 
-    protected void StopShadowBoxing(EntityUid uid, UmbraeComponent umbrae, string popup)
+    public void StopShadowBoxing(EntityUid uid, UmbraeComponent umbrae, string popup)
     {
         umbrae.ShadowBoxingActive = false;
         umbrae.ShadowBoxingTarget = null;
@@ -227,6 +222,5 @@ public abstract class SharedUmbraeSystem : EntitySystem
         RemComp<ActiveVampireShadowBoxingComponent>(uid);
         Dirty(uid, umbrae);
         _popup.PopupPredicted(Loc.GetString(popup), uid, uid);
-        OnPredictedShadowBoxingStopped(uid, umbrae);
     }
 }

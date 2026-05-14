@@ -29,7 +29,7 @@ using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class UmbraeSystem : SharedUmbraeSystem
+public sealed class UmbraeSystem : EntitySystem
 {
     private static readonly ProtoId<DamageTypePrototype> _bluntTypeId = "Blunt";
 
@@ -50,6 +50,7 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly SharedUmbraeSystem _sharedUmbrae = default!;
 
     public override void Initialize()
     {
@@ -61,6 +62,7 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
         SubscribeLocalEvent<VampireComponent, VampireShadowAnchorActionEvent>(OnShadowAnchor);
         SubscribeLocalEvent<VampireComponent, VampireShadowAnchorDoAfterEvent>(OnShadowAnchorDoAfter);
         SubscribeLocalEvent<VampireComponent, VampireShadowSnareActionEvent>(OnShadowSnare);
+        SubscribeLocalEvent<VampireShadowBoxingStartAttemptEvent>(OnShadowBoxingStartAttempt);
 
         SubscribeLocalEvent<UmbraeComponent, VampireBloodDrankEvent>(OnBloodDrank);
         SubscribeLocalEvent<UmbraeComponent, VampireFullPowerAchievedEvent>(OnFullPower);
@@ -77,9 +79,6 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
         ProcessActiveEternalDarkness(now);
         ProcessActiveShadowBoxing(now);
     }
-
-    protected override bool TryUseVampireAction(EntityUid uid, EntityUid actionEntity)
-        => _vampire.CheckAndConsumeGrantedVampireAction(uid, actionEntity);
 
     private void OnBloodDrank(EntityUid uid, UmbraeComponent umbrae, ref VampireBloodDrankEvent args)
     {
@@ -100,7 +99,7 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
         if (!umbrae.CloakOfDarknessActive)
             return;
 
-        DeactivateCloakOfDarkness(uid, umbrae);
+        _sharedUmbrae.DeactivateCloakOfDarkness(uid, umbrae);
 
         if (TryComp<VampireComponent>(uid, out var vampire)
             && vampire.ActionEntities.TryGetValue("ActionVampireCloakOfDarkness", out var actionEntity)
@@ -555,15 +554,17 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
         _popup.PopupEntity(Loc.GetString("action-vampire-shadow-anchor-returned"), uid, uid);
     }
 
-    protected override bool CanStartShadowBoxing(EntityUid uid, EntityUid target)
+    private void OnShadowBoxingStartAttempt(ref VampireShadowBoxingStartAttemptEvent ev)
     {
+        var uid = ev.Performer;
+        var target = ev.Target;
         if (!HasComp<BibleUserComponent>(target)
             || TryComp<VampireComponent>(uid, out var vampire) && vampire.FullPower
             || !HasComp<VampireComponent>(uid))
-            return true;
+            return;
 
         _popup.PopupEntity(Loc.GetString("vampire-target-protected-by-faith"), uid, uid, PopupType.MediumCaution);
-        return false;
+        ev.Cancelled = true;
     }
 
     private void ProcessActiveShadowBoxing(TimeSpan now)
@@ -576,7 +577,7 @@ public sealed class UmbraeSystem : SharedUmbraeSystem
 
             if (now >= active.EndTime || !umbrae.ShadowBoxingActive)
             {
-                StopShadowBoxing(uid, umbrae, "action-vampire-shadow-boxing-ends");
+                _sharedUmbrae.StopShadowBoxing(uid, umbrae, "action-vampire-shadow-boxing-ends");
                 continue;
             }
 

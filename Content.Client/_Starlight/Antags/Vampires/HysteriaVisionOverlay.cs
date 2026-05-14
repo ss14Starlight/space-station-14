@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
@@ -6,6 +7,7 @@ using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -155,7 +157,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
             && playerThrall.Master == hysteria.Source;
 
         var worldHandle = args.WorldHandle;
-        var counterRotation = -(args.Viewport.Eye?.Rotation ?? Angle.Zero);
+        var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
 
         // Query all humanoids
         var query = _entManager.EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent, SpriteComponent>();
@@ -173,8 +175,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
                 && thrall.Master == hysteria.Source)
                 continue;
 
-            // Get world position
-            var worldPos = _transform.GetWorldPosition(xform);
+            var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
 
             // Check if in viewport bounds (with some margin)
             if (!args.WorldBounds.Enlarged(2f).Contains(worldPos))
@@ -197,13 +198,20 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
             if (texture == null)
                 continue;
 
-            // Calculate the draw box centered on the entity
-            var drawPos = worldPos;
+            var angle = (worldRot + eyeRotation).Reduced().FlipPositive();
+            var cardinal = !sprite.NoRotation && sprite.SnapCardinals
+                ? angle.RoundToCardinalAngle()
+                : Angle.Zero;
 
-            var box = Box2.CenteredAround(drawPos, size);
+            var entityMatrix = Matrix3Helpers.CreateTransform(
+                worldPos,
+                sprite.NoRotation ? -eyeRotation : worldRot - cardinal);
+            var spriteMatrix = Matrix3x2.Multiply(sprite.LocalMatrix, entityMatrix);
 
-            var rotatedBox = new Box2Rotated(box, counterRotation, drawPos);
-            worldHandle.DrawTextureRect(texture, rotatedBox);
+            worldHandle.SetTransform(spriteMatrix);
+            worldHandle.DrawTextureRect(texture, Box2.FromDimensions(size / -2f, size));
         }
+
+        worldHandle.SetTransform(Matrix3x2.Identity);
     }
 }

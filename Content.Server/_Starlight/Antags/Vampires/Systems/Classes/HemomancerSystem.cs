@@ -41,7 +41,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class HemomancerSystem : SharedHemomancerSystem
+public sealed class HemomancerSystem : EntitySystem
 {
     private static readonly ProtoId<DamageTypePrototype> _poisonTypeId = "Poison";
     private static readonly ProtoId<DamageTypePrototype> _bluntTypeId = "Blunt";
@@ -94,6 +94,7 @@ public sealed class HemomancerSystem : SharedHemomancerSystem
         SubscribeLocalEvent<VampireComponent, VampireSanguinePoolActionEvent>(OnSanguinePool);
         SubscribeLocalEvent<VampireComponent, VampireBloodEruptionActionEvent>(OnBloodEruption);
         SubscribeLocalEvent<VampireComponent, VampireBloodBringersRiteActionEvent>(OnBloodBringersRite);
+        SubscribeLocalEvent<VampireHemomancerClawsActivatedEvent>(OnHemomancerClawsActivated);
         SubscribeLocalEvent<HemomancerComponent, PolymorphedEvent>(OnHemomancerPolymorphed);
         SubscribeLocalEvent<SanguinePoolComponent, PolymorphedEvent>(OnSanguinePoolReverted);
 
@@ -143,11 +144,11 @@ public sealed class HemomancerSystem : SharedHemomancerSystem
         Dirty(uid, vampire);
     }
 
-    protected override bool TryUseHemomancerClaws(EntityUid uid, EntityUid actionEntity)
-        => _vampire.CheckAndConsumeGrantedVampireAction(uid, actionEntity);
-
-    protected override void OnPredictedHemomancerClaws(EntityUid uid, ActiveVampireHemomancerClawsComponent active, VampireHemomancerClawsActionEvent args)
+    private void OnHemomancerClawsActivated(ref VampireHemomancerClawsActivatedEvent args)
     {
+        var uid = args.Performer;
+        var active = EnsureComp<ActiveVampireHemomancerClawsComponent>(uid);
+
         if (active.SpawnedClaws != null && EntityManager.EntityExists(active.SpawnedClaws.Value))
         {
             var oldClaws = active.SpawnedClaws.Value;
@@ -639,20 +640,26 @@ public sealed class HemomancerSystem : SharedHemomancerSystem
         var query = EntityQueryEnumerator<ActiveVampireBloodBringersRiteComponent, VampireComponent, HemomancerComponent>();
         while (query.MoveNext(out var uid, out var active, out var comp, out var hemomancer))
         {
-            if (now < active.NextTick)
-                continue;
-
-            if (!ProcessBloodBringersRiteTick(uid, active, comp, hemomancer))
-                continue;
-
-            active.TicksRemaining--;
-            if (active.TicksRemaining <= 0)
+            if (active.TickInterval <= TimeSpan.Zero)
             {
                 DeactivateBloodBringersRite(uid, hemomancer);
                 continue;
             }
 
-            active.NextTick = now + active.TickInterval;
+            while (now >= active.NextTick)
+            {
+                if (!ProcessBloodBringersRiteTick(uid, active, comp, hemomancer))
+                    break;
+
+                active.TicksRemaining--;
+                if (active.TicksRemaining <= 0)
+                {
+                    DeactivateBloodBringersRite(uid, hemomancer);
+                    break;
+                }
+
+                active.NextTick += active.TickInterval;
+            }
         }
     }
 

@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared.DoAfter;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Polymorph;
@@ -199,10 +200,19 @@ public sealed class VampireProgressionChangedEvent : EntityEventArgs { }
 
 #endregion
 
+[ByRefEvent]
+public record struct VampireActionUseAttemptEvent(EntityUid User, EntityUid? ActionEntity = null, int BloodCost = 0, bool ShowPopup = true)
+{
+    public bool Allowed;
+}
+
 #region Hemomancer
 
 // Vampiric Claws
 public sealed partial class VampireHemomancerClawsActionEvent : InstantActionEvent;
+
+[ByRefEvent]
+public readonly record struct VampireHemomancerClawsActivatedEvent(EntityUid Performer);
 
 // Blood Tendril
 public sealed partial class VampireHemomancerTendrilsActionEvent : WorldTargetActionEvent
@@ -439,6 +449,12 @@ public sealed partial class VampireShadowBoxingActionEvent : EntityTargetActionE
     public EntProtoId PunchEffectPrototype = "WeaponArcPunch";
 }
 
+[ByRefEvent]
+public record struct VampireShadowBoxingStartAttemptEvent(EntityUid Performer, EntityUid Target)
+{
+    public bool Cancelled;
+}
+
 [Serializable, NetSerializable]
 public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
 {
@@ -545,6 +561,15 @@ public sealed partial class VampireDecoyActionEvent : InstantActionEvent
     public float DecoyFlashProbability = 1f;
 }
 
+[ByRefEvent]
+public record struct VampireDecoyActivatedEvent(
+    Entity<DantalionComponent> Dantalion,
+    VampireDecoyActionEvent Action,
+    TimeSpan InvisibilityDuration,
+    bool HadStealthComponent,
+    bool PreviousStealthEnabled,
+    float PreviousStealthVisibility);
+
 public sealed partial class VampireRallyThrallsActionEvent : InstantActionEvent
 {
     /// <summary>
@@ -577,6 +602,18 @@ public sealed partial class VampireBloodBondActionEvent : InstantActionEvent
     [DataField(required: true)]
     public EntProtoId BeamPrototype;
 }
+
+[ByRefEvent]
+public record struct VampireBloodBondStartAttemptEvent(Entity<DantalionComponent> Dantalion)
+{
+    public bool Cancelled;
+}
+
+[ByRefEvent]
+public readonly record struct VampireBloodBondStartedEvent(Entity<DantalionComponent> Dantalion, VampireBloodBondActionEvent Action);
+
+[ByRefEvent]
+public readonly record struct VampireBloodBondStoppedEvent(Entity<DantalionComponent> Dantalion);
 
 public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent
 {

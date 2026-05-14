@@ -3,20 +3,15 @@ using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;
 
-public abstract class SharedHemomancerSystem : EntitySystem
+public sealed class SharedHemomancerSystem : EntitySystem
 {
+    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<VampireHemomancerClawsActionEvent>(OnHemomancerClaws);
-    }
-
-    protected virtual bool TryUseHemomancerClaws(EntityUid uid, EntityUid actionEntity)
-        => false;
-
-    protected virtual void OnPredictedHemomancerClaws(EntityUid uid, ActiveVampireHemomancerClawsComponent active, VampireHemomancerClawsActionEvent args)
-    {
     }
 
     private void OnHemomancerClaws(VampireHemomancerClawsActionEvent args)
@@ -25,12 +20,10 @@ public abstract class SharedHemomancerSystem : EntitySystem
         var action = args.Action.Owner;
         if (args.Handled
             || !Exists(action)
-            || !TryUseHemomancerClaws(uid, action))
+            || !_vampireActions.TryUse(uid, action))
         {
             return;
         }
-
-        var active = EnsureComp<ActiveVampireHemomancerClawsComponent>(uid);
 
         if (TryComp<HemomancerComponent>(uid, out var hemomancer))
         {
@@ -38,7 +31,8 @@ public abstract class SharedHemomancerSystem : EntitySystem
             Dirty(uid, hemomancer);
         }
 
-        OnPredictedHemomancerClaws(uid, active, args);
+        var activated = new VampireHemomancerClawsActivatedEvent(uid);
+        RaiseLocalEvent(uid, ref activated, true);
         args.Handled = true;
     }
 }

@@ -39,7 +39,7 @@ public sealed class VampiricClawsSystem : EntitySystem
         args.Handled = true;
 
         if (TryComp<VampireComponent>(args.User, out var vamp))
-            ClearClawsReference(ent.Owner, vamp);
+            ClearClawsReference(args.User, ent.Owner, vamp);
 
         _popup.PopupEntity(Loc.GetString("vampiric-claws-remove-popup"), ent.Owner, args.User);
 
@@ -72,14 +72,20 @@ public sealed class VampiricClawsSystem : EntitySystem
             Dirty(ent);
             if (ent.Comp.HitsRemaining <= 0)
             {
-                ClearClawsReference(ent.Owner, vamp);
+                ClearClawsReference(args.User, ent.Owner, vamp);
                 QueueDel(ent);
             }
         }
     }
 
-    private void ClearClawsReference(EntityUid claws, VampireComponent vampire)
-        => vampire.SpawnedClaws = vampire.SpawnedClaws == claws ? null : vampire.SpawnedClaws;
+    private void ClearClawsReference(EntityUid user, EntityUid claws, VampireComponent vampire)
+    {
+        if (vampire.SpawnedClaws != claws)
+            return;
+
+        vampire.SpawnedClaws = null;
+        Dirty(user, vampire);
+    }
 
     private void OnUnwielded(Entity<VampiricClawsComponent> ent, ref ItemUnwieldedEvent args)
     {
@@ -89,6 +95,7 @@ public sealed class VampiricClawsSystem : EntitySystem
                 return;
 
             vampire.SpawnedClaws = null;
+            Dirty(args.User, vampire);
         }
 
         QueueDel(ent);

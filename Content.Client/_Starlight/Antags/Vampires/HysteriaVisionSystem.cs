@@ -64,9 +64,9 @@ public sealed class HysteriaVisionSystem : EntitySystem
         if (player == null || !_hysteriaQuery.TryComp(player.Value, out var hysteria))
             return;
 
-        // Remove component if expired
+        // Server owns the component lifetime; client only hides the overlay while waiting for replication.
         if (_timing.CurTime > hysteria.EndTime)
-            RemComp<HysteriaVisionComponent>(player.Value);
+            RemoveOverlay();
     }
 
     private void AddOverlay()

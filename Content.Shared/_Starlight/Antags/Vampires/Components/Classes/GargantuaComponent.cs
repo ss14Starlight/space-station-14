@@ -26,6 +26,16 @@ public sealed partial class GargantuaComponent : VampireClassComponent
     /// </summary>
     public Vector2 ChargeDirectionVector;
 
+    public float ChargeSpeed;
+
+    public float ChargeCreatureDamage;
+
+    public float ChargeCreatureThrowDistance;
+
+    public float ChargeStructuralDamage;
+
+    public SoundSpecifier? ChargeSound;
+
     [DataField]
     public TimeSpan BloodSwellShootPopupCooldown = TimeSpan.FromSeconds(1f);
     [DataField]

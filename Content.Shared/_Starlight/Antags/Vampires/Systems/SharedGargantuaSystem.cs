@@ -1,6 +1,7 @@
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared.Actions.Events;
+using Content.Shared.Actions;
 using Content.Shared.Alert;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
@@ -10,21 +11,22 @@ using Content.Shared.Popups;
 using Content.Shared.Prying.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
+using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;
 
-public abstract class SharedGargantuaSystem : EntitySystem
+public sealed class SharedGargantuaSystem : EntitySystem
 {
     private static readonly EntProtoId BloodSwellStatusEffect = "StatusEffectVampireBloodSwell";
     private static readonly EntProtoId BloodRushStatusEffect = "StatusEffectVampireBloodRush";
 
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
 
     public override void Initialize()
     {
@@ -32,6 +34,7 @@ public abstract class SharedGargantuaSystem : EntitySystem
 
         SubscribeLocalEvent<VampireBloodSwellActionEvent>(OnBloodSwell);
         SubscribeLocalEvent<VampireBloodRushActionEvent>(OnBloodRush);
+        SubscribeLocalEvent<GargantuaComponent, VampireOverwhelmingForceActionEvent>(OnOverwhelmingForce);
 
         SubscribeLocalEvent<GargantuaComponent, PullAttemptEvent>(OnOverwhelmingForcePullAttempt);
         SubscribeLocalEvent<GargantuaComponent, DisarmAttemptEvent>(OnOverwhelmingForceDisarmAttempt);
@@ -40,13 +43,11 @@ public abstract class SharedGargantuaSystem : EntitySystem
 
         SubscribeLocalEvent<ActiveBloodSwellComponent, GetMeleeDamageEvent>(OnBloodSwellMeleeDamage);
         SubscribeLocalEvent<ActiveBloodSwellComponent, StatusEffectRelayedEvent<GetMeleeDamageEvent>>(OnBloodSwellMeleeDamage);
+        SubscribeLocalEvent<MeleeWeaponComponent, GetMeleeDamageEvent>(OnMeleeWeaponDamage);
         SubscribeLocalEvent<ActiveBloodRushComponent, StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshMovementSpeed);
         SubscribeLocalEvent<ActiveBloodSwellComponent, StatusEffectRemovedEvent>(OnBloodSwellRemoved);
         SubscribeLocalEvent<ActiveBloodRushComponent, StatusEffectRemovedEvent>(OnBloodRushRemoved);
     }
-
-    protected virtual bool TryUseVampireAction(EntityUid uid, EntityUid actionEntity)
-        => true;
 
     private void OnBloodSwell(VampireBloodSwellActionEvent args)
     {
@@ -57,7 +58,7 @@ public abstract class SharedGargantuaSystem : EntitySystem
         var actionEntity = args.Action.Owner;
         if (!Exists(actionEntity)
             || !HasComp<GargantuaComponent>(uid)
-            || !TryUseVampireAction(uid, actionEntity)
+            || !_vampireActions.TryUse(uid, actionEntity)
             || !_statusEffects.TrySetStatusEffectDuration(uid, BloodSwellStatusEffect, out var statusEffect, args.Duration))
         {
             return;
@@ -107,6 +108,28 @@ public abstract class SharedGargantuaSystem : EntitySystem
         args.Args = ev;
     }
 
+    private void OnMeleeWeaponDamage(Entity<MeleeWeaponComponent> ent, ref GetMeleeDamageEvent args)
+    {
+        if (args.Weapon == args.User)
+            return;
+
+        if (!_statusEffects.TryEffectsWithComp<ActiveBloodSwellComponent>(args.User, out var effects)
+            || !TryComp<VampireComponent>(args.User, out var vampire))
+        {
+            return;
+        }
+
+        foreach (var effect in effects)
+        {
+            if (vampire.TotalBlood < effect.Comp1.EnhancedThreshold)
+                continue;
+
+            var damageType = effect.Comp1.MeleeBonusDamageType;
+            args.Damage.DamageDict.TryGetValue(damageType, out var damage);
+            args.Damage.DamageDict[damageType] = damage + effect.Comp1.MeleeBonusDamage;
+        }
+    }
+
     private void OnBloodRush(VampireBloodRushActionEvent args)
     {
         if (args.Handled)
@@ -116,7 +139,7 @@ public abstract class SharedGargantuaSystem : EntitySystem
         var actionEntity = args.Action.Owner;
         if (!Exists(actionEntity)
             || !HasComp<GargantuaComponent>(uid)
-            || !TryUseVampireAction(uid, actionEntity)
+            || !_vampireActions.TryUse(uid, actionEntity)
             || !_statusEffects.TrySetStatusEffectDuration(uid, BloodRushStatusEffect, out var statusEffect, args.Duration))
         {
             return;
@@ -145,6 +168,41 @@ public abstract class SharedGargantuaSystem : EntitySystem
 
     private void OnRefreshMovementSpeed(Entity<ActiveBloodRushComponent> ent, ref StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
         => args.Args.ModifySpeed(ent.Comp.SpeedMultiplier, ent.Comp.SpeedMultiplier);
+
+    private void OnOverwhelmingForce(EntityUid uid, GargantuaComponent gargantua, ref VampireOverwhelmingForceActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var actionEntity = args.Action.Owner;
+        if (!Exists(actionEntity)
+            || !_vampireActions.TryUse(uid, actionEntity))
+            return;
+
+        gargantua.OverwhelmingForceActive = !gargantua.OverwhelmingForceActive;
+
+        if (gargantua.OverwhelmingForceActive)
+        {
+            var prying = EnsureComp<PryingComponent>(uid);
+            prying.PryPowered = true;
+            prying.Force = true;
+            prying.SpeedModifier = gargantua.OverwhelmingForcePrySpeedModifier;
+
+            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-start"), uid, uid);
+        }
+        else
+        {
+            RemComp<PryingComponent>(uid);
+
+            _popup.PopupPredicted(Loc.GetString("vampire-overwhelming-force-stop"), uid, uid);
+        }
+
+        if (_actions.GetAction(actionEntity) is { } action)
+            _actions.SetToggled(action.AsNullable(), gargantua.OverwhelmingForceActive);
+
+        Dirty(uid, gargantua);
+        args.Handled = true;
+    }
 
     private void OnOverwhelmingForcePullAttempt(EntityUid uid, GargantuaComponent component, PullAttemptEvent args)
     {
@@ -184,4 +242,5 @@ public abstract class SharedGargantuaSystem : EntitySystem
         args.Cancelled = true;
         args.Message = "vampire-not-enough-blood";
     }
+
 }
