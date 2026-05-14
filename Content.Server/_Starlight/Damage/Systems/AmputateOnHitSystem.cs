@@ -4,6 +4,7 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Damage.Components;
+using Content.Shared.Armor;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Damage.Events;
@@ -15,7 +16,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Damage.Systems;
 
-public sealed class MeleeThrowOnHitSystem : EntitySystem
+public sealed class AmputateCombatSystem : EntitySystem
 {
     [Dependency] private readonly UseDelaySystem _delay = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
@@ -34,36 +35,46 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     {
         if (!args.IsHit || _delay.IsDelayed(weapon.Owner) || args.HitEntities.Count == 0)
             return;
-        const float BleedAmount = 100;
-        if (_random.Prob(weapon.Comp.Chance))
+
+        foreach (var target in args.HitEntities)
         {
-            foreach (var target in args.HitEntities)
+            var chance = weapon.Comp.Chance;
+            if (TryComp(target, out ArmorComponent? armor))
+                chance *= armor.AmputateChanceModifier;
+
+            if (_random.Prob(chance))
             {
-                if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target, out var body, log: false))
-                {
-                    var part = _random.Pick(weapon.Comp.Parts);
-                    {
-                        var basepart = Spawn(part);
-                        if (TryComp<BodyPartComponent>(basepart, out var bodypart))
-                        {
-                            var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodypart.PartType).FirstOrDefault(p => p.Component.Symmetry == bodypart.Symmetry);
-                            if (TryComp(targetpart.Id, out TransformComponent? targetPartTransform) &&
-                               TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
-                               TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
-                            {
-                                Entity<TransformComponent, MetaDataComponent, BodyPartComponent> PartToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
-                                _limbSystem.Amputate(body, PartToDelete);
-                                _chatSystem.TryEmoteWithChat(target, "Scream");
-                                _bloodstreamSystem.TryModifyBleedAmount(target, BleedAmount);
-                            }
-                        }
-                        Del(basepart);
-                    }
-                }
+                DoAmputate(target, weapon.Comp, args);
             }
         }
     }
 
+    private void DoAmputate(EntityUid target, AmputateOnHitComponent comp, MeleeHitEvent args)
+    {
+        if (!_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target,
+                out var body, log: false))
+            return;
+
+        const float BleedAmount = 100;
+        var part = _random.Pick(comp.Parts);
+        {
+            var basePart = Spawn(part);
+            if (TryComp<BodyPartComponent>(basePart, out var bodypart))
+            {
+                var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodypart.PartType).FirstOrDefault(p => p.Component.Symmetry == bodypart.Symmetry);
+                if (TryComp(targetpart.Id, out TransformComponent? targetPartTransform) &&
+                    TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
+                    TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
+                {
+                    Entity<TransformComponent, MetaDataComponent, BodyPartComponent> partToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
+                    _limbSystem.Amputate(body, partToDelete);
+                    _chatSystem.TryEmoteWithChat(target, "Scream");
+                    _bloodstreamSystem.TryModifyBleedAmount(target, BleedAmount);
+                }
+            }
+            Del(basePart);
+        }
+    }
     public void OnExamineDamage(EntityUid uid, AmputateOnHitComponent component, ref DamageExamineEvent args)
     {
         const int ToPercentage = 100;

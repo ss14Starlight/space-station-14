@@ -25,6 +25,7 @@ public sealed partial class ArmorComponent : Component
     public float PriceMultiplier = 1;
 
     /// <summary>
+    ///
     /// If true, you can examine the armor to see the protection. If false, the verb won't appear.
     /// </summary>
     [DataField]
@@ -43,6 +44,12 @@ public sealed partial class ArmorComponent : Component
     /// </summary>
     [DataField("staminaModifier")]
     public float StaminaDamageModifier = 1.0f;
+
+    /// <summary>
+    /// Amputation Chance reduction
+    /// </summary>
+    [DataField("amputateChanceModifier")]
+    public float AmputateChanceModifier = 1.0f;
     #endregion
 }
 
