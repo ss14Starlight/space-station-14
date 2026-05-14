@@ -25,7 +25,8 @@
   - type: Fiber
     fiberMaterial: fibers-insulative
   - type: FingerprintMask
-  - type: WearableDefibrillator
+  - type: Defibrillator
+    isWearable: true
     zapHeal:
       types:
         Asphyxiation: -40

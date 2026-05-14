@@ -27,7 +27,7 @@
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledMedic
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesDefibMedTak
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
