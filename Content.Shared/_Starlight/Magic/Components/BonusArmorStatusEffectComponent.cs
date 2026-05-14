@@ -34,7 +34,7 @@ public sealed partial class BonusArmorStatusEffectComponent : Component
     /// <summary>
     /// Stamina damage reduction
     /// </summary>
-    [DataField("staminaModifier")]
+    [DataField("staminaDamageModifier")]
     public float StaminaDamageModifier = 1.0f;
 
     /// <summary>

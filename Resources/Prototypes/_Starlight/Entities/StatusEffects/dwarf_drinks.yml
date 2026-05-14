@@ -79,7 +79,7 @@
   - type: BonusArmorStatusEffect
     ignoreKnockdown: false
     staminaDamageModifier: 1.0
-    explosionCoefficient: 1.00
+    explosionResistance: 1.00
     modifiers:
       coefficients:
         Blunt: 0.90
