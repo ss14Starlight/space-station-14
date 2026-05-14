@@ -129,4 +129,4 @@ JobStationEngineer = Station Engineer
 JobTechnicalAssistant = Technical Assistant
 JobVisitor = Visitor
 JobWarden = Warden
-JobMagistrate = Magistrate
+

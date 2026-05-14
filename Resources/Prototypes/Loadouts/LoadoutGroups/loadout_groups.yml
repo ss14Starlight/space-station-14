@@ -247,7 +247,7 @@
   minLimit: 0
   loadouts:
   - HoPHead
-  - HopHeadFormal
+  - HopHeadFormal # Delta V
 
 - type: loadoutGroup
   id: HoPJumpsuit

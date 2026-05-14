@@ -7,14 +7,13 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/boatcloak.rsi
     - type: StealTarget
-      stealGroup:
-        HeadCloak
+      stealGroup: HeadCloak
 
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakBoatCC
   name: central command boat cloak
-  description: A emerald greeen durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
+  description: A emerald green durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
   components:
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/boatcloakcc.rsi
@@ -23,13 +22,12 @@
   parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakBoatHos
   name: head of security's boat cloak
-  description: A rish gray durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
+  description: A light gray durathread boat cloak with a red felt lining and gold trim. Somehow, it's even more expensive than it looks.
   components:
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/boatcloakhos.rsi
     - type: StealTarget
-      stealGroup:
-        HeadCloak
+      stealGroup: HeadCloak
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -49,8 +47,7 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/hosrobe.rsi
     - type: StealTarget
-      stealGroup:
-        HeadCloak
+      stealGroup: HeadCloak
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -61,8 +58,7 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/cmo_over_shoulder.rsi
     - type: StealTarget
-      stealGroup:
-        HeadCloak
+      stealGroup: HeadCloak
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -73,8 +69,7 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/cmo_shawl.rsi
     - type: StealTarget
-      stealGroup:
-        HeadCloak
+      stealGroup: HeadCloak
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
@@ -85,5 +80,4 @@
     - type: Sprite
       sprite: DeltaV/Clothing/Neck/Cloaks/hop.rsi
     - type: StealTarget
-      stealGroup:
-        HeadCloak
+      stealGroup: HeadCloak

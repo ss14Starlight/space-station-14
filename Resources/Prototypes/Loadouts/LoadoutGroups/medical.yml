@@ -101,8 +101,8 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
-  - ChiefMedicalOfficerShawl
-  - ChiefMedicalOfficerOverShoulder
+  - ChiefMedicalOfficerShawl # DeltaV
+  - ChiefMedicalOfficerOverShoulder # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
