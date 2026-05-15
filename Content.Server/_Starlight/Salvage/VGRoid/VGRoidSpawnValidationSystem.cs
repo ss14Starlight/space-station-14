@@ -251,7 +251,7 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
                 // Spread retries around the preferred direction instead of always choosing
                 // a totally unrelated side of the station.
                 var angle = MathF.Atan2(preferredDirection.Y, preferredDirection.X);
-                angle += _random.NextFloat(-MathF.PI, MathF.PI);
+                angle += _random.NextFloat(-MathF.PI / 2f, MathF.PI / 2f);
 
                 direction = new Vector2(MathF.Cos(angle), MathF.Sin(angle));
             }
