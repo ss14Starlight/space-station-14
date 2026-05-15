@@ -57,6 +57,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
+using Content.Server.Station.Components;
 #endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
@@ -766,11 +767,19 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     continue;
                 }
 
-                if (checkOffStation && _stationSystem.GetOwningStation(entity) == null && !_emergencyShuttle.EmergencyShuttleArrived)
+                #region Starlight
+                // get the "station" this entity is on, which could also be a shuttle
+                var station = _stationSystem.GetOwningStation(entity);
+
+                if (checkOffStation
+                && station != null
+                && !HasComp<BecomesStationComponent>(station.Value) // check they're on the actual station and not on a shuttle
+                && !_emergencyShuttle.EmergencyShuttleArrived)
                 {
                     gone++;
                     continue;
                 }
+                #endregion Starlight
             }
             //If they don't have the MobStateComponent they might as well be dead.
             else
