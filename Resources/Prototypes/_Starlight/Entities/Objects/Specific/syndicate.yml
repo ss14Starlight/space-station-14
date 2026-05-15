@@ -104,16 +104,11 @@
   description: Die, Gloriously.
   components:
   - type: NukeCodePaper
-  - type: TriggerOnSpawn
-  - type: EmitSoundOnTrigger
-    sound:
-        collection: WarMusic
-    global: true
 
 - type: entity
   parent: BaseItem
   id: TraitorNuclearCodes
-  name: redspace transmission
+  name: the red folder
   suffix: Station Nuke Codes
   description: Alerts the station to your presence. Good luck.
   components:
@@ -148,6 +143,10 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+        collection: WarMusic
+    global: true
   - type: PointLight
     color: Red
     radius: 6
