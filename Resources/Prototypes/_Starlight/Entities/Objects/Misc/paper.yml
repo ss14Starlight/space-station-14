@@ -5,20 +5,23 @@
   # TODO: could have a unique sprite in the future
 
 - type: entity
-  name: MedTak invoice
+  name: MedTak paper
   parent: Paper
   id: PaperMedTak
   description: A piece of paper headed by the MedTak logo. It looks expensive. For you.
   components:
   - type: Sprite
     layers:
-    - state: paper
+    - sprite: _Starlight/Admeme/Objects/MedTak/paper.rsi
+      state: paper
       color: "#ffffff"
-    - state: paper_words
+    - sprite: _Starlight/Admeme/Objects/MedTak/paper.rsi
+      state: paper-words
       map: ["enum.PaperVisualLayers.Writing"]
       color: "#ffffff"
       visible: false
-    - state: paper_stamp-generic
+    - sprite: Objects/Misc/bureaucracy.rsi
+      state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
   - type: PaperVisuals
