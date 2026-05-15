@@ -254,8 +254,6 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         {
             if (add)
                 EntityManager.AddComponent(target, comp.Value);
-            else if (HasComp(target, comp.Value.Component.GetType()))
-                EntityManager.RemoveComponent(target, comp.Value.Component);
 
             if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
                 TryComp<ActionGrantComponent>(target, out var oldComp))
@@ -267,6 +265,9 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
                 continue;
             }
+
+            if (!add && HasComp(target, comp.Value.Component.GetType()))
+                EntityManager.RemoveComponent(target, comp.Value.Component);
         }
     }
     #endregion
