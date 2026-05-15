@@ -124,6 +124,7 @@
       tags:
         - CantBecomeRevolutionary
         - Wizard
+      allowNonHumans: true
       # Starlight-end
 
 - type: entity

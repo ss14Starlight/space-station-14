@@ -22,7 +22,7 @@ using Content.Shared.Temperature;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Starlight.EntityEffects.EntitySystems;
+namespace Content.Server._Starlight.EntityEffects.EntitySystems;
 
 public sealed class DissolvableSystem : SharedDissolvableSystem
 {

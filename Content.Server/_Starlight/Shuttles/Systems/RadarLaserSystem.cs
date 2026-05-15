@@ -1,4 +1,3 @@
-using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;

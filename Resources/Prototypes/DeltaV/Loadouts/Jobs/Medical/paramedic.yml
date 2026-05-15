@@ -1,0 +1,5 @@
+﻿#Outer Clothing
+- type: loadout
+  id: ParamedicJacket
+  equipment:
+    outerClothing: ClothingOuterCoatParamedicJacket

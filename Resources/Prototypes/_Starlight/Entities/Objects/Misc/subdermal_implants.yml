@@ -210,8 +210,21 @@
   description: This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
-  - type: RattleOnTrigger
-    radioChannel: MedTak
+    - type: RattleOnTrigger
+      radioChannel: MedTak
+    - type: SuitSensor
+      faction: MedTak
+      randomMode: false
+      controlsLocked: true
+      mode: SensorCords
+      activationContainer: "implant"
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      transmitFrequencyId: SuitSensor
+    - type: StationLimitedNetwork
+      allowNonStationPackets: true
+    - type: WirelessNetworkConnection
+      range: 1500
 
 - type: entity
   parent: MindShieldImplant

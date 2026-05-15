@@ -57,9 +57,7 @@ public sealed class StasisSystem : SharedStasisSystem
     }
 
     private void OnMapInit(EntityUid uid, StasisComponent comp, MapInitEvent args)
-    {
-        _actionsSystem.AddAction(uid, ref comp.EnterStasisActionEntity, comp.EnterStasisAction);
-    }
+        => _actionsSystem.AddAction(uid, ref comp.EnterStasisActionEntity, comp.EnterStasisAction);
 
     private void OnCompRemove(EntityUid uid, StasisComponent comp, ComponentShutdown args)
     {
