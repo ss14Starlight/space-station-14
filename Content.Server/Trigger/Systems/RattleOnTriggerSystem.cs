@@ -49,7 +49,7 @@ public sealed class RattleOnTriggerSystem : EntitySystem
 
         var message = Loc.GetString(messageId, ("user", target.Value), ("position", posText));
         #region Starlight
-        //For global announcements, ie, DAGD nuke codes, so they can't just sabotage comms
+        //For global announcements, ie, DAGD nuke codes, so they can't just sabotage comms. Could also use this to announce when someone important is dead.
         if (ent.Comp.Global)
         {
             var title = Loc.GetString(ent.Comp.SenderTitle);

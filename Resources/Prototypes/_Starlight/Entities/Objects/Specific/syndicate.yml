@@ -135,6 +135,7 @@
     radioChannel: Common
     targetUser: true
     global: true
+    sound: /Audio/Announcements/war.ogg
     messages:
       Alive: rattle-on-trigger-nuke-message
   - type: SpawnOnTrigger
