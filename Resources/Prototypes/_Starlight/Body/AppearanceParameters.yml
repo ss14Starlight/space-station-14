@@ -1,0 +1,19 @@
+- type: appearanceParameter
+  id: HumanSkinColor
+  defaultColor: "#E8B59B"
+  coloration: !type:ClampedHsvColorStrategy
+    hue: 0.0694, 0.125
+    saturation: 0.2, 0.5
+    value: 0.22, 1.0
+
+- type: appearanceParameter
+  id: HumanEyeColor
+  defaultColor: "#3F7F4F"
+
+- type: appearanceParameter
+  id: HumanHairColor
+  defaultColor: "#3D2A1B"
+
+- type: appearanceParameter
+  id: HumanFacialHairColor
+  defaultColor: "#3D2A1B"
