@@ -559,7 +559,6 @@ public sealed partial class VampireSystem : EntitySystem
         Dirty(uid, comp);
     }
 
-
     private int GetActionBloodThreshold(EntProtoId actionId)
     {
         if (_proto.TryIndex<EntityPrototype>(actionId, out var proto) &&

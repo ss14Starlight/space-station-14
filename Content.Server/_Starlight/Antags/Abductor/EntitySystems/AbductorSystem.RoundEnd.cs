@@ -5,7 +5,7 @@ using Content.Shared.Starlight.Antags.Abductor;
 using Robust.Server.Player;
 using Robust.Shared.Network;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem
 {
