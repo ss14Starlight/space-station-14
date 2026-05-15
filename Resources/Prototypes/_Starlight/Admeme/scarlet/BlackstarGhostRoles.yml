@@ -70,8 +70,15 @@
     - PowerDrill
     - DoubleEmergencyOxygenTankFilled
     - DoubleEmergencyNitrogenTankFilled
+    - DrinkWaterBottleFull
+    - FoodSnackNutribrick
+    - FlashlightSeclite
+    - PowerCellHyper
     belt:
     - MagazineRifleSP
     - MagazineRifleSP
     - MagazineRifleSP
     - Handcuffs
+    - WeaponLaserSvalinn
+    - GrenadeFlashBang
+    - GrenadeFlashBang

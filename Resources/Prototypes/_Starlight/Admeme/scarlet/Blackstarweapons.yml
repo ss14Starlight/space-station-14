@@ -35,7 +35,7 @@
     steps: 5
     zeroVisible: true
   - type: GunWieldBonus
-    minAngle: -19
-    maxAngle: -16
+    minAngle: -20
+    maxAngle: -28
   - type: SpeedModifiedOnWield
     walkModifier: 0.80

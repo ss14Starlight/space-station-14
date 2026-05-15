@@ -1,3 +1,21 @@
+# Blackstar Tactical Visor
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseMajorContraband]
+  id: ClothingEyesGlassesBlackstar
+  name: Blackstar tactical visor
+  description: A flash-resistant tactical visor issued to Blackstar Dreadwalker operatives. Provides complete flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi #WILL BE REPLACED AT A LATER DATE WHEN I HAVE SPRITES!!! - scarletlightweaver_ss14
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+
 # Blackstar Combat Suit
 - type: entity
   parent: [ClothingOuterBaseLarge, BaseMajorContraband]
@@ -9,8 +27,6 @@
     sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
-  - type: Item
-    size: Huge
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: StaminaResistance
@@ -20,12 +36,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.45
-        Slash: 0.45
-        Piercing: 0.45
-        Heat: 0.45
-        Radiation: 0.45
-        Caustic: 0.45
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
     staminaModifier: 0.3
   - type: ClothingSpeedModifier
     walkModifier: 0.9
