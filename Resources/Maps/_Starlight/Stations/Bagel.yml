@@ -4,7 +4,7 @@ meta:
   engineVersion: 272.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/14/2026 00:30:35
+  time: 05/15/2026 02:41:34
   entityCount: 26132
 maps:
 - 1
@@ -11637,13 +11637,6 @@ entities:
     - type: Transform
       pos: 33.5,-11.5
       parent: 2
-- proto: AirlockCommandGlass
-  entities:
-  - uid: 181
-    components:
-    - type: Transform
-      pos: 2.5,-11.5
-      parent: 2
 - proto: AirlockCommandGlassLocked
   entities:
   - uid: 174
@@ -13817,6 +13810,15 @@ entities:
     - type: Transform
       pos: 33.5,-21.5
       parent: 2
+- proto: AirlockNtrepGlassLocked
+  entities:
+  - uid: 181
+    components:
+    - type: Transform
+      pos: 2.5,-11.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
 - proto: AirlockQuartermasterLocked
   entities:
   - uid: 490
