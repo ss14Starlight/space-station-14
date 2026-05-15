@@ -1,10 +1,10 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: starlight
-  forkVersion: 80e6df731683874327f3d993be8d48655d76c690
-  time: 05/14/2026 05:07:48
+  forkVersion: 174f660046d0147633962567f82aeadc7f59c923
+  time: 05/15/2026 02:42:45
   entityCount: 40825
 maps:
 - 1
@@ -91494,11 +91494,6 @@ entities:
       text: BSO
 - proto: DefaultStationBeaconCourtroom
   entities:
-  - uid: 13309
-    components:
-    - type: Transform
-      pos: -42.5,5.5
-      parent: 2
   - uid: 13310
     components:
     - type: Transform
@@ -91639,6 +91634,13 @@ entities:
     - type: Transform
       pos: -51.5,-26.5
       parent: 2
+- proto: DefaultStationBeaconIAA
+  entities:
+  - uid: 13332
+    components:
+    - type: Transform
+      pos: -54.5,13.5
+      parent: 2
 - proto: DefaultStationBeaconJanitorsCloset
   entities:
   - uid: 13330
@@ -91655,11 +91657,6 @@ entities:
       parent: 2
 - proto: DefaultStationBeaconLawOffice
   entities:
-  - uid: 13332
-    components:
-    - type: Transform
-      pos: -54.5,13.5
-      parent: 2
   - uid: 13333
     components:
     - type: Transform
@@ -91667,6 +91664,13 @@ entities:
       parent: 2
     - type: NavMapBeacon
       text: Magistrate Office
+- proto: DefaultStationBeaconLawyer
+  entities:
+  - uid: 13309
+    components:
+    - type: Transform
+      pos: -56.5,8.5
+      parent: 2
 - proto: DefaultStationBeaconLibrary
   entities:
   - uid: 13334
@@ -162749,9 +162753,7 @@ entities:
       pos: 76.5,-6.5
       parent: 2
     - type: PoweredLight
-      isBlinking: True
       lastGhostBlink: 3349.0299842
-    - type: Timer
   - uid: 39498
     components:
     - type: Transform
@@ -162782,9 +162784,7 @@ entities:
       pos: 74.5,-5.5
       parent: 2
     - type: PoweredLight
-      isBlinking: True
       lastGhostBlink: 3349.0299842
-    - type: Timer
   - uid: 39519
     components:
     - type: Transform
@@ -162803,9 +162803,7 @@ entities:
       pos: 72.5,-6.5
       parent: 2
     - type: PoweredLight
-      isBlinking: True
       lastGhostBlink: 3349.0299842
-    - type: Timer
   - uid: 39524
     components:
     - type: Transform
