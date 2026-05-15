@@ -1,21 +1,15 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Actions;
 using Content.Shared.DoAfter;
-using Content.Shared.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Spawners;
-using Robust.Server.GameObjects;
 using Content.Shared.Interaction;
 using Content.Shared.Weapons.Melee.Events;
-using System.Linq;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
-using System;
 using Content.Shared.ActionBlocker;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
