@@ -1,34 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) Chemistry now has a proper medical fridge.
-    type: Tweak
-  id: 404616
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Chemistry air distribution and waste pipes are now on Quaternary and Quinary configurations.
-    type: Tweak
-  id: 404617
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Morgue has had railings removed and the surgery bay shuffled around.
-    type: Tweak
-  id: 404618
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Medbay has some additional rollerbeds near the stasis beds now.
-    type: Tweak
-  id: 404619
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
   - message: (Lagan) NCT Office now has visual cues as to what and where they are from the main hall.
     type: Tweak
   id: 404620
@@ -2799,4 +2771,32 @@ Entries:
   id: 405015
   time: '2026-05-15T12:55:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4415
+- author: Swonki
+  changes:
+  - message: Corgi Firesuit+Helmet.
+    type: Add
+  id: 405016
+  time: '2026-05-15T15:52:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4453
+- author: Swonki
+  changes:
+  - message: Corgi Head of Security Hardsuit.
+    type: Add
+  id: 405017
+  time: '2026-05-15T15:52:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4453
+- author: Swonki
+  changes:
+  - message: Corgi Warden Hardsuit.
+    type: Add
+  id: 405018
+  time: '2026-05-15T15:52:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4453
+- author: Rinary
+  changes:
+  - message: Infection anomalies can actually be removed.
+    type: Fix
+  id: 405019
+  time: '2026-05-15T15:52:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4452
 Order: -1
