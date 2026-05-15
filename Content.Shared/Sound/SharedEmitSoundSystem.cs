@@ -150,7 +150,10 @@ public abstract class SharedEmitSoundSystem : EntitySystem
         #region Starlight
         if (component.Global)
         {
-            _audioSystem.PlayGlobal(_audioSystem.ResolveSound(component.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(GlobalSoundReduction));
+            if (_netMan.IsServer)
+            {
+                _audioSystem.PlayGlobal(_audioSystem.ResolveSound(component.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(GlobalSoundReduction));
+            }
             return;
         }
         #endregion Starlight

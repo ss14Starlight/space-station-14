@@ -25,7 +25,10 @@ public sealed class EmitSoundOnTriggerSystem : XOnTriggerSystem<EmitSoundOnTrigg
         #region Starlight
         if (ent.Comp.Global)
         {
-            _audio.PlayGlobal(_audio.ResolveSound(ent.Comp.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(GlobalSoundReduction));
+            if (_netMan.IsServer)
+            {
+                _audio.PlayGlobal(_audio.ResolveSound(ent.Comp.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(GlobalSoundReduction));
+            }
             return true;
         }
         #endregion Starlight
