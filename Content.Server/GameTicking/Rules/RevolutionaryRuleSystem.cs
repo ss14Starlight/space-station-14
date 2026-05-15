@@ -57,7 +57,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
-using Content.Server.Station.Components;
+using Content.Shared.Station.Components;
 #endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
@@ -768,13 +768,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 }
 
                 #region Starlight
-                // get the "station" this entity is on, which could also be a shuttle
-                var station = _stationSystem.GetOwningStation(entity);
-
-                if (checkOffStation
-                && station != null
-                && !HasComp<BecomesStationComponent>(station.Value) // check they're on the actual station and not on a shuttle
-                && !_emergencyShuttle.EmergencyShuttleArrived)
+                // Starlight: previous 'off station check' straight up never worked. replaced with a new helper method 'IsOnMainStation'
+                if (checkOffStation && !IsOnMainStation(entity) && !_emergencyShuttle.EmergencyShuttleArrived)
                 {
                     gone++;
                     continue;
@@ -797,6 +792,42 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         return gone == list.Count || list.Count == 0;
     }
+
+#region Starlight
+    /// <summary>
+    /// Determines whether an entity is located on a "main" station grid.
+    /// Grids like the Arrivals or Cargo Shuttle are not considered "being on the main station."
+    /// </summary>
+    /// <param name="entity">Entity to be evaluated.</param>
+    /// <returns>True if entity is on the main station grid, false otherwise.</returns>
+    private bool IsOnMainStation(EntityUid entity)
+    {
+        // get transform data. used at the end to check if the entity is actually *on* the station grid
+        var xform = EntityManager.GetComponentOrNull<TransformComponent>(entity);
+        if(xform == null || xform.GridUid == null)
+            return false;
+
+        // check that some station actually owns this entity
+        var station = _stationSystem.GetOwningStation(entity);
+
+        // make sure station's not null, then get uid of station
+        if(station is not { } stationUid)
+            return false;
+
+        // station data contains all of the station grids
+        var stationData = EntityManager.GetComponentOrNull<StationDataComponent>(stationUid);
+        if(stationData == null)
+            return false;
+
+        // main station grid check. if main grids is (somehow) empty, fallback to any grid in station data
+        var grids = stationData.MainGrids.Count > 0
+            ? stationData.MainGrids
+            : stationData.Grids;
+
+        // finally, check if the entity is on the main grid
+        return grids.Contains(xform.GridUid.Value);
+    }
+#endregion Starlight
 
     private static readonly string[] Outcomes =
     {
