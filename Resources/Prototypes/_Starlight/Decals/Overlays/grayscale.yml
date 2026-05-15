@@ -61,3 +61,123 @@
   sprite:
     sprite: _Starlight/Decals/tiling.rsi
     state: diagonal_overlay_corner_4
+
+- type: decal
+  id: 3x3checkered
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_checkered
+
+- type: decal
+  id: 3x3checkeredalt
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_checkered_alt
+
+- type: decal
+  id: 3x3east
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_east
+
+- type: decal
+  id: 3x3full
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_full
+
+- type: decal
+  id: 3x3innerne
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_inner_ne
+
+- type: decal
+  id: 3x3innernw
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_inner_nw
+
+- type: decal
+  id: 3x3innerse
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_inner_se
+
+- type: decal
+  id: 3x3innersw
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_inner_sw
+
+- type: decal
+  id: 3x3ne
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_ne
+
+- type: decal
+  id: 3x3nw
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_nw
+
+- type: decal
+  id: 3x3se
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_se
+
+- type: decal
+  id: 3x3sw
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_sw
+
+- type: decal
+  id: 3x3south
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_south
+
+- type: decal
+  id: 3x3north
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_top
+
+- type: decal
+  id: 3x3west
+  tags: ["station", "overlay"]
+  defaultCustomColor: true
+  sprite:
+    sprite: _Starlight/Decals/overlay.rsi
+    state: 3x3_west

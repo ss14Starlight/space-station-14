@@ -12,19 +12,14 @@ using Content.Shared.Access.Components;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.PDA;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Localization;
 using Content.Shared.Humanoid;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
 using Content.Shared.Roles.Jobs;
-using Content.Server.Station.Components;
 using Content.Server.Mind;
-using Content.Shared.Preferences;
-using Robust.Shared.GameObjects;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._Starlight.Time;
 using Robust.Server.Containers;
@@ -49,7 +44,7 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
     [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
 
-    private static readonly Regex RandomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
+    private static readonly Regex _randomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
 
     protected override void Started(EntityUid uid, NanoChatSpamRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -347,25 +342,23 @@ public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComp
     /// Each pattern generates a new random number independently.
     /// </summary>
     private string ProcessRandomNumberPatterns(string message)
+    => _randomNumberPattern.Replace(message, match =>
     {
-        return RandomNumberPattern.Replace(message, match =>
-        {
-            if (int.TryParse(match.Groups[1].Value, out var min) &&
-                int.TryParse(match.Groups[2].Value, out var max))
-            {
-                // Ensure min <= max
-                if (min > max)
-                    (min, max) = (max, min);
+    if (int.TryParse(match.Groups[1].Value, out var min) &&
+        int.TryParse(match.Groups[2].Value, out var max))
+    {
+        // Ensure min <= max
+        if (min > max)
+            (min, max) = (max, min);
 
-                // Generate a fresh random number for each match
-                var randomValue = _random.Next(min, max + 1);
-                return randomValue.ToString();
-            }
-
-            // If parsing fails, return the original match
-            return match.Value;
-        });
+        // Generate a fresh random number for each match
+        var randomValue = _random.Next(min, max + 1);
+        return randomValue.ToString();
     }
+
+    // If parsing fails, return the original match
+    return match.Value;
+    });
 
     /// <summary>
     /// Get a random crew member name from the station manifest.
