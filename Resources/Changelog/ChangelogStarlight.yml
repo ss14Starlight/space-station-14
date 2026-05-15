@@ -1,172 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: Made ai core "slightly" harder to disconnect from station.
-    type: Fix
-  id: 404582
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
-  - message: Slightly tweaked disposals around to make it so trash no longer doesn't end up on the belt.
-    type: Fix
-  id: 404583
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
-  - message: Waste piping inside chemist room and brigmedic.
-    type: Fix
-  id: 404584
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
-  - message: Removed two towels that were removed from wizden.
-    type: Fix
-  id: 404585
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: wonderfulnewworld
-  changes:
-  - message: Extended magazines and .45 SMG magazines now have contra labels.
-    type: Fix
-  id: 404586
-  time: '2026-04-24T13:59:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4243
-- author: wonderfulnewworld
-  changes:
-  - message: Fixes a typo in the dispatcher's description.
-    type: Fix
-  id: 404587
-  time: '2026-04-24T13:59:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4243
-- author: Scarlet Lightweaver
-  changes:
-  - message: Fixed PAIs being voided when the shuttle console breaks when ramming, whops.
-    type: Fix
-  id: 404588
-  time: '2026-04-24T17:41:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4244
-- author: neurovermi
-  changes:
-  - message: Lesser form changelings can devour and use the store again.
-    type: Fix
-  id: 404589
-  time: '2026-04-25T05:14:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4249
-- author: neurovermi
-  changes:
-  - message: Lesser form flavor text now shows that lesser form prevents transformation.
-    type: Tweak
-  id: 404590
-  time: '2026-04-25T05:14:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4249
-- author: Conflee
-  changes:
-  - message: Fixed 'my cool OC is 10000 years old' problems by forcing a 400 year old max age for any species. Elves go up to 400, Resomi 300, Avali 350, Shadekin 300. Increased max age for Lagomorph 90, Diona 250, Dwarf 200, and Slime 130.
-    type: Tweak
-  id: 404591
-  time: '2026-04-25T18:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4251
-- author: Conflee
-  changes:
-  - message: Swapped IPC and Lagomorph random character generation chances since Lagomorphs are closer to 'human' than IPCs are. IPCs are very unique and complicated.
-    type: Tweak
-  id: 404592
-  time: '2026-04-25T18:36:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4251
-- author: CrazyPhantom
-  changes:
-  - message: IPC have been temporarily disabled again.
-    type: Remove
-  id: 404593
-  time: '2026-04-26T05:40:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4256
-- author: CrazyPhantom
-  changes:
-  - message: Skeletons healing using topicals.
-    type: Fix
-  id: 404594
-  time: '2026-04-26T06:02:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4257
-- author: Caws
-  changes:
-  - message: Atmospheric Network Monitors now work with all 5 pipe layers, Engineers rejoice.
-    type: Fix
-  id: 404595
-  time: '2026-04-26T06:28:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4255
-- author: Cujo
-  changes:
-  - message: (Lagan) All-new materials storage, tech vault, and HoS bedroom locations.
-    type: Add
-  id: 404596
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) All-new Tesla/Singulo/PA/Secure Storage area for engi enrichment.
-    type: Add
-  id: 404597
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Security armory has been overhauled entirely for compliance.
-    type: Add
-  id: 404598
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Warden and HoS officers have  been overhauled for compliance, now with privacy shutters.
-    type: Add
-  id: 404599
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Security now has disposal units.
-    type: Add
-  id: 404600
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Security now has a contraband crate.
-    type: Add
-  id: 404601
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Security front desk has been expanded.
-    type: Tweak
-  id: 404602
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Separated Station Engineer suit storages and lockers.
-    type: Tweak
-  id: 404603
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Cosmetic pass of Law Office, MED front, SCI front, ENG and SEC.
-    type: Add
-  id: 404604
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) HoP and Bridge now have employment records consoles.
-    type: Add
-  id: 404605
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
 - author: Cujo
   changes:
   - message: (Lagan) Service request console added to Bar.
@@ -2799,4 +2631,172 @@ Entries:
   id: 404981
   time: '2026-05-14T13:46:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4441
+- author: Way
+  changes:
+  - message: (Bagel) Fixed various entities, revamped decals & tiles in some spots, slightly more trash in genpop. NTR/BSO Combined room. Evac shuttle now has defibs.
+    type: Fix
+  id: 404982
+  time: '2026-05-15T05:59:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4444
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added a fully functional nuclear reactor to engineering.
+    type: Add
+  id: 404983
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added a bluespace harvester to engineering.
+    type: Add
+  id: 404984
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added a laser tag arena to maints below the new nuclear reactor.(@Ohelig).
+    type: Add
+  id: 404985
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added a lot of maints east of atsmo to link nuclear reactor with the rest of station.
+    type: Add
+  id: 404986
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added lawyer and lawyers office.
+    type: Add
+  id: 404987
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added a windoor to disposals to maybe prevent all the trash flying through the machine before its turned on.
+    type: Add
+  id: 404988
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added Ipc repair bay to robotics.
+    type: Add
+  id: 404989
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Added drugstore and a third chemist to run it.
+    type: Add
+  id: 404990
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Changed HV wiring around smes bank slightly to better include nuclear reactor.
+    type: Tweak
+  id: 404991
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Waste is now teleported to an alternate dimension.
+    type: Tweak
+  id: 404992
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Moved South Solar's to make more room.
+    type: Tweak
+  id: 404993
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Move CE'S bathroom to above the bedroom.
+    type: Tweak
+  id: 404994
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Moved arcade to laser tag arena.
+    type: Tweak
+  id: 404995
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Made one of the walls of solitary non reinforced so someone can break you out.
+    type: Tweak
+  id: 404996
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Fixed yet another set of APC'S being double sub stationed. (Teg power bank).
+    type: Fix
+  id: 404997
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Fixed tiles under dispensers in maints bar.
+    type: Fix
+  id: 404998
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Cvlancer & Ohelig
+  changes:
+  - message: (Kiloton) Fixed xeniobio pipes not being painted.
+    type: Fix
+  id: 404999
+  time: '2026-05-15T06:58:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4440
+- author: Citrea
+  changes:
+  - message: Humans may now have cosmetic gene splicing done to add bunny ears to themselves as a marking.
+    type: Add
+  id: 405000
+  time: '2026-05-15T06:58:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4432
+- author: Citrea
+  changes:
+  - message: Cat Ears for humans are no longer a special marking, you will find them in the HeadTop category instead.
+    type: Tweak
+  id: 405001
+  time: '2026-05-15T06:58:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4432
+- author: Caws
+  changes:
+  - message: (Fland, Kiloton, Lagan, Manor, Ming, Orwell, Sepultum, Space Mall, Starboard) Salvage teams has been standardized to 1 lead + 4 salvage specialists.
+    type: Tweak
+  id: 405002
+  time: '2026-05-15T06:58:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4437
+- author: Caws
+  changes:
+  - message: (Fland, Kiloton, Lagan, Manor, Ming, Orwell, Sepultum, Space Mall, Starboard) Mining teams has been standardized to 4 mining specialists.
+    type: Tweak
+  id: 405003
+  time: '2026-05-15T06:58:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4437
+- author: Caws
+  changes:
+  - message: (Other Maps) Salvage teams have been standardized to 1 lead + 3 salvage specialists.
+    type: Tweak
+  id: 405004
+  time: '2026-05-15T06:58:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4437
+- author: Caws
+  changes:
+  - message: (Other Maps) Salvage teams have been standardized to 3 mining specialists.
+    type: Tweak
+  id: 405005
+  time: '2026-05-15T06:58:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4437
 Order: -1
