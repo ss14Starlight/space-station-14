@@ -48,6 +48,8 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared.Changeling;
+using Content.Shared.Changeling.Components;
 using Content.Server.Animals.Components;
 using Content.Shared.Animals;
 using Content.Shared.FixedPoint;
@@ -170,6 +172,10 @@ public sealed partial class ZombieSystem
         _language.AddLanguage(target, "Zombie");
 
         RemComp<VampireComponent>(target); //De-vamps Vampire zombies
+        RemComp<ChangelingComponent>(target); //De-lings Changeling zombies
+        RemComp<ChangelingIdentityComponent>(target); //De-lings Changeling zombies
+        RemComp<ChangelingDevourComponent>(target); //De-lings Changeling zombies
+        RemComp<ChangelingTransformComponent>(target); //De-lings Changeling zombies
         RemComp<EggLayerComponent>(target); //Prevent infinite egg production
         RemComp<UdderComponent>(target); //Prevent infinite milk production
         RemComp<WoolyComponent>(target); //Prevent infinite wool production

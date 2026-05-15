@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
 using Content.Server.Administration.Logs;
@@ -9,7 +8,6 @@ using Content.Shared._Starlight.BugReport;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Starlight.CCVar;
-using Orleans;
 using Robust.Server.Player;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -61,15 +59,11 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
     }
 
     public void Restart()
-    {
         // When the round restarts, clear the dictionary.
-        _bugReportsPerPlayerThisRound.Clear();
-    }
+        => _bugReportsPerPlayerThisRound.Clear();
 
     public void Shutdown()
-    {
-        _configSub.Dispose();
-    }
+        => _configSub.Dispose();
 
     private void ReceivedPlayerBugReport(BugReportMessage message)
     {
@@ -84,9 +78,8 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
         var report = message.ReportInformation;
         if (!IsBugReportValid(report, (NetId: netId, UserName: userName)) || !CanPlayerSendReport(netId, userName))
             return;
-
-        var playerBugReportingStats = _bugReportsPerPlayerThisRound.GetValueOrDefault(netId);
-        _bugReportsPerPlayerThisRound[netId] = (playerBugReportingStats.ReportsCount + 1, DateTime.UtcNow);
+        var (ReportsCount, _) = _bugReportsPerPlayerThisRound.GetValueOrDefault(netId);
+        _bugReportsPerPlayerThisRound[netId] = (ReportsCount + 1, DateTime.UtcNow);
 
         var title = report.BugReportTitle;
         var description = report.BugReportDescription;
@@ -161,9 +154,9 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
         if (_limits.MinimumPlaytimeToEnableBugReports > playtime)
             return false;
 
-        var playerBugReportingStats = _bugReportsPerPlayerThisRound.GetValueOrDefault(netId);
+        var (ReportsCount, ReportedDateTime) = _bugReportsPerPlayerThisRound.GetValueOrDefault(netId);
         var maximumBugReportsForPlayerPerRound = _limits.MaximumBugReportsForPlayerPerRound;
-        if (playerBugReportingStats.ReportsCount >= maximumBugReportsForPlayerPerRound)
+        if (ReportsCount >= maximumBugReportsForPlayerPerRound)
         {
             _admin.Add(LogType.BugReport,
                 LogImpact.High,
@@ -171,7 +164,7 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
             return false;
         }
 
-        var timeSinceLastReport = DateTime.UtcNow - playerBugReportingStats.ReportedDateTime;
+        var timeSinceLastReport = DateTime.UtcNow - ReportedDateTime;
         var timeBetweenBugReports = _limits.MinimumTimeBetweenBugReports;
         if (timeSinceLastReport <= timeBetweenBugReports)
         {
@@ -187,9 +180,7 @@ public sealed class BugReportManager : IBugReportManager, IPostInjectInit
     }
 
     void IPostInjectInit.PostInject()
-    {
-        _sawmill = _log.GetSawmill("BugReport");
-    }
+        => _sawmill = _log.GetSawmill("BugReport");
 
     private sealed class BugReportLimits
     {

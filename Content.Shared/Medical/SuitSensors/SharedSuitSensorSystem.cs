@@ -392,6 +392,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
 
         // finally, form suit sensor status
         var status = new SuitSensorStatus(GetNetEntity(sensor.User.Value), GetNetEntity(ent.Owner), userName, userJob, userJobIcon, userJobDepartments);
+        status.Faction = sensor.Faction; // Starlight
         switch (sensor.Mode)
         {
             case SuitSensorMode.SensorBinary:
@@ -444,6 +445,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             [SuitSensorConstants.NET_JOB] = status.Job,
             [SuitSensorConstants.NET_JOB_ICON] = status.JobIcon,
             [SuitSensorConstants.NET_JOB_DEPARTMENTS] = status.JobDepartments,
+            [SuitSensorConstants.NET_FACTION] = status.Faction, // Starlight
             [SuitSensorConstants.NET_IS_ALIVE] = status.IsAlive,
             [SuitSensorConstants.NET_SUIT_SENSOR_UID] = status.SuitSensorUid,
             [SuitSensorConstants.NET_OWNER_UID] = status.OwnerUid,
@@ -475,6 +477,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB, out string? job)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_ICON, out string? jobIcon)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments)) return null;
+        if (!payload.TryGetValue(SuitSensorConstants.NET_FACTION, out string? faction)) return null; // Starlight
         if (!payload.TryGetValue(SuitSensorConstants.NET_IS_ALIVE, out bool? isAlive)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_SUIT_SENSOR_UID, out NetEntity suitSensorUid)) return null;
         if (!payload.TryGetValue(SuitSensorConstants.NET_OWNER_UID, out NetEntity ownerUid)) return null;
@@ -490,6 +493,7 @@ public abstract class SharedSuitSensorSystem : EntitySystem
             TotalDamage = totalDamage,
             TotalDamageThreshold = totalDamageThreshold,
             Coordinates = coords,
+            Faction = faction, // Starlight
         };
         return status;
     }
