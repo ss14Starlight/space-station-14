@@ -229509,7 +229509,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEntertainment
       nameSet: True
-      id: CK news ground team 3
+      id: CK News ground team 3
   - uid: 35267
     components:
     - type: Transform
@@ -229520,7 +229520,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEntertainment
       nameSet: True
-      id: CK news ground team 2
+      id: CK News ground team 2
   - uid: 35268
     components:
     - type: Transform
@@ -229531,7 +229531,7 @@ entities:
       setupAvailableNetworks:
       - SurveillanceCameraEntertainment
       nameSet: True
-      id: CK news ground team 1
+      id: CK News ground team 1
 - proto: SusPlushie
   entities:
   - uid: 41838
