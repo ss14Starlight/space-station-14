@@ -96,29 +96,6 @@
     balance:
       BuildToken: 0
 
-- type: entity
-  name: nuclear crisis button
-  parent: BaseItem
-  id: NuclearCrisisButton
-  description: Used to broadcast an distress call to security comms.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Objects/Specific/Security/crisisButton.rsi
-    state: icon
-  - type: Item
-    size: Tiny
-  - type: UseDelay
-    delay: 120.0
-  - type: EmitSoundOnUse
-    sound:
-        collection: TriggerActivate
-  - type: TriggerOnUse
-  - type: RattleOnTrigger
-    radioChannel: Security
-    targetUser: true
-    messages:
-      Alive: nuke-codes-list
-
 
 - type: entity
   parent: NukeCodePaper
@@ -134,8 +111,6 @@
     global: true
   - type: SpawnOnTrigger
     proto: RedspaceImplantEffect
-
-
 
 - type: entity
   parent: BaseItem
@@ -159,6 +134,7 @@
   - type: RattleOnTrigger
     radioChannel: Common
     targetUser: true
+    global: true
     messages:
       Alive: rattle-on-trigger-nuke-message
   - type: SpawnOnTrigger

@@ -1,6 +1,7 @@
 using Content.Shared.Mobs;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Audio; // Starlight
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Trigger.Components.Effects;
@@ -27,4 +28,31 @@ public sealed partial class RattleOnTriggerComponent : BaseXOnTriggerComponent
         {MobState.Critical, "rattle-on-trigger-critical-message"},
         {MobState.Dead, "rattle-on-trigger-dead-message"}
     };
+    #region Starlight
+    /// <summary>
+    /// Announce on all channels
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Global = false;
+
+    /// <summary>
+    /// Fluent ID for the declaration sender title
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public LocId SenderTitle = "comms-console-announcement-title-centcom";
+
+    /// <summary>
+    /// Announce sound file path
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
+
+    /// <summary>
+    /// Announcement color
+    /// </summary>
+    [ViewVariables]
+    [DataField, AutoNetworkedField]
+    public Color Color = Color.Gold;
+    #endregion Starlight
 }
