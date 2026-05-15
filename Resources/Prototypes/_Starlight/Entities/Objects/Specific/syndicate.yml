@@ -109,8 +109,6 @@
     sound:
         collection: WarMusic
     global: true
-  - type: SpawnOnTrigger
-    proto: RedspaceImplantEffect
 
 - type: entity
   parent: BaseItem
