@@ -30,7 +30,7 @@ public sealed class AutoDiscordLogSystem : EntitySystem
     }
 
     public void LogToDiscord(string info, string author = "AutoLog") =>
-        SendToDiscordWebhook(author, info);
+        _ = SendToDiscordWebhook(author, info);
 
     private async Task SendToDiscordWebhook(string title, string description)
     {

@@ -13,6 +13,11 @@
     ClothingHeadHatSurgcapGreen: 2
     ClothingHeadHatSurgcapBlue: 2
     ClothingHeadHatSurgcapPurple: 2
+    ClothingHeadHatSurgcapBlack: 2 # DeltaV
+    ClothingHeadHatSurgcapCyan: 2 # DeltaV
+    ClothingHeadHatSurgcapPink: 2 # DeltaV
+    ClothingHeadHatSurgcapRainbow: 2 # DeltaV
+    ClothingHeadHatSurgcapWhite: 2 # DeltaV
     ClothingMaskSterile: 2
     ClothingHeadsetMedical: 2
     ClothingBackpackMedical: 2
@@ -23,12 +28,19 @@
     UniformScrubsColorGreen: 2
     UniformScrubsColorBlue: 2
     UniformScrubsColorPurple: 2
+    UniformScrubsColorBlack: 2 # DeltaV
+    UniformScrubsColorCyan: 2 # DeltaV
+    UniformScrubsColorPink: 2 # DeltaV
+    UniformScrubsColorRainbow: 2 # DeltaV
+    UniformScrubsColorWhite: 2 # DeltaV
     ClothingUniformJumpsuitParamedic: 1
     ClothingUniformJumpskirtParamedic: 1
     ClothingOuterCoatLab: 2
+    ClothingOuterCoatLabLong: 2 # DeltaV
     ClothingOuterWinterMed: 2
     ClothingOuterWindbreakerMedical: 2 #Starlight
     ClothingOuterCoatParamedicWB: 1
+    ClothingOuterCoatParamedicJacket: 1 # DeltaV
     ClothingOuterWinterPara: 1
     ClothingHandsGlovesLatex: 2
     ClothingHandsGlovesNitrile: 2
@@ -39,6 +51,8 @@
     ClothingUniformJumpskirtOfLife: 1
     ClothingUniformJumpsuitOfLife: 1 # Starlight
     ClothingHeadNurseHatOfLife: 1 # Starlight
+    ClothingHeadHatSurgcapCybersun: 1 # DeltaV
+    UniformScrubsColorCybersun: 1 # DeltaV
     ToyFigurineMedicalDoctor: 1
     ToyFigurineParamedic: 1
     ToyFigurineChiefMedicalOfficer: 1

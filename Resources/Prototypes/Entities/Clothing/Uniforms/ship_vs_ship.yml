@@ -41,7 +41,7 @@
   parent: [ ClothingUniformBase, BaseMinorContraband ] #SL Edit Syndie > Minor contra
   id: ClothingUniformJumpsuitRepairmanSyndie
   name: syndicate repairman jumpsuit
-  description: Functional, fashionable, and badass. Nanotrasen's engineers wish they could look as good as this.
+  description: Functional, fashionable, and badass. NanoTrasen's engineers wish they could look as good as this. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/repairman_syndie.rsi
