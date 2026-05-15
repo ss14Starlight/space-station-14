@@ -47,7 +47,8 @@ public sealed class SharedBonusArmorSystem : EntitySystem
         if (!TryComp(args.Target, out BonusArmorComponent? component)) // This may be idiomatic in C#, but Dennis Ritchie is rolling in his grave over this violation of scoping rules. Why does if() have leaky scope in its expression, when for() and while() don't?!
             component = AddComp<BonusArmorComponent>(args.Target);
 
-        if (!component.modifiers.ContainsKey(ent) || effect.OverwriteOnRefresh) {
+        if (!component.modifiers.ContainsKey(ent) || effect.OverwriteOnRefresh)
+        {
             if(component.modifiers.ContainsKey(ent))
             {
                 // refresh the buff only if OverwriteOnRefresh applies and the key was found:
@@ -78,9 +79,12 @@ public sealed class SharedBonusArmorSystem : EntitySystem
 
     private void OnKnockdownAttempt(EntityUid uid, BonusArmorComponent component, KnockDownAttemptEvent args)
     {
-        if (!args.Voluntary) {
-            foreach (var modifier in component.modifiers) {
-                if (modifier.Value.IgnoreKnockdown ) {
+        if (!args.Voluntary)
+        {
+            foreach (var modifier in component.modifiers)
+            {
+                if (modifier.Value.IgnoreKnockdown)
+                {
                     args.Cancelled = true;
                     return;
                 }
