@@ -68,3 +68,17 @@
       tags:
         - Hardsuit
         - CorgiWearable
+
+- type: entity
+  parent: ClothingOuterHardsuitMedTak
+  id: ClothingOuterHardsuitMedTakMedic
+  name: MedTak medic hardsuit
+  description: An armoured hardsuit worn by MedTak medics, with a defibrillator system built into it.
+  components:
+    - type: Defibrillator
+      zapHeal:
+        types:
+          Asphyxiation: -40
+    - type: WearableDefibrillator
+      requiredSlot: OUTERCLOTHING
+    - type: UseDelay
