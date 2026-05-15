@@ -34,6 +34,7 @@ using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
 using Content.Shared._Starlight.ScanGate; // Starlight
 using Content.Shared._Starlight.Body.Events; // Starlight
+using Content.Shared._Starlight.Damage.Systems; // Starlight
 
 namespace Content.Shared.Inventory;
 
@@ -66,6 +67,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, BeforeEmoteEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, StoodEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, DownedEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, BeforeAmputateEvent>(RelayInventoryEvent); // Starlight
 
         // by-ref events
         SubscribeLocalEvent<InventoryComponent, RefreshFrictionModifiersEvent>(RefRelayInventoryEvent);

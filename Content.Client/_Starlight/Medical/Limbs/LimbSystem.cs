@@ -40,15 +40,13 @@ public sealed class LimbSystem : SharedLimbSystem
         var (root, comp) = _body.GetRootPartOrNull(uid)!.Value;
         foreach (var slot in _body.TryGetFreePartSlots(root, null))
         {
-
-
-            if (slot is "right arm" or "right hand")
+            if (slot is "right arm")
                 _sprite.LayerSetVisible((args.SpriteViewEnt, args.SpriteViewEnt.Comp), LimbAlertVisualLayers.ArmRight, true);
-            if (slot is "left arm" or "left hand")
+            if (slot is "left arm")
                 _sprite.LayerSetVisible((args.SpriteViewEnt, args.SpriteViewEnt.Comp), LimbAlertVisualLayers.ArmLeft, true);
-            if (slot == "right leg") // from what i can tell feet do NOTHING so they dont matter <3
+            if (slot is "right leg")
                 _sprite.LayerSetVisible((args.SpriteViewEnt, args.SpriteViewEnt.Comp), LimbAlertVisualLayers.LegRight, true);
-            if (slot == "left leg")
+            if (slot is "left leg")
                 _sprite.LayerSetVisible((args.SpriteViewEnt, args.SpriteViewEnt.Comp), LimbAlertVisualLayers.LegLeft, true);
         }
 

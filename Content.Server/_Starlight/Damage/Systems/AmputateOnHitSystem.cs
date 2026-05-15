@@ -4,19 +4,23 @@ using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Damage.Components;
+using Content.Shared._Starlight.Damage.Systems;
 using Content.Shared.Armor;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Humanoid;
+using Content.Shared.Inventory;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Damage.Systems;
 
-public sealed class AmputateCombatSystem : EntitySystem
+public sealed partial class AmputateOnHitSystem : SharedAmputateOnHitSystem
 {
     [Dependency] private readonly UseDelaySystem _delay = default!;
     [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
@@ -31,23 +35,6 @@ public sealed class AmputateCombatSystem : EntitySystem
         SubscribeLocalEvent<AmputateOnHitComponent, DamageExamineEvent>(OnExamineDamage);
     }
 
-    private void OnMeleeHit(Entity<AmputateOnHitComponent> weapon, ref MeleeHitEvent args)
-    {
-        if (!args.IsHit || _delay.IsDelayed(weapon.Owner) || args.HitEntities.Count == 0)
-            return;
-
-        foreach (var target in args.HitEntities)
-        {
-            var chance = weapon.Comp.Chance;
-            if (TryComp(target, out ArmorComponent? armor))
-                chance *= armor.AmputateChanceModifier;
-
-            if (_random.Prob(chance))
-            {
-                DoAmputate(target, weapon.Comp, args);
-            }
-        }
-    }
 
     private void DoAmputate(EntityUid target, AmputateOnHitComponent comp, MeleeHitEvent args)
     {
@@ -59,9 +46,9 @@ public sealed class AmputateCombatSystem : EntitySystem
         var part = _random.Pick(comp.Parts);
         {
             var basePart = Spawn(part);
-            if (TryComp<BodyPartComponent>(basePart, out var bodypart))
+            if (TryComp<BodyPartComponent>(basePart, out var bodyPart))
             {
-                var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodypart.PartType).FirstOrDefault(p => p.Component.Symmetry == bodypart.Symmetry);
+                var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodyPart.PartType).FirstOrDefault(p => p.Component.Symmetry == bodyPart.Symmetry);
                 if (TryComp(targetpart.Id, out TransformComponent? targetPartTransform) &&
                     TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
                     TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
@@ -87,5 +74,19 @@ public sealed class AmputateCombatSystem : EntitySystem
         markup.AddMarkupOrThrow(Loc.GetString("damage-examine-amputate", ("chance", component.Chance*ToPercentage)));
 
         args.Message.AddMessage(markup);
+    }
+
+    private void OnMeleeHit(Entity<AmputateOnHitComponent> weapon, ref MeleeHitEvent args)
+    {
+        if (!args.IsHit || _delay.IsDelayed(weapon.Owner) || args.HitEntities.Count == 0)
+            return;
+
+        foreach (var target in args.HitEntities)
+        {
+            if (_random.Prob(GetAmputateChance(weapon, target)))
+            {
+                DoAmputate(target, weapon.Comp, args);
+            }
+        }
     }
 }

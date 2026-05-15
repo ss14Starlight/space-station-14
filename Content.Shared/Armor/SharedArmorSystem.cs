@@ -8,6 +8,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
 #region Starlight
+using Content.Shared._Starlight.Damage.Systems;
 using Content.Shared.Stunnable;
 #endregion Starlight
 
@@ -31,6 +32,7 @@ public abstract class SharedArmorSystem : EntitySystem
         SubscribeLocalEvent<ArmorComponent, BorgModuleRelayedEvent<DamageModifyEvent>>(OnBorgDamageModify);
         SubscribeLocalEvent<ArmorComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
 
+        SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<BeforeAmputateEvent>>(OnBeforeAmputate); // Starlight-edit
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<KnockDownAttemptEvent>>(OnKnockdownAttempt); // Starlight-edit
     }
 
@@ -45,6 +47,15 @@ public abstract class SharedArmorSystem : EntitySystem
             args.Args.Cancelled = true;
         // Starlight edit end
     }
+    /// <summary>
+    /// apply the armors modifer for amputation chances
+    /// </summary>
+    /// <param name="uid"></param>
+    /// <param name="component"></param>
+    /// <param name="args"></param>
+    private static void OnBeforeAmputate(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<BeforeAmputateEvent> args) =>
+        args.Args.Chance *= component.AmputateChanceModifier;
+
     #endregion
 
     /// <summary>
