@@ -80,7 +80,7 @@ station-beacon-arrivals = Arrivals
 station-beacon-evac = Evac
 station-beacon-docking-arm = Docking Arm
 station-beacon-eva-storage = EVA Storage
-# Starlight:
+# Starlight: Chapel -> Shrine
 station-beacon-chapel = Shrine
 station-beacon-library = Library
 station-beacon-reporter = Reporter
