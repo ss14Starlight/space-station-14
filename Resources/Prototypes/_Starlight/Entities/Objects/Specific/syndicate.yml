@@ -134,6 +134,7 @@
     targetUser: true
     global: true
     sound: /Audio/Announcements/war.ogg
+    color: Red
     messages:
       Alive: rattle-on-trigger-nuke-message
   - type: SpawnOnTrigger
