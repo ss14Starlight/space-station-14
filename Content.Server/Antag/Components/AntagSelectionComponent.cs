@@ -145,7 +145,7 @@ public partial struct AntagSelectionDefinition()
     /// Mostly just here for legacy compatibility and reducing boilerplate
     /// </remarks>
     [DataField]
-    public bool AllowNonHumans = true; // Starlight:  changed default from false to true for permissive non-humanoid antag selection
+    public bool AllowNonHumans = false;
 
     /// <summary>
     /// A whitelist for selecting which players can become this antag.
