@@ -128,7 +128,7 @@
   components:
   - type: NukeCodePaper
   - type: TriggerOnSpawn
-  - type: EmitSoundOnSpawn
+  - type: EmitSoundOnTrigger
     sound:
         collection: WarMusic
     global: true
