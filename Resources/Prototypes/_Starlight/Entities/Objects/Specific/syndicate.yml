@@ -132,6 +132,8 @@
     sound:
         collection: WarMusic
     global: true
+  - type: SpawnOnTrigger
+    proto: RedspaceImplantEffect
 
 
 
@@ -140,6 +142,7 @@
   id: TraitorNuclearCodes
   name: redspace transmission
   suffix: Station Nuke Codes
+  description: Alerts the station to your presence. Good luck.
   components:
   - type: Sprite
     sprite: Objects/Misc/folders.rsi
@@ -166,3 +169,10 @@
     sound:
         collection: TriggerActivate
   - type: DeleteOnTrigger
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: PointLight
+    color: Red
+    radius: 6
+    energy: 3
