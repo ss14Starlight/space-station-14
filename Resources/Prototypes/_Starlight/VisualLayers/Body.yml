@@ -21,11 +21,13 @@
   id: body_lLeg
   aboveLayers:
     - body_tail
+    - body_chest
 
 - type: visualLayer
   id: body_rLeg
   aboveLayers:
     - body_tail
+    - body_chest
 
 - type: visualLayer
   id: body_lFoot
@@ -45,8 +47,9 @@
 
 - type: visualLayer
   id: body_chest
-  aboveLayers:
-    - body_undergarmentBottom
+  belowLayers:
+    - body_lLeg
+    - body_rLeg
 
 - type: visualLayer
   id: body_undergarmentTop
