@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: Slightly tweak medical cams to peer a smidge less into maints.
-    type: Tweak
-  id: 404581
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
   - message: Made ai core "slightly" harder to disconnect from station.
     type: Fix
   id: 404582
@@ -2799,4 +2792,11 @@ Entries:
   id: 404980
   time: '2026-05-14T05:13:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4438
+- author: CrazyPhantom
+  changes:
+  - message: Updates Robust Toolbox, potentially fixing the lag issue.
+    type: Fix
+  id: 404981
+  time: '2026-05-14T13:46:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4441
 Order: -1
