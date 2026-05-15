@@ -105,8 +105,9 @@
         Grand Theft (3)
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Corporate Disturbance (3)
       </Box>
     </ColorBox>
     <ColorBox>
@@ -766,6 +767,16 @@
     <ColorBox Color="#2f3832">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To make, hold, or use Significant Syndicate contraband. Significant Syndicate contraband may only be used in emergencies, and only to prevent death or gross bodily harm. Significant Syndicate contraband is any Syndicate contraband that can be used to hinder the station or aid it's enemies in an obvious way. Any syndicate contraband that does not meet this definition is to be considered minor contraband.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Corporate Disturbance
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      	Causing notable losses, damages, or disruption to other corporations. As Central Command and NanoTrasen would be liable for these actions, they are treated severely. This includes theft of equipment or shuttles belonging to outside corporations, and the Automated Trade Station.
       </Box>
     </ColorBox>
     <ColorBox Color="#2e422e">
