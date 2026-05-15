@@ -61,6 +61,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
     private readonly EntityCoordinates? _targetCoordinates;
 
     private readonly ISawmill _sawmill;
+    private readonly VGRoidSpawnValidationSystem _vgroidValidation; // Starlight
 
     public DungeonJob(
         ISawmill sawmill,
@@ -75,6 +76,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         TileSystem tile,
         TurfSystem turf,
         SharedTransformSystem transform,
+        VGRoidSpawnValidationSystem vgroidValidation, // Starlight
         DungeonConfig gen,
         MapGridComponent grid,
         EntityUid gridUid,
@@ -98,6 +100,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         _maps = _entManager.System<SharedMapSystem>();
         _entTable = _entManager.System<EntityTableSystem>();
         _transform = transform;
+        _vgroidValidation = vgroidValidation; // Starlight
 
         _physicsQuery = _entManager.GetEntityQuery<PhysicsComponent>();
         _xformQuery = _entManager.GetEntityQuery<TransformComponent>();
@@ -179,7 +182,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         {
             var oldMap = _xformQuery.Comp(_gridUid).MapUid;
             _entManager.System<ShuttleSystem>().TryFTLProximity(_gridUid, _targetCoordinates.Value);
-            _entManager.System<VGRoidSpawnValidationSystem>().PushGridOutOfCompletedVGRoids(_gridUid); // Starlight: Keeps grids out of VGroid
+            _vgroidValidation.PushGridOutOfCompletedVGRoids(_gridUid); // Starlight: Keeps grids out of VGroid
             _entManager.DeleteEntity(oldMap);
         }
 

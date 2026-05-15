@@ -49,17 +49,49 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
         marker.GenerationComplete = true;
         Dirty(uid, marker);
 
-        if (!TryComp(uid, out MapGridComponent? grid) ||
-            !TryComp(uid, out TransformComponent? xform) ||
-            !TryComp(uid, out MetaDataComponent? meta))
+        if (!TryComp(uid, out MapGridComponent? grid))
         {
+            marker.PlacementComplete = true;
+            Dirty(uid, marker);
+
+            _sawmill.Error(
+                $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
+                "missing MapGridComponent after dungeon generation completed.");
+
+            return;
+        }
+
+        if (!TryComp(uid, out TransformComponent? xform))
+        {
+            marker.PlacementComplete = true;
+            Dirty(uid, marker);
+
+            _sawmill.Error(
+                $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
+                "missing TransformComponent after dungeon generation completed.");
+
+            return;
+        }
+
+        if (!TryComp(uid, out MetaDataComponent? meta))
+        {
+            marker.PlacementComplete = true;
+            Dirty(uid, marker);
+
+            _sawmill.Error(
+                $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
+                "missing MetaDataComponent after dungeon generation completed.");
+
             return;
         }
 
         var stations = CollectStationGrids();
         if (stations.Count == 0)
         {
-            _sawmill.Warning($"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: no station grids found.");
+            _sawmill.Error(
+                $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
+                "no station grids found. Leaving placement pending for a later validation retry.");
+
             return;
         }
 
