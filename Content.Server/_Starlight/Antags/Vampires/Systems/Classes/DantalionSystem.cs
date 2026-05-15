@@ -254,7 +254,7 @@ public sealed class DantalionSystem : EntitySystem
     /// <summary>
     /// Attempts to apply the thrall objective and gives them the pop-up if it has been applied
     /// </summary>
-    private void TryAssignThrallObeyObjective(EntityUid master, EntityUid thrall)
+    private void TryAssignThrallObeyObjective(EntityUid _, EntityUid thrall)
     {
         if (!_mind.TryGetMind(thrall, out var thrallMindId, out var thrallMind))
             return;
@@ -279,7 +279,7 @@ public sealed class DantalionSystem : EntitySystem
     private void OnDantalionShutdown(EntityUid uid, DantalionComponent component, ComponentShutdown args)
         => ReleaseAllThralls(uid, component);
 
-    private void ReleaseAllThralls(EntityUid uid, DantalionComponent component)
+    private void ReleaseAllThralls(EntityUid _, DantalionComponent component)
     {
         if (component.Thralls.Count == 0)
             return;

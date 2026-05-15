@@ -425,6 +425,17 @@
       stock: 1
 
 - type: listing
+  id: ClothingNeckCloakBoatCC
+  productEntity: ClothingNeckCloakBoatCC
+  cost:
+    NTCredit: 2000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingNeckCloakCentcomAdmiral
   productEntity: ClothingNeckCloakCentcomAdmiral
   cost:

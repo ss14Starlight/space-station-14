@@ -10,12 +10,16 @@ using Content.Shared.Medical.SuitSensor;
 using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
-using Content.Server.Power.Components; // Starlight
-using Content.Shared.Power.EntitySystems; // Starlight
-using Content.Shared.Silicons.StationAi; // Starlight
-using Robust.Shared.Audio.Systems; // Starlight
-using Robust.Shared.Map; // Starlight
-using Robust.Shared.Timing; // Starlight
+#region Starlight
+using Content.Shared.Implants.Components;
+using Content.Server.Power.Components;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Silicons.StationAi;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Timing;
+using System.ComponentModel.DataAnnotations;
+#endregion
 
 namespace Content.Server.Medical.CrewMonitoring;
 
@@ -116,7 +120,8 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
         var payload = args.Data;
         if (!payload.TryGetValue(SuitSensorConstants.NET_PAGING_SINCE, out TimeSpan? since) ||
-            !payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments))
+            !payload.TryGetValue(SuitSensorConstants.NET_JOB_DEPARTMENTS, out List<string>? jobDepartments) ||
+            !payload.TryGetValue(SuitSensorConstants.NET_FACTION, out string? faction)) // Starlight
             return;
 
         // Check if this event applies to this console based on the filters.
@@ -126,6 +131,8 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
 
             // If department filter is specified and doesn't match, we will not alert.
             if (filter.ShownDepartments.Count > 0 && !filter.ShownDepartments.Any(dept => jobDepartments.Contains(dept)))
+                return;
+            if (filter.ShownFactions.Count > 0 && !filter.ShownFactions.Contains(faction)) // Starlight
                 return;
         }
 
@@ -172,11 +179,34 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
         if (xform.GridUid != null)
             EnsureComp<NavMapComponent>(xform.GridUid.Value);
 
-        // Update all sensors info
+        #region Starlight
+        // Moving all crew monitor filtering serverside
+        // Filter and update all sensors info
+        var hasFilter = TryComp<CrewMonitoringFilterComponent>(uid, out var filter);
         var allSensors = component.ConnectedSensors.Values.ToList();
-        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, allSensors)); // Starlight: Add two timestamps
+        List<SuitSensorStatus> filteredSensors;
+        if (!hasFilter || filter == null)
+            filteredSensors = allSensors;
+        else
+            filteredSensors = allSensors
+                .Where(sensor =>
+                    (filter.ShownDepartments.Count == 0 || filter.ShownDepartments.Any(dept => sensor.JobDepartments.Contains(dept)))
+                    && (!filter.OnlyShowWoundedOrDead || !sensor.IsAlive || sensor.DamagePercentage is not null && sensor.DamagePercentage > 0.5)
+                    && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction))).ToList();
+        if (filter is not null && filter.AlwaysShowTrackingImplants)
+        {
+            foreach (var sensor in allSensors)
+            {
+                var clientEntity = GetEntity(sensor.SuitSensorUid);
+                if (TryComp<SubdermalImplantComponent>(clientEntity, out var suitSensor) && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
+                {
+                    filteredSensors.Add(sensor);
+                }
+            }
+        }
+        filteredSensors = filteredSensors.Distinct().ToList();
+        _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
-    // Starlight-start
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)
@@ -207,5 +237,5 @@ public sealed class CrewMonitoringConsoleSystem : EntitySystem
             _sawmill.Debug($"Crew monitor warp request from {Name(actor)} ({actor}) to {coordinates} was rejected.");
         }
     }
-    // Starlight-end
+    #endregion
 }

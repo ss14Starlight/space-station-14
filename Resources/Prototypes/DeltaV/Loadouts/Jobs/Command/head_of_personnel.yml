@@ -1,0 +1,46 @@
+﻿#Hat
+- type: loadout
+  id: HopHeadFormal
+  equipment:
+    head: ClothingHeadHatHopCapFormal
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfPersonnel
+        time: 72000 # 20hr
+
+#Neck
+- type: loadout
+  id: HopCloakFormal
+  equipment:
+    neck: ClothingNeckCloakHopFormal
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfPersonnel
+        time: 72000 # 20hr
+
+#Jumpsuit
+- type: loadout
+  id: HopFormalSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHopFormal
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfPersonnel
+        time: 72000 # 20hr
+
+- type: loadout
+  id: HopFormalSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtHopFormal
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobHeadOfPersonnel
+        time: 72000 # 20hr

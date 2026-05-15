@@ -49,11 +49,11 @@
             SecurityCadet: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 1, 2 ]
+            MiningSpecialist: [ 1, 2 ]
             CargoTechnician: [ 1, 2 ]
             MailTech: [ 1, 1 ]
-            MiningSpecialist: [ 1, 2 ]
-            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
