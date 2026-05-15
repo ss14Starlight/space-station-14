@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: Removed brigmedic chem production in exchange for med kits and a nanomed security vend.
-    type: Tweak
-  id: 404579
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
-  - message: Converted one of the gen pop dorms to solitary.
-    type: Tweak
-  id: 404580
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
-  - message: Slightly tweak medical cams to peer a smidge less into maints.
-    type: Tweak
-  id: 404581
-  time: '2026-04-24T12:55:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4218
-- author: Cvlancer
-  changes:
   - message: Made ai core "slightly" harder to disconnect from station.
     type: Fix
   id: 404582
@@ -2799,4 +2778,25 @@ Entries:
   id: 404978
   time: '2026-05-13T08:14:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4421
+- author: Kirb
+  changes:
+  - message: Cat-like crew members (shadekin and felionoid) are no longer acid proof.
+    type: Fix
+  id: 404979
+  time: '2026-05-13T17:29:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4434
+- author: Conflee
+  changes:
+  - message: Fixed credits in 3 .mta files.
+    type: Fix
+  id: 404980
+  time: '2026-05-14T05:13:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4438
+- author: CrazyPhantom
+  changes:
+  - message: Updates Robust Toolbox, potentially fixing the lag issue.
+    type: Fix
+  id: 404981
+  time: '2026-05-14T13:46:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4441
 Order: -1
