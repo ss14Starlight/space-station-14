@@ -54,7 +54,8 @@ public sealed class RattleOnTriggerSystem : EntitySystem
         {
             var title = Loc.GetString(ent.Comp.SenderTitle);
             _chat.DispatchGlobalAnnouncement(message, title, true, ent.Comp.Sound, ent.Comp.Color);
-            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(ent.Owner):player} has triggered the following rattle: {message}");
+            var actor = args.User ?? ent.Owner;
+            _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(actor):player} has triggered the following rattle: {message}");
             return;
         }
         #endregion Starlight
