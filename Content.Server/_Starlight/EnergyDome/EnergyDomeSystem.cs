@@ -2,7 +2,6 @@ using Content.Server.DeviceLinking.Systems;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Actions;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Examine;
@@ -100,13 +99,11 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     }
 
     private void OnExamine(Entity<EnergyDomeGeneratorComponent> generator, ref ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString(
-            (generator.Comp.Enabled)
-            ? "energy-dome-on-examine-is-on-message"
-            : "energy-dome-on-examine-is-off-message"
-            ));
-    }
+    => args.PushMarkup(Loc.GetString(
+        generator.Comp.Enabled
+        ? "energy-dome-on-examine-is-on-message"
+        : "energy-dome-on-examine-is-off-message"
+    ));
 
     private void AddToggleDomeVerb(Entity<EnergyDomeGeneratorComponent> generator, ref GetVerbsEvent<ActivationVerb> args)
     {
@@ -141,9 +138,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     // System interactions
 
     private void OnPowerCellSlotEmpty(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellSlotEmptyEvent args)
-    {
-        TurnOff(generator, true);
-    }
+        => TurnOff(generator, true);
 
     private void OnPowerCellChanged(Entity<EnergyDomeGeneratorComponent> generator, ref PowerCellChangedEvent args)
     {
@@ -206,9 +201,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     }
 
     private void OnComponentRemove(Entity<EnergyDomeGeneratorComponent> generator, ref ComponentRemove args)
-    {
-        TurnOff(generator, false);
-    }
+        => TurnOff(generator, false);
 
     // Functional
 
@@ -334,9 +327,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
     // Util
 
     private EntityUid GetProtectedEntity(EntityUid entity)
-    {
-        return (_container.TryGetOuterContainer(entity, Transform(entity), out var container))
-            ? container.Owner
-            : entity;
-    }
+    => _container.TryGetOuterContainer(entity, Transform(entity), out var container)
+        ? container.Owner
+        : entity;
 }

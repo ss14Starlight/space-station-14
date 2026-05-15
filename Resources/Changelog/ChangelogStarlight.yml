@@ -1,13 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) Service request console added to Bar.
-    type: Add
-  id: 404606
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
   - message: (Lagan) Halon (1), N2O (1), Storage (6), Air (2) canisters are now in atmos.
     type: Add
   id: 404607
@@ -2799,4 +2792,11 @@ Entries:
   id: 405005
   time: '2026-05-15T06:58:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4437
+- author: CrazyPhantom
+  changes:
+  - message: Defibs will no longer randomly stop healing Asphyx Damage.
+    type: Fix
+  id: 405006
+  time: '2026-05-15T09:38:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4450
 Order: -1

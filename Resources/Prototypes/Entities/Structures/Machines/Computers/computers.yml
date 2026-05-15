@@ -574,6 +574,7 @@
     pagingSoundParams:
       maxDistance: 15 # Stationary consoles have a much longer audio range.
     # Starlight END
+  - type: CrewMonitoringFilter # Starlight: set crew monitors to filter for crew sensors by default
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
