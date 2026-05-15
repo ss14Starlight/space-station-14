@@ -84,6 +84,14 @@
   - type: NavMapBeacon
     defaultText: station-beacon-breakroom-science
 
+- type: entity
+  parent: DefaultStationBeaconScience
+  id: DefaultStationBeaconXenbiology
+  suffix: Xenobiology
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-xenobiology
+
 # Security
 - type: entity
   parent: DefaultStationBeaconSecurity
