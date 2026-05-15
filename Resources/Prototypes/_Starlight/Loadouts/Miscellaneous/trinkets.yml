@@ -60,8 +60,6 @@
   equipment:
     shoes: ClothingUnderSocksCoder
 
-# Meow mrrp ## shut up ### no :3
-
 - type: loadout
   id: CatEars
   effects:
