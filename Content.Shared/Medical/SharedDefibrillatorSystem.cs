@@ -101,6 +101,10 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         if (args.Handled || args.Target is not { } target)
             return;
 
+        // Starlight - To stop you from being able to defib someone by clicking on them with a hardsuit.
+        if (TryComp<WearableDefibrillatorComponent>(ent, out _))
+            return;
+
         args.Handled = TryStartZap(ent.AsNullable(), target, args.User);
     }
 
