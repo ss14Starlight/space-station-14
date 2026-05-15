@@ -24,6 +24,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using IDunGenLayer = Content.Shared.Procedural.IDunGenLayer;
+using Content.Server._Starlight.Procedural.Events;
+using Content.Server._Starlight.Salvage.VGRoid; // Starlight
 
 namespace Content.Server.Procedural.DungeonJob;
 
@@ -177,6 +179,7 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         {
             var oldMap = _xformQuery.Comp(_gridUid).MapUid;
             _entManager.System<ShuttleSystem>().TryFTLProximity(_gridUid, _targetCoordinates.Value);
+            _entManager.System<VGRoidSpawnValidationSystem>().PushGridOutOfCompletedVGRoids(_gridUid); // Starlight: Keeps grids out of VGroid
             _entManager.DeleteEntity(oldMap);
         }
 
@@ -194,6 +197,10 @@ public sealed partial class DungeonJob : Job<List<Dungeon>>
         }
 
         _sawmill.Info($"Finished generating dungeon {_gen} with seed {_seed}");
+        // Starlight Start
+        var generatedEv = new DungeonGeneratedEvent(_gen, _seed);
+        _entManager.EventBus.RaiseLocalEvent(_gridUid, generatedEv, false);
+        // Starlight End
         return dungeons;
     }
 

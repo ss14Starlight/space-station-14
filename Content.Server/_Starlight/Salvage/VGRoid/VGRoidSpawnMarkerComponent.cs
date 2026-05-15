@@ -21,4 +21,10 @@ public sealed partial class VGRoidSpawnMarkerComponent : Component
 
     [DataField]
     public float DistanceTolerance = 16f;
+
+    [DataField]
+    public bool GenerationComplete = true;
+
+    [DataField]
+    public bool PlacementComplete = true;
 }
