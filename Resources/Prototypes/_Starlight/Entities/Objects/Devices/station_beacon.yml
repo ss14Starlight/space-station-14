@@ -16,7 +16,7 @@
     defaultText: station-beacon-blueshield-officer
 
 - type: entity
-  parent: DefaultStationBeacon
+  parent: DefaultStationBeaconCommand
   id: DefaultStationBeaconIAA
   suffix: Internal Affairs
   components:
