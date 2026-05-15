@@ -9,8 +9,6 @@ namespace Content.Shared._Starlight.Magic.Systems;
 
 /// <summary>
 ///     This handles logic relating to <see cref="BonusDamageComponent" /> and <see cref="BonusDamageStatusEffectComponent" />.
-///
-///     Not used in the handling of actual wearable armor items.
 /// </summary>
 public sealed class SharedBonusDamageSystem : EntitySystem
 {
@@ -38,6 +36,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
 
     private void Recalculate(EntityUid ent, BonusDamageComponent comp)
     {
+        // NOTE: ent here may be either the weapon or the wielder. SharedMeleeDamageSystem was altered to accommodate this.
         comp.MeleeWeaponBonusDamage = new();
         // todo: comp.RangedWeaponBonusDamage = new();
         comp.UnarmedBonusDamage = new();
@@ -76,7 +75,7 @@ public sealed class SharedBonusDamageSystem : EntitySystem
             };
         }
 
-        Recalculate(ent, component);
+        Recalculate(args.Target, component);
     }
 
     private void BonusDamageStatusEffectRemoved(EntityUid ent, BonusDamageStatusEffectComponent effect, ref StatusEffectRemovedEvent args)
@@ -90,6 +89,6 @@ public sealed class SharedBonusDamageSystem : EntitySystem
         if (component.modifiers.Count == 0)
             RemComp<BonusDamageComponent>(args.Target);
         else
-            Recalculate(ent, component);
+            Recalculate(args.Target, component);
     }
 }

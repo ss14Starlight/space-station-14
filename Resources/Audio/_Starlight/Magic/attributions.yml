@@ -2,7 +2,7 @@
   copyright: "based on freesound.org sample 'another magic wand spell tinkle.flac' by Timbre; edited by Rhetorica for Starlight"
   license: "CC-BY-NC-4.0"
   source: "https://freesound.org/people/Uzbazur/sounds/221872/"
-- files: [dwarf-buff-generic.ogg, dwarf-buff-cognac.ogg, dwarf-buff-generic.ogg, dwarf-buff-gin.ogg, dwarf-buff-moscowmule.ogg, dwarf-buff-rum.ogg, dwarf-buff-tequila.ogg, dwarf-buff-vermouth.ogg]
+- files: [dwarf-buff-generic.ogg, dwarf-buff-cognac.ogg, dwarf-buff-gin.ogg, dwarf-buff-moscowmule.ogg, dwarf-buff-rum.ogg, dwarf-buff-tequila.ogg, dwarf-buff-vermouth.ogg]
   copyright: "Generated and/or mixed by AllisonKaur for Starlight"
   license: "CC-BY-4.0"
   source: "https://github.com/ss14Starlight/space-station-14/"

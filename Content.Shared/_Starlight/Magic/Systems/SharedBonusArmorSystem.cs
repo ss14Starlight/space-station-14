@@ -44,7 +44,7 @@ public sealed class SharedBonusArmorSystem : EntitySystem
 
     private void BonusArmorStatusEffectApplied(EntityUid ent, BonusArmorStatusEffectComponent effect, ref StatusEffectAppliedEvent args)
     {
-        if (!TryComp(args.Target, out BonusArmorComponent? component)) // this syntax is a crime against PLT btw
+        if (!TryComp(args.Target, out BonusArmorComponent? component)) // This may be idiomatic in C#, but Dennis Ritchie is rolling in his grave over this violation of scoping rules. Why does if() have leaky scope in its expression, when for() and while() don't?!
             component = AddComp<BonusArmorComponent>(args.Target);
 
         if (!component.modifiers.ContainsKey(ent) || effect.OverwriteOnRefresh) {
@@ -90,10 +90,7 @@ public sealed class SharedBonusArmorSystem : EntitySystem
 
     private void OnCoefficientQuery(Entity<BonusArmorComponent> ent, ref CoefficientQueryEvent args)
     {
-        if (!TryComp<BonusArmorComponent>(ent, out var component))
-            return;
-
-        foreach (var modifier in component.modifiers)
+        foreach (var modifier in ent.Comp.modifiers)
             foreach (var armorCoefficient in modifier.Value.Modifiers.Coefficients)
                 args.DamageModifiers.Coefficients[armorCoefficient.Key] = args.DamageModifiers.Coefficients.TryGetValue(armorCoefficient.Key, out var coefficient) ? coefficient * armorCoefficient.Value : armorCoefficient.Value;
     }

@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.Magic.Components;
 /// granted as a status effect with no corresponding inventory slot. Multiple may be applied simultaneously from
 /// different sources, so long as each source is its own entity with <see cref="BonusArmorStatusEffectComponent"/>.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 [Access(typeof(SharedBonusArmorSystem))]
 public sealed partial class BonusArmorStatusEffectComponent : Component
 {

@@ -45,7 +45,7 @@
 
 - type: flavor
   id: highlander
-  flavorType: Base
+  flavorType: Complex
   description: flavor-complex-highlander
 
 - type: flavor

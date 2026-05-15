@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Magic.Components;
 /// <summary>
 /// Allows applying a DamageModifierSet and other attributes of an ArmorComponent as a StatusEffect.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 [Access(typeof(SharedBonusArmorSystem))]
 public sealed partial class BonusArmorComponent : Component
 {

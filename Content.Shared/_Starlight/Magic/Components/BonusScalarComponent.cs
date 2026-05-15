@@ -47,14 +47,14 @@ public sealed partial class BonusScalarComponent : Component
         [DataField, AutoNetworkedField]
         public float rangedWeaponDamage = 1.0f;
 
-        /// < summary>
+        /// <summary>
         /// The effective total speed multiplier for attacking with ranged weapons provided by equipment. Bigger = faster.
         /// </summary>
         [DataField, AutoNetworkedField]
         public float rangedWeaponAttackRate = 1.0f;
     */
 
-    /// < summary>
+    /// <summary>
     /// Coefficient for scaling the duration of DoAfters (interactions). Smaller = faster.
     /// </summary>
     [DataField, AutoNetworkedField]

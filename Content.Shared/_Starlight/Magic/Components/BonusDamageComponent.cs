@@ -8,10 +8,13 @@ using Content.Shared.Damage;
 namespace Content.Shared._Starlight.Magic.Components;
 
 /// <summary>
-/// Allows applying various flat damage bonuses to target entities as a StatusEffect.
+/// Allows applying various flat damage bonuses to target entities as a StatusEffect, or directly.
 /// See <see cref="BonusDamageStatusEffectComponent"/> and <see cref="SharedBonusDamageSystem"/>.
+/// May be used on either weapons or wielders.
+///
 /// If you want to apply bonus damage as a permanent trait instead of via a status effect,
-/// consider Wizden's original <see cref="BonusMeleeDamageComponent"/>.
+/// consider Wizden's original <see cref="BonusMeleeDamageComponent"/>, as this component
+/// will be automatically removed when the last BonusDamageStatusEffect ends.
 /// </summary>
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
