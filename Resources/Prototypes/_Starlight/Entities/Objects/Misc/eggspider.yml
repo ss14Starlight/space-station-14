@@ -36,7 +36,6 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Animals/Spiders/terror_gray2.rsi
     state: egg
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobSpiderlingTerrorGray
@@ -50,7 +49,6 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Animals/Spiders/terror_green.rsi
     state: egg
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobSpiderlingTerrorGreen
@@ -64,7 +62,6 @@
   - type: Sprite
     sprite: _Starlight/Mobs/Animals/Spiders/terror_red.rsi
     state: egg
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobSpiderlingTerrorRed
@@ -75,7 +72,6 @@
   parent: EggSpider
   id: EggSpiderFertilized
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobGiantSpider

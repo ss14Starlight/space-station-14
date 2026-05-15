@@ -4,7 +4,6 @@ using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared._Starlight.BugReport;
-using Content.Shared.CCVar;
 using Content.Shared.Starlight.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.ResourceManagement;
@@ -24,52 +23,42 @@ public sealed class BugReportUIController : UIController, IOnStateEntered<Gamepl
     [Dependency] private readonly IResourceCache _resource = default!;
 
     // This is the link to the hotbar button
-    private MenuButton? BugReportButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.ReportBugButton;
+    private MenuButton? _bugReportButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.ReportBugButton;
 
     // Don't clear this window. It needs to be saved so the input doesn't get erased when it's closed!
     private BugReportWindow _bugReportWindow = default!;
 
-    private ResPath Bug = new("/Textures/_Starlight/Interface/bug.svg.192dpi.png");
-    private ResPath Splat = new("/Textures/_Starlight/Interface/splat.svg.192dpi.png");
+    private readonly ResPath _bug = new("/Textures/_Starlight/Interface/bug.svg.192dpi.png");
+    private readonly ResPath _splat = new("/Textures/_Starlight/Interface/splat.svg.192dpi.png");
 
     public void OnStateEntered(GameplayState state)
-    {
-        SetupWindow();
-    }
+        => SetupWindow();
 
     public void OnStateExited(GameplayState state)
-    {
-        CleanupWindow();
-    }
+        => CleanupWindow();
 
     public void LoadButton()
-    {
-        if (BugReportButton != null)
-            BugReportButton.OnPressed += ButtonToggleWindow;
-    }
+        => _bugReportButton?.OnPressed += ButtonToggleWindow;
 
     public void UnloadButton()
-    {
-        if (BugReportButton != null)
-            BugReportButton.OnPressed -= ButtonToggleWindow;
-    }
+        => _bugReportButton?.OnPressed -= ButtonToggleWindow;
 
     private void SetupWindow()
     {
-        if (BugReportButton == null)
+        if (_bugReportButton == null)
             return;
 
         _bugReportWindow = UIManager.CreateWindow<BugReportWindow>();
         // This is to make sure the hotbar button gets checked and unchecked when the window is opened / closed.
         _bugReportWindow.OnClose += () =>
         {
-            BugReportButton.Pressed = false;
-            BugReportButton.Icon = _resource.GetTexture(Bug);
+            _bugReportButton.Pressed = false;
+            _bugReportButton.Icon = _resource.GetTexture(_bug);
         };
         _bugReportWindow.OnOpen += () =>
         {
-            BugReportButton.Pressed = true;
-            BugReportButton.Icon = _resource.GetTexture(Splat);
+            _bugReportButton.Pressed = true;
+            _bugReportButton.Icon = _resource.GetTexture(_splat);
         };
 
         _bugReportWindow.OnBugReportSubmitted += OnBugReportSubmitted;
@@ -100,15 +89,13 @@ public sealed class BugReportUIController : UIController, IOnStateEntered<Gamepl
     }
 
     private void ButtonToggleWindow(BaseButton.ButtonEventArgs obj)
-    {
-        ToggleWindow();
-    }
+        => ToggleWindow();
 
     private void UpdateButtonVisibility(bool val)
     {
-        if (BugReportButton == null)
+        if (_bugReportButton == null)
             return;
 
-        BugReportButton.Visible = val;
+        _bugReportButton.Visible = val;
     }
 }

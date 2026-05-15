@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Bible.Components;
 using Content.Server.Flash;
-using Content.Server.Light.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Shared._Starlight.CosmicCult;
@@ -32,7 +31,7 @@ public sealed class CosmicGlareSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interact = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    private HashSet<Entity<PoweredLightComponent>> _lights = [];
+    private readonly HashSet<Entity<PoweredLightComponent>> _lights = [];
 
     public override void Initialize()
     {
@@ -56,7 +55,7 @@ public sealed class CosmicGlareSystem : EntitySystem
         args.Handled = true;
 
         _lights.Clear();
-        _lookup.GetEntitiesInRange<PoweredLightComponent>(Transform(uid).Coordinates, uid.Comp.CosmicGlareRange, _lights);
+        _lookup.GetEntitiesInRange(Transform(uid).Coordinates, uid.Comp.CosmicGlareRange, _lights);
 
         foreach (var entity in _lights)
             _poweredLight.TryDestroyBulb(entity);

@@ -191,7 +191,6 @@
   parent: FoodEgg
   suffix: Fertilized, Compy
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - MobDinosaurCompy

@@ -20,6 +20,7 @@
   groups:
   - MagistrateJumpsuit
   - MagistrateEyewear
+  - MagistrateNeck
   - MagistrateHands
   - MagistrateHead
   - MagistrateOuterclothing
@@ -57,6 +58,7 @@
   id: JobNanoTrasenRepresentative
   groups:
   - NanoTrasenRepresentativeHead
+  - NanoTrasenRepresentativeNeck
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
