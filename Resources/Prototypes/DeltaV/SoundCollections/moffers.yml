@@ -1,0 +1,6 @@
+﻿- type: soundCollection
+  id: Moffers
+  files:
+    - /Audio/DeltaV/Items/Moffers/moth_scream1.ogg
+    - /Audio/DeltaV/Items/Moffers/moth_scream2.ogg
+    - /Audio/DeltaV/Items/Moffers/moth_scream3.ogg

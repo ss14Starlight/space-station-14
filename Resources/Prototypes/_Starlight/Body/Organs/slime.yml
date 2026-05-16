@@ -86,3 +86,32 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+
+# Starlight start
+- type: entity
+  id: OrganSlimePeepoids
+  parent: [BaseHumanOrgan, BaseOrganEyes]
+  name: peepoids
+  description: "Primitive and goopy, but more or less just as good as the human equivalent."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Slime/organs.rsi
+    state: peepoids
+  - type: Item
+    size: Small
+    heldPrefix: peepoids
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobHumanoidEyes
+
+- type: entity
+  id: OrganSlimeSlurpoid
+  parent: OrganHumanTongue
+  name: slurpoid
+  description: "It has all the consistency of gelatin."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Slime/organs.rsi
+    state: slurpoid
+# Starlight end

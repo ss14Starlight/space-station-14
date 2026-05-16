@@ -1,0 +1,72 @@
+- type: entity
+  name: X-09 Headsman
+  parent: [BaseItem, BaseCentcommContraband]
+  id: WeaponAdmemeX09Headsman
+  description: They say the art of execution has evolved a lot over the years. For some people. Not for me.
+  suffix: ADMEME
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
+    state: icon
+  - type: Sharp
+  - type: DisarmMalus
+    malus: 0.6
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    attackRate: 0.8
+    autoAttack: true
+    damage:
+      types:
+        Slash: 12.5
+        Heat: 12.5
+        Structural: 120
+    soundHit:
+      path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+      params:
+        variation: 0.250
+    soundNoDamage:
+      path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    soundSwing:
+      path: /Audio/_Starlight/Weapons/marriage_swing.ogg
+      params:
+        variation: 0.125
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Slash: 12.5
+        Heat: 12.5
+        Structural: 120
+  - type: Item
+    sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
+    size: Ginormous
+  - type: Clothing
+    sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: HeldSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: ItemToggle
+    activated: true
+    onUse: false
+    onActivate: false
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/_Starlight/Weapons/marriage_hum.ogg
+      params:
+        pitch: 0.6
+  - type: Reflect
+    reflectProb: 0.5
+    spread: 45
+  - type: PointLight
+    enabled: true
+    radius: 3
+    energy: 3
+    color: "#00CCFF"
+    netsync: false

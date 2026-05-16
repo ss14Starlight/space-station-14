@@ -2,7 +2,6 @@ using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
-using Content.Shared.Damage;
 using Content.Shared.Mind;
 using Content.Shared.Stunnable;
 using Content.Shared.Damage.Systems;

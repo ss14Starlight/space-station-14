@@ -65,7 +65,7 @@ public sealed class DamagedSiliconAccentSystem : EntitySystem
 
         var outMsg = new StringBuilder();
 
-        var maxDropProb = comp.MaxDropProbFromPower * (1.0f - chargeLevel / comp.ChargeThresholdForPowerCorruption);
+        var maxDropProb = comp.MaxDropProbFromPower * (1.0f - (chargeLevel / comp.ChargeThresholdForPowerCorruption));
 
         var idx = -1;
         foreach (var letter in message)

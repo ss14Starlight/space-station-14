@@ -75803,8 +75803,8 @@ entities:
   - uid: 11591
     components:
     - type: MetaData
-      desc: a crate painted NT blue with Nanotrasen symboling
-      name: Nanotrasen Crate
+      desc: a crate painted NT blue with the symbol of NanoTrasen
+      name: NanoTrasen Crate
     - type: Transform
       pos: 23.5,14.5
       parent: 2
