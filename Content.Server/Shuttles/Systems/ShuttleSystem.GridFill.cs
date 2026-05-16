@@ -165,7 +165,6 @@ public sealed partial class ShuttleSystem
 
         marker.GenerationComplete = !dungeon.DirectDungeonSpawn;
         marker.PlacementComplete = !dungeon.DirectDungeonSpawn;
-        Dirty(spawned, marker);
     }
     #endregion
 
