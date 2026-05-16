@@ -89,7 +89,7 @@
   parent: ClothingScarfBase
   id: ClothingNeckBunnyGang
   name: Bunny Gang Scarf
-  description: The hat of a secretive group of bunny mercenaries.
+  description: The scarf of a secretive group of bunny mercenaries.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Neck/Misc/bunnygang.rsi

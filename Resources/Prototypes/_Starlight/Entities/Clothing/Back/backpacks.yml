@@ -99,7 +99,7 @@
   parent: ClothingBackpack
   id: ClothingBackpackBunnyGang
   name: Bunny Gang Backpack
-  description: A sword that is actually a backpack. Its impressive how they managed to fit things in there, even so, inventory management will be a trial.
+  description: A sword that is actually a backpack. It's impressive how they managed to fit things in there, even so, inventory management will be a trial.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Back/Backpacks/bunnygang.rsi

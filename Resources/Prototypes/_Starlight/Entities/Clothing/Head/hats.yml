@@ -692,7 +692,7 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBunnyGang
-  name: Bunng Gang Hat
+  name: Bunny Gang Hat
   description: The hat of a secretive group of bunny mercenaries.
   components:
     - type: Sprite
