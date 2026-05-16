@@ -36,38 +36,56 @@ public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
     {
         var options = new List<RadialMenuOptionBase>();
 
+        var combinedList = new Dictionary<ProtoId<RadioChannelPrototype>, ChannelState>();
+
         foreach (var key in comp.KeyContainer.ContainedEntities)
         {
             if (!EntMan.TryGetComponent<EncryptionKeyComponent>(key, out var keyComp))
                 continue;
 
-            foreach (var channel in keyComp.Channels)
+            foreach (var channel in keyComp.Channels) combinedList.TryAdd(channel, ChannelState.Muted);
+
+            foreach (var channel in keyComp.MutedChannels) combinedList.TryAdd(channel, ChannelState.Muted);
+        }
+
+        foreach (var channel in combinedList)
+        {
+            if (channel.Value == ChannelState.Enabled)
             {
                 var locString = Loc.GetString("encryption-key-mute");
-                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel, out var channelPrototype))
+                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel.Key, out var channelPrototype))
+                    continue;
+
+                if (channelPrototype.Icon == null)
                     continue;
 
                 var button = new RadialMenuActionOption<RadioChannelPrototype>(HandleRadialMenuClick, channelPrototype)
                 {
-                    IconSpecifier = RadialMenuIconSpecifier.With(key),
                     ToolTip = $"{locString} {channelPrototype.LocalizedName}",
                     BackgroundColor = channelPrototype.Color.WithAlpha(128)
                 };
+
+                if (channelPrototype.Icon != null)
+                    button.IconSpecifier = RadialMenuIconSpecifier.With(channelPrototype.Icon);
+
                 options.Add(button);
             }
 
-            foreach (var channel in keyComp.MutedChannels)
+            if (channel.Value == ChannelState.Muted)
             {
                 var locString = Loc.GetString("encryption-key-unmute");
-                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel, out var channelPrototype))
+                if (!_protoManager.TryIndex<RadioChannelPrototype>(channel.Key, out var channelPrototype))
                     continue;
 
                 var button = new RadialMenuActionOption<RadioChannelPrototype>(HandleRadialMenuClick, channelPrototype)
                 {
-                    IconSpecifier = RadialMenuIconSpecifier.With(key),
                     ToolTip = $"{locString} {channelPrototype.LocalizedName}",
                     BackgroundColor = channelPrototype.Color.WithAlpha(32),
                 };
+
+                if (channelPrototype.Icon != null)
+                    button.IconSpecifier = RadialMenuIconSpecifier.With(channelPrototype.Icon);
+
                 options.Add(button);
             }
         }
@@ -75,8 +93,11 @@ public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
         return options;
     }
 
-    private void HandleRadialMenuClick(RadioChannelPrototype proto)
+    private void HandleRadialMenuClick(RadioChannelPrototype proto) => SendPredictedMessage(new EncryptionKeyToggleMessage(proto.ID));
+
+    private enum ChannelState
     {
-        SendPredictedMessage(new EncryptionKeyToggleMessage(proto.ID));
+        Enabled,
+        Muted,
     }
 }
