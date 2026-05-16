@@ -127,9 +127,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         base.Started(uid, component, gameRule, args);
         component.CommandCheck = _timing.CurTime + component.TimerWait;
 
-        #region Starlight
-        _commandLastTimeOnStation = _timing.CurTime;
-        #endregion Starlight
+        _commandLastTimeOnStation = _timing.CurTime; // Starlight
     }
 
     protected override void ActiveTick(EntityUid uid, RevolutionaryRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -145,10 +143,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 GameTicker.EndGameRule(uid, gameRule);
             }
 
+            #region Starlight
             if (CheckCommandLose(component))
             {
-                // Starlight Start
-
                 _roundEnd.CancelRoundEndCountdown(null, false);
 
                 // Play the revolutionary end sound globally
@@ -222,8 +219,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                         _roundEnd.EndRound();
                     }
                 });
-                // Starlight End
             }
+            #endregion Starlight
         }
     }
 
@@ -235,7 +232,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         base.AppendRoundEndText(uid, component, gameRule, ref args);
 
         var revsLost = CheckRevsLose();
-        var commandLost = CheckCommandLose(component);
+        var commandLost = CheckCommandLose(component); // Starlight
         // This is (revsLost, commandsLost) concatted together
         // (moony wrote this comment idk what it means)
         var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
@@ -570,6 +567,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     /// <summary>
     /// Checks if all of command is dead and if so will remove all sec and command jobs if there were any left.
     /// </summary>
+    #region Starlight
     private bool CheckCommandLose(RevolutionaryRuleComponent component)
     {
         var commandList = new List<EntityUid>();
@@ -580,7 +578,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             commandList.Add(id);
         }
 
-    // STARLIGHT START
+
         var allCommandDead = IsGroupDetainedOrDead(commandList, false, true, true);
 
         // check if any command are on the main station grid
@@ -618,8 +616,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         // Get all game rule entities
         // var gameRuleQuery = EntityManager.EntityQuery<GameRuleComponent>();
-        // STARLIGHT END
     }
+    #endregion Starlight
 
     private void OnHeadRevMobStateChanged(EntityUid uid, HeadRevolutionaryComponent comp, MobStateChangedEvent ev)
     {
