@@ -43,7 +43,7 @@ public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
             if (!EntMan.TryGetComponent<EncryptionKeyComponent>(key, out var keyComp))
                 continue;
 
-            foreach (var channel in keyComp.Channels) combinedList.TryAdd(channel, ChannelState.Muted);
+            foreach (var channel in keyComp.Channels) combinedList.TryAdd(channel, ChannelState.Enabled);
 
             foreach (var channel in keyComp.MutedChannels) combinedList.TryAdd(channel, ChannelState.Muted);
         }
