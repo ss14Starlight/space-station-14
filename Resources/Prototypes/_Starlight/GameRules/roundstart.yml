@@ -167,6 +167,7 @@
         components:
         - AntagImmune
       lateJoinAdditional: false
+      allowNonHumans: true
       mindRoles:
       - MindRoleTraitor
 

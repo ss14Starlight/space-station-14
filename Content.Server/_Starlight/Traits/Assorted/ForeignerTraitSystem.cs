@@ -12,7 +12,6 @@ using HandheldTranslatorComponent = Content.Shared._Starlight.Language.Component
 
 namespace Content.Server._Starlight.Traits.Assorted;
 
-
 public sealed partial class ForeignerTraitSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entMan = default!;
@@ -22,9 +21,7 @@ public sealed partial class ForeignerTraitSystem : EntitySystem
     [Dependency] private readonly StorageSystem _storage = default!;
 
     public override void Initialize()
-    {
-        SubscribeLocalEvent<ForeignerTraitComponent, ComponentInit>(OnSpawn); // TraitSystem adds it after PlayerSpawnCompleteEvent so it's fine.
-    }
+        => SubscribeLocalEvent<ForeignerTraitComponent, ComponentInit>(OnSpawn); // TraitSystem adds it after PlayerSpawnCompleteEvent so it's fine.
 
     private void OnSpawn(Entity<ForeignerTraitComponent> entity, ref ComponentInit args)
     {

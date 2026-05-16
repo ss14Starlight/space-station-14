@@ -45,10 +45,11 @@ public partial class PlumbingNode : PipeNode
             CurrentPipeLayer = layers.CurrentPipeLayer;
     }
 
-    public override IEnumerable<Node> GetReachableNodes(TransformComponent xform,
+    public override IEnumerable<Node> GetReachableNodes(
+        Entity<TransformComponent> xform,
         EntityQuery<NodeContainerComponent> nodeQuery,
         EntityQuery<TransformComponent> xformQuery,
-        MapGridComponent? grid,
+        Entity<MapGridComponent>? grid,
         IEntityManager entMan)
     {
         var mapSystem = entMan.System<SharedMapSystem>();
@@ -71,11 +72,10 @@ public partial class PlumbingNode : PipeNode
         }
 
         if (!isPlumbingDuct &&
-            xform.Anchored &&
-            grid != null &&
-            xform.GridUid != null)
+            xform.Comp.Anchored &&
+            grid is { } machineGrid)
         {
-            var position = mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
+            var position = mapSystem.TileIndicesFor(machineGrid, xform.Comp.Coordinates);
             var selectedByDirection = new Dictionary<PipeDirection, PipeNode>();
 
             // Optional internal outlet linking.
@@ -104,7 +104,7 @@ public partial class PlumbingNode : PipeNode
                 var sideKey = (Owner, nodeName, direction);
                 PipeNode? firstConnectedCandidate = null;
 
-                foreach (var pipe in PipesInDirection(position, direction, grid, nodeQuery))
+                foreach (var pipe in PipesInDirection(position, direction, machineGrid, nodeQuery, mapSystem))
                 {
                     if (!pipe.CurrentPipeDirection.HasDirection(direction.GetOpposite()))
                         continue;
@@ -140,15 +140,14 @@ public partial class PlumbingNode : PipeNode
         }
 
         if (isPlumbingDuct &&
-            xform.Anchored &&
-            grid != null &&
-            xform.GridUid != null)
+            xform.Comp.Anchored &&
+            grid is { } ductGrid)
         {
-            var pos = mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
+            var pos = mapSystem.TileIndicesFor(ductGrid, xform.Comp.Coordinates);
 
             foreach (var direction in GetCardinalDirections(CurrentPipeDirection))
             {
-                foreach (var pipe in PipesInDirection(pos, direction, grid, nodeQuery))
+                foreach (var pipe in PipesInDirection(pos, direction, ductGrid, nodeQuery, mapSystem))
                 {
                     if (pipe.NodeGroupID != NodeGroupID)
                         continue;
