@@ -3,7 +3,6 @@
   parent: [BaseItem, BaseCentcommContraband]
   id: WeaponAdmemeX09Headsman
   description: They say the art of execution has evolved a lot over the years. For some people. Not for me.
-  suffix: ADMEME
   components:
   - type: Sprite
     sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
