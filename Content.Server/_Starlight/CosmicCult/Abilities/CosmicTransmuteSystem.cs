@@ -50,7 +50,6 @@ public sealed class CosmicTransmuteSystem : EntitySystem
         QueueDel(possibleTargets.First());
     }
 
-
     /// <summary>
     ///     Gets all whitelisted entities near a glyph.
     /// </summary>

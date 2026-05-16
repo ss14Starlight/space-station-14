@@ -167571,7 +167571,7 @@ entities:
   - uid: 25606
     components:
     - type: MetaData
-      desc: A standard-issue Nanotrasen storage unit, containing 6 Mk58 pistols.
+      desc: A standard-issue NanoTrasen storage unit, containing 6 Mk58 pistols.
     - type: Transform
       anchored: True
       pos: 21.5,15.5
@@ -178784,7 +178784,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 27193
     components:
     - type: Transform
@@ -178793,7 +178792,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 27194
     components:
     - type: Transform
@@ -178802,7 +178800,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 27195
     components:
     - type: Transform

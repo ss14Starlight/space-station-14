@@ -8,7 +8,7 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Body.Organ;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

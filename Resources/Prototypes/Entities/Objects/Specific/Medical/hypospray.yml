@@ -57,7 +57,7 @@
   parent: [BaseHypospray, BaseSyndicateContraband]
   id: SyndiHypo
   name: gorlex hypospray
-  description: A sterile injector for rapid administration of drugs. Reverse-engineered from Nanotrasen designs, Cybersun produces these in limited quantities for Gorlex Marauders' corpsmen.
+  description: A sterile injector for rapid administration of drugs. Reverse-engineered from NanoTrasen designs, Cybersun produces these in limited quantities for Gorlex Marauders' corpsmen. # SL
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/syndihypo.rsi
