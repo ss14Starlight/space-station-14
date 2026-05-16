@@ -93,9 +93,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly SubdermalImplantSystem _subdermalImplantSystem = default!;
     [Dependency] private readonly USSPUplinkSystem _usspUplinkSystem = default!;
 
-    // grace period for command going AWOL
-    private static readonly TimeSpan _commandOffstationGracePeriod = TimeSpan.FromSeconds(45);
-
     // last time at least 1 command member was on station
     private TimeSpan _commandLastTimeOnStation = default;
     // Starlight-end
@@ -129,6 +126,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     {
         base.Started(uid, component, gameRule, args);
         component.CommandCheck = _timing.CurTime + component.TimerWait;
+
+        #region Starlight
+        _commandLastTimeOnStation = _timing.CurTime;
+        #endregion Starlight
     }
 
     protected override void ActiveTick(EntityUid uid, RevolutionaryRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -144,7 +145,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 GameTicker.EndGameRule(uid, gameRule);
             }
 
-            if (CheckCommandLose())
+            if (CheckCommandLose(component))
             {
                 // Starlight Start
 
@@ -234,7 +235,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         base.AppendRoundEndText(uid, component, gameRule, ref args);
 
         var revsLost = CheckRevsLose();
-        var commandLost = CheckCommandLose();
+        var commandLost = CheckCommandLose(component);
         // This is (revsLost, commandsLost) concatted together
         // (moony wrote this comment idk what it means)
         var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
@@ -552,14 +553,24 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     //TODO: Enemies of the revolution
     private void OnCommandMobStateChanged(EntityUid uid, CommandStaffComponent comp, MobStateChangedEvent ev)
     {
+        #region Starlight
         if (ev.NewMobState == MobState.Dead || ev.NewMobState == MobState.Invalid)
-            CheckCommandLose();
+        {
+            // need to pass the RevolutionaryRule comp to CheckCommandLose()
+            var query = EntityQueryEnumerator<RevolutionaryRuleComponent, GameRuleComponent>();
+
+            while (query.MoveNext(out var _, out var ruleComp, out var gameRule))
+            {
+                CheckCommandLose(ruleComp);
+            }
+        }
+        #endregion Starlight
     }
 
     /// <summary>
     /// Checks if all of command is dead and if so will remove all sec and command jobs if there were any left.
     /// </summary>
-    private bool CheckCommandLose()
+    private bool CheckCommandLose(RevolutionaryRuleComponent component)
     {
         var commandList = new List<EntityUid>();
 
@@ -580,7 +591,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             _commandLastTimeOnStation = _timing.CurTime;
 
         // check if command have abandoned the station
-        var allCommandAbandonedStation = !anyCommandOnStation && (_timing.CurTime.Subtract(_commandLastTimeOnStation) > _commandOffstationGracePeriod);
+        var allCommandAbandonedStation = !anyCommandOnStation && (_timing.CurTime.Subtract(_commandLastTimeOnStation) > component.CommandOffstationGracePeriod);
 
         // command loses if they're all dead, detained, or they left the station
         return allCommandDead || allCommandAbandonedStation;
