@@ -126,6 +126,29 @@
 
 - type: entity
   parent: ImmovableRodKeepTilesStill
+  id: ImmovableRodSlug #Starlight
+  suffix: Slug
+  description: Its coming right for us!
+  components:
+  - type: ImmovableRod
+    randomizeVelocity: false
+    minSpeed: 5000
+    maxSpeed: 5000
+  - type: TimedDespawn
+    lifetime: 300.0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 9999
+        hard: false
+        layer:
+        - Impassable
+        - Opaque
+- type: entity
+  parent: ImmovableRodKeepTilesStill
   id: ImmovableRodMop
   name: immovable mop
   description: Hurled like a javelin, with the power of a thousand furious janitors.
