@@ -44,7 +44,6 @@ using Content.Shared.Atmos.Rotting;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 
-
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed partial class VampireSystem : EntitySystem
@@ -538,11 +537,10 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-
         if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
-            || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
+            || !TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
             || (mobState.CurrentState == Shared.Mobs.MobState.Dead && comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood if configured to not allow drinking from the dead at all
-            ))
+            )
         {
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-not-viable"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             comp.IsDrinking = false;
@@ -561,27 +559,21 @@ public sealed partial class VampireSystem : EntitySystem
             sipInefficiency *= comp.DeadEfficiency; // Dead things aren't as good source of blood
         if (TryComp<PerishableComponent>(target, out var rot)) //Is the target rotting?
         {
-            switch (rot.Stage)
+            sipInefficiency *= rot.Stage switch
             {
-                case 0: //fresh or not rotted at all
-                    sipInefficiency *= comp.Rot0Efficiency;
-                    break;
-                case 1: //initial stages
-                    sipInefficiency *= comp.Rot1Efficiency;
-                    break;
-                case 2: //mid rot
-                    sipInefficiency *= comp.Rot2Efficiency;
-                    break;
-                case 3: //late rot
-                    sipInefficiency *= comp.Rot3Efficiency;
-                    break;
-                case 4: //full rot
-                    sipInefficiency *= comp.Rot4Efficiency;
-                    break;
-                default: //if we push past 4 for some reason, just assume same level as 4
-                    sipInefficiency *= comp.Rot4Efficiency;
-                    break;
-            }
+                //fresh or not rotted at all
+                0 => comp.Rot0Efficiency,
+                //initial stages
+                1 => comp.Rot1Efficiency,
+                //mid rot
+                2 => comp.Rot2Efficiency,
+                //late rot
+                3 => comp.Rot3Efficiency,
+                //full rot
+                4 => comp.Rot4Efficiency,
+                //if we push past 4 for some reason, just assume same level as 4
+                _ => comp.Rot4Efficiency,
+            };
         }
 
         if (sipInefficiency <= 0f) //If we have set the efficiency to 0, then no point continuing
@@ -626,7 +618,6 @@ public sealed partial class VampireSystem : EntitySystem
             _damageableSystem.TryChangeDamage(target, biteDamage, ignoreResistances: true);
             _blood.TryModifyBleedAmount(target, 1);
 
-
             //Add in blindness instead of cancer
             if (TryComp<BlindableComponent>(target, out var blindable) && 2 <= comp.BlindInc)
             {
@@ -667,8 +658,6 @@ public sealed partial class VampireSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("vampire-drink-target-empty"), uid, uid, Shared.Popups.PopupType.MediumCaution);
             return;
         }
-
-
     }
 
     partial void UpdateVampireAlert(EntityUid uid)
@@ -721,7 +710,6 @@ public sealed partial class VampireSystem : EntitySystem
     {
         if (args.Handled || !Exists(args.Target))
             return;
-
 
         var actionEntity = args.Action.Owner;
 

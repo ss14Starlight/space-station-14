@@ -3,7 +3,7 @@
   id: WardrobeBase
   parent: ClosetSteelBase
   abstract: true
-  description: It's a storage unit for standard-issue Nanotrasen attire.
+  description: It's a storage unit for standard-issue NanoTrasen attire. # SL
 
 # Colored
 

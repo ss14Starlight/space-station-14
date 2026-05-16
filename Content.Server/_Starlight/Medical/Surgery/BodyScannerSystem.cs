@@ -6,7 +6,7 @@ using Content.Server.Medical;
 using Content.Server.Medical.Components;
 using System.Linq;
 
-namespace Content.Server.Starlight.Medical.Surgery;
+namespace Content.Server._Starlight.Medical.Surgery;
 
 public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
 {

@@ -37,7 +37,7 @@ NTCCBlueShieldPDA: NTNCBlueShieldPDA
 NTCCBlueShieldIDCard: NTNCBlueShieldIDCard
 
 # 2025-08-31
-PosterContrabandRealExomorph: PosterContrabandHereticalExomorph # 2026-04-21 L*sty -> Heretical, have to do it this way since it's been migrated once before
+#PosterContrabandRealExomorph: PosterContrabandHereticalExomorph # 2026-04-21 L*sty -> Heretical, have to do it this way since it's been migrated once before, reverted puritan pr
 MagazinePistol: MagazinePistolSP
 
 # 2025-09-02
@@ -96,5 +96,7 @@ PlushieBBC: PlushieDarkForest
 ClothingUniformJumpsuitMimeSexyWhite: ClothingUniformJumpsuitMimeSuaveWhite
 ClothingUniformJumpsuitMimeSexyBlack: ClothingUniformJumpsuitMimeSuaveBlack
 PosterContrabandWantedMimeSexy: PosterContrabandWantedMime
-PosterContrabandBustyBackdoorExoBabes6: null
-PosterContrabandLustyExomorph: PosterContrabandHereticalExomorph
+#PosterContrabandBustyBackdoorExoBabes6: null #removed migration on 2026-05-05
+
+#2026-05-05
+PosterContrabandRealExomorph: PosterContrabandBustyBackdoorExoBabes6

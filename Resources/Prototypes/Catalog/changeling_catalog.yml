@@ -14,6 +14,22 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+# Starlight start
+- type: listing
+  id: EvolutionMenuCombatArmbladePlus
+  name: evolutionmenu-combat-armblade-plus-name
+  description: evolutionmenu-combat-armblade-plus-desc
+  icon: { sprite: _Starlight/Interface/Actions/actions_changeling.rsi, state: armblade-plus }
+  productAction: ActionRetractableItemArmBladePlus
+  cost:
+    EvolutionPoint: 5
+  categories:
+  - ChangelingAbilityCombat
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+# Starlight end
+
 - type: listing
   id: EvolutionMenuCombatBoneShard
   name: evolutionmenu-combat-boneshard-name
@@ -135,12 +151,28 @@
   icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_cryo }
   productAction: ActionStingCryo
   cost:
+    EvolutionPoint: 3 # Starlight, cheaper, since the Burn sting is seen as the "Better" version of this one.
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Starlight start
+- type: listing
+  id: EvolutionMenuStingBurn
+  name: evolutionmenu-sting-burn-name
+  description: evolutionmenu-sting-burn-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: sting_heat }
+  productAction: ActionStingBurn
+  cost:
     EvolutionPoint: 4
   categories:
   - ChangelingAbilitySting
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+# Starlight end
 
 - type: listing
   id: EvolutionMenuStingLethargic
@@ -149,12 +181,28 @@
   icon: { sprite: Changeling/changeling_abilities.rsi, state: sting_lethargic }
   productAction: ActionStingLethargic
   cost:
+    EvolutionPoint: 3 # Starlight, the drain sting is the stronger version of this.
+  categories:
+  - ChangelingAbilitySting
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Starlight start
+- type: listing
+  id: EvolutionMenuStingDrain
+  name: evolutionmenu-sting-drain-name
+  description: evolutionmenu-sting-drain-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: sting_starve }
+  productAction: ActionStingDrain
+  cost:
     EvolutionPoint: 4
   categories:
   - ChangelingAbilitySting
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+# Starlight end
 
 - type: listing
   id: EvolutionMenuStingMute
@@ -221,12 +269,42 @@
   icon: { sprite: Changeling/changeling_abilities.rsi, state: augmented_eyesight }
   productAction: ActionAugmentedEyesight
   cost:
+    EvolutionPoint: 2 # Starlight, cheaper.
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Starlight start
+- type: listing
+  id: EvolutionMenuUtilityNightEyesight
+  name: evolutionmenu-utility-night-eyesight-name
+  description: evolutionmenu-utility-night-eyesight-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: night_eyesight }
+  productAction: ActionNightEyesight
+  cost:
+    EvolutionPoint: 3 # In between the other two.
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: EvolutionMenuUtilityThermalEyesight
+  name: evolutionmenu-utility-thermal-eyesight-name
+  description: evolutionmenu-utility-thermal-eyesight-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: thermal_eyesight }
+  productAction: ActionThermalEyesight
+  cost:
     EvolutionPoint: 4
   categories:
   - ChangelingAbilityUtility
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+# Starlight end
 
 - type: listing
   id: EvolutionMenuUtilityBiodegrade
@@ -263,12 +341,42 @@
   icon: { sprite: Changeling/changeling_abilities.rsi, state: epinephrine_overdose }
   productAction: ActionEphedrineOverdose
   cost:
+    EvolutionPoint: 3 # Starlight, can be a little cheaper than the other.
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Starlight start
+- type: listing
+  id: EvolutionMenuDesoxyephedrineOverdose
+  name: evolutionmenu-utility-risky-stims-name
+  description: evolutionmenu-utility-risky-stims-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: desoxyephedrine_overdose }
+  productAction: ActionDesoxyephedrineOverdose
+  cost:
     EvolutionPoint: 4
   categories:
   - ChangelingAbilityUtility
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+
+- type: listing
+  id: EvolutionMenuAmalgamOverdose
+  name: evolutionmenu-utility-hyper-stims-name
+  description: evolutionmenu-utility-hyper-stims-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: amalgam_overdose }
+  productAction: ActionAmalgamOverdose
+  cost:
+    EvolutionPoint: 5
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+# Starlight end
 
 - type: listing
   id: EvolutionMenuUtilityFleshmend

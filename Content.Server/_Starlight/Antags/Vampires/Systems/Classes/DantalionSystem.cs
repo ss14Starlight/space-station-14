@@ -284,7 +284,7 @@ public sealed class DantalionSystem : SharedDantalionSystem
     private void OnDantalionShutdown(EntityUid uid, DantalionComponent component, ComponentShutdown args)
         => ReleaseAllThralls(uid, component);
 
-    private void ReleaseAllThralls(EntityUid uid, DantalionComponent component)
+    private void ReleaseAllThralls(EntityUid _, DantalionComponent component)
     {
         if (component.Thralls.Count == 0)
             return;
