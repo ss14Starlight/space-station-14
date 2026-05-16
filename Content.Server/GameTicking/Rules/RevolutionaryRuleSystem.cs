@@ -59,6 +59,7 @@ using Robust.Shared.IoC;
 using Robust.Shared.Log;
 using Content.Shared.Station.Components;
 using Content.Server.Shuttles.Components;
+using System.Linq;
 #endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
@@ -91,6 +92,12 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SubdermalImplantSystem _subdermalImplantSystem = default!;
     [Dependency] private readonly USSPUplinkSystem _usspUplinkSystem = default!;
+
+    // grace period for command going AWOL
+    private static readonly TimeSpan _commandOffstationGracePeriod = TimeSpan.FromSeconds(30);
+
+    // last time at least 1 command member was on station
+    private static TimeSpan _commandLastTimeOnStation = default;
     // Starlight-end
 
     //Used in OnPostFlash, no reference to the rule component is available
@@ -563,8 +570,20 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         }
 
     // STARLIGHT START
-        var allCommandDead = IsGroupDetainedOrDead(commandList, true, true, true);
-        return allCommandDead;
+        var allCommandDead = IsGroupDetainedOrDead(commandList, false, true, true);
+
+        // check if any command are on the main station grid
+        var anyCommandOnStation = commandList.Any(IsOnMainStation);
+
+        // grace period - prevents round instantly ending if all of command leave a grid for just 1 tick
+        if (anyCommandOnStation)
+            _commandLastTimeOnStation = _timing.CurTime;
+
+        // check if command have abandoned the station
+        var allCommandAbandonedStation = !anyCommandOnStation && (_timing.CurTime.Subtract(_commandLastTimeOnStation) > _commandOffstationGracePeriod);
+
+        // command loses if they're all dead, detained, or they left the station
+        return allCommandDead || allCommandAbandonedStation;
     }
 
     /// <summary>
@@ -821,7 +840,6 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         // check that some station actually owns this entity
         var station = _stationSystem.GetOwningStation(entity);
 
-        // make sure station's not null, then get uid of station
         if(station is not { } stationUid)
             return false;
 
