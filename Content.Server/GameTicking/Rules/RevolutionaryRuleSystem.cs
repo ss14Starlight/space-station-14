@@ -578,11 +578,11 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             commandList.Add(id);
         }
 
-
+        // check if all command are dead
         var allCommandDead = IsGroupDetainedOrDead(commandList, false, true, true);
 
-        // check if any command are on the main station grid
-        var anyCommandOnStation = commandList.Any(IsOnMainStation);
+        // check if there at least one command member alive, uncuffed, and unconverted that is on the station
+        var anyCommandOnStation = !IsGroupDetainedOrDead(commandList, true, true, true);
 
         // grace period - prevents round instantly ending if all of command leave a grid for just 1 tick
         if (anyCommandOnStation)
