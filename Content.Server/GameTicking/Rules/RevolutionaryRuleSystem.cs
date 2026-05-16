@@ -58,6 +58,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
 using Content.Shared.Station.Components;
+using Content.Server.Shuttles.Components;
 #endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
@@ -768,7 +769,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 }
 
                 #region Starlight
-                // Starlight: previous 'off station check' straight up never worked. replaced with a new helper method 'IsOnMainStation'
+                // Starlight: previous 'off station check' straight-up never worked. replaced with a new helper method 'IsOnMainStation'
                 if (checkOffStation && !IsOnMainStation(entity) && !_emergencyShuttle.EmergencyShuttleArrived)
                 {
                     gone++;
@@ -796,6 +797,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 #region Starlight
     /// <summary>
     /// Determines whether an entity is located on a "main" station grid.
+    /// Being on an unlaunched escape pod counts as "being on the main station."
     /// Grids like the Arrivals or Cargo Shuttle are not considered "being on the main station."
     /// </summary>
     /// <param name="entity">Entity to be evaluated.</param>
@@ -806,6 +808,15 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         var xform = EntityManager.GetComponentOrNull<TransformComponent>(entity);
         if(xform == null || xform.GridUid == null)
             return false;
+
+        var grid = xform.GridUid.Value;
+
+        // special case: unlaunched (docked) escape pods are still "part of the main station"
+        // escape pods lose their EscapePodComponent when they are launched, so this check will fail on launched escape pods
+        if (HasComp<EscapePodComponent>(grid))
+        {
+            return true;
+        }
 
         // check that some station actually owns this entity
         var station = _stationSystem.GetOwningStation(entity);
@@ -825,7 +836,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             : stationData.Grids;
 
         // finally, check if the entity is on the main grid
-        return grids.Contains(xform.GridUid.Value);
+        return grids.Contains(grid);
     }
 #endregion Starlight
 
