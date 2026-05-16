@@ -124,9 +124,10 @@
     minSpeed: 35
     maxSpeed: 35
 
+#Starlight
 - type: entity
   parent: ImmovableRodKeepTilesStill
-  id: ImmovableRodSlug #Starlight
+  id: ImmovableRodSlug
   suffix: Slug
   description: Its coming right for us!
   components:
@@ -139,6 +140,8 @@
   - type: MobState
     allowedStates:
     - Alive
+#Starlight end
+
 - type: entity
   parent: ImmovableRodKeepTilesStill
   id: ImmovableRodMop
