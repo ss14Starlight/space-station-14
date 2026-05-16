@@ -1,48 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) NCT Office now has visual cues as to what and where they are from the main hall.
-    type: Tweak
-  id: 404620
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Detective office and bedroom have been re-arranged.
-    type: Tweak
-  id: 404621
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Patched air alarms and sensors giving false positive warning and danger alarms near Vault, SCI, and MED.
-    type: Fix
-  id: 404622
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Atmos APCs are now properly separated in the south.
-    type: Fix
-  id: 404623
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) CE doors are now on telecomms and camera rooms.
-    type: Fix
-  id: 404624
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) The Club turnstiles are now swapped to the correct directions.
-    type: Fix
-  id: 404625
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
   - message: (Lagan) Robotics bay maints door is now set with the proper access.
     type: Fix
   id: 404626
@@ -2799,4 +2757,46 @@ Entries:
   id: 405019
   time: '2026-05-15T15:52:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4452
+- author: Rhetorica
+  changes:
+  - message: Peepoids.
+    type: Add
+  id: 405020
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: Slurpoids.
+    type: Add
+  id: 405021
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: SLIME TIME and SLIME CRIME graffiti.
+    type: Add
+  id: 405022
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: '#RobotGang graffito, for those special times when borgs and IPCs adopt bots as friends.'
+    type: Add
+  id: 405023
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: MERGE NEOMOTH'S PR graffito.
+    type: Add
+  id: 405024
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: 11 aielith dark magic runes as graffiti.
+    type: Add
+  id: 405025
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
 Order: -1
