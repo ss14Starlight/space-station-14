@@ -47,12 +47,10 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
     private void OnDungeonGenerated(EntityUid uid, VGRoidSpawnMarkerComponent marker, DungeonGeneratedEvent args)
     {
         marker.GenerationComplete = true;
-        Dirty(uid, marker);
 
         if (!TryComp(uid, out MapGridComponent? grid))
         {
             marker.PlacementComplete = true;
-            Dirty(uid, marker);
 
             _sawmill.Error(
                 $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
@@ -64,7 +62,6 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
         if (!TryComp(uid, out TransformComponent? xform))
         {
             marker.PlacementComplete = true;
-            Dirty(uid, marker);
 
             _sawmill.Error(
                 $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
@@ -76,7 +73,6 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
         if (!TryComp(uid, out MetaDataComponent? meta))
         {
             marker.PlacementComplete = true;
-            Dirty(uid, marker);
 
             _sawmill.Error(
                 $"Unable to finalize generated VGRoid placement for {ToPrettyString(uid)}: " +
@@ -235,7 +231,6 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
 
         marker.GenerationComplete = true;
         marker.PlacementComplete = true;
-        Dirty(uid, marker);
 
         var newInfo = GetGridInfo(uid, grid, xform);
         var newCenterDistance = Vector2.Distance(newInfo.Center, target.Center);
@@ -386,7 +381,6 @@ public sealed partial class VGRoidSpawnValidationSystem : EntitySystem
 
         marker.GenerationComplete = true;
         marker.PlacementComplete = true;
-        Dirty(uid, marker);
 
         var newInfo = GetGridInfo(uid, grid, xform);
         var newCenterDistance = Vector2.Distance(newInfo.Center, target.Center);
