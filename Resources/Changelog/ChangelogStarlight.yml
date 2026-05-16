@@ -1,34 +1,6 @@
 Entries:
 - author: Cujo
   changes:
-  - message: (Lagan) Robotics bay maints door is now set with the proper access.
-    type: Fix
-  id: 404626
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Orphaned solid walls in SEC and ENG replaced with reinforced where necessary.
-    type: Fix
-  id: 404627
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Trit burn chamber now has a remote signaller and a button on the external side.
-    type: Fix
-  id: 404628
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Courtroom power is now wired properly.
-    type: Fix
-  id: 404629
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
   - message: (Lagan) Staff bedroom cameras now use the proper command camera prototype.
     type: Fix
   id: 404630
@@ -2799,4 +2771,32 @@ Entries:
   id: 405025
   time: '2026-05-15T18:25:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Conflee
+  changes:
+  - message: Added text to the Corporate Law page granted Salvage jurisdiction to defend the ATS, within the bounds of their SOP.
+    type: Add
+  id: 405026
+  time: '2026-05-16T08:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4454
+- author: Conflee
+  changes:
+  - message: Added text to Salvage SOP detailing their responsibilities with defending and maintaining the ATS, permitting them to engage direct active threats to the ATS and making them responsible for repairing it and preventing it from being misused or moved without very good reason.
+    type: Add
+  id: 405027
+  time: '2026-05-16T08:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4454
+- author: Conflee
+  changes:
+  - message: Changed the ATS back room to be slightly more reinforced, with a QM locked Blast Door, plastitanium windows, and riveted interior walls. **Being able to move the ATS is intentional, but doing so without very good reason may be considered self-antag or powergaming**.
+    type: Tweak
+  id: 405028
+  time: '2026-05-16T08:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4454
+- author: CrazyPhantom
+  changes:
+  - message: Fixed Rolebans.
+    type: Fix
+  id: 405029
+  time: '2026-05-16T14:12:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4460
 Order: -1
