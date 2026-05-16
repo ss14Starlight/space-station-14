@@ -101,7 +101,7 @@ public sealed partial class TTSSystem : EntitySystem
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
             var languageradio = args.Channel == args.Language.Speech.RadioChannel;
             var type = languageradio ? TTSType.Mind : TTSType.Radio;
-            var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Walkie;
+            var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Radio;
 
             await GenerateAndStream(type, voice, text, filter, effect, chime, null, channel);
         }

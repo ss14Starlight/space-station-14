@@ -1,4 +1,3 @@
-
 namespace Content.Server._Starlight.Mentor;
 
 [RegisterComponent]

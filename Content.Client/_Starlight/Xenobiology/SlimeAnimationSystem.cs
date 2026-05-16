@@ -7,7 +7,6 @@ namespace Content.Client._Starlight.Xenobiology;
 
 public sealed class SlimeAnimationSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AnimationPlayerSystem _animation = default!;
 
     private const string SlimeEatAnimationKey = "slime-eat";

@@ -15,7 +15,7 @@ namespace Content.Shared._Moffstation.Cards.Systems;
 public abstract partial class SharedPlayingCardsSystem
 {
     /// The ID of the entity prototype which is used to construct hands dynamically.
-    private static readonly EntProtoId<PlayingCardHandComponent> CardHandEntId = "PlayingCardHandDynamic";
+    private static readonly EntProtoId<PlayingCardHandComponent> _cardHandEntId = "PlayingCardHandDynamic"; // Starlight Edit: Fix naming rule violation
 
     private void InitHand()
     {
@@ -66,14 +66,13 @@ public abstract partial class SharedPlayingCardsSystem
         IEnumerable<Entity<PlayingCardComponent>> cards,
         EntityCoordinates spawnAt,
         EntityUid? user
-    ) => PredictedCreateStack(CardHandEntId, spawnAt, cards, user);
+    ) => PredictedCreateStack(_cardHandEntId, spawnAt, cards, user); // Starlight Edit: Fix naming rule violation
 
     /// This function helps with handling <see cref="PlayingCardPickedEvent"/> by <see cref="Take">taking</see> the
     /// card specified by <paramref name="args"/> from the hand specified in the event.
     public Entity<PlayingCardComponent>
         TakePickedCard(PlayingCardPickedEvent args, EntityCoordinates destinationCoords) =>
         Take(args.SourceHand, args.Range, destinationCoords, args.User).Single();
-
 
     /// Handles <see cref="DrawPlayingCardFromHandMessage"/> which is sent from the <see cref="PlayingCardHandComponent"/>
     /// picker UI by raising a <see cref="PlayingCardPickedEvent"/> on the destination entity in the event.
@@ -103,13 +102,20 @@ public abstract partial class SharedPlayingCardsSystem
     /// Takes and tries to pick up the card specified by <paramref name="args"/>.
     private void OnPlayingCardPicked(Entity<HandsComponent> entity, ref PlayingCardPickedEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || !_gameTiming.IsFirstTimePredicted)
             return;
 
-        // Dumb special case for when somebody hits "E" on the hand in their active hand.
+        if (!_hands.CanPickupAnyHand(entity, args.SourceHand))
+        {
+            _popup.PopupPredictedCursor(Loc.GetString(PlayingCardHandComponent.CantPickupNoFreeHands), entity);
+            return;
+        }
+
+        bool pickedUp;
         if (_hands.TryGetActiveItem(entity.AsNullable(), out var activeItem) && activeItem == args.SourceHand)
         {
-            _hands.TryPickupAnyHand(
+            // Dumb special case for when somebody hits "E" on the hand in their active hand.
+            pickedUp = _hands.TryPickupAnyHand(
                 entity,
                 TakePickedCard(args, Transform(entity).Coordinates),
                 animate: false,
@@ -118,17 +124,18 @@ public abstract partial class SharedPlayingCardsSystem
         }
         else
         {
-            var pickedUp = _hands.TryPickup(
+            pickedUp = _hands.TryPickupAnyHand(
                 entity,
                 TakePickedCard(args, Transform(entity).Coordinates),
-                handId: null,
                 animate: false,
                 handsComp: entity
             );
-            if (!pickedUp)
-            {
-                this.AssertOrLogError("Failed to pick up picked card");
-            }
+        }
+
+        if (!pickedUp)
+        {
+            this.AssertOrLogError("Failed to pick up picked card");
+            return;
         }
 
         args.Handled = true;
@@ -156,11 +163,10 @@ public abstract partial class SharedPlayingCardsSystem
         );
     }
 
-    private static void OnBoundUIClosed(Entity<PlayingCardHandComponent> ent, ref BoundUIClosedEvent args)
-    {
+    // Starlight edit Start: Expression body
+    private static void OnBoundUIClosed(Entity<PlayingCardHandComponent> ent, ref BoundUIClosedEvent args) =>
         ent.Comp.PickedCardDestination = null;
-    }
-
+    // Starlight edit End: Expression body
 
     /// These interactions are invoked when left-clicking on a hand with a held item.
     private void OnInteractUsing(Entity<PlayingCardHandComponent> targetHand, ref InteractUsingEvent args)
@@ -194,7 +200,6 @@ public abstract partial class SharedPlayingCardsSystem
         var user = args.User;
         args.Verbs.Add(PlayingCardHandComponent.Verbs.ConvertToDeck, -1, () => ConvertToDeck(targetHand, user)); // Starlight-edit: priority shift.
     }
-
 
     private void ConvertToDeck(Entity<PlayingCardHandComponent> hand, EntityUid user)
     {
