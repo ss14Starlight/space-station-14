@@ -1,0 +1,59 @@
+- type: entity
+  id: HolosignEngineeringWarning
+  name: engineering warning barrier
+  description: The words flicker as if they mean nothing.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: _Starlight/Structures/Holo/engineering.rsi
+    state: icon
+  - type: TimedDespawn
+    lifetime: 90
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+
+- type: entity
+  id: HolosignEngineering
+  parent: HolosignEngineeringWarning
+  name: holographic barrier
+  description: A barrier of hard light that blocks movement, but pretty weak.
+  components:
+    - type: Physics
+      bodyType: Static
+      canCollide: true
+    - type: Sprite
+      sprite: _Starlight/Structures/Holo/engineering.rsi
+      state: icon
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.3,-0.3,0.3,0.3"
+          mask:
+            - TableMask
+          layer:
+            - TableLayer
+    - type: TimedDespawn
+      lifetime: 180
+    - type: PointLight
+      enabled: true
+      radius: 3
+      color: orange
+      castShadows: false #SL lighting optimization
+    - type: Climbable
+    - type: Clickable
