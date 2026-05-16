@@ -38,6 +38,7 @@
     - id: GameRulePotatoSwarm
     - id: GameRuleFunSwarm
     - id: ImmovableRodSpawn
+    - id: ImmovableRodSlugSpawn # Starlight
     - !type:NestedSelector # Starlight-edit: Kessler Wrecks
         tableId: WreckSwarmEventsTable # Starlight-edit: Kessler Wrecks
 
