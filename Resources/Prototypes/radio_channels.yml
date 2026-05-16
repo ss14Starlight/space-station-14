@@ -4,7 +4,7 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
-  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/cc.png # Starlight
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/common.png # Starlight
 
 - type: radioChannel
   id: CentCom
