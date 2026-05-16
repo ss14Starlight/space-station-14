@@ -5,7 +5,6 @@ using Content.Shared.Body.Part;
 using Content.Shared.Starlight.Medical.Surgery;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Damage;
 using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
 using Content.Shared.Bed.Sleep;
@@ -13,11 +12,10 @@ using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Server.Administration.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
 
-namespace Content.Server.Starlight.Medical.Surgery;
+namespace Content.Server._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 public sealed partial class SurgerySystem : SharedSurgerySystem

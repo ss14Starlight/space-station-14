@@ -43,6 +43,7 @@
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
   - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter # Starlight: set crew monitors to filter for crew sensors by default
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor

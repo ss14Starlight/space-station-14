@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "By Rhetorica for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "kh-1"
+    },
+    {
+      "name": "kh-2"
+    },
+    {
+      "name": "kh-3"
+    },
+    {
+      "name": "kh-4"
+    },
+    {
+      "name": "kh-5"
+    },
+    {
+      "name": "kh-6"
+    },
+    {
+      "name": "kh-7"
+    },
+    {
+      "name": "kh-8"
+    },
+    {
+      "name": "kh-9"
+    },
+    {
+      "name": "kh-har-ganeth"
+    },
+    {
+      "name": "kh-nagarythe"
+    },
+    {
+      "name": "merge"
+    },
+    {
+      "name": "robot-gang"
+    },
+    {
+      "name": "slime-crime"
+    },
+    {
+      "name": "slime-time"
+    }
+  ]
+}

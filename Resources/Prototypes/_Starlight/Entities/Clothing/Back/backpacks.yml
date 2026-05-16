@@ -95,3 +95,14 @@
       grid:
       - 0,0,8,4
 
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBunnyGang
+  name: Bunny Gang Backpack
+  description: A sword that is actually a backpack. It's impressive how they managed to fit things in there, even so, inventory management will be a trial.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Back/Backpacks/bunnygang.rsi
+    - type: Storage
+      grid:
+      - 0,0,1,15 #its a part of the joke of the inventory being sword shaped and inconvient.

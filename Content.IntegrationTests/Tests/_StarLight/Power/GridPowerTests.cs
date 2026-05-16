@@ -92,7 +92,8 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/EventMaps/MedTakPointAlpha.yml"),
         new("/Maps/_Starlight/Shuttles/pts.yml"),
         new("/Maps/_Starlight/Shuttles/barge.yml"),
-        new("/Maps/_Starlight/Shuttles/prospector.yml")
+        new("/Maps/_Starlight/Shuttles/prospector.yml"),
+        new("/Maps/_Starlight/Shuttles/emergency_lox.yml")
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]
