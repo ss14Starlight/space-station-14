@@ -1,0 +1,25 @@
+# Casino
+
+- type: entity
+  parent: [ ClothingHeadHelmetBasic, BaseMajorContraband ]
+  id: ClothingHeadHelmetCasino
+  name: casino guard helmet
+  suffix: admeme
+  description: Standard security gear. Protects the head from impacts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Head/Helmets/casino_helm.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Head/Helmets/casino_helm.rsi
+    clothingVisuals:
+      head:
+      - state: light-equipped-HELMET
+      # - state: shaded
+      head-vox:
+      - state: equipped-HELMET-vox
+      # - state: shaded
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - SecurityHelmet
+    - CorgiWearable
