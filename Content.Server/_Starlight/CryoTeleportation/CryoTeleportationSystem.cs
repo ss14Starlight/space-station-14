@@ -71,7 +71,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
             if (stationGrid == null)
                 continue;
 
-            var cryoStorageResult = FindCryoStorage(stationGrid.Value);
+            var cryoStorageResult = FindCryoStorage(comp.Station.Value);
 
             if (cryoStorageResult == null)
                 continue;
