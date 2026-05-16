@@ -84,6 +84,10 @@
         - id: ClothingUniformJumpskirtCorpsman
         - id: ClothingBeltCorpsmanFilled
         - id: ClothingHandsGlovesBlackNitrile
+        - id: BottleCaseSecurityFilled
+          amount: 2
+        - id: PenPackSecurityFilled
+          amount: 2
         - id: ClothingShoesBootsMagSec
           amount: 2
         - id: BedsheetBrigmedicStrange

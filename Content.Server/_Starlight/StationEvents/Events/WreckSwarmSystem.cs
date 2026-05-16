@@ -1,20 +1,14 @@
 using System.Numerics;
 using System.Linq;
-using Content.Server.Chat.Systems;
-using Content.Server.Database.Migrations.Sqlite;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage;
-using Robust.Server.Audio;
-using Robust.Shared.Audio;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -23,11 +17,9 @@ namespace Content.Server.StationEvents.Events;
 
 public sealed class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
 {
-    private readonly List<SalvageMapPrototype> _salvageMaps = new();
+    private readonly List<SalvageMapPrototype> _salvageMaps = [];
 
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
@@ -35,9 +27,7 @@ public sealed class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     protected override void Added(EntityUid uid, WreckSwarmComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
-    {
-        base.Added(uid, component, gameRule, args);
-    }
+        => base.Added(uid, component, gameRule, args);
 
     protected override void ActiveTick(EntityUid uid, WreckSwarmComponent component, GameRuleComponent gameRule, float frameTime)
     {
@@ -74,7 +64,7 @@ public sealed class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
         var angle = RobustRandom.NextAngle();
         var spawnAngle = RobustRandom.NextAngle();
 
-        var offset = angle.RotateVec(new Vector2((maximumDistance - minimumDistance) * RobustRandom.NextFloat() + minimumDistance, 0));
+        var offset = angle.RotateVec(new Vector2(((maximumDistance - minimumDistance) * RobustRandom.NextFloat()) + minimumDistance, 0));
 
         var spawnPosition = new MapCoordinates(center + offset, mapId);
 
