@@ -1,6 +1,6 @@
 light_mode unshaded;
 
-const mediump float time_scale = 1;
+const mediump float time_scale = 1.0;
 const mediump float distance_scale = 0.125;
 
 void fragment() {
