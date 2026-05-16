@@ -15,9 +15,7 @@
   frequency: 1337
   color: "#2681a5"
   longRange: true
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: cc
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/cc.png # Starlight
 
 - type: radioChannel
   id: Command
@@ -25,9 +23,7 @@
   keycode: 'c'
   frequency: 1353
   color: "#fcdf03"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: command
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/command.png # Starlight
 
 - type: radioChannel
   id: Engineering
@@ -35,9 +31,7 @@
   keycode: 'e'
   frequency: 1357
   color: "#ff733c"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: engineering
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/engineering.png # Starlight
 
 - type: radioChannel
   id: Medical
@@ -45,9 +39,7 @@
   keycode: 'm'
   frequency: 1355
   color: "#57b8f0"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: medical
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/medical.png # Starlight
 
 - type: radioChannel
   id: Science
@@ -55,9 +47,7 @@
   keycode: 'n'
   frequency: 1351
   color: "#cd7ccd"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: science
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/science.png # Starlight
 
 - type: radioChannel
   id: Security
@@ -65,9 +55,7 @@
   keycode: 's'
   frequency: 1359
   color: "#ff4242"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: security
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/security.png # Starlight
 
 - type: radioChannel
   id: Service
@@ -75,9 +63,7 @@
   keycode: 'v'
   frequency: 1349
   color: "#539c00"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: service
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/service.png # Starlight
 
 - type: radioChannel
   id: Supply
@@ -85,9 +71,7 @@
   keycode: 'u'
   frequency: 1347
   color: "#b48b57"
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: cargo
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/cargo.png # Starlight
 
 - type: radioChannel
   id: Syndicate
@@ -96,9 +80,7 @@
   frequency: 1213
   color: "#b52424"
   longRange: true
-  icon: # Starlight
-  - sprite: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi
-    state: syndicate
+  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/syndicate.png # Starlight
 
 - type: radioChannel
   id: Handheld
