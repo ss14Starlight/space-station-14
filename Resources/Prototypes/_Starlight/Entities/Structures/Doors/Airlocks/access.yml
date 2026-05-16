@@ -933,7 +933,18 @@
       containers:
         board: [ DoorElectronicsBlackstar ]
 
-# Blackstar
+# MedTak
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMedTakBasicGlassLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
 - type: entity
   parent: AirlockBrigmed
   id: AirlockMedTakLocked
@@ -945,7 +956,6 @@
     - type: Wires
       layoutId: AirlockMedTak
 
-# MedTak
 - type: entity
   parent: AirlockBrigmedGlass
   id: AirlockMedTakGlassLocked

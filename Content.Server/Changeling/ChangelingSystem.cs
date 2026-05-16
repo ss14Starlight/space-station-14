@@ -573,7 +573,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
-        EnsureComp<ZombieImmuneComponent>(uid);
+        //EnsureComp<ZombieImmuneComponent>(uid); Starlight, we're bringing Lings into Zombies!
 
         // add actions
         foreach (var actionId in comp.BaseChangelingActions)

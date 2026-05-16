@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Rhetorica for Starlight. Tongue based on standard human tongue asset.",
+    "states": [
+        {
+            "name": "peepoids"
+        },
+        {
+            "name": "slurpoid"
+        }
+    ]
+}

@@ -200908,7 +200908,7 @@ entities:
   - uid: 32103
     components:
     - type: MetaData
-      desc: A heavy, expensive sidearm, produced by a Nanotrasen subsidiary. Uses .35 auto ammo
+      desc: A heavy, expensive sidearm, produced by a NanoTrasen subsidiary. Uses .35 auto ammo
     - type: Transform
       pos: -24.639473,71.70092
       parent: 2

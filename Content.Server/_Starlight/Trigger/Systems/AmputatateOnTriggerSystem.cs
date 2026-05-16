@@ -8,7 +8,6 @@ using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
 using Content.Shared.Trigger;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Trigger.Systems;
 

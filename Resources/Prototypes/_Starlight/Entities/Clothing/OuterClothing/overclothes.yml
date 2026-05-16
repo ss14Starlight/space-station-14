@@ -110,6 +110,17 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/brimstone.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/brimstone.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterBunnyGang
+  name: Bunny Gang Robe
+  description: The robe of a secretive group of bunny mercenaries.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/OverClothes/bunnygang.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/OverClothes/bunnygang.rsi
 # Fashion-O-Mat-End
 
 ## colored

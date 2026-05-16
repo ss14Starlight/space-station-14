@@ -3,10 +3,7 @@ using Content.Server.Temperature.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Shared.Mobs.Systems;
-#endregion Starlight
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
@@ -15,7 +12,7 @@ public sealed class ThermalRegulatorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly TemperatureSystem _tempSys = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSys = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;  // Starlight edit
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -26,14 +23,10 @@ public sealed class ThermalRegulatorSystem : EntitySystem
     }
 
     private void OnMapInit(Entity<ThermalRegulatorComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval;
-    }
+        => ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.UpdateInterval;
 
     private void OnUnpaused(Entity<ThermalRegulatorComponent> ent, ref EntityUnpausedEvent args)
-    {
-        ent.Comp.NextUpdate += args.PausedTime;
-    }
+        => ent.Comp.NextUpdate += args.PausedTime;
 
     public override void Update(float frameTime)
     {
@@ -56,7 +49,6 @@ public sealed class ThermalRegulatorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp2, logMissing: false))
             return;
 
-        // Starlight edit start - Don't do implicit heat regulation if the entity is dead
         // Fixes Avali not rotting
         var totalMetabolismTempChange = 0.0f;
         // Verify whether the entity can radiate heat
@@ -82,22 +74,16 @@ public sealed class ThermalRegulatorSystem : EntitySystem
             {
                 totalMetabolismTempChange += Math.Min(implicitTargetHeat, ent.Comp1.ImplicitHeatRegulation);
             }
-
         }
-        // Starlight edit end
 
         _tempSys.ChangeHeat(ent, totalMetabolismTempChange, ignoreHeatResistance: true, ent);
 
-        // Starlight edit start - Stop here, the logic further should be only calculated then the entity is alive
         if (_mobState.IsDead(ent))
             return;
-        // Starlight edit end
 
         // recalc difference and target heat
-        // Starlight edit start
         var tempDiff = Math.Abs(ent.Comp2.CurrentTemperature - ent.Comp1.NormalBodyTemperature);
         var targetHeat = tempDiff * heatCapacity;
-        // Starlight edit end
 
         // if body temperature is not within comfortable, thermal regulation
         // processes starts

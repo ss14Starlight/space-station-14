@@ -78,7 +78,7 @@
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
     damage:
       types:
-        Radiation: 25 # Starlight: Consistency
+        Radiation: 10 # Starlight: Nerfed rad damage again. Bullshit it pens inf walls and deals 25 rad
     projectileType: Intangible # Starlight BEGIN
     maximumHits: 3
     deleteOnMaximumHits: true # Starlight END

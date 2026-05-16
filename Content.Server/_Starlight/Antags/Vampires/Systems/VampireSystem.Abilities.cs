@@ -12,7 +12,6 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Interaction;
@@ -42,20 +41,21 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Starlight.Overlay;
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Stealth;
+using Content.Shared.Stealth.Components;
 
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed partial class VampireSystem : EntitySystem
 {
-    private static readonly ProtoId<SpeciesPrototype> VoxSpecies = "Vox";
-
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly BlindableSystem _blindable = default!;
+    [Dependency] private readonly SharedStealthSystem _stealth = default!;
     private static readonly SoundSpecifier _biteSound = new SoundPathSpecifier("/Audio/Effects/bite.ogg");
     private static readonly SoundSpecifier _devourSound = new SoundPathSpecifier("/Audio/Effects/demon_consume.ogg");
     private readonly Dictionary<EntityUid, List<EntityUid>> _playerShadowSnares = new();
@@ -63,7 +63,6 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void InitializeAbilities()
     {
-        SubscribeLocalEvent<VampireActionUseAttemptEvent>(OnVampireActionUseAttempt);
         SubscribeLocalEvent<VampireComponent, VampireToggleFangsActionEvent>(OnToggleFangs);
 
         SubscribeLocalEvent<VampireComponent, VampireGlareActionEvent>(OnGlare);
@@ -89,11 +88,6 @@ public sealed partial class VampireSystem : EntitySystem
             subs.Event<VampireClassClosedBuiMsg>(OnVampireClassClosed);
         });
 
-    }
-
-    private void OnVampireActionUseAttempt(ref VampireActionUseAttemptEvent args)
-    {
-        args.Allowed = CheckAndConsumeGrantedVampireAction(args.User, args.ActionEntity, args.BloodCost, args.ShowPopup);
     }
 
     private void OnUseInHand(Entity<VampireDevourableComponent> ent, ref UseInHandEvent args)
@@ -224,23 +218,23 @@ public sealed partial class VampireSystem : EntitySystem
         return CanUseNonVampireGrantedAction(uid, actionEntity, showPopup);
     }
 
-    internal bool CheckAndConsumeGrantedVampireAction(EntityUid uid, EntityUid? actionEntity = null, int bloodCost = 0, bool showPopup = true)
+    internal bool CheckAndConsumeGrantedVampireAction(EntityUid uid, EntityUid? actionEntity = null, int bloodCost = 0)
     {
         if (TryComp<VampireComponent>(uid, out var comp))
-            return CheckAndConsumeBloodCost(uid, comp, actionEntity, bloodCost, showPopup);
+            return CheckAndConsumeBloodCost(uid, comp, actionEntity, bloodCost);
 
-        return CanUseNonVampireGrantedAction(uid, actionEntity, showPopup);
+        return CanUseNonVampireGrantedAction(uid, actionEntity);
     }
 
-    internal bool CheckAndConsumeBloodCost(EntityUid uid, VampireComponent comp, EntityUid? actionEntity = null, int bloodCost = 0, bool showPopup = true)
+    internal bool CheckAndConsumeBloodCost(EntityUid uid, VampireComponent comp, EntityUid? actionEntity = null, int bloodCost = 0)
     {
-        if (!TryResolveVampireActionCost(uid, comp, actionEntity, bloodCost, out var resolvedCost, showPopup)
-            || !CanSpendBlood(uid, comp, resolvedCost, showPopup))
+        if (!TryResolveVampireActionCost(uid, comp, actionEntity, bloodCost, out var resolvedCost)
+            || !CanSpendBlood(uid, comp, resolvedCost))
         {
             return false;
         }
 
-        return TrySpendBlood(uid, comp, resolvedCost, showPopup);
+        return TrySpendBlood(uid, comp, resolvedCost);
     }
 
     internal bool CheckAndConsumeActionCost(EntityUid uid, VampireComponent comp, EntityUid? actionEntity)
@@ -545,7 +539,7 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
 
-        if ((HasComp<IPCBatteryComponent>(target) && !IsVox(uid))
+        if (HasComp<IPCBatteryComponent>(target) //IPCs don't have blood
             || (!TryComp<MobStateComponent>(target, out var mobState) //Is the entity a mob at all?
             || (mobState.CurrentState == Shared.Mobs.MobState.Dead && comp.DeadEfficiency == 0f)  //Dead things aren't a good source of blood if configured to not allow drinking from the dead at all
             ))
@@ -676,10 +670,6 @@ public sealed partial class VampireSystem : EntitySystem
 
 
     }
-
-    private bool IsVox(EntityUid user)
-        => TryComp<HumanoidAppearanceComponent>(user, out var humanoid)
-            && humanoid.Species == VoxSpecies;
 
     partial void UpdateVampireAlert(EntityUid uid)
         => _alerts.ShowAlert(uid, "VampireBlood");
@@ -1078,6 +1068,30 @@ public sealed partial class VampireSystem : EntitySystem
             RemComp<PacifiedComponent>(uid);
         }
 
+        var invisibleQuery = EntityQueryEnumerator<ActiveVampireInvisibilityComponent>();
+        while (invisibleQuery.MoveNext(out var uid, out var invis))
+        {
+            if (now < invis.EndTime)
+                continue;
+
+            RemComp<ActiveVampireInvisibilityComponent>(uid);
+            RestoreVampireInvisibilityStealth(uid, invis);
+        }
+    }
+
+    private void RestoreVampireInvisibilityStealth(EntityUid uid, ActiveVampireInvisibilityComponent invis)
+    {
+        if (!TryComp<StealthComponent>(uid, out var stealth))
+            return;
+
+        if (!invis.HadStealthComponent)
+        {
+            RemComp<StealthComponent>(uid);
+            return;
+        }
+
+        _stealth.SetEnabled(uid, invis.PreviousStealthEnabled, stealth);
+        _stealth.SetVisibility(uid, invis.PreviousStealthVisibility, stealth);
     }
 
     private void ApplyConfiguredHeal(

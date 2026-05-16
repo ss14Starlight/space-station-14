@@ -65,11 +65,11 @@ public sealed partial class SiliconBrainLoadoutSystem : EntitySystem
 
         // If no specific brain is specified, try to get the character's species brain
         if (brainProto == null && profile != null &&
-            _proto.TryIndex<SpeciesPrototype>(profile.Species, out var species) &&
+            _proto.TryIndex(profile.Species, out var species) &&
             _proto.TryIndex<EntityPrototype>(species.Prototype, out var entityProto) &&
             entityProto.TryGetComponent<BodyComponent>(out var bodyComp, _compFactory) &&
             bodyComp.Prototype != null &&
-            _proto.TryIndex<BodyPrototype>(bodyComp.Prototype.Value, out var body))
+            _proto.TryIndex(bodyComp.Prototype.Value, out var body))
         {
             foreach (var (_, slot) in body.Slots)
             {

@@ -1,5 +1,4 @@
 using Content.Client._Starlight.Shipyard.UI;
-using Content.Shared._Starlight.Shipyard.BUI;
 using Content.Shared._Starlight.Shipyard.Events;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 

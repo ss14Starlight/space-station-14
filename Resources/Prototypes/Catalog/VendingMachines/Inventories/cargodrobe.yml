@@ -6,6 +6,7 @@
     ClothingBackpackDuffelCargo: 3
     ClothingUniformJumpsuitCargo: 3
     ClothingUniformJumpskirtCargo: 3
+    ClothingUniformJumpsuitCargoInformal: 2 # DeltaV
     ClothingUniformJumpsuitMail: 2 # Starlight
     ClothingUniformJumpskirtMail: 2 # Starlight
     CargoOverallsUniformSuit: 2 #Starlight
