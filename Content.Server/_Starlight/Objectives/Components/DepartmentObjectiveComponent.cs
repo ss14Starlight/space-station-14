@@ -21,5 +21,5 @@ public sealed partial class DepartmentObjectiveComponent : Component
     public ProtoId<DepartmentPrototype>? TargetDepartment;
 
     [DataField]
-    public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Devices/goldwatch.rsi"), "goldwatch");
+    public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi"), "unknown");
 }

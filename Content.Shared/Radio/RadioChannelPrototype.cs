@@ -38,5 +38,5 @@ public sealed partial class RadioChannelPrototype : IPrototype
     public bool LongRange = false;
 
     [DataField("icon")]
-    public SpriteSpecifier? Icon;
+    public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Interface/Radial/Radio/channel_icons.rsi"), "unknown");
 }

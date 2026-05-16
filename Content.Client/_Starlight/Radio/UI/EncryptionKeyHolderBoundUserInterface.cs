@@ -56,17 +56,12 @@ public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
                 if (!_protoManager.TryIndex<RadioChannelPrototype>(channel.Key, out var channelPrototype))
                     continue;
 
-                if (channelPrototype.Icon == null)
-                    continue;
-
                 var button = new RadialMenuActionOption<RadioChannelPrototype>(HandleRadialMenuClick, channelPrototype)
                 {
                     ToolTip = $"{locString} {channelPrototype.LocalizedName}",
-                    BackgroundColor = channelPrototype.Color.WithAlpha(128)
+                    BackgroundColor = channelPrototype.Color.WithAlpha(128),
+                    IconSpecifier = RadialMenuIconSpecifier.With(channelPrototype.Icon)
                 };
-
-                if (channelPrototype.Icon != null)
-                    button.IconSpecifier = RadialMenuIconSpecifier.With(channelPrototype.Icon);
 
                 options.Add(button);
             }
@@ -81,10 +76,8 @@ public sealed class EncryptionKeyHolderBoundUserInterface : BoundUserInterface
                 {
                     ToolTip = $"{locString} {channelPrototype.LocalizedName}",
                     BackgroundColor = channelPrototype.Color.WithAlpha(32),
+                    IconSpecifier = RadialMenuIconSpecifier.With(channelPrototype.Icon)
                 };
-
-                if (channelPrototype.Icon != null)
-                    button.IconSpecifier = RadialMenuIconSpecifier.With(channelPrototype.Icon);
 
                 options.Add(button);
             }

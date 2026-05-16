@@ -4,7 +4,9 @@
   keycode: "l"
   frequency: 1780
   color: "#ff178b"
-  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/law.png
+  icon:
+    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
+    state: law
 
 - type: radioChannel
   id: Soviet
@@ -13,7 +15,9 @@
   frequency: 1922
   color: "#ed7300"
   longRange: true
-  icon: /Textures/_Starlight/Interface/Radial/Radio/channel_icons.rsi/communist.png
+  icon:
+    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
+    state: communist
 
 - type: radioChannel
   id: Expedition
