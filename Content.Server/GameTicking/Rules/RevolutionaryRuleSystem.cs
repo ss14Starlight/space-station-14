@@ -94,10 +94,10 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly USSPUplinkSystem _usspUplinkSystem = default!;
 
     // grace period for command going AWOL
-    private static readonly TimeSpan _commandOffstationGracePeriod = TimeSpan.FromSeconds(30);
+    private static readonly TimeSpan _commandOffstationGracePeriod = TimeSpan.FromSeconds(45);
 
     // last time at least 1 command member was on station
-    private static TimeSpan _commandLastTimeOnStation = default;
+    private TimeSpan _commandLastTimeOnStation = default;
     // Starlight-end
 
     //Used in OnPostFlash, no reference to the rule component is available
