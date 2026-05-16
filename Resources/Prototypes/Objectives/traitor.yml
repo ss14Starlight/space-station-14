@@ -31,6 +31,11 @@
     difficulty: 1.5 #Starlight edit, this was way too high and it made stuff like hypo, crew monitor, license and diploma cost 2.75 which is odd
   - type: ObjectiveLimit
     limit: 2 # there is usually only 1 of each steal objective, have 2 max for drama
+  - type: ObjectiveBlacklistRequirement # Starlight start
+    blacklist:
+      components:
+      - DieCondition # It's been a common complaint that this objective is *impossible* with DAGD, since you physically can't extract with it.
+      - SuperDieCondition # Starlight end, can't get it with SuperDAGD.
 
 # state
 
@@ -46,6 +51,11 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
+  - type: ObjectiveBlacklistRequirement # Starlight start
+    blacklist:
+      components:
+      - DieCondition # Makes no sense you can get both.
+      - SuperDieCondition # Starlight end, can't get it with SuperDAGD.
 
 - type: entity
   parent: BaseTraitorObjective
@@ -63,9 +73,10 @@
       components:
       - EscapeShuttleCondition
       - StealCondition
+      - SuperDieCondition # Can't get it with SuperDAGD.
   - type: DieCondition
   - type: ObjectiveLimit #Starlight edit
-    limit: 3
+    limit: 2 # Starlight
 
 #- type: entity
 #  parent: [BaseTraitorObjective, BaseLivingObjective]
@@ -154,6 +165,8 @@
         components:
         - HelpProgressCondition
         - KeepAliveCondition
+        - DieCondition # Starlight, don't help DAGDs.
+        - SuperDieCondition # Starlight, don't help SuperDAGDs.
 
 - type: entity
   parent: [BaseTraitorSocialObjective, BaseHelpProgressObjective]
@@ -183,6 +196,8 @@
         components:
         - HelpProgressCondition
         - KeepAliveCondition
+        - DieCondition # Starlight, don't help DAGDs.
+        - SuperDieCondition # Starlight, don't help SuperDAGDs.
   - type: ObjectiveBlacklistRequirement # Starlight - only one, its not that cool, noone wants all their objectives to be "help X"
     blacklist:
       components:

@@ -161,6 +161,15 @@
     - type: Implanter
       implant: MindControlImplant
 
+# SuperDAGD Nuclear Papers Implant
+- type: entity
+  id: NuclearCodesImplanter
+  name: redspace transmission implanter
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+    - type: Implanter
+      implant: NuclearCodesImplant
+
 #MedTak
 - type: entity
   id: MedTakMindShieldImplanter

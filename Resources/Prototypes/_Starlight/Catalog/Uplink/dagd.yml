@@ -15,6 +15,7 @@
     whitelist:
       components:
         - DieCondition
+        - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -34,6 +35,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -56,6 +58,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -78,6 +81,7 @@
     whitelist:
       components:
         - DieCondition
+        - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -97,6 +101,7 @@
       whitelist:
         components:
         - DieCondition
+        - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -117,6 +122,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -140,6 +146,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -163,6 +170,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -186,6 +194,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -208,6 +217,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -230,6 +240,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -250,6 +261,7 @@
     whitelist:
       components:
       - DieCondition
+      - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -270,6 +282,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -290,6 +303,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -309,6 +323,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -329,6 +344,7 @@
     whitelist:
       components:
         - DieCondition
+        - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -349,6 +365,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -368,6 +385,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -395,6 +413,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -422,6 +441,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -446,6 +466,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -470,6 +491,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -489,6 +511,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -509,6 +532,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -528,6 +552,7 @@
     whitelist:
       components:
       - DieCondition
+      - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -547,6 +572,7 @@
     whitelist:
       components:
       - DieCondition
+      - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -569,6 +595,7 @@
     whitelist:
       components:
       - DieCondition
+      - SuperDieCondition
   - !type:BuyerWhitelistCondition
     blacklist:
       components:
@@ -589,6 +616,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -609,6 +637,7 @@
       whitelist:
         components:
           - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:
@@ -616,10 +645,10 @@
 
 # The Ultimate Glory
 - type: listing
-  id: UplinkNukeCodesDAGD
+  id: UplinkNuclearCodesImplantDAGD
   name: uplink-nuke-codes-name
   description: uplink-nuke-codes-desc
-  productEntity: TraitorNuclearCodes
+  productEntity: NuclearCodesImplanter
   categories:
   - UplinkDAGD
   restockTime: 2700 # 45 minutes to prepare for complete and total extermination
@@ -629,7 +658,7 @@
     - !type:BuyerObjectiveWhitelistCondition
       whitelist:
         components:
-          - DieCondition
+          - SuperDieCondition
     - !type:BuyerWhitelistCondition
       blacklist:
         components:

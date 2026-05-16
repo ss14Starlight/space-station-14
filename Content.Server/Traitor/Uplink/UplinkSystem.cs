@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Objectives.Components; // funkystation
+using Content.Server._Starlight.Objectives.Components; // Starlight
 using Content.Server.Store.Systems;
 using Content.Server.StoreDiscount.Systems;
 using Content.Shared.FixedPoint;
@@ -80,7 +81,7 @@ public sealed class UplinkSystem : EntitySystem
 
         foreach (var objective in mindUser.Objectives)
         {
-                if (HasComp<DieConditionComponent>(objective))
+                if (HasComp<DieConditionComponent>(objective) || HasComp<SuperDieConditionComponent>(objective)) // Starlight edit: + SuperDieCondition
                 {
                     DAGDUplinkExpansion(uplink); // Starlight, actually only need to pass uplink.
                     break;

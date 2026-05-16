@@ -159,4 +159,4 @@ uplink-syndicate-borgi-speed-bundle-name = Speed Syndicate Borgi bundle
 uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger modules and additional speed. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.
 
 uplink-nuke-codes-name = Nuclear Authentication Codes
-uplink-nuke-codes-desc = Redspaces in the Nuclear Authentication Codes for the station's nuke. Due to the instability of this transmission, it is very likely that you will be identified to the station immediately. Good luck.
+uplink-nuke-codes-desc = An implant that redspaces in the Nuclear Authentication Codes for the station's nuke. Due to the instability of this transmission, it is very likely that you will be identified to the station immediately. Good luck.
