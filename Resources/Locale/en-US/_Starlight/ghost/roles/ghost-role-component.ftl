@@ -45,10 +45,19 @@ ghost-role-information-tsf-aligned-rules = You are [color={role-type-tsf-aligned
 ghost-role-information-nanotrasen-special-forces-name = NTSF Operative
 ghost-role-information-nanotrasen-special-forces-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
 ghost-role-information-decimus-name = Decimus Operative
+ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
 
 ghost-role-information-blackstar-operative-name = Blackstar Dreadwalker
-ghost-role-information-blackstar-operative-description = You are an elite operative of the Blackstar mercenary group, a Dreadwalker. Carry out your contract by any means necessary.
-ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
+ghost-role-information-blackstar-operative-description = You are an elite operative of the Blackstar mercenary group, a Dreadwalker. Follow the High Legates orders. And carry out your contract by any means necessary.
+
+ghost-role-information-blackstar-legionnaire-name = Blackstar Legionnaire
+ghost-role-information-blackstar-legionnaire-description = You are a Legionnaire of the Blackstar mercenary group. Follow the Legates orders and complete your contract.
+
+ghost-role-information-blackstar-blackguard-name = Blackstar Blackguard
+ghost-role-information-blackstar-blackguard-description = You are a Blackguard, internal security of the Blackstar Legion. Maintain order and protect Blackstar assets.
+
+ghost-role-information-blackstar-initiate-name = Blackstar Initiate
+ghost-role-information-blackstar-initiate-description = You are a new recruit to the Blackstar mercenary group. Support the team and prove your worth.
 
 ghost-role-information-syndicate-cyborg-stealth-name = Syndicate Stealth Cyborg
 

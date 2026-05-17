@@ -16,18 +16,18 @@
     sprite: _Starlight/Admeme/Scarlet/Prometheus.rsi
   - type: Gun
     fireRate: 5
-    burstFireRate: 18
+    burstFireRate: 8
     shotsPerBurst: 3
-    burstCooldown: 0.375
+    burstCooldown: 0.6
     minAngle: 21
     maxAngle: 32
     angleIncrease: 2
     angleDecay: 16
-    selectedMode: Burst
+    selectedMode: FullAuto
     availableModes:
+    - FullAuto
     - Burst
     - SemiAuto
-    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
   - type: MagazineVisuals
