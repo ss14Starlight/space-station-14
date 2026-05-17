@@ -425,6 +425,17 @@
       stock: 1
 
 - type: listing
+  id: ClothingNeckCloakBoatCC
+  productEntity: ClothingNeckCloakBoatCC
+  cost:
+    NTCredit: 2000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingNeckCloakCentcomAdmiral
   productEntity: ClothingNeckCloakCentcomAdmiral
   cost:
@@ -681,6 +692,17 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingBackpackBunnyGangBundle
+  productEntity: ClothingBackpackBunnyGangBundle
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
 
 - type: listing
   id: ClothingHeadHatBunny

@@ -57,8 +57,8 @@
             DutyOfficer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 4 ]
-            MiningSpecialist: [ 3, 3 ]
+            SalvageSpecialist: [ 4, 4 ]
+            MiningSpecialist: [ 4, 4 ]
             CargoTechnician: [ 5, 6 ]
             MailTech: [ 1, 2 ]
             SalvageLead: [ 1, 1 ]

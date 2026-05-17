@@ -167571,7 +167571,7 @@ entities:
   - uid: 25606
     components:
     - type: MetaData
-      desc: A standard-issue Nanotrasen storage unit, containing 6 Mk58 pistols.
+      desc: A standard-issue NanoTrasen storage unit, containing 6 Mk58 pistols.
     - type: Transform
       anchored: True
       pos: 21.5,15.5

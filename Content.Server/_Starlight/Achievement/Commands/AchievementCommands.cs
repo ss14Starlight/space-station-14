@@ -5,7 +5,6 @@ using Content.Shared._Starlight.Achievement;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Achievement.Commands;
@@ -35,14 +34,12 @@ public sealed class AchievementUnlockCommand : LocalizedCommands
     public override string Help => "achievement_unlock <player> <achievementId>";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        return args.Length switch
+    => args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "player"),
             2 => CompletionResult.FromHintOptions(CompletionHelper.PrototypeIDs<AchievementPrototype>(), "achievementId"),
             _ => CompletionResult.Empty,
-        };
-    }
+    };
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
@@ -78,14 +75,12 @@ public sealed class AchievementLockCommand : LocalizedCommands
     public override string Help => "achievement_lock <player> <achievementId>";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        return args.Length switch
+    => args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "player"),
             2 => CompletionResult.FromHintOptions(CompletionHelper.PrototypeIDs<AchievementPrototype>(), "achievementId"),
             _ => CompletionResult.Empty,
-        };
-    }
+    };
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
@@ -123,18 +118,16 @@ public sealed class AchievementProgressCommand : LocalizedCommands
     public override string Help => "achievement_progress <player> [progressKey]";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        return args.Length switch
+    => args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "player"),
             2 => CompletionResult.FromHintOptions(AchievementCommandHelpers.GetAllProgressKeys(_prototypeManager), "progressKey"),
             _ => CompletionResult.Empty,
-        };
-    }
+    };
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (args.Length < 1 || args.Length > 2)
+        if (args.Length is < 1 or > 2)
         {
             shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
             return;
@@ -189,18 +182,16 @@ public sealed class AchievementResetCommand : LocalizedCommands
     public override string Help => "achievement_reset <player> [progressKey]";
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
-    {
-        return args.Length switch
+    => args.Length switch
         {
             1 => CompletionResult.FromHintOptions(CompletionHelper.SessionNames(), "player"),
             2 => CompletionResult.FromHintOptions(AchievementCommandHelpers.GetAllProgressKeys(_prototypeManager), "progressKey"),
             _ => CompletionResult.Empty,
-        };
-    }
+    };
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        if (args.Length < 1 || args.Length > 2)
+        if (args.Length is < 1 or > 2)
         {
             shell.WriteError(Loc.GetString("shell-wrong-arguments-number"));
             return;
