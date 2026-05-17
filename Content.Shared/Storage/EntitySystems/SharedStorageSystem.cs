@@ -44,7 +44,13 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts; // Starlight
+#region Starlight
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Lock;
+using Content.Shared.Tools.Components;
+using Content.Shared.Tools.Systems;
+using Robust.Shared.Network;
+#endregion
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -74,6 +80,10 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
     [Dependency] private   readonly TagSystem _tag = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
+    #region Starlight
+    [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    #endregion
 
     private EntityQuery<ItemComponent> _itemQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -525,6 +535,11 @@ public abstract class SharedStorageSystem : EntitySystem
         RaiseLocalEvent(uid, ref attemptEv);
         if (attemptEv.Cancelled)
             return;
+
+        // Starlight Start: let valid tool interactions win over storage click-insert.
+        if (ShouldDeferClickInsertToToolInteraction(uid, args.Used))
+            return;
+        // Starlight End
 
         PlayerInsertHeldEntity((uid, storageComp), args.User);
         // Always handle it, even if insertion fails.
@@ -2078,6 +2093,42 @@ public abstract class SharedStorageSystem : EntitySystem
         return true;
     }
 
+    // Starlight Start
+    private bool ShouldDeferClickInsertToToolInteraction(EntityUid uid, EntityUid used)
+    {
+        if (TryComp(uid, out SimpleToolUsageComponent? simpleTool))
+        {
+            if (_tool.HasQuality(used, simpleTool.Quality))
+                return true;
+
+            // Client prediction may not know the dynamically selected SimpleToolUsage quality.
+            // If the target has a simple tool interaction and the held item is a tool,
+            // do not predict storage insertion. The server remains authoritative below.
+            if (_net.IsClient && HasComp<ToolComponent>(used))
+                return true;
+        }
+
+        if (TryComp(uid, out DigitalLockComponent? digitalLock))
+        {
+            if (_tool.HasQuality(used, digitalLock.OpenQuality))
+                return true;
+
+            if (digitalLock.MaintenanceOpen
+                && digitalLock.Code != ""
+                && _tool.HasQuality(used, digitalLock.ResetQuality))
+            {
+                return true;
+            }
+
+            // Same idea for client prediction: avoid visually inserting a held tool into
+            // storage when a lock/tool interaction may be about to happen.
+            if (_net.IsClient && HasComp<ToolComponent>(used))
+                return true;
+        }
+
+        return false;
+    }
+    // Starlight End
     [Serializable, NetSerializable]
     protected sealed class StorageComponentState : ComponentState
     {

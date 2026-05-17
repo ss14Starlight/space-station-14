@@ -33,3 +33,26 @@
       damageCoefficient: 0.80
     - type: Item
       size: Normal
+
+# Casino
+
+- type: entity
+  parent: [ ClothingOuterArmorBasic , BaseMajorContraband ]
+  id: ClothingOuterArmorCasino
+  name: heavy armor vest
+  suffix: admeme
+  description: A reinforced Type II armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/casino_vest.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/OuterClothing/Vests/casino_vest.rsi
+  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+    modifiers:
+      coefficients:
+        Blunt: 0.50
+        Slash: 0.50
+        Piercing: 0.50 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
+        Heat: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.95
