@@ -10,7 +10,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
 
-namespace Content.Server.Starlight.FactionClothingBlockerSystem;
+namespace Content.Server._Starlight.FactionClothingBlockerSystem;
 
 public sealed class AccessClothingBlockerSystem : EntitySystem
 {
@@ -77,8 +77,9 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
         }
     }
 
-    private async Task PopupWithDelay(string message, EntityUid uid, PopupType popupType)
+    private Task PopupWithDelay(string message, EntityUid uid, PopupType popupType)
     {
         _popup.PopupEntity(message, uid, popupType);
+        return Task.CompletedTask;
     }
 }

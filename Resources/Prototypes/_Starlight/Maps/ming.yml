@@ -24,6 +24,7 @@
             Chef: [ 2, 2 ]
             Janitor: [ 2, 3 ]
             Chaplain: [ 1, 1 ]
+            Reporter: [ 2, 2 ]
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 3, 4 ]
             Zookeeper: [ 1, 1 ]
@@ -55,10 +56,10 @@
             DutyOfficer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 3 ]
-            MiningSpecialist: [ 3, 3 ]
-            CargoTechnician: [ 6, 7 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+            MiningSpecialist: [ 4, 4 ]
+            CargoTechnician: [ 6, 7 ]
             MailTech: [ 2, 2 ]
             #civilian
             Assistant: [ -1, -1 ]

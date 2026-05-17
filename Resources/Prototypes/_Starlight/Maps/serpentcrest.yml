@@ -63,11 +63,11 @@
             SecurityCadet: [ 4, 5 ] #intern, not counted
             #Lawyer: [ 2, 2 ]
             #supply
-            SalvageSpecialist: [ 5, 5 ]
-            CargoTechnician: [ 6, 7 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 6, 7 ]
             MailTech: [ 2, 2 ]
-            MiningSpecialist: [ 3, 4 ]
             #civilian
             Assistant: [ -1, -1 ] #infinite, not counted
             Clown: [ 1, 1 ]

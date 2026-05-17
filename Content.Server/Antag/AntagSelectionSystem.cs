@@ -386,10 +386,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         _adminLogger.Add(LogType.AntagSelection, $"Start trying to make {session} become the antagonist: {ToPrettyString(ent)}");
 
-        /* Starlight start - disable upstream antag check logic
-        if (checkPref && !ValidAntagPreference(session, def.PrefRoles))
+        if (checkPref && !ValidAntagPreference(session, def.PrefRoles, ent.Comp.SelectionTime))
             return false;
-        */// Starlight end of disable
 
         if (!IsSessionValid(ent, session, def) || !IsEntityValid(session?.AttachedEntity, def))
             return false;

@@ -1,10 +1,5 @@
-using Content.Shared.Hands.EntitySystems;
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
-using Content.Shared.Humanoid;
-using Content.Shared.Roles.Components;
-using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared._Starlight.Roles.Components;
 using Content.Shared._Starlight.Antags.SELF;
@@ -15,7 +10,6 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -48,7 +42,7 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
         args.Append(MakeBriefing(ent.Value));
     }
 
-    private string MakeBriefing(EntityUid ent)
+    private string MakeBriefing(EntityUid _)
     {
         var briefing = Loc.GetString("self-role-greeting-human");
 

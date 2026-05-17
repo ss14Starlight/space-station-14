@@ -49,7 +49,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
+          type: [ Avali, Resomi, Vox ]
         damage:
           types:
             Asphyxiation: -3.5
@@ -64,7 +64,7 @@
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition
-            reagent: HeartbreakerToxin
+            reagent: Amoxla
             min: 25
         damage:
           types:
@@ -73,7 +73,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
+          type: [ Avali, Resomi, Vox ]
           inverted: true
         damage:
           types:
@@ -83,7 +83,7 @@
       - !type:ModifyBloodLevel
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
+          type: [ Avali, Resomi, Vox ]
         amount: 3
         # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent # Amoxla for Cyclorites is a toxin not medicine

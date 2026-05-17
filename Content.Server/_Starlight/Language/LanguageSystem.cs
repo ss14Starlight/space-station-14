@@ -43,9 +43,7 @@ public sealed partial class LanguageSystem : SharedLanguageSystem
     }
 
     private void OnDetermineUniversalLanguages(Entity<UniversalLanguageSpeakerComponent> entity, ref DetermineEntityLanguagesEvent ev)
-    {
-        ev.SpokenLanguages.Add(UniversalPrototype);
-    }
+        => ev.SpokenLanguages.Add(UniversalPrototype);
 
     private void OnClientSetLanguage(LanguagesSetMessage message, EntitySessionEventArgs args)
     {
