@@ -9,7 +9,7 @@
   products:
     Water: 17
     CarbonDioxide: 4.5
-    Ammonia: 2.5
+    Nitrogen: 2.5
     Protein: 6
 
 - type: reaction
@@ -23,5 +23,5 @@
   products:
     Water: 17
     CarbonDioxide: 4.5
-    Ammonia: 2.5
+    Nitrogen: 2.5
     Protein: 6
