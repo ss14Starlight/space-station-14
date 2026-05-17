@@ -10,7 +10,7 @@
   id: NanoTrasen
   name: chat-radio-nanotrasen
   keycode: 'p'
-  frequency: 2001
+  frequency: 2000
   color: "#2253b5"
   longRange: true
 
