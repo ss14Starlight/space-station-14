@@ -18,6 +18,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: ActiveRadio
     channels:
     - Binary
@@ -30,6 +31,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: IgnoreUIRange
   - type: StationAiHeld
   - type: StationAiOverlay

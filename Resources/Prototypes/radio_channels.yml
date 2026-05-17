@@ -10,7 +10,7 @@
   name: chat-radio-centcom
   keycode: 'y'
   frequency: 1337
-  color: "#2681a5"
+  color: "#48b31e" # Starlight
   longRange: true
 
 - type: radioChannel

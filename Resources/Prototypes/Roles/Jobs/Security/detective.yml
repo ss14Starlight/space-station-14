@@ -26,7 +26,7 @@
   id: DetectiveGear
   equipment:
     id: DetectivePDA
-    ears: ClothingHeadsetSecurity
+    ears: ClothingHeadsetDetective # Starlight
     belt: ClothingBeltHolsterFilled
   storage:
     back:

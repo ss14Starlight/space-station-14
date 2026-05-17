@@ -381,7 +381,7 @@
   parent: JobIcon
   id: JobIconStationAi
   icon:
-    sprite: *icon-rsi
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi # Starlight
     state: StationAi
   jobName: job-name-station-ai
 

@@ -22,7 +22,7 @@
     #shoes: ClothingShoesBootsLaceup # Starlight
     id: LawyerPDA
     eyes: ClothingEyesGlassesCheapSunglasses # Starlight, some cheap sunglasses.
-    ears: ClothingHeadsetService # Starlight, not part of Security.
+    ears: ClothingHeadsetLawyer # Starlight, not part of Security.
   inhand:
     - BriefcaseLawyerFilled # Starlight, Lawyer briefcase.
 #  storage: Starlight start

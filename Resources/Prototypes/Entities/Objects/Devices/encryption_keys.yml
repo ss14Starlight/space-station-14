@@ -63,7 +63,7 @@
     defaultChannel: CentCom
   - type: Sprite
     layers:
-    - state: crypt_blue
+    - state: crypt_silver # Starlight
     - state: nano_label
 
 - type: entity

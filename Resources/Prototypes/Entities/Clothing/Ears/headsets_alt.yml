@@ -101,7 +101,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeySecurity
+      - EncryptionKeyLawSecurity # Starlight
       - EncryptionKeyCommand
       - EncryptionKeyCommon
   - type: Sprite

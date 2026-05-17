@@ -17,6 +17,7 @@
 
 - type: startingGear
   id: CentcomOperatorGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingAltUniformJumpsuitCentcomOfficial
     back: ClothingBackpackSatchelCentcomm
@@ -32,9 +33,17 @@
     - RubberStampCentcom
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentcomOperatorGear
+  id: AdminCentcomOperatorGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Domestic Division CDD
 - type: startingGear
   id: CentralDomesticDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommResearchFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -50,9 +59,17 @@
     - RubberStampCRD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralDomesticDivisionGear
+  id: AdminCentralDomesticDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Administration Division CAD
 - type: startingGear
   id: CentralAdministrationDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommAdminFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -69,9 +86,17 @@
     - RubberStampCAD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralAdministrationDivisionGear
+  id: AdminCentralAdministrationDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Cargo Division CCD
 - type: startingGear
   id: CentralCargoDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommCargoFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -87,9 +112,17 @@
     - RubberStampCCD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralCargoDivisionGear
+  id: AdminCentralCargoDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Engineering Division CED
 - type: startingGear
   id: CentralEngineeringDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtEngiCentcommFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -107,9 +140,17 @@
     - RubberStampCED
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralEngineeringDivisionGear
+  id: AdminCentralEngineeringDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Intelligence Division CID
 - type: startingGear
   id: CentralIntelligenceDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommIntelFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -125,9 +166,17 @@
     - RubberStampCID
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralIntelligenceDivisionGear
+  id: AdminCentralIntelligenceDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Medical Division CMD
 - type: startingGear
   id: CentralMedicalDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommMedFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -143,9 +192,17 @@
     - RubberStampCMD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralMedicalDivisionGear
+  id: AdminCentralMedicalDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Research Division CRD
 - type: startingGear
   id: CentralResearchDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommResearchFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -162,9 +219,17 @@
     - RubberStampCRD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralResearchDivisionGear
+  id: AdminCentralResearchDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Security Division CSD
 - type: startingGear
   id: CentralSecurityDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommSecurityFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -182,9 +247,17 @@
     - RubberStampCSD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralSecurityDivisionGear
+  id: AdminCentralSecurityDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom
+
 # Central Special Operations Division CSOD
 - type: startingGear
   id: CentralSpecialOperationsDivisionGear
+  suffix: Non-Admin
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcommSpecialOpsFormalWear
     back: ClothingBackpackSatchelCentcomm
@@ -202,3 +275,9 @@
     - RubberStampCSOD
     - MindShieldImplanter
 
+- type: startingGear
+  parent: CentralSpecialOperationsDivisionGear
+  id: AdminCentralSpecialOperationsDivisionGear
+  suffix: Admin, NanoTrasen Comms
+  equipment:
+    ears: ClothingHeadsetAltAdminCentCom

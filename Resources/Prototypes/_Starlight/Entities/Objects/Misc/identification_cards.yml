@@ -519,7 +519,7 @@
 
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
-  id: NanotrasenCareerTrainerIDCard
+  id: NanoTrasenCareerTrainerIDCard
   name: NanoTrasen career trainer ID Card
   components:
   - type: Sprite
@@ -535,7 +535,7 @@
       color: "#630232"
     - sprite: *starlight-icon-rsi
       offset: *icon-offset
-      state: NanotrasenCareerTrainer
+      state: NanoTrasenCareerTrainer
   - type: PresetIdCard
     job: NanotrasenCareerTrainer
 

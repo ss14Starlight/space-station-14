@@ -22,7 +22,7 @@
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantNanoTrasen ]
 
 - type: startingGear
   id: DecimusGear
@@ -31,7 +31,7 @@
     back: ClothingBackpackDeathSquad
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesGlassesBlueShield
-    ears: ClothingHeadsetAltCentComDS
+    ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitDecimus
     shoes: ClothingShoesBootsMagAdv

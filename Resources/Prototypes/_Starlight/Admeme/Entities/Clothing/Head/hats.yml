@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadBase, BaseCentcommContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatNTNC
   name: NanoTrasen navy marine hat.
   components:
@@ -9,7 +9,7 @@
     sprite: _Starlight/Admeme/Clothing/Head/Hats/ntnchat.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCentcommContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatNTNCGrey
   name: NanoTrasen grey navy marine hat.
   components:
@@ -19,7 +19,7 @@
     sprite: _Starlight/Admeme/Clothing/Head/Hats/ntncgreyhat.rsi
 
 - type: entity
-  parent: [ClothingHeadBase, BaseCentcommContraband]
+  parent: [ClothingHeadBase, BaseNanoTrasenContraband]
   id: ClothingHeadHatNTNCEnsign
   name: NanoTrasen navy ensign hat.
   components:

@@ -585,7 +585,7 @@
 # NanoTrasen Special Forces
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSF
   name: NanoTrasen special forces hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.
@@ -633,7 +633,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSF
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitDecimus
   name: decimus hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.

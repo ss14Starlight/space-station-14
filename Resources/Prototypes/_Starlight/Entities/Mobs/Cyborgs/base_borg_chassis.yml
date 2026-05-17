@@ -148,6 +148,7 @@
     channels:
     - Binary
     - CentCom
+    - NanoTrasen
     - Common
     - Command
     - Engineering
@@ -161,6 +162,7 @@
     channels:
     - Binary
     - CentCom
+    - NanoTrasen
     - Common
     - Command
     - Engineering
