@@ -1,130 +1,4 @@
 Entries:
-- author: Cujo
-  changes:
-  - message: (Lagan) NCT Office now has visual cues as to what and where they are from the main hall.
-    type: Tweak
-  id: 404620
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Detective office and bedroom have been re-arranged.
-    type: Tweak
-  id: 404621
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Patched air alarms and sensors giving false positive warning and danger alarms near Vault, SCI, and MED.
-    type: Fix
-  id: 404622
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Atmos APCs are now properly separated in the south.
-    type: Fix
-  id: 404623
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) CE doors are now on telecomms and camera rooms.
-    type: Fix
-  id: 404624
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) The Club turnstiles are now swapped to the correct directions.
-    type: Fix
-  id: 404625
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Robotics bay maints door is now set with the proper access.
-    type: Fix
-  id: 404626
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Orphaned solid walls in SEC and ENG replaced with reinforced where necessary.
-    type: Fix
-  id: 404627
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Trit burn chamber now has a remote signaller and a button on the external side.
-    type: Fix
-  id: 404628
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Courtroom power is now wired properly.
-    type: Fix
-  id: 404629
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Staff bedroom cameras now use the proper command camera prototype.
-    type: Fix
-  id: 404630
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) HoS has separate hardsuit and normal lockers now.
-    type: Fix
-  id: 404631
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Any distro/waste pipes underlying a booze/soda dispenser have been fixed.
-    type: Fix
-  id: 404632
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Many, many pipes and vents and scrubbers re-wired and fixed up for readability.
-    type: Fix
-  id: 404633
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: bynddark8
-  changes:
-  - message: (Box, Boxcars, Cluster, Cork, Elkridge, Fland, Hotel, Kiloton, Leth, Ming, Orwell, Packed, Plasma, Prism, Sepultum, Silica, SpaceMall, Serpentcrest) Removes the Chemmaster, Chem dispenser, and all chemistry related paraphernalia.
-    type: Remove
-  id: 404634
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
-- author: bynddark8
-  changes:
-  - message: (Box, Boxcars, Cluster, Cork, Elkridge, Fland, Hotel, Kiloton, Leth, Ming, Orwell, Packed, Plasma, Prism, Sepultum, Silica, SpaceMall, Serpentcrest) Adds the NanoMed Security alongside an assortment of topicals and medical treatment kits to brig medic bays.
-    type: Add
-  id: 404635
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
-- author: bynddark8
-  changes:
-  - message: (Cluster, Hotel, Ming, Orwell, Prism) Replaces standard security airlocks with new brig medic airlock sprites/accesses.
-    type: Tweak
-  id: 404636
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
-- author: bynddark8
-  changes:
-  - message: (Elkridge) Fixed an unanchored air scrubber in brigmed.
-    type: Fix
-  id: 404637
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
 - author: NULLLINK TEAM
   changes:
   - message: Added cross-project or/and cross-server sync for any types of bans(role or server).
@@ -2799,4 +2673,130 @@ Entries:
   id: 405019
   time: '2026-05-15T15:52:50.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4452
+- author: Rhetorica
+  changes:
+  - message: Peepoids.
+    type: Add
+  id: 405020
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: Slurpoids.
+    type: Add
+  id: 405021
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: SLIME TIME and SLIME CRIME graffiti.
+    type: Add
+  id: 405022
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: '#RobotGang graffito, for those special times when borgs and IPCs adopt bots as friends.'
+    type: Add
+  id: 405023
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: MERGE NEOMOTH'S PR graffito.
+    type: Add
+  id: 405024
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Rhetorica
+  changes:
+  - message: 11 aielith dark magic runes as graffiti.
+    type: Add
+  id: 405025
+  time: '2026-05-15T18:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4455
+- author: Conflee
+  changes:
+  - message: Added text to the Corporate Law page granted Salvage jurisdiction to defend the ATS, within the bounds of their SOP.
+    type: Add
+  id: 405026
+  time: '2026-05-16T08:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4454
+- author: Conflee
+  changes:
+  - message: Added text to Salvage SOP detailing their responsibilities with defending and maintaining the ATS, permitting them to engage direct active threats to the ATS and making them responsible for repairing it and preventing it from being misused or moved without very good reason.
+    type: Add
+  id: 405027
+  time: '2026-05-16T08:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4454
+- author: Conflee
+  changes:
+  - message: Changed the ATS back room to be slightly more reinforced, with a QM locked Blast Door, plastitanium windows, and riveted interior walls. **Being able to move the ATS is intentional, but doing so without very good reason may be considered self-antag or powergaming**.
+    type: Tweak
+  id: 405028
+  time: '2026-05-16T08:03:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4454
+- author: CrazyPhantom
+  changes:
+  - message: Fixed Rolebans.
+    type: Fix
+  id: 405029
+  time: '2026-05-16T14:12:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4460
+- author: DocMoth
+  changes:
+  - message: Added Bunny Gang Outfit to fashion vend.
+    type: Add
+  id: 405030
+  time: '2026-05-16T15:25:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4451
+- author: Caws
+  changes:
+  - message: Revolutionaries will now win as intended if all living members of Command abandon the station (e.g. hiding in space, on a shuttle, on the ATS, etc.).
+    type: Fix
+  id: 405031
+  time: '2026-05-16T15:44:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4456
+- author: CrazyPhantom
+  changes:
+  - message: VGroid will now spawn with ore again.
+    type: Fix
+  id: 405032
+  time: '2026-05-16T21:12:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4449
+- author: CrazyPhantom
+  changes:
+  - message: Grids should no longer be embedded inside VGroid.
+    type: Fix
+  id: 405033
+  time: '2026-05-16T21:12:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4449
+- author: Way
+  changes:
+  - message: '"Magistrates longcoat" is now an actual jacket instead of an entire jumpsuit, additionally it now has the benefits of a winter coat.'
+    type: Tweak
+  id: 405034
+  time: '2026-05-17T08:57:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4470
+- author: CrazyPhantom
+  changes:
+  - message: You can now actually use tools to Lock/Unlock Chameleon bags.
+    type: Fix
+  id: 405035
+  time: '2026-05-17T09:20:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4467
+- author: Caws
+  changes:
+  - message: SSD players will no longer be bluespaced into cryogenic sleep units that are off-station.
+    type: Fix
+  id: 405036
+  time: '2026-05-17T09:37:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4465
+- author: CrazyPhantom
+  changes:
+  - message: Fixed an issue where bullets would not hit the Mothership Core.
+    type: Fix
+  id: 405037
+  time: '2026-05-17T15:07:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4471
 Order: -1
