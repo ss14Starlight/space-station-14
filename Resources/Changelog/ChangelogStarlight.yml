@@ -1,11 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Resomi no longer get poisoned by ammonia gas.
-    type: Fix
-  id: 404664
-  time: '2026-04-27T12:31:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4272
 - author: Scarlet Lightweaver
   changes:
   - message: Added Rumizine for PIRATES.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405063
   time: '2026-05-17T15:33:15.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4428
+- author: Conflee
+  changes:
+  - message: Added Heavy Armor Vest and Casino Guard Helmet for the Casino Shuttle Admeme. Just slightly better armor so the guards don't need to wear hardsuits and ruin the vibe. Also added 3 armored admeme versions of the top hats, for the same use.
+    type: Add
+  id: 405064
+  time: '2026-05-17T16:08:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4466
 Order: -1
