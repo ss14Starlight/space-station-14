@@ -29,6 +29,7 @@
       - Medical
       - Service
       - Engineering
+      - Law
       # Starlight-edit: End
       privilegedIdSlot:
         name: AccessOverrider-privilegedId
@@ -82,7 +83,7 @@
       - Medical
       - Service
       - Engineering
-      - Law # Starlight
+      - Law
       - Misc
       - CentralCommand
       - Syndicate
