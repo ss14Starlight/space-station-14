@@ -58,9 +58,13 @@ public sealed partial class StingTransformEvent : EntityTargetActionEvent { }
 
 public sealed partial class ActionAnatomicPanaceaEvent : InstantActionEvent { }
 public sealed partial class ActionAugmentedEyesightEvent : InstantActionEvent { }
+public sealed partial class ActionNightEyesightEvent : InstantActionEvent { }
+public sealed partial class ActionThermalEyesightEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionBiodegradeEvent : InstantActionEvent { }
 public sealed partial class ActionChameleonSkinEvent : InstantActionEvent { }
 public sealed partial class ActionEphedrineOverdoseEvent : InstantActionEvent { }
+public sealed partial class ActionDesoxyephedrineOverdoseEvent : InstantActionEvent { } // Starlight
+public sealed partial class ActionAmalgamOverdoseEvent : InstantActionEvent { } // Starlight
 public sealed partial class ActionFleshmendEvent : InstantActionEvent { }
 public sealed partial class ActionLastResortEvent : InstantActionEvent { }
 public sealed partial class ActionLesserFormEvent : InstantActionEvent { }

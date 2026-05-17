@@ -19,6 +19,7 @@
       - MindRoleSELFAgent
       briefing:
         sound: "/Audio/_Starlight/Ambience/Antag/self_greeting.ogg"
+      allowNonHumans: true
   - type: DynamicRuleCost
     cost: 70
 
@@ -28,19 +29,14 @@
   id: ThiefLess
   components:
   - type: ThiefRule
-  - type: AntagObjectives
-    objectives:
-    - EscapeThiefShuttleObjective
+# - type: AntagObjectives
+#   objectives: # We won't be using this, we'll be taking it from GroupOuter instead so we can roll for Master Thief
+#   - EscapeThiefShuttleObjective # Keeping this here in case someone wonders why it's gone in the future, though.
   - type: AntagRandomObjectives
     sets:
-    - groups: ThiefBigObjectiveGroups
-      prob: 0.7
-      maxPicks: 1
-    - groups: ThiefObjectiveGroups
+    - groups: ThiefObjectiveGroupOuter # Replaced with outer group, so we can *finally* roll the escape objective more reliably.
       maxPicks: 10
-    - groups: ThiefObjectiveGroupEscape
-      prob: 0.33 # It gives you a lot more freedom, but also lets you be way more intrusive, so low chance.
-      maxPicks: 1
+    maxDifficulty: 3
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
@@ -135,5 +131,41 @@
         components:
         - AntagImmune
       lateJoinAdditional: false
+      allowNonHumans: true
       mindRoles:
       - MindRoleTraitor
+
+- type: entity
+  parent: Xenoborgs
+  id: XenoborgsLP
+  components:
+  - type: AntagMultipleRoleSpawner
+    antagRoleToPrototypes:
+      MothershipCore: [ MothershipCore ]
+      Xenoborg: [ XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth ]
+    pickAndTake: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ MothershipCore ]
+      fallbackRoles: [ Xenoborg ]
+      spawnerPrototype: SpawnPointGhostRoleMothershipCore
+      # Starlight Start
+      roleLoadout:
+      - AntagMothership
+      # Starlight End
+      mindRoles:
+      - MindRoleMothershipCore
+    - prefRoles: [ Xenoborg ]
+      fallbackRoles: [ MothershipCore ]
+      spawnerPrototype: SpawnPointGhostRoleXenoborg
+      # Starlight Start
+      roleLoadout:
+      - AntagXenoborg
+      # Starlight End
+      mindRoles:
+      - MindRoleXenoborg
+      min: 4
+      max: 4
+  - type: DynamicRuleCost
+    cost: 150

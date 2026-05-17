@@ -31,6 +31,4 @@ public sealed class QuoremCheckSystem : SharedQuoremCheckSystem
 
         }
     }
-
-
 }

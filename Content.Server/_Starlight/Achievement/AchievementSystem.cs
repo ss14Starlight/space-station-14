@@ -236,9 +236,7 @@ public sealed class AchievementSystem : EntitySystem
         => GetProgress(session.UserId, progressType);
 
     public double GetProgress(Guid userId, string progressType)
-    {
-        return _nullLinkPlayers.GetCachedAchievementProgress(userId, progressType);
-    }
+        => _nullLinkPlayers.GetCachedAchievementProgress(userId, progressType);
 
     public void ResetProgress(ICommonSession session, string? progressType = null)
         => ResetProgress(session.UserId, progressType);
@@ -250,12 +248,8 @@ public sealed class AchievementSystem : EntitySystem
     }
 
     public async ValueTask<bool> TryUnlockAtProgressAsync(ICommonSession session, string achievementId, string progressType, double requiredProgress, string? characterName = null)
-    {
-        if (GetProgress(session, progressType) < requiredProgress)
-            return false;
-
-        return await TryUnlockAchievementAsync(session, achievementId, characterName);
-    }
+        => GetProgress(session, progressType) >= requiredProgress
+        && await TryUnlockAchievementAsync(session, achievementId, characterName);
 
     public void CheckProgressAchievements(ICommonSession session, string progressType, string? characterName = null)
         => CheckProgressAchievementsAsync(session, progressType, characterName)
@@ -982,7 +976,7 @@ public sealed class AchievementSystem : EntitySystem
             return;
         }
 
-        Timer.Spawn(AchievementHydrationRetryDelay, () =>
+        Timer.Spawn(_achievementHydrationRetryDelay, () =>
         {
             if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var retrySession))
                 return;

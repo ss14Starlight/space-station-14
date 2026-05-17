@@ -57,6 +57,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.IoC;
 using Robust.Shared.Log;
+using Content.Shared.Station.Components;
+using Content.Server.Shuttles.Components;
+using System.Linq;
 #endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;
@@ -89,6 +92,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SubdermalImplantSystem _subdermalImplantSystem = default!;
     [Dependency] private readonly USSPUplinkSystem _usspUplinkSystem = default!;
+
+    // last time at least 1 command member was on station
+    private TimeSpan _commandLastTimeOnStation = default;
     // Starlight-end
 
     //Used in OnPostFlash, no reference to the rule component is available
@@ -120,6 +126,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     {
         base.Started(uid, component, gameRule, args);
         component.CommandCheck = _timing.CurTime + component.TimerWait;
+
+        _commandLastTimeOnStation = _timing.CurTime; // Starlight
     }
 
     protected override void ActiveTick(EntityUid uid, RevolutionaryRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -135,10 +143,9 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                 GameTicker.EndGameRule(uid, gameRule);
             }
 
-            if (CheckCommandLose())
+            #region Starlight
+            if (CheckCommandLose(component))
             {
-                // Starlight Start
-
                 _roundEnd.CancelRoundEndCountdown(null, false);
 
                 // Play the revolutionary end sound globally
@@ -212,8 +219,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                         _roundEnd.EndRound();
                     }
                 });
-                // Starlight End
             }
+            #endregion Starlight
         }
     }
 
@@ -225,7 +232,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         base.AppendRoundEndText(uid, component, gameRule, ref args);
 
         var revsLost = CheckRevsLose();
-        var commandLost = CheckCommandLose();
+        var commandLost = CheckCommandLose(component); // Starlight
         // This is (revsLost, commandsLost) concatted together
         // (moony wrote this comment idk what it means)
         var index = (commandLost ? 1 : 0) | (revsLost ? 2 : 0);
@@ -543,14 +550,25 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     //TODO: Enemies of the revolution
     private void OnCommandMobStateChanged(EntityUid uid, CommandStaffComponent comp, MobStateChangedEvent ev)
     {
+        #region Starlight
         if (ev.NewMobState == MobState.Dead || ev.NewMobState == MobState.Invalid)
-            CheckCommandLose();
+        {
+            // need to pass the RevolutionaryRule comp to CheckCommandLose()
+            var query = EntityQueryEnumerator<RevolutionaryRuleComponent, GameRuleComponent>();
+
+            while (query.MoveNext(out var _, out var ruleComp, out var gameRule))
+            {
+                CheckCommandLose(ruleComp);
+            }
+        }
+        #endregion Starlight
     }
 
     /// <summary>
     /// Checks if all of command is dead and if so will remove all sec and command jobs if there were any left.
     /// </summary>
-    private bool CheckCommandLose()
+    #region Starlight
+    private bool CheckCommandLose(RevolutionaryRuleComponent component)
     {
         var commandList = new List<EntityUid>();
 
@@ -560,9 +578,21 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             commandList.Add(id);
         }
 
-    // STARLIGHT START
-        var allCommandDead = IsGroupDetainedOrDead(commandList, true, true, true);
-        return allCommandDead;
+        // check if all command are dead
+        var allCommandDead = IsGroupDetainedOrDead(commandList, false, true, true);
+
+        // check if there at least one command member alive, uncuffed, and unconverted that is on the station
+        var anyCommandOnStation = !IsGroupDetainedOrDead(commandList, true, true, true);
+
+        // grace period - prevents round instantly ending if all of command leave a grid for just 1 tick
+        if (anyCommandOnStation)
+            _commandLastTimeOnStation = _timing.CurTime;
+
+        // check if command have abandoned the station
+        var allCommandAbandonedStation = !anyCommandOnStation && (_timing.CurTime.Subtract(_commandLastTimeOnStation) > component.CommandOffstationGracePeriod);
+
+        // command loses if they're all dead, detained, or they left the station
+        return allCommandDead || allCommandAbandonedStation;
     }
 
     /// <summary>
@@ -586,8 +616,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         // Get all game rule entities
         // var gameRuleQuery = EntityManager.EntityQuery<GameRuleComponent>();
-        // STARLIGHT END
     }
+    #endregion Starlight
 
     private void OnHeadRevMobStateChanged(EntityUid uid, HeadRevolutionaryComponent comp, MobStateChangedEvent ev)
     {
@@ -766,11 +796,14 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
                     continue;
                 }
 
-                if (checkOffStation && _stationSystem.GetOwningStation(entity) == null && !_emergencyShuttle.EmergencyShuttleArrived)
+                #region Starlight
+                // Starlight: previous 'off station check' straight-up never worked. replaced with a new helper method 'IsOnMainStation'
+                if (checkOffStation && !IsOnMainStation(entity) && !_emergencyShuttle.EmergencyShuttleArrived)
                 {
                     gone++;
                     continue;
                 }
+                #endregion Starlight
             }
             //If they don't have the MobStateComponent they might as well be dead.
             else
@@ -788,6 +821,51 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         return gone == list.Count || list.Count == 0;
     }
+
+#region Starlight
+    /// <summary>
+    /// Determines whether an entity is located on a "main" station grid.
+    /// Being on an unlaunched escape pod counts as "being on the main station."
+    /// Grids like the Arrivals or Cargo Shuttle are not considered "being on the main station."
+    /// </summary>
+    /// <param name="entity">Entity to be evaluated.</param>
+    /// <returns>True if entity is on the main station grid, false otherwise.</returns>
+    private bool IsOnMainStation(EntityUid entity)
+    {
+        // get transform data. used at the end to check if the entity is actually *on* the station grid
+        var xform = EntityManager.GetComponentOrNull<TransformComponent>(entity);
+        if(xform == null || xform.GridUid == null)
+            return false;
+
+        var grid = xform.GridUid.Value;
+
+        // special case: unlaunched (docked) escape pods are still "part of the main station"
+        // escape pods lose their EscapePodComponent when they are launched, so this check will fail on launched escape pods
+        if (HasComp<EscapePodComponent>(grid))
+        {
+            return true;
+        }
+
+        // check that some station actually owns this entity
+        var station = _stationSystem.GetOwningStation(entity);
+
+        if(station is not { } stationUid)
+            return false;
+
+        // station data contains all of the station grids
+        var stationData = EntityManager.GetComponentOrNull<StationDataComponent>(stationUid);
+        if(stationData == null)
+            return false;
+
+        // main station grid check. if main grids is (somehow) empty, fallback to any grid in station data
+        var grids = stationData.MainGrids.Count > 0
+            ? stationData.MainGrids
+            : stationData.Grids;
+
+        // finally, check if the entity is on the main grid
+        return grids.Contains(grid);
+    }
+#endregion Starlight
 
     private static readonly string[] Outcomes =
     {

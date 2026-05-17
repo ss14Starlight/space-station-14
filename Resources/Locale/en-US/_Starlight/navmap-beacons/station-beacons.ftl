@@ -1,1 +1,14 @@
 station-beacon-internal-affairs = IAA
+station-beacon-nanotrasen-representative = NTR
+station-beacon-blueshield-officer = BSO
+station-beacon-nanotrasen-career-trainer = NCT Office
+station-beacon-breakroom-cargo = Cargo Break Room
+station-beacon-breakroom-command = Command Break Room
+station-beacon-breakroom-engineering = Engineering Break Room
+station-beacon-nuclear-reactor = Nuclear Reactor
+station-beacon-breakroom-medical = Medical Break Room
+station-beacon-breakroom-science = Science Break Room
+station-beacon-xenobiology = Xenobiology
+station-beacon-breakroom-security = Security Break Room
+station-beacon-breakroom-service = Service Break Room
+station-beacon-lawyer = Lawyer

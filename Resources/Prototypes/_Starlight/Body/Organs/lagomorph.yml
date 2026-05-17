@@ -1,4 +1,16 @@
 ﻿- type: entity
+  id: OrganLagomorphEyes
+  parent: OrganHumanEyes
+  name: eyes
+  suffix: Lagomorph
+  description: "Couldn't have seen that one coming."
+  components:
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobLagomorphEyes
+
+- type: entity
   id: OrganLagomorphStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
   name: stomach

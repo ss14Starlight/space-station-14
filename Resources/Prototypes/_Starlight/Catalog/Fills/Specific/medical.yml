@@ -10,6 +10,18 @@
         rolls: !type:RangeNumberSelector
           range: 6, 8
 
+- type: entity
+  id: BottleCaseSecurityFilled
+  parent: BottleCaseSecurity
+  suffix: Security, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomBottleSafeTable
+        rolls: !type:RangeNumberSelector
+          range: 6, 8
+
 - type: entityTable
   id: RandomBottleSafeTable
   table: !type:GroupSelector
@@ -70,6 +82,18 @@
   id: PenPackMedicalFilled
   parent: PenPackMedical
   suffix: Medical, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomInjectorSafeTable
+        rolls: !type:RangeNumberSelector
+          range: 2, 4
+
+- type: entity
+  id: PenPackSecurityFilled
+  parent: PenPackSecurity
+  suffix: Security, Filled
   components:
   - type: EntityTableContainerFill
     containers:

@@ -26,6 +26,7 @@ loadout-group-nanotrasenrepresentative-outerclothing = NanoTrasen representative
 loadout-group-nanotrasenrepresentative-jumpsuit = NanoTrasen representative jumpsuit
 loadout-group-nanotrasenrepresentative-eyewear = NanoTrasen representative eyewear
 loadout-group-nanotrasenrepresentative-shoes = NanoTrasen representative shoes
+loadout-group-nanotrasenrepresentative-neck = NanoTrasen representative neck
 
 loadout-group-captain-shoes = Captain shoes
 loadout-group-hop-shoes = Head of Personnel shoes
@@ -61,6 +62,7 @@ loadout-group-dutyofficer-belt = Duty officer belt
 # Law
 loadout-group-magistrate-jumpsuit = Magistrate jumpsuit
 loadout-group-magistrate-eyewear = Magistrate eyewear
+loadout-group-magistrate-neck = Magistrate neck
 loadout-group-magistrate-shoes = Magistrate shoes
 loadout-group-iaa-jumpsuit = Internal Affairs Agent jumpsuit
 loadout-group-iaa-neck = Internal Affairs Agent neck
@@ -129,10 +131,10 @@ Loadout-group-brighteye-neck = Brighteye neck
 loadout-group-brighteye-gloves = Brighteye gloves
 
 # NCT
-loadout-group-NanotrasenCareerTrainer-jumpsuit = Nanotrasen Career Trainer jumpsuit
-loadout-group-NanotrasenCareerTrainer-hat = Nanotrasen Career Trainer hat
-loadout-group-NanotrasenCareerTrainer-shoes = Nanotrasen Career Trainer shoes
-loadout-group-NanotrasenCareerTrainer-eyewear = Nanotrasen Career Trainer eyewear
+loadout-group-NanotrasenCareerTrainer-jumpsuit = NanoTrasen Career Trainer jumpsuit
+loadout-group-NanotrasenCareerTrainer-hat = NanoTrasen Career Trainer hat
+loadout-group-NanotrasenCareerTrainer-shoes = NanoTrasen Career Trainer shoes
+loadout-group-NanotrasenCareerTrainer-eyewear = NanoTrasen Career Trainer eyewear
 
 # Security
 loadout-group-warden-neck = Warden neck

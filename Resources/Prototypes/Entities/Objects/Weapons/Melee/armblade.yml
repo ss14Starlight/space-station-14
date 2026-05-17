@@ -12,7 +12,7 @@
     soundHit:
       collection: AlienClaw
     wideAnimationRotation: 90
-    attackRate: 1
+    attackRate: 1.2 # Starlight, we can make it swing a little faster. It's just your arm, you've got good control over that. It also instantly makes you a target.
     damage:
       types: # Same as energy sword, but slash/pierce instead of slash/heat
         Slash: 15
@@ -22,7 +22,7 @@
     size: Normal
     sprite: Changeling/arm_blade.rsi
   - type: Prying
-    speedModifier: 1.5 # Jaws of life speed
+    speedModifier: 2 # Starlight, faster than the Jaws of life, so you can hunt people down.
     pryPowered: true
     useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
     playSoundOnDoafter: true #SL

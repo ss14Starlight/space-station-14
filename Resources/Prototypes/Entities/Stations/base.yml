@@ -59,7 +59,7 @@
             - type: ProtectedGrid
             - type: TradeStation
           paths:
-            - /Maps/Shuttles/trading_outpost.yml
+            - /Maps/_Starlight/trading_outpost.yml # Starlight Edit, new ATS
 #        mining: !type:GridSpawnGroup # 🌟Starlight begin🌟
 #          paths:
 #            - /Maps/Shuttles/mining.yml

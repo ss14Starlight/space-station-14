@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseStructure
+  id: PropSnowman
+  name: snowman
+  description: A cheap decoration.
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger: # Overkill threshold
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/snowman.rsi
+    state: snowman
+    noRot: true
+  - type: Appearance
+  - type: Transform
+    anchored: true
+    noRot: false
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 50
+        mask:
+        - TableMask
+  - type: Rotatable
+  - type: Anchorable
+    delay: 1
