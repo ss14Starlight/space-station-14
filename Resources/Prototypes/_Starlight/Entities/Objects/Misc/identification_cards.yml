@@ -73,9 +73,9 @@
     - sprite: *id-rsi
       state: stripe_bottom
       color: *color-centcomm-bottom
-    - sprite: *icon-rsi
+    - sprite: *starlight-icon-rsi
       offset: *icon-offset
-      state: Nanotrasen
+      state: NanoTrasenRepresentative
   - type: PresetIdCard
     job: NanoTrasenRepresentative
 
