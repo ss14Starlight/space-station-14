@@ -125,3 +125,20 @@
       state: air
   - type: AtmosFixMarker
     mode: 8
+
+- type: entity
+  parent: MarkerBase
+  id: AtmosFixCO2Marker
+  name: Atmos Fix CO2 Marker
+  description: "Verdant outside atmosphere: oxygen, nitrogen, and carbon dioxide mix @ 288K"
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Markers/atmos.rsi # {
+      state: base
+      shader: unshaded
+    - sprite: Markers/atmos.rsi
+      shader: unshaded # }
+      state: watervapour
+  - type: AtmosFixMarker
+    mode: 9
