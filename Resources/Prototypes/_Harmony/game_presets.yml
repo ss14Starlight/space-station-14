@@ -8,7 +8,7 @@
   showInVote: false # secret
   rules:
   - Conspirators
-  - Traitor
+  - Traitor # 🌟Starlight🌟
   - Thief
   - BasicStationEventScheduler
   - SpaceTrafficControlEventScheduler
