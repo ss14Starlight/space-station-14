@@ -138,9 +138,11 @@
     - type: GameRule
       minPlayers: 20
     - type: BrighteyeRule
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Hideout.yml
-      mapTag: TheDark
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
     - type: AntagLoadProfileRule
       speciesHardOverride: Shadekin
       applyCharacterProfile: true
@@ -188,8 +190,27 @@
   id: TheDarkMap
   components:
     - type: StationEvent
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
+
+# Dark Maps
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkHideoutSpawn
+  components:
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+      mapTag: TheDark
+
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkGardenSpawn
+  components:
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/TheDark/Garden.yml
       mapTag: TheDark
 
 # Derelict Cyborgs
@@ -198,23 +219,23 @@
   parent: BaseGameRule
   id: DerelictPurrfusCyborgSpawn
   components:
-  - type: StationEvent
-    globalAnnouncement: false # Starlight
-    weight: 2.5
-    earliestStart: 15
-    reoccurrenceDelay: 20
-    minimumPlayers: 4
-    duration: null
-  - type: SpaceSpawnRule
-    spawnDistance: 0
-  - type: AntagSpawner
-    prototype: PlayerPurrfusBorgDerelictGhostRole
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
-      min: 1
-      max: 1
-      pickPlayer: false
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 2.5
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 4
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerPurrfusBorgDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
+          min: 1
+          max: 1
+          pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
@@ -309,16 +330,16 @@
   parent: BaseGameRule
   id: SyndicateDeadDrop
   components:
-  - type: StationEvent
-    startAnnouncement: station-syndicate-dead-drop-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 15
-    duration: 1
-    minimumPlayers: 10
-    maxOccurrences: 2
-    weight: 10
-  - type: RandomSpawnRule
-    prototype: SyndieDeadDropSpawner
-    radioMessage: {channel: Syndicate, message: "syndicate-dead-drop-announcement"}
-
+    - type: StationEvent
+      startAnnouncement: station-syndicate-dead-drop-announcement
+      startAudio:
+        path: /Audio/Announcements/attention.ogg
+      earliestStart: 15
+      duration: 1
+      minimumPlayers: 10
+      maxOccurrences: 2
+      weight: 10
+    - type: RandomSpawnRule
+      prototype: SyndieDeadDropSpawner
+      radioMessage:
+        { channel: Syndicate, message: "syndicate-dead-drop-announcement" }
