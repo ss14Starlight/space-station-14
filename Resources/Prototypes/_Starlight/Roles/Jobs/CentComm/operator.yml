@@ -24,19 +24,13 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorBlack
     id: CentCommOperatorPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
     back:
     - RubberStampCentcom
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentcomOperatorGear
-  id: AdminCentcomOperatorGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Domestic Division CDD
 - type: startingGear
@@ -48,19 +42,13 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorBlack
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
     back:
     - RubberStampCRD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralDomesticDivisionGear
-  id: AdminCentralDomesticDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Administration Division CAD
 - type: startingGear
@@ -72,7 +60,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesHop
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: BoxFolderHoPClipboard
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -80,12 +68,6 @@
     back:
     - RubberStampCAD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralAdministrationDivisionGear
-  id: AdminCentralAdministrationDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Cargo Division CCD
 - type: startingGear
@@ -97,19 +79,13 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorBlack
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
     back:
     - RubberStampCCD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralCargoDivisionGear
-  id: AdminCentralCargoDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Engineering Division CED
 - type: startingGear
@@ -122,7 +98,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorYellow
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: ClothingBeltChiefEngineerFilled
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -130,12 +106,6 @@
     back:
     - RubberStampCED
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralEngineeringDivisionGear
-  id: AdminCentralEngineeringDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Intelligence Division CID
 - type: startingGear
@@ -147,19 +117,13 @@
     gloves: ClothingHandsGlovesColorBlack
     eyes: ClothingEyesGlassesCentComm
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
     back:
     - RubberStampCID
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralIntelligenceDivisionGear
-  id: AdminCentralIntelligenceDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Medical Division CMD
 - type: startingGear
@@ -171,19 +135,13 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesNitrile
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
     back:
     - RubberStampCMD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralMedicalDivisionGear
-  id: AdminCentralMedicalDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Research Division CRD
 - type: startingGear
@@ -196,19 +154,13 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorPurple
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
     back:
     - RubberStampCRD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralResearchDivisionGear
-  id: AdminCentralResearchDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Security Division CSD
 - type: startingGear
@@ -221,7 +173,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCentcommCarapace
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: CentcommVibrobladeSheathFilled
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -229,12 +181,6 @@
     back:
     - RubberStampCSD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralSecurityDivisionGear
-  id: AdminCentralSecurityDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
 
 # Central Special Operations Division CSOD
 - type: startingGear
@@ -247,7 +193,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCentcommCarapace
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: CentcommVibrobladeSheathFilled
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -255,9 +201,3 @@
     back:
     - RubberStampCSOD
     - MindShieldImplanter
-
-- type: startingGear
-  parent: CentralSpecialOperationsDivisionGear
-  id: AdminCentralSpecialOperationsDivisionGear
-  equipment:
-    ears: ClothingHeadsetAltAdminCentCom
