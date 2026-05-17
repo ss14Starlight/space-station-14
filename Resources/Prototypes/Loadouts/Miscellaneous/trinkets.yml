@@ -470,8 +470,8 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-      !type:RoleTimeRequirement
-      role: JobLawyer
+      !type:DepartmentTimeRequirement # Starlight
+      department: Law # Starlight
       time: 100h
   storage:
     back:
