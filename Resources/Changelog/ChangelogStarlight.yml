@@ -1,32 +1,4 @@
 Entries:
-- author: Cujo
-  changes:
-  - message: (Lagan) Staff bedroom cameras now use the proper command camera prototype.
-    type: Fix
-  id: 404630
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) HoS has separate hardsuit and normal lockers now.
-    type: Fix
-  id: 404631
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Any distro/waste pipes underlying a booze/soda dispenser have been fixed.
-    type: Fix
-  id: 404632
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
-- author: Cujo
-  changes:
-  - message: (Lagan) Many, many pipes and vents and scrubbers re-wired and fixed up for readability.
-    type: Fix
-  id: 404633
-  time: '2026-04-26T07:03:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4235
 - author: bynddark8
   changes:
   - message: (Box, Boxcars, Cluster, Cork, Elkridge, Fland, Hotel, Kiloton, Leth, Ming, Orwell, Packed, Plasma, Prism, Sepultum, Silica, SpaceMall, Serpentcrest) Removes the Chemmaster, Chem dispenser, and all chemistry related paraphernalia.
@@ -2799,4 +2771,32 @@ Entries:
   id: 405029
   time: '2026-05-16T14:12:44.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4460
+- author: DocMoth
+  changes:
+  - message: Added Bunny Gang Outfit to fashion vend.
+    type: Add
+  id: 405030
+  time: '2026-05-16T15:25:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4451
+- author: Caws
+  changes:
+  - message: Revolutionaries will now win as intended if all living members of Command abandon the station (e.g. hiding in space, on a shuttle, on the ATS, etc.).
+    type: Fix
+  id: 405031
+  time: '2026-05-16T15:44:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4456
+- author: CrazyPhantom
+  changes:
+  - message: VGroid will now spawn with ore again.
+    type: Fix
+  id: 405032
+  time: '2026-05-16T21:12:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4449
+- author: CrazyPhantom
+  changes:
+  - message: Grids should no longer be embedded inside VGroid.
+    type: Fix
+  id: 405033
+  time: '2026-05-16T21:12:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4449
 Order: -1
