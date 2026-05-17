@@ -34,6 +34,7 @@
     clothingVisuals:
       outerClothing:
       - state: equipped-OUTERCLOTHING
+  - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.35
   - type: Armor
