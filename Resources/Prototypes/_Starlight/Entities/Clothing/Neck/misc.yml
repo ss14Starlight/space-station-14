@@ -84,3 +84,15 @@
     sprite: _Starlight/Clothing/Neck/Misc/tsf_badge.rsi
   - type: Item
     size: Tiny
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckBunnyGang
+  name: Bunny Gang Scarf
+  description: The scarf of a secretive group of bunny mercenaries.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Neck/Misc/bunnygang.rsi
+      state: icon
+    - type: Clothing
+      sprite: _Starlight/Clothing/Neck/Misc/bunnygang.rsi

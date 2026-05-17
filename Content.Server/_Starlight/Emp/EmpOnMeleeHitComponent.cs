@@ -1,10 +1,12 @@
+using Content.Server.Emp;
+
 namespace Content.Server._Starlight.Emp;
 
 /// <summary>
 /// Upon hitting an object will EMP area around it.
 /// </summary>
 [RegisterComponent]
-[Access(typeof(Content.Server.Emp.EmpSystem))]
+[Access(typeof(EmpSystem))]
 public sealed partial class EmpOnMeleeHitComponent : Component
 {
     [DataField]
@@ -33,6 +35,4 @@ public sealed partial class EmpOnMeleeHitComponent : Component
     /// </summary>
     [DataField]
     public bool DisableOnHit = true;
-
-
 }
