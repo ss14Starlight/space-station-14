@@ -1,5 +1,6 @@
 # Event Tables
 
+#Slowrod
 - type: entity
   id: ImmovableRodSlugSpawn
   parent: BaseGameRule
