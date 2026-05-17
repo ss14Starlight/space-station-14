@@ -9,13 +9,13 @@ namespace Content.Server._Starlight.Administration.Systems.Commands;
 [ToolshedCommand(Name="ccomp"), AdminCommand(AdminFlags.Fun)]
 public sealed class ClientCompCommand : ToolshedCommand
 {
-    private static readonly string AddedPrefix = "Attempted to add component with the name";
-    private static readonly string AddedSuffix = "to the entity all clients.";
-    private static readonly string WritePrefix = "Attempted to vvwrite";
-    private static readonly string WriteInfix = "into";
-    private static readonly string WriteSuffix = "on all clients.";
-    private static readonly string RemovePrefix = "Attempted to remove";
-    private static readonly string RemoveSuffix = "from the entity on all clients.";
+    private static readonly string _addedPrefix = "Attempted to add component with the name";
+    private static readonly string _addedSuffix = "to the entity on all clients.";
+    private static readonly string _writePrefix = "Attempted to vvwrite";
+    private static readonly string _writeInfix = "into";
+    private static readonly string _writeSuffix = "on all clients.";
+    private static readonly string _removePrefix = "Attempted to remove";
+    private static readonly string _removeSuffix = "from the entity on all clients.";
 
     [CommandImplementation("ensure")]
     public EntityUid Ensure(IInvocationContext ctx, [PipedArgument] EntityUid uid, string compName)
@@ -25,7 +25,7 @@ public sealed class ClientCompCommand : ToolshedCommand
         comp.EnsuredComponents.Add(name);
         comp.RemovedComponents.Remove(name);
         EntityManager.Dirty(uid, comp);
-        ctx.WriteLine($"{AddedPrefix} {name} {AddedSuffix}");
+        ctx.WriteLine($"{_addedPrefix} {name} {_addedSuffix}");
         return uid;
     }
 
@@ -36,7 +36,7 @@ public sealed class ClientCompCommand : ToolshedCommand
         if (!path.StartsWith('/')) path = $"/{path}";
         comp.ViewVariablesWrites[path] = value;
         EntityManager.Dirty(uid, comp);
-        ctx.WriteLine($"{WritePrefix} {value} {WriteInfix} {path} {WriteSuffix}");
+        ctx.WriteLine($"{_writePrefix} {value} {_writeInfix} {path} {_writeSuffix}");
         return uid;
     }
 
@@ -58,7 +58,7 @@ public sealed class ClientCompCommand : ToolshedCommand
                  select vvwrite)
             comp.ViewVariablesWrites.Remove(vvwrite.Key);
         EntityManager.Dirty(uid, comp);
-        ctx.WriteLine($"{RemovePrefix} {name} {RemoveSuffix}");
+        ctx.WriteLine($"{_removePrefix} {name} {_removeSuffix}");
         return uid;
     }
 

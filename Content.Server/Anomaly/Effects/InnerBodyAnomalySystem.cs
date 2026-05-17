@@ -97,7 +97,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         ent.Comp.Injected = true;
 
-        AddComponents(ent, injectedAnom.Components); // Far Horizons
+        ProcessComponents(ent, injectedAnom.Components, true); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -216,7 +216,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             return;
 
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            RemoveComponents(ent, injectedAnom.Components); // Far Horizons
+            ProcessComponents(ent, injectedAnom.Components, false); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
@@ -244,27 +244,31 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         RemCompDeferred<AnomalyComponent>(ent);
     }
 
-    // FH - Start
-    private void AddComponents(EntityUid target, ComponentRegistry components)
+    #region Starlight
+    private void ProcessComponents(
+        EntityUid target,
+        ComponentRegistry components,
+        bool add)
     {
         foreach (var comp in components)
         {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
-                _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
-            else
+            if (add)
                 EntityManager.AddComponent(target, comp.Value);
-        }
-    }
 
-    private void RemoveComponents(EntityUid target, ComponentRegistry components)
-    {
-        foreach (var comp in components)
-        {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
-                _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
-            else
+            if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
+                TryComp<ActionGrantComponent>(target, out var oldComp))
+            {
+                if (add)
+                    _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+                else
+                    _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
+
+                continue;
+            }
+
+            if (!add && HasComp(target, comp.Value.Component.GetType()))
                 EntityManager.RemoveComponent(target, comp.Value.Component);
         }
     }
-    // FH - End
+    #endregion
 }

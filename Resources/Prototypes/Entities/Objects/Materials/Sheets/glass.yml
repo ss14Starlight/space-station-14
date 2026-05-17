@@ -5,6 +5,14 @@
   name: glass
   description: A sheet of glass, used often on the station in various applications.
   components:
+    #Starlight start
+    - type: UserInterface
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
+        enum.QuickConstructionUiKey.Key:
+          type: QuickConstructionBoundUserInterface
+    # Starlight end
     - type: Sprite
       sprite: Objects/Materials/Sheets/glass.rsi
     - type: Item

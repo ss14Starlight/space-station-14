@@ -11,7 +11,7 @@
         type: StackCustomSplitBoundUserInterface
       enum.QuickConstructionUiKey.Key:
         type: QuickConstructionBoundUserInterface
-    # Starlight end
+  # Starlight end
   - type: Sprite
     sprite: Objects/Materials/Sheets/metal.rsi
   - type: Item

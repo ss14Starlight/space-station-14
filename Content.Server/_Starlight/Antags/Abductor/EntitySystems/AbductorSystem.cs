@@ -4,7 +4,7 @@ using Robust.Server.GameObjects;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
