@@ -37,7 +37,7 @@
   parent: BaseConspiratorObjective
   id: ConspiratorTechnologyObjective
   name: Seize all station technology
-  description: Show the crew the merits of a simpler life. Because only you deserve the wonders of technology.
+  description: Show the crew the merits of a simpler life. People have become too materialistic.
   components:
   - type: Objective
     icon:
@@ -76,3 +76,14 @@
     icon:
       sprite: Mobs/Silicon/station_ai.rsi
       state: ai_camera
+
+- type: entity
+  parent: BaseConspiratorObjective
+  id: ConspiratorSignalObjective
+  name: Build a shrine to the signal
+  description: There is a divine signal you and your group heard, which resonated deep inside of you. While you don't know where it came from, or what it means you recognize its importance. You must dedicate a shrine to it, so they know you're listening. It should allow you to rebroadcast and amplify the signal.
+  components:
+    - type: Objective
+      icon:
+        sprite: Mobs/Silicon/station_ai.rsi
+        state: ai_camera
