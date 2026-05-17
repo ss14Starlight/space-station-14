@@ -728,7 +728,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         if (!TryComp(uid, out PhysicsComponent? physics))
             return;
-    
+
         _physics.WakeBody(uid, body: physics);
     }
     // Starlight End
