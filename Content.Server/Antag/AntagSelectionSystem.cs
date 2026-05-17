@@ -728,14 +728,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         if (!TryComp(uid, out PhysicsComponent? physics))
             return;
-
+    
         _physics.WakeBody(uid, body: physics);
-
-        if (!physics.CanCollide || !TryComp(uid, out FixturesComponent? fixtures))
-            return;
-
-        _physics.SetCanCollide(uid, false, manager: fixtures, body: physics);
-        _physics.SetCanCollide(uid, true, manager: fixtures, body: physics);
     }
     // Starlight End
 }
