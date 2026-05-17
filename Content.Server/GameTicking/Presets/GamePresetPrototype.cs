@@ -51,7 +51,7 @@ namespace Content.Server.GameTicking.Presets
         /// Now this preset can be voted for again.
         /// </summary>
         [DataField]
-        public int VoteCooldown = 2; // How many rounds before this preset can be voted for again.
+        public int VoteCooldown = 1; // How many rounds before this preset can be voted for again.
         //starlight end
     }
 }
