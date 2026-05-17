@@ -1,32 +1,4 @@
 Entries:
-- author: bynddark8
-  changes:
-  - message: (Box, Boxcars, Cluster, Cork, Elkridge, Fland, Hotel, Kiloton, Leth, Ming, Orwell, Packed, Plasma, Prism, Sepultum, Silica, SpaceMall, Serpentcrest) Removes the Chemmaster, Chem dispenser, and all chemistry related paraphernalia.
-    type: Remove
-  id: 404634
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
-- author: bynddark8
-  changes:
-  - message: (Box, Boxcars, Cluster, Cork, Elkridge, Fland, Hotel, Kiloton, Leth, Ming, Orwell, Packed, Plasma, Prism, Sepultum, Silica, SpaceMall, Serpentcrest) Adds the NanoMed Security alongside an assortment of topicals and medical treatment kits to brig medic bays.
-    type: Add
-  id: 404635
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
-- author: bynddark8
-  changes:
-  - message: (Cluster, Hotel, Ming, Orwell, Prism) Replaces standard security airlocks with new brig medic airlock sprites/accesses.
-    type: Tweak
-  id: 404636
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
-- author: bynddark8
-  changes:
-  - message: (Elkridge) Fixed an unanchored air scrubber in brigmed.
-    type: Fix
-  id: 404637
-  time: '2026-04-26T07:03:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4241
 - author: NULLLINK TEAM
   changes:
   - message: Added cross-project or/and cross-server sync for any types of bans(role or server).
@@ -2799,4 +2771,32 @@ Entries:
   id: 405033
   time: '2026-05-16T21:12:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4449
+- author: Way
+  changes:
+  - message: '"Magistrates longcoat" is now an actual jacket instead of an entire jumpsuit, additionally it now has the benefits of a winter coat.'
+    type: Tweak
+  id: 405034
+  time: '2026-05-17T08:57:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4470
+- author: CrazyPhantom
+  changes:
+  - message: You can now actually use tools to Lock/Unlock Chameleon bags.
+    type: Fix
+  id: 405035
+  time: '2026-05-17T09:20:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4467
+- author: Caws
+  changes:
+  - message: SSD players will no longer be bluespaced into cryogenic sleep units that are off-station.
+    type: Fix
+  id: 405036
+  time: '2026-05-17T09:37:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4465
+- author: CrazyPhantom
+  changes:
+  - message: Fixed an issue where bullets would not hit the Mothership Core.
+    type: Fix
+  id: 405037
+  time: '2026-05-17T15:07:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4471
 Order: -1
