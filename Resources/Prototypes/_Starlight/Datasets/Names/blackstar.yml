@@ -1,10 +1,4 @@
 - type: localizedDataset
-  id: NamesBlackstarFirst
-  values:
-    prefix: names-blackstar-first-dataset-
-    count: 3
-
-- type: localizedDataset
   id: NamesBlackstarLast
   values:
     prefix: names-blackstar-last-dataset-

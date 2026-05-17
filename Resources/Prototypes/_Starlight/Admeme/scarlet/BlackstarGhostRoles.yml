@@ -290,7 +290,7 @@
   equipment:
     head: ClothingHeadHelmetBlackstar
     mask: ClothingMaskNeckGaiter
-    outerClothing: ClothingOuterHardsuitBlackstarLegionnaire
+    outerClothing: ClothingOuterHardsuitBlackstar
     jumpsuit: ClothingUniformJumpsuitColorBlack
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsJackFilled
