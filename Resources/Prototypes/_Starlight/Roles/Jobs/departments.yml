@@ -9,6 +9,7 @@
   - IAA
   - Lawyer
   editorHidden: true
+  primary: false
 
 - type: department
   id: Representatives
