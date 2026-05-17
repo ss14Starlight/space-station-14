@@ -29,6 +29,14 @@
   name: metal rod
   suffix: Full
   components:
+  #Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+      enum.QuickConstructionUiKey.Key:
+        type: QuickConstructionBoundUserInterface
+  # Starlight end
   - type: PhysicalComposition
     materialComposition:
       Steel: 50 #Half of a regular steel sheet to reflect the crafting recipe

@@ -110,7 +110,7 @@
   parent: BaseBorgChassisNotIonStormable
   id: BaseNTNCChassis
   name: NT-NC
-  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties.
+  description: A special chassis produced by NanoTrasen to aid Centcomm forces in their duties. # SL
   save: false
   abstract: true
   components:
@@ -185,7 +185,7 @@
   parent: BaseNTNCChassis
   id: NTNCBorgChassisHAW
   name: NT-NC H.A.W
-  description: A special chassis produced by Nanotrasen to aid Centcom forces in their duties. The H.A.W (Hazardous Assault Walker) features heavy armaments and a specialised access configurator designed to grant immediate entry.
+  description: A special chassis produced by NanoTrasen to aid Centcomm forces in their duties. The H.A.W (Hazardous Assault Walker) features heavy armaments and a specialised access configurator designed to grant immediate entry. # SL
   components:
   - type: TextToSpeech
   - type: Sprite

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites from https://github.com/SPLURT-Station/S.P.L.U.R.T-Station-13/blob/HEAD/icons/turf/decals.dmi, edited by Conflee",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "steel_rim_bend_ne"
+    },
+    {
+      "name": "steel_rim_bend_nw"
+    },
+    {
+      "name": "steel_rim_bend_se"
+    },
+    {
+      "name": "steel_rim_bend_sw"
+    },
+    {
+      "name": "steel_rim_corner_ne"
+    },
+    {
+      "name": "steel_rim_corner_nw"
+    },
+    {
+      "name": "steel_rim_corner_se"
+    },
+    {
+      "name": "steel_rim_corner_sw"
+    },
+    {
+      "name": "steel_rim_east"
+    },
+    {
+      "name": "steel_rim_north"
+    },
+    {
+      "name": "steel_rim_south"
+    },
+    {
+      "name": "steel_rim_west"
+    },
+    {
+      "name": "steel_step_east"
+    },
+    {
+      "name": "steel_step_north"
+    },
+    {
+      "name": "steel_step_south"
+    },
+    {
+      "name": "steel_step_west"
+    }
+  ]
+}

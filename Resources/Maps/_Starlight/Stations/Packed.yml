@@ -79858,7 +79858,7 @@ entities:
         Hopefully this guide is enough to get you started. Please ask your nearest NanoTrasen representative if you require further assistance.
 
 
-        [head=1][color=darkblue]Glory to Nanotrasen!
+        [head=1][color=darkblue]Glory to NanoTrasen!
   - uid: 11803
     components:
     - type: Transform
@@ -82368,7 +82368,6 @@ entities:
       parent: 2
     - type: ApcPowerReceiver
       powerLoad: 0
-    - type: Timer
   - uid: 12131
     components:
     - type: Transform

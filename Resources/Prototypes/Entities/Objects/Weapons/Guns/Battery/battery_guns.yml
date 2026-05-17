@@ -299,7 +299,7 @@
   name: laser carbine
   parent: [BaseLaserRifle, BaseGunWieldable, BaseSecurityContraband]
   id: WeaponLaserCarbine
-  description: Favoured by Nanotrasen Security for being cheap and easy to use.
+  description: Favoured by NanoTrasen Security for being cheap and easy to use. # SL
 
 - type: entity
   name: practice laser carbine

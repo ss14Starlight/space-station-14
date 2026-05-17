@@ -518,6 +518,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable #Starlight
+    - WhitelistChameleon
 
 #Captain's Hardsuit
 - type: entity
@@ -694,6 +698,10 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: Tag
+    tags:
+    - CorgiWearable #Starlight
+    - WhitelistChameleon
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -1259,3 +1267,10 @@
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
   - type: Unremoveable
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Blunt: 0.9 # It's pretty thick, and should give *something* so you have a reason to use it over a hardsuit.
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.85 # Starlight end
