@@ -1,11 +1,6 @@
 ﻿using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Item.ItemToggle.Components;
-#region Starlight
-using Content.Shared.Inventory;
-using Content.Shared.Actions;
-using Robust.Shared.Prototypes;
-#endregion
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
