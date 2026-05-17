@@ -741,7 +741,7 @@
 
 #Thanatos Helmet (Starlight version of Deathsquad)
 - type: entity
-  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase ]
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ]
   id: ClothingHeadHelmetHardsuitThanatos
   name: Thanatos helmet
   description: A robust helmet for special operations.
