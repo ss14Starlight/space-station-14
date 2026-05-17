@@ -317,7 +317,6 @@
     - type: IdentityBlocker
       coverage: EYES
 
-
 # Fashion
 - type: entity
   parent: [ClothingEyesBase, BaseToggleClothing]
