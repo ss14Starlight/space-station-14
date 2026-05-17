@@ -7,7 +7,7 @@ using Robust.Server.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
 
-namespace Content.Server.Starlight.GameTicking;
+namespace Content.Server._Starlight.GameTicking;
 
 public sealed class RoundEndVoteSystem : EntitySystem
 {

@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Content.Shared.Starlight.CCVar;

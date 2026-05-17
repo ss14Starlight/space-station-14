@@ -105,8 +105,9 @@
         Grand Theft (3)
       </Box>
     </ColorBox>
-    <ColorBox>
+    <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Corporate Disturbance (3)
       </Box>
     </ColorBox>
     <ColorBox>
@@ -770,6 +771,16 @@
     </ColorBox>
     <ColorBox Color="#2e422e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+        Corporate Disturbance
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
+      	Causing notable losses, damages, or disruption to other corporations. As Central Command and NanoTrasen would be liable for these actions, they are treated severely. This includes theft of equipment or shuttles belonging to outside corporations, and the Automated Trade Station.
+      </Box>
+    </ColorBox>
+    <ColorBox Color="#2e422e">
+      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
        Mass Destruction
       </Box>
     </ColorBox>
@@ -815,7 +826,7 @@
     </ColorBox>
     <ColorBox Color="#475c7d">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the Station and Nanotrasen.
+        To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the Station and NanoTrasen.
       </Box>
     </ColorBox>
     <ColorBox>
