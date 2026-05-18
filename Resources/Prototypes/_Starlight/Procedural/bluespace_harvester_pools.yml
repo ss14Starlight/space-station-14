@@ -191,7 +191,7 @@
 - type: bluespaceHarvesterPool
   id: BluespaceHarvesterExperimentalTool
   name: bluespace-harvester-pool-experimental-tool
-  cost: 5000
+  cost: 14000
   enabled: true
   order: 6
   lootTable: BluespaceHarvesterExperimentalToolTable
