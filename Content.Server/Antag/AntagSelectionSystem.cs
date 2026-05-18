@@ -36,16 +36,14 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Components;
 using Content.Server.Bible.Components;
-using Content.Server.GameTicking.Rules.Components;
-using Content.Shared.Body.Components;
 using Content.Shared.Tag;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Prometheus;
-using Content.Server._Starlight.Medical.Body.Systems;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics;
 // Starlight End
 
 namespace Content.Server.Antag;
@@ -79,10 +77,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly ArrivalsSystem _arrivals = default!;
 
 #region Starlight
-    [Dependency] private readonly BodySystem _body = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _appearance = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 #endregion Starlight
 
     // arbitrary random number to give late joining some mild interest.
@@ -481,6 +479,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             var playerXform = Transform(player);
             var pos = RobustRandom.Pick(getPosEv.Coordinates);
             _transform.SetMapCoordinates((player, playerXform), pos);
+
+            RefreshSpawnedAntagPhysics(player); // Starlight
         }
 
         // If we want to just do a ghost role spawner, set up data here and then return early.
@@ -722,6 +722,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         args.Minds = ent.Comp.AssignedMinds;
         args.AgentName = Loc.GetString(name);
     }
+
+    // Starlight Start: Refresh physics after antag spawn relocation.
+    private void RefreshSpawnedAntagPhysics(EntityUid uid)
+    {
+        if (!TryComp(uid, out PhysicsComponent? physics))
+            return;
+
+        _physics.WakeBody(uid, body: physics);
+    }
+    // Starlight End
 }
 
 /// <summary>
