@@ -233,7 +233,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             target,
             addressRange,
             hwid,
-            DateTimeOffset.Now,
+            banDef.BanTime,
             expires,
             roundId,
             playtime,
