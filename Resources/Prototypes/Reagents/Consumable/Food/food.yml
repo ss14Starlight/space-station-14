@@ -7,7 +7,7 @@
   physicalDesc: reagent-physical-desc-opaque
   flavor: nutriment
   color: "#24591F"
-  # Starlight edit start - Make food 50% less effective for dwarves
+  # Starlight edit start - Make food 50% less effective for dwarfs
   metabolisms:
     Food:
       effects:
@@ -50,7 +50,7 @@
       # Helps you stop bleeding to an extent.
       - !type:ModifyBleed
         amount: -0.25
-      # Starlight edit start - Make food 50% less effective for dwarves
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.75
         conditions:
@@ -89,7 +89,7 @@
             Brute: -0.4
       - !type:ModifyBloodLevel
         amount: 1 # weaker than iron but pretty good all things considered
-      # Starlight edit start - Make food 50% less effective for dwarves
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.75
         conditions:
@@ -116,7 +116,7 @@
   metabolisms:
     Food:
       effects:
-      # Starlight edit start - Make food 50% less effective for dwarves
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.5
         conditions:
