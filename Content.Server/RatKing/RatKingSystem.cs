@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Starlight.Achievement; // Starlight: Achievements
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.NPC;
@@ -21,6 +22,9 @@ namespace Content.Server.RatKing
     /// <inheritdoc/>
     public sealed class RatKingSystem : SharedRatKingSystem
     {
+        private const int RodentiaRexServantThreshold = 30; // Starlight: Achievements
+
+        [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
         [Dependency] private readonly AtmosphereSystem _atmos = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly HTNSystem _htn = default!;
@@ -71,6 +75,10 @@ namespace Content.Server.RatKing
             Dirty(servant, comp);
 
             component.Servants.Add(servant);
+            // Starlight start: Achievements
+            if (component.Servants.Count >= RodentiaRexServantThreshold)
+                _achievements.QueueUnlockAchievement(uid, "rodentia_rex");
+            // Starlight end: Achievements
             _npc.SetBlackboard(servant, NPCBlackboard.FollowTarget, new EntityCoordinates(uid, Vector2.Zero));
             UpdateServantNpc(servant, component.CurrentOrder);
         }

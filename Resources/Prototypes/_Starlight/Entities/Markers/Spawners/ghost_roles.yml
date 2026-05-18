@@ -120,3 +120,15 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictBorgi
+  id: SpawnPointGhostXenoBorgiDerelict
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-borgi-xenoborg-name
+      description: ghostrole-information-derelict-borgi-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default

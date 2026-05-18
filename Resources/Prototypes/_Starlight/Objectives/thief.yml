@@ -320,3 +320,7 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
+  - type: ObjectiveBlacklistRequirement
+    blacklist:
+      components: # So you can't get this and the normal Escape objective at the same time.
+      - EscapeShuttleCondition

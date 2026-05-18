@@ -58,8 +58,6 @@ public sealed class DigitalLockSystem : EntitySystem
             _ambient.SetAmbience(uid, true);
             args.Handled = _electrocution.TryDoElectrocution(args.User, uid, 5, TimeSpan.FromSeconds(2), true) || _tool.UseTool(args.Used, args.User, uid, 4f * codeLength, component.ResetQuality, new DigitalLockResetDoAfterEvent());
         }
-
-        args.Handled = false;
     }
 
     /// <summary>
