@@ -62,31 +62,13 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly LightGridSystem _lightGrid = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
     private static readonly ProtoId<TagPrototype> _damagedCoreTag = "DamagedShadekinCore";
     private TimeSpan _nextUpdate = TimeSpan.Zero;
-    private TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
-
-    private sealed class LightCone
-    {
-        public float Direction { get; set; }
-        public float InnerWidth { get; set; }
-        public float OuterWidth { get; set; }
-    }
-    private readonly Dictionary<string, List<LightCone>> lightMasks = new()
-    {
-        ["/Textures/Effects/LightMasks/cone.png"] = new List<LightCone>
-    {
-        new LightCone { Direction = 0, InnerWidth = 30, OuterWidth = 60 }
-    },
-        ["/Textures/Effects/LightMasks/double_cone.png"] = new List<LightCone>
-    {
-        new LightCone { Direction = 0, InnerWidth = 30, OuterWidth = 60 },
-        new LightCone { Direction = 180, InnerWidth = 30, OuterWidth = 60 }
-    }
-    };
+    private readonly TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
     public override void Initialize()
     {
@@ -141,99 +123,6 @@ public sealed partial class ShadekinSystem : EntitySystem
     public void UpdateAlert(EntityUid uid, ShadekinComponent component, short state)
     {
         _alerts.ShowAlert(uid, component.ShadekinAlert, state);
-    }
-
-    private Angle GetAngle(EntityUid lightUid, SharedPointLightComponent lightComp, EntityUid targetUid)
-    {
-        var (lightPos, lightRot) = _transform.GetWorldPositionRotation(lightUid);
-        lightPos += lightRot.RotateVec(lightComp.Offset);
-
-        var (targetPos, targetRot) = _transform.GetWorldPositionRotation(targetUid);
-
-        var mapDiff = targetPos - lightPos;
-
-        var oppositeMapDiff = (-lightRot).RotateVec(mapDiff);
-        var angle = oppositeMapDiff.ToWorldAngle();
-
-        if (angle == double.NaN && _transform.ContainsEntity(targetUid, lightUid) || _transform.ContainsEntity(lightUid, targetUid))
-        {
-            angle = 0f;
-        }
-
-        return angle;
-    }
-
-    /// <summary>
-    /// Return an illumination float value with is how many "energy" of light is hitting our ent.
-    /// WARNING: This function might be expensive, Avoid calling it too much and CACHE THE RESULT!
-    /// </summary>
-    /// <param name="uid"></param>
-    /// <returns></returns>
-    public float GetLightExposure(EntityUid uid)
-    {
-        var illumination = 0f;
-
-        var shadeQuery = _lookup.GetEntitiesInRange<ShadegenComponent>(Transform(uid).Coordinates, 10); // Why 10 when theres different ranges? because light check does not go above 20.
-
-        foreach (var shadegen in shadeQuery)
-            if (_transform.InRange(Transform(uid).Coordinates, Transform(shadegen.Owner).Coordinates, shadegen.Comp.Range))
-                return illumination;
-
-        var lightQuery = _lookup.GetEntitiesInRange<PointLightComponent>(Transform(uid).Coordinates, 10, LookupFlags.All | LookupFlags.Approximate);
-
-        foreach (var light in lightQuery)
-        {
-            if (HasComp<DarkLightComponent>(light.Owner) || HasComp<ShadegenAffectedComponent>(light.Owner))
-                continue;
-
-            if (!light.Comp.Enabled
-                || light.Comp.Radius < 1
-                || light.Comp.Energy <= 0)
-                continue;
-
-            // Check if our entity is in a container with OccludesLight, if yes, is it the same as the light?
-            if (_container.TryGetContainingContainer(uid, out var uidcontainer) && uidcontainer.OccludesLight && !_container.IsInSameOrNoContainer(uid, light.Owner))
-                continue;
-
-            // Same as above but this time we check the light entity instead of our entity.
-            if (_container.TryGetContainingContainer(light.Owner, out var lightcontainer) && lightcontainer.OccludesLight && !_container.IsInSameOrNoContainer(uid, light.Owner))
-                continue;
-
-            if (!_examine.InRangeUnOccluded(light, uid, light.Comp.Radius, null))
-                continue;
-
-            Transform(uid).Coordinates.TryDistance(EntityManager, Transform(light).Coordinates, out var dist);
-
-            var denom = dist / light.Comp.Radius;
-            var attenuation = 1 - (denom * denom);
-            var calculatedLight = 0f;
-
-            if (light.Comp.MaskPath is not null)
-            {
-                var angleToTarget = GetAngle(light, light.Comp, uid);
-                foreach (var cone in lightMasks[light.Comp.MaskPath])
-                {
-                    var coneLight = 0f;
-                    var angleAttenuation = (float)Math.Min((float)Math.Max(cone.OuterWidth - angleToTarget, 0f), cone.InnerWidth) / cone.OuterWidth;
-
-                    if (angleToTarget.Degrees - cone.Direction > cone.OuterWidth)
-                        continue;
-                    else if (angleToTarget.Degrees - cone.Direction > cone.InnerWidth
-                        && angleToTarget.Degrees - cone.Direction < cone.OuterWidth)
-                        coneLight = light.Comp.Energy * attenuation * attenuation * angleAttenuation;
-                    else
-                        coneLight = light.Comp.Energy * attenuation * attenuation;
-
-                    calculatedLight = Math.Max(calculatedLight, coneLight);
-                }
-            }
-            else
-                calculatedLight = light.Comp.Energy * attenuation * attenuation;
-
-            illumination += calculatedLight; //Math.Max(illumination, calculatedLight);
-        }
-
-        return illumination;
     }
 
     private void SetPassiveBuff(EntityUid uid, ShadekinState shadekinState)
@@ -369,7 +258,7 @@ public sealed partial class ShadekinSystem : EntitySystem
                 // I had a brain moment, apprently if one is false its does not check for the other?
             }
             else
-                lightExposure = GetLightExposure(uid);
+                lightExposure = _lightGrid.GetFullExposure(uid);
 
             CheckThresholds(uid, component, lightExposure);
 

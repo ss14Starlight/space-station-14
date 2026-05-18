@@ -7,8 +7,6 @@ using Content.Shared._Starlight.Language.Systems;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
-using Robust.Shared.Toolshed.Syntax;
-using Robust.Shared.Toolshed.TypeParsers;
 using System.Linq;
 using HandheldTranslatorComponent = Content.Shared._Starlight.Language.Components.HandheldTranslatorComponent;
 

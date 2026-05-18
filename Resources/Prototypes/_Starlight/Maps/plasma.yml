@@ -60,9 +60,9 @@
             Brigmedic: [ 1, 1 ]
             Detective: [ 1, 2 ] #good cop, bad cop
             SecurityCadet: [ 4, 4 ] #intern, not counted
-            #supply (10 - 13)
+            #supply (12 - 15)
             SalvageLead: [ 1, 1 ]
-            SalvageSpecialist: [ 4, 4 ] #the salvagers yearn for the mines
+            SalvageSpecialist: [ 3, 3 ] #the salvagers yearn for the mines
             MiningSpecialist: [ 3, 3 ] #the miners... yearn for the mines...
             MailTech: [ 1, 2 ]
             CargoTechnician: [ 4, 6 ]

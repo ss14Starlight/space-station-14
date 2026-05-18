@@ -41,7 +41,7 @@ public sealed class AlertArmorySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<AlertArmoryStationComponent, StationPostInitEvent>(InitializeAlertArmoryStation);
-        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown); // Starlight
+        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLStartedEvent>(OnFTLStart);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLTagEvent>(SetShuttleTag);
@@ -112,7 +112,6 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void OnStartup(EntityUid uid, AlertArmoryShuttleComponent comp, ComponentStartup ev) => EnsureComp<PreventPilotComponent>(uid);
 
-    // Starlight Start
     /// <summary>
     /// remove armories if parent station is deleted
     /// </summary>
@@ -120,7 +119,6 @@ public sealed class AlertArmorySystem : EntitySystem
     {
         foreach (var grid in comp.Grids.Values) QueueDel(grid);
     }
-    // Starlight End
     private void OnFTLStart(Entity<AlertArmoryShuttleComponent> ent, ref FTLStartedEvent ev)
     {
         if (ev.FromMapUid != ent.Comp.ArmorySpaceUid) //if we are not coming from armory space. drop people. this allows including eg: ERT on a armory if you want.

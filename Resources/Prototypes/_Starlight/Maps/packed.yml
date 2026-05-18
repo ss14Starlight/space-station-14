@@ -56,10 +56,10 @@
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
-            SalvageSpecialist: [ 4, 4 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 2 ]
-            MiningSpecialist: [ 2, 3 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

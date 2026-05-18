@@ -74,6 +74,16 @@
       "name": "on-equipped-HELMET-avali",
       "directions": 4,
 	  "copyright": "DocMoth"
+    },
+    {
+      "name": "off-equipped-HELMET-dog",
+      "directions": 4,
+	  "copyright": "Swonkus"
+    },
+    {
+      "name": "on-equipped-HELMET-dog",
+      "directions": 4,
+	  "copyright": "Swonkus"
     }
   ]
 }

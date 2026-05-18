@@ -1,6 +1,9 @@
 alerts-cards-name = [color=lightblue]Challenge available[/color]
 alerts-cards-desc = You're [color=lightblue]facing a choice[/color]. Click the alert to see your available paths. If you close it, you won't see this again for the rest of the round.
-alerts-error-failed-to-spawn-ghost-role = Failed to spawn the requested ghost role. Sorry! :(
+alerts-doomed-name = Doomed
+alerts-doomed-desc = [color=red]Your days are numbered.[/color]
+alerts-souldebt-name = [color=purple]Soul Debt[/color]
+alerts-souldebt-desc = Your soul will be reclaimed upon your death, preventing your revival.
 alerts-cybernetic-disruption-name = [color=red]Cybernetics disrupted[/color]
 alerts-cybernetic-disruption-desc = You're [color=red]disrupted[/color]! Something is impairing your cybernetic implants.
 alerts-held-breath-name = [color=lightblue]Held breath[/color]
@@ -9,4 +12,4 @@ alerts-surge-name = [color=yellow]Stamina Surge[/color]
 alerts-surge-desc = You have increased stamina regeneration and resistance [color=red]at the cost of increased hunger drain[/color]
 alerts-zoomies-name = [color=lightblue]Zoomies!![/color]
 alerts-zoomies-desc = You have increased movement speed [color=red]at the cost of increased thirst drain[/color]
-
+alerts-error-failed-to-spawn-ghost-role = Failed to spawn the requested ghost role. Sorry! :(
