@@ -60,10 +60,10 @@
   weights:
     PowerCellMedium: 1
     PowerCellHigh: 0.75
-    PowerCellHyper: 0.35
-    PowerCellMicroreactor: 0.2
-    PowerCellSmallNuclear: 0.15
-    PowerCellAntiqueProto: 0.1
+    PowerCellHyper: 0.25
+    PowerCellMicroreactor: 0.1
+    PowerCellSmallNuclear: 0.1
+    PowerCellAntiqueProto: 0.03
 
 - type: weightedRandomEntity
   id: BluespaceHarvesterPlushieTable
