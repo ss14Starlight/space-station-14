@@ -48,10 +48,10 @@ ghost-role-information-decimus-name = Decimus Operative
 ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
 
 ghost-role-information-blackstar-operative-name = Blackstar Dreadwalker
-ghost-role-information-blackstar-operative-description = You are an elite operative of the Blackstar mercenary group, a Dreadwalker. Follow the High Legates orders. And carry out your contract by any means necessary.
+ghost-role-information-blackstar-operative-description = You are an elite operative of the Blackstar mercenary group, a Dreadwalker. Follow the High Legate's orders and carry out your contract by any means necessary.
 
 ghost-role-information-blackstar-legionnaire-name = Blackstar Legionnaire
-ghost-role-information-blackstar-legionnaire-description = You are a Legionnaire of the Blackstar mercenary group. Follow the Legates orders and complete your contract.
+ghost-role-information-blackstar-legionnaire-description = You are a Legionnaire of the Blackstar mercenary group. Follow the Legate's orders and complete your contract.
 
 ghost-role-information-blackstar-blackguard-name = Blackstar Blackguard
 ghost-role-information-blackstar-blackguard-description = You are a Blackguard, internal security of the Blackstar Legion. Maintain order and protect Blackstar assets.
