@@ -416,6 +416,11 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         {
             FlushTracker(session);
             AddTimeToTracker(session, tracker, time);
+            var currentTime = GetPlayTimeForTracker(session, tracker);
+            if (currentTime < TimeSpan.Zero)
+            {
+                AddTimeToTracker(session, tracker, -currentTime);
+            }
             QueueSendTimers(session);
 
             return GetPlayTimeForTracker(session, tracker);
