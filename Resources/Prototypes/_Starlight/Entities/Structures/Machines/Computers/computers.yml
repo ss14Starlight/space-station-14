@@ -62,6 +62,8 @@
       enum.EdgeConnectionVisuals.ConnectionMask:
         console:
           None: { state: console, sprite: _Starlight/Structures/Machines/abductor_console.rsi }
+  - type: EdgeConnection
+    connectionKey: other
   - type: ActivatableUI
     key: enum.AbductorConsoleUIKey.Key
   - type: UserInterface
@@ -116,6 +118,13 @@
     layers:
     - map: ["console"]
       state: console
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        console:
+          None: { state: console }
+  - type: EdgeConnection
+    connectionKey: other
   - type: RemoteEyeConsole
     remoteEntityProto: AbductorHumanObservationConsoleEye
     color: "#A04B81"
