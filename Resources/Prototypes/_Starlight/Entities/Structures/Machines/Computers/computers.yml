@@ -49,7 +49,7 @@
   parent: BaseComputer
   id: AbductorConsole
   name: abductor console
-  description: A computer that is used for spying on the station.
+  description: retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
   components:
   - type: AbductorConsole
   - type: Sprite
@@ -111,7 +111,7 @@
   parent: BaseComputer
   id: AbductorHumanObservationConsole
   name: human observation console
-  description: Use this to set teleporter destination or retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
+  description: A computer that is used for spying and teleporting on the station.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
