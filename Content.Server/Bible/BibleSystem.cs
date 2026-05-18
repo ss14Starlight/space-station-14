@@ -4,6 +4,9 @@ using Content.Server.Popups;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
+using Content.Shared.Clumsy; //Starlight
+using Content.Shared.Cluwne; //Starlight
+using Content.Server._Starlight.Bible; // Starlight
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
@@ -136,10 +139,22 @@ namespace Content.Server.Bible
             if (!TryComp(uid, out UseDelayComponent? useDelay) || _delay.IsDelayed((uid, useDelay)))
                 return;
 
-            if (args.Target == null || args.Target == args.User || !_mobStateSystem.IsAlive(args.Target.Value))
+            // starlight start
+            if (args.Target == null || args.Target == args.User)
             {
                 return;
             }
+
+            // for anyone thinking of rewriting this system...
+            // if it were up to me, instead of having other component specific code (unholy component, uncluwnification)
+            // in here, this would raise an event that is actually handled in the respective system, so everything stays modular
+            // however, rewriting random systems is beyond the scope of the pr this code was added in, so only devil is using this event
+            var thwackEv = new BibleThwackEvent(args.User);
+            RaiseLocalEvent(args.Target.Value, ref thwackEv);
+            if(thwackEv.Handled) return;
+
+            if(!_mobStateSystem.IsAlive(args.Target.Value)) return;
+            // starlight end
 
             if (!HasComp<BibleUserComponent>(args.User))
             {
@@ -152,7 +167,7 @@ namespace Content.Server.Bible
                 return;
             }
 
-            // Starlight start
+            // starlight start
             //Damage unholy creatures
             if (HasComp<UnholyComponent>(args.Target))
             {

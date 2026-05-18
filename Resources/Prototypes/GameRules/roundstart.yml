@@ -27,13 +27,13 @@
     - id: VampireLess # Starlight reworked
       prob: 0.25 # Starlight
     - id: SubWizard
-      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
-    - id: Xenoborgs
-      prob: 0.08 # Starlight
-    - id: Brighteye # Starlight
-      prob: 0.07
-    - id: SiliconLiberation #Starlight
-      prob: 0.2 #Starlight
+      prob: 0.05 # Starlight. We can go back down to 0.05, since they scale now.
+    - id: XenoborgsLP # Starlight, subgamemode replaced with XenoborgsLP
+      prob: 0.08 # Starlight start
+    - id: Brighteye
+      prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.2 #Starlight end
 
 - type: entity
   parent: BaseGameRule
@@ -42,17 +42,17 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.42 #SL 0.5 -> 0.4 to account for more subgamemodes existing
+      prob: 0.42 # Starlight start, 0.5 -> 0.4 to account for more subgamemodes existing
     - id: SLChangeling # StarlightLings
       prob: 0.25 #0.4 -> 0.25 to account for more subgamemodes existing now
-    - id: VampireLess # Starlight reworked
-      prob: 0.25 # Starlight
-    - id: Xenoborgs
-      prob: 0.08 # Starlight
-    - id: Brighteye # Starlight
-      prob: 0.07
-    - id: SiliconLiberation #Starlight
-      prob: 0.2 #Starlight
+    - id: VampireLess # Reworked
+      prob: 0.25
+    - id: XenoborgsLP # Starlight, subgamemode replaced with XenoborgsLP
+      prob: 0.08
+    - id: Brighteye
+      prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.2 #Starlight end
 
 - type: entity
   parent: BaseGameRule
@@ -63,13 +63,13 @@
     - id: Thief
       prob: 0.62 # Starlight. Its a tamer mode, high thief chance.
     - id: SLChangeling # Starlight Lings
-      prob: 0.15 # Starlight
+      prob: 0.25 # Starlight, Xenoborgs need a little bit of a distraction
     - id: VampireLess # Starlight reworked
-      prob: 0.15 # Starlight
+      prob: 0.25 # Starlight, Xenoborgs need a little bit of a distraction
     - id: SubWizard
-      prob: 0.08 # Starlight Space is dangerous, yo.
+      prob: 0.05 # Starlight Space is dangerous, yo.
     - id: Brighteye # Starlight
-      prob: 0.08
+      prob: 0.05
     - id: SiliconLiberation #Starlight
       prob: 0.2 #Starlight
 
@@ -80,15 +80,15 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.70 # Starlight. Most likely
-    - id: SLChangeling # Starlight Lings
-      prob: 0.15 # Starlight
-    - id: VampireLess # Starlight reworked
-      prob: 0.15 # Starlight
-    - id: Brighteye # Starlight
-      prob: 0.07
-    - id: SiliconLiberation #Starlight
-      prob: 0.2 #Starlight
+      prob: 0.70 # Starlight start. Most likely
+    - id: SLChangeling # Lings
+      prob: 0.15
+    - id: VampireLess # Reworked
+      prob: 0.15
+    - id: Brighteye
+      prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.2 #Starlight end
 
 - type: entity
   parent: BaseGameRule

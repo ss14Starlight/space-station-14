@@ -688,3 +688,14 @@
     - CorgiWearable
     - ClothMade
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBunnyGang
+  name: Bunny Gang Hat
+  description: The hat of a secretive group of bunny mercenaries.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/bunnygang.rsi

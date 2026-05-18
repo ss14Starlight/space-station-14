@@ -307,6 +307,7 @@ namespace Content.Server.Communications
             {
                 Text = message.Message,
                 Tts = message.Message,
+                OriginalText = message.Message,
                 Modifier = SpeechModifier.None
             };
             msg.Text = SharedChatSystem.SanitizeAnnouncement(message.Message, maxLength);

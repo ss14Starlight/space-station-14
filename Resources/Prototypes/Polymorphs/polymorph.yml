@@ -40,8 +40,8 @@
     duration: 120 #STARLIGHT
     inventory: None
     transferName: true
-    transferDamage: true
-    revertOnCrit: false
+    transferDamage: false # Starlight. If you're gonna show up in a nukie game, so be it.
+    revertOnCrit: true # Starlight. If you're gonna show up in a nukie game, so be it.
     revertOnDeath: true
     polymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
