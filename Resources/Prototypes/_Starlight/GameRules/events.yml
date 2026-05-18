@@ -380,7 +380,7 @@
     reoccurrenceDelay: 15
     duration: 1
   - type: IonStormRule
-  
+
 # Terror Spiders
 
 - type: entity
