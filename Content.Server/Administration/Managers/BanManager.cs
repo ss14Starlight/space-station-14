@@ -197,7 +197,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             banningAdmin,
             null);
 
-        await _db.AddServerBanAsync(banDef);
+        var id = await _db.AddServerBanAsync(banDef);
         if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules) && target != null)
             await _db.SetLastReadRules(target.Value, null); // Reset their last read rules. They probably need a refresher!
         var adminName = banningAdmin == null
@@ -228,13 +228,43 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _chat.SendAdminAlert(logMessage);
 
         // Starlight-start
-        var ban = await _db.GetServerBanAsync(addressRange?.Item1, target, hwid?.Hwid, null);
-        if (ban != null)
+        var ban = new ServerBanDef(
+            id,
+            target,
+            addressRange,
+            hwid,
+            DateTimeOffset.Now,
+            expires,
+            roundId,
+            playtime,
+            reason,
+            severity,
+            banningAdmin,
+            null);
+
+        if (ban.Id == null)
+            _sawmill.Error($"There's ban with id 0, this breaks webhook/ban sync logic.");
+
+        try
         {
             SendWebhook(await GenerateBanPayload(ban, minutes));
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"Failed to send ban webhook for ban {ban}: {e}");
+        }
 
-            if (_actor.TryGetServerGrain(out var serverGrain))
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            try
+            {
                 await serverGrain.AddOrUpdateBan(ban.ToNullLink());
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error($"Failed to propagate ban {ban} to network: {e}");
+                _chat.SendAdminAlert($"Ban {ban} saved to DB but NOT propagated to other servers. Manual resync needed.");
+            }
         }
         // Starlight-end
 
