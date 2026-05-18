@@ -1,53 +1,4 @@
 Entries:
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Changed the theatre room to use the new platforms.
-    type: Tweak
-  id: 404690
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Changed ai core to draw power from station and not be self sufficient.
-    type: Tweak
-  id: 404691
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Changed outside ai core by removing cameras and adding layer another of reinforced walls. (2->3).
-    type: Tweak
-  id: 404692
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed freezer in kitchen not being set to the correct tempature also made it activate at shift start.
-    type: Fix
-  id: 404693
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed a firelock that started closed at shift start.
-    type: Fix
-  id: 404694
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed dispo piping exit at disposals.
-    type: Fix
-  id: 404695
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed a gen pop window grille that could be broken by punching due to a bug.
-    type: Fix
-  id: 404696
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
 - author: Citrea
   changes:
   - message: Towels with colours exist again.
@@ -2799,4 +2750,53 @@ Entries:
   id: 405089
   time: '2026-05-17T17:01:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4391
+- author: Swonki
+  changes:
+  - message: Low Velocity Immovable Rod.
+    type: Add
+  id: 405090
+  time: '2026-05-17T17:32:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4464
+- author: StrangerOfParadiseOG
+  changes:
+  - message: Added recipes for diluted ammonia blood to be centrifuged and stirred.
+    type: Add
+  id: 405091
+  time: '2026-05-17T18:12:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4386
+- author: StrangerOfParadiseOG
+  changes:
+  - message: Fixed avali and resomi body parts giving the wrong types of blood when grinded.
+    type: Fix
+  id: 405092
+  time: '2026-05-17T18:12:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4386
+- author: StrangerOfParadiseOG
+  changes:
+  - message: Fixed avali being poisoned from ammonia gas.
+    type: Fix
+  id: 405093
+  time: '2026-05-17T18:12:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4386
+- author: Arkanic, sprites by DocMoth, design assistance by Vincolan
+  changes:
+  - message: Add the Devil antagonist, a solo, MRP-focused antagonist whose goal is to contractually buy the souls of crew through shady deals and swindles.
+    type: Add
+  id: 405094
+  time: '2026-05-18T04:33:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3860
+- author: Cringe_Cursed
+  changes:
+  - message: 'Added lightgrid system for gameplay-side light exposure checks (pros: perfomance, cons: brain death).'
+    type: Add
+  id: 405095
+  time: '2026-05-18T04:52:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3968
+- author: Cringe_Cursed
+  changes:
+  - message: Added light debug overlay.
+    type: Add
+  id: 405096
+  time: '2026-05-18T04:52:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3968
 Order: -1

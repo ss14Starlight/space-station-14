@@ -10,6 +10,17 @@
 
 - type: entity
   parent: BaseMindRoleAntag
+  id: MindRoleDevil
+  name: Devil Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: Devil
+    subtype: role-subtype-devil
+  - type: DevilRole
+
+- type: entity
+  parent: BaseMindRoleAntag
   id: MindRoleBrighteye
   name: Brighteye Role
   components:
