@@ -247,7 +247,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         try
         {
-            SendWebhook(await GenerateBanPayload(ban, minutes));
+            await SendWebhook(await GenerateBanPayload(ban, minutes));
         }
         catch (Exception e)
         {
@@ -490,7 +490,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         return true;
     }
 
-    public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
+    public async Task WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
     {
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -517,7 +517,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             null,
             "plug");
 
-        SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
+        await SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
     }
 
     public async Task<string> PardonRoleBan(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
@@ -693,7 +693,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Webhook
-    private async void SendWebhook(WebhookPayload payload)
+    private async Task SendWebhook(WebhookPayload payload)
     {
         if (_webhookUrl == string.Empty) return;
 
