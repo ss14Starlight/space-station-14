@@ -25,6 +25,5 @@ bluespace-harvester-pool-plushie = Unknown Collector Plushie
 bluespace-harvester-pool-experimental-tool = Unknown Experimental Tool
 bluespace-harvester-pool-power-cell = Unknown Power Cell
 bluespace-harvester-pool-artifact = Unknown artifact
-bluespace-harvester-pool-anomaly-core = Unknown Inert Anomaly Core
 bluespace-harvester-pool-rare-seeds = Unknown Rare Seeds
 bluespace-harvester-pool-circuit-board = Unknown Circuit Board
