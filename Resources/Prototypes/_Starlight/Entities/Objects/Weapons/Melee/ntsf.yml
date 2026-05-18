@@ -3,10 +3,9 @@
   parent: [BaseItem, BaseCentcommContraband]
   id: WeaponAdmemeX09Headsman
   description: They say the art of execution has evolved a lot over the years. For some people. Not for me.
-  suffix: ADMEME
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
+    sprite: _Starlight/Objects/Weapons/Melee/x09_headsman.rsi
     state: icon
   - type: Sharp
   - type: DisarmMalus
@@ -41,10 +40,10 @@
         Heat: 12.5
         Structural: 120
   - type: Item
-    sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
+    sprite: _Starlight/Objects/Weapons/Melee/x09_headsman.rsi
     size: Ginormous
   - type: Clothing
-    sprite: _Starlight/Admeme/Objects/Weapons/Melee/x09_headsman.rsi
+    sprite: _Starlight/Objects/Weapons/Melee/x09_headsman.rsi
     quickEquip: false
     slots:
     - back

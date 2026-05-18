@@ -1,18 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Towels with colours exist again.
-    type: Fix
-  id: 404697
-  time: '2026-04-28T10:12:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4262
-- author: Citrea
-  changes:
-  - message: Maid outfits are back in loadouts.
-    type: Fix
-  id: 404698
-  time: '2026-04-28T10:12:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4262
 - author: Ohelig
   changes:
   - message: Fix borg item duping. No more infinite saxophones for you!
@@ -2799,4 +2785,18 @@ Entries:
   id: 405096
   time: '2026-05-18T04:52:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/3968
+- author: Scarlet.
+  changes:
+  - message: Removed the admeme tag from the ntsf axe.
+    type: Remove
+  id: 405097
+  time: '2026-05-18T05:29:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4461
+- author: STARLIGHT TEAM
+  changes:
+  - message: Human observation console looks as it should.
+    type: Fix
+  id: 405098
+  time: '2026-05-18T05:29:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4474
 Order: -1
