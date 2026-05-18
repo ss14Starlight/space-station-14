@@ -157,7 +157,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         if (!TryComp<MobStateComponent>(target, out var mobState))
             return false;
 
-        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_powerCell.HasActivatableCharge(ent.Owner, user: user, predicted: true))  // Starlight edit - check for wearable field
+        if (!_powerCell.HasActivatableCharge(ent.Owner, user: user, predicted: true))
             return false;
 
         if (!targetCanBeAlive && _mobState.IsAlive(target, mobState))
@@ -207,7 +207,7 @@ public abstract class SharedDefibrillatorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_powerCell.TryUseActivatableCharge(ent.Owner, user: user))  // Starlight edit - check for wearable field
+        if (!_powerCell.TryUseActivatableCharge(ent.Owner, user: user))
             return;
 
         var selfEvent = new SelfBeforeDefibrillatorZapsEvent(user, ent.Owner, target);

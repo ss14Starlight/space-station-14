@@ -29,6 +29,7 @@
         - Hardsuit
         - WhitelistChameleon
 
+#region MedTak
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseMedTakContraband ]
   id: ClothingOuterHardsuitMedTak
@@ -61,14 +62,15 @@
           Caustic: 0.5
       staminaModifier: 0.3
     - type: ClothingSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
+      walkModifier: 0.95
+      sprintModifier: 0.95
     - type: HeldSpeedModifier
     - type: Tag
       tags:
         - Hardsuit
         - CorgiWearable
 
+# Medic - built in defib
 - type: entity
   parent: ClothingOuterHardsuitMedTak
   id: ClothingOuterHardsuitMedTakMedic
@@ -82,3 +84,14 @@
     - type: WearableDefibrillator
       requiredSlot: OUTERCLOTHING
     - type: UseDelay
+    - type: PowerCellDraw
+      drawRate: 0
+      useCharge: 75
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHigh
+          blacklist:
+            tags:
+            - MechReactor
