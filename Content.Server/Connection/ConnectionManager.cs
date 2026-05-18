@@ -72,6 +72,7 @@ namespace Content.Server.Connection
     {
         [Dependency] private readonly IActorRouter _actors = default!; // NullLink
         [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
+        [Dependency] private readonly IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
@@ -280,8 +281,7 @@ namespace Content.Server.Connection
             {
                 return (ConnectionDenyReason.NoHwid, Loc.GetString("hwid-required"), null);
             }
-
-            var bans = await _db.GetServerBansAsync(addr, userId, hwId, modernHwid, includeUnbanned: false);
+            var bans = await _banManager.GetServerBansAsync(addr, userId, hwId, modernHwid, includeUnbanned: false); // NullLink-edit: move to general method at Manager
             if (bans.Count > 0)
             {
                 var firstBan = bans[0];

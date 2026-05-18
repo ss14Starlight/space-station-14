@@ -186,6 +186,26 @@
   categories:
     - UplinkWeaponry
 
+- type: listing
+  id: UplinkBananaEsword
+  name: uplink-banana-esword-name
+  description: uplink-banana-esword-desc
+  productEntity: EnergySwordBanana
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
 # Ammo
 
 - type: listing
@@ -279,6 +299,18 @@
   productEntity: MagazineGrenadeBlast
   cost:
     Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+# For the Hushpup
+- type: listing
+  id: UplinkHushpupAmmo
+  name: uplink-hushpup-ammo-name
+  description: uplink-hushpup-ammo-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: lethal }
+  productEntity: BoxLethalshot
+  cost:
+    Telecrystal: 3
   categories:
   - UplinkAmmo
 
@@ -544,6 +576,27 @@
       whitelist:
         - MailTech
         - Quartermaster
+        - Captain
+
+- type: listing
+  id: UplinkNoslipClownShoes
+  name: uplink-noslip-clown-shoes-name
+  description: uplink-noslip-clown-shoes-desc
+  productEntity: ClownShoesNoSlip
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
         - Captain
 
 # Pointless
@@ -876,6 +929,24 @@
     - !type:BuyerJobCondition
       whitelist:
         - Boxer
+        - HeadOfPersonnel
+        - Captain
+
+- type: listing
+  id: UplinkMimanaStealthy
+  name: uplink-mimana-stealthy-name
+  description: uplink-mimana-stealthy-desc
+  productEntity: TrashMimanaPeelStealthy
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
         - HeadOfPersonnel
         - Captain
 

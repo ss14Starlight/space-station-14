@@ -10,7 +10,7 @@
     sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
   - type: TemperatureProtection
     heatingCoefficient: 1.1
-    coolingCoefficient: 0.1
+    coolingCoefficient: 0.35 # Starlight, 0.1 -> 0.35
   - type: Pierceable
     level: Metal
   - type: Armor

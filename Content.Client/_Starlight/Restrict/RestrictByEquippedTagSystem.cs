@@ -9,9 +9,7 @@ public sealed class RestrictByEquippedTagSystem : SharedRestrictByEquippedTagSys
     [Dependency] private readonly PopupSystem _popup = default!;
 
     protected override void PopupClient(string message, EntityUid user)
-    {
-        _popup.PopupCursor(message);
-    }
+        => _popup.PopupCursor(message);
 
     protected override void PlayDenialSound(SoundSpecifier? sound, EntityUid entity)
     {

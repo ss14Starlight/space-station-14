@@ -8,7 +8,5 @@ namespace Content.Client._Starlight.Character.Info.UI;
 public sealed partial class CharacterOverviewControl : Control
 {
     public CharacterOverviewControl()
-    {
-        RobustXamlLoader.Load(this);
-    }
+        => RobustXamlLoader.Load(this);
 }

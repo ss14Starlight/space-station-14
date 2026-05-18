@@ -16,11 +16,14 @@ public sealed class HysteriaVisionSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
+    private EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
     private HysteriaVisionOverlay? _overlay;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        _hysteriaQuery = GetEntityQuery<HysteriaVisionComponent>();
 
         SubscribeLocalEvent<HysteriaVisionComponent, ComponentStartup>(OnHysteriaStartup);
         SubscribeLocalEvent<HysteriaVisionComponent, ComponentShutdown>(OnHysteriaShutdown);
@@ -34,22 +37,22 @@ public sealed class HysteriaVisionSystem : EntitySystem
         RemoveOverlay();
     }
 
-    private void OnHysteriaStartup(EntityUid uid, HysteriaVisionComponent component, ComponentStartup args)
+    private void OnHysteriaStartup(Entity<HysteriaVisionComponent> ent, ref ComponentStartup args)
     {
-        if (_playerManager.LocalEntity == uid)
+        if (_playerManager.LocalEntity == ent.Owner)
             AddOverlay();
     }
 
-    private void OnHysteriaShutdown(EntityUid uid, HysteriaVisionComponent component, ComponentShutdown args)
+    private void OnHysteriaShutdown(Entity<HysteriaVisionComponent> ent, ref ComponentShutdown args)
     {
-        if (_playerManager.LocalEntity == uid)
+        if (_playerManager.LocalEntity == ent.Owner)
             RemoveOverlay();
     }
 
-    private void OnPlayerAttached(EntityUid uid, HysteriaVisionComponent component, LocalPlayerAttachedEvent args)
+    private void OnPlayerAttached(Entity<HysteriaVisionComponent> ent, ref LocalPlayerAttachedEvent args)
         => AddOverlay();
 
-    private void OnPlayerDetached(EntityUid uid, HysteriaVisionComponent component, LocalPlayerDetachedEvent args)
+    private void OnPlayerDetached(Entity<HysteriaVisionComponent> ent, ref LocalPlayerDetachedEvent args)
         => RemoveOverlay();
 
     public override void Update(float frameTime)
@@ -58,12 +61,12 @@ public sealed class HysteriaVisionSystem : EntitySystem
 
         // Check if we need to remove the overlay due to expiration
         var player = _playerManager.LocalEntity;
-        if (player == null || !TryComp<HysteriaVisionComponent>(player, out var hysteria))
+        if (player == null || !_hysteriaQuery.TryComp(player.Value, out var hysteria))
             return;
 
-        // Remove component if expired
+        // Server owns the component lifetime; client only hides the overlay while waiting for replication.
         if (_timing.CurTime > hysteria.EndTime)
-            RemComp<HysteriaVisionComponent>(player.Value);
+            RemoveOverlay();
     }
 
     private void AddOverlay()

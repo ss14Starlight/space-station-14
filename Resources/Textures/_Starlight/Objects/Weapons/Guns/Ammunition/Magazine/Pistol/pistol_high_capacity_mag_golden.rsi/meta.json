@@ -1,0 +1,120 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "https://github.com/tgstation/tgstation/pull/1684/commits/19e51caef09e78ca1122d26455b539ff5968d334, https://github.com/tgstation/tgstation/blob/master/icons/obj/weapons/guns/ammo.dmi, inhands by TiniestShark (github), base-icon made via base combined with mag-5 by SlamBamActionman (github), recolored golden by wonderfulnewworld (GitHub)",
+    "states": [
+        {
+            "name": "base",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "stripe",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "practice",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "red",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "rubber",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "sp",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "fmj",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "ap",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "incendiary",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "uranium",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "piercing",
+			"copyright": "TG Station, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "mag-1",
+			"copyright": "TG Station",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "mag-2",
+			"copyright": "TG Station",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "mag-3",
+			"copyright": "TG Station",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "mag-4",
+			"copyright": "TG Station",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "mag-5",
+			"copyright": "TG Station",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-left-mag",
+            "directions": 4,
+			"copyright": "TG Station, TiniestShark, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-left-stripe",
+            "directions": 4,
+			"copyright": "TG Station, TiniestShark",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-right-mag",
+            "directions": 4,
+			"copyright": "TG Station, TiniestShark, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "inhand-right-stripe",
+            "directions": 4,
+			"copyright": "TG Station, TiniestShark",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "base-icon",
+			"copyright": "TG Station, SlamBamActionman, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

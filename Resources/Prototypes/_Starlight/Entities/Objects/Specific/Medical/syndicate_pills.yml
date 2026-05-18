@@ -30,7 +30,7 @@
 
 # Desoxyephedrine
 - type: entity
-  name: lead
+  name: desoxyephedrine
   parent: Pill
   id: PillDesoxyephedrine5
   suffix: Desoxyephedrine 5u
@@ -45,7 +45,7 @@
 
 # Here for consistency, but ideally if you're going to map these, use the 5u version instead.
 - type: entity
-  name: lead
+  name: desoxyephedrine
   parent: Pill
   id: PillDesoxyephedrine
   suffix: Desoxyephedrine 15u

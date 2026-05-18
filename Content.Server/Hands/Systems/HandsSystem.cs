@@ -50,10 +50,10 @@ namespace Content.Server.Hands.Systems
 
             SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem), typeof(SharedStaminaSystem)});
 
-            // Starlight start
+            // Starlight Start: Reverted NuBody
             SubscribeLocalEvent<HandsComponent, BodyPartAddedEvent>(HandleBodyPartAdded);
             SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
-            // Starlight end
+            // Starlight End: Reverted NuBody
 
             SubscribeLocalEvent<HandsComponent, ComponentGetState>(GetComponentState);
 
@@ -110,7 +110,7 @@ namespace Content.Server.Hands.Systems
 
             args.Handled = true; // no shove/stun.
         }
-        // Starlight start
+        // Starlight Start: Reverted NuBody
         private void HandleBodyPartAdded(Entity<HandsComponent> ent, ref BodyPartAddedEvent args)
         {
             if (args.Part.Comp.PartType != BodyPartType.Hand)
@@ -136,7 +136,7 @@ namespace Content.Server.Hands.Systems
 
             RemoveHand(uid, args.Slot);
         }
-        // Starlight end
+        // Starlight End: Reverted NuBody
         #region interactions
 
         private bool HandleThrowItem(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)

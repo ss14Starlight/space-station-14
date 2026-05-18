@@ -111,7 +111,7 @@
     canTargetSelf: false
     whitelist:
       components:
-      - HumanoidAppearance
+      - WrapEntityHolder
     event: !type:EggInjectionEvent
 
 - type: entity
@@ -162,12 +162,10 @@
       sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings_48.rsi
       state: pole
     useDelay: 3
-  # Starlight-start
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
     rechargeDuration: 300 # 5 mins
-  # Starlight-end
   - type: InstantAction
     event: !type:SpiderWebBuildingActionEvent
       building: WebEntityBeacon
@@ -183,12 +181,31 @@
       sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings.rsi
       state: cocoon
     useDelay: 3
-  # Starlight-start
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
     rechargeDuration: 300 # 5 mins
-  # Starlight-end
   - type: InstantAction
     event: !type:SpiderWebBuildingActionEvent
       building: WebCocoon
+
+- type: entity
+  id: ActionEntityWrap
+  name: Wrap
+  description: Wrap a target in web, immobilizing them.
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigAction
+    sound: /Audio/Effects/pop.ogg
+    icon:
+      sprite:  _Starlight/Interface/Actions/actions_spider.rsi
+      state: wrap
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+    event: !type:WrapActionEvent

@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Throwing;
@@ -29,8 +30,12 @@ public sealed class PAIShuttleRamSystem : EntitySystem
     {
         base.Initialize();
 
-        // When a shuttle console is about to be destroyed, eject any slotted PAI first
-        // so the container doesn't delete it.
+        // When a shuttle console is destroyed (fires before QueueDel), clean up any
+        // active pilots so PilotComponent is removed and the player's input is never left stuck.
+        SubscribeLocalEvent<ShuttleConsoleComponent, DestructionEventArgs>(OnConsoleDestroyed);
+
+        // Catch-all for any deletion that doesn't go through DestructionEventArgs
+        // (e.g. admin tools, map unload). Also ejects any PAI still in the container.
         SubscribeLocalEvent<ShuttleConsoleComponent, EntityTerminatingEvent>(OnConsoleDying);
 
         // Event-driven ram detection: fires only when a shuttle grid actually hits something.
@@ -39,20 +44,56 @@ public sealed class PAIShuttleRamSystem : EntitySystem
         SubscribeLocalEvent<MapGridComponent, StartCollideEvent>(OnGridCollide);
     }
 
+    /// <summary>
+    /// Fires during <see cref="DestructionEventArgs"/>, BEFORE <c>QueueDel</c> is called.
+    /// The console entity and all its components are fully alive at this point, so
+    /// <c>RemovePilot</c> works correctly and can clean up the pilot's input state.
+    /// </summary>
+    private void OnConsoleDestroyed(EntityUid console, ShuttleConsoleComponent component, DestructionEventArgs args)
+    {
+        CleanupPilots(component);
+    }
+
+    /// <summary>
+    /// Fires when the entity starts terminating (during <c>DeleteEntity</c>).
+    /// Handles deletions that don't go through <see cref="DestructionEventArgs"/>.
+    /// Also forcibly ejects any PAI still in the container slot so it isn't deleted with the console.
+    /// Note: <c>ejectOnBreak: true</c> on the YAML slot handles the common destructible case; this
+    /// is a belt-and-suspenders fallback.
+    /// </summary>
     private void OnConsoleDying(EntityUid console, ShuttleConsoleComponent component, ref EntityTerminatingEvent args)
     {
+        // Clean up any pilots that weren't already handled by OnConsoleDestroyed.
+        CleanupPilots(component);
+
+        // Eject any PAI still physically in the container so it isn't voided with the console.
         if (!_container.TryGetContainer(console, component.PaiSlotId, out var slot))
             return;
 
-        // Collect to avoid modifying while iterating.
         var contained = new List<EntityUid>(slot.ContainedEntities);
         foreach (var ent in contained)
         {
-            // Remove pilot status first (if they were actively piloting).
-            _shuttleConsole.RemovePilot(ent);
-
-            // Eject from container so it lands at the console's position instead of being deleted.
             _container.Remove(ent, slot, force: true);
+        }
+    }
+
+    /// <summary>
+    /// Remove <see cref="PilotComponent"/> from every entity currently piloting this console.
+    /// Safe to call during both <see cref="DestructionEventArgs"/> and <see cref="EntityTerminatingEvent"/>;
+    /// will no-op on entities that have already had the component removed.
+    /// </summary>
+    private void CleanupPilots(ShuttleConsoleComponent component)
+    {
+        var pilots = new List<EntityUid>(component.SubscribedPilots);
+        foreach (var pilot in pilots)
+        {
+            // RemovePilot handles the full cleanup (alerts, zoom, popup, RemComp).
+            _shuttleConsole.RemovePilot(pilot);
+
+            // Fallback: explicitly remove PilotComponent in case RemovePilot returned early
+            // (e.g. the pilot was not in SubscribedPilots for some reason, or the console
+            // component was already partially torn down).
+            RemComp<PilotComponent>(pilot);
         }
     }
 

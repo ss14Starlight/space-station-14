@@ -19,6 +19,7 @@ public sealed class StasisSystem : SharedStasisSystem
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
     public override void Initialize()
     {
@@ -123,12 +124,15 @@ public sealed class StasisSystem : SharedStasisSystem
         if (TryComp<SpriteComponent>(effectEnt, out var sprite))
         {
             // Set it to be over the parent entity.
-            sprite.DrawDepth = (int)DrawDepth.Effects;
+            _spriteSystem.SetDrawDepth(effectEnt, (int)DrawDepth.Effects);
             // Prevent it from rotating.
             sprite.NoRotation = true;
-            sprite.Visible = TryComp<SpriteComponent>(uid, out var parentSprite) && parentSprite.Visible;
+            if (TryComp<SpriteComponent>(uid, out var parentSprite))
+                _spriteSystem.SetVisible(effectEnt, parentSprite.Visible);
+            else
+                _spriteSystem.SetVisible(effectEnt, false);
             // Make sure it is the same scale as the parent entity
-            if(parentSprite is not null) sprite.Scale = parentSprite.Scale;
+            if(parentSprite is not null) _spriteSystem.SetScale(effectEnt, parentSprite.Scale);
         }
 
         // Play the sound effect.
@@ -171,12 +175,15 @@ public sealed class StasisSystem : SharedStasisSystem
         if (TryComp<SpriteComponent>(effectEnt, out var sprite))
         {
             // Set it to be over the parent entity.
-            sprite.DrawDepth = (int)DrawDepth.Effects;
+            _spriteSystem.SetDrawDepth(effectEnt, (int)DrawDepth.Effects);
             // Prevent it from rotating.
             sprite.NoRotation = true;
-            sprite.Visible = TryComp<SpriteComponent>(uid, out var parentSprite) && parentSprite.Visible;
+            if (TryComp<SpriteComponent>(uid, out var parentSprite))
+                _spriteSystem.SetVisible(effectEnt, parentSprite.Visible);
+            else
+                _spriteSystem.SetVisible(effectEnt, false);
             // Make sure it is the same scale as the parent entity
-            if(parentSprite is not null) sprite.Scale = parentSprite.Scale;
+            if(parentSprite is not null) _spriteSystem.SetScale(effectEnt, parentSprite.Scale);
         }
 
         // Play the sound effect.
@@ -208,13 +215,16 @@ public sealed class StasisSystem : SharedStasisSystem
         if (TryComp<SpriteComponent>(effectEnt, out var sprite))
         {
             // Set it to be over the parent entity.
-            sprite.DrawDepth = (int)DrawDepth.Effects;
+            _spriteSystem.SetDrawDepth(effectEnt, (int)DrawDepth.Effects);
             // Prevent it from rotating.
             sprite.NoRotation = true;
             // Make it visible if the parent entity is visible.
-            sprite.Visible = TryComp<SpriteComponent>(uid, out var parentSprite) && parentSprite.Visible;
+            if (TryComp<SpriteComponent>(uid, out var parentSprite))
+                _spriteSystem.SetVisible(effectEnt, parentSprite.Visible);
+            else
+                _spriteSystem.SetVisible(effectEnt, false);
             // Make sure it is the same scale as the parent entity
-            if(parentSprite is not null) sprite.Scale = parentSprite.Scale;
+            if(parentSprite is not null) _spriteSystem.SetScale(effectEnt, parentSprite.Scale);
         }
 
         // Store the continuous effect in the component
@@ -269,12 +279,12 @@ public sealed class StasisSystem : SharedStasisSystem
         if (comp.IsVisible)
         {
             // Entity should be visible
-            sprite.Color = sprite.Color.WithAlpha(1f);
+            _spriteSystem.SetColor(uid, sprite.Color.WithAlpha(1f));
         }
         else
         {
             // Entity should be invisible
-            sprite.Color = sprite.Color.WithAlpha(0f);
+            _spriteSystem.SetColor(uid, sprite.Color.WithAlpha(0f));
         }
     }
 

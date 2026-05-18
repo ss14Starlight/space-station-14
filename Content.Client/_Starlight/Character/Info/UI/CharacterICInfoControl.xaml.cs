@@ -1,6 +1,4 @@
-﻿using System.Numerics;
-using Content.Client.CharacterInfo;
-using Content.Shared._Starlight.Character.Info;
+﻿using Content.Shared._Starlight.Character.Info;
 using Content.Shared._Starlight.Character.Info.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
@@ -15,9 +13,7 @@ namespace Content.Client._Starlight.Character.Info.UI;
 public sealed partial class CharacterICInfoControl : Control
 {
     public CharacterICInfoControl()
-    {
-        RobustXamlLoader.Load(this);
-    }
+        => RobustXamlLoader.Load(this);
 
     public void SetCharacter(EntityUid? target, IEntityManager entityManager, EntityUid viewer)
     {

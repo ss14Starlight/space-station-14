@@ -124,3 +124,15 @@ uplink-trunk-syndicate-desc = Huge, metal, reflective, and stylish. All the othe
 
 uplink-syndiedrobe-name = SyndieDrobe flatpack
 uplink-syndiedrobe-desc = Looks like Syndieland's back in business.
+
+uplink-noslip-clown-shoes-name = No-Slip Clown Shoes
+uplink-noslip-clown-shoes-desc = For the clowns who want that extra edge against security.
+
+uplink-banana-esword-name = Banana Energy Sword
+uplink-banana-esword-desc = A bananium-modified energy sword that slips whoever it slices. Does minimal damage.
+
+uplink-mimana-stealthy-name = Stealthy Mimana
+uplink-mimana-stealthy-desc = A mutated mimana that seems to fade into the background. Don't lose it!
+
+uplink-hushpup-ammo-name = Buckshot box (12 gauge)
+uplink-hushpup-ammo-desc = A box of 16 buckshot shotgun shells. Compatible with the Hushpup.

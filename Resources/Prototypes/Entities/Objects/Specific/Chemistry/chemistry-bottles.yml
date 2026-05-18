@@ -873,7 +873,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: reagent-tranexamic-acid
+    currentLabel: reagent-name-tranexamic-acid # Starlight, it was missing the "name" in the label
   - type: SolutionContainerManager
     solutions:
       drink:

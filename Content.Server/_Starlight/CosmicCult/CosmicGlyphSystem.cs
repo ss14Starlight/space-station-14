@@ -2,7 +2,6 @@ using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
-using Content.Shared.Damage;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;

@@ -121,6 +121,8 @@
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
+    - id: BottleCaseSecurityFilled # Starlight
+    - id: PenPackSecurityFilled # Starlight
 #    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler

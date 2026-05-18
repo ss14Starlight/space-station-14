@@ -37,7 +37,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -87,7 +86,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -137,7 +135,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -185,7 +182,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       groups:
@@ -218,7 +214,7 @@
 
 - type: entity
   name: blood pack
-  description: Contains a groundbreaking universal blood replacement created by Nanotrasen's advanced medical science.
+  description: Contains a groundbreaking universal blood replacement created by NanoTrasen's advanced medical science. # SL
   parent: BaseHealingItem
   id: Bloodpack
   suffix: Full
@@ -233,7 +229,7 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
+
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
@@ -281,10 +277,11 @@
     - type: Healing
       damageContainers:
         - Biological
-        - BiologicalMetaphysical # Starlight, allow tier-3 cultists
       damage:
-        groups:
-          Brute: 5 # Tourniquets HURT!
+      #region Starlight
+      #  groups:
+      #    Brute: 5 # removed: doing brute damage means that putting on a tourniquet makes you bleed (??)
+      #endregion Starlight
         types:
           Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
       bloodlossModifier: -10 # Tourniquets stop bleeding
@@ -321,7 +318,6 @@
   - type: Healing
     damageContainers:
       - Biological
-      - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     delay: 1.6 # STARLIGHT
     damage:
       types:
@@ -378,7 +374,6 @@
   - type: Healing
     damageContainers:
     - Biological
-    - BiologicalMetaphysical # Starlight, allow tier-3 cultists
     damage:
       groups: # these are all split across multiple types
         Brute: -150
