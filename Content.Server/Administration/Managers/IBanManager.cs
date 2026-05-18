@@ -98,7 +98,7 @@ public interface IBanManager
     /// <param name="severity">Severity of the resulting ban note</param>
     /// <param name="reason">Reason for the ban</param>
     /// <param name="timeOfBan">Time when the ban was applied, used for grouping role bans</param>
-    public void WebhookUpdateRoleBans(
+    public Task WebhookUpdateRoleBans(
         NetUserId? target,
         string? targetUsername,
         NetUserId? banningAdmin,
