@@ -24,14 +24,6 @@ job-title-tsf-MARSOC = MARSOC Marine
 
 job-name-blackstar = Blackstar Mercenary
 
-job-name-blackstar-legion-commander = Legion Commander
-job-name-blackstar-high-legate = High Legate
-job-name-blackstar-legate = Legate
-job-name-blackstar-dreadwalker = Dreadwalker
-job-name-blackstar-legionnaire = Legionnaire
-job-name-blackstar-blackguard = Blackguard
-job-name-blackstar-initiate = Initiate
-
 job-name-medtak-dispatcher = MedTak Dispatcher
 job-name-medtak-leader = MedTak Team Leader
 job-name-medtak-medic = MedTak Medic
