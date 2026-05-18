@@ -40,3 +40,12 @@
     subtype: roles-antag-selfagent-name
     exclusiveAntag: true
   - type: SELFAgentRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleTerrorPrincess
+  name: Terror Princess Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: TerrorPrincess

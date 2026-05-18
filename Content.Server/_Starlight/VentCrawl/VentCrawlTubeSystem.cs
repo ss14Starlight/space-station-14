@@ -181,7 +181,7 @@ public sealed class VentCrawlTubeSystem : EntitySystem
         }
     }
 
-    private bool TryInsert(EntityUid uid, EntityUid entity, VentCrawlEntryComponent? entry = null)
+    public bool TryInsert(EntityUid uid, EntityUid entity, VentCrawlEntryComponent? entry = null)
     {
         if (!Resolve(uid, ref entry))
             return false;

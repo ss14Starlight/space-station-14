@@ -1,5 +1,6 @@
 using System.Numerics;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Components;
 
@@ -20,13 +21,14 @@ public sealed partial class HysteriaVisionComponent : Component
     public EntityUid Source;
 
     /// <summary>
-    /// Defines a disguise sprite for hysteria vision
+    /// Visual disguises shown to this client while hysteria vision is active.
     /// </summary>
-    [DataRecord]
-    public partial record struct HysteriaDisguiseSprite(string Path, string State, Vector2 Size);
-    public static readonly HysteriaDisguiseSprite[] DisguiseSprites =
-    {
-        new("/_Starlight/Vampire/Effects.rsi", "schizo", new Vector2(1.5f, 1.5f)),
-        new("/Mobs/Animals/bear.rsi", "bear", new Vector2(1.65f, 1.65f)),
-    };
+    [DataField, AutoNetworkedField]
+    public List<HysteriaDisguiseSprite> DisguiseSprites = new();
 }
+
+/// <summary>
+/// Defines a disguise sprite for hysteria vision.
+/// </summary>
+[DataRecord, Serializable, NetSerializable]
+public partial record struct HysteriaDisguiseSprite(string Path, string State, Vector2 Size);

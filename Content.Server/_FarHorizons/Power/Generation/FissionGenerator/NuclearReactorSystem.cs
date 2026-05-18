@@ -527,6 +527,7 @@ public sealed class NuclearReactorSystem : EntitySystem
         _soundSystem.PlayGlobalOnStation(uid, _audio.ResolveSound(comp.MeltdownSound));
 
         comp.Melted = true;
+        RaiseLocalEvent(uid, new NuclearReactorMeltdownEvent(stationUid));
         var MeltdownBadness = 0f;
         comp.AirContents ??= new();
 
@@ -1129,4 +1130,9 @@ public sealed class NuclearReactorSystem : EntitySystem
         comp.ControlRodInsertion = 2;
         comp.ApplyPrefab = true;
     }
+}
+
+public sealed class NuclearReactorMeltdownEvent(EntityUid? station) : EntityEventArgs
+{
+    public EntityUid? Station { get; } = station;
 }

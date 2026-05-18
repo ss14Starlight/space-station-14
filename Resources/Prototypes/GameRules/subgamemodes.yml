@@ -67,6 +67,17 @@
   id: Vampire
   components:
   - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireKillRandomPersonObjective
+    - VampireDrainObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroupsStateOnly
+      maxPicks: 1
+    - groups: VampireObjectiveGroupsStealOnly
+      maxPicks: 1
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: vampire-roundend-name
     selectionTime: IntraPlayerSpawn # Starlight. Only select vamps on round start

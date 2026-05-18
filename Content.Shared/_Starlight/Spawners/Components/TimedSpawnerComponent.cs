@@ -1,8 +1,9 @@
-﻿using Robust.Shared.Prototypes;
+﻿using Content.Shared.Mobs;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Spawners.Components;
+namespace Content.Shared._Starlight.Spawners.Components;
 
 /// <summary>
 /// Spawns entities at a set interval.
@@ -56,4 +57,16 @@ public sealed partial class TimedSpawnerComponent : Component, ISerializationHoo
         if (MinimumEntitiesSpawned > MaximumEntitiesSpawned)
             throw new ArgumentException("MaximumEntitiesSpawned can't be lower than MinimumEntitiesSpawned!");
     }
+
+    /// <summary>
+    /// Determines whether the spawner should despawn itself after it has finished spawning entities.
+    /// </summary>
+    [DataField]
+    public bool DespawnWhenDone = false;
+
+    /// <summary>
+    /// If changed to any another state, the spawner will only spawn entities if the mob it's attached to is in the specified state.
+    /// </summary>
+    [DataField]
+    public MobState RequiredState = MobState.Invalid;
 }

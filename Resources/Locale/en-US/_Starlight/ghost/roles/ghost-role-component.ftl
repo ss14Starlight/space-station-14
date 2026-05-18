@@ -89,3 +89,6 @@ ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth 
 
 ghostrole-information-derelict-borgi-xenoborg-name = Derelict XenoBorgi
 ghostrole-information-derelict-borgi-xenoborg-description = You are a xenoborgi the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
+
+ghost-role-information-terror-princess-name = Terror princess
+ghost-role-information-terror-princess-description = You are a princess of terror spiders, Your target is to create a big nest and create a big population of spiders to enslave this station!!!
