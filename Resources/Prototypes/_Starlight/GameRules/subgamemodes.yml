@@ -161,11 +161,6 @@
       components:
       - type: ActiveListener
       - type: Unholy
-      - type: UserInterface
-        interfaces:
-          enum.DamnationsMenuUiKey.Key:
-            type: DevilDamnationsBoundUserInterface
-            requireInputValidation: false
   - type: DynamicRuleCost
     cost: 100
 
