@@ -344,7 +344,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             knownLanguage.Understands = [.. knownLanguage.Understands.Union(polymorphedEntityKnownLanguages.Understands)];
             polymorphedComp.LanguageKnowledgeGranted = languageKnowledgeGranted;
         }
-        if (TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage))
+        if (configuration.TransferLanguages && TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage))
         {
             var languageSpeechGranted = new LanguageSpeakerComponent
             {
