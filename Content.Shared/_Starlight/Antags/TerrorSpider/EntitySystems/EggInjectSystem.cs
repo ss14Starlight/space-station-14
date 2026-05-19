@@ -1,5 +1,7 @@
 ﻿using System.Linq;
 using Content.Shared._Starlight.Actions.Components;
+using Content.Shared.Actions;
+using Content.Shared.Charges.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Spider;
@@ -9,12 +11,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Antags.TerrorSpider;
 
-public sealed class EggInjectSystem : EntitySystem
+public sealed partial class EggInjectSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
 
     private readonly EntProtoId[] _eggs =
     [
@@ -27,16 +31,17 @@ public sealed class EggInjectSystem : EntitySystem
         SubscribeLocalEvent<EggInjectionEvent>(EggInjection);
         SubscribeLocalEvent<SpiderComponent, EggInjectionDoAfterEvent>(EggInjectionDoAfter);
 
+        SubscribeLocalEvent<TerrorPrincessComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<EggsLayingEvent>(EggsLaying);
         Subs.BuiEvents<TerrorPrincessComponent>(EggsLayingUiKey.Key, subs => subs.Event<EggsLayingBuiMsg>(OnEggsLaying));
     }
+
+    private void OnMapInit(Entity<TerrorPrincessComponent> ent, ref MapInitEvent) => ent.Comp.LayEggAction = _actions.AddAction(ent.Owner, ent.Comp.LayEggActionId);
 
     private void EggsLaying(EggsLayingEvent ev)
     {
         if (ev.Handled || !_timing.IsFirstTimePredicted)
             return;
-
-        ev.Handled = true;
 
         if (TryComp(ev.Performer, out ActorComponent? actor))
             _uiSystem.OpenUi(ev.Performer, EggsLayingUiKey.Key, actor.PlayerSession);
@@ -44,7 +49,7 @@ public sealed class EggInjectSystem : EntitySystem
 
     private void OnEggsLaying(EntityUid uid, TerrorPrincessComponent component, EggsLayingBuiMsg args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!_timing.IsFirstTimePredicted || component.LayEggAction == null || !_charges.TryUseCharge(component.LayEggAction.Value))
             return;
 
         if (_eggs.Contains(args.Egg) && TryComp(uid, out ActorComponent? actor))

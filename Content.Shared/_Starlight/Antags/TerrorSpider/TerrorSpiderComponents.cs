@@ -28,6 +28,11 @@ public sealed partial class TerrorPrincessComponent : Component
 {
     [DataField]
     public string Briefing = "terror-spider-princess-briefing";
+
+    [DataField]
+    public EntProtoId LayEggActionId = "ActionEggsLaying";
+
+    public EntityUid? LayEggAction = null;
 }
 
 #endregion
