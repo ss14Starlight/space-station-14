@@ -49,14 +49,17 @@ public sealed partial class EggInjectSystem : EntitySystem
 
     private void OnEggsLaying(EntityUid uid, TerrorPrincessComponent component, EggsLayingBuiMsg args)
     {
-        if (!_timing.IsFirstTimePredicted || component.LayEggAction == null || !_charges.TryUseCharge(component.LayEggAction.Value))
+        if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (_eggs.Contains(args.Egg) && TryComp(uid, out ActorComponent? actor))
-        {
-            SpawnAtPosition(args.Egg, Transform(uid).Coordinates);
-            _uiSystem.CloseUi(uid, EggsLayingUiKey.Key, actor.PlayerSession);
-        }
+        if (!_eggs.Contains(args.Egg) || !TryComp(uid, out ActorComponent? actor))
+            return;
+
+        if (component.LayEggAction == null || !_charges.TryUseCharge(component.LayEggAction.Value))
+            return;
+
+        SpawnAtPosition(args.Egg, Transform(uid).Coordinates);
+        _uiSystem.CloseUi(uid, EggsLayingUiKey.Key, actor.PlayerSession);
     }
 
     private void EggInjectionDoAfter(Entity<SpiderComponent> ent, ref EggInjectionDoAfterEvent args)
