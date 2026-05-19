@@ -128,6 +128,10 @@
       ]
     },
     {
+      "name": "borg_e_r",
+      "directions": 4
+    },
+    {
       "name": "credit"
     }
   ]
