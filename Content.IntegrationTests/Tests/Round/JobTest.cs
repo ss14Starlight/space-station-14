@@ -46,7 +46,7 @@ public sealed class JobTest
     [Test]
     public async Task StartRoundTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
+        var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -69,8 +69,6 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(_waitAfter);
-        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -80,7 +78,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPreferenceTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
+        var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -115,8 +113,6 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(_waitAfter);
-        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -127,7 +123,7 @@ public sealed class JobTest
     [Test]
     public async Task JobWeightTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
+        var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -156,8 +152,6 @@ public sealed class JobTest
         pair.AssertJob(Captain);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(_waitAfter);
-        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -167,7 +161,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPriorityTest()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
+        var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -211,8 +205,6 @@ public sealed class JobTest
         });
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        await pair.RunTicksSync(_waitAfter);
-        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }
