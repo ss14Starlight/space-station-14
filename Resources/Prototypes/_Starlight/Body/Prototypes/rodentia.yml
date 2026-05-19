@@ -46,11 +46,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganHumanHeart
+        heart: OrganAnimalHeart
         lungs: OrganHumanLungs
-        stomach: OrganHumanStomach
-        liver: OrganHumanLiver
-        kidneys: OrganHumanKidneys
+        stomach: OrganRodentiaStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
         cavity: null
     right arm:
       part: RightArmRodentia
@@ -80,4 +80,3 @@
       part: RightFootRodentia
     left foot:
       part: LeftFootRodentia
-#   tail: # MIKEY add tail for crazyphantom

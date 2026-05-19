@@ -7,5 +7,24 @@
   components:
   - type: OrganVisualization
     layer: Eyes
-    prototypes: 
+    prototypes:
       Default: MobRodentiaEyes
+
+- type: entity
+  id: OrganRodentiaStomach
+  parent: [OrganHumanStomach, BaseOrganStomach]
+  components:
+    - type: Stomach
+      specialDigestible:
+        tags:
+          - Trash
+      isSpecialDigestibleExclusive: false
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 50
+        food:
+          maxVol: 5
+          reagents:
+            - ReagentId: UncookedAnimalProteins
+              Quantity: 5
