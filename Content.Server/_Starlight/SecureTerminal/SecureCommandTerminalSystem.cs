@@ -688,7 +688,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     {
         var tags = _access.FindAccessTags(actor);
         return proto.AuthGroups.Any(group =>
-            group.Any(tag => tags.Contains((ProtoId<Shared.Access.AccessLevelPrototype>)tag)));
+            group.Any(tag => tags.Contains((ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)));
     }
 
     private bool IsWarDeclared()

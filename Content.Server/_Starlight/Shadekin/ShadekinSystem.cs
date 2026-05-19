@@ -1,9 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
-using Robust.Server.GameObjects;
 using Content.Shared.Examine;
-using Robust.Server.Containers;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
@@ -43,8 +41,6 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;

@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
 /// <summary>
 /// Keeps plumbing disposal running visuals in sync with whether there are reagents in its drain buffer.
-/// Reagent destruction is handled by the shared <see cref="Shared.Fluids.EntitySystems.DrainSystem"/>.
+/// Reagent destruction is handled by the shared <see cref="Content.Shared.Fluids.EntitySystems.DrainSystem"/>.
 /// </summary>
 [UsedImplicitly]
 public sealed class PlumbingDisposalSystem : EntitySystem
