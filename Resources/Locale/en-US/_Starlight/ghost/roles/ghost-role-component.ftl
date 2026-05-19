@@ -92,3 +92,6 @@ ghostrole-information-derelict-borgi-xenoborg-description = You are a xenoborgi 
 
 ghost-role-information-terror-princess-name = Terror princess
 ghost-role-information-terror-princess-description = You are a princess of terror spiders, Your target is to create a big nest and create a big population of spiders to enslave this station!!!
+
+ghost-role-information-smartcorgi-name = Smart Corgi
+ghost-role-information-smartcorgi-description = You are a dog that is more intelligent than its peers, capable of tool manipulation. Truly a miracle product of science. Unfortunately, while you understand people just fine, you only speak Dog.
