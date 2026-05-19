@@ -26,13 +26,13 @@
     - id: VampireLess # Starlight. The rework is here.
       prob: 0.25
     - id: SubWizard
-      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
-    - id: Xenoborgs
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
-      prob: 0.07
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
-      prob: 0.2
+      prob: 0.20
 
 - type: entity
   parent: BaseGameRule
@@ -47,11 +47,12 @@
     - id: VampireLess # Starlight reworked
       prob: 0.22
     - id: SubWizard
-      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
-    - id: Xenoborgs
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
-      prob: 0.07
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    # No SELF Agents in rev games because of the FREEmag.
 
 - type: entity
   parent: BaseGameRule
@@ -62,13 +63,15 @@
     - id: Thief
       prob: 0.60 # Same as NoChangelings
     - id: SLChangeling #Starlight lings
-      prob: 0.25 # To be equal to the chance Vampires spawn in Changeling.
+      prob: 0.35 # Can be a little higher now, since lings don't have their standalone anymore.
     - id: SubWizard
-      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
-    - id: Xenoborgs
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
-      prob: 0.07
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SiliconLiberation
+      prob: 0.20
 
 - type: entity
   parent: BaseGameRule
@@ -79,11 +82,13 @@
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
       prob: 0.85 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
-      prob: 0.07 # Starlight. Wizard is incredibly rare. There are players with 1k hours that have never rolled it.
-    - id: Xenoborgs
+      prob: 0.05
+    - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
       prob: 0.08 # Starlight. To account for their secret mode being lowered.
     - id: Brighteye
-      prob: 0.07
+      prob: 0.05
+    - id: SiliconLiberation
+      prob: 0.20
 
 - type: entity
   parent: BaseGameRule
@@ -96,13 +101,15 @@
     - id: SubTraitor # Special traitors with a curated set of objectives; they do not have Kill/Lesson/DAGD, and scale a lot less.
       prob: 0.20
     - id: VampireLess # This is probably the most interesting sub-gamemode for them.
-      prob: 0.25
+      prob: 0.32
     - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
       prob: 0.25
-    - id: Xenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
+    - id: XenoborgsLP # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
       prob: 0.08
     - id: Brighteye
-      prob: 0.07
+      prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
+      prob: 0.20
 
 - type: entity
   parent: BaseGameRule
@@ -117,9 +124,11 @@
     - id: VampireLess
       prob: 0.20
     - id: SubWizard
-      prob: 0.07
-    - id: Xenoborgs
+      prob: 0.05
+    - id: XenoborgsLP
       prob: 0.08
+    - id: SiliconLiberation
+      prob: 0.20
 
 - type: entity
   parent: BaseGameRule
@@ -161,3 +170,21 @@
       allowNonHumans: true
       mindRoles:
       - MindRoleTraitor
+
+- type: entity
+  id: ShitStationEventScheduler
+  parent: BaseGameRule
+  components:
+  - type: BasicStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: ShitGameRulesTable
+
+- type: entityTable
+  id: ShitGameRulesTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+      - !type:NestedSelector
+        tableId: ShitEventsTable
+      - !type:NestedSelector
+        tableId: DerelictBorgEventTable
+      - id: IonStormPlus

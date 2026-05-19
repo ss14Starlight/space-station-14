@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Content.Shared._Starlight.Antags.TerrorSpider;
+using Content.Shared._Starlight.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Spider;
@@ -56,34 +56,47 @@ public sealed class EggInjectSystem : EntitySystem
 
     private void EggInjectionDoAfter(Entity<SpiderComponent> ent, ref EggInjectionDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted)
+        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted || args.Target == null || !TryComp<WrapEntityHolderComponent>(args.Target.Value, out var wrapEntityHolder))
             return;
 
-        args.Handled = true;
-
-        if (args.Target.HasValue && !HasComp<HasEggHolderComponent>(args.Target.Value))
+        if (wrapEntityHolder.Hold == null)
         {
-            EnsureComp<EggHolderComponent>(args.Target.Value);
-            EnsureComp<HasEggHolderComponent>(args.Target.Value);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-cocoon-empty"), ent, ent);
+            return;
+        }
+
+        if (!HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
+        {
+            args.Handled = true;
+            EnsureComp<EggHolderComponent>(wrapEntityHolder.Hold.Value);
+            EnsureComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value);
             var ev = new EggsInjectedEvent();
             RaiseLocalEvent(ent, ev);
         }
+        else
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ent, ent);
     }
 
     private void EggInjection(EggInjectionEvent ev)
     {
-        if (ev.Handled)
+        if (ev.Handled || !TryComp<WrapEntityHolderComponent>(ev.Target, out var wrapEntityHolder))
             return;
 
-        ev.Handled = true;
-
-        if (HasComp<HasEggHolderComponent>(ev.Target))
+        if (wrapEntityHolder.Hold == null)
         {
-            _popup.PopupEntity("The target already contains eggs.", ev.Performer);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-cocoon-empty"), ev.Performer, ev.Performer);
             return;
         }
 
-        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(6), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
+        ev.Handled = true;
+
+        if (HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
+        {
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ev.Performer, ev.Performer);
+            return;
+        }
+
+        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(ev.InjectionDelay), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

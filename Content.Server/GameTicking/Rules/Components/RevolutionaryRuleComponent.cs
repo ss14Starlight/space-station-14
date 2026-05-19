@@ -27,4 +27,12 @@ public sealed partial class RevolutionaryRuleComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ShuttleCallTime = TimeSpan.FromMinutes(5);
+
+    #region Starlight
+    /// <summary>
+    /// The time it takes for Command to be considered 'abandoning the station.' If they're off station for longer than this, the revolutionaries win.
+    /// </summary>
+    [DataField]
+    public TimeSpan CommandOffstationGracePeriod = TimeSpan.FromSeconds(45);
+    #endregion Starlight
 }
