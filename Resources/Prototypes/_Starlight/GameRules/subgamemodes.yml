@@ -168,6 +168,8 @@
         clumsyDefib: false
         clumsyHypo: false
         clumsyVaulting: false
+      tags:
+        - CantBecomeRevolutionary
 
   - type: DynamicRuleCost
     cost: 100
