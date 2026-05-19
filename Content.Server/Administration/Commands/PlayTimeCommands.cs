@@ -109,7 +109,7 @@ public sealed class PlayTimeAddRoleCommand : IConsoleCommand
 
         if (time == null)
         {
-            shell.WriteError($"No player record found for {userName}.");
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", userName)));
             return;
         }
         // Starlight edit End
