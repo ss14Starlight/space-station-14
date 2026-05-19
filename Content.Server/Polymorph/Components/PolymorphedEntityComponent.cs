@@ -1,4 +1,5 @@
 using Content.Server.Polymorph.Systems;
+using Content.Shared._Starlight.Language.Components; // Starlight
 using Content.Shared.Polymorph;
 
 namespace Content.Server.Polymorph.Components;
@@ -32,6 +33,11 @@ public sealed partial class PolymorphedEntityComponent : Component
     /// </summary>
     [DataField]
     public float Time;
+
+    [DataField]
+    public LanguageKnowledgeComponent LanguageKnowledgeGranted;
+    [DataField]
+    public LanguageSpeakerComponent LanguageSpeechGranted;
 
     [DataField]
     public EntityUid? Action;
