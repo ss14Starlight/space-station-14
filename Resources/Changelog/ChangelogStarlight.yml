@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: The lockable body bag spawns in EMT belts instead of paramedics' bags again.
-    type: Tweak
-  id: 404715
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
   - message: Refactors medtak's variants of the above added items to use abstract parents instead of having to duplicate the prototype.
     type: Tweak
   id: 404716
@@ -2799,4 +2792,11 @@ Entries:
   id: 405114
   time: '2026-05-18T20:41:32.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4478
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixes rounds being unable to start.
+    type: Fix
+  id: 405115
+  time: '2026-05-19T01:31:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4481
 Order: -1
