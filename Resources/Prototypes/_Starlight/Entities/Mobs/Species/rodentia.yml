@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McRat # MIKEY - compare to resomi. lookup 'Urist McRaptor'
+  name: Urist McRat
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: BaseMobRodentia
   abstract: true
@@ -58,7 +58,7 @@
   - type: Speech
     speechVerb: Rodentia
     speechSounds: Squeak
-    allowedEmotes: ['Squeak'] # MIKEY - add more emotes. Look at MobMouse for inspo?
+    allowedEmotes: ['Squeak']
   - type: Fixtures
     fixtures:
       fix1:
@@ -101,7 +101,7 @@
           state: inHand
   - type: Inventory
     speciesId: rodentia
-    displacements: # MIKEY - verify all work
+    displacements:
       jumpsuit:
         sizeMaps:
           32:

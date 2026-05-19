@@ -36,12 +36,9 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
 
         SubscribeLocalEvent<CrawlUnderObjectsComponent, DropAttemptEvent>(OnDropAttempt);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, PickupAttemptEvent>(OnPickupAttempt);
-        // SubscribeLocalEvent<CrawlUnderObjectsComponent, AttackAttemptEvent>(OnAttackAttempt);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, UseAttemptEvent>(OnUseAttempt);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, ShotAttemptedEvent>(OnShootAttempt);
         SubscribeLocalEvent<CrawlUnderObjectsComponent, AttemptMeleeEvent>(OnMeleeAttempt);
-
-        // SubscribeLocalEvent<CrawlUnderObjectsComponent, InteractionAttemptEvent>(OnInteractionAttempt); // Too broad of a listener MIKEY kep delete?
     }
 
     private void OnAbilityToggle(EntityUid uid, CrawlUnderObjectsComponent component, ToggleCrawlingStateEvent args)
@@ -153,8 +150,10 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
 
         Dirty(uid, component);
     }
-    // --- Hand-blocking event handlers (cuff-style) ---
-    // - MIKEY keep delete?
+
+    /// <summary>
+    /// Disallows dropping items when underneath a table while sneaking.
+    /// </summary>
     private void OnDropAttempt(EntityUid uid, CrawlUnderObjectsComponent component, ref DropAttemptEvent args)
     {
         if (args.Cancelled) return;

@@ -589,7 +589,7 @@
             state: inHand
     - type: Inventory
       speciesId: rodentia
-      displacements: # MIKEY - verify all work
+      displacements:
         jumpsuit:
           sizeMaps:
             32:
