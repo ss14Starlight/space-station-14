@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Climbing.Events;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands;
 using Content.Shared.Item;
 using Content.Shared.Interaction.Events;
@@ -57,6 +56,13 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         if (TryComp<KnockedDownComponent>(uid, out var knockedDown) && knockedDown.DoAfterId.HasValue)
             return;
 
+        // Don't allow entering sneak while currently on a blocking tile (like a table)
+        if (IsOnCollidingTile(uid))
+        {
+            _popup.PopupClient(Loc.GetString("knockdown-component-stand-no-room"), uid, uid, PopupType.SmallCaution);
+            return;
+        }
+
         if (component.Enabled)
             DisableSneakMode(uid, component);
         else
@@ -97,7 +103,7 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         component.Enabled = true;
         Dirty(uid, component);
 
-        _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-on"), uid, uid);
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-on"), uid, uid, PopupType.MediumCaution);
 
         //var ev = new DropHandItemsEvent();
         //RaiseLocalEvent(uid, ref ev);
@@ -126,11 +132,11 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
     {
         if (IsOnCollidingTile(uid))
         {
-            _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-off-fail"), uid, uid);
+            _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-off-fail"), uid, uid, PopupType.SmallCaution);
             return;
         }
 
-        _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-off"), uid, uid);
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-toggle-off"), uid, uid, PopupType.MediumCaution);
 
         // Restore normal collision masks
         if (TryComp<FixturesComponent>(uid, out var fixtureComponent))
@@ -190,7 +196,7 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         if (!component.Enabled || !component.BlockHands) return;
         if (!IsOnCollidingTile(uid)) return;
 
-        _popup.PopupClient(Loc.GetString("crawl-under-objects-pickup-fail"), uid, uid);
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-pickup-fail"), uid, uid, PopupType.SmallCaution);
         args.Cancel();
     }
 
@@ -200,7 +206,7 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         if (!component.Enabled || !component.BlockHands) return;
         if (!IsOnCollidingTile(uid)) return;
 
-        _popup.PopupClient(Loc.GetString("crawl-under-objects-use-fail"), uid, uid);
+        _popup.PopupClient(Loc.GetString("crawl-under-objects-use-fail"), uid, uid, PopupType.SmallCaution);
         args.Cancel();
     }
 
