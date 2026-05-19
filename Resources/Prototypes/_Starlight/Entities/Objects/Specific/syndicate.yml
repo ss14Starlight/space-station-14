@@ -110,7 +110,7 @@
   id: TraitorNuclearCodes
   name: the red folder
   suffix: Station Nuke Codes
-  description: Alerts the station to your presence. Good luck.
+  description: Alerts the station to your presence. Disintegrates without using after 60 seconds, don't waste your chance. Good luck.
   components:
   - type: Sprite
     sprite: Objects/Misc/folders.rsi
@@ -151,3 +151,5 @@
     color: Red
     radius: 6
     energy: 3
+  - type: TimedDespawn
+    lifetime: 60

@@ -43,7 +43,8 @@ public partial class ListingData : IEquatable<ListingData>
         other.RestockTime,
         other.DiscountDownTo,
         other.DisableRefund,
-        other.ApplyToMob
+        other.ApplyToMob, // Starlight comma
+        other.DestockTime // Starlight
     )
     {
 
@@ -70,7 +71,8 @@ public partial class ListingData : IEquatable<ListingData>
         TimeSpan restockTime,
         Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> dataDiscountDownTo,
         bool disableRefund,
-        bool applyToMob
+        bool applyToMob, //Starlight comma
+        TimeSpan destockTime //Starlight
     )
     {
         Name = name;
@@ -94,6 +96,7 @@ public partial class ListingData : IEquatable<ListingData>
         DiscountDownTo = new Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2>(dataDiscountDownTo);
         DisableRefund = disableRefund;
         ApplyToMob = applyToMob;
+        DestockTime = destockTime; //Starlight
     }
 
     [ViewVariables]
@@ -228,6 +231,13 @@ public partial class ListingData : IEquatable<ListingData>
     /// </summary>
     [DataField]
     public bool ApplyToMob = false;
+    #region Starlight
+    /// <summary>
+    /// Used to restrict purchase of some items after some time has passed.
+    /// </summary>
+    [DataField]
+    public TimeSpan DestockTime = TimeSpan.Zero;
+    #endregion
 
     public bool Equals(ListingData? listing)
     {
@@ -244,7 +254,8 @@ public partial class ListingData : IEquatable<ListingData>
             ProductEvent?.GetType() != listing.ProductEvent?.GetType() ||
             RestockTime != listing.RestockTime ||
             DisableRefund != listing.DisableRefund ||
-            ApplyToMob != listing.ApplyToMob)
+            ApplyToMob != listing.ApplyToMob || // Starlight OR
+            DestockTime != listing.DestockTime) // Starlight
             return false;
 
         if (Icon != null && !Icon.Equals(listing.Icon))
@@ -327,7 +338,8 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
             listingData.RestockTime,
             listingData.DiscountDownTo,
             listingData.DisableRefund,
-            listingData.ApplyToMob
+            listingData.ApplyToMob, // Starlight comma
+            listingData.DestockTime // Starlight
         )
     {
     }
