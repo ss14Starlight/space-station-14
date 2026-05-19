@@ -448,6 +448,29 @@
                     0.2
                 ]
             ]
+        },
+        {
+            "name": "shipyard",
+            "copyright": "Made by by Potato1234_x, Edited by CrazyPhantom779 (Github) removing blank frame",
+            "directions": 4,
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ],
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
         }
     ]
 }

@@ -199,11 +199,6 @@ public abstract partial class SharedBorgSystem
                     }
                     // Starlight edit end
                 }
-                // Starlight: item entry was removed (consumed) — re-spawn it
-                else if (hand.Item is { } respawnProto)
-                {
-                    item = PredictedSpawnAtPosition(respawnProto, xform.Coordinates);
-                }
             }
             else if (hand.Item is { } itemProto)
             {

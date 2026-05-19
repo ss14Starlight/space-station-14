@@ -312,7 +312,7 @@
         damage: 15
       behaviors:
       - !type:PopupBehavior
-        popup: mouth-taste-metal
+        popup: sensor-static
         popupType: LargeCaution
         targetOnly: true
   # Lock

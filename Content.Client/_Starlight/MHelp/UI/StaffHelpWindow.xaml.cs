@@ -8,7 +8,5 @@ namespace Content.Client._Starlight.MHelp.UI;
 public sealed partial class StaffHelpWindow : DefaultWindow
 {
     public StaffHelpWindow()
-    {
-        RobustXamlLoader.Load(this);
-    }
+        => RobustXamlLoader.Load(this);
 }

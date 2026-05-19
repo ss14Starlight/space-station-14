@@ -574,6 +574,7 @@
     pagingSoundParams:
       maxDistance: 15 # Stationary consoles have a much longer audio range.
     # Starlight END
+  - type: CrewMonitoringFilter # Starlight: set crew monitors to filter for crew sensors by default
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
@@ -685,7 +686,7 @@
   parent: BaseComputerAiAccess
   id: ComputerId
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming NanoTrasen employee ID cards to access parts of the station. # SL
   components:
   - type: IdCardConsole
   # Starlight-edit: Start
@@ -805,7 +806,6 @@
     range: 4
     ports:
       - BodyScannerSender
-  # Starlight-end
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -842,6 +842,11 @@
         type: CommunicationsConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+      # Starlight Start: Secure Command Terminal
+      enum.SecureCommandTerminalUiKey.Key:
+        type: SecureCommandTerminalBui
+  - type: SecureCommandTerminalConsole
+      # Starlight End
   - type: Computer
     board: CommsComputerCircuitboard
   # Starlight Start - Immersive Lighting PR
@@ -881,6 +886,8 @@
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false # The title already says who they are.
     sound: /Audio/Announcements/war.ogg
+  - type: SecureCommandTerminalConsole # SL
+    enabled: false
   - type: Computer
     board: SyndicateCommsComputerCircuitboard
   - type: PointLight
@@ -915,6 +922,8 @@
     global: true #announce to everyone they're about to fuck shit up
     announceSentBy: false
     sound: /Audio/Announcements/war.ogg # SL - Revert this back to war sound
+  - type: SecureCommandTerminalConsole # SL
+    enabled: false
   - type: Computer
     board: WizardCommsComputerCircuitboard
   - type: PointLight
@@ -947,6 +956,8 @@
     color: "#1d8bad"
     canShuttle: false
     global: true
+  - type: SecureCommandTerminalConsole #SL
+    enabled: false
   - type: Computer
     board: CentcommCommsComputerCircuitboard
   - type: PointLight

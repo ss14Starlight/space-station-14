@@ -197,7 +197,7 @@
     node: hardsuitGoliath
   - type: Tag
     tags:
-    - CorgiWearable
+    - CorgiWearable #Starlight
     - Hardsuit
     - WhitelistChameleon
 
@@ -387,6 +387,11 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
   - type: StealTarget # Starlight
     stealGroup: WardenHardsuit # Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable #Starlight
+    - WhitelistChameleon
 
 #Captain's Hardsuit
 - type: entity
@@ -618,6 +623,12 @@
     delay: 10.0
   - type: StealTarget # Starlight
     stealGroup: HOSHardsuit # Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - CorgiWearable
+    - Hardsuit
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -1387,12 +1398,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 1
+        Blunt: 0.75 # Starlight start
+        Slash: 0.75
+        Piercing: 0.85 # Starlight end
         Heat: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.95 # Starlight, giving it something over the armor
+    sprintModifier: 0.95 # Starlight
   - type: HeldSpeedModifier
   - type: Unremoveable

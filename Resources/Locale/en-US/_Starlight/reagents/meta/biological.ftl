@@ -12,3 +12,6 @@ reagent-desc-dark-blood = The blood from a creature of The Dark.
 
 reagent-name-cyclorite-blood = diluted nitric acid blood
 reagent-desc-cyclorite-blood = Feels slightly acidic.
+
+reagent-name-amalgam = amalgamation blood
+reagent-desc-amalgam = Reminds you of human blood, slime, ammonia, nitric acid... A lot, really.

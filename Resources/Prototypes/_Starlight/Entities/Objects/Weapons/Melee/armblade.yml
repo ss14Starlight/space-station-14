@@ -1,0 +1,52 @@
+- type: entity
+  name: true arm blade
+  parent: ArmBlade
+  id: ArmBladePlus
+  description: A truly beautiful blade made out of bone and flesh that tears the flesh off of its victims. Can pry open doors very quickly. Gives off a mild red glow.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/arm_blade_plus.rsi
+    state: icon
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    wideAnimationRotation: 90
+    attackRate: 1.5 # Doesn't gain a power upgrade, instead gaining a speed upgrade.
+    range: 1.7 # At full power, you get a longer arm.
+    damage:
+      types: # Same as energy sword, but slash/pierce instead of slash/heat
+        Slash: 15
+        Piercing: 15
+        Bloodloss: 5 # Tearing the flesh off of your victim.
+        Structural: 30 # Break through walls.
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Weapons/Melee/arm_blade_plus.rsi
+  - type: Prying
+    speedModifier: 3.5 # If you get to this point, you're a force to be reckoned with, and deserve this.
+    pryPowered: true
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
+  - type: PointLight
+    radius: 2
+    energy: 4
+    color: "#C90000" # Has a red glow effect to make people  even more aware you have it out, given its power. Also looks cool.
+  - type: Reflect
+    reflectProb: 0.3
+    spread: 75
+    enhancedReflection: # Pretty similar to an esword; you had the chance to take down the ling earlier, but you didn't, and now you have to deal with the consequences.
+      TaserBolt: 0.75
+      DisablerBolt: 0.40
+      LaserBolt: 0.40
+      BulletDisabler: 0.40
+      BulletDisablerSmgSpread: 0.40
+      BulletLaserSpread: 0.40
+      DisablerBoltSmg: 0.40
+      BulletLaserSpreadNarrow: 0.40
+      BulletDisablerSmg: 0.40
+      PelletClusterRubber: 0.1 # You can't block all of them. Zookeepers are actually a really valid solution to a full power Changeling.
+      RedLaserBeam: 0.35
+      IgnitionRedLaser: 0.35
+      DestroyBeam: 0.35
+      RadOrb: 0.35
+      FreezeRay: 0.35

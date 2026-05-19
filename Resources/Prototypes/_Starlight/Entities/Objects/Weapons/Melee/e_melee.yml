@@ -72,3 +72,39 @@
       path: /Audio/Weapons/ebladeoff.ogg
       params:
         pitch: 0.8
+
+- type: entity
+  id: EnergySwordBanana
+  parent: [BaseMeleeWeaponEnergy, BaseSyndicateContraband]
+  name: banana energy sword
+  description: Cybersun's research into bananium weaponry produced some unexpected results. Honk!
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#FFFF00"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  - type: EnergySword
+    colorOptions:
+      - "#FFFF00"
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Heat: 0.3
+  - type: SlipOnHit
+    staminaDamage: 15
+    slipData:
+      requiredSlipSpeed: 0
+      knockdownTime: 1
+      launchForwardsMultiplier: 2

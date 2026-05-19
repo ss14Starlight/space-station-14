@@ -87,7 +87,7 @@ public sealed class RadioSystem : EntitySystem
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
         // Starlight - Start
-        if (args.Language.SpeechOverride.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID))
+        if (args.Language.Speech.RadioChannel is not null && _language.CanUnderstand(uid, args.Language.ID))
             return;
 
         if (TryComp(uid, out ActorComponent? actor))
@@ -137,8 +137,8 @@ public sealed class RadioSystem : EntitySystem
         if (language == null)
             language = _language.GetLanguage(messageSource);
 
-        if ((!language.SpeechOverride.AllowRadio && language.SpeechOverride.RadioChannel is not null && language.SpeechOverride.RadioChannel != channel)
-            || (!language.SpeechOverride.AllowRadio && language.SpeechOverride.RadioChannel is null))
+        if ((!language.Speech.AllowRadio && language.Speech.RadioChannel is not null && language.Speech.RadioChannel != channel)
+            || (!language.Speech.AllowRadio && language.Speech.RadioChannel is null))
             return;
         // Starlight - End
 
@@ -192,7 +192,7 @@ public sealed class RadioSystem : EntitySystem
         var sourceServerExempt = _exemptQuery.HasComp(radioSource);
 
         // Starlight - Start - Languages - Radio
-        if (language.SpeechOverride.RadioChannel is not null && channel == language.SpeechOverride.RadioChannel)
+        if (language.Speech.RadioChannel is not null && channel == language.Speech.RadioChannel)
         {
             var languageQuery = EntityQueryEnumerator<LanguageKnowledgeComponent>();
             while (canSend && languageQuery.MoveNext(out var receiver, out var _))
@@ -280,7 +280,7 @@ public sealed class RadioSystem : EntitySystem
         if (language == null)
             language = _language.GetLanguage(messageSource);
 
-        if (!language.SpeechOverride.AllowRadio)
+        if (!language.Speech.AllowRadio)
             return;
 
         if (!_messages.Add(message))
@@ -426,7 +426,7 @@ public sealed class RadioSystem : EntitySystem
         var speech = _chat.GetSpeechVerb(source, message);
         var languageColor = channel.Color;
 
-        if (language.SpeechOverride.Color is { } colorOverride)
+        if (language.Speech.Color is { } colorOverride)
             languageColor = Color.InterpolateBetween(Color.White, colorOverride, colorOverride.A); // Changed first param to Color.White so it shows color correctly.
 
         var (iconId, jobName) = GetJobIcon(source);
@@ -435,15 +435,15 @@ public sealed class RadioSystem : EntitySystem
         if (_language.GetLanguageIcon(language, obfuscated))
             namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] [icon src=\"{language.Icon}\" tooltip=\"{language.Name}\"] {name}";
 
-        var fonttype = language.SpeechOverride.FontId ?? speech.FontId;
-        if ((language.SpeechOverride.ObfuscationFont ?? false) && !obfuscated)
+        var fonttype = language.Speech.FontId ?? speech.FontId;
+        if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
             fonttype = speech.FontId;
 
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
                 ("color", channel.Color),
                 ("languageColor", languageColor),
                 ("fontType", fonttype),
-                ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
+                ("fontSize", language.Speech.FontSize ?? speech.FontSize),
                 ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
                 ("channel", $"\\[{channel.LocalizedName}\\]"),
                 ("name", namestring),
@@ -463,7 +463,7 @@ public sealed class RadioSystem : EntitySystem
         var speech = _chat.GetSpeechVerb(source, message);
         var languageColor = channel.Color;
 
-        if (language.SpeechOverride.Color is { } colorOverride)
+        if (language.Speech.Color is { } colorOverride)
             languageColor = Color.InterpolateBetween(Color.White, colorOverride, colorOverride.A); // Changed first param to Color.White so it shows color correctly.
 
         var (iconId, jobName) = GetJobIcon(source);
@@ -472,15 +472,15 @@ public sealed class RadioSystem : EntitySystem
         if (_language.GetLanguageIcon(language, obfuscated))
             namestring = $"[icon src=\"{iconId}\" tooltip=\"{jobName}\"] [icon src=\"{language.Icon}\" tooltip=\"{language.Name}\"] {name}";
 
-        var fonttype = language.SpeechOverride.FontId ?? speech.FontId;
-        if ((language.SpeechOverride.ObfuscationFont ?? false) && !obfuscated)
+        var fonttype = language.Speech.FontId ?? speech.FontId;
+        if ((language.Speech.ObfuscationFont ?? false) && !obfuscated)
             fonttype = speech.FontId;
 
         return Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
             ("color", channel.Color),
             ("languageColor", languageColor),
             ("fontType", fonttype),
-            ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
+            ("fontSize", language.Speech.FontSize ?? speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("channel", $"\\[{channel.LocalizedName}\\]"),
             ("name", namestring),

@@ -16,7 +16,7 @@
 
 - type: entity
   id: ClothingBeltBrigmedicFilled
-  parent: ClothingBeltBrigmedic
+  parent: [ClothingBeltBrigmedic, StealTargetMedicalBeltCollection]
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -31,7 +31,7 @@
 
 - type: entity
   id: ClothingBeltBrigmedicWebFilled
-  parent: ClothingBeltBrigmedicWeb
+  parent: [ClothingBeltBrigmedicWeb, StealTargetMedicalBeltCollection]
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -46,7 +46,7 @@
 
 - type: entity
   id: ClothingBeltCorpsmanFilled
-  parent: ClothingBeltCorpsman
+  parent: [ClothingBeltCorpsman, StealTargetMedicalBeltCollection]
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -61,7 +61,7 @@
 
 - type: entity
   id: ClothingBeltBlueShieldWebbingFilled
-  parent: ClothingBeltBlueShieldWebbing
+  parent: [ClothingBeltBlueShieldWebbing, StealTargetMedicalBeltCollection]
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -79,7 +79,7 @@
 
 - type: entity
   id: ClothingBeltBlueShieldMedicalBeltFilled
-  parent: ClothingBeltBlueShieldMedicalBelt
+  parent: [ClothingBeltBlueShieldMedicalBelt, StealTargetMedicalBeltCollection]
   suffix: Filled
   components:
   - type: EntityTableContainerFill

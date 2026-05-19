@@ -20,7 +20,7 @@ public sealed class CosmicLapseSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
-    private static readonly ProtoId<PolymorphPrototype> HumanLapse = "CosmicLapseMobHuman";
+    private static readonly ProtoId<PolymorphPrototype> _humanLapse = "CosmicLapseMobHuman";
 
     public override void Initialize()
     {
@@ -54,7 +54,7 @@ public sealed class CosmicLapseSystem : EntitySystem
         if (_prototype.HasIndex<PolymorphPrototype>(polymorphId))
             _polymorph.PolymorphEntity(action.Target, polymorphId);
         else
-            _polymorph.PolymorphEntity(action.Target, HumanLapse);
+            _polymorph.PolymorphEntity(action.Target, _humanLapse);
         _cult.MalignEcho(uid);
     }
 }

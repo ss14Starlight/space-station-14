@@ -147,3 +147,9 @@
   background: /Textures/_Starlight/LobbyScreens/KATIEVSSYNDIE.webp
   title: lobby-state-background-katievssyndie-title
   artist: lobby-state-background-katievssyndie-artist
+
+- type: lobbyBackground
+  id: NoGalCom
+  background: /Textures/_Starlight/LobbyScreens/NoGalCom.webp
+  title: lobby-state-background-nogalcom-title
+  artist: lobby-state-background-nogalcom-artist

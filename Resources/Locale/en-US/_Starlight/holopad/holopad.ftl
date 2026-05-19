@@ -1,5 +1,5 @@
 # Service
-holopad-service-legal = Service - Legal
+holopad-service-lawyer = Service - Lawyer
 
 # Security
 holopad-security-iaa = Security - Internal Affairs

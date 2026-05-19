@@ -50,6 +50,49 @@
     - TrumpetInstrument
   groupBy: "Instruments"
 
+- type: loadout
+  id: CoderSocks
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    shoes: ClothingUnderSocksCoder
+
+- type: loadout
+  id: CatEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatWhiteCatEars
+  groupBy: "cat ears"
+
+- type: loadout
+  id: BunnyEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatBunny
+  groupBy: "cat ears"
+
+- type: loadout
+  id: DogEars
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    head: ClothingHeadHatDogEars
+  groupBy: "cat ears"
+
 # Headphones
 - type: loadout
   id: ReporterHeadphonesTrinket
@@ -63,6 +106,12 @@
     back:
     - ClothingMultipleHeadphonesReporter
   groupBy: "Headphones"
+
+- type: loadout
+  id: PawBootTrinket
+  equipment:
+    shoes: ClothingShoesPawBoots
+  groupBy: "Paw Boots"
 
 - type: loadout
   id: HighEndHeadphones
@@ -571,6 +620,66 @@
   equipment:
     gloves: ClothingClothWrap
   groupBy: "cloth wraps"
+
+# Maid Outfits
+- type: loadout
+  id: MaidOutfit
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40hr
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: MaidGloves
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:OverallPlaytimeRequirement
+        time: 144000 # 40 hr
+  equipment:
+    gloves: ClothingHandsMaidGlovesElegant
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: TacticalMaidGloves
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    gloves: ClothingHandsTacticalMaidGlovesDelicate
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: MaidOutfitTactical
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtTacticalMaid
+  groupBy: "maid outfit"
+
+- type: loadout
+  id: MaidHeadbandTactical
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:DepartmentTimeRequirement
+        department: Security
+        time: 216000 # 60 hours of charging batong
+  equipment:
+    head: ClothingHeadHatTacticalMaidHeadband
+  groupBy: "maid outfit"
+
 
 - type: loadout
   id: TreasureCoinIron

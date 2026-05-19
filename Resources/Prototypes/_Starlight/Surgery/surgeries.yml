@@ -497,7 +497,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -526,7 +525,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -606,7 +604,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -632,7 +629,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso

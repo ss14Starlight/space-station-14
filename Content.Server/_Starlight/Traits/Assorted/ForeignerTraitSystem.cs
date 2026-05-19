@@ -6,12 +6,11 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
-using Content.Shared._Starlight.Language.Components.Translators;
 using Content.Shared.Storage;
 using Robust.Shared.Prototypes;
+using HandheldTranslatorComponent = Content.Shared._Starlight.Language.Components.HandheldTranslatorComponent;
 
 namespace Content.Server._Starlight.Traits.Assorted;
-
 
 public sealed partial class ForeignerTraitSystem : EntitySystem
 {
@@ -22,9 +21,7 @@ public sealed partial class ForeignerTraitSystem : EntitySystem
     [Dependency] private readonly StorageSystem _storage = default!;
 
     public override void Initialize()
-    {
-        SubscribeLocalEvent<ForeignerTraitComponent, ComponentInit>(OnSpawn); // TraitSystem adds it after PlayerSpawnCompleteEvent so it's fine.
-    }
+        => SubscribeLocalEvent<ForeignerTraitComponent, ComponentInit>(OnSpawn); // TraitSystem adds it after PlayerSpawnCompleteEvent so it's fine.
 
     private void OnSpawn(Entity<ForeignerTraitComponent> entity, ref ComponentInit args)
     {
@@ -37,7 +34,7 @@ public sealed partial class ForeignerTraitSystem : EntitySystem
             return;
         }
 
-        var alternateLanguage = knowledge.SpokenLanguages.Find(it => it != entity.Comp.BaseLanguage);
+        var alternateLanguage = knowledge.Speaks.Find(it => it != entity.Comp.BaseLanguage);
         if (alternateLanguage == default)
         {
             Log.Warning($"Entity {entity.Owner} does not have an alternative language to choose from (must have at least one non-GC for ForeignerTrait)!");
@@ -69,15 +66,20 @@ public sealed partial class ForeignerTraitSystem : EntitySystem
 
         if (!TryComp<HandheldTranslatorComponent>(translator, out var handheld))
         {
-            handheld = AddComp<HandheldTranslatorComponent>(translator);
-            handheld.ToggleOnInteract = true;
-            handheld.SetLanguageOnInteract = true;
+            handheld = new HandheldTranslatorComponent
+            {
+                ToggleOnInteract = true,
+                SetLanguageOnInteract = true
+            };
+
+            AddComp(translator, handheld);
         }
 
         // Allows to speak the specified language and requires entities language.
-        handheld.SpokenLanguages = [translatorLanguage];
-        handheld.UnderstoodLanguages = [translatorLanguage];
-        handheld.RequiredLanguages = [entityLanguage];
+        handheld.Spoken = [translatorLanguage];
+        handheld.Understood = [translatorLanguage];
+        handheld.Requires = [entityLanguage];
+        Dirty(translator, handheld);
 
         // Try to put it in entities hand
         if (_hands.TryPickupAnyHand(uid, translator, false, false, false))

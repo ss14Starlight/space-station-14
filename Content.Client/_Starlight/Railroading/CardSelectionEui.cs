@@ -1,29 +1,21 @@
-using System.Linq;
 using System.Numerics;
-using Content.Client._Starlight.NewLife;
 using Content.Client._Starlight.UI;
 using Content.Client.Eui;
-using Content.Client.Lobby;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
-using Content.Shared.Starlight.NewLife;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared;
-using static Robust.Client.Input.Mouse;
-using static Robust.Client.UserInterface.Controls.LayoutContainer;
 
 namespace Content.Client._Starlight.Railroading;
 
 [UsedImplicitly]
 public sealed class CardSelectionEui : BaseEui
 {
-    private List<IDisposable> _disposables = [];
     private static readonly Vector2 _cardSize = new(264, 370);
     private static readonly Vector2 _cardContentSize = new(254, 200);
     private static readonly Vector2 _cardDescSize = new(255, 160);
-    private SLWindow _window;
+    private readonly SLWindow _window;
 
     public CardSelectionEui()
     {

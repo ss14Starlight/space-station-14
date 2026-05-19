@@ -3,28 +3,28 @@ using Content.Shared._Starlight.Language.Components;
 
 namespace Content.Shared._Starlight.Language.Systems;
 
-public abstract partial class SharedLanguageSystem : EntitySystem
+public abstract partial class SharedLanguageSystem
 {
     /// <summary>
-    /// Captures a <see cref="LanguageCacheComponent"/> for this entity and stores it there.
+    ///     Captures a <see cref="LanguageCacheComponent"/> for this entity and stores it there.
     /// </summary>
     /// <param name="ent">The entity the cache should be taken and applied to</param>
     public void CaptureCache(Entity<LanguageKnowledgeComponent> ent)
     {
-        if (HasComp<LanguageCacheComponent>(ent))
-            return; //The entity allready has a cache which means languages were modified twice. eg: randomized twice. if we re-rolled it it would restore the randomized languages
+        if (EnsureComp(ent, out LanguageCacheComponent cache))
+            return; //The entity already has a cache which means languages were modified twice. eg: randomized twice. if we re-rolled it, it would restore the randomized languages
 
-        var cache = EnsureComp<LanguageCacheComponent>(ent);
         cache.HasUniversal = HasComp<UniversalLanguageSpeakerComponent>(ent);
-        cache.SpeakingCache = ent.Comp.SpokenLanguages.ToHashSet();
-        cache.UnderstandingCache = ent.Comp.UnderstoodLanguages.ToHashSet();
+        cache.SpeakingCache = ent.Comp.Speaks.ToHashSet();
+        cache.UnderstandingCache = ent.Comp.Understands.ToHashSet();
+        Dirty(ent.Owner, cache);
     }
 
     /// <summary>
-    /// restores a entites languages from their <see cref="LanguageCacheComponent"/>
-    /// recomended to call UpdateLanguages after calling this.
+        /// Restores an entity's languages from their <see cref="LanguageCacheComponent"/>
+        /// recommended to call UpdateLanguages after calling this.
     /// </summary>
-    /// <param name="ent">The entity the cache should restored for</param>
+    /// <param name="ent">The entity the cache should be restored for</param>
     public void RestoreCache(Entity<LanguageCacheComponent> ent)
     {
         if (!TryComp<LanguageKnowledgeComponent>(ent, out var knowledge))
@@ -35,8 +35,11 @@ public abstract partial class SharedLanguageSystem : EntitySystem
             EnsureComp<UniversalLanguageSpeakerComponent>(ent);
         else
             RemComp<UniversalLanguageSpeakerComponent>(ent);
-        knowledge.SpokenLanguages = cache.SpeakingCache?.ToList() ?? knowledge.SpokenLanguages;
-        knowledge.UnderstoodLanguages = cache.UnderstandingCache?.ToList() ?? knowledge.UnderstoodLanguages;
+
+        knowledge.Speaks = cache.SpeakingCache?.ToList() ?? knowledge.Speaks;
+        knowledge.Understands = cache.UnderstandingCache?.ToList() ?? knowledge.Understands;
+        Dirty(ent, knowledge);
+
         RemComp<LanguageCacheComponent>(ent);
     }
 }

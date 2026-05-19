@@ -11,6 +11,11 @@ comms-console-menu-recall-shuttle = Recall emergency shuttle
 comms-console-menu-emergency-shuttle-button-tooltip = Calls or recalls the emergency shuttle. You can only recall when there's enough time left.
 comms-console-menu-time-remaining = Time remaining: {$time}
 
+# Starlight Start: Secure Command Terminal
+comms-console-menu-secure-terminal-button = Secure Terminal
+comms-console-menu-secure-terminal-button-tooltip = Opens the Secure Terminal.
+# Starlight End
+
 # Popup
 comms-console-permission-denied = Permission denied
 comms-console-shuttle-unavailable = Shuttle is currently unavailable

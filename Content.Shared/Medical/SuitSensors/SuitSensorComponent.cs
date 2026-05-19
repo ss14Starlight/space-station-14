@@ -94,4 +94,10 @@ public sealed partial class SuitSensorComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField, ViewVariables]
     public bool PreviousControlsLocked = false;
+
+    /// <summary>
+    ///     STARLIGHT The faction this sensor belongs to.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string Faction = "crew";
 }

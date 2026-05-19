@@ -146,6 +146,7 @@
         - CMOLicenseStealObjective
         - PinpointerNuclearStealObjective
         - AccessConfiguratorStealObjective
+        - CaptainTabletStealObjective
         - EncryptionKeyHybridStealObjective
         - NTRepBriefcaseSecureStealObjective
         # no ian meat because you are a pacifist and need them alive

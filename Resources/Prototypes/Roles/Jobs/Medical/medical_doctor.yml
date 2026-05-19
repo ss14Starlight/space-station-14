@@ -28,6 +28,7 @@
   id: DoctorGear
   equipment:
     ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled # Starlight - adding back belts
 
 - type: chameleonOutfit
   id: MedicalDoctorChameleonOutfit

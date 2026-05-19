@@ -1,0 +1,12 @@
+- type: latheRecipe
+  id: BioGenCompostAmmonia
+  resultReagents:
+    Ammonia: 10 # 15 biomass give 10 eznutrient which contain 3 ammonia, but also 2 other components. between 1 and 3 units 1:1 sounds the most reasonable. (total nutrient for plants is 15 vs 20 ignoring the slight health boost)
+  categories:
+    - Chemicals
+  icon:
+    sprite: Objects/Specific/Chemistry/bottle.rsi #Structures/Storage/canister.rsi
+    state: bottle-1 #greenys
+  completetime: 1
+  materials:
+    Biomass: 10

@@ -1,0 +1,17 @@
+names-devil-title-dataset-1 = Prince of Nightfall
+names-devil-title-dataset-2 = the Chained One
+names-devil-title-dataset-3 = the Twisted One
+names-devil-title-dataset-4 = the Scapegoat
+names-devil-title-dataset-5 = Spirit of Evil
+names-devil-title-dataset-6 = the Cruel One
+names-devil-title-dataset-7 = the Office Worker
+names-devil-title-dataset-8 = the Wrathful
+names-devil-title-dataset-9 = of the Stars
+names-devil-title-dataset-10 = of the Depths
+names-devil-title-dataset-11 = of the Abyss
+names-devil-title-dataset-12 = the Gluttonous One
+names-devil-title-dataset-13 = of the Foul Odour
+names-devil-title-dataset-14 = Ruler of Darkness
+names-devil-title-dataset-15 = the Unremarkable One
+names-devil-title-dataset-16 = the Mundane One
+names-devil-title-dataset-17 = the Odd

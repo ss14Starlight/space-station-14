@@ -10,9 +10,12 @@ using Content.Shared.Alert;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
+using Content.Shared.Objectives.Components;
+using Content.Shared.Objectives.Systems;
 using Content.Shared.Starlight;
 using Content.Shared.Store;
 using Robust.Server.Player;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -147,8 +150,12 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
                 Entity<RailroadCardComponent, RuleOwnerComponent>? jobCard = null;
                 if (TryGetJobSpecificPool(ruleEnt, subject, out var jobPool))
                     jobCard = PopRandomFromPool(jobPool, subject);
+                // Try to pick an objective card.
+                Entity<RailroadCardComponent, RuleOwnerComponent>? objectiveCard = null;
+                if (TryGetObjectiveSpecificPool(ruleEnt, subject, out var objectivePool))
+                    objectiveCard = PopRandomFromPool(objectivePool, subject);
 
-                var generalSlots = CardPerUser - subject.Comp.IssuedCards.Count - (jobCard != null ? 1 : 0);
+                var generalSlots = CardPerUser - subject.Comp.IssuedCards.Count - (jobCard != null ? 1 : 0) - (objectiveCard != null ? 1 : 0);
 
                 // Fill first general slot, then place job card in center if possible.
                 if (generalSlots > 0)
@@ -163,6 +170,9 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
 
                 if (jobCard != null)
                     subject.Comp.IssuedCards.Add(jobCard.Value);
+
+                if (objectiveCard != null)
+                    subject.Comp.IssuedCards.Add(objectiveCard.Value);
 
                 for (var i = 0; i < generalSlots; i++)
                 {
@@ -202,16 +212,36 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         var ruleOwner = EnsureComp<RuleOwnerComponent>(card.Owner);
         ruleOwner.RuleOwner = ruleEnt.Owner;
 
-        if (TryComp<RailroadSpawnFlowComponent>(card.Owner, out var flow) && flow.JobPrototype is { } job)
+        if (TryComp<RailroadSpawnFlowComponent>(card.Owner, out var flow))
         {
-            if (ruleEnt.Comp.PoolByJob.TryGetValue(job, out var list))
-                list.Add((card.Owner, card.Comp, ruleOwner));
+            if (flow.JobPrototype is { } job)
+            {
+                if (ruleEnt.Comp.PoolByJob.TryGetValue(job, out var list))
+                    list.Add((card.Owner, card.Comp, ruleOwner));
+                else
+                    ruleEnt.Comp.PoolByJob.Add(job, [(card.Owner, card.Comp, ruleOwner)]);
+            }
+            else if (flow.ObjectivePrototype is { } objectivePrototype)
+            {
+                if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectivePrototype, out var list))
+                    list.Add((card.Owner, card.Comp, ruleOwner));
+                else
+                    ruleEnt.Comp.PoolByObjective.Add(objectivePrototype, [(card.Owner, card.Comp, ruleOwner)]);
+            }
+            else if (TryComp<ObjectiveComponent>(card.Owner, out var objective)
+                    && TryComp<MetaDataComponent>(card.Owner, out var meta)
+                    && meta.EntityPrototype is { } objectiveEntityPrototype)
+            {
+                var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
+                if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectiveProtoId, out var list))
+                    list.Add((card.Owner, card.Comp, ruleOwner));
+                else
+                    ruleEnt.Comp.PoolByObjective.Add(objectiveProtoId, [(card.Owner, card.Comp, ruleOwner)]);
+            }
             else
-                ruleEnt.Comp.PoolByJob.Add(job, [(card.Owner, card.Comp, ruleOwner)]);
-        }
-        else
-        {
-            ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
+            {
+                ruleEnt.Comp.Pool.Add((card.Owner, card.Comp, ruleOwner));
+            }
         }
     }
 
@@ -239,6 +269,15 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         {
             var eid = Spawn(proto, MapCoordinates.Nullspace);
             var cardComp = EnsureComp<RailroadCardComponent>(eid);
+
+            if (_proto.TryIndex(proto, out var cardProto)
+                && cardProto.TryGetComponent<RailroadSpawnFlowComponent>(out var flow, _comp)
+                && flow.ObjectivePrototype is { }
+                && _proto.TryIndex(flow.ObjectivePrototype, out var objectiveProto))
+            {
+                EntityManager.AddComponents(eid, objectiveProto.Components, removeExisting: false);
+            }
+
             AddCardToPool(ruleEnt, (eid, cardComp));
         }
     }
@@ -294,6 +333,37 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
         {
             pool = jobPool;
             return true;
+        }
+        pool = null;
+        return false;
+    }
+
+    private bool TryGetObjectiveSpecificPool
+    (
+        Entity<RailroadRuleComponent> ruleEnt,
+        Entity<RailroadableComponent> subject,
+        [NotNullWhen(true)] out List<Entity<RailroadCardComponent, RuleOwnerComponent>>? pool
+    )
+    {
+        if (_mind.TryGetMind(subject.Owner, out var mindUid, out var mind))
+        {
+            foreach (var objectiveUid in mind.Objectives)
+            {
+                if (!TryComp<ObjectiveComponent>(objectiveUid, out var objectiveComp))
+                    continue;
+
+                if (TryComp<MetaDataComponent>(objectiveUid, out var meta)
+                    && meta.EntityPrototype is { } objectiveEntityPrototype)
+                {
+                    var objectiveProtoId = new EntProtoId<ObjectiveComponent>(objectiveEntityPrototype.ID);
+                    if (ruleEnt.Comp.PoolByObjective.TryGetValue(objectiveProtoId, out var objectivePool)
+                        && objectivePool.Count > 0)
+                    {
+                        pool = objectivePool;
+                        return true;
+                    }
+                }
+            }
         }
         pool = null;
         return false;

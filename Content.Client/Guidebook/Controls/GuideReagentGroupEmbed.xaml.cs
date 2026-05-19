@@ -40,7 +40,7 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag,
     public GuideReagentGroupEmbed(string group) : this()
     {
         var prototypes = _prototype.EnumeratePrototypes<ReagentPrototype>()
-            .Where(p => p.Group.Equals(group)).OrderBy(p => p.LocalizedName);
+            .Where(p => p.Group.Equals(group)).OrderByDescending(p => p.LocalizedName); // Starlight - Order reversed to support FrameUpdate
         _reagentsToAdd = prototypes.ToList(); // Starlight
     }
 
@@ -54,7 +54,7 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag,
         }
 
         var prototypes = _prototype.EnumeratePrototypes<ReagentPrototype>()
-            .Where(p => p.Group.Equals(group)).OrderBy(p => p.LocalizedName);
+            .Where(p => p.Group.Equals(group)).OrderByDescending(p => p.LocalizedName); // Starlight - Order reversed to support FrameUpdate
         _reagentsToAdd = prototypes.ToList(); // Starlight
 
         control = this;

@@ -126,6 +126,9 @@
     state: icon
   - type: Item
     size: Ginormous
+  - type: Tag
+    tags:
+    - BorgContrabandBag
   - type: Storage
     maxItemSize: Large
     grid:
@@ -136,8 +139,6 @@
       components:
       - Contraband
   - type: Dumpable
-  - type: Unremoveable
-    deleteOnDrop: false
 
 # region Security
 - type: entity
@@ -153,39 +154,35 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponPDW9TaserBorg
+    - item: BorgStunbatonRechargeable
+    - item: BorgHolocuffs
+    - item: BorgFlashRechargeable
+    - item: BorgHoloprojectorSecurity
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
+  - type: Tag
+    tags:
+    - BorgModuleSecurityStation
+
+- type: entity
+  id: BorgModuleSecurityContraband
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: contraband bag cyborg module
+  description: A security cyborg module containing an integrated evidence bag. It can collect contraband on contact and will drop to the floor if the cyborg is incapacitated.
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-nt
+  - type: ItemBorgModule
+    hands:
+    - item: BorgContrabandBag
       hand:
-        emptyRepresentative: WeaponPDW9TaserBorg
-        emptyLabel: borg-slot-disabler-empty
+        emptyRepresentative: BorgContrabandBag
+        emptyLabel: borg-slot-contrabag-empty
         whitelist:
           tags:
-          - Disabler
-          - Taser
-    - item: BorgStunbatonRechargeable
-      hand:
-        emptyRepresentative: BorgStunbatonRechargeable
-        emptyLabel: borg-slot-stunbaton-empty
-        whitelist:
-          components:
-          - Stunbaton
-    - item: BorgHolocuffs
-      hand:
-        emptyRepresentative: BorgHolocuffs
-        emptyLabel: borg-slot-zipties-empty
-    - item: BorgFlashRechargeable
-      hand:
-        emptyRepresentative: BorgFlashRechargeable
-        emptyLabel: borg-slot-flash-empty
-        whitelist:
-          components:
-          - Flash
-    - item: BorgHoloprojectorSecurity
-      hand:
-        emptyRepresentative: BorgHoloprojectorSecurity
-        emptyLabel: borg-slot-holoprojector-empty
-        whitelist:
-          components:
-          - HolosignProjector
-    - item: BorgContrabandBag
+          - BorgContrabandBag
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-unlethal-module }
   - type: Tag

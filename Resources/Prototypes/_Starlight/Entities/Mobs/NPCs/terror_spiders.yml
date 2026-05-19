@@ -5,6 +5,7 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
+  - type: WeaponArcVisuals
   - type: LanguageKnowledge
     speaks:
     - Chittin
@@ -13,6 +14,7 @@
     - Chittin
     - Darktongue
   - type: ThermalVision
+    useAlternativeShader: true
   - type: OptionsVisualizer
     visuals:
       base:
@@ -144,6 +146,9 @@
   - type: GhostTakeoverAvailable
   - type: Puller
     needsHands: false
+  - type: ActionGrant
+    actions:
+    - ActionEntityWrap
 
 - type: entity
   name: terror red
@@ -409,6 +414,7 @@
   - type: ActionGrant
     actions:
     - ActionSpiderEMPScream
+    - ActionEntityWrap
 
 # White
 
@@ -568,6 +574,7 @@
     actions:
     - ActionEggsLaying
     - ActionAcidVent
+    - ActionEntityWrap
   - type: UserInterface
     interfaces:
       enum.EggsLayingUiKey.Key:

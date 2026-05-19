@@ -66,6 +66,9 @@
   id: BorgModuleSecurityStation
 
 - type: Tag
+  id: BorgContrabandBag
+
+- type: Tag
   id: BorgModuleSupply
 
 - type: Tag

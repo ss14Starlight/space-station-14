@@ -176,8 +176,22 @@
   text: "/ServerInfo/Guidebook/ServerRules/RulesSL/CoreRules/RuleSL14.xml"
 
 - type: guideEntry
+  id: RuleSL15
+  name: guide-entry-sl-rule-15
+  ruleEntry: true
+  priority: 15
+  text: "/ServerInfo/Guidebook/ServerRules/RulesSL/CoreRules/RuleSL15.xml"
+
+- type: guideEntry
+  id: RuleSL16
+  name: guide-entry-sl-rule-16
+  ruleEntry: true
+  priority: 16
+  text: "/ServerInfo/Guidebook/ServerRules/RulesSL/CoreRules/RuleSL16.xml"
+
+- type: guideEntry
   id: Metashield
   name: guide-entry-sl-metashield
   ruleEntry: true
-  priority: 15
+  priority: 17
   text: "/ServerInfo/Guidebook/ServerRules/RulesSL/Clarifications/Metashield.xml"
