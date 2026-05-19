@@ -98,6 +98,7 @@
       brokenState: base-broken
       mechToPilotDamageMultiplier: 0.0
       airtight: true
+      maxIntegrity: 250
       maxEquipmentAmount: 4
       pilotWhitelist:
         components:
