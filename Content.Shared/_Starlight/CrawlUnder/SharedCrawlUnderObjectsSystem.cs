@@ -15,7 +15,7 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Shared._DeltaV.Abilities;
+namespace Content.Shared._Starlight.CrawlUnder;
 
 public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
 {

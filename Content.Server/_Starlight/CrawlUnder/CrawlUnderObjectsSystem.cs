@@ -1,7 +1,8 @@
-﻿using Content.Shared._DeltaV.Abilities;
+﻿using Content.Shared._Starlight.CrawlUnder;
 using Content.Shared.Interaction.Events;
 
-namespace Content.Server._DeltaV.Abilities;
+
+namespace Content.Server._Starlight.CrawlUnder;
 
 public sealed class CrawlUnderObjectsSystem : SharedCrawlUnderObjectsSystem
 {

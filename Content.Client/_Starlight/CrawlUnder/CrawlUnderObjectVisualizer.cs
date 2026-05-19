@@ -1,8 +1,8 @@
-using Content.Shared._DeltaV.Abilities;
+using Content.Shared._Starlight.CrawlUnder;
 using Robust.Client.GameObjects;
 using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
-namespace Content.Client._DeltaV.Abilities;
+namespace Content.Client._Starlight.CrawlUnder;
 
 public sealed partial class CrawlUnderObjectsVisualizer : VisualizerSystem<CrawlUnderObjectsComponent>
 {

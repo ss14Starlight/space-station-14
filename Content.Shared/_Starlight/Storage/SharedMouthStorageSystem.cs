@@ -2,7 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
-using Content.Shared.DeltaV.Storage.Components;
+using Content.Shared._Starlight.Storage;
 using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Standing;
@@ -13,7 +13,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 
-namespace Content.Shared.DeltaV.Storage.EntitySystems;
+namespace Content.Shared._Starlight.Storage;
 
 public abstract class SharedMouthStorageSystem : EntitySystem
 {

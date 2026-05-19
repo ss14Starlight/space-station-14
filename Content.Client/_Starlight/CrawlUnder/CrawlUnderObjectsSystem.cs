@@ -1,7 +1,7 @@
-﻿using Content.Shared._DeltaV.Abilities;
+﻿using Content.Shared._Starlight.CrawlUnder;
 using Robust.Shared.Timing;
 
-namespace Content.Client._DeltaV.Abilities;
+namespace Content.Client._Starlight.CrawlUnder;
 
 public sealed class CrawlUnderObjectsSystem : SharedCrawlUnderObjectsSystem
 {

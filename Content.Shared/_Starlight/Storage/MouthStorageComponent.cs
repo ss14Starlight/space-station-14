@@ -1,9 +1,10 @@
-using Content.Shared.DeltaV.Storage.EntitySystems;
+using Content.Shared._Starlight.Storage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-namespace Content.Shared.DeltaV.Storage.Components;
+
+namespace Content.Shared._Starlight.Storage;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedMouthStorageSystem))]
