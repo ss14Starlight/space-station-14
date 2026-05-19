@@ -12,4 +12,6 @@ alerts-surge-name = [color=yellow]Stamina Surge[/color]
 alerts-surge-desc = You have increased stamina regeneration and resistance [color=red]at the cost of increased hunger drain[/color]
 alerts-zoomies-name = [color=lightblue]Zoomies!![/color]
 alerts-zoomies-desc = You have increased movement speed [color=red]at the cost of increased thirst drain[/color]
+alerts-wrapped-name = [color=lightblue]Wrapped up[/color]
+alerts-wrapped-desc = You are [color=red]wrapped up[/color]! Click the alert to attempt to unwrap yourself.
 alerts-error-failed-to-spawn-ghost-role = Failed to spawn the requested ghost role. Sorry! :(

@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
@@ -6,6 +7,7 @@ using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Enums;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -25,7 +27,8 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private readonly TransformSystem _transform;
-    private readonly EntityLookupSystem _lookup;
+    private readonly EntityQuery<HysteriaVisionComponent> _hysteriaQuery;
+    private readonly EntityQuery<VampireThrallComponent> _thrallQuery;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
@@ -33,61 +36,90 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     private readonly Dictionary<EntityUid, int> _entitySpriteIndex = new();
 
     // Cached RSI states for each disguise type
-    private readonly RSI.State?[] _disguiseStates = new RSI.State?[HysteriaVisionComponent.DisguiseSprites.Length];
+    private readonly List<RSI.State?> _disguiseStates = new();
+    private readonly List<HysteriaDisguiseSprite> _loadedDisguiseSprites = new();
     private bool _spritesLoaded;
 
     public HysteriaVisionOverlay()
     {
         IoCManager.InjectDependencies(this);
         _transform = _entManager.System<TransformSystem>();
-        _lookup = _entManager.System<EntityLookupSystem>();
+        _hysteriaQuery = _entManager.GetEntityQuery<HysteriaVisionComponent>();
+        _thrallQuery = _entManager.GetEntityQuery<VampireThrallComponent>();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
         if (player == null
-            || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria)
+            || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria)
             || _timing.CurTime > hysteria.EndTime) // Check if effect expired
             return false;
 
-        // Load all sprites if not loaded
-        if (!_spritesLoaded)
-            LoadDisguiseSprites();
+        if (hysteria.DisguiseSprites.Count == 0)
+            return false;
+
+        EnsureDisguiseSpritesLoaded(hysteria);
 
         return _spritesLoaded;
     }
 
-    private void LoadDisguiseSprites()
+    private void EnsureDisguiseSpritesLoaded(HysteriaVisionComponent hysteria)
+    {
+        if (_spritesLoaded && IsSpriteCacheCurrent(hysteria))
+            return;
+
+        LoadDisguiseSprites(hysteria);
+    }
+
+    private bool IsSpriteCacheCurrent(HysteriaVisionComponent hysteria)
+    {
+        if (_loadedDisguiseSprites.Count != hysteria.DisguiseSprites.Count)
+            return false;
+
+        for (var i = 0; i < hysteria.DisguiseSprites.Count; i++)
+        {
+            if (!_loadedDisguiseSprites[i].Equals(hysteria.DisguiseSprites[i]))
+                return false;
+        }
+
+        return true;
+    }
+
+    private void LoadDisguiseSprites(HysteriaVisionComponent hysteria)
     {
         _spritesLoaded = true;
+        _disguiseStates.Clear();
+        _loadedDisguiseSprites.Clear();
+        _entitySpriteIndex.Clear();
 
-        for (var i = 0; i < HysteriaVisionComponent.DisguiseSprites.Length; i++)
+        for (var i = 0; i < hysteria.DisguiseSprites.Count; i++)
         {
-            var sprite = HysteriaVisionComponent.DisguiseSprites[i];
+            var sprite = hysteria.DisguiseSprites[i];
+            _loadedDisguiseSprites.Add(sprite);
             var trimmedPath = sprite.Path.TrimStart('/');
             var path = new ResPath("/Textures") / trimmedPath;
 
             if (!_resourceCache.TryGetResource<RSIResource>(path, out var rsiResource)
                 || !rsiResource.RSI.TryGetState(sprite.State, out var rsiState))
             {
-                _disguiseStates[i] = null;
+                _disguiseStates.Add(null);
                 continue;
             }
 
-            _disguiseStates[i] = rsiState;
+            _disguiseStates.Add(rsiState);
         }
     }
 
     /// <summary>
     /// Gets the sprite index for a given entity, assigning a random one if not yet assigned.
     /// </summary>
-    private int GetSpriteIndexForEntity(EntityUid uid)
+    private int GetSpriteIndexForEntity(EntityUid uid, int spriteCount)
     {
         if (_entitySpriteIndex.TryGetValue(uid, out var index))
             return index;
 
-        index = _random.Next(HysteriaVisionComponent.DisguiseSprites.Length);
+        index = _random.Next(spriteCount);
         _entitySpriteIndex[uid] = index;
         return index;
     }
@@ -111,15 +143,21 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria))
+        if (player == null || !_hysteriaQuery.TryGetComponent(player.Value, out var hysteria))
             return;
 
+        var spriteCount = hysteria.DisguiseSprites.Count;
+        if (spriteCount == 0)
+            return;
+
+        EnsureDisguiseSpritesLoaded(hysteria);
+
         var preserveSourceThrallVisibility =
-            _entManager.TryGetComponent<VampireThrallComponent>(player.Value, out var playerThrall)
+            _thrallQuery.TryGetComponent(player.Value, out var playerThrall)
             && playerThrall.Master == hysteria.Source;
 
         var worldHandle = args.WorldHandle;
-        var counterRotation = -(args.Viewport.Eye?.Rotation ?? Angle.Zero);
+        var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
 
         // Query all humanoids
         var query = _entManager.EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent, SpriteComponent>();
@@ -133,24 +171,26 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 
             // Skip thralls of the source vampire
             if (preserveSourceThrallVisibility
-                && _entManager.TryGetComponent<VampireThrallComponent>(uid, out var thrall)
+                && _thrallQuery.TryGetComponent(uid, out var thrall)
                 && thrall.Master == hysteria.Source)
                 continue;
 
-            // Get world position
-            var worldPos = _transform.GetWorldPosition(xform);
+            var (worldPos, worldRot) = _transform.GetWorldPositionRotation(xform);
 
             // Check if in viewport bounds (with some margin)
             if (!args.WorldBounds.Enlarged(2f).Contains(worldPos))
                 continue;
 
             // Get random sprite for this entity
-            var spriteIndex = GetSpriteIndexForEntity(uid);
+            var spriteIndex = GetSpriteIndexForEntity(uid, spriteCount);
+            if (spriteIndex >= _disguiseStates.Count)
+                continue;
+
             var disguiseState = _disguiseStates[spriteIndex];
             if (disguiseState == null)
                 continue;
 
-            var size = HysteriaVisionComponent.DisguiseSprites[spriteIndex].Size;
+            var size = hysteria.DisguiseSprites[spriteIndex].Size;
 
             // Get the direction from the targets sprite to match their facing
             var rsiDir = GetRsiDirection(xform.LocalRotation.GetCardinalDir());
@@ -158,13 +198,20 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
             if (texture == null)
                 continue;
 
-            // Calculate the draw box centered on the entity
-            var drawPos = worldPos;
+            var angle = (worldRot + eyeRotation).Reduced().FlipPositive();
+            var cardinal = !sprite.NoRotation && sprite.SnapCardinals
+                ? angle.RoundToCardinalAngle()
+                : Angle.Zero;
 
-            var box = Box2.CenteredAround(drawPos, size);
+            var entityMatrix = Matrix3Helpers.CreateTransform(
+                worldPos,
+                sprite.NoRotation ? -eyeRotation : worldRot - cardinal);
+            var spriteMatrix = Matrix3x2.Multiply(sprite.LocalMatrix, entityMatrix);
 
-            var rotatedBox = new Box2Rotated(box, counterRotation, drawPos);
-            worldHandle.DrawTextureRect(texture, rotatedBox);
+            worldHandle.SetTransform(spriteMatrix);
+            worldHandle.DrawTextureRect(texture, Box2.FromDimensions(size / -2f, size));
         }
+
+        worldHandle.SetTransform(Matrix3x2.Identity);
     }
 }
