@@ -362,6 +362,7 @@
     AutoMenderBurnFilled: 1
   contrabandInventory:
     PillCanisterRandom: 1
+    PillCanisterNitrogen: 1
     PowerCellSmall: 1
     FoodSnackSwirlLollipop: 1
   emaggedInventory:

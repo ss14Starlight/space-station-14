@@ -3,8 +3,8 @@ meta:
   category: Map
   engineVersion: 272.0.0
   forkId: starlight
-  forkVersion: 98237f9f38802c24eef7f76d36fdc19f627c00d2
-  time: 05/02/2026 05:23:21
+  forkVersion: 80e6df731683874327f3d993be8d48655d76c690
+  time: 05/10/2026 07:09:22
   entityCount: 24993
 maps:
 - 1
@@ -9448,7 +9448,7 @@ entities:
       pos: -1.5,5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -41540.797
+      secondsUntilStateChange: -41630.77
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9721,7 +9721,7 @@ entities:
       pos: 67.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -78361.12
+      secondsUntilStateChange: -78451.09
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10183,7 +10183,7 @@ entities:
       pos: 87.5,-23.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -129501.31
+      secondsUntilStateChange: -129591.29
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -82741,7 +82741,7 @@ entities:
   - uid: 17872
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
+      rot: 1.5707963267948966 rad
       pos: -55.5,24.5
       parent: 2
     - type: Fixtures
@@ -151800,7 +151800,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -18053.166
+      secondsUntilStateChange: -18143.139
       state: Opening
     - type: Airlock
       autoClose: False
