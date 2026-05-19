@@ -1,9 +1,9 @@
 - type: language
-  id: Crittish
-  icon: LanguageIconCrittish
+  id: Squeakish
+  icon: LanguageIconSqueakish
   speech:
     color: "#B09286" # MIKEY - needs new color
-    fontId: Crittish # MIKEY - needs custom font
+    fontId: Squeakish # MIKEY - needs custom font
     obfuscationFont: true
   obfuscation:
     !type:SyllableObfuscation

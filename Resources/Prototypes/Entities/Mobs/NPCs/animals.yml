@@ -1819,7 +1819,7 @@
     understands:
     - GalacticCommon
     - Mouse
-    - Crittish
+    - Squeakish
   - type: VentCrawler
   - type: Body
     prototype: Mouse
@@ -3666,7 +3666,7 @@
     understands:
     - GalacticCommon
     - Mouse
-    - Crittish
+    - Squeakish
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: GhostRole

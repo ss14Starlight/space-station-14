@@ -8,10 +8,10 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - Crittish # MIKEY - is "crittish" the right word for it
+    - Squeakish
     understands:
     - GalacticCommon
-    - Crittish
+    - Squeakish
     - Mouse
   - type: Absorbable
   - type: Hunger

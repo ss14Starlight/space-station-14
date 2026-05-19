@@ -780,7 +780,7 @@
     understands:
     - Mouse
     - GalacticCommon
-    - Crittish # Rodentia
+    - Squeakish # Rodentia
   # Starlight-end
   - type: Sprite
     drawdepth: SmallMobs

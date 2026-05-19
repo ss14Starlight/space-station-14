@@ -462,14 +462,14 @@
       inverted: true
 
 - type: trait
-  id: Crittish
-  name: trait-language-crittish-name
-  description: trait-language-crittish-desc
+  id: Squeakish
+  name: trait-language-squeakish-name
+  description: trait-language-squeakish-desc
   category: LanguageTraits
   cost: 2
   components:
     - type: LanguageSpeaker
   languagesSpoken:
-    - Crittish
+    - Squeakish
   languagesUnderstood:
-    - Crittish
+    - Squeakish

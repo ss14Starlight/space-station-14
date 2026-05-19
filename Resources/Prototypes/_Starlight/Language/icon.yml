@@ -232,7 +232,7 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: LanguageIconCrittish
+  id: LanguageIconSqueakish
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
     state: rodentia
