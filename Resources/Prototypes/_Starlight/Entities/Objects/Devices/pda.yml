@@ -494,6 +494,16 @@
   - type: Icon
     state: pda-internservice
 
+# Pun Pun
+- type: entity
+  parent: BartenderPDA
+  id: PunPunPDA
+  name: Pun Pun's PDA
+  description: Smells like bananas.
+  components:
+  - type: Pda
+    id: PunPunIDCard
+
 - type: entity
   parent: BasePDA
   id: CommanderPDA
