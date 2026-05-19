@@ -1,27 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: The Medical Belt Steal Objective now only works on filled (loadout/locker) belts/webbings, so you have to actually steal them.
-    type: Tweak
-  id: 404717
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Medical Interns no longer spawn with an extra jumpsuit.
-    type: Fix
-  id: 404718
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Chemists no longer spawn with an extra hand labeler, chemical bag, and pair of analysis goggles.
-    type: Fix
-  id: 404719
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
   - message: Fixes a loc error on tranexamic acid's bottle.
     type: Fix
   id: 404720
@@ -2799,4 +2778,25 @@ Entries:
   id: 405116
   time: '2026-05-19T08:22:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4486
+- author: Sparlight
+  changes:
+  - message: There are now about twice as many random name options for both borgis and syndicate borgis.
+    type: Add
+  id: 405117
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: Sparlight
+  changes:
+  - message: Smart corgis made as a result of borgi creation have a chance of being a ghost role.
+    type: Tweak
+  id: 405118
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: Sparlight
+  changes:
+  - message: Smart corgis made as a result of borgi creation now have random names.
+    type: Fix
+  id: 405119
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
 Order: -1
