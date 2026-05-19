@@ -136,6 +136,40 @@
       - MindRoleTraitor
 
 - type: entity
+  parent: BaseGameRule
+  id: Devil
+  components:
+  - type: DevilRule
+  - type: AntagObjectives
+    objectives:
+    - SurviveDevilObjective
+    - DamnSoulsDevilObjective
+  - type: AntagSelection
+    agentName: devil-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Devil ]
+      max: 1
+      playerRatio: 20
+      lateJoinAdditional: false
+      allowNonHumans: true
+      multiAntagSetting: NotExclusive
+      mindRoles:
+      - MindRoleDevil
+      briefing:
+        sound: "/Audio/_Starlight/Misc/devil_greeting.ogg"
+      components:
+      - type: ActiveListener
+      - type: Unholy
+      - type: UserInterface
+        interfaces:
+          enum.DamnationsMenuUiKey.Key:
+            type: DevilDamnationsBoundUserInterface
+            requireInputValidation: false
+  - type: DynamicRuleCost
+    cost: 100
+
+- type: entity
   parent: Xenoborgs
   id: XenoborgsLP
   components:

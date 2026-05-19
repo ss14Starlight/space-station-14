@@ -1,186 +1,4 @@
 Entries:
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed a firelock that started closed at shift start.
-    type: Fix
-  id: 404694
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed dispo piping exit at disposals.
-    type: Fix
-  id: 404695
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Cvlancer.
-  changes:
-  - message: (ORWELL) Fixed a gen pop window grille that could be broken by punching due to a bug.
-    type: Fix
-  id: 404696
-  time: '2026-04-28T09:18:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4269
-- author: Citrea
-  changes:
-  - message: Towels with colours exist again.
-    type: Fix
-  id: 404697
-  time: '2026-04-28T10:12:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4262
-- author: Citrea
-  changes:
-  - message: Maid outfits are back in loadouts.
-    type: Fix
-  id: 404698
-  time: '2026-04-28T10:12:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4262
-- author: Ohelig
-  changes:
-  - message: Fix borg item duping. No more infinite saxophones for you!
-    type: Fix
-  id: 404699
-  time: '2026-04-28T10:12:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4267
-- author: CrazyPhantom
-  changes:
-  - message: The round will now end in 20 seconds after nuke explosion during a nukie round.
-    type: Tweak
-  id: 404700
-  time: '2026-04-28T10:46:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4274
-- author: Bigfoot Bravo
-  changes:
-  - message: IPCs can now be welded if they are only bleeding, and not hurt otherwise.
-    type: Fix
-  id: 404701
-  time: '2026-04-28T11:34:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4265
-- author: STARLIGHT TEAM
-  changes:
-  - message: Fixed the Vulpkanin Points Hands marking.
-    type: Fix
-  id: 404702
-  time: '2026-04-28T12:05:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4278
-- author: Caws
-  changes:
-  - message: NT-ISD criminal faxes list specific arrest procedures now, both to give players more direction as to what to do with NT-ISD wanted criminals and to help prevent metagaming.
-    type: Tweak
-  id: 404703
-  time: '2026-04-28T12:05:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4276
-- author: Bigfoot Bravo
-  changes:
-  - message: IPCs are now enabled once more for round-start selection and customization.
-    type: Add
-  id: 404704
-  time: '2026-04-28T14:16:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4275
-- author: Caws
-  changes:
-  - message: The xenoborg mothership core now is now destroyed at 400 damage (up from 200 damage), the same amount of damage needed to destroy a station AI core.
-    type: Tweak
-  id: 404705
-  time: '2026-04-29T04:39:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4283
-- author: Bigfoot Bravo
-  changes:
-  - message: Oil packs heal a little more blood loss with each use.
-    type: Tweak
-  id: 404706
-  time: '2026-04-29T05:07:42.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4287
-- author: wonderfulnewworld
-  changes:
-  - message: Added a chemical case to cmo/doctors' lockers, containing an assortment of 6-8 early chemicals, with a small chance to get something stronger, or funny.
-    type: Add
-  id: 404707
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Added a chemical case to paramedics' lockers, containing what they had in their belts prior + Haloperidol and Ethylredoxrazine.
-    type: Add
-  id: 404708
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Added an autoinjector pouch to cmo/doctors' lockers, containing 2-4 autoinjectors. They've got weights assigned to what spawns in them, so you could get 4 space pens if you're unlucky, or some really rare (but not syndicate) pens.
-    type: Add
-  id: 404709
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Added a syringe to doctors' lockers.
-    type: Add
-  id: 404710
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Added a surgical tool case. Surgeons don't spawn with it, so there's no way to get it currently.
-    type: Add
-  id: 404711
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Added empty medical/paramedic belts to the medidrobe/nanomed plus/wall.
-    type: Add
-  id: 404712
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Medical Doctors, Surgeons, Paramedics, Medical Interns, and the CMO no longer spawn with chemicals.
-    type: Remove
-  id: 404713
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Restored topicals in Medical belts back to what they were prior to Wizden's changes.
-    type: Tweak
-  id: 404714
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: The lockable body bag spawns in EMT belts instead of paramedics' bags again.
-    type: Tweak
-  id: 404715
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Refactors medtak's variants of the above added items to use abstract parents instead of having to duplicate the prototype.
-    type: Tweak
-  id: 404716
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: The Medical Belt Steal Objective now only works on filled (loadout/locker) belts/webbings, so you have to actually steal them.
-    type: Tweak
-  id: 404717
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Medical Interns no longer spawn with an extra jumpsuit.
-    type: Fix
-  id: 404718
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Chemists no longer spawn with an extra hand labeler, chemical bag, and pair of analysis goggles.
-    type: Fix
-  id: 404719
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
 - author: wonderfulnewworld
   changes:
   - message: Fixes a loc error on tranexamic acid's bottle.
@@ -2799,4 +2617,186 @@ Entries:
   id: 405093
   time: '2026-05-17T18:12:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4386
+- author: Arkanic, sprites by DocMoth, design assistance by Vincolan
+  changes:
+  - message: Add the Devil antagonist, a solo, MRP-focused antagonist whose goal is to contractually buy the souls of crew through shady deals and swindles.
+    type: Add
+  id: 405094
+  time: '2026-05-18T04:33:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3860
+- author: Cringe_Cursed
+  changes:
+  - message: 'Added lightgrid system for gameplay-side light exposure checks (pros: perfomance, cons: brain death).'
+    type: Add
+  id: 405095
+  time: '2026-05-18T04:52:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3968
+- author: Cringe_Cursed
+  changes:
+  - message: Added light debug overlay.
+    type: Add
+  id: 405096
+  time: '2026-05-18T04:52:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/3968
+- author: Scarlet.
+  changes:
+  - message: Removed the admeme tag from the ntsf axe.
+    type: Remove
+  id: 405097
+  time: '2026-05-18T05:29:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4461
+- author: STARLIGHT TEAM
+  changes:
+  - message: Human observation console looks as it should.
+    type: Fix
+  id: 405098
+  time: '2026-05-18T05:29:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4474
+- author: FeralCreature
+  changes:
+  - message: 29 achievements. Happy hunting!
+    type: Add
+  id: 405099
+  time: '2026-05-18T12:00:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4393
+- author: FeralCreature
+  changes:
+  - message: 6 hidden achievements. These ones hunt you.
+    type: Add
+  id: 405100
+  time: '2026-05-18T12:00:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4393
+- author: CringeCursed
+  changes:
+  - message: Added 6 new Bluespace Harvester reward pools.
+    type: Add
+  id: 405101
+  time: '2026-05-18T16:20:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4475
+- author: STARLIGHT TEAM
+  changes:
+  - message: WE WANT TO ANNOUNCE TERROR ON OUR SECTOR!(Terror spiders).
+    type: Add
+  id: 405102
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixed bug when spiderling grow up into spider even if it died.
+    type: Fix
+  id: 405103
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added wrap action for spiders, now they can wrap humanoids(this prevents rot process).
+    type: Add
+  id: 405104
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Changed lay eggs ability, now it works only on wrapped humanoids.
+    type: Tweak
+  id: 405105
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Changed regular attack animations(punch, bite...) to be more smooth and fancy.
+    type: Tweak
+  id: 405106
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Changed lunge animation(swing animation on attack) to be more smooth and fancy.
+    type: Tweak
+  id: 405107
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Changed slash attack animation to be more smooth.(Idk how to make it more fancy, effect bad itself).
+    type: Tweak
+  id: 405108
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added kick back animation for humanoids when they're attacked.
+    type: Add
+  id: 405109
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Changed thermal vision shader alpha from 1.0f to 0.5f for terror spiders thermal vision.
+    type: Tweak
+  id: 405110
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added ammonia generator building for terror spiders.
+    type: Add
+  id: 405111
+  time: '2026-05-18T18:59:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4025
+- author: Sparlight
+  changes:
+  - message: Non-humanoid antag selection is now gated behind having hands - sorry Hamlet players.
+    type: Tweak
+  id: 405112
+  time: '2026-05-18T20:08:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4477
+- author: Trosling
+  changes:
+  - message: Added the ability to mute radio channels on your headset.
+    type: Add
+  id: 405113
+  time: '2026-05-18T20:08:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4399
+- author: Rinary
+  changes:
+  - message: Maybe, fixed issue with bans sync. Now it should work properly.
+    type: Fix
+  id: 405114
+  time: '2026-05-18T20:41:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4478
+- author: STARLIGHT TEAM
+  changes:
+  - message: Fixes rounds being unable to start.
+    type: Fix
+  id: 405115
+  time: '2026-05-19T01:31:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4481
+- author: CrazyPhantom
+  changes:
+  - message: Fixed some bugs with Anomalies, they should no longer lag everyone or fail to gib you on crit.
+    type: Fix
+  id: 405116
+  time: '2026-05-19T08:22:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4486
+- author: Sparlight
+  changes:
+  - message: There are now about twice as many random name options for both borgis and syndicate borgis.
+    type: Add
+  id: 405117
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: Sparlight
+  changes:
+  - message: Smart corgis made as a result of borgi creation have a chance of being a ghost role.
+    type: Tweak
+  id: 405118
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: Sparlight
+  changes:
+  - message: Smart corgis made as a result of borgi creation now have random names.
+    type: Fix
+  id: 405119
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
 Order: -1
