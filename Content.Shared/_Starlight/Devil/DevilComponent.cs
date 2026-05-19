@@ -18,6 +18,7 @@ public sealed partial class DevilComponent : Component
         "ActionSummonDevilPen",
         "ActionDamnationsMenu",
         "ActionDevilRejuvenate",
+        "ActionInfernalJaunt"
     };
 
     /// <summary>
