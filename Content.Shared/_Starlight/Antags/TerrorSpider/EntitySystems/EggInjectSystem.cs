@@ -36,7 +36,7 @@ public sealed partial class EggInjectSystem : EntitySystem
         Subs.BuiEvents<TerrorPrincessComponent>(EggsLayingUiKey.Key, subs => subs.Event<EggsLayingBuiMsg>(OnEggsLaying));
     }
 
-    private void OnMapInit(Entity<TerrorPrincessComponent> ent, ref MapInitEvent) => ent.Comp.LayEggAction = _actions.AddAction(ent.Owner, ent.Comp.LayEggActionId);
+    private void OnMapInit(Entity<TerrorPrincessComponent> ent, ref MapInitEvent _) => ent.Comp.LayEggAction = _actions.AddAction(ent.Owner, ent.Comp.LayEggActionId);
 
     private void EggsLaying(EggsLayingEvent ev)
     {
