@@ -106,7 +106,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (FitsChangeCriteria(devilComp, devilComp.EvilHaloAppearance))
         {
-            EntityManager.EnsureComponent<AppliedSpriteLayerComponent>(uid, out var appliedSpriteLayer);
+            EnsureComp<AppliedSpriteLayerComponent>(uid, out var appliedSpriteLayer);
             appliedSpriteLayer.Sprite = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Devil/evilhalo.rsi"), "halo");
             appliedSpriteLayer.Layer = "devil_halo";
             devilComp.EvilHaloAppearance.Completed = true;
@@ -116,8 +116,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
         {
             EnsureComp<AmbientSoundComponent>(uid);
             _ambientSound.SetSound(uid, new SoundPathSpecifier(new ResPath("/Audio/Weapons/ebladehum.ogg")));
-            _ambientSound.SetVolume(uid, -8);
-            _ambientSound.SetRange(uid, 3);
+            _ambientSound.SetVolume(uid, -4);
+            _ambientSound.SetRange(uid, 10);
             devilComp.OminousHum.Completed = true;
         }
 
