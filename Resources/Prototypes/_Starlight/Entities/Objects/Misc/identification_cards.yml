@@ -274,7 +274,7 @@
       offset: *icon-offset
       state: Syndicate
   - type: IdCard
-    jobIcon: Syndicate
+    jobIcon: JobIconSyndicate
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
