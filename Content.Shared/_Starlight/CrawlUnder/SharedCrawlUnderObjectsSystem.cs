@@ -9,9 +9,9 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
-//using Content.Shared.Standing;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
@@ -51,6 +51,10 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
             return;
 
         if (TryComp<ClimbingComponent>(uid, out var climbing) && climbing.IsClimbing)
+            return;
+
+        // Block ability when standing up from knockdown
+        if (TryComp<KnockedDownComponent>(uid, out var knockedDown) && knockedDown.DoAfterId.HasValue)
             return;
 
         if (component.Enabled)
