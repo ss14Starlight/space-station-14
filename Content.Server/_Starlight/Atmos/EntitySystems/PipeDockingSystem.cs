@@ -76,8 +76,8 @@ public sealed class PipeDockingSystem : EntitySystem
         if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
             return;
 
-        GetDockConnectingPipes(dockA, _dockAPipes);
-        GetDockConnectingPipes(dockB, _dockBPipes);
+        GetDockConnectingPipes(dockA, _dockAPipes, includeDisabled: true);
+        GetDockConnectingPipes(dockB, _dockBPipes, includeDisabled: true);
 
         foreach (var pipeA in _dockAPipes)
         {
@@ -91,7 +91,7 @@ public sealed class PipeDockingSystem : EntitySystem
         }
     }
 
-    private void GetDockConnectingPipes(EntityUid dock, List<PipeNode> dockNodes)
+    private void GetDockConnectingPipes(EntityUid dock, List<PipeNode> dockNodes, bool includeDisabled = false)
     {
         dockNodes.Clear();
 
@@ -121,7 +121,7 @@ public sealed class PipeDockingSystem : EntitySystem
                 if (pipeNode.Deleting)
                     continue;
 
-                if (!ShouldDockPipeType(pipeNode))
+                if (!includeDisabled && !ShouldDockPipeType(pipeNode))
                     continue;
 
                 if (!pipeNode.CurrentPipeDirection.HasDirection(dockDir))
@@ -139,11 +139,11 @@ public sealed class PipeDockingSystem : EntitySystem
     public bool ShouldDockPipeType(PipeNode _)
         => DockPipes;
 
-    public List<PipeNode> GetTilePipes(EntityUid dock)
+    public List<PipeNode> GetTilePipes(EntityUid dock, bool includeDisabled = false)
     {
         var result = new List<PipeNode>();
 
-        if (!DockPipes)
+        if (!includeDisabled && !DockPipes)
             return result;
 
         if (!TryGetAnchoredTile(dock, out var gridUid, out var grid, out var tile))
@@ -165,7 +165,7 @@ public sealed class PipeDockingSystem : EntitySystem
                 if (pipe.Deleting)
                     continue;
 
-                if (!ShouldDockPipeType(pipe))
+                if (!includeDisabled && !ShouldDockPipeType(pipe))
                     continue;
 
                 result.Add(pipe);
