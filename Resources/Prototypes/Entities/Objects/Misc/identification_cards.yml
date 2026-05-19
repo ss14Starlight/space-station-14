@@ -1029,7 +1029,7 @@
       state: SyndicateOperative
   - type: AgentIDCard
   - type: IdCard
-    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateOperative -> Syndicate
+    jobIcon: Syndicate # Starlight-edit - SyndicateOperative -> Syndicate
   - type: NanoChatCard # CD
     listNumber: false
 
@@ -1049,7 +1049,7 @@
       offset: *icon-offset
       state: SyndicateCorpsman
   - type: IdCard
-    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCorpsman -> Syndicate
+    jobIcon: Syndicate # Starlight-edit - SyndicateCorpsman -> Syndicate
   - type: NanoChatCard # CD
     listNumber: false
 
@@ -1069,7 +1069,7 @@
       offset: *icon-offset
       state: SyndicateCommander
   - type: IdCard
-    jobIcon: JobIconSyndicate # Starlight-edit - SyndicateCommander -> Syndicate
+    jobIcon: Syndicate # Starlight-edit - SyndicateCommander -> Syndicate
   - type: NanoChatCard # CD
     listNumber: false
 
