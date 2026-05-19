@@ -12,6 +12,9 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+#region Starlight
+using Content.Shared._Starlight.Mind.Events;
+#endregion
 
 namespace Content.Server.Mind;
 
@@ -279,6 +282,10 @@ public sealed class MindSystem : SharedMindSystem
         if (mind.UserId == userId)
             return;
 
+        // Starlight Start
+        var oldUserId = mind.UserId;
+        // Starlight End
+
         Dirty(mindId, mind);
 
         if (userId != null && !_players.TryGetPlayerData(userId.Value, out _))
@@ -303,7 +310,10 @@ public sealed class MindSystem : SharedMindSystem
         }
 
         if (userId == null)
+        {
+            RaiseMindUserIdChanged(mindId, mind, oldUserId, null); // Starlight
             return;
+        }
 
         if (UserMinds.TryGetValue(userId.Value, out var oldMindId) &&
             TryComp(oldMindId, out MindComponent? oldMind))
@@ -327,7 +337,20 @@ public sealed class MindSystem : SharedMindSystem
             _pvsOverride.AddSessionOverride(mindId, session);
             _players.SetAttachedEntity(session, mind.CurrentEntity);
         }
+        RaiseMindUserIdChanged(mindId, mind, oldUserId, userId); // Starlight
     }
+
+    // Starlight Start
+    private void RaiseMindUserIdChanged(EntityUid mindId, MindComponent mind, NetUserId? oldUserId, NetUserId? newUserId)
+    {
+        if (mind.OwnedEntity is not { } owned || !TryComp(owned, out MindContainerComponent? container))
+            return;
+
+        Entity<MindComponent> mindEnt = (mindId, mind);
+        Entity<MindContainerComponent> containerEnt = (owned, container);
+        RaiseLocalEvent(owned, new MindUserIdChangedEvent(mindEnt, containerEnt, oldUserId, newUserId));
+    }
+    // Starlight End
 
     public override void ControlMob(EntityUid user, EntityUid target)
     {

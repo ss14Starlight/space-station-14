@@ -186,13 +186,6 @@
             state: shoes
 
 - type: entity
-  id: BaseInventoryLagomorph
-  abstract: true
-  components:
-  - type: Inventory
-    speciesId: lagomorph
-
-- type: entity
   id: BaseInventoryMoth
   abstract: true
   components:
@@ -559,3 +552,21 @@
           32:
             sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
             state: shoes
+
+- type: entity
+  id: BaseInventoryLagomorph
+  abstract: true
+  components:
+  - type: Inventory
+    speciesId: lagomorph
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
+            state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
+            state: jumpsuit

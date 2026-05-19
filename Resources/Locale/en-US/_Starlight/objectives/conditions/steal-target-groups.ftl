@@ -46,6 +46,7 @@ steal-target-groups-clothing-headset-alt-command = command over-ear headset
 steal-target-groups-ptech-circuitboard = PTech circuitboard
 
 steal-target-groups-spyglass = captain's Spyglass
+steal-target-groups-captain-tablet = captain's management tablet
 
 # Thief Collection
 steal-target-groups-handheld-monitors = handheld monitor

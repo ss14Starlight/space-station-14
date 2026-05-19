@@ -32,6 +32,7 @@ using Content.Shared.Body.Part;
 using Prometheus;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server._Starlight.Antags.Components;
 // Starlight End
 
 namespace Content.Server.Station.Systems;
@@ -160,6 +161,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Starlight End
 
             DoJobSpecials(job, jobEntity);
+            AddComp<StationCrewComponent>(jobEntity); // Starlight-edit
             _identity.QueueIdentityUpdate(jobEntity);
             return jobEntity;
         }
@@ -242,6 +244,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
 
         DoJobSpecials(job, entity.Value);
+        AddComp<StationCrewComponent>(entity.Value); // Starlight-edit
         _identity.QueueIdentityUpdate(entity.Value);
         if (profile?.ForcedPrototype != "")
             RaiseLocalEvent(entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight

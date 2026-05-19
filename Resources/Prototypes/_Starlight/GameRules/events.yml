@@ -19,7 +19,8 @@
       definitions:
         - spawnerPrototype: AbductorScientistSpawner
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 90 # The Scientist is more important than the Agent, but also can't do anything without them, so...
           pickPlayer: false
           startingGear: AbductorScientistGear
           briefing:
@@ -49,7 +50,8 @@
           # Starlight-end
         - spawnerPrototype: AbductorAgentSpawner
           min: 1
-          max: 1
+          max: 3
+          playerRatio: 70 # Abductors are so weak man, throw them a bone.
           pickPlayer: false
           startingGear: AbductorAgentGear
           briefing:
@@ -120,7 +122,8 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostDerelictBorgi
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 # Brighteye
@@ -153,7 +156,9 @@
       selectionTime: PrePlayerSpawn
       definitions:
         - prefRoles: [Brighteye]
-          playerRatio: 1
+          min: 1
+          max: 3
+          playerRatio: 70 # Starlight. They don't do much, positive or negative. They pretty much are just RP currently.
           spawnerPrototype: SpawnPointGhostBrighteye
           roleLoadout:
             - AntagBrighteye
@@ -213,7 +218,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
       min: 1
-      max: 1
+      max: 2
+      playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -222,7 +228,7 @@
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -235,7 +241,8 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 - type: entity
@@ -244,7 +251,7 @@
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -257,16 +264,17 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
-  id: XenoborgScoutDerelictSpawn
+  id: XenoBorgScoutDerelictSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -279,7 +287,8 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 - type: entity
@@ -288,7 +297,7 @@
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
-      weight: 2.5
+      weight: 1
       earliestStart: 15
       reoccurrenceDelay: 20
       minimumPlayers: 15
@@ -301,7 +310,31 @@
       definitions:
         - spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
           min: 1
-          max: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
+          pickPlayer: false
+
+- type: entity
+  parent: BaseGameRule
+  id: XenoBorgiDerelictSpawn
+  components:
+    - type: StationEvent
+      globalAnnouncement: false # Starlight
+      weight: 1
+      earliestStart: 15
+      reoccurrenceDelay: 20
+      minimumPlayers: 15
+      duration: null
+    - type: SpaceSpawnRule
+      spawnDistance: 0
+    - type: AntagSpawner
+      prototype: PlayerXenoBorgiDerelictGhostRole
+    - type: AntagSelection
+      definitions:
+        - spawnerPrototype: SpawnPointGhostXenoBorgiDerelict
+          min: 1
+          max: 2
+          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
           pickPlayer: false
 
 # Syndicate dead drop
@@ -322,3 +355,59 @@
     prototype: SyndieDeadDropSpawner
     radioMessage: {channel: Syndicate, message: "syndicate-dead-drop-announcement"}
 
+# Shitstation
+- type: entityTable
+  id: ShitEventsTable
+  table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
+    children:
+    - id: BreakerFlip
+    - id: CockroachMigration
+    - id: MoproachMigration # They can clean. This is the lucky pull of this pool.
+    - id: MouseMigration
+    - id: GasLeak
+    - id: KudzuGrowth
+    - id: PowerGridCheck
+    - id: VentClog
+    - id: IonStormPlus # I think it's funny to have the double chance to get this.
+
+- type: entity
+  parent: BaseGameRule
+  id: IonStormPlus # It's a more frequent Ion Storm, for ShitStation.
+  components:
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 10
+    reoccurrenceDelay: 15
+    duration: 1
+  - type: IonStormRule
+
+# Terror Spiders
+
+- type: entity
+  id: TerrorSpidersSpawn
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    globalAnnouncement: false
+    startAnnouncement: station-event-vent-creatures-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    earliestStart: 15
+    weight: 6
+    duration: 50
+    minimumPlayers: 50
+  - type: VentSpawnRule
+  - type: AntagSpawner
+    prototype: MobTerrorPrincess
+  - type: TerrorSpiderRule
+  - type: AntagSelection
+    agentName: terror-princess-round-end-agent-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostTerrorPrincess
+      min: 1
+      max: 1
+      pickPlayer: false
+      mindRoles:
+      - MindRoleTerrorPrincess
+  - type: DynamicRuleCost
+    cost: 75

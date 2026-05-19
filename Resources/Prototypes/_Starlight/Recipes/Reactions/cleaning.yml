@@ -9,3 +9,25 @@
       amount: 2
   products:
     SyndicateSpaceCleaner: 2
+
+- type: reaction
+  id: AmmoniaFromResomiBlood
+  requiredMixerCategories:
+    - Stir
+  minTemp: 370
+  reactants:
+    ResomiBlood:
+      amount: 2
+  products:
+    Ammonia: 1
+
+- type: reaction
+  id: AmmoniaFromAvaliBlood
+  requiredMixerCategories:
+    - Stir
+  minTemp: 370
+  reactants:
+    AvaliBlood:
+      amount: 2
+  products:
+    Ammonia: 1

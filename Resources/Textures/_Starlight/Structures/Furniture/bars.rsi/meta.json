@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites taken from Civ13 at https://github.com/Civ13/Civ13/blob/HEAD/icons/obj/structures.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bars"
+    }
+  ]
+}

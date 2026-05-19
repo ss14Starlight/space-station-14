@@ -88132,7 +88132,7 @@ entities:
   - uid: 13591
     components:
     - type: MetaData
-      desc: A plasma gas miner - gutted of components and mothballed by Nanotrasen. It's not mining plasma any time soon.
+      desc: A plasma gas miner - gutted of components and mothballed by NanoTrasen. It's not mining plasma any time soon.
     - type: Transform
       pos: -93.5,-5.5
       parent: 2
@@ -88141,7 +88141,7 @@ entities:
   - uid: 13592
     components:
     - type: MetaData
-      desc: A plasma gas miner - gutted of components and mothballed by Nanotrasen. It's not mining plasma any time soon.
+      desc: A plasma gas miner - gutted of components and mothballed by NanoTrasen. It's not mining plasma any time soon.
     - type: Transform
       pos: -89.5,-65.5
       parent: 2
@@ -134113,7 +134113,7 @@ entities:
   - uid: 19890
     components:
     - type: MetaData
-      desc: A standard-issue Nanotrasen storage unit. Budget cuts have really hit hard this year.
+      desc: A standard-issue NanoTrasen storage unit. Budget cuts have really hit hard this year.
       name: musician locker
     - type: Transform
       pos: -54.5,-38.5
@@ -135974,7 +135974,7 @@ entities:
     components:
     - type: MetaData
       desc: An digital mirror which uses advanced machine learning algorithms to enhance the appearance of those who view it. Despite all that, you don't look any different than normal. You're not sure if you should feel praised or offended.
-      name: Nanotrasen Brand Beauty Enhancing E-Mirror™
+      name: NanoTrasen Brand Beauty Enhancing E-Mirror™
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -69.5,-23.5
@@ -151613,7 +151613,7 @@ entities:
   - uid: 22414
     components:
     - type: MetaData
-      desc: Plasma. The very substance that catapulted Nanotrasen to the place it is today. Its use is so ubiquitous, and found in so many technologies, it's easy to forget how much of an impact it has.
+      desc: Plasma. The very substance that catapulted NanoTrasen to the place it is today. Its use is so ubiquitous, and found in so many technologies, it's easy to forget how much of an impact it has.
       name: Plasma Plaque
     - type: Transform
       rot: -1.5707963267948966 rad

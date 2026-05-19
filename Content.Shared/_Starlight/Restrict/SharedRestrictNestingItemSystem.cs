@@ -216,15 +216,15 @@ public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
             return false;
 
         //now run this on all items in the inventory
-        var containers = containerManager.GetAllContainers().ToList();
-        var items = containers.SelectMany(container => container.ContainedEntities).ToList();
-
-        foreach (var itemInInventory in items)
+        foreach (var container in _containerSystem.GetAllContainers(item, containerManager))
         {
-            //run recursive check
-            if (RecursivelyCheckForNesting(itemInInventory, depth + 1))
+            foreach (var itemInInventory in container.ContainedEntities)
             {
-                return true;
+                //run recursive check
+                if (RecursivelyCheckForNesting(itemInInventory, depth + 1))
+                {
+                    return true;
+                }
             }
         }
 

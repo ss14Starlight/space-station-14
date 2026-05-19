@@ -2,7 +2,7 @@
   name: CODE-12 "Breacher"
   parent: BaseItem
   id: HammerMedTakOneHanded
-  description: A charged concusive breaching hammer meant to put a sizeable hole in anything separating you from your client.
+  description: A charged concussive breaching hammer meant to put a sizeable hole in anything separating you from your client.
   suffix: One-Handed
   components:
   - type: Sprite

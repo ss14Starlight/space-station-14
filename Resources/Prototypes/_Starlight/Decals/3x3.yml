@@ -1,0 +1,346 @@
+﻿# Black
+- type: decal
+  id: 3x3blackeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_east
+
+- type: decal
+  id: 3x3blackinnerne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_inner_ne
+
+
+- type: decal
+  id: 3x3blackinnernw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_inner_nw
+
+- type: decal
+  id: 3x3blackinnerse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_inner_se
+
+- type: decal
+  id: 3x3blackinnersw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_inner_sw
+
+- type: decal
+  id: 3x3blackne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_ne
+
+- type: decal
+  id: 3x3blacknorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_north
+
+- type: decal
+  id: 3x3blacknw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_nw
+
+- type: decal
+  id: 3x3blackse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_se
+
+- type: decal
+  id: 3x3blacksouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_south
+
+- type: decal
+  id: 3x3blacksw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_sw
+
+- type: decal
+  id: 3x3blackwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3black_west
+
+# Brown
+
+- type: decal
+  id: 3x3browneast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_east
+
+- type: decal
+  id: 3x3browninnerne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_inner_ne
+
+
+- type: decal
+  id: 3x3browninnernw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_inner_nw
+
+- type: decal
+  id: 3x3browninnerse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_inner_se
+
+- type: decal
+  id: 3x3browninnersw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_inner_sw
+
+- type: decal
+  id: 3x3brownne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_ne
+
+- type: decal
+  id: 3x3brownnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_north
+
+- type: decal
+  id: 3x3brownnw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_nw
+
+- type: decal
+  id: 3x3brownse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_se
+
+- type: decal
+  id: 3x3brownsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_south
+
+- type: decal
+  id: 3x3brownsw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_sw
+
+- type: decal
+  id: 3x3brownwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3brown_west
+
+# Steel
+
+- type: decal
+  id: 3x3steeleast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_east
+
+- type: decal
+  id: 3x3steelinnerne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_inner_ne
+
+
+- type: decal
+  id: 3x3steelinnernw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_inner_nw
+
+- type: decal
+  id: 3x3steelinnerse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_inner_se
+
+- type: decal
+  id: 3x3steelinnersw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_inner_sw
+
+- type: decal
+  id: 3x3steelne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_ne
+
+- type: decal
+  id: 3x3steelnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_north
+
+- type: decal
+  id: 3x3steelnw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_nw
+
+- type: decal
+  id: 3x3steelse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_se
+
+- type: decal
+  id: 3x3steelsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_south
+
+- type: decal
+  id: 3x3steelsw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_sw
+
+- type: decal
+  id: 3x3steelwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3steel_west
+
+# White
+
+- type: decal
+  id: 3x3whiteeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_east
+
+- type: decal
+  id: 3x3whiteinnerne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_inner_ne
+
+
+- type: decal
+  id: 3x3whiteinnernw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_inner_nw
+
+- type: decal
+  id: 3x3whiteinnerse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_inner_se
+
+- type: decal
+  id: 3x3whiteinnersw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_inner_sw
+
+- type: decal
+  id: 3x3whitene
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_ne
+
+- type: decal
+  id: 3x3whitenorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_north
+
+- type: decal
+  id: 3x3whitenw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_nw
+
+- type: decal
+  id: 3x3whitese
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_se
+
+- type: decal
+  id: 3x3whitesouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_south
+
+- type: decal
+  id: 3x3whitesw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_sw
+
+- type: decal
+  id: 3x3whitewest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/3x3_tile.rsi
+    state: 3x3white_west

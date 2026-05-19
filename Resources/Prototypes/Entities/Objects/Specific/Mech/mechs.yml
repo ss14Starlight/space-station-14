@@ -366,7 +366,7 @@
   parent: [ BaseMech, SmallMech ] # Starlight - give Vim equipment
   id: MechVim
   name: Vim
-  description: A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer.
+  description: A miniature exosuit from NanoTrasen, developed to let the irreplaceable station pets live a little longer. # SL
   components:
   - type: Sprite
     drawdepth: Mobs
