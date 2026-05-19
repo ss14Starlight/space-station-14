@@ -1,0 +1,156 @@
+﻿- type: entity
+  id: PlastitaniumDoor
+  parent: [ BaseStructure, BaseStructureDissolvable ] # Starlight-edit
+  name: Plastitanium Door
+  description: It opens, it closes, and maybe crushes you.
+  components:
+    - type: Untamperable
+    - type: PryUnpowered
+    - type: Anchorable
+      flags:
+        - Anchorable
+    - type: Rotatable
+    - type: Ricochetable
+      chance: 1
+    - type: Pierceable
+      level: HardenedMetal
+    - type: StationAiWhitelist
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/smash.ogg"
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: _Blimpuf/Structures/Doors/PlastitaniumDoor.rsi
+      snapCardinals: true
+      layers:
+        - state: closed
+          map: ["enum.DoorVisualLayers.Base"]
+        - state: closed_unlit
+          shader: unshaded
+          map: ["enum.DoorVisualLayers.BaseUnlit"]
+          visible: false
+        - state: bolted_unlit
+          shader: unshaded
+          map: ["enum.DoorVisualLayers.BaseBolted"]
+        - state: emergency_unlit
+          map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+          shader: unshaded
+        - state: panel_open
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+          shader: unshaded
+          visible: false
+        - state: sparks
+          map: ["enum.DoorVisualLayers.BaseEmagging"]
+          shader: unshaded
+          visible: false
+    - type: AnimationPlayer
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.49,-0.49,0.49,0.49" # don't want this colliding with walls or they won't close
+          density: 100
+          mask:
+            - FullTileMask
+          layer:
+            - AirlockLayer
+    - type: AccessReader
+      accessListsOriginal: [ ]
+      access:
+        - - CentralCommand
+    - type: Door
+      crushDamage:
+        types:
+          Blunt: 15
+      openSound:
+        path: /Audio/Machines/airlock_open.ogg
+      closeSound:
+        path: /Audio/Machines/airlock_close.ogg
+      denySound:
+        path: /Audio/Machines/airlock_deny.ogg
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+    - type: Airlock
+    - type: NavMapDoor
+    - type: DoorBolt
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.ElectrifiedVisuals.ShowSparks:
+          enum.ElectrifiedLayers.Sparks:
+            True: { visible: True }
+            False: { visible: False }
+    - type: ElectrocutionHUDVisuals
+    - type: ApcPowerReceiver
+      powerLoad: 20
+    - type: ExtensionCableReceiver
+    - type: Electrified
+      enabled: false
+      usesApcPower: true
+    - type: DoorSignalControl
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - Open
+        - Close
+        - Toggle
+        - AutoClose
+        - DoorBolt
+    - type: DeviceLinkSource
+      ports:
+        - DoorStatus
+      lastSignals:
+        DoorStatus: false
+    - type: SoundOnOverload
+    - type: SpawnOnOverload
+    - type: UserInterface
+      interfaces:
+        enum.AiUi.Key:
+          type: StationAiBoundUserInterface
+    - type: Airtight
+      noAirWhenFullyAirBlocked: false
+    - type: RadiationBlocker
+      resistance: 3
+    - type: Occluder
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: StrongMetallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 1000
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalSlam
+    - type: PlacementReplacement
+      key: walls
+    - type: Paintable
+      group: AirlockStandard
+    - type: StaticPrice
+      price: 150
+    - type: LightningTarget
+      priority: 1
+    - type: Tag
+      tags:
+        - Airlock
+        # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+    - type: BlockWeather
+    - type: GuideHelp
+      guides:
+        - Airlocks
+        - Networking
+  placement:
+    mode: SnapgridCenter
