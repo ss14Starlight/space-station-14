@@ -87,7 +87,12 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         if (anomaly.Comp.CurrentBehavior is not null)
             RemoveBehavior(anomaly, anomaly.Comp.CurrentBehavior.Value);
 
-        EndAnomaly(anomaly, spawnCore: false);
+        // Starlight Start
+        if (anomaly.Comp.Ending)
+            return;
+        // Starlight End
+
+        EndAnomaly(anomaly, anomaly.Comp, spawnCore: false, removeComponent: false); // Starlight Edit: Added anomaly.comp and removeComponent
     }
 
     private void OnStartCollide(Entity<AnomalyComponent> anomaly, ref StartCollideEvent args)
