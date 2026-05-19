@@ -4163,6 +4163,9 @@
   # Starlight - start
   - type: Body
     prototype: SmartCorgi
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCorgi
   # Starlight - end
   - type: RotationVisuals
     defaultRotation: 90
