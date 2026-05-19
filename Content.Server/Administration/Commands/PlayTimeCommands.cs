@@ -38,7 +38,7 @@ public sealed class PlayTimeAddOverallCommand : IConsoleCommand
         if (overall == null)
         // Starlight edit End
         {
-            shell.WriteError($"No player record found for {args[0]}."); // Starlight Edit: Session -> Record
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", args[0]))); // Starlight Edit: Session -> Record
             return;
         }
 
@@ -174,7 +174,7 @@ public sealed class PlayTimeGetOverallCommand : IConsoleCommand
         if (value == null)
         // Starlight edit End
         {
-            shell.WriteError($"No player record found for {userName}."); // Starlight Edit: Session -> Record
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", userName))); // Starlight Edit: Session -> Record
             return;
         }
 
@@ -223,7 +223,7 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
         if (timers == null)
         // Starlight edit End
         {
-            shell.WriteError($"No player record found for {userName}."); // Starlight Edit: Session -> Record
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", userName))); // Starlight Edit: Session -> Record
             return;
         }
 
