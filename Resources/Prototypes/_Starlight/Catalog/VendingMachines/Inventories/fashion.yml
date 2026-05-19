@@ -694,6 +694,17 @@
       stock: 1
 
 - type: listing
+  id: ClothingBackpackBunnyGangBundle
+  productEntity: ClothingBackpackBunnyGangBundle
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
   id: ClothingHeadHatBunny
   productEntity: ClothingHeadHatBunny
   cost:
