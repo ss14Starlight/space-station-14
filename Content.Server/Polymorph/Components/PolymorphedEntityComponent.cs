@@ -35,11 +35,6 @@ public sealed partial class PolymorphedEntityComponent : Component
     public float Time;
 
     [DataField]
-    public LanguageKnowledgeComponent LanguageKnowledgeGranted;
-    [DataField]
-    public LanguageSpeakerComponent LanguageSpeechGranted;
-
-    [DataField]
     public EntityUid? Action;
 
     //#region Starlight
@@ -48,5 +43,17 @@ public sealed partial class PolymorphedEntityComponent : Component
     /// <see cref="UncryoableComponent"/>
     /// </summary>
     public bool HadUncryoable = false;
+
+    /// <summary>
+    /// LanguageKnowledge data gained by polymorphing
+    /// </summary>
+    [DataField]
+    public LanguageKnowledgeComponent LanguageKnowledgeGranted;
+
+    /// <summary>
+    /// LanguageSpeaker data gained by polymorphing
+    /// </summary>
+    [DataField]
+    public LanguageSpeakerComponent LanguageSpeechGranted;
     //#endregion Starlight
 }
