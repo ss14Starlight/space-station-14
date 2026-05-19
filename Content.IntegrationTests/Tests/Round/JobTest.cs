@@ -69,10 +69,6 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        // Starlight edit Start: Removed
-        // await pair.RunTicksSync(_waitAfter);
-        // await pair.ReallyBeIdle();
-        // Starlight edit End
         await pair.CleanReturnAsync();
     }
 
@@ -117,10 +113,6 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        // Starlight edit Start: Removed
-        // await pair.RunTicksSync(_waitAfter);
-        // await pair.ReallyBeIdle();
-        // Starlight edit End
         await pair.CleanReturnAsync();
     }
 
@@ -160,10 +152,6 @@ public sealed class JobTest
         pair.AssertJob(Captain);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        // Starlight edit Start: Removed
-        // await pair.RunTicksSync(_waitAfter);
-        // await pair.ReallyBeIdle();
-        // Starlight edit End
         await pair.CleanReturnAsync();
     }
 
@@ -217,10 +205,6 @@ public sealed class JobTest
         });
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
-        // Starlight edit Start: Removed
-        // await pair.RunTicksSync(_waitAfter);
-        // await pair.ReallyBeIdle();
-        // Starlight edit End
         await pair.CleanReturnAsync();
     }
 }
