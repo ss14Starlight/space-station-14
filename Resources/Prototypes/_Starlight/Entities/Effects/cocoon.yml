@@ -1,0 +1,29 @@
+- type: entity
+  id: EffectTerrorCocoon
+  categories: [ HideSpawnMenu ]
+  name: cocoon
+  description: Web cocoon with people inside!
+  components:
+  - type: Clickable
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/_Starlight/Effects/cocoon.rsi
+    layers:
+    - state: large1
+      shader: unshaded
+  - type: RandomSprite
+    available:
+    - 0:
+        large1: ""
+        large2: ""
+        large3: ""
+  - type: ContainerContainer
+    containers:
+      entity: !type:Container
+  - type: WrapEntityHolder

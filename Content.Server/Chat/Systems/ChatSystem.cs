@@ -236,6 +236,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
 
         message.Text = SanitizeInGameICMessage(source, message.Text, out var emoteStr, shouldCapitalize, shouldPunctuate, shouldCapitalizeTheWordI); //Starlight
+        message.OriginalText = message.Text; // starlight
 
         // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message.Text && emoteStr != null) // Starlight

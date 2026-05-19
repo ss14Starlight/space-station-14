@@ -128,6 +128,17 @@ public sealed class PryingSystem : EntitySystem
             canev = new BeforePryEvent(user, false, false, false);
         }
 
+        // Starlgiht start
+        var userEv = new UserBeforePryEvent(target, canev.PryPowered, canev.Force, canev.StrongPry);
+        RaiseLocalEvent(user, ref userEv);
+
+        if (userEv.Cancelled)
+        {
+            message = userEv.Message;
+            return false;
+        }
+        // Starligt end
+
         RaiseLocalEvent(target, ref canev);
 
         message = canev.Message;
