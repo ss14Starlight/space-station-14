@@ -365,3 +365,14 @@
     Gold: 200
     Silver: 1000
     Uranium: 1000
+
+- type: latheRecipe
+  id: MechEquipmentBorgBeacon
+  result: MechEquipmentBorgPilot
+  categories:
+    - Mech
+  completetime: 15
+  materials:
+    Steel: 500
+    Glass: 100
+    Gold: 200
