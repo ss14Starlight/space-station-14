@@ -58,7 +58,7 @@
 - type: polymorph
   id: InfernalJaunt
   configuration:
-    entity: EtherealJaunt
+    entity: InfernalJaunt
     transferName: true
     inventory: None
     forced: true
