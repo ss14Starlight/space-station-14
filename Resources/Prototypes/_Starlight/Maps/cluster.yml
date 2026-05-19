@@ -55,11 +55,11 @@
             Brigmedic: [ 1, 1 ]
             #supply (8)
             Quartermaster: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 1 ]
-            MiningSpecialist: [ 1, 2 ]
-            SalvageLead: [ 1, 1 ]
             #civilian (3+)
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

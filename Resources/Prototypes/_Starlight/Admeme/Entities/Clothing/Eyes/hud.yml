@@ -39,11 +39,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - IPC
   - type: ShowHealthIcons
     damageContainers:
     - Biological
   - type: Tag
     tags:
     - HudMedical
+    - CorgiWearable
   - type: EyeProtection
     protectionTime: 5

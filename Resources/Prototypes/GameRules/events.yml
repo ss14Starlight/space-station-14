@@ -59,6 +59,7 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight
+    - id: TerrorSpidersSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -67,7 +68,7 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector # Standard NT Borgs
-      weight: 85
+      weight: 80 # Starlight
       children:
         - id: DerelictEngineerCyborgSpawn
         - id: DerelictGenericCyborgSpawn
@@ -78,8 +79,16 @@
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
-        - id: DerelictBorgiSpawn # Starlight
-   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight - no more derelict Syndicate borgs
+        - id: DerelictBorgiSpawn # Starlight start
+    - !type:GroupSelector # Derelict Xenoborgs
+      weight: 5
+      children:
+        - id: XenoBorgHeavyDerelictSpawn
+        - id: XenoBorgEngiDerelictSpawn
+        - id: XenoBorgScoutDerelictSpawn
+        - id: XenoBorgStealthDerelictSpawn
+        - id: XenoBorgiDerelictSpawn
+   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight end - no more derelict Syndicate borgs
 
 - type: entity
   id: BaseStationEvent
@@ -231,7 +240,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDragon
       min: 1
-      max: 1
+      max: 3 # Starlight, for alpha.
+      playerRatio: 95 # Starlight. Realistically, Alpha shouldn't ever see more than 2, but future proofing's future proofing...
       pickPlayer: false
       mindRoles:
       - MindRoleDragon
@@ -321,7 +331,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostParadoxClone
       min: 1
-      max: 1
+      max: 4 # Starlight. Future proofing.
+      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
@@ -621,7 +632,8 @@
     definitions:
     - spawnerPrototype: SpawnPointLoneNukeOperative
       min: 1
-      max: 1
+      max: 3 # Starlight, for Alpha.
+      playerRatio: 75 # Starlight. 1 vs 150 is essentially impossible. 2 vs 150 might stand a chance. 3 vs 225 is funny.
       prefRoles: [ Nukeops ]
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
@@ -667,8 +679,8 @@
     - prefRoles: [ TraitorSleeper ]
       fallbackRoles: [ Traitor ]
       min: 1
-      max: 2
-      playerRatio: 10
+      max: 10 # Starlight, scaling and futureproofing.
+      playerRatio: 32  # Starlight. Beta will never get more than 2, same as before, but Alpha can actually gain a decent amount.
       blacklist:
         components:
         - AntagImmune
@@ -789,7 +801,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictEngineeringCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -811,7 +824,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -833,7 +847,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictJanitorCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -877,7 +892,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictMiningCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -899,5 +915,6 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictSyndicateAssaultCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false

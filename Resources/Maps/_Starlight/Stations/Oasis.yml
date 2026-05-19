@@ -176089,13 +176089,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 22.5,4.5
       parent: 2
-    - type: Timer
   - uid: 20320
     components:
     - type: Transform
       pos: 22.5,9.5
       parent: 2
-    - type: Timer
   - uid: 20321
     components:
     - type: Transform
@@ -176145,7 +176143,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 1371.0319623
-    - type: Timer
   - uid: 20329
     components:
     - type: Transform
@@ -176270,7 +176267,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 1371.0319623
-    - type: Timer
   - uid: 20349
     components:
     - type: Transform
@@ -176583,7 +176579,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -29.5,39.5
       parent: 2
-    - type: Timer
+
   - uid: 20403
     components:
     - type: Transform
@@ -177003,7 +176999,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 131774.9348913
-    - type: Timer
   - uid: 20477
     components:
     - type: Transform
@@ -178020,7 +178015,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 6552.4934475
-    - type: Timer
   - uid: 34240
     components:
     - type: Transform
@@ -178036,7 +178030,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 6552.4934475
-    - type: Timer
   - uid: 34242
     components:
     - type: Transform
@@ -178068,7 +178061,6 @@ entities:
     - type: PoweredLight
       isBlinking: True
       lastGhostBlink: 9071.8242615
-    - type: Timer
   - uid: 35676
     components:
     - type: Transform

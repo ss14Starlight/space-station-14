@@ -1,6 +1,7 @@
 using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+
 namespace Content.Server.Starlight.AlertArmory;
 
 /// <summary>

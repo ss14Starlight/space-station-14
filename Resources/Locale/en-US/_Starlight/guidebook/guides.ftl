@@ -153,6 +153,7 @@ guide-entry-sl-service-sop-lawyer = Lawyer
 
 guide-entry-abductors = Abductors
 guide-entry-terror-spiders = Terror Spiders
+guide-entry-devil = Devil
 
 guide-entry-sl-deepfried-recipes = Deep Fried
 

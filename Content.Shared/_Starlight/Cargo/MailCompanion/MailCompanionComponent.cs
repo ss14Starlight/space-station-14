@@ -12,6 +12,8 @@ public sealed partial class MailCompanionComponent : Component
 
     [DataField]
     public TimeSpan CooldownDuration = TimeSpan.FromSeconds(30);
+    [DataField]
+    public TimeSpan SensorTimeout = TimeSpan.FromSeconds(10);
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan? ExpiresAt;

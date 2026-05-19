@@ -3,7 +3,6 @@ using Content.Server.Silicons.Borgs;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Containers;
 using Content.Shared.Silicons.Borgs.Components;
-using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 

@@ -347,7 +347,6 @@ public sealed class PipeDockingSystem : EntitySystem
     {
         var reachableA = a.GetAlwaysReachable();
         var reachableB = b.GetAlwaysReachable();
-
         if (reachableA != null && reachableA.Contains(b) && reachableB != null && reachableB.Contains(a))
             return;
 
