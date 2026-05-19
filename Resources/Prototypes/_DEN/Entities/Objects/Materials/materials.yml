@@ -7,3 +7,7 @@
       singleUser: true
       requireActiveHand: false
       key: enum.QuickConstructionUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.QuickConstructionUiKey.Key:
+          type: QuickConstructionBoundUserInterface

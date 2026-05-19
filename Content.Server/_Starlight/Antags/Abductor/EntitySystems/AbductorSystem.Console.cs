@@ -16,7 +16,7 @@ using Content.Server.VendingMachines;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Audio;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

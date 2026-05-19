@@ -1,4 +1,3 @@
-using Content.Server._Starlight.CosmicCult;
 using Content.Server.Actions;
 using Content.Server.AlertLevel;
 using Content.Server.Audio;
@@ -15,7 +14,6 @@ using Content.Shared.Hands;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffectNew;
 using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
@@ -57,8 +55,8 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
     private readonly ResPath _mapPath = new("Maps/_Starlight/Other/cosmicvoid.yml");
 
-    private static readonly EntProtoId CosmicEchoVfx = "CosmicEchoVfx";
-    private static readonly EntProtoId EntropicDegen = "EntropicDegen";
+    private static readonly EntProtoId _cosmicEchoVfx = "CosmicEchoVfx";
+    private static readonly EntProtoId _entropicDegen = "EntropicDegen";
 
     public override void Initialize()
     {
@@ -93,7 +91,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (_cultRule.AssociatedGamerule(uid) is not { } cult)
             return;
         if (cult.Comp.CurrentTier > 1 && !_random.Prob(0.5f))
-            Spawn(CosmicEchoVfx, Transform(uid).Coordinates);
+            Spawn(_cosmicEchoVfx, Transform(uid).Coordinates);
     }
 
     #region Housekeeping
@@ -109,14 +107,10 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     }
 
     private void OnCheckEligibility(ref CosmicCultVoterEligibilityEvent args)
-    {
-        args.Eligible = HasComp<CosmicCultComponent>(args.Player.AttachedEntity);
-    }
+        => args.Eligible = HasComp<CosmicCultComponent>(args.Player.AttachedEntity);
 
     private void OnCosmicCultExamined(Entity<CosmicCultExamineComponent> ent, ref ExaminedEvent args)
-    {
-        args.PushMarkup(Loc.GetString(EntitySeesCult(args.Examiner) ? ent.Comp.CultistText : ent.Comp.OthersText));
-    }
+        => args.PushMarkup(Loc.GetString(EntitySeesCult(args.Examiner) ? ent.Comp.CultistText : ent.Comp.OthersText));
     #endregion
 
     #region Init Cult
@@ -138,14 +132,10 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     /// Add the Monument summon action to the cult lead.
     /// </summary>
     private void OnStartCultLead(Entity<CosmicCultLeadComponent> uid, ref ComponentInit args)
-    {
-        _actions.AddAction(uid, ref uid.Comp.CosmicMonumentPlaceActionEntity, uid.Comp.CosmicMonumentPlaceAction, uid);
-    }
+        => _actions.AddAction(uid, ref uid.Comp.CosmicMonumentPlaceActionEntity, uid.Comp.CosmicMonumentPlaceAction, uid);
 
     private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
-    {
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
-    }
+        => args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
     /// <summary>
     /// Called by Cosmic Siphon. Increments the Cult's global objective tracker.
@@ -156,19 +146,19 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     private void OnGotEquipped(Entity<CosmicEquipmentComponent> ent, ref GotEquippedEvent args)
     {
         if (!EntityIsCultist(args.Equipee))
-            _statusEffects.TrySetStatusEffectDuration(args.Equipee, EntropicDegen, out _);
+            _statusEffects.TrySetStatusEffectDuration(args.Equipee, _entropicDegen, out _);
     }
 
     private void OnGotUnequipped(Entity<CosmicEquipmentComponent> ent, ref GotUnequippedEvent args)
     {
         if (!EntityIsCultist(args.Equipee))
-            _statusEffects.TryRemoveStatusEffect(args.Equipee, EntropicDegen);
+            _statusEffects.TryRemoveStatusEffect(args.Equipee, _entropicDegen);
     }
     private void OnGotHeld(Entity<CosmicEquipmentComponent> ent, ref GotEquippedHandEvent args)
     {
         if (!EntityIsCultist(args.User))
         {
-            _statusEffects.TrySetStatusEffectDuration(args.User, EntropicDegen, out _);
+            _statusEffects.TrySetStatusEffectDuration(args.User, _entropicDegen, out _);
             _popup.PopupEntity(Loc.GetString("cosmiccult-gear-pickup", ("ITEM", args.Equipped)), args.User, args.User, PopupType.MediumCaution);
         }
     }
@@ -176,7 +166,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     private void OnGotUnheld(Entity<CosmicEquipmentComponent> ent, ref GotUnequippedHandEvent args)
     {
         if (!EntityIsCultist(args.User))
-            _statusEffects.TryRemoveStatusEffect(args.User, EntropicDegen);
+            _statusEffects.TryRemoveStatusEffect(args.User, _entropicDegen);
     }
     #endregion
 

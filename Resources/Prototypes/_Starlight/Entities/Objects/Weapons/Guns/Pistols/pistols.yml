@@ -100,7 +100,7 @@
   parent: WeaponPistolMk58
   id: WeaponPistolMk58HighCapacity
   suffix: 16 rounds
-  description: Designed by Nanotrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of Nanotrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
+  description: Designed by NanoTrasen’s Small Arms Division, the Mk58 is a conventional semi-automatic pistol with a simple recoil-operated action and excellent reliability. The standard sidearm of NanoTrasen’s station security and emergency response teams. Feeds from .35 pistol magazines.
   components:
   - type: ItemSlots
     slots:

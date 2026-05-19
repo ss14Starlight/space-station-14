@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+
 namespace Content.Server._Starlight.TextToSpeech;
 
 public interface ITTSClient

@@ -79,6 +79,11 @@
   - ChiefMedicalOfficerJumpskirt
   - ChiefMedicalOfficerTurtleneckJumpsuit
   - ChiefMedicalOfficerTurtleneckJumpskirt
+  - ChiefMedicalOfficerFormalSuit # DeltaV
+  - ChiefMedicalOfficerFormalSkirt # DeltaV
+  - ChiefMedicalOfficerVestSuit # DeltaV
+  - ChiefMedicalOfficerVestSkirt # DeltaV
+  - ChiefMedicalOfficerSummerSuit # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerOuterClothing
@@ -86,6 +91,7 @@
   minLimit: 0
   loadouts:
   - ChiefMedicalOfficerLabCoat
+  - ChiefMedicalOfficerLabCoatLong # DeltaV
   - ChiefMedicalOfficerWintercoat
 
 - type: loadoutGroup
@@ -95,6 +101,8 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
+  - ChiefMedicalOfficerShawl # DeltaV
+  - ChiefMedicalOfficerOverShoulder # DeltaV
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
@@ -129,6 +137,11 @@
   - BlueSurgeryCap
   - GreenSurgeryCap
   - PurpleSurgeryCap
+  - BlackSurgeryCap # Delta V
+  - CyanSurgeryCap # Delta V
+  - PinkSurgeryCap # Delta V
+  - RainbowSurgeryCap # Delta V
+  - WhiteSurgeryCap # Delta V
   - NurseHat
 
 - type: loadoutGroup
@@ -142,6 +155,11 @@
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
+  - MedicalBlackScrubs # DeltaV
+  - MedicalCyanScrubs # DeltaV
+  - MedicalPinkScrubs # DeltaV
+  - MedicalRainbowScrubs # DeltaV
+  - MedicalWhiteScrubs # DeltaV
   # afterlight start
   - NurseJumpskirt
   - CoronerJumpskirt
@@ -158,6 +176,7 @@
   - MedicalDoctorWintercoat
   - SeniorPhysicianLabCoat
   - WindbreakerMedical # 🌟Starlight🌟
+  - RegularLabCoatLong # DeltaV
 
 - type: loadoutGroup
   id: MedicalDoctorPDA
@@ -210,6 +229,8 @@
   - ChemistWintercoat
   - SeniorChemistLabCoat # Starlight
   - SeniorChemistWintercoat # Starlight
+  - RegularLabCoatLong # DeltaV
+  - ChemistLabCoatLong # DeltaV
 
 - type: loadoutGroup
   id: ChemistBackpack
@@ -255,6 +276,7 @@
   loadouts:
   - ParamedicWindbreaker
   - ParamedicWintercoat
+  - ParamedicJacket # DeltaV
 
 - type: loadoutGroup
   id: ParamedicShoes
