@@ -10,3 +10,15 @@
     revertOnDeath: true
     revertOnCrit: false
     polymorphSound: /Audio/_Starlight/Voice/gorilla.ogg
+
+- type: polymorph
+  id: IrreversibleMonkey
+  configuration:
+    entity: MobMonkey
+    forced: true
+    inventory: Drop
+    transferName: true
+    transferDamage: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false

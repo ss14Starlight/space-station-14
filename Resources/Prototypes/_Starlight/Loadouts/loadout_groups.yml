@@ -301,7 +301,6 @@
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
-  - MagistrateJumpsuitLongCoat
 
 - type: loadoutGroup
   id: MagistrateOuterclothing
@@ -310,6 +309,7 @@
   minLimit: 0
   loadouts:
   - MagistrateRobes
+  - MagistrateLongcoat
 
 - type: loadoutGroup
   id: MagistrateHead

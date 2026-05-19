@@ -1,0 +1,17 @@
+names-devil-dataset-1 = Zal'goth
+names-devil-dataset-2 = Ralgonnas
+names-devil-dataset-3 = Dagon
+names-devil-dataset-4 = Moloch
+names-devil-dataset-5 = Baal
+names-devil-dataset-6 = Lummil
+names-devil-dataset-7 = Rurga
+names-devil-dataset-8 = Liras
+names-devil-dataset-9 = Lenras
+names-devil-dataset-10 = Roch
+names-devil-dataset-11 = Dunqaziel
+names-devil-dataset-12 = Anrolus
+names-devil-dataset-13 = Sazo
+names-devil-dataset-14 = Barsa
+names-devil-dataset-15 = Zelno
+names-devil-dataset-16 = Spaceus
+names-devil-dataset-17 = Apollyon

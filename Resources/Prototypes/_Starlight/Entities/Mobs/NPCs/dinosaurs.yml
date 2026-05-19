@@ -197,5 +197,4 @@
       intervalSeconds: 20
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
-    - type: TimedDespawn #delete the egg after the compy spawns
-      lifetime: 21
+      despawnWhenDone: true #delete the egg after the compy spawns

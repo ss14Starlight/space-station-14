@@ -22,6 +22,27 @@
   - type: Item
 
 - type: entity
+  parent: [ ClothingOuterStorageBase, BaseCommandContraband ]
+  id: ClothingOuterCoatMagi
+  name: magistrate's longcoat
+  description: New and improved, this jacket actually keeps you warm! Brought to you by the NanoTrasen Fashion Board.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/magi_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/magi_overcoat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.35
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.99
+
+- type: entity
   parent: [ ClothingOuterStorageFoldableBase, BaseCommandContraband ]
   id: ClothingOuterCoatNtrep
   name: nt representative jacket
