@@ -68,6 +68,9 @@ public sealed class JobTest
 
         pair.AssertJob(Passenger);
 
+        await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -111,6 +114,9 @@ public sealed class JobTest
 
         pair.AssertJob(Passenger);
 
+        await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -136,6 +142,9 @@ public sealed class JobTest
         var engineer = pair.Server.ProtoMan.Index(Engineer);
         var passenger = pair.Server.ProtoMan.Index(Passenger);
 
+        Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
+        Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
+
         await pair.SetJobPriorities(
             //essentially, weight only matters for each category now instead of globally
             (Passenger, JobPriority.Medium),
@@ -149,6 +158,9 @@ public sealed class JobTest
 
         pair.AssertJob(Captain);
 
+        await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -201,6 +213,9 @@ public sealed class JobTest
             }
         });
 
+        await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }
