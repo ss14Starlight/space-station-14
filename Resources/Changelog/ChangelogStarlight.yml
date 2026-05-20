@@ -1,13 +1,6 @@
 Entries:
 - author: Citrea
   changes:
-  - message: Diagnostic implants now show IPC health.
-    type: Fix
-  id: 404726
-  time: '2026-04-29T11:38:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4290
-- author: Citrea
-  changes:
   - message: Blueshield Officers' glasses and HUDs have been upgraded to include diagnostic readouts of IPC integrity.
     type: Tweak
   id: 404727
@@ -2799,4 +2792,11 @@ Entries:
   id: 405125
   time: '2026-05-20T05:58:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4483
+- author: wonderfulnewworld
+  changes:
+  - message: Winter Coats and Winter Boots now provide Cold Armor. I mean, that's literally what they're for.
+    type: Tweak
+  id: 405126
+  time: '2026-05-20T11:15:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4495
 Order: -1
