@@ -382,6 +382,7 @@
         flatReductions:
           Heat: 0.5
           Piercing: 0.5
+      passiveBlockFraction: 0.2
     - type: Appearance
     - type: Damageable
       damageContainer: Shield

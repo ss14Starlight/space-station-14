@@ -67,13 +67,13 @@ public sealed partial class BlockingComponent : Component
     /// Fraction of original damage shield will take instead of user
     /// when not blocking
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] //Starlight
     public float PassiveBlockFraction = 0.5f;
 
     /// <summary>
     /// Fraction of original damage shield will take instead of user
     /// when blocking
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] // Starlight
     public float ActiveBlockFraction = 1.0f;
 }
