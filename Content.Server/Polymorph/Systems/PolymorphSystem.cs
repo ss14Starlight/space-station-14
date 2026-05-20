@@ -335,25 +335,13 @@ public sealed partial class PolymorphSystem : EntitySystem
         // and then record which languages were successfully granted.
         if (configuration.TransferLanguages && TryComp<LanguageKnowledgeComponent>(child, out var knownLanguage))
         {
-            var languageKnowledgeGranted = new LanguageKnowledgeComponent
-            {
-                Speaks = [.. polymorphedEntityKnownLanguages.Speaks.Except(knownLanguage.Speaks)],
-                Understands = [.. polymorphedEntityKnownLanguages.Understands.Except(knownLanguage.Understands)]
-            };
             knownLanguage.Speaks = [.. knownLanguage.Speaks.Union(polymorphedEntityKnownLanguages.Speaks)];
             knownLanguage.Understands = [.. knownLanguage.Understands.Union(polymorphedEntityKnownLanguages.Understands)];
-            polymorphedComp.LanguageKnowledgeGranted = languageKnowledgeGranted;
         }
         if (configuration.TransferLanguages && TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage))
         {
-            var languageSpeechGranted = new LanguageSpeakerComponent
-            {
-                SpokenLanguages = [.. polymorphedEntitySpokenLanguages.SpokenLanguages.Except(spokenLanguage.SpokenLanguages)],
-                UnderstoodLanguages = [.. polymorphedEntitySpokenLanguages.UnderstoodLanguages.Except(spokenLanguage.UnderstoodLanguages)]
-            };
             spokenLanguage.SpokenLanguages = [.. spokenLanguage.SpokenLanguages.Union(polymorphedEntitySpokenLanguages.SpokenLanguages)];
             spokenLanguage.UnderstoodLanguages = [.. spokenLanguage.UnderstoodLanguages.Union(polymorphedEntitySpokenLanguages.UnderstoodLanguages)];
-            polymorphedComp.LanguageSpeechGranted = languageSpeechGranted;
             spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage.Length > 0 ? polymorphedEntitySpokenLanguages.CurrentLanguage : polymorphedEntitySpokenLanguages.SpokenLanguages.First();
             // attempt to change current language to match new entity default
             if (polymorphedEntitySpokenLanguages.CurrentLanguage.Length > 0)
