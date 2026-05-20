@@ -49,7 +49,8 @@ public sealed class JobTest
         await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true
         });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
@@ -80,7 +81,8 @@ public sealed class JobTest
         await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true
         });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
@@ -124,7 +126,8 @@ public sealed class JobTest
         await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true
         });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
@@ -161,7 +164,8 @@ public sealed class JobTest
         await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true
         });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
