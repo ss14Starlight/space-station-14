@@ -242,7 +242,8 @@ public abstract partial class SharedBorgSystem
 
         if (attemptEv.Cancelled)
         {
-            _popup.PopupClient(attemptEv.Reason, chassis.Owner, user);
+            var reason = attemptEv.Reason ?? Loc.GetString("borg-module-incompatible"); // Starlight
+            _popup.PopupClient(reason, chassis.Owner, user); // Starlight
             return false;
         }
 

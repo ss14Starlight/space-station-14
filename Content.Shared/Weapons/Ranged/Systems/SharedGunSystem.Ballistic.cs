@@ -379,7 +379,7 @@ public abstract partial class SharedGunSystem
         bool suppressInsertionSound = false
     )
     {
-        inserted = _stack.GetOne(inserted);
+        //inserted = _stack.GetOne(inserted); Starlight
         var ammoEv = new BeforeAmmoLoadedEvent();
         RaiseLocalEvent(inserted, ref ammoEv);
 
@@ -390,6 +390,8 @@ public abstract partial class SharedGunSystem
 
         if (!CanInsertBallistic(entity, ammo))
             return false;
+
+        ammo = _stack.GetOne(ammo); // Starlight
 
         entity.Comp.Entities.Add(ammo);
         Containers.Insert(ammo, entity.Comp.Container);
