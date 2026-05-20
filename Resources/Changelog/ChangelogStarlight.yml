@@ -1,74 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Refactors medtak's variants of the above added items to use abstract parents instead of having to duplicate the prototype.
-    type: Tweak
-  id: 404716
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: The Medical Belt Steal Objective now only works on filled (loadout/locker) belts/webbings, so you have to actually steal them.
-    type: Tweak
-  id: 404717
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Medical Interns no longer spawn with an extra jumpsuit.
-    type: Fix
-  id: 404718
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Chemists no longer spawn with an extra hand labeler, chemical bag, and pair of analysis goggles.
-    type: Fix
-  id: 404719
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: wonderfulnewworld
-  changes:
-  - message: Fixes a loc error on tranexamic acid's bottle.
-    type: Fix
-  id: 404720
-  time: '2026-04-29T05:33:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4286
-- author: neurovermi
-  changes:
-  - message: Mauler repair now works as expected.
-    type: Fix
-  id: 404721
-  time: '2026-04-29T05:33:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4288
-- author: neurovermi
-  changes:
-  - message: Mech pilots are now insulated.
-    type: Add
-  id: 404722
-  time: '2026-04-29T09:33:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4282
-- author: Citrea
-  changes:
-  - message: Terminator objective now only completes when the target is properly and finally dead, either by being left behind while dead, or round-removal.
-    type: Tweak
-  id: 404723
-  time: '2026-04-29T10:34:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4277
-- author: Citrea
-  changes:
-  - message: Reworded exterminator objective to make it clear they need to kill *and* maroon their target, and only their target.
-    type: Tweak
-  id: 404724
-  time: '2026-04-29T10:34:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4277
-- author: Citrea
-  changes:
-  - message: Maroon objectives now show as complete, if the maroon target is unrevivable, as that always counts as completion, even if the brain is evacuated.
-    type: Tweak
-  id: 404725
-  time: '2026-04-29T10:34:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4277
 - author: Citrea
   changes:
   - message: Diagnostic implants now show IPC health.
@@ -2799,4 +2729,74 @@ Entries:
   id: 405115
   time: '2026-05-19T01:31:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4481
+- author: CrazyPhantom
+  changes:
+  - message: Fixed some bugs with Anomalies, they should no longer lag everyone or fail to gib you on crit.
+    type: Fix
+  id: 405116
+  time: '2026-05-19T08:22:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4486
+- author: Sparlight
+  changes:
+  - message: There are now about twice as many random name options for both borgis and syndicate borgis.
+    type: Add
+  id: 405117
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: Sparlight
+  changes:
+  - message: Smart corgis made as a result of borgi creation have a chance of being a ghost role.
+    type: Tweak
+  id: 405118
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: Sparlight
+  changes:
+  - message: Smart corgis made as a result of borgi creation now have random names.
+    type: Fix
+  id: 405119
+  time: '2026-05-19T09:42:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4479
+- author: CrazyPhantom
+  changes:
+  - message: Pipe and Cabledocks are now even more performant. Hopefully less/no more delays in pipes and cables anchoring.
+    type: Tweak
+  id: 405120
+  time: '2026-05-20T05:58:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4390
+- author: Arkanic
+  changes:
+  - message: Fix being unable to strip the devil.
+    type: Fix
+  id: 405121
+  time: '2026-05-20T05:58:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4483
+- author: Arkanic
+  changes:
+  - message: After 5 souls captured devil gains a 2-charge jaunt ability with a 5 min recharge, for entering and then exiting a room with aura.
+    type: Add
+  id: 405122
+  time: '2026-05-20T05:58:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4483
+- author: Arkanic
+  changes:
+  - message: Show a popup when there is misspellings in the names of a contract, so you will know beforehand if you are about to be accidentally short-changed (temporary, will be reworked to be better in future).
+    type: Add
+  id: 405123
+  time: '2026-05-20T05:58:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4483
+- author: Arkanic
+  changes:
+  - message: Devil can't fire guns anymore (you shouldnt be anyway lo).
+    type: Tweak
+  id: 405124
+  time: '2026-05-20T05:58:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4483
+- author: Arkanic
+  changes:
+  - message: Reduced value of terminator damnation to hopefully make it slightly less common.
+    type: Tweak
+  id: 405125
+  time: '2026-05-20T05:58:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4483
 Order: -1
