@@ -41,7 +41,7 @@
     capacity: 30
     proto: FloorTileItemXenoborg
     soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/tile_load.ogg
+      path: /Audio/_Starlight/Weapons/Guns/MagIn/tile_load.ogg # Starlight, can't use NC sounds
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
