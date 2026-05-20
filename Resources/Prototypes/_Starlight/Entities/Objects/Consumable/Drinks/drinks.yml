@@ -17,7 +17,7 @@
 - type: entity
   parent: DrinkGlass
   id: DrinkTheHighlanderGlass
-  suffix: the highlander
+  suffix: The Highlander
   components:
   - type: SolutionContainerManager
     solutions:

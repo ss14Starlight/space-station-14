@@ -18,17 +18,17 @@
   - Shake
   reactants:
     BacchusBlessing:
-      amount: 1
+      amount: 2
     AtomicBomb:
-      amount: 1
+      amount: 2
     LongIslandIcedTea:
-      amount: 1
+      amount: 2
     DoctorsDelight:
-      amount: 1
+      amount: 2
     Omnizine:
       amount: 1
   products:
-    Highlander: 1
+    Highlander: 2
 
 - type: reaction
   id: TheLastCall
