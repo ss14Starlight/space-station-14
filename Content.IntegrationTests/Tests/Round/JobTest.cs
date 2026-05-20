@@ -46,7 +46,7 @@ public sealed class JobTest
     [Test]
     public async Task StartRoundTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -68,7 +68,6 @@ public sealed class JobTest
 
         pair.AssertJob(Passenger);
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
     }
 
@@ -78,7 +77,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPreferenceTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -112,7 +111,6 @@ public sealed class JobTest
 
         pair.AssertJob(Passenger);
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
     }
 
@@ -123,7 +121,7 @@ public sealed class JobTest
     [Test]
     public async Task JobWeightTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -134,12 +132,8 @@ public sealed class JobTest
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
-        var captain = pair.Server.ProtoMan.Index(Captain);
-        var engineer = pair.Server.ProtoMan.Index(Engineer);
-        var passenger = pair.Server.ProtoMan.Index(Passenger);
-
         await pair.SetJobPriorities(
-            //essentially, weight only matters for each category now instead of globally
+            // essentially, weight only matters for each category now instead of globally
             (Passenger, JobPriority.Medium),
             (Engineer, JobPriority.Medium),
             (Captain, JobPriority.Medium)
@@ -151,7 +145,6 @@ public sealed class JobTest
 
         pair.AssertJob(Captain);
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
     }
 
@@ -161,7 +154,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPriorityTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -204,7 +197,6 @@ public sealed class JobTest
             }
         });
 
-        await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.CleanReturnAsync();
     }
 }
