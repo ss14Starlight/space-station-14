@@ -2,7 +2,7 @@
   parent: [ BorgHypo, BaseXenoborgContraband ]
   id: LicoxideHypo
   name: licoxide hypo
-  description: A self-refilling injector for rapid administration of licoxide to victms.
+  description: A self-refilling injector for rapid administration of licoxide to victims.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -22,7 +22,7 @@
   parent: [ BorgHypo, BaseXenoborgContraband ]
   id: NocturineHypoPlus
   name: extended nocturine hypo
-  description: A self-refilling injector for rapid administration of nocturine to victms. Has double the storage of the other one.
+  description: A self-refilling injector for rapid administration of nocturine to victims. Has double the storage of the other one.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -42,7 +42,7 @@
   parent: [ BorgHypo, BaseXenoborgContraband ]
   id: TazinideHypo
   name: tazinide hypo
-  description: A self-refilling injector for rapid administration of tazinide to victms.
+  description: A self-refilling injector for rapid administration of tazinide to victims.
   components:
   - type: SolutionContainerManager
     solutions:
@@ -62,7 +62,7 @@
   parent: [ BorgHypo, BaseXenoborgContraband ]
   id: MuteToxinHypo
   name: mute toxin hypo
-  description: A self-refilling injector for rapid administration of mute toxin to victms.
+  description: A self-refilling injector for rapid administration of mute toxin to victims.
   components:
   - type: SolutionContainerManager
     solutions:
