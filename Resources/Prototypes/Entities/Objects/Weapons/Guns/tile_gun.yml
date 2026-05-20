@@ -23,7 +23,8 @@
     - Prying
   - type: AmmoCounter
   - type: Gun
-    fireRate: 3 # Starlight, apparently it fires too fast on Wizden and clips through walls.
+    fireRate: 4
+    projectileSpeed: 30 # Starlight
     maxAngle: 15
     minAngle: 1
     selectedMode: FullAuto
