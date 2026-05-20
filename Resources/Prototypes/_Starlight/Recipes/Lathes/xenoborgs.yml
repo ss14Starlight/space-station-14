@@ -14,7 +14,7 @@
   materials:
     Steel: 2500
     Glass: 2500
-    Plastic: 500
+    Plastic: 1000
 
 # TODO: When we get xenoborg crystals, make this and all other tier 3s cost 1 and a half crystals. Plastic's moderately hard for them to get, they'll have to salvage or steal cargo shipments.
 
@@ -26,7 +26,7 @@
   materials:
     Steel: 2500
     Glass: 2500
-    Plastic: 500
+    Plastic: 1000
 
 ## Stealth Xenoborg Modules
 - type: latheRecipe
@@ -36,4 +36,4 @@
   materials:
     Steel: 2500
     Glass: 2500
-    Plastic: 500
+    Plastic: 1000
