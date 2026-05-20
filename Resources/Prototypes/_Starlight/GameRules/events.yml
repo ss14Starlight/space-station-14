@@ -385,14 +385,14 @@
 
 - type: entity
   id: TerrorSpidersSpawn
-  parent: BaseStationEventShortDelay
+  parent: BaseGameRule
   components:
   - type: StationEvent
     globalAnnouncement: false
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
-    earliestStart: 15
+    earliestStart: 20
     weight: 6
     duration: 50
     minimumPlayers: 50
