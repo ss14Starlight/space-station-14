@@ -103,6 +103,7 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: BypassLock
     bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.
+  - type: DerelictXenoborg # For Xeno hivemind listening
 
 # region NTNC
 
