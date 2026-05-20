@@ -243,10 +243,10 @@
     - BookOfCantrips
 
 - type: loadout
-  id: EmergencyDwarfOxygenMilitary
+  id: EmergencyDwarfOxygenMilitaryDouble
   effects:
   - !type:GroupLoadoutEffect
     proto: OxygenBreatherDwarf
   storage:
     back:
-    - BoxSurvivalMilitary # no dwarf version; doesn't include a drink
+    - BoxSurvivalMilitaryDouble # no dwarf version; doesn't include a drink
