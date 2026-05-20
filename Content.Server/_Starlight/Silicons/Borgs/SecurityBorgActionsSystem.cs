@@ -13,7 +13,7 @@ public sealed class SecurityBorgActionsSystem : EntitySystem
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private static readonly ProtoId<RadioChannelPrototype> SecurityChannel = "Security";
+    private static readonly ProtoId<RadioChannelPrototype> _securityChannel = "Security";
 
     public override void Initialize()
     {
@@ -31,7 +31,7 @@ public sealed class SecurityBorgActionsSystem : EntitySystem
 
         var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(uid));
         var message = Loc.GetString("borg-call-for-help-message", ("borg", uid), ("position", posText));
-        _radio.SendRadioMessage(uid, message, _prototype.Index(SecurityChannel), uid);
+        _radio.SendRadioMessage(uid, message, _prototype.Index(_securityChannel), uid);
 
         args.Handled = true;
     }

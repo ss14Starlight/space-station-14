@@ -1166,6 +1166,49 @@
         Glass: 2
 
 - type: entity
+  id: CoffeeDispenserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: coffee dispenser circuitboard
+  description: A machine printed circuit board for a coffee dispenser
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: CoffeeDispenserEmpty
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+        Glass: 2
+
+- type: entity
+  id: GramophoneCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: gramophone circuitboard
+  description: A machine printed circuit board for a gramophone. Wait, why does it need a circuit board?
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: Gramophone
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+
+- type: entity
+  id: VinylPlayerCircuitBoard
+  parent: BaseMachineCircuitboard
+  name: vinyl player circuitboard
+  description: A machine printed circuit board for a vinyl player.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: VinylPlayer
+      stackRequirements:
+        Steel: 5
+        Manipulator: 1
+
+- type: entity
   id: NullspaceAnchorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: Nullspace anchor circuitboard

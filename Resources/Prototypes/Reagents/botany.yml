@@ -233,7 +233,7 @@
       - !type:HealthChange
         conditions: #Starlight
         - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
+          type: [ Avali, Resomi, Vox ] # The birds, including Vox
           inverted: true
         damage:
           types:
@@ -243,7 +243,7 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Avali, Resomi ]
+          type: [ Avali, Resomi ]  # The birds, excluding Vox (they exhale ammonia, they don't want a ton of ammonia build up)
         damage:
           types:
             Asphyxiation: -1

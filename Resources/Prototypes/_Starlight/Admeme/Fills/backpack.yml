@@ -91,3 +91,19 @@
         - id: GrenadeFlashBang
         - id: BoxFolderMedTak
         - id: RubberStampMedTak
+
+- type: entity
+  id: ClothingBackpackSatchelMedTakFilledDispatcher
+  parent: ClothingBackpackSatchelMedTak
+  suffix: Filled, Dispatcher
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MagazinePistol40SP
+        - id: DrinkMREFlask
+        - id: FoodSnackNutribrick
+        - id: MedTakMindShieldImplanter
+        - id: MedTakDeathRattleImplanter
+        - id: MedkitCombatMedTakFilled

@@ -42,6 +42,112 @@
   weights:
     RandomArtifactSpawner: 1
 
+- type: weightedRandomEntity
+  id: BluespaceHarvesterRareMaterialsTable
+  weights:
+    SheetPlasma: 1
+    SheetUranium: 0.8
+    IngotGold: 0.75
+    IngotSilver: 0.75
+    MaterialDiamond: 0.25
+    MaterialBananium: 0.2
+    RawBluespaceCrystal1: 0.15
+    IngotAbyssium1: 0.1
+    SheetAdamantine1: 0.1
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterPowerCellTable
+  weights:
+    PowerCellMedium: 1
+    PowerCellHigh: 0.75
+    PowerCellHyper: 0.25
+    PowerCellMicroreactor: 0.1
+    PowerCellSmallNuclear: 0.1
+    PowerCellAntiqueProto: 0.03
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterPlushieTable
+  weights:
+    PlushieGhost: 1
+    PlushieSharkBlue: 1
+    PlushieVox: 0.8
+    PlushieRGBee: 0.7
+    PlushieMagicarp: 0.6
+    PlushieRainbowCarp: 0.45
+    PlushieThrongler: 0.35
+    PlushieNuke: 0.3
+    PlushieShadekin: 0.25
+    PlushieGlados: 0.2
+    PlushieLargeSoftShark: 0.15
+    PlushieCosmicCult: 0.1
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterExperimentalToolTable
+  weights:
+    Multitool: 1
+    WelderIndustrialAdvanced: 0.8
+    WelderExperimental: 0.45
+    AnomalyScanner: 0.45
+    AnomalyLocatorUnpowered: 0.35
+    CrowbarAbductor: 0.2
+    WrenchAbductor: 0.2
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterRareSeedsTable
+  weights:
+    MimanaSeeds: 1
+    LemoonSeeds: 1
+    ExtradimensionalOrangeSeeds: 0.75
+    SteelcapSeeds: 0.75
+    KillerTomatoSeeds: 0.6
+    GoldenAppleSeeds: 0.5
+    RainbowCannabisSeeds: 0.5
+    DeathNettleSeeds: 0.45
+    AmbrosiaDeusSeeds: 0.35
+    GalaxythistleSeeds: 0.35
+    GlasstleSeeds: 0.35
+    GatfruitSeeds: 0.3
+    SpacemansTrumpetSeeds: 0.3
+    KoibeanSeeds: 0.3
+    HolymelonSeeds: 0.3
+    BluePumpkinSeeds: 0.25
+    PyrottonSeeds: 0.25
+    RealCapfruitSeeds: 0.2
+    FakeCapfruitSeeds: 0.2
+    AnomalyBerrySeeds: 0.15
+    BloonionSeeds: 0.15
+    OrganTreeSeeds: 0.1
+
+- type: weightedRandomEntity
+  id: BluespaceHarvesterCircuitBoardTable
+  weights:
+    ProtolatheMachineCircuitboard: 1
+    CircuitImprinterMachineCircuitboard: 1
+    ResearchAndDevelopmentServerMachineCircuitboard: 1
+    ArtifactAnalyzerMachineCircuitboard: 0.9
+    ArtifactCrusherMachineCircuitboard: 0.9
+    AnomalyVesselCircuitboard: 0.8
+    AnomalySynchronizerCircuitboard: 0.8
+    MedicalScannerMachineCircuitboard: 0.8
+    CrewMonitoringServerMachineCircuitboard: 0.8
+    SMESMachineCircuitboard: 0.8
+    CellRechargerCircuitboard: 0.75
+    BorgChargerCircuitboard: 0.75
+    SubstationMachineCircuitboard: 0.75
+    MaterialSiloMachineCircuitboard: 0.65
+    OreProcessorMachineCircuitboard: 0.65
+    SalvageMagnetMachineCircuitboard: 0.55
+    MiniGravityGeneratorCircuitboard: 0.45
+    StationAnchorCircuitboard: 0.45
+    ProtolatheHyperConvectionMachineCircuitboard: 0.35
+    CircuitImprinterHyperConvectionMachineCircuitboard: 0.35
+    AnomalyVesselExperimentalCircuitboard: 0.3
+    APECircuitboard: 0.3
+    SMESAdvancedMachineCircuitboard: 0.3
+    TurboItemRechargerCircuitboard: 0.25
+    OreProcessorIndustrialMachineCircuitboard: 0.25
+    SMESHyperAdvancedMachineCircuitboard: 0.15
+
 - type: bluespaceHarvesterPool
   id: BluespaceHarvesterExoticHat
   name: bluespace-harvester-pool-exotic-hat
@@ -59,17 +165,65 @@
   lootTable: BluespaceHarvesterBasicMaterialsTable
 
 - type: bluespaceHarvesterPool
+  id: BluespaceHarvesterRareMaterials
+  name: bluespace-harvester-pool-rare-materials
+  cost: 6000
+  enabled: true
+  order: 3
+  lootTable: BluespaceHarvesterRareMaterialsTable
+
+- type: bluespaceHarvesterPool
   id: BluespaceHarvesterSnack
   name: bluespace-harvester-pool-snack
   cost: 1500
   enabled: true
-  order: 3
+  order: 4
   lootTable: BluespaceHarvesterSnackTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterPlushie
+  name: bluespace-harvester-pool-plushie
+  cost: 2500
+  enabled: true
+  order: 5
+  lootTable: BluespaceHarvesterPlushieTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterExperimentalTool
+  name: bluespace-harvester-pool-experimental-tool
+  cost: 14000
+  enabled: true
+  order: 6
+  lootTable: BluespaceHarvesterExperimentalToolTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterPowerCell
+  name: bluespace-harvester-pool-power-cell
+  cost: 7000
+  enabled: true
+  order: 7
+  lootTable: BluespaceHarvesterPowerCellTable
 
 - type: bluespaceHarvesterPool
   id: BluespaceHarvesterCulturalArtifact
   name: bluespace-harvester-pool-artifact
   cost: 10000
   enabled: true
-  order: 4
+  order: 8
   lootTable: BluespaceHarvesterArtifactTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterRareSeeds
+  name: bluespace-harvester-pool-rare-seeds
+  cost: 10000
+  enabled: true
+  order: 9
+  lootTable: BluespaceHarvesterRareSeedsTable
+
+- type: bluespaceHarvesterPool
+  id: BluespaceHarvesterCircuitBoard
+  name: bluespace-harvester-pool-circuit-board
+  cost: 8500
+  enabled: true
+  order: 10
+  lootTable: BluespaceHarvesterCircuitBoardTable

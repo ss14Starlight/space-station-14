@@ -113,12 +113,12 @@
     - state: cocoon
     - state: cocoon_open
       map: ["buckledLayer"]
-    - type: GenericVisualizer
-      visuals:
-        enum.StrapVisuals.State:
-          buckledLayer:
-            True: {visible: false}
-            False: {visible: true}
+  - type: GenericVisualizer
+    visuals:
+      enum.StrapVisuals.State:
+        buckledLayer:
+          True: {visible: false}
+          False: {visible: true}
   - type: Fixtures
     fixtures:
       fix1:
@@ -156,3 +156,70 @@
         Brute: -0.1
         Burn: -0.1
         Toxin: -0.1
+
+- type: entity
+  id: AmmoniaEggGenerator
+  placement:
+    mode: SnapgridCenter
+  name: "ammonia egg"
+  description: "A strange egg which produces ammonia."
+  components:
+  - type: Appearance
+  - type: Clickable
+  - type: Physics
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Temperature
+  - type: TemperatureDamage
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+    coldDamageThreshold: 0
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 5
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: SpiderWebObject
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings.rsi
+    drawdepth: OverMobs
+    layers:
+    - state: ammonia_gen
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 50
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: GasMiner
+    spawnGas: Ammonia
+    maxExternalAmount: 101
+    spawnAmount: 20
+    showInfoOnExamine: false
+  - type: AtmosDevice

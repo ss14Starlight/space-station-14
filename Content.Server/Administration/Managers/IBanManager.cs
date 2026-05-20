@@ -25,7 +25,7 @@ public interface IBanManager
     /// <param name="minutes">Number of minutes to ban for. 0 and null mean permanent</param>
     /// <param name="severity">Severity of the resulting ban note</param>
     /// <param name="reason">Reason for the ban</param>
-    public void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason);
+    public Task CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason);
 
     /// <summary>
     /// Gets a list of prefixed prototype IDs with the player's role bans.
@@ -98,7 +98,7 @@ public interface IBanManager
     /// <param name="severity">Severity of the resulting ban note</param>
     /// <param name="reason">Reason for the ban</param>
     /// <param name="timeOfBan">Time when the ban was applied, used for grouping role bans</param>
-    public void WebhookUpdateRoleBans(
+    public Task WebhookUpdateRoleBans(
         NetUserId? target,
         string? targetUsername,
         NetUserId? banningAdmin,
