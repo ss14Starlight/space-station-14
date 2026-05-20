@@ -5,6 +5,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Round;
@@ -130,7 +131,8 @@ public sealed class JobTest
         await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true
         });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
@@ -157,6 +159,9 @@ public sealed class JobTest
         await pair.RunTicksSync(_waitAfter);
 
         pair.AssertJob(Captain);
+
+        await pair.Client.WaitPost(() => ((IClientNetManager) pair.Client.NetMan).ClientDisconnect("JobWeightTest cleanup"));
+        await pair.RunTicksSync(1);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
         await pair.RunTicksSync(_waitAfter);
