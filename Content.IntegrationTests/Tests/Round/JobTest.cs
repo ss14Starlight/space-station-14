@@ -132,8 +132,12 @@ public sealed class JobTest
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
         Assert.That(pair.Client.AttachedEntity, Is.Null);
 
+        var captain = pair.Server.ProtoMan.Index(Captain);
+        var engineer = pair.Server.ProtoMan.Index(Engineer);
+        var passenger = pair.Server.ProtoMan.Index(Passenger);
+
         await pair.SetJobPriorities(
-            // essentially, weight only matters for each category now instead of globally
+            //essentially, weight only matters for each category now instead of globally
             (Passenger, JobPriority.Medium),
             (Engineer, JobPriority.Medium),
             (Captain, JobPriority.Medium)
