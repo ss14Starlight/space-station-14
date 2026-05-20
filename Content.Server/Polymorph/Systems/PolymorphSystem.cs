@@ -245,7 +245,8 @@ public sealed partial class PolymorphSystem : EntitySystem
             polymorphedEntitySpokenLanguages = new LanguageSpeakerComponent
             {
                 SpokenLanguages = formerEntitySpokenLanguages.SpokenLanguages.ToList(),
-                UnderstoodLanguages = formerEntitySpokenLanguages.UnderstoodLanguages.ToList()
+                UnderstoodLanguages = formerEntitySpokenLanguages.UnderstoodLanguages.ToList(),
+                CurrentLanguage = formerEntitySpokenLanguages.CurrentLanguage
             };
         }
         // Copy specified components over
@@ -342,11 +343,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         {
             spokenLanguage.SpokenLanguages = [.. spokenLanguage.SpokenLanguages.Union(polymorphedEntitySpokenLanguages.SpokenLanguages)];
             spokenLanguage.UnderstoodLanguages = [.. spokenLanguage.UnderstoodLanguages.Union(polymorphedEntitySpokenLanguages.UnderstoodLanguages)];
-            // attempt to change current language to match new entity default
-            if (polymorphedEntitySpokenLanguages.CurrentLanguage.Length > 0)
-                spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage;
-            else if (polymorphedEntitySpokenLanguages.SpokenLanguages.Count > 0)
-                spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.SpokenLanguages.First();
+            spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage;
         }
         // Starlight End
 
