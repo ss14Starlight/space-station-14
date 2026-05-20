@@ -173,6 +173,6 @@
       - MindRoleXenoborg
       min: 4
       max: 8 # Starlight
-      playerRatio: 17 # Starlight. 1 for every 17 players.
+      playerRatio: 15 # Starlight. 1 for every 15 players. Only counts readied up, so 8 at 100+ readied, meaning like 150+ pop.
   - type: DynamicRuleCost
     cost: 200

@@ -28,7 +28,7 @@
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
-      prob: 0.08 # Starlight. To account for their secret mode being lowered.
+      prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
@@ -49,7 +49,7 @@
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
-      prob: 0.08 # Starlight. To account for their secret mode being lowered.
+      prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
@@ -67,7 +67,7 @@
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
-      prob: 0.08 # Starlight. To account for their secret mode being lowered.
+      prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
@@ -84,7 +84,7 @@
     - id: SubWizard
       prob: 0.05
     - id: XenoborgsLP # Subgamemode replaced with XenoborgsLP
-      prob: 0.08 # Starlight. To account for their secret mode being lowered.
+      prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
@@ -105,7 +105,7 @@
     - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
       prob: 0.25
     - id: XenoborgsLP # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
-      prob: 0.08
+      prob: 0.05
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
@@ -126,7 +126,7 @@
     - id: SubWizard
       prob: 0.05
     - id: XenoborgsLP
-      prob: 0.08
+      prob: 0.05
     - id: SiliconLiberation
       prob: 0.20
 
