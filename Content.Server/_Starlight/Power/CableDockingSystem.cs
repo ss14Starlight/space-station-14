@@ -221,6 +221,7 @@ public sealed class CableDockingSystem : EntitySystem
             a.RemoveAlwaysReachable(b);
             changed = true;
         }
+    }
 
         if (reachableB != null && reachableB.Contains(a))
         {
