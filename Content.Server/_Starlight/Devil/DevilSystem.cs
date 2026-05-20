@@ -31,8 +31,6 @@ public sealed partial class DevilSystem : SharedDevilSystem
     [Dependency] private readonly PointLightSystem _pointLight = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
 
-    private EntProtoId SummonBidentActionProto = "ActionSummonBident";
-
     public override void Initialize()
     {
         base.Initialize();
@@ -132,8 +130,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (FitsChangeCriteria(devilComp, devilComp.BidentAction))
         {
-            _actions.AddAction(uid, SummonBidentActionProto);
+            _actions.AddAction(uid, devilComp.SummonBidentActionProto);
             devilComp.BidentAction.Completed = true;
+        }
+
+        if (FitsChangeCriteria(devilComp, devilComp.InfernalJauntAction))
+        {
+            _actions.AddAction(uid, devilComp.InfernalJauntActionProto);
+            devilComp.InfernalJauntAction.Completed = true;
         }
     }
     #endregion
