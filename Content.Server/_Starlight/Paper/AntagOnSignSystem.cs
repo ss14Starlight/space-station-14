@@ -23,7 +23,7 @@ public sealed class AntagOnSignSystem : EntitySystem
     private ISawmill _sawmill = default!;
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
-    private const string SyndicateRecruitmentLetterId = "MailSyndicateSpamLetter"; // Starlight: Achievements   
+    private const string SyndicateRecruitmentLetterId = "MailSyndicateSpamLetter"; // Starlight: Achievements
     private const string RRSyndicateRecruitmentLetterId = "RRMailSyndicateSpamLetter"; // Starlight: Achievements
 
     public override void Initialize()
