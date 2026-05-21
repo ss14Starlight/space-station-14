@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from Bubberstation at https://github.com/Bubberstation/Bubberstation/blob/5a7c7190fbb263c383d4d2329476f1bd1ae4ce69/modular_skyrat/modules/borgs/icons/tallrobot_cargo.dmi",
+  "copyright": "Taken from Bubberstation at https://github.com/Bubberstation/Bubberstation/blob/5a7c7190fbb263c383d4d2329476f1bd1ae4ce69/modular_skyrat/modules/borgs/icons/tallrobot_cargo.dmi, borg-alt edited by DocMoth",
   "size": {
     "x": 32,
     "y": 64
@@ -156,6 +156,10 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "borg-alt",
+      "directions": 4
     },
     {
       "name": "credit"

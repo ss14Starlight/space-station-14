@@ -712,7 +712,7 @@
   components:
     - type: BorgSubtypeDefinition
       spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/meka_cargo.rsi
-      spriteBodyState: borg
+      spriteBodyState: borg-alt
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
