@@ -156,6 +156,7 @@
   id: CorporateSecretsStealObjective
   components:
   - type: StealCondition
+    owner: job-name-ntrep
     stealGroup: CorporateSecretsSteal
 
 - type: entity
@@ -163,6 +164,7 @@
   id: CriminalReportsStealObjective
   components:
   - type: StealCondition
+    owner: job-name-iaa
     stealGroup: CriminalReportsSteal
 
 - type: entity
@@ -170,6 +172,7 @@
   id: SecureKnowledgeStealObjective
   components:
   - type: StealCondition
+    owner: job-name-magistrate
     stealGroup: SecureKnowledgeSteal
 
 - type: entity
