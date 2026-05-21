@@ -1,9 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
-using Robust.Server.GameObjects;
 using Content.Shared.Examine;
-using Robust.Server.Containers;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
@@ -43,8 +41,6 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
@@ -87,10 +83,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     private void CoreOrganInit(EntityUid uid, OrganShadekinCoreComponent component, OrganAddedToBodyEvent args)
-    {
-        if (component.OrganOwner is null)
-            component.OrganOwner = args.Body;
-    }
+        => component.OrganOwner ??= args.Body;
 
     private void OnExamined(EntityUid uid, OrganShadekinCoreComponent component, ref ExaminedEvent args)
     {
@@ -121,18 +114,16 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     public void UpdateAlert(EntityUid uid, ShadekinComponent component, short state)
-    {
-        _alerts.ShowAlert(uid, component.ShadekinAlert, state);
-    }
+        => _alerts.ShowAlert(uid, component.ShadekinAlert, state);
 
     private void SetPassiveBuff(EntityUid uid, ShadekinState shadekinState)
     {
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
             return;
 
-        if (shadekinState == ShadekinState.Annoying ||
-            shadekinState == ShadekinState.High ||
-            shadekinState == ShadekinState.Extreme)
+        if (shadekinState is ShadekinState.Annoying or
+            ShadekinState.High or
+            ShadekinState.Extreme)
         {
             passive.DamageCap = 1;
         }
@@ -170,7 +161,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void OnRefreshMovementSpeedModifiers(EntityUid uid, ShadekinComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.CurrentState == ShadekinState.High || component.CurrentState == ShadekinState.Extreme)
+        if (component.CurrentState is ShadekinState.High or ShadekinState.Extreme)
         {
             if (!TryComp<MovementSpeedModifierComponent>(uid, out var movement))
                 return;

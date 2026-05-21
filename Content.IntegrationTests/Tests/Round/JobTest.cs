@@ -5,6 +5,7 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Round;
@@ -46,7 +47,7 @@ public sealed class JobTest
     [Test]
     public async Task StartRoundTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -69,6 +70,8 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -78,7 +81,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPreferenceTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -113,6 +116,8 @@ public sealed class JobTest
         pair.AssertJob(Passenger);
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -123,10 +128,11 @@ public sealed class JobTest
     [Test]
     public async Task JobWeightTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
-            DummyTicker = false
+            DummyTicker = false,
+            Dirty = true
         });
 
         pair.Server.CfgMan.SetCVar(CCVars.GameMap, _map);
@@ -137,6 +143,9 @@ public sealed class JobTest
         var captain = pair.Server.ProtoMan.Index(Captain);
         var engineer = pair.Server.ProtoMan.Index(Engineer);
         var passenger = pair.Server.ProtoMan.Index(Passenger);
+
+        Assert.That(captain.Weight, Is.GreaterThan(engineer.Weight));
+        Assert.That(engineer.Weight, Is.EqualTo(passenger.Weight));
 
         await pair.SetJobPriorities(
             //essentially, weight only matters for each category now instead of globally
@@ -151,7 +160,12 @@ public sealed class JobTest
 
         pair.AssertJob(Captain);
 
+        await pair.Client.WaitPost(() => ((IClientNetManager) pair.Client.NetMan).ClientDisconnect("JobWeightTest cleanup"));
+        await pair.RunTicksSync(1);
+
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 
@@ -161,7 +175,7 @@ public sealed class JobTest
     [Test]
     public async Task JobPriorityTest()
     {
-        var pair = await PoolManager.GetServerClient(new PoolSettings {
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings {
             InLobby = true,
             Connected = true,
             DummyTicker = false
@@ -205,6 +219,8 @@ public sealed class JobTest
         });
 
         await pair.Server.WaitPost(() => ticker.RestartRound());
+        await pair.RunTicksSync(_waitAfter);
+        await pair.ReallyBeIdle();
         await pair.CleanReturnAsync();
     }
 }
