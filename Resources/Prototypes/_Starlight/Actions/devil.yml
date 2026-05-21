@@ -60,3 +60,22 @@
     event: !type:OnItemSummonActionEvent
   - type: ItemSummon
     summonableItem: PenQuillBurnt
+
+- type: entity
+  id: ActionInfernalJaunt
+  parent: BaseActionPolymorph
+  name: Infernal Jaunt
+  description: Make an entrance! Comes with two charges - one for the entrance, and one for the exit. 5 minute recharge.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: jaunt
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: InfernalJaunt
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 150 # 2.5 min

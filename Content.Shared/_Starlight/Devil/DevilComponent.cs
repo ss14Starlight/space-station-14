@@ -1,6 +1,5 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.Devil;
 using Content.Shared.Dataset;
 using Content.Shared.Damage;
 using Robust.Shared.Serialization;
@@ -18,7 +17,7 @@ public sealed partial class DevilComponent : Component
         "ActionSummonDemonicContract",
         "ActionSummonDevilPen",
         "ActionDamnationsMenu",
-        "ActionDevilRejuvenate",
+        "ActionDevilRejuvenate"
     };
 
     /// <summary>
@@ -85,10 +84,19 @@ public sealed partial class DevilComponent : Component
     public DevilChangeCriteria OminousHum = new (4);
 
     [DataField, AutoNetworkedField]
-    public DevilChangeCriteria EvilHaloAppearance = new(6);
+    public DevilChangeCriteria InfernalJauntAction = new (5);
 
     [DataField, AutoNetworkedField]
-    public DevilChangeCriteria BidentAction = new(7);
+    public DevilChangeCriteria EvilHaloAppearance = new (6);
+
+    [DataField, AutoNetworkedField]
+    public DevilChangeCriteria BidentAction = new (7);
+
+    [DataField]
+    public EntProtoId SummonBidentActionProto = "ActionSummonBident";
+
+    [DataField]
+    public EntProtoId InfernalJauntActionProto = "ActionInfernalJaunt";
 
     /// <summary>
     /// How long is the damage cooldown per person?
