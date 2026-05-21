@@ -43,9 +43,6 @@ public sealed partial class EggInjectSystem : EntitySystem
 
     private void OnEggsLaying(EntityUid uid, TerrorPrincessComponent component, EggsLayingBuiMsg args)
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         if (!component.Eggs.Contains(args.Egg) || !TryComp(uid, out ActorComponent? actor))
             return;
 
