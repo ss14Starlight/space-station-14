@@ -31,12 +31,12 @@ public sealed partial class TerrorPrincessComponent : Component
     public string Briefing = "terror-spider-princess-briefing";
 
     [DataField]
-    public List<EntProtoId> Eggs =
-    [
+    public List<EntProtoId> Eggs = new()
+    {
         "TerrorRedEggSpiderFertilized",
         "TerrorGreenSpiderFertilized",
         "TerrorGrayEggSpiderFertilized"
-    ];
+    };
 
     [DataField]
     public EntProtoId<ActionComponent> LayEggActionId = "ActionEggsLaying";
