@@ -3,7 +3,7 @@
   id: VendorMiningBinoculars
   productEntity: Binoculars
   cost:
-    SalvageTicket: 75
+    MiningTicket: 75
   categories:
     - MiningEquipment
   conditions:
@@ -15,7 +15,7 @@
   id: VendorMiningGrapplingGun
   productEntity: WeaponGrapplingGun
   cost:
-    SalvageTicket: 40
+    MiningTicket: 40
   categories:
   - MiningEquipment
   conditions:
@@ -27,29 +27,29 @@
   id: VendorMiningGClothingMaskGasExplorer
   productEntity: ClothingMaskGasExplorer
   cost:
-    SalvageTicket: 100
+    MiningTicket: 100
   categories:
   - MiningEquipment
   conditions:
   - !type:BuyerAccessCondition
 
-- type: listing
-  id: VendorMiningMechClarke
-  productEntity: MechClarke
-  cost:
-    SalvageTicket: 700
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerAccessCondition
+#- type: listing
+#  id: VendorMiningMechClarke
+#  productEntity: MechClarke
+#  cost:
+#    MiningTicket: 700
+#  categories:
+#  - MiningEquipment
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerAccessCondition
 
 #- type: listing
 #  id: VendorMiningClothingOuterHardsuitMaxim
 #  productEntity: ClothingOuterHardsuitMaxim
 #  cost:
-#    SalvageTicket: 1500
+#    MiningTicket: 1500
 #  categories:
 #  - MiningEquipment
 #  conditions:
@@ -61,7 +61,7 @@
 #  id: VendorMiningClothingOuterHardsuitLuxury
 #  productEntity: ClothingOuterHardsuitLuxury
 #  cost:
-#    SalvageTicket: 150
+#    MiningTicket: 150
 #  categories:
 #  - MiningEquipment
 #  conditions:
@@ -71,7 +71,7 @@
   id: VendorMiningClothingOuterHardsuitAdvancedMining
   productEntity: ClothingOuterHardsuitAdvancedMining
   cost:
-    SalvageTicket: 1200
+    MiningTicket: 1200
   categories:
   - MiningEquipment
   conditions:
@@ -83,7 +83,7 @@
   id: VendorMiningClothingOuterHardsuitMining
   productEntity: ClothingOuterHardsuitMining
   cost:
-    SalvageTicket: 250
+    MiningTicket: 250
   categories:
   - MiningEquipment
   conditions:
@@ -93,7 +93,7 @@
 #  id: VendorMiningClothingOuterHardsuitSpatio
 #  productEntity: ClothingOuterHardsuitSpatio
 #  cost:
-#    SalvageTicket: 100
+#    MiningTicket: 100
 #  categories:
 #  - MiningEquipment
 #  conditions:
@@ -103,7 +103,7 @@
   id: VendorMiningClothingOuterHardsuitSpaceHazard
   productEntity: ClothingOuterHardsuitSpaceHazard
   cost:
-    SalvageTicket: 50
+    MiningTicket: 50
   categories:
   - MiningEquipment
   conditions:
@@ -113,7 +113,7 @@
   id: VendorMiningMiningDrill
   productEntity: MiningDrill
   cost:
-    SalvageTicket: 200
+    MiningTicket: 200
   categories:
   - MiningEquipment
   conditions:
@@ -125,7 +125,7 @@
   id: VendorMiningMiningDrillDiamond
   productEntity: MiningDrillDiamond
   cost:
-    SalvageTicket: 400
+    MiningTicket: 400
   categories:
   - MiningEquipment
   conditions:
@@ -134,10 +134,22 @@
   - !type:BuyerAccessCondition
 
 - type: listing
+  id: VendorMiningPickaxeDiamond
+  productEntity: PickaxeDiamond
+  cost:
+    MiningTicket: 300
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:BuyerAccessCondition
+
+- type: listing
   id: VendorMiningMineralScanner
   productEntity: MineralScanner
   cost:
-    SalvageTicket: 350
+    MiningTicket: 350
   categories:
   - MiningEquipment
   conditions:
@@ -147,7 +159,7 @@
   id: VendorMiningMassScanner
   productEntity: HandHeldMassScanner
   cost:
-    SalvageTicket: 200
+    MiningTicket: 200
   categories:
     - MiningEquipment
   conditions:
@@ -157,7 +169,7 @@
   id: VendorMiningPKAUpgradeDamage
   productEntity: PKAUpgradeDamage
   cost:
-    SalvageTicket: 300
+    MiningTicket: 300
   categories:
     - MiningEquipment
   conditions:
@@ -169,7 +181,7 @@
   id: VendorMiningPKAUpgradeRange
   productEntity: PKAUpgradeRange
   cost:
-    SalvageTicket: 300
+    MiningTicket: 300
   categories:
     - MiningEquipment
   conditions:
@@ -181,7 +193,7 @@
   id: VendorMiningPKAUpgradeFireRate
   productEntity: PKAUpgradeFireRate
   cost:
-    SalvageTicket: 300
+    MiningTicket: 300
   categories:
     - MiningEquipment
   conditions:
@@ -193,7 +205,7 @@
   id: VendorMiningWeaponMechMelleDrill
   productEntity: WeaponMechMelleDrill
   cost:
-    SalvageTicket: 400
+    MiningTicket: 400
   categories:
   - MiningEquipment
   conditions:
@@ -205,7 +217,7 @@
   id: VendorMiningWeaponMechMelleDrillDiamond
   productEntity: WeaponMechMelleDrillDiamond
   cost:
-    SalvageTicket: 600
+    MiningTicket: 600
   categories:
   - MiningEquipment
   conditions:
@@ -217,7 +229,7 @@
   id: VendorMiningFloodlight
   productEntity: Floodlight
   cost:
-    SalvageTicket: 250
+    MiningTicket: 250
   categories:
   - MiningEquipment
   conditions:
@@ -227,7 +239,7 @@
   id: VendorMiningOreBag
   productEntity: OreBag
   cost:
-    SalvageTicket: 25
+    MiningTicket: 25
   categories:
     - MiningEquipment
   conditions:
@@ -237,7 +249,7 @@
   id: VendorMiningShuttleGunKineticFlatpack
   productEntity: ShuttleGunKineticFlatpack
   cost:
-    SalvageTicket: 750
+    MiningTicket: 750
   categories:
     - MiningEquipment
   conditions:
@@ -249,7 +261,7 @@
 #  id: VendorMiningExpeditionEncryptionKey
 #  productEntity: EncryptionKeyExpedition
 #  cost:
-#    SalvageTicket: 100
+#    MiningTicket: 100
 #  categories:
 #  - MiningEquipment
 #  conditions:
@@ -260,7 +272,7 @@
   id: VendorMiningMedkitAdvancedFilled
   productEntity: MedkitAdvancedFilled
   cost:
-    SalvageTicket: 250
+    MiningTicket: 250
   categories:
   - MiningConsumeables
   conditions:
@@ -270,7 +282,7 @@
   id: VendorMiningMedkitFilled
   productEntity: MedkitFilled
   cost:
-    SalvageTicket: 150
+    MiningTicket: 150
   categories:
   - MiningConsumeables
   conditions:
@@ -280,7 +292,7 @@
   id: VendorMiningMedkitCombatFilled
   productEntity: MedkitCombatFilled
   cost:
-    SalvageTicket: 400
+    MiningTicket: 400
   categories:
   - MiningConsumeables
   conditions:
@@ -290,7 +302,7 @@
   id: VendorMiningBoxFlare
   productEntity: BoxFlare
   cost:
-    SalvageTicket: 15
+    MiningTicket: 15
   categories:
   - MiningConsumeables
   conditions:

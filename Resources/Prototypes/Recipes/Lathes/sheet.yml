@@ -10,7 +10,7 @@
 - type: latheRecipe
   id: SheetSteel30
   printTicket: true
-  ticketProtoId: SalvageTicket30
+  ticketProtoId: MiningTicket30 # Starlight
   result: SheetSteel
   completetime: 2
   materials:
@@ -28,7 +28,7 @@
 - type: latheRecipe
   id: SheetGlass30
   printTicket: true
-  ticketProtoId: SalvageTicket30
+  ticketProtoId: MiningTicket30 # Starlight
   result: SheetGlass
   completetime: 2
   materials:
@@ -59,7 +59,7 @@
 - type: latheRecipe
   id: SheetRGlass30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetRGlass
   completetime: 2
   materials:
@@ -79,7 +79,7 @@
 - type: latheRecipe
   id: SheetPGlass30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetPGlass
   completetime: 2
   materials:
@@ -100,7 +100,7 @@
 - type: latheRecipe
   id: SheetRPGlass30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetRPGlass
   completetime: 2
   materials:
@@ -120,7 +120,7 @@
 - type: latheRecipe
   id: SheetPlasma30
   printTicket: true
-  ticketProtoId: SalvageTicket30
+  ticketProtoId: MiningTicket30 # Starlight
   result: SheetPlasma
   completetime: 2
   materials:
@@ -139,7 +139,7 @@
 - type: latheRecipe
   id: SheetPlasteel30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetPlasteel
   completetime: 5
   materials:
@@ -150,7 +150,7 @@
 - type: latheRecipe
   id: SheetUranium30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetUranium
   completetime: 2
   materials:
@@ -168,7 +168,7 @@
 - type: latheRecipe
   id: SheetUGlass30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetUGlass
   completetime: 2
   materials:
@@ -189,7 +189,7 @@
 - type: latheRecipe
   id: SheetRUGlass30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: SheetRUGlass
   completetime: 2
   materials:
@@ -201,7 +201,7 @@
 - type: latheRecipe
   id: IngotGold30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: IngotGold
   completetime: 2
   materials:
@@ -210,7 +210,7 @@
 - type: latheRecipe
   id: IngotSilver30
   printTicket: true
-  ticketProtoId: SalvageTicket50
+  ticketProtoId: MiningTicket50 # Starlight
   result: IngotSilver
   completetime: 2
   materials:
@@ -227,7 +227,7 @@
 - type: latheRecipe
   id: MaterialDiamond
   printTicket: true
-  ticketProtoId: SalvageTicket100
+  ticketProtoId: MiningTicket100 # Starlight
   result: MaterialDiamond1
   completetime: 0
   materials:
