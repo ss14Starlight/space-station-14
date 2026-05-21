@@ -406,7 +406,7 @@
     - spawnerPrototype: SpawnPointGhostTerrorPrincess
       min: 1
       max: 4
-      playerRatio: 65
+      playerRatio: 60
       pickPlayer: false
       mindRoles:
       - MindRoleTerrorPrincess
