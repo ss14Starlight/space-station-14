@@ -30,21 +30,21 @@ public sealed partial class HubSystem : EntitySystem
     public void InitializeServerInfo()
     {
         _cfg.OnValueChanged(CCVars.SoftMaxPlayers, OnSoftMaxPlayersChanged, true);
+        _cfg.OnValueChanged(CCVars.PanicBunkerEnabled, OnPanicBunkerChanged, true);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => OnLobby());
         SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => OnRoundEnding());
         SubscribeLocalEvent<RoundStartingEvent>(_ => OnRoundStart());
-        SubscribeLocalEvent<PanicBunkerChangedEvent>(OnPanicBunkerChanged);
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
     }
 
-    private void OnPanicBunkerChanged(PanicBunkerChangedEvent args)
+    private void OnPanicBunkerChanged(bool enabled)
     {
-        if (_serverInfo.PanicBunkerActive == args.Status.Enabled) return;
+        if (_serverInfo.PanicBunkerActive == enabled) return;
         _serverInfo = _serverInfo with
         {
-            PanicBunkerActive = args.Status.Enabled
+            PanicBunkerActive = enabled
         };
         TryUpdateServerInfo();
     }
