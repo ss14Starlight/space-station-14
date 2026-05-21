@@ -1,7 +1,7 @@
 ﻿# region Derelict
 
 - type: entity
-  parent: BaseBorgChassis
+  parent: [BaseXenoSiliconLanguages, BaseBorgChassis]
   id: BaseXenoborgChassisDerelict
   name: xenoborg
   description: A man-machine hybrid that aims to replicate itself. This one has seen better days.
