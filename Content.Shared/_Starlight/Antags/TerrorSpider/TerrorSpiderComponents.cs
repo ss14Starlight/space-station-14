@@ -29,6 +29,7 @@ public sealed partial class TerrorPrincessComponent : Component
     [DataField]
     public string Briefing = "terror-spider-princess-briefing";
 
+    [DataField]
     public List<EntProtoId> Eggs = 
     [ 
         "TerrorRedEggSpiderFertilized", 
