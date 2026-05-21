@@ -15,7 +15,7 @@
 - type: latheRecipe
   id: BluespaceCrystalAdvancedSmelting
   printTicket: true
-  ticketProtoId: MiningTicket100
+  ticketProtoId: SalvageTicket100
   applyMaterialDiscount: false
   result: BluespaceCrystal1
   completetime: 5
