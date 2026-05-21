@@ -78,7 +78,7 @@
   id: Terminator
   name: become a target
   description: The future is imperceptibly modified, putting the signator square in the sights of a vengeful actor.
-  cost: -7
+  cost: -4
   actions:
   - !type:DamnationActionTerminator
 

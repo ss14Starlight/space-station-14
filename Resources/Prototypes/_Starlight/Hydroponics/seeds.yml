@@ -24,3 +24,27 @@
       Min: 1
       Max: 2
       PotencyDivisor: 40
+
+- type: seed
+  id: evilApple
+  name: seeds-evilapple-name
+  noun: seeds-noun-seeds
+  displayName: seeds-evilapple-display-name
+  plantRsi: _Starlight/Objects/Specific/Hydroponics/evil_apple.rsi
+  packetPrototype: EvilAppleSeeds
+  productPrototypes:
+    - FoodEvilApple
+  harvestRepeat: Repeat
+  lifespan: 50
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  idealLight: 6
+  waterConsumption: 1
+  nutrientConsumption: 1.25
+  chemicals:
+    DevilJuice:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
