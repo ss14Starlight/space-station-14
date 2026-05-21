@@ -65,34 +65,6 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
-#Most of the FMeka and Meka bots are disabled for now. Possibly enabled in future if well received.
-
-#- type: entity
-#  parent: BorgEngineerSubtypeBase
-#  id: BorgEngineerSubtypeTallborgFMeka
-#  name: FMeka Engineering
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-engi/fmeka_engi.rsi
-#      spriteBodyState: borg-alt
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
-
-#- type: entity
-#  parent: BorgEngineerSubtypeBase
-#  id: BorgEngineerSubtypeTallborgMeka
-#  name: Meka Engineering
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-engi/meka_engi.rsi
-#      spriteBodyState: borg
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
-
 - type: entity
   parent: BorgEngineerSubtypeBase
   id: BorgEngineerSubtypeTallborgMMeka
@@ -305,32 +277,6 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
-#- type: entity
-#  parent: BorgMedicalSubtypeBase
-#  id: BorgMedicalSubtypeTallborgFMeka
-#  name: FMeka Medical
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-med/fmeka_med.rsi
-#      spriteBodyState: borg-alt
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
-
-#- type: entity
-#  parent: BorgMedicalSubtypeBase
-#  id: BorgMedicalSubtypeTallborgMeka
-#  name: Meka Medical
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-med/meka_med.rsi
-#      spriteBodyState: borg
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
-
 - type: entity
   parent: BorgMedicalSubtypeBase
   id: BorgMedicalSubtypeTallborgMMeka
@@ -422,32 +368,6 @@
       spriteNoMindState: beetle_e_r
       spriteToggleLightState: beetle_l
       inventoryTemplateId: borg
-
-#- type: entity
-#  parent: BorgMiningSubtypeBase
-#  id: BorgMiningSubtypeTallborgFMeka
-#  name: FMeka Salvage
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-salv/fmeka_salv.rsi
-#      spriteBodyState: borg-alt
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
-
-#- type: entity
-#  parent: BorgMiningSubtypeBase
-#  id: BorgMiningSubtypeTallborgMeka
-#  name: Meka Salvage
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-salv/meka_salv.rsi
-#      spriteBodyState: borg
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -691,19 +611,6 @@
       spriteNoMindState: real_tech_e_r
       spriteToggleLightState: real_tech_l
       inventoryTemplateId: borgTall
-
-#- type: entity
-#  parent: BorgCargoSubtypeBase
-#  id: BorgCargoSubtypeTallborgFMeka
-#  name: FMeka Cargo
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/fmeka_cargo.rsi
-#      spriteBodyState: borg-alt
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: Tallborg
 
 - type: entity
   parent: BorgCargoSubtypeBase
