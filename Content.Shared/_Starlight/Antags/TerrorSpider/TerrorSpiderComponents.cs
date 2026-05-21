@@ -48,7 +48,7 @@ public enum EggsLayingUiKey : byte
 [Serializable, NetSerializable]
 public sealed class EggsLayingBuiMsg : BoundUserInterfaceMessage
 {
-    public EntProtoId Egg { get; set; }
+    public EntProtoId<ActionComponent> Egg { get; set; }
 }
 [Serializable, NetSerializable]
 public sealed class EggsLayingBuiState : BoundUserInterfaceState { }
