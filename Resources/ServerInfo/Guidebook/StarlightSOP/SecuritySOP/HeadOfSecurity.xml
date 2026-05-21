@@ -3,7 +3,9 @@
 
 <GuideEntityEmbed Entity="ToyFigurineHeadOfSecurity" Caption="Head of Security"/>
 
-1. Standard [color=#00a933]Code Green[/color] equipment is:
+### §1\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
 <Box>
 	<GuideEntityEmbed Entity="WeaponSubMachineGunWt550"/>
 	or
@@ -24,24 +26,39 @@
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="GrenadeFlashBang"/>
-	or
 	<GuideEntityEmbed Entity="TearGasGrenade"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="Handcuffs"/>
-	or
 	<GuideEntityEmbed Entity="Zipties"/>
 </Box>
 
-2. The standard Command SOP applies with the exception of section 6, as for which, refer to the standard equipment listed above.
-
-3. When patrolling, the Head of Security must follow all Security Officer protocols as above, however the WT550 is considered a sidearm.
-
-4. The Head of Security may overrule any sentence that is not assigned by an official NT Magistrate, but not for prisoners who have already had their sentences read to them.
-
-6. The Head of Security may not utilize the armory for their own personal benefit.
-
-6. The Head of Security must follow the Warden procedures for distributing any armory equipment, portable flashers, or deployable barriers.
-
-7. If a [color=#ff0000]Code Red[/color] is called, the Head of Security must state the reason for the [color=#ff0000]Code Red[/color]. The Captain may perform this duty instead, with permission from the Head of Security.
+- 2.\n
+The Head of Security is subject to both Security and Command SOP. If overlapping, Security SOP takes precedence.
+- 3.\n
+The Head of Security is first and foremost the leader of the Security Department.\n\n
+3.1\n
+They are responsible for the proper adherence to SOP and Corporate Law of their entire department.\n\n
+3.2\n
+They are responsible for the coordination of their department, particularly during times of crisis.\n\n
+3.3\n
+They are responsible for staying informed on matters of station safety, and must be able and willing to inform the crew as to the reasons for elevated threat levels.\n\n
+3.4\n
+They are responsible for covering staff shortages in their department, using the following methods in order of preference:\n\n
+3.4.1\n
+Re-assignment of existing security members.\n\n
+3.4.2\n
+Recruitment of new security members.\n\n
+3.4.3\n
+Performing the duties of missing subordinates on their own.
+- 4.\n
+The Head of Security may not engage in regular Security Officer activities if these prevent them from properly upholding §3.
+- 5.\n
+The Head of Security must not have any disabilities or ailments, such as muteness, that overly prohibit them from upholding §3.
+- 6.\n
+The Head of Security should refrain from combat operations unless tactically necessary, instead ensuring the strategic cohesion of their department as per §3.
+- 7.\n
+The Head of Security is cleared to confine sentenced criminals in the Brig for up to 30 minutes.\n\n
+7.1\n
+The Head of Security is furthermore allowed to overrule the sentences of other members of Security as long as the sentence hasn't already been handed out to the detainee.
 </Document>

@@ -1,7 +1,6 @@
 ﻿using Content.Server._Starlight.Objectives.Events;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server.Database.Migrations.Postgres;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.UI;
 using Content.Shared._Starlight.Railroading;
@@ -56,7 +55,6 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         if (ent.Comp.Completed is { Count: > 0 })
             foreach (var item in ent.Comp.Completed)
                 RaiseLocalEvent(item, ref collect);
-
 
         args.Groups["Cards"] = collect.Objectives;
     }
