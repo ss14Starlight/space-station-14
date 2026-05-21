@@ -7,6 +7,7 @@
   physicalDesc: reagent-physical-desc-devil-juice
   allowedDepartments:
     - Medical
+  flavor: perfid
   metabolisms:
     Poison:
       effects:
