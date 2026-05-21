@@ -403,6 +403,7 @@
   name: terror purple
   parent: MobTerrorRedUnevolvable
   id: MobTerrorPurpleUnevolvable
+  abstract: true
   components:
   - type: OptionsVisualizer
     visuals:
