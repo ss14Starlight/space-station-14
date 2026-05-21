@@ -34,8 +34,7 @@
   - type: ObjectiveBlacklistRequirement # Starlight start
     blacklist:
       components:
-      - DieCondition # It's been a common complaint that this objective is *impossible* with DAGD, since you physically can't extract with it.
-      - SuperDieCondition # Starlight end, can't get it with SuperDAGD.
+      - DieCondition # Starlight end, it's been a common complaint that this objective is *impossible* with DAGD, since you physically can't extract with it.
 
 # state
 
@@ -54,8 +53,7 @@
   - type: ObjectiveBlacklistRequirement # Starlight start
     blacklist:
       components:
-      - DieCondition # Makes no sense you can get both.
-      - SuperDieCondition # Starlight end, can't get it with SuperDAGD.
+      - DieCondition # Starlight end, makes no sense you can get both.
 
 - type: entity
   parent: BaseTraitorObjective
@@ -73,7 +71,6 @@
       components:
       - EscapeShuttleCondition
       - StealCondition
-      - SuperDieCondition # Can't get it with SuperDAGD.
   - type: DieCondition
   - type: ObjectiveLimit #Starlight edit
     limit: 2 # Starlight
@@ -166,7 +163,6 @@
         - HelpProgressCondition
         - KeepAliveCondition
         - DieCondition # Starlight, don't help DAGDs.
-        - SuperDieCondition # Starlight, don't help SuperDAGDs.
 
 - type: entity
   parent: [BaseTraitorSocialObjective, BaseHelpProgressObjective]
@@ -196,12 +192,11 @@
         components:
         - HelpProgressCondition
         - KeepAliveCondition
-        - DieCondition # Starlight, don't help DAGDs.
-        - SuperDieCondition # Starlight, don't help SuperDAGDs.
-  - type: ObjectiveBlacklistRequirement # Starlight - only one, its not that cool, noone wants all their objectives to be "help X"
+        - DieCondition # Starlight start, don't help DAGDs.
+  - type: ObjectiveBlacklistRequirement # Only one, its not that cool, noone wants all their objectives to be "help X"
     blacklist:
       components:
-        - HelpProgressCondition
+        - HelpProgressCondition # Starlight end
 
 # steal
 

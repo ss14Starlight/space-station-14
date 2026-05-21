@@ -161,25 +161,6 @@
     - type: Implanter
       implant: MindControlImplant
 
-# SuperDAGD Nuclear Papers Implant
-- type: entity
-  id: NuclearCodesImplanter
-  name: strange implanter
-  suffix: DAGD Nuke Code Implant
-  parent: BaseImplantOnlyImplanterSyndi
-  description: Disintegrates without using after 60 seconds, don't waste your chance by holding onto it. Don't fumble around with it either, or it'll be caught by the station's sensors.
-  components:
-    - type: Implanter
-      implant: NuclearCodesImplant
-    - type: TimedDespawn
-      lifetime: 60
-    - type: TriggerOnGotUnequippedHand
-    - type: RattleOnTrigger
-      radioChannel: Security
-      targetUser: true
-      messages:
-        Alive: rattle-on-trigger-strange-implant
-
 #MedTak
 - type: entity
   id: MedTakMindShieldImplanter

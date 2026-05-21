@@ -81,7 +81,7 @@ public sealed class UplinkSystem : EntitySystem
 
         foreach (var objective in mindUser.Objectives)
         {
-                if (HasComp<DieConditionComponent>(objective) || HasComp<SuperDieConditionComponent>(objective)) // Starlight edit: + SuperDieCondition
+                if (HasComp<DieConditionComponent>(objective))
                 {
                     DAGDUplinkExpansion(uplink); // Starlight, actually only need to pass uplink.
                     break;

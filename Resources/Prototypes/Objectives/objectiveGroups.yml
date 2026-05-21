@@ -67,7 +67,6 @@
   weights:
     EscapeShuttleObjective: 1
     DieObjective: 0.2  #Starlight edit, its still massively low, around a 3% chance overall, up from under 0.9% and its a limited objective.
-    SuperDieObjective: 0.075 # Starlight. Even rarer than DAGD, but CAN buy the nuke papers. There can only be one.
     #HijackShuttleObjective: 0.02
 
 - type: weightedRandom

@@ -30,11 +30,6 @@
     Telecrystal: 10
   categories:
     - UplinkWearables
-  conditions:
-    - !type:BuyerObjectiveWhitelistCondition # No easy hiding as a SuperDAGD.
-      blacklist:
-        components:
-          - SuperDieCondition
 
 - type: listing
   id: UplinkSatchelSyndicate

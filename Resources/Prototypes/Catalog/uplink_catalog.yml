@@ -975,11 +975,6 @@
     Telecrystal: 3
   categories:
   - UplinkDeception
-  conditions: # Starlight start
-    - !type:BuyerObjectiveWhitelistCondition # No easy hiding as a SuperDAGD.
-      blacklist:
-        components:
-          - SuperDieCondition # Starlight end
 
 - type: listing
   id: UplinkHeadsetEncryptionKey
@@ -1653,11 +1648,6 @@
     Telecrystal: 5
   categories:
     - UplinkImplants
-  conditions: # Starlight start
-    - !type:BuyerObjectiveWhitelistCondition # No buying the implanter that insta-hides you as a SuperDAGD.
-      blacklist:
-        components:
-          - SuperDieCondition # Starlight end
 
 - type: listing
   id: UplinkEmpImplanter
@@ -1843,11 +1833,6 @@
     Telecrystal: 4
   categories:
     - UplinkWearables
-  conditions: # Starlight start
-    - !type:BuyerObjectiveWhitelistCondition # No easy hiding as a SuperDAGD.
-      blacklist:
-        components:
-          - SuperDieCondition # Starlight end
 
 - type: listing
   id: UplinkClothingNoSlipsShoes

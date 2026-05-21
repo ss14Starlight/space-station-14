@@ -157,6 +157,3 @@ uplink-syndicate-borgi-kitted-bundle-desc = A syndicate borgi, outfitted with an
 
 uplink-syndicate-borgi-speed-bundle-name = Speed Syndicate Borgi bundle
 uplink-syndicate-borgi-speed-bundle-desc = A syndicate borgi, with dagger modules and additional speed. Comes with a few Syndicate IDs for you and your buddies, just to make sure you're the Borgi's best friends.
-
-uplink-nuke-codes-name = Nuclear Authentication Codes
-uplink-nuke-codes-desc = An implant that redspaces in the Nuclear Authentication Codes for the station's nuke. Due to the instability of this transmission, it is very likely that you will be identified to the station immediately. You have 60 seconds to use this implant before it disintegrates to maintain our secrecy. We will only be able to hold this transmission open for 5 minutes, so you won't be able purchase this after the 50 minute mark. Don't fumble around with it either. Good luck.

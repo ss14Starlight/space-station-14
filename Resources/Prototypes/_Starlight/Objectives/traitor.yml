@@ -675,24 +675,3 @@
         sprite: Objects/Specific/Medical/syndi_implanter.rsi
         state: implanter0
     - type: EscapeShuttleCondition
-
-- type: entity
-  parent: BaseTraitorObjective
-  id: SuperDieObjective
-  name: Die a brilliant death
-  description: Die.
-  components:
-  - type: Objective
-    difficulty: 0.5
-    icon:
-      sprite: Mobs/Ghosts/ghost_human.rsi
-      state: icon
-  - type: ObjectiveBlacklistRequirement
-    blacklist:
-      components:
-      - EscapeShuttleCondition
-      - StealCondition
-      - DieCondition
-  - type: SuperDieCondition
-  - type: ObjectiveLimit #Starlight edit
-    limit: 1
