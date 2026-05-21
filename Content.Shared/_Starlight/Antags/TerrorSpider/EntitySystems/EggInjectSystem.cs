@@ -20,12 +20,6 @@ public sealed partial class EggInjectSystem : EntitySystem
     [Dependency] private SharedActionsSystem _actions = default!;
     [Dependency] private SharedChargesSystem _charges = default!;
 
-    private readonly EntProtoId[] _eggs =
-    [
-        "TerrorRedEggSpiderFertilized",
-        "TerrorGreenSpiderFertilized",
-        "TerrorGrayEggSpiderFertilized"
-    ];
     public override void Initialize()
     {
         SubscribeLocalEvent<EggInjectionEvent>(EggInjection);
@@ -52,13 +46,13 @@ public sealed partial class EggInjectSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
-        if (!_eggs.Contains(args.Egg) || !TryComp(uid, out ActorComponent? actor))
+        if (!component.Eggs.Contains(args.Egg) || !TryComp(uid, out ActorComponent? actor))
             return;
 
         if (component.LayEggAction == null || !_charges.TryUseCharge(component.LayEggAction.Value))
             return;
 
-        SpawnAtPosition(args.Egg, Transform(uid).Coordinates);
+        PredictedSpawnAtPosition(args.Egg, Transform(uid).Coordinates);
         _uiSystem.CloseUi(uid, EggsLayingUiKey.Key, actor.PlayerSession);
     }
 
