@@ -65,7 +65,7 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
-#The FMeka and Meka bots were disabled cause god forbid a gal likes me gets to look cute as a borg. >=(
+#Most of the FMeka and Meka bots are disabled for now. Possibly enabled in future if well received.
 
 #- type: entity
 #  parent: BorgEngineerSubtypeBase
@@ -78,7 +78,7 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
 #- type: entity
 #  parent: BorgEngineerSubtypeBase
@@ -91,7 +91,7 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
 - type: entity
   parent: BorgEngineerSubtypeBase
@@ -104,7 +104,7 @@
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
-      inventoryTemplateId: borg
+      inventoryTemplateId: Tallborg
 # region Generic
 
 - type: entity
@@ -224,7 +224,7 @@
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
-      inventoryTemplateId: borg
+      inventoryTemplateId: Tallborg
 # region Medical
 
 - type: entity
@@ -316,7 +316,7 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
 #- type: entity
 #  parent: BorgMedicalSubtypeBase
@@ -329,7 +329,7 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
 - type: entity
   parent: BorgMedicalSubtypeBase
@@ -342,7 +342,7 @@
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
-      inventoryTemplateId: borg
+      inventoryTemplateId: Tallborg
 # region Mining(Salvage)
 
 - type: entity
@@ -434,7 +434,7 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
 #- type: entity
 #  parent: BorgMiningSubtypeBase
@@ -447,7 +447,7 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
 - type: entity
   parent: BorgMiningSubtypeBase
@@ -460,7 +460,7 @@
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
-      inventoryTemplateId: borg
+      inventoryTemplateId: Tallborg
 # region Service
 
 - type: entity
@@ -558,7 +558,7 @@
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
-      inventoryTemplateId: borg
+      inventoryTemplateId: Tallborg
 # region Security
 
 - type: entity
@@ -703,20 +703,20 @@
 #      spriteHasMindState: borg_e
 #      spriteNoMindState: borg_e_r
 #      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+#      inventoryTemplateId: Tallborg
 
-#- type: entity
-#  parent: BorgCargoSubtypeBase
-#  id: BorgCargoSubtypeTallborgMeka
-#  name: Meka Cargo
-#  components:
-#    - type: BorgSubtypeDefinition
-#      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/meka_cargo.rsi
-#      spriteBodyState: borg
-#      spriteHasMindState: borg_e
-#      spriteNoMindState: borg_e_r
-#      spriteToggleLightState: borg_l
-#      inventoryTemplateId: borg
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgCargoSubtypeTallborgMeka
+  name: Meka Cargo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/meka_cargo.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 
 - type: entity
   parent: BorgCargoSubtypeBase
@@ -729,7 +729,7 @@
       spriteHasMindState: borg_e
       spriteNoMindState: borg_e_r
       spriteToggleLightState: borg_l
-      inventoryTemplateId: borg
+      inventoryTemplateId: Tallborg
 # region Purrfus
 
 - type: entity
