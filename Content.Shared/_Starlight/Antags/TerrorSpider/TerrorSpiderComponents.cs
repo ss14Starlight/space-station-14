@@ -30,7 +30,7 @@ public sealed partial class TerrorPrincessComponent : Component
     public string Briefing = "terror-spider-princess-briefing";
 
     [DataField]
-    public EntProtoId LayEggActionId = "ActionEggsLaying";
+    public EntProtoId<ActionComponent> LayEggActionId = "ActionEggsLaying";
 
     public EntityUid? LayEggAction = null;
 }
@@ -48,7 +48,7 @@ public enum EggsLayingUiKey : byte
 [Serializable, NetSerializable]
 public sealed class EggsLayingBuiMsg : BoundUserInterfaceMessage
 {
-    public EntProtoId<ActionComponent> Egg { get; set; }
+    public EntProtoId Egg { get; set; }
 }
 [Serializable, NetSerializable]
 public sealed class EggsLayingBuiState : BoundUserInterfaceState { }
