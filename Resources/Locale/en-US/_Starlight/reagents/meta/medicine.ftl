@@ -11,4 +11,4 @@ reagent-name-barozine-plus = barozine plus
 reagent-desc-barozine-plus = An advanced form of Barozine only found in Space Medipens. Heals less, but an overdose is less painful.
 
 reagent-name-infernaline = infernaline
-reagent-desc-infernaline = An unstable chemical that defies logic, very effective at treating genetic damage, but capable to cause tears in the flesh in higher than minimal amounts.
+reagent-desc-infernaline = An unstable chemical that defies logic, very effective at treating genetic damage, but capable of causing tears in the flesh in higher than minimal amounts.
