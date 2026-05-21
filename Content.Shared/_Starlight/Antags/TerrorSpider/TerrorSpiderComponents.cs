@@ -31,11 +31,11 @@ public sealed partial class TerrorPrincessComponent : Component
     public string Briefing = "terror-spider-princess-briefing";
 
     [DataField]
-    public List<EntProtoId> Eggs = 
-    [ 
-        "TerrorRedEggSpiderFertilized", 
-        "TerrorGreenSpiderFertilized", 
-        "TerrorGrayEggSpiderFertilized" 
+    public List<EntProtoId> Eggs =
+    [
+        "TerrorRedEggSpiderFertilized",
+        "TerrorGreenSpiderFertilized",
+        "TerrorGrayEggSpiderFertilized"
     ];
 
     [DataField]
