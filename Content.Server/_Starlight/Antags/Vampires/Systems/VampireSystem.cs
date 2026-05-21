@@ -115,14 +115,22 @@ public sealed partial class VampireSystem : EntitySystem
         if (!_timing.IsFirstTimePredicted)
             return;
 
+        var now = _timing.CurTime;
+
         var query = EntityQueryEnumerator<VampireComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (_timing.CurTime <= comp.NextUpdate)
+            if (now <= comp.NextUpdate)
                 continue;
 
-            comp.NextUpdate = _timing.CurTime + comp.UpdateDelay;
-            ProcessBloodDecay(uid, comp);
+            var elapsed = comp.LastUpdate == TimeSpan.Zero
+                ? (float) comp.UpdateDelay.TotalSeconds
+                : MathF.Max(0f, (float) (now - comp.LastUpdate).TotalSeconds);
+
+            comp.LastUpdate = now;
+            comp.NextUpdate = now + comp.UpdateDelay;
+
+            ProcessBloodDecay((uid, comp), elapsed);
             HandleHolyWater(uid, comp);
             HandleHolyPlace(uid, comp);
         }
@@ -135,6 +143,8 @@ public sealed partial class VampireSystem : EntitySystem
 
             HandleSpaceExposure(uid, vampire, sunlight, xform);
         }
+
+        ProcessActiveVampireEffects(now);
     }
 
     private void HandleSpaceExposure(EntityUid uid, VampireComponent vampire, VampireSunlightComponent sunlight, TransformComponent xform)
@@ -235,8 +245,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (drain <= 0)
             return;
 
-        vampire.DrunkBlood -= drain;
-        Dirty(uid, vampire);
+        TrySpendBlood(uid, vampire, drain, showPopup: false);
     }
 
     private bool ApplyGeneticSpaceDamage(EntityUid uid, VampireSunlightComponent sunlight)
@@ -310,9 +319,9 @@ public sealed partial class VampireSystem : EntitySystem
     private void DustEntity(EntityUid uid)
     {
         var coords = Transform(uid).Coordinates;
+        _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
         QueueDel(uid);
         Spawn("Ash", coords);
-        _popup.PopupEntity(Loc.GetString("admin-smite-turned-ash-other", ("name", uid)), uid, PopupType.LargeCaution);
     }
 
     private bool IsInSpace(TransformComponent xform)
@@ -329,15 +338,17 @@ public sealed partial class VampireSystem : EntitySystem
         return _turf.IsSpace(tileRef);
     }
 
-    private bool ProcessBloodDecay(EntityUid uid, VampireComponent comp)
+    private bool ProcessBloodDecay(Entity<VampireComponent> ent, float elapsed)
     {
+        var (uid, comp) = ent;
         var before = comp.BloodFullness;
         var wasStarving = before <= 0f;
         var changed = false;
 
         if (before > 0f && _gameTicker.RunLevel < GameRunLevel.PostRound) // No hunger EOR
         {
-            comp.BloodFullness = MathF.Max(0f, before - comp.FullnessDecayPerSecond);
+            comp.StarvationDrunkBloodDrainAccumulator = 0f;
+            comp.BloodFullness = MathF.Max(0f, before - (comp.FullnessDecayPerSecond * elapsed));
             changed = !MathF.Abs(comp.BloodFullness - before).Equals(0f);
 
             if (changed)
@@ -354,10 +365,13 @@ public sealed partial class VampireSystem : EntitySystem
         // When blood fullness is empty, burn stored blood
         if (comp.BloodFullness <= 0f && comp.StarvationDrunkBloodDrainPerSecond > 0 && comp.DrunkBlood > 0)
         {
-            var drained = Math.Min(comp.DrunkBlood, comp.StarvationDrunkBloodDrainPerSecond);
-            comp.DrunkBlood -= drained;
-            Dirty(uid, comp);
-            UpdateVampireAlert(uid);
+            comp.StarvationDrunkBloodDrainAccumulator += comp.StarvationDrunkBloodDrainPerSecond * elapsed;
+            var drained = Math.Min(comp.DrunkBlood, (int) comp.StarvationDrunkBloodDrainAccumulator);
+            if (drained <= 0)
+                return changed;
+
+            comp.StarvationDrunkBloodDrainAccumulator -= drained;
+            TrySpendBlood(uid, comp, drained, showPopup: false);
             changed = true;
         }
 
@@ -462,7 +476,7 @@ public sealed partial class VampireSystem : EntitySystem
         {
             foreach (var connection in drainBeamComp.ActiveBeams.Values)
             {
-                var removeEvent = new VampireDrainBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false);
+                var removeEvent = new VampireDrainBeamEvent(GetNetEntity(connection.Source), GetNetEntity(connection.Target), false, drainBeamComp.VisualPrototype);
                 RaiseNetworkEvent(removeEvent);
             }
             drainBeamComp.ActiveBeams.Clear();
@@ -474,6 +488,23 @@ public sealed partial class VampireSystem : EntitySystem
             umbrae.ShadowBoxingTarget = null;
             umbrae.ShadowBoxingEndTime = null;
             umbrae.ShadowBoxingLoopRunning = false;
+
+            if (umbrae.EternalDarknessAuraEntity is { } aura && Exists(aura))
+                QueueDel(aura);
+
+            if (umbrae.SpawnedShadowAnchorBeacon is { } beacon && Exists(beacon))
+                QueueDel(beacon);
+
+            foreach (var snare in umbrae.PlacedSnares.ToArray())
+            {
+                if (Exists(snare))
+                    QueueDel(snare);
+            }
+
+            umbrae.PlacedSnares.Clear();
+            umbrae.EternalDarknessAuraEntity = null;
+            umbrae.SpawnedShadowAnchorBeacon = null;
+            umbrae.ShadowAnchorAutoReturnTime = null;
         }
 
         if (_playerShadowSnares.TryGetValue(uid, out var snares))
@@ -503,8 +534,9 @@ public sealed partial class VampireSystem : EntitySystem
             return;
         }
 
-        var enabled = vamp.TotalBlood >= vac.BloodToUnlock &&
-             (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass));
+        var enabled = vamp.TotalBlood >= vac.BloodToUnlock
+             && (vac.RequiredClass == null || ValidateVampireClass(owner, vamp, vac.RequiredClass))
+             && (!vac.RequiresFullPower || vamp.FullPower);
 
         _actions.SetEnabled(action.AsNullable(), enabled);
     }
@@ -618,8 +650,7 @@ public sealed partial class VampireSystem : EntitySystem
 
         if (comp.DrunkBlood > 0)
         {
-            comp.DrunkBlood = Math.Max(0, comp.DrunkBlood - 3);
-            Dirty(uid, comp);
+            TrySpendBlood(uid, comp, Math.Min(3, comp.DrunkBlood), showPopup: false);
 
             ApplyGroupDamage(uid, _bruteGroupId, 3f);
 
@@ -676,7 +707,7 @@ public sealed partial class VampireSystem : EntitySystem
             return false;
 
         var coords = Transform(uid).Coordinates;
-        foreach (var ent in _lookup.GetEntitiesInRange(coords, comp.HolyPlaceRange, LookupFlags.Static | LookupFlags.Dynamic | LookupFlags.Sundries))
+        foreach (var ent in _lookup.GetEntitiesInRange(coords, comp.HolyPlaceRange, LookupFlags.Static))
         {
             if (ent == uid)
                 continue;

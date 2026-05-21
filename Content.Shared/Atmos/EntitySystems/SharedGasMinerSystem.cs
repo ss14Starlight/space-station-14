@@ -16,6 +16,10 @@ public abstract class SharedGasMinerSystem : EntitySystem
 
     private void OnExamine(Entity<GasMinerComponent> ent, ref ExaminedEvent args)
     {
+        // Starlight-start
+        if (!ent.Comp.ShowInfoOnExamine)
+            return;
+        // Starlight-end
         var component = ent.Comp;
 
         using (args.PushGroup(nameof(GasMinerComponent)))

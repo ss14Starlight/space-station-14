@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Xml;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
@@ -8,6 +9,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using static Content.Shared.Paper.PaperComponent;
 
 namespace Content.Shared._Starlight.Devil;
 
@@ -26,6 +28,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         SubscribeLocalEvent<InfernalContractComponent, ExaminedEvent>(OnExamineEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
+        SubscribeLocalEvent<InfernalContractComponent, PaperInputTextMessage>(OnPaperInputTextMessage, after: [typeof(PaperSystem)]);
 
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
 
@@ -61,6 +64,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         InfernalContractData data;
         data.Damnations = new();
+        data.InvalidDamnations = new();
         data.Cost = 0;
 
         // welcome to serialization hell
@@ -92,9 +96,9 @@ public abstract partial class SharedDevilSystem : EntitySystem
         {
             var index = availableDamnations.IndexOf(damnation.ToLower());
             if (index != -1)
-            {
                 data.Damnations.Add(devilComp.AvailableDamnations[index]);
-            }
+            else
+                data.InvalidDamnations.Add(damnation.ToLower());
         }
         data.Damnations = data.Damnations.Distinct().ToList();
 
@@ -157,6 +161,26 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         contractComp.Completed = true;
         Dirty(uid, contractComp);
+    }
+
+    /// <summary>
+    /// temp alert to announce if there are mispelled damnations until i come back with something more permanent
+    /// </summary>
+    private void OnPaperInputTextMessage(Entity<InfernalContractComponent> ent, ref PaperInputTextMessage args)
+    {
+        if (GetContractValidity(ent.Owner) != InfernalContractValidity.Valid)
+            return;
+        if(GetContractContent(ent.Owner) is not InfernalContractData data)
+            return;
+
+        var mispeltDamnations = data.InvalidDamnations
+                .Select(x => x.Trim())
+                .Where(x => !x.Contains("[form]"))
+                .ToArray(); // yes i will clean this up
+
+        if(mispeltDamnations.Length > 0)
+            _popup.PopupEntity(Loc.GetString("infernal-contract-popup-invalid-damnations",
+                ("items", string.Join(", ", mispeltDamnations))), ent.Owner, PopupType.SmallCaution);
     }
     #endregion
 
@@ -308,4 +332,6 @@ public record struct InfernalContractData
     public int Cost;
 
     public List<ProtoId<DamnationPrototype>> Damnations;
+
+    public List<string> InvalidDamnations;
 }

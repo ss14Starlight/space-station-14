@@ -89,3 +89,9 @@ ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth 
 
 ghostrole-information-derelict-borgi-xenoborg-name = Derelict XenoBorgi
 ghostrole-information-derelict-borgi-xenoborg-description = You are a xenoborgi the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
+
+ghost-role-information-terror-princess-name = Terror princess
+ghost-role-information-terror-princess-description = You are a princess of terror spiders, Your target is to create a big nest and create a big population of spiders to enslave this station!!!
+
+ghost-role-information-smartcorgi-name = Smart Corgi
+ghost-role-information-smartcorgi-description = You are a dog that is more intelligent than its peers, capable of tool manipulation. Truly a miracle product of science. Unfortunately, while you understand people just fine, you only speak Dog.

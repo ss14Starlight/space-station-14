@@ -383,6 +383,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     // NullLink start
     public void EnrichWithNullLink(Dictionary<string, TimeSpan> playtime, Guid userId)
+        => _task.RunOnMainThread(() =>
     {
         if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
             return;
@@ -390,16 +391,16 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         if (!_playTimeData.TryGetValue(session, out var data))
             return;
 
-        data.MergedTrackerTimes = playtime;
+        var merged = new Dictionary<string, TimeSpan>(playtime);
         foreach (var (tracker, time) in data.TrackerTimes)
         {
-            var merged = time;
-            if (data.MergedTrackerTimes.TryGetValue(tracker, out var nullinked))
-                merged += nullinked;
-
-            data.MergedTrackerTimes[tracker] = merged;
+            if (merged.TryGetValue(tracker, out var nullinked))
+                merged[tracker] = time + nullinked;
+            else
+                merged[tracker] = time;
         }
-    }
+        data.MergedTrackerTimes = merged;
+    });
     // NullLink end
 
     public void ClientDisconnected(ICommonSession session)
