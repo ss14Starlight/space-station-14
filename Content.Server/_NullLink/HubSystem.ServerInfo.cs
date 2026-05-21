@@ -139,7 +139,7 @@ public sealed partial class HubSystem : EntitySystem
         _lastSent = _timing.RealTime;
 
         return _actors.TryGetServerGrain(out var serverGrain)
-            ? serverGrain!.UpdateServerInfo(_serverInfo)
+            ? serverGrain.UpdateServerInfo(_serverInfo)
             : ValueTask.CompletedTask;
     }
 }
