@@ -610,9 +610,6 @@
   id: Wizard
 
 - type: Tag
-  id: Xeno # For Xeno hivemind; Xenos, Terror Spiders. Xenoborgs don't have it, but they can listen.
-
-- type: Tag
   id: XenomoproachWearable # Allows xenomoproach to wear it, really only used for headsets. No system in place to use differing displacements for something with a given prefix/suffix, so this is needed for now.
 
 - type: Tag

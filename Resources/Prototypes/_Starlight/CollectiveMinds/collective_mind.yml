@@ -37,17 +37,16 @@
   name: collective-mind-xeno
   keycode: 'x'
   color: "#735c7c"
+  showNames: true
+  canSpeak: true
   requiredComponents:
   - Spider
+  - Xeno
   - Xenoborg # Xenoborgs can hear the channel, but cannot speak on it. They're made by the Xenos, but have been split up from them for far too long, so they're only picking up light signals.
   - DerelictXenoborg # Derelicts can listen too, but also can't speak.
-  requiredtags: # Xenos use tags. Collective Mind checks if either are true, so this works.
-  - Xeno
   canSpeakComponents:
   - Spider
-  canSpeakTags:
   - Xeno
-  showNames: true
 
 - type: collectiveMind
   id: Changeling

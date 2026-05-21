@@ -142,7 +142,7 @@
     - AllHostile
     - Wizard
     - Dragon
-    - Xenoborg
+    #- Xenoborg # Starlight, not hostile in our lore.
     - Gorilla
     - Pirate # starlight
 
@@ -302,7 +302,7 @@
     - Revolutionary
     - Wizard
     # rivalry
-    - Xeno
+    #- Xeno # Starlight, not hostile in our lore.
     - NanoTrasenSilicon # starlight
     - SyndicateSilicon # starlight
     # cause they are hostile to them

@@ -486,6 +486,7 @@
     evolveTo: MobTerrorPrincess
     conditions:
     - !type:EggsInjectCondition
+      targetEggsAmount: 6
 
 # Tier 3
 
