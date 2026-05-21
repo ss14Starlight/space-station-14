@@ -271,28 +271,14 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         }
     }
 
-    private async Task DoSaveAsync()
+    // Starlight Start: allow playtime commands to update offline players.
+    private async Task WritePlayTimeUpdatesAsync(IReadOnlyCollection<PlayTimeUpdate> log)
     {
-        var log = new List<PlayTimeUpdate>();
-
-        foreach (var (player, data) in _playTimeData)
-        {
-            foreach (var tracker in data.DbTrackersDirty)
-            {
-                log.Add(new PlayTimeUpdate(player.UserId, tracker, data.TrackerTimes[tracker]));
-            }
-
-            data.DbTrackersDirty.Clear();
-        }
-
         if (log.Count == 0)
             return;
 
-        // NOTE: we do replace updates here, not incremental additions.
-        // This means that if you're playing on two servers at the same time, they'll step on each other's feet.
-        // This is considered fine.
         await _db.UpdatePlayTimes(log);
-        // NullLink shared playtime start
+
         if (_actor.TryGetServerGrain(out var server))
         {
             Pipe.RunInBackgroundVT
@@ -310,7 +296,34 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
                     })])
             );
         }
-        // NullLink end
+    }
+    // Starlight End
+
+    private async Task DoSaveAsync()
+    {
+        var log = new List<PlayTimeUpdate>();
+
+        foreach (var (player, data) in _playTimeData)
+        {
+            foreach (var tracker in data.DbTrackersDirty)
+            {
+                log.Add(new PlayTimeUpdate(player.UserId, tracker, data.TrackerTimes[tracker]));
+            }
+
+            data.DbTrackersDirty.Clear();
+        }
+
+        // Starlight edit Start: Removed
+        // if (log.Count == 0)
+        //     return;
+
+        // // NOTE: we do replace updates here, not incremental additions.
+        // // This means that if you're playing on two servers at the same time, they'll step on each other's feet.
+        // // This is considered fine.
+        // await _db.UpdatePlayTimes(log);
+        // Starlight edit End
+
+        await WritePlayTimeUpdatesAsync(log); // Starlight
 
         _sawmill.Debug($"Saved {log.Count} trackers");
     }
@@ -328,30 +341,14 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         data.DbTrackersDirty.Clear();
 
+        // Starlight edit Start: Removed
         // NOTE: we do replace updates here, not incremental additions.
         // This means that if you're playing on two servers at the same time, they'll step on each other's feet.
         // This is considered fine.
-        await _db.UpdatePlayTimes(log);
+        // await _db.UpdatePlayTimes(log);
+        // Starlight edit End
 
-        // NullLink shared playtime start
-        if (_actor.TryGetServerGrain(out var server))
-        {
-            Pipe.RunInBackgroundVT
-            (
-                () => server.UpdatePlayersPlayTime([.. log
-                    .GroupBy(x => x.User)
-                    .Select(x => new PlayerPlayTime
-                    {
-                        Player = x.Key,
-                        PlayTimes = [.. x.Select(pt => new PlayTime
-                        {
-                            Time = pt.Time,
-                            Tracker = pt.Tracker,
-                        })]
-                    })])
-            );
-        }
-        // NullLink end
+        await WritePlayTimeUpdatesAsync(log); // Starlight
 
         _sawmill.Debug($"Saved {log.Count} trackers for {session.Name}");
     }
@@ -409,6 +406,81 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         _playTimeData.Remove(session);
     }
+    // Starlight Start: Allow playtime commands to target offline players.
+    public async Task<TimeSpan?> TryAddTimeToTrackerByUserName(
+        string userName,
+        string tracker,
+        TimeSpan time,
+        CancellationToken cancel = default)
+    {
+        if (_player.TryGetSessionByUsername(userName, out var session))
+        {
+            FlushTracker(session);
+            AddTimeToTracker(session, tracker, time);
+            var currentTime = GetPlayTimeForTracker(session, tracker);
+            if (currentTime < TimeSpan.Zero)
+            {
+                AddTimeToTracker(session, tracker, -currentTime);
+            }
+            QueueSendTimers(session);
+
+            return GetPlayTimeForTracker(session, tracker);
+        }
+
+        var record = await _db.GetPlayerRecordByUserName(userName, cancel);
+        if (record == null)
+            return null;
+
+        var playTimes = await _db.GetPlayTimes(record.UserId.UserId, cancel);
+        var current = playTimes.FirstOrDefault(p => p.Tracker == tracker)?.TimeSpent ?? TimeSpan.Zero;
+        var updated = current + time;
+
+        if (updated < TimeSpan.Zero)
+            updated = TimeSpan.Zero;
+
+        await WritePlayTimeUpdatesAsync([
+            new PlayTimeUpdate(record.UserId, tracker, updated),
+        ]);
+
+        return updated;
+    }
+
+    public Task<TimeSpan?> TryAddTimeToOverallPlaytimeByUserName(
+        string userName,
+        TimeSpan time,
+        CancellationToken cancel = default)
+            => TryAddTimeToTrackerByUserName(userName, PlayTimeTrackingShared.TrackerOverall, time, cancel);
+
+    public async Task<Dictionary<string, TimeSpan>?> TryGetPlayTimesByUserName(
+        string userName,
+        CancellationToken cancel = default)
+    {
+        if (_player.TryGetSessionByUsername(userName, out var session))
+        {
+            FlushTracker(session);
+            return new Dictionary<string, TimeSpan>(GetOriginalTrackerTimes(session));
+        }
+
+        var record = await _db.GetPlayerRecordByUserName(userName, cancel);
+        if (record == null)
+            return null;
+
+        var playTimes = await _db.GetPlayTimes(record.UserId.UserId, cancel);
+        return playTimes.ToDictionary(p => p.Tracker, p => p.TimeSpent);
+    }
+
+    public async Task<TimeSpan?> TryGetPlayTimeForTrackerByUserName(
+        string userName,
+        string tracker,
+        CancellationToken cancel = default)
+    {
+        var playTimes = await TryGetPlayTimesByUserName(userName, cancel);
+        if (playTimes == null)
+            return null;
+
+        return playTimes.GetValueOrDefault(tracker);
+    }
+    // Starlight End
 
     public void AddTimeToTracker(ICommonSession id, string tracker, TimeSpan time)
     {
