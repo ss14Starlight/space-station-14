@@ -409,7 +409,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: BulletWeakRocket
-    fireCost: 50
+    fireCost: 80
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
@@ -432,7 +432,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: GrenadeBlast
-    fireCost: 220
+    fireCost: 315
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   - type: Battery
