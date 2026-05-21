@@ -5,6 +5,7 @@
   description: It opens, it closes, and maybe crushes you.
   components:
     - type: Untamperable
+      disabled: true
     - type: PryUnpowered
     - type: Anchorable
       flags:
@@ -146,7 +147,6 @@
     - type: Tag
       tags:
         - Airlock
-        # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
     - type: BlockWeather
     - type: GuideHelp
       guides:
