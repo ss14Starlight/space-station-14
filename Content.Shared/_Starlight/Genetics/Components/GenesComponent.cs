@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Genetics.Components;
 
@@ -14,6 +15,6 @@ public sealed partial class GenesComponent : Component
     /// <summary>
     /// The traits that can be pulled from to make a gene.
     /// </summary>
-    [ViewVariables, AutoNetworkedField]
-    public List<AbstractTrait> AvailableTraits = new();
+    [ViewVariables, AutoNetworkedField, DataField(required: true)]
+    public List<ProtoId<AbstractTraitPrototype>> AvailableTraits;
 }

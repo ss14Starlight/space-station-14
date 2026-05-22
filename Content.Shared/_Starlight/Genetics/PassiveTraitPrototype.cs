@@ -8,13 +8,13 @@ namespace Content.Shared._Starlight.Genetics;
 /// A trait that acts on a slime that gets constantly activated.
 /// USE THIS RARELY: Constant activation is expensive. Try making the cooldown high.
 /// </summary>
-[Serializable, NetSerializable]
-[DataDefinition]
-public sealed partial class PassiveTrait : AbstractTrait
+[Prototype]
+public sealed partial class PassiveTraitPrototype : AbstractTraitPrototype
 {
     /// <summary>
     /// The entity effect that gets activated.
     /// </summary>
+    [ViewVariables]
     [DataField(required: true)]
     public ScaledEntityEffect EntityEffect = default!;
 
@@ -22,6 +22,7 @@ public sealed partial class PassiveTrait : AbstractTrait
     /// How long after an activation to wait until the next activation.
     /// DO NOT SET THIS TO 0 UNLESS YOU ARE PREPARED FOR THE SLOWDOWN.
     /// </summary>
+    [ViewVariables]
     [DataField(required: true)]
     public TimeSpan Cooldown = default!;
 }

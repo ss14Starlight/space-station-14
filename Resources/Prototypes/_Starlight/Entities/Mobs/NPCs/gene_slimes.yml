@@ -1,0 +1,53 @@
+- type: entity
+  id: GeneticSlime
+  parent:
+    - MobRespirator
+    - MobAtmosStandard
+    - SimpleSpaceMobBase
+  name: Genetic Slime
+  description: A thing of unlimited potential, much like uranium. And like uranium, it will give you cancer.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: _Starlight/Mobs/XenoSlimes/slimes.rsi
+      layers:
+        - state: eyes_default
+          shader: unshaded
+          color: "#333333"
+        - state: base1
+    - type: RandomSprite
+      available:
+        - 0: #replaces layer 0 (eyes) with a random one and uses the "Black" color pallete
+            eyes_angry: Black
+            eyes_cat: Black
+            eyes_clown: Black
+            eyes_default: Black
+            eyes_freak: Black
+            eyes_mischief: Black
+            eyes_pins: Black
+            eyes_shocked: Black
+            eyes_smug: Black
+            eyes_squint: Black
+    - type: Hunger
+      baseDecayRate: 1
+    - type: Genes
+      availableTraits:
+        - Blank0
+    - type: GeneticSlime
+    - type: TemperatureDamage
+      coldDamage:
+        types:
+          Cold: 10.0
+    - type: Tag
+      tags:
+        - XenobiologyClawGrabbable
+
+- type: passiveTrait
+  id: Blank0
+  name: Blank Trait 0 (Passive)
+  description: Does nothing.
+  entityEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+  cooldown: 60

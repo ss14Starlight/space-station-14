@@ -1,4 +1,5 @@
 using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics;
@@ -10,9 +11,9 @@ namespace Content.Shared._Starlight.Genetics;
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class TraitDict
 {
-    public Dictionary<AbstractTrait, FixedPoint2> Traits = new();
+    public Dictionary<ProtoId<AbstractTraitPrototype>, FixedPoint2> Traits = new();
 
-    public TraitDict(Dictionary<AbstractTrait, FixedPoint2> traits) => Traits = traits;
+    public TraitDict(Dictionary<ProtoId<AbstractTraitPrototype>, FixedPoint2> traits) => Traits = traits;
 
     public TraitDict() {}
 

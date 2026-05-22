@@ -1,8 +1,10 @@
+using System.Collections;
 using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -15,6 +17,7 @@ public sealed class GenesSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     /// <summary>
     /// Generates a random number from a Gaussian distribution. Achieved using a Box-Muller transform approximation. Good enough for most purposes. See also: https://stackoverflow.com/questions/218060/random-gaussian-variables
@@ -35,9 +38,9 @@ public sealed class GenesSystem : EntitySystem
     /// Returns a random selection of traits with repetition.
     /// </summary>
     /// <returns>A random selection of traits with repetition.</returns>
-    public IEnumerable<AbstractTrait> RandomTraits(Entity<GenesComponent> entity)
+    public IEnumerable<ProtoId<AbstractTraitPrototype>> RandomTraits(Entity<GenesComponent> entity)
     {
-        IEnumerable<AbstractTrait> traits = entity.Comp.AvailableTraits;
+        IEnumerable<ProtoId<AbstractTraitPrototype>> traits = entity.Comp.AvailableTraits;
         while(true)
             yield return traits.ElementAt(_robustRandom.Next(0, traits.Count()));
     }
@@ -82,9 +85,9 @@ public sealed class GenesSystem : EntitySystem
     {
         var newTraits = GetTraitsFromEnumerable(entity.Comp.Genes).Traits;
 
-        Dictionary<OnceTrait, FixedPoint2> newOnceTraits = new();
-        Dictionary<OnSolutionChangedTrait, FixedPoint2> newOnSolutionChangedTraits = new();
-        Dictionary<PassiveTrait, (FixedPoint2, TimeSpan)> newPassiveTraits = new();
+        Dictionary<ProtoId<OnceTraitPrototype>, FixedPoint2> newOnceTraits = new();
+        Dictionary<ProtoId<OnSolutionChangedTraitPrototype>, FixedPoint2> newOnSolutionChangedTraits = new();
+        Dictionary<ProtoId<PassiveTraitPrototype>, (FixedPoint2, TimeSpan)> newPassiveTraits = new();
         // I am not happy with this foreach loop. I really want to construct this instead from simple method calls on the IEnumerables.
         // But that's not possible because dictionaries don't have proper compatability with the OfType method.
         // See, when interpreted as an IEnumerable, which is necessary for access to the LINQ methods like OfType, the values become KeyValuePair
@@ -94,13 +97,14 @@ public sealed class GenesSystem : EntitySystem
         // Thus I have to use this foreach loop instead.
         foreach (var t in newTraits)
         {
-            if (!t.Key.Threshold.HasValue || t.Value >= t.Key.Threshold.Value)
+            var trait = _prototypeManager.Index(t.Key);
+            if (!trait.Threshold.HasValue || t.Value >= trait.Threshold.Value)
             {
-                if (t.Key is OnceTrait key1)
+                if (trait is OnceTraitPrototype key1)
                     newOnceTraits.Add(key1, t.Value);
-                else if (t.Key is OnSolutionChangedTrait key2)
+                else if (trait is OnSolutionChangedTraitPrototype key2)
                     newOnSolutionChangedTraits.Add(key2, t.Value);
-                else if (t.Key is PassiveTrait key3)
+                else if (trait is PassiveTraitPrototype key3)
                     newPassiveTraits.Add(key3, (t.Value, key3.Cooldown + _gameTiming.CurTime));
             }
         }
@@ -123,27 +127,30 @@ public sealed class GenesSystem : EntitySystem
          */
         foreach (var t in onceTraits.Traits.Keys.Except(newOnceTraits.Keys))
         {
-            _entityEffectsSystem.TryApplyEffect(entity.Owner, t.OnRemovedEffect.Effect,
-                ((onceTraits.Traits[t] * t.OnRemovedEffect.ScalingFactor) + t.OnRemovedEffect.ScalingOffset).Float());
+            var trait = _prototypeManager.Index(t);
+            _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnRemovedEffect.Effect,
+                ((onceTraits.Traits[t] * trait.OnRemovedEffect.ScalingFactor) + trait.OnRemovedEffect.ScalingOffset).Float());
         }
         foreach (var t in newOnceTraits.Keys.Except(onceTraits.Traits.Keys))
         {
-            _entityEffectsSystem.TryApplyEffect(entity.Owner, t.OnAddedEffect.Effect,
-                ((newOnceTraits[t] * t.OnAddedEffect.ScalingFactor) + t.OnAddedEffect.ScalingOffset).Float());
+            var trait = _prototypeManager.Index(t);
+            _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnAddedEffect.Effect,
+                ((newOnceTraits[t] * trait.OnAddedEffect.ScalingFactor) + trait.OnAddedEffect.ScalingOffset).Float());
         }
         foreach (var t in onceTraits.Traits.Keys.Intersect(newOnceTraits.Keys))
         {
-            if (t.OnUpdatedEffect is null)
+            var trait = _prototypeManager.Index(t);
+            if (trait.OnUpdatedEffect is null)
             {
-                _entityEffectsSystem.TryApplyEffect(entity.Owner, t.OnRemovedEffect.Effect,
-                    ((onceTraits.Traits[t] * t.OnRemovedEffect.ScalingFactor) + t.OnRemovedEffect.ScalingOffset).Float());
-                _entityEffectsSystem.TryApplyEffect(entity.Owner, t.OnAddedEffect.Effect,
-                    ((newOnceTraits[t] * t.OnAddedEffect.ScalingFactor) + t.OnAddedEffect.ScalingOffset).Float());
+                _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnRemovedEffect.Effect,
+                    ((onceTraits.Traits[t] * trait.OnRemovedEffect.ScalingFactor) + trait.OnRemovedEffect.ScalingOffset).Float());
+                _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnAddedEffect.Effect,
+                    ((newOnceTraits[t] * trait.OnAddedEffect.ScalingFactor) + trait.OnAddedEffect.ScalingOffset).Float());
             }
             else
             {
-                _entityEffectsSystem.TryApplyEffect(entity.Owner, t.OnUpdatedEffect.Effect,
-                    ((newOnceTraits[t] * t.OnUpdatedEffect.ScalingFactor) + t.OnUpdatedEffect.ScalingOffset).Float());
+                _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnUpdatedEffect.Effect,
+                    ((newOnceTraits[t] * trait.OnUpdatedEffect.ScalingFactor) + trait.OnUpdatedEffect.ScalingOffset).Float());
             }
         }
 
