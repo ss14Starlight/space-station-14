@@ -57,6 +57,8 @@ public sealed partial class VentCrawlHolderComponent : Component
 
     [DataField]
     public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
+
+    public List<EntityUid> ProvidedActions = new();
 }
 
 public sealed partial class ExitVentActionEvent : InstantActionEvent

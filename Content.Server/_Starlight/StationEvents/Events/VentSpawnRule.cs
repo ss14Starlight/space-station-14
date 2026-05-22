@@ -3,7 +3,7 @@ using Content.Server._Starlight.StationEvents.Components;
 using Content.Server.Antag;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
-using Content.Server.VentCrawl;
+using Content.Shared.VentCrawl;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Station.Components;
@@ -19,7 +19,7 @@ namespace Content.Server._Starlight.StationEvents.Events;
 public sealed class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly VentCrawlTubeSystem _ventCrawl = default!;
+    [Dependency] private readonly SharedVentCrawlTubeSystem _ventCrawl = default!;
 
     public override void Initialize()
     {

@@ -276,7 +276,10 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (HasComp<VentCrawlEntryComponent>(holder.NextTube.Value) && !welded)
         {
             foreach (var entity in holder.Container.ContainedEntities)
-                _actionsSystem.AddAction(entity, holder.ActionProto);
+            {
+                var action = _actionsSystem.AddAction(entity, holder.ActionProto);
+                holder.ProvidedActions.Add(action);
+            }
 
             holder.HasExitAction = true;
         }
@@ -286,9 +289,10 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
             if (holder.HasExitAction)
             {
-                foreach (var entity in holder.Container.ContainedEntities)
-                    _actionsSystem.RemoveAction(entity, holder.ActionProto);
+                foreach (var action in holder.ProvidedActions)
+                    _actionsSystem.RemoveAction(action);
 
+                holder.ProvidedActions.Clear();
                 holder.HasExitAction = false;
             }
 
