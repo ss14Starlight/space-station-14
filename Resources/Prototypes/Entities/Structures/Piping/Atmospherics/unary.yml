@@ -104,6 +104,15 @@
   placement:
     mode: AlignAtmosPipeLayers # starlight
   components:
+    # Starlight start
+    - type: Weldable
+      time: 3
+    - type: VentCrawlTube
+    - type: VentCrawlEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    # Starlight end
     - type: SubFloorHide
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
