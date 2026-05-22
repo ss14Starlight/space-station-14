@@ -47,6 +47,10 @@ public sealed class MobThresholdStatusEffectSystem : EntitySystem
 
         MobState oldState = msc.CurrentState;
 
+        // refuse to apply a new MobThresholdsStatusEffect if one is already applied:
+        if(thresholds.OriginalThresholds.Count > 0)
+            return;
+
         // as in MobThresholdSystem's SetMobStateThreshold, we need to clone this dictionary since we'll be mutating it later:
         thresholds.OriginalThresholds = new SortedDictionary<FixedPoint2, MobState>(thresholds.Thresholds);
         thresholds.OriginalAllowRevives = thresholds.AllowRevives;
@@ -80,6 +84,9 @@ public sealed class MobThresholdStatusEffectSystem : EntitySystem
         {
             _mobthresholds.SetMobStateThreshold(args.Target, damage, name, thresholds);
         }
+
+        // remove all values, indicating another buff can be reapplied later:
+        thresholds.OriginalThresholds.Clear();
 
         MobState oldState = msc.CurrentState;
 
