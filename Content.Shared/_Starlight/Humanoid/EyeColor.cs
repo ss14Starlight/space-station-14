@@ -2,7 +2,7 @@ namespace Content.Shared.Humanoid;
 
 public static class EyeColor
 {
-    public const float ShadekinBrightness = 0.251f;
+    public const float ShadekinBrightness = 1.0f;
     public const float BrighteyeBrightness = 1;
 
     public static bool VerifyBrighteye(Color color)
