@@ -13,20 +13,13 @@
     - body_special
 
 - type: visualLayer
-  id: body_tail
-  aboveLayers:
-    - body_tailExtras
-
-- type: visualLayer
   id: body_lLeg
   aboveLayers:
-    - body_tail
     - body_chest
 
 - type: visualLayer
   id: body_rLeg
   aboveLayers:
-    - body_tail
     - body_chest
 
 - type: visualLayer
@@ -40,10 +33,19 @@
     - body_rLeg
 
 - type: visualLayer
-  id: body_undergarmentBottom
+  id: body_tail
   aboveLayers:
+    - body_tailExtras
     - body_lLeg
     - body_rLeg
+    - body_lFoot
+    - body_rFoot
+
+# - type: visualLayer
+#   id: body_undergarmentBottom
+#   aboveLayers:
+#     - body_lLeg
+#     - body_rLeg
 
 - type: visualLayer
   id: body_chest
@@ -51,10 +53,10 @@
     - body_lLeg
     - body_rLeg
 
-- type: visualLayer
-  id: body_undergarmentTop
-  aboveLayers:
-    - body_chest
+# - type: visualLayer
+#   id: body_undergarmentTop
+#   aboveLayers:
+#     - body_chest
 
 - type: visualLayer
   id: body_lArm
