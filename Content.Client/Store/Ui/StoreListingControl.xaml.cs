@@ -101,7 +101,7 @@ public sealed partial class StoreListingControl : Control
         #region Starlight
         else if (_data.DestockTime < stationTime && _data.DestockTime != TimeSpan.Zero)
         {
-            StoreItemBuyButton.Text =  "LATE";
+            StoreItemBuyButton.Text =  Loc.GetString("store-listing-late");
         }
         #endregion
         else

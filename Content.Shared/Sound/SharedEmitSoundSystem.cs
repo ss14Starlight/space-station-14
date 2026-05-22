@@ -39,7 +39,6 @@ public abstract class SharedEmitSoundSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    private const float GlobalSoundReduction = -5f; // Starlight
 
     public override void Initialize()
     {
@@ -152,7 +151,7 @@ public abstract class SharedEmitSoundSystem : EntitySystem
         {
             if (_netMan.IsServer)
             {
-                _audioSystem.PlayGlobal(_audioSystem.ResolveSound(component.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(GlobalSoundReduction));
+                _audioSystem.PlayGlobal(_audioSystem.ResolveSound(component.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(component.GlobalSound));
             }
             return;
         }

@@ -28,5 +28,11 @@ public abstract partial class BaseEmitSoundComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public bool Global;
+
+    /// <summary>
+    /// Global sound volume. Defaults to -5f, to not destroy your ears.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float GlobalSound = -5f;
     #endregion Starlight
 }
