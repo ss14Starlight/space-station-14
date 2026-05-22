@@ -205,9 +205,12 @@ namespace Content.Server.Administration.Managers
             if (data == null)
             {
                 // No longer admin.
-                _admins.Remove(player);
-                // Starlight-edit
+                _admins.Remove(player, out var value);
+                // Starlight-start
                 OnAdminsCountChanged?.Invoke(_admins.Count);
+                if (value?.Data.Active == true)
+                    OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
+                // Starlight-end
                 _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-no-longer-admin-message"));
             }
             else
@@ -223,8 +226,11 @@ namespace Content.Server.Administration.Managers
                         RankId = rankId
                     };
                     _admins.Add(player, reg);
-                    // Starlight-edit
+                    // Starlight-start
                     OnAdminsCountChanged?.Invoke(_admins.Count);
+                    if (aData.Active)
+                        OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
+                    // Starlight-end
                     _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-became-admin-message"));
                 }
                 else
@@ -372,6 +378,8 @@ namespace Content.Server.Administration.Managers
                 if (_admins.Remove(e.Session, out var reg ))
                 {
                     OnAdminsCountChanged?.Invoke(_admins.Count);
+                    if (reg.Data.Active)
+                        OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
                     if (_cfg.GetCVar(CCVars.AdminAnnounceLogout))
                     {
                         if (reg.Data.Stealth)
