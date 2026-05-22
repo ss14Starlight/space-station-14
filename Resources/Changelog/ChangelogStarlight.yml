@@ -1,25 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: VGroid now spawns almost double the distance to potentially help its spawning.
-    type: Tweak
-  id: 404861
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
-- author: CrazyPhantom
-  changes:
-  - message: Added a spawn validator to VGroid to try help its spawning.
-    type: Add
-  id: 404862
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
-- author: CrazyPhantom
-  changes:
-  - message: Changed VGroids spawning to try fix its many bugs.
-    type: Fix
-  id: 404863
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
 - author: Xale
   changes:
   - message: Washing at sinks to remove pie, lube, and glue.
@@ -2799,4 +2778,25 @@ Entries:
   id: 405260
   time: '2026-05-22T14:03:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: Sparlight
+  changes:
+  - message: Languages known by the entity being polymorphed into (i.e. a corgi) will now be known by the individual being polymorphed.
+    type: Add
+  id: 405261
+  time: '2026-05-22T14:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4491
+- author: Shades
+  changes:
+  - message: Departement Communication Consoles can no longer Auth Command Request, as the KeycardAuth has been added to all offices.
+    type: Tweak
+  id: 405262
+  time: '2026-05-22T15:23:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4401
+- author: redmushie
+  changes:
+  - message: The bureaucratic digi-board can now correctly edit ID cards that have accesses in the Law and NanoTrasen categories.
+    type: Fix
+  id: 405263
+  time: '2026-05-22T19:30:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4513
 Order: -1
