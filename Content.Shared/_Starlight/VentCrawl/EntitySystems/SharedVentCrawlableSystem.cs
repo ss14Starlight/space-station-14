@@ -133,8 +133,11 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         {
             holder.PreviousTube = holder.CurrentTube;
             holder.PreviousDirection = holder.CurrentDirection;
+            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.PreviousTube));
+            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.PreviousDirection));
         }
         holder.CurrentTube = toUid;
+        DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.CurrentTube));
 
         return true;
     }
@@ -192,7 +195,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             }
         }
 
-        QueueDel(uid);
+        PredictedQueueDel(uid);
     }
 
     /// <summary>
@@ -237,6 +240,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 }
 
                 holder.NextTube = nextTube;
+                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
                 holder.StartingTime = holder.TravelDuration;
                 holder.TimeLeft = holder.TravelDuration;
             }

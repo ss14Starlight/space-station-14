@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VentCrawl.Components;
 
-[RegisterComponent]
+[RegisterComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class VentCrawlHolderComponent : Component
 {
     private Container? _container = null;
@@ -25,15 +25,19 @@ public sealed partial class VentCrawlHolderComponent : Component
     public bool IsMoving = false;
 
     [ViewVariables]
+    [AutoNetworkedField]
     public EntityUid? PreviousTube { get; set; }
 
     [ViewVariables]
+    [AutoNetworkedField]
     public EntityUid? NextTube { get; set; }
 
     [ViewVariables]
+    [AutoNetworkedField]
     public Direction PreviousDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
+    [AutoNetworkedField]
     public EntityUid? CurrentTube { get; set; }
 
     [ViewVariables]
