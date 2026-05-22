@@ -142,3 +142,4 @@
         - id: OilPack
           amount: 2
         - id: Welder
+        - id: ClothingMaskWeldingGas

@@ -645,6 +645,7 @@
         - CableCoil
       components:
         - Tool
+        - EyeProtection
     grid:
     - 0,0,3,2
   - type: Item
