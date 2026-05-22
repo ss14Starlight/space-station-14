@@ -6,6 +6,7 @@ namespace Content.Shared._Starlight.Genetics;
 /// <summary>
 /// The general prototype that all traits inherit from. Makes some things less repetitive.
 /// </summary>
+[Prototype, Serializable]
 public abstract partial class AbstractTraitPrototype : IPrototype
 {
     [IdDataField]

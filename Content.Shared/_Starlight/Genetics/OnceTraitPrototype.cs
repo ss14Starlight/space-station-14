@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Genetics;
 /// <summary>
 /// A trait that acts on an entity once it's been created or once the trait has been added.
 /// </summary>
-[Prototype]
+[Prototype, Serializable]
 public sealed partial class OnceTraitPrototype : AbstractTraitPrototype
 {
     /// <summary>

@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.Genetics;
 /// <summary>
 /// A trait that acts on an entity when its solution is updated.
 /// </summary>
-[Prototype]
+[Prototype, Serializable]
 public sealed partial class OnSolutionChangedTraitPrototype : AbstractTraitPrototype
 {
     /// <summary>

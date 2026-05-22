@@ -14,18 +14,8 @@ public sealed class GenesSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    [Dependency] private readonly PrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffectsSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-
-    private FrozenDictionary<string, AbstractTraitPrototype>? _genes;
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        _genes = _prototypeManager.GetInstances<AbstractTraitPrototype>();
-    }
 
     /// <summary>
     /// Generates a random number from a Gaussian distribution. Achieved using a Box-Muller transform approximation. Good enough for most purposes. See also: https://stackoverflow.com/questions/218060/random-gaussian-variables
@@ -43,27 +33,27 @@ public sealed class GenesSystem : EntitySystem
     }
 
     /// <summary>
-    /// Returns the collection of traits in random order.
+    /// Returns a random selection of traits with repetition.
     /// </summary>
-    /// <returns>An enumerator over the random traits.</returns>
-    public IEnumerable<AbstractTraitPrototype> RandomTraits()
+    /// <returns>A random selection of traits with repetition.</returns>
+    public IEnumerable<AbstractTraitPrototype> RandomTraits(Entity<GenesComponent> entity)
     {
-        if (_genes is null) yield break;
+        IEnumerable<AbstractTraitPrototype> traits = entity.Comp.AvailableTraits;
         while(true)
-            yield return _genes.ElementAt(_robustRandom.Next(0, _genes.Count)).Value;
+            yield return traits.ElementAt(_robustRandom.Next(0, traits.Count()));
     }
 
     public static TraitDict GetTraitsFromEnumerable(IEnumerable<Gene> genes) => TraitDict.Combine(genes.Select(g => g.Traits));
 
     public static TraitDict GetTraits(params Gene[] genes) => GetTraitsFromEnumerable(genes);
 
-    public Gene GenerateGene()
+    public Gene GenerateGene(Entity<GenesComponent> entity)
     {
         TraitDict traitDict = new();
         var baseOffset = 0.5;
 
         var accumulatedValue = 0.0;
-        foreach (var proto in RandomTraits().Take(_robustRandom.Next(2, 6)))
+        foreach (var proto in RandomTraits(entity).Take(_robustRandom.Next(2, 6)))
         {
             var val = RandomGaussian(baseOffset - accumulatedValue, 0.25);
             traitDict.Traits[proto] = val;

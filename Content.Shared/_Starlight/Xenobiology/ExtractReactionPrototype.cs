@@ -52,7 +52,7 @@ public sealed partial class ExtractReactionPrototype : IPrototype
 /// The final factor is then minimizedScalingFactor * scalingFactor + scalingOffset.
 /// Great fans of y = mx + b should find themselves right at home here.
 /// </remarks>
-[DataDefinition]
+[DataDefinition, Serializable]
 public sealed partial class ScaledEntityEffect
 {
     /// <summary>
