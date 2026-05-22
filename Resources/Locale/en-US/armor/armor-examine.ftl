@@ -5,6 +5,7 @@ armor-examine = It provides the following protection:
 armor-coefficient-value = - [color=yellow]{$type}[/color] damage reduced by [color=lightblue]{$value}%[/color].
 armor-reduction-value = - [color=yellow]{$type}[/color] damage reduced by [color=lightblue]{$value}[/color].
 armor-stamina-value = - [color=blue]{$type}[/color] damage reduced by [color=lightblue]{$value}%[/color].
+armor-amputation-value = - [color=red]{$type}[/color] chance reduced by [color=lightblue]{$value}%[/color].
 armor-damage-type-blunt = Blunt
 armor-damage-type-slash = Slash
 armor-damage-type-piercing = Piercing
@@ -20,3 +21,4 @@ armor-damage-type-shock = Shock
 armor-damage-type-structural = Structural
 armor-damage-type-holy = Holy
 armor-damage-type-stamina = Stamina
+armor-damage-type-amputation = Amputation

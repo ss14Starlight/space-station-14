@@ -282,6 +282,7 @@
         Heat: 0.3
         Caustic: 0.5
     # Starlight-start
+    amputateChanceModifier: 0.40 # Starlight-edit
     staminaModifier: 0.1
     ignoreKnockdown: true
     # Starlight-end

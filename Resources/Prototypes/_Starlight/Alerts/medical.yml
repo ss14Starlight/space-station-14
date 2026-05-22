@@ -4,8 +4,8 @@
     - sprite: _Starlight/Interface/Alerts/limb_status.rsi
       state: base
   alertViewEntity: AlertLostLimbSpriteView
-  name: alerts-vampire-blood-name
-  description: alerts-vampire-blood-desc
+  name: alerts-health-limb-status-name
+  description: alerts-health-limb-status-desc
 
 - type: entity
   id: AlertLostLimbSpriteView

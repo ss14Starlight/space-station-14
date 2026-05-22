@@ -15,3 +15,5 @@ alerts-zoomies-desc = You have increased movement speed [color=red]at the cost o
 alerts-wrapped-name = [color=lightblue]Wrapped up[/color]
 alerts-wrapped-desc = You are [color=red]wrapped up[/color]! Click the alert to attempt to unwrap yourself.
 alerts-error-failed-to-spawn-ghost-role = Failed to spawn the requested ghost role. Sorry! :(
+alerts-health-limb-status-name = Limb Status
+alerts-health-limb-status-desc = You can't feel your bits!

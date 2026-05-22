@@ -131,12 +131,21 @@ public abstract class SharedArmorSystem : EntitySystem
             ));
         }
 
+        #region Starlight
         msg.PushNewline();
         var staminaType = Loc.GetString("armor-damage-type-stamina");
         msg.AddMarkupOrThrow(Loc.GetString("armor-stamina-value",
             ("type", staminaType),
             ("value", MathF.Round((1f - component.StaminaDamageModifier) * 100, 1))
         ));
+
+        msg.PushNewline();
+        var amputationType = Loc.GetString("armor-damage-type-amputation");
+        msg.AddMarkupOrThrow(Loc.GetString("armor-amputation-value",
+            ("type", amputationType),
+            ("value", MathF.Round((1f - component.AmputateChanceModifier) * 100, 1))
+        ));
+        #endregion
 
         foreach (var flatArmor in armorModifiers.FlatReduction)
         {

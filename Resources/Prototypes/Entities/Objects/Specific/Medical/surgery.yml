@@ -621,12 +621,12 @@
   - type: MeleeWeapon
     damage:
       groups:
-        Brute: 4
+        Brute: 15
     soundHit:
       path: /Audio/Items/drill_hit.ogg
   # Starlight edit start
   - type: AmputateOnHit
-    chance: 0.25
+    chance: 0.5
     parts:
       - RightArmHuman
       - LeftArmHuman
