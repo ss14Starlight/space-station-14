@@ -8,9 +8,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: binder_avali
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: binder_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopBraAvali
@@ -21,9 +26,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: classic_avali
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: classic_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 
 - type: marking
@@ -35,9 +45,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: sports_avali
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: sports_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopTanktopAvali
@@ -48,9 +63,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: tanktop_avali
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: tanktop_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentTopTanktopResomi
@@ -61,9 +81,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: tanktop_resomi
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: tanktop_resomi
+      colorSource: UndergarmentColor
+  # Starlight end
 
 # Bottom Undergarments
 - type: marking
@@ -75,9 +100,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: briefs_avali
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: briefs_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomSatinAvali
@@ -88,9 +118,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: satin_avali
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: satin_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBoxersAvali
@@ -101,9 +136,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: boxers_avali
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: boxers_avali
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomBoxersResomi
@@ -114,9 +154,14 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: boxers_resomi
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: boxers_resomi
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndergarmentBottomThongResomi
@@ -127,6 +172,11 @@
     default:
       type: !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/undergarments.rsi
-    state: thong_resomi
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/undergarments.rsi
+        state: thong_resomi
+      colorSource: UndergarmentColor
+  # Starlight end
