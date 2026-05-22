@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/22/2026 00:07:16
-  entityCount: 17975
+  time: 05/22/2026 00:19:30
+  entityCount: 17979
 maps:
 - 1
 grids:
@@ -11194,7 +11194,7 @@ entities:
       pos: 7.5,-88.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -170586.5
+      secondsUntilStateChange: -171319.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12438,7 +12438,7 @@ entities:
       pos: -11.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -84023.516
+      secondsUntilStateChange: -84756.46
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16811,11 +16811,69 @@ entities:
     - type: Transform
       pos: 37.5,-65.5
       parent: 2
+  - uid: 14478
+    components:
+    - type: Transform
+      pos: 40.5,6.5
+      parent: 2
+    - type: EntityStorage
+      removedMasks: 20
+      open: True
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.45,-0.45
+            - 0.45,-0.45
+            - 0.45,0.45
+            - -0.45,0.45
+          mask:
+          - Impassable
+          - MidImpassable
+          - LowImpassable
+          layer:
+          - BulletImpassable
+          - Opaque
+          density: 190
+          hard: True
+          restitution: 0
+          friction: 0.4
   - uid: 15151
     components:
     - type: Transform
       pos: 34.5,-25.5
       parent: 2
+  - uid: 17977
+    components:
+    - type: Transform
+      pos: 40.5,5.5
+      parent: 2
+    - type: EntityStorage
+      removedMasks: 20
+      open: True
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PolygonShape
+            radius: 0.01
+            vertices:
+            - -0.45,-0.45
+            - 0.45,-0.45
+            - 0.45,0.45
+            - -0.45,0.45
+          mask:
+          - Impassable
+          - MidImpassable
+          - LowImpassable
+          layer:
+          - BulletImpassable
+          - Opaque
+          density: 190
+          hard: True
+          restitution: 0
+          friction: 0.4
 - proto: BoxBodyBag
   entities:
   - uid: 951
@@ -17100,6 +17158,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -25.5,-31.5
+      parent: 2
+  - uid: 17978
+    components:
+    - type: MetaData
+      name: button frame (shutters)
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 35.5,-30.5
       parent: 2
 - proto: ButtonFrameGrey
   entities:
@@ -45954,6 +46020,13 @@ entities:
     - type: Transform
       pos: 45.5,-62.5
       parent: 2
+- proto: CrateMaterialTextiles
+  entities:
+  - uid: 15198
+    components:
+    - type: Transform
+      pos: -39.5,-38.5
+      parent: 2
 - proto: CrateMedicalSurgery
   entities:
   - uid: 6560
@@ -46066,6 +46139,14 @@ entities:
     components:
     - type: Transform
       pos: 42.5,4.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Cryogenics
+  - uid: 12478
+    components:
+    - type: Transform
+      pos: 42.5,5.5
       parent: 2
 - proto: CryogenicSleepUnitSpawner
   entities:
@@ -88651,11 +88732,6 @@ entities:
           ent: 12477
 - proto: PottedPlantRandom
   entities:
-  - uid: 12478
-    components:
-    - type: Transform
-      pos: 42.5,5.5
-      parent: 2
   - uid: 12479
     components:
     - type: Transform
@@ -97779,11 +97855,15 @@ entities:
     - type: Transform
       pos: 34.5,-29.5
       parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 1
   - uid: 11257
     components:
     - type: Transform
       pos: 33.5,-29.5
       parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 1
 - proto: ShuttleConsoleCircuitboard
   entities:
   - uid: 14104
@@ -98265,6 +98345,32 @@ entities:
           - Toggle
       lastSignals:
         Status: True
+    - type: Fixtures
+      fixtures: {}
+  - uid: 17979
+    components:
+    - type: MetaData
+      name: signal switch (shutters)
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 35.5,-30.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        11257:
+        - - On
+          - Open
+        - - Off
+          - Close
+        - - Status
+          - Toggle
+        10930:
+        - - On
+          - Open
+        - - Off
+          - Close
+        - - Status
+          - Toggle
     - type: Fixtures
       fixtures: {}
 - proto: SignAnomaly
@@ -100637,10 +100743,10 @@ entities:
     - type: Transform
       pos: 54.5,-2.5
       parent: 2
-  - uid: 14478
+  - uid: 17976
     components:
     - type: Transform
-      pos: 40.5,5.5
+      pos: 41.5,5.5
       parent: 2
 - proto: SpawnPointSecurityOfficer
   entities:
@@ -105810,19 +105916,6 @@ entities:
     components:
     - type: Transform
       pos: -38.5,-38.5
-      parent: 2
-    - type: TechnologyDatabase
-      supportedDisciplines:
-      - Industrial
-      - Arsenal
-      - Experimental
-      - CivilianServices
-      - Biochemical
-  - uid: 15198
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -39.5,-38.5
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
