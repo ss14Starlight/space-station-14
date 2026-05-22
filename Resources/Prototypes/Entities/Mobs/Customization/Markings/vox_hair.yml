@@ -4,9 +4,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: afro_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: afro_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairBraids
@@ -14,9 +19,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: braid_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: braid_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairBushy
@@ -24,9 +34,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: bushy_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: bushy_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairCrestedQuills
@@ -34,9 +49,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: crestedquills_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: crestedquills_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairEmperorQuills
@@ -44,9 +64,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: emperorquills_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: emperorquills_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairFlowing
@@ -54,9 +79,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: flowing_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: flowing_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairHawk
@@ -64,9 +94,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: hawk_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: hawk_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairHedgehog
@@ -74,9 +109,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: hedgehog_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: hedgehog_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairHorns
@@ -84,9 +124,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: horns_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: horns_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairKeelQuills
@@ -94,9 +139,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: keelquills_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: keelquills_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairKeetQuills
@@ -104,9 +154,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: keetquills_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: keetquills_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairKingly
@@ -114,9 +169,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: kingly_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: kingly_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairLongBraid
@@ -124,9 +184,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: long_braid_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: long_braid_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairMadScientist
@@ -134,9 +199,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: mad_scientist_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: mad_scientist_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairMange
@@ -144,9 +214,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: mange_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: mange_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairMohawk
@@ -154,9 +229,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: mohawk_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: mohawk_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairNights
@@ -164,9 +244,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: nights_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: nights_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairPony
@@ -174,9 +259,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: ponytail_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: ponytail_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairRazorClipped
@@ -184,9 +274,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: razor_clipped_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: razor_clipped_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairRazor
@@ -194,9 +289,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: razor_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: razor_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairSortBraid
@@ -204,9 +304,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: short_braid_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: short_braid_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairShortQuills
@@ -214,9 +319,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: shortquills_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: shortquills_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairSlick
@@ -224,9 +334,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: slick_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: slick_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairSpotty
@@ -234,9 +349,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: spotty_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: spotty_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairSurf
@@ -244,9 +364,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: surf_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: surf_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairTielQuills
@@ -254,9 +379,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: tielquills_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: tielquills_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairWiseBraid
@@ -264,9 +394,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: wise_braid_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: wise_braid_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairYasu
@@ -274,9 +409,14 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: yasu_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: yasu_s
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VoxHairCatfish
@@ -284,6 +424,11 @@
   markingCategory: Hair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_hair.rsi
-      state: catfish_s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/vox_hair.rsi
+          state: catfish_s
+        colorSource: HumanHairColor
+  # Starlight end
