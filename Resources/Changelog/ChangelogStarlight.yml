@@ -1,11 +1,4 @@
 Entries:
-- author: Wizards Den Team
-  changes:
-  - message: (Kowlin) All intern jobs (Besides Cadet) now lock out after 10 hours, up from 5 hours.
-    type: Tweak
-  id: 404829
-  time: '2026-05-07T07:05:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4352
 - author: Citrea
   changes:
   - message: IPCs can now accept brain and hand implants.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405228
   time: '2026-05-22T10:29:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: DocMoth
+  changes:
+  - message: Added Tallborgs.
+    type: Add
+  id: 405229
+  time: '2026-05-22T11:00:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4500
 Order: -1
