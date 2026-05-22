@@ -77,7 +77,7 @@ namespace Content.Server.Administration.Managers
         event Action<int> OnActiveAdminsCountChanged;
 
         /// <summary>
-        /// Fired when the count of active admins was changed.
+        /// Fired when the count of all admins was changed.
         /// </summary>
         event Action<int> OnAdminsCountChanged;
         #endregion
