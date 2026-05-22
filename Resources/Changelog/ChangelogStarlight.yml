@@ -1,13 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: Added a spawn validator to VGroid to try help its spawning.
-    type: Add
-  id: 404862
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
-- author: CrazyPhantom
-  changes:
   - message: Changed VGroids spawning to try fix its many bugs.
     type: Fix
   id: 404863
@@ -2799,4 +2792,11 @@ Entries:
   id: 405261
   time: '2026-05-22T14:34:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4491
+- author: Shades
+  changes:
+  - message: Departement Communication Consoles can no longer Auth Command Request, as the KeycardAuth has been added to all offices.
+    type: Tweak
+  id: 405262
+  time: '2026-05-22T15:23:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4401
 Order: -1

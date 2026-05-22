@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseStructureComputer
   id: KeycardAuth
-  # categories: [ ShouldMapStation ] # TODO: Uncomment this when we change all "Departement Communication Consoles"
+  categories: [ ShouldMapStation ]
   name: Keycard Authentication Device
   description: This device is used to approve/deny station functions, which require more than one ID card to authenticate.
   components:
