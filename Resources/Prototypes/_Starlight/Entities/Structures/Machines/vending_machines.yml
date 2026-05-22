@@ -224,7 +224,7 @@
         - MiningConsumeables
         - SLSecret
       currencyWhitelist:
-        - SalvageTicket # Honestly they're so different now that they probably should just be different here too.
+        - SalvageTicket # Same currency as salvage vendor to promote sharing
 
 - type: entity
   parent: VendingMachine
