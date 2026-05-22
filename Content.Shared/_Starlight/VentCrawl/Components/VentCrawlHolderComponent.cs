@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Robust.Shared.Audio;
@@ -64,6 +65,8 @@ public sealed partial class VentCrawlHolderComponent : Component
     public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
 
     public List<EntityUid> ProvidedActions = new();
+
+    public Vector2? EntryWorldPosition = null;
 }
 
 public sealed partial class ExitVentActionEvent : InstantActionEvent

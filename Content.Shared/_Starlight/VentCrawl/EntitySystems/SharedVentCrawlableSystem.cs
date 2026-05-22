@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics;
 using Content.Shared.Body.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Item;
@@ -11,6 +12,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Actions;
+using Robust.Shared.Map;
 
 namespace Content.Shared.VentCrawl.EntitySystems;
 
@@ -241,6 +243,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
                 holder.NextTube = nextTube;
                 DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
+                holder.EntryWorldPosition = null;
                 holder.StartingTime = holder.TravelDuration;
                 holder.TimeLeft = holder.TravelDuration;
             }
@@ -264,16 +267,25 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (holder.NextTube == null)
             return;
 
-        var time = frameTime;
-        if (time > holder.TimeLeft)
-            time = holder.TimeLeft;
+        var time = MathF.Min(frameTime, holder.TimeLeft);
 
-        var progress = 1 - (holder.TimeLeft / holder.StartingTime);
-        var origin = Transform(currentTube).Coordinates;
+        if (holder.EntryWorldPosition == null)
+        {
+            var currentPos = _xformSystem.GetWorldPosition(uid);
+            holder.EntryWorldPosition = currentPos;
+        }
+
+        var progress = 1f - (holder.TimeLeft / holder.StartingTime);
         var target = Transform(holder.NextTube.Value).Coordinates;
-        var newPosition = (target.Position - origin.Position) * progress;
 
-        _xformSystem.SetCoordinates(uid, _xformSystem.WithEntityId(origin.Offset(newPosition), currentTube));
+        var entryCoords = new EntityCoordinates(currentTube,
+            Vector2.Transform(
+                holder.EntryWorldPosition.Value,
+                _xformSystem.GetInvWorldMatrix(currentTube)));
+
+        var newPosition = Vector2.Lerp(entryCoords.Position, target.Position, progress);
+        _xformSystem.SetCoordinates(uid,
+            new EntityCoordinates(currentTube, newPosition));
 
         holder.TimeLeft -= time;
     }
