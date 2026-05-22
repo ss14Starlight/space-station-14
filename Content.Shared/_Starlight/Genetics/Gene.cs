@@ -1,0 +1,30 @@
+using Content.Shared._Starlight.Genetics.Systems;
+using Robust.Shared.Serialization;
+
+namespace Content.Shared._Starlight.Genetics;
+
+/// <summary>
+/// A collection of traits along with associated metadata, like the name.
+/// </summary>
+[DataDefinition, Serializable, NetSerializable]
+public sealed partial class Gene
+{
+    /// <summary>
+    /// The traits influenced by this gene.
+    /// </summary>
+    [DataField]
+    public TraitDict Traits = new TraitDict();
+
+    /// <summary>
+    /// The unchanging "technical name" of a gene, i.e. PRKN (the name of a gene that creates the Parkin protein, mutations in which can cause parkinsons, hence the name).
+    /// Can be procedurally generated.
+    /// </summary>
+    [DataField]
+    public string TechnicalName = string.Empty;
+
+    /// <summary>
+    /// The informal name set by players and/or history.
+    /// </summary>
+    [DataField]
+    public string? Name = string.Empty;
+}

@@ -1,14 +1,13 @@
-using System.Collections.Frozen;
 using System.Linq;
 using System.Text;
+using Content.Shared._Starlight.Genetics.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Starlight.Genetics;
+namespace Content.Shared._Starlight.Genetics.Systems;
 
 public sealed class GenesSystem : EntitySystem
 {
@@ -76,7 +75,7 @@ public sealed class GenesSystem : EntitySystem
             technicalName.Append(uppercaseAlphabet[_robustRandom.Next(0, uppercaseAlphabet.Length)]);
         technicalName.Append(_robustRandom.Next(1, 9));
 
-        return new Gene() { Traits = traitDict, TechnicalName = technicalName.ToString(), Name = null };
+        return new Gene { Traits = traitDict, TechnicalName = technicalName.ToString(), Name = null };
     }
 
     public void UpdateTraits(Entity<GenesComponent> entity)
@@ -152,63 +151,4 @@ public sealed class GenesSystem : EntitySystem
         onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
         passiveTraits.Traits = newPassiveTraits;
     }
-}
-
-/// <summary>
-/// A thin wrapper around a dictionary with specific support for dictionary combining.
-/// New dictionaries are constructed with the old dictionaries unmodified.
-/// </summary>
-[DataDefinition, Serializable, NetSerializable]
-public sealed partial class TraitDict
-{
-    public Dictionary<AbstractTrait, FixedPoint2> Traits = new();
-
-    public TraitDict(Dictionary<AbstractTrait, FixedPoint2> traits) => Traits = traits;
-
-    public TraitDict() {}
-
-    public static TraitDict Combine(IEnumerable<TraitDict> traitDicts)
-    {
-        var newDict = new TraitDict();
-        foreach (var dict in traitDicts)
-        {
-            foreach (var tm in dict.Traits)
-            {
-                if (newDict.Traits.TryGetValue(tm.Key, out var value))
-                    newDict.Traits[tm.Key] = value + tm.Value;
-                else
-                    newDict.Traits[tm.Key] = tm.Value;
-            }
-        }
-
-        return newDict;
-    }
-
-    public static TraitDict Add(params TraitDict[] traitDicts) => Combine(traitDicts);
-}
-
-/// <summary>
-/// A collection of traits along with associated metadata, like the name.
-/// </summary>
-[DataDefinition, Serializable, NetSerializable]
-public sealed partial class Gene
-{
-    /// <summary>
-    /// The traits influenced by this gene.
-    /// </summary>
-    [DataField]
-    public TraitDict Traits = new TraitDict();
-
-    /// <summary>
-    /// The unchanging "technical name" of a gene, i.e. PRKN (the name of a gene that creates the Parkin protein, mutations in which can cause parkinsons, hence the name).
-    /// Can be procedurally generated.
-    /// </summary>
-    [DataField]
-    public string TechnicalName = string.Empty;
-
-    /// <summary>
-    /// The informal name set by players and/or history.
-    /// </summary>
-    [DataField]
-    public string? Name = string.Empty;
 }
