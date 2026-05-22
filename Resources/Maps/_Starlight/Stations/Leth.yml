@@ -23,9 +23,9 @@ tilemap:
   25: FloorDarkOffset
   33: FloorDarkPavement
   3: FloorDarkPlastic
-  28: FloorDirt
+  28: FloorAstroDirt
   11: FloorGlass
-  34: FloorGrassLight
+  34: FloorAstroGrass
   8: FloorGrayConcrete
   36: FloorLino
   23: FloorMetalDiamond
