@@ -3,6 +3,11 @@
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: head_snout
+    body_snout:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: head_snout
+        colorSource: FelionoidSkinColor
+  # Starlight end

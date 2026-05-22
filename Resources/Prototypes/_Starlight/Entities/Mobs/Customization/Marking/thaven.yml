@@ -3,1490 +3,2420 @@
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: 80s
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: 80s
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairA
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: a
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: a
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairB
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: b
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: b
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBald
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bald
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bald
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBaldface
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: baldface
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: baldface
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBedHair
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bedhead
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bedhead
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBedHair2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bedhead2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bedhead2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBedHair3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bedhead3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bedhead3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBeehive
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: beehive
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: beehive
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBeehive2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: beehive2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: beehive2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBigflattop
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bigflattop
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bigflattop
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBigpompadour
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bigpompadour
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bigpompadour
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBob
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bob
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bob
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBob2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bob2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bob2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBob4
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bob4
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bob4
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBob5
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bob5
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bob5
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBobcurl
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bobcurl
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bobcurl
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBobcut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bobcut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bobcut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBowlcut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bowlcut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bowlcut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBowlcut2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bowlcut2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bowlcut2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBraid
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: braid
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: braid
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBraid2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: braid2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: braid2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBraided
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: braided
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: braided
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBraidfront
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: braidfront
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: braidfront
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBraidtail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: braidtail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: braidtail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bun
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bun
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBun3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bun3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bun3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBunhead2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: bunhead2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: bunhead2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBusiness
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: business
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: business
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBusiness2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: business2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: business2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBusiness3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: business3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: business3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBusiness4
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: business4
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: business4
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairBuzzcut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: buzzcut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: buzzcut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairC
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: c
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: c
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCia
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: cia
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: cia
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassicafro
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classicafro
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classicafro
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassiccia
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classiccia
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classiccia
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassicciabusiness
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classicciabusiness
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classicciabusiness
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassiccornrows
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classiccornrows
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classiccornrows
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassicFloorlengthBedHair
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classicfloorlength_bedhead
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classicfloorlength_bedhead
+      colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: ThavenHairClassiclong2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classiclong2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classiclong2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassiclong3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classiclong3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classiclong3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassicmodern
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classicmodern
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classicmodern
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassicmulder
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classicmulder
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classicmulder
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairClassicwisp
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: classicwisp
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: classicwisp
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCoffeehouse
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: coffeehouse
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: coffeehouse
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCombover
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: combover
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: combover
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCornrowbraid
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: cornrowbraid
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: cornrowbraid
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCornrowbun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: cornrowbun
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: cornrowbun
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCornrows
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: cornrows
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: cornrows
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCornrows2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: cornrows2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: cornrows2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCornrowtail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: cornrowtail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: cornrowtail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCountry
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: country
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: country
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCrewcut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: crewcut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: crewcut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCrewcut2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: crewcut2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: crewcut2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairCurls
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: curls
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: curls
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairD
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: d
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: d
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDandypompadour
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: dandypompadour
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: dandypompadour
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDevilock
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: devilock
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: devilock
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDoublebun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: doublebun
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: doublebun
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDoublebunLong
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: doublebun_long
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: doublebun_long
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDreads
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: dreads
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: dreads
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDrillhair
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: drillhair
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: drillhair
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDrillhairextended
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: drillhairextended
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: drillhairextended
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairDrillruru
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: drillruru
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: drillruru
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairE
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: e
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: e
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairEmo2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: emo2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: emo2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairEmofringe
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: emofringe
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: emofringe
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairF
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: f
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: f
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairFather
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: father
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: father
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairFeather
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: feather
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: feather
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairFlair
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: flair
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: flair
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairFloorlengthBedHair
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: floorlength_bedhead
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: floorlength_bedhead
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairFringetail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: fringetail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: fringetail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairGelled
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: gelled
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: gelled
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairGentle
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: gentle
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: gentle
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHalfbang
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: halfbang
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: halfbang
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHalfbang2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: halfbang2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: halfbang2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHalfshaved
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: halfshaved
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: halfshaved
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHbraid
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: hbraid
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: hbraid
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHedgehog
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: hedgehog
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: hedgehog
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHighfade
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: highfade
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: highfade
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHighponytail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: highponytail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: highponytail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHimecut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: himecut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: himecut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHimecut2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: himecut2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: himecut2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHimeup
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: himeup
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: himeup
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairHitop
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: hitop
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: hitop
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairJade
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: jade
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: jade
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairJensen
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: jensen
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: jensen
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairJoestar
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: joestar
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: joestar
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairKagami
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: kagami
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: kagami
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairKeanu
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: keanu
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: keanu
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairKusanagi
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: kusanagi
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: kusanagi
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLargebun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: largebun
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: largebun
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLbangs
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: lbangs
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: lbangs
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLong
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: long
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: long
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLong2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: long2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: long2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLong3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: long3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: long3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongBedHair
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: long_bedhead
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: long_bedhead
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongBedHair2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: long_bedhead2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: long_bedhead2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongbundled
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longbundled
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longbundled
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongeremo
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longeremo
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longeremo
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongest
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longest
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longest
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongest2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longest2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longest2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongfringe
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longfringe
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longfringe
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongovereye
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longovereye
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longovereye
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongsidepart
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longsidepart
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longsidepart
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLongstraightponytail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: longstraightponytail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: longstraightponytail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairLowfade
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: lowfade
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: lowfade
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairManbun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: manbun
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: manbun
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairMedfade
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: medfade
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: medfade
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairMediumsidepart
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: mediumsidepart
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: mediumsidepart
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairMegaeyebrows
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: megaeyebrows
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: megaeyebrows
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairMessy
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: messy
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: messy
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairModern
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: modern
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: modern
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairMulder
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: mulder
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: mulder
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairNitori
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: nitori
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: nitori
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairNofade
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: nofade
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: nofade
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairOdango
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: odango
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: odango
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairOmbre
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ombre
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ombre
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairOneshoulder
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: oneshoulder
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: oneshoulder
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairOxton
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: oxton
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: oxton
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPart
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: part
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: part
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairParted
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: parted
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: parted
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPigtails
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: pigtails
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: pigtails
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPigtails2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: pigtails2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: pigtails2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPixie
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: pixie
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: pixie
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPompadour
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: pompadour
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: pompadour
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail4
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail4
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail4
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail5
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail5
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail5
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail6
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail6
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail6
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPonytail7
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ponytail7
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ponytail7
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairPoofy
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: poofy
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: poofy
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairProtagonist
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: protagonist
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: protagonist
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairQuiff
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: quiff
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: quiff
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairReversemohawk
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: reversemohawk
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: reversemohawk
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairRonin
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: ronin
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: ronin
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairRosa
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: rosa
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: rosa
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSargeant
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: sargeant
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: sargeant
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShaved
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shaved
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shaved
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShavedmohawk
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shavedmohawk
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shavedmohawk
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShavedpart
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shavedpart
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shavedpart
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShortbangs
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shortbangs
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shortbangs
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShortbraid
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shortbraid
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shortbraid
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShorthair2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shorthair2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shorthair2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShorthair3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shorthair3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shorthair3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShorthair9
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shorthair9
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shorthair9
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShorthime
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shorthime
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shorthime
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShortovereye
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shortovereye
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shortovereye
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairShoulderlengthovereye
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: shoulderlengthovereye
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: shoulderlengthovereye
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSidecut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: sidecut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: sidecut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSidetail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: sidetail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: sidetail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSidetail2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: sidetail2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: sidetail2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSidetail3
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: sidetail3
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: sidetail3
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSidetail4
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: sidetail4
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: sidetail4
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSkinhead
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: skinhead
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: skinhead
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSpiky
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: spiky
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: spiky
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSpikyponytail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: spikyponytail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: spikyponytail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSpookylong
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: spookylong
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: spookylong
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairStail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: stail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: stail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSwept
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: swept
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: swept
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairSwept2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: swept2
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: swept2
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTailed
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: tailed
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: tailed
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairThinning
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: thinning
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: thinning
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairThinningfront
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: thinningfront
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: thinningfront
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairThinningrear
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: thinningrear
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: thinningrear
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTightbun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: tightbun
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: tightbun
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTopknot
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: topknot
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: topknot
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTressshoulder
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: tressshoulder
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: tressshoulder
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTrimflat
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: trimflat
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: trimflat
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTrimmed
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: trimmed
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: trimmed
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTwintail
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: twintail
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: twintail
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairTwostrands
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: twostrands
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: twostrands
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairUndercut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: undercut
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: undercut
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairUndercutleft
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: undercutleft
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: undercutleft
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairUndercutright
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: undercutright
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: undercutright
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairUneven
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: uneven
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: uneven
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairUnkept
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: unkept
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: unkept
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairVeryshortovereyealternate
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: veryshortovereyealternate
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: veryshortovereyealternate
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairVlong
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: vlong
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: vlong
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairVlongfringe
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: vlongfringe
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: vlongfringe
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairVolaju
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: volaju
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: volaju
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: ThavenHairWisp
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
-    state: wisp
+    body_hair:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
+        state: wisp
+      colorSource: HumanHairColor
+  # Starlight end
 
 # Chest
 
@@ -1495,55 +2425,85 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: hair
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: hair
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: Gills
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: gills
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: gills
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenAbs
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: muscular
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: muscular
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenBiteMark
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: bitemark
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: bitemark
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenBodyStripes
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: stripes
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: stripes
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenChestScales
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: scales
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: scales
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenChestTattoo1
@@ -1555,9 +2515,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: tat1
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: tat1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenSpinechill
@@ -1569,47 +2534,75 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: spinechill
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: spinechill
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenSpines
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: spines
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: spines
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTattooWave
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: tattoowave
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: tattoowave
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTattooVines
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: tattoovines
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: tattoovines
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTiger
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: tiger1
-  - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
-    state: tiger2
+    body_chest@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: tiger1
+      colorSource: UniqueColor
+    body_chest@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
+        state: tiger2
+      colorSource: UniqueColor
+  # Starlight end
 
 
 # Head
@@ -1619,29 +2612,47 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
-    state: cap1
-  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
-    state: cap2
+    body_head@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/head.rsi
+        state: cap1
+      colorSource: UniqueColor
+    body_head@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/head.rsi
+        state: cap2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenHeadScales
   bodyPart: Head
   markingCategory: HeadTop
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
-    state: scales
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/head.rsi
+        state: scales
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenHeadStripes
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
-    state: stripes
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/head.rsi
+        state: stripes
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenShadow
@@ -1654,9 +2665,14 @@
       type:
         !type:SimpleColoring
         color: "#000000"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
-    state: shadowthaven
+    body_head:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/head.rsi
+        state: shadowthaven
+      colorSource: UniqueColor
+  # Starlight end
 
 # Snout
 
@@ -1667,9 +2683,14 @@
   bodyPart: Eyes
   markingCategory: HeadTop
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
-    state: sharkminnoweyeliner
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
+        state: sharkminnoweyeliner
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEyesSharkminnow
@@ -1681,9 +2702,14 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
-    state: sharkminnow
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
+        state: sharkminnow
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEyesSharkminnowGlowing
@@ -1695,9 +2721,14 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
-    state: sharkminnow
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
+        state: sharkminnow
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenLEyeGlow
@@ -1709,9 +2740,14 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
-    state: glowleft
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
+        state: glowleft
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenREyeGlow
@@ -1723,57 +2759,38 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
-    state: glowright
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
+        state: glowright
+      colorSource: UniqueColor
+  # Starlight end
 
 # RArm
 
 - type: marking
-  id: ThavenRArmScales
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Thaven ]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
-    state: scales
-
-- type: marking
-  id: ThavenRArmTattoo1
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Thaven ]
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
-    state: tat1
-
-- type: marking
-  id: ThavenTigerRArm
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [ Thaven ]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
-    state: tiger
-
-# LArm
-
-- type: marking
-  id: ThavenLArmScales
+  id: ThavenArmScales
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
-    state: scales
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
+        state: scales
+      colorSource: UniqueColor
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
+        state: scales
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: ThavenLArmTattoo1
+  id: ThavenArmTattoo1
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [ Thaven ]
@@ -1782,40 +2799,59 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
-    state: tat1
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
+        state: tat1
+      colorSource: UniqueColor
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
+        state: tat1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: ThavenTigerLArm
+  id: ThavenTigerArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
-    state: tiger
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
+        state: tiger
+      colorSource: UniqueColor
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
+        state: tiger
+      colorSource: UniqueColor
+  # Starlight end
 
 # RLeg
 
 - type: marking
-  id: ThavenRLegScales
-  bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [ Thaven ]
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/rleg.rsi
-    state: scales
-
-# LLeg
-
-- type: marking
-  id: ThavenLLegScales
+  id: ThavenLegScales
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/lleg.rsi
-    state: scales
+    body_lLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/lleg.rsi
+        state: scales
+      colorSource: UniqueColor
+    body_rLeg:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/rleg.rsi
+        state: scales
+      colorSource: UniqueColor
+  # Starlight end
 
 # UndergarmentBottom
 
@@ -1829,9 +2865,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
-    state: briefs
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
+        state: briefs
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UnderwearDefaultT
@@ -1843,9 +2884,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
-    state: boxers
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
+        state: boxers
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UnderwearLowridersT
@@ -1857,9 +2903,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
-    state: lowriders
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
+        state: lowriders
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UnderwearSatinT
@@ -1871,9 +2922,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
-    state: satin
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
+        state: satin
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UnderwearTangaT
@@ -1885,9 +2941,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
-    state: tanga
+    body_undergarmentBottom:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmentbottom.rsi
+        state: tanga
+      colorSource: UndergarmentColor
+  # Starlight end
 
 # UndergarmentTop
 
@@ -1900,9 +2961,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: binder
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: binder
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtBraClassicT
@@ -1914,9 +2980,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: classic
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: classic
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtBraSportsT
@@ -1928,9 +2999,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: sports
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: sports
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtBraStraplessT
@@ -1942,9 +3018,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: strapless
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: strapless
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtDefaultT
@@ -1956,9 +3037,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: undershirt
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: undershirt
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtGrossSleevelessT
@@ -1970,9 +3056,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: grosssleeveless
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: grosssleeveless
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtNanotrasenT
@@ -1984,9 +3075,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: nanotrasen
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: nanotrasen
+      colorSource: UndergarmentColor
+  # Starlight end
 
 - type: marking
   id: UndershirtRolledT
@@ -1998,9 +3094,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
-    state: rolledundershirt
+    body_undergarmentTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/undergarmenttop.rsi
+        state: rolledundershirt
+      colorSource: UndergarmentColor
+  # Starlight end
 
 # HeadSide
 
@@ -2010,10 +3111,15 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: ears1
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: ears1
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEars2
@@ -2021,10 +3127,15 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: ears2
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: ears2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEars3
@@ -2032,10 +3143,15 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: ears3
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: ears3
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEars4
@@ -2043,21 +3159,34 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: ears4
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: ears4
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEarsBigFins
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: bigfins
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: bigfins2
+    body_headSide@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: bigfins
+      colorSource: UniqueColor
+    body_headSide@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: bigfins2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenEarsTwinFins
@@ -2065,10 +3194,15 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: twinfin
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: twinfin
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenFishEars
@@ -2076,19 +3210,29 @@
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: fishears
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: fishears
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenNoEars
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
-    state: noears
+    body_headSide:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
+        state: noears
+      colorSource: UniqueColor
+  # Starlight end
 
 # HeadTop
 
@@ -2102,11 +3246,19 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
-    state: hibiscus1
-  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
-    state: hibiscus2
+    body_headTop@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
+        state: hibiscus1
+      colorSource: UniqueColor
+    body_headTop@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
+        state: hibiscus2
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenPiercings
@@ -2118,9 +3270,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
-    state: piercings
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
+        state: piercings
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenPiercings2
@@ -2132,9 +3289,14 @@
       type:
         !type:SimpleColoring
         color: "#FFFFFF"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
-    state: piercings2
+    body_headTop:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/headtop.rsi
+        state: piercings2
+      colorSource: UniqueColor
+  # Starlight end
 
 # Tail
 
@@ -2143,57 +3305,107 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: basic_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: basic_behind
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: basic_front
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: basic_behind
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenBigTail
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: big1_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: big1_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: big2_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: big2_front
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: big1_behind
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: big1_front
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: big2_behind
+      colorSource: UniqueColor
+    body_tail@3:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: big2_front
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTadpoleTail
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: tadpole1_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: tadpole1_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: tadpole2_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: tadpole2_front
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: tadpole1_behind
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: tadpole1_front
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: tadpole2_behind
+      colorSource: UniqueColor
+    body_tail@3:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: tadpole2_front
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTailEel
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eel1_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eel1_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eel2_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eel2_front
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eel1_behind
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eel1_front
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eel2_behind
+      colorSource: UniqueColor
+    body_tail@3:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eel2_front
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTailEelOverlay
@@ -2205,56 +3417,106 @@
       type:
         !type:EyeColoring
         negative: false
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eelghost_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eelghost_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eel3_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: eel3_front
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eelghost_behind
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eelghost_front
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eel3_behind
+      colorSource: UniqueColor
+    body_tail@3:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: eel3_front
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTailNurse
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: nurse1_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: nurse1_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: nurse2_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: nurse2_front
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: nurse1_behind
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: nurse1_front
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: nurse2_behind
+      colorSource: UniqueColor
+    body_tail@3:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: nurse2_front
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTailStub
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: stub1_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: stub1_front
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: stub2_behind
-  - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
-    state: stub2_front
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: stub1_behind
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: stub1_front
+      colorSource: UniqueColor
+    body_tail@2:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: stub2_behind
+      colorSource: UniqueColor
+    body_tail@3:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
+        state: stub2_front
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ThavenTailThresher
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Thaven ]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/thaven/tail.rsi
-    state: thresher1
-  - sprite: _Starlight/Mobs/Customization/thaven/tail.rsi
-    state: thresher2
+    body_tail@0:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/tail.rsi
+        state: thresher1
+      colorSource: UniqueColor
+    body_tail@1:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/thaven/tail.rsi
+        state: thresher2
+      colorSource: UniqueColor
+  # Starlight end

@@ -3,69 +3,109 @@
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_armsL
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_armsL
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmPawMittensR
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_armsR
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_armsR
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmTabbyL
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  Tabby_armL
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_armL
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmTabbyR
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  Tabby_armR
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_armR
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmCalicoR
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico2_ArmR
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico2_ArmR
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmCalicoL
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico2_ArmL
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico2_ArmL
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmStripesR
   bodyPart: RArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: r_arm_stripes
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: r_arm_stripes
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidArmStripesL
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: l_arm_stripes
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: l_arm_stripes
+        colorSource: UniqueColor
+  # Starlight end

@@ -4,173 +4,239 @@
   bodyPart: Chest
   markingCategory: Arms
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: forearm_spikes
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: forearm_spikes
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyShoulderSpikes
   bodyPart: Chest
   markingCategory: Arms
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: shoulder_spikes
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: shoulder_spikes
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: CyArmStarsLeft
+  id: CyArmStars
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: stars_left
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: stars_left
+        colorSource: UniqueColor
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: stars_right
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: CyArmStarsRight
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Cyclorite]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: stars_right
-
-- type: marking
-  id: CyArmStripeLeft
+  id: CyArmStripe
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: stripe_left
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: stripe_left
+        colorSource: UniqueColor
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: stripe_right
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: CyArmStripeRight
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Cyclorite]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: stripe_right
-
-- type: marking
-  id: CyWristStripeLeft
+  id: CyWristStripe
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: wrist_stripe_left
-
-- type: marking
-  id: CyWristStripeRight
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Cyclorite]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
-      state: wrist_stripe_right
-
-## head
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: wrist_stripe_left
+        colorSource: UniqueColor
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/arms.rsi
+          state: wrist_stripe_right
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyHeadBands
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
-      state: bands
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
+          state: bands
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyHeadCrest
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
-      state: crest
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
+          state: crest
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyHeadCrown
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
-      state: crown
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
+          state: crown
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyHeadSerious
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
-      state: serious
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
+          state: serious
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyHeadSideSpikes
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
-      state: side_spikes
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
+          state: side_spikes
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyHeadStars
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
-      state: stars
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/head.rsi
+          state: stars
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyLegsAnkleStripes
   bodyPart: Chest
   markingCategory: Legs
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
-      state: ankle_stripes
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
+          state: ankle_stripes
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyLegsChevron
   bodyPart: Chest
   markingCategory: Legs
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
-      state: chevron
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
+          state: chevron
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyLegsFeetGradient
   bodyPart: Chest
   markingCategory: Legs
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
-      state: feet_gradient
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
+          state: feet_gradient
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyLegsHeelSpikes
   bodyPart: Chest
   markingCategory: Legs
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
-      state: heel_spikes
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
+          state: heel_spikes
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyLegsHipRound
   bodyPart: Chest
   markingCategory: Legs
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
-      state: hip_round
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/legs.rsi
+          state: hip_round
+        colorSource: UniqueColor
+  # Starlight end
 
 ## torso
 
@@ -179,42 +245,67 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
-      state: backsensor
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
+          state: backsensor
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyTorsoCross
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
-      state: cross
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
+          state: cross
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyTorsoRibs
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
-      state: ribs
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
+          state: ribs
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyTorsoScratchLeft
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
-      state: scratchleft
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
+          state: scratchleft
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: CyTorsoScratchRight
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Cyclorite]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
-      state: scratchright
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Cyclorite/torso.rsi
+          state: scratchright
+        colorSource: UniqueColor
+  # Starlight end

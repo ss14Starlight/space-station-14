@@ -8,9 +8,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_blindfold_resomi
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_blindfold_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiGauzeHead
@@ -21,9 +26,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_head_resomi
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_head_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 
 
@@ -37,9 +47,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_lefteye_1_resomi
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_lefteye_1_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiLeftEyePatch
@@ -50,9 +65,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_lefteye_2_resomi
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_lefteye_2_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiRightEyePad
@@ -63,9 +83,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_righteye_1_resomi
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_righteye_1_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiRightEyePatch
@@ -76,9 +101,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_righteye_2_resomi
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_righteye_2_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 
 
@@ -92,9 +122,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_abdomen_resomi
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_abdomen_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiGauzeShoulderRight
@@ -105,9 +140,14 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_shoulder_r_resomi
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_shoulder_r_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiGauzeShoulderLeft
@@ -118,15 +158,20 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_shoulder_l_resomi
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_shoulder_l_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 
 
 # Arms
 - type: marking
-  id: ResomiGauzeLeftArm
+  id: ResomiGauzeArm
   bodyPart: LArm
   markingCategory: Overlay
   speciesRestriction: [ Resomi ]
@@ -134,41 +179,22 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_leftarm_resomi
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_leftarm_resomi
+        colorSource: UniqueColor
+    body_rArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_rightarm_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
-  id: ResomiGauzeRightArm
-  bodyPart: RArm
-  markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
-  coloring:
-    default:
-      type: null
-      fallbackColor: '#FFFFFF'
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_rightarm_resomi
-
-
-
-# Hands
-- type: marking
-  id: ResomiGauzeBoxerwrapRight
-  bodyPart: RHand
-  markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
-  coloring:
-    default:
-      type: null
-      fallbackColor: '#FFFFFF'
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_boxerwrap_r_resomi
-
-- type: marking
-  id: ResomiGauzeBoxerwrapLeft
+  id: ResomiGauzeBoxerwrap
   bodyPart: LHand
   markingCategory: Overlay
   speciesRestriction: [ Resomi ]
@@ -176,28 +202,25 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_boxerwrap_l_resomi
+    body_lHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_boxerwrap_l_resomi
+        colorSource: UniqueColor
+    body_rHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_boxerwrap_r_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 
 
 # Legs
 - type: marking
-  id: ResomiGauzeLegRight
-  bodyPart: RLeg
-  markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
-  coloring:
-    default:
-      type: null
-      fallbackColor: '#FFFFFF'
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_upperleg_r_resomi
-
-- type: marking
-  id: ResomiGauzeLegLeft
+  id: ResomiGauzeLegs
   bodyPart: LLeg
   markingCategory: Overlay
   speciesRestriction: [ Resomi ]
@@ -205,28 +228,25 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_upperleg_l_resomi
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_upperleg_l_resomi
+        colorSource: UniqueColor
+    body_rLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_upperleg_r_resomi
+        colorSource: UniqueColor
+  # Starlight end
 
 
 
 # Feet
 - type: marking
-  id: ResomiGauzeFootRight
-  bodyPart: RFoot
-  markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
-  coloring:
-    default:
-      type: null
-      fallbackColor: '#FFFFFF'
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_lowerleg_r_resomi
-
-- type: marking
-  id: ResomiGauzeFootLeft
+  id: ResomiGauzeFeet
   bodyPart: LFoot
   markingCategory: Overlay
   speciesRestriction: [ Resomi ]
@@ -234,6 +254,16 @@
     default:
       type: null
       fallbackColor: '#FFFFFF'
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
-      state: gauze_lowerleg_l_resomi
+    body_lFoot:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_lowerleg_l_resomi
+        colorSource: UniqueColor
+    body_rFoot:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_gauze.rsi
+          state: gauze_lowerleg_r_resomi
+        colorSource: UniqueColor
+  # Starlight end

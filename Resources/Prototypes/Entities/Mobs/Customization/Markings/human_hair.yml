@@ -2,1429 +2,2449 @@
   id: HumanHairAfro
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: afro
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: afro
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairAfro2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: afro2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: afro2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBaby
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: baby
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: baby
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBigafro
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bigafro
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bigafro
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairAntenna
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: antenna
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: antenna
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBalding
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: e
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: e
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBedhead
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bedhead
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bedhead
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBedheadv2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bedheadv2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bedheadv2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBedheadv3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bedheadv3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bedheadv3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCube
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cube
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cube
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPulato
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: pulato
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: pulato
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongBedhead
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: long_bedhead
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: long_bedhead
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongBedhead2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: long_bedhead2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: long_bedhead2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairFloorlengthBedhead
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: floorlength_bedhead
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: floorlength_bedhead
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBeehive
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: beehive
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: beehive
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBeehivev2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: beehivev2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: beehivev2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBob
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bob
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bob
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBob2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bob2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bob2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBobcut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bobcut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bobcut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBob4
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bob4
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bob4
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBob5
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bob5
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bob5
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBobcurl
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bobcurl
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bobcurl
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBoddicker
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: boddicker
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: boddicker
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBowlcut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bowlcut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bowlcut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBowlcut2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bowlcut2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bowlcut2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBraid
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: braid
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: braid
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBraided
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: braided
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: braided
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBraidfront
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: braidfront
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: braidfront
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBraid2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: braid2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: braid2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHbraid
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: hbraid
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: hbraid
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShortbraid
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shortbraid
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shortbraid
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBraidtail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: braidtail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: braidtail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBun
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bun
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bun
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBunhead2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bunhead2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bunhead2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBun3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bun3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bun3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLargebun
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: largebun
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: largebun
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairManbun
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: manbun
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: manbun
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTightbun
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: tightbun
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: tightbun
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBusiness
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: business
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: business
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBusiness2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: business2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: business2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBusiness3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: business3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: business3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBusiness4
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: business4
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: business4
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBuzzcut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: buzzcut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: buzzcut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCia
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cia
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cia
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicAfro
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicafro
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicafro
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicBigAfro
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicbigafro
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicbigafro
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicBusiness
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicbusiness
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicbusiness
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicCia
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classiccia
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classiccia
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicCornrows2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classiccornrows2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classiccornrows2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicFloorlengthBedhead
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicfloorlength_bedhead
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicfloorlength_bedhead
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicModern
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicmodern
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicmodern
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicMulder
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicmulder
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicmulder
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicWisp
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classicwisp
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classicwisp
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCoffeehouse
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: coffeehouse
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: coffeehouse
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCombover
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: combover
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: combover
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCornrows
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cornrows
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cornrows
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCornrows2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cornrows2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cornrows2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCornrowbun
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cornrowbun
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cornrowbun
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCornrowbraid
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cornrowbraid
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cornrowbraid
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCornrowtail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: cornrowtail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: cornrowtail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCrewcut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: crewcut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: crewcut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCrewcut2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: crewcut2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: crewcut2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCurls
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: curls
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: curls
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairC
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: c
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: c
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDandypompadour
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: dandypompadour
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: dandypompadour
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDevilock
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: devilock
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: devilock
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDoublebun
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: doublebun
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: doublebun
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDoublebunLong
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_hair.rsi
-    state: doublebun_long
+    body_hair:
+      sprite:
+        sprite: Mobs/Customization/human_hair.rsi
+        state: doublebun_long
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDreads
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: dreads
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: dreads
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDrillruru
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: drillruru
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: drillruru
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairDrillhairextended
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: drillhairextended
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: drillhairextended
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairEmo
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: emo
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: emo
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairEmofringe
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: emofringe
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: emofringe
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairNofade
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: nofade
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: nofade
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHighfade
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: highfade
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: highfade
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairMedfade
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: medfade
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: medfade
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLowfade
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: lowfade
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: lowfade
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBaldfade
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: baldfade
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: baldfade
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairFeather
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: feather
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: feather
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairFather
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: father
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: father
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSargeant
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sargeant
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: sargeant
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairFlair
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: flair
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: flair
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBigflattop
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bigflattop
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bigflattop
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairFlow
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: f
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: f
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairGelled
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: gelled
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: gelled
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairGentle
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: gentle
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: gentle
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHalfbang
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: halfbang
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: halfbang
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHalfbang2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: halfbang2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: halfbang2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHalfshaved
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: halfshaved
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: halfshaved
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHedgehog
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: hedgehog
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: hedgehog
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHimecut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: himecut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: himecut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHimecut2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: himecut2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: himecut2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShorthime
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shorthime
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shorthime
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHimeup
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: himeup
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: himeup
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHitop
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: hitop
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: hitop
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairJade
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: jade
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: jade
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairJensen
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: jensen
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: jensen
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairJoestar
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: joestar
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: joestar
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairKeanu
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: keanu
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: keanu
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairKusanagi
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: kusanagi
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: kusanagi
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLong
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: long
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: long
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLong2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: long2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: long2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLong3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: long3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: long3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongWithBundles
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longbundled
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longbundled
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongovereye
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longovereye
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longovereye
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLbangs
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: lbangs
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: lbangs
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongemo
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longemo
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longemo
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongfringe
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longfringe
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longfringe
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongsidepart
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longsidepart
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longsidepart
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairMegaeyebrows
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: megaeyebrows
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: megaeyebrows
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairMessy
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: messy
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: messy
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairModern
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: modern
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: modern
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairMohawk
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: d
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: d
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairNitori
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: nitori
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: nitori
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairReversemohawk
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: reversemohawk
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: reversemohawk
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUnshavenMohawk
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: unshaven_mohawk
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: unshaven_mohawk
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairMulder
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: mulder
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: mulder
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairOdango
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: odango
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: odango
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairOmbre
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ombre
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ombre
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairOneshoulder
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: oneshoulder
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: oneshoulder
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShortovereye
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shortovereye
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shortovereye
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairOxton
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: oxton
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: oxton
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairParted
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: parted
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: parted
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPart
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: part
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: part
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairKagami
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: kagami
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: kagami
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPigtails
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: pigtails
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: pigtails
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPigtails2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: pigtails2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: pigtails2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPixie
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: pixie
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: pixie
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPompadour
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: pompadour
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: pompadour
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBigpompadour
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: bigpompadour
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: bigpompadour
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail4
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail4
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail4
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail5
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail5
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail5
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail6
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail6
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail6
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPonytail7
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ponytail7
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ponytail7
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairHighponytail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: highponytail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: highponytail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairStail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: stail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: stail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongstraightponytail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longstraightponytail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longstraightponytail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairCountry
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: country
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: country
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairFringetail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: fringetail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: fringetail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSidetail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sidetail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: sidetail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSidetail2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sidetail2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: sidetail2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSidetail3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sidetail3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: sidetail3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSidetail4
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sidetail4
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: sidetail4
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSpikyponytail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: spikyponytail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: spikyponytail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairPoofy
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: poofy
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: poofy
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairQuiff
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: quiff
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: quiff
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairRonin
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: ronin
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: ronin
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShaved
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shaved
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shaved
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShavedpart
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shavedpart
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shavedpart
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShortbangs
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shortbangs
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shortbangs
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairA
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: a
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: a
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShorthair2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shorthair2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shorthair2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShorthair3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shorthair3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shorthair3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairD
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: d
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: d
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairE
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: e
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: e
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairF
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: f
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: f
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShorthairg
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shorthairg
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shorthairg
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHair80s
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: 80s
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: 80s
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairRosa
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: rosa
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: rosa
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairB
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: b
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: b
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSidecut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: sidecut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: sidecut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSkinhead
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: skinhead
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: skinhead
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairProtagonist
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: protagonist
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: protagonist
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSpikey
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: spikey
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: spikey
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSpiky
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: spiky
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: spiky
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSpiky2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: spiky2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: spiky2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSpookyLong
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: spookylong
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: spookylong
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSwept
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: swept
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: swept
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairSwept2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: swept2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: swept2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairBAlt
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: b_alt
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: b_alt
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairThinning
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: thinning
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: thinning
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairThinningfront
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: thinningfront
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: thinningfront
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairThinningrear
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: thinningrear
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: thinningrear
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTopknot
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: topknot
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: topknot
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTressshoulder
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: tressshoulder
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: tressshoulder
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTrimmed
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: trimmed
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: trimmed
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTrimflat
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: trimflat
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: trimflat
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTwintail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: twintail
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: twintail
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTwoStrands
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: twostrands
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: twostrands
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUndercut
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: undercut
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: undercut
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUndercutleft
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: undercutleft
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: undercutleft
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUndercutright
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: undercutright
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: undercutright
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUnkept
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: unkept
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: unkept
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUpdo
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: updo
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: updo
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairVlong
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: vlong
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: vlong
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongest
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longest
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longest
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongest2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longest2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longest2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairVeryshortovereyealternate
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: veryshortovereyealternate
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: veryshortovereyealternate
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairVlongfringe
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: vlongfringe
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: vlongfringe
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairVolaju
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: volaju
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: volaju
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairWisp
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: wisp
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: wisp
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairUneven
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: uneven
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: uneven
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairTailed
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: tailed
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: tailed
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicLong2
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classiclong2
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classiclong2
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairClassicLong3
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: classiclong3
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: classiclong3
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairShaped
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: shaped
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: shaped
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongBow
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_hair.rsi
-      state: longbow
+    body_hair:
+        sprite:
+          sprite: Mobs/Customization/human_hair.rsi
+          state: longbow
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairLongWithBangs
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_hair.rsi
-    state: longwithbangs
+    body_hair:
+      sprite:
+        sprite: Mobs/Customization/human_hair.rsi
+        state: longwithbangs
+      colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairOverEyePigtail
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_hair.rsi
-    state: overeyepigtail
+    body_hair:
+      sprite:
+        sprite: Mobs/Customization/human_hair.rsi
+        state: overeyepigtail
+      colorSource: HumanHairColor
+  # Starlight end
 #starlight start
 - type: marking
   id: HumanHairLowpigtails
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
-      state: lowpigtails
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/human_hair.rsi
+          state: lowpigtails
+        colorSource: HumanHairColor
+  # Starlight end
 - type: marking
   id: HumanHairGatheredLow
   bodyPart: Hair
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
-      state: gatheredlow
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/human_hair.rsi
+          state: gatheredlow
+        colorSource: HumanHairColor
+  # Starlight end
 #starlight end

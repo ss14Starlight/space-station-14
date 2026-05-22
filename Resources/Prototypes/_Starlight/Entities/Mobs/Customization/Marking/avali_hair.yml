@@ -3,87 +3,154 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_bigponytail_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_bigponytail_secondary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_bigponytail_tertiary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_bigponytail_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_bigponytail_secondary
+        colorSource: UniqueColor
+    body_headTop@2:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_bigponytail_tertiary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairCockatiel
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_cockatiel_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_cockatiel_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_cockatiel_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_cockatiel_secondary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairCockatoo
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_cockatoo_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_cockatoo_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_cockatoo_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_cockatoo_secondary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairDuelFeather
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_dualfeather_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_dualfeather_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_dualfeather_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_dualfeather_secondary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairHooked
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_hooked_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_hooked_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_hooked_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_hooked_secondary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairJay
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_jay_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_jay_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_jay_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_jay_secondary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairLongFeather
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_longfeather_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_longfeather_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_longfeather_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_longfeather_secondary
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliHairPunk
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_punk_primary
-    - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
-      state: avali_crest_punk_secondary
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_punk_primary
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
+          state: avali_crest_punk_secondary
+        colorSource: UniqueColor
+  # Starlight end

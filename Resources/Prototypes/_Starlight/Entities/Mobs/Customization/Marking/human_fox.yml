@@ -4,11 +4,19 @@
   waggingId: FopsTailWag
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_tail
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_tail_inner
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_tail
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_tail_inner
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -66,11 +74,19 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_ear
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_ear_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_ear
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_ear_inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: PuppyTail
@@ -78,11 +94,19 @@
   waggingId: PuppyTailWag
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: wolf_tail
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: wolf_tail_inner
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: wolf_tail
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: wolf_tail_inner
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -141,11 +165,19 @@
   markingCategory: Tail
   staticId: FopsTail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_fox_waggin
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_fox_inner_waggin
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_fox_waggin
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_fox_inner_waggin
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -204,11 +236,19 @@
   markingCategory: Tail
   staticId: PuppyTail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_wolf_waggin
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_wolf_inner_waggin
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_wolf_waggin
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_wolf_inner_waggin
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -266,73 +306,123 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxlikeEarFade
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp-fade
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp-fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxlikeEarSharp
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp-sharp
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp-sharp
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxlikeEarWolf
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: wolf
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: wolf-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: wolf
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: wolf-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxlikeEarFennec
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: fennec
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: fennec-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: fennec
+        colorSource: UniqueColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: fennec-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxlikeEarFox
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: fox
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: fox
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxlikeEarShock
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: shock
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: shock
+        colorSource: UniqueColor
+  # Starlight end
 
 # Tail Markings
 - type: marking
@@ -341,11 +431,19 @@
   markingCategory: Tail
   waggingId: FoxlikeTailWag
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp-fade
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -404,11 +502,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -467,11 +573,19 @@
   staticId: FoxlikeTail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag-tip #fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag-tip #fade
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -530,11 +644,19 @@
   markingCategory: Tail
   staticId: FoxlikeTailTip
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -592,11 +714,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt-fade
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -654,11 +784,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -716,11 +854,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: long
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: long-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: long
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: long-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -779,11 +925,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox-fade
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -842,11 +996,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -905,11 +1067,19 @@
   markingCategory: Tail
   staticId: FoxlikeTailFox
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag-fade
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -968,11 +1138,19 @@
   markingCategory: Tail
   staticId: FoxlikeTailFoxTip
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1031,9 +1209,14 @@
   markingCategory: Tail
   waggingId: FoxlikeTailBushyWag
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: bushfluff
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: bushfluff
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1092,9 +1275,14 @@
   markingCategory: Tail
   staticId: FoxlikeTailBushy
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: bushfluff_wag
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: bushfluff_wag
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1152,9 +1340,14 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox2
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox2
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1212,11 +1405,19 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox3
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox3-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox3
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox3-tip
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1274,9 +1475,14 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fennec
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fennec
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:
@@ -1334,9 +1540,14 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Human]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fluffy
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fluffy
+        colorSource: UniqueColor
+  # Starlight end
   emotes:
     - emotePrototype: Yip
       requiredMarkingsAny:

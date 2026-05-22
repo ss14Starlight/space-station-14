@@ -3,44 +3,72 @@
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_legsL
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_legsL
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidLegPawMittensR
   bodyPart: RLeg
   markingCategory: Legs
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  pawmittens_legsR
+    body_rLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: pawmittens_legsR
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidLegTabbyL
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  Tabby_LegL
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_LegL
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidLegTabbyR
   bodyPart: RLeg
   markingCategory: Legs
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state:  Tabby_LegR
+    body_rLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: Tabby_LegR
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FelionoidLegCalicoL
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico1_legL
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: calico2_legL
+    body_lLeg@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico1_legL
+        colorSource: UniqueColor
+    body_lLeg@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: calico2_legL
+        colorSource: UniqueColor
+  # Starlight end

@@ -2,244 +2,419 @@
   id: HumanFacialHairAbe
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: abe
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: abe
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairBrokenman
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: brokenman
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: brokenman
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairChin
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: chin
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: chin
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairDwarf
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: dwarf
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: dwarf
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairFullbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: fullbeard
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: fullbeard
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairCroppedfullbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: croppedfullbeard
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: croppedfullbeard
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairGt
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: gt
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: gt
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairHip
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: hip
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: hip
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairJensen
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: jensen
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: jensen
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairNeckbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: neckbeard
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: neckbeard
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairWise
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: wise
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: wise
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairMuttonmus
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: muttonmus
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: muttonmus
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairMartialartist
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: martialartist
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: martialartist
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairChinlessbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: chinlessbeard
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: chinlessbeard
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairMoonshiner
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: moonshiner
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: moonshiner
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairLongbeard
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: longbeard
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: longbeard
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairVolaju
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: volaju
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: volaju
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHair3oclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 3oclock
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 3oclock
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairFiveoclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: fiveoclock
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: fiveoclock
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHair5oclockmoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 5oclockmoustache
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 5oclockmoustache
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHair7oclock
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 7oclock
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 7oclock
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHair7oclockmoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: 7oclockmoustache
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: 7oclockmoustache
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairMoustache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: moustache
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: moustache
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairPencilstache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: pencilstache
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: pencilstache
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairSmallstache
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: smallstache
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: smallstache
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairWalrus
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: walrus
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: walrus
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairFumanchu
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: fumanchu
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: fumanchu
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairHogan
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: hogan
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: hogan
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairSelleck
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: selleck
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: selleck
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairChaplin
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: chaplin
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: chaplin
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairVandyke
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: vandyke
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: vandyke
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairWatson
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: watson
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: watson
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairElvis
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: elvis
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: elvis
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairMutton
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: mutton
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: mutton
+        colorSource: HumanFacialHairColor
+  # Starlight end
 - type: marking
   id: HumanFacialHairSideburn
   bodyPart: FacialHair
   markingCategory: FacialHair
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/human_facial_hair.rsi
-      state: sideburn
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/human_facial_hair.rsi
+          state: sideburn
+        colorSource: HumanFacialHairColor
+  # Starlight end

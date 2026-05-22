@@ -1,5 +1,5 @@
 - type: marking
-  id: TattooFelionoidHeartLeftArm
+  id: TattooFelionoidHeartArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Felionoid]
@@ -8,23 +8,19 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
-    state: heart_l_arm
-
-- type: marking
-  id: TattooFelionoidHeartRightArm
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Felionoid]
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
-    state: heart_r_arm
+    body_lArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
+        state: heart_l_arm
+      colorSource: UniqueColor
+    body_rArm:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
+        state: heart_r_arm
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooFelionoidHiveChest
@@ -36,9 +32,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
-    state: hive_s
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
+        state: hive_s
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooFelionoidNightlingChest
@@ -50,6 +51,11 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
-    state: nightling_s
+    body_chest:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Felionoid/tattoos.rsi
+        state: nightling_s
+      colorSource: UniqueColor
+  # Starlight end

@@ -4,18 +4,28 @@
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
-    state: downwards
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+        state: downwards
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidCheliceraeInwards
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chelicerae.rsi
-    state: inwards
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chelicerae.rsi
+        state: inwards
+      colorSource: HumanSkinColor
+  # Starlight end
 
 # Appendages
 - type: marking
@@ -23,99 +33,171 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: long_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: long_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: long_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: long_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesSharp
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: sharp_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: sharp_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: sharp_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: sharp_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesStingers
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: stingers_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: stingers_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: stingers_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: stingers_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesZigZag
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: zigzag_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: zigzag_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: zigzag_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: zigzag_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesCurled
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: curled_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: curled_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: curled_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: curled_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesChipped
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: chipped_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: chipped_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: chipped_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: chipped_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesHarvest
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: harvest_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: harvest_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: harvest_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: harvest_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesShort
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: short_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: short_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: short_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: short_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: ArachnidAppendagesFreaky
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: freaky_primary
-  - sprite: Mobs/Customization/Arachnid/appendages.rsi
-    state: freaky_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: freaky_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/appendages.rsi
+        state: freaky_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 # Chest
 - type: marking
@@ -123,9 +205,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: stripes
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: stripes
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -136,9 +223,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: slashes
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: slashes
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -149,9 +241,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: x
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: x
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -162,9 +259,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: cross
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: cross
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -175,9 +277,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: heart
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: heart
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -188,9 +295,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: hourglass
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: hourglass
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -201,9 +313,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: nail-and-hammer
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: nail-and-hammer
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -214,9 +331,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: star
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: star
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -227,9 +349,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: arrows
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: arrows
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -240,9 +367,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: core
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: core
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -253,9 +385,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: fiddleback
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: fiddleback
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -266,9 +403,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: skull
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: skull
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -279,9 +421,14 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/chest.rsi
-    state: target
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/chest.rsi
+        state: target
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -289,26 +436,23 @@
 
 # Arms
 - type: marking
-  id: ArachnidRArmStripes
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/arms.rsi
-    state: stripes_right
-  coloring:
-    default:
-      type:
-        !type:EyeColoring
-
-- type: marking
-  id: ArachnidLArmStripes
+  id: ArachnidArmStripes
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/arms.rsi
-    state: stripes_left
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/arms.rsi
+        state: stripes_left
+      colorSource: HumanSkinColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/arms.rsi
+        state: stripes_right
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -316,26 +460,23 @@
 
 # Legs
 - type: marking
-  id: ArachnidRLegStripes
-  bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Arachnid]
-  sprites:
-  - sprite: Mobs/Customization/Arachnid/legs.rsi
-    state: stripes_right
-  coloring:
-    default:
-      type:
-        !type:EyeColoring
-
-- type: marking
-  id: ArachnidLLegStripes
+  id: ArachnidLegStripes
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/legs.rsi
-    state: stripes_left
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/legs.rsi
+        state: stripes_left
+      colorSource: HumanSkinColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/legs.rsi
+        state: stripes_right
+      colorSource: HumanSkinColor
+  # Starlight end
   coloring:
     default:
       type:
@@ -348,7 +489,12 @@
   markingCategory: Overlay
   forcedColoring: true
   speciesRestriction: [Arachnid]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/Arachnid/overlay.rsi
-    state: fuzzy
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/Arachnid/overlay.rsi
+        state: fuzzy
+      colorSource: UniqueColor
+  # Starlight end
 

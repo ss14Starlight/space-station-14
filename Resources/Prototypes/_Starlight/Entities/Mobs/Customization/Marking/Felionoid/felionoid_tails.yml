@@ -5,9 +5,14 @@
   markingCategory: Tail
   waggingId: FelionoidTailAnimated
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: tail_behind
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: tail_behind
+        colorSource: FelionoidSkinColor
+  # Starlight end
 
 # Animated
 - type: marking
@@ -16,9 +21,14 @@
   markingCategory: Tail
   staticId: FelionoidTail
   speciesRestriction: [Felionoid]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
-      state: tail_wagging
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+          state: tail_wagging
+        colorSource: FelionoidSkinColor
+  # Starlight end
 
 # This don't work - I have no idea why. Get commented out nerd
 # Tail is not rendering correctly/at all, seems to be confusing the layers?
