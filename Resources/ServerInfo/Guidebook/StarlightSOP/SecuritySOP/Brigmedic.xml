@@ -3,7 +3,9 @@
 
 <GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Brigmedic"/>
 
-1 . Standard [color=#00a933]Code Green[/color] equipment is:
+- 1.\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
 <Box>
 	<GuideEntityEmbed Entity="MedkitAdvancedFilled"/>
 	<GuideEntityEmbed Entity="DefibrillatorBrigmedical"/>
@@ -25,13 +27,21 @@
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="Handcuffs"/>
-	or
 	<GuideEntityEmbed Entity="Zipties"/>
 </Box>
 
-2. Brigmedics may not perform Security Officer duties unless security is severely understaffed, or a crime has occurred in their sight.
+- 2.\n
+The Brigmedic is not to perform the duties of the Security Officer, but may engage if transgressions occur in their immediate vicinity.
 
-3. Brigmedics must prioritize the health and safety of Security Officers and Prisoners over all other priorities.
+- 3.\n
+The Brigmedic is obligated to lend medical assistance to the following Crew Assets, in order of importance:\n\n
+3.1 Members of Command\n
+3.2 Members of Security\n
+3.3 Prisoners and detainees
 
-4. Brigmedics putting themselves in excessive danger, and by extension the entire department, are to be considered negligent in their duties.
+- 4.\n
+The Brigmedic is not obligated to lend aid to regular crew, but may do so if they have the time and resources.
+
+- 5.\n
+The Brigmedic is not to put themselves in harm's way unless there is no other choice.
 </Document>

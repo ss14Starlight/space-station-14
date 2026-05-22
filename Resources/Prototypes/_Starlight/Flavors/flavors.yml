@@ -47,3 +47,8 @@
   id: thelastcall
   flavorType: Complex
   description: flavor-complex-the-last-call
+
+- type: flavor
+  id: perfid
+  flavorType: Base
+  description: flavor-base-perfid

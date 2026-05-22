@@ -74,6 +74,8 @@
 
   It's an advanced combat spider. In contrast to the red terror it has [color=#a3f2fe]EMP scream[/color] ability which can drain energy from energy devices.
 
+  Can evolve into [color=#fc6cff]TIER 3[/color] prince of terror after spinning 36 webs.
+
   ## Terror white
 
   <Box>
@@ -82,6 +84,8 @@
 
   It's an advanced support spider. In contrast to the green terror it has acid spit long-distance attack.
 
+  Can evolve into [color=#fc6cff]TIER 3[/color] princess of terror after injecting 6 eggs into humanoids.
+
   ## Terror black
 
   <Box>
@@ -89,6 +93,28 @@
   </Box>
 
   It's an advanced stealth spider. In contrast to the gray terror it has Jump ability which allows it to jump, jumping also knocks off humanoids.
+
+  Also has [color=#4d643e]Poison[/color] web which injects toxin to humanoids standing in it.
+
+  Can evolve into [color=#fc6cff]TIER 3[/color] mother of terror after spinning 36 webs.
+
+  # TIER 3 spiders
+
+  ## Prince of terror
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorPrince" Caption=""/>
+  </Box>
+
+  It's an even more advanced combat spider. It inherits all the properties of terror purple, but has more health and deals more damage.
+
+  ## Mother of terror
+
+  <Box>
+    <GuideEntityEmbed Entity="MobTerrorMother" Caption=""/>
+  </Box>
+
+  It's an even more advanced support spider. It inherits all the properties of terror black, and can spawn royal jelly, which heals fellow spiders.
 
   Also has [color=#4d643e]Poison[/color] web which injects toxin to humanoids standing in it.
 
