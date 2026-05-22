@@ -47,8 +47,15 @@ public sealed partial class DungeonJob
                     if (gen.Replacement == null)
                         break;
 
-                    var prototype = _entManager.GetComponent<MetaDataComponent>(uid.Value).EntityPrototype;
+                    // Starlight Start
+                    if (_entManager.Deleted(uid.Value) ||
+                        !_entManager.TryGetComponent(uid.Value, out MetaDataComponent? meta))
+                    {
+                        continue;
+                    }
+                    // Starlight End
 
+                    var prototype = meta.EntityPrototype; // Starlight Edit
                     if (prototype?.ID == gen.Replacement)
                     {
                         replaceEntities[node] = uid.Value;
@@ -125,7 +132,15 @@ public sealed partial class DungeonJob
 
                         if (replaceEntities.TryGetValue(node, out var existingEnt))
                         {
-                            var existingProto = _entManager.GetComponent<MetaDataComponent>(existingEnt).EntityPrototype;
+                            // Starlight Start
+                            if (_entManager.Deleted(existingEnt) ||
+                                !_entManager.TryGetComponent(existingEnt, out MetaDataComponent? existingMeta))
+                            {
+                                continue;
+                            }
+                            // Starlight End
+
+                            var existingProto = existingMeta.EntityPrototype; // Starlight Edit
                             _entManager.DeleteEntity(existingEnt);
 
                             if (existingProto != null && remapping.TryGetValue(existingProto.ID, out var remapped))

@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
   id: MagistrateIDCard
   name: magistrate ID card
@@ -588,26 +588,6 @@
     - DoorBumpOpener
     - WhitelistChameleon
     - WhitelistChameleonIdCard
-
-# Blackstar
-- type: entity
-  parent: IDCardStandard
-  id: BlackstarIDCard
-  name: Blackstar ID card
-  components:
-    - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
-      layers:
-        - state: mercenary
-        - sprite: *starlight-icon-rsi
-          offset: *icon-offset
-          state: Blackstar
-    - type: IdCard
-      jobTitle: job-name-blackstar
-      jobIcon: JobIconBlackstar
-    - type: Access
-      tags:
-        - Blackstar
 
 # MedTak
 - type: entity
