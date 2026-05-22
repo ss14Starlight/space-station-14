@@ -10,9 +10,11 @@
     speaks:
     - Chittin
     - Darktongue
+    - Xeno
     understands:
     - Chittin
     - Darktongue
+    - Xeno
   - type: ThermalVision
     useAlternativeShader: true
   - type: OptionsVisualizer
@@ -388,13 +390,20 @@
   name: terror black
   parent: MobTerrorBlackUnevolvable
   id: MobTerrorBlack
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorMother
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
 
 # Purple
 
 - type: entity
   name: terror purple
   parent: MobTerrorRedUnevolvable
-  id: MobTerrorPurple
+  id: MobTerrorPurpleUnevolvable
+  abstract: true
   components:
   - type: OptionsVisualizer
     visuals:
@@ -415,6 +424,17 @@
     actions:
     - ActionSpiderEMPScream
     - ActionEntityWrap
+
+- type: entity
+  name: terror purple
+  parent: MobTerrorPurpleUnevolvable
+  id: MobTerrorPurple
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPrince
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
 
 # White
 
@@ -462,6 +482,12 @@
   name: terror white
   parent: MobTerrorWhiteUnevolvable
   id: MobTerrorWhite
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPrincess
+    conditions:
+    - !type:EggsInjectCondition
+      targetEggsAmount: 6
 
 # Tier 3
 
@@ -469,7 +495,7 @@
 
 - type: entity
   name: prince of terror
-  parent: MobTerrorRedUnevolvable
+  parent: MobTerrorPurpleUnevolvable
   id: MobTerrorPrince
   components:
   - type: OptionsVisualizer

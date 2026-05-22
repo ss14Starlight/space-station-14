@@ -1,0 +1,57 @@
+# Blackstar Job Icons
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarLegionCommander
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER - replace when sprite ready
+  jobName: job-name-blackstar-legion-commander
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarHighLegate
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER
+  jobName: job-name-blackstar-high-legate
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarLegate
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER
+  jobName: job-name-blackstar-legate
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarDreadwalker
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER
+  jobName: job-name-blackstar-dreadwalker
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarLegionnaire
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER
+  jobName: job-name-blackstar-legionnaire
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarBlackguard
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER
+  jobName: job-name-blackstar-blackguard
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlackstarInitiate
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Blackstar # PLACEHOLDER
+  jobName: job-name-blackstar-initiate

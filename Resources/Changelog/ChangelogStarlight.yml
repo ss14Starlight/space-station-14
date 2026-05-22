@@ -1,74 +1,4 @@
 Entries:
-- author: wonderfulnewworld, alexalexmax
-  changes:
-  - message: The (normal) nuke going off now starts the end of round sequence, regardless of gamemode.
-    type: Tweak
-  id: 404758
-  time: '2026-05-01T10:16:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4308
-- author: Trosling
-  changes:
-  - message: Fixed health scaling for ghost role dragons.
-    type: Fix
-  id: 404759
-  time: '2026-05-01T10:50:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4305
-- author: CringeCursed
-  changes:
-  - message: Added Achievements system.
-    type: Add
-  id: 404760
-  time: '2026-05-01T11:15:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4001
-- author: Scarlet Lightweaver
-  changes:
-  - message: Split the security cyborg module up a bit, the contrabag module is its own thing now.
-    type: Tweak
-  id: 404761
-  time: '2026-05-01T11:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4303
-- author: Scarlet Lightweaver
-  changes:
-  - message: Fixed security borgs being able to drop and pickup items when crit/PB being inserted.
-    type: Fix
-  id: 404762
-  time: '2026-05-01T11:36:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4303
-- author: Xale
-  changes:
-  - message: Fixed guidebook sorting of chemicals and drinks to once again be in alphabetical order.
-    type: Fix
-  id: 404763
-  time: '2026-05-01T11:54:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4315
-- author: Fasuh
-  changes:
-  - message: Fixed radio using a wrong TTS effect.
-    type: Fix
-  id: 404764
-  time: '2026-05-02T06:14:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4319
-- author: Ohelig
-  changes:
-  - message: Rock anomalies no longer cause weather inside the station.
-    type: Fix
-  id: 404765
-  time: '2026-05-02T06:50:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4320
-- author: Caws
-  changes:
-  - message: Chav accent's word replacement for 'borg/borgs' has been changed to 'tin can/tin cans' instead of 'tin man/tin men'.
-    type: Tweak
-  id: 404766
-  time: '2026-05-02T09:28:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4323
-- author: Caws
-  changes:
-  - message: (Bagel, Box, Cluster, Cog, Cork, Elkridge, Fland, Hotel, Kiloton, Lagan, Manor, Ming, Packed, Plasma, Prism, Reach, Saltern, Sepultum, Silica, Space Mall, Barratry) Keycard Authentication Device to Heads of Staff's offices.
-    type: Add
-  id: 404767
-  time: '2026-05-03T10:42:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4337
 - author: Caws
   changes:
   - message: (Lagan, Ming, Sepultum, Barratry) Added Mail Tech lockers and Mail Tech Airlocks.
@@ -2799,4 +2729,74 @@ Entries:
   id: 405157
   time: '2026-05-21T16:02:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4497
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Added Tier 3 Terror Spiders to the Guidebook.
+    type: Add
+  id: 405158
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Added a Xeno collective mind (+x). Xenos and Terror Spiders can talk in it.
+    type: Add
+  id: 405159
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Terror purple now evolves into Prince of terror after spinning 36 webs.
+    type: Tweak
+  id: 405160
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Terror black now evolves into Mother of terror after spinning 36 webs.
+    type: Tweak
+  id: 405161
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Terror white now evolves into Princess of terror after injecting 6 eggs into humanoids.
+    type: Tweak
+  id: 405162
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Princess of terror spawn now scales with players 1:65.
+    type: Tweak
+  id: 405163
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Tier 3 Terror Spiders can now actually be evolved into.
+    type: Fix
+  id: 405164
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: wonderfulnewworld, Rinary
+  changes:
+  - message: Updates method used to spawn terror spiders from injected humanoids to a more modern one.
+    type: Fix
+  id: 405165
+  time: '2026-05-21T18:05:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4498
+- author: CrazyPhantom
+  changes:
+  - message: Fixed VGroid sometimes not generating with ore.
+    type: Fix
+  id: 405166
+  time: '2026-05-21T19:29:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4485
+- author: Scarlet Lightweaver
+  changes:
+  - message: Overhauled the blackstar faction! witn inspiration from The Wolf Brigade!.
+    type: Tweak
+  id: 405167
+  time: '2026-05-21T19:51:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4435
 Order: -1

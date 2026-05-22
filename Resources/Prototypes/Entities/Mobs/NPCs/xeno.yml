@@ -134,6 +134,7 @@
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
+  - type: Xeno # Starlight, component for inheritance
 
 - type: entity
   name: praetorian
