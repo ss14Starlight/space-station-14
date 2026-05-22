@@ -55,6 +55,7 @@ tiles-tech-greeb-floor = tech maints greeb floor
 # Developer tiles for mapping
 tiles-floor-dev-floor = [dev] floor
 tiles-floor-dev-door = [dev] door
+tiles-floor-dev-atmospherics = [dev] atmospherics floor
 tiles-floor-dev-bar = [dev] bar floor
 tiles-floor-dev-cargo = [dev] cargo floor
 tiles-floor-dev-command = [dev] command floor
