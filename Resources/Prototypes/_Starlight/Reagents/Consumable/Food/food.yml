@@ -35,7 +35,7 @@
             Brute: -0.8
       - !type:ModifyBloodLevel
         amount: 1
-      # Starlight edit start - Make food 50% less effective for dwarves
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.75
         conditions:
@@ -70,7 +70,7 @@
   metabolisms:
     Food:
       effects:
-      # Starlight edit start - Make food 50% less effective for dwarves
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 3.0
         conditions:
@@ -106,7 +106,7 @@
         damage:
           groups:
             Brute: -0.4
-      # Starlight edit start - Make food 50% less effective for dwarves
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
         factor: 0.75
         conditions:
