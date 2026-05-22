@@ -240,7 +240,7 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDragon
       min: 1
-      max: 1 # Just remove scaling. I want to do an elder dragon above a certain pop, but I'm kinda being rushed to make this so I can't right now.
+      max: 1
       pickPlayer: false
       mindRoles:
       - MindRoleDragon

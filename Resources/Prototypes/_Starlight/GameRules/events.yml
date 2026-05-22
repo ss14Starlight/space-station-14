@@ -99,7 +99,7 @@
       - !type:NestedSelector
         tableId: DerelictBorgEventTable
       - id: WizardSpawn
-      - id: Xenoborgs
+      - id: SubXenoborgs # Starlight, make it spawn sub instead
       # Starlight gamerules:
       - id: AbductorsSpawn
       - id: RailroadingTerminator
