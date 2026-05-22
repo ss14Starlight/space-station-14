@@ -64,11 +64,11 @@ public sealed partial class LimbSystem : SharedLimbSystem
         return true;
     }
 
-    public void Amputate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
+    public bool Amputate(Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body, Entity<TransformComponent, MetaDataComponent, BodyPartComponent> limb)
     {
         if (!_containers.TryGetContainingContainer((limb.Owner, limb.Comp1, limb.Comp2), out var container)
          || _body.GetParentPartAndSlotOrNull(limb.Owner) is not var (_, slotId)
-         || !_containers.Remove(limb.Owner, container, destination: body.Comp1.Coordinates)) return;
+         || !_containers.Remove(limb.Owner, container, destination: body.Comp1.Coordinates)) return false;
 
         if (TryComp<CustomLimbComponent>(limb, out var virtualLimb))
             AmputateItemLimb((body, body.Comp1, body.Comp3), limb, slotId, virtualLimb);
@@ -78,6 +78,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
             RemoveLimb(body, limb);
         }
         UpdateLimbAlert(body.Owner);
+        return true;
     }
 
     private void AddItemLimb(EntityUid body, string slot, Entity<MetaDataComponent> item)
