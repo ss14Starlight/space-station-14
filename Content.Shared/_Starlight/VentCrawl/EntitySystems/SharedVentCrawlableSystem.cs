@@ -278,7 +278,8 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             foreach (var entity in holder.Container.ContainedEntities)
             {
                 var action = _actionsSystem.AddAction(entity, holder.ActionProto);
-                holder.ProvidedActions.Add(action);
+                if (action != null)
+                    holder.ProvidedActions.Add(action.Value);
             }
 
             holder.HasExitAction = true;
