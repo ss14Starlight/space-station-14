@@ -1,0 +1,362 @@
+# Blackstar Operative Ghost Role
+# Admin spawns RandomHumanoidSpawnerBlackstarOperative via the Spawn Entities panel.
+# Ghosts claim the role and spawn fully equipped.
+
+- type: entity
+  id: RandomHumanoidSpawnerBlackstarOperative
+  name: Blackstar Dreadwalker
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarLast
+    nameFormat: name-format-blackstar-dreadwalker
+  - type: RandomHumanoidSpawner
+    settings: BlackstarOperative
+
+- type: entity
+  id: RandomHumanoidSpawnerBlackstarLegionnaire
+  name: Blackstar Legionnaire
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarLegionnaireLast
+    nameFormat: name-format-blackstar-legionnaire
+  - type: RandomHumanoidSpawner
+    settings: BlackstarLegionnaire
+
+- type: entity
+  id: RandomHumanoidSpawnerBlackstarBlackguard
+  name: Blackstar Blackguard
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    state: icon
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarBlackguardLast
+    nameFormat: name-format-blackstar-blackguard
+  - type: RandomHumanoidSpawner
+    settings: BlackstarBlackguardSettings
+
+- type: entity
+  id: RandomHumanoidSpawnerBlackstarInitiate
+  name: Blackstar Initiate
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+    state: icon
+  - type: RandomHumanoidSpawner
+    settings: BlackstarInitiateSettings
+
+- type: randomHumanoidSettings
+  id: BlackstarOperative
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-blackstar-operative-name
+    description: ghost-role-information-blackstar-operative-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ BlackstarOperativeGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarLast
+    nameFormat: name-format-blackstar-dreadwalker
+  - type: NpcFactionMember
+    factions:
+    - Blackstar
+
+- type: randomHumanoidSettings
+  id: BlackstarLegionnaire
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-blackstar-legionnaire-name
+    description: ghost-role-information-blackstar-legionnaire-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ BlackstarLegionnaireGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarLegionnaireLast
+    nameFormat: name-format-blackstar-legionnaire
+  - type: NpcFactionMember
+    factions:
+    - Blackstar
+
+- type: randomHumanoidSettings
+  id: BlackstarBlackguardSettings
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-blackstar-blackguard-name
+    description: ghost-role-information-blackstar-blackguard-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ BlackstarBlackguardGear ]
+  - type: RandomMetadata
+    nameSegments:
+    - NamesBlackstarBlackguardLast
+    nameFormat: name-format-blackstar-blackguard
+  - type: NpcFactionMember
+    factions:
+    - Blackstar
+
+- type: randomHumanoidSettings
+  id: BlackstarInitiateSettings
+  parent: EventHumanoid
+  components:
+  - type: GhostRole
+    name: ghost-role-information-blackstar-initiate-name
+    description: ghost-role-information-blackstar-initiate-description
+    rules: ghost-role-information-antagonist-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: AntagImmune
+  - type: NoObjectiveTarget
+  - type: Loadout
+    prototypes: [ BlackstarInitiateGear ]
+  - type: NpcFactionMember
+    factions:
+    - Blackstar
+
+# Dreadwalker — heavy combat, breach kit, high ammo load
+- type: startingGear
+  id: BlackstarOperativeGear
+  equipment:
+    head: ClothingHeadHelmetBlackstar
+    mask: ClothingMaskGasSwat
+    outerClothing: ClothingOuterHardsuitBlackstar
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltMilitaryWebbing
+    id: BlackstarDreadwalkerPDA
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
+    pocket1: WeaponTaser
+    pocket2: PinpointerUniversal
+    suitstorage: WeaponRiflePrometheus
+  storage:
+    back:
+    - RegenerativeMesh
+    - MedicatedSuture
+    - PunctAutoInjector
+    - BurnAutoInjector
+    - JawsOfLife
+    - WelderIndustrialAdvanced
+    - DoubleEmergencyOxygenTankFilled
+    - DoubleEmergencyNitrogenTankFilled
+    - FlashlightSeclite
+    - PowerCellHyper
+    - DrinkWaterBottleFull
+    - FoodSnackNutribrick
+    belt:
+    - WeaponLaserSvalinn
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - GrenadeFlashBang
+    - GrenadeFlashBang
+    - Handcuffs
+
+# =============================================
+# Debug starting gear for all Blackstar ranks
+# =============================================
+
+# Legion Commander — admiral uniform, sabre sheath, no outer armor
+- type: startingGear
+  id: BlackstarLegionCommanderGear
+  equipment:
+    head: ClothingHeadHatBlackstarLegionCommander
+    jumpsuit: ClothingUniformJumpsuitBlackstarLegionCommander
+    gloves: ClothingHandsSalvageMercGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltSheathFilled
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
+    id: BlackstarLegionCommanderPDA
+    pocket1: PinpointerUniversal
+    pocket2: WeaponTaser
+  storage:
+    back:
+    - DoubleEmergencyOxygenTankFilled
+    - FlashlightSeclite
+    - Brutepack
+    - DrinkWaterBottleFull
+
+# High Legate — HoS beret, web vest, battle rifle, trench whistle
+- type: startingGear
+  id: BlackstarHighLegateGear
+  equipment:
+    head: ClothingHeadHatBeretBlackstarHighLegate
+    neck: CommanderWhistle
+    outerClothing: ClothingOuterVestWeb
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltMilitaryWebbing
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
+    id: BlackstarHighLegatePDA
+    pocket1: WeaponTaser
+    pocket2: PinpointerUniversal
+    suitstorage: WeaponRiflePrometheus
+  storage:
+    back:
+    - RegenerativeMesh
+    - MedicatedSuture
+    - DoubleEmergencyOxygenTankFilled
+    - FlashlightSeclite
+    - Brutepack
+    belt:
+    - WeaponLaserSvalinn
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - GrenadeFlashBang
+    - Handcuffs
+
+# Legate — corpsman beret, web vest, battle rifle, trench whistle
+- type: startingGear
+  id: BlackstarLegateGear
+  equipment:
+    head: ClothingHeadHatBeretBlackstarLegate
+    neck: CommanderWhistle
+    outerClothing: ClothingOuterVestWeb
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltMilitaryWebbing
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
+    id: BlackstarLegatePDA
+    pocket1: WeaponTaser
+    pocket2: PinpointerUniversal
+    suitstorage: WeaponRiflePrometheus
+  storage:
+    back:
+    - RegenerativeMesh
+    - MedicatedSuture
+    - DoubleEmergencyOxygenTankFilled
+    - FlashlightSeclite
+    - Brutepack
+    belt:
+    - WeaponLaserSvalinn
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - GrenadeFlashBang
+    - Handcuffs
+
+# Legionnaire — general purpose combat kit
+- type: startingGear
+  id: BlackstarLegionnaireGear
+  equipment:
+    head: ClothingHeadHelmetBlackstar
+    mask: ClothingMaskNeckGaiter
+    outerClothing: ClothingOuterHardsuitBlackstar
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltMilitaryWebbing
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
+    id: BlackstarLegionnairePDA
+    pocket1: WeaponTaser
+    pocket2: PinpointerUniversal
+    suitstorage: WeaponRiflePrometheus
+  storage:
+    back:
+    - RegenerativeMesh
+    - MedicatedSuture
+    - Brutepack
+    - JawsOfLife
+    - DoubleEmergencyOxygenTankFilled
+    - FlashlightSeclite
+    - DrinkWaterBottleFull
+    belt:
+    - WeaponLaserSvalinn
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - Handcuffs
+
+# Blackguard — security / internal crew kit
+- type: startingGear
+  id: BlackstarBlackguardGear
+  equipment:
+    outerClothing: ClothingOuterArmorBasic
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltMilitaryWebbing
+    ears: ClothingHeadsetAltBlackstar
+    eyes: ClothingEyesGlassesBlackstar
+    id: BlackstarBlackguardPDA
+    pocket1: WeaponTaser
+    pocket2: Handcuffs
+  storage:
+    back:
+    - FlashlightSeclite
+    - DoubleEmergencyOxygenTankFilled
+    - Zipties
+    - Zipties
+    - Brutepack
+    - BoxLatexGloves
+
+# Initiate — basic support kit
+- type: startingGear
+  id: BlackstarInitiateGear
+  equipment:
+    outerClothing: ClothingOuterArmorBasic
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesBootsJackFilled
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltUtilityFilled
+    ears: ClothingHeadsetAltBlackstar
+    id: BlackstarInitiatePDA
+  storage:
+    back:
+    - MedkitFilled
+    - FlashlightSeclite
+    - DoubleEmergencyOxygenTankFilled
+
+

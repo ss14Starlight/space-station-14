@@ -24,6 +24,7 @@ using Content.Shared._Starlight.BreathOrgan.Components;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Actions.Components;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
@@ -85,7 +86,8 @@ public sealed class RespiratorSystem : EntitySystem
             UpdateSaturation(uid, -(float)respirator.UpdateInterval.TotalSeconds, respirator);
 
             if (!(_mobState.IsIncapacitated(uid) // cannot breathe in crit.
-                || HasComp<HeldBreathComponent>(uid))) // Starlight Edit - hold your breath
+                || HasComp<HeldBreathComponent>(uid) // Starlight Edit - hold your breath
+                || HasComp<WrappedComponent>(uid))) // Starlight Edit - cannot breathe while wrapped in a web
             {
                 switch (respirator.Status)
                 {
@@ -105,7 +107,7 @@ public sealed class RespiratorSystem : EntitySystem
                 if (_gameTiming.CurTime >= respirator.LastGaspEmoteTime + respirator.GaspEmoteCooldown)
                 {
                     respirator.LastGaspEmoteTime = _gameTiming.CurTime;
-                    if(!HasComp<HeldBreathComponent>(uid))//Starlight - If we are holding our breath, do not gasp but still take damage
+                    if(!HasComp<HeldBreathComponent>(uid) && !HasComp<WrappedComponent>(uid)) // Starlight - suppress gasp when holding breath or wrapped, but still take suffocation damage
                         _chat.TryEmoteWithChat(uid,
                             respirator.GaspEmote,
                             ChatTransmitRange.HideChat,

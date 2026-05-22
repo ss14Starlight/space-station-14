@@ -1235,3 +1235,60 @@
     - item: HammerMedTakOneHanded
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }
+
+# Xenoborg Tier 3
+- type: entity
+  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleEnergyBlade
+  name: energy sword xenoborg module
+  description: Module with an energy sword and a shield.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: xenoborg_scout
+    - state: icon-xenoborg-sword3
+  - type: ItemBorgModule
+    hands:
+    - item: CyborgEnergySwordBlue
+    - item: EnergyShieldUnbreakable
+    - item: JetpackXenoborg
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-sword3-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleSuperHeavyLaser
+  name: bitterfrost cannon xenoborg module
+  description: Module with a bitterfrost cannon.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: xenoborg_heavy
+    - state: icon-xenoborg-laser3
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponLaserCannonXenoborgCold
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
+
+- type: entity
+  parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
+  id: XenoborgModuleHypoPlus
+  name: advanced hypo xenoborg module
+  description: Module with a better set of self-refilling hypo.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
+    layers:
+    - state: xenoborg_stealth
+    - state: icon-xenoborg-hypo2
+  - type: ItemBorgModule
+    hands:
+    - item: NocturineHypoPlus
+    - item: TazinideHypo
+    - item: MuteToxinHypo
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-hypo2-module }
+

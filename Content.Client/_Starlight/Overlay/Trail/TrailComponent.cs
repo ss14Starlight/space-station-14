@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Client._Starlight.Collections;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Trail;
 
 namespace Content.Client._Starlight.Trail;
 
@@ -14,6 +15,12 @@ public sealed partial class TrailComponent : Component
     /// <summary>If there is a shader, there is not much point in this.</summary>
     [DataField]
     public Color TrailColor = Color.White;
+
+    /// <summary>
+    /// Color to fade to as trail points age. This allows for a gradient effect along the trail, or a fade to a specific color before disappearing. If fully transparent, points will simply fade out without changing hue. If set to a color with alpha, points will blend towards that color as they decay.
+    /// </summary>
+    [DataField]
+    public Color FadeColor = Color.Transparent;
 
     /// <summary>Maximum number of recorded positions.</summary>
     [DataField]
@@ -42,6 +49,31 @@ public sealed partial class TrailComponent : Component
     /// <summary>Recorded world positions forming the trail.</summary>
     public RingBuffer<Vector2> Points = new(32);
 
+    /// <summary>Recorded world positions and params forming the trail.</summary>
+    public RingBuffer<TrailSample> Samples = new(32);
+
     /// <summary>Time spent idle (not moving) for decay logic.</summary>
     public float IdleTimer;
+
+    /// <summary>
+    /// Determines how the trail is rendered. "Ribbon" mode creates a simple triangle strip between points, while "SpriteGhost" mode spawns a fading ghost sprite at each point.
+    /// </summary>
+    [DataField]
+    public TrailMode Mode = TrailMode.Ribbon;
+
+    /// <summary>
+    /// Determines how may of samples we should skip between each render. I.e. means if skip is 1, we will render every other sample, if skip is 2, we will render every third sample and so on. This can be used to create a more sparse trail effect without needing to reduce the MaxPoints or increase the MinDistance.
+    /// </summary>
+    [DataField]
+    public int SkipSamples = 0;
+
+    [DataField]
+    public float TeleportThreshold = 3f;
+}
+
+public struct TrailSample
+{
+    public Vector2 Position;
+    public Angle Rotation;
+    public Angle EyeRotation;
 }
