@@ -171,6 +171,13 @@ public sealed partial record PolymorphConfiguration
         "BibleUser",
         "MimePowers"
     };
+
+    /// <summary>
+    /// Whether or not the target of the polymorph should gain the languages
+    /// typically spoken by the Entity
+    /// </summary>
+    [DataField(serverOnly: true)]
+    public bool TransferLanguages = true;
     // Starlight - End
 
     /// <summary>

@@ -1,13 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: VGroid now spawns almost double the distance to potentially help its spawning.
-    type: Tweak
-  id: 404861
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
-- author: CrazyPhantom
-  changes:
   - message: Added a spawn validator to VGroid to try help its spawning.
     type: Add
   id: 404862
@@ -2799,4 +2792,11 @@ Entries:
   id: 405260
   time: '2026-05-22T14:03:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: Sparlight
+  changes:
+  - message: Languages known by the entity being polymorphed into (i.e. a corgi) will now be known by the individual being polymorphed.
+    type: Add
+  id: 405261
+  time: '2026-05-22T14:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4491
 Order: -1
