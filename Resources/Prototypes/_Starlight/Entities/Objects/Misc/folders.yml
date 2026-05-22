@@ -116,6 +116,7 @@
       - Medical
       - Service
       - Engineering
+      - Law
       privilegedIdSlot:
         name: id-card-clipboard-priviliged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
