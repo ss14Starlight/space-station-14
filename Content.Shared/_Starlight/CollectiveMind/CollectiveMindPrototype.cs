@@ -32,7 +32,7 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     /// <summary>
     /// Will show the name of the one who spoke (like admin)
     /// </summary>
-    [DataField]
+    [DataField("showNames")] // Starlight
     public bool ShowNames = false;
 
     /// <summary>
