@@ -36,9 +36,9 @@ public sealed class GenesSystem : EntitySystem
     /// Returns a random selection of traits with repetition.
     /// </summary>
     /// <returns>A random selection of traits with repetition.</returns>
-    public IEnumerable<AbstractTraitPrototype> RandomTraits(Entity<GenesComponent> entity)
+    public IEnumerable<AbstractTrait> RandomTraits(Entity<GenesComponent> entity)
     {
-        IEnumerable<AbstractTraitPrototype> traits = entity.Comp.AvailableTraits;
+        IEnumerable<AbstractTrait> traits = entity.Comp.AvailableTraits;
         while(true)
             yield return traits.ElementAt(_robustRandom.Next(0, traits.Count()));
     }
@@ -83,9 +83,9 @@ public sealed class GenesSystem : EntitySystem
     {
         var newTraits = GetTraitsFromEnumerable(entity.Comp.Genes).Traits;
 
-        Dictionary<OnceTraitPrototype, FixedPoint2> newOnceTraits = new();
-        Dictionary<OnSolutionChangedTraitPrototype, FixedPoint2> newOnSolutionChangedTraits = new();
-        Dictionary<PassiveTraitPrototype, (FixedPoint2, TimeSpan)> newPassiveTraits = new();
+        Dictionary<OnceTrait, FixedPoint2> newOnceTraits = new();
+        Dictionary<OnSolutionChangedTrait, FixedPoint2> newOnSolutionChangedTraits = new();
+        Dictionary<PassiveTrait, (FixedPoint2, TimeSpan)> newPassiveTraits = new();
         // I am not happy with this foreach loop. I really want to construct this instead from simple method calls on the IEnumerables.
         // But that's not possible because dictionaries don't have proper compatability with the OfType method.
         // See, when interpreted as an IEnumerable, which is necessary for access to the LINQ methods like OfType, the values become KeyValuePair
@@ -97,11 +97,11 @@ public sealed class GenesSystem : EntitySystem
         {
             if (!t.Key.Threshold.HasValue || t.Value >= t.Key.Threshold.Value)
             {
-                if (t.Key is OnceTraitPrototype key1)
+                if (t.Key is OnceTrait key1)
                     newOnceTraits.Add(key1, t.Value);
-                else if (t.Key is OnSolutionChangedTraitPrototype key2)
+                else if (t.Key is OnSolutionChangedTrait key2)
                     newOnSolutionChangedTraits.Add(key2, t.Value);
-                else if (t.Key is PassiveTraitPrototype key3)
+                else if (t.Key is PassiveTrait key3)
                     newPassiveTraits.Add(key3, (t.Value, key3.Cooldown + _gameTiming.CurTime));
             }
         }
@@ -161,9 +161,9 @@ public sealed class GenesSystem : EntitySystem
 [DataDefinition, Serializable, NetSerializable]
 public sealed partial class TraitDict
 {
-    public Dictionary<AbstractTraitPrototype, FixedPoint2> Traits = new();
+    public Dictionary<AbstractTrait, FixedPoint2> Traits = new();
 
-    public TraitDict(Dictionary<AbstractTraitPrototype, FixedPoint2> traits) => Traits = traits;
+    public TraitDict(Dictionary<AbstractTrait, FixedPoint2> traits) => Traits = traits;
 
     public TraitDict() {}
 

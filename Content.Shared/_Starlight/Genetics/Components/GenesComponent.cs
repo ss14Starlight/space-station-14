@@ -15,5 +15,5 @@ public sealed partial class GenesComponent : Component
     /// The traits that can be pulled from to make a gene.
     /// </summary>
     [ViewVariables, AutoNetworkedField]
-    public List<AbstractTraitPrototype> AvailableTraits = new();
+    public List<AbstractTrait> AvailableTraits = new();
 }

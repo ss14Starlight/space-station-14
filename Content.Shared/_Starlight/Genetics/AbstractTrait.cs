@@ -1,13 +1,15 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics;
 
 /// <summary>
-/// The general prototype that all traits inherit from. Makes some things less repetitive.
+/// The general trait that all traits inherit from. Makes some things less repetitive.
 /// </summary>
-[Prototype, Serializable]
-public abstract partial class AbstractTraitPrototype : IPrototype
+[Serializable, NetSerializable]
+[DataDefinition]
+public abstract partial class AbstractTrait
 {
     [IdDataField]
     public string ID { get; private set; } = default!;

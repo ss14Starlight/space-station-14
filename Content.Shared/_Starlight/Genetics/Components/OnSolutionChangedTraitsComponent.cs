@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class OnSolutionChangedTraitsComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
-    public Dictionary<OnSolutionChangedTraitPrototype, FixedPoint2> Traits = new();
+    public Dictionary<OnSolutionChangedTrait, FixedPoint2> Traits = new();
 
     /// <summary>
     /// The name of the container that holds the solution.

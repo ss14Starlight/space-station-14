@@ -1,13 +1,16 @@
 using Content.Shared._Starlight.Xenobiology;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics;
 
 /// <summary>
 /// A trait that acts on an entity once it's been created or once the trait has been added.
+/// NOTE: Because this acts only once, this does not need a system to manage it.
 /// </summary>
-[Prototype, Serializable]
-public sealed partial class OnceTraitPrototype : AbstractTraitPrototype
+[Serializable, NetSerializable]
+[DataDefinition]
+public sealed partial class OnceTrait : AbstractTrait
 {
     /// <summary>
     /// The entity effect that is called when the associated entity is created or has its traits updated.

@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Xenobiology;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics;
 
@@ -7,8 +8,9 @@ namespace Content.Shared._Starlight.Genetics;
 /// A trait that acts on a slime that gets constantly activated.
 /// USE THIS RARELY: Constant activation is expensive. Try making the cooldown high.
 /// </summary>
-[Prototype, Serializable]
-public sealed partial class PassiveTraitPrototype : AbstractTraitPrototype
+[Serializable, NetSerializable]
+[DataDefinition]
+public sealed partial class PassiveTrait : AbstractTrait
 {
     /// <summary>
     /// The entity effect that gets activated.

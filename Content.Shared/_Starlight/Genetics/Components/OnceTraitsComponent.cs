@@ -7,5 +7,5 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class OnceTraitsComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
-    public Dictionary<OnceTraitPrototype, FixedPoint2> Traits = new();
+    public Dictionary<OnceTrait, FixedPoint2> Traits = new();
 }
