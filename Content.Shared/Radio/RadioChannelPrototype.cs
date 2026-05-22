@@ -2,6 +2,7 @@ using Content.Shared._Starlight.Language;
 using Content.Shared.Dataset;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Radio;
 
@@ -50,5 +51,8 @@ public sealed partial class RadioChannelPrototype : IPrototype
     // Starlight - Start
     [DataField]
     public ProtoId<LanguagePrototype>? AutoTranslate;
+
+    [DataField("icon")]
+    public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Interface/Radial/Radio/channel_icons.rsi"), "unknown");
     // Starlight - End
 }

@@ -1,6 +1,5 @@
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
-using Robust.Shared.Log;
 
 namespace Content.Client._Starlight.Logs;
 

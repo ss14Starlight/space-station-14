@@ -29,6 +29,21 @@
           Quantity: 30
 
 - type: entity
+  id: ChemistryBottleAmmonia
+  suffix: ammonia
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-ammonia
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Ammonia
+          Quantity: 30
+
+- type: entity
   id: ChemistryBottleAmoxla
   suffix: amoxla
   parent: BaseChemistryBottleFilled
@@ -41,4 +56,49 @@
         maxVol: 30
         reagents:
         - ReagentId: Amoxla
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleDoctorsDelight
+  suffix: doctor's delight
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-doctors-delight
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: DoctorsDelight
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleDesoxyephedrine
+  suffix: desoxyephedrine
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-desoxyephedrine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleWeh
+  suffix: weh
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-weh
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: JuiceThatMakesYouWeh
           Quantity: 30

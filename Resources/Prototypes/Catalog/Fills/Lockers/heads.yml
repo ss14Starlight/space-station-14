@@ -93,7 +93,7 @@
     - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
+    - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
         max: 15
@@ -316,6 +316,8 @@
     - id: ClothingMaskSterile
     - id: ClothingHandsGlovesNitrile
     - id: CMOLicense
+    - id: BottleCaseMedicalFilled
+    - id: PenPackMedicalFilled
     - id: EncryptionKeyMedicalScience # Steal target
       prob: 0.5
     - id: PrintedDocumentGreenshiftAlert

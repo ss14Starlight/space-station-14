@@ -1,0 +1,36 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseDevilObjective
+  components:
+  - type: Objective
+    issuer: objective-issuer-devil
+  - type: RoleRequirement
+    roles:
+    - DevilRole
+
+- type: entity
+  parent: [BaseDevilObjective, BaseLivingObjective]
+  id: SurviveDevilObjective
+  name: Extract alive and unrestrained.
+  description: It's going to be a lot of paperwork if NanoTrasen finds out we are working in this sector.
+  components:
+  - type: Objective
+    difficulty: 1
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition
+
+- type: entity
+  parent: [BaseDevilObjective, BaseLivingObjective]
+  id: DamnSoulsDevilObjective
+  name: Damn souls.
+  components:
+  - type: Objective
+    difficulty: 1
+    icon:
+      sprite: Effects/fire.rsi
+      state: fire
+  - type: DamnCondition
+    descriptionText: objective-condition-damn-description

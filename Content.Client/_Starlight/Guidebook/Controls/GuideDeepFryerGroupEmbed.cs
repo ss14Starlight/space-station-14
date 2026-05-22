@@ -29,9 +29,7 @@ public sealed partial class GuideDeepFryerGroupEmbed : BoxContainer, IDocumentTa
     }
 
     public GuideDeepFryerGroupEmbed(string group) : this()
-    {
-        CreateEntries(group);
-    }
+        => CreateEntries(group);
 
     public bool TryParseTag(Dictionary<string, string> args, [NotNullWhen(true)] out Control? control)
     {

@@ -7,8 +7,9 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Standing;
 using Robust.Shared.GameObjects;
+// Starlight Start
 using Content.Shared._Starlight.Medical.Body.Part;
-using Content.Server._Starlight.Medical.Body.Systems;
+// Starlight End
 
 namespace Content.IntegrationTests.Tests.Buckle
 {
@@ -247,7 +248,7 @@ namespace Content.IntegrationTests.Tests.Buckle
             EntityUid human = default;
             BuckleComponent buckle = null;
             HandsComponent hands = null;
-            BodyComponent body = null;
+            Shared.Body.Components.BodyComponent body = null; // Starlight
 
             await server.WaitIdleAsync();
 
@@ -267,7 +268,7 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(entityManager.TryGetComponent(human, out buckle));
                     Assert.That(entityManager.HasComponent<StrapComponent>(chair));
                     Assert.That(entityManager.TryGetComponent(human, out hands));
-                    Assert.That(entityManager.TryGetComponent(human, out body));
+                    Assert.That(entityManager.TryGetComponent(human, out body)); // Starlight
                 });
 
                 // Buckle
@@ -287,6 +288,7 @@ namespace Content.IntegrationTests.Tests.Buckle
                 }
             });
 
+            // Starlight Start
             await server.WaitRunTicks(10);
 
             await server.WaitAssertion(() =>
@@ -300,7 +302,7 @@ namespace Content.IntegrationTests.Tests.Buckle
                     Assert.That(handsSys.GetHeldItem((human, hands), hand), Is.Not.Null);
                 }
 
-                var bodySystem = entityManager.System<BodySystem>();
+                var bodySystem = entityManager.System<Server._Starlight.Medical.Body.Systems.BodySystem>();
                 var legs = bodySystem.GetBodyChildrenOfType(human, BodyPartType.Leg, body);
 
                 // Break our guy's kneecaps
@@ -309,6 +311,7 @@ namespace Content.IntegrationTests.Tests.Buckle
                     entityManager.DeleteEntity(leg.Id);
                 }
             });
+            // Starlight End
 
             await server.WaitRunTicks(10);
 

@@ -139,6 +139,12 @@
       "name": "ghost-mage",
       "copyright": "Based off the Terminator Skull & Chaplain Robes",
       "directions": 4
+    },
+    {
+      "name": "ghost-custodian",
+      "copyright": "A custom item by AftrLite(Github), Modified by CrazyPhantom779(Github) to one layer",
+      "directions": 4,
+      "delays": [[0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15], [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15], [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15], [0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]]
     }
   ]
 }

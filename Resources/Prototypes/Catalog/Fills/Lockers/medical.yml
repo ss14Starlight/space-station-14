@@ -65,6 +65,9 @@
       - id: UniformScrubsColorPurple
         weight: 0.05
     - id: ClothingMaskSterile
+    - id: Syringe
+    - id: BottleCaseMedicalFilled
+    - id: PenPackMedicalFilled
     #Starlight end
     - id: ClothingEyesHudMedical
     - id: ClothingBeltMedicalFilled
@@ -146,6 +149,7 @@
     - id: JetInjector
     - id: EmergencyHandheldCrewMonitor # Starlight
     - id: JawsOfLifeMed # Starlight
+    - id: BottleCaseParamedicFilled # Starlight, they don't get the pen pouch, they already get a ton of their own special toys.
     # - id: HandheldHealthAnalyzer Starlight - kind of just junk in the locker at this point, use your PDA or get one at a nanomed
     - id: BoxBodyBag
     # Starlight edit - rollerbeds - these are mapped, printable and in your bag round start

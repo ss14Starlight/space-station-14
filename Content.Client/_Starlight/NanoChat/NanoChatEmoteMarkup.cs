@@ -26,9 +26,7 @@ public sealed class NanoChatEmoteMarkup : IMarkupTagHandler
     private const float TopMargin = -8f; // Alignment adjustment
 
     public NanoChatEmoteMarkup()
-    {
-        IoCManager.InjectDependencies(this);
-    }
+        => IoCManager.InjectDependencies(this);
 
     public string Name => "emote";
 

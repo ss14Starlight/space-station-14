@@ -5,6 +5,7 @@
   - MobDamageable
   - MobAtmosExposed
   - MobCombat
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   abstract: true
   components:
   - type: Reactive

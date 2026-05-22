@@ -84,6 +84,20 @@
       username: Bird_
 
 - type: ghostTheme
+  id: TessTheEvil
+  name: Tess the Evil
+  description: Why is she smiling like that?
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/tess_the_evil.rsi
+      state: tess_the_evil
+    color: "#ffffff"
+  requirements:
+    - !type:UsernameRequirement
+      username: Tess_the_Evil
+
+- type: ghostTheme
   id: ghost-kamila
   name: Avali Ghost
   description: a ghostly Avali.

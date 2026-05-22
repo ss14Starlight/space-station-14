@@ -95,7 +95,7 @@ public sealed partial class NewLifeWindow : DefaultWindow
         //decide between normal title and cooldown title
         if (_lastGhostTime + _cooldown > _gameTiming.CurTime)
         {
-            var timeLeft = (_lastGhostTime + _cooldown) - _gameTiming.CurTime;
+            var timeLeft = _lastGhostTime + _cooldown - _gameTiming.CurTime;
             Title = Loc.GetString("ghost-new-life-window-title-cooldown", ("time", timeLeft.ToString(@"hh\:mm\:ss")));
         }
         else

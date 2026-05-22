@@ -1,0 +1,46 @@
+- type: entity
+  parent: BaseStructureComputer
+  id: KeycardAuth
+  # categories: [ ShouldMapStation ] # TODO: Uncomment this when we change all "Departement Communication Consoles"
+  name: Keycard Authentication Device
+  description: This device is used to approve/deny station functions, which require more than one ID card to authenticate.
+  components:
+    - type: WallMount
+    - type: Physics
+      canCollide: false
+    - type: Sprite
+      drawdepth: SmallObjects
+      sprite: _Starlight/Structures/Machines/auth.rsi
+      offset: "0.0,-0.2"
+      layers:
+        - state: base
+        - state: light
+          shader: unshaded
+          visible: false
+          map: ["light"]
+    - type: Rotatable
+      rotateWhileAnchored: false
+    - type: Transform
+      anchored: true
+    - type: Anchorable
+      flags:
+        - Anchorable
+    - type: ApcPowerReceiver
+      powerLoad: 100
+    - type: Godmode
+    - type: Electrified
+      enabled: false
+      usesApcPower: true
+    - type: ExtensionCableReceiver
+    - type: ActivatableUIRequiresPower
+    - type: ActivatableUI
+      key: enum.SecureCommandTerminalUiKey.Key
+    - type: UserInterface
+      interfaces:
+        enum.SecureCommandTerminalUiKey.Key:
+          type: SecureCommandTerminalBui
+    - type: SecureCommandTerminalConsole
+      authTerminal: true
+    - type: Appearance
+    - type: ToggleableVisuals
+      spriteLayer: light

@@ -326,3 +326,89 @@
   sprite:
     sprite: _Starlight/Decals/tiling.rsi
     state: quarter_sw_white
+
+# Tech
+
+- type: decal
+  id: techfloorbendne
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_ne
+
+- type: decal
+  id: techfloorbendnw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_nw
+
+- type: decal
+  id: techfloorbendse
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_se
+
+- type: decal
+  id: techfloorbendsw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_bend_sw
+
+- type: decal
+  id: techfloorcornerne
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_ne
+
+- type: decal
+  id: techfloorcornernw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_nw
+
+- type: decal
+  id: techfloorcornerse
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_se
+
+- type: decal
+  id: techfloorcornersw
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_corner_sw
+
+- type: decal
+  id: techflooreast
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_east
+
+- type: decal
+  id: techfloornorth
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_north
+
+- type: decal
+  id: techfloorsouth
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_south
+
+- type: decal
+  id: techfloorwest
+  tags: ["station", "markings", "tech", "maints"]
+  sprite:
+    sprite: _Starlight/Decals/techfloor.rsi
+    state: techfloor_west

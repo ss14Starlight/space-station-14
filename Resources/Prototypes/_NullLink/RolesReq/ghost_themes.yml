@@ -62,3 +62,17 @@
   - 1494477781772275732 # First Writing Contest Winner
   discord: roles-req-discord-starlight
   rolesLoc: roles-req-first-writing-roles
+
+- type: roleRequirementPrototype
+  id: SeniorDeveloperReq
+  roles:
+  - 1473631364048879759 # Senior Developer
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-senior-developer
+
+- type: roleRequirementPrototype
+  id: DeveloperReq
+  roles:
+  - 1272899036571238521 # Developer
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-developer

@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Conflee (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "3x3_checkered"
+    },
+    {
+      "name": "3x3_checkered_alt"
+    },
+    {
+      "name": "3x3_east"
+    },
+    {
+      "name": "3x3_full"
+    },
+    {
+      "name": "3x3_inner_ne"
+    },
+    {
+      "name": "3x3_inner_nw"
+    },
+    {
+      "name": "3x3_inner_se"
+    },
+    {
+      "name": "3x3_inner_sw"
+    },
+    {
+      "name": "3x3_ne"
+    },
+    {
+      "name": "3x3_nw"
+    },
+    {
+      "name": "3x3_se"
+    },
+    {
+      "name": "3x3_south"
+    },
+    {
+      "name": "3x3_sw"
+    },
+    {
+      "name": "3x3_top"
+    },
+    {
+      "name": "3x3_west"
+    }
+  ]
+}

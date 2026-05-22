@@ -160,3 +160,20 @@
   solids:
     FoodNoodlesBoiled: 1
     OrganShadekinCore: 1
+
+- type: deepFryingRecipe
+  id: RecipeDonut
+  name: plain donut
+  result: FoodDonutPlain
+  time: 10
+  ingredient: FoodDoughRope
+  group: TP14-Deep-Fry
+
+- type: microwaveMealRecipe
+  id: RecipeMeatDonut
+  name: meat donut
+  result: FoodDonutMeat
+  time: 5
+  solids:
+    FoodDonutPlain: 1
+    FoodMeatCutlet: 1

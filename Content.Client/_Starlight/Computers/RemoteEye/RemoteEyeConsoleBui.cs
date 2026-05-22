@@ -1,6 +1,4 @@
-﻿using Content.Client._Starlight.Antags.Abductor;
-using Content.Shared._Starlight.Computers.RemoteEye;
-using Content.Shared.Starlight.Antags.Abductor;
+﻿using Content.Shared._Starlight.Computers.RemoteEye;
 using JetBrains.Annotations;
 using static Content.Shared.Pinpointer.SharedNavMapSystem;
 

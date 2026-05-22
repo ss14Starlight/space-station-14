@@ -4,6 +4,18 @@
   keycode: "l"
   frequency: 1780
   color: "#ff178b"
+  icon:
+    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
+    state: law
+
+# NT Personnel
+- type: radioChannel
+  id: NanoTrasen
+  name: chat-radio-nanotrasen
+  keycode: "p"
+  frequency: 2000
+  color: "#2253b5"
+  longRange: true
 
 - type: radioChannel
   id: Soviet
@@ -12,6 +24,9 @@
   frequency: 1922
   color: "#ed7300"
   longRange: true
+  icon:
+    sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
+    state: communist
 
 - type: radioChannel
   id: Expedition
@@ -33,7 +48,7 @@
 - type: radioChannel
   id: Merchant
   name: chat-radio-merchant
-  keycode: "p"
+  keycode: "d"
   frequency: 1882
   color: "#ffce2e"
   # For Blackstar mercenaries
@@ -53,6 +68,7 @@
   frequency: 11037
   color: "#ff00ff"
   longRange: true
+
   # For aspace stuff specifically, to keep freelance clear
 - type: radioChannel
   id: Aspace
@@ -60,6 +76,7 @@
   keycode: "q"
   frequency: 9999
   color: "#ab489f"
+
   # for admeme stuff specifically, globally address all of your stinky goobers
 - type: radioChannel
   id: Global
@@ -74,7 +91,7 @@
   id: MedTak
   name: chat-radio-medtak
   keycode: "k"
-  frequency: 1452
+  frequency: 1505
   color: "#880606"
   longRange: true
 

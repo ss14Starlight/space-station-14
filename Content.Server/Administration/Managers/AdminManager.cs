@@ -21,7 +21,6 @@ using Robust.Shared.Toolshed;
 using Robust.Shared.Toolshed.Errors;
 using Robust.Shared.Utility;
 
-
 namespace Content.Server.Administration.Managers
 {
     public sealed partial class AdminManager : IAdminManager, IPostInjectInit, IConGroupControllerImplementation
@@ -41,6 +40,10 @@ namespace Content.Server.Administration.Managers
         private readonly HashSet<NetUserId> _promotedPlayers = new();
 
         public event Action<AdminPermsChangedEventArgs>? OnPermsChanged;
+        #region Starlight
+        public event Action<int>? OnActiveAdminsCountChanged;
+        public event Action<int>? OnAdminsCountChanged;
+        #endregion
 
         public IEnumerable<ICommonSession> ActiveAdmins => _admins
             .Where(p => p.Value.Data.Active)
@@ -93,6 +96,8 @@ namespace Content.Server.Administration.Managers
 
             UpdateDatabaseDeadminnedState(session, true);
             reg.Data.Active = false;
+            // Starlight-edit
+            OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.Count());
 
             SendPermsChangedEvent(session);
             UpdateAdminStatus(session);
@@ -168,6 +173,8 @@ namespace Content.Server.Administration.Managers
 
             UpdateDatabaseDeadminnedState(session, false);
             reg.Data.Active = true;
+            // Starlight-edit
+            OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.Count());
 
             if (!reg.Data.Stealth)
             {
@@ -198,7 +205,12 @@ namespace Content.Server.Administration.Managers
             if (data == null)
             {
                 // No longer admin.
-                _admins.Remove(player);
+                // Starlight-start
+                _admins.Remove(player, out var value);
+                OnAdminsCountChanged?.Invoke(_admins.Count);
+                if (value?.Data.Active == true)
+                    OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
+                // Starlight-end
                 _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-no-longer-admin-message"));
             }
             else
@@ -214,6 +226,11 @@ namespace Content.Server.Administration.Managers
                         RankId = rankId
                     };
                     _admins.Add(player, reg);
+                    // Starlight-start
+                    OnAdminsCountChanged?.Invoke(_admins.Count);
+                    if (aData.Active)
+                        OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
+                    // Starlight-end
                     _chat.DispatchServerMessage(player, Loc.GetString("admin-manager-became-admin-message"));
                 }
                 else
@@ -357,20 +374,28 @@ namespace Content.Server.Administration.Managers
             }
             else if (e.NewStatus == SessionStatus.Disconnected)
             {
-                if (_admins.Remove(e.Session, out var reg ) && _cfg.GetCVar(CCVars.AdminAnnounceLogout))
+                // Starlight-start
+                if (_admins.Remove(e.Session, out var reg ))
                 {
-                    if (reg.Data.Stealth)
+                    OnAdminsCountChanged?.Invoke(_admins.Count);
+                    if (reg.Data.Active)
+                        OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
+                    if (_cfg.GetCVar(CCVars.AdminAnnounceLogout))
                     {
-                        _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
-                            ("name", e.Session.Name)), flagWhitelist: AdminFlags.Stealth);
+                        if (reg.Data.Stealth)
+                        {
+                            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
+                                ("name", e.Session.Name)), flagWhitelist: AdminFlags.Stealth);
 
-                    }
-                    else
-                    {
-                        _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
-                            ("name", e.Session.Name)));
+                        }
+                        else
+                        {
+                            _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
+                                ("name", e.Session.Name)));
+                        }
                     }
                 }
+                // Starlight-end
             }
         }
 
@@ -391,6 +416,8 @@ namespace Content.Server.Administration.Managers
             };
 
             _admins.Add(session, reg);
+            // Starlight-edit
+            OnAdminsCountChanged?.Invoke(_admins.Count);
 
             if (session.ContentData()!.Stealthed)
                 reg.Data.Stealth = true;

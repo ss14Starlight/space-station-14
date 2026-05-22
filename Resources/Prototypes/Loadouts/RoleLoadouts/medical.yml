@@ -53,7 +53,7 @@
   - MedicalGloves
   - MedicalDoctorHead
   - MedicalMask
-  - MedicalDoctorJumpsuit
+#  - MedicalDoctorJumpsuit # Already have this
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes

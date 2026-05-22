@@ -66,6 +66,9 @@
   id: BorgModuleSecurityStation
 
 - type: Tag
+  id: BorgContrabandBag
+
+- type: Tag
   id: BorgModuleSupply
 
 - type: Tag
@@ -444,9 +447,6 @@
 
 - type: Tag
   id: OvenMachineBoard
-
-- type: Tag
-  id: PaddyMech
 
 - type: Tag
   id: ParaKnife

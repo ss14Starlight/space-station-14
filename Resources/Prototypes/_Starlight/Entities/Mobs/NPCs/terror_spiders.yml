@@ -5,6 +5,7 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
+  - type: WeaponArcVisuals
   - type: LanguageKnowledge
     speaks:
     - Chittin
@@ -13,6 +14,7 @@
     - Chittin
     - Xenomind
   - type: ThermalVision
+    useAlternativeShader: true
   - type: OptionsVisualizer
     visuals:
       base:
@@ -144,6 +146,9 @@
   - type: GhostTakeoverAvailable
   - type: Puller
     needsHands: false
+  - type: ActionGrant
+    actions:
+    - ActionEntityWrap
 
 - type: entity
   name: terror red
@@ -383,13 +388,20 @@
   name: terror black
   parent: MobTerrorBlackUnevolvable
   id: MobTerrorBlack
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorMother
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
 
 # Purple
 
 - type: entity
   name: terror purple
   parent: MobTerrorRedUnevolvable
-  id: MobTerrorPurple
+  id: MobTerrorPurpleUnevolvable
+  abstract: true
   components:
   - type: OptionsVisualizer
     visuals:
@@ -409,6 +421,18 @@
   - type: ActionGrant
     actions:
     - ActionSpiderEMPScream
+    - ActionEntityWrap
+
+- type: entity
+  name: terror purple
+  parent: MobTerrorPurpleUnevolvable
+  id: MobTerrorPurple
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPrince
+    conditions:
+    - !type:SpiderWebCondition
+      targetWebAmount: 36
 
 # White
 
@@ -456,6 +480,12 @@
   name: terror white
   parent: MobTerrorWhiteUnevolvable
   id: MobTerrorWhite
+  components:
+  - type: Evolving
+    evolveTo: MobTerrorPrincess
+    conditions:
+    - !type:EggsInjectCondition
+      targetEggsAmount: 6
 
 # Tier 3
 
@@ -463,7 +493,7 @@
 
 - type: entity
   name: prince of terror
-  parent: MobTerrorRedUnevolvable
+  parent: MobTerrorPurpleUnevolvable
   id: MobTerrorPrince
   components:
   - type: OptionsVisualizer
@@ -566,8 +596,8 @@
   - type: TerrorPrincess
   - type: ActionGrant
     actions:
-    - ActionEggsLaying
     - ActionAcidVent
+    - ActionEntityWrap
   - type: UserInterface
     interfaces:
       enum.EggsLayingUiKey.Key:

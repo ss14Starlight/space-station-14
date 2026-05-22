@@ -3,3 +3,9 @@
   name: John Toe
   parent: BaseMobHuman
   id: MobJohnToe
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: BaseMobHuman
+  id: MobHuman
