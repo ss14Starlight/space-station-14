@@ -158,6 +158,15 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         holder.IsExitingVentCrawls = true;
 
+        if (holder.HasExitAction)
+        {
+            foreach (var action in holder.ProvidedActions)
+                _actionsSystem.RemoveAction(action);
+
+            holder.ProvidedActions.Clear();
+            holder.HasExitAction = false;
+        }
+
         foreach (var entity in holder.Container.ContainedEntities.ToArray())
         {
             RemComp<BeingVentCrawlComponent>(entity);
@@ -273,7 +282,10 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var welded = false;
         if (TryComp<WeldableComponent>(holder.NextTube.Value, out var weldableComponent))
             welded = weldableComponent.IsWelded;
-        if (HasComp<VentCrawlEntryComponent>(holder.NextTube.Value) && !welded)
+
+        _containerSystem.Remove(uid, Comp<VentCrawlTubeComponent>(currentTube).Contents, reparent: false, force: true);
+
+        if (!holder.HasExitAction && HasComp<VentCrawlEntryComponent>(holder.NextTube.Value) && !welded)
         {
             foreach (var entity in holder.Container.ContainedEntities)
             {
@@ -284,27 +296,22 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
             holder.HasExitAction = true;
         }
-        else
+        else if (holder.HasExitAction)
         {
-            _containerSystem.Remove(uid, Comp<VentCrawlTubeComponent>(currentTube).Contents, reparent: false, force: true);
+            foreach (var action in holder.ProvidedActions)
+                _actionsSystem.RemoveAction(action);
 
-            if (holder.HasExitAction)
-            {
-                foreach (var action in holder.ProvidedActions)
-                    _actionsSystem.RemoveAction(action);
-
-                holder.ProvidedActions.Clear();
-                holder.HasExitAction = false;
-            }
-
-            if (_gameTiming.CurTime > holder.LastCrawl + VentCrawlHolderComponent.CrawlDelay)
-            {
-                holder.LastCrawl = _gameTiming.CurTime;
-                _audioSystem.PlayPvs(holder.CrawlSound, uid);
-            }
-
-            EnterTube(uid, holder.NextTube.Value, holder);
-            holder.NextTube = null;
+            holder.ProvidedActions.Clear();
+            holder.HasExitAction = false;
         }
+
+        if (_gameTiming.CurTime > holder.LastCrawl + VentCrawlHolderComponent.CrawlDelay)
+        {
+            holder.LastCrawl = _gameTiming.CurTime;
+            _audioSystem.PlayPvs(holder.CrawlSound, uid);
+        }
+
+        EnterTube(uid, holder.NextTube.Value, holder);
+        holder.NextTube = null;
     }
 }

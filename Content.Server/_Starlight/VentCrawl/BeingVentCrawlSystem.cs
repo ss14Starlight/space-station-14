@@ -14,7 +14,8 @@ namespace Content.Server.VentCrawl;
 public sealed partial class BeingVentCrawlSystem : EntitySystem
 {
     [Dependency] private NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {
@@ -35,14 +36,13 @@ public sealed partial class BeingVentCrawlSystem : EntitySystem
         {
             var session = actor.PlayerSession;
 
-            var minds = _entities.System<SharedMindSystem>();
-            if (!minds.TryGetMind(session, out var mindId, out var mind))
+            if (!_mindSystem.TryGetMind(session, out var mindId, out var mind))
             {
-                mindId = minds.CreateMind(session.UserId);
-                mind = _entities.GetComponent<MindComponent>(mindId);
+                mindId = _mindSystem.CreateMind(session.UserId);
+                mind = Comp<MindComponent>(mindId);
             }
 
-            _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, true, mind);
+            _ghost.OnGhostAttempt(mindId, true, true, true, mind);
         }
     }
 
