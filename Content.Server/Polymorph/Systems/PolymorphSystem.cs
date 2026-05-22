@@ -228,27 +228,32 @@ public sealed partial class PolymorphSystem : EntitySystem
         _mindSystem.MakeSentient(child);
 
         // Starlight - start
+
         // Try to get the language knowledge from the new entity so we can apply this to
         // the polymorph target
-        var polymorphedEntityKnownLanguages = new LanguageKnowledgeComponent();
-        var polymorphedEntitySpokenLanguages = new LanguageSpeakerComponent();
-        if (TryComp<LanguageKnowledgeComponent>(child, out var formerEntityKnownLanguages))
+        LanguageKnowledgeComponent? polymorphedEntityKnownLanguages = null;
+        LanguageSpeakerComponent? polymorphedEntitySpokenLanguages = null;
+        if (configuration.TransferLanguages)
         {
-            polymorphedEntityKnownLanguages = new LanguageKnowledgeComponent
+            if (TryComp<LanguageKnowledgeComponent>(child, out var formerEntityKnownLanguages))
             {
-                Speaks = formerEntityKnownLanguages.Speaks.ToList(),
-                Understands = formerEntityKnownLanguages.Understands.ToList()
-            };
-        }
-        if (TryComp<LanguageSpeakerComponent>(child, out var formerEntitySpokenLanguages))
-        {
-            polymorphedEntitySpokenLanguages = new LanguageSpeakerComponent
+                polymorphedEntityKnownLanguages = new LanguageKnowledgeComponent
+                {
+                    Speaks = [.. formerEntityKnownLanguages.Speaks],
+                    Understands = [.. formerEntityKnownLanguages.Understands]
+                };
+            }
+            if (TryComp<LanguageSpeakerComponent>(child, out var formerEntitySpokenLanguages))
             {
-                SpokenLanguages = formerEntitySpokenLanguages.SpokenLanguages.ToList(),
-                UnderstoodLanguages = formerEntitySpokenLanguages.UnderstoodLanguages.ToList(),
-                CurrentLanguage = formerEntitySpokenLanguages.CurrentLanguage
-            };
+                polymorphedEntitySpokenLanguages = new LanguageSpeakerComponent
+                {
+                    SpokenLanguages = [.. formerEntitySpokenLanguages.SpokenLanguages],
+                    UnderstoodLanguages = [.. formerEntitySpokenLanguages.UnderstoodLanguages],
+                    CurrentLanguage = formerEntitySpokenLanguages.CurrentLanguage
+                };
+            }
         }
+
         // Copy specified components over
         foreach (var compName in configuration.CopiedComponents)
         {
@@ -258,6 +263,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
             EntityManager.CopyComponent(uid, child, comp);
         }
+
         // Startlight - end
 
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
@@ -334,20 +340,23 @@ public sealed partial class PolymorphSystem : EntitySystem
         // Starlight Begin
         // If the polymorph target has any languages, move them over to the target
         // and then record which languages were successfully granted.
-        if (configuration.TransferLanguages && TryComp<LanguageKnowledgeComponent>(child, out var knownLanguage))
+        if (configuration.TransferLanguages)
         {
-            knownLanguage.Speaks = [.. knownLanguage.Speaks.Union(polymorphedEntityKnownLanguages.Speaks)];
-            knownLanguage.Understands = [.. knownLanguage.Understands.Union(polymorphedEntityKnownLanguages.Understands)];
-        }
-        if (configuration.TransferLanguages && TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage))
-        {
-            spokenLanguage.SpokenLanguages = [.. spokenLanguage.SpokenLanguages.Union(polymorphedEntitySpokenLanguages.SpokenLanguages)];
-            spokenLanguage.UnderstoodLanguages = [.. spokenLanguage.UnderstoodLanguages.Union(polymorphedEntitySpokenLanguages.UnderstoodLanguages)];
-            spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage;
+            if (TryComp<LanguageKnowledgeComponent>(child, out var knownLanguage) && polymorphedEntityKnownLanguages != null)
+            {
+                knownLanguage.Speaks = [.. knownLanguage.Speaks.Union(polymorphedEntityKnownLanguages.Speaks)];
+                knownLanguage.Understands = [.. knownLanguage.Understands.Union(polymorphedEntityKnownLanguages.Understands)];
+            }
+            if (TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage) && polymorphedEntitySpokenLanguages != null)
+            {
+                spokenLanguage.SpokenLanguages = [.. spokenLanguage.SpokenLanguages.Union(polymorphedEntitySpokenLanguages.SpokenLanguages)];
+                spokenLanguage.UnderstoodLanguages = [.. spokenLanguage.UnderstoodLanguages.Union(polymorphedEntitySpokenLanguages.UnderstoodLanguages)];
+                spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage;
+            }
         }
         // Starlight End
 
-                    // Raise an event to inform anything that wants to know about the entity swap
+        // Raise an event to inform anything that wants to know about the entity swap
         var ev = new PolymorphedEvent(uid, child, false);
         RaiseLocalEvent(uid, ref ev);
 
