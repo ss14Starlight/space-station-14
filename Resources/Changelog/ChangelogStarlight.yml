@@ -1,235 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: IPCs can now accept brain and hand implants.
-    type: Add
-  id: 404830
-  time: '2026-05-07T07:05:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4298
-- author: Citrea
-  changes:
-  - message: Cyberarm tools can now be used for surgery on IPCs.
-    type: Fix
-  id: 404831
-  time: '2026-05-07T07:05:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4298
-- author: wonderfulnewworld
-  changes:
-  - message: (Starboard) Massive Mains expansion north of Cargo/Science.
-    type: Add
-  id: 404832
-  time: '2026-05-07T08:14:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4371
-- author: wonderfulnewworld
-  changes:
-  - message: (Starboard) The Lawyers have arrived.
-    type: Add
-  id: 404833
-  time: '2026-05-07T08:14:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4371
-- author: wonderfulnewworld
-  changes:
-  - message: (Starboard) Robotics and the Brig now support IPCs.
-    type: Add
-  id: 404834
-  time: '2026-05-07T08:14:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4371
-- author: wonderfulnewworld
-  changes:
-  - message: (Starboard) Keycard Authentication Devices have been added to all heads' rooms.
-    type: Add
-  id: 404835
-  time: '2026-05-07T08:14:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4371
-- author: wonderfulnewworld
-  changes:
-  - message: You can no longer insert literally anything into the normal golden mk 58.
-    type: Fix
-  id: 404836
-  time: '2026-05-07T13:29:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4385
-- author: Caws
-  changes:
-  - message: Scarves now protect you from cold temperatures, equivalent to wearing winter boots.
-    type: Add
-  id: 404837
-  time: '2026-05-08T05:49:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4388
-- author: Caws
-  changes:
-  - message: Winter boots protection from cold temperatures has been slightly decreased.
-    type: Tweak
-  id: 404838
-  time: '2026-05-08T05:49:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4388
-- author: Caws
-  changes:
-  - message: Winter coats protection from cold temperatures has been decreased. Wearing a coat with either a scarf or boots will still give you plenty of resistance against dangerously cold temperatures.
-    type: Tweak
-  id: 404839
-  time: '2026-05-08T05:49:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4388
-- author: Caws
-  changes:
-  - message: Boxes of shotgun ammo are now available on the Syndicate Uplinks. Hushpup enjoys rejoice.
-    type: Add
-  id: 404840
-  time: '2026-05-08T05:49:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4368
-- author: Kirb, honeyed-lemons
-  changes:
-  - message: Quick Construct, use a construction material in your hand to access a radial menu of common blueprints.
-    type: Add
-  id: 404841
-  time: '2026-05-08T09:32:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4351
-- author: Unknown
-  changes:
-  - message: Completely changed most of the backgrounds wordings as to encourage RP rather than grant Meta-Info.
-    type: Tweak
-  id: 404842
-  time: '2026-05-08T10:23:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4312
-- author: Unknown
-  changes:
-  - message: Added "USSP" Background.
-    type: Add
-  id: 404843
-  time: '2026-05-08T10:23:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4312
-- author: Unknown
-  changes:
-  - message: Added "Paradox Clone" Background.
-    type: Add
-  id: 404844
-  time: '2026-05-08T10:23:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4312
-- author: Unknown
-  changes:
-  - message: Added "Corporate Frontier" Background.
-    type: Add
-  id: 404845
-  time: '2026-05-08T10:23:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4312
-- author: Unknown
-  changes:
-  - message: Added "Outer Fringe" Background.
-    type: Add
-  id: 404846
-  time: '2026-05-08T10:23:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4312
-- author: Unknown
-  changes:
-  - message: You can now have 2 Backgrounds.
-    type: Add
-  id: 404847
-  time: '2026-05-08T10:23:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4312
-- author: Huaqas, Centronias
-  changes:
-  - message: Go Fish! A new card game can be found in the Games Clean Fun Vendor!
-    type: Add
-  id: 404848
-  time: '2026-05-08T10:23:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4348
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Changed ParticleDecelerator to deal 10 rad damage.
-    type: Tweak
-  id: 404849
-  time: '2026-05-09T09:11:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4396
-- author: EWanderer
-  changes:
-  - message: You can now compost biomass for ammonia.
-    type: Add
-  id: 404850
-  time: '2026-05-09T10:23:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4347
-- author: EWanderer
-  changes:
-  - message: Ammonia can now be electrolysed into nitrogen and hydrogen.
-    type: Add
-  id: 404851
-  time: '2026-05-09T10:23:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4347
-- author: EWanderer
-  changes:
-  - message: You now need to heat nitrogen and hydrogen to get ammonia.
-    type: Tweak
-  id: 404852
-  time: '2026-05-09T10:23:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4347
-- author: bynddark8
-  changes:
-  - message: Adds new sprites for the Captain's command tablet.
-    type: Add
-  id: 404853
-  time: '2026-05-09T10:23:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4296
-- author: bynddark8
-  changes:
-  - message: Adds an admeme only command tablet for Centcomm operators.
-    type: Add
-  id: 404854
-  time: '2026-05-09T10:23:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4296
-- author: bynddark8
-  changes:
-  - message: Adds the Captain's command tablet as a steal objective for both thieves and traitors.
-    type: Tweak
-  id: 404855
-  time: '2026-05-09T10:23:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4296
-- author: bynddark8
-  changes:
-  - message: Fixed a bug where the battery on the command tablet would drain absurdly quickly.
-    type: Fix
-  id: 404856
-  time: '2026-05-09T10:23:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4296
-- author: SevenShades, teapoterror
-  changes:
-  - message: Cheese compatibility for MedTak.
-    type: Add
-  id: 404857
-  time: '2026-05-09T10:23:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4263
-- author: wonderfulnewworld
-  changes:
-  - message: The Captain's Tablet steal objective is now traitors only.
-    type: Tweak
-  id: 404858
-  time: '2026-05-09T20:39:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4402
-- author: wonderfulnewworld
-  changes:
-  - message: The Captain's Tablet steal objective no longer causes rounds to fail to start.
-    type: Fix
-  id: 404859
-  time: '2026-05-09T20:39:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4402
-- author: Caws
-  changes:
-  - message: Brigmed no longer requires Chemist job time.
-    type: Fix
-  id: 404860
-  time: '2026-05-10T06:24:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4408
-- author: CrazyPhantom
-  changes:
-  - message: VGroid now spawns almost double the distance to potentially help its spawning.
-    type: Tweak
-  id: 404861
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
-- author: CrazyPhantom
-  changes:
-  - message: Added a spawn validator to VGroid to try help its spawning.
-    type: Add
-  id: 404862
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
 - author: CrazyPhantom
   changes:
   - message: Changed VGroids spawning to try fix its many bugs.
@@ -2799,4 +2568,235 @@ Entries:
   id: 405229
   time: '2026-05-22T11:00:30.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4500
+- author: Rinary
+  changes:
+  - message: Fixed "Panic Bunker" field in discord statuses always says that "Panic Bunker" off.
+    type: Fix
+  id: 405230
+  time: '2026-05-22T11:58:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4502
+- author: Rinary
+  changes:
+  - message: Fixed bug when terror princess can close eggs laying window and then it consumes charge. Now it consumes charge only after egg laying.
+    type: Fix
+  id: 405231
+  time: '2026-05-22T12:31:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4488
+- author: Rinary
+  changes:
+  - message: Fixed win message missing for terror spiders.
+    type: Fix
+  id: 405232
+  time: '2026-05-22T12:31:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4488
+- author: Rinary
+  changes:
+  - message: Fixed bug when terror spiders ban ignores player count/current gamepreset.
+    type: Fix
+  id: 405233
+  time: '2026-05-22T12:31:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4488
+- author: Rinary
+  changes:
+  - message: Fixed bug when cocoon drawn under webs, so you can't inject eggs.
+    type: Fix
+  id: 405234
+  time: '2026-05-22T12:31:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4488
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: (NanoTrasen, MedTak, and NT Derelict) Cyborgs can now pry unpowered doors without the need for a crowbar.
+    type: Add
+  id: 405235
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: Entities that can pry things innately (zombies, spiders, etc) now have an alert telling them so.
+    type: Add
+  id: 405236
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Mothership can now create a Jump Module for the Scout Xenoborg, allowing it to be more evasive.
+    type: Add
+  id: 405237
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Mothership can now create a Tile Gun Module for the Engineering Xenoborg, allowing it to shoot tiles at its enemies. They're not that strong, but they make for good suppressive fire.
+    type: Add
+  id: 405238
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Mothership can now make a Tier 3 Module for the Heavy Xenoborg, giving it access to a Bitterfrost Cannon.
+    type: Add
+  id: 405239
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Mothership can now make a Tier 3 Module for the Scout Xenoborg, giving it access to a real Energy Sword and a very weak, but unbreakable, Energy Shield, acting as an armor upgrade.
+    type: Add
+  id: 405240
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Mothership can now make an advanced Hypo Module for the Stealth Xenoborg, giving it some more Nocturine, in addition to Tazinide and Mute Toxin Hypos. (It costs the same as the Tier 3 Modules due to how useful this is.).
+    type: Add
+  id: 405241
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: You can now use hypos as a really bad weapon, dealing only 5 damage. It does transfer liquid inside of them, however...
+    type: Add
+  id: 405242
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Hypo Module now also comes with a Licoxide Hypo.
+    type: Tweak
+  id: 405243
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: The Scout and Engineer Xenoborgs now have an extra module slot.
+    type: Tweak
+  id: 405244
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: Xenoborgs, the full gamemode (not available to Beta, as they get SubXenoborgs) now scales 1:15, with a max of 8 starting Xenoborgs.
+    type: Tweak
+  id: 405245
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: XenoborgsLP is now referred to as SubXenoborgs to be consistent with the other subgamemodes.
+    type: Tweak
+  id: 405246
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: SubXenoborgs now only shows up 5% of the time, the same as the other "rare" subgamemode antags.
+    type: Tweak
+  id: 405247
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
+  changes:
+  - message: When reloading guns or magazines with stack items, it only reloads one at the time, instead of inserting the whole stack.
+    type: Fix
+  id: 405248
+  time: '2026-05-22T12:31:48.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4494
+- author: wonderfulnewworld
+  changes:
+  - message: Added a diamond pickaxe. It's faster than the normal pickaxe, does more structural damage, and has a slightly higher range.
+    type: Add
+  id: 405249
+  time: '2026-05-22T13:35:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4499
+- author: wonderfulnewworld
+  changes:
+  - message: You can now buy diamond pickaxes from the mining vendor.
+    type: Add
+  id: 405250
+  time: '2026-05-22T13:35:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4499
+- author: wonderfulnewworld
+  changes:
+  - message: You can no longer buy Clarkes from mining vendor.
+    type: Remove
+  id: 405251
+  time: '2026-05-22T13:35:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4499
+- author: wonderfulnewworld
+  changes:
+  - message: The Dark Gygax and Mauler missiles cost roughly 50% more energy now.
+    type: Tweak
+  id: 405252
+  time: '2026-05-22T13:35:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4499
+- author: CringeCursed
+  changes:
+  - message: Fixed some of vampire abilities were immediately canceled.
+    type: Fix
+  id: 405253
+  time: '2026-05-22T14:03:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4510
+- author: CMDROverwerk
+  changes:
+  - message: Industrial mech health lowered by 30% across the board. Ripley MK2 and Paddy retain their current HP due to their plasteel armor.
+    type: Tweak
+  id: 405254
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: CMDROverwerk
+  changes:
+  - message: exosuit silicon control beacon to the Tier 1 experimental research. A special module that can be inserted to allow borgs to enter mechs.
+    type: Add
+  id: 405255
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: CMDROverwerk
+  changes:
+  - message: Emag protolaithe recipies now correctly syncrhonize with researched technologies. You now need to have the appropriate research to be able to print the weapons, as is similar with an Emag Protolaithe.
+    type: Tweak
+  id: 405256
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: CMDROverwerk
+  changes:
+  - message: Paddy's equipment restriction removed, allowing Paddy to equip weapons.
+    type: Remove
+  id: 405257
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: CMDROverwerk
+  changes:
+  - message: Combat mechs can now pry open powered doors again.
+    type: Fix
+  id: 405258
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: CMDROverwerk
+  changes:
+  - message: Diamond Drill salvage and mining vend prices are now slightly higher to reflect its much more potent offensive capability.
+    type: Tweak
+  id: 405259
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: CMDROverwerk
+  changes:
+  - message: Changed SRM-8 to burst from semi-auto.
+    type: Tweak
+  id: 405260
+  time: '2026-05-22T14:03:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4490
+- author: Sparlight
+  changes:
+  - message: Languages known by the entity being polymorphed into (i.e. a corgi) will now be known by the individual being polymorphed.
+    type: Add
+  id: 405261
+  time: '2026-05-22T14:34:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4491
+- author: Shades
+  changes:
+  - message: Departement Communication Consoles can no longer Auth Command Request, as the KeycardAuth has been added to all offices.
+    type: Tweak
+  id: 405262
+  time: '2026-05-22T15:23:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4401
 Order: -1

@@ -54,6 +54,7 @@
     - MechEquipmentHonkerMousetrapMortar
     - MechEquipmentHonkerPieCannon
     - MechEquipmentHonkerAirHorn
+    - MechEquipmentBorgBeacon
 
 - type: latheRecipePack
   id: StarlightMechReactors

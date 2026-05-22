@@ -363,8 +363,10 @@
     - StarlightMechParts
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - StarlightMechWeapon
     - StarlightSyndicateModules
+    emagDynamicPacks:
+    - StarlightMechWeapon
+
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

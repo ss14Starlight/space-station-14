@@ -1,0 +1,39 @@
+- type: latheRecipe
+  parent: BaseXenoborgRecipe
+  id: XenoborgiRecipe
+  result: XenoBorgiPrinted
+  materials:
+    Steel: 2000
+    Biomass: 10
+
+## Heavy Xenoborg Modules
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleSuperHeavyLaserRecipe
+  result: XenoborgModuleSuperHeavyLaser
+  materials:
+    Steel: 2500
+    Glass: 2500
+    Plastic: 1000
+
+# TODO: When we get xenoborg crystals, make this and all other tier 3s cost 1 and a half crystals. Plastic's moderately hard for them to get, they'll have to salvage or steal cargo shipments.
+
+## Scout Xenoborg Modules
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleEnergyBladeRecipe
+  result: XenoborgModuleEnergyBlade
+  materials:
+    Steel: 2500
+    Glass: 2500
+    Plastic: 1000
+
+## Stealth Xenoborg Modules
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleHypoPlusRecipe
+  result: XenoborgModuleHypoPlus
+  materials:
+    Steel: 2500
+    Glass: 2500
+    Plastic: 1000

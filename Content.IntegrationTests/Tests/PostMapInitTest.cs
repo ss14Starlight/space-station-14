@@ -108,7 +108,10 @@ namespace Content.IntegrationTests.Tests
         /// <summary>
         /// list of map filenames that shouldn't be checked against necessary entities
         /// </summary>
-        private static readonly string[] ShouldMapWhitelist = { };
+        private static readonly string[] ShouldMapWhitelist =
+        {
+            "/Maps/_Starlight/Stations/Boxcars.yml",
+        };
         // starlight end
 
         /// <summary>

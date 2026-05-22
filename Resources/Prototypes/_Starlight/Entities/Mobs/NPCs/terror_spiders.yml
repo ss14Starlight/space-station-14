@@ -598,7 +598,6 @@
   - type: TerrorPrincess
   - type: ActionGrant
     actions:
-    - ActionEggsLaying
     - ActionAcidVent
     - ActionEntityWrap
   - type: UserInterface
