@@ -205,8 +205,8 @@ namespace Content.Server.Administration.Managers
             if (data == null)
             {
                 // No longer admin.
-                _admins.Remove(player, out var value);
                 // Starlight-start
+                _admins.Remove(player, out var value);
                 OnAdminsCountChanged?.Invoke(_admins.Count);
                 if (value?.Data.Active == true)
                     OnActiveAdminsCountChanged?.Invoke(ActiveAdmins.ToList().Count);
