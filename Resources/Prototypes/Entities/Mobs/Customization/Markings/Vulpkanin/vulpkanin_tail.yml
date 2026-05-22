@@ -54,19 +54,35 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-      state: vulp
-    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-      state: vulp-tip
+    body_tail@0:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+          state: vulp
+        colorSource: HumanSkinColor
+    body_tail@1:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+          state: vulp-tip
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpTailVulpFade
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-      state: vulp
-    - sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
-      state: vulp-fade
+    body_tail@0:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+          state: vulp
+        colorSource: HumanSkinColor
+    body_tail@1:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/tail_markings.rsi
+          state: vulp-fade
+        colorSource: HumanSkinColor
+  # Starlight end

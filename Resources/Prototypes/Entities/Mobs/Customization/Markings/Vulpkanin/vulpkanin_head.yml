@@ -4,60 +4,95 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: blaze
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: blaze
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpHeadMask
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: mask
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: mask
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpPatch
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: patch
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: patch
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpSlash
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: slash
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: slash
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpStripes1
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: stripes_1
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: stripes_1
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpStripes2
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: stripes_2
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: stripes_2
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpVulpine
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
-      state: vulpine
+    body_head:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/head_markings.rsi
+          state: vulpine
+        colorSource: HumanSkinColor
+  # Starlight end

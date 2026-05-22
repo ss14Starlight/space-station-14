@@ -34,9 +34,14 @@
   bodyPart: Snout
   markingCategory: SnoutCover
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: vulpine-lines
+    body_snout:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+          state: vulpine-lines
+        colorSource: HumanSkinColor
+  # Starlight end
 
 # STARLIGHT START
 # - type: marking
@@ -63,9 +68,14 @@
   bodyPart: Snout
   markingCategory: SnoutCover
   speciesRestriction: [ Vulpkanin ]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
-      state: snout-top
+    body_snout:
+        sprite:
+          sprite: Mobs/Customization/Vulpkanin/snout_markings.rsi
+          state: snout-top
+        colorSource: HumanSkinColor
+  # Starlight end
 
 # STARLIGHT START
 # - type: marking
