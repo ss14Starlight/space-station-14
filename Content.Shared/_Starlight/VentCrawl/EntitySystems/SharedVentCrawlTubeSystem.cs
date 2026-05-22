@@ -1,26 +1,27 @@
 using System.Linq;
-using Content.Server.Construction.Completions;
-using Content.Server.Popups;
-using Content.Shared.VentCrawl.Tube.Components;
-using Content.Shared.VentCrawl.Components;
-using Content.Shared.Tools.Components;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Movement.Systems;
-using Content.Shared.VentCrawl;
+using Content.Shared.Popups;
+using Content.Shared.Tools.Components;
+using Content.Shared.VentCrawl.Components;
+using Content.Shared.VentCrawl.EntitySystems;
+using Content.Shared.VentCrawl.Tube.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Map.Components;
 
-namespace Content.Server.VentCrawl;
+namespace Content.Shared.VentCrawl;
 
-public sealed class VentCrawlTubeSystem : EntitySystem
+public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedVentCrawlableSystem _ventCrawableSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedMoverController _mover = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedVentCrawlableSystem _ventCrawableSystem = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedMoverController _mover = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -28,19 +29,39 @@ public sealed class VentCrawlTubeSystem : EntitySystem
 
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentRemove>(OnComponentRemove);
-
-        SubscribeLocalEvent<VentCrawlTubeComponent, AnchorStateChangedEvent>(OnAnchorChange);
-        SubscribeLocalEvent<VentCrawlTubeComponent, BreakageEventArgs>(OnBreak);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<VentCrawlTubeComponent, ConstructionBeforeDeleteEvent>(OnDeconstruct);
+        SubscribeLocalEvent<VentCrawlTubeComponent, AnchorStateChangedEvent>(OnAnchorChange);
+        SubscribeLocalEvent<VentCrawlTubeComponent, BreakageEventArgs>(OnBreak);
+
+        SubscribeLocalEvent<VentCrawlEntryComponent, GetVerbsEvent<AlternativeVerb>>(AddClimbedVerb);
+        SubscribeLocalEvent<VentCrawlerComponent, EnterVentDoAfterEvent>(OnDoAfterEnterTube);
+
         SubscribeLocalEvent<VentCrawlBendComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetBendConnectableDirections);
         SubscribeLocalEvent<VentCrawlEntryComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetEntryConnectableDirections);
         SubscribeLocalEvent<VentCrawlJunctionComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetJunctionConnectableDirections);
         SubscribeLocalEvent<VentCrawlTransitComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetTransitConnectableDirections);
-        SubscribeLocalEvent<VentCrawlEntryComponent, GetVerbsEvent<AlternativeVerb>>(AddClimbedVerb);
-        SubscribeLocalEvent<VentCrawlerComponent, EnterVentDoAfterEvent>(OnDoAfterEnterTube);
     }
+
+    #region Subscribes
+
+    private void OnComponentInit(EntityUid uid, VentCrawlTubeComponent tube, ComponentInit args)
+        => tube.Contents = _containerSystem.EnsureContainer<Container>(uid, tube.ContainerId);
+
+    private void OnComponentRemove(EntityUid uid, VentCrawlTubeComponent tube, ComponentRemove args)
+        => DisconnectTube(tube);
+
+    private void OnShutdown(EntityUid uid, VentCrawlTubeComponent tube, ComponentShutdown args)
+        => DisconnectTube(tube);
+
+    private void OnStartup(EntityUid uid, VentCrawlTubeComponent component, ComponentStartup args)
+        => UpdateAnchored(component, Transform(uid).Anchored);
+
+    private void OnBreak(EntityUid uid, VentCrawlTubeComponent component, BreakageEventArgs args)
+        => DisconnectTube(component);
+
+    private void OnAnchorChange(EntityUid uid, VentCrawlTubeComponent component, ref AnchorStateChangedEvent args)
+        => UpdateAnchored(component, args.Anchored);
 
     private void AddClimbedVerb(EntityUid uid, VentCrawlEntryComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -70,35 +91,6 @@ public sealed class VentCrawlTubeSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void TryEnter(EntityUid uid, EntityUid user, VentCrawlerComponent crawler)
-    {
-        if (TryComp<WeldableComponent>(uid, out var weldableComponent))
-        {
-            if (weldableComponent.IsWelded)
-            {
-                _popup.PopupEntity(Loc.GetString("entity-storage-component-welded-shut-message"), user);
-                return;
-            }
-        }
-
-        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentDoAfterEvent(), user, uid, user)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true
-        };
-
-        _doAfterSystem.TryStartDoAfter(args);
-    }
-
-    private void OnComponentInit(EntityUid uid, VentCrawlTubeComponent tube, ComponentInit args)
-        => tube.Contents = _containerSystem.EnsureContainer<Container>(uid, tube.ContainerId);
-
-    private void OnComponentRemove(EntityUid uid, VentCrawlTubeComponent tube, ComponentRemove args)
-        => DisconnectTube(uid, tube);
-
-    private void OnShutdown(EntityUid uid, VentCrawlTubeComponent tube, ComponentShutdown args)
-        => DisconnectTube(uid, tube);
-
     private void OnGetBendConnectableDirections(EntityUid uid, VentCrawlBendComponent component, ref GetVentCrawlsConnectableDirectionsEvent args)
     {
         var direction = Transform(uid).LocalRotation;
@@ -127,58 +119,95 @@ public sealed class VentCrawlTubeSystem : EntitySystem
         args.Connectable = new[] { rotation.GetDir(), opposite.GetDir() };
     }
 
-    private void OnDeconstruct(EntityUid uid, VentCrawlTubeComponent component, ConstructionBeforeDeleteEvent args)
-        => DisconnectTube(uid, component);
+    #endregion
 
-    private void OnStartup(EntityUid uid, VentCrawlTubeComponent component, ComponentStartup args)
-        => UpdateAnchored(uid, component, Transform(uid).Anchored);
+    #region Helpers
 
-    private void OnBreak(EntityUid uid, VentCrawlTubeComponent component, BreakageEventArgs args)
-        => DisconnectTube(uid, component);
-
-    private void OnAnchorChange(EntityUid uid, VentCrawlTubeComponent component, ref AnchorStateChangedEvent args)
-        => UpdateAnchored(uid, component, args.Anchored);
-
-    private void UpdateAnchored(EntityUid uid, VentCrawlTubeComponent component, bool anchored)
+    private void TryEnter(EntityUid uid, EntityUid user, VentCrawlerComponent crawler)
     {
-        if (anchored)
+        if (TryComp<WeldableComponent>(uid, out var weldableComponent))
         {
-            ConnectTube(uid, component);
+            if (weldableComponent.IsWelded)
+            {
+                _popup.PopupPredicted(Loc.GetString("entity-storage-component-welded-shut-message"), user, null);
+                return;
+            }
         }
-        else
+
+        var args = new DoAfterArgs(EntityManager, user, crawler.EnterDelay, new EnterVentDoAfterEvent(), user, uid, user)
         {
-            DisconnectTube(uid, component);
-        }
+            BreakOnMove = true,
+            BreakOnDamage = true
+        };
+
+        _doAfterSystem.TryStartDoAfter(args);
     }
 
-    private static void ConnectTube(EntityUid _, VentCrawlTubeComponent tube)
+    private void UpdateAnchored(VentCrawlTubeComponent component, bool anchored)
+    {
+        if (anchored)
+            ConnectTube(component);
+        else
+            DisconnectTube(component);
+    }
+
+    private static void ConnectTube(VentCrawlTubeComponent tube)
     {
         if (tube.Connected)
-        {
             return;
-        }
 
         tube.Connected = true;
     }
 
-    private void DisconnectTube(EntityUid _, VentCrawlTubeComponent tube)
+    private void DisconnectTube(VentCrawlTubeComponent tube)
     {
         if (!tube.Connected)
-        {
             return;
-        }
 
         tube.Connected = false;
 
-        var query = GetEntityQuery<VentCrawlHolderComponent>();
         foreach (var entity in tube.Contents.ContainedEntities.ToArray())
+            _ventCrawableSystem.ExitVentCrawl(entity);
+    }
+
+    public EntityUid? NextTubeFor(EntityUid target, Direction nextDirection, VentCrawlTubeComponent? targetTube = null)
+    {
+        if (!Resolve(target, ref targetTube))
+            return null;
+        var oppositeDirection = nextDirection.GetOpposite();
+
+        var xform = Transform(target);
+        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
+            return null;
+
+        if (xform.GridUid == null)
+            return null;
+
+        var position = xform.Coordinates;
+        foreach (EntityUid entity in _mapSystem.GetInDir(xform.GridUid.Value, grid, position, nextDirection))
         {
-            if (query.TryGetComponent(entity, out var holder))
-            {
-                var Exitev = new VentCrawlExitEvent();
-                RaiseLocalEvent(entity, ref Exitev);
-            }
+
+            if (!TryComp(entity, out VentCrawlTubeComponent? tube)
+                || !CanConnect(target, targetTube, nextDirection)
+                || !CanConnect(entity, tube, oppositeDirection))
+                continue;
+
+            return entity;
         }
+
+        return null;
+    }
+
+    private bool CanConnect(EntityUid tubeId, VentCrawlTubeComponent tube, Direction direction)
+    {
+        if (!tube.Connected)
+        {
+            return false;
+        }
+
+        var ev = new GetVentCrawlsConnectableDirectionsEvent();
+        RaiseLocalEvent(tubeId, ref ev);
+        return ev.Connectable.Contains(direction);
     }
 
     public bool TryInsert(EntityUid uid, EntityUid entity, VentCrawlEntryComponent? entry = null)
@@ -200,4 +229,6 @@ public sealed class VentCrawlTubeSystem : EntitySystem
 
         return _ventCrawableSystem.EnterTube(holder, uid, holderComponent);
     }
+
+    #endregion
 }

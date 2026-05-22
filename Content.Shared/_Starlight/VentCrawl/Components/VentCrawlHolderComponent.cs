@@ -1,13 +1,15 @@
-using Content.Shared.VentCrawl.Components;
+using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VentCrawl.Components;
 
 [RegisterComponent]
 public sealed partial class VentCrawlHolderComponent : Component
 {
-    private Container? _container;
+    private Container? _container = null;
     public Container Container
     {
         get => _container ?? throw new InvalidOperationException("Container not initialized");
@@ -35,7 +37,7 @@ public sealed partial class VentCrawlHolderComponent : Component
     public EntityUid? CurrentTube { get; set; }
 
     [ViewVariables]
-    public bool FirstEntry { get; set; }
+    public bool HasExitAction { get; set; }
 
     [ViewVariables]
     public Direction CurrentDirection { get; set; } = Direction.Invalid;
@@ -50,12 +52,13 @@ public sealed partial class VentCrawlHolderComponent : Component
     [DataField("crawlSound")]
     public SoundCollectionSpecifier CrawlSound { get; set; } = new ("VentClaw", AudioParams.Default.WithVolume(5f));
 
-    [DataField("speed")]
-    public float Speed = 0.15f;
+    [DataField("travelDuration")]
+    public float TravelDuration = 0.15f;
+
+    [DataField]
+    public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
 }
 
-[ByRefEvent]
-public record struct VentCrawlExitEvent
+public sealed partial class ExitVentActionEvent : InstantActionEvent
 {
-    public TransformComponent? holderTransform;
 }

@@ -11,10 +11,10 @@ using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.VentCrawl;
 
-public sealed class BeingVentCrawlSystem : EntitySystem
+public sealed partial class BeingVentCrawlSystem : EntitySystem
 {
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private IEntityManager _entities = default!;
 
     public override void Initialize()
     {
