@@ -2,11 +2,12 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VentCrawl.Components;
 
-[RegisterComponent, AutoGenerateComponentState(fieldDeltas: true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class VentCrawlHolderComponent : Component
 {
     private Container? _container = null;
