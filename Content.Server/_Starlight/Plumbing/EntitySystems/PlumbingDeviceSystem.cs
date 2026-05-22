@@ -9,7 +9,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using JetBrains.Annotations;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
@@ -37,7 +36,7 @@ public sealed class PlumbingDeviceSystem : EntitySystem
 
     private EntityQuery<TransformComponent> _xformQuery;
 
-    private static readonly ProtoId<TagPrototype> PlungerTag = "Plunger";
+    private static readonly ProtoId<TagPrototype> _plungerTag = "Plunger";
 
     public override void Initialize()
     {
@@ -98,7 +97,7 @@ public sealed class PlumbingDeviceSystem : EntitySystem
         if (args.Handled)
             return;
 
-        if (!_tag.HasTag(args.Used, PlungerTag))
+        if (!_tag.HasTag(args.Used, _plungerTag))
             return;
 
         if (!TryComp<SolutionContainerManagerComponent>(ent.Owner, out var solutionManager))

@@ -396,7 +396,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband, NanotrasenMech ]
+  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:

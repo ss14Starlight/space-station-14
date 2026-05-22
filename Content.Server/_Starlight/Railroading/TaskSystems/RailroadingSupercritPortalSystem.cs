@@ -1,7 +1,6 @@
 using Content.Server._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Objectives;
 
 namespace Content.Server._Starlight.Railroading;
