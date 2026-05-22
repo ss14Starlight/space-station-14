@@ -13,9 +13,9 @@
   startingGear: IAAGear
   icon: "JobIconIAA"
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-magistrate
+  supervisors: job-supervisors-nt-personnel
   canBeAntag: false
-  displayWeight: 40
+  displayWeight: 3
   access:
   - IAA
   - Brig
@@ -23,6 +23,8 @@
 #  - Lawyer # Lawyer is now for Lawyers, not IAAs.
   - GenpopEnter
   - GenpopLeave
+  - Command
+  - Debrief
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

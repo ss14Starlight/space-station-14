@@ -11,6 +11,7 @@
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
   canBeAntag: false # Starlight
+  displayWeight: 3 # Starlight
   access:
   - Medical
   - Maintenance

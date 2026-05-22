@@ -1,193 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Lawyer Office.
-    type: Add
-  id: 404802
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Caws
-  changes:
-  - message: (Serpentcrest) IAA and Magistrate signs.
-    type: Add
-  id: 404803
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Caws
-  changes:
-  - message: (Serpentcrest) NTR signs.
-    type: Add
-  id: 404804
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Reworked the Courtroom so that traffic walks through the spectator area rather than the middle of the courtroom.
-    type: Tweak
-  id: 404805
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Lawyers Office.
-    type: Add
-  id: 404806
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Caws
-  changes:
-  - message: (Serpentcrest) IPC repair area added to Robotics.
-    type: Add
-  id: 404807
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Issues with tiles letting exterior weather in have been resolved. The bar and other areas will no longer get blasted with radiation during solar flares.
-    type: Fix
-  id: 404808
-  time: '2026-05-05T07:11:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4350
-- author: Ohelig
-  changes:
-  - message: Adds some protos for mappers to do Freezer and Vox atmos a little easier.
-    type: Add
-  id: 404809
-  time: '2026-05-05T12:35:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4289
-- author: Ohelig
-  changes:
-  - message: Adds some protos for mappers to do Gas Pipe Sensors a little easier.
-    type: Add
-  id: 404810
-  time: '2026-05-05T12:35:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4289
-- author: Ohelig
-  changes:
-  - message: Adds some protos for mappers to do Break Room station beacons a little easier.
-    type: Add
-  id: 404811
-  time: '2026-05-05T12:35:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4289
-- author: Ohelig
-  changes:
-  - message: Adds a random solar panel generator for mapper to do solars a little easier.
-    type: Add
-  id: 404812
-  time: '2026-05-05T12:35:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4289
-- author: Caws
-  changes:
-  - message: Restocking NanoMed Plus vending machines has been fixed.
-    type: Fix
-  id: 404813
-  time: '2026-05-06T06:15:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4369
-- author: Caws
-  changes:
-  - message: Added an EMAG interaction to the ShadyCigs Deluxe vending machine.
-    type: Add
-  id: 404814
-  time: '2026-05-06T06:33:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4365
-- author: Caws
-  changes:
-  - message: (Plasma) Lawyers.
-    type: Add
-  id: 404815
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Lawyer Office.
-    type: Add
-  id: 404816
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Condiment station added to kitchen.
-    type: Add
-  id: 404817
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Condenser added to Chemistry.
-    type: Add
-  id: 404818
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) IPC repair bay added to Robotics.
-    type: Add
-  id: 404819
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Cyborg charging stations added to Brig.
-    type: Add
-  id: 404820
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Signs added to Courtroom, IAA, and NTR.
-    type: Add
-  id: 404821
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Station beacon added to IAA.
-    type: Add
-  id: 404822
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Updated windoors in the Courtroom to Courtroom accesses.
-    type: Tweak
-  id: 404823
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Linked operating table to operating computer in Robotics surgery.
-    type: Fix
-  id: 404824
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: Caws
-  changes:
-  - message: (Plasma) Fixed missing distro and waste pipes south of Bar.
-    type: Fix
-  id: 404825
-  time: '2026-05-06T06:33:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4367
-- author: wonderfulnewworld
-  changes:
-  - message: Desoxyephedrine pills are now properly named, instead of being labeled as lead.
-    type: Fix
-  id: 404826
-  time: '2026-05-06T10:27:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4374
-- author: deltaVelocity
-  changes:
-  - message: Added new menu art featuring a sec department out of chems.
-    type: Add
-  id: 404827
-  time: '2026-05-06T13:27:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4376
-- author: wonderfulnewworld
-  changes:
-  - message: Outer clothing storage is now 2x3 again.
-    type: Tweak
-  id: 404828
-  time: '2026-05-06T13:48:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4375
 - author: Wizards Den Team
   changes:
   - message: (Kowlin) All intern jobs (Besides Cadet) now lock out after 10 hours, up from 5 hours.
@@ -2799,4 +2610,193 @@ Entries:
   id: 405201
   time: '2026-05-22T09:45:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4504
+- author: R3v3l4t1on
+  changes:
+  - message: A fire in NanoTrasen's data stores has led to the exotic mech reactors once more becoming unknown technology for only salvage to find.
+    type: Remove
+  id: 405202
+  time: '2026-05-22T10:29:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4442
+- author: Caws
+  changes:
+  - message: Dev textures for mappers, useful for visually blocking out rooms when mapping.
+    type: Add
+  id: 405203
+  time: '2026-05-22T10:29:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4459
+- author: wonderfulnewworld
+  changes:
+  - message: Adds NanoTrasen contraband. I've tried to convert all existing NanoTrasen equipment that was labelled as Central Command equipment to this label, although it's likely I missed some, so let me know if you find any. Central Command contraband still exists for things that are explicitly Central Command.
+    type: Add
+  id: 405204
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Added the NanoTrasen Radio Channel, for all NT Personnel.
+    type: Add
+  id: 405205
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Lawyers, the Detective, Warden, and Head of Security now get access to the Law Channel.
+    type: Add
+  id: 405206
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Detectives, the Warden, and the Head of Security now have LawSecurity Encryption keys in their headsets.
+    type: Add
+  id: 405207
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The NanoTrasen Career Trainer has had their non-Command/NT encryption keys condensed into the NC Trainer Encryption Key.
+    type: Add
+  id: 405208
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: IAA and NCT now have Debrief Access.
+    type: Add
+  id: 405209
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: IAA now has Bridge Access.
+    type: Add
+  id: 405210
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Removes the Law Department.
+    type: Remove
+  id: 405211
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The NT Representatives department is now properly the NanoTrasen Personnel Department, and features all on-station NanoTrasen Personnel. (NT Rep, Magistrate, BSO, IAA, NCT, and the Station AI). It also includes NTSF, Decimus, and NTNC, but those don't appear in normal gameplay, and aren't seen in loadout.
+    type: Tweak
+  id: 405212
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The NanoTrasen Personnel department has had their supervisors changed, with NT Rep, Magistrate, and the AI now answering to NanoTrasen, and the rest of the department now answering to the NT Rep and Magistrate.
+    type: Tweak
+  id: 405213
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaks the job icons for the on-station NanoTrasen Personnel department members (minus Station AI for now, although there is one for it in the files) to be the same shade of blue with stripes.
+    type: Tweak
+  id: 405214
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The NCT's Icon is now a blue librarian to represent their teaching role, instead of bring a red NanoTrasen logo.
+    type: Tweak
+  id: 405215
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The Magistrate and IAA's files are now in the Representatives folder instead of Law. Magistrate is also now lowercased.
+    type: Tweak
+  id: 405216
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Reorders the Cargo and Medical departments in the loadout screen, roughly according to hierarchy, since they were the only department not to have this.
+    type: Tweak
+  id: 405217
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The NCT's headset is now blue instead of green.
+    type: Tweak
+  id: 405218
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaked the ID cards of the NanoTrasen Personnel department.
+    type: Tweak
+  id: 405219
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: NT Personnel Department members (minus NT Rep and Magi) now answer to both the NT Rep and Magi.
+    type: Tweak
+  id: 405220
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: The NT Rep and Magi now answer to NanoTrasen.
+    type: Tweak
+  id: 405221
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Lawyers can no longer get IAA/Magistrate steal objectives.
+    type: Tweak
+  id: 405222
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Science can no longer get the hybrid encryption key steal objective.
+    type: Tweak
+  id: 405223
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Cargo Techs can get the medical belt steal objective again, since the restocks don't count anymore.
+    type: Tweak
+  id: 405224
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed an incorrect localization on the NT Rep's job, labelling them as Central Command.
+    type: Fix
+  id: 405225
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Fixes a bunch of cases where the Law Channel was missing from certain broadcasts, and also adds the NanoTrasen Personnel channel for relevant ones.
+    type: Fix
+  id: 405226
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: You can now use the Access Configurator (normal and universal) on Law Accesses.
+    type: Fix
+  id: 405227
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
+- author: wonderfulnewworld
+  changes:
+  - message: Fixes missing loc for Starlight jobs that appears when you view role timers.
+    type: Fix
+  id: 405228
+  time: '2026-05-22T10:29:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4469
 Order: -1
