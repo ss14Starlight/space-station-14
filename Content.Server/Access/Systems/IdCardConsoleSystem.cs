@@ -243,7 +243,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
             || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
-            && newJobProto != string.Empty)
+            && newJobProto != null) // Starlight: Nullable instead
         {
             Comp<IdCardComponent>(targetId).JobPrototype = newJobProto;
         }
