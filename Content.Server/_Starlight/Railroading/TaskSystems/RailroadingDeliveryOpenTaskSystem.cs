@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Delivery;
 using Content.Shared.Objectives;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Railroading;
 

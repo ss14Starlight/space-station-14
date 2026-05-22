@@ -273,6 +273,10 @@ public sealed partial class AnomalyComponent : Component
 
     [DataField]
     public bool DeleteEntity = true;
+    // Starlight Start
+    [ViewVariables]
+    public bool Ending;
+    // Starlight End
 }
 
 /// <summary>
