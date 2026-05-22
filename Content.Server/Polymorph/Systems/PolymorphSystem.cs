@@ -339,7 +339,6 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         // Starlight Begin
         // If the polymorph target has any languages, move them over to the target
-        // and then record which languages were successfully granted.
         if (configuration.TransferLanguages)
         {
             if (TryComp<LanguageKnowledgeComponent>(child, out var knownLanguage) && polymorphedEntityKnownLanguages != null)

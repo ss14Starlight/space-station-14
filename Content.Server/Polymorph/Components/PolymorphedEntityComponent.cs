@@ -1,5 +1,4 @@
 using Content.Server.Polymorph.Systems;
-using Content.Shared._Starlight.Language.Components; // Starlight
 using Content.Shared.Polymorph;
 
 namespace Content.Server.Polymorph.Components;
