@@ -13,6 +13,7 @@
     - BorgModuleSecurity
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleSecurity
   - BorgModuleSecurityContraband
@@ -149,6 +150,7 @@
     - BorgModulePurrfus
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
 
@@ -190,6 +192,7 @@
     - BorgModuleSupply
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleAppraisal
   - BorgModuleHold

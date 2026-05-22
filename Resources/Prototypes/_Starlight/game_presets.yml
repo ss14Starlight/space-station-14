@@ -14,15 +14,18 @@
     - BasicRoundstartVariation
 
 - type: gamePreset
-  id: XenoborgsLP
+  id: SubXenoborgs
   alias:
+    - subxenoborgs
+    - xenoborgsminorantag
+    - originalxenoborgs
     - xenoborgslp
   name: xenoborgs-title
   description: xenoborgs-description
   minPlayers: 20 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
-  - XenoborgsLP
+  - SubXenoborgs
   - SubGamemodesRuleNoXenoborg # No two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler

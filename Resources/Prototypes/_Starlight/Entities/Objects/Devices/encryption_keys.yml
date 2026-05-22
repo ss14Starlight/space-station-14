@@ -14,6 +14,21 @@
       - state: nano_label
 
 - type: entity
+  parent: [ EncryptionKey, BaseNanoTrasenContraband ]
+  id: EncryptionKeyNanoTrasen
+  name: nanotrasen encryption key
+  description: An encryption key used by captain's bosses' bosses.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NanoTrasen
+    defaultChannel: NanoTrasen
+  - type: Sprite
+    layers:
+    - state: crypt_gold
+    - state: nano_label
+
+- type: entity
   parent: [ EncryptionKey, BaseSovietContraband ]
   id: EncryptionKeySoviet
   name: soviet encryption key
@@ -86,6 +101,44 @@
       state: medsec_label
   - type: StealTarget
     stealGroup: EncryptionKeyHybrid
+
+- type: entity
+  parent: [ EncryptionKey, BaseSecurityContraband ]
+  id: EncryptionKeyLawSecurity
+  name: law-sec encryption key
+  description: An encryption key used by those who judge, and those who execute.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Security
+    - Law
+    defaultChannel: Security
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: sec_label
+  - type: StealTarget
+    stealGroup: EncryptionKeyHybrid
+
+- type: entity
+  parent: [ EncryptionKey, BaseNanoTrasenContraband ]
+  id: EncryptionKeyNCTrainer
+  name: nanotrasen career trainer encryption key
+  description: An encryption key used by your well-taught corporate training team.
+  components:
+  - type: EncryptionKey
+    channels:
+    - Common
+    - Engineering
+    - Medical
+    - Science
+    - Service
+    - Supply
+    defaultChannel: Common
+  - type: Sprite
+    layers:
+    - state: crypt_silver
+    - state: nano_label
 
 - type: entity
   parent: [BaseTSFContraband, EncryptionKey]

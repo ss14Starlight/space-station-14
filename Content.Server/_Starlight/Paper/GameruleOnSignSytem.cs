@@ -26,7 +26,6 @@ public sealed class GameruleOnSignSytem : EntitySystem
         RemComp<FaxableObjectComponent>(uid); //cause this breaks shit like infinite antags
     }
 
-
     private void OnPaperSigned(EntityUid uid, GameruleOnSignComponent component, PaperSignedEvent args)
     {
         if (component.Remaining <= 0)
@@ -50,6 +49,5 @@ public sealed class GameruleOnSignSytem : EntitySystem
             var ent = _gameTicker.AddGameRule(rule.Id);
             _gameTicker.StartGameRule(ent);
         }
-
     }
 }

@@ -176,7 +176,7 @@
 
 - type: entity
   parent: Xenoborgs
-  id: XenoborgsLP
+  id: SubXenoborgs
   components:
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:

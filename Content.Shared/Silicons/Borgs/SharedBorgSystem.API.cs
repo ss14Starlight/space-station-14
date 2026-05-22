@@ -237,6 +237,16 @@ public abstract partial class SharedBorgSystem
             }
         }
 
+        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner);
+        RaiseLocalEvent(chassis, ref attemptEv);
+
+        if (attemptEv.Cancelled)
+        {
+            var reason = attemptEv.Reason ?? Loc.GetString("borg-module-incompatible"); // Starlight
+            _popup.PopupClient(reason, chassis.Owner, user); // Starlight
+            return false;
+        }
+
         return true;
     }
 
