@@ -264,7 +264,7 @@ public sealed class DantalionSystem : EntitySystem
 
         TryAssignThrallObeyObjective(uid, target, thrallComp);
 
-        _language.AddLanguage(uid, "Dantalion");
+        _language.AddLanguage(target, "Dantalion");
 
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), target, target, PopupType.Medium);

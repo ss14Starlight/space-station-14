@@ -476,7 +476,7 @@ public sealed partial class RadioSystem : EntitySystem
                 ("languageColor", languageColor),
                 ("fontType", fonttype),
                 ("fontSize", language.Speech.FontSize ?? speech.FontSize),
-                ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
+                ("verb", Loc.GetString(verbId)),
                 ("channel", $"\\[{channel.LocalizedName}\\]"),
                 ("name", namestring),
                 ("message", message));
