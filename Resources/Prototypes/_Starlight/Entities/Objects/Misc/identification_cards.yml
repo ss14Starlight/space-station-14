@@ -6,7 +6,14 @@
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
-        - state: silver
+        - sprite: &id-rsi Objects/Misc/id_cards.rsi
+          state: centcom
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#999999"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#6b6b6b"
         - sprite: &starlight-icon-rsi _Starlight/Interface/Misc/job_icons.rsi
           offset: &icon-offset -0.09375, 0.0625 #3 pixels left, 2 pixels up
           state: Magistrate
@@ -21,7 +28,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
-    - sprite: &id-rsi Objects/Misc/id_cards.rsi
+    - sprite: *id-rsi
       state: centcom
     - sprite: *id-rsi
       state: stripe_top
@@ -69,13 +76,13 @@
       state: centcom
     - sprite: *id-rsi
       state: stripe_top
-      color: *color-centcomm-top
+      color: "#cfa500"
     - sprite: *id-rsi
       state: stripe_bottom
-      color: *color-centcomm-bottom
-    - sprite: *icon-rsi
+      color: "#876c00"
+    - sprite: *starlight-icon-rsi
       offset: *icon-offset
-      state: Nanotrasen
+      state: NanoTrasenRepresentative
   - type: PresetIdCard
     job: NanoTrasenRepresentative
 
@@ -88,6 +95,12 @@
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - state: silver
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#dd1b7a"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#96064c"
     - sprite: *starlight-icon-rsi
       offset: *icon-offset
       state: IAA
@@ -105,10 +118,10 @@
     - state: silver
     - sprite: *id-rsi
       state: stripe_top
-      color: "#1b67a5"
+      color: "#134975"
     - sprite: *id-rsi
       state: stripe_bottom
-      color: "#1b67a5"
+      color: "#062d4d"
     - sprite: *starlight-icon-rsi
       offset: *icon-offset
       state: BlueShield
@@ -519,14 +532,14 @@
 
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
-  id: NanotrasenCareerTrainerIDCard
+  id: NanoTrasenCareerTrainerIDCard
   name: NanoTrasen career trainer ID Card
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Misc/id_cards.rsi
     layers:
     - sprite: *id-rsi
-      state: default
+      state: silver
     - sprite: *id-rsi
       state: stripe_top
       color: "#A91169"
@@ -535,7 +548,7 @@
       color: "#630232"
     - sprite: *starlight-icon-rsi
       offset: *icon-offset
-      state: NanotrasenCareerTrainer
+      state: NanoTrasenCareerTrainer
   - type: PresetIdCard
     job: NanotrasenCareerTrainer
 
