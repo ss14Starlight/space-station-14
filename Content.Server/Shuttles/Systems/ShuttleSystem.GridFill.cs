@@ -11,8 +11,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 #region Starlight
 using Content.Server._Starlight.Station;
-using Robust.Shared.Prototypes;
-using Content.Shared.Procedural;
 using Content.Shared.Random.Helpers;
 using Content.Server._Starlight.Salvage.VGRoid;
 #endregion
@@ -128,23 +126,13 @@ public sealed partial class ShuttleSystem
         var spawnMapCoords = _transform.ToMapCoordinates(spawnCoords);
         var targetCenterMapCoords = _transform.ToMapCoordinates(targetCenterCoords);
 
-        // Some large guaranteed dungeon spawns are safer when generated
-        // directly on the station map. The generic path generates on a temporary map and
-        // later moves the grid through FTL proximity placement, which can produce bad
-        // placement for very large round-start dungeon grids. Keep this data-driven so
-        // YAML controls which groups use direct placement.
         if (group.DirectDungeonSpawn)
         {
             var seed = _random.Next();
             var spawnedGrid = _mapManager.CreateGridEntity(targetCenterMapCoords.MapId);
 
-            // Generate away from the station instead of at map zero, then correct the final
-            // position after generation when the grid bounds are known.
             _transform.SetMapCoordinates(spawnedGrid, spawnMapCoords);
             _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, seed);
-
-            PlaceDirectDungeonAtConfiguredDistance(spawnedGrid, targetGrid, group, targetCenterMapCoords, spawnMapCoords.Position);
-            LogDirectDungeonSpawn(spawnedGrid, targetGrid, dungeonProtoId, seed, group, targetCenterMapCoords);
 
             spawned = spawnedGrid.Owner;
             return true;
@@ -163,79 +151,6 @@ public sealed partial class ShuttleSystem
     }
 
     #region Starlight
-    private void PlaceDirectDungeonAtConfiguredDistance(
-        Entity<MapGridComponent> spawnedGrid,
-        Entity<MapGridComponent?> targetGrid,
-        DungeonSpawnGroup group,
-        MapCoordinates targetCenterMapCoords,
-        Vector2 initiallyChosenPosition)
-    {
-        var direction = initiallyChosenPosition - targetCenterMapCoords.Position;
-        if (direction.LengthSquared() < 0.001f)
-        {
-            var theta = _random.NextFloat(0f, MathF.PI * 2f);
-            direction = new Vector2(MathF.Cos(theta), MathF.Sin(theta));
-        }
-        else
-        {
-            direction = Vector2.Normalize(direction);
-        }
-
-        var targetRadius = GetGridSpawnRadius(targetGrid.Comp!);
-        var spawnedRadius = GetGridSpawnRadius(spawnedGrid.Comp);
-        var edgeDistance = _random.NextFloat(group.MinimumDistance, group.MaximumDistance);
-        var centerDistance = targetRadius + spawnedRadius + edgeDistance;
-        var desiredCenter = targetCenterMapCoords.Position + (direction * centerDistance);
-
-        // Set the grid origin so the generated dungeon's actual bounds center lands at desiredCenter.
-        // This avoids treating the grid origin as the asteroid center.
-        var desiredOrigin = desiredCenter - spawnedGrid.Comp.LocalAABB.Center;
-
-        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(desiredOrigin, targetCenterMapCoords.MapId));
-    }
-
-    private void LogDirectDungeonSpawn(
-        Entity<MapGridComponent> spawnedGrid,
-        Entity<MapGridComponent?> targetGrid,
-        ProtoId<DungeonConfigPrototype> dungeonProtoId,
-        int seed,
-        DungeonSpawnGroup group,
-        MapCoordinates targetCenterMapCoords)
-    {
-        var spawnedXform = Transform(spawnedGrid.Owner);
-        var targetXform = Transform(targetGrid.Owner);
-        var spawnedCenter = GetGridSpawnCenter(spawnedGrid.Comp, spawnedXform);
-        var targetCenter = GetGridSpawnCenter(targetGrid.Comp!, targetXform);
-        var centerDistance = Vector2.Distance(spawnedCenter, targetCenter);
-        var edgeDistance = MathF.Max(0f, centerDistance - GetGridSpawnRadius(spawnedGrid.Comp) - GetGridSpawnRadius(targetGrid.Comp!));
-        var wrongMap = spawnedXform.MapID != targetCenterMapCoords.MapId;
-        var outOfRange = edgeDistance < group.MinimumDistance || edgeDistance > group.MaximumDistance;
-
-        Log.Info(
-            $"Direct dungeon spawn: grid={ToPrettyString(spawnedGrid.Owner)} " +
-            $"targetGrid={ToPrettyString(targetGrid.Owner)} proto={dungeonProtoId} seed={seed} " +
-            $"actualMap={spawnedXform.MapID} expectedMap={targetCenterMapCoords.MapId} " +
-            $"centerDistance={centerDistance:F1} edgeDistance={edgeDistance:F1} " +
-            $"expectedEdgeRange={group.MinimumDistance:F1}-{group.MaximumDistance:F1} " +
-            $"vgroidCenter={spawnedCenter} stationCenter={targetCenter}");
-
-        if (!wrongMap && !outOfRange)
-            return;
-
-        Log.Error(
-            $"Direct dungeon spawn outside configured range: grid={ToPrettyString(spawnedGrid.Owner)} " +
-            $"targetGrid={ToPrettyString(targetGrid.Owner)} actualMap={spawnedXform.MapID} " +
-            $"expectedMap={targetCenterMapCoords.MapId} centerDistance={centerDistance:F1} " +
-            $"edgeDistance={edgeDistance:F1} expectedEdgeRange={group.MinimumDistance:F1}-{group.MaximumDistance:F1} " +
-            $"vgroidCenter={spawnedCenter} stationCenter={targetCenter}");
-    }
-
-    private Vector2 GetGridSpawnCenter(MapGridComponent grid, TransformComponent xform)
-        => Vector2.Transform(grid.LocalAABB.Center, _transform.GetWorldMatrix(xform));
-
-    private static float GetGridSpawnRadius(MapGridComponent grid)
-        => grid.LocalAABB.Size.Length() / 2f;
-
     private void ApplySpawnMarkerConfig(EntityUid spawned, IGridSpawnGroup group)
     {
         if (group is not DungeonSpawnGroup dungeon ||
@@ -247,8 +162,12 @@ public sealed partial class ShuttleSystem
         // Keep the validator's expected range sourced from the same data that controls placement.
         marker.MinimumEdgeDistance = dungeon.MinimumDistance;
         marker.MaximumEdgeDistance = dungeon.MaximumDistance;
+
+        marker.GenerationComplete = !dungeon.DirectDungeonSpawn;
+        marker.PlacementComplete = !dungeon.DirectDungeonSpawn;
     }
     #endregion
+
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;

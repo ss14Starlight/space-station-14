@@ -21,6 +21,6 @@ public sealed partial class NotHungryPrecondition : HTNPrecondition
             return false;
         }
 
-        return _entManager.TryGetComponent<HungerComponent>(owner, out var hunger) ? hunger.CurrentThreshold > MinHungerState : false;
+        return _entManager.TryGetComponent<HungerComponent>(owner, out var hunger) && hunger.CurrentThreshold > MinHungerState;
     }
 }

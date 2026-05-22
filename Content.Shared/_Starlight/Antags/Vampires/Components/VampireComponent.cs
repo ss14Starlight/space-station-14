@@ -137,6 +137,7 @@ public sealed partial class VampireComponent : Component
     /// <summary>
     /// Decay rate per second for blood fullness.
     /// </summary>
+    [DataField]
     public float FullnessDecayPerSecond = 0.15f;
 
     /// <summary>
@@ -168,6 +169,7 @@ public sealed partial class VampireComponent : Component
     /// </summary>
     public Dictionary<EntityUid, int> BloodDrunkFromTargets = new();
 
+    [DataField]
     public int MaxBloodPerTarget = 200;
     public EntityUid? SpawnedClaws = null;
     [DataField]
@@ -200,6 +202,8 @@ public sealed partial class VampireComponent : Component
     public TimeSpan NextHolyPlaceTick = TimeSpan.Zero;
     public TimeSpan NextHolyPlacePopup = TimeSpan.Zero;
 
+    public float StarvationDrunkBloodDrainAccumulator;
+
     [ViewVariables(VVAccess.ReadOnly)]
     public int LastRefreshedBloodLevel = -1;
 
@@ -224,6 +228,9 @@ public sealed partial class VampireComponent : Component
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan NextUpdate;
+
+    [AutoPausedField]
+    public TimeSpan LastUpdate;
 
     [DataField]
     public TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);

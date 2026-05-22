@@ -574,6 +574,7 @@
     pagingSoundParams:
       maxDistance: 15 # Stationary consoles have a much longer audio range.
     # Starlight END
+  - type: CrewMonitoringFilter # Starlight: set crew monitors to filter for crew sensors by default
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
@@ -685,7 +686,7 @@
   parent: BaseComputerAiAccess
   id: ComputerId
   name: ID card computer
-  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  description: Terminal for programming NanoTrasen employee ID cards to access parts of the station. # SL
   components:
   - type: IdCardConsole
   # Starlight-edit: Start

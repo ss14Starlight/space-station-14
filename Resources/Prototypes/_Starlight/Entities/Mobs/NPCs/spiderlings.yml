@@ -98,6 +98,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 4.00
     baseSprintSpeed : 5.00
+  - type: TimedSpawner
+    intervalSeconds: 90
+    despawnWhenDone: true
+    requiredState: Alive
 
 - type: entity
   name: spiderling
@@ -107,11 +111,6 @@
   - type: TimedSpawner
     prototypes:
     - MobTerrorRed
-    intervalSeconds: 90
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn
-    lifetime: 91
 
 - type: entity
   name: spiderling
@@ -121,11 +120,6 @@
   - type: TimedSpawner
     prototypes:
     - MobTerrorGray
-    intervalSeconds: 90
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn
-    lifetime: 91
 
 - type: entity
   name: spiderling
@@ -135,11 +129,6 @@
   - type: TimedSpawner
     prototypes:
     - MobTerrorGreen
-    intervalSeconds: 90
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn
-    lifetime: 91
 
 - type: entity
   name: spiderling
@@ -150,7 +139,3 @@
     prototypes:
     - MobGiantSpiderAngry
     intervalSeconds: 60
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 1
-  - type: TimedDespawn
-    lifetime: 61

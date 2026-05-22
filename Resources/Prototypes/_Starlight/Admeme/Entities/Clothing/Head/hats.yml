@@ -41,3 +41,50 @@
   - type: Tag
     tags:
     - CorgiWearable
+
+# Casino Tophats
+
+- type: entity
+  parent: [ ClothingHeadHatTophat , BaseMinorContraband ]
+  id: ClothingHeadHatTophatArmored
+  name: tophat
+  suffix: armored, admeme
+  description: A stylish black tophat, lined in kevlar
+  components:
+  - type: Armor #Values seem to let the user survive one extra hit if attacked consistently.
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+
+- type: entity
+  parent: [ ClothingHeadHatTophatBig , BaseMinorContraband ]
+  id: ClothingHeadHatTophatBigArmored
+  name: big tophat
+  suffix: armored, admeme
+  description: This hat clearly belongs to someone very, very important. It is lined in kevlar.
+  components:
+  - type: Armor #Values seem to let the user survive one extra hit if attacked consistently.
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6
+
+- type: entity
+  parent: [ ClothingHeadHatTophatBigWhite , BaseMinorContraband ]
+  id: ClothingHeadHatTophatBigWhiteArmored
+  name: big tophat
+  suffix: armored, admeme
+  description: This hat clearly belongs to someone very, very important. It is lined in kevlar.
+  components:
+  - type: Armor #Values seem to let the user survive one extra hit if attacked consistently.
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.6

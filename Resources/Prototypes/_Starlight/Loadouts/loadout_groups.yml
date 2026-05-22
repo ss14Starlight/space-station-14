@@ -268,6 +268,13 @@
   - NanoTrasenRepresentativeCap
 
 - type: loadoutGroup
+  id: NanoTrasenRepresentativeNeck
+  name: loadout-group-nanotrasenrepresentative-neck
+  minLimit: 0
+  loadouts:
+    - NanoTrasenRepresentativeCloak
+
+- type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
   name: loadout-group-nanotrasenrepresentative-jumpsuit
   loadouts:
@@ -294,7 +301,6 @@
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
-  - MagistrateJumpsuitLongCoat
 
 - type: loadoutGroup
   id: MagistrateOuterclothing
@@ -303,6 +309,7 @@
   minLimit: 0
   loadouts:
   - MagistrateRobes
+  - MagistrateLongcoat
 
 - type: loadoutGroup
   id: MagistrateHead
@@ -318,6 +325,13 @@
   loadouts:
   - MagistrateSecGlasses
   - MagistrateSkillGlasses
+
+- type: loadoutGroup
+  id: MagistrateNeck
+  name: loadout-group-magistrate-neck
+  minLimit: 0
+  loadouts:
+    - MagistrateMantle
 
 - type: loadoutGroup
   id: MagistrateHands
@@ -936,6 +950,7 @@
   name: loadout-group-dutyofficer-head
   loadouts:
   - DutyOfficerHead
+  - DutyOfficerHeadOrange # DeltaV
   - DutyOfficerBeret
   - DutyOfficerHelmetRiot
 
@@ -947,6 +962,8 @@
   - DutyOfficerJumpskirt
   - DutyOfficerJumpsuitBlue
   - DutyOfficerJumpskirtBlue
+  - DutyOfficerJumpsuitOrange # DeltaV
+  - DutyOfficerJumpskirtOrange # DeltaV
 
 - type: loadoutGroup
   id: DutyOfficerBelt
