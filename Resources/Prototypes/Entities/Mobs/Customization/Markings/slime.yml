@@ -1,71 +1,76 @@
 - type: marking
-  id: SlimeGradientLeftArm
+  id: SlimeGradientArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [SlimePerson]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_l_arm
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_l_arm
+      colorSource: HumanSkinColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_r_arm
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: SlimeGradientRightArm
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [SlimePerson]
-  sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_r_arm
-
-- type: marking
-  id: SlimeGradientLeftLeg
+  id: SlimeGradientLeg
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [SlimePerson]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_l_leg
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_l_leg
+      colorSource: HumanSkinColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_r_leg
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: SlimeGradientRightLeg
-  bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [SlimePerson]
-  sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_r_leg
-
-- type: marking
-  id: SlimeGradientLeftFoot
+  id: SlimeGradientFoot
   bodyPart: LFoot
   markingCategory: Legs
   speciesRestriction: [SlimePerson]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_l_foot
+    body_lFoot:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_l_foot
+      colorSource: HumanSkinColor
+    body_rFoot:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_r_foot
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: SlimeGradientRightFoot
-  bodyPart: RFoot
-  markingCategory: Legs
-  speciesRestriction: [SlimePerson]
-  sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_r_foot
-
-- type: marking
-  id: SlimeGradientLeftHand
+  id: SlimeGradientHand
   bodyPart: LHand
   markingCategory: Arms
   speciesRestriction: [SlimePerson]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_l_hand
+    body_lHand:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_l_hand
+      colorSource: HumanSkinColor
+    body_rHand:
+      sprite:
+        sprite: Mobs/Customization/slime_parts.rsi
+        state: gradient_r_hand
+      colorSource: HumanSkinColor
+  # Starlight end
 
-- type: marking
-  id: SlimeGradientRightHand
-  bodyPart: RHand
-  markingCategory: Arms
-  speciesRestriction: [SlimePerson]
-  sprites:
-  - sprite: Mobs/Customization/slime_parts.rsi
-    state: gradient_r_hand
