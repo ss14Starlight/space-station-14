@@ -112,8 +112,7 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         {
             var newMask = (fixture.CollisionMask
                            & (int)~CollisionGroup.HighImpassable
-                           & (int)~CollisionGroup.MidImpassable)
-                          | (int)CollisionGroup.InteractImpassable;
+                           & (int)~CollisionGroup.MidImpassable);
 
             if (fixture.CollisionMask == newMask)
                 continue;
