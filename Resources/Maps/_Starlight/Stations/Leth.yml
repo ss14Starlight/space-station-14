@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/22/2026 00:19:30
+  time: 05/22/2026 00:24:46
   entityCount: 17979
 maps:
 - 1
@@ -11194,7 +11194,7 @@ entities:
       pos: 7.5,-88.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -171319.44
+      secondsUntilStateChange: -171634.22
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12438,7 +12438,7 @@ entities:
       pos: -11.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -84756.46
+      secondsUntilStateChange: -85071.234
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -98281,6 +98281,24 @@ entities:
           - Toggle
     - type: Fixtures
       fixtures: {}
+  - uid: 17979
+    components:
+    - type: MetaData
+      name: signal button (shutters)
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 35.5,-30.5
+      parent: 2
+    - type: DeviceLinkSource
+      linkedPorts:
+        11257:
+        - - Pressed
+          - Toggle
+        10930:
+        - - Pressed
+          - Toggle
+    - type: Fixtures
+      fixtures: {}
 - proto: SignalControlledValve
   entities:
   - uid: 14131
@@ -98345,32 +98363,6 @@ entities:
           - Toggle
       lastSignals:
         Status: True
-    - type: Fixtures
-      fixtures: {}
-  - uid: 17979
-    components:
-    - type: MetaData
-      name: signal switch (shutters)
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 35.5,-30.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        11257:
-        - - On
-          - Open
-        - - Off
-          - Close
-        - - Status
-          - Toggle
-        10930:
-        - - On
-          - Open
-        - - Off
-          - Close
-        - - Status
-          - Toggle
     - type: Fixtures
       fixtures: {}
 - proto: SignAnomaly
