@@ -9,5 +9,5 @@
 public sealed partial class TeachALessonTargetComponent : Component
 {
    [DataField]
-   public HashSet<EntityUid> Teachers = new HashSet<EntityUid>();
+   public HashSet<EntityUid> Teachers = [];
 }
