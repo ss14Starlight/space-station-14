@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: starlight
   forkVersion: 1d0de056ca9d8f8f8b72c844f7b37edb14b1013a
-  time: 05/21/2026 19:50:48
-  entityCount: 30069
+  time: 05/22/2026 20:38:39
+  entityCount: 30071
 maps:
 - 1
 grids:
@@ -9833,7 +9833,7 @@ entities:
       pos: -13.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -310319.03
+      secondsUntilStateChange: -310397.03
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9858,7 +9858,7 @@ entities:
       pos: 29.5,19.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -305789.72
+      secondsUntilStateChange: -305867.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10079,7 +10079,7 @@ entities:
       pos: 39.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -261501.72
+      secondsUntilStateChange: -261579.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10521,7 +10521,7 @@ entities:
       pos: 12.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -225530.42
+      secondsUntilStateChange: -225608.42
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11444,7 +11444,7 @@ entities:
       pos: 53.5,55.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -206056.81
+      secondsUntilStateChange: -206134.81
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11623,7 +11623,7 @@ entities:
       pos: -30.5,67.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -225750.95
+      secondsUntilStateChange: -225828.95
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12157,7 +12157,7 @@ entities:
       pos: 40.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -22471.139
+      secondsUntilStateChange: -22549.137
       state: Opening
     - type: AccessReader
       accessListsOriginal: []
@@ -12589,7 +12589,7 @@ entities:
       pos: 72.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -302432.66
+      secondsUntilStateChange: -302510.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -152016,13 +152016,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-  - uid: 23874
-    components:
-    - type: Transform
-      pos: -16.5,41.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 23875
     components:
     - type: Transform
@@ -152082,6 +152075,24 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: SignLawyer
+  entities:
+  - uid: 30070
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,20.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+  - uid: 30071
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,28.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignLawyerOffice
   entities:
   - uid: 12446
@@ -152104,6 +152115,16 @@ entities:
     components:
     - type: Transform
       pos: 33.5,-24.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: SignMagistrate
+  entities:
+  - uid: 23874
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -16.5,41.5
       parent: 2
     - type: Fixtures
       fixtures: {}

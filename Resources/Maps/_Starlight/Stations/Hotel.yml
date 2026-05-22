@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: starlight
   forkVersion: 1d0de056ca9d8f8f8b72c844f7b37edb14b1013a
-  time: 05/21/2026 17:00:59
-  entityCount: 21981
+  time: 05/22/2026 20:35:21
+  entityCount: 21989
 maps:
 - 1
 grids:
@@ -6515,7 +6515,7 @@ entities:
       pos: 8.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -86819
+      secondsUntilStateChange: -87017.4
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -8303,7 +8303,7 @@ entities:
       pos: 2.5,-7.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -48943.066
+      secondsUntilStateChange: -49141.465
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -8469,7 +8469,7 @@ entities:
       pos: -38.5,10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -100994.48
+      secondsUntilStateChange: -101192.875
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -8485,7 +8485,7 @@ entities:
       pos: -36.5,-10.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -100893.55
+      secondsUntilStateChange: -101091.945
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11289,6 +11289,23 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: Ashtray
+  entities:
+  - uid: 21984
+    components:
+    - type: Transform
+      pos: 33.97756,6.4905577
+      parent: 2
+  - uid: 21985
+    components:
+    - type: Transform
+      pos: 33.019226,8.771808
+      parent: 2
+  - uid: 21986
+    components:
+    - type: Transform
+      pos: 30.967142,6.7718077
+      parent: 2
 - proto: ATM
   entities:
   - uid: 807
@@ -50972,6 +50989,25 @@ entities:
     components:
     - type: Transform
       pos: -39.5,-0.5
+      parent: 2
+- proto: CigaretteSpent
+  entities:
+  - uid: 21987
+    components:
+    - type: Transform
+      pos: 34.830242,1.0232751
+      parent: 2
+  - uid: 21988
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 34.182674,1.1848309
+      parent: 2
+  - uid: 21989
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 35.02295,1.6504525
       parent: 2
 - proto: CigarGoldCase
   entities:
@@ -121108,6 +121144,11 @@ entities:
       parent: 2
 - proto: VendingMachineCigs
   entities:
+  - uid: 17732
+    components:
+    - type: Transform
+      pos: 34.5,1.5
+      parent: 2
   - uid: 18732
     components:
     - type: Transform
@@ -121221,6 +121262,11 @@ entities:
     - type: Transform
       pos: 18.5,-32.5
       parent: 2
+  - uid: 21983
+    components:
+    - type: Transform
+      pos: 33.5,1.5
+      parent: 2
 - proto: VendingMachineCondiments
   entities:
   - uid: 18752
@@ -121320,7 +121366,7 @@ entities:
   - uid: 21837
     components:
     - type: Transform
-      pos: 34.5,1.5
+      pos: 35.5,1.5
       parent: 2
 - proto: VendingMachineMedical
   entities:
