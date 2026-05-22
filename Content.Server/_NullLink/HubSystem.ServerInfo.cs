@@ -13,6 +13,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Starlight.NullLink;
 using ServerInfoRequest = Starlight.NullLink.ServerInfo;
+using Content.Server.Administration.Systems;
+using System.Linq;
 
 namespace Content.Server._NullLink;
 
@@ -37,6 +39,8 @@ public sealed partial class HubSystem : EntitySystem
         SubscribeLocalEvent<PanicBunkerChangedEvent>(OnPanicBunkerChanged);
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+        _adminManager.OnAdminsCountChanged += OnAdminsCountChanged;
+        _adminManager.OnActiveAdminsCountChanged += OnActiveAdminsCountChanged;
     }
 
     private void OnPanicBunkerChanged(PanicBunkerChangedEvent args)
@@ -61,7 +65,28 @@ public sealed partial class HubSystem : EntitySystem
         _serverInfo = _serverInfo with
         {
             Players = _playerManager.PlayerCount,
-            MaxPlayers = _maxPlayers
+            MaxPlayers = _maxPlayers,
+            Mentors = _playerRoles.Mentors.ToList().Count,
+        };
+        TryUpdateServerInfo();
+    }
+
+    private void OnAdminsCountChanged(int count)
+    {
+        if (_serverInfo.Admins == count) return;
+        _serverInfo = _serverInfo with
+        {
+            Admins = count
+        };
+        TryUpdateServerInfo();
+    }
+
+    private void OnActiveAdminsCountChanged(int count)
+    {
+        if (_serverInfo.ActiveAdmins == count) return;
+        _serverInfo = _serverInfo with
+        {
+            ActiveAdmins = count
         };
         TryUpdateServerInfo();
     }
