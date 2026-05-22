@@ -69,25 +69,6 @@
       sprite: Objects/Magic/magicactions.rsi
       state: gib
 
-# SuperDAGD Spawn Red Folder
-- type: entity
-  parent: [BaseMentalAction, BaseImplantAction]
-  id: ActionActivateNuclearFolderDAGD
-  name: Activate Redspace Transmission
-  description: Transports the station's nuclear authentication codes to you. Loud.
-  categories: [HideSpawnMenu]
-  components:
-  - type: ConfirmableAction
-    popup: dagd-nuke-paper-action-popup
-  - type: LimitedCharges
-    maxCharges: 1
-  - type: Action
-    itemIconStyle: BigAction
-    priority: -20
-    icon:
-      sprite: _Starlight/Effects/portal_implant.rsi
-      state: redspace_implant
-
 # Terminator 1st phase Self-Destruct
 - type: entity
   parent: [BaseSuicideAction, BaseImplantAction]

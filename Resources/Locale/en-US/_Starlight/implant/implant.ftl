@@ -11,4 +11,3 @@ mind-control-user-briefing =
 mind-control-prevented = A MindShield prevented the Implant!
 mind-control-prevents-mindshield = Another Implant was in the way.
 mind-control-invalid = The subject must be alive.
-dagd-nuke-paper-action-popup = There's no going back from this.
