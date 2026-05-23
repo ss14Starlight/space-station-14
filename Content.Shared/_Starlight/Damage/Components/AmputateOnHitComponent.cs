@@ -10,5 +10,5 @@ public sealed partial class AmputateOnHitComponent : Component
     public float Chance = 0.5f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
-    public List<string> Parts;
+    public List<string> Parts = [];
 }
