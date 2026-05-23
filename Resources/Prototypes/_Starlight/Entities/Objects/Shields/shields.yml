@@ -379,9 +379,6 @@
           Slash: 0.35
           Piercing: 0.25
           Heat: 0.35
-        flatReductions:
-          Heat: 0.5
-          Piercing: 0.5
       passiveBlockFraction: 0.2
       activeBlockFraction: 0.3
     - type: Appearance
