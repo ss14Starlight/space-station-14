@@ -353,7 +353,7 @@
   name: research director lab coat
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, , ClothingOuterColdBase, AllowSuitStorageClothing ] # Starlight
+  parent: [ ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterCoatPirate
   name: pirate garb
   description: Yarr.

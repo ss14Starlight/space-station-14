@@ -53,7 +53,7 @@
         Slash: 0.99
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, , ClothingOuterColdBase, BaseNanoTrasenContraband ]
+  parent: [ ClothingOuterStorageFoldableBase, ClothingOuterColdBase, BaseNanoTrasenContraband ]
   id: ClothingOuterCoatNtrep
   name: nt representative jacket
   description: A fancy black jacket, standart issue to NanoTrasen Representatives.
