@@ -85,6 +85,9 @@ public sealed class TerraformerSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        var activeBarrierTerraformersByGrid = new Dictionary<EntityUid, List<(EntityUid Uid, TerraformerComponent Terraformer, TransformComponent Xform)>>();
+        var gridsNeedingBarrierRefresh = new HashSet<EntityUid>();
+
         var query = EntityQueryEnumerator<TerraformerComponent, TransformComponent>();
 
         while (query.MoveNext(out var uid, out var terraformer, out var xform))
@@ -101,7 +104,7 @@ public sealed class TerraformerSystem : EntitySystem
                 continue;
             }
 
-            RefreshBarriersIfNeeded(uid, terraformer, xform, frameTime);
+            TrackBarrierTerraformer(uid, terraformer, xform, frameTime, activeBarrierTerraformersByGrid, gridsNeedingBarrierRefresh);
 
             if (terraformer.Fuel <= 0)
                 continue;
@@ -124,7 +127,10 @@ public sealed class TerraformerSystem : EntitySystem
                 terraformer.Accumulator = 0f;
 
                 if (TryTerraformOneTile(terraformer, xform))
+                {
+                    terraformer.TilesTerraformed++;
                     AwardSciencePoints(uid, terraformer);
+                }
             }
 
             if (terraformer.AtmosAccumulator >= terraformer.AtmosCooldown)
@@ -139,8 +145,307 @@ public sealed class TerraformerSystem : EntitySystem
                 TryScrubGases(terraformer, xform);
             }
 
+            if (terraformer.SpawnTrees)
+            {
+                terraformer.TreeSpawnAccumulator += frameTime;
+
+                if (terraformer.TreeSpawnAccumulator >= terraformer.TreeSpawnCooldown)
+                {
+                    terraformer.TreeSpawnAccumulator = 0f;
+                    TrySpawnTree(uid, terraformer, xform);
+                }
+            }
+
             Dirty(uid, terraformer);
         }
+
+        RepairDirtyBarrierNetworks(activeBarrierTerraformersByGrid, gridsNeedingBarrierRefresh);
+    }
+
+    private void TrackBarrierTerraformer(
+        EntityUid uid,
+        TerraformerComponent terraformer,
+        TransformComponent xform,
+        float frameTime,
+        Dictionary<EntityUid, List<(EntityUid Uid, TerraformerComponent Terraformer, TransformComponent Xform)>> activeBarrierTerraformersByGrid,
+        HashSet<EntityUid> gridsNeedingBarrierRefresh)
+    {
+        if (!terraformer.CreateBarriers)
+        {
+            var deletedAny = DeleteBarriers(terraformer);
+
+            if (deletedAny)
+                ForceAllOtherTerraformersToRefresh(uid);
+
+            return;
+        }
+
+        if (xform.GridUid == null)
+            return;
+
+        var gridUid = xform.GridUid.Value;
+
+        if (!activeBarrierTerraformersByGrid.TryGetValue(gridUid, out var list))
+        {
+            list = new List<(EntityUid, TerraformerComponent, TransformComponent)>();
+            activeBarrierTerraformersByGrid[gridUid] = list;
+        }
+
+        list.Add((uid, terraformer, xform));
+
+        terraformer.BarrierRefreshAccumulator += frameTime;
+
+        var shouldRefresh =
+            terraformer.ForceBarrierRefresh ||
+            terraformer.SpawnedBarriers.Count == 0 ||
+            terraformer.BarrierRefreshAccumulator >= terraformer.BarrierRefreshCooldown;
+
+        if (shouldRefresh)
+            gridsNeedingBarrierRefresh.Add(gridUid);
+    }
+
+    private void RepairDirtyBarrierNetworks(
+        Dictionary<EntityUid, List<(EntityUid Uid, TerraformerComponent Terraformer, TransformComponent Xform)>> activeBarrierTerraformersByGrid,
+        HashSet<EntityUid> gridsNeedingBarrierRefresh)
+    {
+        foreach (var gridUid in gridsNeedingBarrierRefresh)
+        {
+            if (!activeBarrierTerraformersByGrid.TryGetValue(gridUid, out var terraformers))
+                continue;
+
+            if (terraformers.Count == 0)
+                continue;
+
+            if (!TryComp<MapGridComponent>(gridUid, out var grid))
+                continue;
+
+            RepairBarrierNetworkForGrid(gridUid, grid, terraformers);
+
+            foreach (var (uid, terraformer, _) in terraformers)
+            {
+                terraformer.ForceBarrierRefresh = false;
+                terraformer.BarrierRefreshAccumulator = 0f;
+                Dirty(uid, terraformer);
+            }
+        }
+    }
+
+    private void RepairBarrierNetworkForGrid(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        List<(EntityUid Uid, TerraformerComponent Terraformer, TransformComponent Xform)> terraformers)
+    {
+        var combinedArea = new HashSet<Vector2i>();
+
+        foreach (var (_, terraformer, xform) in terraformers)
+        {
+            var barrierRadius = GetBarrierRadius(terraformer);
+
+            foreach (var tile in GetReachableTilesInRadius(gridUid, grid, xform.Coordinates, barrierRadius))
+            {
+                combinedArea.Add(tile);
+            }
+        }
+
+        if (combinedArea.Count == 0)
+        {
+            DeleteManagedBarriersOnGrid(gridUid);
+            ClearTrackedBarriers(terraformers);
+            return;
+        }
+
+        var desiredBoundaryTiles = GetBoundaryTiles(gridUid, grid, combinedArea);
+        var existingBoundaryBarriers = RemoveInvalidAndDuplicateManagedBarriers(gridUid, grid, combinedArea, desiredBoundaryTiles);
+
+        ClearTrackedBarriers(terraformers);
+
+        var owner = terraformers[0].Terraformer;
+        var barrierPrototype = owner.BarrierPrototype;
+
+        foreach (var tile in desiredBoundaryTiles)
+        {
+            if (existingBoundaryBarriers.TryGetValue(tile, out var existing))
+            {
+                owner.SpawnedBarriers.Add(existing);
+                continue;
+            }
+
+            var coords = _map.GridTileToLocal(gridUid, grid, tile);
+            var barrier = Spawn(barrierPrototype, coords);
+
+            EnsureComp<TerraformerBarrierComponent>(barrier);
+
+            owner.SpawnedBarriers.Add(barrier);
+        }
+    }
+
+    private Dictionary<Vector2i, EntityUid> RemoveInvalidAndDuplicateManagedBarriers(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        HashSet<Vector2i> combinedArea,
+        HashSet<Vector2i> desiredBoundaryTiles)
+    {
+        var existingBoundaryBarriers = new Dictionary<Vector2i, EntityUid>();
+        var barriersToDelete = new List<EntityUid>();
+
+        var query = EntityQueryEnumerator<TerraformerBarrierComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out _, out var xform))
+        {
+            if (xform.GridUid != gridUid)
+                continue;
+
+            var tile = _map.GetTileRef(gridUid, grid, xform.Coordinates).GridIndices;
+
+            // Remove barriers that ended up inside the terraform area but are no longer part of the outside outline.
+            if (combinedArea.Contains(tile) && !desiredBoundaryTiles.Contains(tile))
+            {
+                barriersToDelete.Add(uid);
+                continue;
+            }
+
+            // Remove barriers that are no longer on the desired outline.
+            if (!desiredBoundaryTiles.Contains(tile))
+            {
+                barriersToDelete.Add(uid);
+                continue;
+            }
+
+            // Keep only one barrier per outline tile.
+            if (existingBoundaryBarriers.ContainsKey(tile))
+            {
+                barriersToDelete.Add(uid);
+                continue;
+            }
+
+            existingBoundaryBarriers[tile] = uid;
+        }
+
+        foreach (var barrier in barriersToDelete)
+        {
+            QueueDel(barrier);
+        }
+
+        return existingBoundaryBarriers;
+    }
+
+    private void DeleteManagedBarriersOnGrid(EntityUid gridUid)
+    {
+        var query = EntityQueryEnumerator<TerraformerBarrierComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out _, out var xform))
+        {
+            if (xform.GridUid != gridUid)
+                continue;
+
+            QueueDel(uid);
+        }
+    }
+
+    private void ClearTrackedBarriers(List<(EntityUid Uid, TerraformerComponent Terraformer, TransformComponent Xform)> terraformers)
+    {
+        foreach (var (_, terraformer, _) in terraformers)
+        {
+            terraformer.SpawnedBarriers.Clear();
+        }
+    }
+
+    private HashSet<Vector2i> GetBoundaryTiles(EntityUid gridUid, MapGridComponent grid, HashSet<Vector2i> combinedArea)
+    {
+        var boundaryTiles = new HashSet<Vector2i>();
+
+        foreach (var tile in combinedArea)
+        {
+            var isBoundary = false;
+
+            foreach (var direction in CardinalDirections())
+            {
+                var neighbor = tile + direction;
+
+                if (!combinedArea.Contains(neighbor))
+                {
+                    isBoundary = true;
+                    break;
+                }
+
+                if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
+                {
+                    isBoundary = true;
+                    break;
+                }
+
+                if (IsTileBlockedByWall(grid, neighbor))
+                {
+                    isBoundary = true;
+                    break;
+                }
+            }
+
+            if (isBoundary)
+                boundaryTiles.Add(tile);
+        }
+
+        return boundaryTiles;
+    }
+
+    private IEnumerable<Vector2i> GetReachableTilesInRadius(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        EntityCoordinates center,
+        float radius)
+    {
+        var centerTile = _map.GetTileRef(gridUid, grid, center);
+        var centerIndices = centerTile.GridIndices;
+
+        if (!TryGetUsableTile(gridUid, grid, centerIndices, out _))
+            yield break;
+
+        if (IsTileBlockedByWall(grid, centerIndices))
+            yield break;
+
+        var reachable = new HashSet<Vector2i>();
+        var queue = new Queue<Vector2i>();
+
+        reachable.Add(centerIndices);
+        queue.Enqueue(centerIndices);
+
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+
+            foreach (var direction in CardinalDirections())
+            {
+                var neighbor = current + direction;
+
+                if (reachable.Contains(neighbor))
+                    continue;
+
+                if (!IsTileInsideRadius(neighbor, centerIndices, radius))
+                    continue;
+
+                if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
+                    continue;
+
+                if (IsTileBlockedByWall(grid, neighbor))
+                    continue;
+
+                reachable.Add(neighbor);
+                queue.Enqueue(neighbor);
+            }
+        }
+
+        foreach (var tile in reachable)
+        {
+            yield return tile;
+        }
+    }
+
+    private IEnumerable<Vector2i> CardinalDirections()
+    {
+        yield return new Vector2i(1, 0);
+        yield return new Vector2i(-1, 0);
+        yield return new Vector2i(0, 1);
+        yield return new Vector2i(0, -1);
     }
 
     private bool IsPowered(EntityUid uid)
@@ -171,34 +476,6 @@ public sealed class TerraformerSystem : EntitySystem
         }
     }
 
-    private void RefreshBarriersIfNeeded(
-        EntityUid uid,
-        TerraformerComponent terraformer,
-        TransformComponent xform,
-        float frameTime)
-    {
-        if (!terraformer.CreateBarriers)
-            return;
-
-        terraformer.BarrierRefreshAccumulator += frameTime;
-
-        var shouldRefresh =
-            terraformer.ForceBarrierRefresh ||
-            terraformer.SpawnedBarriers.Count == 0 ||
-            terraformer.BarrierRefreshAccumulator >= terraformer.BarrierRefreshCooldown;
-
-        if (!shouldRefresh)
-            return;
-
-        terraformer.ForceBarrierRefresh = false;
-        terraformer.BarrierRefreshAccumulator = 0f;
-
-        DeleteBarriers(terraformer);
-        EnsureBarriers(uid, terraformer, xform);
-
-        Dirty(uid, terraformer);
-    }
-
     private void ForceAllOtherTerraformersToRefresh(EntityUid removedUid)
     {
         var query = EntityQueryEnumerator<TerraformerComponent, TransformComponent>();
@@ -222,97 +499,6 @@ public sealed class TerraformerSystem : EntitySystem
 
             Dirty(uid, terraformer);
         }
-    }
-
-    private void EnsureBarriers(EntityUid uid, TerraformerComponent terraformer, TransformComponent xform)
-    {
-        if (!terraformer.CreateBarriers)
-            return;
-
-        if (xform.GridUid == null)
-            return;
-
-        var gridUid = xform.GridUid.Value;
-
-        if (!TryComp<MapGridComponent>(gridUid, out var grid))
-            return;
-
-        var barrierRadius = GetBarrierRadius(terraformer);
-
-        foreach (var tile in GetBarrierTiles(gridUid, grid, xform.Coordinates, barrierRadius))
-        {
-            if (IsBarrierTileInternalToTerraformerCluster(gridUid, grid, tile))
-                continue;
-
-            var coords = _map.GridTileToLocal(gridUid, grid, tile.GridIndices);
-
-            var barrier = Spawn(terraformer.BarrierPrototype, coords);
-            terraformer.SpawnedBarriers.Add(barrier);
-        }
-    }
-
-    private bool IsBarrierTileInternalToTerraformerCluster(
-        EntityUid gridUid,
-        MapGridComponent grid,
-        TileRef barrierTile)
-    {
-        var directions = new[]
-        {
-            new Vector2i(1, 0),
-            new Vector2i(-1, 0),
-            new Vector2i(0, 1),
-            new Vector2i(0, -1)
-        };
-
-        foreach (var direction in directions)
-        {
-            var neighbor = barrierTile.GridIndices + direction;
-
-            if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
-                return false;
-
-            if (IsTileBlockedByWall(grid, neighbor))
-                return false;
-
-            if (!IsTileInsideAnyActiveTerraformerField(gridUid, grid, neighbor))
-                return false;
-        }
-
-        return true;
-    }
-
-    private bool IsTileInsideAnyActiveTerraformerField(
-        EntityUid gridUid,
-        MapGridComponent grid,
-        Vector2i tileIndices)
-    {
-        var query = EntityQueryEnumerator<TerraformerComponent, TransformComponent>();
-
-        while (query.MoveNext(out var uid, out var terraformer, out var xform))
-        {
-            if (!terraformer.Active)
-                continue;
-
-            if (!IsPowered(uid))
-                continue;
-
-            if (!terraformer.CreateBarriers)
-                continue;
-
-            if (xform.GridUid == null || xform.GridUid.Value != gridUid)
-                continue;
-
-            var centerTile = _map.GetTileRef(gridUid, grid, xform.Coordinates);
-            var radius = GetBarrierRadius(terraformer);
-
-            var dx = tileIndices.X - centerTile.GridIndices.X;
-            var dy = tileIndices.Y - centerTile.GridIndices.Y;
-
-            if (dx * dx + dy * dy <= radius * radius)
-                return true;
-        }
-
-        return false;
     }
 
     private float GetBarrierRadius(TerraformerComponent terraformer)
@@ -340,104 +526,6 @@ public sealed class TerraformerSystem : EntitySystem
 
         terraformer.SpawnedBarriers.Clear();
         return deletedAny;
-    }
-
-    private IEnumerable<TileRef> GetBarrierTiles(
-        EntityUid gridUid,
-        MapGridComponent grid,
-        EntityCoordinates center,
-        float radius)
-    {
-        var centerTile = _map.GetTileRef(gridUid, grid, center);
-
-        var directions = new[]
-        {
-            new Vector2i(1, 0),
-            new Vector2i(-1, 0),
-            new Vector2i(0, 1),
-            new Vector2i(0, -1)
-        };
-
-        var reachable = new HashSet<Vector2i>();
-        var queue = new Queue<Vector2i>();
-
-        var centerIndices = centerTile.GridIndices;
-
-        if (!TryGetUsableTile(gridUid, grid, centerIndices, out _))
-            yield break;
-
-        if (IsTileBlockedByWall(grid, centerIndices))
-            yield break;
-
-        reachable.Add(centerIndices);
-        queue.Enqueue(centerIndices);
-
-        while (queue.Count > 0)
-        {
-            var current = queue.Dequeue();
-
-            foreach (var direction in directions)
-            {
-                var neighbor = current + direction;
-
-                if (reachable.Contains(neighbor))
-                    continue;
-
-                if (!IsTileInsideRadius(neighbor, centerIndices, radius))
-                    continue;
-
-                if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
-                    continue;
-
-                if (IsTileBlockedByWall(grid, neighbor))
-                    continue;
-
-                reachable.Add(neighbor);
-                queue.Enqueue(neighbor);
-            }
-        }
-
-        foreach (var indices in reachable)
-        {
-            var isBoundary = false;
-
-            foreach (var direction in directions)
-            {
-                var neighbor = indices + direction;
-
-                if (!IsTileInsideRadius(neighbor, centerIndices, radius))
-                {
-                    isBoundary = true;
-                    break;
-                }
-
-                if (!TryGetUsableTile(gridUid, grid, neighbor, out _))
-                {
-                    isBoundary = true;
-                    break;
-                }
-
-                if (IsTileBlockedByWall(grid, neighbor))
-                {
-                    isBoundary = true;
-                    break;
-                }
-
-                if (!reachable.Contains(neighbor))
-                {
-                    isBoundary = true;
-                    break;
-                }
-            }
-
-            if (!isBoundary)
-                continue;
-
-            if (!TryGetUsableTile(gridUid, grid, indices, out var tile))
-                continue;
-
-            yield return tile;
-        }
     }
 
     private bool TryGetUsableTile(
@@ -473,6 +561,9 @@ public sealed class TerraformerSystem : EntitySystem
         foreach (var anchored in grid.GetAnchoredEntities(tileIndices))
         {
             if (Deleted(anchored))
+                continue;
+
+            if (HasComp<TerraformerBarrierComponent>(anchored))
                 continue;
 
             var proto = MetaData(anchored).EntityPrototype;
@@ -606,6 +697,65 @@ public sealed class TerraformerSystem : EntitySystem
                 mixture.AdjustMoles(gas, -molesToRemove);
             }
         }
+    }
+
+    private void TrySpawnTree(EntityUid uid, TerraformerComponent terraformer, TransformComponent xform)
+    {
+        if (!terraformer.SpawnTrees)
+            return;
+
+        if (terraformer.SpawnedTrees >= terraformer.MaxSpawnedTrees)
+            return;
+
+        if (!_random.Prob(terraformer.TreeSpawnChance))
+            return;
+
+        if (xform.GridUid == null)
+            return;
+
+        var gridUid = xform.GridUid.Value;
+
+        if (!TryComp<MapGridComponent>(gridUid, out var grid))
+            return;
+
+        var validTiles = new List<TileRef>();
+
+        foreach (var tile in GetTilesInRadius(gridUid, grid, xform.Coordinates, terraformer.Radius))
+        {
+            var tileDefinition = _tileDefinition[tile.Tile.TypeId];
+
+            if (!terraformer.TreeSpawnTiles.Contains(tileDefinition.ID))
+                continue;
+
+            if (!IsTileFreeForTree(grid, tile.GridIndices))
+                continue;
+
+            validTiles.Add(tile);
+        }
+
+        if (validTiles.Count == 0)
+            return;
+
+        var selectedTile = _random.Pick(validTiles);
+        var coords = _map.GridTileToLocal(gridUid, grid, selectedTile.GridIndices);
+
+        Spawn(terraformer.TreePrototype, coords);
+        terraformer.SpawnedTrees++;
+
+        Dirty(uid, terraformer);
+    }
+
+    private bool IsTileFreeForTree(MapGridComponent grid, Vector2i tileIndices)
+    {
+        foreach (var anchored in grid.GetAnchoredEntities(tileIndices))
+        {
+            if (Deleted(anchored))
+                continue;
+
+            return false;
+        }
+
+        return true;
     }
 
     private IEnumerable<TileRef> GetTilesInRadius(

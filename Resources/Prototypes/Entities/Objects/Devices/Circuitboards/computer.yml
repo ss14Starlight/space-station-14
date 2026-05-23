@@ -671,3 +671,14 @@
       state: cpu_science
     - type: ComputerBoard
       prototype: StationAiFixerComputer
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: TerraformerConsoleCircuitboard
+  name: terraforming network console board
+  description: A computer printed circuit board for a terraforming network console.
+  components:
+  - type: Sprite
+    state: cpu_science
+  - type: ComputerBoard
+    prototype: TerraformerConsole

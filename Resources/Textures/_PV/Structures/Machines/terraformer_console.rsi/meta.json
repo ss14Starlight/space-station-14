@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Custom Project Verdant terraforming console sprites. Original computer RSI copyright/credits remain as applicable from upstream.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "computer",
+      "directions": 4
+    },
+    {
+      "name": "broken",
+      "directions": 4
+    },
+    {
+      "name": "Terraform",
+      "directions": 4,
+      "delays": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "Terraform_key",
+      "directions": 4
+    }
+  ]
+}

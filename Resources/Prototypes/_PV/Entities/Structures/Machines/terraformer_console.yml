@@ -1,0 +1,30 @@
+- type: entity
+  id: TerraformerConsole
+  parent: BaseComputer
+  name: terraforming network console
+  description: A Verdant Terrasolutions monitoring console used to track terraformer coverage, terrain conversion, and atmospheric conditions.
+  components:
+  - type: TerraformerConsole
+  - type: ActivatableUI
+    key: enum.TerraformerConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.TerraformerConsoleUiKey.Key:
+        type: TerraformerConsoleBoundUserInterface
+  - type: Computer
+    board: TerraformerConsoleCircuitboard
+  - type: Sprite
+    sprite: _PV/Structures/Machines/terraformer_console.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: Terraform_key
+    - map: ["computerLayerScreen"]
+      state: Terraform
+    - map: ["computerLayerKeys"]
+      state: Terraform_key
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#4aff70"

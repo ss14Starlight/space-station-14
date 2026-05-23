@@ -1,0 +1,98 @@
+<ui:TerraformerConsoleWindow xmlns="https://spacestation14.io"
+                             xmlns:ui="clr-namespace:Content.Client._PV.Terraforming.UI"
+                             xmlns:crew="clr-namespace:Content.Client.Medical.CrewMonitoring"
+                             MinSize="1250 720"
+                             SetSize="1250 720"
+                             Title="Terraforming Network Console">
+    <BoxContainer Orientation="Vertical"
+                  SeparationOverride="8"
+                  Margin="8">
+
+        <!-- TOP BAR -->
+        <PanelContainer MinSize="0 64">
+            <BoxContainer Orientation="Horizontal"
+                          SeparationOverride="8"
+                          Margin="10">
+                <Label Name="SummaryLabel"
+                       HorizontalExpand="True"
+                       VerticalAlignment="Center"
+                       StyleClasses="LabelHeading"
+                       Text="TOTAL CONVERTED TILES: 0" />
+
+                <Button Name="RefreshButton"
+                        Text="Refresh"
+                        VerticalAlignment="Center" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- MAIN CONTENT -->
+        <BoxContainer Orientation="Horizontal"
+                      SeparationOverride="8"
+                      VerticalExpand="True"
+                      HorizontalExpand="True">
+
+            <!-- LEFT: MAP -->
+            <PanelContainer HorizontalExpand="True"
+                            VerticalExpand="True"
+                            SizeFlagsStretchRatio="1.55">
+                <BoxContainer Orientation="Vertical"
+                              Margin="8"
+                              SeparationOverride="6">
+                    <crew:CrewMonitoringNavMapControl Name="NavMap"
+                                                      HorizontalExpand="True"
+                                                      VerticalExpand="True"
+                                                      Margin="0" />
+                </BoxContainer>
+            </PanelContainer>
+
+            <!-- RIGHT COLUMN -->
+            <BoxContainer Orientation="Vertical"
+                          SeparationOverride="8"
+                          HorizontalExpand="True"
+                          VerticalExpand="True"
+                          SizeFlagsStretchRatio="1.05">
+
+                <!-- TOP RIGHT: TERRAFORMER LIST -->
+                <PanelContainer VerticalExpand="True"
+                                HorizontalExpand="True"
+                                SizeFlagsStretchRatio="1">
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="8"
+                                  SeparationOverride="6">
+                        <Label Text="TERRAFORMERS"
+                               StyleClasses="LabelHeading" />
+
+                        <ScrollContainer VerticalExpand="True"
+                                         HorizontalExpand="True">
+                            <BoxContainer Name="TerraformerList"
+                                          Orientation="Vertical"
+                                          SeparationOverride="8"
+                                          HorizontalExpand="True" />
+                        </ScrollContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <!-- BOTTOM RIGHT: ATMOSPHERE -->
+                <PanelContainer VerticalExpand="True"
+                                HorizontalExpand="True"
+                                SizeFlagsStretchRatio="1">
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="8"
+                                  SeparationOverride="6">
+                        <Label Text="ATMOSPHERE SUMMARY"
+                               StyleClasses="LabelHeading" />
+
+                        <PanelContainer VerticalExpand="True"
+                                        HorizontalExpand="True">
+                            <Label Name="AtmosphereLabel"
+                                   Margin="8"
+                                   VerticalExpand="True"
+                                   HorizontalExpand="True"
+                                   Text="No atmosphere data." />
+                        </PanelContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</ui:TerraformerConsoleWindow>
