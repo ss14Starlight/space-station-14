@@ -371,7 +371,7 @@ namespace Content.Client.Access.UI
                 FullNameLineEdit.Text,
                 JobTitleLineEdit.Text,
                 _pendingPressedAccessLevels.ToList(),
-                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
+                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : null);
 
             // Clear the override after submit so next UpdateState can update pressed state as normal
             _pendingAccessOverride = false;

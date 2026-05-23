@@ -16,10 +16,10 @@ namespace Content.Server._Starlight.StationEvents.Events;
 /// <summary>
 /// Station event component for spawning this rules antags in vents at station.
 /// </summary>
-public sealed class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
+public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly VentCrawlTubeSystem _ventCrawl = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private VentCrawlTubeSystem _ventCrawl = default!;
 
     public override void Initialize()
     {
@@ -29,45 +29,46 @@ public sealed class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
         SubscribeLocalEvent<VentSpawnRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterSelection);
     }
 
-    private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
+    protected override void Started(EntityUid uid, VentSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
-        if (ent.Comp.Vent is not { } vent)
-            return;
+        base.Started(uid, comp, gameRule, args);
 
-        if (!_ventCrawl.TryInsert(vent.Item2, args.EntityUid))
-            Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)} into vent {ToPrettyString(vent.Item2)} — antag spawned outside tube.");
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
+        var station = stationEvent.TargetStation;
+        if (station is null && !TryGetRandomStation(out station))
+        {
+            ForceEndSelf(uid);
+            return;
+        }
+
+        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
+        while (locations.MoveNext(out var loc, out _, out var transform))
+        {
+            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
+                comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
+        }
+
+        if (comp.ValidLocations.Count == 0)
+            ForceEndSelf(uid);
     }
 
     private void OnSelectLocation(Entity<VentSpawnRuleComponent> ent, ref AntagSelectLocationEvent args)
     {
-        if (!TryComp<StationEventComponent>(ent.Owner, out var stationEvent)) return;
-        var station = stationEvent.TargetStation;
-        if (station is null)
-            if (!TryGetRandomStation(out station))
-            {
-                ForceEndSelf(ent.Owner);
-                return;
-            }
+        if (ent.Comp.ValidLocations.Count == 0) return;
 
-        var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
-        var validLocations = new List<(MapCoordinates, EntityUid)>();
-        while (locations.MoveNext(out var uid, out _, out var transform))
-        {
-            if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
-                validLocations.Add((_transform.GetMapCoordinates(transform), uid));
-        }
+        var pair = ent.Comp.ValidLocations[RobustRandom.Next(ent.Comp.ValidLocations.Count)];
+        ent.Comp.Vent[args.Entity] = pair;
+        args.Coordinates.Add(pair.Coords);
 
-        if (validLocations.Count == 0)
-        {
-            ForceEndSelf(ent.Owner);
-            return;
-        }
+        Sawmill.Info($"Picked location {pair.Coords} for {ToPrettyString(ent.Owner):rule}");
+    }
 
-        // create the spawner!
-        var pair = validLocations[RobustRandom.Next(validLocations.Count)];
+    private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
+    {
+        if (!ent.Comp.InsertInVent) return;
+        if (!ent.Comp.Vent.TryGetValue(args.EntityUid, out var vent)) return;
 
-        ent.Comp.Vent = pair;
-        args.Coordinates.Add(pair.Item1);
-        Sawmill.Info($"Picked location {pair.Item1} for {ToPrettyString(ent.Owner):rule}");
+        if (!_ventCrawl.TryInsert(vent.Uid, args.EntityUid))
+            Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)} into vent {ToPrettyString(vent.Uid)}");
     }
 }

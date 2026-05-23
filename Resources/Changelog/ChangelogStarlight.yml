@@ -1,20 +1,6 @@
 Entries:
 - author: CrazyPhantom
   changes:
-  - message: Changed VGroids spawning to try fix its many bugs.
-    type: Fix
-  id: 404863
-  time: '2026-05-10T06:45:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4394
-- author: Xale
-  changes:
-  - message: Washing at sinks to remove pie, lube, and glue.
-    type: Add
-  id: 404864
-  time: '2026-05-10T07:12:47.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4377
-- author: CrazyPhantom
-  changes:
   - message: Vox and Vulps can now use the correct colours.
     type: Fix
   id: 404865
@@ -2799,4 +2785,18 @@ Entries:
   id: 405262
   time: '2026-05-22T15:23:39.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4401
+- author: redmushie
+  changes:
+  - message: The bureaucratic digi-board can now correctly edit ID cards that have accesses in the Law and NanoTrasen categories.
+    type: Fix
+  id: 405263
+  time: '2026-05-22T19:30:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4513
+- author: Rinary
+  changes:
+  - message: Fixed terror princess spawn when their spawn count bigger than 1.
+    type: Fix
+  id: 405264
+  time: '2026-05-22T20:11:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4515
 Order: -1
