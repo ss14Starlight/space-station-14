@@ -20,12 +20,12 @@
         sprite:
           sprite: Mobs/Customization/eyes.rsi
           state: eyes
-        colorSource: EyeColor
+        colorSource: HumanEyeColor
       body_other:
         sprite:
           sprite: Mobs/Species/Human/organs.rsi
           state: eyeball-l
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
     socketLayers:
       root: [ body_other ]
       Eyes: [ body_eyes ]
@@ -47,20 +47,17 @@
       LeftWing: HumanoidWingSocket
       Tail: HumanoidTailSocket
   - type: BodyPartVisualizer
+    markingSets:
+    - HumanChest
+    # - HumanUndergarmentTop
+    # - HumanUndergarmentBottom
+    - HumanTail
     bodyVisualLayers:
       body_chest:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: torso_m
-        colorSource: SkinColor
-#      clothing_undergarmentTop:
-#        sprite:
-#          sprite: _Starlight/Mobs/Customization/Markings/censor_torso.rsi
-#          state: default
-#      clothing_undergarmentBottom:
-#        sprite:
-#          sprite: _Starlight/Mobs/Customization/Markings/censor_groin.rsi
-#          state: default
+        colorSource: HumanSkinColor
 
 - type: entity
   id: SLPartHumanHead
@@ -70,22 +67,27 @@
   - type: SLBodyPart
     partType: HumanoidHead
   - type: BodyPartVisualizer
+    markingSets:
+    - HumanHair
+    - HumanFacialHair
+    - HumanHeadTop
+    - HumanSnout
     bodyVisualLayers:
       body_head:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: head_m
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
       body_hair:
         sprite:
           sprite: Mobs/Customization/human_hair.rsi
           state: bald
-        colorSource: HairColor
+        colorSource: HumanHairColor
       body_facialHair:
         sprite:
           sprite: Mobs/Customization/human_facial_hair.rsi
           state: shaved
-        colorSource: FacialHairColor
+        colorSource: HumanFacialHairColor
 
 - type: entity
   id: SLPartHumanArm
@@ -97,17 +99,19 @@
     sockets:
       Hand: HumanoidHandSocket
   - type: BodyPartVisualizer
+    markingSets:
+    - HumanArms
     bodyVisualLayers:
       body_lArm:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: l_arm
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
       body_rArm:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: r_arm
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
     socketLayers:
       LeftArm: [ body_lArm ]
       RightArm: [ body_rArm ]
@@ -120,17 +124,19 @@
   - type: SLBodyPart
     partType: HumanoidHand
   - type: BodyPartVisualizer
+    markingSets:
+    - HumanHands
     bodyVisualLayers:
       body_lHand:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: l_hand
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
       body_rHand:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: r_hand
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
     socketLayers:
       LeftArm: [ body_lHand ]
       RightArm: [ body_rHand ]
@@ -145,17 +151,19 @@
     sockets:
       Foot: HumanoidFootSocket
   - type: BodyPartVisualizer
+    markingSets:
+    - HumanLegs
     bodyVisualLayers:
       body_lLeg:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: l_leg
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
       body_rLeg:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: r_leg
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
     socketLayers:
       LeftLeg: [ body_lLeg ]
       RightLeg: [ body_rLeg ]
@@ -168,17 +176,19 @@
   - type: SLBodyPart
     partType: HumanoidFoot
   - type: BodyPartVisualizer
+    markingSets:
+    - HumanFeet
     bodyVisualLayers:
       body_lFoot:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: l_foot
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
       body_rFoot:
         sprite:
           sprite: Mobs/Species/Human/parts.rsi
           state: r_foot
-        colorSource: SkinColor
+        colorSource: HumanSkinColor
     socketLayers:
       LeftLeg: [ body_lFoot ]
       RightLeg: [ body_rFoot ]
