@@ -46,6 +46,7 @@ public sealed partial class VentCrawlHolderComponent : Component
     public bool HasExitAction { get; set; }
 
     [ViewVariables]
+    [AutoNetworkedField]
     public Direction CurrentDirection { get; set; } = Direction.Invalid;
 
     [ViewVariables]
@@ -53,6 +54,7 @@ public sealed partial class VentCrawlHolderComponent : Component
 
     public static readonly TimeSpan CrawlDelay = TimeSpan.FromSeconds(0.5);
 
+    [ViewVariables]
     public TimeSpan LastCrawl;
 
     [DataField("crawlSound")]
@@ -65,8 +67,6 @@ public sealed partial class VentCrawlHolderComponent : Component
     public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
 
     public List<EntityUid> ProvidedActions = new();
-
-    public Vector2? EntryWorldPosition = null;
 }
 
 public sealed partial class ExitVentActionEvent : InstantActionEvent

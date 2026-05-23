@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Numerics;
 using Content.Shared.Body.Components;
 using Content.Shared.Tools.Components;
 using Content.Shared.Item;
@@ -12,7 +11,6 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Actions;
-using Robust.Shared.Map;
 
 namespace Content.Shared.VentCrawl.EntitySystems;
 
@@ -53,6 +51,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         holder.IsMoving = args.State;
         holder.CurrentDirection = args.Dir;
+        DirtyField(uid, holder, nameof(VentCrawlHolderComponent.CurrentDirection));
     }
 
     /// <summary>
@@ -208,7 +207,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var query = EntityQueryEnumerator<VentCrawlHolderComponent>();
         while (query.MoveNext(out var uid, out var holder))
         {
-            if (holder.CurrentDirection == Direction.Invalid || holder.CurrentTube == null)
+            if (holder.CurrentTube == null)
                 continue;
 
             var currentTube = holder.CurrentTube.Value;
@@ -216,19 +215,23 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             if (!UpdateMovementInput(currentTube, uid, holder))
                 continue;
 
-            if (holder.TimeLeft > 0)
+            if (holder.NextTube != null)
             {
-                UpdatePosition(currentTube, uid, holder, frameTime);
-            }
-            else if (holder.TimeLeft <= 0)
-            {
-                TryAdvanceTube(currentTube, uid, holder);
+                holder.TimeLeft -= frameTime;
+
+                if (holder.TimeLeft > 0)
+                    UpdatePosition(currentTube, uid, holder, frameTime);
+                else
+                    TryAdvanceTube(currentTube, uid, holder);
             }
         }
     }
 
     private bool UpdateMovementInput(EntityUid currentTube, EntityUid uid, VentCrawlHolderComponent holder)
     {
+        if (holder.CurrentDirection == Direction.Invalid)
+            return true;
+
         if (holder.IsMoving && holder.NextTube == null)
         {
             var nextTube = _ventCrawlTubeSystem.NextTubeFor(currentTube, holder.CurrentDirection);
@@ -243,7 +246,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
                 holder.NextTube = nextTube;
                 DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
-                holder.EntryWorldPosition = null;
                 holder.StartingTime = holder.TravelDuration;
                 holder.TimeLeft = holder.TravelDuration;
             }
@@ -264,30 +266,20 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
     private void UpdatePosition(EntityUid currentTube, EntityUid uid, VentCrawlHolderComponent holder, float frameTime)
     {
-        if (holder.NextTube == null)
+        if (holder.NextTube == null || holder.StartingTime <= 0f)
             return;
 
-        var time = MathF.Min(frameTime, holder.TimeLeft);
-
-        if (holder.EntryWorldPosition == null)
-        {
-            var currentPos = _xformSystem.GetWorldPosition(uid);
-            holder.EntryWorldPosition = currentPos;
-        }
+        if (holder.CurrentDirection == Direction.Invalid)
+            return;
 
         var progress = 1f - (holder.TimeLeft / holder.StartingTime);
-        var target = Transform(holder.NextTube.Value).Coordinates;
+        progress = Math.Clamp(progress, 0f, 1f);
 
-        var entryCoords = new EntityCoordinates(currentTube,
-            Vector2.Transform(
-                holder.EntryWorldPosition.Value,
-                _xformSystem.GetInvWorldMatrix(currentTube)));
+        var origin = Transform(currentTube).Coordinates;
+        var destination = holder.CurrentDirection.ToVec();
+        var newPosition = destination * progress;
 
-        var newPosition = Vector2.Lerp(entryCoords.Position, target.Position, progress);
-        _xformSystem.SetCoordinates(uid,
-            new EntityCoordinates(currentTube, newPosition));
-
-        holder.TimeLeft -= time;
+        _xformSystem.SetCoordinates(uid, _xformSystem.WithEntityId(origin.Offset(newPosition), currentTube));
     }
 
     private void TryAdvanceTube(EntityUid currentTube, EntityUid uid, VentCrawlHolderComponent holder)
@@ -299,7 +291,8 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (TryComp<WeldableComponent>(holder.NextTube.Value, out var weldableComponent))
             welded = weldableComponent.IsWelded;
 
-        _containerSystem.Remove(uid, Comp<VentCrawlTubeComponent>(currentTube).Contents, reparent: false, force: true);
+        if (TryComp<VentCrawlTubeComponent>(currentTube, out var tubeComp) && tubeComp.Contents.ContainedEntities.Contains(uid))
+            _containerSystem.Remove(uid, tubeComp.Contents, reparent: false, force: true);
 
         if (!holder.HasExitAction && HasComp<VentCrawlEntryComponent>(holder.NextTube.Value) && !welded)
         {
@@ -327,7 +320,15 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             _audioSystem.PlayPvs(holder.CrawlSound, uid);
         }
 
-        EnterTube(uid, holder.NextTube.Value, holder);
+        var nextTube = holder.NextTube.Value;
+
+        var overflow = -holder.TimeLeft;
+
         holder.NextTube = null;
+        holder.StartingTime = 0f;
+        holder.TimeLeft = holder.TravelDuration - overflow;
+        DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
+
+        EnterTube(uid, nextTube, holder);
     }
 }
