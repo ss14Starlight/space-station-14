@@ -67,10 +67,10 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 12
+        maxVol: 8
         reagents:
         - ReagentId: MuteToxin
-          Quantity: 12
+          Quantity: 8
   - type: SolutionRegeneration
     solution: hypospray
     generated:
