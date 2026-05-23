@@ -422,8 +422,8 @@
   components:
   - type: StationEvent
     earliestStart: 75 # 🌟Starlight🌟 Casualization
-    weight: 1 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 160 # 🌟Starlight🌟 Casualization
+    weight: 0.5 # 🌟Starlight🌟 Casualization
+    minimumPlayers: 175 # 🌟Starlight🌟 Casualization
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
