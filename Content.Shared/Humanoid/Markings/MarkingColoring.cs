@@ -1,3 +1,4 @@
+using System.Linq;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Humanoid.Markings;
@@ -51,10 +52,10 @@ public static class MarkingColoring
         else
         {
             // If some layers are specified.
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            foreach (var bodySprite in prototype.Sprites.Values) // Starlight
             {
                 // Getting layer name
-                string? name = prototype.Sprites[i] switch
+                string? name = bodySprite.Sprite switch // Starlight
                 {
                     SpriteSpecifier.Rsi rsi => rsi.RsiState,
                     SpriteSpecifier.Texture texture => texture.TexturePath.Filename,
