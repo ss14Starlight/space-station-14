@@ -20,6 +20,10 @@ marking-HeadEarringsWeights-head_earrings_weights1 = Right Earring
 marking-HeadEarringsWeights-head_earrings_weights2 = Left Earring
 marking-HeadEarringsWeights = Earrings (Weights)
 
+# Snout
+marking-HeadSeptum-head_septum = Septum
+marking-HeadSeptum = Septum
+
 # Chest
 marking-ChestNecklace-chest_necklace = Necklace
 marking-ChestNecklace = Necklace
@@ -112,4 +116,17 @@ marking-FootHeavyTattoosRight = Heavy Foot Tattoos (Right)
 
 marking-BodyHairLeftLeg = Body Hair (Left)
 marking-BodyHairRightLeg = Body Hair (Right)
+
+marking-HandBracelet = Bracelets
+marking-HandRings = Rings
+marking-ArmDollJointsTattoo = Doll Joints Arm Tattoo
+marking-HandDollJointsTattoo = Doll Joints Hand Tattoo
+marking-ArmHeavyTattoos = Heavy Arm Tattoos
+marking-HandHeavyTattoos = Heavy Hand Tattoos
+marking-BodyHairArm = Body Hair (Arms)
+marking-LegDollJointsTattoo = Doll Joints Leg Tattoo
+marking-FootDollJointsTattoo = Doll Joints Foot Tattoo
+marking-LegHeavyTattoos = Heavy Leg Tattoos
+marking-FootHeavyTattoos = Heavy Foot Tattoos
+marking-BodyHairLeg = Body Hair (Legs)
 
