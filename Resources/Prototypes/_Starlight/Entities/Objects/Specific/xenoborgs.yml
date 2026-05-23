@@ -22,15 +22,15 @@
   parent: [ BorgHypo, BaseXenoborgContraband ]
   id: NocturineHypoPlus
   name: extended nocturine hypo
-  description: A self-refilling injector for rapid administration of nocturine to victims. Has double the storage of the other one.
+  description: A self-refilling injector for rapid administration of nocturine to victims. Has 1.5x the storage of the base one.
   components:
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 24
+        maxVol: 18
         reagents:
         - ReagentId: Nocturine
-          Quantity: 24
+          Quantity: 18
   - type: SolutionRegeneration
     solution: hypospray
     generated:
