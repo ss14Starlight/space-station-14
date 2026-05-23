@@ -47,16 +47,16 @@
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 12
+        maxVol: 8
         reagents:
         - ReagentId: Tazinide
-          Quantity: 12
+          Quantity: 8
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
       - ReagentId: Tazinide
-        Quantity: 0.2
+        Quantity: 0.1 # Recharge slower
 
 - type: entity
   parent: [ BorgHypo, BaseXenoborgContraband ]
