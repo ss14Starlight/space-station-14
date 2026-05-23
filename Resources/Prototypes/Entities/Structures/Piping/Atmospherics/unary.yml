@@ -94,7 +94,6 @@
       guides:
       - AirVent
       - DeviceMonitoringAndControl
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasUnaryBase
