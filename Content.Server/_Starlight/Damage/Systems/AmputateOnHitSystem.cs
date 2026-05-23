@@ -50,14 +50,16 @@ public sealed partial class AmputateOnHitSystem : SharedAmputateOnHitSystem
             {
                 var targetpart = _bodySystem.GetBodyChildrenOfType(target, bodyPart.PartType).FirstOrDefault(p => p.Component.Symmetry == bodyPart.Symmetry);
                 if (TryComp(targetpart.Id, out TransformComponent? targetPartTransform) &&
-                    TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
+                     TryComp(targetpart.Id, out MetaDataComponent? targetPartMetadata) &&
                     TryComp(targetpart.Id, out BodyPartComponent? targetPartBodyPart))
                 {
                     Entity<TransformComponent, MetaDataComponent, BodyPartComponent> partToDelete = (targetpart.Id, targetPartTransform, targetPartMetadata, targetPartBodyPart);
-                    if (!_limbSystem.Amputate(body, partToDelete))
-                        return;
-                    _chatSystem.TryEmoteWithChat(target, "Scream");
-                    _bloodstreamSystem.TryModifyBleedAmount(target, BleedAmount);
+                    if (_limbSystem.Amputate(body, partToDelete))
+                    {
+                        _bloodstreamSystem.TryModifyBleedAmount(target, BleedAmount);
+                        _chatSystem.TryEmoteWithChat(target, "Scream");
+                    }
+
                 }
             }
             Del(basePart);

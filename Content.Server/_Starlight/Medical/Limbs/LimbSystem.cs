@@ -128,8 +128,10 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     private void UpdateLimbAlert(EntityUid entityUid)
     {
-        var (root, comp) = _body.GetRootPartOrNull(entityUid)!.Value;
-        if (_body.TryGetFreePartSlot(root, out var _))
+        if (_body.GetRootPartOrNull(entityUid) is not { } rootPart)
+            return;
+
+        if (_body.TryGetFreePartSlot(rootPart.Entity, out _))
             _alerts.ShowAlert(entityUid, "LostLimb");
         else
             _alerts.ClearAlert(entityUid, "LostLimb");
