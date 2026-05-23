@@ -137,8 +137,7 @@
     animation: WeaponArcThrust
     soundHit:
       collection: MetalThud
-  - type:
-      AltFireMelee
+  - type: AltFireMelee
   # starlight end
   - type: Item
     size: Small
@@ -640,7 +639,8 @@
       collection: MetalThud
   - type: MeleeRequiresWield
   - type: AltFireMelee
-    # starlight end- type: Item
+    # starlight end
+  - type: Item
     size: Large
     shape:
     - 0,0,2,1
