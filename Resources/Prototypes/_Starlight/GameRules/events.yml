@@ -394,8 +394,10 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     weight: 6
-    duration: 50
     minimumPlayers: 50
+    duration: null
+  - type: GameRule
+    minPlayers: 50
   - type: VentSpawnRule
   - type: AntagSpawner
     prototype: MobTerrorPrincess
@@ -405,10 +407,10 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostTerrorPrincess
       min: 1
-      max: 4
-      playerRatio: 65
+      max: 3
+      playerRatio: 50
       pickPlayer: false
       mindRoles:
       - MindRoleTerrorPrincess
   - type: DynamicRuleCost
-    cost: 75
+    cost: 200
