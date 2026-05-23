@@ -95,7 +95,6 @@
       - id: SleeperAgents
       #    - id: ZombieOutbreak
       - id: LoneOpsSpawn
-      - id: StrikeOpsSpawn # Starlight
       - !type:NestedSelector
         tableId: DerelictBorgEventTable
       - id: WizardSpawn
@@ -414,50 +413,6 @@
       - MindRoleTerrorPrincess
   - type: DynamicRuleCost
     cost: 75
-
-# Strike Ops
-- type: entity
-  parent: BaseNukeopsRule
-  id: StrikeOpsSpawn
-  components:
-  - type: StationEvent
-    earliestStart: 75 # 🌟Starlight🌟 Casualization
-    weight: 1 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 160 # 🌟Starlight🌟 Casualization
-    duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
-  - type: RuleGrids
-  - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
-  - type: NukeopsRule
-    roundEndBehavior: Nothing
-  - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointLoneNukeOperative
-      min: 2
-      max: 2
-      prefRoles: [ Nukeops ]
-      pickPlayer: false
-      startingGear: SyndicateLoneOperativeGearFull
-      roleLoadout:
-      - RoleSurvivalNukie
-      components:
-      - type: NukeOperative
-      - type: RandomMetadata
-        nameSegments:
-        - NamesSyndicatePrefix
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-generic
-      - type: NpcFactionMember
-        factions:
-        - Syndicate
-      mindRoles:
-      - MindRoleLoneops
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-      # Starlight-end
-  - type: DynamicRuleCost
-    cost: 125
 
 # Multi Paradoxes
 - type: entity
