@@ -1,20 +1,20 @@
 - type: entity
-  parent: [GasVentPumpAlt1, GasVentPumpVox]
+  parent: [AirSensorVoxBase, GasVentPumpAlt1, GasVentPumpVox]
   id: GasVentPumpVoxAlt1
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasVentPumpAlt2, GasVentPumpVox]
+  parent: [AirSensorVoxBase, GasVentPumpAlt2, GasVentPumpVox]
   id: GasVentPumpVoxAlt2
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasVentScrubberAlt1, GasVentScrubberVox]
+  parent: [AirSensorVoxBase, GasVentScrubberAlt1, GasVentScrubberVox]
   id: GasVentScrubberVoxAlt1
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasVentScrubberAlt2, GasVentScrubberVox]
+  parent: [AirSensorVoxBase, GasVentScrubberAlt2, GasVentScrubberVox]
   id: GasVentScrubberVoxAlt2
   categories: [ HideSpawnMenu ]
 
@@ -32,21 +32,21 @@
       Quinary: GasDualPortVentPumpVoxAlt4
 
 - type: entity
-  parent: [GasDualPortVentPumpAlt1, GasDualPortVentPumpVox]
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt1, GasDualPortVentPumpVox]
   id: GasDualPortVentPumpVoxAlt1
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasDualPortVentPumpAlt2, GasDualPortVentPumpVox]
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt2, GasDualPortVentPumpVox]
   id: GasDualPortVentPumpVoxAlt2
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasDualPortVentPumpAlt3, GasDualPortVentPumpVox]
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt3, GasDualPortVentPumpVox]
   id: GasDualPortVentPumpVoxAlt3
   categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: [GasDualPortVentPumpAlt4, GasDualPortVentPumpVox]
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt4, GasDualPortVentPumpVox]
   id: GasDualPortVentPumpVoxAlt4
   categories: [ HideSpawnMenu ]

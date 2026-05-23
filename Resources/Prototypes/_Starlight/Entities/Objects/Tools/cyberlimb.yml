@@ -28,6 +28,9 @@
   - type: Tag
     tags:
       - CyberHandItem
+  - type: WrenchSurgery
+    startSound:
+      path: /Audio/Items/ratchet.ogg
 
 - type: entity
   name: screwdriver
@@ -70,6 +73,9 @@
       Steel: 100
   - type: StaticPrice
     price: 30
+  - type: ScrewdriverSurgery
+    startSound:
+      path: /Audio/Items/screwdriver.ogg
 
 - type: entity
   name: crowbar
@@ -104,6 +110,9 @@
   - type: Sprite
     sprite: _Starlight/Objects/Tools/cyberling.rsi
     state: crowbar
+  - type: CrowbarSurgery
+    startSound:
+      path: /Audio/Items/crowbar.ogg
 
 - type: entity
   name: wirecutter
@@ -144,6 +153,9 @@
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: WirecutterSurgery
+    startSound:
+      path: /Audio/Items/wirecutter.ogg
 
 - type: entity
   name: welding tool
@@ -253,6 +265,9 @@
   - type: Tag
     tags:
       - CyberHandItem
+  - type: WelderSurgery
+    startSound:
+      path: /Audio/Items/welder.ogg
 
 # Spacer
 - type: entity
@@ -926,6 +941,14 @@
           path: /Audio/Items/drill_use.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
+  - type: ScrewdriverSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/drill_use.ogg
+  - type: WrenchSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/drill_use.ogg
 
 - type: entity
   name: cybernetic jaws of life
@@ -954,6 +977,18 @@
           state: jaws_cutter
         useSound: /Audio/Items/jaws_cut.ogg
         changeSound: /Audio/Items/change_jaws.ogg
+  - type: WirecutterSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
+  - type: CrowbarSurgery
+    speed: 0.6
+    startSound:
+      path: /Audio/Items/jaws_cut.ogg
+    endSound:
+      path: /Audio/Items/change_jaws.ogg
 
 - type: entity
   name: experimental cyber-welder
@@ -972,6 +1007,10 @@
   - type: Tag
     tags:
     - CyberHandItem
+  - type: WelderSurgery
+    startSound:
+      path: /Audio/Items/welder.ogg
+    speed: 0.6
 
 - type: entity
   id: RCDCyber

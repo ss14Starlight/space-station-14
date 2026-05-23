@@ -11,6 +11,7 @@
         eyes: OrganIPCEyes
         tongue: OrganIPCTongue
         eye_implant: null
+        brain_implant: null # 🌟Starlight🌟
     torso:
       part: TorsoIPC
       connections:
@@ -31,8 +32,12 @@
       - left hand
     right hand:
       part: RightHandIPC
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     left hand:
       part: LeftHandIPC
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
     right leg:
       part: RightLegIPC
       connections:

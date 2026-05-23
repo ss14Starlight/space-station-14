@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingEyesBase, BaseCentcommContraband]
+  parent: [ClothingEyesBase, BaseNanoTrasenContraband]
   id: ClothingEyesHudNTNC
   name: NanoTrasen navy marine hud
   description: Standard issue heads up display for NanoTrasen Navy Marines
@@ -39,11 +39,13 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - IPC
   - type: ShowHealthIcons
     damageContainers:
     - Biological
   - type: Tag
     tags:
     - HudMedical
+    - CorgiWearable
   - type: EyeProtection
     protectionTime: 5

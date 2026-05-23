@@ -452,9 +452,6 @@
   id: OvenMachineBoard
 
 - type: Tag
-  id: PaddyMech
-
-- type: Tag
   id: ParaKnife
 
 - type: Tag

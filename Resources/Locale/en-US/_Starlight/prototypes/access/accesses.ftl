@@ -31,5 +31,4 @@ id-card-access-level-solgov = SolGov
 
 id-card-access-level-pirate = Pirate
 id-card-access-level-blackstar = Blackstar
-
 id-card-access-level-medtak = MedTak

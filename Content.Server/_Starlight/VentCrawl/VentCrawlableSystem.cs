@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.VentCrawl.Tube.Components;
 using Content.Shared.VentCrawl.Components;
 using Content.Shared.VentCrawl;
 using Robust.Shared.Physics.Components;

@@ -1,0 +1,134 @@
+- type: entity
+  id: DresserNoCon
+  abstract: true
+  parent: BaseStructure
+  name: dresser
+  description: Wooden dresser, can store things inside itself, ideal for underwear, and someone's kidneys?...
+  components:
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Large
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Tag
+    tags:
+    - Wooden
+  - type: Anchorable
+  - type: Rotatable
+
+- type: entity
+  id: DresserBox
+  parent: DresserNoCon
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/dresser_box.rsi
+    state: nightstand
+
+- type: entity
+  id: DresserRound
+  parent: DresserNoCon
+  suffix: Round, Empty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/dresser_round.rsi
+    state: nightstand
+
+- type: entity
+  id: FancyWardrobe
+  name: wardrobe
+  description: A large fancy wardrobe. Its in pretty good condition.
+  parent: DresserNoCon
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/wardrobe_fancy.rsi
+    state: wardrobe
+  - type: Storage
+    grid:
+    - 0,0,6,7
+    maxItemSize: Large
+
+- type: entity
+  id: DresserBoxFilled
+  parent: DresserBox
+  suffix: Box, Filled
+  components:
+  - type: EntityTableContainerFill #TODO: make these tables in any way consistent
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: DresserMainLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserSecondLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserThirdLootEntityTable
+
+- type: entity
+  id: DresserRoundFilled
+  parent: DresserRound
+  suffix: Round, Filled
+  components:
+  - type: EntityTableContainerFill #TODO: make these tables in any way consistent
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: DresserMainLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserSecondLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserThirdLootEntityTable
+
+- type: entity
+  id: FancyWardrobeFilled
+  parent: FancyWardrobe
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill #TODO: make these tables in any way consistent
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: DresserMainLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserSecondLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserThirdLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserMainLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserMainLootEntityTable
+        - !type:NestedSelector
+          tableId: DresserSecondLootEntityTable

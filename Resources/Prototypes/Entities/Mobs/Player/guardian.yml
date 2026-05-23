@@ -236,6 +236,12 @@
     - type: Inventory
       templateId: holoclown
     - type: Hands
+      # Starlight edit Start: Reverted NuBody
+      # activeHandId: Hand
+      # hands:
+      #   Hand:
+      #     location: Left
+      # Starlight edit End: Reverted NuBody
     - type: ComplexInteraction
     - type: Clumsy
       gunShootFailDamage:

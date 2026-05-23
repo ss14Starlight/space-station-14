@@ -1,0 +1,183 @@
+# Blackstar Tactical Visor
+- type: entity
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseMajorContraband]
+  id: ClothingEyesGlassesBlackstar
+  name: Blackstar tactical visor
+  description: A flash-resistant tactical visor issued to Blackstar Dreadwalker operatives. Provides complete flash immunity and a security HUD.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi #WILL BE REPLACED AT A LATER DATE WHEN I HAVE SPRITES!!! - scarletlightweaver_ss14
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/secglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+
+# Blackstar Combat Suit
+- type: entity
+  parent: [ClothingOuterBaseLarge, BaseMajorContraband]
+  id: ClothingOuterHardsuitBlackstar
+  name: Blackstar 'Warlord' combat suit
+  description: A heavily armored combat suit issued to elite Dreadwalker operatives of the Blackstar mercenary group. Built to survive anything the frontier can throw at it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/wardlord.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: AllowSuitStorage
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - WhitelistChameleon
+    - CorgiWearable
+    - ScurretWearable
+    - FootstepSound
+
+# Blackstar Mercenary Helmet
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseMajorContraband]
+  id: ClothingHeadHelmetBlackstar
+  name: Blackstar mercenary helmet
+  description: A reinforced combat helmet issued to Dreadwalker operatives of the Blackstar mercenary group. Offers superior protection over standard mercenary gear.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Radiation: 0.85
+        Caustic: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+
+# =============================================
+# Blackstar Rank Clothing (PLACEHOLDER SPRITES)
+# All sprites marked for replacement later.
+# =============================================
+
+# --- Legion Commander ---
+# Hat + Jumpsuit: Soviet Admiral RSIs
+- type: entity
+  parent: [ClothingHeadBase, BaseMajorContraband]
+  id: ClothingHeadHatBlackstarLegionCommander
+  name: Legion Commander's cap
+  description: The cap of a Legion Commander. Only one exists at a time.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi # PLACEHOLDER
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/sovietadmiralhat.rsi # PLACEHOLDER
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: [UnsensoredClothingUniformBase, BaseMajorContraband]
+  id: ClothingUniformJumpsuitBlackstarLegionCommander
+  name: Legion Commander's uniform
+  description: The uniform of a Legion Commander of the Blackstar Legion.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietadmiral.rsi # PLACEHOLDER
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sovietadmiral.rsi # PLACEHOLDER
+
+# --- High Legate ---
+
+- type: entity
+  parent: [ClothingHeadBase, BaseMajorContraband]
+  id: ClothingHeadHatBeretBlackstarHighLegate
+  name: High Legate beret
+  description: A beret worn by High Legate officers of the Blackstar Legion. # PLACEHOLDER
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret_hos.rsi # PLACEHOLDER
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret_hos.rsi # PLACEHOLDER
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+# --- Legate ---
+
+- type: entity
+  parent: [ClothingHeadBase, BaseMajorContraband]
+  id: ClothingHeadHatBeretBlackstarLegate
+  name: Legate beret
+  description: A beret worn by Legate officers of the Blackstar Legion. # PLACEHOLDER
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi # PLACEHOLDER
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hats/beret_corpsman.rsi # PLACEHOLDER
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingHeadHelmetArmoredBase, BaseMajorContraband]
+  id: ClothingHeadHelmetBlackstarLegate
+  name: Legate helmet
+  description: A helmet issued to Legate officers of the Blackstar Legion.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/Blackmerc.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Radiation: 0.85
+        Caustic: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD

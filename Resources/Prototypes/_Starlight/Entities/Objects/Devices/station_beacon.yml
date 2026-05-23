@@ -1,19 +1,37 @@
+# NT Roles
 - type: entity
-  parent: DefaultStationBeacon
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconNTR
+  suffix: NanoTrasen Representative
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nanotrasen-representative
+
+- type: entity
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconBSO
+  suffix: Blueshield Officer
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-blueshield-officer
+
+- type: entity
+  parent: DefaultStationBeaconCommand
   id: DefaultStationBeaconIAA
-  suffix: IAA
+  suffix: Internal Affairs
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-internal-affairs
 
 - type: entity
-  parent: DefaultStationBeaconSupply
-  id: DefaultStationBeaconBreakroomCargo
-  suffix: Cargo Break Room
+  parent: DefaultStationBeaconCommand
+  id: DefaultStationBeaconNCT
+  suffix: NanoTrasen Career Trainer
   components:
   - type: NavMapBeacon
-    defaultText: station-beacon-breakroom-cargo
+    defaultText: station-beacon-nanotrasen-career-trainer
 
+# Command
 - type: entity
   parent: DefaultStationBeaconCommand
   id: DefaultStationBeaconBreakroomCommand
@@ -22,6 +40,16 @@
   - type: NavMapBeacon
     defaultText: station-beacon-breakroom-command
 
+# Cargo
+- type: entity
+  parent: DefaultStationBeaconSupply
+  id: DefaultStationBeaconBreakroomCargo
+  suffix: Cargo Break Room
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-breakroom-cargo
+
+# Engineering
 - type: entity
   parent: DefaultStationBeaconEngineering
   id: DefaultStationBeaconBreakroomEngi
@@ -31,6 +59,15 @@
     defaultText: station-beacon-breakroom-engineering
 
 - type: entity
+  parent: DefaultStationBeaconEngineering
+  id: DefaultStationBeaconNuclearReactor
+  suffix: Nuclear Reactor
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-nuclear-reactor
+
+# Medical
+- type: entity
   parent: DefaultStationBeaconMedical
   id: DefaultStationBeaconBreakroomMedical
   suffix: Medical Break Room
@@ -38,6 +75,7 @@
   - type: NavMapBeacon
     defaultText: station-beacon-breakroom-medical
 
+# Science
 - type: entity
   parent: DefaultStationBeaconScience
   id: DefaultStationBeaconBreakroomScience
@@ -47,6 +85,15 @@
     defaultText: station-beacon-breakroom-science
 
 - type: entity
+  parent: DefaultStationBeaconScience
+  id: DefaultStationBeaconXenobiology
+  suffix: Xenobiology
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-xenobiology
+
+# Security
+- type: entity
   parent: DefaultStationBeaconSecurity
   id: DefaultStationBeaconBreakroomSecurity
   suffix: Security Break Room
@@ -54,6 +101,7 @@
   - type: NavMapBeacon
     defaultText: station-beacon-breakroom-security
 
+# Service
 - type: entity
   parent: DefaultStationBeaconService
   id: DefaultStationBeaconBreakroomService
@@ -61,3 +109,11 @@
   components:
   - type: NavMapBeacon
     defaultText: station-beacon-breakroom-service
+
+- type: entity
+  parent: DefaultStationBeaconService
+  id: DefaultStationBeaconLawyer
+  suffix: Lawyer
+  components:
+  - type: NavMapBeacon
+    defaultText: station-beacon-lawyer

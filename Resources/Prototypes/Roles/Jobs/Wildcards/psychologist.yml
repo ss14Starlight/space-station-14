@@ -10,6 +10,7 @@
   startingGear: PsychologistGear
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-cmo
+  displayWeight: 2 # Starlight
   access:
   - Medical
   - Maintenance

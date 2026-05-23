@@ -93,7 +93,7 @@ public sealed partial class CosmicCorruptingComponent : Component
     /// non-inheriting.
     /// </summary>
     [DataField]
-    public Dictionary<EntProtoId, EntProtoId> EntityConversionDict = new Dictionary<EntProtoId, EntProtoId>()
+    public Dictionary<EntProtoId, EntProtoId> EntityConversionDict = new()
     {
         {"Window", "WindowCosmicCult"},
         {"Table", "CosmicTable"},

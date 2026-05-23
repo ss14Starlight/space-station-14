@@ -4,9 +4,7 @@ using Robust.Client.UserInterface.RichText;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Utility;
-using Robust.Shared.IoC;
 using Content.Client.Paper.UI;
-using Robust.Client.Graphics;
 
 namespace Content.Client.UserInterface.RichText;
 
@@ -16,19 +14,19 @@ namespace Content.Client.UserInterface.RichText;
 public sealed class SignatureTagHandler : IMarkupTagHandler
 {
     public string Name => "signature";
-    private static int _signatureCounter = 0;
+    private static int s_signatureCounter = 0;
 
     /// <summary>
     /// Font line height set by PaperWindow to ensure buttons match text height
     /// </summary>
     public static float FontLineHeight { get; set; } = 16.0f; // Default fallback
 
-    private static int GetSignatureIndex(MarkupNode node) => _signatureCounter++;
+    private static int GetSignatureIndex(MarkupNode _) => s_signatureCounter++;
 
     /// <summary>
     /// Resets the signature counter to ensure consistent indexing across renders.
     /// </summary>
-    public static void ResetSignatureCounter() => _signatureCounter = 0;
+    public static void ResetSignatureCounter() => s_signatureCounter = 0;
 
     /// <summary>
     /// Counts signature buttons before the clicked button to determine which [signature] tag it represents.
@@ -69,9 +67,7 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
     }
 
     public SignatureTagHandler()
-    {
-        IoCManager.InjectDependencies(this);
-    }
+        => IoCManager.InjectDependencies(this);
 
     public void PushDrawContext(MarkupNode node, MarkupDrawingContext context) { }
     public void PopDrawContext(MarkupNode node, MarkupDrawingContext context) { }
@@ -100,7 +96,7 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
         {
             // Find the PaperWindow parent
             var parent = btn.Parent;
-            while (parent != null && parent is not PaperWindow)
+            while (parent is not null and not PaperWindow)
                 parent = parent.Parent;
 
             if (parent is PaperWindow paperWindow)
@@ -115,6 +111,4 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
         control = btn;
         return true;
     }
-
-
 }

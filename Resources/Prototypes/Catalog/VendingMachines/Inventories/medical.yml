@@ -42,35 +42,41 @@
 # Core medical supply vendor
 - type: vendingMachineInventory
   id: NanoMedPlusInventory
+  #region Starlight - reverts Wizden NanoMed inventory changes
   startingInventory:
-    # Medical Essential Gear
-    ClothingBeltMedicalFilled: 2
-    # Shared Essential
     HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
+    Gauze: 5
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    Tourniquet: 2
+    ChemistryBottleEpinephrine: 3
+    ChemistryBottleBicaridine: 1
+    Syringe: 5
     JetInjector: 3
-    # Paramed Essential Gear
-    ClothingBeltMedicalEMTFilled: 1
-    EmergencyRollerBedSpawnFolded: 1
-    BoxBodyBag: 1
-    # Extra Expendable Gear
-    Gauze: 4
-    Brutepack: 4
-    Ointment: 4
-    Bloodpack: 4
-    # Optional / Situational Gear
     BoxBottle: 3
-    ClothingEyeGlassesMedicalPrescription: 2 #Starlight
-    AutoMenderBruteFilled: 1 #Starlight
-    AutoMenderBurnFilled: 1 #Starlight
-    SpaceMedipen: 1 #Starlight
+    PillCanisterTricordrazine: 3
+    PillCanisterIron: 1
+    PillCanisterCopper: 1
+    PillCanisterPotassiumIodide: 1
+    SyringeIpecac: 1
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+    ClothingEyeGlassesMedicalPrescription: 2
+    AutoMenderBruteFilled: 1
+    AutoMenderBurnFilled: 1
+    SpaceMedipen: 1
   contrabandInventory:
     PillCanisterRandom: 3
     PillSpaceDrugs: 3
-    StrangePill: 2 # Starlight
+    StrangePill: 2
     FoodApple: 1
-  emaggedInventory: # Starlight
-    OminousPill: 2 # Starlight
-    PillDesoxyephedrine5: 2 # Starlight
+  emaggedInventory:
+    OminousPill: 2
+    PillDesoxyephedrine5: 2
+  #endregion Starlight
 
 # All access version. Should reflect NanoMedCivilianWallInventory, but with more stock
 - type: vendingMachineInventory

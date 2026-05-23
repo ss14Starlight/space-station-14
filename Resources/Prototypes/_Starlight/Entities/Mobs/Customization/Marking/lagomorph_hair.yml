@@ -1,0 +1,2285 @@
+- type: marking
+  id: LagomorphHairAfro
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: afro
+- type: marking
+  id: LagomorphHairAfro2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: afro2
+- type: marking
+  id: LagomorphHairBaby
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: baby
+- type: marking
+  id: LagomorphHairBigafro
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bigafro
+- type: marking
+  id: LagomorphHairAntenna
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: antenna
+- type: marking
+  id: LagomorphHairBalding
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: e
+- type: marking
+  id: LagomorphHairBedhead
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bedhead
+- type: marking
+  id: LagomorphHairBedheadv2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bedheadv2
+- type: marking
+  id: LagomorphHairBedheadv3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bedheadv3
+- type: marking
+  id: LagomorphHairCube
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: cube
+- type: marking
+  id: LagomorphHairPulato
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: pulato
+- type: marking
+  id: LagomorphHairLongBedhead
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long_bedhead
+- type: marking
+  id: LagomorphHairLongBedhead2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long_bedhead2
+- type: marking
+  id: LagomorphHairFloorlengthBedhead
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: floorlength_bedhead
+- type: marking
+  id: LagomorphHairBeehive
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: beehive
+- type: marking
+  id: LagomorphHairBeehivev2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: beehivev2
+- type: marking
+  id: LagomorphHairBob
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob
+- type: marking
+  id: LagomorphHairBob2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob2
+- type: marking
+  id: LagomorphHairBobcut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bobcut
+- type: marking
+  id: LagomorphHairBob4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bob4
+- type: marking
+  id: LagomorphHairBob5
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bob5
+- type: marking
+  id: LagomorphHairBobcurl
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bobcurl
+- type: marking
+  id: LagomorphHairBoddicker
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: boddicker
+- type: marking
+  id: LagomorphHairBowlcut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bowlcut
+- type: marking
+  id: LagomorphHairBowlcut2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bowlcut2
+- type: marking
+  id: LagomorphHairBraid
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: braid
+- type: marking
+  id: LagomorphHairBraided
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braided
+- type: marking
+  id: LagomorphHairBraidfront
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: braidfront
+- type: marking
+  id: LagomorphHairBraid2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: braid2
+- type: marking
+  id: LagomorphHairHbraid
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: hbraid
+- type: marking
+  id: LagomorphHairShortbraid
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shortbraid
+- type: marking
+  id: LagomorphHairBraidtail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: braidtail
+- type: marking
+  id: LagomorphHairBun
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bun
+- type: marking
+  id: LagomorphHairBunhead2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bunhead2
+- type: marking
+  id: LagomorphHairBun3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bun3
+- type: marking
+  id: LagomorphHairLargebun
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: largebun
+- type: marking
+  id: LagomorphHairManbun
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: manbun
+- type: marking
+  id: LagomorphHairTightbun
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: tightbun
+- type: marking
+  id: LagomorphHairBusiness
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business
+- type: marking
+  id: LagomorphHairBusiness2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business2
+- type: marking
+  id: LagomorphHairBusiness3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business3
+- type: marking
+  id: LagomorphHairBusiness4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: business4
+- type: marking
+  id: LagomorphHairBuzzcut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: buzzcut
+- type: marking
+  id: LagomorphHairCia
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cia
+- type: marking
+  id: LagomorphHairClassicAfro
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classicafro
+- type: marking
+  id: LagomorphHairClassicBigAfro
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classicbigafro
+- type: marking
+  id: LagomorphHairClassicBusiness
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicbusiness
+- type: marking
+  id: LagomorphHairClassicCia
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classiccia
+- type: marking
+  id: LagomorphHairClassicCornrows2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classiccornrows2
+- type: marking
+  id: LagomorphHairClassicFloorlengthBedhead
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classicfloorlength_bedhead
+- type: marking
+  id: LagomorphHairClassicModern
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classicmodern
+- type: marking
+  id: LagomorphHairClassicMulder
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classicmulder
+- type: marking
+  id: LagomorphHairClassicWisp
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classicwisp
+- type: marking
+  id: LagomorphHairCoffeehouse
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: coffeehouse
+- type: marking
+  id: LagomorphHairCombover
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: combover
+- type: marking
+  id: LagomorphHairCornrows
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: cornrows
+- type: marking
+  id: LagomorphHairCornrows2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: cornrows2
+- type: marking
+  id: LagomorphHairCornrowbun
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrowbun
+- type: marking
+  id: LagomorphHairCornrowbraid
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: cornrowbraid
+- type: marking
+  id: LagomorphHairCornrowtail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: cornrowtail
+- type: marking
+  id: LagomorphHairCrewcut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: crewcut
+- type: marking
+  id: LagomorphHairCrewcut2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: crewcut2
+- type: marking
+  id: LagomorphHairCurls
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: curls
+- type: marking
+  id: LagomorphHairC
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: c
+- type: marking
+  id: LagomorphHairDandypompadour
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: dandypompadour
+- type: marking
+  id: LagomorphHairDevilock
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: devilock
+- type: marking
+  id: LagomorphHairDoublebun
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: doublebun
+- type: marking
+  id: LagomorphHairDoublebunLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+    state: doublebun_long
+- type: marking
+  id: LagomorphHairDreads
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: dreads
+- type: marking
+  id: LagomorphHairDrillruru
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: drillruru
+- type: marking
+  id: LagomorphHairDrillhairextended
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: drillhairextended
+- type: marking
+  id: LagomorphHairEmo
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: emo
+- type: marking
+  id: LagomorphHairEmofringe
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: emofringe
+- type: marking
+  id: LagomorphHairNofade
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: nofade
+- type: marking
+  id: LagomorphHairHighfade
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: highfade
+- type: marking
+  id: LagomorphHairMedfade
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: medfade
+- type: marking
+  id: LagomorphHairLowfade
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: lowfade
+- type: marking
+  id: LagomorphHairBaldfade
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: baldfade
+- type: marking
+  id: LagomorphHairFeather
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: feather
+- type: marking
+  id: LagomorphHairFather
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: father
+- type: marking
+  id: LagomorphHairSargeant
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sargeant
+- type: marking
+  id: LagomorphHairFlair
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: flair
+- type: marking
+  id: LagomorphHairBigflattop
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bigflattop
+- type: marking
+  id: LagomorphHairFlow
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: f
+- type: marking
+  id: LagomorphHairGelled
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: gelled
+- type: marking
+  id: LagomorphHairGentle
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: gentle
+- type: marking
+  id: LagomorphHairHalfbang
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: halfbang
+- type: marking
+  id: LagomorphHairHalfbang2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: halfbang2
+- type: marking
+  id: LagomorphHairHalfshaved
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: halfshaved
+- type: marking
+  id: LagomorphHairHedgehog
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: hedgehog
+- type: marking
+  id: LagomorphHairHimecut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: himecut
+- type: marking
+  id: LagomorphHairHimecut2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: himecut2
+- type: marking
+  id: LagomorphHairShorthime
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shorthime
+- type: marking
+  id: LagomorphHairHimeup
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: himeup
+- type: marking
+  id: LagomorphHairHitop
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: hitop
+- type: marking
+  id: LagomorphHairJade
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: jade
+- type: marking
+  id: LagomorphHairJensen
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: jensen
+- type: marking
+  id: LagomorphHairJoestar
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: joestar
+- type: marking
+  id: LagomorphHairKeanu
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: keanu
+- type: marking
+  id: LagomorphHairKusanagi
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: kusanagi
+- type: marking
+  id: LagomorphHairLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long
+- type: marking
+  id: LagomorphHairLong2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: long2
+- type: marking
+  id: LagomorphHairLong3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: long3
+- type: marking
+  id: LagomorphHairLongWithBundles
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longbundled
+- type: marking
+  id: LagomorphHairLongovereye
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longovereye
+- type: marking
+  id: LagomorphHairLbangs
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: lbangs
+- type: marking
+  id: LagomorphHairLongemo
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longemo
+- type: marking
+  id: LagomorphHairLongfringe
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: longfringe
+- type: marking
+  id: LagomorphHairLongsidepart
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longsidepart
+- type: marking
+  id: LagomorphHairMegaeyebrows
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: megaeyebrows
+- type: marking
+  id: LagomorphHairMessy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: messy
+- type: marking
+  id: LagomorphHairModern
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: modern
+- type: marking
+  id: LagomorphHairMohawk
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: d
+- type: marking
+  id: LagomorphHairNitori
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: nitori
+- type: marking
+  id: LagomorphHairReversemohawk
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: reversemohawk
+- type: marking
+  id: LagomorphHairUnshavenMohawk
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: unshaven_mohawk
+- type: marking
+  id: LagomorphHairMulder
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: mulder
+- type: marking
+  id: LagomorphHairOdango
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: odango
+- type: marking
+  id: LagomorphHairOmbre
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ombre
+- type: marking
+  id: LagomorphHairOneshoulder
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: oneshoulder
+- type: marking
+  id: LagomorphHairShortovereye
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shortovereye
+- type: marking
+  id: LagomorphHairOxton
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: oxton
+- type: marking
+  id: LagomorphHairParted
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: parted
+- type: marking
+  id: LagomorphHairPart
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: part
+- type: marking
+  id: LagomorphHairKagami
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: kagami
+- type: marking
+  id: LagomorphHairPigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: pigtails
+- type: marking
+  id: LagomorphHairPigtails2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pigtails2
+- type: marking
+  id: LagomorphHairPixie
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: pixie
+- type: marking
+  id: LagomorphHairPompadour
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: pompadour
+- type: marking
+  id: LagomorphHairBigpompadour
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: bigpompadour
+- type: marking
+  id: LagomorphHairPonytail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: ponytail
+- type: marking
+  id: LagomorphHairPonytail2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: ponytail2
+- type: marking
+  id: LagomorphHairPonytail3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: ponytail3
+- type: marking
+  id: LagomorphHairPonytail4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail4
+- type: marking
+  id: LagomorphHairPonytail5
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: ponytail5
+- type: marking
+  id: LagomorphHairPonytail6
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: ponytail6
+- type: marking
+  id: LagomorphHairPonytail7
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ponytail7
+- type: marking
+  id: LagomorphHairHighponytail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: highponytail
+- type: marking
+  id: LagomorphHairStail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: stail
+- type: marking
+  id: LagomorphHairLongstraightponytail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longstraightponytail
+- type: marking
+  id: LagomorphHairCountry
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: country
+- type: marking
+  id: LagomorphHairFringetail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: fringetail
+- type: marking
+  id: LagomorphHairSidetail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sidetail
+- type: marking
+  id: LagomorphHairSidetail2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sidetail2
+- type: marking
+  id: LagomorphHairSidetail3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sidetail3
+- type: marking
+  id: LagomorphHairSidetail4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sidetail4
+- type: marking
+  id: LagomorphHairSpikyponytail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: spikyponytail
+- type: marking
+  id: LagomorphHairPoofy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: poofy
+- type: marking
+  id: LagomorphHairQuiff
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: quiff
+- type: marking
+  id: LagomorphHairRonin
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: ronin
+- type: marking
+  id: LagomorphHairShaved
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shaved
+- type: marking
+  id: LagomorphHairShavedpart
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shavedpart
+- type: marking
+  id: LagomorphHairShortbangs
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shortbangs
+- type: marking
+  id: LagomorphHairA
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: a
+- type: marking
+  id: LagomorphHairShorthair2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: shorthair2
+- type: marking
+  id: LagomorphHairShorthair3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shorthair3
+- type: marking
+  id: LagomorphHairShorthairg
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shorthairg
+- type: marking
+  id: LagomorphHair80s
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: 80s
+- type: marking
+  id: LagomorphHairRosa
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: rosa
+- type: marking
+  id: LagomorphHairB
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: b
+- type: marking
+  id: LagomorphHairSidecut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sidecut
+- type: marking
+  id: LagomorphHairSkinhead
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: skinhead
+- type: marking
+  id: LagomorphHairProtagonist
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: protagonist
+- type: marking
+  id: LagomorphHairSpikey
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: spikey
+- type: marking
+  id: LagomorphHairSpiky
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: spiky
+- type: marking
+  id: LagomorphHairSpiky2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: spiky2
+- type: marking
+  id: LagomorphHairSpookyLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: spookylong
+- type: marking
+  id: LagomorphHairSwept
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: swept
+- type: marking
+  id: LagomorphHairSwept2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: swept2
+- type: marking
+  id: LagomorphHairBAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: b_alt
+- type: marking
+  id: LagomorphHairThinning
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: thinning
+- type: marking
+  id: LagomorphHairThinningfront
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: thinningfront
+- type: marking
+  id: LagomorphHairThinningrear
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: thinningrear
+- type: marking
+  id: LagomorphHairTopknot
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: topknot
+- type: marking
+  id: LagomorphHairTressshoulder
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: tressshoulder
+- type: marking
+  id: LagomorphHairTrimmed
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: trimmed
+- type: marking
+  id: LagomorphHairTrimflat
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: trimflat
+- type: marking
+  id: LagomorphHairTwintail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: twintail
+- type: marking
+  id: LagomorphHairTwoStrands
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: twostrands
+- type: marking
+  id: LagomorphHairUndercut
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: undercut
+- type: marking
+  id: LagomorphHairUndercutleft
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: undercutleft
+- type: marking
+  id: LagomorphHairUndercutright
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: undercutright
+- type: marking
+  id: LagomorphHairUnkept
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: unkept
+- type: marking
+  id: LagomorphHairUpdo
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: updo
+- type: marking
+  id: LagomorphHairVlong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: vlong
+- type: marking
+  id: LagomorphHairLongest
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longest
+- type: marking
+  id: LagomorphHairLongest2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longest2
+- type: marking
+  id: LagomorphHairVeryshortovereyealternate
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: veryshortovereyealternate
+- type: marking
+  id: LagomorphHairVlongfringe
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: vlongfringe
+- type: marking
+  id: LagomorphHairVolaju
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: volaju
+- type: marking
+  id: LagomorphHairWisp
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: wisp
+- type: marking
+  id: LagomorphHairUneven
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: uneven
+- type: marking
+  id: LagomorphHairTailed
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: tailed
+- type: marking
+  id: LagomorphHairClassicLong2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: Mobs/Customization/human_hair.rsi
+      state: classiclong2
+- type: marking
+  id: LagomorphHairClassicLong3
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: classiclong3
+- type: marking
+  id: LagomorphHairShaped
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shaped
+- type: marking
+  id: LagomorphHairLongBow
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longbow
+- type: marking
+  id: LagomorphHairLongWithBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+    state: longwithbangs
+- type: marking
+  id: LagomorphHairOverEyePigtail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+    state: overeyepigtail
+
+- type: marking
+  id: LagomorphHairLowpigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: lowpigtails
+
+- type: marking
+  id: LagomorphHairGatheredLow
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: gatheredlow
+#starlight end
+- type: marking
+  id: LagomorphHairLongBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longbangs
+
+- type: marking
+  id: LagomorphHairHimecutWithTails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: himecutwithtails
+
+- type: marking
+  id: LagomorphHairShortFluffy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shortfluffy
+
+- type: marking
+  id: LagomorphHairReiHair
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: reihair
+
+- type: marking
+  id: LagomorphHairAfricanPigtails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: africanpigtails
+
+- type: marking
+  id: LagomorphHairAfropuffdouble
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffdouble
+
+- type: marking
+  id: LagomorphHairAfropuffleft
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffleft
+
+- type: marking
+  id: LagomorphHairAfropuffright
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: afropuffright
+
+- type: marking
+  id: LagomorphHairAmazon
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: amazon
+
+- type: marking
+  id: LagomorphHairAstolfo
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: astolfo
+
+- type: marking
+  id: LagomorphHairBaum
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: baum
+
+- type: marking
+  id: LagomorphHairBeachwave
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: beachwave
+
+- type: marking
+  id: LagomorphHairBluntbangs
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bluntbangs
+
+- type: marking
+  id: LagomorphHairBluntbangsAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: bluntbangs_alt
+
+- type: marking
+  id: LagomorphHairBobcutAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bobcutalt
+
+- type: marking
+  id: LagomorphHairBunhead4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: bunhead4
+
+- type: marking
+  id: LagomorphHairCombed
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: combed
+
+- type: marking
+  id: LagomorphHairCombedbob
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: combedbob
+
+- type: marking
+  id: LagomorphHairCotton
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: cotton
+
+- type: marking
+  id: LagomorphHairCurly
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: curly
+
+- type: marking
+  id: LagomorphHairDave
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: dave
+
+- type: marking
+  id: LagomorphHairDiagonalBangs
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: diagonal_bangs
+
+- type: marking
+  id: LagomorphHairEmoshort
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: emoshort
+
+- type: marking
+  id: LagomorphHairFingerwave
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: fingerwave
+
+- type: marking
+  id: LagomorphHairFluffyShort
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: fluffy_short
+
+- type: marking
+  id: LagomorphHairFortuneteller
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: fortuneteller
+
+- type: marking
+  id: LagomorphHairFortunetellerAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: fortuneteller_alt
+
+- type: marking
+  id: LagomorphHairFroofylong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: froofylong
+
+- type: marking
+  id: LagomorphHairGeisha
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: geisha
+
+- type: marking
+  id: LagomorphHairGentle21
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: gentle21
+
+- type: marking
+  id: LagomorphHairGlammetal
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: glammetal
+
+- type: marking
+  id: LagomorphHairGloomyLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: gloomy_long
+
+- type: marking
+  id: LagomorphHairGloomyMedium
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: gloomy_medium
+
+- type: marking
+  id: LagomorphHairGrande
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: grande
+
+- type: marking
+  id: LagomorphHairHalfshave
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: halfshave
+
+- type: marking
+  id: LagomorphHairHalfshaveglamorous
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_glamorous
+
+- type: marking
+  id: LagomorphHairHalfshaveLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: halfshave_long
+
+- type: marking
+  id: LagomorphHairHalfshaveMessy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_messy
+
+- type: marking
+  id: LagomorphHairHalfshaveMessyLong
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: halfshave_messylong
+
+- type: marking
+  id: LagomorphHairHalfshaveSnout
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: halfshave_snout
+
+- type: marking
+  id: LagomorphHairHightight
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hightight
+
+- type: marking
+  id: LagomorphHairHyenamane
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: hyenamane
+
+- type: marking
+  id: LagomorphHairJessica
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: jessica
+
+- type: marking
+  id: LagomorphHairLong4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: long4
+
+- type: marking
+  id: LagomorphHairLongdtails
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longdtails
+
+- type: marking
+  id: LagomorphHairLongerAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longeralt
+
+- type: marking
+  id: LagomorphHairLongovereyeAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: longovereye_alt
+
+- type: marking
+  id: LagomorphHairLongsidepartstraight
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: longsidepartstraight
+
+- type: marking
+  id: LagomorphHairLooseSlicked
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: loose_slicked
+
+- type: marking
+  id: LagomorphHairMediumbraid
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: mediumbraid
+
+- type: marking
+  id: LagomorphHairNewyou
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: newyou
+
+- type: marking
+  id: LagomorphHairPonytailAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: ponytailalt
+
+- type: marking
+  id: LagomorphHairPonytailF
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ponytailf
+
+- type: marking
+  id: LagomorphHairPoofy2
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: poofy2
+
+- type: marking
+  id: LagomorphHairQuadcurls
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: quadcurls
+
+- type: marking
+  id: LagomorphHairSabitsuki
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sabitsuki
+
+- type: marking
+  id: LagomorphHairScully
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: scully
+
+- type: marking
+  id: LagomorphHairShorthair4
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shorthair4
+
+- type: marking
+  id: LagomorphHairShy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: shy
+
+- type: marking
+  id: LagomorphHairSimplePonytail
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: simple_ponytail
+
+- type: marking
+  id: LagomorphHairSleaze
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: sleaze
+
+- type: marking
+  id: LagomorphHairSlightlyMessy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: slightlymessy
+
+- type: marking
+  id: LagomorphHairSlimedroplet
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: slimedroplet
+
+- type: marking
+  id: LagomorphHairSlimedropletAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: slimedroplet_alt
+
+- type: marking
+  id: LagomorphHairSlimespikes
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: slimespikes
+
+- type: marking
+  id: LagomorphHairSlimetendrils
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: slimetendrils
+
+- type: marking
+  id: LagomorphHairSlimetendrilsAlt
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: slimetendrils_alt
+
+- type: marking
+  id: LagomorphHairSpicy
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: spicy
+
+- type: marking
+  id: LagomorphHairTwintailFloor
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: twintail_floor
+
+- type: marking
+  id: LagomorphHairVeryshortovereye
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: veryshortovereye
+
+- type: marking
+  id: LagomorphHairVictory
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: victory
+
+- type: marking
+  id: LagomorphHairViper
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: viper
+
+- type: marking
+  id: LagomorphHairWife
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorphhair.rsi
+      state: wife
+
+- type: marking
+  id: LagomorphHairZiegler
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: ziegler
+
+- type: marking
+  id: LagomorphHairCoolSpikes
+  bodyPart: Hair
+  markingCategory: Hair
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/human_hair.rsi
+      state: coolspikes

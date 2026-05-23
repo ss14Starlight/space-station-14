@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by SevenShades",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+{
+            "name": "scanner",
+            "delays": [
+                [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ]
+            ]
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "frame"
+        },
+        {
+            "name": "inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "powered",
+            "delays": [
+                [ 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15 ]
+            ]
+        },
+        {
+            "name": "alert",
+            "delays": [
+                [ 0.2, 0.2 ]
+            ]
+        }
+  ]
+}

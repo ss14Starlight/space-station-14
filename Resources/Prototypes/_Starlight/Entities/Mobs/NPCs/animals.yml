@@ -10,3 +10,15 @@
     - Dog
     - Canilunzt
     - GalacticCommon
+- type: entity
+  parent: MobCorgiSmartNoGalcom
+  id: MobCorgiSmartGhostrole
+  suffix: Speech Limited, Ghostrole
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-smartcorgi-name
+    description: ghost-role-information-smartcorgi-description
+  - type: GhostTakeoverAvailable

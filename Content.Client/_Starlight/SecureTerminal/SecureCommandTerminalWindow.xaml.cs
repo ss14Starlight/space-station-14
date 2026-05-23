@@ -153,7 +153,7 @@ public sealed partial class SecureCommandTerminalWindow : FancyWindow
     }
 
     private string GetStatusSuffix(SecureTerminalProposalState? proposal, bool onCooldown, bool usedOnce,
-        bool wrongAlert, bool needsWar, string? requiredAlertLevel, bool isDeployed = false)
+        bool wrongAlert, bool needsWar, string? _, bool isDeployed = false)
     {
         if (usedOnce) return " [USED]";
         if (isDeployed) return " [Deployed]";

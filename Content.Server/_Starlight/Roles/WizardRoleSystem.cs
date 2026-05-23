@@ -1,5 +1,3 @@
-using Content.Server.Mind;
-using Content.Server.Roles;
 using Content.Shared._Starlight.Roles.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -21,7 +19,7 @@ public sealed class WizardRoleSystem : EntitySystem
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
-    private static readonly ProtoId<TagPrototype> WizardTag = "Wizard";
+    private static readonly ProtoId<TagPrototype> _wizardTag = "Wizard";
 
     public override void Initialize()
     {
@@ -35,11 +33,9 @@ public sealed class WizardRoleSystem : EntitySystem
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleRemoved);
     }
 
-    private bool IsWizardMind(EntityUid mindId, MindComponent mind)
-    {
-        return _roles.MindHasRole<WizardRoleComponent>(mindId)
-            || _roles.MindHasRole<WizardDuelistRoleComponent>(mindId);
-    }
+    private bool IsWizardMind(EntityUid mindId, MindComponent _)
+    => _roles.MindHasRole<WizardRoleComponent>(mindId)
+        || _roles.MindHasRole<WizardDuelistRoleComponent>(mindId);
 
     private void OnRoleAdded(RoleAddedEvent args)
     {
@@ -50,7 +46,7 @@ public sealed class WizardRoleSystem : EntitySystem
         if (ownedEntity == null)
             return;
 
-        _tag.AddTag(ownedEntity.Value, WizardTag);
+        _tag.AddTag(ownedEntity.Value, _wizardTag);
     }
 
     /// <summary>
@@ -62,7 +58,7 @@ public sealed class WizardRoleSystem : EntitySystem
         if (!IsWizardMind(args.Mind.Owner, args.Mind.Comp))
             return;
 
-        _tag.AddTag(args.Container.Owner, WizardTag);
+        _tag.AddTag(args.Container.Owner, _wizardTag);
     }
 
     /// <summary>
@@ -78,6 +74,6 @@ public sealed class WizardRoleSystem : EntitySystem
         if (ownedEntity == null)
             return;
 
-        _tag.RemoveTag(ownedEntity.Value, WizardTag);
+        _tag.RemoveTag(ownedEntity.Value, _wizardTag);
     }
 }

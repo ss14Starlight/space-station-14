@@ -108,3 +108,13 @@
       requiredSlipSpeed: 0
       knockdownTime: 1
       launchForwardsMultiplier: 2
+
+# Borgs
+- type: entity
+  parent: [ EnergySword, BaseXenoborgContraband ]
+  id: CyborgEnergySwordBlue
+  suffix: For XenoBorgs
+  components:
+  - type: EnergySword
+    colorOptions:
+    - "#2288ff" # can only be blue
