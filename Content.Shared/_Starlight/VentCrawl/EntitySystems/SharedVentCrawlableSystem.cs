@@ -1,18 +1,20 @@
 using System.Linq;
+using System.Numerics;
+using Content.Shared._Starlight.Eye.Blinding.Components;
+using Content.Shared.Actions;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
-using Content.Shared.Tools.Components;
+using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;
-using Content.Shared.VentCrawl.Tube.Components;
+using Content.Shared.Tools.Components;
 using Content.Shared.VentCrawl.Components;
+using Content.Shared.VentCrawl.Tube.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
-using Content.Shared.Actions;
-using Content.Shared._Starlight.Eye.Blinding.Components;
-using Content.Shared.Eye.Blinding.Systems;
 
 namespace Content.Shared.VentCrawl.EntitySystems;
 
@@ -123,13 +125,19 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             return false;
         }
 
+        if (!_containerSystem.Insert(holderUid, to.Contents))
+        {
+            Log.Error("Entity tried entering tube but container system can't insert it into tube! This should never happen.");
+            return false;
+        }
+
         foreach (var ent in holder.Container.ContainedEntities)
         {
             var comp = EnsureComp<BeingVentCrawlComponent>(ent);
             comp.Holder = holderUid;
 
             if (HasComp<ParentCanBlockVisionComponent>(ent))
-                _blindable.UpdateIsBlind(ent);
+                _blindable.UpdateIsBlind(ent, true);
         }
 
         var welded = false;
@@ -158,13 +166,15 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             holder.HasExitAction = false;
         }
 
-        if (!_containerSystem.Insert(holderUid, to.Contents))
-        {
-            Log.Error("Entity tried entering tube but container system can't insert it into tube! This should never happen.");
-            return false;
-        }
         if (TryComp<PhysicsComponent>(holderUid, out var physBody))
             _physicsSystem.SetCanCollide(holderUid, false, body: physBody);
+
+        if (TryComp<AtmosPipeLayersComponent>(toUid, out var toLayers))
+        {
+            var offset = GetLayerOffset(toLayers.CurrentPipeLayer);
+            var tubePos = Transform(toUid).Coordinates;
+            _xformSystem.SetCoordinates(holderUid, _xformSystem.WithEntityId(tubePos.Offset(offset), toUid));
+        }
 
         if (holder.CurrentTube != null)
         {
@@ -318,6 +328,17 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var destination = holder.CurrentDirection.ToVec();
         var newPosition = destination * progress;
 
+        if (TryComp<AtmosPipeLayersComponent>(currentTube, out var layersComp))
+        {
+            var currentOffset = GetLayerOffset(layersComp.CurrentPipeLayer);
+            var nextOffset = TryComp<AtmosPipeLayersComponent>(holder.NextTube.Value, out var nextTubeComp)
+                ? GetLayerOffset(nextTubeComp.CurrentPipeLayer)
+                : currentOffset;
+
+            var layerOffset = Vector2.Lerp(currentOffset, nextOffset, progress);
+            newPosition += layerOffset;
+        }
+
         _xformSystem.SetCoordinates(uid, _xformSystem.WithEntityId(origin.Offset(newPosition), currentTube));
     }
 
@@ -325,6 +346,18 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     {
         if (holder.NextTube == null)
             return;
+
+        if (TryComp<AtmosPipeLayersComponent>(currentTube, out var layersComp) && holder.CurrentDirection != Direction.Invalid)
+        {
+            var nextOffset = TryComp<AtmosPipeLayersComponent>(holder.NextTube.Value, out var nextTubeComp)
+                ? GetLayerOffset(nextTubeComp.CurrentPipeLayer)
+                : GetLayerOffset(layersComp.CurrentPipeLayer);
+
+            var origin = Transform(currentTube).Coordinates;
+            var destination = holder.CurrentDirection.ToVec();
+            var finalPosition = destination * 1f + nextOffset;
+            _xformSystem.SetCoordinates(uid, _xformSystem.WithEntityId(origin.Offset(finalPosition), currentTube));
+        }
 
         if (TryComp<VentCrawlTubeComponent>(currentTube, out var tubeComp) && tubeComp.Contents.ContainedEntities.Contains(uid))
             _containerSystem.Remove(uid, tubeComp.Contents, reparent: false, force: true);
@@ -344,4 +377,17 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         EnterTube(uid, nextTube, holder);
     }
+
+    public static Vector2 GetLayerOffset(AtmosPipeLayer layer) => layer switch
+    {
+        AtmosPipeLayer.Primary => Vector2.Zero,
+
+        AtmosPipeLayer.Secondary => new Vector2(0.15f, 0f),
+        AtmosPipeLayer.Tertiary => new Vector2(-0.15f, 0f),
+
+        AtmosPipeLayer.Quaternary => new Vector2(0.25f, 0f),
+        AtmosPipeLayer.Quinary => new Vector2(-0.25f, 0f),
+
+        _ => Vector2.Zero
+    };
 }

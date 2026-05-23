@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Movement.Systems;
@@ -94,7 +95,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     private void OnGetBendConnectableDirections(EntityUid uid, VentCrawlBendComponent component, ref GetVentCrawlsConnectableDirectionsEvent args)
     {
         var direction = Transform(uid).LocalRotation;
-        var side = new Angle(MathHelper.DegreesToRadians(direction.Degrees - 90));
+        var side = direction - Angle.FromDegrees(90);
 
         args.Connectable = new[] { direction.GetDir(), side.GetDir() };
     }
@@ -174,22 +175,29 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     {
         if (!Resolve(target, ref targetTube))
             return null;
+
         var oppositeDirection = nextDirection.GetOpposite();
 
         var xform = Transform(target);
-        if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
-            return null;
 
-        if (xform.GridUid == null)
+        if (xform.GridUid == null ||
+            !TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return null;
 
         var position = xform.Coordinates;
-        foreach (EntityUid entity in _mapSystem.GetInDir(xform.GridUid.Value, grid, position, nextDirection))
-        {
 
-            if (!TryComp(entity, out VentCrawlTubeComponent? tube)
-                || !CanConnect(target, targetTube, nextDirection)
-                || !CanConnect(entity, tube, oppositeDirection))
+        foreach (var entity in _mapSystem.GetInDir(xform.GridUid.Value, grid, position, nextDirection))
+        {
+            if (!TryComp(entity, out VentCrawlTubeComponent? tube))
+                continue;
+
+            if (!SameLayer(target, entity))
+                continue;
+
+            if (!CanConnect(target, targetTube, nextDirection))
+                continue;
+
+            if (!CanConnect(entity, tube, oppositeDirection))
                 continue;
 
             return entity;
@@ -198,12 +206,24 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         return null;
     }
 
+    private bool SameLayer(EntityUid a, EntityUid b)
+    {
+        var hasA = TryComp(a, out AtmosPipeLayersComponent? la);
+        var hasB = TryComp(b, out AtmosPipeLayersComponent? lb);
+
+        if (hasA != hasB)
+            return false;
+
+        if (!hasA)
+            return true;
+
+        return la!.CurrentPipeLayer == lb!.CurrentPipeLayer;
+    }
+
     private bool CanConnect(EntityUid tubeId, VentCrawlTubeComponent tube, Direction direction)
     {
         if (!tube.Connected)
-        {
             return false;
-        }
 
         var ev = new GetVentCrawlsConnectableDirectionsEvent();
         RaiseLocalEvent(tubeId, ref ev);
