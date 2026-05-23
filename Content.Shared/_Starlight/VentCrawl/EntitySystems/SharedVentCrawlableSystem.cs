@@ -324,11 +324,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         var nextTube = holder.NextTube.Value;
 
-        var overflow = -holder.TimeLeft;
-
         holder.NextTube = null;
         holder.StartingTime = 0f;
-        holder.TimeLeft = holder.TravelDuration - overflow;
+        holder.TimeLeft = 0f;
         DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
 
         EnterTube(uid, nextTube, holder);
