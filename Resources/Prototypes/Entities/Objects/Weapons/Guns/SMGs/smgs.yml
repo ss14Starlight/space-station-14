@@ -29,7 +29,7 @@
     wideAnimationRotation: 90
     damage:
       types:
-        Blunt: 8
+        Blunt: 7
     angle: 0
     animation: WeaponArcThrust
     soundHit:
