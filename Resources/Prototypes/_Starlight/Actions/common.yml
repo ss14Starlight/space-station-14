@@ -100,8 +100,6 @@
     itemIconStyle: BigAction
     priority: -20
     useDelay: 1
-    icon:
-      sprite: _Starlight/Interface/Actions
-      state: exit_vent
+    icon: _Starlight/Interface/Actions/exit_vent.png
   - type: InstantAction
     event: !type:ExitVentActionEvent
