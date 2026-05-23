@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Markings; //#Starlight
+using Content.Shared._Starlight.Body.Prototypes; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -43,8 +44,10 @@ namespace Content.Shared.Humanoid.Markings
         [DataField]
         public bool CanBeDisplaced { get; private set; } = true;
 
+        // Starlight start
         [DataField("sprites", required: true)]
-        public List<SpriteSpecifier> Sprites { get; private set; } = default!;
+        public Dictionary<VisualLayerKey, BodySpriteSpecifier> Sprites { get; private set; } = default!;
+        // Starlight end
 
         //# region starlight
         [DataField("emotes")]
