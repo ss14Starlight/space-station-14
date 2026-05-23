@@ -70,7 +70,6 @@
     containers:
       VentCrawlTube: !type:Container
   # Starlight end
-  - type: ChildBlockVision # Starlight-edit
   # Starlight Start: RPD
   - type: RCDDeconstructable
     cost: 1
@@ -145,6 +144,7 @@
     storedSprite:
       sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: storageHalf
+  - type: ChildBlockVision # Starlight-edit
   - type: GuideHelp
     guides:
     - Pipes
@@ -169,6 +169,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: Sprite
     layers:
@@ -223,6 +224,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: Sprite
     layers:
@@ -317,6 +319,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -365,6 +368,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: Item
     heldPrefix: Fourway

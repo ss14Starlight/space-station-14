@@ -11,6 +11,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Actions;
+using Content.Shared._Starlight.Eye.Blinding.Components;
+using Content.Shared.Eye.Blinding.Systems;
 
 namespace Content.Shared.VentCrawl.EntitySystems;
 
@@ -26,6 +28,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
 
     public override void Initialize()
     {
@@ -120,6 +123,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         {
             var comp = EnsureComp<BeingVentCrawlComponent>(ent);
             comp.Holder = holderUid;
+
+            if (HasComp<ChildBlockVisionComponent>(ent) && HasComp<ParentCanBlockVisionComponent>(toUid))
+                _blindable.UpdateIsBlind(ent);
         }
 
         if (!_containerSystem.Insert(holderUid, to.Contents))
