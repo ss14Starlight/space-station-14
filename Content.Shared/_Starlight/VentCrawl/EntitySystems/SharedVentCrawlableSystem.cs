@@ -6,6 +6,7 @@ using Content.Shared.Atmos.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Item;
+using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Tools.Components;
 using Content.Shared.VentCrawl.Components;
@@ -15,6 +16,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.VentCrawl.EntitySystems;
 
@@ -47,7 +49,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     /// </summary>
     private void OnMoveInput(EntityUid uid, VentCrawlHolderComponent holder, ref MoveInputEvent args)
     {
-
         if (!Exists(holder.CurrentTube))
         {
             ExitVentCrawl(uid);
@@ -55,7 +56,17 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         }
 
         holder.IsMoving = args.State;
-        holder.CurrentDirection = args.Dir;
+
+        var dir = args.Dir;
+        var player = holder.Container.ContainedEntities.FirstOrNull();
+        if (player != null && dir != Direction.Invalid && TryComp<InputMoverComponent>(player, out var mover))
+        {
+            var cameraAngle = mover.TargetRelativeRotation;
+            if (cameraAngle != Angle.Zero)
+                dir = (dir.ToAngle() + cameraAngle).GetCardinalDir();
+        }
+
+        holder.CurrentDirection = dir;
         DirtyField(uid, holder, nameof(VentCrawlHolderComponent.CurrentDirection));
     }
 
