@@ -106,8 +106,12 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     /// <returns>True if the <seealso cref="VentCrawlHolderComponent"/> successfully enters the <seealso cref="VentCrawlTubeComponent"/>; otherwise, False.</returns>
     public bool EnterTube(EntityUid holderUid, EntityUid toUid, VentCrawlHolderComponent? holder = null, TransformComponent? holderTransform = null, VentCrawlTubeComponent? to = null, TransformComponent? toTransform = null)
     {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return false;
+
         if (!Resolve(holderUid, ref holder, ref holderTransform))
             return false;
+
         if (holder.IsExitingVentCrawls)
         {
             Log.Error("Tried entering tube after exiting VentCrawls. This should never happen.");
@@ -124,8 +128,34 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             var comp = EnsureComp<BeingVentCrawlComponent>(ent);
             comp.Holder = holderUid;
 
-            if (HasComp<ChildBlockVisionComponent>(ent) && HasComp<ParentCanBlockVisionComponent>(toUid))
+            if (HasComp<ParentCanBlockVisionComponent>(ent))
                 _blindable.UpdateIsBlind(ent);
+        }
+
+        var welded = false;
+        if (TryComp<WeldableComponent>(toUid, out var weldableComponent))
+            welded = weldableComponent.IsWelded;
+
+        var isValidExit = HasComp<VentCrawlEntryComponent>(toUid) && !welded;
+
+        if (isValidExit && !holder.HasExitAction)
+        {
+            foreach (var ent in holder.Container.ContainedEntities)
+            {
+                var action = _actionsSystem.AddAction(ent, holder.ActionProto);
+                if (action != null)
+                    holder.ProvidedActions.Add(action.Value);
+            }
+
+            holder.HasExitAction = true;
+        }
+        else if (!isValidExit && holder.HasExitAction)
+        {
+            foreach (var action in holder.ProvidedActions)
+                _actionsSystem.RemoveAction(action);
+
+            holder.ProvidedActions.Clear();
+            holder.HasExitAction = false;
         }
 
         if (!_containerSystem.Insert(holderUid, to.Contents))
@@ -157,6 +187,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     /// </summary>
     public void ExitVentCrawl(EntityUid uid, VentCrawlHolderComponent? holder = null, TransformComponent? holderTransform = null)
     {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
         if (Terminating(uid) || !Resolve(uid, ref holder, ref holderTransform, false))
             return;
 
@@ -293,34 +326,8 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (holder.NextTube == null)
             return;
 
-        var welded = false;
-        if (TryComp<WeldableComponent>(holder.NextTube.Value, out var weldableComponent))
-            welded = weldableComponent.IsWelded;
-
         if (TryComp<VentCrawlTubeComponent>(currentTube, out var tubeComp) && tubeComp.Contents.ContainedEntities.Contains(uid))
             _containerSystem.Remove(uid, tubeComp.Contents, reparent: false, force: true);
-
-        var isValidExit = HasComp<VentCrawlEntryComponent>(holder.NextTube.Value) && !welded;
-
-        if (isValidExit && !holder.HasExitAction)
-        {
-            foreach (var entity in holder.Container.ContainedEntities)
-            {
-                var action = _actionsSystem.AddAction(entity, holder.ActionProto);
-                if (action != null)
-                    holder.ProvidedActions.Add(action.Value);
-            }
-
-            holder.HasExitAction = true;
-        }
-        else if (!isValidExit && holder.HasExitAction)
-        {
-            foreach (var action in holder.ProvidedActions)
-                _actionsSystem.RemoveAction(action);
-
-            holder.ProvidedActions.Clear();
-            holder.HasExitAction = false;
-        }
 
         if (_gameTiming.CurTime > holder.LastCrawl + VentCrawlHolderComponent.CrawlDelay)
         {
