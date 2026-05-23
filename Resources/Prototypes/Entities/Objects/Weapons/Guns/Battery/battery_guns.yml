@@ -126,7 +126,20 @@
   parent: BaseWeaponBattery
   abstract: true
   components:
+  #starlight start
   - type: CanDualWield # 🌟Starlight🌟
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type:
+      AltFireMelee
+  # starlight end
   - type: Item
     size: Small
     shape:
