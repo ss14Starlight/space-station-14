@@ -1,4 +1,4 @@
-- type: appearanceParameter
+- type: colorAppearanceParameter
   id: HumanSkinColor
   defaultColor: "#E8B59B"
   coloration: !type:ClampedHsvColorStrategy
@@ -6,14 +6,73 @@
     saturation: 0.2, 0.5
     value: 0.22, 1.0
 
-- type: appearanceParameter
+- type: colorAppearanceParameter
   id: HumanEyeColor
   defaultColor: "#3F7F4F"
 
-- type: appearanceParameter
+- type: colorAppearanceParameter
   id: HumanHairColor
   defaultColor: "#3D2A1B"
 
-- type: appearanceParameter
+- type: colorAppearanceParameter
   id: HumanFacialHairColor
   defaultColor: "#3D2A1B"
+
+- type: colorAppearanceParameter
+  id: UndergarmentColor
+  defaultColor: "#c4c4c4"
+
+- type: colorAppearanceParameter
+  id: UniqueColor
+  perInstance: true
+  defaultColor: "#FFFFFF"
+
+# Species skin colors
+
+- type: colorAppearanceParameter
+  id: ReptilianSkinColor
+  defaultColor: "#5C9B3C"
+
+- type: colorAppearanceParameter
+  id: FelionoidSkinColor
+  defaultColor: "#C8A97E"
+
+- type: colorAppearanceParameter
+  id: LagomorphSkinColor
+  defaultColor: "#B0B0B0"
+
+- type: colorAppearanceParameter
+  id: ShadekinSkinColor
+  defaultColor: "#A070C0"
+
+- type: colorAppearanceParameter
+  id: ResomiSkinColor
+  defaultColor: "#C04040"
+
+- type: colorAppearanceParameter
+  id: MothSkinColor
+  defaultColor: "#F0E0C0"
+
+- type: colorAppearanceParameter
+  id: SlimeSkinColor
+  defaultColor: "#4CAF50"
+
+- type: colorAppearanceParameter
+  id: CycloriteSkinColor
+  defaultColor: "#7B5EA7"
+
+- type: colorAppearanceParameter
+  id: AvaliSkinColor
+  defaultColor: "#7090B0"
+
+- type: colorAppearanceParameter
+  id: ThavenSkinColor
+  defaultColor: "#D0C0A0"
+
+- type: colorAppearanceParameter
+  id: ArachnidSkinColor
+  defaultColor: "#5C4A3C"
+
+- type: colorAppearanceParameter
+  id: VulpkaninSkinColor
+  defaultColor: "#D09060"
