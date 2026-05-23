@@ -19,7 +19,6 @@
           nodeGroupID: Pipe
           pipeDirection: South
     - type: CollideOnAnchor
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -95,6 +94,7 @@
       guides:
       - AirVent
       - DeviceMonitoringAndControl
+    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasUnaryBase
@@ -282,6 +282,7 @@
     - type: GuideHelp
       guides:
       - AirInjector
+    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -341,6 +342,16 @@
     - type: GuideHelp
       guides:
       - Thermomachines
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: BaseGasThermoMachine
@@ -377,6 +388,16 @@
       prefix: device-address-prefix-freezer
     - type: StealTarget
       stealGroup: FreezerHeater
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasThermoMachineFreezer
@@ -422,6 +443,16 @@
       prefix: device-address-prefix-heater
     - type: StealTarget
       stealGroup: FreezerHeater
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    - type: ChildBlockVision
+    # Starlight end
 
 - type: entity
   parent: GasThermoMachineHeater
@@ -561,4 +592,13 @@
   - type: GuideHelp
     guides:
     - GasCondensing
-
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlJunction
+    degrees:
+      - 0
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
