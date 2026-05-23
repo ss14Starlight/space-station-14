@@ -12,7 +12,7 @@
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterCoatBlueShield
   name: blueshield overcoat
-  description: A coat worn by Blueshield Officers who don't mind a little cold. Heavily reinforced, for when diplomacy won't cut it.
+  description: A coat worn by Blueshield Officers who don't mind the lighter wear. Heavily reinforced, for when diplomacy won't cut it.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/blueshield_coat.rsi
@@ -26,7 +26,8 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Heat: 0.7 # No cold resist because the item literally says it doesn't protect you from cold.
+        Heat: 0.7
+        Cold: 0.7 # BlueShield is expensive armor.
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Item
