@@ -37,7 +37,7 @@
   - type: MeleeRequiresWield
   - type: AltFireMelee
     # starlight end
-    - type: Sprite
+  - type: Sprite
   - type: Item
     size: Huge
     shape:
