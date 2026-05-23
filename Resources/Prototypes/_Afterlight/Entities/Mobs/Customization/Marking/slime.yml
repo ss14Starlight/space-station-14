@@ -7,27 +7,42 @@
     - emotePrototype: Yip
     - emotePrototype: Whine
     - emotePrototype: Bark
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: squishy_fox
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: squishy_fox
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailGlassleaf
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: glassleaf
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: glassleaf
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailGooeyDragon
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: gooey_dragon
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: gooey_dragon
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailGummyCat
@@ -38,27 +53,42 @@
     - emotePrototype: Meow
     - emotePrototype: Mew
     - emotePrototype: Trill
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: gummy_cat
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: gummy_cat
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailHoppingSlime
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: hopping_slime
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: hopping_slime
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailNudibranchi
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: nudibranchi
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: nudibranchi
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailVulpish
@@ -69,9 +99,14 @@
     - emotePrototype: Yip
     - emotePrototype: Whine
     - emotePrototype: Bark
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: vulpish
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: vulpish
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailWaggableMass
@@ -82,9 +117,14 @@
     - emotePrototype: Yip
     - emotePrototype: Whine
     - emotePrototype: Bark
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: waggable_mass
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: waggable_mass
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeTailWaggableMassWag
@@ -95,36 +135,56 @@
     - emotePrototype: Yip
     - emotePrototype: Whine
     - emotePrototype: Bark
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
-    state: waggable_mass_wagging
+    body_tail:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/tail.rsi
+        state: waggable_mass_wagging
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsBlades
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: blades
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: blades
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsBunks
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: bunks
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: bunks
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsCarblunkle
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: carblunkle
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: carblunkle
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsFoxlike
@@ -135,42 +195,67 @@
     - emotePrototype: Yip
     - emotePrototype: Whine
     - emotePrototype: Bark
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: foxlike
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: foxlike
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsHoppers
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: hoppers
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: hoppers
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsStalks
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: stalks
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: stalks
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsStalksSmall
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: stalks_small
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: stalks_small
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: SlimeEarsThorns
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [ SlimePerson ]
+  # Starlight start
   sprites:
-  - sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
-    state: thorns
+    body_headTop:
+      sprite:
+        sprite: _Afterlight/Mobs/Customization/SlimePerson/ears.rsi
+        state: thorns
+      colorSource: HumanSkinColor
+  # Starlight end
