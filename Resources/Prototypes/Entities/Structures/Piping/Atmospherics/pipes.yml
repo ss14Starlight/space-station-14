@@ -522,3 +522,13 @@
     navMapBlip: GasPipeManifold
     showAbsentConnections: false
   - type: AtmosDevice
+  # Starlight-start
+  - type: VentCrawlTube
+  - type: VentCrawlManifold
+    layerCount: 5
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight-end

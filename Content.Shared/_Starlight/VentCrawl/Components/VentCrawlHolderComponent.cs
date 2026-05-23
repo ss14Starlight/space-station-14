@@ -67,6 +67,12 @@ public sealed partial class VentCrawlHolderComponent : Component
     public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
 
     public List<EntityUid> ProvidedActions = new();
+
+    /// <summary>
+    /// Current layer in manifold. Null if not in manifold.
+    /// </summary>
+    [AutoNetworkedField]
+    public int? ManifoldLayer = null;
 }
 
 public sealed partial class ExitVentActionEvent : InstantActionEvent

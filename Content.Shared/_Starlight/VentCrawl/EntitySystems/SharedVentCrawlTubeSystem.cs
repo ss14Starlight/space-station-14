@@ -42,6 +42,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         SubscribeLocalEvent<VentCrawlEntryComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetEntryConnectableDirections);
         SubscribeLocalEvent<VentCrawlJunctionComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetJunctionConnectableDirections);
         SubscribeLocalEvent<VentCrawlTransitComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetTransitConnectableDirections);
+        SubscribeLocalEvent<VentCrawlManifoldComponent, GetVentCrawlsConnectableDirectionsEvent>(OnGetManifoldConnectableDirections);
     }
 
     #region Subscribes
@@ -120,6 +121,9 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         args.Connectable = new[] { rotation.GetDir(), opposite.GetDir() };
     }
 
+    private void OnGetManifoldConnectableDirections(EntityUid uid, VentCrawlManifoldComponent component, ref GetVentCrawlsConnectableDirectionsEvent args)
+        => args.Connectable = new[] { Direction.North, Direction.South, Direction.East, Direction.West };
+
     #endregion
 
     #region Helpers
@@ -171,6 +175,38 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
             _ventCrawableSystem.ExitVentCrawl(entity);
     }
 
+    public EntityUid? GetManifoldExit(
+        EntityUid manifoldUid,
+        int currentLayer,
+        Direction direction)
+    {
+        var xform = Transform(manifoldUid);
+        if (xform.GridUid == null || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
+            return null;
+
+        var targetLayer = TransformFromManifoldLayer(currentLayer);
+        var position = xform.Coordinates;
+
+        foreach (var entity in _mapSystem.GetInDir(xform.GridUid.Value, grid, position, direction))
+        {
+            if (!TryComp<VentCrawlTubeComponent>(entity, out var tube))
+                continue;
+
+            if (!tube.Connected)
+                continue;
+
+            if (!SameLayer(targetLayer, entity))
+                continue;
+
+            if (!CanConnect(entity, tube, direction.GetOpposite()))
+                continue;
+
+            return entity;
+        }
+
+        return null;
+    }
+
     public EntityUid? NextTubeFor(EntityUid target, Direction nextDirection, VentCrawlTubeComponent? targetTube = null)
     {
         if (!Resolve(target, ref targetTube))
@@ -191,7 +227,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
             if (!TryComp(entity, out VentCrawlTubeComponent? tube))
                 continue;
 
-            if (!SameLayer(target, entity))
+            if (!HasComp<VentCrawlManifoldComponent>(entity) && !SameLayer(target, entity))
                 continue;
 
             if (!CanConnect(target, targetTube, nextDirection))
@@ -206,6 +242,19 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         return null;
     }
 
+    public static AtmosPipeLayer TransformFromManifoldLayer(int layer) => layer switch
+    {
+        2 => AtmosPipeLayer.Primary,
+
+        1 => AtmosPipeLayer.Secondary,
+        3 => AtmosPipeLayer.Tertiary,
+
+        0 => AtmosPipeLayer.Quaternary,
+        4 => AtmosPipeLayer.Quinary,
+
+        _ => AtmosPipeLayer.Primary
+    };
+
     private bool SameLayer(EntityUid a, EntityUid b)
     {
         var hasA = TryComp(a, out AtmosPipeLayersComponent? la);
@@ -218,6 +267,16 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
             return true;
 
         return la!.CurrentPipeLayer == lb!.CurrentPipeLayer;
+    }
+
+    private bool SameLayer(AtmosPipeLayer a, EntityUid b)
+    {
+        var hasB = TryComp(b, out AtmosPipeLayersComponent? lb);
+
+        if (!hasB)
+            return false;
+
+        return a == lb!.CurrentPipeLayer;
     }
 
     private bool CanConnect(EntityUid tubeId, VentCrawlTubeComponent tube, Direction direction)
