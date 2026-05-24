@@ -17,7 +17,7 @@
       coefficients:
         Cold: 0.90 # Entire reason I added these.
   - type: TemperatureProtection
-    heatingCoefficient: 1.025 # Same as scarves
+    heatingCoefficient: 1.005 # They're really only on your hands.
     coolingCoefficient: 0.8 # They're not *that* great, they just protect your hands.
 
 # Purple Mittens
