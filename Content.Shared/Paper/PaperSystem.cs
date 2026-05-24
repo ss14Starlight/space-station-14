@@ -50,6 +50,8 @@ public sealed class PaperSystem : EntitySystem
         SubscribeLocalEvent<PaperComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<PaperComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<PaperComponent, PaperInputTextMessage>(OnInputTextMessage);
+        SubscribeLocalEvent<PaperComponent, PaperInputDrawingMessage>(OnInputDrawingMessage);
+        SubscribeLocalEvent<PaperComponent, PaperClearDrawingMessage>(OnClearDrawingMessage);
 
         SubscribeLocalEvent<RandomPaperContentComponent, MapInitEvent>(OnRandomPaperContentMapInit);
 
@@ -77,7 +79,7 @@ public sealed class PaperSystem : EntitySystem
 
         if (TryComp<AppearanceComponent>(entity, out var appearance))
         {
-            if (entity.Comp.Content != "")
+            if (entity.Comp.Content != "" || entity.Comp.Drawing.Count > 0)
                 _appearance.SetData(entity, PaperVisuals.Status, PaperStatus.Written, appearance);
 
             if (entity.Comp.StampState != null)
@@ -98,7 +100,7 @@ public sealed class PaperSystem : EntitySystem
 
         using (args.PushGroup(nameof(PaperComponent)))
         {
-            if (entity.Comp.Content != "")
+            if (entity.Comp.Content != "" || entity.Comp.Drawing.Count > 0)
             {
                 args.PushMarkup(
                     Loc.GetString(
@@ -230,11 +232,6 @@ public sealed class PaperSystem : EntitySystem
         {
             SetContent(entity, args.Text);
 
-            var paperStatus = string.IsNullOrWhiteSpace(args.Text) ? PaperStatus.Blank : PaperStatus.Written;
-
-            if (TryComp<AppearanceComponent>(entity, out var appearance))
-                _appearance.SetData(entity, PaperVisuals.Status, paperStatus, appearance);
-
             if (TryComp(entity, out MetaDataComponent? meta))
                 _metaSystem.SetEntityDescription(entity, "", meta);
 
@@ -247,6 +244,120 @@ public sealed class PaperSystem : EntitySystem
 
         entity.Comp.Mode = PaperAction.Read;
         UpdateUserInterface(entity);
+    }
+
+    private void OnInputDrawingMessage(Entity<PaperComponent> entity, ref PaperInputDrawingMessage args)
+    {
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
+        RaiseLocalEvent(args.Actor, ref ev);
+        if (ev.Cancelled)
+            return;
+
+        if (entity.Comp.EditingDisabled)
+            return;
+
+        if (!ValidateDrawing(entity.Comp, args.Drawing, out var sanitizedDrawing))
+            return;
+
+        entity.Comp.Drawing = sanitizedDrawing;
+        Dirty(entity);
+        UpdatePaperAppearance(entity);
+
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"{ToPrettyString(args.Actor):player} has drawn on {ToPrettyString(entity):entity}.");
+
+        _audio.PlayPvs(entity.Comp.Sound, entity);
+
+        entity.Comp.Mode = PaperAction.Read;
+        UpdateUserInterface(entity);
+    }
+
+    private void OnClearDrawingMessage(Entity<PaperComponent> entity, ref PaperClearDrawingMessage args)
+    {
+        var ev = new PaperWriteAttemptEvent(entity.Owner);
+        RaiseLocalEvent(args.Actor, ref ev);
+        if (ev.Cancelled)
+            return;
+
+        if (entity.Comp.EditingDisabled)
+            return;
+
+        if (entity.Comp.Drawing.Count == 0)
+            return;
+
+        entity.Comp.Drawing.Clear();
+        Dirty(entity);
+        UpdatePaperAppearance(entity);
+
+        _adminLogger.Add(LogType.Chat,
+            LogImpact.Low,
+            $"{ToPrettyString(args.Actor):player} has cleared the drawing on {ToPrettyString(entity):entity}.");
+
+        _audio.PlayPvs(entity.Comp.Sound, entity);
+
+        entity.Comp.Mode = PaperAction.Read;
+        UpdateUserInterface(entity);
+    }
+
+    private bool ValidateDrawing(
+        PaperComponent component,
+        List<PaperDrawingStroke> drawing,
+        out List<PaperDrawingStroke> sanitizedDrawing)
+    {
+        sanitizedDrawing = new List<PaperDrawingStroke>();
+
+        if (drawing.Count > component.MaxDrawingStrokes)
+            return false;
+
+        var totalPoints = 0;
+
+        foreach (var stroke in drawing)
+        {
+            if (stroke.Points.Count == 0)
+                continue;
+
+            if (stroke.Points.Count > component.MaxDrawingPointsPerStroke)
+                return false;
+
+            totalPoints += stroke.Points.Count;
+
+            if (totalPoints > component.MaxDrawingPoints)
+                return false;
+
+            var sanitizedPoints = new List<System.Numerics.Vector2>();
+
+            foreach (var point in stroke.Points)
+            {
+                if (float.IsNaN(point.X) || float.IsNaN(point.Y) ||
+                    float.IsInfinity(point.X) || float.IsInfinity(point.Y))
+                    return false;
+
+                sanitizedPoints.Add(new System.Numerics.Vector2(
+                    Math.Clamp(point.X, 0f, 1f),
+                    Math.Clamp(point.Y, 0f, 1f)));
+            }
+
+            var thickness = Math.Clamp(stroke.Thickness, 1f, 8f);
+            sanitizedDrawing.Add(new PaperDrawingStroke(sanitizedPoints, thickness));
+        }
+
+        return true;
+    }
+
+    private PaperStatus GetPaperStatus(PaperComponent component)
+    {
+        return string.IsNullOrWhiteSpace(component.Content) && component.Drawing.Count == 0
+            ? PaperStatus.Blank
+            : PaperStatus.Written;
+    }
+
+    private void UpdatePaperAppearance(Entity<PaperComponent> entity)
+    {
+        if (!TryComp<AppearanceComponent>(entity, out var appearance))
+            return;
+
+        _appearance.SetData(entity, PaperVisuals.Status, GetPaperStatus(entity.Comp), appearance);
     }
 
     private void OnRandomPaperContentMapInit(Entity<RandomPaperContentComponent> ent, ref MapInitEvent args)
@@ -286,13 +397,13 @@ public sealed class PaperSystem : EntitySystem
         if (!entity.Comp.StampedBy.Contains(stampInfo))
         {
             entity.Comp.StampedBy.Add(stampInfo);
-            
+
             // Starlight-start: Clean unfilled form and signature tags when stamping to finalize the document
             var cleanedContent = CleanUnfilledTags(entity.Comp.Content);
             if (cleanedContent != entity.Comp.Content)
                 SetContent(entity, cleanedContent);
             // Starlight-end
-            
+
             Dirty(entity);
             if (entity.Comp.StampState == null && TryComp<AppearanceComponent>(entity, out var appearance))
             {
@@ -418,20 +529,16 @@ public sealed class PaperSystem : EntitySystem
         entity.Comp.Content = content;
         Dirty(entity);
         UpdateUserInterface(entity);
-
-        if (!TryComp<AppearanceComponent>(entity, out var appearance))
-            return;
-
-        var status = string.IsNullOrWhiteSpace(content)
-            ? PaperStatus.Blank
-            : PaperStatus.Written;
-
-        _appearance.SetData(entity, PaperVisuals.Status, status, appearance);
+        UpdatePaperAppearance(entity);
     }
 
     private void UpdateUserInterface(Entity<PaperComponent> entity)
     {
-        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(entity.Comp.Content, entity.Comp.StampedBy, entity.Comp.Mode)); // Starlight-edit
+        _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(
+            entity.Comp.Content,
+            entity.Comp.StampedBy,
+            entity.Comp.Drawing,
+            entity.Comp.Mode)); // Starlight-edit
     }
 
     # region Starlight
@@ -454,7 +561,7 @@ public sealed class PaperSystem : EntitySystem
         var name = string.Empty;
         var rank = string.Empty;
         var role = string.Empty;
-        
+
         // Get the identity entity (ID card, etc.)
         var identityEntity = player;
         if (TryComp<IdentityComponent>(player, out var identity) &&
@@ -462,10 +569,10 @@ public sealed class PaperSystem : EntitySystem
         {
             identityEntity = idEntity;
         }
-        
+
         // Get name from identity or fallback to entity name
         name = MetaData(identityEntity).EntityName;
-        
+
         // Get role from mind system
         if (TryComp<MindContainerComponent>(player, out var mindContainer) &&
             mindContainer.Mind != null)
@@ -477,7 +584,7 @@ public sealed class PaperSystem : EntitySystem
                 role = Loc.GetString(roleInfo[0].Name);
             }
         }
-        
+
         // Format: "Rank Name, Role" or fallback combinations
         var signature = string.Empty;
         if (!string.IsNullOrEmpty(rank) && !string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(role))
@@ -496,7 +603,7 @@ public sealed class PaperSystem : EntitySystem
         {
             signature = name;
         }
-        
+
         return signature;
     }
 
@@ -538,7 +645,7 @@ public sealed class PaperSystem : EntitySystem
                   .Replace("[signature]", string.Empty)
                   .Replace("[check]", "☐");
     }
-    
+
     # endregion
 
 }

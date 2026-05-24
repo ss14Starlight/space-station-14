@@ -49,7 +49,11 @@ namespace Content.Client.Paper.UI
         // Store original margin to restore when switching modes
         private Thickness _originalContentMargin;
 
+        private bool _drawMode;
+
         public event Action<string>? OnSaved;
+        public event Action<List<PaperDrawingStroke>>? OnDrawingSaved;
+        public event Action? OnDrawingCleared;
         public event Action<int>? OnSignatureRequested;
 
         private int _MaxInputLength = -1;
@@ -96,6 +100,20 @@ namespace Content.Client.Paper.UI
             SaveButton.OnPressed += _ =>
             {
                 RunOnSaved();
+            };
+
+            WriteModeButton.OnPressed += _ => SetDrawingMode(false);
+            DrawModeButton.OnPressed += _ => SetDrawingMode(true);
+
+            SaveDrawingButton.OnPressed += _ =>
+            {
+                RunOnDrawingSaved();
+            };
+
+            ClearDrawingButton.OnPressed += _ =>
+            {
+                DrawingControl.ClearDrawing();
+                OnDrawingCleared?.Invoke();
             };
 
             SaveButton.Text = Loc.GetString("paper-ui-save-button",
@@ -261,33 +279,18 @@ namespace Content.Client.Paper.UI
             _currentRawText = state.Text;
             bool isEditing = state.Mode == PaperComponent.PaperAction.Write;
 
-            // Show/hide UI elements based on edit mode
-            InputContainer.Visible = isEditing;
-            EditButtons.Visible = isEditing;
-            WrittenTextLabel.Visible = !isEditing;
-            WrittenTextContainer.Visible = false;
-            BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0;
+            DrawingControl.SetDrawing(state.Drawing);
+            DrawingControl.Visible = isEditing || state.Drawing.Count > 0;
 
-            if (isEditing)
-            {
-                // Reset margin to original when editing (no tag buttons visible)
-                PaperContent.Margin = _originalContentMargin;
-                    
-                // Initialize the text input field with server content if it's currently empty
-                // This allows editing existing documents while preserving any text the user has already typed
-                var shouldCopy = Input.TextLength == 0 && state.Text.Length > 0;
-                if (shouldCopy)
-                {
-                    // We can get repeated messages with state.Mode == Write if another
-                    // player opens the UI for reading. In this case, don't update the
-                    // text input, as this player is currently writing new text and we
-                    // don't want to lose any text they already input.
-                    Input.TextRope = Rope.Leaf.Empty;
-                    Input.CursorPosition = new TextEdit.CursorPos();
-                    Input.InsertAtCursor(state.Text);
-                }
-                return;
-            }
+            if (!isEditing)
+                _drawMode = false;
+
+            // Show/hide UI elements based on edit mode
+            EditButtons.Visible = isEditing;
+            WrittenTextContainer.Visible = false;
+            BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0 && state.Drawing.Count == 0;
+
+            SetDrawingMode(isEditing && _drawMode);
 
             // Reset form, signature, and check counters before processing to ensure consistent indexing
             // This is crucial because the tag handlers maintain state between renders
@@ -301,12 +304,34 @@ namespace Content.Client.Paper.UI
             var fm = new FormattedMessage();
             fm.AddMarkupPermissive(state.Text);
             WrittenTextLabel.SetMessage(fm, UserFormattableTags.BaseAllowedTags, DefaultTextColor);
-            
-            // Add extra bottom margin based on tag count to prevent cutoff (only in read mode)
-            var tagCount = CountTags(state.Text);
-            var extraBottomMargin = tagCount * 3.0f; // 3 pixels per tag for extra height
-            PaperContent.Margin = new Thickness(_originalContentMargin.Left, _originalContentMargin.Top, 
-                _originalContentMargin.Right, _originalContentMargin.Bottom + extraBottomMargin);
+
+            if (isEditing)
+            {
+                // Reset margin to original when editing (no tag buttons visible)
+                PaperContent.Margin = _originalContentMargin;
+
+                // Initialize the text input field with server content if it's currently empty
+                // This allows editing existing documents while preserving any text the user has already typed
+                var shouldCopy = Input.TextLength == 0 && state.Text.Length > 0;
+                if (shouldCopy)
+                {
+                    // We can get repeated messages with state.Mode == Write if another
+                    // player opens the UI for reading. In this case, don't update the
+                    // text input, as this player is currently writing new text and we
+                    // don't want to lose any text they already input.
+                    Input.TextRope = Rope.Leaf.Empty;
+                    Input.CursorPosition = new TextEdit.CursorPos();
+                    Input.InsertAtCursor(state.Text);
+                }
+            }
+            else
+            {
+                // Add extra bottom margin based on tag count to prevent cutoff (only in read mode)
+                var tagCount = CountTags(state.Text);
+                var extraBottomMargin = tagCount * 3.0f; // 3 pixels per tag for extra height
+                PaperContent.Margin = new Thickness(_originalContentMargin.Left, _originalContentMargin.Top,
+                    _originalContentMargin.Right, _originalContentMargin.Bottom + extraBottomMargin);
+            }
 
             // Add stamps that have been applied to this paper
             // Clear existing stamps first, then add all current ones
@@ -353,6 +378,27 @@ namespace Content.Client.Paper.UI
             SaveButton.Disabled = true;
             OnSaved?.Invoke(Rope.Collapse(Input.TextRope));
             SaveButton.Disabled = false;
+        }
+
+        private void RunOnDrawingSaved()
+        {
+            SaveDrawingButton.Disabled = true;
+            OnDrawingSaved?.Invoke(DrawingControl.GetDrawing());
+            SaveDrawingButton.Disabled = false;
+        }
+
+        private void SetDrawingMode(bool drawing)
+        {
+            _drawMode = drawing;
+
+            InputContainer.Visible = !_drawMode && _currentState.Mode == PaperComponent.PaperAction.Write;
+            WrittenTextLabel.Visible = _currentState.Mode != PaperComponent.PaperAction.Write || _drawMode;
+            DrawingControl.DrawingEnabled = _currentState.Mode == PaperComponent.PaperAction.Write && _drawMode;
+
+            SaveButton.Visible = !_drawMode;
+            FillStatus.Visible = !_drawMode;
+            SaveDrawingButton.Visible = _drawMode;
+            ClearDrawingButton.Visible = _drawMode;
         }
 
         /// <summary>
