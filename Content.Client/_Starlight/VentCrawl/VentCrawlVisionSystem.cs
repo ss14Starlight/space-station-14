@@ -34,8 +34,6 @@ public sealed partial class VentCrawlSystem : EntitySystem
         if (!TryComp<VentCrawlerComponent>(player, out var playerVentCrawlerComponent))
         {
             _subFloorHideSystem.ShowVentPipe = false;
-            if (_pipeOverlay != null)
-                _overlayManager.RemoveOverlay(_pipeOverlay);
             return;
         }
 
