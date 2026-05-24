@@ -35,12 +35,6 @@ borg-type-cargo-desc = Haul cargo, deliver orders, and make the station rich!
 borg-type-cargo-transponder = cargo cyborg
 
 # Module incompatibilities
-borg-module-incompatibility-cleaning = Incompatibile  with other cleaning modules.
-borg-module-incompatibility-clowning = Incompatible with other clowning modules.
-borg-module-incompatibility-firstaid = Incompatible with other first aid modules.
-borg-module-incompatibility-haul = Incompatible with other hauling modules.
-borg-module-incompatibility-miningtool = Incompatible with other non-combat mining modules.
-borg-module-incompatibility-tool = Incompatible with other tool modules.
 borg-module-incompatibility-xenoborg-engiweapon = Incompatible with other Engineering Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-heavyweapon = Incompatible with other Heavy Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-scoutweapon = Incompatible with other Scout Xenoborg weapon modules.

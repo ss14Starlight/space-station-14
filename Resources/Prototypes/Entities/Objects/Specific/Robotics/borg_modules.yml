@@ -568,15 +568,6 @@
     - item: SprayPainterBorg # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: tool-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleGeneric
-    - ModuleBlacklistCyborgTool
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-tool
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgTool # Starlight end
 
 - type: entity
   id: BorgModuleInflatable
@@ -653,15 +644,6 @@
             - Ore
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: mining-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleMining
-    - ModubleBlacklistCyborgMining
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-miningtool
-    moduleBlacklist:
-      tags:
-      - ModubleBlacklistCyborgMining # Starlight end
 
 - type: entity
   id: BorgModuleAdvancedMining
@@ -688,15 +670,6 @@
     - item: RadioHandheldExpedition # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-mining-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleMining
-    - ModubleBlacklistCyborgMining
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-miningtool
-    moduleBlacklist:
-      tags:
-      - ModubleBlacklistCyborgMining # Starlight end
 
 - type: entity
   id: BorgModuleTraversal
@@ -737,15 +710,6 @@
     - item: SprayPainterBorg # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleEngineering
-    - ModuleBlacklistCyborgTool
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-tool
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgTool # Starlight end
 
 - type: entity
   id: BorgModuleConstructionMaterialPlaceholder
@@ -902,15 +866,6 @@
     - item: HoloprojectorBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: cleaning-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleJanitor
-    - ModuleBlacklistCyborgCleaning
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-cleaning
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgCleaning # Starlight end
 
 - type: entity
   id: BorgModuleAdvancedCleaning
@@ -938,15 +893,6 @@
           - FitsInDispenser
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-cleaning-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleJanitor
-    - ModuleBlacklistCyborgCleaning
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-cleaning
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgCleaning # Starlight end
 
 # medical modules
 - type: entity
@@ -1035,15 +981,6 @@
     # Starlight end - improve first aid module ergonomics
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleMedical
-    - ModuleBlacklistCyborgFirstAid
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-firstaid
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgFirstAid # Starlight end
 
 - type: entity
   id: BorgModuleRescue
@@ -1206,15 +1143,6 @@
     # Starlight end - improve advanced first aid module ergonomics
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleMedical
-    - ModuleBlacklistCyborgFirstAid
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-firstaid
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgFirstAid # Starlight end
 
 # science modules
 # todo: if science ever gets their own custom robot, add more "sci" modules.
@@ -1419,15 +1347,6 @@
     - item: BikeHornInstrument
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: clowning-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleService
-    - ModuleBlacklistCyborgClowning
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-clowning
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgClowning # Starlight end
 
 - type: entity
   id: BorgModuleAdvancedClowning

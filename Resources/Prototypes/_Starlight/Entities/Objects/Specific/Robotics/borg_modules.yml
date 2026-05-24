@@ -568,15 +568,6 @@
     - item: SprayPainterBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-tools-module }
-  - type: Tag
-    tags:
-    - BorgModuleEngineering
-    - ModuleBlacklistCyborgTool
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-tool
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgTool
 
 - type: entity
   id: BorgModuleSyndicateAdvancedChemical
@@ -921,15 +912,6 @@
           - Document
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: mats-module }
-  - type: Tag
-    tags:
-    - BorgModuleSupply
-    - ModuleBlacklistCyborgHaul
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-haul
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgHaul
 
 - type: entity
   id: BorgModuleMailPlaceholder
@@ -986,15 +968,6 @@
     - item: BorgClamp
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: loading-module }
-  - type: Tag
-    tags:
-    - BorgModuleSupply
-    - ModuleBlacklistCyborgHaul
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-haul
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgHaul
 
 - type: entity
   id: BorgModuleAdvancedPlumbing
