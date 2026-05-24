@@ -178,6 +178,7 @@ namespace Content.Shared.Humanoid.Markings
                 return false;
             }
 
+            // Starlight edit - validate against exposed color slots, not raw sprite layers.
             if (marking.MarkingColors.Count != proto.ColorSlotCount)
             {
                 return false;
