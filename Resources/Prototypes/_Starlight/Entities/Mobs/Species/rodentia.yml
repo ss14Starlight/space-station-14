@@ -76,10 +76,52 @@
           - MobMask
         layer:
           - MobLayer
-#  - type: Sprite
-#    netsync: false
-#    noRot: true
-#    drawdepth: Mobs
+  - type: Sprite # Drawlayers. Top to bottom in order I believe.
+    netsync: false
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ] # Starlight: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ] # Starlight: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ] # Starlight start: Layering fix
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ] # Starlight end: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ] # Starlight start: Layering fix
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false # Starlight end: Layering fix
+    - map: [ "clownedon" ]
+      sprite: "_Starlight/Effects/creampie.rsi"
+      state: "creampie_rodentia"
+      visible: false
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
