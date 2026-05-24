@@ -31,9 +31,7 @@ public sealed partial class VentCrawlSystem : EntitySystem
 
         var player = _player.LocalSession?.AttachedEntity;
 
-        var ventCraslerQuery = GetEntityQuery<VentCrawlerComponent>();
-
-        if (!ventCraslerQuery.TryGetComponent(player, out var playerVentCrawlerComponent))
+        if (!TryComp<VentCrawlerComponent>(player, out var playerVentCrawlerComponent))
         {
             _subFloorHideSystem.ShowVentPipe = false;
             if (_pipeOverlay != null)
