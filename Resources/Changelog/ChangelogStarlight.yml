@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Elkridge) Moved NCT office to where the Engineering SEC checkpoint was.
-    type: Tweak
-  id: 404955
-  time: '2026-05-13T07:53:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4429
-- author: Caws
-  changes:
   - message: (Elkridge) Extended the Cargo Shuttle dock by 1 tile to help prevent "shuttle slamming".
     type: Tweak
   id: 404956
@@ -2799,4 +2792,11 @@ Entries:
   id: 405354
   time: '2026-05-24T10:22:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4528
+- author: wonderfulnewworld
+  changes:
+  - message: Terror Spiders now win at 70% players dead, up from 50%.
+    type: Tweak
+  id: 405355
+  time: '2026-05-24T10:52:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4538
 Order: -1
