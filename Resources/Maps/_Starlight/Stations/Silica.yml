@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/24/2026 00:39:48
+  time: 05/24/2026 00:43:32
   entityCount: 28300
 maps:
 - 1
@@ -14466,7 +14466,7 @@ entities:
       pos: -29.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -237616.67
+      secondsUntilStateChange: -237838.66
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14478,7 +14478,7 @@ entities:
       pos: 30.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -237623.17
+      secondsUntilStateChange: -237845.16
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14490,7 +14490,7 @@ entities:
       pos: 30.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -237623.86
+      secondsUntilStateChange: -237845.84
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14504,7 +14504,7 @@ entities:
       pos: 55.5,-24.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -25072.113
+      secondsUntilStateChange: -25294.107
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15793,7 +15793,7 @@ entities:
       pos: 36.5,0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -329319.97
+      secondsUntilStateChange: -329541.97
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -80002,16 +80002,6 @@ entities:
       text: North Airlock
     - type: WarpPoint
       location: North Airlock
-  - uid: 12544
-    components:
-    - type: Transform
-      pos: 12.5,41.5
-      parent: 2
-    - type: NavMapBeacon
-      color: '#D381C9FF'
-      text: Xenobio
-    - type: WarpPoint
-      location: Xenobio
   - uid: 12545
     components:
     - type: Transform
@@ -80496,6 +80486,13 @@ entities:
     components:
     - type: Transform
       pos: 13.5,5.5
+      parent: 2
+- proto: DefaultStationBeaconXenobiology
+  entities:
+  - uid: 12544
+    components:
+    - type: Transform
+      pos: 12.5,41.5
       parent: 2
 - proto: Defibrillator
   entities:
