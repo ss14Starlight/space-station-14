@@ -18,7 +18,9 @@ namespace Content.Shared.Humanoid.Markings
         UndergarmentTop,
         UndergarmentBottom,
         Arms,
+        Hands, // Starlight
         Legs,
+        Feet, // Starlight
         Tail,
         TailExtras, // Starlight
         Overlay
@@ -43,12 +45,12 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.UndergarmentBottom => MarkingCategories.UndergarmentBottom,
                 HumanoidVisualLayers.RArm => MarkingCategories.Arms,
                 HumanoidVisualLayers.LArm => MarkingCategories.Arms,
-                HumanoidVisualLayers.RHand => MarkingCategories.Arms,
-                HumanoidVisualLayers.LHand => MarkingCategories.Arms,
+                HumanoidVisualLayers.RHand => MarkingCategories.Hands, // Starlight
+                HumanoidVisualLayers.LHand => MarkingCategories.Hands, // Starlight
                 HumanoidVisualLayers.LLeg => MarkingCategories.Legs,
                 HumanoidVisualLayers.RLeg => MarkingCategories.Legs,
-                HumanoidVisualLayers.LFoot => MarkingCategories.Legs,
-                HumanoidVisualLayers.RFoot => MarkingCategories.Legs,
+                HumanoidVisualLayers.LFoot => MarkingCategories.Feet, // Starlight
+                HumanoidVisualLayers.RFoot => MarkingCategories.Feet, // Starlight
                 HumanoidVisualLayers.TailExtras => MarkingCategories.TailExtras, // Starlight
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
                 _ => MarkingCategories.Overlay
