@@ -7,11 +7,13 @@ using Content.Shared._Starlight.Body.Prototypes;
 using Content.Shared._Starlight.Humanoid.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Preferences;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Systems;
 
 public sealed class BodyPartVisualizerSystem : EntitySystem
 {
+    [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StarlightEntitySystem _sl = default!;
     [Dependency] private readonly SLBodySystem _body = default!;
     [Dependency] private readonly SharedBodyVisualizerSystem _bodyVisualizer = default!;
@@ -43,15 +45,12 @@ public sealed class BodyPartVisualizerSystem : EntitySystem
         }
     }
 
-    // For now, the main thing is to get everything running on adapters. We can rework the contract later.
-    private static Color GetColor(BodySpriteSpecifier value, HumanoidCharacterProfile profile)
-        => value.ColorSource switch
-        {
-            BodyPartColorSource.None => value.SpriteColor,
-            BodyPartColorSource.SkinColor => profile.Appearance.SkinColor,
-            BodyPartColorSource.EyeColor => profile.Appearance.EyeColor,
-            BodyPartColorSource.HairColor => profile.Appearance.HairColor,
-            BodyPartColorSource.FacialHairColor  => profile.Appearance.FacialHairColor,
-            _ => value.SpriteColor,
-        };
+    private Color GetColor(BodySpriteSpecifier value, HumanoidCharacterProfile profile)
+    {
+        if (value.ColorSource is not { } source)
+            return value.SpriteColor;
+
+        // TODO: Resolve from per-character body editor parameters once they're persisted on HumanoidCharacterProfile.
+        return _proto.TryIndex(source, out var proto) ? proto.DefaultColor : value.SpriteColor;
+    }
 }

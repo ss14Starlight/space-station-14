@@ -50,7 +50,7 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
             // TODO: In the body, we need to store somewhere which species it belonged to.
             // And what about mobs? In general, I would be insanely happy if every mob had unique colors, age, and maybe even markings.
             // I do not know, this probably all needs to be rewritten.
-            args.Profile = Preferences.HumanoidCharacterProfile.RandomWithSpecies();
+            args.Profile = Content.Shared.Preferences.HumanoidCharacterProfile.RandomWithSpecies();
         }
     }
 

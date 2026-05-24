@@ -3,6 +3,7 @@
 
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared.Starlight.Utility;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager.Attributes;
 
@@ -12,11 +13,8 @@ namespace Content.Shared._Starlight.Body.Prototypes;
 [DataDefinition]
 public sealed partial class BodySpriteSpecifier : ExtendedSpriteSpecifier
 {
-    /// <summary>
-    /// Which color from the humanoid profile is applied to this layer.
-    /// </summary>
     [DataField]
-    public BodyPartColorSource ColorSource = BodyPartColorSource.None;
+    public ProtoId<ColorAppearanceParameterPrototype>? ColorSource;
 
     public override bool Equals(object? obj)
         => obj is BodySpriteSpecifier other
@@ -24,14 +22,4 @@ public sealed partial class BodySpriteSpecifier : ExtendedSpriteSpecifier
             && ColorSource == other.ColorSource;
 
     public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), ColorSource);
-}
-
-[Serializable, NetSerializable]
-public enum BodyPartColorSource : byte
-{
-    None,
-    SkinColor,
-    EyeColor,
-    HairColor,
-    FacialHairColor
 }
