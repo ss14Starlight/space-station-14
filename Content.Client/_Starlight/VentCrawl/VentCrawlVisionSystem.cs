@@ -39,7 +39,7 @@ public sealed partial class VentCrawlSystem : EntitySystem
 
         var inTube = playerVentCrawlerComponent.InTube;
         _subFloorHideSystem.ShowVentPipe = playerVentCrawlerComponent.InTube;
-        if (_pipeOverlay != null && _overlayManager.HasOverlay<VentCrawPipeOverlay>() == inTube)
+        if (_pipeOverlay != null && _overlayManager.HasOverlay<VentCrawPipeOverlay>() != inTube)
         {
             if (inTube)
                 _overlayManager.AddOverlay(_pipeOverlay);

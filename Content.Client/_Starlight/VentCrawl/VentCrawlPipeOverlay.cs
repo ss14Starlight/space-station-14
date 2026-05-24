@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Shared.Atmos.Components;
-using Content.Shared.SubFloor;
 using Content.Shared.VentCrawl.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
