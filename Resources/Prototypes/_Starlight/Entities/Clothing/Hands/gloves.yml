@@ -60,6 +60,7 @@
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsWhite
+  name: white cat paw mittens
   components:
   - type: Sprite
     state: white
@@ -73,6 +74,7 @@
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsBrown
+  name: brown cat paw mittens
   components:
   - type: Sprite
     state: brown
@@ -86,6 +88,7 @@
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsBlack
+  name: black cat paw mittens
   components:
   - type: Sprite
     state: black
@@ -99,6 +102,7 @@
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsBlackWhite
+  name: black-white cat paw mittens
   components:
   - type: Sprite
     state: black_white
