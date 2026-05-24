@@ -39,10 +39,12 @@ public static class MarkingColoring
         // Coloring from default properties
         var defaultColor = prototype.Coloring.Default.GetColor(skinColor, eyeColor, markingSet);
 
+        var colorSlotCount = prototype.ColorSlotCount;
+
         if (prototype.Coloring.Layers == null)
         {
             // If layers is not specified, then every layer must be default
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            for (var i = 0; i < colorSlotCount; i++)
             {
                 colors.Add(defaultColor);
             }
@@ -50,9 +52,20 @@ public static class MarkingColoring
         }
         else
         {
+            for (var i = 0; i < colorSlotCount; i++)
+            {
+                colors.Add(defaultColor);
+            }
+
+            var coloredSlots = new bool[colorSlotCount];
+
             // If some layers are specified.
             for (var i = 0; i < prototype.Sprites.Count; i++)
             {
+                var colorIndex = prototype.GetColorIndex(i);
+                if (colorIndex >= colorSlotCount || coloredSlots[colorIndex])
+                    continue;
+
                 // Getting layer name
                 string? name = prototype.Sprites[i] switch
                 {
@@ -61,20 +74,14 @@ public static class MarkingColoring
                     _ => null
                 };
                 if (name == null)
-                {
-                    colors.Add(defaultColor);
                     continue;
-                }
 
                 // All specified layers must be colored separately, all unspecified must depend on default coloring
                 if (prototype.Coloring.Layers.TryGetValue(name, out var layerColoring))
                 {
                     var marking_color = layerColoring.GetColor(skinColor, eyeColor, markingSet);
-                    colors.Add(marking_color);
-                }
-                else
-                {
-                    colors.Add(defaultColor);
+                    colors[colorIndex] = marking_color;
+                    coloredSlots[colorIndex] = true;
                 }
             }
             return colors;

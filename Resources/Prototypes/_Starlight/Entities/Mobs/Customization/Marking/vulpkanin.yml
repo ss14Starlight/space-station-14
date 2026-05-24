@@ -591,6 +591,42 @@
       state: husky
 
 - type: marking
+  id: VulpTailDownHusky
+  bodyPart: Tail
+  markingCategory: Tail
+  waggingId: VulpTailDownHuskyWag
+  speciesRestriction: [Vulpkanin]
+  spriteLayers: [Chest, Tail, Chest, Tail]
+  spriteColorIndexes: [0, 0, 1, 1]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tail_downhusky_BEHIND_B
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tail_downhusky_FRONT_B
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tail_downhusky_BEHIND_C
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tail_downhusky_FRONT_C
+
+- type: marking
+  id: VulpTailDownHuskyWag
+  bodyPart: Tail
+  markingCategory: Tail
+  staticId: VulpTailDownHusky
+  speciesRestriction: [Vulpkanin]
+  spriteLayers: [Chest, Tail, Chest, Tail]
+  spriteColorIndexes: [0, 0, 1, 1]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tailwag_downhusky_BEHIND_B
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tailwag_downhusky_FRONT_B
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tailwag_downhusky_BEHIND_C
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: m_tailwag_downhusky_FRONT_C
+
+- type: marking
   id: VulpTailFox2
   bodyPart: Tail
   markingCategory: Tail

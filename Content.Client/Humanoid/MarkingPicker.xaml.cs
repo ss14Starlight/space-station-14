@@ -92,6 +92,7 @@ public sealed partial class MarkingPicker : Control
         {
             _currentMarkings.EnsureSpecies(species, skinColor, _markingManager); // should be validated server-side but it can't hurt
         }
+        _currentMarkings.EnsureValid(_markingManager);
 
         _currentSpecies = species;
         _currentSex = sex;
@@ -110,6 +111,7 @@ public sealed partial class MarkingPicker : Control
         {
             _currentMarkings.EnsureSpecies(species, skinColor, _markingManager); // should be validated server-side but it can't hurt
         }
+        _currentMarkings.EnsureValid(_markingManager);
 
         _currentSpecies = species;
         _currentSex = sex;
@@ -200,18 +202,30 @@ public sealed partial class MarkingPicker : Control
 
     private string GetMarkingName(MarkingPrototype marking) => Loc.GetString($"marking-{marking.ID}");
 
-    private List<string> GetMarkingStateNames(MarkingPrototype marking)
+    private List<string> GetMarkingColorNames(MarkingPrototype marking)
     {
-        List<string> result = new();
-        foreach (var markingState in marking.Sprites)
+        var result = new List<string>();
+        for (var i = 0; i < marking.ColorSlotCount; i++)
         {
-            switch (markingState)
+            result.Add(GetMarkingName(marking));
+        }
+
+        var namedSlots = new bool[marking.ColorSlotCount];
+        for (var i = 0; i < marking.Sprites.Count; i++)
+        {
+            var colorIndex = marking.GetColorIndex(i);
+            if (colorIndex >= marking.ColorSlotCount || namedSlots[colorIndex])
+                continue;
+
+            switch (marking.Sprites[i])
             {
                 case SpriteSpecifier.Rsi rsi:
-                    result.Add(Loc.GetString($"marking-{marking.ID}-{rsi.RsiState}"));
+                    result[colorIndex] = Loc.GetString($"marking-{marking.ID}-{rsi.RsiState}");
+                    namedSlots[colorIndex] = true;
                     break;
                 case SpriteSpecifier.Texture texture:
-                    result.Add(Loc.GetString($"marking-{marking.ID}-{texture.TexturePath.Filename}"));
+                    result[colorIndex] = Loc.GetString($"marking-{marking.ID}-{texture.TexturePath.Filename}");
+                    namedSlots[colorIndex] = true;
                     break;
             }
         }
@@ -421,11 +435,10 @@ public sealed partial class MarkingPicker : Control
             return;
         }
 
-        var stateNames = GetMarkingStateNames(prototype);
+        var colorNames = GetMarkingColorNames(prototype);
         _currentMarkingColors.Clear();
         CMarkingColors.RemoveAllChildren();
-        List<ColorSelectorSliders> colorSliders = new();
-        for (int i = 0; i < prototype.Sprites.Count; i++)
+        for (int i = 0; i < prototype.ColorSlotCount; i++)
         {
             var colorContainer = new BoxContainer
             {
@@ -436,9 +449,8 @@ public sealed partial class MarkingPicker : Control
 
             ColorSelectorSliders colorSelector = new ColorSelectorSliders();
             colorSelector.SelectorType = ColorSelectorSliders.ColorSelectorType.Hsv; // defaults color selector to HSV
-            colorSliders.Add(colorSelector);
 
-            colorContainer.AddChild(new Label { Text = $"{stateNames[i]} color:" });
+            colorContainer.AddChild(new Label { Text = $"{colorNames[i]} color:" });
             colorContainer.AddChild(colorSelector);
 
             var listing = _currentMarkings.Markings[_selectedMarkingCategory];
@@ -534,7 +546,7 @@ public sealed partial class MarkingPicker : Control
         else
         {
             // Color everything in skin color
-            for (var i = 0; i < marking.Sprites.Count; i++)
+            for (var i = 0; i < marking.ColorSlotCount; i++)
             {
                 markingObject.SetColor(i, CurrentSkinColor);
             }

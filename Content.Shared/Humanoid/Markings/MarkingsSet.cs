@@ -252,9 +252,13 @@ public sealed partial class MarkingSet
                     continue;
                 }
 
-                if (marking.Sprites.Count != list[i].MarkingColors.Count)
+                if (marking.ColorSlotCount != list[i].MarkingColors.Count)
                 {
-                    list[i] = new Marking(marking.ID, marking.Sprites.Count);
+                    list[i] = new Marking(marking.ID, marking.GetColorSlotColors(list[i].MarkingColors), list[i].IsGlowing)
+                    {
+                        Forced = list[i].Forced,
+                        Visible = list[i].Visible,
+                    };
                 }
             }
 
