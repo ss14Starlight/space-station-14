@@ -81,7 +81,7 @@
       - state: base-stripes-inhand-right
         color: "#FF00CC"
 
-# Blacklist stuff
+# Blacklist abstracts
 - type: entity
   parent: BaseXenoborgModuleHeavy
   id: BaseXenoborgModuleHeavyWeapon
