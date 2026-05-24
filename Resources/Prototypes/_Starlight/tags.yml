@@ -437,6 +437,36 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModuleBlacklistCyborgCleaning
+
+- type: Tag
+  id: ModuleBlacklistCyborgClowning
+
+- type: Tag
+  id: ModuleBlacklistCyborgFirstAid
+
+- type: Tag
+  id: ModuleBlacklistCyborgHaul
+
+- type: Tag
+  id: ModubleBlacklistCyborgMining
+
+- type: Tag
+  id: ModuleBlacklistCyborgTool
+
+- type: Tag
+  id: ModuleBlacklistXenoborgEngiWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgHeavyWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgScoutWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgStealthWeapon
+
+- type: Tag
   id: Nexus
 
 - type: Tag
