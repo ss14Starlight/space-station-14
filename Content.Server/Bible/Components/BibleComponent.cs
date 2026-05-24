@@ -66,10 +66,10 @@ namespace Content.Server.Bible.Components
         //#region Starlight
 
         /// <summary>
-        /// what is the chance a successfull bible thwack removes the cluwning.
+        /// Chance that a successful bible thwack removes cluwning.
         /// </summary>
         [DataField]
-        public float CluwneCureChance = 0.03f;
+        public float CluwneCureChance = 0.50f;
 
         /// <summary>
         /// if a item has this tag. the unremovable comp is ignored when dropping the item.
