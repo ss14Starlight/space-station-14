@@ -53,6 +53,11 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: hair
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hair
   - type: TypingIndicator
     proto: rodentia
   - type: Speech
@@ -188,10 +193,15 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: hair
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hair
   - type: Body
-    prototype: Vox
+    prototype: Rodentia
   - type: Inventory
-    speciesId: vox
+    speciesId: Rodentia
     displacements:
       jumpsuit:
         sizeMaps:

@@ -26,6 +26,7 @@
   id: MobRodentiaSprites
   sprites:
     Head: MobRodentiaHead
+    Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     Chest: MobRodentiaTorso
@@ -48,13 +49,11 @@
   id: MobRodentiaMarkingLimits
   points:
     Hair:
-      points: 0
+      points: 1
       required: false
-      onlyWhitelisted: false
     FacialHair:
-      points: 0
+      points: 1
       required: false
-      onlyWhitelisted: false
     Tail:
       points: 1
       required: true
