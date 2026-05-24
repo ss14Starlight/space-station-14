@@ -44,10 +44,6 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
         var worldHandle = args.WorldHandle;
         var bounds = args.WorldBounds;
 
-        var pipeQuery = _entityManager.GetEntityQuery<SpriteComponent>();
-        var subFloorQuery = _entityManager.GetEntityQuery<SubFloorHideComponent>();
-        var pipeAppQuery = _entityManager.GetEntityQuery<PipeAppearanceComponent>();
-
         var entities = _lookup.GetEntitiesIntersecting(
             args.MapId,
             bounds,
@@ -58,8 +54,8 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
 
         foreach (var uid in entities)
         {
-            if (!pipeAppQuery.HasComponent(uid)) continue;
-            if (!pipeQuery.TryGetComponent(uid, out var sprite)) continue;
+            if (!_entityManager.HasComponent<PipeAppearanceComponent>(uid)) continue;
+            if (!_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite)) continue;
             if (!sprite.Visible) continue;
 
             var xform = _entityManager.GetComponent<TransformComponent>(uid);
