@@ -1460,13 +1460,17 @@ namespace Content.Server.Database.Migrations.Sqlite
 
                     b.ToTable("player_data", (string)null);
                 });
-
+            // Starlight
             modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasColumnName("star_light_profile_id");
+
+                    b.Property<string>("BodyEditorProfile")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("body_editor_profile");
 
                     b.Property<string>("CustomSpecieName")
                         .HasMaxLength(32)

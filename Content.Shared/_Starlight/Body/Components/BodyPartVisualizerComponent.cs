@@ -3,6 +3,7 @@
 
 using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Body.Components;
 
@@ -20,5 +21,8 @@ public sealed partial class BodyPartVisualizerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, List<VisualLayerKey>> SocketLayers = [];
+
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<MarkingSetPrototype>> MarkingSets = [];
 }
 

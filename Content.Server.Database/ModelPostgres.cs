@@ -60,6 +60,11 @@ namespace Content.Server.Database
                 .HasMethod("GIN")
                 .IsTsVectorExpressionIndex("english");
 
+            // Starlight
+            modelBuilder.Entity<StarLightModel.StarLightProfile>()
+                .Property(p => p.BodyEditorProfile)
+                .HasColumnType("jsonb");
+
             foreach(var entity in modelBuilder.Model.GetEntityTypes())
             {
                 foreach(var property in entity.GetProperties())
