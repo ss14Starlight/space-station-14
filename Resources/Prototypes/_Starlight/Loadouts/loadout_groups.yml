@@ -313,7 +313,7 @@
 
 - type: loadoutGroup
   id: MagistrateHead
-  name: loadout-group-magistrate-headwear
+  name: loadout-group-magistrate-head
   defaultSelected: 1
   minLimit: 0
   loadouts:
@@ -335,7 +335,7 @@
 
 - type: loadoutGroup
   id: MagistrateHands
-  name: loadout-group-magistrate-hands
+  name: loadout-group-magistrate-gloves
   defaultSelected: 1
   minLimit: 0
   maxLimit: 1
