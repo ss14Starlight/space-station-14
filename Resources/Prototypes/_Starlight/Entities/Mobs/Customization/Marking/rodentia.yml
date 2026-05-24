@@ -1,34 +1,21 @@
 # HEAD
 
-## DEFAULTS
+## EARS
 
 - type: marking
-  id: RodentiaHeadTopEarDefault
+  id: RodentiaHeadTopEarMouse # Default ear marking.
   markingCategory: HeadTop
   bodyPart: HeadTop
   speciesRestriction: [Rodentia]
   coloring:
-    default:
-      type: !type:TattooColoring
+    layers:
+      mouse:
+        type: !type:TattooColoring
   sprites:
     - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
       state: mouse
     - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
       state: mouse_overlay
-
-- type: marking
-  id: RodentiaTailDefault
-  markingCategory: Tail
-  bodyPart: Tail
-  speciesRestriction: [Rodentia]
-  coloring:
-    default:
-      type: !type:TattooColoring
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: mouse
-
-## EARS
 
 - type: marking
   id: RodentiaHeadTopEarBat
@@ -69,17 +56,6 @@
       state: long
     - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
       state: long_overlay
-
-- type: marking
-  id: RodentiaHeadTopEarMouse
-  markingCategory: HeadTop
-  bodyPart: HeadTop
-  speciesRestriction: [Rodentia]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: mouse
-    - sprite: _Starlight/Mobs/Customization/Rodentia/ear_markings.rsi
-      state: mouse_overlay
 
 - type: marking
   id: RodentiaHeadTopEarMouseLarge
@@ -269,6 +245,19 @@
 ## TAIL
 
 - type: marking
+  id: RodentiaTailMouse # Default tail marking.
+  markingCategory: Tail
+  bodyPart: Tail
+  speciesRestriction: [Rodentia]
+  coloring:
+    layers:
+      mouse:
+        type: !type:TattooColoring
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
+      state: mouse
+
+- type: marking
   id: RodentiaTailBeaver
   markingCategory: Tail
   bodyPart: Tail
@@ -318,15 +307,6 @@
       state: long_overlay
     - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
       state: long_tip
-
-- type: marking
-  id: RodentiaTailMouse
-  markingCategory: Tail
-  bodyPart: Tail
-  speciesRestriction: [Rodentia]
-  sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/tail_markings.rsi
-      state: mouse
 
 - type: marking
   id: RodentiaTailShort

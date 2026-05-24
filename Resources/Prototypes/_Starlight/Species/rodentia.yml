@@ -56,7 +56,7 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ RodentiaTailDefault ]
+      defaultMarkings: [ RodentiaTailMouse ]
     Legs:
       points: 4
       required: false
@@ -69,7 +69,7 @@
     HeadTop:
       points: 1
       required: true
-      defaultMarkings: [ RodentiaHeadTopEarDefault ]
+      defaultMarkings: [ RodentiaHeadTopEarMouse ]
     HeadSide:
       points: 1
       required: false
@@ -78,11 +78,11 @@
       required: false
     UndergarmentBottom:
       points: 0
-      required: true
+      required: false
       #defaultMarkings: [ RMCUnderwearBoxersBlue ]
     UndergarmentTop:
       points: 0
-      required: true
+      required: false
       #defaultMarkings: [ RMCUndershirtStandard ]
 
 - type: humanoidBaseSprite
