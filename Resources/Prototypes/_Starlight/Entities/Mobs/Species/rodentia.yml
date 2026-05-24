@@ -57,7 +57,7 @@
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-            state: hair
+            state: facialhair
   - type: TypingIndicator
     proto: rodentia
   - type: Speech
@@ -239,7 +239,7 @@
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-            state: hair
+            state: facialhair
   - type: Body
     prototype: Rodentia
   - type: Inventory
