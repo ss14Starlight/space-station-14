@@ -1277,7 +1277,7 @@
   parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleHypoPlus
   name: advanced hypo xenoborg module
-  description: Module with a better set of self-refilling hypo.
+  description: Module with a better set of self-refilling hypos.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
@@ -1287,8 +1287,7 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypoPlus
-    - item: TazinideHypo
-    - item: MuteToxinHypo
+    - item: LicoxideHypoPlus
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-hypo2-module }
 
