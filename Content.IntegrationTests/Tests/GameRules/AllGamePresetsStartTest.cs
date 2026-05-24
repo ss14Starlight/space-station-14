@@ -158,7 +158,7 @@ public sealed class AllGamePresetsStartTest : AntagTest
 
         // Clear game preset and return to lobby
         await Pair.WaitCommand("golobby");
-        ticker.SetGamePreset((GamePresetPrototype) null);
+        STicker.SetGamePreset((GamePresetPrototype) null);
         await Pair.RunUntilSynced();
     }
 }
