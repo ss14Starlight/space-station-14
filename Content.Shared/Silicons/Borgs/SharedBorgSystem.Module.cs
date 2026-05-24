@@ -335,7 +335,7 @@ public abstract partial class SharedBorgSystem
 
         //loop over all other contained modules to see if any conflict with this module's blacklist
         //while simultaneously checking if any module fits its prerequisite criteria
-        var prerequisiteFulfilled = false;
+        var prerequisiteFulfilled = ent.Comp.ModuleWhitelist == null; // Starlight. prerequisiteFulfilled starts false, so modules that only use moduleBlacklist can be rejected when the chassis has no modules. This fixes that.
         foreach (var containedModuleUid in chassis.ModuleContainer.ContainedEntities)
         {
             if (_whitelist.IsWhitelistPass(ent.Comp.ModuleBlacklist, containedModuleUid))

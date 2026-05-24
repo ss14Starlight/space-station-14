@@ -38,4 +38,4 @@ borg-type-cargo-transponder = cargo cyborg
 borg-module-incompatibility-xenoborg-engiweapon = Incompatible with other Engineering Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-heavyweapon = Incompatible with other Heavy Xenoborg weapon modules.
 borg-module-incompatibility-xenoborg-scoutweapon = Incompatible with other Scout Xenoborg weapon modules.
-borg-module-incompatibility-xenoborg-stealthhypo = Incompatibile with other Stealth Xenoborg hypo modules.
+borg-module-incompatibility-xenoborg-stealthhypo = Incompatible with other Stealth Xenoborg hypo modules.
