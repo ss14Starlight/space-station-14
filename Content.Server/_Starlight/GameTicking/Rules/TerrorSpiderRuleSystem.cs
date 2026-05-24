@@ -25,7 +25,7 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
     /// <summary>
     /// How much of the crew needs to be dead for the spiders to win.
     /// </summary>
-    private const int TargetDeadCrewPercentage = 50;
+    private const int TargetDeadCrewPercentage = 70;
 
     public override void Initialize()
     {

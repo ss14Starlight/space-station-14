@@ -373,16 +373,14 @@
           Slash: 0.15
           Piercing: 0.10
           Heat: 0.15
-      activeBlockModifier: # This is just here because the game requires it. You can't actually wield this as a Xenoborg.
+      activeBlockModifier: # You shouldn't be able to wield it, but if for some reason you end up doing it, no more immortality.
         coefficients:
-          Blunt: 0.7
-          Slash: 0.5
-          Piercing: 0.4
-          Heat: 0.5
-        flatReductions:
-          Heat: 0.5
-          Piercing: 0.5
+          Blunt: 0.4
+          Slash: 0.35
+          Piercing: 0.25
+          Heat: 0.35
       passiveBlockFraction: 0.2
+      activeBlockFraction: 0.3
     - type: Appearance
     - type: Damageable
       damageContainer: Shield

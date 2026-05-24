@@ -1077,6 +1077,7 @@
   loadouts:
   - SecGloves
   - SecGlovesFingerless
+  - SecMittens
 
 - type: loadoutGroup
   id: ParamedicPDA

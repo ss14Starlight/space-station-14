@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/20/2026 23:09:16
-  entityCount: 852
+  time: 05/22/2026 05:23:12
+  entityCount: 854
 maps: []
 grids:
 - 1
@@ -2905,6 +2905,16 @@ entities:
       deviceLists:
       - 9
       - 10
+- proto: FuelDispenser
+  entities:
+  - uid: 853
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: GasMinerNitrogen
   entities:
   - uid: 372
@@ -4191,6 +4201,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-4.5
+      parent: 1
+- proto: Intellicard
+  entities:
+  - uid: 854
+    components:
+    - type: Transform
+      pos: -0.72115755,1.6332803
       parent: 1
 - proto: KitchenReagentGrinder
   entities:

@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterCoatBomber
   name: bomber jacket
   description: A thick, well-worn WW2 leather bomber jacket.
@@ -25,6 +25,14 @@
         children:
         - id: SmokingPipeFilledTobacco
         - id: FlippoEngravedLighter
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Blunt: 0.75 # Lose a little blunt to tradeoff cold
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+        Cold: 0.85 # Starlight end, here for cold
 
 - type: entity
   parent: [ClothingOuterCoatDetectiveLoadout]
@@ -49,7 +57,7 @@
         - id: FlippoLighter #Not the steal objective, only difference from normal detective trenchcoat
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterCoatGentle
   name: gentle coat
   description: A gentle coat for a gentle man, or woman.
@@ -73,6 +81,7 @@
         Slash: 0.65
         Piercing: 0.6
         Heat: 0.7
+        Cold: 0.8 # Starlight
         Caustic: 0.75 # not the full 90% from ss13 because of the head
 
 - type: entity
@@ -89,6 +98,7 @@
         Slash: 0.65
         Piercing: 0.7
         Heat: 0.7
+        Cold: 0.8 # Starlight
         Caustic: 0.9
 
 - type: entity
@@ -103,7 +113,7 @@
     sprite: Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageToggleableBase
+  parent: [ClothingOuterStorageToggleableBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterCoatJensen
   name: jensen coat
   description: A jensen coat.
@@ -144,6 +154,7 @@
     modifiers:
       coefficients:
         Slash: 0.95
+        Cold: 0.85 # Starlight, I mean, it's a coat
   - type: Edible
     requiresSpecialDigestion: true
   - type: SolutionContainerManager
@@ -169,6 +180,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -191,6 +203,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -213,6 +226,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -235,6 +249,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -259,6 +274,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.95
+        Cold: 0.85 # Starlight, CMO can have a little better than the others
         Caustic: 0.65
 
 - type: entity
@@ -281,6 +297,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -303,6 +320,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -325,6 +343,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.8 # Starlight, RD can have a little better protection than normal lab coats
         Caustic: 0.75
         Radiation: 0.9
 
@@ -334,7 +353,7 @@
   name: research director lab coat
 
 - type: entity
-  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing ]
+  parent: [ ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing ] # Starlight
   id: ClothingOuterCoatPirate
   name: pirate garb
   description: Yarr.
@@ -356,7 +375,7 @@
     sprite: Clothing/OuterClothing/Coats/warden.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterDameDane
   name: yakuza coat
   description: Friday...
@@ -367,7 +386,7 @@
     sprite: Clothing/OuterClothing/Coats/damedanecoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterClownPriest
   name: robes of the honkmother
   description: Meant for a clown of the cloth.
@@ -397,7 +416,7 @@
         Piercing: 0.85
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing] # Starlight
   id: ClothingOuterCoatParamedicWB
   name: paramedic windbreaker
   description: A paramedic's trusty windbreaker, for all the space wind.
@@ -413,7 +432,7 @@
   name: paramedic windbreaker
 
 - type: entity
-  parent: [ClothingOuterStorageBase, BaseMinorContraband] #SL Edit Syndie > Minor
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase, BaseMinorContraband] #SL Edit Syndie > Minor + Cold
   id: ClothingOuterCoatSyndieCap
   name: syndicate's coat
   description: The syndicate's coat is made of durable fabric, with gilded patterns.
@@ -472,6 +491,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9 # Starlight
         Caustic: 0.75
 
 - type: entity
@@ -494,6 +514,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9
         Caustic: 0.75
 
 - type: entity
@@ -511,9 +532,13 @@
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Coats/space_asshole.rsi
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Cold: 0.85 # Starlight end
 
 - type: entity
-  parent: ClothingOuterStorageFoldableBase
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase] # Starlight
   id: ClothingOuterCoatExpensive
   name: expensive coat
   description: Very fluffy pink coat, made out of very expensive fur (clearly).

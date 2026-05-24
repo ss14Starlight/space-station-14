@@ -160,6 +160,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
@@ -171,6 +176,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -183,6 +193,9 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.95
 
