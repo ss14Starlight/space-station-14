@@ -1,130 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Vox and Vulps can now use the correct colours.
-    type: Fix
-  id: 404865
-  time: '2026-05-10T09:08:54.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4409
-- author: Conflee
-  changes:
-  - message: Added 11 tiles; 3x3 (black, brown, steel, white), ornate, steel grate, old concrete bricks, old concrete tiles, rough metal, rusty metal, and techmaints.
-    type: Add
-  id: 404866
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added decal sets to match the new 3x3 tiles (half-tiles, overlays, etc), as well as the techmaints floor.
-    type: Add
-  id: 404867
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added drain trim, steel trim steel step, and 3 steel hatch decals for decorating industrial areas.
-    type: Add
-  id: 404868
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added several alternate dresser types; Box, Round, and Wardrobe. They contain fills for the generic dresser contents, but before fill variants for command dressers can be made, the entire setup for those needs refactored.
-    type: Add
-  id: 404869
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added wood racks and snowman, as decorations.
-    type: Add
-  id: 404870
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added Small Stairs (Steel and Wood), for use where previously stage stairs would have been used. 1 wide, step up.
-    type: Add
-  id: 404871
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added Gramophone and Vinyl Player, reskins of the Jukebox that sit on top of tables, opening up more decorating options.
-    type: Add
-  id: 404872
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added Bars. They sit on top of windows, are solid but let air through, and can be broken. Intended to replace the use of Reinforced Plasma Windows in some stations Genpops as a more thematic way to reinforce Reinforced Windows further without giving the station hypothetical access to tons of free Plasma round start.
-    type: Add
-  id: 404873
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added the Coffee Dispenser. Works like a Soda or Booze Dispenser but for Coffee and Teas. Can be mapped in the Bar and in dept break rooms.
-    type: Add
-  id: 404874
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Added the Wall Fan, it goes ON TOP of walls, and is an aimated fan.
-    type: Add
-  id: 404875
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Restored original Xeno posters and description of the TV Head item. Originally censored to 'conform to rule 10', rule 10 has since been adjusted to be less puritan in wording, and these items no longer violate the rules.
-    type: Tweak
-  id: 404876
-  time: '2026-05-10T10:03:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4364
-- author: Conflee
-  changes:
-  - message: Rebuilt the Automated Trade Station from the ground up. It is now larger, more industrial looking, has 3 docks instead of 2, and the entire back area is reworked into a Salvage Base with bunks, docks of their own, equipment to process ores and scrap, and a tiny basic kitchen-bar and triage room for medical emergencies. Station Anchor and Gravity Generator are still reinforced and guarded by a turret.
-    type: Tweak
-  id: 404877
-  time: '2026-05-10T10:03:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4387
-- author: Unknown
-  changes:
-  - message: changed Lagomorphs to look more bunny-like.
-    type: Tweak
-  id: 404878
-  time: '2026-05-10T10:36:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4353
-- author: wonderfulnewworld
-  changes:
-  - message: 'Adds 7 new abilities to Changelings: Night Vision, Thermal Vision, Desoxyephedrine Overdose, Amalgam Overdose, Bloodburn Sting, Draining Sting, and True Arm Blade.'
-    type: Add
-  id: 404879
-  time: '2026-05-10T10:36:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4313
-- author: wonderfulnewworld
-  changes:
-  - message: Changelings can now appear in Zombies and Zombieteors! (Similar to Vampires, they have that client-side visual bug when they get converted, still showing their own abilities, but they are not functional.).
-    type: Add
-  id: 404880
-  time: '2026-05-10T10:36:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4313
-- author: wonderfulnewworld
-  changes:
-  - message: Added a new chemical (exclusive to the Amalgam Overdose ability), Amalgamation blood. It gives buffs comparable to Hyperzine, but without healing.
-    type: Add
-  id: 404881
-  time: '2026-05-10T10:36:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4313
-- author: wonderfulnewworld
-  changes:
-  - message: Changelings now lose biomass 50% slower.
-    type: Tweak
-  id: 404882
-  time: '2026-05-10T10:36:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4313
 - author: wonderfulnewworld
   changes:
   - message: You can now disable the Changeling Augmented Eyesight ability. (And you need to disable it to use the other Eyesight abilities.) It also costs 1 less evo point.
@@ -2799,4 +2673,130 @@ Entries:
   id: 405264
   time: '2026-05-22T20:11:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4515
+- author: wonderfulnewworld, SevenShades
+  changes:
+  - message: Added mittens. They provide some minor cold resist. They can be found in the winter drobe, secdrobe, or as a loadout option for Sec.
+    type: Add
+  id: 405265
+  time: '2026-05-24T07:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4530
+- author: wonderfulnewworld, SevenShades
+  changes:
+  - message: Removed an unused gloves file.
+    type: Remove
+  id: 405266
+  time: '2026-05-24T07:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4530
+- author: wonderfulnewworld, SevenShades
+  changes:
+  - message: Removes unused insulated cat paws.
+    type: Remove
+  id: 405267
+  time: '2026-05-24T07:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4530
+- author: wonderfulnewworld, SevenShades
+  changes:
+  - message: Moved security's gloves to security_officer.yml.
+    type: Tweak
+  id: 405268
+  time: '2026-05-24T07:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4530
+- author: wonderfulnewworld, SevenShades
+  changes:
+  - message: Cat mittens now inherit the properties of mittens.
+    type: Tweak
+  id: 405269
+  time: '2026-05-24T07:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4530
+- author: wonderfulnewworld, SevenShades
+  changes:
+  - message: The cat mittens now have different names based on color.
+    type: Tweak
+  id: 405270
+  time: '2026-05-24T07:59:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4530
+- author: wonderfulnewworld, korczoczek
+  changes:
+  - message: Xenoborgs can no longer have more than 1 weapon/hypo module at a time.
+    type: Tweak
+  id: 405271
+  time: '2026-05-24T07:59:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4532
+- author: wonderfulnewworld
+  changes:
+  - message: T3 Xenoborg Modules and the Advanced Hypo module now cost a little more plastic, and also cost Plasma.
+    type: Tweak
+  id: 405272
+  time: '2026-05-24T07:59:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4525
+- author: wonderfulnewworld
+  changes:
+  - message: Bitterfrost Cannon now consumes 50% more charge per shot.
+    type: Tweak
+  id: 405273
+  time: '2026-05-24T07:59:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4525
+- author: wonderfulnewworld
+  changes:
+  - message: Extended Nocturine Hypo now only stores up to 18u.
+    type: Tweak
+  id: 405274
+  time: '2026-05-24T07:59:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4525
+- author: wonderfulnewworld
+  changes:
+  - message: Licoxide Hypo now only stores up to 8u.
+    type: Tweak
+  id: 405275
+  time: '2026-05-24T07:59:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4525
+- author: wonderfulnewworld
+  changes:
+  - message: Advanced Hypo module now has a 12u Licoxide hypo instead of Tazinide and Mute Toxin.
+    type: Tweak
+  id: 405276
+  time: '2026-05-24T07:59:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4525
+- author: Cvlancer
+  changes:
+  - message: (PLASMA) Added a nuclear reactor north of teg.
+    type: Add
+  id: 405277
+  time: '2026-05-24T08:00:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4526
+- author: Cvlancer
+  changes:
+  - message: (PLASMA) Added a poster inside robotics.
+    type: Add
+  id: 405278
+  time: '2026-05-24T08:00:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4526
+- author: Cvlancer
+  changes:
+  - message: (PLASMA) Removed the solars north of teg.
+    type: Remove
+  id: 405279
+  time: '2026-05-24T08:00:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4526
+- author: wonderfulnewworld
+  changes:
+  - message: The NanoTrasen Encryption key is now unremovable. It's more advanced, after all.
+    type: Tweak
+  id: 405280
+  time: '2026-05-24T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4519
+- author: wonderfulnewworld
+  changes:
+  - message: BSO now has a NanoTrasen Encryption key in their headset.
+    type: Fix
+  id: 405281
+  time: '2026-05-24T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4519
+- author: wonderfulnewworld
+  changes:
+  - message: T3 Scout Xenoborgs are no longer immortal when spawned from the entities menu. (The normal ones can't achieve immortality, but this should prevent admins from accidentally spawning immortality versions (the ones without brains).).
+    type: Fix
+  id: 405282
+  time: '2026-05-24T08:00:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4519
 Order: -1
