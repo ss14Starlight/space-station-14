@@ -418,8 +418,6 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
-      state: head_m
     - sprite: _Starlight/Mobs/Customization/Rodentia/head_markings.rsi
       state: blaze
 
@@ -429,8 +427,6 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
-      state: head_m
     - sprite: _Starlight/Mobs/Customization/Rodentia/head_markings.rsi
       state: round
 
@@ -444,7 +440,7 @@
   bodyPart: Head
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: head_m
 
 ## ARMS
@@ -455,7 +451,7 @@
   bodyPart: LArm
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_arm
 
 - type: marking
@@ -464,7 +460,7 @@
   bodyPart: RArm
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_arm
 
 ## LEGS
@@ -475,7 +471,7 @@
   bodyPart: LLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_leg
 
 - type: marking
@@ -484,7 +480,7 @@
   bodyPart: RLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_leg
 
 ## HANDS
@@ -495,7 +491,7 @@
   bodyPart: LHand
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_hand
 
 - type: marking
@@ -504,7 +500,7 @@
   bodyPart: RHand
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_hand
 
 ## FEET
@@ -515,7 +511,7 @@
   bodyPart: LFoot
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: l_foot
 
 - type: marking
@@ -524,5 +520,5 @@
   bodyPart: RFoot
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
+    - sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
       state: r_foot
