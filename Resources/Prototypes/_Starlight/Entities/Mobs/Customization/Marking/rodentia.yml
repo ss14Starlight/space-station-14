@@ -365,8 +365,6 @@
   bodyPart: LLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
-      state: l_leg
     - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
       state: countershade_lleg
 
@@ -376,8 +374,6 @@
   bodyPart: RLeg
   speciesRestriction: [Rodentia]
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Rodentia/parts.rsi
-      state: r_leg
     - sprite: _Starlight/Mobs/Customization/Rodentia/body_markings.rsi
       state: countershade_rleg
 
