@@ -223,6 +223,7 @@ namespace Content.Shared.Chemistry
     {
         public readonly ContainerInfo? InputContainerInfo;
         public readonly ContainerInfo? OutputContainerInfo;
+        public readonly ChemMasterReagentAmount TransferAmount;
 
         /// <summary>
         /// A list of the reagents and their amounts within the buffer, if applicable.
@@ -251,7 +252,7 @@ namespace Content.Shared.Chemistry
         public ChemMasterBoundUserInterfaceState(
             ChemMasterMode mode, ChemMasterSortingType sortingType, ContainerInfo? inputContainerInfo, ContainerInfo? outputContainerInfo,
             IReadOnlyList<ReagentQuantity> bufferReagents, FixedPoint2 bufferCurrentVolume,
-            uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource, bool valveOpen) // Starlight-edit - add patchDosageLimit, valveOpen
+            uint selectedPillType, uint pillDosageLimit, uint patchDosageLimit, bool updateLabel, ChemMasterDrawSource drawSource, bool valveOpen, ChemMasterReagentAmount transferAmount) // Starlight-edit - add patchDosageLimit, valveOpen
         {
             InputContainerInfo = inputContainerInfo;
             OutputContainerInfo = outputContainerInfo;
@@ -265,6 +266,7 @@ namespace Content.Shared.Chemistry
             UpdateLabel = updateLabel;
             DrawSource = drawSource;
             ValveOpen = valveOpen; // Starlight-edit
+            TransferAmount = transferAmount; // TRIESTE
         }
     }
 
@@ -272,5 +274,17 @@ namespace Content.Shared.Chemistry
     public enum ChemMasterUiKey
     {
         Key
+    }
+
+    /// TRIESTE SPECIFIC
+    [Serializable, NetSerializable]
+    public sealed class ChemMasterSetTransferAmountMessage : BoundUserInterfaceMessage
+    {
+        public ChemMasterReagentAmount Amount;
+
+        public ChemMasterSetTransferAmountMessage(ChemMasterReagentAmount amount)
+        {
+            Amount = amount;
+        }
     }
 }

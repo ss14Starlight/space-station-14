@@ -9,6 +9,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
+using Content.Shared.DragDrop;
 using Content.Shared.FixedPoint;
 using Content.Shared.Labels.Components;
 using Content.Shared.Labels.EntitySystems;
@@ -66,6 +67,8 @@ namespace Content.Server.Chemistry.EntitySystems
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputToBottleMessage>(OnOutputToBottleMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterOutputDrawSourceMessage>(OnSetDrawSourceMessage);
             SubscribeLocalEvent<ChemMasterComponent, ChemMasterToggleValveMessage>(OnToggleValveMessage); // Starlight-edit: Plumbing valve
+            SubscribeLocalEvent<ChemMasterComponent, ChemMasterSetTransferAmountMessage>(OnSetTransferAmountMessage); // TRIESTE
+            SubscribeLocalEvent<ChemMasterComponent, DragDropTargetEvent>(SubscribeUpdateUiState); // TRIESTE
         }
 
         private void SubscribeUpdateUiState<T>(Entity<ChemMasterComponent> ent, ref T ev)
@@ -87,7 +90,7 @@ namespace Content.Server.Chemistry.EntitySystems
             var valveOpen = TryComp<PlumbingOutletComponent>(owner, out var plumbingOutlet) && plumbingOutlet.Enabled; // Starlight-edit: Plumbing valve
             var state = new ChemMasterBoundUserInterfaceState(
                 chemMaster.Mode, chemMaster.SortingType, BuildInputContainerInfo(inputContainer), BuildOutputContainerInfo(outputContainer),
-                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource, valveOpen); // Starlight-edit - add patch limit, valveOpen
+                bufferReagents, bufferCurrentVolume, chemMaster.PillType, chemMaster.PillDosageLimit, chemMaster.PatchDosageLimit, updateLabel, chemMaster.DrawSource, valveOpen, chemMaster.TransferAmount); // Starlight-edit - add patch limit, valveOpen
 
             _userInterfaceSystem.SetUiState(owner, ChemMasterUiKey.Key, state);
         }
@@ -517,5 +520,18 @@ namespace Content.Server.Chemistry.EntitySystems
             ClickSound(chemMaster);
         }
         // Starlight-end
+
+        // TRIESTE SPECIFIC
+        private void OnSetTransferAmountMessage(
+            Entity<ChemMasterComponent> chemMaster,
+            ref ChemMasterSetTransferAmountMessage message)
+        {
+            if (!Enum.IsDefined(typeof(ChemMasterReagentAmount), message.Amount))
+                return;
+
+            chemMaster.Comp.TransferAmount = message.Amount;
+            UpdateUiState(chemMaster);
+            ClickSound(chemMaster);
+        }
     }
 }

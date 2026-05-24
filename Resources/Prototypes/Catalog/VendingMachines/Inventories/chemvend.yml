@@ -1,8 +1,11 @@
+# !! TRIESTE MODIFIED !! #
+
 - type: vendingMachineInventory
   id: ChemVendInventory
   startingInventory:
     Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
     JugAluminium: 2
+    JugCalcium: 2         # TP: Added
     JugCarbon: 4
     JugChlorine: 1
     JugCopper: 2
@@ -18,6 +21,7 @@
     JugPhosphorus: 1
     JugPotassium: 2
     JugRadium: 1
+    TP14EntJugSeaWater: 1 # TP: Added
     JugSilicon: 2
     JugSodium: 2
     JugSugar: 3
@@ -34,6 +38,7 @@
   startingInventory:
     Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
     JugAluminium: 2
+    JugCalcium: 2         # TP: Added
     JugCarbon: 4
     JugChlorine: 1
     JugCopper: 2
@@ -49,6 +54,7 @@
     JugPhosphorus: 1
     JugPotassium: 2
     JugRadium: 1
+    TP14EntJugSeaWater: 1 # TP: Added
     JugSilicon: 2
     JugSodium: 2
     JugSugar: 3
