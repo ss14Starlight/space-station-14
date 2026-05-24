@@ -271,7 +271,7 @@ public sealed class PaperSystem : EntitySystem
 
         _audio.PlayPvs(entity.Comp.Sound, entity);
 
-        entity.Comp.Mode = PaperAction.Read;
+        // Keep current mode when clearing so clearing does not kick the user out of drawing mode.
         UpdateUserInterface(entity);
     }
 
@@ -300,7 +300,7 @@ public sealed class PaperSystem : EntitySystem
 
         _audio.PlayPvs(entity.Comp.Sound, entity);
 
-        entity.Comp.Mode = PaperAction.Read;
+        // Keep current mode when clearing so clearing does not kick the user out of drawing mode.
         UpdateUserInterface(entity);
     }
 
@@ -311,11 +311,17 @@ public sealed class PaperSystem : EntitySystem
 
         foreach (var character in drawingData)
         {
+            // Drawing format:
+            // thickness:colorNumber:x,y;x,y|thickness:colorNumber:x,y;x,y
+            //
+            // colorNumber is a decimal RGB integer from 0 to 16777215.
+            // This avoids NetSerializer / validation issues with hex letters.
             if ((character >= '0' && character <= '9') ||
                 character == '.' ||
                 character == ',' ||
                 character == ';' ||
-                character == '|')
+                character == '|' ||
+                character == ':')
             {
                 continue;
             }

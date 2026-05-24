@@ -68,6 +68,7 @@ public sealed class FaxSystem : EntitySystem
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
     private const string PaperSlotId = "Paper";
+    private const string FaxPaperDrawingData = "faxPaperDrawingData";
 
     public override void Initialize()
     {
@@ -314,6 +315,7 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxPaperStampedByData, out List<StampDisplayInfo>? stampedBy);
                     args.Data.TryGetValue(FaxConstants.FaxPaperPrototypeData, out string? prototypeId);
                     args.Data.TryGetValue(FaxConstants.FaxPaperLockedData, out bool? locked);
+                    args.Data.TryGetValue(FaxPaperDrawingData, out string? drawingData);
                     // Starlight-start
                     args.Data.TryGetValue(FaxConstants.FaxSlipProduct, out string? slipProduct); 
                     args.Data.TryGetValue(FaxConstants.FaxSlipRequester,  out string? slipRequester);
@@ -331,6 +333,7 @@ public sealed class FaxSystem : EntitySystem
                         stampState,
                         stampedBy,
                         locked ?? false,
+                        drawingData ?? "",
                         // Starlight-start
                         slipProduct,
                         slipRequester,
@@ -511,6 +514,7 @@ public sealed class FaxSystem : EntitySystem
                                        paper.StampState,
                                        paper.StampedBy,
                                        paper.EditingDisabled,
+                                       paper.DrawingData,
                                        //starlight-start
                                        cargoSlipComponent?.Product.Id,
                                        cargoSlipComponent?.Requester,
@@ -571,6 +575,7 @@ public sealed class FaxSystem : EntitySystem
             { FaxConstants.FaxPaperLabelData, labelComponent?.CurrentLabel },
             { FaxConstants.FaxPaperContentData, paper.Content },
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
+            { FaxPaperDrawingData, paper.DrawingData },
         };
 
         if (metadata.EntityPrototype != null)
@@ -654,6 +659,8 @@ public sealed class FaxSystem : EntitySystem
         if (TryComp<PaperComponent>(printed, out var paper))
         {
             _paperSystem.SetContent((printed, paper), printout.Content);
+            paper.DrawingData = printout.DrawingData;
+            Dirty(printed, paper);
 
             // Apply stamps
             if (printout.StampState != null)
@@ -723,6 +730,8 @@ public sealed class FaxSystem : EntitySystem
                     if (TryComp<PaperComponent>(printed.Value, out var paper))
                     {
                         _paperSystem.SetContent((printed.Value, paper), printout.Content);
+                        paper.DrawingData = printout.DrawingData;
+                        Dirty(printed.Value, paper);
 
                         // Apply stamps
                         if (printout.StampState != null)

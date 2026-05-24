@@ -161,6 +161,9 @@ public sealed partial class FaxPrintout
 
     [DataField]
     public bool Locked { get; private set; }
+
+    [DataField]
+    public string DrawingData { get; private set; } = "";
     
     // Starlight-start 
     // cargo slips data
@@ -193,6 +196,7 @@ public sealed partial class FaxPrintout
         string? stampState = null,
         List<StampDisplayInfo>? stampedBy = null,
         bool locked = false,
+        string drawingData = "",
         //starlight-start
         string? product = null,
         string? requester = null,
@@ -209,6 +213,7 @@ public sealed partial class FaxPrintout
         StampState = stampState;
         StampedBy = stampedBy ?? new List<StampDisplayInfo>();
         Locked = locked;
+        DrawingData = drawingData;
         // Starlight-start
         Product = product;
         Requester = requester;
