@@ -8,15 +8,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VentCrawl.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class VentCrawlHolderComponent : Component
 {
-    private Container? _container = null;
     public Container Container
     {
-        get => _container ?? throw new InvalidOperationException("Container not initialized");
-        set => _container = value;
-    }
+        get => field ?? throw new InvalidOperationException("Container not initialized");
+        set;
+    } = null;
 
     [ViewVariables]
     public float StartingTime { get; set; }
@@ -72,7 +71,34 @@ public sealed partial class VentCrawlHolderComponent : Component
     /// Current layer in manifold. Null if not in manifold.
     /// </summary>
     [AutoNetworkedField]
-    public int? ManifoldLayer = null;
+    [ViewVariables]
+    public int? ManifoldLayer;
+
+    /// <summary>
+    /// Previous layer in manifold.
+    /// </summary>
+    [ViewVariables]
+    [AutoNetworkedField]
+    public int? PreviousManifoldLayer;
+
+    /// <summary>
+    /// Current progress of transition in manifold between layers.
+    /// </summary>
+    [ViewVariables]
+    [AutoNetworkedField]
+    public float ManifoldTransitionProgress = 1f;
+
+    /// <summary>
+    /// Duration of transition in manifold between layers.
+    /// </summary>
+    [ViewVariables]
+    [AutoNetworkedField]
+    public float ManifoldTransitionDuration = 0.15f;
+
+    public TimeSpan ManifoldLayerSelectionCooldown = TimeSpan.FromSeconds(0.5f);
+
+    [AutoNetworkedField, AutoPausedField]
+    public TimeSpan ManifoldLastLayerSelection;
 }
 
 public sealed partial class ExitVentActionEvent : InstantActionEvent

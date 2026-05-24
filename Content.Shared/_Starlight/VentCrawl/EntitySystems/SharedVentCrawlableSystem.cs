@@ -193,7 +193,25 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             holder.PreviousDirection = holder.CurrentDirection;
             DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.PreviousTube));
             DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.PreviousDirection));
+            holder.ManifoldLayer = null;
+            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
         }
+
+        if (HasComp<VentCrawlManifoldComponent>(toUid))
+        {
+            if (holder.PreviousTube != null && TryComp<AtmosPipeLayersComponent>(holder.PreviousTube, out var prevLayers))
+                holder.ManifoldLayer = TransformIntoManifoldLayer(prevLayers.CurrentPipeLayer);
+            else
+                holder.ManifoldLayer = 0;
+
+            holder.PreviousManifoldLayer = null;
+            holder.ManifoldTransitionProgress = 1f;
+            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
+            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.ManifoldTransitionProgress));
+
+            UpdateManifoldPosition(toUid, holderUid, holder);
+        }
+
         holder.CurrentTube = toUid;
         DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.CurrentTube));
 
@@ -272,6 +290,15 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
             var currentTube = holder.CurrentTube.Value;
 
+            if (holder.ManifoldTransitionProgress < 1f)
+            {
+                holder.ManifoldTransitionProgress = Math.Min(
+                    1f,
+                    holder.ManifoldTransitionProgress + frameTime / holder.ManifoldTransitionDuration
+                );
+                UpdateManifoldPositionInterpolated(currentTube, uid, holder);
+            }
+
             if (!UpdateMovementInput(currentTube, uid, holder))
                 continue;
 
@@ -280,7 +307,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 holder.TimeLeft -= frameTime;
 
                 if (holder.TimeLeft > 0)
-                    UpdatePosition(currentTube, uid, holder, frameTime);
+                    UpdatePosition(currentTube, uid, holder);
                 else
                     TryAdvanceTube(currentTube, uid, holder);
             }
@@ -327,7 +354,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         return true;
     }
 
-    private void UpdatePosition(EntityUid currentTube, EntityUid uid, VentCrawlHolderComponent holder, float frameTime)
+    private void UpdatePosition(EntityUid currentTube, EntityUid uid, VentCrawlHolderComponent holder)
     {
         if (holder.NextTube == null || holder.StartingTime <= 0f)
             return;
@@ -392,6 +419,47 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         EnterTube(uid, nextTube, holder);
     }
 
+    private void UpdateManifoldPositionInterpolated(
+        EntityUid manifoldUid,
+        EntityUid holderUid,
+        VentCrawlHolderComponent holder)
+    {
+        if (holder.ManifoldLayer == null)
+            return;
+
+        var t = holder.ManifoldTransitionProgress;
+
+        if (holder.PreviousManifoldLayer == null || t >= 1f)
+        {
+            UpdateManifoldPosition(manifoldUid, holderUid, holder);
+            return;
+        }
+
+        var fromLayer = (AtmosPipeLayer)holder.PreviousManifoldLayer.Value;
+        var toLayer = (AtmosPipeLayer)holder.ManifoldLayer.Value;
+
+        var fromOffset = GetOffsetForManifoldLayer(manifoldUid, holder.PreviousManifoldLayer.Value);
+        var toOffset = GetOffsetForManifoldLayer(manifoldUid, holder.ManifoldLayer.Value);
+
+        var lerpedOffset = Vector2.Lerp(fromOffset, toOffset, t);
+
+        var manifoldPos = Transform(manifoldUid).Coordinates;
+        _xformSystem.SetCoordinates(holderUid,
+            _xformSystem.WithEntityId(manifoldPos.Offset(lerpedOffset), manifoldUid));
+    }
+
+    private Vector2 GetOffsetForManifoldLayer(EntityUid manifoldUid, int layerIndex)
+    {
+        var backTube = _ventCrawlTubeSystem.GetManifoldExit(manifoldUid, layerIndex, Direction.South);
+        var frontTube = _ventCrawlTubeSystem.GetManifoldExit(manifoldUid, layerIndex, Direction.North);
+        var anchor = frontTube ?? backTube;
+
+        if (anchor != null && TryComp<AtmosPipeLayersComponent>(anchor, out var layersComp))
+            return GetLayerOffset(layersComp.CurrentPipeLayer);
+
+        return GetLayerOffset((AtmosPipeLayer)layerIndex);
+    }
+
     private bool UpdateManifoldInput(
         EntityUid manifoldUid,
         EntityUid uid,
@@ -404,29 +472,40 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (holder.ManifoldLayer == null && holder.PreviousTube != null && TryComp<AtmosPipeLayersComponent>(holder.PreviousTube, out var previousLayer))
             holder.ManifoldLayer = TransformIntoManifoldLayer(previousLayer.CurrentPipeLayer);
 
-        if (holder.ManifoldLayer == null)
-            holder.ManifoldLayer = 0;
+        holder.ManifoldLayer ??= 0;
+        DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
 
         var dir = holder.CurrentDirection;
 
         if (dir is Direction.West or Direction.East)
         {
+            if (_gameTiming.CurTime < holder.ManifoldLastLayerSelection + holder.ManifoldLayerSelectionCooldown)
+                return true;
+
+            holder.ManifoldLastLayerSelection = _gameTiming.CurTime;
+
             var delta = dir == Direction.East ? -1 : 1;
             var newLayer = Math.Clamp(holder.ManifoldLayer.Value + delta, 0, manifold.LayerCount - 1);
 
             if (newLayer != holder.ManifoldLayer)
             {
+                holder.PreviousManifoldLayer = holder.ManifoldLayer;
+                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.PreviousManifoldLayer));
                 holder.ManifoldLayer = newLayer;
                 DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
+                holder.ManifoldTransitionProgress = 0f;
+                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldTransitionProgress));
                 holder.NextTube = null;
-
-                UpdateManifoldPosition(manifoldUid, uid, holder);
+                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
             }
             return true;
         }
 
         if (dir is Direction.North or Direction.South)
         {
+            if (holder.ManifoldTransitionProgress < 1f)
+                return true;
+
             var nextTube = _ventCrawlTubeSystem.GetManifoldExit(manifoldUid, holder.ManifoldLayer.Value, dir);
             if (nextTube == null)
                 return true;
@@ -435,8 +514,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
             holder.StartingTime = holder.TravelDuration;
             holder.TimeLeft = holder.TravelDuration;
-
-            holder.ManifoldLayer = null;
         }
 
         return true;
@@ -459,10 +536,10 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         }
         else if (holder.ManifoldLayer != null)
         {
-            currentPipeLayer = (AtmosPipeLayer)holder.ManifoldLayer.Value;
+            currentPipeLayer = SharedVentCrawlTubeSystem.TransformFromManifoldLayer(holder.ManifoldLayer.Value);
         }
 
-        var offset = SharedVentCrawlableSystem.GetLayerOffset(currentPipeLayer);
+        var offset = GetLayerOffset(currentPipeLayer);
         var manifoldPos = Transform(manifoldUid).Coordinates;
 
         _xformSystem.SetCoordinates(holderUid,
