@@ -52,7 +52,7 @@ namespace Content.Client.Paper.UI
         private bool _drawMode;
 
         public event Action<string>? OnSaved;
-        public event Action<List<PaperDrawingStroke>>? OnDrawingSaved;
+        public event Action<string>? OnDrawingSaved;
         public event Action? OnDrawingCleared;
         public event Action<int>? OnSignatureRequested;
 
@@ -279,8 +279,8 @@ namespace Content.Client.Paper.UI
             _currentRawText = state.Text;
             bool isEditing = state.Mode == PaperComponent.PaperAction.Write;
 
-            DrawingControl.SetDrawing(state.Drawing);
-            DrawingControl.Visible = isEditing || state.Drawing.Count > 0;
+            DrawingControl.SetDrawingData(state.DrawingData);
+            DrawingControl.Visible = isEditing || !string.IsNullOrEmpty(state.DrawingData);
 
             if (!isEditing)
                 _drawMode = false;
@@ -288,7 +288,7 @@ namespace Content.Client.Paper.UI
             // Show/hide UI elements based on edit mode
             EditButtons.Visible = isEditing;
             WrittenTextContainer.Visible = false;
-            BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0 && state.Drawing.Count == 0;
+            BlankPaperIndicator.Visible = !isEditing && state.Text.Length == 0 && string.IsNullOrEmpty(state.DrawingData);
 
             SetDrawingMode(isEditing && _drawMode);
 
@@ -383,7 +383,7 @@ namespace Content.Client.Paper.UI
         private void RunOnDrawingSaved()
         {
             SaveDrawingButton.Disabled = true;
-            OnDrawingSaved?.Invoke(DrawingControl.GetDrawing());
+            OnDrawingSaved?.Invoke(DrawingControl.GetDrawingData());
             SaveDrawingButton.Disabled = false;
         }
 

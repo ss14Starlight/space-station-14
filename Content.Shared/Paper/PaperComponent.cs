@@ -1,4 +1,3 @@
-using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -29,29 +28,21 @@ public sealed partial class PaperComponent : Component
     public bool EditingDisabled;
 
     /// <summary>
-    /// Drawing strokes saved on this paper.
-    /// These are rendered below the written text by the client UI.
+    /// Drawing data saved on this paper.
+    /// Stored as a simple string instead of nested lists to avoid NetSerializer issues.
+    /// Format:
+    /// stroke|stroke|stroke
+    /// stroke = x,y;x,y;x,y
+    /// x/y are normalized paper coordinates from 0 to 1.
     /// </summary>
-    [DataField("drawing"), AutoNetworkedField]
-    public List<PaperDrawingStroke> Drawing { get; set; } = new();
+    [DataField("drawingData"), AutoNetworkedField]
+    public string DrawingData { get; set; } = "";
 
     /// <summary>
-    /// Maximum amount of strokes allowed on one paper.
+    /// Maximum encoded drawing string length allowed on one paper.
     /// </summary>
-    [DataField("maxDrawingStrokes")]
-    public int MaxDrawingStrokes = 128;
-
-    /// <summary>
-    /// Maximum amount of points allowed per stroke.
-    /// </summary>
-    [DataField("maxDrawingPointsPerStroke")]
-    public int MaxDrawingPointsPerStroke = 128;
-
-    /// <summary>
-    /// Maximum total amount of drawing points allowed on one paper.
-    /// </summary>
-    [DataField("maxDrawingPoints")]
-    public int MaxDrawingPoints = 4096;
+    [DataField("maxDrawingDataLength")]
+    public int MaxDrawingDataLength = 20000;
 
     /// <summary>
     /// Sound played after writing to the paper.
@@ -60,35 +51,22 @@ public sealed partial class PaperComponent : Component
     public SoundSpecifier? Sound { get; private set; } = new SoundCollectionSpecifier("PaperScribbles", AudioParams.Default.WithVariation(0.1f));
 
     [Serializable, NetSerializable]
-    public sealed class PaperDrawingStroke
-    {
-        public readonly List<Vector2> Points;
-        public readonly float Thickness;
-
-        public PaperDrawingStroke(List<Vector2> points, float thickness = 2f)
-        {
-            Points = points;
-            Thickness = thickness;
-        }
-    }
-
-    [Serializable, NetSerializable]
     public sealed class PaperBoundUserInterfaceState : BoundUserInterfaceState
     {
         public readonly string Text;
         public readonly List<StampDisplayInfo> StampedBy;
         public readonly PaperAction Mode;
-        public readonly List<PaperDrawingStroke> Drawing;
+        public readonly string DrawingData;
 
         public PaperBoundUserInterfaceState(
             string text,
             List<StampDisplayInfo> stampedBy,
-            List<PaperDrawingStroke> drawing,
+            string drawingData,
             PaperAction mode = PaperAction.Read)
         {
             Text = text;
             StampedBy = stampedBy;
-            Drawing = drawing;
+            DrawingData = drawingData;
             Mode = mode;
         }
     }
@@ -107,11 +85,11 @@ public sealed partial class PaperComponent : Component
     [Serializable, NetSerializable]
     public sealed class PaperInputDrawingMessage : BoundUserInterfaceMessage
     {
-        public readonly List<PaperDrawingStroke> Drawing;
+        public readonly string DrawingData;
 
-        public PaperInputDrawingMessage(List<PaperDrawingStroke> drawing)
+        public PaperInputDrawingMessage(string drawingData)
         {
-            Drawing = drawing;
+            DrawingData = drawingData;
         }
     }
 

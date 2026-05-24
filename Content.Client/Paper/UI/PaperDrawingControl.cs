@@ -1,15 +1,14 @@
+using System.Globalization;
 using System.Numerics;
-using Content.Shared.Paper;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
-using static Content.Shared.Paper.PaperComponent;
 
 namespace Content.Client.Paper.UI;
 
 public sealed class PaperDrawingControl : Control
 {
-    private readonly List<PaperDrawingStroke> _strokes = new();
+    private readonly List<List<Vector2>> _strokes = new();
     private readonly List<Vector2> _currentPoints = new();
 
     private bool _isDrawing;
@@ -35,23 +34,74 @@ public sealed class PaperDrawingControl : Control
         DrawingEnabled = false;
     }
 
-    public void SetDrawing(List<PaperDrawingStroke> drawing)
+    public void SetDrawingData(string drawingData)
     {
         if (_isDrawing)
             return;
 
         _strokes.Clear();
-        _strokes.AddRange(drawing);
+
+        if (string.IsNullOrEmpty(drawingData))
+            return;
+
+        var strokes = drawingData.Split('|', StringSplitOptions.RemoveEmptyEntries);
+
+        foreach (var stroke in strokes)
+        {
+            var points = new List<Vector2>();
+            var encodedPoints = stroke.Split(';', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var encodedPoint in encodedPoints)
+            {
+                var values = encodedPoint.Split(',', StringSplitOptions.RemoveEmptyEntries);
+
+                if (values.Length != 2)
+                    continue;
+
+                if (!float.TryParse(values[0], NumberStyles.Float, CultureInfo.InvariantCulture, out var x))
+                    continue;
+
+                if (!float.TryParse(values[1], NumberStyles.Float, CultureInfo.InvariantCulture, out var y))
+                    continue;
+
+                points.Add(new Vector2(
+                    Math.Clamp(x, 0f, 1f),
+                    Math.Clamp(y, 0f, 1f)));
+            }
+
+            if (points.Count > 1)
+                _strokes.Add(points);
+        }
     }
 
-    public List<PaperDrawingStroke> GetDrawing()
+    public string GetDrawingData()
     {
-        var drawing = new List<PaperDrawingStroke>(_strokes);
+        var strokes = new List<List<Vector2>>(_strokes);
 
         if (_currentPoints.Count > 1)
-            drawing.Add(new PaperDrawingStroke(new List<Vector2>(_currentPoints), 2f));
+            strokes.Add(new List<Vector2>(_currentPoints));
 
-        return drawing;
+        var strokeStrings = new List<string>();
+
+        foreach (var stroke in strokes)
+        {
+            if (stroke.Count < 2)
+                continue;
+
+            var pointStrings = new List<string>();
+
+            foreach (var point in stroke)
+            {
+                pointStrings.Add(
+                    point.X.ToString("0.####", CultureInfo.InvariantCulture) +
+                    "," +
+                    point.Y.ToString("0.####", CultureInfo.InvariantCulture));
+            }
+
+            strokeStrings.Add(string.Join(';', pointStrings));
+        }
+
+        return string.Join('|', strokeStrings);
     }
 
     public void ClearDrawing()
@@ -82,7 +132,7 @@ public sealed class PaperDrawingControl : Control
             return;
 
         if (_isDrawing && _currentPoints.Count > 1)
-            _strokes.Add(new PaperDrawingStroke(new List<Vector2>(_currentPoints), 2f));
+            _strokes.Add(new List<Vector2>(_currentPoints));
 
         _isDrawing = false;
         _currentPoints.Clear();
@@ -105,7 +155,7 @@ public sealed class PaperDrawingControl : Control
         base.ControlFocusExited();
 
         if (_isDrawing && _currentPoints.Count > 1)
-            _strokes.Add(new PaperDrawingStroke(new List<Vector2>(_currentPoints), 2f));
+            _strokes.Add(new List<Vector2>(_currentPoints));
 
         _isDrawing = false;
         _currentPoints.Clear();
@@ -117,7 +167,7 @@ public sealed class PaperDrawingControl : Control
 
         foreach (var stroke in _strokes)
         {
-            DrawStroke(handle, stroke.Points);
+            DrawStroke(handle, stroke);
         }
 
         if (_currentPoints.Count > 1)
@@ -134,7 +184,6 @@ public sealed class PaperDrawingControl : Control
             var a = Denormalize(points[i - 1]);
             var b = Denormalize(points[i]);
 
-            // This Robust fork only has the 3-argument DrawLine overload.
             handle.DrawLine(a, b, Color.Black);
         }
     }
@@ -152,14 +201,12 @@ public sealed class PaperDrawingControl : Control
         {
             var last = _currentPoints[^1];
 
-            // Avoid generating hundreds of near-identical points while the mouse barely moves.
             if (Vector2.DistanceSquared(last, normalized) < 0.00003f)
                 return;
         }
 
         _currentPoints.Add(normalized);
 
-        // Same limit as the shared/server validation.
         if (_currentPoints.Count > 128)
             _currentPoints.RemoveAt(0);
     }

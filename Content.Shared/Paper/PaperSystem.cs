@@ -79,7 +79,7 @@ public sealed class PaperSystem : EntitySystem
 
         if (TryComp<AppearanceComponent>(entity, out var appearance))
         {
-            if (entity.Comp.Content != "" || entity.Comp.Drawing.Count > 0)
+            if (GetPaperStatus(entity.Comp) == PaperStatus.Written)
                 _appearance.SetData(entity, PaperVisuals.Status, PaperStatus.Written, appearance);
 
             if (entity.Comp.StampState != null)
@@ -100,7 +100,7 @@ public sealed class PaperSystem : EntitySystem
 
         using (args.PushGroup(nameof(PaperComponent)))
         {
-            if (entity.Comp.Content != "" || entity.Comp.Drawing.Count > 0)
+            if (entity.Comp.Content != "" || !string.IsNullOrEmpty(entity.Comp.DrawingData))
             {
                 args.PushMarkup(
                     Loc.GetString(
@@ -256,12 +256,14 @@ public sealed class PaperSystem : EntitySystem
         if (entity.Comp.EditingDisabled)
             return;
 
-        if (!ValidateDrawing(entity.Comp, args.Drawing, out var sanitizedDrawing))
+        if (!ValidateDrawingData(entity.Comp, args.DrawingData))
             return;
 
-        entity.Comp.Drawing = sanitizedDrawing;
+        entity.Comp.DrawingData = args.DrawingData;
         Dirty(entity);
-        UpdatePaperAppearance(entity);
+
+        if (TryComp<AppearanceComponent>(entity, out var appearance))
+            _appearance.SetData(entity, PaperVisuals.Status, GetPaperStatus(entity.Comp), appearance);
 
         _adminLogger.Add(LogType.Chat,
             LogImpact.Low,
@@ -283,12 +285,14 @@ public sealed class PaperSystem : EntitySystem
         if (entity.Comp.EditingDisabled)
             return;
 
-        if (entity.Comp.Drawing.Count == 0)
+        if (string.IsNullOrEmpty(entity.Comp.DrawingData))
             return;
 
-        entity.Comp.Drawing.Clear();
+        entity.Comp.DrawingData = "";
         Dirty(entity);
-        UpdatePaperAppearance(entity);
+
+        if (TryComp<AppearanceComponent>(entity, out var appearance))
+            _appearance.SetData(entity, PaperVisuals.Status, GetPaperStatus(entity.Comp), appearance);
 
         _adminLogger.Add(LogType.Chat,
             LogImpact.Low,
@@ -300,46 +304,23 @@ public sealed class PaperSystem : EntitySystem
         UpdateUserInterface(entity);
     }
 
-    private bool ValidateDrawing(
-        PaperComponent component,
-        List<PaperDrawingStroke> drawing,
-        out List<PaperDrawingStroke> sanitizedDrawing)
+    private bool ValidateDrawingData(PaperComponent component, string drawingData)
     {
-        sanitizedDrawing = new List<PaperDrawingStroke>();
-
-        if (drawing.Count > component.MaxDrawingStrokes)
+        if (drawingData.Length > component.MaxDrawingDataLength)
             return false;
 
-        var totalPoints = 0;
-
-        foreach (var stroke in drawing)
+        foreach (var character in drawingData)
         {
-            if (stroke.Points.Count == 0)
-                continue;
-
-            if (stroke.Points.Count > component.MaxDrawingPointsPerStroke)
-                return false;
-
-            totalPoints += stroke.Points.Count;
-
-            if (totalPoints > component.MaxDrawingPoints)
-                return false;
-
-            var sanitizedPoints = new List<System.Numerics.Vector2>();
-
-            foreach (var point in stroke.Points)
+            if ((character >= '0' && character <= '9') ||
+                character == '.' ||
+                character == ',' ||
+                character == ';' ||
+                character == '|')
             {
-                if (float.IsNaN(point.X) || float.IsNaN(point.Y) ||
-                    float.IsInfinity(point.X) || float.IsInfinity(point.Y))
-                    return false;
-
-                sanitizedPoints.Add(new System.Numerics.Vector2(
-                    Math.Clamp(point.X, 0f, 1f),
-                    Math.Clamp(point.Y, 0f, 1f)));
+                continue;
             }
 
-            var thickness = Math.Clamp(stroke.Thickness, 1f, 8f);
-            sanitizedDrawing.Add(new PaperDrawingStroke(sanitizedPoints, thickness));
+            return false;
         }
 
         return true;
@@ -347,17 +328,9 @@ public sealed class PaperSystem : EntitySystem
 
     private PaperStatus GetPaperStatus(PaperComponent component)
     {
-        return string.IsNullOrWhiteSpace(component.Content) && component.Drawing.Count == 0
+        return string.IsNullOrWhiteSpace(component.Content) && string.IsNullOrEmpty(component.DrawingData)
             ? PaperStatus.Blank
             : PaperStatus.Written;
-    }
-
-    private void UpdatePaperAppearance(Entity<PaperComponent> entity)
-    {
-        if (!TryComp<AppearanceComponent>(entity, out var appearance))
-            return;
-
-        _appearance.SetData(entity, PaperVisuals.Status, GetPaperStatus(entity.Comp), appearance);
     }
 
     private void OnRandomPaperContentMapInit(Entity<RandomPaperContentComponent> ent, ref MapInitEvent args)
@@ -517,6 +490,18 @@ public sealed class PaperSystem : EntitySystem
         }
     }
 
+    public void CopyDrawing(Entity<PaperComponent?> source, Entity<PaperComponent?> target)
+    {
+        if (!Resolve(source, ref source.Comp) || !Resolve(target, ref target.Comp))
+            return;
+
+        target.Comp.DrawingData = source.Comp.DrawingData;
+        Dirty(target);
+
+        if (TryComp<AppearanceComponent>(target, out var appearance))
+            _appearance.SetData(target, PaperVisuals.Status, GetPaperStatus(target.Comp), appearance);
+    }
+
     public void SetContent(EntityUid entity, string content)
     {
         if (!TryComp<PaperComponent>(entity, out var paper))
@@ -529,7 +514,11 @@ public sealed class PaperSystem : EntitySystem
         entity.Comp.Content = content;
         Dirty(entity);
         UpdateUserInterface(entity);
-        UpdatePaperAppearance(entity);
+
+        if (!TryComp<AppearanceComponent>(entity, out var appearance))
+            return;
+
+        _appearance.SetData(entity, PaperVisuals.Status, GetPaperStatus(entity.Comp), appearance);
     }
 
     private void UpdateUserInterface(Entity<PaperComponent> entity)
@@ -537,7 +526,7 @@ public sealed class PaperSystem : EntitySystem
         _uiSystem.SetUiState(entity.Owner, PaperUiKey.Key, new PaperBoundUserInterfaceState(
             entity.Comp.Content,
             entity.Comp.StampedBy,
-            entity.Comp.Drawing,
+            entity.Comp.DrawingData,
             entity.Comp.Mode)); // Starlight-edit
     }
 

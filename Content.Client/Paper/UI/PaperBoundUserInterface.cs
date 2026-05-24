@@ -54,9 +54,9 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
         }
     }
 
-    private void InputOnDrawingSaved(List<PaperDrawingStroke> drawing)
+    private void InputOnDrawingSaved(string drawingData)
     {
-        SendMessage(new PaperInputDrawingMessage(drawing));
+        SendMessage(new PaperInputDrawingMessage(drawingData));
     }
 
     private void InputOnDrawingCleared()
