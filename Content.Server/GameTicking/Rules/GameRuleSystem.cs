@@ -44,7 +44,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
                 continue;
 
             // Starlight-start
-            if (!StartAttempt(uid, rule, gameRule, args, out var reason))
+            if (!CanStartRule(uid, rule, gameRule, args, out var reason))
             {
                 ChatManager.SendAdminAnnouncement(Loc.GetString("preset-cant-start", ("reason", reason)));
                 args.Cancel();
@@ -160,7 +160,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     /// <summary>
     /// Called when trying to start this gamerule.
     /// </summary>
-    protected virtual bool StartAttempt(EntityUid uid, T component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
+    protected virtual bool CanStartRule(EntityUid uid, T component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
     {
         reason = "";
         return true;

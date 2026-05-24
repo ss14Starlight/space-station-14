@@ -34,7 +34,7 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
 
     private int ActiveRulesCount = 0;
 
-    protected override bool StartAttempt(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
+    protected override bool CanStartRule(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
     {
         CheckLoseStatus(out var percentage);
         reason = "Can't run terror spiders rule when more than 40% crew is already died!";
