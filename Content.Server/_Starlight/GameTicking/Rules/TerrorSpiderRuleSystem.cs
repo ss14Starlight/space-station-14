@@ -25,7 +25,6 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private ChatSystem _chatSystem = default!;
     [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private EntityQueryEnumerator<MetaDataComponent, TerrorSpiderComponent> _terrorSpiders = default!;
     [Dependency] private EntityQuery<TerrorSpiderRuleComponent> _rules = default!;
 
     /// <summary>
@@ -39,7 +38,7 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
     {
         CheckLoseStatus(out var percentage);
         reason = "Can't run terror spiders rule when more than 40% crew is already died!";
-        return percentage >= 40; // If there's more than 40% died players - don't run this rule.
+        return percentage < 40; // If there's more than 40% died players - don't run this rule.
     }
 
     public override void Initialize()
@@ -55,6 +54,13 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
     {
         base.Started(uid, component, gameRule, args);
         ActiveRulesCount++;
+    }
+
+    protected override void Ended(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        base.Ended(uid, component, gameRule, args);
+        if (ActiveRulesCount > 0)
+            ActiveRulesCount--;
     }
 
     private void OnGetBriefing(Entity<TerrorPrincessComponent> ent, ref GetBriefingEvent args)
@@ -86,7 +92,8 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
 
         args.AddLine(Loc.GetString("terrorspiders-list-start"));
 
-        while (_terrorSpiders.MoveNext(out var spider, out var metaData, out _))
+        var query = EntityQueryEnumerator<MetaDataComponent, TerrorSpiderComponent>();
+        while (query.MoveNext(out var spider, out var metaData, out _))
         {
             if (!_player.TryGetSessionByEntity(spider, out var session))
                 continue;
