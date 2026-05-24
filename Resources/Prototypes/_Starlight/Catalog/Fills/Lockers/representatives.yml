@@ -101,6 +101,23 @@
           tableId: CriminalDocumentTable
 
 - type: entity
+  id: LockerNCTFilled
+#  categories: [ ShouldMapStation ]
+  suffix: Filled
+  parent: LockerNCT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesCommand
+        - id: BookSpaceLaw
+        - id: LuxuryPen
+        - id: BoxFolderNanoTrasenClipboard
+        - id: BoxFolderBlue
+        - id: BriefcaseBrown # Empty
+
+- type: entity
   id: LockerBlueshieldFilled
   categories: [ ShouldMapStation ]
   suffix: Filled
