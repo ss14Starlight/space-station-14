@@ -1367,15 +1367,6 @@
     - item: BikeHornInstrument
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-clowning-module }
-  - type: Tag # Starlight start
-    tags:
-    - BorgModuleService
-    - ModuleBlacklistCyborgClowning
-  - type: BorgModuleWhitelist
-    whitelistInfo: borg-module-incompatibility-clowning
-    moduleBlacklist:
-      tags:
-      - ModuleBlacklistCyborgClowning # Starlight end
 
 #syndicate modules
 - type: entity

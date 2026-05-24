@@ -104,7 +104,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleHeavy
+    - XenoborgModuleScout
     - ModuleBlacklistXenoborgScoutWeapon
   - type: BorgModuleWhitelist
     whitelistInfo: borg-module-incompatibility-xenoborg-scoutweapon
@@ -119,7 +119,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleHeavy
+    - XenoborgModuleEngi
     - ModuleBlacklistXenoborgEngiWeapon
   - type: BorgModuleWhitelist
     whitelistInfo: borg-module-incompatibility-xenoborg-engiweapon
@@ -134,7 +134,7 @@
   components:
   - type: Tag
     tags:
-    - XenoborgModuleHeavy
+    - XenoborgModuleStealth
     - ModuleBlacklistXenoborgStealthWeapon
   - type: BorgModuleWhitelist
     whitelistInfo: borg-module-incompatibility-xenoborg-stealthhypo
