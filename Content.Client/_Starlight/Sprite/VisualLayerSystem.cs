@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Server.Administration.Systems;
+using Content.Shared._Starlight.Abstract;
 using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Client.GameObjects;
@@ -27,68 +28,17 @@ public sealed class VisualLayerSystem : EntitySystem
     /// </summary>
     public IReadOnlyList<string> CyclicLayers { get; private set; } = [];
 
-    private sealed class LayerDependencyGraph
+    public int GetLayerOrder(VisualLayerKey key)
+        => _layerOrder.GetValueOrDefault(key.Layer.Id, int.MaxValue);
+
+    public int CompareLayers(VisualLayerKey a, VisualLayerKey b)
     {
-        private readonly Dictionary<string, int> _inDegree = [];
-        private readonly Dictionary<string, HashSet<string>> _edges = [];
+        var c = GetLayerOrder(a).CompareTo(GetLayerOrder(b));
+        if (c != 0)
+            return c;
 
-        public void AddNode(string id)
-        {
-            _inDegree.TryAdd(id, 0);
-            _edges.TryAdd(id, []);
-        }
-
-        public void AddEdge(string from, string to)
-        {
-            AddNode(from);
-            AddNode(to);
-
-            // Only count the edge once: duplicates (symmetric Above/Below or repeated entries)
-            // must not inflate in-degree, otherwise nodes never reach zero and look cyclic.
-            if (_edges[from].Add(to))
-                _inDegree[to]++;
-        }
-
-        public TopologicalSortResult Sort()
-        {
-            var inDegree = new Dictionary<string, int>(_inDegree);
-            var order = new Dictionary<string, int>();
-            var queue = new Queue<string>();
-
-            foreach (var (id, degree) in inDegree)
-            {
-                if (degree == 0)
-                    queue.Enqueue(id);
-            }
-
-            var nextOrder = 0;
-            while (queue.TryDequeue(out var current))
-            {
-                order[current] = nextOrder++;
-                foreach (var next in _edges[current])
-                {
-                    if (--inDegree[next] == 0)
-                        queue.Enqueue(next);
-                }
-            }
-
-            List<string>? cyclic = null;
-            foreach (var (id, degree) in inDegree)
-            {
-                if (degree > 0)
-                {
-                    (cyclic ??= []).Add(id);
-                    order[id] = nextOrder++;
-                }
-            }
-
-            return new TopologicalSortResult(order, (IReadOnlyList<string>?)cyclic ?? []);
-        }
+        return CompareLayerKeyTieBreakers(a, b);
     }
-
-    private readonly record struct TopologicalSortResult(
-        Dictionary<string, int> Order,
-        IReadOnlyList<string> CyclicNodes);
 
     public override void Initialize()
     {
@@ -115,25 +65,13 @@ public sealed class VisualLayerSystem : EntitySystem
             _scratch.Capacity = keys.Count;
 
         foreach (var key in keys)
-        {
-            if (!_layerOrder.TryGetValue(key.Layer.Id, out var order))
-                order = int.MaxValue;
-            _scratch.Add((key, key.ToString(), order));
-        }
+            _scratch.Add((key, key.ToString(), GetLayerOrder(key)));
 
         _scratch.Sort(static (a, b) =>
         {
-            var c = a.Order.CompareTo(b.Order);
-            if (c != 0)
-                return c;
-
-            var ai = a.Key.Index ?? int.MinValue;
-            var bi = b.Key.Index ?? int.MinValue;
-            c = ai.CompareTo(bi);
-            if (c != 0)
-                return c;
-
-            return b.Key.Displacement.CompareTo(a.Key.Displacement);
+            return a.Order != b.Order
+                ? a.Order.CompareTo(b.Order)
+                : CompareLayerKeyTieBreakers(a.Key, b.Key);
         });
 
         if (IsOrdered(ent!))
@@ -181,9 +119,20 @@ public sealed class VisualLayerSystem : EntitySystem
         return true;
     }
 
+    private static int CompareLayerKeyTieBreakers(VisualLayerKey a, VisualLayerKey b)
+    {
+        var ai = a.Index ?? int.MinValue;
+        var bi = b.Index ?? int.MinValue;
+        var c = ai.CompareTo(bi);
+        if (c != 0)
+            return c;
+
+        return b.Displacement.CompareTo(a.Displacement);
+    }
+
     private void BuildLayerOrderCache()
     {
-        var graph = new LayerDependencyGraph();
+        var graph = new TopologicalDependencyGraph<string>();
 
         foreach (var proto in _prototypeManager.EnumeratePrototypes<VisualLayerPrototype>())
         {
