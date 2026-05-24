@@ -141,9 +141,11 @@
     - type: GameRule
       minPlayers: 20
     - type: BrighteyeRule
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Hideout.yml
-      mapTag: TheDark
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
     - type: AntagLoadProfileRule
       speciesHardOverride: Shadekin
       applyCharacterProfile: true
@@ -193,8 +195,27 @@
   id: TheDarkMap
   components:
     - type: StationEvent
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
+
+# Dark Maps
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkHideoutSpawn
+  components:
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+      mapTag: TheDark
+
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkGardenSpawn
+  components:
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/TheDark/Garden.yml
       mapTag: TheDark
 
 # Derelict Cyborgs

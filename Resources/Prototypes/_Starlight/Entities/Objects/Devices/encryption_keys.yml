@@ -29,6 +29,15 @@
     - state: nano_label
 
 - type: entity
+  parent: EncryptionKeyNanoTrasen
+  id: EncryptionKeyNanoTrasenUnremovable
+  name: nanotrasen encryption key
+  description: An encryption key used by captain's bosses' bosses.
+  suffix: Unremovable
+  components:
+  - type: Unremoveable
+
+- type: entity
   parent: [ EncryptionKey, BaseSovietContraband ]
   id: EncryptionKeySoviet
   name: soviet encryption key

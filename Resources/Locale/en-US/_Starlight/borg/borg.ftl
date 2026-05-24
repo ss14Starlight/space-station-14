@@ -33,3 +33,9 @@ borg-type-purrfus-transponder = purrfus cyborg
 borg-type-cargo-name = Cargo
 borg-type-cargo-desc = Haul cargo, deliver orders, and make the station rich!
 borg-type-cargo-transponder = cargo cyborg
+
+# Module incompatibilities
+borg-module-incompatibility-xenoborg-engiweapon = Incompatible with other Engineering Xenoborg weapon modules.
+borg-module-incompatibility-xenoborg-heavyweapon = Incompatible with other Heavy Xenoborg weapon modules.
+borg-module-incompatibility-xenoborg-scoutweapon = Incompatible with other Scout Xenoborg weapon modules.
+borg-module-incompatibility-xenoborg-stealthhypo = Incompatible with other Stealth Xenoborg hypo modules.
