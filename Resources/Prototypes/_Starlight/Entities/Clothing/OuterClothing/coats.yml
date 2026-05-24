@@ -35,7 +35,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, BaseNanoTrasenContraband ]
   id: ClothingOuterCoatMagi
-  name: magistrate's longcoat
+  name: magistrate longcoat
   description: New and improved, this jacket actually keeps you warm! Brought to you by the NanoTrasen Fashion Board.
   components:
   - type: Sprite
