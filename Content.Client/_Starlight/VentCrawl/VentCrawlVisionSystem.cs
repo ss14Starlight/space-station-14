@@ -20,15 +20,6 @@ public sealed partial class VentCrawlSystem : EntitySystem
         base.Initialize();
 
         _pipeOverlay = new VentCrawPipeOverlay();
-        _overlayManager.AddOverlay(_pipeOverlay);
-    }
-
-    public override void Shutdown()
-    {
-        base.Shutdown();
-
-        if (_pipeOverlay != null)
-            _overlayManager.RemoveOverlay(_pipeOverlay);
     }
 
     public override void Update(float frameTime)
@@ -45,9 +36,13 @@ public sealed partial class VentCrawlSystem : EntitySystem
         if (!ventCraslerQuery.TryGetComponent(player, out var playerVentCrawlerComponent))
         {
             _subFloorHideSystem.ShowVentPipe = false;
+            if (_pipeOverlay != null)
+                _overlayManager.RemoveOverlay(_pipeOverlay);
             return;
         }
 
         _subFloorHideSystem.ShowVentPipe = playerVentCrawlerComponent.InTube;
+        if (playerVentCrawlerComponent.InTube && _pipeOverlay != null)
+            _overlayManager.AddOverlay(_pipeOverlay);
     }
 }
