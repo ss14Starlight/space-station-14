@@ -1,38 +1,66 @@
 using Content.Server._Starlight.Antags.Components;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
+using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.Antags.TerrorSpider;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
+using Robust.Server.Player;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComponent>
+public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComponent>
 {
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private EntityQuery<TerrorSpiderRuleComponent> _rules = default!;
 
     /// <summary>
     /// How much of the crew needs to be dead for the spiders to win.
     /// </summary>
-    private const int TargetDeadCrewPercentage = 50;
+    private const int TargetDeadCrewPercentage = 70;
+
+    private int ActiveRulesCount = 0;
+
+    protected override bool CanStartRule(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
+    {
+        CheckLoseStatus(out var percentage);
+        reason = "Can't run terror spiders rule when more than 40% crew is already died!";
+        return percentage < 40; // If there's more than 40% died players - don't run this rule.
+    }
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<StationCrewComponent, MobStateChangedEvent>(OnCrewMobStateChanged);
+        SubscribeLocalEvent<TerrorPrincessComponent, MobStateChangedEvent>(OnPrincessStateChanged);
         SubscribeLocalEvent<TerrorPrincessComponent, GetBriefingEvent>(OnGetBriefing);
+    }
+
+    protected override void Started(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+        ActiveRulesCount++;
+    }
+
+    protected override void Ended(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        base.Ended(uid, component, gameRule, args);
+        if (ActiveRulesCount > 0)
+            ActiveRulesCount--;
     }
 
     private void OnGetBriefing(Entity<TerrorPrincessComponent> ent, ref GetBriefingEvent args)
@@ -40,13 +68,43 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
 
     private void OnCrewMobStateChanged(EntityUid uid, StationCrewComponent component, MobStateChangedEvent args)
     {
-        if (args.NewMobState is MobState.Dead or MobState.Invalid)
+        if (ActiveRulesCount > 0 && args.NewMobState is MobState.Dead or MobState.Invalid)
             ProcessLose();
+    }
+
+    private void OnPrincessStateChanged(EntityUid uid, TerrorPrincessComponent component, MobStateChangedEvent args)
+    {
+        var query = EntityQueryEnumerator<TerrorPrincessComponent, MobStateComponent>();
+        var count = 0;
+        while (query.MoveNext(out var princess, out _, out var state))
+        {
+            if (state.CurrentState is MobState.Alive)
+                count++;
+        }
+
+        if (count == 0 && ActiveRulesCount > 0)
+            ActiveRulesCount--;
+    }
+
+    protected override void AppendRoundEndText(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
+    {
+        args.AddLine(Loc.GetString($"terrorspiders-win"));
+
+        args.AddLine(Loc.GetString("terrorspiders-list-start"));
+
+        var query = EntityQueryEnumerator<MetaDataComponent, TerrorSpiderComponent>();
+        while (query.MoveNext(out var spider, out var metaData, out _))
+        {
+            if (!_player.TryGetSessionByEntity(spider, out var session))
+                continue;
+            args.AddLine(Loc.GetString("terrorspiders-list-name-user", ("name", metaData.EntityName), ("user", session.Name)));
+        }
+        args.AddLine("");
     }
 
     private void ProcessLose()
     {
-        if (CheckLoseStatus())
+        if (CheckLoseStatus(out _))
         {
             _roundEnd.CancelRoundEndCountdown(null, false);
             var query = EntityQueryEnumerator<TerrorSpiderRuleComponent>();
@@ -105,8 +163,9 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
         }
     }
 
-    private bool CheckLoseStatus()
+    private bool CheckLoseStatus(out float percentage)
     {
+        percentage = 0;
         var crewList = new List<EntityUid>();
 
         var crew = EntityQueryEnumerator<StationCrewComponent>();
@@ -117,7 +176,8 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
             return false;
 
         var crewDeadAmount = CheckGroupStatus(crewList);
-        return crewDeadAmount * 100 / crewList.Count >= TargetDeadCrewPercentage;
+        percentage = crewDeadAmount * 100 / crewList.Count;
+        return percentage >= TargetDeadCrewPercentage;
     }
 
     /// <summary>
@@ -131,7 +191,7 @@ public sealed class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpiderRuleComp
         var gone = 0;
         foreach (var ent in entities)
         {
-            if (EntityManager.TryGetComponent(ent, out MobStateComponent? mobState) && mobState.CurrentState is MobState.Dead or MobState.Invalid)
+            if (TryComp<MobStateComponent>(ent, out var mobState) && mobState.CurrentState is MobState.Dead or MobState.Invalid)
                 gone++;
             else if (checkOffStation && _stationSystem.GetOwningStation(ent) == null && !_emergencyShuttle.EmergencyShuttleArrived)
                 gone++;

@@ -7,7 +7,7 @@
     - type: ContainerFill
       containers:
         key_slots:
-        - EncryptionKeyNanoTrasen
+        - EncryptionKeyNanoTrasenUnremovable
         - EncryptionKeyLawSecurity
         - EncryptionKeyCommon
     - type: Sprite
@@ -22,7 +22,7 @@
     - type: ContainerFill
       containers:
         key_slots:
-        - EncryptionKeyNanoTrasen
+        - EncryptionKeyNanoTrasenUnremovable
         - EncryptionKeyLawSecurity
         - EncryptionKeyCommand
         - EncryptionKeyCommon
@@ -158,7 +158,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNanoTrasen
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyCommand
       - EncryptionKeyNCTrainer
   - type: Sprite

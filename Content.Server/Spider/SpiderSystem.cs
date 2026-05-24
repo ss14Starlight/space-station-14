@@ -7,18 +7,25 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.Spider.Events; // Starlight-edit
-using Content.Shared.Weapons.Melee.Events; // Starlight-edit
+
+#region Starlight
+using Content.Shared._Starlight.Spider.Events;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Containers;
+#endregion
 
 namespace Content.Server.Spider;
 
-public sealed class SpiderSystem : SharedSpiderSystem
+public sealed partial class SpiderSystem : SharedSpiderSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    //[Dependency] private readonly TurfSystem _turf = default!; // Starlight-removed - we dropped the one use of this system
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Starlight-edit
+    [Dependency] private PopupSystem _popup = default!;
+    //[Dependency] private TurfSystem _turf = default!; // Starlight-removed - we dropped the one use of this system
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    #region Starlight
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    #endregion
 
     /// <summary>
     ///     A recycled hashset used to check turfs for spiderwebs.
@@ -68,6 +75,14 @@ public sealed class SpiderSystem : SharedSpiderSystem
     {
         if (args.Handled)
             return;
+
+        // Starlight-start
+        if (_container.IsEntityInContainer(uid))
+        {
+            _popup.PopupEntity(Loc.GetString("spider-web-action-incontainer"), args.Performer, args.Performer);
+            return;
+        }
+        // Starlight-end
 
         var transform = Transform(uid);
 

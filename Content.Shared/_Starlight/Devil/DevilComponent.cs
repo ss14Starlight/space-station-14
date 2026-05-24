@@ -38,7 +38,6 @@ public sealed partial class DevilComponent : Component
         "Time",
         "Organ",
         "Power",
-        "Terminator",
         "Gun",
         "Electricity",
         "Noslip",

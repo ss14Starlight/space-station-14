@@ -1,0 +1,426 @@
+# Base Mittens
+- type: entity
+  abstract: true
+  parent: ClothingHandsBase # Not butcherable, no fur material
+  id: ClothingHandsMittensBase
+  components:
+  - type: Fiber
+    fiberMaterial: fibers-fur
+  - type: FingerprintMask
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 5 # Average lightbulb
+        Cold: 5 # I don't know when you're physically going to touch anything cold, but might as well add something for it.
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.90 # Entire reason I added these.
+  - type: TemperatureProtection
+    heatingCoefficient: 1.005 # They're really just on your hands.
+    coolingCoefficient: 0.8 # They're not *that* great, they just protect your hands.
+
+# Purple Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorPurple
+  name: purple mittens
+  description: Regular purple mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#9C0DE1"
+    - state: dark-winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#9C0DE1"
+      - state: dark-winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#9C0DE1"
+      - state: dark-winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#9C0DE1"
+      - state: dark-winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-purple-fur
+
+# Red Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorRed
+  name: red mittens
+  description: Regular red mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#940000"
+    - state: dark-winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#940000"
+      - state: dark-winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#940000"
+      - state: dark-winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#940000"
+      - state: dark-winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-red-fur
+
+# Blue Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorBlue
+  name: blue mittens
+  description: Regular blue mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#0089EF"
+    - state: dark-winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#0089EF"
+      - state: dark-winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#0089EF"
+      - state: dark-winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#0089EF"
+      - state: dark-winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-blue-fur
+
+# Teal Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorTeal
+  name: teal mittens
+  description: Regular teal mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#3CB57C"
+    - state: dark-winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#3CB57C"
+      - state: dark-winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#3CB57C"
+      - state: dark-winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#3CB57C"
+      - state: dark-winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-teal-fur
+
+# Brown Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorBrown
+  name: brown mittens
+  description: Regular brown mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#723A02"
+    - state: winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#723A02"
+      - state: winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#723A02"
+      - state: winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#723A02"
+      - state: winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-brown-fur
+
+# Gray Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorGray
+  name: grey mittens
+  description: Regular grey mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#999999"
+    - state: winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#999999"
+      - state: winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#999999"
+      - state: winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#999999"
+      - state: winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-grey-fur
+
+# Green Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorGreen
+  name: green mittens
+  description: Regular green mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#5ABF2F"
+    - state: dark-winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#5ABF2F"
+      - state: dark-winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#5ABF2F"
+      - state: dark-winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#5ABF2F"
+      - state: dark-winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-green-fur
+
+# Light Brown Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorLightBrown
+  name: light brown mittens
+  description: Regular light brown mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#C09F72"
+    - state: winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#C09F72"
+      - state: winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#C09F72"
+      - state: winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#C09F72"
+      - state: winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-light-brown-fur
+
+# Orange Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorOrange
+  name: orange mittens
+  description: Regular orange mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#EF8100"
+    - state: dark-winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#EF8100"
+      - state: dark-winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#EF8100"
+      - state: dark-winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#EF8100"
+      - state: dark-winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-orange-fur
+
+# White Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorWhite
+  name: white mittens
+  description: Regular white mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#EAE8E8"
+    - state: winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#EAE8E8"
+      - state: winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#EAE8E8"
+      - state: winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#EAE8E8"
+      - state: winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-white-fur
+
+# Dark Black Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorDarkBlack
+  name: dark black mittens
+  description: Regular dark black mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    layers:
+    - state: icon
+      color: "#222222"
+    - state: winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#222222"
+      - state: winterbits-inhand-left
+      right:
+      - state: inhand-right
+        color: "#222222"
+      - state: winterbits-inhand-right
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/color.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+        color: "#222222"
+      - state: winterbits-equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-dark-black-fur
+
+# Black Mittens
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorBlack
+  name: black mittens
+  description: Regular black mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/black.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/black.rsi
+  - type: Fiber
+    fiberMaterial: fibers-black-fur
+
+# No Insuls. It's a tradeoff. Still gets yellow, though.
+- type: entity
+  parent: ClothingHandsMittensBase
+  id: ClothingHandsMittensColorYellow
+  name: yellow mittens
+  description: Regular yellow mittens to keep the cold out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/yellow.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/Color/yellow.rsi
+  - type: Fiber
+    fiberMaterial: fibers-yellow-fur
+
+# Security
+- type: entity
+  parent: [ClothingHandsMittensBase, BaseSecurityContraband]
+  id: ClothingHandsMittensSecurityRed
+  name: red security mittens
+  description: Black mittens, but slightly red! The detective will LOVE you if you wear these.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Mittens/securitymittensred.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Mittens/securitymittensred.rsi
+  - type: Fiber
+    fiberMaterial: fibers-red-and-black-woven-fur

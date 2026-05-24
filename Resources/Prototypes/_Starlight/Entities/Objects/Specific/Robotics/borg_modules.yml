@@ -81,6 +81,67 @@
       - state: base-stripes-inhand-right
         color: "#FF00CC"
 
+# Blacklist abstracts
+- type: entity
+  parent: BaseXenoborgModuleHeavy
+  id: BaseXenoborgModuleHeavyWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleHeavy
+    - ModuleBlacklistXenoborgHeavyWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-heavyweapon
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgHeavyWeapon
+
+- type: entity
+  parent: BaseXenoborgModuleScout
+  id: BaseXenoborgModuleScoutWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleScout
+    - ModuleBlacklistXenoborgScoutWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-scoutweapon
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgScoutWeapon
+
+- type: entity
+  parent: BaseXenoborgModuleEngi
+  id: BaseXenoborgModuleEngiWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleEngi
+    - ModuleBlacklistXenoborgEngiWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-engiweapon
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgEngiWeapon
+
+- type: entity
+  parent: BaseXenoborgModuleStealth
+  id: BaseXenoborgModuleStealthWeapon
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - XenoborgModuleStealth
+    - ModuleBlacklistXenoborgStealthWeapon
+  - type: BorgModuleWhitelist
+    whitelistInfo: borg-module-incompatibility-xenoborg-stealthhypo
+    moduleBlacklist:
+      tags:
+      - ModuleBlacklistXenoborgStealthWeapon
+
 # generic modules
 - type: entity
   id: BorgModuleUppies
@@ -895,7 +956,7 @@
   id: BorgModuleAdvancedLoading
   parent: [ BaseBorgModuleSupply, BaseProviderBorgModule ]
   name: advanced loading cyborg module
-  description: Advanced module for cargo cyborgs, with specialised hydraulic clamps
+  description: Advanced module for cargo cyborgs, with specialised hydraulic clamps.
   components:
   - type: Sprite
     layers:
@@ -1238,7 +1299,7 @@
 
 # Xenoborg Tier 3
 - type: entity
-  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleEnergyBlade
   name: energy sword xenoborg module
   description: Module with an energy sword and a shield.
@@ -1257,7 +1318,7 @@
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-sword3-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleSuperHeavyLaser
   name: bitterfrost cannon xenoborg module
   description: Module with a bitterfrost cannon.
@@ -1274,10 +1335,10 @@
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleHypoPlus
   name: advanced hypo xenoborg module
-  description: Module with a better set of self-refilling hypo.
+  description: Module with a better set of self-refilling hypos.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Robotics/borgmodule.rsi
@@ -1287,8 +1348,7 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypoPlus
-    - item: TazinideHypo
-    - item: MuteToxinHypo
+    - item: LicoxideHypoPlus
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-hypo2-module }
 

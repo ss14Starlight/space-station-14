@@ -1058,11 +1058,9 @@
   id: WeaponLaserCannonXenoborgCold
   name: xenoborg bitterfrost cannon
   components:
-  # region starlight - fix xenoborg cannon's absurdly low fire cost.
   - type: BatteryAmmoProvider
     proto: FreezeRay
-    fireCost: 100
-  # end region starlight
+    fireCost: 150
   - type: BatterySelfRecharger
     autoRechargeRate: 30
   # "remove" wield bonus and penalty so borgs can use it
