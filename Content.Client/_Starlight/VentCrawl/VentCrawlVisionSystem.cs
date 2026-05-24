@@ -39,8 +39,14 @@ public sealed partial class VentCrawlSystem : EntitySystem
             return;
         }
 
+        var inTube = playerVentCrawlerComponent.InTube;
         _subFloorHideSystem.ShowVentPipe = playerVentCrawlerComponent.InTube;
-        if (playerVentCrawlerComponent.InTube && _pipeOverlay != null)
-            _overlayManager.AddOverlay(_pipeOverlay);
+        if (_pipeOverlay != null && _overlayManager.HasOverlay<VentCrawPipeOverlay>() == inTube)
+        {
+            if (inTube)
+                _overlayManager.AddOverlay(_pipeOverlay);
+            else
+                _overlayManager.RemoveOverlay(_pipeOverlay);
+        }
     }
 }

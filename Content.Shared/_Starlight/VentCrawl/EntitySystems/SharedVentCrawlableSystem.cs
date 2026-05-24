@@ -289,7 +289,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 continue;
 
             if (!_gameTiming.IsFirstTimePredicted)
-                return;
+                continue;
 
             var currentTube = holder.CurrentTube.Value;
 
