@@ -288,6 +288,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             if (holder.CurrentTube == null)
                 continue;
 
+            if (!_gameTiming.IsFirstTimePredicted)
+                return;
+
             var currentTube = holder.CurrentTube.Value;
 
             if (holder.ManifoldTransitionProgress < 1f)
@@ -309,7 +312,10 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 if (holder.TimeLeft > 0)
                     UpdatePosition(currentTube, uid, holder);
                 else
+                {
+                    holder.TimeLeft = 0f;
                     TryAdvanceTube(currentTube, uid, holder);
+                }
             }
         }
     }
@@ -362,8 +368,8 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (holder.CurrentDirection == Direction.Invalid)
             return;
 
-        var progress = 1f - (holder.TimeLeft / holder.StartingTime);
-        progress = Math.Clamp(progress, 0f, 1f);
+        var elapsed = holder.StartingTime - holder.TimeLeft;
+        var progress = Math.Clamp(elapsed / holder.StartingTime, 0f, 1f);
 
         var origin = Transform(currentTube).Coordinates;
         var destination = holder.CurrentDirection.ToVec();
@@ -387,18 +393,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     {
         if (holder.NextTube == null)
             return;
-
-        if (TryComp<AtmosPipeLayersComponent>(currentTube, out var layersComp) && holder.CurrentDirection != Direction.Invalid)
-        {
-            var nextOffset = TryComp<AtmosPipeLayersComponent>(holder.NextTube.Value, out var nextTubeComp)
-                ? GetLayerOffset(nextTubeComp.CurrentPipeLayer)
-                : GetLayerOffset(layersComp.CurrentPipeLayer);
-
-            var origin = Transform(currentTube).Coordinates;
-            var destination = holder.CurrentDirection.ToVec();
-            var finalPosition = destination * 1f + nextOffset;
-            _xformSystem.SetCoordinates(uid, _xformSystem.WithEntityId(origin.Offset(finalPosition), currentTube));
-        }
 
         if (TryComp<VentCrawlTubeComponent>(currentTube, out var tubeComp) && tubeComp.Contents.ContainedEntities.Contains(uid))
             _containerSystem.Remove(uid, tubeComp.Contents, reparent: false, force: true);
