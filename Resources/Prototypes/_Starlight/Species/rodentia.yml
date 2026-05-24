@@ -84,16 +84,6 @@
       points: 2
       required: false
       onlyWhitelisted: true
-    UndergarmentBottom:
-      points: 0
-      required: false
-      #defaultMarkings: [ RMCUnderwearBoxersBlue ]
-      onlyWhitelisted: true
-    UndergarmentTop:
-      points: 0
-      required: false
-      #defaultMarkings: [ RMCUndershirtStandard ]
-      onlyWhitelisted: true
 
 - type: humanoidBaseSprite
   id: MobRodentiaEyes

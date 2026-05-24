@@ -58,6 +58,8 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: facialhair
+    undergarmentTop: UndergarmentTopTanktopRodentia
+    undergarmentBottom: UndergarmentBottomBoxersRodentia
   - type: TypingIndicator
     proto: rodentia
   - type: Speech
