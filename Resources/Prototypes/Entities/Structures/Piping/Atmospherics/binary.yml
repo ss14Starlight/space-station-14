@@ -707,6 +707,8 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
   - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
