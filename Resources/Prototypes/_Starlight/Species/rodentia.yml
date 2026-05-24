@@ -50,40 +50,51 @@
     Hair:
       points: 0
       required: false
+      onlyWhitelisted: false
     FacialHair:
       points: 0
       required: false
+      onlyWhitelisted: false
     Tail:
       points: 1
       required: true
       defaultMarkings: [ RodentiaTailMouse ]
+      onlyWhitelisted: true
     Legs:
       points: 4
       required: false
+      onlyWhitelisted: true
     Arms:
       points: 4
       required: false
+      onlyWhitelisted: true
     Snout:
       points: 1
       required: false
+      onlyWhitelisted: true
     HeadTop:
       points: 1
       required: true
       defaultMarkings: [ RodentiaHeadTopEarMouse ]
+      onlyWhitelisted: true
     HeadSide:
       points: 1
       required: false
+      onlyWhitelisted: true
     Chest:
       points: 2
       required: false
+      onlyWhitelisted: true
     UndergarmentBottom:
       points: 0
       required: false
       #defaultMarkings: [ RMCUnderwearBoxersBlue ]
+      onlyWhitelisted: true
     UndergarmentTop:
       points: 0
       required: false
       #defaultMarkings: [ RMCUndershirtStandard ]
+      onlyWhitelisted: true
 
 - type: humanoidBaseSprite
   id: MobRodentiaEyes
