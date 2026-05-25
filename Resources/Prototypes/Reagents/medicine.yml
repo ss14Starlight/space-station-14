@@ -342,8 +342,8 @@
           inverted: true
         damage:
           types:
-            Asphyxiation: -1
-            Bloodloss: -0.5
+            Asphyxiation: -0.5
+            Bloodloss: -0.25
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition
@@ -389,8 +389,8 @@
           inverted: true
         damage:
           types:
-            Asphyxiation: -3.5
-            Bloodloss: -3
+            Asphyxiation: -1.75
+            Bloodloss: -1.5
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
@@ -920,7 +920,7 @@
           - !type:MetabolizerTypeCondition
             type: [ Avali, Resomi ]
             inverted: true
-          amount: 6
+          amount: 3 # Starlight
         - !type:HealthChange
           conditions:
           - !type:MetabolizerTypeCondition
