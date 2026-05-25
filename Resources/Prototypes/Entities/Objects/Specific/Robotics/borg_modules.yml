@@ -1754,7 +1754,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborg
-    - item: CombatKnife # Starlight
+    - item: XenoKnife # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
