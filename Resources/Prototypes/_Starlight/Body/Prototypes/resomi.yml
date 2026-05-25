@@ -12,7 +12,6 @@
         eyes: OrganResomiEyes
         tongue: OrganHumanTongue
         eye_implant: null
-        brain_implant: BrainImplantNexus # 🌟Starlight🌟
     torso:
       part: TorsoResomi
       connections:

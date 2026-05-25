@@ -202,6 +202,7 @@
       - EncryptionKeyService
       - EncryptionKeyCommand
       - EncryptionKeyLaw # Starlight
+      - EncryptionKeyNanoTrasen # Starlight
 
 - type: entity
   parent: TelecomServer
@@ -282,3 +283,4 @@
     containers:
       key_slots:
       - EncryptionKeyCommand
+      - EncryptionKeyNanoTrasen # Starlight, temporary

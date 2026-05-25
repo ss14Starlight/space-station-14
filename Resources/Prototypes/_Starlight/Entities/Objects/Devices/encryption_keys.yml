@@ -17,7 +17,7 @@
   parent: [ EncryptionKey, BaseNanoTrasenContraband ]
   id: EncryptionKeyNanoTrasen
   name: nanotrasen encryption key
-  description: An encryption key used by captain's bosses' bosses.
+  description: An encryption key used by NanoTrasen Personnel.
   components:
   - type: EncryptionKey
     channels:
@@ -32,7 +32,7 @@
   parent: EncryptionKeyNanoTrasen
   id: EncryptionKeyNanoTrasenUnremovable
   name: nanotrasen encryption key
-  description: An encryption key used by captain's bosses' bosses.
+  description: An encryption key used by NanoTrasen Personnel.
   suffix: Unremovable
   components:
   - type: Unremoveable

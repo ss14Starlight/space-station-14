@@ -1,12 +1,4 @@
 - type: collectiveMind
-  id: Dionas
-  name: collective-mind-dioneas
-  keycode: 'd'
-  color: "#15912a"
-  requiredTags:
-  - Diona
-
-- type: collectiveMind
   id: Carp
   name: collective-mind-carp
   keycode: 'c'
@@ -71,7 +63,6 @@
   color: "#FF7922"
   requiredTags:
   - Nexus
-
 
 - type: collectiveMind
   id: VampireThrall
