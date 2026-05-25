@@ -16,13 +16,10 @@
         knockback: 5
         staminaMultiplier: 20
       Resomi:
-        knockback: 10
-        staminaMultiplier: 8
-      Avali:
-        knockback: 5 # half of what resomi take
+        knockback: 5
         staminaMultiplier: 8
       Felionoid:
-        knockback: 5 # half of what resomi take
+        knockback: 5
         staminaMultiplier: 8
   - type: Sprite
   - type: Clothing
@@ -141,11 +138,9 @@
       Skating:
         knockback: -2.5
       Resomi:
-        knockback: -5
-      Avali:
-        knockback: -2.5 # half of what resomi take
+        knockback: -2.5
       Felionoid:
-        knockback: -2.5 # half of what resomi take
+        knockback: -2.5
   - type: Sprite
     sprite: Objects/Weapons/Guns/Launchers/rocket.rsi
     layers:
@@ -182,10 +177,7 @@
   - type: KnockbackByUserTag # Starlight
     doestContain:
       Resomi:
-        knockback: 10
-        staminaMultiplier: 8
-      Avali:
-        knockback: 5 # half of what resomi take
+        knockback: 5
         staminaMultiplier: 8
       Felionoid:
         knockback: 5 # half of what resomi take

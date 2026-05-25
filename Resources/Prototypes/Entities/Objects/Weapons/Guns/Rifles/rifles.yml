@@ -16,9 +16,7 @@
         knockback: 1.0
         staminaMultiplier: 100
       Resomi:
-        knockback: 0.1
-      Avali:
-        knockback: 0.05 # Bigger bird, more sturdy bones.. or something.
+        knockback: 0.05
       Felionoid:
         knockback: 0.05 #half of what resomi take
   - type: Sprite

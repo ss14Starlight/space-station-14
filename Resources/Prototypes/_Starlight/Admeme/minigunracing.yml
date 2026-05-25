@@ -11,7 +11,7 @@
         knockback: 0.2
         staminaMultiplier: 0.0
       Resomi:
-        knockback: 0.02
+        knockback: 0.01
         staminaMultiplier: 0.0
       Avali:
         knockback: 0.01
