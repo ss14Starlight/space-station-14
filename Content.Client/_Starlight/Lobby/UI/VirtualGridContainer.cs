@@ -1,4 +1,6 @@
-using System;
+// SPDX-FileCopyrightText: 2026 Starlight Network
+// SPDX-License-Identifier: MIT
+
 using System.Numerics;
 
 namespace Content.Client._Starlight.Lobby.UI;
