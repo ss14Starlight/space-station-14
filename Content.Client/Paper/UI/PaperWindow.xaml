@@ -1,15 +1,25 @@
 <paper:PaperWindow xmlns="https://spacestation14.io"
     xmlns:paper="clr-namespace:Content.Client.Paper.UI"
     MouseFilter="Stop" Resizable="True" MinSize="150 150"
-    SetSize="800 660">
+    SetSize="666 660">
 
     <BoxContainer Name="ContentsRoot" Orientation="Vertical">
         <PanelContainer StyleClasses="BackgroundPanel" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="6">
             <TextureButton Name="CloseButton" StyleClasses="windowCloseButton"/>
         </PanelContainer>
 
-        <BoxContainer Orientation="Horizontal" VerticalExpand="True" HorizontalExpand="True" SeparationOverride="6">
-            <PanelContainer Name="PaperBackground" StyleIdentifier="PaperDefaultBorder" VerticalExpand="True" HorizontalExpand="True">
+        <!--
+            Paper and tools share the same visual area, but ColorPanel is overlaid.
+            This means showing the right-side drawing tools does NOT participate in layout
+            and therefore does NOT squeeze the paper/document.
+        -->
+        <PanelContainer Name="PaperArea" VerticalExpand="True" HorizontalExpand="True">
+            <PanelContainer Name="PaperBackground"
+                            StyleIdentifier="PaperDefaultBorder"
+                            HorizontalAlignment="Left"
+                            VerticalExpand="True"
+                            MinWidth="510"
+                            MaxWidth="510">
                 <ScrollContainer Name="ScrollingContents" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
                     <PanelContainer Name="PaperContent" VerticalExpand="True" HorizontalExpand="True" MaxWidth="600">
                         <paper:PaperDrawingControl Name="DrawingControl"
@@ -41,9 +51,15 @@
                 </ScrollContainer>
             </PanelContainer>
 
-            <!-- Color controls are added here at runtime.
-                 This panel is OUTSIDE the paper, on the right side, so it does not offset drawing coordinates. -->
-            <PanelContainer Name="ColorPanel" StyleClasses="BackgroundPanel" MinWidth="150" VerticalExpand="True">
+            <!--
+                Right-side drawing panel.
+                It is an overlay aligned to the right of the window, so it does not resize/squish PaperBackground.
+            -->
+            <PanelContainer Name="ColorPanel"
+                            StyleClasses="BackgroundPanel"
+                            MinWidth="150"
+                            VerticalExpand="True"
+                            HorizontalAlignment="Right">
                 <BoxContainer Name="ColorButtons"
                               Orientation="Vertical"
                               HorizontalAlignment="Center"
@@ -51,7 +67,7 @@
                               Margin="6"
                               SeparationOverride="4" />
             </PanelContainer>
-        </BoxContainer>
+        </PanelContainer>
 
         <!-- Write/Draw/Clear/Save stay below the paper. -->
         <BoxContainer Name="EditButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="6" SeparationOverride="4">

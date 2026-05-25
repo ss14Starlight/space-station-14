@@ -63,9 +63,12 @@ namespace Content.Client.Paper.UI
         private LineEdit _runtimeHexColorInput = default!;
         private Button _runtimeApplyHexColorButton = default!;
         private Button _runtimeExportSvgButton = default!;
-        private Button _runtimeImportSvgButton = default!;
+        private Control _runtimeExportSpacer = default!;
         private Button _runtimePenButton = default!;
         private Button _runtimeEraserButton = default!;
+        private Label _runtimeThicknessLabel = default!;
+        private BoxContainer _runtimeThicknessRow1 = default!;
+        private BoxContainer _runtimeThicknessRow2 = default!;
 
         public event Action<string>? OnSaved;
         public event Action<string>? OnDrawingSaved;
@@ -155,9 +158,22 @@ namespace Content.Client.Paper.UI
             _runtimeHexColorInput = new LineEdit { Text = "000000", MinWidth = 70 };
             _runtimeApplyHexColorButton = new Button { Text = "Apply" };
             _runtimeExportSvgButton = new Button { Text = "Export SVG" };
-            _runtimeImportSvgButton = new Button { Text = "Import SVG" };
+            _runtimeExportSpacer = new Control { MinSize = new Vector2(0, 8) };
             _runtimePenButton = new Button { Text = "Pen" };
             _runtimeEraserButton = new Button { Text = "Eraser" };
+            _runtimeThicknessLabel = new Label { Text = "Thickness:" };
+            _runtimeThicknessRow1 = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                HorizontalAlignment = HAlignment.Center,
+                SeparationOverride = 4
+            };
+            _runtimeThicknessRow2 = new BoxContainer
+            {
+                Orientation = BoxContainer.LayoutOrientation.Horizontal,
+                HorizontalAlignment = HAlignment.Center,
+                SeparationOverride = 4
+            };
 
             _runtimeColorBlackButton.OnPressed += _ => SetDrawColor(Color.Black, "000000");
             _runtimeColorRedButton.OnPressed += _ => SetDrawColor(Color.Red, "ff0000");
@@ -166,9 +182,22 @@ namespace Content.Client.Paper.UI
             _runtimeColorWhiteButton.OnPressed += _ => SetDrawColor(Color.White, "ffffff");
             _runtimeApplyHexColorButton.OnPressed += _ => ApplyHexColor();
             _runtimeExportSvgButton.OnPressed += async _ => await ExportSvgToFile();
-            _runtimeImportSvgButton.OnPressed += async _ => await ImportSvgFromFile();
             _runtimePenButton.OnPressed += _ => SetEraserMode(false);
             _runtimeEraserButton.OnPressed += _ => SetEraserMode(true);
+
+            // Move the existing thickness controls from the bottom toolbar to the right-side draw panel.
+            EditButtons.RemoveChild(ThicknessLabel);
+            EditButtons.RemoveChild(Thickness1Button);
+            EditButtons.RemoveChild(Thickness2Button);
+            EditButtons.RemoveChild(Thickness3Button);
+            EditButtons.RemoveChild(Thickness4Button);
+            EditButtons.RemoveChild(Thickness5Button);
+
+            _runtimeThicknessRow1.AddChild(Thickness1Button);
+            _runtimeThicknessRow1.AddChild(Thickness2Button);
+            _runtimeThicknessRow1.AddChild(Thickness3Button);
+            _runtimeThicknessRow2.AddChild(Thickness4Button);
+            _runtimeThicknessRow2.AddChild(Thickness5Button);
 
             ColorButtons.AddChild(_runtimeColorLabel);
             ColorButtons.AddChild(_runtimeColorBlackButton);
@@ -178,10 +207,13 @@ namespace Content.Client.Paper.UI
             ColorButtons.AddChild(_runtimeColorWhiteButton);
             ColorButtons.AddChild(_runtimeHexColorInput);
             ColorButtons.AddChild(_runtimeApplyHexColorButton);
+            ColorButtons.AddChild(_runtimeThicknessLabel);
+            ColorButtons.AddChild(_runtimeThicknessRow1);
+            ColorButtons.AddChild(_runtimeThicknessRow2);
             ColorButtons.AddChild(_runtimePenButton);
             ColorButtons.AddChild(_runtimeEraserButton);
+            ColorButtons.AddChild(_runtimeExportSpacer);
             ColorButtons.AddChild(_runtimeExportSvgButton);
-            ColorButtons.AddChild(_runtimeImportSvgButton);
 
             SetDrawColor(Color.Black, "000000");
             SetEraserMode(false);
@@ -474,6 +506,9 @@ namespace Content.Client.Paper.UI
             Thickness3Button.Visible = _drawMode;
             Thickness4Button.Visible = _drawMode;
             Thickness5Button.Visible = _drawMode;
+            _runtimeThicknessLabel.Visible = _drawMode;
+            _runtimeThicknessRow1.Visible = _drawMode;
+            _runtimeThicknessRow2.Visible = _drawMode;
 
             ColorButtons.Visible = _drawMode;
             ColorPanel.Visible = _drawMode;
@@ -485,8 +520,8 @@ namespace Content.Client.Paper.UI
             _runtimeColorWhiteButton.Visible = _drawMode;
             _runtimeHexColorInput.Visible = _drawMode;
             _runtimeApplyHexColorButton.Visible = _drawMode;
+            _runtimeExportSpacer.Visible = _drawMode;
             _runtimeExportSvgButton.Visible = _drawMode;
-            _runtimeImportSvgButton.Visible = _drawMode;
             _runtimePenButton.Visible = _drawMode;
             _runtimeEraserButton.Visible = _drawMode;
         }
@@ -510,6 +545,9 @@ namespace Content.Client.Paper.UI
             _runtimeColorWhiteButton.Visible = !enabled && _drawMode;
             _runtimeHexColorInput.Visible = !enabled && _drawMode;
             _runtimeApplyHexColorButton.Visible = !enabled && _drawMode;
+            _runtimeThicknessLabel.Visible = !enabled && _drawMode;
+            _runtimeThicknessRow1.Visible = !enabled && _drawMode;
+            _runtimeThicknessRow2.Visible = !enabled && _drawMode;
 
             _runtimePenButton.Disabled = !enabled;
             _runtimeEraserButton.Disabled = enabled;
@@ -549,22 +587,6 @@ namespace Content.Client.Paper.UI
             await writer.WriteAsync(DrawingControl.ExportToSvg());
         }
 
-        private async Task ImportSvgFromFile()
-        {
-            var filters = new FileDialogFilters(new FileDialogFilters.Group("svg"));
-            await using var file = await _fileDialogManager.OpenFile(filters, FileAccess.Read);
-
-            if (file == null)
-                return;
-
-            using var reader = new StreamReader(file);
-            var svgText = await reader.ReadToEndAsync();
-
-            if (!DrawingControl.ImportFromSvg(svgText))
-                return;
-
-            RunOnDrawingSaved();
-        }
 
         /// <summary>
         /// Updates the fill status display and save button state based on text length limits.
