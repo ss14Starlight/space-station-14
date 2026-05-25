@@ -84,6 +84,13 @@ namespace Content.Client.Lobby.UI
 
             CharEditor.AddChild(profileEditor);
             JobPriorityEditor.AddChild(jobPriorityEditor);
+            // Starlight start
+            profileEditor.BodyTabVisibilityChanged += bodyTabVisible =>
+            {
+                if (FindControl<BoxContainer>("CharacterPickerPanel") is { } characterPickerPanel)
+                    characterPickerPanel.Visible = !bodyTabVisible;
+            };
+            // Starlight end
             RulesButton.OnPressed += _ => new RulesAndInfoWindow().Open();
 
             StatsButton.OnPressed += _ => new PlaytimeStatsWindow().OpenCentered();
