@@ -927,8 +927,8 @@
            type: [ Avali, Resomi ]
           damage:
             types:
-              Caustic: 2 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
-              Heat: 2
+              Caustic: 1 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
+              Heat: 1
         # Starlight-Start: Cyclorite Metabolism
         - !type:AdjustReagent
           conditions:
