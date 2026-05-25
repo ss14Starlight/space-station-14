@@ -13,11 +13,6 @@
     understands:
     - GalacticCommon
     - Sylvan
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      110: Critical
-      220: Dead
   # Starlight-end
   - type: Absorbable
   - type: Tag
