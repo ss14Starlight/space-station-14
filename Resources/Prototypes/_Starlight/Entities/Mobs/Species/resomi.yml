@@ -81,6 +81,11 @@
     spawned:
     - id: FoodMeatChicken
       amount: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      85: Critical
+      170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       51: 0.7  #Basicly 60% and 80%
