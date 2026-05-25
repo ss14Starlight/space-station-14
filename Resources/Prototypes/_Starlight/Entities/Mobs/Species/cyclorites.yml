@@ -89,3 +89,6 @@
     knockdownDamageThreshold: 10
   - type: Stamina
     forceStandStamina: 20
+  - type: CombatMode
+    canDisarm: true
+    disarmFailChance: 0.5 # 50 stamina damage with 50% chance

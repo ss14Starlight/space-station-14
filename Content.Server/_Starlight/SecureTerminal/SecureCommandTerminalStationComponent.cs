@@ -26,7 +26,7 @@ public sealed partial class SecureCommandTerminalStationComponent : Component
 
     /// <summary>One-time-use request IDs permanently consumed this round.</summary>
     [ViewVariables]
-    public readonly HashSet<string> UsedOnce = new();
+    public readonly HashSet<string> UsedOnce = [];
 
     /// <summary>Armory requests that have fired and are deployed. Maps requestId → time of authorization (for recall delay). Removed when recalled.</summary>
     [ViewVariables]

@@ -235,3 +235,26 @@
   components:
   - type: MindShieldImplant
     mindShieldStatusIcon: MedTakMindShieldIcon
+
+# NanoTrasen Implants
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantNanoTrasen
+  name: nanotrasen radio implant
+  description: This implant grants access to the NanoTrasen channel without a headset. Only authorized for NanoTrasen personnel.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - NanoTrasen
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantNanoTrasen
+  name: nanotrasen death rattle implant
+  description: This implant will inform the NanoTrasen radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: NanoTrasen

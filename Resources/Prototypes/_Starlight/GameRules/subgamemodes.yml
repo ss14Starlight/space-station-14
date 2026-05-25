@@ -161,17 +161,22 @@
       components:
       - type: ActiveListener
       - type: Unholy
-      - type: UserInterface
-        interfaces:
-          enum.DamnationsMenuUiKey.Key:
-            type: DevilDamnationsBoundUserInterface
-            requireInputValidation: false
+      - type: Clumsy
+        clumsyDefaultCheck: 1
+        clumsyGuns: true
+        clumsySound: "/Audio/Weapons/Guns/Gunshots/bang.ogg"
+        clumsyDefib: false
+        clumsyHypo: false
+        clumsyVaulting: false
+      tags:
+        - CantBecomeRevolutionary
+
   - type: DynamicRuleCost
     cost: 100
 
 - type: entity
   parent: Xenoborgs
-  id: XenoborgsLP
+  id: SubXenoborgs
   components:
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:

@@ -97,9 +97,16 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<ActionsComponent, ComponentStartup>(OnActionsComponentStartup);
         SubscribeLocalEvent<VampireComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<VampireActionUseAttemptEvent>(OnVampireActionUseAttempt);
         InitializeAbilities();
         InitializeObjectives();
     }
+
+    private void OnVampireActionUseAttempt(ref VampireActionUseAttemptEvent args)
+    {
+        args.Allowed = CheckAndConsumeGrantedVampireAction(args.User, args.ActionEntity, args.BloodCost);
+    }
+
     private void OnPlayerAttached(PlayerAttachedEvent ev)
     {
         if (!TryComp(ev.Entity, out VampireComponent? vampire))

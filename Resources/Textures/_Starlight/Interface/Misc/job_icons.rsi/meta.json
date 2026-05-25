@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Starlight, TG Station, Paradise   Soviet and TSF from: https://github.com/ParadiseSS13/Paradise",
+    "copyright": "Starlight, TG Station, Paradise. Soviet and TSF from: https://github.com/ParadiseSS13/Paradise",
     "size": {
         "x": 8,
         "y": 8
@@ -16,7 +16,20 @@
             "copyright": "Chim"
         },
         {
-            "name": "BlueShield"
+            "name": "BlueShield",
+			"copyright": "Modified by wonderfulnewworld"
+        },
+		{
+            "name": "NanoTrasenRepresentative",
+			"copyright": "TG Station, wonderfulnewworld"
+        },
+		{
+            "name": "StationAi",
+            "copyright": "TG Station, lunarcomets, wonderfulnewworld"
+        },
+		{
+            "name": "NanoTrasenCareerTrainer",
+            "copyright": "TG Station, K-Dynamic, wonderfulnewworld"
         },
         {
             "name": "Vampire"
@@ -54,7 +67,7 @@
             "copyright": "by teapoterror"
         },
         {
-            "name": "NanotrasenCareerTrainer",
+            "name": "NanoTrasenRed",
             "copyright": "by ShadesMars"
         },
         {
