@@ -90,6 +90,7 @@
       - id: KingRatMigration
       - id: NinjaSpawn
       - id: ParadoxCloneSpawn
+      - id: ParadoxCrisisSpawn # Starlight
       - id: RevenantSpawn
       - id: SleeperAgents
       #    - id: ZombieOutbreak
@@ -97,7 +98,7 @@
       - !type:NestedSelector
         tableId: DerelictBorgEventTable
       - id: WizardSpawn
-      - id: Xenoborgs
+      - id: SubXenoborgs # Starlight, make it spawn sub instead
       # Starlight gamerules:
       - id: AbductorsSpawn
       - id: RailroadingTerminator
@@ -141,9 +142,11 @@
     - type: GameRule
       minPlayers: 20
     - type: BrighteyeRule
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Hideout.yml
-      mapTag: TheDark
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
     - type: AntagLoadProfileRule
       speciesHardOverride: Shadekin
       applyCharacterProfile: true
@@ -193,8 +196,27 @@
   id: TheDarkMap
   components:
     - type: StationEvent
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
+
+# Dark Maps
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkHideoutSpawn
+  components:
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+      mapTag: TheDark
+
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkGardenSpawn
+  components:
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/TheDark/Garden.yml
       mapTag: TheDark
 
 # Derelict Cyborgs
@@ -394,8 +416,10 @@
       path: /Audio/Announcements/attention.ogg
     earliestStart: 20
     weight: 6
-    duration: 50
     minimumPlayers: 50
+    duration: null
+  - type: GameRule
+    minPlayers: 50
   - type: VentSpawnRule
   - type: AntagSpawner
     prototype: MobTerrorPrincess
@@ -405,10 +429,50 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostTerrorPrincess
       min: 1
-      max: 4
-      playerRatio: 65
+      max: 3
+      playerRatio: 50
       pickPlayer: false
       mindRoles:
       - MindRoleTerrorPrincess
   - type: DynamicRuleCost
-    cost: 75
+    cost: 200
+
+# Multi Paradoxes
+- type: entity
+  parent: BaseGameRule
+  id: ParadoxCrisisSpawn
+  components:
+  - type: StationEvent
+    weight: 2
+    duration: null
+    earliestStart: 35
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+  - type: ParadoxCloneRule
+    objectiveBlacklist:
+      tags:
+      - ParadoxCloneObjectiveBlacklist
+  - type: AntagObjectives
+    objectives:
+    - ParadoxCloneKillObjective
+    - ParadoxCloneLivingObjective
+  - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
+  - type: AntagSelection
+    agentName: paradox-clone-round-end-agent-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostParadoxClone
+      min: 1
+      max: 4 # Starlight. Future proofing.
+      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
+      pickPlayer: false
+      startingGear: ParadoxCloneGear
+      roleLoadout:
+      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
+      briefing:
+        text: paradox-clone-role-greeting
+        color: lightblue
+        sound: /Audio/Misc/paradox_clone_greeting.ogg
+      mindRoles:
+      - MindRoleParadoxClone
+  - type: DynamicRuleCost
+    cost: 50

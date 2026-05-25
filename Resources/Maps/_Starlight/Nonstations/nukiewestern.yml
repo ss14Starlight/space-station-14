@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/23/2026 03:29:51
-  entityCount: 3885
+  time: 05/22/2026 06:03:11
+  entityCount: 3888
 maps:
 - 1
 grids:
@@ -16355,49 +16355,66 @@ entities:
   - uid: 2673
     components:
     - type: Transform
-      pos: 14.505466,52.654594
+      pos: 14.546158,52.55732
       parent: 2
-- proto: MedkitBruteFilled
-  entities:
-  - uid: 2674
-    components:
-    - type: Transform
-      pos: 15.151299,52.654594
-      parent: 2
-- proto: MedkitBurnFilled
-  entities:
   - uid: 2675
     components:
     - type: Transform
-      pos: 15.838799,52.675426
+      pos: 14.421158,52.697945
       parent: 2
-- proto: MedkitFilled
+- proto: MedkitBruteFilled
   entities:
   - uid: 2676
     components:
     - type: Transform
-      pos: 16.505466,52.675426
+      pos: 15.218033,52.697945
       parent: 2
-- proto: MedkitO2
-  entities:
   - uid: 2677
     components:
     - type: Transform
-      pos: 16.442966,51.717094
+      pos: 15.327408,52.572945
       parent: 2
-- proto: MedkitRadiationFilled
+- proto: MedkitBurnFilled
   entities:
   - uid: 2678
     components:
     - type: Transform
-      pos: 17.0263,51.696262
+      pos: 15.999283,52.71357
       parent: 2
-- proto: MedkitToxinFilled
+- proto: MedkitFilled
+  entities:
+  - uid: 3886
+    components:
+    - type: Transform
+      pos: 16.561783,51.68232
+      parent: 2
+- proto: MedkitO2
   entities:
   - uid: 2679
     components:
     - type: Transform
-      pos: 17.6513,51.696262
+      pos: 16.436783,51.83857
+      parent: 2
+- proto: MedkitRadiationFilled
+  entities:
+  - uid: 3887
+    components:
+    - type: Transform
+      pos: 17.280533,51.65107
+      parent: 2
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 2674
+    components:
+    - type: Transform
+      pos: 16.389908,52.541695
+      parent: 2
+- proto: MedkitToxinFilled
+  entities:
+  - uid: 3888
+    components:
+    - type: Transform
+      pos: 17.499283,51.55732
       parent: 2
 - proto: MicroManipulatorStockPart
   entities:
@@ -19444,8 +19461,6 @@ entities:
     - type: Transform
       pos: 9.991315,37.618874
       parent: 2
-    - type: IntrinsicRadioTransmitter
-      channels: []
 - proto: SyndieMiniBomb
   entities:
   - uid: 3104

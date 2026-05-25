@@ -2,7 +2,7 @@ using Content.Shared.Clothing;
 using Content.Shared.VentCrawl.Components;
 using Content.Shared.VentCrawl;
 
-namespace Content.Server.VentCrawl;
+namespace Content.Shared.VentCrawl.EntitySystems;
 
 public sealed class VentCrawlClothingSystem : EntitySystem
 {
