@@ -342,8 +342,8 @@
           inverted: true
         damage:
           types:
-            Asphyxiation: -1
-            Bloodloss: -0.5
+            Asphyxiation: -0.5
+            Bloodloss: -0.25
       - !type:HealthChange
         conditions:
           - !type:ReagentCondition
@@ -359,9 +359,9 @@
           type: [ Avali, Resomi ]
         damage:
           types:
-            Poison: 1.5 #Avali and Resomi blood is ammonia based, so chems made to treat normal bloodloss poison them instead (Lethal Dose: 20u)
-            Asphyxiation: 1
-            Bloodloss: 1
+            Poison: 0.75 #Avali and Resomi blood is ammonia based, so chems made to treat normal bloodloss poison them instead (Lethal Dose: 40u)
+            Asphyxiation: 0.5
+            Bloodloss: 0.5
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
@@ -389,8 +389,8 @@
           inverted: true
         damage:
           types:
-            Asphyxiation: -3.5
-            Bloodloss: -3
+            Asphyxiation: -1.75
+            Bloodloss: -1.5
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
@@ -413,9 +413,9 @@
           type: [ Avali, Resomi ]
         damage:
           types:
-            Poison: 2.5 #Avali and Resomi blood is ammonia based, so chems made to treat normal bloodloss poison them instead. Dex+ is worse. (Lethal Dose: 15u)
-            Asphyxiation: 1.5
-            Bloodloss: 1
+            Poison: 1.25 #Avali and Resomi blood is ammonia based, so chems made to treat normal bloodloss poison them instead. Dex+ is worse. (Lethal Dose: 30u)
+            Asphyxiation: 0.75
+            Bloodloss: 0.5
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
@@ -920,15 +920,15 @@
           - !type:MetabolizerTypeCondition
             type: [ Avali, Resomi ]
             inverted: true
-          amount: 6
+          amount: 3
         - !type:HealthChange
           conditions:
           - !type:MetabolizerTypeCondition
            type: [ Avali, Resomi ]
           damage:
             types:
-              Caustic: 2 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
-              Heat: 2
+              Caustic: 1 # 30 damage per unit was ridiculous, but I'm leaving some damage to punish mistakes without risking round removal. Adding salt to water shouldn't suddenly make it the strongest toxin in the game by far.
+              Heat: 1
         # Starlight-Start: Cyclorite Metabolism
         - !type:AdjustReagent
           conditions:
