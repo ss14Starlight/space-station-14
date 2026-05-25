@@ -60,7 +60,7 @@
 
 - type: entity
   parent: [ BorgHypo, BaseXenoborgContraband ]
-  id: MuteToxineHypo
+  id: MuteToxinHypo
   name: mute toxin hypo
   description: A self-refilling injector for rapid administration of mute toxin to victims.
   components:
