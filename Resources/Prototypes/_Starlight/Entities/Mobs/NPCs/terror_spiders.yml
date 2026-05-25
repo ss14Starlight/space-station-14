@@ -5,7 +5,7 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
-  - type: BloodStream
+  - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 3
   - type: WeaponArcVisuals
