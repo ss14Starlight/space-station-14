@@ -16,8 +16,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      95: Critical
-      190: Dead
+      110: Critical
+      220: Dead
   # Starlight-end
   - type: Absorbable
   - type: Tag
