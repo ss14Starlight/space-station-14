@@ -7,3 +7,13 @@
     containers:
       key_slots:
       - EncryptionKeyLaw
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledNanoTrasen
+  suffix: NanoTrasen
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNanoTrasen
