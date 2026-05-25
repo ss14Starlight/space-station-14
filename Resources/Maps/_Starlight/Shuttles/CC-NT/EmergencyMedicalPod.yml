@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/17/2026 16:52:08
-  entityCount: 200
+  time: 05/22/2026 05:34:14
+  entityCount: 201
 maps: []
 grids:
 - 1
@@ -1102,6 +1102,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-1.5
+      parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 201
+    components:
+    - type: Transform
+      pos: 2.4861233,4.6545186
       parent: 1
 - proto: PlasmaChemistryVial
   entities:
