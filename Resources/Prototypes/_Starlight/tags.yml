@@ -437,6 +437,21 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModuleBlacklistXenoborgEngiWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgHeavyWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgScoutWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgStealthWeapon
+
+- type: Tag
+  id: Nexus
+
+- type: Tag
   id: NotLabelable
 
 - type: Tag

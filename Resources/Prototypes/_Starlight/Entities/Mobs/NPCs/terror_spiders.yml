@@ -421,7 +421,6 @@
   - type: ActionGrant
     actions:
     - ActionSpiderEMPScream
-    - ActionEntityWrap
 
 - type: entity
   name: terror purple
@@ -597,7 +596,6 @@
   - type: ActionGrant
     actions:
     - ActionAcidVent
-    - ActionEntityWrap
   - type: UserInterface
     interfaces:
       enum.EggsLayingUiKey.Key:

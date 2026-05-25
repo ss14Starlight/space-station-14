@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/20/2026 22:50:18
-  entityCount: 1394
+  time: 05/22/2026 05:40:57
+  entityCount: 1398
 maps: []
 grids:
 - 1
@@ -3869,6 +3869,13 @@ entities:
           showEnts: False
           occludes: True
           ent: null
+- proto: CrateEngineeringCableBulk
+  entities:
+  - uid: 1397
+    components:
+    - type: Transform
+      pos: -1.5,-0.5
+      parent: 1
 - proto: CrateFreezer
   entities:
   - uid: 544
@@ -4167,6 +4174,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 6.5,-8.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 807
+    components:
+    - type: Transform
+      pos: 2.5,3.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -5861,17 +5875,17 @@ entities:
     - type: Transform
       pos: 11.247004,-0.25175583
       parent: 1
-- proto: GeneratorBasic15kW
+- proto: GeneratorBasic20kW
   entities:
   - uid: 802
     components:
     - type: Transform
-      pos: 0.5,2.5
+      pos: -1.5,2.5
       parent: 1
   - uid: 803
     components:
     - type: Transform
-      pos: -1.5,2.5
+      pos: 0.5,2.5
       parent: 1
   - uid: 804
     components:
@@ -5879,16 +5893,6 @@ entities:
       pos: -0.5,2.5
       parent: 1
   - uid: 805
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 1
-  - uid: 806
-    components:
-    - type: Transform
-      pos: 2.5,2.5
-      parent: 1
-  - uid: 807
     components:
     - type: Transform
       pos: -2.5,2.5
@@ -6746,12 +6750,24 @@ entities:
   - uid: 917
     components:
     - type: Transform
-      pos: -2.4246082,-9.532513
+      pos: -2.4082747,-9.555922
       parent: 1
   - uid: 918
     components:
     - type: Transform
-      pos: -2.6121082,-9.251263
+      pos: -2.5645247,-9.384047
+      parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 1395
+    components:
+    - type: Transform
+      pos: 1.4375,2.7349415
+      parent: 1
+  - uid: 1396
+    components:
+    - type: Transform
+      pos: 1.515625,2.6099415
       parent: 1
 - proto: MopBucketFull
   entities:
@@ -8826,6 +8842,11 @@ entities:
       parent: 1
 - proto: TableReinforced
   entities:
+  - uid: 806
+    components:
+    - type: Transform
+      pos: 1.5,2.5
+      parent: 1
   - uid: 1164
     components:
     - type: Transform
@@ -9216,6 +9237,14 @@ entities:
       parent: 1
     missingComponents:
     - AccessReader
+- proto: VendingMachineWallMedicalCivilian
+  entities:
+  - uid: 1398
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 15.5,-7.5
+      parent: 1
 - proto: WallShuttle
   entities:
   - uid: 1226

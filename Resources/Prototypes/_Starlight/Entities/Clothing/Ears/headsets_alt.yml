@@ -44,7 +44,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNanoTrasen
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyCentCom
       - EncryptionKeyStationMaster
   - type: Sprite
@@ -63,7 +63,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNanoTrasen
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
@@ -84,7 +84,7 @@
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyNanoTrasen
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyCommand
       - EncryptionKeyNCTrainer
   - type: Sprite
@@ -134,6 +134,7 @@
   - type: ContainerFill
     containers:
       key_slots:
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
@@ -212,7 +213,7 @@
     containers:
       key_slots:
       - EncryptionKeyCentCom
-      - EncryptionKeyNanoTrasen
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi

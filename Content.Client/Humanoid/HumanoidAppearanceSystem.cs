@@ -389,6 +389,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
            && setting.AllowsMarkings;
 
+        // Starlight start - allow split marking sprites to render at different humanoid layer anchors.
+        var layerOverrides = markingPrototype.SpriteLayers is { Count: > 0 }
+            ? markingPrototype.SpriteLayers
+            : null;
+        var bodyPartInsertionOffset = 0;
+        // Starlight end
+
         for (var j = 0; j < markingPrototype.Sprites.Count; j++)
         {
             var markingSprite = markingPrototype.Sprites[j];
@@ -397,10 +404,34 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
                 return;
 
             var layerId = $"{markingPrototype.ID}-{rsi.RsiState}";
+            // Starlight start - sprite layers can share color slots and custom render anchors.
+            var anchorLayer = markingPrototype.BodyPart;
+            var insertionIndex = targetLayer + j + 1;
+            var colorIndex = markingPrototype.GetColorIndex(j);
+
+            if (layerOverrides != null)
+            {
+                if (j < layerOverrides.Count)
+                    anchorLayer = layerOverrides[j];
+
+                if (!_sprite.LayerMapTryGet((entity.Owner, sprite), anchorLayer, out var anchorLayerIndex, false))
+                    continue;
+
+                if (anchorLayer == markingPrototype.BodyPart)
+                {
+                    insertionIndex = anchorLayerIndex + bodyPartInsertionOffset + 1;
+                    bodyPartInsertionOffset++;
+                }
+                else
+                {
+                    insertionIndex = anchorLayerIndex;
+                }
+            }
+            // Starlight end
 
             if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out _, false))
             {
-                var layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, targetLayer + j + 1);
+                var layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, insertionIndex);
                 _sprite.LayerMapSet((entity.Owner, sprite), layerId, layer);
                 _sprite.LayerSetSprite((entity.Owner, sprite), layerId, rsi);
             }
@@ -413,13 +444,16 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
             // and we need to check the index is correct.
             // So if that happens just default to white?
-            if (colors != null && j < colors.Count)
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+            // Starlight start - color slots can be shared by multiple sprites.
+            if (colors != null && colorIndex < colors.Count)
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[colorIndex]);
+            // Starlight end
             else
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
 
+            // Starlight edit - use the actual inserted layer for displaced split markings.
             if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
+                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), insertionIndex, layerId, out _);
 
             //starlight start
             if (isGlowing)
