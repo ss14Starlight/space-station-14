@@ -15,7 +15,6 @@
   keycode: 'p'
   frequency: 2000
   color: "#2253b5"
-  longRange: true
 
 - type: radioChannel
   id: Soviet
