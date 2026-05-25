@@ -615,7 +615,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 179
+    damageCap: 359
     damage:
       types:
         Poison: -1
@@ -691,7 +691,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 179
+    damageCap: 359
     damage:
       types:
         Poison: -1
