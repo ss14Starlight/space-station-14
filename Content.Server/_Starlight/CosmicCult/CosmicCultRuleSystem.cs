@@ -163,8 +163,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     }
 
     #region Starting Events
-    protected override void Started(EntityUid uid, CosmicCultRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args) =>
-        component.StewardVoteTimer = _timing.CurTime + _voteDelay;
+    protected override void Started(EntityUid uid, CosmicCultRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+        => component.StewardVoteTimer = _timing.CurTime + _voteDelay;
 
     protected override void ActiveTick(EntityUid uid, CosmicCultRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
@@ -237,7 +237,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
                 _visibility.SetLayer((component.MonumentInGame, visComp), 1);
 
             component.MonumentSlowZone = Spawn("MonumentSlowZone", Transform(component.MonumentInGame).Coordinates); // spawn The Monument's slowing fixture entity that supresses non-cult / non-mindshielded / non-chaplain crew.
-            _monument.SetCanTierUp(component.MonumentInGame, true);
+            MonumentSystem.SetCanTierUp(component.MonumentInGame, true);
             UpdateCultData(component.MonumentInGame); //instantly go up a tier if they manage it.
             _ui.SetUiState(component.MonumentInGame.Owner, MonumentKey.Key, new MonumentBuiState(component.MonumentInGame.Comp)); //not sure if this is needed but I'll be safe
         }
@@ -266,7 +266,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
                 _ghost.DoGhostBooEvent(light);
             }
 
-            _monument.SetCanTierUp(component.MonumentInGame, true);
+            MonumentSystem.SetCanTierUp(component.MonumentInGame, true);
             UpdateCultData(component.MonumentInGame); //instantly go up a tier if they manage it
             _ui.SetUiState(component.MonumentInGame.Owner, MonumentKey.Key, new MonumentBuiState(component.MonumentInGame.Comp)); //not sure if this is needed but I'll be safe
         }
@@ -322,8 +322,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         }
     }
 
-    private void OnAntagSelect(Entity<CosmicCultRuleComponent> uid, ref AfterAntagEntitySelectedEvent args) =>
-        TryStartCult(args.EntityUid, uid);
+    private void OnAntagSelect(Entity<CosmicCultRuleComponent> uid, ref AfterAntagEntitySelectedEvent args)
+        => TryStartCult(args.EntityUid, uid);
     #endregion
 
     #region Round & Objectives
@@ -477,7 +477,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         var gameruleMonument = ent.Comp.MonumentInGame;
         if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp))
         {
-            _monument.Disable(gameruleMonument);
+            MonumentSystem.Disable(gameruleMonument);
             finComp.CurrentState = FinaleState.Unavailable;
             _popup.PopupCoordinates(Loc.GetString("cosmiccult-monument-powerdown"), Transform(gameruleMonument).Coordinates, PopupType.Large);
             _sound.StopStationEventMusic(gameruleMonument, StationEventMusicType.CosmicCult);
@@ -585,10 +585,10 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             }
         }
         else if (finaleComp.CurrentState != FinaleState.Unavailable)
-            _monument.SetTargetProgess(uid, uid.Comp.CurrentProgress);
+            MonumentSystem.SetTargetProgess(uid, uid.Comp.CurrentProgress);
         else if (uid.Comp.CurrentProgress >= uid.Comp.TargetProgress && cult.Comp.CurrentTier == 2 && uid.Comp.CanTierUp)
         {
-            _monument.SetCanTierUp(uid, false);
+            MonumentSystem.SetCanTierUp(uid, false);
 
             var cultistQuery = EntityQueryEnumerator<CosmicCultComponent>();
             while (cultistQuery.MoveNext(out var cultist, out var cultistComp))
@@ -604,7 +604,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         }
         else if (uid.Comp.CurrentProgress >= uid.Comp.TargetProgress && cult.Comp.CurrentTier == 1 && uid.Comp.CanTierUp)
         {
-            _monument.SetCanTierUp(uid, false);
+            MonumentSystem.SetCanTierUp(uid, false);
 
             var cultistQuery = EntityQueryEnumerator<CosmicCultComponent>();
             while (cultistQuery.MoveNext(out var cultist, out var cultistComp))
@@ -817,6 +817,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         RemComp<PressureImmunityComponent>(uid);
         RemComp<TemperatureImmunityComponent>(uid);
         RemComp<CosmicStarMarkComponent>(uid);
+        RemComp<CosmicCultExamineComponent>(uid);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-deconverted-fluff"), Color.FromHex("#4cabb3"), _deconvertSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-deconverted-briefing"), Color.FromHex("#cae8e8"), null);
 

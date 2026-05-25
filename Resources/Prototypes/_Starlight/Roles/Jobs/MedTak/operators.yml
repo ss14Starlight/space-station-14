@@ -1,7 +1,7 @@
 - type: startingGear
   id: MedTakTeamLead
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledLeader
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterHardsuitMedTak
@@ -18,7 +18,7 @@
 - type: startingGear
   id: MedTakMedic
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledMedic
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterHardsuitMedTak
@@ -34,7 +34,7 @@
 - type: startingGear
   id: MedTakPilot
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledBasic
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterHardsuitMedTak
@@ -50,7 +50,7 @@
 - type: startingGear
   id: MedTakSecurityRifle
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledRifle
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterHardsuitMedTak
@@ -67,7 +67,7 @@
 - type: startingGear
   id: MedTakSecurityHeavy
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledHeavy
     shoes: ClothingShoesBootsCombatFilled
     outerClothing: ClothingOuterHardsuitMedTak
@@ -80,3 +80,18 @@
     suitstorage: WeaponLightMachineGunMedTak
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
+
+- type: startingGear
+  id: MedTakDispatcher
+  equipment:
+    jumpsuit: ClothingUniformMedTakJumpsuitFormal
+    back: ClothingBackpackSatchelMedTakFilledDispatcher
+    shoes: ClothingShoesBootsCombatFilled
+    id: MedTakDispatcherPDA
+    head: ClothingHeadHatBeretMedTak
+    eyes: ClothingEyesGlassesMedTak
+    ears: ClothingHeadsetAltMedTak
+    belt: WeaponPistolMedTak
+    gloves: ClothingHandsGlovesCombat
+    pocket1: RubberStampMedTak
+    pocket2: BoxFolderMedTak

@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Actions;
+﻿using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -25,6 +26,26 @@ public sealed partial class HasEggHolderComponent : Component
 }
 [RegisterComponent]
 public sealed partial class TerrorPrincessComponent : Component
+{
+    [DataField]
+    public string Briefing = "terror-spider-princess-briefing";
+
+    [DataField]
+    public List<EntProtoId> Eggs = new()
+    {
+        "TerrorRedEggSpiderFertilized",
+        "TerrorGreenSpiderFertilized",
+        "TerrorGrayEggSpiderFertilized"
+    };
+
+    [DataField]
+    public EntProtoId<ActionComponent> LayEggActionId = "ActionEggsLaying";
+
+    public EntityUid? LayEggAction = null;
+}
+
+[RegisterComponent]
+public sealed partial class TerrorSpiderComponent : Component
 {
 }
 

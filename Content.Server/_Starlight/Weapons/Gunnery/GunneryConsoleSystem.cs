@@ -75,9 +75,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
     // ── Event handlers ─────────────────────────────────────────────────────
 
     private void OnStartup(EntityUid uid, GunneryConsoleComponent comp, ComponentStartup args)
-    {
-        UpdateState(uid, comp);
-    }
+        => UpdateState(uid, comp);
 
     /// <summary>
     /// When a new guided projectile spawns, claim it for the console that most

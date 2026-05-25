@@ -37,12 +37,12 @@ public sealed class CosmicCorruptingSystem : EntitySystem
     ///     this system is a mostly generic way of replacing tiles around an entity. the only hardcoded behaviour is secret
     ///     walls -> malign doors, but that shouldn't be too hard to fix if this is needed for smth else later.
     /// </remarks>
-    public override void Initialize() =>
-        SubscribeLocalEvent<CosmicCorruptingComponent, MapInitEvent>(OnMapInit);
+    public override void Initialize()
+        => SubscribeLocalEvent<CosmicCorruptingComponent, MapInitEvent>(OnMapInit);
 
     //when the entity spawns, add all neighbouring tiles to the corruptable list
-    private void OnMapInit(Entity<CosmicCorruptingComponent> ent, ref MapInitEvent args) =>
-        RecalculateStartingTiles(ent);
+    private void OnMapInit(Entity<CosmicCorruptingComponent> ent, ref MapInitEvent args)
+        => RecalculateStartingTiles(ent);
 
     public override void Update(float frameTime)
     {
@@ -135,8 +135,8 @@ public sealed class CosmicCorruptingSystem : EntitySystem
 
     #region API
 
-    public void SetCorruptionTime(Entity<CosmicCorruptingComponent> ent, TimeSpan time) =>
-        ent.Comp.CorruptionSpeed = time;
+    public static void SetCorruptionTime(Entity<CosmicCorruptingComponent> ent, TimeSpan time)
+        => ent.Comp.CorruptionSpeed = time;
 
     public void Enable(Entity<CosmicCorruptingComponent> ent, bool recalculate = true)
     {

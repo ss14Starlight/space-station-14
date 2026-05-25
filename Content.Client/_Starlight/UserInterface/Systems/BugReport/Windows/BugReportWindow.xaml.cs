@@ -175,7 +175,5 @@ public sealed partial class BugReportWindow : DefaultWindow
     }
 
     public void CleanupCCvars()
-    {
-        _configSub.Dispose();
-    }
+        => _configSub.Dispose();
 }

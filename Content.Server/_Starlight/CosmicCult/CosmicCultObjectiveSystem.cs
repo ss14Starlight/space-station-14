@@ -81,17 +81,17 @@ public sealed class CosmicCultObjectiveSystem : EntitySystem
         _metaData.SetEntityDescription(uid, description, args.Meta);
     }
 
-    private void OnGetEntropyProgress(Entity<CosmicEntropyConditionComponent> ent, ref ObjectiveGetProgressEvent args) =>
-        args.Progress = Progress(ent.Comp.Siphoned, _number.GetTarget(ent.Owner));
+    private void OnGetEntropyProgress(Entity<CosmicEntropyConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(ent.Comp.Siphoned, _number.GetTarget(ent.Owner));
 
-    private void OnGetConversionProgress(Entity<CosmicConversionConditionComponent> ent, ref ObjectiveGetProgressEvent args) =>
-        args.Progress = Progress(ent.Comp.Converted, _number.GetTarget(ent.Owner));
+    private void OnGetConversionProgress(Entity<CosmicConversionConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(ent.Comp.Converted, _number.GetTarget(ent.Owner));
 
-    private void OnGetTierProgress(Entity<CosmicTierConditionComponent> ent, ref ObjectiveGetProgressEvent args) =>
-        args.Progress = Progress(ent.Comp.Tier, _number.GetTarget(ent.Owner));
+    private void OnGetTierProgress(Entity<CosmicTierConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = Progress(ent.Comp.Tier, _number.GetTarget(ent.Owner));
 
-    private void OnGetVictoryProgress(Entity<CosmicVictoryConditionComponent> ent, ref ObjectiveGetProgressEvent args) =>
-        args.Progress = ent.Comp.Victory ? 1f : 0f;
+    private void OnGetVictoryProgress(Entity<CosmicVictoryConditionComponent> ent, ref ObjectiveGetProgressEvent args)
+        => args.Progress = ent.Comp.Victory ? 1f : 0f;
 
     private static float Progress(int recruited, int target)
     {

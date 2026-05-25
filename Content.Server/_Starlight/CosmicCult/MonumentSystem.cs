@@ -192,11 +192,11 @@ public sealed class MonumentSystem : SharedMonumentSystem
         return _monumentStorageMap.Value;
     }
 
-    public void PhaseOutMonument(Entity<MonumentComponent> ent) =>
-        ent.Comp.PhaseOutTimer = _timing.CurTime + TimeSpan.FromSeconds(0.45);
+    public void PhaseOutMonument(Entity<MonumentComponent> ent)
+        => ent.Comp.PhaseOutTimer = _timing.CurTime + ent.Comp.PhaseOutDelay;
 
-    public void UpdateMonumentProgress(Entity<MonumentComponent> ent, Entity<CosmicCultRuleComponent> cult) =>
-        ent.Comp.CurrentProgress = ent.Comp.TotalEntropy + (cult.Comp.TotalCult * _config.GetCVar(StarlightCCVars.CosmicCultistEntropyValue));
+    public void UpdateMonumentProgress(Entity<MonumentComponent> ent, Entity<CosmicCultRuleComponent> cult)
+        => ent.Comp.CurrentProgress = ent.Comp.TotalEntropy + (cult.Comp.TotalCult * _config.GetCVar(StarlightCCVars.CosmicCultistEntropyValue));
 
     private void OnInfuseEntropy(Entity<MonumentComponent> uid, ref ActivateInWorldEvent args)
     {
@@ -307,17 +307,17 @@ public sealed class MonumentSystem : SharedMonumentSystem
         }
     }
 
-    public void SetCanTierUp(Entity<MonumentComponent> ent, bool canTierUp) =>
-        ent.Comp.CanTierUp = canTierUp;
+    public static void SetCanTierUp(Entity<MonumentComponent> ent, bool canTierUp)
+        => ent.Comp.CanTierUp = canTierUp;
 
-    public void SetTargetProgess(Entity<MonumentComponent> ent, int targetProgress) =>
-        ent.Comp.TargetProgress = targetProgress;
+    public static void SetTargetProgess(Entity<MonumentComponent> ent, int targetProgress)
+        => ent.Comp.TargetProgress = targetProgress;
 
-    public void Disable(Entity<MonumentComponent> ent) =>
-        ent.Comp.Enabled = false;
+    public static void Disable(Entity<MonumentComponent> ent)
+        => ent.Comp.Enabled = false;
 
-    public void Enable(Entity<MonumentComponent> ent) =>
-        ent.Comp.Enabled = true;
+    public static void Enable(Entity<MonumentComponent> ent)
+        => ent.Comp.Enabled = true;
 
     public void MonumentTier1(Entity<MonumentComponent> uid)
     {

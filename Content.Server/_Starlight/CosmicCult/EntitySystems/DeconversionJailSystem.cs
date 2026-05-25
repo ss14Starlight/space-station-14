@@ -4,7 +4,7 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared.Popups;
 using Content.Shared.Chat;
 
-namespace Content.Server._Starlight.CosmicCult;
+namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 public sealed partial class DeconversionJailSystem : SharedDeconversionJailSystem
 {
     [Dependency] private readonly ChatSystem _chat = default!;

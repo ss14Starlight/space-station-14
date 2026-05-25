@@ -8,8 +8,8 @@
       connections:
       - torso
       organs:
-        eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
+        eyes: OrganSlimePeepoids # Starlight
+        tongue: OrganSlimeSlurpoid # Starlight
         eye_implant: null
     torso:
       part: TorsoSlime

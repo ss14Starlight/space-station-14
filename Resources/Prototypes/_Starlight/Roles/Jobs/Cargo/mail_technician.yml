@@ -6,6 +6,7 @@
   startingGear: MailTechGear
   icon: "JobIconMailTech"
   supervisors: job-supervisors-qm
+  displayWeight: 2
   access:
   - Cargo
   - Mail

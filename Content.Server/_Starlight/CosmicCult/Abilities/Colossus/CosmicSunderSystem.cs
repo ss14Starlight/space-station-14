@@ -2,7 +2,7 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.CosmicCult.Abilities;
+namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 
 public sealed class CosmicSunderSystem : EntitySystem
 {

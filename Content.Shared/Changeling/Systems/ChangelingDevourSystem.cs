@@ -2,7 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Armor;
 using Content.Shared.Atmos.Rotting;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Changeling.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -22,6 +22,9 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+#region Starlight
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Shared.Changeling.Systems;
 

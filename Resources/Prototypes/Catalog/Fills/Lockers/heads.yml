@@ -93,7 +93,7 @@
     - id: EncryptionKeyExpedition #starlight
     - id: SpyglassCaptain #Starlight
     - id: CommunicationTablet #Starlight
-    - id: HeadSkeleton # A skull to accompany your skeleton crew
+    - id: HeadSkeleton # A skull to accompany your skeleton crew # Starlight Edit: OrganSkeletonPersonHead -> HeadSkeleton
       conditions:
       - !type:PlayerCountCondition
         max: 15

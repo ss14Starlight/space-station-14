@@ -54,7 +54,7 @@ public sealed class CosmicGlareSystem : EntitySystem
         args.Handled = true;
 
         _lights.Clear();
-        _lookup.GetEntitiesInRange<PoweredLightComponent>(Transform(uid).Coordinates, uid.Comp.CosmicGlareRange, _lights);
+        _lookup.GetEntitiesInRange(Transform(uid).Coordinates, uid.Comp.CosmicGlareRange, _lights);
 
         foreach (var entity in _lights)
             _poweredLight.TryDestroyBulb(entity);

@@ -24,9 +24,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()
-    {
-        base.Initialize();
-    }
+        => base.Initialize();
 
     public bool AttachLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> part, Entity<BodyPartComponent> limb)
     {

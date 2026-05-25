@@ -1,7 +1,4 @@
-using System.Linq;
 using Content.Server.Mech.Systems;
-using Content.Server.Power.Components;
-using Content.Shared._Starlight.Mech;
 using Content.Shared.Construction;
 using Content.Shared.Mech.Components;
 using Content.Shared.Power.Components;
@@ -20,18 +17,23 @@ namespace Content.Server.Construction.Completions;
 [UsedImplicitly, DataDefinition]
 public sealed partial class TransformMech : IGraphAction
 {
-    [DataField("mechPrototype", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    [Dependency] private readonly ILogManager _logManager = default!;
+
+    private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
+
+    [DataField(required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string MechPrototype = string.Empty;
 
-    [DataField("batteryContainer")]
+    [DataField]
     public string BatteryContainer = "mech-battery-slot";
 
-    [DataField("gasTankContainer")]
+    [DataField]
     public string GasTankContainer = "mech-gas-tank-slot";
-    [DataField("equipmentContainer")]
+
+    [DataField]
     public string EquipmentContainer = "mech-equipment-container";
 
-    [DataField("pilotContainer")]
+    [DataField]
     public string PilotContainer = "mech-pilot-slot";
 
     // TODO use or generalize ConstructionSystem.ChangeEntity();
@@ -39,7 +41,7 @@ public sealed partial class TransformMech : IGraphAction
     {
         if (!entityManager.TryGetComponent(uid, out ContainerManagerComponent? containerManager))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have a container manager! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have a container manager! Aborting build mech action.");
             return;
         }
 
@@ -48,23 +50,25 @@ public sealed partial class TransformMech : IGraphAction
 
         if (!containerSystem.TryGetContainer(uid, BatteryContainer, out var batteryContainer, containerManager))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have the specified '{BatteryContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{BatteryContainer}' container! Aborting build mech action.");
             return;
         }
 
         if (!containerSystem.TryGetContainer(uid, GasTankContainer, out var gasTankContainer, containerManager))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have the specified '{GasTankContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{GasTankContainer}' container! Aborting build mech action.");
             return;
         }
-        if(!containerSystem.TryGetContainer(uid, EquipmentContainer, out var equipmentContainer, containerManager))
+
+        if (!containerSystem.TryGetContainer(uid, EquipmentContainer, out var equipmentContainer, containerManager))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have the specified '{EquipmentContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{EquipmentContainer}' container! Aborting build mech action.");
             return;
         }
-        if(!containerSystem.TryGetContainer(uid, PilotContainer, out var pilotContainer, containerManager))
+
+        if (!containerSystem.TryGetContainer(uid, PilotContainer, out var pilotContainer, containerManager))
         {
-            Logger.Warning($"Mech construct entity {uid} did not have the specified '{PilotContainer}' container! Aborting build mech action.");
+            _log.Warning($"Mech construct entity {uid} did not have the specified '{PilotContainer}' container! Aborting build mech action.");
             return;
         }
         var transform = entityManager.GetComponent<TransformComponent>(uid);
@@ -77,10 +81,10 @@ public sealed partial class TransformMech : IGraphAction
                 var cell = batteryContainer.ContainedEntities[0];
                 if (!entityManager.TryGetComponent<BatteryComponent>(cell, out var batteryComponent))
                 {
-                    Logger.Warning($"Mech construct entity {uid} had an invalid entity in container \"{BatteryContainer}\"! Aborting build mech action.");
+                    _log.Warning($"Mech construct entity {uid} had an invalid entity in container \"{BatteryContainer}\"! Aborting build mech action.");
                     return;
                 }
-                ;
+
                 containerSystem.Remove(cell, batteryContainer);
                 if (mechComp.BatterySlot.ContainedEntity == null)
                 {
@@ -109,6 +113,5 @@ public sealed partial class TransformMech : IGraphAction
         entityManager.EventBus.RaiseLocalEvent(uid, entChangeEv);
         entityManager.EventBus.RaiseLocalEvent(mech, entChangeEv, broadcast: true);
         entityManager.QueueDeleteEntity(uid);
-
     }
 }

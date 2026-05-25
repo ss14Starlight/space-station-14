@@ -15,8 +15,8 @@ public sealed partial class CosmicEntropyDegenSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
 
-    public override void Initialize() =>
-        SubscribeLocalEvent<CosmicEntropyDebuffStatusEffectComponent, StatusEffectAppliedEvent>(OnInit);
+    public override void Initialize()
+        => SubscribeLocalEvent<CosmicEntropyDebuffStatusEffectComponent, StatusEffectAppliedEvent>(OnInit);
 
     private void OnInit(Entity<CosmicEntropyDebuffStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
     {

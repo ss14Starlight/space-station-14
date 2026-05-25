@@ -9,7 +9,6 @@ using Content.Shared.Damage;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Station.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Warps;
 using Robust.Server.GameObjects;
@@ -86,7 +85,7 @@ public sealed class CosmicColossusSystem : EntitySystem
         var station = _station.GetStationInMap(Transform(ent).MapID);
         if (station is { } stationUid)
         {
-            var stationGrid = _station.GetLargestGrid((stationUid, (StationDataComponent?) null));
+            var stationGrid = _station.GetLargestGrid((stationUid, null));
             if (stationGrid is null)
                 return;
             _throw.TryThrow(ent, Transform(stationGrid!.Value).Coordinates, baseThrowSpeed: 30, null, 0, 0, false, false, false, false, false);

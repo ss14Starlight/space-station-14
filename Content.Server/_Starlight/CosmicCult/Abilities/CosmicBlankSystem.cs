@@ -145,7 +145,7 @@ public sealed class CosmicBlankSystem : EntitySystem
         _stun.TryKnockdown(target, comp.CosmicBlankDuration + TimeSpan.FromSeconds(2), true);
         _popup.PopupEntity(Loc.GetString("cosmicability-blank-transfer"), mobUid, mobUid);
         _audio.PlayPvs(comp.BlankSFX, spawnTgt, AudioParams.Default.WithVolume(6f));
-        _color.RaiseEffect(Color.CadetBlue, new List<EntityUid>() { target }, Filter.Pvs(target, entityManager: EntityManager));
+        _color.RaiseEffect(Color.CadetBlue, [target], Filter.Pvs(target, entityManager: EntityManager));
         Spawn(comp.BlankVFX, spawnTgt);
         _cult.MalignEcho(uid);
     }

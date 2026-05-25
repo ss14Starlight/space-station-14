@@ -206,7 +206,7 @@ ghost-role-information-hellspawn-name = Hellspawn
 ghost-role-information-hellspawn-description = Bring death to those who do not follow the great god Nar'Sie.
 
 ghost-role-information-Death-Squad-name = Death Squad Operative
-ghost-role-information-Death-Squad-description = One of Nanotrasen's top internal affairs agents. Await orders from CentComm or an official.
+ghost-role-information-Death-Squad-description = One of NanoTrasen's top internal affairs agents. Await orders from CentComm or an official.
 ghost-role-information-Death-Squad-rules = You are required to obey orders given by your superior, you are effectively their [color={role-type-familiar-color}][bold]{role-type-familiar-name}[/bold][/color].
 
 ghost-role-information-SyndiCat-name = SyndiCat
@@ -291,7 +291,7 @@ ghost-role-information-science-description = You are part of a science team, but
 
 ghost-role-information-civilian-name = Civilian
 ghost-role-information-civilian-description = You were just hanging out, but seem to have found yourself in a strange situation...
-ghost-role-information-civilian-centcom-lawyer-name = Centcom Lawyer
+ghost-role-information-civilian-centcom-lawyer-name = CentComm Lawyer
 ghost-role-information-civilian-centcom-lawyer-description = A lawyer direct from the Central Legal Division.
 
 ghost-role-information-command-name = Commander

@@ -33,6 +33,22 @@
   - Spider
 
 - type: collectiveMind
+  id: Xeno
+  name: collective-mind-xeno
+  keycode: 'x'
+  color: "#735c7c"
+  showNames: true
+  canSpeak: true
+  requiredComponents:
+  - Spider
+  - Xeno
+  - Xenoborg # Xenoborgs can hear the channel, but cannot speak on it.
+  - DerelictXenoborg # Derelicts can listen too, but also can't speak.
+  canSpeakComponents:
+  - Spider
+  - Xeno
+
+- type: collectiveMind
   id: Changeling
   name: collective-mind-changeling
   keycode: 'h'

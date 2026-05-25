@@ -27,6 +27,7 @@
             Chaplain: [ 1, 1 ]
             Reporter: [ 2, 2 ]
             Librarian: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
             Zookeeper: [ 1, 1 ]
             #engineering
@@ -57,11 +58,11 @@
             DutyOfficer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 1, 2 ]
-            MiningSpecialist: [ 3, 3 ]
-            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

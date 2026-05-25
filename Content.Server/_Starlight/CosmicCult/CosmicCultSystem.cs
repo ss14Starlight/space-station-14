@@ -14,7 +14,6 @@ using Content.Shared.Hands;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
-using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
 using Robust.Server.GameObjects;
@@ -35,12 +34,10 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly CosmicCorruptingSystem _corrupting = default!;
     [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly MonumentSystem _monument = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
@@ -106,12 +103,11 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
             _map.SetPaused(map.Value.Comp.MapId, false);
     }
 
-    private void OnCheckEligibility(ref CosmicCultVoterEligibilityEvent args) =>
-        args.Eligible = HasComp<CosmicCultComponent>(args.Player.AttachedEntity);
+    private void OnCheckEligibility(ref CosmicCultVoterEligibilityEvent args)
+        => args.Eligible = HasComp<CosmicCultComponent>(args.Player.AttachedEntity);
 
-    private void OnCosmicCultExamined(Entity<CosmicCultExamineComponent> ent, ref ExaminedEvent args) =>
-        args.PushMarkup(Loc.GetString(EntitySeesCult(args.Examiner) ? ent.Comp.CultistText : ent.Comp.OthersText));
-
+    private void OnCosmicCultExamined(Entity<CosmicCultExamineComponent> ent, ref ExaminedEvent args)
+        => args.PushMarkup(Loc.GetString(EntitySeesCult(args.Examiner) ? ent.Comp.CultistText : ent.Comp.OthersText));
     #endregion
 
     #region Init Cult
@@ -132,11 +128,11 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     /// <summary>
     /// Add the Monument summon action to the cult lead.
     /// </summary>
-    private void OnStartCultLead(Entity<CosmicCultLeadComponent> uid, ref ComponentInit args) =>
-        _actions.AddAction(uid, ref uid.Comp.CosmicMonumentPlaceActionEntity, uid.Comp.CosmicMonumentPlaceAction, uid);
+    private void OnStartCultLead(Entity<CosmicCultLeadComponent> uid, ref ComponentInit args)
+        => _actions.AddAction(uid, ref uid.Comp.CosmicMonumentPlaceActionEntity, uid.Comp.CosmicMonumentPlaceAction, uid);
 
-    private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args) =>
-        args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
+    private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
+        => args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
 
     /// <summary>
     /// Called by Cosmic Siphon. Increments the Cult's global objective tracker.

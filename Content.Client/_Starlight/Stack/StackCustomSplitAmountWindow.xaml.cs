@@ -36,5 +36,4 @@ public sealed partial class StackCustomSplitAmountWindow : DefaultWindow
         else
             ApplyButton.Disabled = false;
     }
-
 }

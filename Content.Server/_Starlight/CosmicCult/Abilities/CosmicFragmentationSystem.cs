@@ -16,7 +16,6 @@ using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
-using Content.Shared.Radio;
 using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
@@ -36,7 +35,6 @@ public sealed class CosmicFragmentationSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
-    private readonly ProtoId<RadioChannelPrototype> _cultRadio = "CosmicRadio";
 
     public override void Initialize()
     {
@@ -156,14 +154,18 @@ public sealed class CosmicFragmentationSystem : EntitySystem
 
     private void OnFragmentAi(Entity<SiliconLawUpdaterComponent> ent, ref MalignFragmentationEvent args)
     {
-        var lawboard = Spawn("CosmicCultLawBoard", Transform(args.Target).Coordinates);
-
         _container.TryGetContainer(args.Target, "circuit_holder", out var container);
         if (container == null)
             return;
 
+        var lawboard = Spawn("CosmicCultLawBoard", Transform(args.Target).Coordinates);
+
         _container.EmptyContainer(container, true);
-        _container.Insert(lawboard, container, Transform(args.Target), true);
+        if (!_container.Insert(lawboard, container, Transform(args.Target), true))
+        {
+            Del(lawboard);
+            return;
+        }
 
         args.Succeeded = true;
     }

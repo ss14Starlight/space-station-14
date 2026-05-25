@@ -56,6 +56,6 @@ public sealed class CosmicImpositionSystem : EntitySystem
         _cult.MalignEcho(uid);
     }
 
-    private void OnImpositionDamaged(Entity<CosmicImposingComponent> uid, ref BeforeDamageChangedEvent args) =>
-        args.Cancelled = true;
+    private void OnImpositionDamaged(Entity<CosmicImposingComponent> uid, ref BeforeDamageChangedEvent args)
+        => args.Cancelled = true;
 }

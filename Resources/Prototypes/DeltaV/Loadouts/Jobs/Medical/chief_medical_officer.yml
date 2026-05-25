@@ -1,0 +1,54 @@
+﻿#Neck
+- type: loadout
+  id: ChiefMedicalOfficerShawl
+  equipment:
+    neck: ClothingNeckCmoShawl
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobChiefMedicalOfficer
+        time: 144000 # 40hr
+
+- type: loadout
+  id: ChiefMedicalOfficerOverShoulder
+  equipment:
+    neck: ClothingNeckCmoOverShoulder
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobChiefMedicalOfficer
+        time: 288000 # 80hr
+
+#Outer Clothing
+- type: loadout
+  id: ChiefMedicalOfficerLabCoatLong
+  equipment:
+    outerClothing: ClothingOuterCoatLabCmoLong
+
+#Uniforms/Jumpsuits
+- type: loadout
+  id: ChiefMedicalOfficerFormalSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCmoFormal
+
+- type: loadout
+  id: ChiefMedicalOfficerFormalSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCmoFormal
+
+- type: loadout
+  id: ChiefMedicalOfficerVestSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCmoVest
+
+- type: loadout
+  id: ChiefMedicalOfficerVestSkirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCmoVest
+
+- type: loadout
+  id: ChiefMedicalOfficerSummerSuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCmoSummer

@@ -263,3 +263,61 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
 # Starlight end
+
+### WALL FAN
+- type: entity
+  parent: BaseWallmountMetallic
+  id: WallFan
+  name: wall fan
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Rotatable
+  - type: WallMount
+    arc: 360
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    sprite: _Starlight/Structures/wall_fan.rsi
+    state: wall_fan
+    snapCardinals: true
+    drawdepth: WallMountedItems
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Icon
+    sprite: _Starlight/Structures/wall_fan.rsi
+    state: wall_fan
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 250
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Airtight
+  - type: StaticPrice
+    price: 75
+  - type: RadiationBlocker
+    resistance: 1
+  - type: BlockWeather
+  - type: Ricochetable
+    chance: 0.4
