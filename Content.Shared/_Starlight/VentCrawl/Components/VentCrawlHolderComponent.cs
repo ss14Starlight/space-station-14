@@ -10,13 +10,12 @@ namespace Content.Shared.VentCrawl.Components;
 public sealed partial class VentCrawlHolderComponent : Component
 {
     [ViewVariables]
-    [AutoNetworkedField, AutoPausedField]
-    public TimeSpan MoveEndTime;
+    public float StartingTime { get; set; }
 
     [ViewVariables]
-    [AutoNetworkedField, AutoPausedField]
-    public TimeSpan MoveStartTime;
+    public float TimeLeft { get; set; }
 
+    [AutoNetworkedField]
     public bool IsMoving = false;
 
     [ViewVariables]
@@ -82,8 +81,8 @@ public sealed partial class VentCrawlHolderComponent : Component
     /// Current progress of transition in manifold between layers.
     /// </summary>
     [ViewVariables]
-    [AutoNetworkedField, AutoPausedField]
-    public TimeSpan ManifoldTransitionStartTime;
+    [AutoNetworkedField]
+    public float ManifoldTransitionProgress = 1f;
 
     /// <summary>
     /// Duration of transition in manifold between layers.

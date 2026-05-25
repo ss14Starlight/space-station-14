@@ -54,8 +54,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             return;
         }
 
-        holder.IsMoving = args.State;
-
         var dir = args.Dir;
         var player = GetOrEnsureContainer(uid).ContainedEntities.FirstOrNull();
         if (player != null && dir != Direction.Invalid && TryComp<InputMoverComponent>(player, out var mover))
@@ -65,7 +63,13 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 dir = (dir.ToAngle() + cameraAngle).GetCardinalDir();
         }
 
-        holder.CurrentDirection = dir;
+        holder.IsMoving = args.HasDirectionalMovement;
+
+        if (dir != Direction.Invalid)
+            holder.CurrentDirection = dir;
+        else if (!holder.IsMoving)
+            holder.CurrentDirection = Direction.Invalid;
+
         Dirty(uid, holder);
     }
 
@@ -188,7 +192,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 : 0;
 
             holder.PreviousManifoldLayer = null;
-            holder.ManifoldTransitionStartTime = _gameTiming.CurTime + TimeSpan.FromSeconds(holder.ManifoldTransitionDuration);
+            holder.ManifoldTransitionProgress = 1f;
             Dirty(holderUid, holder);
 
             UpdateManifoldPosition(toUid, holderUid, holder);
@@ -277,13 +281,13 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
             var currentTube = holder.CurrentTube.Value;
 
-            var elapsed = (_gameTiming.CurTime - holder.ManifoldTransitionStartTime).TotalSeconds;
-            if (elapsed < holder.ManifoldTransitionDuration)
+            if (holder.ManifoldTransitionProgress < 1f)
             {
-                var t = (float)((_gameTiming.CurTime - holder.ManifoldTransitionStartTime).TotalSeconds
-                    / holder.ManifoldTransitionDuration);
-                var progress = Math.Clamp(t, 0f, 1f);
-                UpdateManifoldPositionInterpolated(currentTube, uid, holder, progress);
+                holder.ManifoldTransitionProgress = Math.Min(
+                    1f,
+                    holder.ManifoldTransitionProgress + frameTime / holder.ManifoldTransitionDuration
+                );
+                UpdateManifoldPositionInterpolated(currentTube, uid, holder);
             }
 
             if (!UpdateMovementInput(currentTube, uid, holder))
@@ -291,10 +295,15 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
             if (holder.NextTube != null)
             {
-                if (_gameTiming.CurTime >= holder.MoveEndTime)
-                    TryAdvanceTube(currentTube, uid, holder);
-                else
+                holder.TimeLeft -= frameTime;
+
+                if (holder.TimeLeft > 0)
                     UpdatePosition(currentTube, uid, holder);
+                else
+                {
+                    holder.TimeLeft = 0f;
+                    TryAdvanceTube(currentTube, uid, holder);
+                }
             }
         }
     }
@@ -320,9 +329,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 }
 
                 holder.NextTube = nextTube;
-                holder.MoveStartTime = _gameTiming.CurTime;
-                holder.MoveEndTime = _gameTiming.CurTime + TimeSpan.FromSeconds(holder.TravelDuration);
-                Dirty(uid, holder);
+                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
+                holder.StartingTime = holder.TravelDuration;
+                holder.TimeLeft = holder.TravelDuration;
             }
             else
             {
@@ -341,14 +350,14 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
     private void UpdatePosition(EntityUid currentTube, EntityUid uid, VentCrawlHolderComponent holder)
     {
-        if (holder.NextTube == null || holder.MoveStartTime <= TimeSpan.Zero)
+        if (holder.NextTube == null || holder.StartingTime <= 0f)
             return;
 
         if (holder.CurrentDirection == Direction.Invalid)
             return;
 
-        var elapsed = _gameTiming.CurTime - holder.MoveStartTime;
-        var progress = Math.Clamp((float)(elapsed / (holder.MoveEndTime - holder.MoveStartTime)), 0f, 1f);
+        var elapsed = holder.StartingTime - holder.TimeLeft;
+        var progress = Math.Clamp(elapsed / holder.StartingTime, 0f, 1f);
 
         var origin = Transform(currentTube).Coordinates;
         var destination = holder.CurrentDirection.ToVec();
@@ -380,15 +389,15 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         {
             holder.LastCrawl = _gameTiming.CurTime;
 
-            _audioSystem.PlayPredicted(holder.CrawlSound, uid, null);
+            _audioSystem.PlayPvs(holder.CrawlSound, uid);
         }
 
         var nextTube = holder.NextTube.Value;
 
         holder.NextTube = null;
-        holder.MoveStartTime = TimeSpan.Zero;
-        holder.MoveEndTime = TimeSpan.Zero;
-        Dirty(uid, holder);
+        holder.StartingTime = 0f;
+        holder.TimeLeft = 0f;
+        DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
 
         EnterTube(uid, nextTube, holder);
     }
@@ -396,13 +405,14 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     private void UpdateManifoldPositionInterpolated(
         EntityUid manifoldUid,
         EntityUid holderUid,
-        VentCrawlHolderComponent holder,
-        float progress)
+        VentCrawlHolderComponent holder)
     {
         if (holder.ManifoldLayer == null)
             return;
 
-        if (holder.PreviousManifoldLayer == null || progress >= 1f)
+        var t = holder.ManifoldTransitionProgress;
+
+        if (holder.PreviousManifoldLayer == null || t >= 1f)
         {
             UpdateManifoldPosition(manifoldUid, holderUid, holder);
             return;
@@ -414,7 +424,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var fromOffset = GetOffsetForManifoldLayer(manifoldUid, holder.PreviousManifoldLayer.Value);
         var toOffset = GetOffsetForManifoldLayer(manifoldUid, holder.ManifoldLayer.Value);
 
-        var lerpedOffset = Vector2.Lerp(fromOffset, toOffset, progress);
+        var lerpedOffset = Vector2.Lerp(fromOffset, toOffset, t);
 
         var manifoldPos = Transform(manifoldUid).Coordinates;
         _xformSystem.SetCoordinates(holderUid, _xformSystem.WithEntityId(manifoldPos.Offset(lerpedOffset), manifoldUid));
@@ -474,7 +484,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             {
                 holder.PreviousManifoldLayer = holder.ManifoldLayer;
                 holder.ManifoldLayer = newLayer;
-                holder.ManifoldTransitionStartTime = _gameTiming.CurTime;
+                holder.ManifoldTransitionProgress = 0f;
                 holder.NextTube = null;
                 Dirty(uid, holder);
             }
@@ -483,8 +493,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         if (localDir is Direction.North or Direction.South)
         {
-            var elapsed = (_gameTiming.CurTime - holder.ManifoldTransitionStartTime).TotalSeconds;
-            if (elapsed < holder.ManifoldTransitionDuration)
+            if (holder.ManifoldTransitionProgress < 1f)
                 return true;
 
             var nextTube = _ventCrawlTubeSystem.GetManifoldExit(manifoldUid, holder.ManifoldLayer.Value, dir);
@@ -492,9 +501,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 return true;
 
             holder.NextTube = nextTube;
-            holder.MoveStartTime = _gameTiming.CurTime;
-            holder.MoveEndTime = _gameTiming.CurTime + TimeSpan.FromSeconds(holder.TravelDuration);
-            Dirty(uid, holder);
+            DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
+            holder.StartingTime = holder.TravelDuration;
+            holder.TimeLeft = holder.TravelDuration;
         }
 
         return true;
