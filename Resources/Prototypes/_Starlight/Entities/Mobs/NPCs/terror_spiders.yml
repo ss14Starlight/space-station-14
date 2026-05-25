@@ -5,9 +5,6 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
-  - type: Bloodstream
-    bleedReductionAmount: 1
-    bloodRefreshAmount: 3
   - type: WeaponArcVisuals
   - type: LanguageKnowledge
     speaks:
@@ -96,6 +93,8 @@
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 3
     bloodReferenceSolution:
       reagents:
       - ReagentId: CopperBlood
@@ -161,7 +160,7 @@
   id: MobTerrorRedUnevolvable
   abstract: true
   components:
-  - type: BloodStream
+  - type: Bloodstream
     bleedReductionAmount: 2
     bloodRefreshAmount: 5
   - type: Spider
