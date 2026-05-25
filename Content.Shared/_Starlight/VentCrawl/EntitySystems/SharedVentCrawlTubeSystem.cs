@@ -11,6 +11,7 @@ using Content.Shared.VentCrawl.Tube.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Network;
 
 namespace Content.Shared.VentCrawl;
 
@@ -22,13 +23,12 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedMoverController _mover = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VentCrawlTubeComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentStartup>(OnStartup);
@@ -47,8 +47,8 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
 
     #region Subscribes
 
-    private void OnComponentInit(EntityUid uid, VentCrawlTubeComponent tube, ComponentInit args)
-        => tube.Contents = _containerSystem.EnsureContainer<Container>(uid, tube.ContainerId);
+    public Container GetOrEnsureContainer(EntityUid uid, VentCrawlTubeComponent tube)
+        => _containerSystem.EnsureContainer<Container>(uid, tube.ContainerId);
 
     private void OnComponentRemove(EntityUid uid, VentCrawlTubeComponent tube, ComponentRemove args)
         => DisconnectTube(tube);
@@ -88,7 +88,8 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         if (args.Handled || args.Cancelled || args.Args.Target == null || args.Args.Used == null)
             return;
 
-        TryInsert(args.Args.Target.Value, args.Args.Used.Value);
+        if (_net.IsServer)
+            TryInsert(args.Args.Target.Value, args.Args.Used.Value);
 
         args.Handled = true;
     }
@@ -171,7 +172,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
 
         tube.Connected = false;
 
-        foreach (var entity in tube.Contents.ContainedEntities.ToArray())
+        foreach (var entity in GetOrEnsureContainer(tube.Owner, tube).ContainedEntities.ToArray())
             _ventCrawableSystem.ExitVentCrawl(entity);
     }
 
@@ -263,20 +264,14 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         if (hasA != hasB)
             return false;
 
-        if (!hasA)
-            return true;
-
-        return la!.CurrentPipeLayer == lb!.CurrentPipeLayer;
+        return !hasA || la!.CurrentPipeLayer == lb!.CurrentPipeLayer;
     }
 
     private bool SameLayer(AtmosPipeLayer a, EntityUid b)
     {
         var hasB = TryComp(b, out AtmosPipeLayersComponent? lb);
 
-        if (!hasB)
-            return false;
-
-        return a == lb!.CurrentPipeLayer;
+        return !hasB ? false : a == lb!.CurrentPipeLayer;
     }
 
     private bool CanConnect(EntityUid tubeId, VentCrawlTubeComponent tube, Direction direction)
@@ -297,16 +292,29 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         if (!TryComp<VentCrawlerComponent>(entity, out var ventCrawlerComponent))
             return false;
 
-        var holder = Spawn(VentCrawlEntryComponent.HolderPrototypeId, _transform.GetMapCoordinates(uid));
+        var tubeCoords = Transform(uid).Coordinates;
+        var holder = PredictedSpawnAttachedTo(VentCrawlEntryComponent.HolderPrototypeId, tubeCoords);
         var holderComponent = Comp<VentCrawlHolderComponent>(holder);
 
-        _ventCrawableSystem.TryInsert(holder, entity, holderComponent);
+        if (!_ventCrawableSystem.TryInsert(holder, entity))
+        {
+            Del(holder);
+            return false;
+        }
 
         _mover.SetRelay(entity, holder);
         ventCrawlerComponent.InTube = true;
         Dirty(entity, ventCrawlerComponent);
 
-        return _ventCrawableSystem.EnterTube(holder, uid, holderComponent);
+        var result = _ventCrawableSystem.EnterTube(holder, uid, holderComponent);
+
+        if (!result)
+        {
+            _ventCrawableSystem.ExitVentCrawl(holder, holderComponent);
+            return false;
+        }
+
+        return true;
     }
 
     #endregion

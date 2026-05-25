@@ -1,39 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Corgi Head of Security Hardsuit.
-    type: Add
-  id: 405017
-  time: '2026-05-15T15:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4453
-- author: Swonki
-  changes:
-  - message: Corgi Warden Hardsuit.
-    type: Add
-  id: 405018
-  time: '2026-05-15T15:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4453
-- author: Rinary
-  changes:
-  - message: Infection anomalies can actually be removed.
-    type: Fix
-  id: 405019
-  time: '2026-05-15T15:52:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4452
-- author: Rhetorica
-  changes:
-  - message: Peepoids.
-    type: Add
-  id: 405020
-  time: '2026-05-15T18:25:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4455
-- author: Rhetorica
-  changes:
-  - message: Slurpoids.
-    type: Add
-  id: 405021
-  time: '2026-05-15T18:25:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4455
 - author: Rhetorica
   changes:
   - message: SLIME TIME and SLIME CRIME graffiti.
@@ -2799,4 +2764,39 @@ Entries:
   id: 405416
   time: '2026-05-25T15:32:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4524
+- author: FeralCreature
+  changes:
+  - message: Implants (and other organs) are no longer capable of instantly gibbing you when implanted.
+    type: Fix
+  id: 405417
+  time: '2026-05-25T18:57:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4553
+- author: Rinary
+  changes:
+  - message: Fixed prediction bug that calls server state reload when entering vents with vent crawl.
+    type: Fix
+  id: 405418
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Rinary
+  changes:
+  - message: Fixed blinking blind overlay when entering vents with vent crawl.
+    type: Fix
+  id: 405419
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Rinary
+  changes:
+  - message: Fixed manifolds interaction when they're rotated.
+    type: Fix
+  id: 405420
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Rinary
+  changes:
+  - message: Fixed vent crawl overlay, now it shows all tubes as intended.
+    type: Fix
+  id: 405421
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
 Order: -1

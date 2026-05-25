@@ -88,7 +88,7 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
 
     protected override void AppendRoundEndText(EntityUid uid, TerrorSpiderRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
     {
-        args.AddLine(Loc.GetString($"terrorspiders-win"));
+        args.AddLine(CheckLoseStatus(out _) ? Loc.GetString($"terrorspiders-win") : Loc.GetString($"terrorspiders-lose"));
 
         args.AddLine(Loc.GetString("terrorspiders-list-start"));
 
