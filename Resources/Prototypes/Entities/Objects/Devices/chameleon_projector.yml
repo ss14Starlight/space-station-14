@@ -28,7 +28,7 @@
       - Pda # PDAs currently make you invisible /!\
       - SubFloorHide # no hiding under the floor
       # Moffstation - Start - Playing cards, hands and deck are invisible due to heavily layered visuals.
-      - PlayingCard 
+      - PlayingCard
       - PlayingCardHand
       - PlayingCardDeck
       # Moffstation - End
