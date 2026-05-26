@@ -102,6 +102,13 @@
       stopSearchVerbText: positronic-brain-stop-searching-verb-text
       stopSearchVerbPopup: positronic-brain-stopped-searching
       job: Borg
+      # Starlight Start: Ion storms activate disabled posi brains.
+      toggleOnEvents:
+      - IonStorm
+      - IonStormPlus
+      toggleOnEventMode: Activate
+      toggleOnEventChance: 1
+      # Starlight End
     - type: BlockMovement
     - type: Examiner
     - type: BorgBrain

@@ -5,6 +5,12 @@ using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+#region Starlight
+using Content.Server.StationEvents.Components;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
+using Robust.Shared.Random;
+#endregion
 
 namespace Content.Server.Ghost.Roles;
 
@@ -16,6 +22,9 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    #region Starlight
+    [Dependency] private IRobustRandom _random = default!;
+    #endregion
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -25,6 +34,9 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
         SubscribeLocalEvent<ToggleableGhostRoleComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<ToggleableGhostRoleComponent, MindRemovedMessage>(OnMindRemoved);
         SubscribeLocalEvent<ToggleableGhostRoleComponent, GetVerbsEvent<ActivationVerb>>(AddWipeVerb);
+        #region Starlight
+        SubscribeLocalEvent<StationEventComponent, GameRuleStartedEvent>(OnStationEventStarted);
+        #endregion
     }
 
     private void OnUseInHand(EntityUid uid, ToggleableGhostRoleComponent component, UseInHandEvent args)
@@ -45,11 +57,19 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString(component.ExamineTextMindSearching), uid, args.User);
             return;
         }
+
+        // Starlight Start
+        if (!TrySetSearching((uid, component), true))
+            return;
+        // Starlight End
+
         _popup.PopupEntity(Loc.GetString(component.BeginSearchingText), uid, args.User);
 
-        UpdateAppearance(uid, ToggleableGhostRoleStatus.Searching);
+        // Starlight edit Start: Moved
+        // UpdateAppearance(uid, ToggleableGhostRoleStatus.Searching);
 
-        ActivateGhostRole((uid, component));
+        // ActivateGhostRole((uid, component));
+        // Starlight edit End
     }
 
     public void ActivateGhostRole(Entity<ToggleableGhostRoleComponent?> ent)
@@ -135,13 +155,15 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
                 Text = Loc.GetString(component.StopSearchVerbText),
                 Act = () =>
                 {
-                    if (component.Deleted || !HasComp<GhostTakeoverAvailableComponent>(uid))
+                    if (!TrySetSearching((uid, component), false)) // Starlight Edit: Changed to Helper
                         return;
 
-                    RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
-                    RemCompDeferred<GhostRoleComponent>(uid);
+                    // Starlight edit Start: Moved
+                    // RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
+                    // RemCompDeferred<GhostRoleComponent>(uid);
+                    // Starlight edit End
                     _popup.PopupEntity(Loc.GetString(component.StopSearchVerbPopup), uid, args.User);
-                    UpdateAppearance(uid, ToggleableGhostRoleStatus.Off);
+                    // UpdateAppearance(uid, ToggleableGhostRoleStatus.Off); // Starlight Edit: Moved
                 }
             };
             args.Verbs.Add(verb);
@@ -162,11 +184,86 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
             _mind.TransferTo(mindId, null, mind: mind);
         }
 
-        if (!HasComp<GhostTakeoverAvailableComponent>(uid))
+        // Starlight edit Start
+        if (TryComp<ToggleableGhostRoleComponent>(uid, out var component))
+            TrySetSearching((uid, component), false, allowMind: true);
+        // Starlight edit End
+    }
+
+    #region Starlight
+    private void OnStationEventStarted(Entity<StationEventComponent> ent, ref GameRuleStartedEvent args)
+    {
+        var query = EntityQueryEnumerator<ToggleableGhostRoleComponent, TransformComponent>();
+
+        while (query.MoveNext(out var uid, out var toggleable, out var xform))
+        {
+            if (!ShouldEventToggle((uid, toggleable, xform), args.RuleId, ent.Comp.TargetStation))
+                continue;
+
+            ApplyEventToggle((uid, toggleable));
+        }
+    }
+
+    private bool ShouldEventToggle(
+        Entity<ToggleableGhostRoleComponent, TransformComponent> ent,
+        string eventId,
+        EntityUid? targetStation)
+        => ent.Comp1.ToggleOnEvents.Contains(eventId)
+            && (targetStation == null
+            || (CompOrNull<StationMemberComponent>(ent.Comp2.GridUid)?.Station) == targetStation)
+            && _random.Prob(Math.Clamp(ent.Comp1.ToggleOnEventChance, 0f, 1f));
+
+    private void ApplyEventToggle(Entity<ToggleableGhostRoleComponent> ent)
+    {
+        var mode = ent.Comp.ToggleOnEventMode;
+
+        if (mode == ToggleableGhostRoleComponent.EventToggleMode.None)
             return;
 
-        RemCompDeferred<GhostTakeoverAvailableComponent>(uid);
-        RemCompDeferred<GhostRoleComponent>(uid);
-        UpdateAppearance(uid, ToggleableGhostRoleStatus.Off);
+        if (mode.HasFlag(ToggleableGhostRoleComponent.EventToggleMode.Deactivate)
+            && HasComp<GhostTakeoverAvailableComponent>(ent.Owner))
+        {
+            TrySetSearching(ent, false);
+            return;
+        }
+
+        if (mode.HasFlag(ToggleableGhostRoleComponent.EventToggleMode.Activate))
+        {
+            TrySetSearching(ent, true);
+        }
     }
+
+    private bool TrySetSearching(Entity<ToggleableGhostRoleComponent> ent, bool searching, bool allowMind = false)
+    {
+        var hasMind = TryComp<MindContainerComponent>(ent.Owner, out var mindContainer) && mindContainer.HasMind;
+
+        if (searching)
+        {
+            if (hasMind)
+                return false;
+
+            if (HasComp<GhostTakeoverAvailableComponent>(ent.Owner))
+                return false;
+
+            if (HasComp<GhostRoleComponent>(ent.Owner))
+                return false;
+
+            UpdateAppearance(ent.Owner, ToggleableGhostRoleStatus.Searching);
+            ActivateGhostRole((ent.Owner, ent.Comp));
+            return true;
+        }
+
+        if (hasMind && !allowMind)
+            return false;
+
+        if (!HasComp<GhostTakeoverAvailableComponent>(ent.Owner)
+            && !HasComp<GhostRoleComponent>(ent.Owner))
+            return false;
+
+        RemCompDeferred<GhostTakeoverAvailableComponent>(ent.Owner);
+        RemCompDeferred<GhostRoleComponent>(ent.Owner);
+        UpdateAppearance(ent.Owner, ToggleableGhostRoleStatus.Off);
+        return true;
+    }
+    #endregion
 }

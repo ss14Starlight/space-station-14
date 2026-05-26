@@ -86,4 +86,37 @@ public sealed partial class ToggleableGhostRoleComponent : Component
     /// </summary>
     [DataField("job")]
     public ProtoId<JobPrototype>? JobProto;
+
+    #region Starlight
+    /// <summary>
+    /// Event prototype IDs that can automatically toggle this ghost role.
+    /// </summary>
+    [DataField]
+    public List<string> ToggleOnEvents = [];
+
+    /// <summary>
+    /// What the event should do when toggling this ghost role.
+    /// </summary>
+    [DataField]
+    public EventToggleMode ToggleOnEventMode = EventToggleMode.Activate;
+
+    /// <summary>
+    /// Chance for the station event to toggle this ghost role.
+    /// 1 = always, 0.5 = 50%, 0 = never.
+    /// </summary>
+    [DataField]
+    public float ToggleOnEventChance = 1f;
+
+    /// <summary>
+    /// Controls how station events interact with this toggleable ghost role.
+    /// </summary>
+    [Flags]
+    public enum EventToggleMode : byte
+    {
+        None = 0,
+        Activate = 1 << 0,
+        Deactivate = 1 << 1,
+        Both = Activate | Deactivate,
+    }
+    #endregion
 }
