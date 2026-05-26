@@ -571,6 +571,8 @@
     damage:
       types:
         Piercing: 25
+  - type: Spider
+    webPrototype: SpiderWebStrongOpaque
   - type: PassiveDamage
     allowedStates:
     - Alive
