@@ -5,6 +5,14 @@
   description: a deadly hybrid of a giant spider and xenomorph.
   abstract: true
   components:
+  - type: Prying
+    pryPowered: false
+    force: true
+    speedModifier: 1.5
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
+    playSoundOnDoafter: true
   - type: WeaponArcVisuals
   - type: LanguageKnowledge
     speaks:
@@ -114,14 +122,6 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
-  - type: Prying # Open door from xeno.yml.
-    pryPowered: true
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -160,6 +160,8 @@
   id: MobTerrorRedUnevolvable
   abstract: true
   components:
+  - type: Prying
+    pryPowered: true
   - type: Bloodstream
     bleedReductionAmount: 2
     bloodRefreshAmount: 5
@@ -258,14 +260,6 @@
     damage:
       types:
         Piercing: 11
-  - type: Prying
-    pryPowered: false
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 5
@@ -332,14 +326,6 @@
   - type: MeleeChemicalInjector
     transferAmount: 2.75
     solution: melee
-  - type: Prying
-    pryPowered: false
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
-    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 4.75
@@ -480,6 +466,8 @@
   id: MobTerrorWhiteUnevolvable
   abstract: true
   components:
+  - type: Prying
+    pryPowered: true
   - type: Spider
     hasBuilding: true
     buildingActionProto: ActionSpiderBuildingCocoon
@@ -592,6 +580,8 @@
   parent: MobTerrorSpider
   id: MobTerrorPrincess
   components:
+  - type: Prying
+    pryPowered: true
   - type: OptionsVisualizer
     visuals:
       base:
@@ -641,14 +631,6 @@
   - type: MeleeChemicalInjector
     transferAmount: 3.75
     solution: melee
-  - type: Prying
-    pryPowered: true
-    force: true
-    speedModifier: 1.5
-    useSound:
-      path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
-    playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00
     baseSprintSpeed : 3.75
@@ -668,6 +650,8 @@
   parent: MobTerrorBlackUnevolvable
   id: MobTerrorMother
   components:
+  - type: Prying
+    pryPowered: true
   - type: OptionsVisualizer
     visuals:
       base:
