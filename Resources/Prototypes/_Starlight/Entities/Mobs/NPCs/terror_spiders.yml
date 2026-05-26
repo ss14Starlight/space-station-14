@@ -600,7 +600,7 @@
   - type: Spider
     webPrototype: SpiderWebAirtight
     hasBuilding: true
-    buildingActionProto: ActionSpiderBuildingCocoon
+    buildingActionProto: ActionSpiderBuildingGenerator
   - type: VentCrawler
   - type: MobThresholds
     thresholds:

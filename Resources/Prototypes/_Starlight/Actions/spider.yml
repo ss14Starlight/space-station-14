@@ -191,7 +191,7 @@
 
 - type: entity
   parent: BaseAction
-  id: ActionSpiderBuildingCocoon
+  id: ActionSpiderBuildingGenerator
   name: Ammonia generator
   description: Spawns an ammonia generator that fills rooms with atmosphere.
   components:
