@@ -27,7 +27,7 @@ public sealed class DevourSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly DamageableSystem _damageSystem = default!; //Starlight
-    const int DeathThreashold = 200;
+    const int DeathThreashold = 200; //Starlight
 
     public override void Initialize()
     {
