@@ -701,7 +701,7 @@
     </ColorBox>
     <ColorBox Color="#59563a">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-       To enter a secured area without permission. If the area is behind a locked door, it is secure trespass. This includes telecomms, department head offices, command areas, the vault, and the armory.
+       To enter a secured area without permission. If the area is behind a locked door, it is secure trespass. This includes non-public department spaces and especially security areas, command areas, the vault, and the armory.
       </Box>
     </ColorBox>
     <ColorBox Color="#4d2e2e">
@@ -902,15 +902,6 @@
     <ColorBox Color="#4d2e2e">
       <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
         To kill three or more sentient humanoids with malicious intent. This only applies when there have been multiple killings with intention.
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#475c7d">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-      </Box>
-    </ColorBox>
-    <ColorBox Color="#475c7d">
-      <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-        To act as or knowingly aid a known enemy of the Station and NT-CC. Only applies beyond a shadow of doubt.
       </Box>
     </ColorBox>
   </Table>
