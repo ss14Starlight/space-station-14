@@ -1,7 +1,7 @@
 - type: entity
   abstract: true
   parent: [SolutionHypospraySmall, BaseItem]
-  id: BaseHypospray
+  id: BaseHypoInjector
   components:
   - type: Injector
     solutionName: hypospray
@@ -10,8 +10,6 @@
     allowedModes:
     - HyposprayDynamicMode
     - HyposprayInjectMode
-  - type: Spillable
-    solution: hypospray
   - type: ExaminableSolution
     solution: hypospray
     exactVolume: true
@@ -20,6 +18,15 @@
     damage:
       types:
         Piercing: 5 # Starlight end
+
+- type: entity
+  abstract: true
+  parent: BaseHypoInjector
+  id: BaseHypospray
+  components:
+  - type: Spillable
+    solution: hypospray
+    spillWhenThrown: false
 
 - type: entity
   abstract: true
@@ -193,7 +200,7 @@
     delay: 0.0
 
 - type: entity
-  parent: BaseHypospray # I plan to resize medipens to 1x2 eventually:tm:
+  parent: BaseHypoInjector # I plan to resize medipens to 1x2 eventually:tm:
   id: ChemicalMedipen
   name: chemical medipen
   description: A single-dose, non-refillable medipen.
