@@ -101,7 +101,7 @@ public sealed class DevourSystem : EntitySystem
             BreakOnMove = true,
         });
     }
-     
+    
     private void OnDoAfter(Entity<DevourerComponent> ent, ref DevourDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
