@@ -27,6 +27,7 @@ public sealed class DevourSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly DamageableSystem _damageSystem = default!; //Starlight
+    const int DeathThreashold = 200;
 
     public override void Initialize()
     {
@@ -101,7 +102,7 @@ public sealed class DevourSystem : EntitySystem
             BreakOnMove = true,
         });
     }
-    
+
     private void OnDoAfter(Entity<DevourerComponent> ent, ref DevourDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
@@ -117,7 +118,7 @@ public sealed class DevourSystem : EntitySystem
         //Specific ammount of damage to apply to kill the target
         var targetDamage = _damageSystem.GetDamage((target, damageable));
         var targetDamageTotal = targetDamage.GetTotal();
-        var RequiredDamage = 200 - targetDamageTotal;
+        var RequiredDamage = DeathThreashold - targetDamageTotal;
 
         //Only apply if they aren't dead
         if (RequiredDamage > 0)
