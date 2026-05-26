@@ -3,9 +3,9 @@
 
 using System.Numerics;
 using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Editor;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
-using Content.Shared._Starlight.Humanoid.Events;
 using Content.Shared.Starlight.Utility;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -18,16 +18,15 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
 {
     private static readonly Dictionary<VisualLayerKey, ExtendedSpriteSpecifier> _emptyModified = [];
 
-    /// <summary>
-    /// ComponentRegistry override that sets <see cref="BodyVisualizerComponent.GenerateAppearance"/> to false.
-    /// Use this when spawning a player mob so that the explicit <see cref="ApplyAppearanceEvent"/> drives appearance instead.
-    /// </summary>
-    public static readonly ComponentRegistry NoGenerateAppearanceOverride = new()
+    public static ComponentRegistry CreateAppearanceOverride(BodyProfile? appearance)
     {
-        ["BodyVisualizer"] = new EntityPrototype.ComponentRegistryEntry(
-            new BodyVisualizerComponent { GenerateAppearance = false },
-            [])
-    };
+        return new ComponentRegistry
+        {
+            ["BodyVisualizer"] = new EntityPrototype.ComponentRegistryEntry(
+                new BodyVisualizerComponent { Appearance = appearance?.Clone() },
+                [])
+        };
+    }
 
     [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -37,21 +36,8 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
 
         SubscribeLocalEvent<BodyVisualizerComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<BodyVisualizerComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<BodyVisualizerComponent, MapInitEvent>(OnMapInit);
-        SubscribeLocalEvent<BodyVisualizerComponent, ApplyAppearanceEvent>(OnApplyProfile, before: [typeof(SLBodySystem)]);
         SubscribeLocalEvent<BodyPartVisualizerComponent, SLBodyPartAddedEvent>(OnBodyPartAdded);
         SubscribeLocalEvent<BodyPartVisualizerComponent, SLBodyPartRemovedEvent>(OnBodyPartRemoved);
-    }
-
-    private void OnApplyProfile(Entity<BodyVisualizerComponent> ent, ref ApplyAppearanceEvent args)
-    {
-        if(args.Profile is null)
-        {
-            // TODO: In the body, we need to store somewhere which species it belonged to.
-            // And what about mobs? In general, I would be insanely happy if every mob had unique colors, age, and maybe even markings.
-            // I do not know, this probably all needs to be rewritten.
-            args.Profile = Content.Shared.Preferences.HumanoidCharacterProfile.RandomWithSpecies();
-        }
     }
 
     private void OnBodyPartAdded(EntityUid uid, BodyPartVisualizerComponent partVis, ref SLBodyPartAddedEvent args)
@@ -120,15 +106,6 @@ public abstract partial class SharedBodyVisualizerSystem : EntitySystem
         }
 
         return false;
-    }
-
-    private void OnMapInit(EntityUid uid, BodyVisualizerComponent component, MapInitEvent args)
-    {
-        if (!component.GenerateAppearance)
-            return;
-
-        var ev = new ApplyAppearanceEvent(null);
-        RaiseLocalEvent(uid, ref ev);
     }
 
     private static void OnInit(EntityUid uid, BodyVisualizerComponent component, ComponentInit args)
