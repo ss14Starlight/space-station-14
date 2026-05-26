@@ -16,13 +16,15 @@ public readonly record struct BodyPartAddress
 
     public string? MarkingSet { get; }
 
+    private string _pathOrRoot => string.IsNullOrEmpty(Path) ? "/" : Path;
+
     public BodyPartAddress(string? path, string? markingSet = null)
     {
         Path = string.IsNullOrEmpty(path) ? "/" : path;
         MarkingSet = string.IsNullOrEmpty(markingSet) ? null : markingSet;
     }
 
-    public bool IsRoot => Path == "/" && MarkingSet == null;
+    public bool IsRoot => _pathOrRoot == "/" && MarkingSet == null;
 
     public bool HasMarkingSet => MarkingSet != null;
 
@@ -30,17 +32,18 @@ public readonly record struct BodyPartAddress
     {
         get
         {
-            if (Path == "/")
+            var path = _pathOrRoot;
+            if (path == "/")
                 yield break;
 
             // skip leading '/'.
             var start = 1;
-            for (var i = 1; i <= Path.Length; i++)
+            for (var i = 1; i <= path.Length; i++)
             {
-                if (i == Path.Length || Path[i] == '/')
+                if (i == path.Length || path[i] == '/')
                 {
                     if (i > start)
-                        yield return Path[start..i];
+                        yield return path[start..i];
                     start = i + 1;
                 }
             }
@@ -55,13 +58,14 @@ public readonly record struct BodyPartAddress
         if (MarkingSet != null)
             throw new InvalidOperationException("Cannot append a socket to a marking-set-scoped address.");
 
-        var basePath = Path == "/" ? string.Empty : Path;
+        var path = _pathOrRoot;
+        var basePath = path == "/" ? string.Empty : path;
         return new BodyPartAddress(basePath + "/" + socketId);
     }
 
-    public BodyPartAddress WithMarkingSet(string? markingSet) => new(Path, markingSet);
+    public BodyPartAddress WithMarkingSet(string? markingSet) => new(_pathOrRoot, markingSet);
 
-    public BodyPartAddress PartOnly() => MarkingSet == null ? this : new BodyPartAddress(Path);
+    public BodyPartAddress PartOnly() => MarkingSet == null ? this : new BodyPartAddress(_pathOrRoot);
 
     public BodyPartAddress? Parent
     {
@@ -69,13 +73,14 @@ public readonly record struct BodyPartAddress
         {
             // A marking-set-scoped address falls back to the bare part.
             if (MarkingSet != null)
-                return new BodyPartAddress(Path);
+                return new BodyPartAddress(_pathOrRoot);
 
-            if (Path == "/")
+            var path = _pathOrRoot;
+            if (path == "/")
                 return null;
 
-            var lastSlash = Path.LastIndexOf('/');
-            return lastSlash <= 0 ? Root : new BodyPartAddress(Path[..lastSlash]);
+            var lastSlash = path.LastIndexOf('/');
+            return lastSlash <= 0 ? Root : new BodyPartAddress(path[..lastSlash]);
         }
     }
 
@@ -102,6 +107,6 @@ public readonly record struct BodyPartAddress
     }
 
     public override string ToString() => MarkingSet == null
-        ? (Path == "/" ? "/" : Path + "/")
-        : (Path == "/" ? "/" : Path + "/") + MarkingSet;
+        ? (_pathOrRoot == "/" ? "/" : _pathOrRoot + "/")
+        : (_pathOrRoot == "/" ? "/" : _pathOrRoot + "/") + MarkingSet;
 }
