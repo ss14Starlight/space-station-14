@@ -1,13 +1,6 @@
 Entries:
 - author: Rhetorica
   changes:
-  - message: SLIME TIME and SLIME CRIME graffiti.
-    type: Add
-  id: 405022
-  time: '2026-05-15T18:25:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4455
-- author: Rhetorica
-  changes:
   - message: '#RobotGang graffito, for those special times when borgs and IPCs adopt bots as friends.'
     type: Add
   id: 405023
@@ -2799,4 +2792,11 @@ Entries:
   id: 405421
   time: '2026-05-25T18:57:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Huaqas
+  changes:
+  - message: Using a Chameleon Projector on a Playing Card, Hand or Deck no longer turns you invisible.
+    type: Fix
+  id: 405422
+  time: '2026-05-26T15:23:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4560
 Order: -1
