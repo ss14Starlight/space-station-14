@@ -605,6 +605,10 @@
             sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/terror_princess.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: alive
+  - type: Spider
+    webPrototype: SpiderWebAirtight
+    hasBuilding: true
+    buildingActionProto: ActionSpiderBuildingCocoon
   - type: VentCrawler
   - type: MobThresholds
     thresholds:
@@ -641,7 +645,7 @@
     speedModifier: 1.5
     useSound:
       path: /Audio/Items/crowbar.ogg
-    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg
     playSoundOnDoafter: true
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.00

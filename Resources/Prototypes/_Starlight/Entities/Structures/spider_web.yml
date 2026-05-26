@@ -1,4 +1,12 @@
 - type: entity
+  id: SpiderWebAirtight
+  parent: SpiderWebBase
+  name: airtight spider web
+  description: It's stringy, sticky and airtight.
+  components:
+  - type: Airtight
+
+- type: entity
   id: SpiderWebStrong
   parent: SpiderWebBase
   name: strong spider web
