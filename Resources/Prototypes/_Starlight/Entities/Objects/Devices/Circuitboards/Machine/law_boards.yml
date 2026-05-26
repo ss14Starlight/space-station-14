@@ -70,6 +70,20 @@
     price: 1000
 
 - type: entity
+  id: FacilitateCircuitBoard
+  parent: [ BaseElectronics, BaseSecurityScienceCommandContraband ] #SL Edit made Sec-Sci-Command Contra
+  name: law board (Facilitate)
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: std_mod
+  - type: SiliconLawProvider
+    laws: FacilitateLawset
+    IsLawboard: true
+  - type: StaticPrice
+    price: 1000
+
+- type: entity
   id: CommiemovCircuitBoard
   parent: [BaseElectronics, BaseSovietContraband]
   name: law board (commiemov)

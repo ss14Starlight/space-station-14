@@ -125,6 +125,7 @@
     - ArtistCircuitBoard
     - NutimovCircuitBoard
     - JermovCircuitBoard
+    - FacilitateCircuitBoard
 
 # Dangerous Lawboards (Emag only)
 - type: latheRecipePack

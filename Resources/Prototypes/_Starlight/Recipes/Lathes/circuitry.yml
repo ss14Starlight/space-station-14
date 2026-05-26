@@ -184,6 +184,17 @@
     Gold: 1000
     Silver: 500
 
+# Facilitate
+- type: latheRecipe
+  parent: BaseLawboardRecipe
+  id: FacilitateCircuitBoard
+  result: FacilitateCircuitBoard
+  materials:
+    UraniumGlass: 1000
+    Plastic: 500
+    Gold: 1000
+    Silver: 500
+
 - type: latheRecipe
   parent: [ BaseCheapElectronicsRecipe, BaseCircuitryRecipeCategory ]
   id: WallmountMassScannerElectronics

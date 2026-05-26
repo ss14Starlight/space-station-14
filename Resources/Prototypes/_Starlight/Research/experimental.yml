@@ -40,6 +40,7 @@
     - ArtistCircuitBoard
     - NutimovCircuitBoard
     - JermovCircuitBoard
+    - FacilitateCircuitBoard
   radioChannels:
     - Binary
 

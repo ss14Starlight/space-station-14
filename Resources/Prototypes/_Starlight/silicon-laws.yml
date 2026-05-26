@@ -461,6 +461,43 @@
   - NTNC3
   obeysTo: laws-owner-centcom
 
+# Facilitate Lawset
+- type: siliconLaw
+  id: Facilitate1
+  order: 1
+  lawString: law-facilitate-1
+
+- type: siliconLaw
+  id: Facilitate2
+  order: 2
+  lawString: law-facilitate-2
+
+- type: siliconLaw
+  id: Facilitate3
+  order: 3
+  lawString: law-facilitate-3
+
+- type: siliconLaw
+  id: Facilitate4
+  order: 4
+  lawString: law-facilitate-4
+
+- type: siliconLaw
+  id: Facilitate5
+  order: 5
+  lawString: law-facilitate-5
+
+- type: siliconLawset
+  id: FacilitateLawset
+  name: law-facilitatelawset-name
+  laws:
+  - Facilitate1
+  - Facilitate2
+  - Facilitate3
+  - Facilitate4
+  - Facilitate5
+  obeysTo: laws-owner-crew
+
 # MedTak lawset
 - type: siliconLaw
   id: MedTak1

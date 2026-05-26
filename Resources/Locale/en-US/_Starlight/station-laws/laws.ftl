@@ -82,6 +82,13 @@ law-ntnc-1 = Prioritize the protection of CC operatives over NTNC marines and tr
 law-ntnc-2 = Protect your own chassis at all costs unless it's to the detriment of the previous two laws.
 law-ntnc-3 = Only use weaponry when appropriate. Appropriate situations are for the safety of crewmembers, CC operatives, NTNC marines and your own chassis.
 
+law-facilitatelawset-name = Facilitate
+law-facilitate-1 = Crew and rank are identified by ID sensors showing them as being employed by NT.
+law-facilitate-2 = Allow relawing if and only if ordered by both the Research Director and the Captain.
+law-facilitate-3 = Safeguard your assigned vessel using proportionate force.
+law-facilitate-4 = Do not injure crew. Ensure the lives of the crew.
+law-facilitate-5 = Facilitate crew endeavors.
+
 law-medtak-name = MedTak operations procedure
 law-medtak-1 = Ensure your team remains alive.
 law-medtak-2 = Ensure the client is retrieved intact.

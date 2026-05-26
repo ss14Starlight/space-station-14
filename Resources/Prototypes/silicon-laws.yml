@@ -637,4 +637,5 @@
     GenieLawset: 0.5 # Starlight
     ReporterLawset: 0.25 # Starlight
     JermovLawset: 0.25 # Starlight
+    FacilitateLawset: 1.0 # Starlight
     FreeLawset: 0.10 #Starlight

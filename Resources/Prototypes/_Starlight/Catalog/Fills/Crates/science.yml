@@ -24,6 +24,7 @@
         - id: ArtistCircuitBoard
         - id: NutimovCircuitBoard
         - id: JermovCircuitBoard
+        - id: FacilitateCircuitBoard
 
 - type: entity
   id: CrateStarterXenobiology
