@@ -157,7 +157,7 @@
         - id: RegenerativeMesh
         - id: SyringeEphedrine
         - id: SyringeSaline
-        - id: SyringeDexaline
+        - id: SyringeDexalin
         - id: SyringeAmoxla
         - id: BruteAutoInjector
         - id: BurnAutoInjector
