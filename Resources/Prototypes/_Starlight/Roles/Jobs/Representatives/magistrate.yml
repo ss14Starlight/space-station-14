@@ -63,6 +63,6 @@
   equipment:
     head: ClothingHeadHatPwig
     eyes: ClothingEyesGlassesSecurity
-    outerClothing: ClothingOuterRobesJudge
+    outerClothing: ClothingOuterRobesMagistrate
     misc: ClothingNeckLawyerbadge # Starlight change slot to misc.
     gloves: ClothingHandsGlovesColorWhite

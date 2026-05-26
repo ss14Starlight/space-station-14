@@ -9,6 +9,7 @@ terror-spider-princess-briefing =
     Read more about your role in the guidebook entry.
 
 terrorspiders-win = [color=crimson]Terror Spiders major victory![/color]
+terrorspiders-lose = [color=green]Terror Spiders lose![/color]
 terrorspiders-list-start = Terror Spiders were:
 terrorspiders-list-name-user = [color=White]{$name}[/color] ([color=gray]{$user}[/color])
 

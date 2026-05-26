@@ -8,7 +8,6 @@ namespace Content.Client._Starlight.VentCrawl;
 
 public sealed partial class VentCrawlSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _player = default!;
     [Dependency] private SubFloorHideSystem _subFloorHideSystem = default!;
     [Dependency] private IOverlayManager _overlayManager = default!;
@@ -26,19 +25,10 @@ public sealed partial class VentCrawlSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         var player = _player.LocalSession?.AttachedEntity;
 
-        if (!TryComp<VentCrawlerComponent>(player, out var playerVentCrawlerComponent))
-        {
-            _subFloorHideSystem.ShowVentPipe = false;
-            return;
-        }
+        var inTube = TryComp<VentCrawlerComponent>(player, out var ventCrawler) && ventCrawler.InTube;
 
-        var inTube = playerVentCrawlerComponent.InTube;
-        _subFloorHideSystem.ShowVentPipe = playerVentCrawlerComponent.InTube;
         if (_pipeOverlay != null && _overlayManager.HasOverlay<VentCrawPipeOverlay>() != inTube)
         {
             if (inTube)
@@ -46,5 +36,8 @@ public sealed partial class VentCrawlSystem : EntitySystem
             else
                 _overlayManager.RemoveOverlay(_pipeOverlay);
         }
+
+        if (_subFloorHideSystem.ShowVentPipe != inTube)
+            _subFloorHideSystem.ShowVentPipe = inTube;
     }
 }
