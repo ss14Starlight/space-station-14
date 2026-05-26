@@ -194,7 +194,7 @@
   - type: IPCBrainHolder
   - type: ContainerFill
     containers:
-      borg_brain: [ PositronicBrain ]
+      borg_brain: [ PositronicBrainNoIon ]
   - type: GlitchOnIonStorm
     duration: 40
     ramp: 5
