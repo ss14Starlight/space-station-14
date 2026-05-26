@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 using System.Numerics;
+using Content.Shared._Starlight.Body.Editor;
 using Content.Shared._Starlight.Body.Prototypes;
 using Content.Shared._Starlight.Body.Systems;
 using Content.Shared.Starlight.Utility;
@@ -18,12 +19,7 @@ public sealed partial class BodyVisualizerComponent : Component
 {
     [DataField] public Vector2 Offset = Vector2.Zero;
 
-    /// <summary>
-    /// When true, <see cref="ApplyProfileAppearanceEvent"/> is raised on MapInit so that
-    /// bodies without a player profile receive randomised appearance.
-    /// Set to false via ComponentRegistry override at player spawn so the explicit profile
-    /// </summary>
-    [DataField] public bool GenerateAppearance = true;
+    [DataField] public BodyProfile? Appearance;
 
     [DataField] public Dictionary<VisualLayerKey, ExtendedSpriteSpecifier> LayerData = [];
 
