@@ -38,7 +38,6 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VentCrawlHolderComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<VentCrawlHolderComponent, MoveInputEvent>(OnMoveInput);
 
         SubscribeLocalEvent<BeingVentCrawlComponent, ExitVentActionEvent>(OnExitVentActionEvent);
@@ -55,10 +54,8 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             return;
         }
 
-        holder.IsMoving = args.State;
-
         var dir = args.Dir;
-        var player = holder.Container.ContainedEntities.FirstOrNull();
+        var player = GetOrEnsureContainer(uid).ContainedEntities.FirstOrNull();
         if (player != null && dir != Direction.Invalid && TryComp<InputMoverComponent>(player, out var mover))
         {
             var cameraAngle = mover.TargetRelativeRotation;
@@ -66,29 +63,26 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 dir = (dir.ToAngle() + cameraAngle).GetCardinalDir();
         }
 
-        holder.CurrentDirection = dir;
-        DirtyField(uid, holder, nameof(VentCrawlHolderComponent.CurrentDirection));
-    }
+        holder.IsMoving = args.HasDirectionalMovement;
 
-    /// <summary>
-    /// Handles the ComponentStartup event for <seealso cref="VentCrawlHolderComponent"/>.
-    /// </summary>
-    private void OnComponentStartup(EntityUid uid, VentCrawlHolderComponent holder, ComponentStartup args)
-        => holder.Container = _containerSystem.EnsureContainer<Container>(uid, nameof(VentCrawlHolderComponent));
+        if (dir != Direction.Invalid)
+            holder.CurrentDirection = dir;
+        else if (!holder.IsMoving)
+            holder.CurrentDirection = Direction.Invalid;
+
+        Dirty(uid, holder);
+    }
 
     /// <summary>
     /// Tries to insert an entity into the <seealso cref="VentCrawlHolderComponent"/> container.
     /// </summary>
     /// <returns>True if the insertion was successful, otherwise False.</returns>
-    public bool TryInsert(EntityUid uid, EntityUid toInsert, VentCrawlHolderComponent? holder = null)
+    public bool TryInsert(EntityUid uid, EntityUid toInsert)
     {
-        if (!Resolve(uid, ref holder))
+        if (!CanInsert(uid, toInsert))
             return false;
 
-        if (!CanInsert(uid, toInsert, holder))
-            return false;
-
-        if (!_containerSystem.Insert(toInsert, holder.Container))
+        if (!_containerSystem.Insert(toInsert, GetOrEnsureContainer(uid)))
             return false;
 
         if (TryComp<PhysicsComponent>(toInsert, out var physBody))
@@ -101,17 +95,11 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     /// Checks whether the specified entity can be inserted into the container of the <seealso cref="VentCrawlHolderComponent"/>.
     /// </summary>
     /// <returns>True if the entity can be inserted into the container; otherwise, False.</returns>
-    private bool CanInsert(EntityUid uid, EntityUid toInsert, VentCrawlHolderComponent? holder = null)
-    {
-        if (!Resolve(uid, ref holder))
-            return false;
+    private bool CanInsert(EntityUid uid, EntityUid toInsert)
+        => _containerSystem.CanInsert(toInsert, GetOrEnsureContainer(uid)) && (HasComp<ItemComponent>(toInsert) || HasComp<BodyComponent>(toInsert));
 
-        if (!_containerSystem.CanInsert(toInsert, holder.Container))
-            return false;
-
-        return HasComp<ItemComponent>(toInsert) ||
-            HasComp<BodyComponent>(toInsert);
-    }
+    private Container GetOrEnsureContainer(EntityUid uid)
+        => _containerSystem.EnsureContainer<Container>(uid, nameof(VentCrawlHolderComponent));
 
     /// <summary>
     /// Attempts to make the <seealso cref="VentCrawlHolderComponent"/> enter a <seealso cref="VentCrawlTubeComponent"/>.
@@ -119,33 +107,35 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
     /// <returns>True if the <seealso cref="VentCrawlHolderComponent"/> successfully enters the <seealso cref="VentCrawlTubeComponent"/>; otherwise, False.</returns>
     public bool EnterTube(EntityUid holderUid, EntityUid toUid, VentCrawlHolderComponent? holder = null, TransformComponent? holderTransform = null, VentCrawlTubeComponent? to = null, TransformComponent? toTransform = null)
     {
-        if (!_gameTiming.IsFirstTimePredicted)
+
+        if (!Exists(holderUid))
             return false;
 
         if (!Resolve(holderUid, ref holder, ref holderTransform))
             return false;
 
         if (holder.IsExitingVentCrawls)
-        {
-            Log.Error("Tried entering tube after exiting VentCrawls. This should never happen.");
             return false;
-        }
+
         if (!Resolve(toUid, ref to, ref toTransform))
         {
             Log.Error("Entity without TransformComponent tried entering tube! This should never happen.");
             return false;
         }
 
-        if (!_containerSystem.Insert(holderUid, to.Contents))
+        if (!_containerSystem.Insert(holderUid, _ventCrawlTubeSystem.GetOrEnsureContainer(toUid, to)))
         {
             Log.Error("Entity tried entering tube but container system can't insert it into tube! This should never happen.");
             return false;
         }
 
-        foreach (var ent in holder.Container.ContainedEntities)
+        var container = GetOrEnsureContainer(holderUid);
+
+        foreach (var ent in container.ContainedEntities)
         {
             var comp = EnsureComp<BeingVentCrawlComponent>(ent);
             comp.Holder = holderUid;
+            Dirty(ent, comp);
 
             if (HasComp<ParentCanBlockVisionComponent>(ent))
                 _blindable.UpdateIsBlind(ent, true);
@@ -159,7 +149,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         if (isValidExit && !holder.HasExitAction)
         {
-            foreach (var ent in holder.Container.ContainedEntities)
+            foreach (var ent in container.ContainedEntities)
             {
                 var action = _actionsSystem.AddAction(ent, holder.ActionProto);
                 if (action != null)
@@ -191,23 +181,19 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         {
             holder.PreviousTube = holder.CurrentTube;
             holder.PreviousDirection = holder.CurrentDirection;
-            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.PreviousTube));
-            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.PreviousDirection));
             holder.ManifoldLayer = null;
-            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
+            Dirty(holderUid, holder);
         }
 
         if (HasComp<VentCrawlManifoldComponent>(toUid))
         {
-            if (holder.PreviousTube != null && TryComp<AtmosPipeLayersComponent>(holder.PreviousTube, out var prevLayers))
-                holder.ManifoldLayer = TransformIntoManifoldLayer(prevLayers.CurrentPipeLayer);
-            else
-                holder.ManifoldLayer = 0;
+            holder.ManifoldLayer = holder.PreviousTube != null && TryComp<AtmosPipeLayersComponent>(holder.PreviousTube, out var prevLayers)
+                ? TransformIntoManifoldLayer(prevLayers.CurrentPipeLayer)
+                : 0;
 
             holder.PreviousManifoldLayer = null;
             holder.ManifoldTransitionProgress = 1f;
-            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
-            DirtyField(holderUid, holder, nameof(VentCrawlHolderComponent.ManifoldTransitionProgress));
+            Dirty(holderUid, holder);
 
             UpdateManifoldPosition(toUid, holderUid, holder);
         }
@@ -229,14 +215,14 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (!_gameTiming.IsFirstTimePredicted)
             return;
 
-        if (Terminating(uid) || !Resolve(uid, ref holder, ref holderTransform, false))
+        if (Terminating(uid) || Deleted(uid))
+            return;
+
+        if (!Resolve(uid, ref holder, ref holderTransform, false))
             return;
 
         if (holder.IsExitingVentCrawls)
-        {
-            Log.Error("Tried exiting VentCrawls twice. This should never happen.");
             return;
-        }
 
         holder.IsExitingVentCrawls = true;
 
@@ -249,12 +235,13 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             holder.HasExitAction = false;
         }
 
-        foreach (var entity in holder.Container.ContainedEntities.ToArray())
+        var container = GetOrEnsureContainer(uid);
+
+        foreach (var entity in container.ContainedEntities.ToArray())
         {
             RemComp<BeingVentCrawlComponent>(entity);
 
-            var meta = MetaData(entity);
-            _containerSystem.Remove(entity, holder.Container, reparent: false, force: true);
+            _containerSystem.Remove(entity, container, reparent: false, force: true);
 
             var xform = Transform(entity);
             if (xform.ParentUid != uid)
@@ -269,9 +256,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
             }
 
             if (TryComp<PhysicsComponent>(entity, out var physics))
-            {
                 _physicsSystem.WakeBody(entity, body: physics);
-            }
         }
 
         PredictedQueueDel(uid);
@@ -289,6 +274,9 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
                 continue;
 
             if (!_gameTiming.IsFirstTimePredicted)
+                continue;
+
+            if (holder.IsExitingVentCrawls)
                 continue;
 
             var currentTube = holder.CurrentTube.Value;
@@ -394,12 +382,13 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         if (holder.NextTube == null)
             return;
 
-        if (TryComp<VentCrawlTubeComponent>(currentTube, out var tubeComp) && tubeComp.Contents.ContainedEntities.Contains(uid))
-            _containerSystem.Remove(uid, tubeComp.Contents, reparent: false, force: true);
+        if (TryComp<VentCrawlTubeComponent>(currentTube, out var tubeComp) && _ventCrawlTubeSystem.GetOrEnsureContainer(currentTube, tubeComp) is { } tubeContainer && tubeContainer.ContainedEntities.Contains(uid))
+            _containerSystem.Remove(uid, tubeContainer, reparent: false, force: true);
 
         if (_gameTiming.CurTime > holder.LastCrawl + VentCrawlHolderComponent.CrawlDelay)
         {
             holder.LastCrawl = _gameTiming.CurTime;
+
             _audioSystem.PlayPvs(holder.CrawlSound, uid);
         }
 
@@ -438,8 +427,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var lerpedOffset = Vector2.Lerp(fromOffset, toOffset, t);
 
         var manifoldPos = Transform(manifoldUid).Coordinates;
-        _xformSystem.SetCoordinates(holderUid,
-            _xformSystem.WithEntityId(manifoldPos.Offset(lerpedOffset), manifoldUid));
+        _xformSystem.SetCoordinates(holderUid, _xformSystem.WithEntityId(manifoldPos.Offset(lerpedOffset), manifoldUid));
     }
 
     private Vector2 GetOffsetForManifoldLayer(EntityUid manifoldUid, int layerIndex)
@@ -448,10 +436,18 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var frontTube = _ventCrawlTubeSystem.GetManifoldExit(manifoldUid, layerIndex, Direction.North);
         var anchor = frontTube ?? backTube;
 
+        AtmosPipeLayer pipeLayer;
         if (anchor != null && TryComp<AtmosPipeLayersComponent>(anchor, out var layersComp))
-            return GetLayerOffset(layersComp.CurrentPipeLayer);
+            pipeLayer = layersComp.CurrentPipeLayer;
+        else
+            pipeLayer = (AtmosPipeLayer)layerIndex;
 
-        return GetLayerOffset((AtmosPipeLayer)layerIndex);
+        var baseOffset = GetLayerOffset(pipeLayer);
+        if (baseOffset == Vector2.Zero)
+            return Vector2.Zero;
+
+        var manifoldRotation = Transform(manifoldUid).LocalRotation;
+        return manifoldRotation.RotateVec(baseOffset);
     }
 
     private bool UpdateManifoldInput(
@@ -471,31 +467,31 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
 
         var dir = holder.CurrentDirection;
 
-        if (dir is Direction.West or Direction.East)
+        var manifoldRotation = Transform(manifoldUid).LocalRotation;
+        var localDir = (dir.ToAngle() - manifoldRotation).GetCardinalDir();
+
+        if (localDir is Direction.West or Direction.East)
         {
             if (_gameTiming.CurTime < holder.ManifoldLastLayerSelection + holder.ManifoldLayerSelectionCooldown)
                 return true;
 
             holder.ManifoldLastLayerSelection = _gameTiming.CurTime;
 
-            var delta = dir == Direction.East ? -1 : 1;
+            var delta = localDir == Direction.East ? -1 : 1;
             var newLayer = Math.Clamp(holder.ManifoldLayer.Value + delta, 0, manifold.LayerCount - 1);
 
             if (newLayer != holder.ManifoldLayer)
             {
                 holder.PreviousManifoldLayer = holder.ManifoldLayer;
-                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.PreviousManifoldLayer));
                 holder.ManifoldLayer = newLayer;
-                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldLayer));
                 holder.ManifoldTransitionProgress = 0f;
-                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.ManifoldTransitionProgress));
                 holder.NextTube = null;
-                DirtyField(uid, holder, nameof(VentCrawlHolderComponent.NextTube));
+                Dirty(uid, holder);
             }
             return true;
         }
 
-        if (dir is Direction.North or Direction.South)
+        if (localDir is Direction.North or Direction.South)
         {
             if (holder.ManifoldTransitionProgress < 1f)
                 return true;
@@ -536,8 +532,7 @@ public sealed partial class SharedVentCrawlableSystem : EntitySystem
         var offset = GetLayerOffset(currentPipeLayer);
         var manifoldPos = Transform(manifoldUid).Coordinates;
 
-        _xformSystem.SetCoordinates(holderUid,
-            _xformSystem.WithEntityId(manifoldPos.Offset(offset), manifoldUid));
+        _xformSystem.SetCoordinates(holderUid, _xformSystem.WithEntityId(manifoldPos.Offset(offset), manifoldUid));
     }
 
     public static int TransformIntoManifoldLayer(AtmosPipeLayer layer) => layer switch

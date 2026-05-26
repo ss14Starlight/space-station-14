@@ -1,158 +1,4 @@
 Entries:
-- author: Citrea
-  changes:
-  - message: Humans may now have cosmetic gene splicing done to add bunny ears to themselves as a marking.
-    type: Add
-  id: 405000
-  time: '2026-05-15T06:58:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4432
-- author: Citrea
-  changes:
-  - message: Cat Ears for humans are no longer a special marking, you will find them in the HeadTop category instead.
-    type: Tweak
-  id: 405001
-  time: '2026-05-15T06:58:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4432
-- author: Caws
-  changes:
-  - message: (Fland, Kiloton, Lagan, Manor, Ming, Orwell, Sepultum, Space Mall, Starboard) Salvage teams has been standardized to 1 lead + 4 salvage specialists.
-    type: Tweak
-  id: 405002
-  time: '2026-05-15T06:58:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4437
-- author: Caws
-  changes:
-  - message: (Fland, Kiloton, Lagan, Manor, Ming, Orwell, Sepultum, Space Mall, Starboard) Mining teams has been standardized to 4 mining specialists.
-    type: Tweak
-  id: 405003
-  time: '2026-05-15T06:58:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4437
-- author: Caws
-  changes:
-  - message: (Other Maps) Salvage teams have been standardized to 1 lead + 3 salvage specialists.
-    type: Tweak
-  id: 405004
-  time: '2026-05-15T06:58:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4437
-- author: Caws
-  changes:
-  - message: (Other Maps) Salvage teams have been standardized to 3 mining specialists.
-    type: Tweak
-  id: 405005
-  time: '2026-05-15T06:58:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4437
-- author: CrazyPhantom
-  changes:
-  - message: Defibs will no longer randomly stop healing Asphyx Damage.
-    type: Fix
-  id: 405006
-  time: '2026-05-15T09:38:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4450
-- author: Caws
-  changes:
-  - message: 'New station beacons have been added for mapping: NTR, BSO, Nuclear Reactor, and Xenobiology.'
-    type: Add
-  id: 405007
-  time: '2026-05-15T11:20:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4446
-- author: Sparlight
-  changes:
-  - message: Most antagonist gamerules now allow non-humanoids to be selected.
-    type: Tweak
-  id: 405008
-  time: '2026-05-15T12:03:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4419
-- author: CrazyPhantom
-  changes:
-  - message: Escape pods will no longer be stranded in space.
-    type: Fix
-  id: 405009
-  time: '2026-05-15T12:03:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4411
-- author: Unknown
-  changes:
-  - message: Added 49 new clothing items between cloaks, jumpsuits and coats.
-    type: Add
-  id: 405010
-  time: '2026-05-15T12:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4436
-- author: Unknown
-  changes:
-  - message: fixed ntr wig not showing up in the loadout preview and being equipped as outer clothing at round start.
-    type: Fix
-  id: 405011
-  time: '2026-05-15T12:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4436
-- author: Caws
-  changes:
-  - message: The Central Administrative Division has rolled out a new program to ensure all stations are spelling "NanoTrasen" correctly. Please report any further misspelling (e.g. "Nanotrasen") to your local CAD officer at your earliest convenience.
-    type: Fix
-  id: 405012
-  time: '2026-05-15T12:04:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4431
-- author: Scarlet Lightweaver, Teapotterror, Conflee.
-  changes:
-  - message: Added the NTSF headsman axe, revs wheep.
-    type: Add
-  id: 405013
-  time: '2026-05-15T12:04:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4424
-- author: Swonki
-  changes:
-  - message: Borgi Sprite.
-    type: Add
-  id: 405014
-  time: '2026-05-15T12:37:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4433
-- author: kirb
-  changes:
-  - message: restores some previously removed animal themed trinkets.
-    type: Add
-  id: 405015
-  time: '2026-05-15T12:55:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4415
-- author: Swonki
-  changes:
-  - message: Corgi Firesuit+Helmet.
-    type: Add
-  id: 405016
-  time: '2026-05-15T15:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4453
-- author: Swonki
-  changes:
-  - message: Corgi Head of Security Hardsuit.
-    type: Add
-  id: 405017
-  time: '2026-05-15T15:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4453
-- author: Swonki
-  changes:
-  - message: Corgi Warden Hardsuit.
-    type: Add
-  id: 405018
-  time: '2026-05-15T15:52:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4453
-- author: Rinary
-  changes:
-  - message: Infection anomalies can actually be removed.
-    type: Fix
-  id: 405019
-  time: '2026-05-15T15:52:50.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4452
-- author: Rhetorica
-  changes:
-  - message: Peepoids.
-    type: Add
-  id: 405020
-  time: '2026-05-15T18:25:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4455
-- author: Rhetorica
-  changes:
-  - message: Slurpoids.
-    type: Add
-  id: 405021
-  time: '2026-05-15T18:25:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4455
 - author: Rhetorica
   changes:
   - message: SLIME TIME and SLIME CRIME graffiti.
@@ -2799,4 +2645,158 @@ Entries:
   id: 405399
   time: '2026-05-24T16:06:56.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4516
+- author: Conflee
+  changes:
+  - message: Edited the shading of the Tallborgs to be lower contrast, have a most consistent outline, and reduce redundant hues in shading. Overall their new look matches more closely with other Cyborg chassis options.
+    type: Tweak
+  id: 405400
+  time: '2026-05-25T14:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4547
+- author: Conflee
+  changes:
+  - message: Fixed Tallborg's legs clipping severely through walls below them. Pressed as close to the wall as possible, now only their feet clip, about 4 pixels vs the prior 12ish pixels.
+    type: Fix
+  id: 405401
+  time: '2026-05-25T14:04:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4547
+- author: wonderfulnewworld
+  changes:
+  - message: Added a NanoTrasen Career Trainer locker.
+    type: Add
+  id: 405402
+  time: '2026-05-25T14:04:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4540
+- author: wonderfulnewworld
+  changes:
+  - message: The NanoTrasen Representative and Blueshield Officer's lockers now match the Magistrate/Internal Affairs Agents' lockers.
+    type: Tweak
+  id: 405403
+  time: '2026-05-25T14:04:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4540
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaks some shading on the Magistrate's locker. (4 pixels).
+    type: Tweak
+  id: 405404
+  time: '2026-05-25T14:04:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4540
+- author: wonderfulneworld
+  changes:
+  - message: Restores Wizden's original judge robes.
+    type: Add
+  id: 405405
+  time: '2026-05-25T14:04:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4537
+- author: wonderfulneworld
+  changes:
+  - message: Magistrate Jacket and NT Rep Jacket now properly have cold resist, and now actually share the exact same stats with each other.
+    type: Tweak
+  id: 405406
+  time: '2026-05-25T14:04:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4537
+- author: wonderfulneworld
+  changes:
+  - message: Moves our current judge robes to magistrate robes, available to the Magistrate only. They have the same stats as the prior two items, and are NanoTrasen contraband.
+    type: Tweak
+  id: 405407
+  time: '2026-05-25T14:04:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4537
+- author: wonderfulneworld
+  changes:
+  - message: Fixes some grammar with BSO's overcoat.
+    type: Fix
+  id: 405408
+  time: '2026-05-25T14:04:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4537
+- author: wonderfulneworld
+  changes:
+  - message: Fixes some capitalization inconsistency.
+    type: Fix
+  id: 405409
+  time: '2026-05-25T14:04:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4537
+- author: NcDuve
+  changes:
+  - message: Turnstiles now take Structural Damage.
+    type: Tweak
+  id: 405410
+  time: '2026-05-25T14:04:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4544
+- author: DevCS-CP
+  changes:
+  - message: Added Disabler textures to energy shotgun.
+    type: Add
+  id: 405411
+  time: '2026-05-25T14:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4543
+- author: DevCS-CP
+  changes:
+  - message: Added generic inhand, wield, and clothing textures.
+    type: Add
+  id: 405412
+  time: '2026-05-25T14:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4543
+- author: DevCS-CP
+  changes:
+  - message: Added Disabler and Lethal textures to inhand and wield (Not implemented in prototype).
+    type: Add
+  id: 405413
+  time: '2026-05-25T14:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4543
+- author: DevCS-CP
+  changes:
+  - message: Added Empty Texture to energy shotgun.
+    type: Add
+  id: 405414
+  time: '2026-05-25T14:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4543
+- author: StrangerOfParadiseOG
+  changes:
+  - message: Added pistol whipping to MOST firearms.
+    type: Add
+  id: 405415
+  time: '2026-05-25T14:36:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4527
+- author: Conflee
+  changes:
+  - message: Changed Cluwne Cure Chance on the Bible from 3% to 70%. With slightly bad RNG, you would have to hit someone 100+ times, leading most people to assume it was bugged. Zero gameplay or balance benefit from making someone get hit that many times to cure, it sucked.
+    type: Tweak
+  id: 405416
+  time: '2026-05-25T15:32:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4524
+- author: FeralCreature
+  changes:
+  - message: Implants (and other organs) are no longer capable of instantly gibbing you when implanted.
+    type: Fix
+  id: 405417
+  time: '2026-05-25T18:57:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4553
+- author: Rinary
+  changes:
+  - message: Fixed prediction bug that calls server state reload when entering vents with vent crawl.
+    type: Fix
+  id: 405418
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Rinary
+  changes:
+  - message: Fixed blinking blind overlay when entering vents with vent crawl.
+    type: Fix
+  id: 405419
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Rinary
+  changes:
+  - message: Fixed manifolds interaction when they're rotated.
+    type: Fix
+  id: 405420
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
+- author: Rinary
+  changes:
+  - message: Fixed vent crawl overlay, now it shows all tubes as intended.
+    type: Fix
+  id: 405421
+  time: '2026-05-25T18:57:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4551
 Order: -1
