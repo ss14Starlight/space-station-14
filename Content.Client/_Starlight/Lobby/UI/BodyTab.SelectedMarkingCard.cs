@@ -3,8 +3,8 @@
 
 using System.Linq;
 using Content.Shared.Humanoid.Markings;
-using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using System.Numerics;
 
 namespace Content.Client._Starlight.Lobby.UI;
@@ -13,22 +13,29 @@ public sealed partial class BodyTab
 {
     private Control CreateMarkingCard(MarkingPrototype prototype, bool isSelected, Action onPressed)
     {
-        var button = new Button
+        var card = new AvailableMarkingCard(isSelected, onPressed)
         {
             HorizontalExpand = true,
-            Text = GetMarkingName(prototype),
+            VerticalExpand = true,
             ToolTip = GetMarkingName(prototype),
         };
-        button.OnPressed += _ => onPressed();
 
-        var container = new BoxContainer
+        var preview = BuildBodyMarkingPreview(prototype, AvailableMarkingsGrid.ItemSize);
+        preview.HorizontalAlignment = HAlignment.Center;
+        preview.VerticalAlignment = VAlignment.Center;
+        preview.MouseFilter = MouseFilterMode.Ignore;
+
+        var container = new LayoutContainer
         {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
             HorizontalExpand = true,
+            VerticalExpand = true,
+            MinSize = AvailableMarkingsGrid.ItemSize,
         };
-        container.AddChild(BuildMarkingSpritesPreview(prototype, prototype.AsMarking().MarkingColors.ToList(), AvailableMarkingsGrid.ItemSize));
-        container.AddChild(button);
-        return container;
+        LayoutContainer.SetAnchorPreset(preview, LayoutContainer.LayoutPreset.Wide);
+        container.AddChild(preview);
+
+        card.AddChild(container);
+        return card;
     }
 
     private Control CreateSelectedMarkingCard(MarkingPrototype prototype, List<Color> colors, string markingId)
