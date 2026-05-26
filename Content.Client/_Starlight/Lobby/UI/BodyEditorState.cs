@@ -2,12 +2,15 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared._Starlight.Body.Editor;
+using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Graphics.RSI;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Lobby.UI;
 
 public sealed record BodyEditorState
 {
+    public ProtoId<BodyPrefabPrototype> BodyPrefab { get; init; } = "SLHumanBodyPrefab";
     public BodyEditorCharacterState Character { get; init; } = new();
     public BodyProfile BodyProfile { get; init; } = new();
     public BodyPartAddress? SelectedPartPath { get; init; }
