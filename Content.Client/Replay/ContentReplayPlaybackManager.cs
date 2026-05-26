@@ -116,7 +116,9 @@ public sealed class ContentReplayPlaybackManager
         if (DefaultState != null)
         {
             cancelAction = () =>
+            {
                 _stateMan.RequestStateChange(DefaultState);
+            };
         }
 
         // Switch to a new game state to present the error and cancel/retry options.
@@ -185,6 +187,7 @@ public sealed class ContentReplayPlaybackManager
             case PopupEvent:
             case PickupAnimationEvent:
             case MeleeLungeEvent:
+            case SharedGunSystem.HitscanEvent:
             case ImpactEffectEvent:
             case MuzzleFlashEvent:
             case ColorFlashEffectEvent:
@@ -198,8 +201,10 @@ public sealed class ContentReplayPlaybackManager
         return false;
     }
 
-    private void OnReplayPlaybackStarted(MappingDataNode metadata, List<object> objects) =>
+    private void OnReplayPlaybackStarted(MappingDataNode metadata, List<object> objects)
+    {
         _conGrp.Implementation = new ReplayConGroup();
+    }
 
     private void OnReplayPlaybackStopped()
     {
