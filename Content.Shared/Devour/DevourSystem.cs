@@ -107,7 +107,6 @@ public sealed class DevourSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-
         #region "starlight
         if (args.Target is not { } target)
             return;
