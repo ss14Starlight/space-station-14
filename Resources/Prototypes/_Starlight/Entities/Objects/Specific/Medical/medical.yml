@@ -659,3 +659,22 @@
     tags:
     - Medkit
 
+- type: entity
+  name: Blueshield Medkit
+  description: A specialized medical kit provided to nanotrasen blueshield officers.
+  parent: MedkitCombat
+  id: bsomedkit
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    state: bsokit
+  - type: Storage
+    grid:
+    - 0,0,3,2
+  - type: Item
+    size: Normal
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    heldPrefix: bsokit
+  - type: Tag
+    tags:
+    - Medkit

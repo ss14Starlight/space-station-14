@@ -131,7 +131,7 @@
         - id: ClothingShoesBootsJack
         - id: TrackingImplanter
           amount: 3
-        - id: MedkitAdvancedFilled
+        - id: bsomedkitFilled
         - id: WeaponMultiphaseGun
         - id: ClothingEyesGlassesBlueShield
         - id: ClothingEyesHudBlueShield

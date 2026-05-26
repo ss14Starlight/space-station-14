@@ -1157,4 +1157,34 @@
         - id: PillPsicodine
           amount: 5
 
+- type: entity
+  suffix: dexalin
+  parent: PrefilledSyringe
+  id: SyringeDexalin
+  components:
+  - type: Label
+    currentLabel: reagent-name-dexalin
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+          - ReagentId: Dexalin
+            Quantity: 15
+
+- type: entity
+  suffix: amoxla
+  parent: PrefilledSyringe
+  id: SyringeAmoxla
+  components:
+  - type: Label
+    currentLabel: reagent-name-amoxla
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+          - ReagentId: Amoxla
+            Quantity: 15
+
 ### SL end

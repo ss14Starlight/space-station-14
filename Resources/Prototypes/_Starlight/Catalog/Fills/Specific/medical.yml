@@ -143,3 +143,23 @@
           amount: 2
         - id: Welder
         - id: ClothingHeadHatWelding
+
+- type: entity
+  id: bsomedkitFilled
+  suffix: Filled
+  parent: bsomedkit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: MedicatedSuture
+        - id: RegenerativeMesh
+        - id: SyringeEphedrine
+        - id: SyringeSaline
+        - id: SyringeDexaline
+        - id: SyringeAmoxla
+        - id: BruteAutoInjector
+        - id: BurnAutoInjector
+        - id: AntiPoisonMedipen
+        - id: RadAutoInjector

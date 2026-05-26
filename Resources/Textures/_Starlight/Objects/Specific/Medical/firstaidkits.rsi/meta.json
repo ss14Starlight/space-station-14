@@ -6,11 +6,11 @@
 		"x": 32,
 		"y": 32
 	},
-	"states": [
-		{
-			"name": "firstaid"
-		},
-		{
+  "states": [
+    {
+      "name": "firstaid"
+    },
+    {
       "name": "firstaid-inhand-right",
       "directions": 4
     },
@@ -18,10 +18,10 @@
       "name": "firstaid-inhand-left",
       "directions": 4
     },
-		{
-			"name": "brutekit"
-		},
-		{
+    {
+      "name": "brutekit"
+    },
+    {
       "name": "brutekit-inhand-right",
       "directions": 4
     },
@@ -29,10 +29,10 @@
       "name": "brutekit-inhand-left",
       "directions": 4
     },
-		{
-			"name": "burnkit"
-		},
-		{
+    {
+      "name": "burnkit"
+    },
+    {
       "name": "burnkit-inhand-right",
       "directions": 4
     },
@@ -40,10 +40,10 @@
       "name": "burnkit-inhand-left",
       "directions": 4
     },
-		{
-			"name": "o2kit"
-		},
-		{
+    {
+      "name": "o2kit"
+    },
+    {
       "name": "o2kit-inhand-right",
       "directions": 4
     },
@@ -51,10 +51,10 @@
       "name": "o2kit-inhand-left",
       "directions": 4
     },
-		{
-			"name": "radkit"
-		},
-		{
+    {
+      "name": "radkit"
+    },
+    {
       "name": "radkit-inhand-right",
       "directions": 4
     },
@@ -62,10 +62,10 @@
       "name": "radkit-inhand-left",
       "directions": 4
     },
-		{
-			"name": "toxinkit"
-		},
-		{
+    {
+      "name": "toxinkit"
+    },
+    {
       "name": "toxinkit-inhand-right",
       "directions": 4
     },
@@ -74,9 +74,9 @@
       "directions": 4
     },
     {
-			"name": "blackkit"
-		},
-		{
+      "name": "blackkit"
+    },
+    {
       "name": "blackkit-inhand-right",
       "directions": 4
     },
@@ -85,9 +85,9 @@
       "directions": 4
     },
     {
-			"name": "advkit"
-		},
-		{
+      "name": "advkit"
+    },
+    {
       "name": "advkit-inhand-right",
       "directions": 4
     },
@@ -106,16 +106,27 @@
       "name": "BrigKube-inhand-left",
       "directions": 4
     },
-		{
-			"name": "robotic"
-		},
-		{
+    {
+      "name": "robotic"
+    },
+    {
       "name": "robotic-inhand-right",
       "directions": 4
     },
     {
       "name": "robotic-inhand-left",
       "directions": 4
+    },
+    {
+      "name": "bsokit"
+    },
+    {
+      "name": "bsokit-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bsokit-inhand-left",
+      "directions": 4
     }
-	]
+  ]
 }
