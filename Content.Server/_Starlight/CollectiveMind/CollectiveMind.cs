@@ -30,7 +30,7 @@ public sealed partial class CollectiveMind : SharedCollectiveMindSystem
             {
                 if (ent.Comp.CorruptWhenUnconscious)
                     args.Message = Corrupt(args.Message, ref ent.Comp);
-                if (ent.Comp.BlockWhenUnconscious)
+                if (ent.Comp.BlockWhenUnconscious || args.CollectiveMind.BlockWhenUnconscious)
                     args.Cancel();
             }
         }

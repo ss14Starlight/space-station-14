@@ -46,4 +46,10 @@ public sealed partial class CollectiveMindPrototype : IPrototype
 
     [DataField]
     public List<ProtoId<TagPrototype>> CanSpeakTags { get; set; } = new();
+
+    /// <summary>
+    /// Blocks speaking on this collective mind while crit or sleeping.
+    /// </summary>
+    [DataField]
+    public bool BlockWhenUnconscious = false;
 }

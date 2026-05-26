@@ -532,7 +532,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
 
         //raise the message event for modifications
-        var evMsg = new CollectiveMindMessageAttemptEvent(source, message);
+        var evMsg = new CollectiveMindMessageAttemptEvent(source, message, collectiveMind);
         RaiseLocalEvent(source, evMsg, false);
         if (evMsg.Cancelled)
             return;

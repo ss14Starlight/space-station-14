@@ -69,6 +69,7 @@
   name: collective-mind-nexus
   keycode: 'n'
   color: "#FF7922"
+  blockWhenUnconscious: true
   requiredTags:
   - Nexus
 
