@@ -19,6 +19,7 @@ public sealed partial class BodyPreviewControl : BoxContainer
 
     private readonly LayoutContainer _preview = new();
     private readonly IClickMapManager _clickMap;
+    private readonly IComponentFactory _componentFactory;
     private readonly VisualLayerSystem _visualLayers;
     private readonly List<(BodyPartPreviewControl Control, PreviewLayer Layer)> _layerControls = new();
 
@@ -40,6 +41,7 @@ public sealed partial class BodyPreviewControl : BoxContainer
         VerticalAlignment = VAlignment.Center;
 
         _clickMap = IoCManager.Resolve<IClickMapManager>();
+        _componentFactory = IoCManager.Resolve<IComponentFactory>();
         _visualLayers = IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<VisualLayerSystem>();
 
         AddChild(_preview);
