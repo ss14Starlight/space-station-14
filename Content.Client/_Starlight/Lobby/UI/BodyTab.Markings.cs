@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 using System.Linq;
+using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Shared._Starlight.Body.Prototypes;
 using Content.Shared.Humanoid.Markings;
@@ -26,7 +27,7 @@ public sealed partial class BodyTab
         }
 
         var available = ResolveAvailableMarkings(_store.State.SelectedPart);
-        PopulateSelectedMarkings(SelectedMarkingsList, GetAllowedCategories(available));
+        PopulateSelectedMarkings(GetAllowedCategories(available));
         PopulateAvailableMarkings(available);
     }
 
@@ -142,7 +143,7 @@ public sealed partial class BodyTab
     private static HashSet<MarkingCategories> GetAllowedCategories(List<MarkingPrototype> markings)
         => markings.Select(marking => marking.MarkingCategory).ToHashSet();
 
-    private void PopulateSelectedMarkings(BoxContainer selectedMarkingsList, HashSet<MarkingCategories> categories)
+    private void PopulateSelectedMarkings(HashSet<MarkingCategories> categories)
     {
         if (!_store.State.Character.HasProfile || _store.State.SelectedPart == null || _markingManager == null)
             return;
@@ -151,13 +152,26 @@ public sealed partial class BodyTab
         if (pref == null)
             return;
 
+        var itemSize = GetSelectedMarkingCardSize();
+
         foreach (var marking in pref.Markings)
         {
             if (!_markingManager.TryGetMarking(marking, out var prototype) || !categories.Contains(prototype.MarkingCategory))
                 continue;
 
-            selectedMarkingsList.AddChild(CreateSelectedMarkingCard(prototype, marking.MarkingColors.ToList(), marking.MarkingId));
+            SelectedMarkingsList.AddChild(CreateSelectedMarkingCard(prototype, marking.MarkingColors.ToList(), marking.MarkingId, itemSize));
         }
+    }
+
+    private Vector2 GetSelectedMarkingCardSize()
+    {
+        var width = SelectedMarkingsList.Width - 12f;
+        if (width <= 0)
+            width = SelectedMarkingsList.MinWidth;
+        if (width <= 0)
+            width = AvailableMarkingsGrid.ItemSize.X;
+
+        return new Vector2(width, width);
     }
 
     private void PopulateAvailableMarkings(List<MarkingPrototype> markings)

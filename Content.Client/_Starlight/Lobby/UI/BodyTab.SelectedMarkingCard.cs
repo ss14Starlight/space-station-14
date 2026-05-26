@@ -38,42 +38,32 @@ public sealed partial class BodyTab
         return card;
     }
 
-    private Control CreateSelectedMarkingCard(MarkingPrototype prototype, List<Color> colors, string markingId)
+    private Control CreateSelectedMarkingCard(MarkingPrototype prototype, List<Color> colors, string markingId, Vector2 itemSize)
     {
-        var card = new SelectedMarkingCard(markingId, this, () => BuildSelectedPreviewControl(prototype, colors));
-        var container = new BoxContainer
+        var card = new SelectedMarkingCard(markingId, this, () => BuildSelectedPreviewControl(prototype, colors))
         {
-            Orientation = BoxContainer.LayoutOrientation.Horizontal,
-            HorizontalExpand = true,
+            MinSize = itemSize,
+            SetSize = itemSize,
         };
 
         var previewHost = new LayoutContainer
         {
-            MinSize = new Vector2(48, 48),
+            MinSize = itemSize,
+            SetSize = itemSize,
         };
+
         var preview = BuildSelectedPreviewControl(prototype, colors);
         LayoutContainer.SetAnchorPreset(preview, LayoutContainer.LayoutPreset.Wide);
         previewHost.AddChild(preview);
         card.SetPreviewHost(previewHost, preview);
 
-        var label = new Label
-        {
-            Text = GetMarkingName(prototype),
-            VerticalAlignment = VAlignment.Center,
-            HorizontalExpand = true,
-        };
+        var remove = new RemoveMarkingButton(() => RemoveMarking(markingId));
+        LayoutContainer.SetAnchorPreset(remove, LayoutContainer.LayoutPreset.TopRight);
+        LayoutContainer.SetMarginRight(remove, -3);
+        LayoutContainer.SetMarginTop(remove, 3);
 
-        var remove = new Button
-        {
-            Text = "X",
-            VerticalAlignment = VAlignment.Center,
-        };
-        remove.OnPressed += _ => RemoveMarking(markingId);
-
-        container.AddChild(previewHost);
-        container.AddChild(label);
-        container.AddChild(remove);
-        card.AddChild(container);
+        previewHost.AddChild(remove);
+        card.AddChild(previewHost);
         _selectedCards[markingId] = card;
         return card;
     }
