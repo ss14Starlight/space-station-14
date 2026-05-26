@@ -26,7 +26,7 @@ public sealed class DevourSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly DamageableSystem _damageSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageSystem = default!; //Starlight
 
     public override void Initialize()
     {
