@@ -447,6 +447,8 @@
     thresholds:
       0: Alive
       360: Dead
+  - type: Spider
+    webPrototype: SpiderWebStrongThick
   - type: PassiveDamage
     allowedStates:
     - Alive
@@ -571,8 +573,6 @@
     damage:
       types:
         Piercing: 25
-  - type: Spider
-    webPrototype: SpiderWebStrongOpaque
   - type: PassiveDamage
     allowedStates:
     - Alive
