@@ -1158,7 +1158,7 @@
           amount: 5
 
 - type: entity
-  suffix: dexalin
+  suffix: Dexalin
   parent: PrefilledSyringe
   id: SyringeDexalin
   components:
@@ -1173,7 +1173,7 @@
             Quantity: 15
 
 - type: entity
-  suffix: amoxla
+  suffix: Amoxla
   parent: PrefilledSyringe
   id: SyringeAmoxla
   components:
