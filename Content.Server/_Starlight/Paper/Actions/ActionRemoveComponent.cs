@@ -1,6 +1,5 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
-using Robust.Shared.Utility;
 
 namespace Content.Server._Starlight.Paper.Actions;
 

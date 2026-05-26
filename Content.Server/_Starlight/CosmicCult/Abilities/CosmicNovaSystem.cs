@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Server.Bible.Components;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
-using Content.Shared.Damage;
 using Content.Shared.Effects;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stunnable;
@@ -33,7 +32,7 @@ public sealed class CosmicNovaSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
-    private static readonly EntProtoId Projectile = "ProjectileCosmicNova";
+    private static readonly EntProtoId _projectile = "ProjectileCosmicNova";
 
     public override void Initialize()
     {
@@ -64,7 +63,7 @@ public sealed class CosmicNovaSystem : EntitySystem
             delta = new(.01f, 0);
 
         args.Handled = true;
-        var ent = Spawn(Projectile, startPos);
+        var ent = Spawn(_projectile, startPos);
         _gun.ShootProjectile(ent, delta, userVelocity, args.Performer, args.Performer, 5f);
         _audio.PlayPvs(uid.Comp.NovaCastSFX, uid, AudioParams.Default.WithVariation(0.1f));
         _cult.MalignEcho(uid);

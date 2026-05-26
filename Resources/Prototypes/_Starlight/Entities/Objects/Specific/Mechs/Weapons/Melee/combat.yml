@@ -18,8 +18,3 @@
       types:
         Structural: 35
         Slash: 15
-  # region starlight
-  - type: Tag
-    tags:
-    - PaddyMech
-  # end region

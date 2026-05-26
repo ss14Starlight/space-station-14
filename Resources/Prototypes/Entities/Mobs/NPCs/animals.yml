@@ -365,7 +365,6 @@
   parent: FoodEgg
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -374,8 +373,9 @@
     intervalSeconds: 20
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
-  - type: TimedDespawn #delete the egg after the chicken spawns
-    lifetime: 21
+    despawnWhenDone: true # Starlight-edit
+#  - type: TimedDespawn Starlight-edit #delete the egg after the chicken spawns
+#    lifetime: 21
 
 - type: entity
   name: cockroach
@@ -832,7 +832,6 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -841,8 +840,9 @@
       intervalSeconds: 20
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 1
-    - type: TimedDespawn #delete the egg after the chicken spawns
-      lifetime: 21
+      despawnWhenDone: true # Starlight-edit: delete the egg after the duck spawns
+    #- type: TimedDespawn Starlight-edit
+    #  lifetime: 21
 
 - type: entity
   name: butterfly
@@ -4163,6 +4163,9 @@
   # Starlight - start
   - type: Body
     prototype: SmartCorgi
+  - type: RandomMetadata
+    nameSegments:
+    - NamesCorgi
   # Starlight - end
   - type: RotationVisuals
     defaultRotation: 90

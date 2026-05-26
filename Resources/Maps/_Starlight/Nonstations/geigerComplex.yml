@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/21/2026 21:39:14
-  entityCount: 8855
+  time: 05/22/2026 05:57:21
+  entityCount: 8857
 maps:
 - 1
 grids:
@@ -26798,6 +26798,18 @@ entities:
     components:
     - type: Transform
       pos: -38.595737,3.6182013
+      parent: 2
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 8856
+    components:
+    - type: Transform
+      pos: -1.4902666,45.360744
+      parent: 2
+  - uid: 8857
+    components:
+    - type: Transform
+      pos: -30.524963,1.0117636
       parent: 2
 - proto: MedkitToxinFilled
   entities:

@@ -1,9 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
-using Robust.Server.GameObjects;
 using Content.Shared.Examine;
-using Robust.Server.Containers;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
@@ -34,34 +32,37 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Map.Components;
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.Medical.Body.Events;
+using Robust.Shared.Containers;
+using Content.Server.Examine;
+using Robust.Server.GameObjects;
 
 namespace Content.Server._Starlight.Shadekin;
 
 public sealed partial class ShadekinSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly NullSpacePhaseSystem _nullspace = default!;
-    [Dependency] private readonly StunSystem _stunSystem = default!;
-    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private MovementSpeedModifierSystem _speed = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedBodySystem _bodySystem = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private NullSpacePhaseSystem _nullspace = default!;
+    [Dependency] private StunSystem _stunSystem = default!;
+    [Dependency] private DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private SharedEnsnareableSystem _ensnareable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ExamineSystem _examine = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
     private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
@@ -105,10 +106,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     private void CoreOrganInit(EntityUid uid, OrganShadekinCoreComponent component, OrganAddedToBodyEvent args)
-    {
-        if (component.OrganOwner is null)
-            component.OrganOwner = args.Body;
-    }
+        => component.OrganOwner ??= args.Body;
 
     private void OnExamined(EntityUid uid, OrganShadekinCoreComponent component, ref ExaminedEvent args)
     {
@@ -139,9 +137,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     public void UpdateAlert(EntityUid uid, ShadekinComponent component, short state)
-    {
-        _alerts.ShowAlert(uid, component.ShadekinAlert, state);
-    }
+        => _alerts.ShowAlert(uid, component.ShadekinAlert, state);
 
     private Angle GetAngle(EntityUid lightUid, SharedPointLightComponent lightComp, EntityUid targetUid)
     {
@@ -241,9 +237,9 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
             return;
 
-        if (shadekinState == ShadekinState.Annoying ||
-            shadekinState == ShadekinState.High ||
-            shadekinState == ShadekinState.Extreme)
+        if (shadekinState is ShadekinState.Annoying or
+            ShadekinState.High or
+            ShadekinState.Extreme)
         {
             passive.DamageCap = 1;
         }
@@ -281,7 +277,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void OnRefreshMovementSpeedModifiers(EntityUid uid, ShadekinComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.CurrentState == ShadekinState.High || component.CurrentState == ShadekinState.Extreme)
+        if (component.CurrentState is ShadekinState.High or ShadekinState.Extreme)
         {
             if (!TryComp<MovementSpeedModifierComponent>(uid, out var movement))
                 return;

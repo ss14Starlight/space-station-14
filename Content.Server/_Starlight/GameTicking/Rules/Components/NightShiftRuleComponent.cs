@@ -1,5 +1,4 @@
 using Content.Server.StationEvents.Events;
-using Content.Shared.Light.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules.Components;
 

@@ -3,9 +3,12 @@
 
 <GuideEntityEmbed Entity="ToyFigurineSecurity" Caption="Duty Officer"/>
 
-1 . Standard [color=#00a933]Code Green[/color] equipment is:
+- 1.\n
+Standard [color=#00a933]Code Green[/color] equipment is:
+
 <Box>
 	<GuideEntityEmbed Entity="Stunbaton"/>
+	<GuideEntityEmbed Entity="WeaponDisabler"/>
 </Box>
 <Box>
 	<GuideEntityEmbed Entity="HoloprojectorSecurity"/>
@@ -13,30 +16,33 @@
 	<GuideEntityEmbed Entity="RadioHandheldSecurity"/>
 </Box>
 <Box>
-	<GuideEntityEmbed Entity="ClothingHeadHelmetRiot"/>
-	<GuideEntityEmbed Entity="ClothingOuterArmorRiot"/>
-    <GuideEntityEmbed Entity="RiotShield"/>
-</Box>
-<Box>
     <GuideEntityEmbed Entity="GrenadeFlashBang"/>
-    or
 	<GuideEntityEmbed Entity="TearGasGrenade"/>
-    x4
 </Box>
 <Box>
     <GuideEntityEmbed Entity="Handcuffs"/>
-	x2
 	<GuideEntityEmbed Entity="Zipties"/>
-    x2
 </Box>
 
-2. The Duty Officer reports directly to the Warden. The Duty Officer is to assist in the processing of prisoners.
+- 2.\n
+The Duty Officer is allowed to use and wear riot equipment and weaponry on green alert if needed to quell unrest in the brig.
+- 3.\n
+The Duty Officer's duty is to assist the Warden with all of their duties and they report directly to them. In the absence of orders from the Warden their primary responsibilities are, in order of importance:\n\n
+3.1\n
+Assisting with subduing riots in the brig.\n\n
+3.2\n
+Assisting with securing the brig, and the department in general.\n\n
+3.3\n
+Assisting with the maintenance of the Criminal Records System.\n\n
+3.4\n
+Seeing to the well-being and health of prisoners and detainees.\n\n
+3.5\n
+Assisting officers in the field via utilisation of the Criminal Records System and the Crew Monitoring System from inside the Security Department.
+- 4.\n
+The Duty Officer is cleared to confine sentenced criminals in the brig for up to [bold]15 minutes[/bold].\n\n
+4.1\n
+For a sentence to be valid, it must be read aloud to the Warden or Head of Security. If done over radio, an audible confirmation must be received.\n\n
+4.2\n
+Duty Officers are particularly obligated to see to it that these sentences are properly filed.\n\n
 
-3. The Duty Officer is to directly communicate to the Warden at the start of the shift, and any time they are required to leave the department.
-
-4. The Duty Officer may not perform the duties of a Security Officer, unless the department is short on staff, or during emergencies.
-
-5. Prisoner treatment guidelines must be strictly followed and is your top priority.
-
-6. Non-lethal means should be used against prisoners whenever possible.
 </Document>

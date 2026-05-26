@@ -1,7 +1,7 @@
 - type: marking
   id: CatEars
-  bodyPart: Special
-  markingCategory: Special
+  bodyPart: HeadTop #Starlight Edit
+  markingCategory: HeadTop #Starlight Edit
   speciesRestriction: [Human]
   coloring:
     default:

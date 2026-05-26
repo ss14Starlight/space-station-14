@@ -8,7 +8,6 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Station.Components;
-using Robust.Shared.Player;
 
 namespace Content.Server.StationEvents.Events;
 

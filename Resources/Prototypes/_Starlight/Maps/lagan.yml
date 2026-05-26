@@ -25,6 +25,7 @@
             Janitor: [ 2, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
             ServiceWorker: [ 7, 7 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -53,11 +54,11 @@
             DutyOfficer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
-            CargoTechnician: [ 5, 7 ]
-            MiningSpecialist: [ 3, 3]
-            MailTech: [ 2, 2 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+            MiningSpecialist: [ 4, 4 ]
+            CargoTechnician: [ 5, 7 ]
+            MailTech: [ 2, 2 ]
             #civillian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

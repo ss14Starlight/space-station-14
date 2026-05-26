@@ -1,33 +1,43 @@
 using Content.Client.SubFloor;
 using Content.Shared.VentCrawl;
 using Robust.Client.Player;
+using Robust.Client.Graphics;
 using Robust.Shared.Timing;
 
-namespace Content.Client.VentCrawl;
+namespace Content.Client._Starlight.VentCrawl;
 
-public sealed class VentCrawlSystem : EntitySystem
+public sealed partial class VentCrawlSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly SubFloorHideSystem _subFloorHideSystem = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private SubFloorHideSystem _subFloorHideSystem = default!;
+    [Dependency] private IOverlayManager _overlayManager = default!;
+
+    private VentCrawPipeOverlay? _pipeOverlay;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _pipeOverlay = new VentCrawPipeOverlay();
+    }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        if (!_timing.IsFirstTimePredicted)
-            return;
+        var player = _player.LocalSession?.AttachedEntity;
 
-        var player = _player.LocalPlayer?.ControlledEntity;
+        var inTube = TryComp<VentCrawlerComponent>(player, out var ventCrawler) && ventCrawler.InTube;
 
-        var ventCraslerQuery = GetEntityQuery<VentCrawlerComponent>();
-
-        if (!ventCraslerQuery.TryGetComponent(player, out var playerVentCrawlerComponent))
+        if (_pipeOverlay != null && _overlayManager.HasOverlay<VentCrawPipeOverlay>() != inTube)
         {
-            _subFloorHideSystem.ShowVentPipe = false;
-            return;
+            if (inTube)
+                _overlayManager.AddOverlay(_pipeOverlay);
+            else
+                _overlayManager.RemoveOverlay(_pipeOverlay);
         }
 
-        _subFloorHideSystem.ShowVentPipe = playerVentCrawlerComponent.InTube;
+        if (_subFloorHideSystem.ShowVentPipe != inTube)
+            _subFloorHideSystem.ShowVentPipe = inTube;
     }
 }
