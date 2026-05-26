@@ -42,6 +42,7 @@
         - SmallMobMask
         layer:
         - SmallMobLayer
+        - SpiderlingImpassable
   - type: DamageStateVisuals
     states:
       Alive:
