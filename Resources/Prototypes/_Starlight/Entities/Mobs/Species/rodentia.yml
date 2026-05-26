@@ -172,3 +172,22 @@
     offsetFront: -0.16, -0.12
     offsetBack: -0.16, 0.05
   - type: Rummager
+  - type: DamageVisuals
+    thresholds: [ 10, 30, 50, 70]
+    targetLayers:
+      - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Head"
+      - "enum.HumanoidVisualLayers.LArm"
+      - "enum.HumanoidVisualLayers.LLeg"
+      - "enum.HumanoidVisualLayers.RArm"
+      - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: _Starlight/Mobs/Effects/Rodentia/brute_damage.rsi
+        color: "#CC0000"
+      Burn:
+        sprite: _Starlight/Mobs/Effects/Rodentia/burn_damage.rsi
+  - type: FireVisuals
+    sprite: _Starlight/Mobs/Effects/onfire.rsi
+    normalState: Resomi_minor_burning # Yes this is intentional, it works fine for rodentia.
+    alternateState: Rodentia_burning
