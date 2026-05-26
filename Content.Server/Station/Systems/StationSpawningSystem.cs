@@ -13,13 +13,11 @@ using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.PDA;
-using Content.Shared._Starlight.Humanoid.Events;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
 using JetBrains.Annotations;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -33,6 +31,7 @@ using Content.Shared.Body.Part;
 using Prometheus;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Body.Components;
 using Content.Shared._Starlight.Body.Systems;
 // Starlight End
 
@@ -66,6 +65,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly GameTicker _gameTicker = default!;
     private static readonly ProtoId<SpeciesPrototype> FallbackSpecies = "Human";
     private static readonly ProtoId<JobPrototype> FallbackJob = "Assistant";
+    private static readonly EntProtoId TestBodyPrototype = "SLBodyTest"; // Starlight
     private static readonly Gauge _speciesJobsSpawns = Metrics.CreateGauge(
         "sl_species_jobs_spawns",
         "Contains info on species and jobs spawned at and during the round.",
@@ -185,9 +185,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
         else
         {
-            entity ??= SpawnAtPosition(species.Prototype, coordinates, SharedBodyVisualizerSystem.NoGenerateAppearanceOverride);
-            var profileLoadedEv = new ApplyAppearanceEvent(profile);
-            RaiseLocalEvent(entity.Value, ref profileLoadedEv);
+            // Starlight
+            var appearanceOverride = SharedBodyVisualizerSystem.CreateAppearanceOverride(profile?.BodyEditorProfile);
+            entity ??= SpawnAtPosition(species.Prototype, coordinates, appearanceOverride);
+            // Starlight
+            SpawnAtPosition(TestBodyPrototype, coordinates, appearanceOverride);
         }
         // Starlight End
         if (profile != null)
