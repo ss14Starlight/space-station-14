@@ -111,6 +111,7 @@ cosmiccult-monument-stage3-briefing =
 
 cosmiccult-rift-inuse = You can't do this right now.
 cosmiccult-rift-invaliduser = You lack the proper tools to deal with this.
+cosmiccult-rift-chaplainoops = Wield your holy scripture.
 cosmiccult-rift-lambda-charging = The Nullspace Stabilizer blast is charging...
 cosmiccult-rift-alreadyempowered = You are already empowered; the rift's power would be wasted.
 cosmiccult-rift-wasempowered = Your body won't be able to handle being empowered a second time...
