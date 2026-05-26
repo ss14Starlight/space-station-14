@@ -146,6 +146,7 @@ public sealed partial class SpiderSystem : SharedSpiderSystem
                     {
                         QueueDel(web1);
                         Spawn(ent.Comp.WebPrototype, outerSpawnCoordinates);
+                        shouldRunEvent = false;
                         result = true;
                     }
                 }

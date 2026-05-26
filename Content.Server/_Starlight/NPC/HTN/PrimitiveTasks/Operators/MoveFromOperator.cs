@@ -32,6 +32,9 @@ public sealed partial class MoveFromOperator : HTNOperator, IHtnConditionalShutd
     // Blackboard key used to pass the computed flee position from Plan→Startup.
     private const string FleePosKey = "_FleeTargetCoordinates";
 
+    private const float DefaultSafeDistance = 5f;
+    private const float FleeDistanceMultiplier = 1.5f;
+
     /// <summary>
     /// When to shut the task down.
     /// </summary>
@@ -102,7 +105,7 @@ public sealed partial class MoveFromOperator : HTNOperator, IHtnConditionalShutd
         var ownerPos = xform.Coordinates;
         var safeDistance = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
         if (safeDistance == 0f)
-            safeDistance = 5f;
+            safeDistance = DefaultSafeDistance;
 
         // Already far enough — nothing to do.
         if (ownerPos.TryDistance(_entManager, threatCoords, out var dist) && dist >= safeDistance)
@@ -178,6 +181,8 @@ public sealed partial class MoveFromOperator : HTNOperator, IHtnConditionalShutd
             var threatCoords = blackboard.GetValue<EntityCoordinates>(TargetKey);
             var ownerPos = _transform.GetMoverCoordinates(uid);
             var safeDistance = blackboard.GetValueOrDefault<float>(RangeKey, _entManager);
+            if (safeDistance == 0f)
+                safeDistance = DefaultSafeDistance;
             fleePos = ComputeFleePos(ownerPos, threatCoords, safeDistance, 0f);
         }
 
@@ -271,7 +276,7 @@ public sealed partial class MoveFromOperator : HTNOperator, IHtnConditionalShutd
                 (away.X * sin) + (away.Y * cos));
         }
 
-        return threatCoords.Offset(away * safeDistance * 1.5f);
+        return threatCoords.Offset(away * safeDistance * FleeDistanceMultiplier);
     }
 
     #endregion
