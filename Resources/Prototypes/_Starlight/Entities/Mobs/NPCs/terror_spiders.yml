@@ -171,11 +171,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      280: Dead
+      210: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 279
+    damageCap: 209
     damage:
       types:
         Poison: -0.8
@@ -239,11 +239,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Dead
+      120: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 159
+    damageCap: 119
     damage:
       types:
         Poison: -0.5
@@ -302,11 +302,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Dead
+      120: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 159
+    damageCap: 119
     damage:
       types:
         Poison: -0.5
@@ -379,11 +379,11 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      240: Dead
+      180: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 239
+    damageCap: 179
     damage:
       types:
         Poison: -0.5
@@ -432,13 +432,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      360: Dead
+      315: Dead
   - type: Spider
     webPrototype: SpiderWebStrongThick
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 359
+    damageCap: 314
     damage:
       types:
         Poison: -0.8
@@ -489,7 +489,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      240: Dead
+      180: Dead
   - type: BatteryAmmoProvider
     proto: BulletAcidHitscan
     fireCost: 50
@@ -508,7 +508,7 @@
   - type: PassiveDamage
     allowedStates:
     - Alive
-    damageCap: 239
+    damageCap: 179
     damage:
       types:
         Poison: -0.5
@@ -556,7 +556,7 @@
     thresholds:
       0: Alive
       350: Critical
-      500: Dead
+      475: Dead
   - type: MeleeWeapon
     damage:
       types:
@@ -565,7 +565,7 @@
     allowedStates:
     - Alive
     - Critical
-    damageCap: 499
+    damageCap: 474
     damage:
       types:
         Poison: -0.1
@@ -605,13 +605,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      280: Critical
-      360: Dead
+      200: Critical
+      270: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 359
+    damageCap: 269
     damage:
       types:
         Poison: -1
@@ -675,13 +675,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      280: Critical
-      360: Dead
+      200: Critical
+      270: Dead
   - type: PassiveDamage
     allowedStates:
     - Alive
     - Critical
-    damageCap: 359
+    damageCap: 269
     damage:
       types:
         Poison: -1
