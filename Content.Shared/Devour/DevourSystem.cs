@@ -11,6 +11,9 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
+using Content.Shared.Damage; //Starlight
+using Content.Shared.Damage.Systems; //Starlight
+using Content.Shared.Damage.Components; //Starlight
 
 namespace Content.Shared.Devour;
 
@@ -23,6 +26,7 @@ public sealed class DevourSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageSystem = default!;
 
     public override void Initialize()
     {
@@ -97,11 +101,33 @@ public sealed class DevourSystem : EntitySystem
             BreakOnMove = true,
         });
     }
-
+     
     private void OnDoAfter(Entity<DevourerComponent> ent, ref DevourDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
             return;
+
+
+        #region "starlight
+        if (args.Target is not { } target)
+            return;
+
+        if (!TryComp(target, out DamageableComponent? damageable))
+            return;
+
+        //Specific ammount of damage to apply to kill the target
+        var targetDamage = _damageSystem.GetDamage((target, damageable));
+        var targetDamageTotal = targetDamage.GetTotal();
+        var RequiredDamage = 200 - targetDamageTotal;
+
+        //Only apply if they aren't dead
+        if (RequiredDamage > 0)
+        {
+            var damageToApply = new DamageSpecifier { DamageDict = {{ "Caustic", RequiredDamage }}};
+
+            _damageSystem.TryChangeDamage(target, damageToApply);
+        }
+        #endregion
 
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
 
