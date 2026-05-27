@@ -78,3 +78,9 @@
     whitelist:
       tags:
         - MonkeyWearable
+  - name: gloves
+    slotTexture: gloves
+    slotFlags: GLOVES
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,2
+    displayName: Gloves
