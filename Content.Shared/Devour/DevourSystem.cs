@@ -14,8 +14,8 @@ using Robust.Shared.Serialization;
 
 #region "Starlight"
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Damage; 
-using Content.Shared.Damage.Systems; 
+using Content.Shared.Damage;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 #endregion
 
@@ -146,14 +146,14 @@ public sealed class DevourSystem : EntitySystem
         // If the devoured thing meets the stomach whitelist criteria, add it to the stomach
         if (target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
         {
-            _containerSystem.Insert(target, ent.Comp.Stomach);
+            _containerSystem.Insert(target, ent.Comp.Stomach); //starlight target.value replaced with target
         }
         //TODO: Figure out a better way of removing structures via devour that still entails standing still and waiting for a DoAfter. Somehow.
         //If it's not alive, it must be a structure.
         // Delete if the thing isn't in the stomach storage whitelist (or the stomach whitelist is null/empty)
         else if (target != null) //Starlight, args.Args.Target replaced with target
         {
-            PredictedQueueDel(target);
+            PredictedQueueDel(target); //starlight target.value replaced with target
         }
 
         _audioSystem.PlayPredicted(ent.Comp.SoundDevour, ent.Owner, ent.Owner);
