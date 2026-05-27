@@ -120,15 +120,15 @@ public sealed class DevourSystem : EntitySystem
             return;
 
         //Specific ammount of damage to apply to kill the target
-        var DeathThreashold = _thresholdSystem.GetThresholdForState(target, MobState.Dead);
+        var deathThreshold = _thresholdSystem.GetThresholdForState(target, MobState.Dead);
         var targetDamage = _damageSystem.GetDamage((target, damageable));
         var targetDamageTotal = targetDamage.GetTotal();
-        var RequiredDamage = DeathThreashold - targetDamageTotal;
+        var requiredDamage = deathThreshold - targetDamageTotal;
 
         //Only apply if they aren't dead
-        if (RequiredDamage > 0)
+        if (requiredDamage > 0)
         {
-            var damageToApply = new DamageSpecifier { DamageDict = {{ "Caustic", RequiredDamage }}};
+            var damageToApply = new DamageSpecifier { DamageDict = { { "Caustic", requiredDamage } } };
 
             _damageSystem.TryChangeDamage(target, damageToApply);
         }
