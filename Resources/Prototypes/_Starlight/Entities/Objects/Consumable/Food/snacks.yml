@@ -64,3 +64,78 @@
   - type: Tag
     tags:
     - Trash
+
+# Rodentia Nutricheese
+- type: entity
+  parent: FoodSnackNutribrick
+  id: FoodSnackNutricheese
+  name: nutricheese
+  description: A randomly selected piece of cheese from the NanoTrasen glactic cheese vault. Caloriedense and irresistible to rodents!
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodPacketMRETrash
+      - id: FoodNutriCheeseComte
+        orGroup: Cheese
+      - id: FoodNutriCheeseBrie
+        orGroup: Cheese
+      - id: FoodNutriCheeseGruyere
+        orGroup: Cheese
+      - id: FoodNutriCheeseGorgonzola
+        orGroup: Cheese
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+    requireHands: false 
+
+- type: entity
+  id: FoodNutriCheeseBase
+  parent: FoodSnackNutribrickOpen
+  abstract: true
+  components:
+  - type: Sprite
+    #sprite: _Starlight/Consumable/Food/Nutricheese.rsi # TODO: Custom sprites for cheese.
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: cheesewedge
+  - type: FlavorProfile
+    flavors:
+      - nutribrick # TODO: 
+
+- type: entity
+  id: FoodNutriCheeseGruyere
+  parent: FoodNutriCheeseBase
+  name: Gruyere
+  description: Yum!
+  components:
+  - type: Sprite
+    # state: gruyere
+    color: white
+
+- type: entity
+  id: FoodNutriCheeseBrie
+  parent: FoodNutriCheeseBase
+  name: Brie
+  description: Yum!
+  components:
+  - type: Sprite
+    # state:
+    color: red
+
+- type: entity
+  id: FoodNutriCheeseComte
+  parent: FoodNutriCheeseBase
+  name: Comte
+  description: Yum!
+  components:
+  - type: Sprite
+    # state:
+    color: green
+
+- type: entity
+  id: FoodNutriCheeseGorgonzola
+  parent: FoodNutriCheeseBase
+  name: Gorgonzola
+  description: Yum!
+  components:
+  - type: Sprite
+    # state:
+    color: blue

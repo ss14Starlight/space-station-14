@@ -72,3 +72,139 @@
         - id: EmergencyMedipen
         - id: FoodBreadNutriBatard #Never 4 get. the day wizden took mime's baugettes ## Hey actually why can't we just. Give them back lol ### yeah let's do that
         - id: DrinkWaterBottleFull
+
+# Rodentita Survival Boxes
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalCheese
+  name: survival box cheese
+  description: It's a box with basic internals inside.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+        - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: cheese
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalMedicalCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+        - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalExtendedCheese
+  name: extended-capacity survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+        - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: cheese
+    - state: extendedtank
+
+- type: entity
+  parent: BoxSurvivalExtendedCheese
+  id: BoxSurvivalSecurityCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+        - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalMimeCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodBreadBaguette # Mime Rodentias get bread.
+        - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxHug
+  id: BoxSurvivalClownCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+        - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: cheese
+
+- type: entity
+  parent: BoxSurvivalCheese
+  id: BoxSurvivalSyndicateCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSyndicate
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+
+- type: entity
+  parent: BoxSurvivalSyndicateCheese
+  id: BoxSurvivalMilitaryCheese
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutricheese
+
