@@ -11,9 +11,13 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
-using Content.Shared.Damage; //Starlight
-using Content.Shared.Damage.Systems; //Starlight
-using Content.Shared.Damage.Components; //Starlight
+
+#region "Starlight"
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Damage; 
+using Content.Shared.Damage.Systems; 
+using Content.Shared.Damage.Components;
+#endregion
 
 namespace Content.Shared.Devour;
 
@@ -27,7 +31,7 @@ public sealed class DevourSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly DamageableSystem _damageSystem = default!; //Starlight
-    const int DeathThreashold = 200; //Starlight
+    [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!; //Starlight
 
     public override void Initialize()
     {
@@ -108,7 +112,7 @@ public sealed class DevourSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
-        #region "starlight
+        //Starlight-Start
         if (args.Target is not { } target)
             return;
 
@@ -116,6 +120,7 @@ public sealed class DevourSystem : EntitySystem
             return;
 
         //Specific ammount of damage to apply to kill the target
+        var DeathThreashold = _thresholdSystem.GetThresholdForState(target, MobState.Dead);
         var targetDamage = _damageSystem.GetDamage((target, damageable));
         var targetDamageTotal = targetDamage.GetTotal();
         var RequiredDamage = DeathThreashold - targetDamageTotal;
@@ -127,28 +132,28 @@ public sealed class DevourSystem : EntitySystem
 
             _damageSystem.TryChangeDamage(target, damageToApply);
         }
-        #endregion
+        //Starlight-End
 
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
 
         // Grant ichor if the devoured thing meets the dragon's food preference
-        if (args.Args.Target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)args.Args.Target))
+        if (target != null && _whitelistSystem.IsWhitelistPassOrNull(ent.Comp.FoodPreferenceWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
         {
             _bloodstreamSystem.TryAddToBloodstream(ent.Owner, ichorInjection);
             ent.Comp.Devoured++; //Starlight devour counter.
         }
 
         // If the devoured thing meets the stomach whitelist criteria, add it to the stomach
-        if (args.Args.Target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)args.Args.Target))
+        if (target != null && _whitelistSystem.IsWhitelistPass(ent.Comp.StomachStorageWhitelist, (EntityUid)target)) //Starlight, args.Args.Target replaced with target
         {
-            _containerSystem.Insert(args.Args.Target.Value, ent.Comp.Stomach);
+            _containerSystem.Insert(target, ent.Comp.Stomach);
         }
         //TODO: Figure out a better way of removing structures via devour that still entails standing still and waiting for a DoAfter. Somehow.
         //If it's not alive, it must be a structure.
         // Delete if the thing isn't in the stomach storage whitelist (or the stomach whitelist is null/empty)
-        else if (args.Args.Target != null)
+        else if (target != null) //Starlight, args.Args.Target replaced with target
         {
-            PredictedQueueDel(args.Args.Target.Value);
+            PredictedQueueDel(target);
         }
 
         _audioSystem.PlayPredicted(ent.Comp.SoundDevour, ent.Owner, ent.Owner);
