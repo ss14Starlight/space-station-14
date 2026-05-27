@@ -363,7 +363,7 @@
     sprite: Clothing/OuterClothing/Coats/damedanecoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing] # Starlight edit
   id: ClothingOuterClownPriest
   name: robes of the honkmother
   description: Meant for a clown of the cloth.

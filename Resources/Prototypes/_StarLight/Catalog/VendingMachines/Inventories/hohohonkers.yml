@@ -129,3 +129,15 @@
   - !type:ListingLimitedStockCondition
     stock: 1
   - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorChonoLokeBundleBag
+  productEntity: ChonoLokeBundleBag
+  cost:
+    NTCredit: 4500
+  categories:
+  - SLClown
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerAccessCondition
