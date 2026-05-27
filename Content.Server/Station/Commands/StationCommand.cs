@@ -89,7 +89,7 @@ public sealed class StationsCommand : ToolshedCommand
     public void RmGrid([PipedArgument] EntityUid input, EntityUid grid)
     {
         _station ??= GetSys<StationSystem>();
-        _station.RemoveGridFromStation(input, grid);
+        _station.RemoveMainGridFromStation(input, grid); // Starlight-edit
     }
 
     [CommandImplementation("rename")]

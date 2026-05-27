@@ -5,7 +5,7 @@
   prototype: MobHuman
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
-  dollPrototype: MobHumanDummy
+  dollPrototype: AppearanceHuman
   skinColoration: HumanToned
   customName: true # Starlight
   roundstartCyberwareCapacity: 5 # Starlight

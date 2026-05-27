@@ -1,0 +1,6 @@
+- type: stack
+  id: OilPack
+  name: stack-oilpack
+  icon: { sprite: "_FarHorizons/Objects/Specific/Medical/medical.rsi", state: oilpack }
+  spawn: OilPack
+  maxCount: 10

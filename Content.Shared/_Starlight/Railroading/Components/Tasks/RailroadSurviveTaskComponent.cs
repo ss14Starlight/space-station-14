@@ -12,5 +12,5 @@ public sealed partial class RailroadSurviveTaskComponent : Component
     public SpriteSpecifier Icon = new SpriteSpecifier.Rsi(new ResPath("Interface/Alerts/human_dead.rsi"), "dead");
 
     [DataField]
-    public bool IsCompleted = true;
+    public bool IsFailed = false;
 }

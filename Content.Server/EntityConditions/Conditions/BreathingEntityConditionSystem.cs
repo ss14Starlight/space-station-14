@@ -1,5 +1,5 @@
-﻿using Content.Server.Body.Components;
-using Content.Server.Body.Systems;
+﻿using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server.Body.Components;
 using Content.Shared.EntityConditions;
 using Content.Shared.EntityConditions.Conditions.Body;
 

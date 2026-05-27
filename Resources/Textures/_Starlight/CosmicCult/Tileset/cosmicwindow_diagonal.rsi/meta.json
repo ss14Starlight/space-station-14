@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "states": [
+        {
+            "name": "coswindow0",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "coswindow1",
+            "copyright": "A custom item by AftrLite (Github)."
+        }
+    ]
+}

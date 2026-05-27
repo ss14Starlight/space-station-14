@@ -1,0 +1,28 @@
+- type: entity
+  save: false
+  parent: BaseMobSkeletonPerson
+  id: MobSkeletonPerson
+  components:
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+
+- type: entity
+  parent: MobSkeletonPerson
+  id: MobSkeletonClosetFreeAgent
+  name: closet skeleton (Free Agent)
+  components:
+  - type: GhostRole
+    name: ghost-role-information-closet-skeleton-name
+    description: ghost-role-information-closet-skeleton-description
+    rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgentSkeleton
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: Loadout
+    prototypes: [LimitedAssistantGear]
+  - type: RandomHumanoidAppearance

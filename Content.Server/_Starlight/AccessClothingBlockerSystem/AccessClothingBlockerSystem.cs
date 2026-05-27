@@ -10,7 +10,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
 
-namespace Content.Server.Starlight.FactionClothingBlockerSystem;
+namespace Content.Server._Starlight.FactionClothingBlockerSystem;
 
 public sealed class AccessClothingBlockerSystem : EntitySystem
 {
@@ -32,14 +32,14 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
         var canUse = false;
         if (!TryComp<AccessReaderComponent>(uid, out var accessReader))
             canUse = true;
-        
+
         if (component.Access != null)
         {
             var accesses = _accessReader.FindAccessTags(args.Equipee);
             if (accesses.Any(a => a.ToString() == component.Access))
                 canUse = true;
         }
-            
+
         else if (_accessReader.IsAllowed(args.Equipee, uid, accessReader) )
                 canUse = true;
 
@@ -77,8 +77,9 @@ public sealed class AccessClothingBlockerSystem : EntitySystem
         }
     }
 
-    private async Task PopupWithDelay(string message, EntityUid uid, PopupType popupType)
+    private Task PopupWithDelay(string message, EntityUid uid, PopupType popupType)
     {
         _popup.PopupEntity(message, uid, popupType);
+        return Task.CompletedTask;
     }
 }

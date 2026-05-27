@@ -875,7 +875,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: Mobs/Pets/shiva.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: shiva

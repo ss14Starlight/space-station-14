@@ -180,7 +180,7 @@
     - type: ContainerFill
       containers:
         key_slots:
-        - EncryptionKeyStationMaster
+        - EncryptionKeyWizardMasterUnremovable # Starlight
     - type: Sprite
       sprite: Clothing/Ears/Headsets/wizard.rsi
     - type: Clothing

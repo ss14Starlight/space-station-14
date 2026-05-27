@@ -24,11 +24,34 @@ public sealed class SuitSensorStatus
     public string Job;
     public string JobIcon;
     public List<string> JobDepartments;
+    public string Faction = "crew"; // Starlight - adding factions to sensors
     public bool IsAlive;
     public int? TotalDamage;
     public int? TotalDamageThreshold;
     public float? DamagePercentage => TotalDamageThreshold == null || TotalDamage == null ? null : TotalDamage / (float) TotalDamageThreshold;
     public NetCoordinates? Coordinates;
+}
+
+/// <summary>
+/// STARLIGHT: State of the paging system's tracking of one suit sensor.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class SuitSensorPagingStatus(TimeSpan firstSeen)
+{
+    /// <summary>
+    /// When this paging status began recording a specific suit sensor.
+    /// </summary>
+    public TimeSpan FirstSeen = firstSeen;
+    /// <summary>
+    /// When this paging status last saw the sensor.
+    /// </summary>
+    public TimeSpan LastSeen = firstSeen;
+    /// <summary>
+    /// Whether a paging event was dispatched for this sensor by the server.
+    /// NOTE: The Consoles are individually responsible for tracking if this sensor was already seen crit/dead
+    /// by a player, in which case they shouold not play a sound/show a visual.
+    /// </summary>
+    public bool Paged;
 }
 
 [Serializable, NetSerializable]
@@ -62,6 +85,7 @@ public static class SuitSensorConstants
     public const string NET_JOB = "job";
     public const string NET_JOB_ICON = "jobIcon";
     public const string NET_JOB_DEPARTMENTS = "jobDepartments";
+    public const string NET_FACTION = "faction"; // Starlight - adding factions to sensors
     public const string NET_IS_ALIVE = "alive";
     public const string NET_TOTAL_DAMAGE = "vitals";
     public const string NET_TOTAL_DAMAGE_THRESHOLD = "vitalsThreshold";
@@ -70,6 +94,8 @@ public static class SuitSensorConstants
 
     ///Used by the CrewMonitoringServerSystem to send the status of all connected suit sensors to each crew monitor
     public const string NET_STATUS_COLLECTION = "suit-status-collection";
+    // STARLIGHT: Trigger paging on console
+    public const string NET_PAGING_SINCE = "paging-since";
 }
 
 [Serializable, NetSerializable]

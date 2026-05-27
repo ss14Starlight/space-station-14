@@ -1,0 +1,32 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Modified by youtubepoopfuneral (Discord), original taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9ddb8cf084e292571d4e9c79745db25befbd82fe, recolored by wonderfulnewworld (GitHub)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+			"copyright": "TG Station, youtubepoopfuneral, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "icon-base",
+			"copyright": "TG Station, youtubepoopfuneral, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+        {
+            "name": "icon-screen",
+            "delays": [
+                [
+                    0.8,
+                    0.8
+                ]
+            ],
+			"copyright": "TG Station, youtubepoopfuneral, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

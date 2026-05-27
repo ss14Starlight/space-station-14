@@ -1,6 +1,4 @@
-﻿using Content.Client._Starlight.Antags.Abductor;
-using Content.Shared._Starlight.Computers.RemoteEye;
-using Content.Shared.Starlight.Antags.Abductor;
+﻿using Content.Shared._Starlight.Computers.RemoteEye;
 using JetBrains.Annotations;
 using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
@@ -80,7 +78,7 @@ public sealed class RemoteEyeConsoleBui(EntityUid owner, Enum uiKey) : BoundUser
     private void RefreshUI()
     {
         if (_window == null || State is not RemoteEyeConsoleBuiState state)
-            return; 
+            return;
 
         _window.Separator.Color = state.Color;
         _window.Stations.DisposeAllChildren();

@@ -3,13 +3,24 @@
   startingInventory:
     ClothingHeadHatWizard: 3
     ClothingOuterWizard: 3
-    ClothingHeadHatWizardFake: 3
+#    ClothingHeadHatWizardFake: 3 # Starlight
     ClothingHeadHatRedwizard: 3
     ClothingOuterWizardRed: 3
+    ClothingHeadHatYellowwizard: 3 # Starlight start
+    ClothingOuterWizardYellow: 3
+    ClothingHeadHatGreenwizard: 3
+    ClothingOuterWizardGreen: 3
+    ClothingHeadHatPurplewizard: 3
+    ClothingOuterWizardPurple: 3
+    ClothingHeadHatOrangewizard: 3
+    ClothingOuterWizardOrange: 3 # Starlight end
     ClothingHeadHatVioletwizard: 3
     ClothingOuterWizardViolet: 3
+    ClothingHeadHatPeachwizard: 3 # Starlight
+    ClothingOuterWizardPeach: 3 # Starlight
     ClothingHeadHelmetWizardHelm: 3
     ClothingShoesWizard: 9
+    ClothingHeadHatWizardFake: 3 # Starlight, moved down here so the inventory appears clean
     #TODO:
     #only missing staff
     #and if wizarditis reagent when hacked if we want this.

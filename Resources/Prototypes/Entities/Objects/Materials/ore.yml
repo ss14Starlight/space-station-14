@@ -4,6 +4,13 @@
   id: OreBase
   description: A piece of unrefined ore.
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  - type: Stack
+  # Starlight end
   - type: Sprite
     sprite: Objects/Materials/ore.rsi
   - type: Item

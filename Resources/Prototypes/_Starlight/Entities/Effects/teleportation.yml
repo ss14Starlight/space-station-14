@@ -1,0 +1,114 @@
+- type: entity
+  id: EffectTeleportation
+  categories: [ HideSpawnMenu ]
+  name: teleportation
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: _Starlight/Effects/teleportation.rsi
+    state: teleportation
+    scale: 0.65, 0.65
+    color: "#FD009899"
+  - type: TimedDespawn
+    lifetime: 5.0
+
+- type: entity
+  id: EffectTeleportationEntity
+  categories: [ HideSpawnMenu ]
+  name: teleportation
+  components:
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: _Starlight/Effects/teleportation.rsi
+    state: teleportation-entity
+    scale: 0.65, 0.65
+    color: "#FD009899"
+  - type: TimedDespawn
+    lifetime: 5.0
+
+- type: entity
+  id: CryoPortal
+  name: cryogenic portal
+  components:
+  - type: Transform
+    anchored: True
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Sprite
+    sprite: /Textures/Effects/portal.rsi
+    layers:
+    - state: portal-blue
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: PointLight
+    color: SkyBlue
+    radius: 3
+    energy: 1
+    netsync: false
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  id: BluespaceImplantEffect
+  parent: Acidifier
+  name: bluespace implant effect
+  description: Bluespace Portal
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/portal_implant.rsi
+    noRot: true
+    layers:
+    - state: bluespace_implant
+      shader: unshaded
+  - type: PointLight
+    color: Blue
+    radius: 2
+    energy: 1
+    netsync: false
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+
+- type: entity
+  id: RedspaceImplantEffect
+  parent: Acidifier
+  name: redspace implant effect
+  description: Redspace Portal
+  components:
+  - type: Sprite
+    sprite: _Starlight/Effects/portal_implant.rsi
+    noRot: true
+    layers:
+    - state: redspace_implant
+      shader: unshaded
+  - type: PointLight
+    color: Red
+    radius: 2
+    energy: 1
+    netsync: false
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Effects/Lightning/lightningbolt.ogg
+  - type: Physics
+    bodyType: Static
+    canCollide: false

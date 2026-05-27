@@ -220,7 +220,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
     private void SendPlayTimes(ICommonSession pSession)
     {
-        var roles = GetTrackerTimes(pSession);
+        var roles = GetOriginalTrackerTimes(pSession); // starlight: send only current server data, client handles merging
 
         var msg = new MsgPlayTime
         {
@@ -297,7 +297,7 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         {
             Pipe.RunInBackgroundVT
             (
-                ()=> server.UpdatePlayersPlayTime([.. log
+                () => server.UpdatePlayersPlayTime([.. log
                     .GroupBy(x => x.User)
                     .Select(x => new PlayerPlayTime
                     {
@@ -366,8 +366,13 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
 
         foreach (var timer in playTimes)
         {
-            data.TrackerTimes.Add(timer.Tracker, timer.TimeSpent);
-            data.MergedTrackerTimes.Add(timer.Tracker, timer.TimeSpent); //NullLink
+            // Starlight start
+            ref var tracked = ref CollectionsMarshal.GetValueRefOrAddDefault(data.TrackerTimes, timer.Tracker, out _);
+            tracked += timer.TimeSpent;
+
+            ref var merged = ref CollectionsMarshal.GetValueRefOrAddDefault(data.MergedTrackerTimes, timer.Tracker, out _); //NullLink
+            merged += timer.TimeSpent; //NullLink
+            // Starlight end
         }
 
         data.Initialized = true;
@@ -382,13 +387,18 @@ public sealed class PlayTimeTrackingManager : ISharedPlaytimeManager, IPostInjec
         if (!_player.TryGetSessionById(new NetUserId(userId), out var session))
             return;
 
-        if(!_playTimeData.TryGetValue(session, out var data))
+        if (!_playTimeData.TryGetValue(session, out var data))
             return;
 
         data.MergedTrackerTimes = playtime;
         foreach (var (tracker, time) in data.TrackerTimes)
-            data.MergedTrackerTimes.Add(tracker, time);
+        {
+            var merged = time;
+            if (data.MergedTrackerTimes.TryGetValue(tracker, out var nullinked))
+                merged += nullinked;
 
+            data.MergedTrackerTimes[tracker] = merged;
+        }
     }
     // NullLink end
 

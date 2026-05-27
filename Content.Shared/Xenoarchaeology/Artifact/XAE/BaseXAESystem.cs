@@ -1,7 +1,7 @@
 namespace Content.Shared.Xenoarchaeology.Artifact.XAE;
 
 /// <summary>
-/// Base class for 
+/// Base class for
 /// </summary>
 /// <typeparam name="T"></typeparam>
 public abstract class BaseXAESystem<T> : EntitySystem where T : Component

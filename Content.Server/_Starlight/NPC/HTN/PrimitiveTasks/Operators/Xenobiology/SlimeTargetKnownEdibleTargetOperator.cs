@@ -12,23 +12,23 @@ namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Xenobiology
 public sealed partial class SlimeTargetKnownEdibleTargetOperator : HTNOperator
 {
     [Dependency] private readonly IEntityManager _entManager = default!;
-    
+
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private EntityLookupSystem _lookup = default!;
     private PathfindingSystem _pathfinding = default!;
-    
+
     /// <summary>
     /// Target entity to eat.
     /// </summary>
     [DataField("targetKey", required: true)]
     public string TargetKey = string.Empty;
-    
+
     /// <summary>
     /// Target entitycoordinates to move to.
     /// </summary>
     [DataField("targetMoveKey", required: true)]
     public string TargetMoveKey = string.Empty;
-    
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
@@ -36,12 +36,12 @@ public sealed partial class SlimeTargetKnownEdibleTargetOperator : HTNOperator
         _lookup = sysManager.GetEntitySystem<EntityLookupSystem>();
         _pathfinding = sysManager.GetEntitySystem<PathfindingSystem>();
     }
-    
+
     public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
         CancellationToken cancelToken)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        
+
         if (!_entManager.TryGetComponent<SlimeComponent>(owner, out var slime))
             return (false, null);
 
@@ -62,7 +62,7 @@ public sealed partial class SlimeTargetKnownEdibleTargetOperator : HTNOperator
                 {NPCBlackboard.PathfindKey, path},
             });
         }
-        
+
         return (false, null);
     }
 }

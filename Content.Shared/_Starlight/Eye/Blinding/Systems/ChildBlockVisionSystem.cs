@@ -102,7 +102,7 @@ public sealed class ChildBlockVisionSystem : EntitySystem
     #endregion
 
     #region Child Component
-    
+
     /// <summary>
     /// Gets enabled state from <see cref="ParentCanBlockVisionComponent"/>. Returns true if successful.
     /// </summary>

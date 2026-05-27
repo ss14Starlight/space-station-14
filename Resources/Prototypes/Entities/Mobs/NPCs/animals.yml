@@ -212,13 +212,19 @@
   id: MobChicken
   description: Comes before an egg, and IS a dinosaur!
   components:
-  # Starlight-start: Languages
+  # Starlight START
   - type: LanguageKnowledge
     speaks:
     - Chicken
     understands:
+    - GalacticCommon
     - Chicken
-  # Starlight-end
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  # Starlight END
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -254,6 +260,8 @@
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
+    capacity: 12  #Starlight
+    hungerPerBirth: 35 #Starlight
     makeOffspringInfant: false
     partnerWhitelist:
       tags:
@@ -296,6 +304,11 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Starlight Start
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
+  # Starlight End
 
 - type: entity
   parent: MobChicken
@@ -352,7 +365,6 @@
   parent: FoodEgg
   suffix: Fertilized, Chicken
   components:
-  - type: Timer
   - type: TimedSpawner
     prototypes:
     - MobChicken
@@ -502,7 +514,7 @@
 
 - type: entity
   name: mothroach
-  parent: MobCockroach
+  parent: MobCockroach # Starlight Edit: Removed BaseMobMothroach
   id: MobMothroach
   description: This is the adorable by-product of multiple attempts at genetically mixing mothpeople with cockroaches.
   components:
@@ -511,6 +523,7 @@
     speaks:
     - Mothroach
     understands:
+    - GalacticCommon
     - Moffic
     - Mothroach
   # Starlight-end
@@ -627,8 +640,10 @@
   - type: NpcFactionMember
     factions:
     - Mouse
+  # Starlight - start
   - type: Body
     prototype: Mothroach
+  # Starlight - end
   - type: TypingIndicator
     proto: moth
   - type: Destructible
@@ -690,13 +705,19 @@
   id: MobDuckMallard
   description: An adorable mallard duck, it's fluffy and soft!
   components:
-  # Starlight-start: Languages
+  # Starlight START
   - type: LanguageKnowledge
     speaks:
     - Duck
     understands:
+    - GalacticCommon
     - Duck
-  # Starlight-end
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  # Starlight END
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -722,6 +743,8 @@
   - type: Reproductive
     breedChance: 0.05
     birthPopup: reproductive-laid-egg-popup
+    capacity: 12  #Starlight
+    hungerPerBirth: 35 #Starlight
     makeOffspringInfant: false
     partnerWhitelist:
       tags:
@@ -808,7 +831,6 @@
   parent: FoodEgg
   suffix: Fertilized, Duck
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
       - MobDuckMallard
@@ -899,7 +921,7 @@
 
 - type: entity
   name: cow
-  parent: SimpleMobBase
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobRuminant
   id: MobCow
   description: Moo.
   components:
@@ -972,8 +994,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Starlight - start
   - type: Body
     prototype: AnimalRuminant
+  # Starlight - end
   - type: HTN
     rootTask:
       task: RuminantCompound
@@ -984,10 +1008,17 @@
 
 - type: entity
   name: crab
-  parent: SimpleMobBase
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobHemocyanin
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
+  # Starlight START
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Critical
+      60: Dead
+  # Starlight END
   - type: VentCrawler
   - type: Sprite
     drawdepth: Mobs
@@ -1050,12 +1081,14 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+  # Starlight - start
   - type: Body
     prototype: AnimalHemocyanin
+  # Starlight - end
 
 - type: entity
   name: goat
-  parent: SimpleMobBase
+  parent: SimpleMobBase # Starlight Edit: Removed BaseMobRuminant
   id: MobGoat
   description: Her spine consists of long sharp segments, no wonder she is so grumpy.
   components:
@@ -1147,8 +1180,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Starlight - start
   - type: Body
     prototype: AnimalRuminant
+  # Starlight - end
   - type: NPCRetaliation
     attackMemoryLength: 5
   - type: FactionException
@@ -1304,7 +1339,7 @@
 - type: entity
   name: genetic ancestor
   id: MobBaseAncestor
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
@@ -1313,6 +1348,7 @@
     speaks:
     - Ancestor
     understands:
+    - GalacticCommon
     - Ancestor
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -1321,6 +1357,14 @@
   - type: Inventory
     templateId: monkey
     speciesId: monkey
+  # Starlight Start
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: jumpsuit-monkey
+  # Starlight End
   - type: Deathgasp
     prototype: MonkeyDeathgasp
   - type: Cuffable
@@ -1361,6 +1405,12 @@
       state: "creampie_human"
       visible: false
   - type: Hands
+    # Starlight edit Start: Reverted NuBody
+    # activeHandId: Hand
+    # hands:
+    #   Hand:
+    #     location: Left
+    # Starlight edit End: Reverted NuBody
   - type: ComplexInteraction
   - type: GenericVisualizer
     visuals:
@@ -1368,9 +1418,11 @@
         clownedon:
           True: {visible: true}
           False: {visible: false}
+  # Starlight - start
   - type: Body
     prototype: Primate
     requiredLegs: 1 # TODO: More than 1 leg
+  # Starlight - end
   - type: CreamPied
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
@@ -1398,6 +1450,8 @@
     spawned:
     - id: FoodMeat
       amount: 3
+  - type: Puller
+    needsHands: false
   - type: CanHostGuardian
   - type: NPCRetaliation
     attackMemoryLength: 10
@@ -1425,8 +1479,7 @@
       - !type:WashCreamPie
   - type: Crawler
   - type: StatusIcon
-
-
+  - type: CosmicCenserTarget # Stellar - Cosmic Cult
 
 - type: entity
   name: monkey
@@ -1502,6 +1555,7 @@
     name: ghost-role-information-monkey-name
     description: ghost-role-information-monkey-description
     rules: ghost-role-information-syndicate-reinforcement-rules
+    important: true # SL
     mindRoles:
     # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
     - MindRoleGhostRoleSoloAntagonist
@@ -1560,6 +1614,7 @@
     - Ancestor
     - Draconic
     understands:
+    - GalacticCommon
     - Ancestor
     - Draconic
   # Starlight-end
@@ -1667,6 +1722,15 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+  # Starlight Start
+  - type: Inventory
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: jumpsuit-kobold
+  # Starlight End
 
 - type: entity
   name: kobold
@@ -1740,20 +1804,23 @@
 
 - type: entity
   name: mouse
-  parent: SimpleMobBase
+  parent:
+  - SimpleMobBase
+  # - BaseMobAnimal # Starlight Edit: Revert NuBody
   id: MobMouse
   description: Squeak!
   components:
-  # Starlight-start: Languages
+  # Starlight Start
   - type: LanguageKnowledge
     speaks:
     - Mouse
     understands:
+    - GalacticCommon
     - Mouse
-  # Starlight-end
-  - type: VentCrawler # Starlight-edit: Vent Crawl
+  - type: VentCrawler
   - type: Body
     prototype: Mouse
+  # Starlight End
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -1787,7 +1854,7 @@
   - type: VampireDevourable # Starlight-edit: Vampire Devouring
   - type: Clothing
     quickEquip: false
-    sprite: Mobs/Animals/mouse.rsi
+    sprite: _Starlight/Mobs/Animals/mouse.rsi #SL Edit
     equippedPrefix: 0
     slots:
     - HEAD
@@ -1835,7 +1902,7 @@
       Critical:
         Base: dead-0
       Dead:
-        Base: dead-0
+        Base: splat-0 #SLEdit
   - type: Edible
   - type: FlavorProfile
     flavors:
@@ -1987,7 +2054,7 @@
       Critical:
         Base: dead-1
       Dead:
-        Base: dead-1
+        Base: splat-1 #SLEdit
   - type: Item
     size: Tiny
     heldPrefix: 1
@@ -1997,27 +2064,27 @@
   id: MobMouse2
   components:
   - type: Sprite
-    color: Gray
+    #color: Gray #SL Edit
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: mouse-0
+      state: mouse-2 #SLEdit
   - type: SpriteMovement
     movementLayers:
       movement:
-        state: mouse-moving-0
+        state: mouse-moving-2 #SLEdit
     noMovementLayers:
       movement:
-        state: mouse-0
+        state: mouse-2 #SLEdit
   - type: Clothing
     equippedPrefix: 2
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: mouse-0
+        Base: mouse-2 #SLEdit
       Critical:
-        Base: dead-0
+        Base: dead-2 #SLEdit
       Dead:
-        Base: dead-0
+        Base: splat-2 #SLEdit
   - type: Item
     size: Tiny
     heldPrefix: 2
@@ -2530,7 +2597,7 @@
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
 - type: entity
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobHemocyanin
   id: MobSpiderBase
   abstract: true
   components:
@@ -2539,6 +2606,7 @@
     speaks:
     - Chittin
     understands:
+    - GalacticCommon
     - Chittin
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -2559,8 +2627,10 @@
     - id: FoodMeatSpider
       amount: 2
   - type: CombatMode
+  # Starlight - start
   - type: Body
     prototype: AnimalHemocyanin
+  # Starlight - end
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2663,7 +2733,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: Mobs/Animals/spider.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: tarantula
@@ -2717,7 +2787,7 @@
         base:
           - options: Default
             data:
-              drawdepth: Mobs   
+              drawdepth: Mobs
               sprite: Mobs/Animals/clownspider.rsi
               map: ["enum.DamageStateVisualLayers.Base", "movement"]
               state: clown
@@ -2920,6 +2990,7 @@
     speaks:
     - Fox
     understands:
+    - GalacticCommon
     - Fox
     - Canilunzt
   # Starlight-end
@@ -3086,6 +3157,7 @@
     speaks:
     - Dog
     understands:
+    - GalacticCommon
     - Dog
     - Canilunzt
   # Starlight-end
@@ -3122,6 +3194,7 @@
     understands:
     - Dog
     - GalacticCommon
+    - Canilunzt
   # Starlight End
   - type: Sprite
     drawdepth: Mobs
@@ -3221,6 +3294,7 @@
     speaks:
     - Cat
     understands:
+    - GalacticCommon
     - Cat
     - Nekomimetic
   # Starlight-end
@@ -3341,6 +3415,7 @@
     allowMovement: true
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-SyndiCat-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:
@@ -3586,6 +3661,7 @@
     speaks:
     - Mouse
     understands:
+    - GalacticCommon
     - Mouse
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -3747,6 +3823,7 @@
     speaks:
     - Pig
     understands:
+    - GalacticCommon
     - Pig
   # Starlight-end
   - type: Sprite
@@ -3814,7 +3891,7 @@
 
 - type: entity
   name: diona nymph
-  parent: [SimpleMobBase, StripableInventoryBase]
+  parent: [SimpleMobBase, StripableInventoryBase] # Starlight Edit: Removed BaseMobAnimal
   id: MobDionaNymph
   description: It's like a cat, only.... branch-ier.
   components:
@@ -3823,6 +3900,7 @@
     speaks:
     - Sylvan
     understands:
+    - GalacticCommon
     - Sylvan
   # Starlight-end
   - type: Sprite
@@ -3912,6 +3990,7 @@
     speaks:
     - Sylvan
     understands:
+    - GalacticCommon
     - Sylvan
   # Starlight-end
 
@@ -4011,7 +4090,7 @@
         Base: reindeer_doe_dead
 
 - type: entity
-  parent: MobCorgiBase
+  parent: MobCorgiBase #starlight Nubody will not pass.
   id: MobCorgiSmart
   name: smart corgi
   description: An unusually smart dog.
@@ -4063,6 +4142,14 @@
             sprite: Mobs/Pets/displacements.rsi
             state: corgi_head_displacement
   - type: Hands # HANDS!
+    # Starlight edit Start: Reverted NuBody
+    # activeHandId: Right
+    # hands:
+    #   Right:
+    #     location: Right
+    #   Left:
+    #     location: Left
+    # Starlight edit End: Reverted NuBody
   - type: Puller
   - type: Cuffable # bad dog!
   - type: BlockWriting # dogs can't write, paws unwieldy; mouth-writing is a myth
@@ -4071,8 +4158,10 @@
   - type: Dna # Starlight
   - type: Fingerprint # Starlight
   # Implement custom borgi body type
+  # Starlight - start
   - type: Body
     prototype: SmartCorgi
+  # Starlight - end
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 180

@@ -21,6 +21,8 @@
       Primary: GasVentPumpFreezer
       Secondary: GasVentPumpFreezerAlt1
       Tertiary: GasVentPumpFreezerAlt2
+      Quaternary: GasVentPumpFreezerAlt3
+      Quinary: GasVentPumpFreezerAlt4
   # Starlight End
 
 - type: entity
@@ -33,6 +35,8 @@
       Primary: GasVentScrubberFreezer
       Secondary: GasVentScrubberFreezerAlt1
       Tertiary: GasVentScrubberFreezerAlt2
+      Quaternary: GasVentScrubberFreezerAlt3
+      Quinary: GasVentScrubberFreezerAlt4
   # Starlight End
 
 # air alarm proto with auto: false to prevent the automatic switching of modes overriding the default values

@@ -29,7 +29,7 @@
 
 #Basic Helmet (Security Helmet)
 - type: entity
-  parent: [ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadSuitWithLightBase]
+  parent: [ ClothingHeadLightBase, ClothingHeadHelmetArmoredBase, BaseSecurityContraband, ClothingHeadLightParamsIntermediate ] # Starlight: Inherit from correct base light, include light params
   id: ClothingHeadHelmetBasic
   name: helmet
   description: Standard security gear. Protects the head from impacts.
@@ -81,7 +81,7 @@
   parent: [ClothingHeadHelmetBase, BaseSecurityContraband]
   id: ClothingHeadHelmetSwat
   name: SWAT helmet
-  description: An extremely robust helmet, commonly used by paramilitary forces. This one has the Nanotrasen logo emblazoned on the top.
+  description: An extremely robust helmet, commonly used by paramilitary forces. This one has the NanoTrasen logo emblazoned on the top. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/swat.rsi
@@ -170,6 +170,12 @@
     layers:
       Hair: HEAD
       Snout: HEAD
+# Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+# Starlight End
 
 #Janitorial Bombsuit Helmet
 - type: entity
@@ -286,7 +292,7 @@
 
 #Fire Helmet
 - type: entity
-  parent: ClothingHeadLightBase
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # Starlight
   id: ClothingHeadHelmetFire
   name: fire helmet
   description: An atmos tech's best friend. Provides some heat resistance and looks cool.
@@ -307,6 +313,7 @@
     tags:
     - WhitelistChameleon
     - FireHelmet
+    - CorgiWearable #Starlight
   - type: HideLayerClothing
     layers:
       Hair: HEAD
@@ -314,7 +321,7 @@
 
 #Atmos Fire Helmet
 - type: entity
-  parent: [ClothingHeadLightBase, BaseEngineeringContraband]
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsIntermediate, BaseEngineeringContraband ] # Starlight
   id: ClothingHeadHelmetAtmosFire
   name: atmos fire helmet
   description: An atmos fire helmet, able to keep the user cool in any situation.
@@ -344,6 +351,8 @@
       Hair: HEAD
       Snout: HEAD
   - type: BreathMask
+  - type: PointLight # Starlight
+    color: "#a1f7f7" # Starlight
 
 #Chitinous Helmet
 - type: entity
@@ -375,7 +384,7 @@
   parent: [ BaseCentcommContraband, ClothingHeadHelmetArmoredBase ]
   id: ClothingHeadHelmetERTLeader
   name: ERT leader helmet
-  description: An in-atmosphere helmet worn by the leader of a Nanotrasen Emergency Response Team. Has blue highlights.
+  description: An in-atmosphere helmet worn by the leader of a NanoTrasen Emergency Response Team. Has blue highlights. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/ert_leader.rsi
@@ -390,7 +399,7 @@
   parent: ClothingHeadHelmetERTLeader
   id: ClothingHeadHelmetERTSecurity
   name: ERT security helmet
-  description: An in-atmosphere helmet worn by security members of the Nanotrasen Emergency Response Team. Has red highlights.
+  description: An in-atmosphere helmet worn by security members of the NanoTrasen Emergency Response Team. Has red highlights. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/ert_security.rsi
@@ -405,7 +414,7 @@
   parent: ClothingHeadHelmetERTLeader
   id: ClothingHeadHelmetERTMedic
   name: ERT medic helmet
-  description: An in-atmosphere helmet worn by medical members of the Nanotrasen Emergency Response Team. Has white highlights.
+  description: An in-atmosphere helmet worn by medical members of the NanoTrasen Emergency Response Team. Has white highlights. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/ert_medic.rsi
@@ -420,7 +429,7 @@
   parent: ClothingHeadHelmetERTLeader
   id: ClothingHeadHelmetERTEngineer
   name: ERT engineer helmet
-  description: An in-atmosphere helmet worn by engineering members of the Nanotrasen Emergency Response Team. Has orange highlights.
+  description: An in-atmosphere helmet worn by engineering members of the NanoTrasen Emergency Response Team. Has orange highlights. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
@@ -435,7 +444,7 @@
   parent: ClothingHeadHelmetERTLeader
   id: ClothingHeadHelmetERTJanitor
   name: ERT janitor helmet
-  description: An in-atmosphere helmet worn by janitorial members of the Nanotrasen Emergency Response Team. Has dark purple highlights.
+  description: An in-atmosphere helmet worn by janitorial members of the NanoTrasen Emergency Response Team. Has dark purple highlights. # SL
   components:
   - type: Sprite
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
@@ -467,6 +476,10 @@
   - type: HideLayerClothing
     layers:
       Hair: HEAD
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
 
 #Bone Helmet
 #No need to hide the hair on this one
@@ -515,12 +528,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.9
-        Slash: 0.9
-        Piercing: 0.9
-        Heat: 0.9
+        Blunt: 0.8 # Starlight start
+        Slash: 0.8 # It makes you instantly a target, so it should provide some actual defense.
+        Piercing: 0.85
+        Heat: 0.8 # Starlight end
   - type: Unremoveable
-  
+
 #Justice Helmet
 - type: entity
   parent: ClothingHeadHelmetBasic
@@ -594,6 +607,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellSmall
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: PowerCellDraw
     drawRate: 2
   - type: ToggleCellDraw
@@ -613,6 +631,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: HideLayerClothing
     layers:
       Hair: HEAD

@@ -1,10 +1,8 @@
 ﻿using System.Linq;
 using Content.Server._Starlight.Language;
 using Content.Server.Humanoid;
-using Content.Shared._Starlight.Language.Components.Translators;
 using Content.Shared.Actions;
 using Content.Shared.CollectiveMind;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Eye.Blinding.Components;
@@ -15,12 +13,12 @@ using Content.Shared.Speech.Muting;
 using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
+using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Tag;
-using Content.Shared.VentCraw;
+using Content.Shared.VentCrawl;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Medical.Surgery;
@@ -34,7 +32,6 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
 
@@ -243,9 +240,9 @@ public sealed partial class OrganSystem : EntitySystem
     private void OnVisualizationImplanted(Entity<OrganVisualizationComponent> ent, ref SurgeryOrganImplantationCompleted args)
     {
         if (!TryComp<HumanoidAppearanceComponent>(args.Body, out var _)) return;
-        
+
         _humanoidAppearanceSystem.SetLayersVisibility(args.Body, [ent.Comp.Layer], true);
-        _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer, 
+        _humanoidAppearanceSystem.SetBaseLayerId(args.Body, ent.Comp.Layer,
         TryComp(args.Body, out HumanoidAppearanceComponent? humanoid) && ent.Comp.Prototypes.TryGetValue(humanoid.Species, out var layer)? layer :
         ent.Comp.Prototypes.TryGetValue("Default", out var defaultLayer)? defaultLayer : null);
     }

@@ -88,8 +88,6 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
     private void OnAskForBorging(EntityUid uid, BorgBrainComponent component, AskBorgingChoiceEvent args)
     {
-
-        Logger.Log(LogLevel.Debug, "Event Received");
         if (!_mind.TryGetMind(uid, out var mindId, out var mind))
             return;
 
@@ -100,7 +98,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     }
 
     public void OpenGhostRole(EntityUid uid, EntityUid mindId, MindComponent mind)
-    { 
+    {
         if (!_ghostSystem.OnGhostAttempt(mindId, false)) //Set player as ghost, if this fails we leave them in there
             return;
 

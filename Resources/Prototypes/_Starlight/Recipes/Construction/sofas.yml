@@ -1,0 +1,398 @@
+#region Sofas
+#region Gray
+- type: construction
+  id: SofaCorner
+  name: construction-recipe-sofa-gray-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: graySofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndLeft
+  name: construction-recipe-sofa-gray-left
+  graph: SofaSL
+  startNode: start
+  targetNode: graySofaLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndRight
+  name: construction-recipe-sofa-gray-right
+  graph: SofaSL
+  startNode: start
+  targetNode: graySofaRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddle
+  name: construction-recipe-sofa-gray-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: graySofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region White
+- type: construction
+  id: SofaCornerWhite
+  name: construction-recipe-sofa-white-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: whiteSofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndLeftWhite
+  name: construction-recipe-sofa-white-left
+  graph: SofaSL
+  startNode: start
+  targetNode: whiteSofaLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndRightWhite
+  name: construction-recipe-sofa-white-right
+  graph: SofaSL
+  startNode: start
+  targetNode: whiteSofaRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddleWhite
+  name: construction-recipe-sofa-white-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: whiteSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Blue
+- type: construction
+  id: SofaCornerBlue
+  name: construction-recipe-sofa-blue-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: blueSofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndLeftBlue
+  name: construction-recipe-sofa-blue-left
+  graph: SofaSL
+  startNode: start
+  targetNode: blueSofaLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndRightBlue
+  name: construction-recipe-sofa-blue-right
+  graph: SofaSL
+  startNode: start
+  targetNode: blueSofaRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddleBlue
+  name: construction-recipe-sofa-blue-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: blueSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Red
+- type: construction
+  id: SofaCornerRed
+  name: construction-recipe-sofa-red-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: redSofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndLeftRed
+  name: construction-recipe-sofa-red-left
+  graph: SofaSL
+  startNode: start
+  targetNode: redSofaLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndRightRed
+  name: construction-recipe-sofa-red-right
+  graph: SofaSL
+  startNode: start
+  targetNode: redSofaRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddleRed
+  name: construction-recipe-sofa-red-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: redSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Green
+- type: construction
+  id: SofaCornerGreen
+  name: construction-recipe-sofa-green-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: greenSofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndLeftGreen
+  name: construction-recipe-sofa-green-left
+  graph: SofaSL
+  startNode: start
+  targetNode: greenSofaLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndRightGreen
+  name: construction-recipe-sofa-green-right
+  graph: SofaSL
+  startNode: start
+  targetNode: greenSofaRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddleGreen
+  name: construction-recipe-sofa-green-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: greenSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Brown
+- type: construction
+  id: SofaCornerBrown
+  name: construction-recipe-sofa-brown-corner
+  graph: SofaSL
+  startNode: start
+  targetNode: brownSofaCorner
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndLeftBrown
+  name: construction-recipe-sofa-brown-left
+  graph: SofaSL
+  startNode: start
+  targetNode: brownSofaLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaEndRightBrown
+  name: construction-recipe-sofa-brown-right
+  graph: SofaSL
+  startNode: start
+  targetNode: brownSofaRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaMiddleBrown
+  name: construction-recipe-sofa-brown-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: brownSofaMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Fancy sofa
+- type: construction
+  id: SofaFancyEndLeft
+  name: construction-recipe-sofa-fancy-left
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaFancyMiddle
+  name: construction-recipe-sofa-fancy-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: SofaFancyRight
+  name: construction-recipe-sofa-fancy-right
+  graph: SofaSL
+  startNode: start
+  targetNode: fancyRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+#region Dinner booths
+- type: construction
+  id: DinerEndLeft
+  name: construction-recipe-booth-left
+  graph: SofaSL
+  startNode: start
+  targetNode: boothLeft
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DinerMiddle
+  name: construction-recipe-booth-mid
+  graph: SofaSL
+  startNode: start
+  targetNode: boothMid
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: DinerRight
+  name: construction-recipe-booth-right
+  graph: SofaSL
+  startNode: start
+  targetNode: boothRight
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

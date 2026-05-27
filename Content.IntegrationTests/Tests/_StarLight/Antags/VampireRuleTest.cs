@@ -40,7 +40,7 @@ public sealed class VampireRuleTest
         var mindSys = server.System<MindSystem>();
         var roleSys = server.System<RoleSystem>();
         var ruleSys = server.System<VampireRuleSystem>();
-        
+
         var minPlayers = 1;
         await server.WaitAssertion(() =>
         {
@@ -96,12 +96,12 @@ public sealed class VampireRuleTest
                     && !entMan.HasComponent<DantalionComponent>(player)
                     && !entMan.HasComponent<GargantuaComponent>(player),
             "Vampire should start without a chosen class");
-        Assert.That(vampComp.TotalBlood, Is.EqualTo(0), 
+        Assert.That(vampComp.TotalBlood, Is.EqualTo(0),
             "Vampire should start with 0 blood");
 
-        Assert.That(ruleComp.VampireMinds.Count, Is.EqualTo(1), 
+        Assert.That(ruleComp.VampireMinds.Count, Is.EqualTo(1),
             "Expected exactly 1 vampire to be selected when only 1 player opts in");
-        Assert.That(ruleComp.VampireMinds.Contains(mind), 
+        Assert.That(ruleComp.VampireMinds.Contains(mind),
             "The player who opted in should be selected as vampire");
 
         Assert.That(entMan.TryGetComponent<MindComponent>(mind, out var mindComp));

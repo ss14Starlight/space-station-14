@@ -119,7 +119,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
             return;
         }
         // Starlight end
-        
+
         TryComp<PhysicsComponent>(uid, out var physics);
         _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
         _physics.SetBodyType(uid, BodyType.Static, body: physics);
@@ -265,7 +265,7 @@ public abstract partial class SharedProjectileSystem : EntitySystem
         {
             if(comp.Armed) //No need to arm twice
                 continue;
-            
+
             comp.ArmingTime -= frameTime;
 
             if(comp.ArmingTime <= 0)

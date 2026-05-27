@@ -68,6 +68,7 @@
   - type: Construction # Starlight
     graph: Sink # Starlight
     node: sink # Starlight
+  - type: WashingFixture # Starlight
 
 
 - type: entity

@@ -22,8 +22,8 @@ public sealed partial class Flammable : EntityEffectBase<Flammable>
     [DataField]
     public float? MultiplierOnExisting;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        => Loc.GetString("entity-effect-guidebook-flammable-reaction", ("chance", Probability));
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
+        => loc.GetString("entity-effect-guidebook-flammable-reaction", ("chance", Probability));
 
     public override LogImpact? Impact => LogImpact.Low;
 }

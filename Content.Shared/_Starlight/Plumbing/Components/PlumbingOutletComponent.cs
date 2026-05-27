@@ -37,4 +37,12 @@ public sealed partial class PlumbingOutletComponent : Component
     /// </summary>
     [DataField]
     public string? ContainerSlotId;
+
+    /// <summary>
+    ///     If true, configured outlet nodes on this machine are internally linked in the
+    ///     plumbing graph, allowing attached duct networks to bridge through the machine.
+    ///     Visual connector state and per-edge layer limits are unchanged.
+    /// </summary>
+    [DataField]
+    public bool ConnectedOutlets;
 }

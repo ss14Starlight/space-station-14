@@ -178,7 +178,7 @@
   storage:
     back:
     - BibleBookOfAges
-    
+
 - type: loadout
   id: BibleBookOfAncestors
   storage:
@@ -196,7 +196,7 @@
   storage:
     back:
     - BibleBookOfGrudges
-    
+
 - type: loadout
   id: BibleBookOfMormon
   storage:
@@ -214,7 +214,7 @@
   storage:
     back:
     - BibleKoans
-    
+
 - type: loadout
   id: BibleLiberChaotica
   storage:
@@ -232,7 +232,7 @@
   storage:
     back:
     - BibleOrthodox
-    
+
 - type: loadout
   id: BiblePrincipiaDiscordia
   storage:
@@ -250,7 +250,7 @@
   storage:
     back:
     - BibleTaoTeChing
-    
+
 - type: loadout
   id: BibleTorah
   storage:

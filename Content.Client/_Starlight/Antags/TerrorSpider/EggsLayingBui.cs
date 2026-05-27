@@ -1,13 +1,7 @@
-﻿using Content.Client._Starlight.Antags.Abductor;
-using Content.Client.RCD;
-using Content.Shared._Starlight.Antags.TerrorSpider;
-using Content.Shared.Starlight.Antags.Abductor;
+﻿using Content.Shared._Starlight.Antags.TerrorSpider;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
-using Content.Shared.RCD;
-using Content.Shared.RCD.Components;
 using Robust.Client.UserInterface;
-using Robust.Shared.Prototypes;
 using JetBrains.Annotations;
 
 namespace Content.Client._Starlight.Antags.TerrorSpider;

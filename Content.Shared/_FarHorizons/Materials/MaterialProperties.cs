@@ -7,40 +7,37 @@ namespace Content.Shared._FarHorizons.Materials;
 public sealed partial class MaterialProperties()
 {
     [DataField("electrical")]
-    public float ElectricalConductivity { get; set; } = 5;
+    public float ElectricalConductivity = 5;
 
     [DataField("thermal")]
-    public float ThermalConductivity { get; set; } = 5;
+    public float ThermalConductivity = 5;
 
     [DataField("hard")]
-    public float Hardness { get; set; } = 3;
+    public float Hardness = 3;
 
     [DataField("density")]
-    public float Density { get; set; } = 3;
+    public float Density = 3;
 
     [DataField("reflective")]
-    public float Reflectivity { get; set; } = 0;
+    public float Reflectivity = 0;
 
     [DataField("flammable")]
-    public float Flammability { get; set; } = 1;
+    public float Flammability = 1;
 
     [DataField("chemical")]
-    public float ChemicalResistance { get; set; } = 3;
+    public float ChemicalResistance = 3;
 
     [DataField("radioactive")]
-    public float Radioactivity { get; set; } = 0;
+    public float Radioactivity = 0;
 
     [DataField("n_radioactive")]
-    public float NeutronRadioactivity { get; set; } = 0;
+    public float NeutronRadioactivity = 0;
 
     [DataField("spent_fuel")]
-    public float FissileIsotopes { get; set; } = 0;
-
-    [DataField("molitz_bubbles")]
-    public float GasPockets { get; set; } = 0;
+    public float FissileIsotopes = 0;
 
     [DataField("plasma_offgas")]
-    public float ActivePlasma { get; set; } = 0;
+    public float ActivePlasma = 0;
 
     /// <summary>
     /// Creates a new <see cref="MaterialProperties"> with information from an existing one.
@@ -58,7 +55,6 @@ public sealed partial class MaterialProperties()
         Radioactivity = source.Radioactivity;
         NeutronRadioactivity = source.NeutronRadioactivity;
         FissileIsotopes = source.FissileIsotopes;
-        GasPockets = source.GasPockets;
         ActivePlasma = source.ActivePlasma;
     }
 }

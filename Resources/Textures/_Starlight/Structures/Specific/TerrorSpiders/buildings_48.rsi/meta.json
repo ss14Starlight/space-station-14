@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "above files",
+  "size": {
+    "x": 48,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "pole",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "license": "CC-BY-SA-3.0",
+      "copyright": "Created by Jaraten (github) for ss14 and edited by Rinary"
+    }
+  ]
+}

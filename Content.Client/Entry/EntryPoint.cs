@@ -1,4 +1,6 @@
 ﻿using Content.Client._Starlight.Managers;
+using Content.Client._Starlight.Achievement;
+using Content.Client._NullLink; // NullLink
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -82,8 +84,10 @@ namespace Content.Client.Entry
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
         [Dependency] private readonly INullLinkPlayerRolesManager _nullLinkPlayerRolesManager = default!; //NullLink
+        [Dependency] private readonly INullLinkPlayerResourcesManager _nullLinkResourcesManager = default!; //NullLink
         [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _sharedNullLinkPlayer = default!; //NullLink
         [Dependency] private readonly PreWrittenDocumentManager _documentManager = default!; // Starlight
+        [Dependency] private readonly IClientAchievementManager _achievementManager = default!; // Starlight
 
         public override void PreInit()
         {
@@ -136,7 +140,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
             _prototypeManager.RegisterIgnore("codewordGenerator");
             _prototypeManager.RegisterIgnore("codewordFaction");
-            
+
             _prototypeManager.RegisterIgnore("onSignActions"); //🌟Starlight🌟
 
             _documentManager.Initialize(); // Starlight
@@ -150,7 +154,7 @@ namespace Content.Client.Entry
             _viewportManager.Initialize();
             _ghostKick.Initialize();
             _extendedDisconnectInformation.Initialize();
-            _jobRequirements.Initialize();
+            //_jobRequirements.Initialize(); //🌟Starlight🌟 - Moved to PostInit
             _playbackMan.Initialize();
             _clientsidePlaytimeManager.Initialize();
 
@@ -184,6 +188,8 @@ namespace Content.Client.Entry
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
 
+            _jobRequirements.Initialize(); //🌟Starlight🌟
+
             _baseClient.RunLevelChanged += (_, args) =>
             {
                 if (args.NewLevel == ClientRunLevel.Initialize)
@@ -195,8 +201,11 @@ namespace Content.Client.Entry
 
             // NullLink start
             _nullLinkPlayerRolesManager.Initialize();
+            _nullLinkResourcesManager.Initialize();
             _sharedNullLinkPlayer.Initialize();
             // NullLink end
+
+            _achievementManager.Initialize(); // Starlight
 
             // Disable engine-default viewport since we use our own custom viewport control.
             _userInterfaceManager.MainViewport.Visible = false;

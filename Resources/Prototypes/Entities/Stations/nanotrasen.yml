@@ -28,6 +28,7 @@
     - BaseStationNanotrasen
     - BaseStationDeliveries
     - BaseStationCryoTeleportation #Starlight
+    - BaseStationSecureTerminal # Starlight
   categories: [ HideSpawnMenu ]
   components:
     - type: Transform

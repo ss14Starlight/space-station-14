@@ -48,10 +48,10 @@
   - type: UseDelay
     delay: 1
   - type: SurgeryTool
+  - type: BoneSaw
     successRate: 0.6 # 🌟Starlight🌟
     speed: 0.2 #Chainsaws are very fast 🌟Starlight🌟
     startSound:
       path: /Audio/Weapons/chainsawwield.ogg
     endSound:
       path: /Audio/Weapons/chainsaw.ogg
-  - type: BoneSaw # 🌟Starlight🌟

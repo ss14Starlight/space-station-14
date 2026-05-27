@@ -21,17 +21,18 @@ public sealed partial class RolesRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason)
     {
         var requirement = protoManager.Index(Proto);
         reason = new FormattedMessage();
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles))
-            return true;
+
+        var success = player is not null &&
+                  IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAnyRole(player, requirement.Roles);
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
-            "roles-req-any-role-required",
+            success ? "roles-req-any-role-required-pass" : "roles-req-any-role-required-fail",
             ("discord", Loc.GetString(requirement.Discord)),
             ("roles", Loc.GetString(requirement.RolesLoc))));
-        return false;
+        return success;
     }
 }

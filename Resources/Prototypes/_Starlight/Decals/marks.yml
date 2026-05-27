@@ -1,0 +1,496 @@
+- type: decal
+  id: arrowupsl
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: arrowup
+
+- type: decal
+  id: hazardmiddle
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: hazard_middle
+
+- type: decal
+  id: roadcorner
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: road_corner
+
+- type: decal
+  id: roadstraight
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: road_straight
+
+- type: decal
+  id: stopline
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/marks.rsi
+    state: stop_line
+
+- type: decal
+  id: aisign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: ai
+
+- type: decal
+  id: barsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bar
+
+- type: decal
+  id: bridgesign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: bridge
+
+- type: decal
+  id: cargosign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: cargo
+
+- type: decal
+  id: centcommsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: cct
+
+- type: decal
+  id: cybersunsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: cybersunt
+
+- type: decal
+  id: engsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: eng
+
+- type: decal
+  id: evacsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: evact
+
+- type: decal
+  id: hopsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: hop
+
+- type: decal
+  id: medsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: med
+
+- type: decal
+  id: ntsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: ntt
+
+- type: decal
+  id: scisign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: sci
+
+- type: decal
+  id: secsign
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/signage.rsi
+    state: sec
+
+- type: decal
+  id: thincornereast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_corner_east
+
+- type: decal
+  id: thincornernorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_corner_north
+
+- type: decal
+  id: thincornersouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_corner_south
+
+- type: decal
+  id: thincornerwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_corner_west
+
+- type: decal
+  id: thinplatingeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_east
+
+- type: decal
+  id: thinplatingnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_north
+
+- type: decal
+  id: thinplatingsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_south
+
+- type: decal
+  id: thinplatingwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_west
+
+- type: decal
+  id: thinplatingendeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_end_east
+
+- type: decal
+  id: thinplatingendnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_end_north
+
+- type: decal
+  id: thinplatingendsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_end_south
+
+- type: decal
+  id: thinplatingendwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_end_west
+
+- type: decal
+  id: thinplatingne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_ne
+
+- type: decal
+  id: thinplatingnw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_nw
+
+- type: decal
+  id: thinplatingse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_se
+
+- type: decal
+  id: thinplatingsw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: thinplating_sw
+
+- type: decal
+  id: trimroundedeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trim_rounded_east
+
+- type: decal
+  id: trimroundednorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trim_rounded_north
+
+- type: decal
+  id: trimroundedsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trim_rounded_south
+
+- type: decal
+  id: trimroundedwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trim_rounded_west
+
+- type: decal
+  id: trimlinearrowccweast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_east
+
+- type: decal
+  id: trimlinearrowccwne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_ne
+
+- type: decal
+  id: trimlinearrowccwnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_north
+
+- type: decal
+  id: trimlinearrowccwnw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_nw
+
+- type: decal
+  id: trimlinearrowccwse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_se
+
+- type: decal
+  id: trimlinearrowccwsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_south
+
+- type: decal
+  id: trimlinearrowccwsw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_sw
+
+- type: decal
+  id: trimlinearrowccwwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_ccw_west
+
+- type: decal
+  id: trimlinearrowcweast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_east
+
+- type: decal
+  id: trimlinearrowcwne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_ne
+
+- type: decal
+  id: trimlinearrowcwnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_north
+
+- type: decal
+  id: trimlinearrowcwnw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_nw
+
+- type: decal
+  id: trimlinearrowcwse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_se
+
+- type: decal
+  id: trimlinearrowcwsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_south
+
+- type: decal
+  id: trimlinearrowcwsw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_sw
+
+- type: decal
+  id: trimlinearrowcwwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_arrow_cw_west
+
+- type: decal
+  id: trimlinebox
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_box
+
+- type: decal
+  id: trimlinecornerne
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_corner_ne
+
+- type: decal
+  id: trimlinecornernw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_corner_nw
+
+- type: decal
+  id: trimlinecornerse
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_corner_se
+
+- type: decal
+  id: trimlinecornersw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_corner_sw
+
+- type: decal
+  id: trimlineendeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_end_east
+
+- type: decal
+  id: trimlineendnorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_end_north
+
+- type: decal
+  id: trimlineendsouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_end_south
+
+- type: decal
+  id: trimlineendwest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_end_west
+
+- type: decal
+  id: trimlinene
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_ne
+
+- type: decal
+  id: trimlinenorth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_north
+
+- type: decal
+  id: trimlinenw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_nw
+
+- type: decal
+  id: trimlinese
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_se
+
+- type: decal
+  id: trimlineeast
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_east
+
+- type: decal
+  id: trimlinesouth
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_south
+
+- type: decal
+  id: trimlinesw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_sw
+
+- type: decal
+  id: trimlinewest
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/trims.rsi
+    state: trimline_west

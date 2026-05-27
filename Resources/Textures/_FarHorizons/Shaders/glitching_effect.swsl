@@ -1,0 +1,55 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp float Zoom;
+
+uniform highp float sortPower;
+uniform highp float threshold;
+uniform bool horizontal;
+uniform lowp int maxSteps;
+
+uniform highp float waveFrequency;
+uniform highp float waveSpeed;
+uniform highp float waveAmplitude;
+
+uniform highp float vignettePower;
+uniform highp float vignetteFalloff;
+
+highp float get_luminance(highp vec3 color) {
+    return dot(color, vec3(0.299, 0.587, 0.114));
+}
+
+void fragment() {
+    highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+
+    // Glitch / psudo-pixel sorting
+
+    highp vec4 first_sample = zTextureSpec(SCREEN_TEXTURE, uv);
+    highp float lum = get_luminance(first_sample.rgb);
+    highp vec2 dir = horizontal ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    highp vec2 wiggle_dir = horizontal ? vec2(0.0, 1.0) : vec2(1.0, 0.0);
+    highp vec4 final_color = first_sample;
+
+    if (lum > threshold) {
+        for(int i = 0; i < maxSteps; i++) {
+            highp float step = float(i) / float(maxSteps);
+            highp float movement = sin((step * waveFrequency) + (TIME * waveSpeed)) * waveAmplitude;
+            highp vec2 sample_uv = uv - (dir * step * sortPower / Zoom) + (wiggle_dir * movement);
+            highp vec4 next_sample = zTextureSpec(SCREEN_TEXTURE, sample_uv);
+
+            if (get_luminance(next_sample.rgb) > threshold) {
+                final_color = next_sample;
+            } else {
+                break;
+            }
+        }
+    }
+
+    // Vignette
+
+    highp float distance_from_center = distance(uv, vec2(0.5, 0.5));
+    highp float vign_mask = pow(distance_from_center * 1.4142, vignetteFalloff);
+    vign_mask = clamp(vign_mask, 0.0, 1.0);
+    final_color.rgb = mix(final_color.rgb, vec3(0.0), vign_mask * vignettePower);
+
+    // Final output
+    COLOR = final_color;
+}

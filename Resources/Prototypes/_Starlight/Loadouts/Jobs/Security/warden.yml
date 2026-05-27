@@ -1,0 +1,6 @@
+# Neck
+
+- type: loadout
+  id: ClothingNeckWarden
+  equipment:
+    neck: ClothingNeckCloakwarden

@@ -295,7 +295,7 @@ namespace Content.Server.Stack
             if (Split(stack.AsNullable(), amount, user.Comp.Coordinates) is not { } split)
                 return;
 
-            Hands.PickupOrDrop(user.Owner, split);
+            TryMergeToHands(split, user.Owner); // Starlight: To hand, for repeatability of verbs.
 
             Popup.PopupCursor(Loc.GetString("comp-stack-split"), user.Owner);
         }

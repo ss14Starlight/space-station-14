@@ -6,8 +6,6 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Server.Audio;
-using Content.Shared.Actions;
-using Content.Shared.Charges.Systems;
 
 namespace Content.Server._Starlight.Antags.Actions;
 

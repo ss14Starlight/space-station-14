@@ -14,7 +14,7 @@ public sealed class AddTagsOnClothingEquipSystem : EntitySystem
         SubscribeLocalEvent<AddTagsOnClothingEquipComponent, ClothingGotEquippedEvent>(OnClothingEquip);
         SubscribeLocalEvent<AddTagsOnClothingEquipComponent, ClothingGotUnequippedEvent>(OnClothingUnequip);
     }
-    
+
     private void OnClothingEquip(Entity<AddTagsOnClothingEquipComponent> ent, ref ClothingGotEquippedEvent args)
     {
         // This is not perfect, if the tag already exists but is temporary this will skip it.
@@ -26,7 +26,7 @@ public sealed class AddTagsOnClothingEquipSystem : EntitySystem
 
         Dirty(ent);
     }
-    
+
     private void OnClothingUnequip(Entity<AddTagsOnClothingEquipComponent> ent, ref ClothingGotUnequippedEvent args)
     {
         if (ent.Comp.AddedTags.Count == 0 || !ent.Comp.RemoveTagsOnUnequip)

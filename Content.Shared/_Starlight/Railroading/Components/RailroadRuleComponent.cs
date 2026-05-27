@@ -50,5 +50,6 @@ public sealed partial class RailroadRuleComponent : Component
         PreCardIssuance,
         CardIssuance,
         CycleDelay,
+        Stopped
     }
 }

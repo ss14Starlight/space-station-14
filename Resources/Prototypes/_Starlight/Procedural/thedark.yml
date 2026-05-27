@@ -1,0 +1,189 @@
+- type: entity
+  id: BaseTheDarkDebris
+  parent: BaseDebris
+  name: the dark debris
+  abstract: true
+  components:
+    - type: PreventPilot
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - FloorDarkStone
+        - FloorDarkStone
+        - FloorDarkStone
+        - FloorDarkGrass
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorDarkStone:
+          - id: WallRockDark
+            prob: 0.5
+            orGroup: rock
+          - id: WallRockDarkBluespace
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockDarkPasma
+            prob: 0.05
+            orGroup: rock
+        FloorDarkGrass:
+          - id: NothingEntity
+            prob: 0.01
+            orGroup: tree
+          - id: ShadowTree
+            prob: 0.01
+            orGroup: tree
+    - type: IFF
+      flags: HideLabel
+      color: "#795382"
+
+- type: entity
+  id: TheDarkDebrisSmall
+  parent: BaseTheDarkDebris
+  name: the dark debris small
+  categories: [HideSpawnMenu]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 8
+
+- type: entity
+  id: TheDarkDebrisMedium
+  parent: BaseTheDarkDebris
+  name: the dark debris medium
+  categories: [HideSpawnMenu]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 16
+
+- type: entity
+  id: TheDarkDebrisLarge
+  parent: BaseTheDarkDebris
+  name: the dark debris large
+  categories: [HideSpawnMenu]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 24
+
+- type: entity
+  id: TheDarkDebrisLarger
+  parent: BaseTheDarkDebris
+  name: the dark debris larger
+  categories: [HideSpawnMenu]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      radius: 12
+      floorPlacements: 36
+
+- type: entity
+  id: TheDarkForest
+  parent: BaseDebris
+  name: dark forest
+  components:
+    - type: PreventPilot
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - FloorDarkGrass
+        - FloorDarkGrass
+        - FloorDarkGrass
+        - FloorDarkStone
+      blobDrawProb: 0.5
+      radius: 28
+      floorPlacements: 108
+    - type: SimpleFloorPlanPopulator
+      entries:
+        FloorDarkStone:
+          - id: NothingEntity
+            prob: 0.5
+            orGroup: rock
+          - id: WallRockDark
+            prob: 0.5
+            orGroup: rock
+          - id: WallRockDarkBluespace
+            prob: 0.05
+            orGroup: rock
+          - id: WallRockDarkPasma
+            prob: 0.05
+            orGroup: rock
+        FloorDarkGrass:
+          - id: NothingEntity
+            prob: 0.01
+            orGroup: tree
+          - id: ShadowTree
+            prob: 0.01
+            orGroup: tree
+    - type: IFF
+      flags: HideLabel
+      color: "#eb93ff"
+
+- type: entity
+  id: BaseTheDarkScrapDebris
+  parent: BaseDebris
+  name: scrap debris
+  abstract: true
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorTileset:
+        - Plating
+        - Plating
+        - Plating
+        - FloorSteel
+        - Lattice
+      blobDrawProb: 0.5
+      radius: 6
+      floorPlacements: 16
+    - type: SimpleFloorPlanPopulator
+      entries:
+        Plating:
+          - prob: 3 # Intentional blank.
+          - id: SalvageMaterialCrateSpawner
+            prob: 1
+          - id: SalvageCanisterSpawner
+            prob: 0.2
+          - id: WallSolid
+            prob: 1
+          - id: Grille
+            prob: 0.5
+        Lattice:
+          - prob: 2
+          - id: Grille
+            prob: 0.2
+          - id: SalvageMaterialCrateSpawner
+            prob: 0.3
+          - id: SalvageCanisterSpawner
+            prob: 0.2
+        FloorSteel:
+          - prob: 3 # Intentional blank.
+          - id: SalvageMaterialCrateSpawner
+            prob: 1
+          - id: SalvageCanisterSpawner
+            prob: 0.2
+    - type: IFF
+      flags: HideLabel
+      color: "#88b0d1"
+
+- type: entity
+  id: TheDarkScrapDebrisSmall
+  parent: BaseTheDarkScrapDebris
+  name: scrap debris small
+  categories: [HideSpawnMenu]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 8
+
+- type: entity
+  id: TheDarkScrapDebrisMedium
+  parent: BaseTheDarkScrapDebris
+  name: scrap debris medium
+  categories: [HideSpawnMenu]
+  components:
+    - type: MapGrid
+    - type: BlobFloorPlanBuilder
+      floorPlacements: 16

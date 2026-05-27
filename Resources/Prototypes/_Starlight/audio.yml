@@ -1,0 +1,80 @@
+- type: ambientMusic
+  id: GridNoise
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceStation
+  rules: OnGrid
+  priority: 3
+
+
+- type: ambientMusic
+  id: NearTheDark
+  sound:
+    params:
+      volume: -12
+    collection: AmbienceTheDark
+  rules: NearTheDark
+  priority: 2
+
+- type: ambientMusic
+  id: TheDark
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceTheDark
+  fadeIn: true
+  interruptable: true
+  rules: InTheDark
+  priority: 1
+
+- type: ambientMusic
+  id: NukiePlanet
+  sound:
+    params:
+      volume: -10
+    collection: AmbienceNukiePlanet
+  fadeIn: true
+  interruptable: true
+  rules: InNukiePlanetMap
+  priority: 1
+
+
+- type: soundCollection
+  id: AmbienceTheDark
+  files:
+    - /Audio/_Starlight/Ambience/TheDark/dark1.ogg
+    - /Audio/_Starlight/Ambience/TheDark/dark2.ogg
+    - /Audio/_Starlight/Ambience/TheDark/dark3.ogg
+
+- type: soundCollection
+  id: AmbienceNukiePlanet
+  files:
+    - /Audio/_Starlight/Ambience/nuclearoperations_prep.ogg
+
+- type: rules
+  id: NearTheDark
+  rules:
+    - !type:NearbyEntitiesRule
+      count: 1
+      whitelist:
+        tags:
+          - TheDark
+      range: 5
+
+- type: rules
+  id: InTheDark
+  rules:
+    - !type:OnMapTagRule
+      mapTag: TheDark
+
+- type: rules
+  id: InNukiePlanetMap
+  rules:
+    - !type:OnMapTagRule
+      mapTag: NukiePlanet
+
+- type: rules
+  id: OnGrid
+  rules:
+    - !type:OnGridRule

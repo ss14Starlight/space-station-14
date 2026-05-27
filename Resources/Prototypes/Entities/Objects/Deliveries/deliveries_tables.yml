@@ -64,7 +64,7 @@
     children:
     - !type:NestedSelector # Don't you love getting mailed trash?
       weight: .20 # Starlight-edit: changed Trash weight from 1 to .20
-      tableId: GenericTrashItems 
+      tableId: GenericTrashItems
     - !type:NestedSelector
       weight: .20 # Starlight-edit: changed weight from .4 to .20
       tableId: SpamMailTable
@@ -93,7 +93,7 @@
     - id: Brutepack # Starlight-edit-Start: Moved From Rare Letter loot table, to Uncommon Letter loot table
     - id: Ointment
     - id: Gauze
-    - id: Bloodpack # Starlight-edit-End: 
+    - id: Bloodpack # Starlight-edit-End:
     - id: BikeHornImplanter # Starlight Start: Added Some More Variety Of items
     - id: SnapPopBox
     - id: CrazyLube
@@ -102,7 +102,7 @@
       amount: !type:RangeNumberSelector
         range: 1, 3
 - type: entityTable # TODO: Add more variety!
-  id: LetterRareEntityTable # Interesting things that can actually be of use, should never be more expensive than 500 spesos 
+  id: LetterRareEntityTable # Interesting things that can actually be of use, should never be more expensive than 500 spesos
   table: !type:GroupSelector #Starlight Note: Unlike Upstream, we can go over 500 spesos, but for entries that help to build value to the mechanic.
     children:
     - id: ResearchDisk5000
@@ -191,4 +191,4 @@
     - !type:NestedSelector
       tableId: SyndieMaintLoot
       weight: 0.5
-      
+

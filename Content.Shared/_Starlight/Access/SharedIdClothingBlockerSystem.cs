@@ -43,7 +43,7 @@ public abstract class SharedIdClothingBlockerSystem : EntitySystem
         args.Cancel();
         PopupClient(Loc.GetString("access-clothing-blocker-notify-unauthorized-access"), uid);
     }
-    
+
     protected virtual bool HasAccess(EntityUid wearer, IdClothingBlockerComponent component) => !component.IsBlocked;
 
     private void OnGotEquipped(EntityUid uid, IdClothingBlockerComponent component, GotEquippedEvent args)

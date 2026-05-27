@@ -29,6 +29,15 @@
       "name": "base"
     },
     {
+      "name": "military"
+    },
+    {
+      "name": "military_on"
+    },
+    {
+      "name": "military_off"
+    },
+    {
       "name": "support"
     }
   ]

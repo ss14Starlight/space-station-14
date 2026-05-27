@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation https://github.com/tgstation, converted into space courier by wonderfulnewworld (GitHub)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "icon-up",
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-EYES",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "up-equipped-EYES",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "up-equipped-HELMET",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "up-inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "up-inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

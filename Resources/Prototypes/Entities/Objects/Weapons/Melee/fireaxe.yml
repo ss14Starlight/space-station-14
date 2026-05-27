@@ -42,6 +42,8 @@
       - Prying
   - type: ToolTileCompatible
   - type: Prying
+    useSoundOnDoafter: /Audio/_Starlight/Machines/airlock_pry.ogg #SL
+    playSoundOnDoafter: true #SL
   - type: UseDelay
     delay: 1
   - type: StealTarget
@@ -49,8 +51,8 @@
   - type: IgniteOnMeleeHit
     fireStacks: -4
   # 🌟Starlight-start🌟
-  - type: BoneSaw
   - type: SurgeryTool
+  - type: BoneSaw
     successRate: 0.6
     speed: 0.6
     startSound:

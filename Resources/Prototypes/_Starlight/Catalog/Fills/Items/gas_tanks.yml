@@ -1,0 +1,20 @@
+- type: entity
+  id: HealiumTankFilled
+  parent: AirTank
+  suffix: Filled
+  name: healium tank
+  description: Contains a mixture of air and healium. Keep the pressure at 65 and it should put even those nitrogen breathers to sleep. It can hold 5 L of gas.
+  components:
+  - type: GasTank
+    outputPressure: 65
+    air:
+      # Will only last around 10-11 minutes.
+      volume: 5
+      moles:
+        Oxygen: 0.4861768349 # 23.7% oxygen
+        Nitrogen: 0.4861768349 # 23.7% Nitrogen
+        Healium: 1.07902538 # 52.6% Healium
+        # 2.051379050       total
+      temperature: 293.15
+
+

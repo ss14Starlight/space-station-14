@@ -311,7 +311,7 @@
 - type: entity
   id: CigPackRollie
   parent: PackPaperRolling
-  name: Rollie Packet
+  name: rollie packet # Starlight-edit
   description: An old rolling paper packet full of things to make rollies with.
   components:
   - type: EntityTableContainerFill

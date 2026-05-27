@@ -5,7 +5,6 @@ using Content.Server.EUI;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
 using Content.Shared.Ghost.Roles;
-using Content.Shared.Starlight.GhostTheme;
 using Content.Shared.Starlight.NewLife;
 
 namespace Content.Server.Ghost.Roles.UI;

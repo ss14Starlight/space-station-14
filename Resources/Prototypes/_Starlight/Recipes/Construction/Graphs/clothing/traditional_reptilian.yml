@@ -1,0 +1,13 @@
+- type: constructionGraph
+  id: TraditionalReptilianClothesGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: jumpsuit
+          steps:
+          - material: Cloth
+            amount: 15
+            doAfter: 10
+    - node: jumpsuit
+      entity: ClothingUniformJumpsuitTraditionalReptilian

@@ -128,5 +128,14 @@ namespace Content.Shared.DrawDepth
         ///    the pointing arrow, the drag & drop ghost-entity, and some debug tools.
         /// </summary>
         Overlays = DrawDepthTag.Default + 13,
+
+        // Starlight - start
+        CyberspaceOverlays = DrawDepthTag.Default + 14,
+        /// <summary>
+        ///     Objects that exist in cyberspace and should render above the StationAI dark overlay (ZIndex 14).
+        ///     Assign this to any entity that must be visible to the AI regardless of camera coverage.
+        /// </summary>
+        CyberspaceObjects = DrawDepthTag.Default + 100,
+        // Starlight - end
     }
 }

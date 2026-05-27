@@ -8,7 +8,6 @@ using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
-using static Content.Server._Starlight.Actions.EntitySystems.SLActionSystem;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class CyberLimbSystem : EntitySystem
@@ -37,7 +36,7 @@ public sealed partial class CyberLimbSystem : EntitySystem
     {
         if (!TryComp<LimbItemStorageComponent>(ent, out var storage))
             return;
-            
+
         ent.Comp.Toggled = !ent.Comp.Toggled && (!ent.Comp.IsCybernetic || !TryComp(args.Performer, out CyberneticDisruptionComponent? _));
 
         if (ent.Comp.Toggled)

@@ -10,20 +10,20 @@ namespace Content.Server._Starlight.Administration.Commands;
 public sealed class ContainerCommand : ToolshedCommand
 {
     private SharedContainerSystem? _container;
-    
+
     #region insert implementations
 
-    [CommandImplementation("insert")]
-    public EntityUid Insert([PipedArgument] EntityUid target, string containerId, EntityUid uid)
+    [CommandImplementation("insertentity")]
+    public EntityUid InsertEntity([PipedArgument] EntityUid target, string containerId, EntityUid uid)
     {
         _container ??= EntityManager.System<SharedContainerSystem>();
         var container = _container.GetContainer(target, containerId);
         _container.InsertOrDrop(uid, container);
         return target;
     }
-    
-    [CommandImplementation("insert")]
-    public ContainerRef Insert([PipedArgument] ContainerRef container, EntityUid uid)
+
+    [CommandImplementation("insertentity")]
+    public ContainerRef InsertEntity([PipedArgument] ContainerRef container, EntityUid uid)
     {
         if (container.Container is null) return container;
         _container ??= EntityManager.System<SharedContainerSystem>();
@@ -31,24 +31,20 @@ public sealed class ContainerCommand : ToolshedCommand
         return container;
     }
 
-    [CommandImplementation("insert")]
-    public IEnumerable<EntityUid> Insert([PipedArgument] IEnumerable<EntityUid> target, string containerId, EntityUid uid) =>
-        target.Select(x => Insert(x, containerId, uid));
+    [CommandImplementation("insertentity")]
+    public IEnumerable<EntityUid> InsertEntity([PipedArgument] IEnumerable<EntityUid> target, string containerId, EntityUid uid) =>
+        target.Select(x => InsertEntity(x, containerId, uid));
 
-    [CommandImplementation("insertmany")]
-    public IEnumerable<EntityUid> InsertMany([PipedArgument] IEnumerable<EntityUid> entities, string containerId,
-        EntityUid target)
-    {
-        var entityUids = entities.ToList();
-        foreach (var entity in entityUids)
-        {
-            Insert(target, containerId, entity);
-        }
-        return entityUids;
-    }
+    [CommandImplementation("insert")]
+    public EntityUid Insert([PipedArgument] EntityUid uid, string containerId, EntityUid target) =>
+        InsertEntity(target, containerId, uid);
+
+    [CommandImplementation("insert")]
+    public IEnumerable<EntityUid> Insert([PipedArgument] IEnumerable<EntityUid> uid, string containerId, EntityUid target) =>
+        uid.Select(x => InsertEntity(target, containerId, x));
 
     #endregion
-    
+
     #region create implementations
 
     [CommandImplementation("create")]
@@ -62,11 +58,23 @@ public sealed class ContainerCommand : ToolshedCommand
     [CommandImplementation("create")]
     public IEnumerable<EntityUid> Create([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => Create(x, containerId));
-    
+
+    [CommandImplementation("createslot")]
+    public EntityUid CreateSlot([PipedArgument] EntityUid target, string containerId)
+    {
+        _container ??= EntityManager.System<SharedContainerSystem>();
+        _container.MakeContainer<ContainerSlot>(target, containerId);
+        return target;
+    }
+
+    [CommandImplementation("createslot")]
+    public IEnumerable<EntityUid> CreateSlot([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
+        target.Select(x => CreateSlot(x, containerId));
+
     #endregion
-    
+
     #region delete implementations
-    
+
     [CommandImplementation("delete")]
     public EntityUid Delete([PipedArgument] EntityUid target, string containerId)
     {
@@ -75,7 +83,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.ShutdownContainer(container);
         return target;
     }
-    
+
     [CommandImplementation("delete")]
     public void Delete([PipedArgument] ContainerRef container)
     {
@@ -87,9 +95,9 @@ public sealed class ContainerCommand : ToolshedCommand
     [CommandImplementation("delete")]
     public IEnumerable<EntityUid> Delete([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => Delete(x, containerId));
-    
+
     #endregion
-    
+
     #region drop implementation
 
     [CommandImplementation("drop")]
@@ -100,7 +108,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.EmptyContainer(container);
         return target;
     }
-    
+
     [CommandImplementation("drop")]
     public ContainerRef Drop([PipedArgument] ContainerRef container)
     {
@@ -109,7 +117,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.EmptyContainer(container.Container);
         return container;
     }
-    
+
     [CommandImplementation("dropandget")]
     public IEnumerable<EntityUid> DropGetEntities([PipedArgument] EntityUid target, string containerId)
     {
@@ -134,7 +142,7 @@ public sealed class ContainerCommand : ToolshedCommand
         _container.ShutdownContainer(container);
         return target;
     }
-    
+
     [CommandImplementation("dropanddelete")]
     public void DropAndDelete([PipedArgument] ContainerRef container)
     {
@@ -142,11 +150,11 @@ public sealed class ContainerCommand : ToolshedCommand
         _container ??= EntityManager.System<SharedContainerSystem>();
         _container.ShutdownContainer(container.Container);
     }
-    
+
     [CommandImplementation("drop")]
     public IEnumerable<EntityUid> Drop([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.Select(x => Drop(x, containerId));
-    
+
     [CommandImplementation("dropandget")]
     public IEnumerable<EntityUid> DropGetEntities([PipedArgument] IEnumerable<EntityUid> target, string containerId) =>
         target.SelectMany(x=>DropGetEntities(x, containerId));
@@ -156,7 +164,7 @@ public sealed class ContainerCommand : ToolshedCommand
         target.Select(x => DropAndDelete(x, containerId));
 
     #endregion
-    
+
     #region get implementations
 
     [CommandImplementation("get")]

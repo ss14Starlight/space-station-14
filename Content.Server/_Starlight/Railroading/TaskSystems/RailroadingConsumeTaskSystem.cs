@@ -45,9 +45,6 @@ public sealed partial class RailroadingConsumeTaskSystem : EntitySystem
 
     private void OnCollectObjectiveInfo(Entity<RailroadConsumeTaskComponent> ent, ref CollectObjectiveInfoEvent args)
     {
-        if (!TryComp<RailroadCardComponent>(ent.Owner, out var card))
-            return;
-
         var prototype = _proto.Index(ent.Comp.Objects.FirstOrDefault());
         args.Objectives.Add(new ObjectiveInfo
         {
@@ -64,6 +61,6 @@ public sealed partial class RailroadingConsumeTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.IsCompleted;
     }
 
-    private void OnConsumeTaskPicked(Entity<RailroadConsumeTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnConsumeTaskPicked(Entity<RailroadConsumeTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadConsumeWatcherComponent>(args.Subject.Owner);
 }

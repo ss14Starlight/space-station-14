@@ -966,9 +966,11 @@
   color: "#FDD023"
   metabolisms:
     Poison:
+      metabolismRate : 2.0
       effects:
       - !type:Electrocute
-        probability: 0.8
+        electrocuteTime: 1
+        probability: 0.5
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:

@@ -16,5 +16,10 @@ public abstract class SharedSpiderSystem : EntitySystem
     private void OnInit(EntityUid uid, SpiderComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, ref component.Action, component.WebAction, uid);
+
+        // Starlight-start
+        if (component.HasBuilding)
+            _action.AddAction(uid, ref component.BuildingAction, component.BuildingActionProto, uid);
+        // Starlight-end
     }
 }

@@ -34,7 +34,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 40
+  minPlayers: 50 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -42,15 +42,21 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - WizardDuel # Starlight
     - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
     - SLChangeling #Starlight
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
     - Vampire #Starlight
-#    - SiliconLiberation #Starlight
+    - SiliconLiberation #Starlight
+    - Brighteye #Starlight
+    - ThiefGamerule # Starlight, Event Light
+    # - CosmicCult #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -62,15 +68,17 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 40
+  minPlayers: 50 # Starlight
   rules:
     - Nukeops
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - SubWizard # Starlight. Well, you did say *Aller* at once.
+    - WizardDuel # Starlight. Well, you did say *Aller* at once.
     - Xenoborgs
     - BasicStationEventScheduler
+    - BasicStationEventScheduler # Starlight, ShitStation
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
@@ -78,8 +86,25 @@
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - BasicRoundstartVariation # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - DerelictGenericCyborgSpawn # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - IonStorm # Starlight, ShitStation
+    - CockroachMigration # Starlight, ShitStation
+    - MouseMigration # Starlight, ShitStation
     - SLChangeling # Starlight
-#    - SiliconLiberation #Starlight
+    - Vampire #Starlight
+    - SiliconLiberation #Starlight
+    - Brighteye #Starlight
+    - ThiefGamerule # Starlight, Event Light
+    - LoneOpsSpawn # Starlight
+    - RailroadingTerminator # Starlight
+    - RailroadingMinor # Starlight
+    # - CosmicCult # Starlight
 
 - type: gamePreset
   id: Extended
@@ -117,6 +142,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
+  minPlayers: 5 # 🌟Starlight🌟
   rules:
   - DynamicRule
   - DummyNonAntag
@@ -156,7 +182,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 4
+  minPlayers: 0 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -226,6 +252,7 @@
   - wizard
   name: wizard-title
   description: wizard-description
+  minPlayers: 40 # 🌟Starlight🌟
   showInVote: false
   rules:
   - Wizard
@@ -242,6 +269,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
+  minPlayers: 20 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs
@@ -289,7 +317,7 @@
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  
+
 - type: gamePreset
   id: Vampire
   alias:
@@ -340,30 +368,7 @@
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
-#Starlight start
-- type: gamePreset
-  id: Vamptraitorling
-  alias:
-    - lingtraitorvamp
-    - traitorlingvamp
-    - vamptraitorling
-    - vamplingtraitor
-    - lingvamptraitor
-    - traitorvampling
-  name: vamptraitorling-title
-  description: vamptraitorling-description
-  showInVote: true #Starlight
-  minPlayers: 50 #Starlight
-  rules:
-    - SLChangelingLess # Starlight
-    - TraitorLess #Starlight
-    - VampireLess # Starlight
-    - SubGamemodesRuleVampTraitorLing #Starlight
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-#Starlight end
-
-#Starlight EventLight Gamemode for Event Usage 
+#Starlight EventLight Gamemode for Event Usage
 - type: gamePreset
   id: EventLight
   alias:

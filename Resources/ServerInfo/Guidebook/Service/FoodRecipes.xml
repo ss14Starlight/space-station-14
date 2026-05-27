@@ -40,6 +40,11 @@ This is the latest published version of NanoTrasen Central Command Kitchen de Cu
 ## Salads
 <GuideMicrowaveGroupEmbed Group="Salad"/>
 
+<!-- Starlight start -->
+## Deep Fried
+<GuideDeepFryerGroupEmbed Group="TP14-Deep-Fry"/>
+<!-- Starlight end -->
+
 ## Medicinal
 <GuideMicrowaveGroupEmbed Group="Medicinal"/>
 

@@ -58,7 +58,7 @@ public sealed class AnimateSpellSystem : EntitySystem
 
         _transform.Unanchor(ent); // If left anchored they are effectively stuck/immobile and not a threat
         _physics.SetCanCollide(ent, true, true, false, fixtures, physics);
-        
+
         // Starlight-start: Set collision on ALL fixtures, not just the first one
         // Add MidImpassable so melee AttackMask can detect animated objects for wide swings (AttackMask = MobMask | Opaque)
         foreach (var (key, fixture) in fixtures.Fixtures)
@@ -72,7 +72,7 @@ public sealed class AnimateSpellSystem : EntitySystem
         // _physics.SetCollisionMask(ent, fixture.Key, fixture.Value, (int)CollisionGroup.FlyingMobMask, fixtures, physics);
         // _physics.SetCollisionLayer(ent, fixture.Key, fixture.Value, (int)CollisionGroup.FlyingMobLayer, fixtures, physics);
         // Starlight-end
-        
+
         _physics.SetBodyType(ent, BodyType.KinematicController, fixtures, physics, xform);
         _physics.SetBodyStatus(ent, physics, BodyStatus.InAir, true);
         _physics.SetFixedRotation(ent, false, true, fixtures, physics);

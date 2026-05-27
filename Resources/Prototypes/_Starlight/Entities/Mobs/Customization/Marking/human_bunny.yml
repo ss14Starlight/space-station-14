@@ -1,0 +1,314 @@
+# Gene splicing from early Lagomorph?
+- type: marking
+  id: HumanLagomorphEarsTall
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+    state: tall_ears_outer
+  - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+    state: tall_ears_inner
+
+- type: marking
+  id: HumanLagomorphEarsTallCutLeft
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: tall_ears_cut_L_outer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: tall_ears_cut_L_inner
+
+- type: marking
+  id: HumanLagomorphEarsTallCutRight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: tall_ears_cut_R_outer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: tall_ears_cut_R_inner
+
+- type: marking
+  id: HumanLagomorphEarsAirplane
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: airplane
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: inner_airplane
+
+- type: marking
+  id: HumanLagomorphEarsFloppy
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: floppy_ears
+
+- type: marking
+  id: HumanLagomorphEarsFloppyCutLeft
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: floppy_ears_cut_L
+
+- type: marking
+  id: HumanLagomorphEarsFloppyCutRight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: floppy_ears_cut_R
+
+- type: marking
+  id: HumanLagomorphEarsMedium
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: standard
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: standard_inner
+
+- type: marking
+  id: HumanLagomorphEarsLoppy
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy_inner
+
+- type: marking
+  id: HumanLagomorphEarsLoppyLarge
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy_large
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: loppy_large_inner
+
+- type: marking
+  id: HumanLagomorphEarsSharp
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: sharp
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: sharp_inner
+
+- type: marking
+  id: HumanLagomorphEarsShort
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: short
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: short_inner
+
+- type: marking
+  id: HumanLagomorphEarsRotund
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: rotund
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: rotund_inner
+
+- type: marking
+  id: HumanBunnyEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human]
+  coloring:
+    default:
+      type:
+        !type:CategoryColoring
+          category: Hair
+      fallbackTypes:
+        - !type:SkinColoring
+    layers:
+      ears_cat_inner:
+        type:
+          !type:SimpleColoring
+            color: "#FFFFFF"
+  sprites:
+    - sprite: Clothing/Head/Misc/bunny.rsi
+      state: equipped-HELMET

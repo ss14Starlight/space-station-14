@@ -109,7 +109,7 @@ public abstract class SharedItemSystem : EntitySystem
     {
         if (args.Handled)
             return;
-        
+
         //starlight start
         //check if we WANT to allow direct pickup
         if (!component.AllowDirectHandPickup)

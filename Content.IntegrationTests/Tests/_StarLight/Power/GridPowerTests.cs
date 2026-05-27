@@ -22,6 +22,11 @@ public sealed class GridPowerTests
 
     private static readonly ResPath[] GridPaths =
     [
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Sec.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Med.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Jani.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml"),
+        new("/Maps/_Starlight/Shuttles/SecureTerminal/ERT-Full.yml"),
         new("/Maps/_Starlight/Ruins/Salv_Sus.yml"),
         new("/Maps/_Starlight/Salvage/Salv_Cargo_01.yml"),
         new("/Maps/_Starlight/Salvage/Salv_Cargo_02.yml"),
@@ -52,6 +57,8 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/ShadowBorgiGrid.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/UnknownShuttleFireResponse.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/abductor_shuttle.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/syndie_evacpod.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/incorporation.yml"),
         new("/Maps/_Starlight/Shuttles/Signaleer.yml"),
         new("/Maps/_Starlight/Shuttles/VoxATS.yml"),
         new("/Maps/_Starlight/Shuttles/blackhorse.yml"),
@@ -73,9 +80,20 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/sec_patrol_one.yml"),
         new("/Maps/_Starlight/Shuttles/sec_patrol_two.yml"),
         new("/Maps/_Starlight/Shuttles/security_prism.yml"),
+        new("/Maps/_Starlight/Shuttles/oasis_briggle.yml"),
         new("/Maps/_Starlight/Shuttles/ss_ana.yml"),
         new("/Maps/_Starlight/Test/SL_admin_test_arena.yml"),
         new("/Maps/_Starlight/Shuttles/mothership.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml"),
+        new("/Maps/_Starlight/Shuttles/ShuttleEvent/romeo.yml"),
+        new("/Maps/_Starlight/Shuttles/cargo_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/emergency_syndicate.yml"),
+        new("/Maps/_Starlight/Shuttles/MedTak-AV-40.yml"),
+        new("/Maps/_Starlight/EventMaps/MedTakPointAlpha.yml"),
+        new("/Maps/_Starlight/Shuttles/pts.yml"),
+        new("/Maps/_Starlight/Shuttles/barge.yml"),
+        new("/Maps/_Starlight/Shuttles/prospector.yml"),
+        new("/Maps/_Starlight/Shuttles/emergency_lox.yml")
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]

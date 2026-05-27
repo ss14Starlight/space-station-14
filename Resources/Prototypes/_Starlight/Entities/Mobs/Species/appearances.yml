@@ -1,0 +1,193 @@
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceAbductor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Abductor
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryArachnid]
+  id: AppearanceArachnid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Arachnid
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryAvali]
+  id: AppearanceAvali
+  categories: [ HideSpawnMenu ]
+  description: A dummy avali meant to be used in character setup.
+  components:
+    - type: HumanoidAppearance
+      species: Avali
+      undergarmentTop: UndergarmentTopTanktopAvali
+      undergarmentBottom: UndergarmentBottomBoxersAvali
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryCyclorite]
+  id: AppearanceCyclorite
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Cyclorite
+  - type: Body
+    prototype: Cyclorite
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryDiona]
+  id: AppearanceDiona
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Diona
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  id: AppearanceDwarf
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  id: AppearanceElf
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFelionoid]
+  id: AppearanceFelionoid
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Felionoid
+  - type: Body
+    prototype: Felionoid
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  id: AppearanceGingerbread
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Gingerbread
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  id: AppearanceHuman
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryLagomorph]
+  id: AppearanceLagomorph
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Lagomorph
+  - type: Body
+    prototype: Lagomorph
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryMoth]
+  id: AppearanceMoth
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Moth
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryReptilian]
+  id: AppearanceReptilian
+  categories: [ HideSpawnMenu ]
+  description: A dummy reptilian meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Reptilian
+    hideLayersOnEquip:
+    - Snout
+    - HeadTop
+    - HeadSide
+    undergarmentBottom: UndergarmentBottomBoxersReptilian
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryResomi]
+  id: AppearanceResomi
+  categories: [ HideSpawnMenu ]
+  description: A dummy resomi meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Resomi
+    hideLayersOnEquip:
+      - Special
+      - Head
+      - Hair
+      - HeadTop
+      - HeadSide
+
+- type: entity
+  save: false
+  parent: BaseSpeciesDummy
+  id: AppearanceShadekin
+  categories: [HideSpawnMenu]
+  description: A dummy shadekin meant to be used in character setup.
+  components:
+    - type: HumanoidAppearance
+      species: Shadekin
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
+  id: AppearanceSkeletonPerson
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Skeleton
+
+- type: entity
+  parent: AppearanceHuman
+  id: AppearanceSlimePerson
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: SlimePerson
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryThaven]
+  id: AppearanceThaven
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    scale: 1, 1
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryVox]
+  id: AppearanceVox
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Vox
+    undergarmentTop: UndergarmentTopTanktopVox
+    undergarmentBottom: UndergarmentBottomBoxersVox
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Vox/displacement.rsi
+            state: hair
+  - type: Body
+    prototype: Vox
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceIPC
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [BaseSpeciesDummy, BaseInventoryVulpkanin]
+  id: AppearanceVulpkanin
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Vulpkanin
+    hideLayersOnEquip:
+    - Snout
+    - HeadTop
+    - HeadSide

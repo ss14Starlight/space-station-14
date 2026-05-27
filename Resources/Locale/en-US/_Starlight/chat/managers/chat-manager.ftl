@@ -1,3 +1,15 @@
+
+chat-manager-sender-announcement-wrap-message = [font size=14][bold]{$sender} Announcement[/font][font size=12]
+                                                {$message}[/bold][/font]
+
+chat-manager-entity-say-wrap-message = [BubbleHeader][bold][Name]{$entityName}[/Name][/bold][/BubbleHeader] {$verb}, [font={$fontType} size={$fontSize}]"[BubbleContent][font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font][/BubbleContent]"[/font]
+chat-manager-entity-say-bold-wrap-message = [BubbleHeader][bold][Name]{$entityName}[/Name][/bold][/BubbleHeader] {$verb}, [font={$fontType} size={$fontSize}]"[BubbleContent][font="{$fontType}" size={$fontSize}][bold][color={$color}]{$message}[/color][/font][/bold][/BubbleContent]"[/font]
+
+chat-manager-entity-whisper-wrap-message = [font size=11][italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] whispers: "[BubbleContent][color={$color}][font="{$fontType}"]{$message}[/font][/color][/BubbleContent][font size=11]"[/italic][/font]
+chat-manager-entity-whisper-unknown-wrap-message = [font size=11][italic][BubbleHeader]Someone[/BubbleHeader] whispers: "[BubbleContent][color={$color}][font="{$fontType}"]{$message}[/color][/font][/BubbleContent][font size=11]"[/italic][/font]
+
+chat-manager-send-ooc-wrap-message = OOC: [bold]{$playerTitle} [color={$nameColor}]{$playerName}:[/color] [color={$messageColor}]{$message}[/color][/bold]
+
 chat-speech-verb-name-felionoid = Felionoid
 chat-speech-verb-felionoid-1 = purrs
 chat-speech-verb-felionoid-2 = meows

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Made by PuroSlavKing (github) for SS14. Tail sprites by Tiniest Shark (github). Avali state by DocMoth (Github). Resomi state created by Huaqas (GitHub).",
+  "copyright": "Made by PuroSlavKing (github) for SS14. Tail sprites by Tiniest Shark (github). Avali state by DocMoth (Github). Resomi state created by Huaqas (GitHub). Dog state created by Swonkus (Github).",
   "size": {
     "x": 32,
     "y": 32
@@ -24,6 +24,10 @@
     },
     {
       "name": "equipped-OUTERCLOTHING-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-dog",
       "directions": 4
     },
     {

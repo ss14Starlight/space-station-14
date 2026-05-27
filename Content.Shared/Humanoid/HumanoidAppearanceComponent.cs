@@ -118,7 +118,7 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// If null, the entity was not spawned with a profile.
     /// </summary>
     public HumanoidCharacterProfile? BaseProfile;
-    
+
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
     {
         {Sex.Male, "Voljin"},
@@ -133,6 +133,14 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [DataField]
     public Dictionary<HumanoidVisualLayers, DisplacementData> MarkingsDisplacement = new();
+
+    // Starlight begin
+    /// <summary>
+    /// Allows character profiles to override humanoid appearance. Set to false for prototypes that you don't want to
+    /// inherit character profile appearance if it is forced as the profile prototype.
+    /// </summary>
+    [DataField] public bool AllowProfileOverride = true;
+    // Starlight end
 }
 
 [DataDefinition]

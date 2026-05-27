@@ -49,8 +49,8 @@ namespace Content.Client.Access.UI
         {
             List<ProtoId<AccessLevelPrototype>> accessLevels;
             // Starlight-edit: Start
-            List<ProtoId<AccessGroupPrototype>> accessGroups; 
-            ProtoId<AccessGroupPrototype>? currentGroup = null; 
+            List<ProtoId<AccessGroupPrototype>> accessGroups;
+            ProtoId<AccessGroupPrototype>? currentGroup = null;
             // Starlight-edit: End
 
             if (EntMan.TryGetComponent<AccessOverriderComponent>(Owner, out var accessOverrider))

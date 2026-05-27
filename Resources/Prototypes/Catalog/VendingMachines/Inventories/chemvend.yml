@@ -26,6 +26,8 @@
     DrinkLithiumFlask: 1
     StrangePill: 3
     ChemistryBottleToxin: 1
+  emaggedInventory: # Starlight
+    OminousPill: 2 # Starlight, good luck man.
 
 - type: vendingMachineInventory
   id: ChemVendInventorySyndicate
@@ -55,9 +57,10 @@
     PlasmaChemistryVial: 1
   contrabandInventory:
     DrinkLithiumFlask: 1
-    StrangePill: 3
+    OminousPill: 3 # Starlight, StrangePill in SyndieJuice replaced by OminousPill. More dangerous.
     ChemistryBottlePax: 3
     ChemistryBottleMuteToxin: 3
     ChemistryBottleLead: 2
     ChemistryBottleToxin: 1
-
+  emaggedInventory: # Starlight
+    StrangePill: 2 # Starlight

@@ -232,9 +232,11 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var direction = targetMap.Position - userPos;
         var distance = MathF.Min(component.Range, direction.Length());
 
+        var ignoreUid = GetOriginEntity(user); // Starlight - Mech wideswing handling
+
         // This should really be improved. GetEntitiesInArc uses pos instead of bounding boxes.
         // Server will validate it with InRangeUnobstructed.
-        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user).ToList());
+        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, ignoreUid).ToList()); // Starlight
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
     }
 

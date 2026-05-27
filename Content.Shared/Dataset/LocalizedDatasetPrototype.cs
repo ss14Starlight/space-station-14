@@ -52,7 +52,7 @@ public sealed partial class LocalizedDatasetValues : IReadOnlyList<string>
             return Prefix + (index + 1);
         }
     }
-    
+
     // Starlight-start
     public int IndexOf(string value)
     {

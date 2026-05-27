@@ -26,5 +26,5 @@
   suffix: Chameleon, Thieving
   components:
   - type: Thieving
-    stripTimeReduction: 2
+    stripTimeReduction: 1 # Starlight. They're so abundant that they don't need to be *that* good.
     stealthy: true

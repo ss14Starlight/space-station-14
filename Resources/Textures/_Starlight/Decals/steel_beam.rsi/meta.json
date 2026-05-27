@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Wayiscute",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "steelbeam_north"
+    },
+    {
+      "name": "steelbeam_south"
+    },
+    {
+      "name": "steelbeam_west"
+    },
+    {
+      "name": "steelbeam_east"
+    },
+    {
+      "name": "steelbeam_northeast"
+    },
+    {
+      "name": "steelbeam_northwest"
+    },
+    {
+      "name": "steelbeam_southeast"
+    },
+    {
+      "name": "steelbeam_southwest"
+    },
+    {
+      "name": "steelbeam_northeast_corner"
+    },
+    {
+      "name": "steelbeam_northwest_corner"
+    },
+    {
+      "name": "steelbeam_southeast_corner"
+    },
+    {
+      "name": "steelbeam_southwest_corner"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+﻿
+# Table to use instead of a hardcoded list in "random crystal spawner".
+- type: entityTable
+  id: CrystalShardTable
+  table: !type:GroupSelector
+    children:
+      - id: ShardCrystalGreen
+      - id: ShardCrystalPink
+      - id: ShardCrystalYellow
+      - id: ShardCrystalBlack
+      - id: ShardCrystalOrange
+      - id: ShardCrystalBlue
+      - id: ShardCrystalCyan
+      - id: ShardCrystalRed

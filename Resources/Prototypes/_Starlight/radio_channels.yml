@@ -1,0 +1,83 @@
+- type: radioChannel
+  id: Law
+  name: chat-radio-law
+  keycode: "l"
+  frequency: 1780
+  color: "#ff178b"
+
+- type: radioChannel
+  id: Soviet
+  name: chat-radio-soviet
+  keycode: "w"
+  frequency: 1922
+  color: "#ed7300"
+  longRange: true
+
+- type: radioChannel
+  id: Expedition
+  name: chat-radio-expedition
+  keycode: 'o'
+  frequency: 1550
+  color: "#963dca"
+  # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
+  longRange: true
+
+- type: radioChannel
+  id: TSF
+  name: chat-radio-tsf
+  keycode: "j"
+  frequency: 1922
+  color: "#22a7ff"
+  longRange: true
+
+  # For merchant-type admemes/events
+- type: radioChannel
+  id: Merchant
+  name: chat-radio-merchant
+  keycode: 'p'
+  frequency: 1882
+  color: "#ffce2e"
+
+  # For Blackstar mercenaries
+- type: radioChannel
+  id: Blackstar
+  name: chat-radio-blackstar
+  keycode: 'r'
+  frequency: 1452
+  color: "#896e14"
+  longRange: true
+
+# For WIZARDS & Magic in general
+- type: radioChannel
+  id: Winds
+  name: chat-radio-winds
+  keycode: 'i'
+  frequency: 11037
+  color: "#ff00ff"
+  longRange: true
+
+  # For aspace stuff specifically, to keep freelance clear
+- type: radioChannel
+  id: Aspace
+  name: chat-radio-aspace
+  keycode: 'q'
+  frequency: 9999
+  color: "#ab489f"
+
+  # for admeme stuff specifically, globally address all of your stinky goobers
+- type: radioChannel
+  id: Global
+  name: chat-radio-global
+  keycode: 'g'
+  frequency: 9998
+  color: "#954fff"
+  longRange: true
+
+# Medtak
+- type: radioChannel
+  id: MedTak
+  name: chat-radio-medtak
+  keycode: 'k'
+  frequency: 1505
+  color: "#880606"
+  longRange: true

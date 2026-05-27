@@ -39,6 +39,12 @@ public sealed partial class PlumbingPillPressComponent : Component
     public uint PillType;
 
     /// <summary>
+    ///     Label applied to created pills/patches.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string Label = string.Empty;
+
+    /// <summary>
     ///     Whether the press is enabled and will pull/produce.
     /// </summary>
     [DataField, AutoNetworkedField]

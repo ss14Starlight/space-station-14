@@ -53,6 +53,7 @@
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       mindRoles:
@@ -90,6 +91,7 @@
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       job: ERTLeader
@@ -548,6 +550,7 @@
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       job: CBURN
@@ -577,6 +580,7 @@
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: default
       job: CentralCommandOfficial

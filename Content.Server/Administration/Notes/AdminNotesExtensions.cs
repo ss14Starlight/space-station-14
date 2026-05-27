@@ -56,6 +56,7 @@ public static class AdminNotesExtensions
             note.Player!.UserId,
             note.Round?.Id,
             note.Round?.Server.Name,
+            "", // Starlight-edit
             note.PlaytimeAtNote,
             type,
             note.Message,
@@ -69,7 +70,8 @@ public static class AdminNotesExtensions
             bannedRoles,
             unbannedTime,
             unbannedByName,
-            seen
+            seen,
+            false // Starlight-edit
         );
     }
 }

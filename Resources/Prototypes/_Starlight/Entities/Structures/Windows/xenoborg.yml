@@ -1,0 +1,14 @@
+- type: entity
+  id: XenoborgWindowRCD
+  parent: ReinforcedWindow
+  name: light xenoborg window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: _Starlight/Structures/Windows/xenoborglight.rsi
+  - type: Icon
+    sprite: _Starlight/Structures/Windows/xenoborglight.rsi
+    state: full
+  - type: IconSmooth
+    key: windows
+    base: xenoborglight

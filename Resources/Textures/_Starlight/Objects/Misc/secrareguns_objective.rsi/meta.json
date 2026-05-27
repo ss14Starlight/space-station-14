@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Energy Shotgun icon sprite made by Papermaker48 for SS14, Energy Magnum created by BoskiYourk (GitHub), edited by spanky-spanky (GitHub). Pasted together by wonderfulnewworld (GitHub).",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+		{
+			"name": "icon",
+			"copyright": "Papermaker48, BoskiYourk, spanky-spanky, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+		}
+    ]
+}

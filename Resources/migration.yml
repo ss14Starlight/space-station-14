@@ -758,3 +758,36 @@ HandheldHealthAnalyzerEmpty: HandheldHealthAnalyzer
 
 #2026-01-09
 BorgModuleAdvancedChemical: BorgModuleAdvancedTopical
+
+# 2026-01-14
+# Starlight edit Start: NuBody Revert
+# HeadHuman: OrganHumanHead
+# HeadSkeleton: OrganSkeletonPersonHead
+# LeftArmHuman: OrganHumanArmLeft
+# LeftArmSkeleton: OrganSkeletonPersonArmLeft
+# LeftHandSkeleton: OrganSkeletonPersonHandLeft
+# LeftLegHuman: OrganHumanLegLeft
+# LeftLegSkeleton: OrganSkeletonPersonLegLeft
+# RightArmHuman: OrganHumanArmRight
+# RightHandSkeleton: OrganSkeletonPersonHandRight
+# RightLegHuman: OrganHumanLegRight
+# TorsoSkeleton: OrganSkeletonPersonTorso
+# RightArmSkeleton: OrganSkeletonPersonArmRight
+# Starlight edit End: NuBody Revert
+# Starlight Start: NuBody Revert
+OrganHumanHead: HeadHuman
+OrganSkeletonPersonHead: HeadSkeleton
+OrganHumanArmLeft: LeftArmHuman
+OrganSkeletonPersonArmLeft: LeftArmSkeleton
+OrganSkeletonPersonHandLeft: LeftHandSkeleton
+OrganHumanLegLeft: LeftLegHuman
+OrganSkeletonPersonLegLeft: LeftLegSkeleton
+OrganHumanArmRight: RightArmHuman
+OrganSkeletonPersonHandRight: RightHandSkeleton
+OrganHumanLegRight: RightLegHuman
+OrganSkeletonPersonTorso: TorsoSkeleton
+OrganSkeletonPersonArmRight: RightArmSkeleton
+# Starlight End: NuBody Revert
+
+# 2026-01-19
+#TowelColorOrange: null # Starlight - Towel Restoration

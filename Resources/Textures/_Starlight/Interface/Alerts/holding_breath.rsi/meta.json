@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Initial sprite created by Carve following this PR: https://github.com/space-wizards/space-station-14/pull/2710, new icon created by ScorchFollower for Starlight SS14.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "holding_breath"
+    }
+  ]
+}

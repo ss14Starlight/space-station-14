@@ -1,8 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Hands.Systems;
 using Content.Shared.Atmos.Components;
-using Content.Shared._Starlight.Atmos.EntitySystems;
-using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
@@ -53,8 +51,9 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
     private const float GuideOffset = 0.125f;
 
     private EntityCoordinates _mouseCoordsRaw = default;
-    private static AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
-    private static float? _currentEyeRotation = null;
+    private AtmosPipeLayer _currentLayer = AtmosPipeLayer.Primary;
+    private EntityUid? _lastLayerSyncEntity = null;
+    private AtmosPipeLayer? _lastLayerSynced = null;
     private Color _guideColor = new(0, 0, 0.5785f);
 
     public AlignRPDAtmosPipeLayers(PlacementManager pMan) : base(pMan)
@@ -93,17 +92,22 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
         {
             var gridRotation = _transformSystem.GetWorldRotation(gridUid.Value);
             var worldPosition = _mapSystem.LocalToWorld(gridUid.Value, grid, MouseCoords.Position);
-            var direction = (_eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-            var multi = (direction == Direction.North || direction == Direction.South) ? -1f : 1f;
+            var direction = (_eyeManager.CurrentEye.Rotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
+            var multi = (direction is Direction.North or Direction.South) ? -1f : 1f;
 
             // Center circle (Primary layer)
             args.WorldHandle.DrawCircle(worldPosition, GuideRadius, _guideColor);
             // Inner ring: Secondary and Tertiary
             args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset, GuideOffset)), GuideRadius, _guideColor);
             args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset, GuideOffset)), GuideRadius, _guideColor);
-            // Outer ring: Quaternary and Quinary
-            args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
-            args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
+
+            // RPD supports 5 layers; RPLD only supports 3 layers.
+            if (!rcd.IsRPLD)
+            {
+                // Outer ring: Quaternary and Quinary
+                args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
+                args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
+            }
         }
 
         base.Render(args);
@@ -126,13 +130,13 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
 
         if (pManager.CurrentPermission!.IsTile)
         {
-            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + tileSize / 2,
-                CurrentTile.Y + tileSize / 2));
+            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + (tileSize / 2),
+                CurrentTile.Y + (tileSize / 2)));
         }
         else
         {
-            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + tileSize / 2 + pManager.PlacementOffset.X,
-                CurrentTile.Y + tileSize / 2 + pManager.PlacementOffset.Y));
+            MouseCoords = new EntityCoordinates(MouseCoords.EntityId, new Vector2(CurrentTile.X + (tileSize / 2) + pManager.PlacementOffset.X,
+                CurrentTile.Y + (tileSize / 2) + pManager.PlacementOffset.Y));
         }
 
         var player = _playerManager.LocalSession?.AttachedEntity;
@@ -142,7 +146,7 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
         if (!_handsSystem.TryGetActiveItem(player.Value, out var heldEntity))
             return;
 
-        if (!_entityManager.TryGetComponent<RCDComponent>(heldEntity, out var rcd) || !rcd.IsRpd)
+        if (!_entityManager.TryGetComponent<RCDComponent>(heldEntity, out var rcd) || (!rcd.IsRpd && !rcd.IsRPLD))
             return;
 
         if (!_entityManager.TryGetComponent<TransformComponent>(player.Value, out var playerXform))
@@ -170,11 +174,11 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
                 break;
 
             case RpdMode.Quaternary:
-                newLayer = AtmosPipeLayer.Quaternary;
+                newLayer = rcd.IsRPLD ? AtmosPipeLayer.Tertiary : AtmosPipeLayer.Quaternary;
                 break;
 
             case RpdMode.Quinary:
-                newLayer = AtmosPipeLayer.Quinary;
+                newLayer = rcd.IsRPLD ? AtmosPipeLayer.Tertiary : AtmosPipeLayer.Quinary;
                 break;
 
             case RpdMode.Free:
@@ -182,18 +186,18 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
                 if (mouseCoordsDiff.Length() > MouseDeadzoneRadius / 2)
                 {
                     var gridRotation = _transformSystem.GetWorldRotation(gridId.Value);
-                    var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-                    
-                    // Use distance-based layers: inner ring (Secondary/Tertiary) vs outer ring (Quaternary/Quinary)
-                    if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+                    var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + (Math.PI / 2)).GetCardinalDir();
+
+                    // RPD uses 5-layer free placement (inner + outer rings), RPLD uses 3-layer (inner ring only).
+                    if (!rcd.IsRPLD && mouseCoordsDiff.Length() > MouseDeadzoneRadius)
                     {
                         // Outer ring
-                        newLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+                        newLayer = (direction is Direction.North or Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
                     }
                     else
                     {
                         // Inner ring
-                        newLayer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+                        newLayer = (direction is Direction.North or Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
                     }
                 }
                 break;
@@ -204,20 +208,29 @@ public sealed class AlignRPDAtmosPipeLayers : PlacementMode
             _currentLayer = newLayer;
 
         if (rcd.CurrentMode == RpdMode.Free)
-            UpdateEyeRotation(heldEntity.Value, _eyeManager.CurrentEye.Rotation);
+        {
+            UpdateSelectedLayer(heldEntity.Value, _currentLayer);
+        }
 
         UpdatePlacer(_currentLayer);
     }
 
-    // Since player eye rotation isn't networked and there is a comment warning against doing so,
-    // we need a way of sending current eye rotation to the rpd for correct layer placement.
-    // I'm sure there's a better solution for this but I haven't found it
-    private void UpdateEyeRotation(EntityUid heldEntity, Angle eyeRotation)
+    // Why this replaced UpdateEyeRotation:
+    // - Free-mode preview computes an explicit layer choice on the client from cursor position.
+    // - The old approach only synced camera/eye rotation and asked the server to recompute the layer.
+    //
+    // What this does instead:
+    // - Whenever the locally selected free-mode layer changes (or held RPD/RPLD changes),
+    //   sends that exact layer as RPDSelectedLayerEvent.
+    // - Server stores it on the held RCDComponent (LastSelectedLayer)
+    //   and uses it directly during placement in Free mode.
+    private void UpdateSelectedLayer(EntityUid heldEntity, AtmosPipeLayer layer)
     {
-        if (_currentEyeRotation != eyeRotation.Theta)
+        if (_lastLayerSyncEntity != heldEntity || _lastLayerSynced != layer)
         {
-            _currentEyeRotation = (float) eyeRotation.Theta;
-            _entityNetwork.SendSystemNetworkMessage(new RPDEyeRotationEvent(_entityManager.GetNetEntity(heldEntity), _currentEyeRotation));
+            _lastLayerSyncEntity = heldEntity;
+            _lastLayerSynced = layer;
+            _entityNetwork.SendSystemNetworkMessage(new RPDSelectedLayerEvent(_entityManager.GetNetEntity(heldEntity), (byte) layer));
         }
     }
 

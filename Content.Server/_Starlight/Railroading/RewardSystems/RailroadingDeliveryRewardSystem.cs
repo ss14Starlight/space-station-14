@@ -1,6 +1,7 @@
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
+using Content.Shared.Abilities.Goliath;
 using Content.Shared.Chat;
 using Content.Shared.Delivery;
 using Content.Shared.FingerprintReader;
@@ -15,10 +16,11 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.GameTicking;
 
 namespace Content.Server._Starlight.Railroading;
 
-public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
+public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySystem
 {
     [Dependency] private readonly FingerprintReaderSystem _fingerprintReader = default!;
     [Dependency] private readonly IChatManager _chat = default!;
@@ -32,13 +34,19 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
     [Dependency] private readonly StationRecordsSystem _records = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
+    protected override float Threshold { get; set; } = 2.3f;
+
+    private readonly Queue<(Entity<RailroadDeliveryRewardComponent> Card, Entity<RailroadableComponent> Subject)> _queue = [];
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<RailroadDeliveryRewardComponent, RailroadingCardChosenEvent>(OnChosen);
         SubscribeLocalEvent<RailroadDeliveryRewardComponent, RailroadingCardCompletedEvent>(OnCompleted);
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
     }
 
+    private void OnCleanup(RoundRestartCleanupEvent ev) => _queue.Clear();
     private void OnChosen(Entity<RailroadDeliveryRewardComponent> ent, ref RailroadingCardChosenEvent args)
     {
         ent.Comp.RecipientMind = null;
@@ -47,17 +55,35 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
             ent.Comp.RecipientMind = mindId;
     }
 
-    private void OnCompleted(Entity<RailroadDeliveryRewardComponent> ent, ref RailroadingCardCompletedEvent args)
+    private void OnCompleted(Entity<RailroadDeliveryRewardComponent> ent, ref RailroadingCardCompletedEvent args) => _queue.Enqueue((ent, args.Subject));
+
+    protected override void AccUpdate(float _)
     {
-        if (_station.GetStationInMap(Transform(args.Subject).MapID) is not { } station)
-            return;
+        var processed = 0;
+        while (processed < 5 && _queue.TryDequeue(out var pending))
+        {
+            if (!TryDeliver(pending.Card, pending.Subject))
+                _queue.Enqueue(pending);
+
+            processed++;
+        }
+    }
+
+    private bool TryDeliver(Entity<RailroadDeliveryRewardComponent> ent, Entity<RailroadableComponent> subject)
+    {
+        if (TerminatingOrDeleted(ent) || TerminatingOrDeleted(subject))
+            return true;
+
+        if (_station.GetOwningStation(subject) is not { } station)
+            return false;
 
         EntityUid? spawner = null;
 
         var spawners = EntityQueryEnumerator<DeliverySpawnerComponent>();
         while (spawners.MoveNext(out var spawnerUid, out var spawnerComp))
         {
-            var spawnerStation = _station.GetOwningStation(spawnerUid);
+            if (_station.GetOwningStation(spawnerUid) is not { } spawnerStation)
+                continue;
 
             if (spawnerStation != station)
                 continue;
@@ -70,30 +96,30 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
         }
 
         if (spawner == null)
-            return;
+            return false;
 
         if (ent.Comp.RecipientMind is not { } recipientMind
             || !TryComp<MindComponent>(recipientMind, out var trackedMind)
             || string.IsNullOrWhiteSpace(trackedMind.CharacterName))
-            return;
+            return true;
 
         var delivery = Spawn(ent.Comp.Delivery, Transform(spawner.Value).Coordinates);
         var subjectName = trackedMind.CharacterName!;
         var recordID = _records.GetRecordByName(station, subjectName);
 
-        if (ent.Comp.Dataset != null && _playerManager.TryGetSessionByEntity(args.Subject, out var session))
+        if (ent.Comp.Dataset != null && _playerManager.TryGetSessionByEntity(subject, out var session))
         {
             var dataset = _protoMan.Index(ent.Comp.Dataset);
             var pick = _random.Pick(dataset.Values);
             if (ent.Comp.WrappedDataset != null)
             {
                 var wrappedDataset = _protoMan.Index(ent.Comp.WrappedDataset.Value);
-                _chat.ChatMessageToOne(ChatChannel.Notifications, Loc.GetString(pick), Loc.GetString(wrappedDataset.Values[dataset.Values.IndexOf(pick)]), default, false, session.Channel, Color.FromHex("#57A3F7"));
+                _chat.ChatMessageToOne(ChatChannel.Notifications, Loc.GetString(pick), Loc.GetString(wrappedDataset.Values[dataset.Values.IndexOf(pick)]), default, false, session.Channel, Color.FromHex("#FF84FF"));
             }
         }
 
         if (!TryComp<DeliveryComponent>(delivery, out var deliveryComp))
-            return;
+            return true;
 
         deliveryComp.RecipientName = subjectName;
         deliveryComp.RecipientStation = station;
@@ -112,5 +138,6 @@ public sealed partial class RailroadingDeliveryRewardSystem : EntitySystem
         _label.Label(delivery, deliveryComp.RecipientName);
 
         Dirty(delivery, deliveryComp);
+        return true;
     }
 }

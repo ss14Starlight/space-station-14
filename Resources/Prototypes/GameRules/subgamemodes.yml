@@ -50,7 +50,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 26 # Starlight. Same justification as Thieves.
+      playerRatio: 30 # Starlight. You should stop seeing 6 lings all the time now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -76,7 +76,7 @@
     definitions:
     - prefRoles: [ Vampire ]
       max: 12 # Starlight. Full gamemode Vamps scale higher to account for scaling.
-      playerRatio: 16 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
+      playerRatio: 18 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None
@@ -97,7 +97,7 @@
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 3 # Starlight. Less egregious than the full wizard mode.
+      max: 4 # Starlight. Less egregious than the full wizard mode. Increased mildly since main wizard gamemode is gone now.
       playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
@@ -105,8 +105,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       startingGear: WizardBlueGear
       # TODO: WizardComp as needed
       components:
@@ -124,6 +123,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
+      allowNonHumans: true
       # Starlight-end
 
 - type: entity

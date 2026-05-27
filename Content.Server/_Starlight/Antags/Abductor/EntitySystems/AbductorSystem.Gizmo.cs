@@ -1,21 +1,15 @@
 ﻿using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Actions;
 using Content.Shared.DoAfter;
-using Content.Shared.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Spawners;
-using Robust.Server.GameObjects;
 using Content.Shared.Interaction;
 using Content.Shared.Weapons.Melee.Events;
-using System.Linq;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
-using System;
 using Content.Shared.ActionBlocker;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
@@ -46,7 +40,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnGizmoInteract(Entity<AbductorGizmoComponent> ent, ref AfterInteractEvent args)
     {
-        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target) 
+        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)
             || !args.Target.HasValue)
             return;
 
@@ -89,6 +83,11 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         EnsureComp<AbductorVictimComponent>(args.Target.Value, out var victimComponent);
         victimComponent.LastActivation = _time.CurTime + TimeSpan.FromMinutes(5);
 
-        victimComponent.Position ??= EnsureComp<TransformComponent>(args.Target.Value).Coordinates;
+        // Turns out this just works?? Thought it would just convert to the same entitycoords but fuckin apparently not
+        var coords =
+            _xformSys.ToCoordinates(
+                _xformSys.ToMapCoordinates(EnsureComp<TransformComponent>(args.Target.Value).Coordinates));
+
+        victimComponent.Position ??= coords;
     }
 }

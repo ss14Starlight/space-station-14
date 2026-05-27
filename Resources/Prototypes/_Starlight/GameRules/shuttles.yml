@@ -1,0 +1,264 @@
+# Conf
+- type: entity
+  parent: BaseGameRule
+  id: ShuttleHarrierClassNTCruiser
+  components:
+    - type: StationEvent
+      startAnnouncement: null # It should be silent.
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/NTSV_HarrierClass.yml # no preload cause that leads to a warp point in shuttle space
+
+- type: entity
+  parent: BaseGameRule
+  id: ShuttleMetaClassCargoFreighter
+  components:
+    - type: StationEvent
+      startAnnouncement: null # It should be silent.
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/NSSV_MetaClass.yml # no preload cause that leads to a warp point in shuttle space
+
+- type: entity
+  parent: BaseGameRule
+  id: ShuttleRecluseClassSyndicateHighCommand
+  components:
+    - type: StationEvent
+      startAnnouncement: null # It should be silent.
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/RecluseClassSHC.yml # no preload because its for event use
+
+- type: entity
+  parent: BaseGameRule
+  id: SignaleerSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/Signaleer.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: LancePiratesSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/LancePirates.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: VoxATSSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/VoxATS.yml
+
+# Quini's
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTSecurityShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/SecMed_GRID.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTMedicalShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Medical_GRID.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTEngineeringShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/EngiAtmos_GRID.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTChaplainShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Chaplain_GRID.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: CBURNShuttleSpawn_Q
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/CBURN_Q.yml
+
+# neomoth's
+
+- type: entity
+  parent: BaseGameRule
+  id: ERTJanitorShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Janitor_GRID.yml
+
+#Pig's
+
+- type: entity
+  parent: BaseGameRule
+  id: DeathsquadShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/DSshuttle.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: RadioTowerSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/Radiotower.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: CBURNShuttleSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/CBURN.yml
+
+# Karma's
+
+- type: entity
+  parent: BaseGameRule
+  id: QuantumArkDerelictEvent
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/quantum_ark_event.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: QuantumArkSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/quantum_ark.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: AnaSpawn
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/ss_ana.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: SyndieResearchOutpostEvent
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/EventMaps/research_outpost_map.yml
+
+# vlorgan's
+
+- type: entity
+  parent: BaseGameRule
+  id: ExperimentalBotanyShuttle
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/NT-Experimental-Botany-shuttle.yml
+
+# Teapot's
+
+- type: entity
+  parent: BaseGameRule
+  id: NTSF_MinosBattlecruiser
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/NTSF_Minos_Battlecruiser.yml
+
+# Teapot's Decimus Shuttle
+- type: entity
+  parent: BaseGameRule
+  id: Decimus_MagnusBreachingCraft
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/CC-NT/Decimus_Shuttle_Magnus.yml
+
+# Misc
+- type: entity
+  parent: BaseGameRule
+  id: shuttle_empty_salvage_pioneerRequiresFuel
+  components:
+    - type: StationEvent
+      startAnnouncement: null # It should be silent.
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/Salvage/pioneer_fuel.yml # no preload cause that leads to a warp point in shuttle space
+
+- type: entity
+  parent: BaseGameRule
+  id: LotteryShuttle
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/lotteryShuttleAdmeme.yml # no preload cause that leads to a warp point in shuttle space
+
+- type: entity
+  parent: BaseGameRule
+  id: SHCDefender
+  components:
+    - type: StationEvent
+      startAnnouncement: null # It should be silent.
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/scarletSHCdefenderFinal.yml # no preload cause that leads to a warp point in shuttle space
+
+- type: entity
+  parent: BaseGameRule
+  id: ShuttleSyndiShadowOps
+  components:
+    - type: StationEvent
+      startAnnouncement: null # It should be silent.
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/ShadowBorgiGrid.yml
+
+- type: entity
+  parent: BaseUnknownShuttleRule
+  id: UnknownShuttleFireResponse
+  components:
+    - type: StationEvent
+      maxOccurrences: 1
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/UnknownShuttleFireResponse.yml
+
+# Security
+
+- type: entity
+  parent: BaseGameRule
+  id: SecurityShuttleSpawn_KillerTamashi
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
+
+- type: entity
+  parent: BaseGameRule
+  id: SecurityShuttleSpawn_SP-4C3
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/Security/SP-4C3.yml
+
+# Solgov/TSF
+- type: entity
+  parent: BaseGameRule
+  id: TSFShuttleSpawn_montague
+  components:
+    - type: RuleGrids
+    - type: LoadMapRule
+      gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/montague.yml

@@ -62,7 +62,7 @@
     stealGroup: Bible
   # Starlight-start: Vending Machines Prices
   - type: ItemPrice
-    fallbackPrice: 0 
+    fallbackPrice: 0
   # Starlight-end
 
 - type: entity

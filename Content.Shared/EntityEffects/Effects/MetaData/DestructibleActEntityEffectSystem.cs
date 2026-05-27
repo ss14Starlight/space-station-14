@@ -30,11 +30,11 @@ public sealed partial class DestructibleAct : EntityEffectBase<DestructibleAct>
     [DataField]
     public ThresholdActs Acts;
 
-    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
+    public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) // Starlight
     {
         if ((Acts & ThresholdActs.Destruction) != 0)
-            return Loc.GetString("entity-effect-guidebook-destroy", ("chance", Probability));
+            return loc.GetString("entity-effect-guidebook-destroy", ("chance", Probability));
 
-        return Loc.GetString("entity-effect-guidebook-break", ("chance", Probability));
+        return loc.GetString("entity-effect-guidebook-break", ("chance", Probability));
     }
 }

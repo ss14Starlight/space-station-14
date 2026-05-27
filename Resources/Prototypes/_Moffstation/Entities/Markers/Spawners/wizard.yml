@@ -1,0 +1,83 @@
+- type: entity
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostWizardDuelistBase
+  name: ghost role spawn point
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    name: ghost-role-information-wizard-duelist-name
+    description: ghost-role-information-wizard-duelist-desc
+    mindRoles:
+    - MindRoleWizard
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+
+- type: entity
+  parent: SpawnPointGhostWizardDuelistBase
+  id: SpawnPointGhostWizardDuelistRed
+  name: red wizard duelist spawn point
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    mindRoles:
+    - MindRoleWizardDuelistRed
+
+- type: entity
+  parent: SpawnPointGhostWizardDuelistBase
+  id: SpawnPointGhostWizardDuelistBlue
+  name: blue wizard duelist spawn point
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    mindRoles:
+    - MindRoleWizardDuelistBlue
+
+- type: entity
+  parent: SpawnPointGhostWizardDuelistBase
+  id: SpawnPointGhostWizardDuelistPurple # Starlight, violet -> Purple
+  name: purple wizard duelist spawn point # Starlight, violet -> Purple
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    mindRoles:
+    - MindRoleWizardDuelistPurple # Starlight, violet -> Purple
+
+# Starlight start
+
+- type: entity
+  parent: SpawnPointGhostWizardDuelistBase
+  id: SpawnPointGhostWizardDuelistYellow
+  name: yellow wizard duelist spawn point
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    mindRoles:
+    - MindRoleWizardDuelistYellow
+
+- type: entity
+  parent: SpawnPointGhostWizardDuelistBase
+  id: SpawnPointGhostWizardDuelistGreen
+  name: green wizard duelist spawn point
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    mindRoles:
+    - MindRoleWizardDuelistGreen
+
+- type: entity
+  parent: SpawnPointGhostWizardDuelistBase
+  id: SpawnPointGhostWizardDuelistOrange
+  name: orange wizard duelist spawn point
+  categories: [ HideSpawnMenu, Spawner ]
+  components:
+  - type: GhostRole
+    mindRoles:
+    - MindRoleWizardDuelistOrange
+
+# Starlight end

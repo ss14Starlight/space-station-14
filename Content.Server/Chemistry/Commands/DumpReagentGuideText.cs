@@ -10,6 +10,7 @@ namespace Content.Server.Chemistry.Commands;
 public sealed class DumpReagentGuideText : LocalizedEntityCommands
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!; // Starlight
 
     public override string Command => "dumpreagentguidetext";
 
@@ -39,7 +40,7 @@ public sealed class DumpReagentGuideText : LocalizedEntityCommands
         {
             foreach (var effect in entry.Effects)
             {
-                shell.WriteLine(reagent.GuidebookReagentEffectDescription(_prototype, EntityManager.EntitySysManager, effect, entry.MetabolismRate) ??
+                shell.WriteLine(reagent.GuidebookReagentEffectDescription(_prototype, EntityManager.EntitySysManager, _loc, effect, entry.MetabolismRate) ?? // Starlight
                                 Loc.GetString($"cmd-dumpreagentguidetext-skipped", ("effect", effect.GetType())));
             }
         }

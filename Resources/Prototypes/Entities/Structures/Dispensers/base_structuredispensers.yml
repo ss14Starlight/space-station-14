@@ -5,9 +5,13 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Starlight-start: Make dispenser rotatable.
   - type: Transform
     anchored: true
-    noRot: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  # Starlight-end
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance
@@ -85,18 +89,36 @@
   # Starlight-start: Plumbing outlet
   - type: NodeContainer
     nodes:
-      outlet:  # Provides reagents TO the network (all directions)
+      outletNorth:  # Provides reagents TO the network (all directions)
         !type:PlumbingNode
         nodeGroupID: Plumbing
-        pipeDirection: Fourway
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
   - type: PlumbingOutlet
     solutionName: beaker
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
     containerSlotId: beakerSlot
     enabled: false
   # Starlight-end
-  
+
 # Starlight-start: power cell chem dispenser
-  
+
 - type: entity
   abstract: true
   id: ReagentDispenserBasePowerCell
@@ -126,6 +148,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 
 - type: entity
@@ -136,5 +163,5 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
-  
+
 # Starlight-end: power cell chem dispenser

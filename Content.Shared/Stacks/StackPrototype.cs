@@ -48,4 +48,10 @@ public sealed partial class StackPrototype : IPrototype, IInheritingPrototype
     /// </summary>
     [DataField]
     public int? MaxCount { get; private set; }
+
+    /// <summary>
+    /// STARLIGHT: Split amounts to display when right-clicking and looking at the Split dropdown on a stack.
+    /// </summary>
+    [DataField]
+    public int[] SplitAmounts { get; private set; } = new[] { 1 };
 }

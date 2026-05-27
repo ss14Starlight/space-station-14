@@ -1,0 +1,6 @@
+﻿# used by the nanochatcard numbers
+# Range: 0-8999 (9000-9999 reserved for system/spam messages)
+- type: nameIdentifierGroup
+  id: NanoChat
+  minValue: 0
+  maxValue: 8999

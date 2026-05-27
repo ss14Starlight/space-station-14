@@ -5,8 +5,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.IoC;
-using Robust.Shared.Localization;
 using Robust.Shared.Utility;
 using System.Numerics;
 
@@ -19,6 +17,7 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
 
     public event Action<bool>? OnToggle;
     public event Action<uint>? OnSetDosage;
+    public event Action<string>? OnSetLabel;
     public event Action<PillPressOutputMode>? OnSetOutputMode;
     public event Action<uint>? OnSetPillType;
     public event Action<bool>? OnSetMixing;
@@ -27,6 +26,10 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
     private bool _enabled = true;
     private bool _mixingEnabled;
     private bool _eastLastEdited = true;
+    private const uint MinDosage = 1;
+    private const uint MaxDosage = 20;
+    private const uint DefaultDosage = 10;
+    private const int PillsPerRow = 10;
     private const string PillsRsiPath = "/Textures/Objects/Specific/Chemistry/pills.rsi";
     private const int PillTypeCount = (int) SharedChemMaster.PillTypes;
 
@@ -52,14 +55,16 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             OnSetOutputMode?.Invoke((PillPressOutputMode) args.Id);
         };
 
-
-        DosageInput.Text = "10";
+        DosageInput.Text = DefaultDosage.ToString();
         SetDosageButton.OnPressed += _ =>
         {
-            if (!uint.TryParse(DosageInput.Text, out var val) || val < 1 || val > 20)
+            if (!uint.TryParse(DosageInput.Text, out var val) || val < MinDosage || val > MaxDosage)
                 return;
             OnSetDosage?.Invoke(val);
         };
+
+        LabelInput.IsValid = s => s.Length <= SharedChemMaster.LabelMaxLength;
+        SetLabelButton.OnPressed += _ => OnSetLabel?.Invoke(LabelInput.Text);
 
         MixingToggle.OnToggled += args =>
         {
@@ -126,9 +131,9 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             var styleBase = SpinBox.MiddleButtonStyle;
 
             // Open-left for first in row, open-right for last in row
-            if (i % 10 == 0)
+            if (i % PillsPerRow == 0)
                 styleBase = SpinBox.LeftButtonStyle;
-            else if (i % 10 == 9)
+            else if (i % PillsPerRow == PillsPerRow - 1)
                 styleBase = SpinBox.RightButtonStyle;
 
             PillTypeButtons[i] = new Button
@@ -151,26 +156,20 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
             PillTypeGrid.AddChild(PillTypeButtons[i]);
 
             var pillType = i;
-            PillTypeButtons[i].OnPressed += _ =>
-            {
-                OnSetPillType?.Invoke(pillType);
-            };
+            PillTypeButtons[i].OnPressed += _
+                => OnSetPillType?.Invoke(pillType);
         }
 
         PillTypeButtons[0].Pressed = true;
     }
 
     private void UpdateToggleButton()
-    {
-        ToggleStatusButton.Text = _enabled
+        => ToggleStatusButton.Text = _enabled
             ? Loc.GetString("plumbing-pill-press-enabled")
             : Loc.GetString("plumbing-pill-press-disabled");
-    }
 
     private void UpdateMixingVisibility()
-    {
-        MixingContainer.Visible = _mixingEnabled;
-    }
+        => MixingContainer.Visible = _mixingEnabled;
 
     public void UpdateState(PlumbingPillPressBoundUserInterfaceState state)
     {
@@ -180,6 +179,9 @@ public sealed partial class PlumbingPillPressWindow : DefaultWindow
         // Update dosage don't overwrite while user is typing
         if (!DosageInput.HasKeyboardFocus())
             DosageInput.Text = state.Dosage.ToString();
+
+        if (!LabelInput.HasKeyboardFocus())
+            LabelInput.Text = state.Label;
 
         OutputModeSelector.SelectId((int) state.OutputMode);
 

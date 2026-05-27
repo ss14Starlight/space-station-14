@@ -70,6 +70,18 @@
     storedRotation: -90
 
 - type: entity
+  parent: AnomalyScanner
+  id: AnomalyScannerAdmin
+  name: admin anomaly scanner
+  description: A hand-held scanner built to collect information on various anomalous objects. This one seems to have a few extra features.
+  suffix: Admin
+  components:
+  - type: AnomalyScanner
+    ignoreSecret: true
+  - type: Sprite
+    sprite: Objects/Specific/Research/adminanomalyscanner.rsi
+
+- type: entity
   id: AnomalyLocatorUnpowered
   parent: BaseItem
   name: anomaly locator
@@ -126,6 +138,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: AnomalyLocatorWideUnpowered
@@ -161,6 +178,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   name: G.O.R.I.L.L.A. gauntlet

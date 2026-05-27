@@ -27,7 +27,7 @@ public sealed partial class TraitsRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlink: Always return reason
     {
         reason = new FormattedMessage();
 
@@ -35,14 +35,31 @@ public sealed partial class TraitsRequirement : JobRequirement
             return true;
 
         var sb = new StringBuilder();
-        sb.Append("[color=yellow]");
+        // Starlight: No color here, in .ftl instead
         foreach (var t in Traits)
         {
             sb.Append(Loc.GetString(protoManager.Index(t).Name) + " ");
         }
+        // Starlight: No color here, in .ftl instead
 
-        sb.Append("[/color]");
+        // Starlight BEGIN
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-blacklisted-traits-pass" : "role-timer-whitelisted-traits-pass",
+            ("traits", sb)));
+        var hasAnyTrait = Traits.Overlaps(profile.TraitPreferences);
 
+        // !Inverted = Whitelist mode, meaning player must have ONE of the traits.
+        // Inverted = Blacklist mode, meaning player must have NONE of the traits.
+        if (!Inverted == hasAnyTrait)
+            return true;
+
+        // Change to fail message.
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-blacklisted-traits-fail" : "role-timer-whitelisted-traits-fail",
+            ("traits", sb)));
+        return false;
+
+        /*
         if (!Inverted)
         {
             reason = FormattedMessage.FromMarkupPermissive($"{Loc.GetString("role-timer-whitelisted-traits")}\n{sb}");
@@ -65,6 +82,6 @@ public sealed partial class TraitsRequirement : JobRequirement
             }
         }
 
-        return true;
+        return true; */ // Starlight END
     }
 }

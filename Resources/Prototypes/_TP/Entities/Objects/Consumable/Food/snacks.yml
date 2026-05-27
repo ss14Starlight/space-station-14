@@ -25,6 +25,7 @@
   - type: Tag
     tags:
     - ClothMade
+    - FoodSnack #Starlight
 
 - type: entity
   id: TP14FoodCheeseSticks
@@ -46,6 +47,12 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 5
+  #Starlight start
+  - type: Tag
+    tags:
+    - Cooked
+    - FoodSnack
+  #Starlight end
 
 - type: entity
   parent: FoodSnackBase
@@ -62,11 +69,27 @@
     solutions:
       food:
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
+          #Starlight start
+          - ReagentId: Nutriment
+            Quantity: 9
+          - ReagentId: Protein
+            Quantity: 9
+          #Starlight end
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Corndog
+  #Starlight start
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+  - type: Tag
+    tags:
+    - Cooked
+    - Meat
+    - Sausage
+    - FoodSnack
+  #Starlight end
 
 - type: entity
   parent: FoodSnackBase
@@ -88,6 +111,12 @@
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Fried_Icecream
+  #Starlight start
+  - type: Tag
+    tags:
+    - Cooked
+    - FoodSnack
+  #Starlight end
 
 - type: entity
   parent: FoodSnackBase
@@ -109,3 +138,13 @@
   - type: Sprite
     sprite: _TP/Objects/Consumable/fried-food.rsi
     state: Funnel_Cake
+  #Starlight start
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+  - type: Tag
+    tags:
+    - Cooked
+    - FoodSnack
+  #Starlight end

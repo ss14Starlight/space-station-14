@@ -18,7 +18,7 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
     /// Tracks client-side beam visual entities
     /// Key = (source, target) pair, Value = visual beam entity
     /// </summary>
-    private readonly Dictionary<(EntityUid, EntityUid), EntityUid> _activeBeamVisuals = new();
+    private readonly Dictionary<(EntityUid, EntityUid), EntityUid> _activeBeamVisuals = [];
 
     public override void Initialize()
     {

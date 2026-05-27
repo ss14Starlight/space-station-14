@@ -1,13 +1,16 @@
 using Content.Server._Starlight.Plumbing.Nodes;
+using Content.Server._Starlight.Plumbing.Components;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos;
+using Content.Shared.Atmos.Components;
 using Content.Shared.Maps;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using System;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
@@ -29,11 +32,17 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
         PipeDirection.West
     ];
 
+    private const PipeDirection ManifoldSideADirection = PipeDirection.North;
+    private const PipeDirection ManifoldSideBDirection = PipeDirection.South;
+    private const int ManifoldSideAVisualSlots = 3;
+    private const int ManifoldSideBVisualSlots = 3;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<PlumbingConnectorAppearanceComponent, NodeGroupsRebuilt>(OnNodeUpdate);
+        SubscribeLocalEvent<NodeContainerComponent, NodeGroupsRebuilt>(OnAnyNodeGroupsRebuilt);
         SubscribeLocalEvent<PlumbingConnectorAppearanceComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<TileChangedEvent>(OnTileChanged);
     }
@@ -45,7 +54,56 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
 
     private void OnNodeUpdate(EntityUid uid, PlumbingConnectorAppearanceComponent component, ref NodeGroupsRebuilt args)
     {
-        UpdateAppearance(args.NodeOwner);
+        UpdateAppearance(uid);
+    }
+
+    private void OnAnyNodeGroupsRebuilt(EntityUid uid, NodeContainerComponent component, ref NodeGroupsRebuilt args)
+    {
+        // Avoid broad connector refreshes for unrelated node graphs.
+        // This keeps rebuild churn localized to plumbing entities.
+        if (!ContainsPlumbingNode(component))
+            return;
+
+        UpdateNearbyConnectorAppearances(uid);
+    }
+
+    private static bool ContainsPlumbingNode(NodeContainerComponent component)
+    {
+        foreach (var node in component.Nodes.Values)
+        {
+            if (node is PlumbingNode)
+                return true;
+        }
+
+        return false;
+    }
+
+    private void UpdateNearbyConnectorAppearances(EntityUid uid)
+    {
+        if (!TryComp(uid, out TransformComponent? xform) ||
+            xform.GridUid is not { } gridUid ||
+            !TryComp<MapGridComponent>(gridUid, out var grid))
+            return;
+
+        var tile = _map.TileIndicesFor(gridUid, grid, xform.Coordinates);
+
+        static IEnumerable<Vector2i> TilesToCheck(Vector2i center)
+        {
+            yield return center;
+            yield return center + (0, 1);
+            yield return center + (0, -1);
+            yield return center + (1, 0);
+            yield return center + (-1, 0);
+        }
+
+        foreach (var checkTile in TilesToCheck(tile))
+        {
+            foreach (var ent in _map.GetAnchoredEntities(gridUid, grid, checkTile))
+            {
+                if (HasComp<PlumbingConnectorAppearanceComponent>(ent))
+                    UpdateAppearance(ent);
+            }
+        }
     }
 
     private void OnTileChanged(ref TileChangedEvent ev)
@@ -78,19 +136,27 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return;
 
-        if (!TryComp<PlumbingConnectorAppearanceComponent>(uid, out var connectorComp))
+        if (!HasComp<PlumbingConnectorAppearanceComponent>(uid))
             return;
 
         var tile = _map.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
+        if (TryComp<PlumbingManifoldComponent>(uid, out var manifoldComp))
+        {
+            UpdateManifoldAppearance(uid, manifoldComp, appearance, container, xform, grid, tile);
+            return;
+        }
+
         var nodeDirections = PipeDirection.None;
         var connectedDirections = PipeDirection.None;
+        var connectedLayers = 0;
         var inletDirections = PipeDirection.None;
         var outletDirections = PipeDirection.None;
         var mixingInletDirections = PipeDirection.None;
 
-        TryComp<PlumbingInletComponent>(uid, out var inletComp);
-        TryComp<PlumbingOutletComponent>(uid, out var outletComp);
+        var inletNodeNames = BuildInletNodeNameSet(uid);
+        var outletNodeNames = BuildOutletNodeNameSet(uid);
+        var mixingNodeNames = BuildMixingNodeNameSet(uid);
 
         foreach (var (nodeName, node) in container.Nodes)
         {
@@ -100,42 +166,14 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
             var nodeDir = plumbingNode.CurrentPipeDirection;
             nodeDirections |= nodeDir;
 
-            if (connectorComp.MixingInletNames.Contains(nodeName))
+            if (IsConfiguredNode(nodeName, mixingNodeNames))
             {
                 mixingInletDirections |= nodeDir;
             }
-            // Classify as inlet/outlet based on component match OR node name fallback
             else
             {
-                var isInlet = false;
-                if (inletComp != null)
-                {
-                    foreach (var inletName in inletComp.InletNames)
-                    {
-                        if (nodeName.Equals(inletName, StringComparison.OrdinalIgnoreCase))
-                        {
-                            isInlet = true;
-                            break;
-                        }
-                    }
-                }
-
-                var isOutlet = false;
-                if (outletComp != null)
-                {
-                    foreach (var outletName in outletComp.OutletNames)
-                    {
-                        if (nodeName.Equals(outletName, StringComparison.OrdinalIgnoreCase))
-                        {
-                            isOutlet = true;
-                            break;
-                        }
-                    }
-                }
-
-                // Fallback: any node literally named "inlet" is colored as inlet
-                if (!isInlet && !isOutlet && nodeName.Equals("inlet", StringComparison.OrdinalIgnoreCase))
-                    isInlet = true;
+                var isInlet = IsConfiguredNode(nodeName, inletNodeNames);
+                var isOutlet = IsConfiguredNode(nodeName, outletNodeNames);
 
                 if (isInlet)
                     inletDirections |= nodeDir;
@@ -143,21 +181,98 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
                     outletDirections |= nodeDir;
             }
 
-            connectedDirections |= GetConnectedDirections(node, nodeDir, tile, xform.GridUid.Value, grid);
+            connectedDirections |= GetConnectedDirections(plumbingNode, nodeDir, tile, xform.GridUid.Value, grid, ref connectedLayers);
         }
 
         var coveredByFloor = HasFloorCover(xform.GridUid.Value, grid, tile);
 
         _appearance.SetData(uid, PlumbingVisuals.NodeDirections, (int)nodeDirections, appearance);
         _appearance.SetData(uid, PlumbingVisuals.ConnectedDirections, (int)connectedDirections, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.ConnectedLayerByDirection, connectedLayers, appearance);
         _appearance.SetData(uid, PlumbingVisuals.InletDirections, (int)inletDirections, appearance);
         _appearance.SetData(uid, PlumbingVisuals.OutletDirections, (int)outletDirections, appearance);
         _appearance.SetData(uid, PlumbingVisuals.MixingInletDirections, (int)mixingInletDirections, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.ManifoldMode, false, appearance);
         _appearance.SetData(uid, PlumbingVisuals.CoveredByFloor, coveredByFloor, appearance);
     }
 
-    private PipeDirection GetConnectedDirections(Node node, PipeDirection nodeDir, Vector2i tile,
-        EntityUid gridUid, MapGridComponent grid)
+    private void UpdateManifoldAppearance(EntityUid uid,
+        PlumbingManifoldComponent manifoldComp,
+        AppearanceComponent appearance,
+        NodeContainerComponent container,
+        TransformComponent xform,
+        MapGridComponent grid,
+        Vector2i tile)
+    {
+        var nodeDirections = PipeDirection.None;
+        var connectedDirections = PipeDirection.None;
+        var connectedLayers = 0;
+        var connectedSlotsPacked = 0;
+        var sideARoleMask = ManifoldSideADirection.RotatePipeDirection(xform.LocalRotation);
+        var sideBRoleMask = ManifoldSideBDirection.RotatePipeDirection(xform.LocalRotation);
+        var sideASlotCount = ManifoldSideAVisualSlots;
+        var sideBSlotCount = ManifoldSideBVisualSlots;
+
+        foreach (var (nodeName, node) in container.Nodes)
+        {
+            if (node is not PlumbingNode plumbingNode)
+                continue;
+
+            var nodeDir = plumbingNode.CurrentPipeDirection;
+            nodeDirections |= nodeDir;
+
+            var nodeConnectedDirs = GetConnectedDirections(plumbingNode, nodeDir, tile, xform.GridUid!.Value, grid, ref connectedLayers);
+            connectedDirections |= nodeConnectedDirs;
+
+            var isConnectedOnSide = nodeConnectedDirs.HasDirection(nodeDir);
+            if (!isConnectedOnSide)
+                continue;
+
+            var isSideA = IsConfiguredNode(nodeName, manifoldComp.SideANodeNames)
+                || nodeDir.HasDirection(sideARoleMask);
+
+            if (isSideA)
+            {
+                var slotIndex = GetSlotIndexForLayer(plumbingNode.CurrentPipeLayer, sideASlotCount);
+                connectedSlotsPacked = SetManifoldSlotConnected(connectedSlotsPacked, plumbingNode.CurrentPipeDirection, slotIndex);
+            }
+
+            var isSideB = IsConfiguredNode(nodeName, manifoldComp.SideBNodeNames)
+                || nodeDir.HasDirection(sideBRoleMask);
+
+            if (isSideB)
+            {
+                var slotIndex = GetSlotIndexForLayer(plumbingNode.CurrentPipeLayer, sideBSlotCount);
+                connectedSlotsPacked = SetManifoldSlotConnected(connectedSlotsPacked, nodeDir, slotIndex);
+            }
+        }
+
+        var coveredByFloor = HasFloorCover(xform.GridUid!.Value, grid, tile);
+
+        _appearance.SetData(uid, PlumbingVisuals.NodeDirections, (int) nodeDirections, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.ConnectedDirections, (int) connectedDirections, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.ConnectedLayerByDirection, connectedLayers, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.InletDirections, (int) sideARoleMask, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.OutletDirections, (int) sideBRoleMask, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.MixingInletDirections, 0, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.ManifoldMode, true, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.ManifoldConnectedSlotsByDirection, connectedSlotsPacked, appearance);
+        _appearance.SetData(uid, PlumbingVisuals.CoveredByFloor, coveredByFloor, appearance);
+    }
+
+    private static bool IsConfiguredNode(string nodeName, IEnumerable<string> configuredNames)
+    {
+        foreach (var configuredName in configuredNames)
+        {
+            if (nodeName.Equals(configuredName, StringComparison.OrdinalIgnoreCase))
+                return true;
+        }
+
+        return false;
+    }
+
+    private PipeDirection GetConnectedDirections(PlumbingNode node, PipeDirection nodeDir, Vector2i tile,
+        EntityUid gridUid, MapGridComponent grid, ref int connectedLayers)
     {
         var connected = PipeDirection.None;
 
@@ -177,18 +292,124 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
 
             foreach (var reachable in node.ReachableNodes)
             {
-                if (reachable is not PlumbingNode || reachable.Owner == node.Owner)
+                if (reachable is not PlumbingNode reachablePlumbingNode || reachablePlumbingNode.Owner == node.Owner)
                     continue;
 
-                var otherTile = _map.TileIndicesFor(gridUid, grid, Transform(reachable.Owner).Coordinates);
+                if (reachablePlumbingNode.CurrentPipeLayer != node.CurrentPipeLayer)
+                    continue;
+
+                var otherTile = _map.TileIndicesFor(gridUid, grid, Transform(reachablePlumbingNode.Owner).Coordinates);
                 if (otherTile == neighborTile)
                 {
                     connected |= dir;
+                    connectedLayers = SetConnectedLayer(connectedLayers, dir, node.CurrentPipeLayer);
                     break;
                 }
             }
         }
 
         return connected;
+    }
+
+    private static int SetConnectedLayer(int packedData, PipeDirection direction, AtmosPipeLayer layer)
+    {
+        var shift = direction switch
+        {
+            PipeDirection.North => 0,
+            PipeDirection.South => 4,
+            PipeDirection.East => 8,
+            PipeDirection.West => 12,
+            _ => -1,
+        };
+
+        if (shift < 0)
+            return packedData;
+
+        var value = ((int) layer + 1) & 0xF;
+        var clearMask = ~(0xF << shift);
+        return (packedData & clearMask) | (value << shift);
+    }
+
+    private static int SetManifoldSlotConnected(int packedData, PipeDirection direction, int slotIndex)
+    {
+        if ((uint) slotIndex > 3)
+            return packedData;
+
+        var shift = direction switch
+        {
+            PipeDirection.North => 0,
+            PipeDirection.South => 4,
+            PipeDirection.East => 8,
+            PipeDirection.West => 12,
+            _ => -1,
+        };
+
+        if (shift < 0)
+            return packedData;
+
+        var slotMask = 1 << slotIndex;
+        return packedData | (slotMask << shift);
+    }
+
+    private static int GetSlotIndexForLayer(AtmosPipeLayer layer, int slotCount)
+    {
+        if (slotCount <= 1)
+            return 0;
+
+        // For 3-slot manifold visuals, align slots to Tertiary/Primary/Secondary offsets.
+        if (slotCount >= 3)
+        {
+            return layer switch
+            {
+                AtmosPipeLayer.Tertiary => 0,
+                AtmosPipeLayer.Primary => 1,
+                AtmosPipeLayer.Secondary => 2,
+                _ => 1,
+            };
+        }
+
+        return layer == AtmosPipeLayer.Primary ? 0 : 1;
+    }
+
+    private HashSet<string> BuildInletNodeNameSet(EntityUid uid)
+    {
+        var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        if (!TryComp<PlumbingInletComponent>(uid, out var inletComp))
+            return names;
+
+        foreach (var name in inletComp.InletNames)
+            names.Add(name);
+
+        return names;
+    }
+
+    private HashSet<string> BuildOutletNodeNameSet(EntityUid uid)
+    {
+        var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        if (!TryComp<PlumbingOutletComponent>(uid, out var outletComp))
+            return names;
+
+        foreach (var name in outletComp.OutletNames)
+            names.Add(name);
+
+        return names;
+    }
+
+    private HashSet<string> BuildMixingNodeNameSet(EntityUid uid)
+    {
+        var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        if (!TryComp<PlumbingPillPressComponent>(uid, out var pillPressComp))
+            return names;
+
+        if (!string.IsNullOrWhiteSpace(pillPressComp.InletEastNodeName))
+            names.Add(pillPressComp.InletEastNodeName);
+
+        if (!string.IsNullOrWhiteSpace(pillPressComp.InletWestNodeName))
+            names.Add(pillPressComp.InletWestNodeName);
+
+        return names;
     }
 }

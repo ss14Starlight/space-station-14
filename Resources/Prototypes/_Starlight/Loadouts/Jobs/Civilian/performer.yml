@@ -1,0 +1,31 @@
+
+# Jumpsuits
+- type: loadout
+  id: PerformerClownJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPerformerClown
+
+- type: loadout
+  id: PerformerClownJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPerformerClown
+
+- type: loadout
+  id: PerformerMimeJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPerformerMime
+
+- type: loadout
+  id: PerformerMimeJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPerformerMime
+
+- type: loadout
+  id: PerformerMusicianJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPerformerMusician
+
+- type: loadout
+  id: PerformerMusicianJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPerformerMusician

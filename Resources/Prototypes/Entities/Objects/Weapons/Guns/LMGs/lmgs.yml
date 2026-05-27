@@ -42,10 +42,10 @@
     maxAngle: -20
   - type: Gun
     minAngle: 24
-    maxAngle: 35
+    maxAngle: 45
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 6 # Starlight
+    fireRate: 8
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -125,9 +125,6 @@
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
     soundBoltOpened:
       path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.90
-    sprintModifier: 0.90
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -145,14 +142,8 @@
         whitelist:
           tags:
             - CartridgeLightRifle
-  - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 0.90
   - type: HeldSpeedModifier
   - type: Gun
-    minAngle: 24
-    maxAngle: 35
-    fireRate: 6
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Guns/Gunshots/l6.ogg
       params:

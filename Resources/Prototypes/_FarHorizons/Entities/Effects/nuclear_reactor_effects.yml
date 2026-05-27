@@ -1,0 +1,38 @@
+- type: entity
+  id: NuclearReactorSmokeEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 4
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/chemsmoke.rsi
+    layers:
+    - state: chemsmoke
+      map: ["chemsmoke"]
+  - type: AnimationPlayer
+  - type: Tag
+    tags:
+      - HideContextMenu
+
+- type: entity
+  id: NuclearReactorFireEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 4
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Effects/fire.rsi
+    layers:
+    - state: fire
+      map: ["fire"]
+  - type: AnimationPlayer
+  - type: PointLight
+    enabled: true
+    radius: 1.5
+    energy: 2.0
+    color: "#c77700"
+  - type: Tag
+    tags:
+      - HideContextMenu

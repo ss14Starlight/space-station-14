@@ -1,7 +1,5 @@
 using Content.Shared._Starlight.EdgeConnection;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 
 namespace Content.Server._Starlight.EdgeConnection;
 
@@ -37,10 +35,8 @@ public sealed class EdgeConnectionSystem : EntitySystem
     }
 
     private void OnShutdown(Entity<EdgeConnectionComponent> ent, ref ComponentShutdown args)
-    {
         // Update neighbors when this entity is removed
-        UpdateNeighbors(ent);
-    }
+        => UpdateNeighbors(ent);
 
     private void OnMove(Entity<EdgeConnectionComponent> ent, ref MoveEvent args)
     {
@@ -55,7 +51,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     private void UpdateConnections(Entity<EdgeConnectionComponent> ent)
     {
         var xform = Transform(ent);
-        
+
         if (!xform.Anchored || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
         {
             _appearance.SetData(ent, EdgeConnectionVisuals.ConnectionMask, EdgeConnectionFlags.None);
@@ -106,18 +102,14 @@ public sealed class EdgeConnectionSystem : EntitySystem
     /// Used to convert entity-local directions to world-space directions.
     /// </summary>
     private EdgeConnectionFlags RotateDirections(EdgeConnectionFlags flags, Angle rotation)
-    {
-        return RotateDirectionsImpl(flags, rotation, clockwise: true);
-    }
+        => RotateDirectionsImpl(flags, rotation, clockwise: true);
 
     /// <summary>
     /// Rotates direction flags by the inverse of the given angle.
     /// Used to convert world-space directions back to entity-local directions.
     /// </summary>
     private EdgeConnectionFlags RotateDirectionsInverse(EdgeConnectionFlags flags, Angle rotation)
-    {
-        return RotateDirectionsImpl(flags, rotation, clockwise: false);
-    }
+        => RotateDirectionsImpl(flags, rotation, clockwise: false);
 
     private EdgeConnectionFlags RotateDirectionsImpl(EdgeConnectionFlags flags, Angle rotation, bool clockwise)
     {
@@ -127,7 +119,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
 
         // Round to nearest 90 degrees
         var quarterTurns = (int)Math.Round(degrees / 90.0) % 4;
-        
+
         // Invert if counterclockwise
         if (!clockwise)
             quarterTurns = (4 - quarterTurns) % 4;
@@ -155,7 +147,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
                 if ((flags & EdgeConnectionFlags.South) != 0) rotated |= EdgeConnectionFlags.East;
                 if ((flags & EdgeConnectionFlags.East) != 0) rotated |= EdgeConnectionFlags.North;
             }
-            
+
             flags = rotated;
         }
 
@@ -171,7 +163,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     {
         var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
         var entityXform = Transform(entity);
-        
+
         while (anchored.MoveNext(out var other))
         {
             if (other == entity)
@@ -190,9 +182,9 @@ public sealed class EdgeConnectionSystem : EntitySystem
                 continue;
 
             // Only connect if both entities have the same rotation
-            var entityDegrees = ((int)Math.Round(entityXform.LocalRotation.Degrees) % 360 + 360) % 360;
-            var otherDegrees = ((int)Math.Round(otherXform.LocalRotation.Degrees) % 360 + 360) % 360;
-            
+            var entityDegrees = (((int)Math.Round(entityXform.LocalRotation.Degrees) % 360) + 360) % 360;
+            var otherDegrees = (((int)Math.Round(otherXform.LocalRotation.Degrees) % 360) + 360) % 360;
+
             if (entityDegrees == otherDegrees)
                 return true;
         }
@@ -207,7 +199,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     {
         if (!TryComp(ent, out TransformComponent? xform))
             return;
-        
+
         if (!TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return;
 
@@ -226,7 +218,7 @@ public sealed class EdgeConnectionSystem : EntitySystem
     private void UpdateNeighborsAtTile(EntityUid gridUid, MapGridComponent grid, Vector2i tile)
     {
         var anchored = _map.GetAnchoredEntitiesEnumerator(gridUid, grid, tile);
-        
+
         while (anchored.MoveNext(out var other))
         {
             if (TryComp<EdgeConnectionComponent>(other, out var comp))

@@ -543,6 +543,16 @@ public abstract partial class SharedMoverController : VirtualController
         if (!CanSound() || !_tags.HasTag(uid, FootstepSoundTag))
             return false;
 
+        #region Starlight GetFootstepSound event here!
+        var ev = new GetFootstepSoundEvent();
+        RaiseLocalEvent(uid, ref ev);
+        if (ev.Sound != null)
+        {
+            sound = ev.Sound;
+            return true;
+        }
+        #endregion
+
         var coordinates = xform.Coordinates;
         var distanceNeeded = mover.Sprinting
             ? mobMover.StepSoundMoveDistanceRunning

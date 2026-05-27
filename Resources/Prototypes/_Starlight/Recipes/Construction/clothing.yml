@@ -1,0 +1,23 @@
+- type: construction
+  id: ClothingClothWrap
+  graph: ClothingClothWrap
+  startNode: start
+  targetNode: shoes
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: TraditionalReptilianClothes
+  graph: TraditionalReptilianClothesGraph
+  startNode: start
+  targetNode: jumpsuit
+  category: construction-category-clothing
+  objectType: Item
+
+- type: construction
+  id: ClothingGlassesNullSpace
+  graph: ClothingGlassesNullSpace
+  startNode: start
+  targetNode: glasses
+  category: construction-category-clothing
+  objectType: Item

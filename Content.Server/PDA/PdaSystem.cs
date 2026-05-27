@@ -225,7 +225,7 @@ namespace Content.Server.PDA
                     StationAlertLevel = pda.StationAlertLevel,
                     StationAlertColor = pda.StationAlertColor,
                     EvacShuttleStatus = pda.ShuttleStatus,
-                    EvacShuttleTime = pda.ShuttleTime 
+                    EvacShuttleTime = pda.ShuttleTime
                 },
                 pda.StationName,
                 showUplink,
@@ -311,7 +311,7 @@ namespace Content.Server.PDA
             var station = _station.GetOwningStation(uid);
             pda.StationName = station is null ? null : Name(station.Value);
         }
-        
+
         private void UpdateEvacShuttle(EntityUid uid, PdaComponent pda)
         {
             TimeSpan? shuttleTime;

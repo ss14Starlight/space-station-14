@@ -67,7 +67,7 @@ public sealed partial class ThirstComponent : Component
         {ThirstThreshold.Parched, "Parched"},
         {ThirstThreshold.Dead, "Parched"},
     };
-    
+
     //Starlight begin
     /// <summary>
     /// A list of values to drain thirst by every update tick. Gets multiplied by decay rate.

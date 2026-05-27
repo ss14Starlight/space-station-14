@@ -57,3 +57,21 @@ lobby-state-background-mime-artist = Darkrell
 
 lobby-state-background-Dispace-title = Dispace
 lobby-state-background-IQlvlZero-artist = IQlvlZero
+
+lobby-state-background-clown-title = Clown Choices
+lobby-state-background-clown-artist = m0lem4n
+
+lobby-state-background-fatefulshift-title = Fateful Shift
+lobby-state-background-fatefulshift-artist = rickery
+
+lobby-state-background-hopdesksimulator-title = HoP Desk Simulator
+lobby-state-background-hopdesksimulator-artist = swonki
+
+lobby-state-background-janitorialhell-title = Janitorial Hell
+lobby-state-background-janitorialhell-artist = wintergem18
+
+lobby-state-background-katievssyndie-title = Katie vs Syndie
+lobby-state-background-katievssyndie-artist = ramblinger
+
+lobby-state-background-nogalcom-title = When the brigmedic's starting chems run out
+lobby-state-background-nogalcom-artist = deltaVelocity

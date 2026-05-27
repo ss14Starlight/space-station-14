@@ -87,7 +87,7 @@
     program: 119
   - type: Sprite
     sprite: Objects/Fun/Instruments/reversecymbal.rsi
-    
+
 - type: entity
   parent: BaseHandheldInstrument
   id: SuperSynthesizerInstrument
@@ -111,7 +111,7 @@
     size: Normal
     sprite: Objects/Fun/Instruments/h_synthesizer.rsi
   - type: ActivatableUI
-    inHandsOnly: false 
+    inHandsOnly: false
 
 - type: entity
   parent: SuperSynthesizerInstrument

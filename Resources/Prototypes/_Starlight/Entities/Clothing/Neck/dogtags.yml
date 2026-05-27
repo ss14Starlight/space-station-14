@@ -1,0 +1,17 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingDogTags
+  name: dog tags
+  description: Never forget.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Misc/dogtags.rsi
+  - type: StaticPrice
+    price: 10
+  - type: Engraveable
+    engraveVerb: "engraving-verb-engrave"
+    noEngravingText: "engraving-dogtags-no-message"
+    engraveSuccessMessage: "engraving-dogtags-succeed"
+    hasEngravingText: "engraving-dogtags-has-message"

@@ -1,32 +1,34 @@
 - type: job
   id: Lawyer
   name: job-name-lawyer
-  description: job-description-lawyer
+  description: job-description-lawyer-sl # Starlight, new desc.
   playTimeTracker: JobLawyer
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 2.5h
+    - !type:RoleTimeRequirement # Starlight start
+      role: JobIAA # You have to actually know the law, this role is really easy to mess up if you don't.
+      time: 3h # Starlight end
   startingGear: LawyerGear
   icon: "JobIconLawyer"
   supervisors: job-supervisors-hop
   access:
   - Service
   - Lawyer
-  - Brig
+#  - Brig # Starlight, no longer associated with Security.
   - Maintenance
 
 - type: startingGear
   id: LawyerGear
   equipment:
-    shoes: ClothingShoesBootsLaceup
+    #shoes: ClothingShoesBootsLaceup # Starlight
     id: LawyerPDA
-    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesCheapSunglasses # Starlight, some cheap sunglasses.
+    ears: ClothingHeadsetService # Starlight, not part of Security.
   inhand:
-    - BriefcaseBrownFilled
-  storage:
-    back:
-    - RubberStampLawyer
-    - BookSpaceLaw
+    - BriefcaseLawyerFilled # Starlight, Lawyer briefcase.
+#  storage: Starlight start
+#    back:
+#    - RubberStampLawyer
+#    - BookSpaceLaw  Starlight end
 
 - type: chameleonOutfit
   id: LawyerChameleonOutfit

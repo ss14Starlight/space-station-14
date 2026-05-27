@@ -48,6 +48,8 @@ using Content.Client.CollectiveMind;
 using Content.Shared._Starlight.Language;
 using System.Diagnostics.CodeAnalysis;
 using Content.Client._Starlight.Language.Systems;
+using Content.Shared._Starlight.Ghost;
+using Content.Shared._Starlight.NameConfusion;
 using Content.Shared._Starlight.Radio;
 //Starlight end
 
@@ -201,6 +203,7 @@ public sealed partial class ChatUIController : UIController
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
+        SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporealChanged); // Starlight
         _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
         _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
 
@@ -243,7 +246,7 @@ public sealed partial class ChatUIController : UIController
 
         _input.SetInputCommand(ContentKeyFunctions.CycleChatChannelBackward,
             InputCmdHandler.FromDelegate(_ => CycleChatChannel(false)));
-            
+
         _input.SetInputCommand(ContentKeyFunctions.FocusCollectiveMindChat,
             InputCmdHandler.FromDelegate(_ => FocusChannel(ChatSelectChannel.CollectiveMind)));
 
@@ -558,7 +561,7 @@ public sealed partial class ChatUIController : UIController
 
             // Can only send local / radio / emote when attached to a non-ghost entity.
             // TODO: this logic is iffy (checking if controlling something that's NOT a ghost), is there a better way to check this?
-            if (_ghost is not {IsGhost: true})
+            if (_ghost is not {IsGhost: true} or {Player.BypassGhostChat:true}) // Starlight-edit: keep these enabled if bypass enabled.
             {
                 CanSendChannels |= ChatSelectChannel.Local;
                 CanSendChannels |= ChatSelectChannel.Whisper;
@@ -706,7 +709,7 @@ public sealed partial class ChatUIController : UIController
 
     public ChatSelectChannel MapLocalIfGhost(ChatSelectChannel channel)
     {
-        if (channel == ChatSelectChannel.Local && _ghost is {IsGhost: true})
+        if (channel == ChatSelectChannel.Local && _ghost is {IsGhost: true, Player.BypassGhostChat:false}) // Starlight-edit
             return ChatSelectChannel.Dead;
 
         return channel;
@@ -719,7 +722,7 @@ public sealed partial class ChatUIController : UIController
            && _chatSys != null
            && _chatSys.TryProcessRadioMessage(uid, text, out _, out radioChannel, out _, quiet: true); // Starlight edit
     }
-    
+
     //Starlight begin
     private bool TryGetLanguage(ref string text, [NotNullWhen(true)] out LanguagePrototype? language)
     {
@@ -728,7 +731,7 @@ public sealed partial class ChatUIController : UIController
         language = _lang.GetLanguageFromPrefix(uid, ref text, out var parsed);
         return parsed;
     }
-    
+
     private bool TryGetCustomRadioChannel(string text, out CustomRadioChannelData? radioChannel)
     {
         radioChannel = null;
@@ -737,7 +740,7 @@ public sealed partial class ChatUIController : UIController
                && _chatSys.TryProcessRadioMessage(uid, text, out _, out _, out radioChannel, quiet: true);
     }
     //Starlight end
-    
+
     private bool TryGetCollectiveMind(string text, out CollectiveMindPrototype? collectiveMind)
     {
         collectiveMind = null;
@@ -745,7 +748,7 @@ public sealed partial class ChatUIController : UIController
                && _chatSys != null
                && _chatSys.TryProccessCollectiveMindMessage(uid, text, out _, out collectiveMind, quiet: true);
     }
-    
+
     //Starlight begin
     public void UpdateLanguageNotifier(ChatBox box)
     {
@@ -758,7 +761,7 @@ public sealed partial class ChatUIController : UIController
         }
     }
     //Starlight end
-    
+
     public void UpdateSelectedChannel(ChatBox box)
     {
         var (prefixChannel, _, radioChannel, collectiveMind, customChannel, _) = SplitInputContents(box.ChatInput.Input.Text.ToLower()); // Starlight edit
@@ -785,7 +788,7 @@ public sealed partial class ChatUIController : UIController
         text = text.Trim();
         if (text.Length == 0)
             return (ChatSelectChannel.None, text, null, null, null, null); //Starlight edit
-        
+
         //Starlight begin - detect language prefix. don't modify text directly here and use modText for radio channel checks.
         var modText = text;
         LanguagePrototype? language = null;
@@ -796,7 +799,7 @@ public sealed partial class ChatUIController : UIController
             modText = text[4..];
         }
         //Starlight end
-        
+
         // We only cut off prefix only if it is not a radio or local channel, which both map to the same /say command
         // because ????????
 
@@ -818,13 +821,13 @@ public sealed partial class ChatUIController : UIController
 
         if (chatChannel == ChatSelectChannel.Radio)
             return (chatChannel, text, radioChannel, null, customChannel, language); //Starlight edit
-        
+
         if (TryGetCollectiveMind(text, out var collectiveMind) && chatChannel == ChatSelectChannel.CollectiveMind)
             return (chatChannel, text, radioChannel, collectiveMind, null, language); //Starlight edit
 
         if (chatChannel == ChatSelectChannel.Local)
         {
-            if (_ghost?.IsGhost != true)
+            if (_ghost?.IsGhost != true && _ghost?.Player?.BypassGhostChat != true) // Starlight edit
                 return (chatChannel, text, null, null, null, language); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;
@@ -906,6 +909,11 @@ public sealed partial class ChatUIController : UIController
         chatBox.ChatInput.Input.ForceSubmitText();
     }
 
+    // Starlight begin: dumb event listener for updating channel permissions
+    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _) =>
+        UpdateChannelPermissions();
+    // Starlight end
+
     private void OnChatMessage(MsgChatMessage message)
     {
         var msg = message.Message;
@@ -925,7 +933,7 @@ public sealed partial class ChatUIController : UIController
         {
             var grammar = _ent.GetComponentOrNull<GrammarComponent>(_ent.GetEntity(msg.SenderEntity));
             if (grammar != null && grammar.ProperNoun == true)
-                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name")));
+                msg.WrappedMessage = SharedChatSystem.InjectTagInsideTag(msg, "Name", "color", GetNameColor(SharedChatSystem.GetStringInsideTag(msg, "Name"), msg.SenderEntity)); // Starlight-edit: Pass entity so you can use a consistent color.
         }
 
         // Color any words chosen by the client.
@@ -1042,16 +1050,21 @@ public sealed partial class ChatUIController : UIController
         }
     }
 
+    // Starlight begin: consistent name color if altered by NameConfusionSystem.
     /// <summary>
     /// Returns the chat name color for a mob
     /// </summary>
     /// <param name="name">Name of the mob</param>
     /// <returns>Hex value of the color</returns>
-    public string GetNameColor(string name)
+    public string GetNameColor(string name, NetEntity sender)
     {
+        var ent = EntityManager.GetEntity(sender);
+        if (EntityManager.TryGetComponent<NameConfusionComponent>(ent, out var confusion))
+            if (confusion.OriginalName is not null) name = confusion.OriginalName;
         var colorIdx = Math.Abs(name.GetHashCode() % _chatNameColors.Length);
         return _chatNameColors[colorIdx];
     }
+    // Starlight end
 
     private readonly record struct SpeechBubbleData(ChatMessage Message, SpeechBubble.SpeechType Type);
 

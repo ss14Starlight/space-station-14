@@ -7,7 +7,7 @@
   license: "CC-BY-4.0"
   copyright: "sfx_humanoid_saturn_hawkchat1.ogg (Renamed to moth.ogg), sfx_humanoid_saturn_hawkchat3b (Renamed to moth_ask.ogg), sfx_humanoid_saturn_hawkchat3 (Renamed to moth_exclaim.ogg) all taken from https://github.com/CyanSkyKnight/Cyans-Free-Stuff/tree/main/Bug%20Sounds "
   source: "https://github.com/CyanSkyKnight/Cyans-Free-Stuff/tree/main/Bug%20Sounds"
-  
+
 - files: ["moth_cough.ogg"]
   license: "CC-BY-NC-4.0"
   copyright: "Recorded by elim Guerrero Ruz on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github)."

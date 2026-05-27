@@ -227,6 +227,9 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
             case HumanoidEyeColor.Shadekin:
                 newEyeColor = Humanoid.EyeColor.MakeShadekinValid(newEyeColor);
                 break;
+            case HumanoidEyeColor.FullWhite:
+                newEyeColor = Humanoid.EyeColor.MakeFullWhiteValid(newEyeColor);
+                break;
             default:
                 break;
 

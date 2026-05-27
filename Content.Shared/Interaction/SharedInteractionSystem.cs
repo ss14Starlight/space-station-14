@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared._FarHorizons.Util;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
@@ -165,7 +166,10 @@ namespace Content.Shared.Interaction
         private void OnBoundInterfaceInteractAttempt(Entity<UserInterfaceComponent> ent, ref BoundUserInterfaceMessageAttempt ev)
         {
             _uiQuery.TryComp(ev.Target, out var aUiComp);
-            if (!_actionBlockerSystem.CanInteract(ev.Actor, ev.Target))
+
+            var slottedPAI = IsSlottedPAI(ev.Actor, ev.Target);  // Starlight-edit: PAI's can be slotted into and use console BUIs.
+
+            if (!_actionBlockerSystem.CanInteract(ev.Actor, ev.Target) && !slottedPAI) // Starlight-edit: PAI's can be slotted into and use console BUIs.
             {
                 // We permit ghosts to open uis unless explicitly blocked
                 if (ev.Message is not OpenBoundInterfaceMessage
@@ -197,7 +201,7 @@ namespace Content.Shared.Interaction
                 return;
             }
 
-            if (aUiComp.RequiresComplex && !_actionBlockerSystem.CanComplexInteract(ev.Actor))
+            if (aUiComp.RequiresComplex && !_actionBlockerSystem.CanComplexInteract(ev.Actor) && !slottedPAI)
                 ev.Cancel();
         }
 
@@ -550,6 +554,12 @@ namespace Content.Shared.Interaction
             EntityCoordinates clickLocation, bool inRangeUnobstructed)
         {
             if (IsDeleted(user) || IsDeleted(used) || IsDeleted(target))
+                return;
+
+            // Far Horizons, whitelist/blacklists for usable items
+            var ev = new CheckItemCanBeUsedEvent(user, target);
+            RaiseLocalEvent(used, ev, true);
+            if (ev.Cancelled)
                 return;
 
             if (target != null)
@@ -1051,6 +1061,12 @@ namespace Content.Shared.Interaction
                 return false;
 
             if (checkCanUse && !_actionBlockerSystem.CanUseHeldEntity(user, used))
+                return false;
+
+            // Far Horizons, whitelist/blacklists for usable items
+            var ev = new CheckItemCanBeUsedEvent(user, target);
+            RaiseLocalEvent(used, ev, true);
+            if (ev.Cancelled)
                 return false;
 
             _adminLogger.Add(

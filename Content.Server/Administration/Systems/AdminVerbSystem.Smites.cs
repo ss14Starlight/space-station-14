@@ -1,7 +1,7 @@
+using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Electrocution;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.GhostKick;
@@ -20,9 +20,8 @@ using Content.Shared.Administration;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Systems;
 using Content.Shared.Atmos.Components;
-using Content.Shared.Alert; //Starlight
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Part;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Cluwne;
@@ -54,6 +53,8 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared._Starlight.Gnome; // starlight
 using Content.Shared.Trigger; // Starlight
 using Content.Shared.Trigger.Components.Effects; // Starlight
+using Content.Shared.NPC.Prototypes; // Starlight
+using Content.Shared.NPC.Systems; // Starlight
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -66,6 +67,8 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Utility;
 using Timer = Robust.Shared.Timing.Timer;
 using Content.Server._Starlight.Terminator;
+using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Administration.Systems;
 
@@ -73,6 +76,7 @@ public sealed partial class AdminVerbSystem
 {
     private readonly ProtoId<PolymorphPrototype> LizardSmite = "AdminLizardSmite";
     private readonly ProtoId<PolymorphPrototype> VulpkaninSmite = "AdminVulpSmite";
+    private readonly ProtoId<PolymorphPrototype> Felionoidsmite = "AdminFelioSmite"; // Starlight edit
 
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -102,11 +106,15 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly SlipperySystem _slipperySystem = default!;
     [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly TerminatorSystem _terminator = default!; // starlight
+    [Dependency] private readonly NpcFactionSystem _npcFactionSmite = default!; // starlight
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
 
     private readonly EntProtoId _siliconMindRole = "MindRoleSiliconBrain";
+    private readonly EntProtoId _pirateMindRole = "MindRolePirate"; // starlight
+    private readonly ProtoId<NpcFactionPrototype> _smitePirateFaction = "Pirate"; // starlight
+    private readonly ProtoId<NpcFactionPrototype> _smiteNanoTrasenFaction = "NanoTrasen"; // starlight
     private const string SiliconLawBoundUserInterface = "SiliconLawBoundUserInterface";
 
     // All smite verbs have names so invokeverb works.
@@ -315,7 +323,6 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(bloodRemoval);
         }
 
-        // bobby...
         if (TryComp<BodyComponent>(args.Target, out var body))
         {
             var vomitOrgansName = Loc.GetString("admin-smite-vomit-organs-name").ToLowerInvariant();
@@ -327,14 +334,14 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     _vomitSystem.Vomit(args.Target, -1000, -1000); // You feel hollow!
-                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body));
+                    var organs = _bodySystem.GetBodyOrganEntityComps<TransformComponent>((args.Target, body)); // Starlight Edit: Reverted NuBody
                     var baseXform = Transform(args.Target);
                     foreach (var organ in organs)
                     {
                         if (HasComp<BrainComponent>(organ.Owner) || HasComp<EyeComponent>(organ.Owner))
                             continue;
 
-                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform));
+                        _transformSystem.PlaceNextTo((organ.Owner, organ.Comp1), (args.Target, baseXform)); // Starlight Edit: Comp -> Comp1
                     }
 
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-vomit-organs-self"), args.Target,
@@ -356,9 +363,9 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand))
+                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand)) // Starlight Edit: Reverted NuBody
                     {
-                        _transformSystem.AttachToGridOrMap(part.Id);
+                        _transformSystem.AttachToGridOrMap(part.Id); // Starlight Edit: organ -> part.Id
                     }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
                         args.Target, PopupType.LargeCaution);
@@ -379,9 +386,9 @@ public sealed partial class AdminVerbSystem
                 Act = () =>
                 {
                     var baseXform = Transform(args.Target);
-                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body))
+                    foreach (var part in _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Hand, body)) // Starlight Edit: Reverted NuBody
                     {
-                        _transformSystem.AttachToGridOrMap(part.Id);
+                        _transformSystem.AttachToGridOrMap(part.Id); // Starlight Edit: organ -> part.Id
                         break;
                     }
                     _popupSystem.PopupEntity(Loc.GetString("admin-smite-remove-hands-self"), args.Target,
@@ -402,7 +409,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "stomach"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body)))
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<StomachComponent>((args.Target, body))) // Starlight Edit: Reverted NuBody
                     {
                         QueueDel(entity.Owner);
                     }
@@ -423,7 +430,7 @@ public sealed partial class AdminVerbSystem
                 Icon = new SpriteSpecifier.Rsi(new("/Textures/Mobs/Species/Human/organs.rsi"), "lung-r"),
                 Act = () =>
                 {
-                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body)))
+                    foreach (var entity in _bodySystem.GetBodyOrganEntityComps<LungComponent>((args.Target, body))) // Starlight Edit: Reverted NuBody
                     {
                         QueueDel(entity.Owner);
                     }
@@ -798,6 +805,23 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(vulp);
 
+        // Starlight-start
+        var felioName = Loc.GetString("admin-smite-Felionoid-species-swap-name").ToLowerInvariant();
+        Verb felio = new()
+        {
+            Text = felioName,
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Objects/Fun/toy_mouse.rsi"), "icon"),
+            Act = () =>
+            {
+                _polymorphSystem.PolymorphEntity(args.Target, Felionoidsmite);
+            },
+            Impact = LogImpact.Extreme,
+            Message = string.Join(": ", felioName, Loc.GetString("admin-smite-Felionoid-species-swap-description"))
+        };
+        args.Verbs.Add(felio);
+        // Starlight-end
+
         var lockerName = Loc.GetString("admin-smite-locker-stuff-name").ToLowerInvariant();
         Verb locker = new()
         {
@@ -1010,7 +1034,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", superslipName, Loc.GetString("admin-smite-super-slip-description"))
         };
         args.Verbs.Add(superslip);
-        
+
         var pacifyName = Loc.GetString("admin-smite-pacify-name").ToLowerInvariant();
         Verb pacify = new()
         {
@@ -1112,12 +1136,8 @@ public sealed partial class AdminVerbSystem
         {
             Text = fuelRodifyName,
             Category = VerbCategory.Smite,
-            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Structures/Power/Generation/FissionGenerator/reactor_parts.rsi"), "default_rod"),
-            Act = () =>
-            {
-                _gibbing.Gib(args.Target);
-                _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite");
-            },
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_FarHorizons/Objects/Power/FissionGenerator/reactor_parts.rsi"), "default_rod"),
+            Act = () => _polymorphSystem.PolymorphEntity(args.Target, "AdminFuelRodSmite"),
             Impact = LogImpact.Extreme,
             Message = string.Join(": ", fuelRodifyName, Loc.GetString("admin-smite-become-fuelrod-description"))
         };
@@ -1159,7 +1179,7 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", homingRodSlowName, Loc.GetString("admin-smite-homing-rod-slow-description"))
         };
         args.Verbs.Add(homingRodSlow);
-        
+
         // Starlight begin
         var scrambleName = Loc.GetString("admin-smite-scramble-name").ToLowerInvariant();
         Verb scramble = new()

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Client._Starlight.Guidebook.Richtext;
 using Content.Client.Guidebook.Richtext;
 using Content.Shared.Chemistry.Reagent;
 using JetBrains.Annotations;
@@ -8,6 +9,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.Guidebook.Controls;
 
@@ -15,12 +17,17 @@ namespace Content.Client.Guidebook.Controls;
 ///     Control for embedding a reagent into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
-public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
+public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag, IDocumentTagOnLoaded
 {
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private readonly ISawmill _sawmill;
+
+    // Starlight
+    private List<ReagentPrototype>? _reagentsToAdd;
+
+    public event Action? OnLoaded;
 
     public GuideReagentGroupEmbed()
     {
@@ -33,12 +40,8 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
     public GuideReagentGroupEmbed(string group) : this()
     {
         var prototypes = _prototype.EnumeratePrototypes<ReagentPrototype>()
-            .Where(p => p.Group.Equals(group)).OrderBy(p => p.LocalizedName);
-        foreach (var reagent in prototypes)
-        {
-            var embed = new GuideReagentEmbed(reagent);
-            GroupContainer.AddChild(embed);
-        }
+            .Where(p => p.Group.Equals(group)).OrderByDescending(p => p.LocalizedName); // Starlight - Order reversed to support FrameUpdate
+        _reagentsToAdd = prototypes.ToList(); // Starlight
     }
 
     public bool TryParseTag(Dictionary<string, string> args, [NotNullWhen(true)] out Control? control)
@@ -51,14 +54,37 @@ public sealed partial class GuideReagentGroupEmbed : BoxContainer, IDocumentTag
         }
 
         var prototypes = _prototype.EnumeratePrototypes<ReagentPrototype>()
-            .Where(p => p.Group.Equals(group)).OrderBy(p => p.LocalizedName);
-        foreach (var reagent in prototypes)
+            .Where(p => p.Group.Equals(group)).OrderByDescending(p => p.LocalizedName); // Starlight - Order reversed to support FrameUpdate
+        _reagentsToAdd = prototypes.ToList(); // Starlight
+
+        control = this;
+        return true;
+    }
+
+    // Starlight
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        if (_reagentsToAdd == null)
+            return;
+
+        // Stop after adding 5 reagents, wait for next frame update
+        // This prevents it from lagging as much, and helps to not trigger
+        // the style update limit in engine
+        var count = _reagentsToAdd.Count;
+        for (var i = count - 1; i >= Math.Max(0, count - 5); i--)
         {
+            var reagent = _reagentsToAdd[i];
+            _reagentsToAdd.RemoveAt(i);
             var embed = new GuideReagentEmbed(reagent);
             GroupContainer.AddChild(embed);
         }
 
-        control = this;
-        return true;
+        if (_reagentsToAdd.Count > 0)
+            return;
+
+        _reagentsToAdd = null;
+        OnLoaded?.Invoke();
     }
 }

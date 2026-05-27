@@ -148,7 +148,6 @@ guide-entry-vampire-hemomancer = Hemomancer
 guide-entry-vampire-umbrae = Umbrae
 guide-entry-vampire-dantalion = Dantalion
 guide-entry-vampire-gargantua = Gargantua
-guide-entry-abductors = Abductors
 guide-entry-wizard = Wizard
 guide-entry-xenoborgs = Xenoborgs
 

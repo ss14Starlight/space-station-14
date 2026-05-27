@@ -5793,7 +5793,7 @@ entities:
     - type: IdCard
       jobDepartments:
       - Command
-      - Representives
+      - Representatives
       jobIcon: JobIconNanotrasen
       _jobTitle: VIP
       fullName: John Toe

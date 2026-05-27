@@ -106,6 +106,7 @@
     - BorgModuleAdvancedTopical
     - BorgModuleAdvancedCleaning
     - BorgModuleAdvancedTool
+    - BorgModuleAdvancedPlumbing
 
     rareChance: 0.1
     prototypes:

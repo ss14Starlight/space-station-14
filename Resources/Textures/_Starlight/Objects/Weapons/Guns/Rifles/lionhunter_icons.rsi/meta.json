@@ -1,0 +1,20 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+	"copyright": "Taken from Paradise station. https://github.com/ParadiseSS13/Paradise/commit/203105788c9e49ae7c25c675bb833db8c62176b7 ",
+	"size": {
+		"x": 48,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "icon"
+		},
+		{
+			"name": "base"
+		},
+		{
+			"name": "bolt-open"
+		}
+	]
+}

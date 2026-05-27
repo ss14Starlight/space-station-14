@@ -129,14 +129,16 @@
     # Starlight start
     - BlueShield
     - Brigmedic
-    - Cadet 
+    - Cadet
     - Magistrate
     - Mining
     - Ntrep
     - Paramedic
     - Robotics
-    - SalvageLead 
+    - SalvageLead
     - Surgery
+    - IAA
+    - Mail
     # Starlight end
   - type: DeviceList
     isAllowList: true

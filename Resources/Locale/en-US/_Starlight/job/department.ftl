@@ -1,3 +1,3 @@
 department-Law = Law Department
-department-Representives = NT Representives
+department-Representatives = NT Representatives
 department-TSF = Trans-Solar Federation

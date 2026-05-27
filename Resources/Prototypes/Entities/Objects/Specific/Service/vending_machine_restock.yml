@@ -138,6 +138,7 @@
 # Starlight begin
     - PietyVendInventory
     - PrideDrobeInventory
+    - LegalDrobeInventory
 # Starlight end
   - type: Sprite
     layers:
@@ -287,6 +288,11 @@
     - NanoMedPlusInventory
     - NanoMedCivilianInventory
     - NanoMedCivilianWallInventory
+    - NanoMedSecurityInventory #SL
+    - InterdyneCommercialInventory #SL
+    - InterdyneEnterpriseInventory #SL
+    - InterdyneCommercialWallInventory #SL
+    - InterdyneEnterpriseWallInventory #SL
   - type: Sprite
     layers:
     - state: base
@@ -342,7 +348,7 @@
     - SpaceUpInventory
     - SodaInventory
     - DrGibbInventory
-    - SmiteInventory 
+    - SmiteInventory
   - type: Sprite
     layers:
     - state: base

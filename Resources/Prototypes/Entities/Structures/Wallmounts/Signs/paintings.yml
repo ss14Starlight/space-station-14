@@ -144,8 +144,8 @@
 - type: entity
   parent: PaintingBase
   id: PaintingSleepingGypsy
-  name: The Sleeping Gypsy
-  description: This painting depicts a gypsy sleeping among their belongings in the desert. A lion stands behind them.
+  name: The Sleeping Nomad #SL Edit g to nomad
+  description: This painting depicts a nomad sleeping among their belongings in the desert. A lion stands behind them. #Sl edit g to nomad
   components:
   - type: Sprite
     state: painting15

@@ -26,7 +26,7 @@ public sealed partial class MechComponent : Component
     /// Starlight: How long to wait before checking again. Moved from MechThrustersComponent.
     /// </summary>
     [DataField]
-    public TimeSpan Delay = TimeSpan.FromSeconds(1);
+    public TimeSpan Delay = TimeSpan.FromSeconds(.5);
 
     /// <summary>
     /// Whether or not an emag disables it.
@@ -55,20 +55,6 @@ public sealed partial class MechComponent : Component
     [DataField("light")]
     [AutoNetworkedField]
     public bool Light = false;
-
-    /// <summary>
-    /// is the mech siren are toggled?
-    /// </summary>
-    [DataField("sirenToggled")]
-    [AutoNetworkedField]
-    public bool Siren = false;
-
-    /// <summary>
-    /// is the mech has siren?
-    /// </summary>
-    [DataField("siren")]
-    [AutoNetworkedField]
-    public bool SirenAvailable = false;
 
     /// <summary>
     /// How much "health" the mech has left.
@@ -186,6 +172,14 @@ public sealed partial class MechComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float BatteryRemovalDelay = 2;
 
+    //Starlight Start
+    /// <summary>
+    /// Whitelist for allowed batteries.
+    /// </summary>
+    [DataField]
+    public EntityWhitelist? BatteryWhitelist;
+    //Starlight End
+
     /// <summary>
     /// Whether or not the mech is airtight.
     /// </summary>
@@ -214,10 +208,6 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechToggleLightAction = "ActionMechToggleLights";
     [DataField]
     public EntProtoId MechToggleInternalsAction = "ActionMechToggleInternals";
-    [DataField]
-    public EntProtoId MechToggleSirenAction = "ActionMechToggleSirens";
-    [DataField]
-    public EntProtoId MechToggleThrustersAction = "ActionMechToggleThrusters";
     #endregion
 
     #region Visualizer States
@@ -244,10 +234,29 @@ public sealed partial class MechComponent : Component
     public SoundSpecifier CriticalDamageSound = new SoundPathSpecifier("/Audio/Mecha/critnano.ogg");
 
     [DataField]
+    public SoundSpecifier? MaintenanceOnSound = new SoundPathSpecifier("/Audio/Machines/door_lock_on.ogg")
+    {
+        Params = AudioParams.Default.WithVolume(-5f)
+    };
+
+    [DataField]
+    public SoundSpecifier? MaintenanceOffSound = new SoundPathSpecifier("/Audio/Machines/door_lock_off.ogg")
+    {
+        Params = AudioParams.Default.WithVolume(-5f),
+    };
+
+    [DataField]
     public bool FirstStart = false;
 
     [DataField]
     public bool PlayPowerSound = true;
+    //Starlight Start
+    [DataField]
+    public bool PlayPowerUpSound = false;
+
+    [DataField]
+    public SoundSpecifier PowerDownSound = new SoundPathSpecifier("/Audio/Mecha/internaldmgalarm.ogg");
+    //Starlight End
     #endregion
 
     [DataField] public EntityUid? MechCycleActionEntity;
@@ -255,6 +264,4 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechEjectActionEntity;
     [DataField] public EntityUid? MechToggleLightActionEntity;
     [DataField] public EntityUid? MechToggleInternalsActionEntity;
-    [DataField] public EntityUid? MechToggleSirenActionEntity;
-    [DataField] public EntityUid? MechToggleThrustersActionEntity;
 }

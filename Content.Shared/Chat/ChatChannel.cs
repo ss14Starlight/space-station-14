@@ -79,7 +79,7 @@ namespace Content.Shared.Chat
         ///     Admin chat
         /// </summary>
         AdminChat = 1 << 13,
-        
+
         /// <summary>
         ///     Collective mind channel for entities who have comp.
         /// </summary>

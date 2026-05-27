@@ -25,7 +25,7 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = new FormattedMessage();
 
@@ -34,14 +34,22 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
             return true;
 
         //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
-            return true;
+        var bypass = player is not null &&
+                     IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player);
         //NullLink end
 
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
         var overallDiffSpan = Time - overallTime;
         var overallDiff = overallDiffSpan.TotalMinutes;
-        var formattedOverallDiff = ContentLocalizationManager.FormatPlaytime(overallDiffSpan);
+
+        // Starlight BEGIN
+        var formattedCurrent = ContentLocalizationManager.FormatPlaytime(overallTime);
+        var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time);
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-overall-not-too-high" : "role-timer-overall-sufficient",
+            ("current", formattedCurrent),
+            ("required", formattedRequired)));
+        // Starlight END
 
         if (!Inverted)
         {
@@ -50,15 +58,18 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
 
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-overall-insufficient",
-                ("time", formattedOverallDiff)));
-            return false;
+                ("current", formattedCurrent), // Starlight
+                ("required", formattedRequired))); // Starlight
+            return bypass; // NullLink
         }
 
         if (overallDiff <= 0 || overallTime >= Time)
         {
-            reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-overall-too-high",
-                ("time", formattedOverallDiff)));
-            return false;
+            reason = FormattedMessage.FromMarkupPermissive( // Starlight BEGIN
+                Loc.GetString("role-timer-overall-too-high",
+                ("current", formattedCurrent),
+                ("required", formattedRequired))); // Starlight END
+            return bypass; // NullLink
         }
 
         return true;

@@ -1,4 +1,4 @@
-uniform highp float brightness; 
+uniform highp float brightness;
 
 void fragment() {
     highp vec4 col = zTexture(UV);

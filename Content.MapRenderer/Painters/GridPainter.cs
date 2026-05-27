@@ -69,6 +69,7 @@ namespace Content.MapRenderer.Painters
             stopwatch.Start();
 
             var components = new ConcurrentDictionary<EntityUid, List<EntityData>>();
+            var sTransformSystem = _sEntityManager.System<SharedTransformSystem>(); // Starlight-edit
 
             foreach (var serverEntity in _sEntityManager.GetEntities())
             {
@@ -80,20 +81,37 @@ namespace Content.MapRenderer.Painters
 
                 var prototype = _sEntityManager.GetComponent<MetaDataComponent>(serverEntity).EntityPrototype;
                 if (prototype == null)
-                {
                     continue;
-                }
 
-                var transform = _sEntityManager.GetComponent<TransformComponent>(serverEntity);
-                if (_sEntityManager.TryGetComponent(transform.GridUid, out MapGridComponent? grid))
+                // Starlight-start
+
+                var serverTransform = _sEntityManager.GetComponent<TransformComponent>(serverEntity);
+
+                if (!_sEntityManager.TryGetComponent(serverTransform.GridUid, out MapGridComponent? grid))
+                    continue;
+
+                Vector2 localPos;
+
+                // Use world position only when entity is parented to a different parent than the grid.
+                if (serverTransform.ParentUid != serverTransform.GridUid)
                 {
-                    var position = transform.LocalPosition;
+                    var worldPos = sTransformSystem.GetWorldPosition(serverEntity);
+                    var gridWorldPos = sTransformSystem.GetWorldPosition(serverTransform.GridUid.Value);
 
-                    var (x, y) = TransformLocalPosition(position, grid);
-                    var data = new EntityData(serverEntity, sprite, x, y);
+                    // Account for grid rotation: apply inverse rotation to bring into grid-local axes.
+                    var gridRot = sTransformSystem.GetWorldRotation(serverTransform.GridUid.Value);
 
-                    components.GetOrAdd(transform.GridUid.Value, _ => new List<EntityData>()).Add(data);
+                    localPos = (-gridRot).RotateVec(worldPos - gridWorldPos);
                 }
+                else
+                    localPos = serverTransform.LocalPosition;
+
+                var (x, y) = TransformLocalPosition(localPos, grid);
+                var data = new EntityData(serverEntity, sprite, x, y);
+
+                components.GetOrAdd(serverTransform.GridUid.Value, _ => new List<EntityData>()).Add(data);
+
+                // Starlight-end
             }
 
             Console.WriteLine($"Found {components.Values.Sum(l => l.Count)} entities on {components.Count} grids in {(int) stopwatch.Elapsed.TotalMilliseconds} ms");

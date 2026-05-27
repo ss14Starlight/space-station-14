@@ -49,6 +49,7 @@ using Content.Shared.Contraband;
 using Content.Shared.Electrocution;
 using Content.Shared.Humanoid;
 using Content.Shared.Overlays;
+using Content.Shared._Starlight.Medical.Body.Part;
 #endregion Starlight
 
 namespace Content.Server.Administration.Systems;
@@ -772,7 +773,7 @@ public sealed partial class AdminVerbSystem
             args.Verbs.Add(setCapacity);
         }
 
-        #region Starlight 
+        #region Starlight
         // Add toggle overlays verb
         Verb toggleOverlays = new()
         {
@@ -805,7 +806,7 @@ public sealed partial class AdminVerbSystem
                 {
                     var showHealthBars = EnsureComp<ShowHealthBarsComponent>(args.Target);
                     showHealthBars.DamageContainers.Add("Biological");
-                    showHealthBars.HealthStatusIcon = "HealthIcon";
+                    showHealthBars.HealthStatusIcon = "HealthBarMarkerIcon"; // Starlight
 
                     var showHealthIcons = EnsureComp<ShowHealthIconsComponent>(args.Target);
                     showHealthIcons.DamageContainers.Add("Biological");
@@ -822,7 +823,7 @@ public sealed partial class AdminVerbSystem
             Priority = (int)TricksVerbPriorities.ToggleOverlays,
         };
         args.Verbs.Add(toggleOverlays);
-        
+
         if (TryComp<BodyComponent>(args.Target, out var bodyComp))
         {
             // Reaper arm verb
@@ -848,11 +849,39 @@ public sealed partial class AdminVerbSystem
                     }
                 },
                 Impact = LogImpact.Medium,
-                Message = "Replace the right hand with a Reaper arm.",
+                Message = "Replace the right arm with a Reaper arm.",
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(reaperArm);
-            
+
+            // Engineer arm verb
+            Verb engineerArm = new()
+            {
+                Text = "Replace the left arm with an Engineer arm.",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/Mobs/Species/Cyberlimbs/parts.rsi"), "l_engineer_arm"),
+                Act = () =>
+                {
+                    var torso = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Torso).FirstOrDefault();
+                    var leftArm = _bodySystem.GetBodyChildrenOfType(args.Target, BodyPartType.Arm).FirstOrDefault(part => part.Component.Symmetry == BodyPartSymmetry.Left);
+                    if (torso == default || leftArm == default)
+                        return;
+
+                    if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(args.Target, out var body)
+                        && _entitySystem.TryEntity<TransformComponent, MetaDataComponent, BodyPartComponent>(leftArm.Id, out var partEnt))
+                    {
+                        _limbSystem.Amputatate(body, partEnt);
+                        var reaper = Spawn("LeftArmCyberEngineer", body.Comp1.Coordinates);
+                        if (_entitySystem.TryEntity<BodyPartComponent>(reaper, out var engineerEnt))
+                            _limbSystem.AttachLimb((body.Owner, body.Comp2), "left arm", torso, engineerEnt);
+                    }
+                },
+                Impact = LogImpact.Medium,
+                Message = "Replace the left arm with an Engineer arm.",
+                Priority = (int)TricksVerbPriorities.SetBulletAmount,
+            };
+            args.Verbs.Add(engineerArm);
+
             // Left Speg
             Verb leftSpeg = new()
             {
@@ -880,7 +909,7 @@ public sealed partial class AdminVerbSystem
                 Priority = (int)TricksVerbPriorities.SetBulletAmount,
             };
             args.Verbs.Add(leftSpeg);
-            
+
             // Right Speg
             Verb rightSpeg = new()
             {
@@ -909,7 +938,6 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(rightSpeg);
         }
-
 
         if (TryComp<ThavenMoodsComponent>(args.Target, out var moods))
         {

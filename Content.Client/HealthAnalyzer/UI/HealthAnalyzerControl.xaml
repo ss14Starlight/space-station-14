@@ -24,9 +24,25 @@
                 </BoxContainer>
             </BoxContainer>
             <!-- Starlight end -->
-            <Label Margin="0 0 5 0" HorizontalExpand="True" HorizontalAlignment="Right" VerticalExpand="True"
-                   VerticalAlignment="Top" Name="ScanModeLabel"
-                   Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
+            <!-- Starlight begin - printable health reports -->
+            <BoxContainer
+                Margin="0 0 5 0"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top">
+                <Button
+                    Name="PrintReportButton"
+                    Text="{Loc 'health-analyzer-window-print-report'}"
+                    Disabled="True"
+                    Visible="False"
+                    HorizontalAlignment="Right"
+                    Margin="0 0 0 4" />
+                <Label HorizontalAlignment="Right"
+                       Name="ScanModeLabel"
+                       Text="{Loc 'health-analyzer-window-entity-unknown-text'}" />
+            </BoxContainer>
+            <!-- Starlight end -->
         </BoxContainer>
 
         <PanelContainer StyleClasses="LowDivider" />

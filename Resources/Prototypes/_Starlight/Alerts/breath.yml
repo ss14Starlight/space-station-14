@@ -1,0 +1,8 @@
+- type: alert
+  id: BreathHeld
+  icons:
+  - sprite: /Textures/_Starlight/Interface/Alerts/holding_breath.rsi
+    state: holding_breath
+  clickEvent: !type:HeldBreathAlertEvent
+  name: alerts-held-breath-name
+  description: alerts-held-breath-desc

@@ -1,0 +1,127 @@
+- type: language
+  id: Ancestor
+  icon: LanguageIconAnimal
+  chatPrefix: anc
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 8
+    replacement:
+    - o
+    - k
+
+- type: language
+  id: Mouse
+  icon: LanguageIconAnimal
+  chatPrefix: mou
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 2
+    maxSyllables: 3
+    replacement:
+    - squ
+    - eak
+    - pi
+    - ep
+    - chuu
+    - ee
+    - fwi
+    - he
+
+- type: language
+  id: Cat
+  icon: LanguageIconAnimal
+  chatPrefix: cat
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    - murr
+    - meow
+    - purr
+    - mrow
+
+- type: language
+  id: Dog
+  icon: LanguageIconAnimal
+  chatPrefix: dog
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    - woof
+    - bark
+    - ruff
+    - bork
+    - raff
+    - garr
+
+- type: language
+  id: Fox
+  icon: LanguageIconAnimal
+  chatPrefix: fox
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+    - ruff
+    - raff
+    - garr
+    - yip
+    - yap
+    - myah
+
+- type: language
+  id: Chicken
+  icon: LanguageIconAnimal
+  chatPrefix: chk
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - co
+    - coo
+    - ot
+
+- type: language
+  id: Duck
+  icon: LanguageIconAnimal
+  chatPrefix: dck
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - qu
+    - ack
+    - quack
+
+- type: language
+  id: Pig
+  icon: LanguageIconAnimal
+  chatPrefix: pig
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 3
+    replacement:
+    - oink
+
+- type: language
+  id: Bat
+  icon: LanguageIconAnimal
+  chatPrefix: bat
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 1
+    replacement:
+    - ee
+    - eek
+    - chirp
+    - squeak
+    - screech

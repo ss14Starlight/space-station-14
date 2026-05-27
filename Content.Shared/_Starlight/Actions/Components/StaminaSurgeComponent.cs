@@ -19,7 +19,7 @@ public sealed partial class StaminaSurgeComponent : Component
     /// <summary>
     /// When the effect is due to end.
     /// </summary>
-    [ViewVariables, AutoNetworkedField] public TimeSpan? EffectEndTime; 
+    [ViewVariables, AutoNetworkedField] public TimeSpan? EffectEndTime;
     /// <summary>
     /// The action entity associated with this component.
     /// </summary>

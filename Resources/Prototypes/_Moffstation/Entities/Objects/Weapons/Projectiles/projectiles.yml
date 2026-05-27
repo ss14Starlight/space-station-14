@@ -1,0 +1,27 @@
+- type: entity
+  parent: GrapplingHook
+  id: ChainSickle
+  name: chain sickle
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Weapons/Guns/Launchers/chainsickle.rsi
+  - type: Ammo
+    muzzleFlash: null
+  - type: Projectile
+    deleteOnCollide: false
+    penetrationThreshold: 1000
+    damage:
+      types:
+        Slash: 20
+    soundHit:
+      path: "/Audio/Weapons/Guns/Empty/lmg_empty.ogg" # Starlight, we don't have the Moffstation sound
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.1,0,0.1" # Asymmetric - favors the pointy side
+        mask:
+        - Impassable
+        - BulletImpassable

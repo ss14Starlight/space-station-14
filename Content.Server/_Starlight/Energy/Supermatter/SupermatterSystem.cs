@@ -1,25 +1,20 @@
-using System;
 using System.Linq;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Chat.Managers;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
-using Content.Server._Starlight.Energy.Supermatter;
 using Content.Shared.Abilities.Goliath;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Content.Shared.FixedPoint;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Projectiles;
 using Content.Shared.Radiation.Components;
 using Content.Shared.Radio;
 using Content.Shared.Singularity.Components;
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared._Starlight.Energy.Supermatter;
 using Content.Shared._Starlight.Supermatter.Components;
 using Content.Shared.Inventory;
@@ -29,7 +24,6 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
@@ -41,7 +35,6 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     [Dependency] private readonly LightningSystem _lightning = default!;
     [Dependency] private readonly RadioSystem _radioSystem = default!;
     [Dependency] private readonly SupermatterCascadeSystem _cascade = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
@@ -51,6 +44,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private DamageGroupPrototype? _brute;
     private DamageGroupPrototype? _burn;
     private RadioChannelPrototype? _engi;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<SupermatterComponent, ComponentInit>(AddSupermatter);
@@ -121,7 +115,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void RemoveSupermatter(Entity<SupermatterComponent> ent, ref ComponentShutdown args) => _supermatters.Remove(ent.Owner);
 
     protected override float Threshold { get; set; } = 1f;
-    protected override void AccUpdate()
+    protected override void AccUpdate(float _)
     {
         foreach (var supermatter in _supermatters)
             Handle(supermatter.Value);
@@ -230,7 +224,7 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         supermatter.Comp.AccBreak -= breakDelta;
 
         gas.AdjustMoles((int)Gas.Tritium, breakDelta.Float()/2);
-        
+
         gas.AdjustMoles((int)Gas.Oxygen, breakDelta.Float()*4);
     }
 

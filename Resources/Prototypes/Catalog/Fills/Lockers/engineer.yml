@@ -156,6 +156,11 @@
     - id: GasAnalyzer
     - id: MedkitOxygenFilled
     - id: HolofanProjector
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: SheetSteel #FH
+    - id: SheetSteel #FH
     - id: RCD
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
@@ -170,6 +175,7 @@
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingMaskBreath
 
 - type: entity
@@ -203,6 +209,11 @@
     - id: ClothingHandsGlovesColorYellow
     - id: ClothingMaskGas
     - id: trayScanner
+    - id: MatBag #FH
+    - id: WeaponGrapplingGun #FH
+    - id: BoxFlare #FH
+    - id: SheetSteel #FH
+    - id: SheetGlass #FH
     - id: RCD
     - id: RCDAmmo
     - id: MetalFoamGrenade
@@ -214,6 +225,7 @@
     - id: ClothingOuterHardsuitEngineering
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingShoesBootsMag
     - id: ClothingMaskBreath
 

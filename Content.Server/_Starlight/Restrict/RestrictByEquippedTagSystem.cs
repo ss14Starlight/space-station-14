@@ -14,4 +14,4 @@ public sealed class RestrictByEquippedTagSystem : SharedRestrictByEquippedTagSys
     {
         _popup.PopupEntity(message, user, user);
     }
-} 
+}

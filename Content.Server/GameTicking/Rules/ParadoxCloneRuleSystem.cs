@@ -16,7 +16,7 @@ using Robust.Shared.Random;
 // Starlight start
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
-using Robust.Shared.Prototypes; 
+using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding.Components;
 // Starlight end
 
@@ -45,7 +45,7 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
     protected override void Started(EntityUid uid, ParadoxCloneRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        
+
         // check if we got enough potential cloning targets, otherwise cancel the gamerule so that the ghost role does not show up
         var allHumans = _mind.GetAliveHumans();
 

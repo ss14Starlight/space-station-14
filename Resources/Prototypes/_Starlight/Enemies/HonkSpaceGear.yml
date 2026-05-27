@@ -1,0 +1,12 @@
+- type: startingGear
+  id: LostClownGear
+  equipment:
+    mask: ClothingMaskClown
+    jumpsuit: ClothingUniformJumpsuitClown
+    shoes: ClothingShoesClown
+    back: ClothingBackpackClown
+    id: ClownPDA
+    pocket1: BikeHorn
+    pocket2: ClownRecorder
+  inhand:
+  - KitchenKnife

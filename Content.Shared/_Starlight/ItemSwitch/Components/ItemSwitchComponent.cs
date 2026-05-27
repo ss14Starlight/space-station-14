@@ -57,7 +57,7 @@ public sealed partial class ItemSwitchState : BoundUserInterfaceMessage
 
     [DataField]
     public bool RemoveComponents = true;
-    
+
     [DataField]
     public bool Hiden = false;
 

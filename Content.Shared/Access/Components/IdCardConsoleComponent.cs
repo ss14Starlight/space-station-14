@@ -103,7 +103,7 @@ public sealed partial class IdCardConsoleComponent : Component
             TargetIdName = targetIdName;
             // Starlight-edit: Start
             CurrentAccessGroup = currentAccessGroup;
-            AvailableAccessGroups = availableAccessGroups; 
+            AvailableAccessGroups = availableAccessGroups;
             // Starlight-edit: End
         }
     }

@@ -1,0 +1,79 @@
+- type: entity
+  id: BaseIPCOrganUnGibbable
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
+  - type: Organ
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Oil
+          Quantity: 10
+
+- type: entity
+  id: OrganIPCEyes
+  parent: [BaseIPCOrganUnGibbable, BaseOrganEyes]
+  name: robotic eyes
+  description: "Decidedly not squishy. Kinda sharp, actually."
+  components:
+  - type: Sprite
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobIPCEyes
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 1
+
+- type: entity
+  id: OrganIPCTongue
+  parent: [BaseIPCOrganUnGibbable, BaseOrganTongue]
+  name: vocal modulator
+  description: "A vocal modulator, typically used for lying."
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganIPCEars
+  parent: [BaseIPCOrganUnGibbable, BaseOrganEars]
+  name: robotic ears
+  description: "Process audio at the same quality of station-side cyborgs"
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganIPCHeart
+  parent: [BaseIPCOrganUnGibbable, BaseOrganHeart]
+  name: micro pump
+  description: "Circulates coolant in a sickingly familiar way."
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 0 #Shoddy workaround to prevent metabolisation of chems without making new heart proto
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart

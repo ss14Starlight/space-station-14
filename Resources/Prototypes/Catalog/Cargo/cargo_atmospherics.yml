@@ -1,8 +1,8 @@
 - type: cargoProduct
   id: AtmosphericsAir
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: grey
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: air #SL Edit
   product: AirCanister
   cost: 600
   category: cargoproduct-category-name-atmospherics
@@ -11,8 +11,8 @@
 - type: cargoProduct
   id: AtmosphericsOxygen
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: blue
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: oxygen #SL Edit
   product: OxygenCanister
   cost: 600
   category: cargoproduct-category-name-atmospherics
@@ -21,8 +21,8 @@
 - type: cargoProduct
   id: AtmosphericsLiquidOxygen
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: blue
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: l_oxygen #SL Edit
   product: LiquidOxygenCanister
   cost: 1000
   category: cargoproduct-category-name-atmospherics
@@ -31,8 +31,8 @@
 - type: cargoProduct
   id: AtmosphericsNitrogen
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: red
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: nitrogen #SL Edit
   product: NitrogenCanister
   cost: 500
   category: cargoproduct-category-name-atmospherics
@@ -41,8 +41,8 @@
 - type: cargoProduct
   id: AtmosphericsLiquidNitrogen
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: red
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: l_nitrogen #SL Edit
   product: LiquidNitrogenCanister
   cost: 1000
   category: cargoproduct-category-name-atmospherics
@@ -51,8 +51,8 @@
 - type: cargoProduct
   id: AtmosphericsCarbonDioxide
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: black
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: carbon #SL Edit
   product: CarbonDioxideCanister
   cost: 670 # even though it's poisonous, it comes locked and only damages you slowly even with high amounts (tested)
   category: cargoproduct-category-name-atmospherics
@@ -61,8 +61,8 @@
 - type: cargoProduct
   id: AtmosphericsLiquidCarbonDioxide
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: black
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: carbon #SL Edit
   product: LiquidCarbonDioxideCanister
   cost: 1800 # much less deadly than the plasma can (this has been tested) even though this is cold+poison
   category: cargoproduct-category-name-atmospherics
@@ -71,8 +71,8 @@
 - type: cargoProduct
   id: AtmosphericsStorage
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: yellow
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: storage #SL Edit
   product: StorageCanister
   cost: 210 # No gases in it so it's cheaper
   category: cargoproduct-category-name-atmospherics
@@ -91,8 +91,8 @@
 - type: cargoProduct
   id: AtmosphericsPlasma
   icon:
-    sprite: Structures/Storage/canister.rsi
-    state: orange
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi #SL Edit
+    state: plasma #SL Edit
   product: PlasmaCanister
   cost: 4200 # for reference, bagel's 3x1 roundstart plasma chamber contains ~16kmol for free, this is $4.2k for 2769 mol
   category: cargoproduct-category-name-atmospherics

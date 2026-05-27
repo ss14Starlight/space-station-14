@@ -310,7 +310,7 @@ public sealed partial class TraitsTab : BoxContainer
     /// <summary>
     /// Sets the currently selected traits (e.g., when loading a profile).
     /// </summary>
-    public void SetSelectedTraits(IEnumerable<ProtoId<TraitPrototype>> traits, HumanoidCharacterProfile? profile)
+    public void SetSelectedTraits(IEnumerable<ProtoId<TraitPrototype>> traits, HumanoidCharacterProfile? _)
     {
         // Clear current selection
         foreach (var (_, categoryUi) in _categoryUis)

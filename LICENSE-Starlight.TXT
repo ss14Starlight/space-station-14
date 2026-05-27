@@ -1,15 +1,21 @@
+[LEGACY] This license was in effect for Starlight contributions made between 2024-11-04 (commit 84205e38)
+and 2026-02-28 (commit 01eff0f7). It is no longer applied to new contributions.
+For contributions made during this period, this license remains in effect until explicit relicensing
+confirmation is received from the respective authors. Relicensing is tracked in the repository issues.
+See README.md for details.
+
 Modified MIT License, henceforth referred to as the Starlight License
 
 Copyright (c) 2024 Starlight
 
-Permission is hereby granted, free of charge, 
-to any person obtaining a copy of this software and associated documentation files (the "Software"), 
-to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+Permission is hereby granted, free of charge,
+to any person obtaining a copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
 and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
 - The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 - Any use of the Software in accordance with the rights granted above must attribute the Starlight project as its source, hosted on the following GitHub repository: https://github.com/ss14Starlight/space-station-14
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

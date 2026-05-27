@@ -30,6 +30,6 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
         if (state is not NavBoundUserInterfaceState cState)
             return;
 
-        _window?.UpdateState(cState.State);
+        _window?.UpdateState(cState.State, cState.DockingPortStates); // Starlight: +DockStates
     }
 }

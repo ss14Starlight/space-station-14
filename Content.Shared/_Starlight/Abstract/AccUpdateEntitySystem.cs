@@ -7,11 +7,11 @@ public abstract class AccUpdateEntitySystem : EntitySystem
         _accumulator += frameTime;
         if (_accumulator > Threshold)
         {
-            AccUpdate();
+            AccUpdate(_accumulator);
             _accumulator = 0;
         }
     }
-    protected virtual void AccUpdate()
+    protected virtual void AccUpdate(float frameTime)
     {
     }
     protected virtual float Threshold { get; set; } = 0.35f;

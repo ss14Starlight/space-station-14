@@ -14,6 +14,7 @@ using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
 using Content.Shared.Lock;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 #endregion Starlight
@@ -42,6 +43,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent); // Starlight-edit
         SubscribeLocalEvent<BatteryWeaponFireModesComponent, AttemptShootEvent>(OnShootAttempt); // Starlight-edit
+        SubscribeLocalEvent<GunFireModeSoundsComponent, GunRefreshModifiersEvent>(OnGunRefreshModifiers); // Starlight-edit
     }
 
     private void OnExamined(Entity<BatteryWeaponFireModesComponent> ent, ref ExaminedEvent args)
@@ -54,12 +56,11 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         // Starlight-start
         if (TryGetAmmoProvider(ent, out var ammoProvider) && ammoProvider != null)
         {
-            if (ammoProvider is BatteryAmmoProviderComponent projectileAmmo)
+            if (ammoProvider is BatteryAmmoProviderComponent)
             {
-                if (!_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var projectile))
-                    return;
-
-                args.PushMarkup(Loc.GetString("gun-set-fire-mode-examine", ("mode", projectile.Name)));
+                // Hitscan prototypes aren't indexed as EntityPrototype — skip examine line if not found
+                if (_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var projectile))
+                    args.PushMarkup(Loc.GetString("gun-set-fire-mode-examine", ("mode", projectile.Name)));
             }
         }
         // Starlight-end
@@ -93,15 +94,17 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
             var index = i;
 
             // Starlight-start
-            if (ammoProvider is BatteryAmmoProviderComponent projectileAmmo)
+            if (ammoProvider is BatteryAmmoProviderComponent)
             {
-                var entProto = _prototypeManager.Index<EntityPrototype>(fireMode.Prototype);
+                var label = _prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var entProto)
+                    ? entProto.Name
+                    : fireMode.Prototype;
 
                 var v = new Verb
                 {
                     Priority = 1,
                     Category = VerbCategory.SelectType,
-                    Text = entProto.Name,
+                    Text = label,
                     Disabled = i == component.CurrentFireMode,
                     Impact = LogImpact.Low,
                     DoContactInteraction = true,
@@ -174,9 +177,6 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
         {
             if (ammoProvider is BatteryAmmoProviderComponent projectileAmmo)
             {
-                if (!_prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var prototype))
-                    return;
-
                 var oldFireCost = projectileAmmo.FireCost;
                 projectileAmmo.Prototype = fireMode.Prototype;
                 projectileAmmo.FireCost = fireMode.FireCost;
@@ -186,7 +186,7 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
                 projectileAmmo.Capacity = (int)Math.Round(projectileAmmo.Capacity / fireCostDiff);
                 Dirty(ent, projectileAmmo);
 
-                if (user != null)
+                if (user != null && _prototypeManager.TryIndex<EntityPrototype>(fireMode.Prototype, out var prototype))
                     _popupSystem.PopupPredicted(Loc.GetString("gun-set-fire-mode-popup", ("mode", prototype.Name)), ent, user);
             }
 
@@ -204,6 +204,11 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
 
             _gun.UpdateShots((ent, batteryAmmoProviderComponent));
         }
+
+        // Starlight-start: per-fire-mode gunshot sound override
+        if (TryComp(ent, out GunComponent? gunComp))
+            _gun.RefreshModifiers((ent, gunComp));
+        // Starlight-end
     }
 
     # region Starlight
@@ -258,4 +263,15 @@ public sealed class BatteryWeaponFireModesSystem : EntitySystem
     }
 
     # endregion Starlight
+
+    // Starlight-start
+    private void OnGunRefreshModifiers(Entity<GunFireModeSoundsComponent> ent, ref GunRefreshModifiersEvent args)
+    {
+        if (!TryComp<BatteryWeaponFireModesComponent>(ent, out var fireModes))
+            return;
+
+        if (ent.Comp.Sounds.TryGetValue(fireModes.CurrentFireMode, out var sound))
+            args = args with { SoundGunshot = sound };
+    }
+    // Starlight-end
 }

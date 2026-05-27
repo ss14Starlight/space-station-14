@@ -1,0 +1,55 @@
+- type: achievement
+  id: first_spawn
+  name: achievement-first-spawn-name
+  description: achievement-first-spawn-description
+  category: onboarding
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: fishMedal
+  requirements:
+  - progressType: spawn.count
+    requiredProgress: 1
+
+# vampire my beloved....
+- type: achievement
+  id: festival_of_blood
+  name: achievement-festival-of-blood-name
+  description: achievement-festival-of-blood-description
+  category: vampire
+  hidden: false
+  showProgress: true
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: draculaJrMedal
+  requirements:
+  - progressType: vampire.blooddrank
+    requiredProgress: 3000
+
+# manual-only, granted by admins via achievement_unlock command
+# Even though this achievement can be granted automatically checking nullink roles
+# i just want it to be test command for now
+- type: achievement
+  id: contributor
+  name: achievement-contributor-name
+  description: achievement-contributor-description
+  category: special
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: contributorMedal
+  requirements: []
+
+- type: achievement
+  id: oppenheimer
+  name: achievement-getnuked-name
+  description: achievement-getnuked-description
+  category: milestones
+  hidden: true
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []

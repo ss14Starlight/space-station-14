@@ -40,13 +40,13 @@ public sealed class SLMoverController : SharedMoverController
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IParallelManager _parallel = default!; 
-    [Dependency] private readonly IPlayerManager _players = default!; 
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private HandleMobMovementJob _handleMobMovementJob; 
+    private HandleMobMovementJob _handleMobMovementJob;
 
-    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
+    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, TransformComponent)>)> _shuttlePilots = new();
 
     public override void Initialize()
     {
@@ -56,7 +56,7 @@ public sealed class SLMoverController : SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
-        _handleMobMovementJob = new HandleMobMovementJob(this); 
+        _handleMobMovementJob = new HandleMobMovementJob(this);
     }
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref PlayerAttachedEvent args)
@@ -488,12 +488,12 @@ public sealed class SLMoverController : SharedMoverController
 
     private void HandleShuttleMovement(float frameTime)
     {
-        var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
+        var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, TransformComponent ConsoleXform)>)>();
 
         // We just mark off their movement and the shuttle itself does its own movement
-        var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
+        var activePilotQuery = EntityQueryEnumerator<PilotComponent>();
         var shuttleQuery = GetEntityQuery<ShuttleComponent>();
-        while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
+        while (activePilotQuery.MoveNext(out var uid, out var pilot))
         {
             var consoleEnt = pilot.Console;
 
@@ -514,11 +514,11 @@ public sealed class SLMoverController : SharedMoverController
 
             if (!newPilots.TryGetValue(gridId!.Value, out var pilots))
             {
-                pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+                pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, TransformComponent)>());
                 newPilots[gridId.Value] = pilots;
             }
 
-            pilots.Item2.Add((uid, pilot, mover, xform));
+            pilots.Item2.Add((uid, pilot, xform));
         }
 
         // Reset inputs for non-piloted shuttles.
@@ -550,7 +550,7 @@ public sealed class SLMoverController : SharedMoverController
             var brakeCount = 0;
             var angularCount = 0;
 
-            foreach (var (pilotUid, pilot, _, consoleXform) in pilots)
+            foreach (var (pilotUid, pilot, consoleXform) in pilots)
             {
                 var (strafe, rotation, brakes) = GetPilotVelocityInput(pilot);
 

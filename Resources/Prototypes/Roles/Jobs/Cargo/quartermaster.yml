@@ -12,7 +12,7 @@
       time: 5h # Starlight
     - !type:DepartmentTimeRequirement
       department: Cargo
-      time: 20h # Starlight
+      time: 30h # Starlight
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuartermaster" #Starlight
@@ -23,12 +23,14 @@
   - Salvage
   - SalvageLead # Starlight
   - Mining # Starlight
+  - Mail # Starlight
   - Quartermaster
   - Maintenance
   - External
   - Command
   - Brig
   - Cryogenics
+  - Debrief # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

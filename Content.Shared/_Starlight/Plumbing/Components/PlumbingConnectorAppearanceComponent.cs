@@ -26,11 +26,4 @@ public sealed partial class PlumbingConnectorAppearanceComponent : Component
     /// </summary>
     [DataField]
     public float Offset;
-
-    /// <summary>
-    /// Node names that should be colored as mixing inlets (green).
-    /// Configured per-entity in YAML, matching how inlets/outlets are classified by component data.
-    /// </summary>
-    [DataField]
-    public HashSet<string> MixingInletNames = new();
 }

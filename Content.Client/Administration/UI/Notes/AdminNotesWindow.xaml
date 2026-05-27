@@ -1,7 +1,46 @@
-<ui:FancyWindow xmlns="https://spacestation14.io"
-            xmlns:notes="clr-namespace:Content.Client.Administration.UI.Notes"
-            xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
-            SetSize="600 400"
-            Title="Loading...">
-    <notes:AdminNotesControl Name="Notes" Access="Public" Margin="4"/>
+<ui:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:notes="clr-namespace:Content.Client.Administration.UI.Notes"
+    xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="Loading..."
+    SetSize="600 400">
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Vertical"
+        VerticalExpand="True">
+        <BoxContainer
+            Margin="0,0,0,10"
+            HorizontalExpand="True"
+            Orientation="Horizontal">
+            <Button
+                Name="NotesTabButton"
+                Access="Public"
+                Disabled="True"
+                HorizontalExpand="True"
+                StyleClasses="OpenBoth"
+                Text="{Loc 'admin-notes-notes-button'}" />
+            <Button
+                Name="NetworkNotesTabButton"
+                Access="Public"
+                HorizontalExpand="True"
+                StyleClasses="OpenBoth"
+                Text="{Loc 'admin-notes-network-notes-button'}" />
+        </BoxContainer>
+
+        <cc:HSeparator Color="#A04B81" />
+
+        <notes:AdminNotesControl
+            Name="Notes"
+            Margin="4"
+            Access="Public"
+            VerticalExpand="True" />
+
+        <notes:AdminNotesControl
+            Name="NetworkNotes"
+            Margin="4"
+            Access="Public"
+            VerticalExpand="True"
+            Visible="False" />
+    </BoxContainer>
 </ui:FancyWindow>

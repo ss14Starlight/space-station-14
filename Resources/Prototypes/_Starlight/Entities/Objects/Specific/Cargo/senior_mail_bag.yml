@@ -1,0 +1,16 @@
+- type: entity
+  name: senior mail bag
+  id: SeniorMailBag
+  parent: MailBag
+  description: A bright blue mail bag for the most devoted of mail technicians. Only contains a trace amount of Blue172.81!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Cargo/senior_mail_bag.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Objects/Specific/Cargo/senior_mail_bag.rsi
+    quickEquip: false
+    slots:
+    - belt
+    - back
+

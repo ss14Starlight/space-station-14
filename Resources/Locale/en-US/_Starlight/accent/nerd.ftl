@@ -155,6 +155,7 @@ accent-nerd-replaced-52 = cleaning
 accent-nerd-replacement-52 = executing sanitation protocols
 
 accent-nerd-replaced-53 = salvage
+accent-nerd-replaced-53-2 = salv
 accent-nerd-replacement-53 = operational detritus reclamation
 
 accent-nerd-replaced-54 = am a nerd
@@ -209,6 +210,7 @@ accent-nerd-replaced-70 = dnd
 accent-nerd-replacement-70 = dungeons and dragons
 
 accent-nerd-replaced-71 = jail
+accent-nerd-replaced-71-2 = brig
 accent-nerd-replacement-71 = correctional confinement facility
 
 accent-nerd-replaced-72 = well,
@@ -222,3 +224,49 @@ accent-nerd-replacement-74 = ethanolic solution
 
 accent-nerd-replaced-75 = actually
 accent-nerd-replacement-75 = erm actually
+
+accent-nerd-replaced-76 = spider
+accent-nerd-replacement-76 = arachnid
+
+accent-nerd-replaced-77 = singu
+accent-nerd-replaced-77-2 = singularity
+accent-nerd-replacement-77 = radioactive space-time singularity event
+
+accent-nerd-replaced-78 = tesla
+accent-nerd-replacement-78 = localized high-voltage phenomenon
+
+accent-nerd-replaced-79 = ame
+accent-nerd-replacement-79 = antimatter annihilation engine
+
+accent-nerd-replaced-80 = solars
+accent-nerd-replacement-80 = photovoltaic effect devices
+
+accent-nerd-replaced-81 = engineer
+accent-nerd-replacement-81 = habitation module maintenance technician
+
+accent-nerd-replaced-82 = detective
+accent-nerd-replacement-82 = forensic investigator
+
+accent-nerd-replaced-83 = chef
+accent-nerd-replacement-83 = nutrition expert
+
+accent-nerd-replaced-84 = botanist
+accent-nerd-replacement-84 = vegetation genomics expert
+
+accent-nerd-replaced-85 = lathe
+accent-nerd-replacement-85 = autonomous fabrication module
+
+accent-nerd-replaced-86 = reporter
+accent-nerd-replacement-86 = civilian investigation operative
+
+accent-nerd-replaced-87 = bartender
+accent-nerd-replacement-87 = custodian of ethanolic beverages
+
+accent-nerd-replaced-88 = janitor
+accent-nerd-replacement-88 = sanitation protocol executive
+
+accent-nerd-replaced-89 = psychologist
+accent-nerd-replacement-89 = specialist for socio-neurological connections
+
+accent-nerd-replaced-90 = qm
+accent-nerd-replacement-90 = chief logistical coordinator

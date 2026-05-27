@@ -43,7 +43,19 @@ public sealed partial class DantalionComponent : VampireClassComponent
 
 	[ViewVariables(VVAccess.ReadOnly)]
 	public bool BloodBondProcessingDamage = false;
-	
-	[DataField]
-	public EntProtoId rallyOverlayEffect = "VampireRallyOverlayEffect";
+
+    [DataField]
+    public EntProtoId rallyOverlayEffect = "VampireRallyOverlayEffect";
+    [DataField]
+    public int ThrallHealBurn = 3;
+    [DataField]
+    public int ThrallHealBrute = 3;
+    [DataField]
+    public int ThrallHealAsphyxiation = 5;
+    [DataField]
+    public int ThrallLevel2Blood = 400;
+    [DataField]
+    public int ThrallLevel3Blood = 600;
+    [DataField]
+    public int HealBloodThreshold = 300;
 }

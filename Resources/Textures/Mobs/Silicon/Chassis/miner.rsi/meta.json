@@ -238,6 +238,30 @@
         {
             "name": "cricket_l",
             "directions": 4
+        },
+		{
+            "name": "beetle",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
+        },
+        {
+            "name": "beetle_e",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
+        },
+        {
+            "name": "beetle_e_r",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
+        },
+        {
+            "name": "beetle_l",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
         }
     ]
 }

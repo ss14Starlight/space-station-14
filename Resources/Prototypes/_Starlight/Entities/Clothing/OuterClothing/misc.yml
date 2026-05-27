@@ -1,0 +1,55 @@
+# Wizard duel!
+- type: entity
+  parent: ClothingOuterWizard # Saves tag reuse
+  id: ClothingOuterWizardYellow
+  name: yellow wizard robes
+  description: A bizarre gem-encrusted yellow robe that radiates magical energies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_yellow.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_yellow.rsi
+
+- type: entity
+  parent: ClothingOuterWizard # Saves tag reuse
+  id: ClothingOuterWizardGreen
+  name: green wizard robes
+  description: A bizarre gem-encrusted green robe that radiates magical energies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_green.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_green.rsi
+
+- type: entity
+  parent: ClothingOuterWizard # Saves tag reuse
+  id: ClothingOuterWizardPurple
+  name: purple wizard robes
+  description: A bizarre gem-encrusted purple robe that radiates magical energies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_purple.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_purple.rsi
+
+- type: entity
+  parent: ClothingOuterWizard # Saves tag reuse
+  id: ClothingOuterWizardOrange
+  name: orange wizard robes
+  description: A bizarre gem-encrusted orange robe that radiates magical energies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_orange.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_orange.rsi
+
+- type: entity
+  parent: ClothingOuterWizard # Saves tag reuse
+  id: ClothingOuterWizardPeach
+  name: peach wizard robes
+  description: A bizarre gem-encrusted peach robe that radiates magical energies.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_peach.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Misc/wizard_peach.rsi

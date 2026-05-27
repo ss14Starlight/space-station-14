@@ -84,7 +84,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
             {
                 // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
                 if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
-                { 
+                {
                     _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
                     return;
                 }
@@ -102,7 +102,7 @@ public sealed class RetractableItemActionSystem : EntitySystem
             {
                 // Don't allow summoning an item if it's from a cybernetic and the user is currently disrupted.
                 if (ent.Comp.IsCybernetic && TryComp(args.Performer, out CyberneticDisruptionComponent? _))
-                { 
+                {
                     _popups.PopupClient(Loc.GetString("retractable-item-cybernetics-disrupted"), args.Performer, args.Performer);
                     return;
                 }

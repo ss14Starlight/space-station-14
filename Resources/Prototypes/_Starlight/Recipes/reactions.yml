@@ -1,0 +1,37 @@
+- type: reaction
+  id: CreateMothBatter
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Flour:
+      amount: 15
+    Fiber:
+      amount: 15
+    Sugar:
+      amount: 5
+  effects:
+    - !type:SpawnEntity
+      entity: FoodMothBatter
+
+- type: reaction
+  minTemp: 320
+  id: CreateGravy
+  reactants:
+    Flour:
+      amount: 1
+    Fat:
+      amount: 1
+  products:
+    Gravy: 2
+
+- type: reaction
+  minTemp: 370
+  id: CreateCranberrySauce
+  reactants:
+    JuiceBerry:
+      amount: 1
+    Sugar:
+      amount: 1
+  products:
+    CranberrySauce: 2

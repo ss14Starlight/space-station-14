@@ -49,6 +49,13 @@
   id: StatusEffectForcedSleeping
   name: forced sleep
   components:
+  # Starlight START
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+    maximumDuration: 2m # <-- The only change relative to parent component definition
+  # Starlight END
   - type: ForcedSleepingStatusEffect
   - type: StunnedStatusEffect
   - type: KnockdownStatusEffect
@@ -70,6 +77,13 @@
   name: drowsiness
   components:
   - type: DrowsinessStatusEffect
+  # Starlight START
+  - type: StatusEffect
+    whitelist:
+      components:
+      - MobState
+    maximumDuration: 3m # <-- The only change relative to parent component definition
+  # Starlight END
 
 # Adds drugs overlay
 - type: entity
@@ -78,6 +92,13 @@
   name: hallucinations
   components:
   - type: SeeingRainbowsStatusEffect
+  # Starlight START
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+    maximumDuration: 25m # <-- The only change relative to parent component definition
+  # Starlight END
 
 # Causes your vision to become blurry and gives me a headache.
 - type: entity
@@ -86,6 +107,13 @@
   name: woozy
   components:
   - type: DrunkStatusEffect
+  # Starlight START
+  - type: StatusEffect
+    whitelist:
+      components:
+        - MobState
+    maximumDuration: 25m # <-- The only change relative to parent component definition
+  # Starlight END
 
 # Causes you to get drunk
 - type: entity

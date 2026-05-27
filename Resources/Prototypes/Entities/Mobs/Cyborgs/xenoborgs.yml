@@ -23,8 +23,6 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    jobIconOverride: JobIconXenoborg # Starlight
-    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 7
     hasMindState: borg_e
     noMindState: borg_e_r
@@ -53,11 +51,17 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - IPC # SL
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
@@ -153,6 +157,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
@@ -210,6 +219,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   parent: [ BaseXenoborgChassis, BaseXenoborgTransponder ]
@@ -267,6 +281,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 
 # xenoborgs empty
@@ -292,6 +311,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHighPrinted
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   parent: XenoborgHeavy
@@ -312,6 +336,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHighPrinted
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   parent: XenoborgScout
@@ -332,6 +361,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHighPrinted
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   parent: XenoborgStealth
@@ -353,3 +387,8 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHighPrinted
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End

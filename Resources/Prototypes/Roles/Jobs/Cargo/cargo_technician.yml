@@ -12,6 +12,7 @@
   extendedAccess:
   - Salvage
   - Mining # Starlight
+  - Mail # Starlight
   special:
   - !type:GiveItemOnHolidaySpecial
     holiday: BoxingDay
@@ -21,10 +22,11 @@
   id: CargoTechGear
   equipment:
     ears: ClothingHeadsetCargo
-    pocket1: AppraisalTool
-  #storage:
-    #back:
-    #- Stuff
+    belt: ClothingBeltCargo # Starlight start
+    #pocket1: AppraisalTool # Moved to loadout
+  storage:
+    belt:
+    - WeaponMeleeBoxcutter # Starlight end
 
 - type: chameleonOutfit
   id: CargoTechnicianChameleonOutfit

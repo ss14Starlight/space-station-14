@@ -14,11 +14,11 @@ namespace Content.Server.Emp;
 
 public sealed class EmpSystem : SharedEmpSystem
 {
-    // 🌟Starlight🌟  start  
+    // 🌟Starlight🌟  start
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!; 
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!; 
+    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
 
     // 🌟Starlight🌟 end
 
@@ -56,7 +56,7 @@ public sealed class EmpSystem : SharedEmpSystem
                 EmpPulse(_transform.GetMapCoordinates(target), comp.Range, comp.EnergyConsumption, comp.DisableDuration);
         }
     }
-    
+
     // 🌟Starlight🌟 end
 
     private void OnRadioReceiveAttempt(EntityUid uid, EmpDisabledComponent component, ref RadioReceiveAttemptEvent args) => args.Cancelled = true;
@@ -70,10 +70,10 @@ public sealed class EmpSystem : SharedEmpSystem
         ref CustomRadioReceiveAttemptEvent args) =>
         args.Cancelled = true;
     //Starlight end
-    
+
     private void OnApcToggleMainBreaker(EntityUid uid, EmpDisabledComponent component, ref ApcToggleMainBreakerAttemptEvent args) => args.Cancelled = true;
 
     private void OnCameraSetActive(EntityUid uid, EmpDisabledComponent component, ref SurveillanceCameraSetActiveAttemptEvent args) => args.Cancelled = true;
-    
+
     private void OnEmpAttempt(EntityUid uid, EmpImmuneComponent comp, EmpAttemptEvent args) => args.Cancelled = true;
 }

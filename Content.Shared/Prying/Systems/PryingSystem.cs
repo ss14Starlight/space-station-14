@@ -100,7 +100,7 @@ public sealed class PryingSystem : EntitySystem
 
         // hand-prying is much slower
         var modifier = CompOrNull<PryingComponent>(user)?.SpeedModifier ?? unpoweredComp.PryModifier;
-        // Starlight change start: Adds capability for user to pry with "themselves" if they have the pry component, used for mech prying        
+        // Starlight change start: Adds capability for user to pry with "themselves" if they have the pry component, used for mech prying
 
         // user is tool if they have a prying component
         EntityUid? userAsTool = HasComp<PryingComponent>(user) ? user : null;
@@ -157,7 +157,7 @@ public sealed class PryingSystem : EntitySystem
         }
         // Starlight Start
         if (tool != null && TryComp(tool, out PryingComponent? comp) && comp.PlaySoundOnDoafter)
-            _audioSystem.PlayPredicted(comp.UseSound, tool.Value, user);
+            _audioSystem.PlayPredicted(comp.useSoundOnDoafter, tool.Value, user);
         // Starlight End
         return _doAfterSystem.TryStartDoAfter(doAfterArgs, out id);
     }
@@ -179,7 +179,7 @@ public sealed class PryingSystem : EntitySystem
         }
 
         if (args.Used != null && comp != null
-        && !comp.PlaySoundOnDoafter) //Starlight
+        )//&& !comp.PlaySoundOnDoafter) //Starlight
         {
             _audioSystem.PlayPredicted(comp.UseSound, args.Used.Value, args.User);
         }

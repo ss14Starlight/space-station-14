@@ -26,10 +26,16 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<HumanoidAppearanceComponent, MapInitEvent>(OnMapInit); // Starlight
         SubscribeLocalEvent<HumanoidAppearanceComponent, AfterAutoHandleStateEvent>(OnHandleState);
         Subs.CVar(_configurationManager, CCVars.AccessibilityClientCensorNudity, OnCvarChanged, true);
         Subs.CVar(_configurationManager, CCVars.AccessibilityServerCensorNudity, OnCvarChanged, true);
     }
+
+    //Starlight begin
+    private void OnMapInit(Entity<HumanoidAppearanceComponent> entity, ref MapInitEvent ev) =>
+        UpdateSprite((entity, entity.Comp, Comp<SpriteComponent>(entity)));
+    //Starlight end
 
     private void OnHandleState(EntityUid uid, HumanoidAppearanceComponent component, ref AfterAutoHandleStateEvent args)
     {
@@ -45,7 +51,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         }
     }
 
-    private void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity)
+    public void UpdateSprite(Entity<HumanoidAppearanceComponent, SpriteComponent> entity) // Starlight-edit: Make public so things like tippy can force this
     {
         UpdateLayers(entity);
         ApplyMarkingSet(entity);
@@ -154,6 +160,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         {
             return;
         }
+
+        if (!humanoid.AllowProfileOverride) return; //Starlight
 
         var customBaseLayers = new Dictionary<HumanoidVisualLayers, CustomBaseLayerInfo>();
 
@@ -412,7 +420,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
             if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
                 _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
-            
+
             //starlight start
             if (isGlowing)
             {

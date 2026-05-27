@@ -463,7 +463,7 @@ public abstract class SharedMagicSystem : EntitySystem
         _damageable.TryChangeDamage(ev.Target, ev.Damage, true); //ignore resistances
         //starlight end
     }
-    
+
     // End Touch Spells
     #endregion
     #region Knock Spells
@@ -606,7 +606,7 @@ public abstract class SharedMagicSystem : EntitySystem
 
         // try to put item in hand, otherwise it goes on the ground
         var spawnedEntity = PredictedSpawnAtPosition(ev.Spawned, Transform(user).Coordinates);
-        
+
         var afterEvent = new AfterSpawnItemInHandEvent { Entity = spawnedEntity, Performer = user };
         RaiseLocalEvent(ev.Action, afterEvent);
 

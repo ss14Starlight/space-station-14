@@ -26,24 +26,16 @@ public sealed class PlumbingFilterBoundUserInterface : BoundUserInterface
     }
 
     private void OnToggle(bool enabled)
-    {
-        SendMessage(new PlumbingFilterToggleMessage(enabled));
-    }
+        => SendMessage(new PlumbingFilterToggleMessage(enabled));
 
     private void OnAddReagent(string reagentId)
-    {
-        SendMessage(new PlumbingFilterAddReagentMessage(reagentId));
-    }
+        => SendMessage(new PlumbingFilterAddReagentMessage(reagentId));
 
     private void OnRemoveReagent(string reagentId)
-    {
-        SendMessage(new PlumbingFilterRemoveReagentMessage(reagentId));
-    }
+        => SendMessage(new PlumbingFilterRemoveReagentMessage(reagentId));
 
     private void OnClear()
-    {
-        SendMessage(new PlumbingFilterClearMessage());
-    }
+        => SendMessage(new PlumbingFilterClearMessage());
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {

@@ -1,0 +1,16 @@
+# Ties
+- type: loadout
+  id: SecurityRedNeckTie
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: NoviceOfficer
+  equipment:
+    neck: ClothingNeckTieRed
+
+- type: loadout
+  id: SecurityDetNeckTie
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: MasterDet
+  equipment:
+    neck: ClothingNeckTieDet

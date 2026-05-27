@@ -183,7 +183,7 @@
     sprite: Objects/Tanks/emergency_double.rsi
   - type: Item
     sprite: Objects/Tanks/emergency_double.rsi
-    size: Normal # Starlight start
+    size: Small # Starlight start
     shape:
       - 0,0,0,1
     storedSprite:

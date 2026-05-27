@@ -1,10 +1,11 @@
 - type: entity
   id: BaseMobAsteroid
-  parent:
+  parent: #starlight Nubody will not pass.
   - BaseMob
   - MobDamageable
   - MobAtmosExposed
   - MobCombat
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   abstract: true
   components:
   - type: Reactive
@@ -12,8 +13,10 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Climbing
   - type: NameIdentifier
     group: GenericNumber

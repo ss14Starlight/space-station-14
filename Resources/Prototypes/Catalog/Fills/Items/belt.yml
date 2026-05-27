@@ -96,8 +96,8 @@
         - id: WireBrush
 
 - type: entity
+  parent: [ ClothingBeltMedical, StealTargetMedicalBeltCollection ] # Starlight
   id: ClothingBeltMedicalFilled
-  parent: ClothingBeltMedical
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -105,25 +105,44 @@
       storagebase: !type:AllSelector
         children:
         - id: Brutepack
-          amount: 2
         - id: Ointment
-        - id: Bloodpack
         - id: Gauze
-        - id: EmergencyMedipen #You never know what people are going to latejoin into
+        # Reagents reflect the bottles in CoreMedicineReagentBottleTable
+#        - id: ChemistryBottleSaline # Starlight start
+#        - id: ChemistryBottleBicaridine
+#        - id: ChemistryBottleDexalin
+#        - id: ChemistryBottleAmmonia # Starlight, for the birds
+#        - id: ChemistryBottleDylovene
+#        - id: ChemistryBottleHyronalin
+#        - id: ChemistryBottleKelotane
+#        - id: ChemistryBottleEpinephrine # A power item for medical players that feels thematic and worth stealing
+#        - id: PillCanisterTricordrazine
+        - id: Bloodpack
+          amount: 2
+        - id: EmergencyMedipen # Starlight end
 
 - type: entity
+  parent: [ ClothingBeltMedicalEMT, StealTargetMedicalBeltCollection] # Starlight
   id: ClothingBeltMedicalEMTFilled
-  parent: ClothingBeltMedicalEMT
-  suffix: Paramedic,Filled
+  suffix: Paramedic, Filled
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: MedkitFilledParamed # Starlight
+        - id: MedkitFilledParamed # Starlight start
         - id: RescueKnife # Starlight
-        - id: EmergencyMedipen #You never know what people are going to latejoin into
-          amount: 3
+        - id: BodyBagLockableFolded # Starlight
+        # Reagents focused on emergency response rather than outright healing
+        # - id: ChemistryBottleInaprovaline - moved to locker chem case
+        #   amount: 2
+        # - id: ChemistryBottleHaloperidol Starlight - making room (also these are more perscription meds)
+        # - id: ChemistryBottleEthylredoxrazine
+        - id: Syringe # Starlight - utility
+        # - id: ChemistryBottleIpecac
+        # - id: ChemistryBottleCharcoal
+        - id: EmergencyMedipen # Starlight - really useful for paramedics and can't be made
+          amount: 3 # Starlight end
 
 - type: entity
   id: ClothingBeltPlantFilled

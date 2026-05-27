@@ -64,11 +64,13 @@
       enum.CommunicationsConsoleUiKey.Key:
         toggleAction: ActionAGhostShowCommunications
   - type: CrewMonitoringConsole
+    pagingSoundLocal: true # Starlight: Only AI player hears paging sounds
   - type: GeneralStationRecordConsole
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
     transmitFrequencyId: ShuttleTimer
+  - type: StationLimitedNetwork # Starlight
   - type: RadarConsole
     followEntity: false
   - type: CommunicationsConsole
@@ -534,6 +536,7 @@
     layer: 32768
   - type: Sprite
     sprite: Mobs/Silicon/station_ai.rsi
+    drawdepth: CyberspaceObjects # Starlight
     layers:
     - state: ai_camera
 
@@ -579,6 +582,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMedium
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
@@ -613,6 +621,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateAssaultGhostRole
@@ -623,6 +636,7 @@
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -660,6 +674,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateSaboteurGhostRole
@@ -670,6 +689,7 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -707,6 +727,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 - type: entity
   id: PlayerBorgSyndicateMedicalGhostRole
@@ -717,6 +742,7 @@
       name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -758,6 +784,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -793,6 +824,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -830,6 +866,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -868,6 +909,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -905,6 +951,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHigh
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesBorg]
 
@@ -942,6 +993,11 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellHyper
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: RandomMetadata
     nameSegments: [NamesDeathCommando]
 

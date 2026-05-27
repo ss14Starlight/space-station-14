@@ -21,9 +21,9 @@ public sealed class MixedFixturesSystem : EntitySystem
 
         // Get the mask of the collision itself.
         var collisionMask = args.OurFixture.CollisionLayer & args.OtherFixture.CollisionMask;
-        
+
         if ((ent.Comp.Mask | collisionMask) == ent.Comp.Mask)
             args.Cancelled = true;
-            
+
     }
 }

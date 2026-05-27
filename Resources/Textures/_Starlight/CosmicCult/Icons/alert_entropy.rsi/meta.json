@@ -1,0 +1,144 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "base14",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "base13",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base12",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base11",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base10",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base9",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base8",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base7",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base6",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base5",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base4",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base3",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base2",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base1",
+            "copyright": "By AftrLite(Github)",
+            "delays": [[0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05]]
+        },
+        {
+            "name": "base0",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num14",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num13",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num12",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num11",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num10",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num9",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num8",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num7",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num6",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num5",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num4",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num3",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num2",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num1",
+            "copyright": "By AftrLite(Github)"
+        },
+        {
+            "name": "num0",
+            "copyright": "By AftrLite(Github)"
+        }
+    ]
+}

@@ -86,7 +86,7 @@ public sealed partial class DeliveryComponent : Component
     /// </summary>
     [DataField]
     public string Container = "delivery";
-    
+
     /// <summary>
     /// Starlight-edit: indicates whether delivery via systems is possible.
     /// </summary>

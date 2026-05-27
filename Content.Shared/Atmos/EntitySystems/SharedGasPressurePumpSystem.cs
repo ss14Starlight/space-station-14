@@ -31,6 +31,7 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
         SubscribeLocalEvent<GasPressurePumpComponent, AtmosDeviceDisabledEvent>(OnPumpLeaveAtmosphere);
         SubscribeLocalEvent<GasPressurePumpComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<GasPressurePumpComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
     }
 
     private void OnExamined(Entity<GasPressurePumpComponent> ent, ref ExaminedEvent args)
@@ -88,10 +89,24 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
         UpdateUi(ent);
     }
 
+    // Starlight Start
+    private void OnAnchorChanged(Entity<GasPressurePumpComponent> ent, ref AnchorStateChangedEvent args)
+    {
+        if (!args.Anchored)
+        {
+            ent.Comp.Enabled = false;
+            Dirty(ent);
+            UpdateAppearance(ent);
+        }
+    }
+    // Starlight End
+
     private void OnPumpLeaveAtmosphere(Entity<GasPressurePumpComponent> ent, ref AtmosDeviceDisabledEvent args)
     {
-        ent.Comp.Enabled = false;
-        Dirty(ent);
+        // Starlight edit Start: Moved to OnAnchorChanged
+        // ent.Comp.Enabled = false;
+        // Dirty(ent);
+        // Starlight edit End
         UpdateAppearance(ent);
 
         UserInterfaceSystem.CloseUi(ent.Owner, GasPressurePumpUiKey.Key);

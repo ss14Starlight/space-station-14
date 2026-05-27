@@ -1,0 +1,49 @@
+- type: guideEntry
+  id: Vampires
+  name: guide-entry-vampires
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Vampires.xml"
+  children:
+  - VampiresHemomancer
+  - VampiresUmbrae
+  - VampiresDantalion
+  - VampiresGargantua
+
+- type: guideEntry
+  id: VampiresHemomancer
+  name: guide-entry-vampire-hemomancer
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Hemomancer.xml"
+
+- type: guideEntry
+  id: VampiresUmbrae
+  name: guide-entry-vampire-umbrae
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Umbrae.xml"
+
+- type: guideEntry
+  id: VampiresDantalion
+  name: guide-entry-vampire-dantalion
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Dantalion.xml"
+
+- type: guideEntry
+  id: VampiresGargantua
+  name: guide-entry-vampire-gargantua
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Vampire/Gargantua.xml"
+
+- type: guideEntry
+  id: Abductors
+  name: guide-entry-abductors
+  text: "/ServerInfo/Guidebook/Antagonist/Abductors.xml"
+
+- type: guideEntry
+  id: TerrorSpiders
+  name: guide-entry-terror-spiders
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/TerrorSpider.xml"
+
+- type: guideEntry
+  id: Brighteye
+  name: roles-antag-brighteye-name
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/Brighteye.xml"
+
+- type: guideEntry
+  id: SELFAgent
+  name: roles-antag-selfagent-name
+  text: "/ServerInfo/_StarLight/Guidebook/Antagonist/SiliconLiberation.xml"

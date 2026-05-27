@@ -15,3 +15,5 @@
       charge: 1
   - type: SpeakOnAction
     sentence: action-speech-spell-charge
+    tts: action-speech-spell-charge-tts
+    modifier: Spell

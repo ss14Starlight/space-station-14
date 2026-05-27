@@ -453,7 +453,7 @@
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtWarden
   name: warden's uniform
-  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+  description: A formal security suit for officers complete with NanoTrasen belt buckle. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/warden.rsi
@@ -658,7 +658,7 @@
       sprite: Clothing/Uniforms/Jumpskirt/lawyergood.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseSyndicateContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseMinorContraband ] #SL Edit Syndie > Minor
   id: ClothingUniformJumpskirtSyndieFormalDress
   name: syndicate formal dress
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."
@@ -740,7 +740,7 @@
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtSecGrey
   name: grey security jumpskirt
-  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+  description: A tactical relic of years past before NanoTrasen decided it was cheaper to dye the suits red instead of washing out the blood. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/security_grey.rsi

@@ -13,7 +13,7 @@ using Robust.Shared.Utility;
 namespace Content.Client._Starlight.Antags.Vampires;
 
 /// <summary>
-/// Overlay that renders monster/animal sprites over humanoids  
+/// Overlay that renders monster/animal sprites over humanoids
 /// when the local player has HysteriaVisionComponent.
 /// </summary>
 public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
@@ -46,8 +46,8 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
         var player = _playerManager.LocalEntity;
-        if (player == null 
-            || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria) 
+        if (player == null
+            || !_entManager.TryGetComponent<HysteriaVisionComponent>(player, out var hysteria)
             || _timing.CurTime > hysteria.EndTime) // Check if effect expired
             return false;
 
@@ -68,7 +68,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
             var trimmedPath = sprite.Path.TrimStart('/');
             var path = new ResPath("/Textures") / trimmedPath;
 
-            if (!_resourceCache.TryGetResource<RSIResource>(path, out var rsiResource) 
+            if (!_resourceCache.TryGetResource<RSIResource>(path, out var rsiResource)
                 || !rsiResource.RSI.TryGetState(sprite.State, out var rsiState))
             {
                 _disguiseStates[i] = null;
@@ -119,7 +119,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
             && playerThrall.Master == hysteria.Source;
 
         var worldHandle = args.WorldHandle;
-        var counterRotation = -(args.Viewport.Eye?.Rotation ?? Angle.Zero); 
+        var counterRotation = -(args.Viewport.Eye?.Rotation ?? Angle.Zero);
 
         // Query all humanoids
         var query = _entManager.EntityQueryEnumerator<HumanoidAppearanceComponent, TransformComponent, SpriteComponent>();
@@ -160,7 +160,7 @@ public sealed class HysteriaVisionOverlay : Robust.Client.Graphics.Overlay
 
             // Calculate the draw box centered on the entity
             var drawPos = worldPos;
-            
+
             var box = Box2.CenteredAround(drawPos, size);
 
             var rotatedBox = new Box2Rotated(box, counterRotation, drawPos);

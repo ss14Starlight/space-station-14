@@ -588,16 +588,18 @@
   impact: Medium
   minTemp: 370
   reactants:
-    Blood: # Starlight, Reduced blood requirement for math-related reasons
-      amount: 2
-    Diphenhydramine: # Starlight, added in place of omnizine
-      amount: 2
-    Desoxyephedrine: # Starlight, added in place of omnizine
-      amount: 2
+  # Starlight-start
+    Blood:
+      amount: 1
+    Diphenhydramine:
+      amount: 1
+    Desoxyephedrine:
+      amount: 1
     Cryoxadone:
-      amount: 2
+      amount: 1
   products:
-    Necrosol: 4 # Starlight, more product due to the amount of the additional reactants
+    Necrosol: 2
+  # Starlight-end
 
 - type: reaction
   id: Aloxadone

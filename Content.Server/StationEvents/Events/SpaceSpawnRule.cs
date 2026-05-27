@@ -35,7 +35,7 @@ public sealed class SpaceSpawnRule : StationEventSystem<SpaceSpawnRuleComponent>
                 return;
             }
         //Starlight end
-        
+
         // find a station grid
         var gridUid = StationSystem.GetLargestGrid(station.Value);
         if (gridUid == null || !TryComp<MapGridComponent>(gridUid, out var grid))

@@ -137,7 +137,7 @@ public sealed class HemomancerSystem : EntitySystem
         if (comp.SpawnedClaws != null && EntityManager.EntityExists(comp.SpawnedClaws.Value))
         {
             var oldClaws = comp.SpawnedClaws.Value;
-            comp.SpawnedClaws = null; 
+            comp.SpawnedClaws = null;
             EntityManager.DeleteEntity(oldClaws);
         }
 

@@ -20,6 +20,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Pinpointer;
 using Content.Shared.Roles.Components;
+using Content.Shared.Starlight.CCVar;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;
@@ -60,6 +61,7 @@ public sealed class NukeOpsTest
         var roundEndSys = server.System<RoundEndSystem>();
 
         server.CfgMan.SetCVar(CCVars.GridFill, true);
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, false); // Starlight
 
         // Initially in the lobby
         Assert.That(ticker.RunLevel, Is.EqualTo(GameRunLevel.PreRoundLobby));
@@ -267,6 +269,7 @@ public sealed class NukeOpsTest
         });
 
         ticker.SetGamePreset((GamePresetPrototype?) null);
+        server.CfgMan.SetCVar(StarlightCCVars.DisableLoadMapRule, true); // Starlight
         await pair.CleanReturnAsync();
     }
 }

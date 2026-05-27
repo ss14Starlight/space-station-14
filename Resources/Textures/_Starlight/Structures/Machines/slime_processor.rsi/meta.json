@@ -10,26 +10,6 @@
     {
       "name": "slime_processor_icon",
       "copyright": "Conflee"
-    },
-    {
-      "name": "slime_processor_powered",
-      "copyright": "Conflee"
-    },
-    {
-      "name": "slime_processor_grinding",
-      "copyright": "Conflee",
-      "delays": [
-        [
-          0.1,
-          0.1,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "slime_processor_unsafe",
-      "copyright": "Conflee"
     }
   ]
 }

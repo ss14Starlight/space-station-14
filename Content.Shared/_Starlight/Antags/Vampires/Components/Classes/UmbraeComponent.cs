@@ -41,7 +41,6 @@ public sealed partial class UmbraeComponent : VampireClassComponent
     /// <summary>
     /// List of placed shadow snare traps
     /// </summary>
-    [AutoNetworkedField]
     public List<EntityUid> PlacedSnares = new();
 
     /// <summary>

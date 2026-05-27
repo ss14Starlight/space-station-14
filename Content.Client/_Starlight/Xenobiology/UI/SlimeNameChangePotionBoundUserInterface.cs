@@ -11,10 +11,8 @@ public sealed class SlimeNameChangePotionBoundUserInterface : BoundUserInterface
     private SlimeNameChangePotionWindow? _window;
 
     public SlimeNameChangePotionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-        IoCManager.InjectDependencies(this);
-    }
-    
+        => IoCManager.InjectDependencies(this);
+
     protected override void Open()
     {
         base.Open();

@@ -3,6 +3,10 @@
   name: job-name-psychologist
   description: job-description-psychologist
   playTimeTracker: JobPsychologist
+  requirements: # Starlight start
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 2.5h # Starlight end
   startingGear: PsychologistGear
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-cmo

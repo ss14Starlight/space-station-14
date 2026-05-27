@@ -21,7 +21,7 @@ public sealed partial class RailroadingAnnounceHandlerSystem : EntitySystem
         SubscribeLocalEvent<RailroadAnnounceOnChosenComponent, RailroadingCardChosenEvent>(OnChosen);
     }
 
-    private void OnChosen(Entity<RailroadAnnounceOnChosenComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnChosen(Entity<RailroadAnnounceOnChosenComponent> ent, ref RailroadingCardChosenEvent args)
         => _chatSystem.DispatchFilteredAnnouncement
         (
             Filter.Empty().AddWhere(_gameTicker.UserHasJoinedGame),

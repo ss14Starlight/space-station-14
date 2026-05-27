@@ -35,7 +35,7 @@ public sealed partial class RadioImplantComponent : Component, ISupportsCustomCh
     /// </remarks>
     [DataField, AutoNetworkedField] // Starlight edit
     public HashSet<ProtoId<RadioChannelPrototype>> TransmitterAddedChannels = new();
-    
+
     //Starlight begin
     [ViewVariables, AutoNetworkedField] public HashSet<CustomRadioChannelData> CustomChannels { get; set; } = [];
     [ViewVariables, AutoNetworkedField] public HashSet<CustomRadioChannelData> ActiveAddedCustomRadioChannels = [];
