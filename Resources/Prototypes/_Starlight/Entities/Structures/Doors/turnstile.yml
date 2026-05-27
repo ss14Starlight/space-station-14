@@ -32,7 +32,7 @@
   components:
     - type: AccessReader
       access: [["Debrief"]]
-    # Turnstile component copied as-is from parent "Turnstile" prototype. The only difference is the
+    # Turnstile component copied as-is from the parent "Turnstile" prototype. The only difference is the maxDistance.
     - type: Turnstile
       denySound:
         path: /Audio/Machines/airlock_deny.ogg
