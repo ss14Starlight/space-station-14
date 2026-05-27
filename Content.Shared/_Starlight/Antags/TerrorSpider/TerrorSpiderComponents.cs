@@ -44,6 +44,11 @@ public sealed partial class TerrorPrincessComponent : Component
     public EntityUid? LayEggAction = null;
 }
 
+[RegisterComponent]
+public sealed partial class TerrorSpiderComponent : Component
+{
+}
+
 #endregion
 
 #region BUI

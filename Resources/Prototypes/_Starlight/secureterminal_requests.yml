@@ -383,8 +383,8 @@
   activationDelaySecs: 300
   fee: 5000
   salaryPenalty: 0.05
-  actionType: GameRule
-  gameruleId: ERTMedicalShuttleSpawn
+  actionType: Armory
+  armoryKey: medical
   sortOrder: 30
   authGroups:
     - [Captain, ChiefMedicalOfficer]

@@ -24,6 +24,19 @@
       Felionoid:
         knockback: 0.01 #half of what resomi take
         staminaMultiplier: 100
+    # starlight start
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    damage:
+      types:
+        Blunt: 8
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: MeleeRequiresWield
+  - type: AltFireMelee
+    # starlight end
   - type: Sprite
   - type: Item
     size: Huge

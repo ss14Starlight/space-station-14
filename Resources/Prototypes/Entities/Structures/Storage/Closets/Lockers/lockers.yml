@@ -621,15 +621,17 @@
 # Representative
 - type: entity
   id: LockerRepresentative
-  name: representative's locker # Starlight, added apostrophe s
+  name: NanoTrasen representative's locker # Starlight, added apostrophe s
   parent: LockerBaseSecure
   components:
   - type: Appearance
   - type: AccessReader
-    access: [["Ntrep"]] # Starlight
+    access: [["Ntrep"]] # Starlight start
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: hop
-    stateDoorOpen: hop_open
-    stateDoorClosed: representative_door
-  - type: WiresPanelSecurity # Starlight: Maintenance panel
+    stateBaseClosed: ntr
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: ntr_door
+  - type: WiresPanelSecurity # Starlight end, Maintenance panel
     securityLevel: medSecurity

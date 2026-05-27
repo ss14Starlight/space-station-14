@@ -412,6 +412,15 @@
       toggleable-clothing: !type:ContainerSlot { }
       storagebase: !type:Container
         ents: [ ]
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Blunt: 0.7 # Less blunt resist, so it's not just better
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.7
+        Cold: 0.7 # Not as much as Warden
+        Caustic: 0.75 # Starlight end
 ##########################################################
 
 - type: entity
@@ -801,6 +810,15 @@
     sprite: Clothing/OuterClothing/WinterCoats/coatwardenarmored.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterWarden
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Blunt: 0.7 # Less blunt resist, so it's not just better
+        Slash: 0.65
+        Piercing: 0.7
+        Heat: 0.7
+        Cold: 0.6 # Winter coat, and warden at that, so it can be a lot.
+        Caustic: 0.9 # Starlight end
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot { }
