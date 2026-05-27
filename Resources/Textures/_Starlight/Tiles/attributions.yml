@@ -75,3 +75,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Starlight"
   source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["dev_atmospherics.png, dev_bar.png, dev_cargo.png, dev_command.png, dev_door.png, dev_engineering.png, dev_floor.png, dev_maintenance.png, dev_medical.png, dev_salvage.png, dev_science.png, dev_security.png, dev_service.png"]
+  license: "CC0-1.0"
+  copyright: "CawsForConcern"
+  source: "https://github.com/CawsForConcern"

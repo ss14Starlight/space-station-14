@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 277.0.0
   forkId: starlight
-  forkVersion: 174f660046d0147633962567f82aeadc7f59c923
-  time: 05/15/2026 02:42:45
-  entityCount: 40825
+  forkVersion: 1d0de056ca9d8f8f8b72c844f7b37edb14b1013a
+  time: 05/21/2026 17:10:48
+  entityCount: 40824
 maps:
 - 1
 grids:
@@ -91608,11 +91608,6 @@ entities:
     - type: Transform
       pos: -8.5,-26.5
       parent: 2
-  - uid: 13326
-    components:
-    - type: Transform
-      pos: -8.5,-26.5
-      parent: 2
 - proto: DefaultStationBeaconGravGen
   entities:
   - uid: 13327
@@ -93375,6 +93370,12 @@ entities:
       parent: 2
 - proto: DisposalPipe
   entities:
+  - uid: 13326
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -8.5,-26.5
+      parent: 2
   - uid: 13379
     components:
     - type: Transform
@@ -93761,12 +93762,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,-26.5
-      parent: 2
-  - uid: 13659
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -8.5,-26.5
       parent: 2
   - uid: 13660
     components:
@@ -156379,70 +156374,77 @@ entities:
       pos: 36.519478,-43.351433
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22121
     components:
     - type: Transform
       pos: 35.53312,44.609722
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22122
     components:
     - type: Transform
       pos: 35.673744,44.219097
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22123
     components:
     - type: Transform
       pos: 59.42499,45.484722
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22124
     components:
     - type: Transform
       pos: 27.472029,-60.410633
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22125
     components:
     - type: Transform
       pos: -72.5084,-22.471127
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22126
     components:
     - type: Transform
       pos: 80.54942,67.6068
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: PartRodMetal1
   entities:
   - uid: 22127
@@ -156453,10 +156455,11 @@ entities:
     - type: Stack
       count: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22128
     components:
     - type: Transform
@@ -156465,10 +156468,11 @@ entities:
     - type: Stack
       count: 3
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22129
     components:
     - type: Transform
@@ -156477,10 +156481,11 @@ entities:
     - type: Stack
       count: 4
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: PartRodMetal10
   entities:
   - uid: 22130
@@ -156490,20 +156495,22 @@ entities:
       pos: 32.53435,50.473877
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22131
     components:
     - type: Transform
       pos: -17.59499,54.192627
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 22132
     components:
     - type: Transform
@@ -156512,10 +156519,11 @@ entities:
     - type: Stack
       count: 20
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: Pen
   entities:
   - uid: 22133
@@ -175267,40 +175275,44 @@ entities:
       pos: 18.50615,-50.257847
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 25265
     components:
     - type: Transform
       pos: -20.28902,-42.40218
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 25266
     components:
     - type: Transform
       pos: -55.505177,-16.459677
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 25267
     components:
     - type: Transform
       pos: 22.439623,20.515057
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 25268
     components:
     - type: Transform
@@ -175308,10 +175320,11 @@ entities:
       pos: 50.521206,12.553826
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: SheetGlass10
   entities:
   - uid: 25269
@@ -175320,10 +175333,11 @@ entities:
       pos: -3.5545912,-54.342045
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: SheetPlasma
   entities:
   - uid: 25270
@@ -175414,10 +175428,11 @@ entities:
       pos: 61.47292,27.616787
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: SheetRGlass1
   entities:
   - uid: 25285
@@ -175428,10 +175443,11 @@ entities:
     - type: Stack
       count: 10
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: SheetSteel
   entities:
   - uid: 25286

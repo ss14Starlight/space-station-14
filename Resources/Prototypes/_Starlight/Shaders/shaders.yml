@@ -66,6 +66,16 @@
   params:
     ThermalBoost: 1.5
     ThermalIntensity: 1
+    ThermalAlpha: 1
+
+- type: shader
+  id: ThermalVisionScreenShaderHalfAlpha
+  kind: source
+  path: "/Textures/_Starlight/Shaders/thermal-screen.swsl"
+  params:
+    ThermalBoost: 1.5
+    ThermalIntensity: 1
+    ThermalAlpha: 0.5
 
 - type: shader
   id: BrightnessShader

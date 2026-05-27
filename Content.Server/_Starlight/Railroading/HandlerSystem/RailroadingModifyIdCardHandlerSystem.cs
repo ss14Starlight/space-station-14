@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Server.Access.Systems;
-using Content.Server.Hands.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Components;
 using System.Linq;

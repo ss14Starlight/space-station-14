@@ -79,10 +79,6 @@ internal sealed class ChatManager : IChatManager
                 _consoleHost.ExecuteCommand($"whisper \"{CommandParsing.Escape(str)}\"");
                 break;
 
-            case ChatSelectChannel.CollectiveMind:
-                _consoleHost.ExecuteCommand($"cmsay \"{CommandParsing.Escape(str)}\"");
-                break;
-
             default:
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
         }

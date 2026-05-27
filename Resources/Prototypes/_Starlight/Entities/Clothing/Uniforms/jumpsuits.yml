@@ -22,30 +22,19 @@
 - type: entity
   parent: ClothingUniformJumpsuitAtmos
   id: ClothingUniformJumpsuitAtmosSyndie
-  name: contortionist's Jumpsuit
+  name: contortionist's jumpsuit
   components:
   - type: VentCrawlClothing
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSuit
-  name: magistrate's Jumpsuit
+  name: magistrate's jumpsuit
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
-
-- type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
-  id: MagistrateUniformSuitLongcoat
-  name: magistrate's Longcoat
-  description: It's a nice long jacket attached to your uniform, but it has no real insulation so a real jacket beats it. Atleast it looks cool, though.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
@@ -171,6 +160,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
@@ -182,6 +176,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -194,6 +193,9 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.95
 

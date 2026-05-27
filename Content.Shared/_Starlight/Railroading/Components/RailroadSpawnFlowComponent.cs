@@ -1,4 +1,5 @@
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -15,4 +16,7 @@ public sealed partial class RailroadSpawnFlowComponent : Component
 
     [DataField]
     public ProtoId<JobPrototype>? JobPrototype;
+
+    [DataField]
+    public EntProtoId<ObjectiveComponent>? ObjectivePrototype;
 }

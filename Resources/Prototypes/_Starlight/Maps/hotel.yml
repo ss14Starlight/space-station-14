@@ -24,6 +24,7 @@
             Botanist: [ 2, 2 ]
             Chef: [ 2, 2 ]
             Janitor: [ 2, 2 ]
+            Lawyer: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             ServiceWorker: [ 2, 4 ]
             #engineering
@@ -63,6 +64,7 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
+            Performer: [ 2, 2 ]
             Reporter: [ 1, 2 ]
             #silicon
             StationAi: [ 1, 1 ]
