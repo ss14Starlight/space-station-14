@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+        "name": "eeep_dead",
+        "directions": 1,
+        "copyright": "by starlighthowls for impstation"
+      },
+    {
+        "name": "eeep_crit",
+        "directions": 1,
+        "copyright": "by starlighthowls for impstation"
+      },
+    {
+        "name": "empty",
+        "directions": 1,
+        "copyright": "by starlighthowls for impstation"
+      },
+   {
+        "name": "eeep",
+        "directions": 4,
+        "copyright": "by starlighthowls for impstation",
+        "delays": [
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ],
+          [
+            0.6,
+            0.6,
+            0.6,
+            0.6
+          ]
+        ]
+    }
+  ]
+}

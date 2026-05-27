@@ -99,6 +99,7 @@
         tableId: DerelictBorgEventTable
       - id: WizardSpawn
       - id: SubXenoborgs # Starlight, make it spawn sub instead
+      - id: EeepEvent # imp
       # Starlight gamerules:
       - id: AbductorsSpawn
       - id: RailroadingTerminator
