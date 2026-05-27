@@ -22,7 +22,6 @@ using Content.Shared._Starlight.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
-using Content.Shared.CollectiveMind;
 using Robust.Shared.Serialization;
 using Content.Shared._Starlight.Speech;
 #endregion Starlight
@@ -43,7 +42,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const char EmotesAltPrefix = '*';
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
-    public const char CollectiveMindPrefix = '+';
 
     public const char DefaultChannelKey = 'h';
 
@@ -78,8 +76,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// </summary>
     private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
 
-    private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -89,8 +85,6 @@ public abstract partial class SharedChatSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
         CacheEmotes();
-
-        CacheCollectiveMinds(); // Starlight
     }
 
     protected virtual void OnPrototypeReload(PrototypesReloadedEventArgs obj)
@@ -100,21 +94,12 @@ public abstract partial class SharedChatSystem : EntitySystem
 
         if (obj.WasModified<EmotePrototype>())
             CacheEmotes();
-
-        if (obj.WasModified<CollectiveMindPrototype>()) // Starlight
-            CacheCollectiveMinds(); // Starlight
     }
 
     private void CacheRadios()
     {
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
-            .ToFrozenDictionary(x => x.KeyCode);
-    }
-
-    private void CacheCollectiveMinds()
-    {
-        _prototypeManager.PrototypesReloaded -= OnPrototypeReload;
-        _mindKeyCodes = _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>()
+            .Where(x => x.KeyCode != '\0') // Starlight - Check if KeyCode is not the default null character
             .ToFrozenDictionary(x => x.KeyCode);
     }
 
@@ -359,43 +344,6 @@ public abstract partial class SharedChatSystem : EntitySystem
         return presentChannels.Count > 0;
     }
     //Starlight end
-
-    public bool TryProccessCollectiveMindMessage(
-        EntityUid source,
-        string input,
-        out string output,
-        out CollectiveMindPrototype? channel,
-        bool quiet = false)
-    {
-        output = input.Trim();
-        channel = null;
-
-        if (input.Length == 0)
-            return false;
-
-        if (!input.StartsWith(CollectiveMindPrefix))
-            return false;
-
-        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
-        {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
-            if (!quiet)
-                _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
-            return true;
-        }
-
-        var channelKey = input[1];
-        channelKey = char.ToLower(channelKey);
-        output = SanitizeMessageCapital(input[2..].TrimStart());
-
-        if (_mindKeyCodes.TryGetValue(channelKey, out channel) || quiet)
-            return true;
-
-        var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
-        _popup.PopupEntity(msg, source, source);
-
-        return false;
-    }
 
     public string SanitizeMessageCapital(string message)
     {
@@ -692,8 +640,7 @@ public enum InGameICChatType : byte
 {
     Speak,
     Emote,
-    Whisper,
-    CollectiveMind // Starlight
+    Whisper
 }
 
 /// <summary>

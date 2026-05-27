@@ -1737,6 +1737,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserGunXenoborg
+    - item: XenoShiv # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
@@ -1753,6 +1754,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborg
+    - item: XenoKnife # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
