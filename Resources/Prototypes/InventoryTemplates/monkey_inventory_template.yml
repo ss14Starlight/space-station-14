@@ -37,7 +37,7 @@
     strippingWindowPos: 2,4
     dependsOn: jumpsuit
     displayName: ID
-  - name: belt
+  - name: belt # Starlight start
     slotTexture: belt
     fullTextureName: template_small
     slotFlags: BELT
@@ -46,7 +46,7 @@
     uiWindowPos: 3,1
     strippingWindowPos: 1,5
     displayName: Belt
-  - name: pocket1 # Starlight start
+  - name: pocket1
     slotTexture: pocket
     fullTextureName: template_small
     slotFlags: POCKET
