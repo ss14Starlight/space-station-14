@@ -33,7 +33,6 @@
       Quaternary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt3.rsi
       Quinary: _Carpmosia/Structures/Piping/Atmospherics/pump_alt4.rsi
       # Carpmosia-end - 5 pipe layers
-  - type: ChildBlockVision # Starlight
 
 - type: entity
   parent: GasBinaryBase
@@ -105,6 +104,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -189,6 +189,7 @@
     - type: ContainerContainer
       containers:
         VentCrawlTube: !type:Container
+    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -255,6 +256,14 @@
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: GuideHelp
     guides:
     - PressureRegulator
@@ -307,6 +316,7 @@
     - type: ContainerContainer
       containers:
         VentCrawlTube: !type:Container
+    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -379,6 +389,7 @@
     - type: ContainerContainer
       containers:
         VentCrawlTube: !type:Container
+    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -462,6 +473,7 @@
   - type: ContainerContainer
     containers:
       VentCrawlTube: !type:Container
+  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -525,6 +537,7 @@
     - type: ContainerContainer
       containers:
         VentCrawlTube: !type:Container
+    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -602,6 +615,10 @@
       enabled: true
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlTransit
+    # Starlight end
     - type: GuideHelp
       guides:
       - AirVent
@@ -684,6 +701,16 @@
     navMapBlip: GasValve
   - type: Transform
     noRot: false
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: GuideHelp
     guides:
     - GasRecycling
@@ -738,6 +765,14 @@
     node: radiator
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: GuideHelp
     guides:
     - Radiators
@@ -770,3 +805,10 @@
     - type: Construction
       graph: GasBinary
       node: bendradiator
+    # Starlight start
+    - type: VentCrawlTube
+    - type: VentCrawlBend
+    - type: ContainerContainer
+      containers:
+        VentCrawlTube: !type:Container
+    # Starlight end

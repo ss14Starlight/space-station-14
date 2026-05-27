@@ -46,6 +46,16 @@
     VampireObjectiveGroupState: 1
 
 - type: weightedRandom
+  id: VampireObjectiveGroupsStealOnly
+  weights:
+    VampireObjectiveGroupSteal: 1
+
+- type: weightedRandom
+  id: VampireObjectiveGroupsStateOnly
+  weights:
+    VampireObjectiveGroupState: 1
+
+- type: weightedRandom
   id: VampireObjectiveGroupSteal
   weights:
     CMOHyposprayVampireStealObjective: 1

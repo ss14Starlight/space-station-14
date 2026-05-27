@@ -10,8 +10,10 @@
   - type: LanguageKnowledge
     speaks:
     - Xeno
+    - Xenomind
     understands:
     - Xeno
+    - Xenomind
   # Starlight-end
   - type: ThermalVision
   - type: Insulated
@@ -134,6 +136,7 @@
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
+  - type: Xeno # Starlight, component for inheritance
 
 - type: entity
   name: praetorian
@@ -216,9 +219,11 @@
     speaks:
     - GalacticCommon
     - Xeno
+    - Xenomind
     understands:
     - GalacticCommon
     - Xeno
+    - Xenomind
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs

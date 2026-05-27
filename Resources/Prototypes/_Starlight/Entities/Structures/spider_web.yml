@@ -1,4 +1,49 @@
 - type: entity
+  id: SpiderWebAirtight
+  parent: SpiderWebBase
+  name: airtight spider web
+  description: It's stringy, sticky and airtight.
+  components:
+  - type: Airtight
+  - type: Sprite
+    color: "#ffffffdd"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        density: 7
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        layer:
+        - MidImpassable
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWebSilk:
+            min: 1
+            max: 3
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.5
+    sprintSpeedModifier: 0.5
+    blacklist:
+      components:
+      - IgnoreSpiderWeb
+
+- type: entity
   id: SpiderWebStrong
   parent: SpiderWebBase
   name: strong spider web
@@ -43,12 +88,31 @@
       - IgnoreSpiderWeb
 
 - type: entity
-  id: SpiderWebStrongOpaque
+  id: SpiderWebStrongThick
   parent: SpiderWebStrong
-  name: strong opaque spider web
+  name: thick spider web
   description: It's stringy, sticky, opaque and strong.
   components:
   - type: Occluder
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWebSilk:
+            min: 1
+            max: 3
 
 - type: entity
   id: SpiderWebSlime
@@ -188,4 +252,4 @@
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
-        - LowImpassable
+        - SpiderlingImpassable

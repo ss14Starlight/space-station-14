@@ -8,11 +8,6 @@
     equipmentWhitelist:
       tags:
       - CombatMech
-      - PaddyMech
-# 🌟Starlight-start🌟
-  - type: Prying
-    pryPowered: true
-# 🌟Starlight-end🌟
 
 - type: entity
   id: IndustrialMech
@@ -86,6 +81,7 @@
   - type: MobMover
   - type: Mech
 # 🌟Starlight-start🌟
+    maxIntegrity: 170
     batteryWhitelist:
       tags:
       - MechReactor
