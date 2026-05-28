@@ -32,10 +32,9 @@
   components:
     - type: AccessReader
       access: [["Debrief"]]
-    # Turnstile component copied as-is from the parent "Turnstile" prototype. The only difference is the maxDistance.
     - type: Turnstile
       denySound:
         path: /Audio/Machines/airlock_deny.ogg
         params:
-          maxDistance: 1
+          maxDistance: 1.5 # Small range to prevent disturbing debrief.
           volume: -7
