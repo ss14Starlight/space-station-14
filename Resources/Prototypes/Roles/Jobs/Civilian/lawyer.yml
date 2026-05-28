@@ -4,8 +4,8 @@
   description: job-description-lawyer-sl # Starlight, new desc.
   playTimeTracker: JobLawyer
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer # Requires you to have actually worked with Corporate Law before.
+    - !type:RoleTimeRequirement # Starlight start
+      role: JobIAA # You have to actually know the law, this role is really easy to mess up if you don't.
       time: 3h # Starlight end
   startingGear: LawyerGear
   icon: "JobIconLawyer"
