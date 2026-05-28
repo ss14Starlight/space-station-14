@@ -1,15 +1,10 @@
-using System.Linq;
 using Content.Server._Starlight.StationEvents.Components;
 using Content.Server.Antag;
 using Content.Server.StationEvents.Components;
 using Content.Server.StationEvents.Events;
-using Content.Server.VentCrawl;
-using Content.Shared.GameTicking.Components;
-using Content.Shared.Random.Helpers;
-using Content.Shared.Station.Components;
 using Content.Shared.VentCrawl;
-using Robust.Shared.Map;
-using Robust.Shared.Utility;
+using Content.Shared.GameTicking.Components;
+using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.StationEvents.Events;
 
@@ -19,7 +14,7 @@ namespace Content.Server._Starlight.StationEvents.Events;
 public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComponent>
 {
     [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private VentCrawlTubeSystem _ventCrawl = default!;
+    [Dependency] private SharedVentCrawlTubeSystem _ventCrawl = default!;
 
     public override void Initialize()
     {

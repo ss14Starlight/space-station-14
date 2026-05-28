@@ -5,7 +5,7 @@
   id: Medkit
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: firstaid
   - type: Storage
     maxItemSize: Small
@@ -13,7 +13,7 @@
     - 0,0,3,1
   - type: Item
     size: Large
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     heldPrefix: firstaid
   - type: PhysicalComposition
     materialComposition:
@@ -29,7 +29,7 @@
   id: MedkitBurn
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: burnkit
   - type: Item
     heldPrefix: burnkit
@@ -41,7 +41,7 @@
   id: MedkitToxin
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: toxinkit
   - type: Item
     heldPrefix: toxinkit
@@ -53,7 +53,7 @@
   id: MedkitO2
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: o2kit
   - type: Item
     heldPrefix: o2kit
@@ -65,7 +65,7 @@
   id: MedkitBrute
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: brutekit
   - type: Item
     heldPrefix: brutekit
@@ -77,7 +77,7 @@
   id: MedkitAdvanced
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: advkit
   - type: Item
     heldPrefix: advkit
@@ -89,7 +89,7 @@
   id: MedkitRadiation
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: radkit
   - type: Item
     heldPrefix: radkit
@@ -128,7 +128,7 @@
         - HandLabeler
     #Starlight end
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi
+    sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: blackkit
   - type: Item
     heldPrefix: blackkit
