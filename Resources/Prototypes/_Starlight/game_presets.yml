@@ -22,8 +22,8 @@
     - xenoborgslp
   name: xenoborgs-title
   description: xenoborgs-description
-  minPlayers: 20 # 🌟Starlight🌟
-  showInVote: true # 🌟Starlight🌟
+  minPlayers: 20
+  showInVote: true
   rules:
   - SubXenoborgs
   - SubGamemodesRuleNoXenoborg # No two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
@@ -50,8 +50,8 @@
     - BasicRoundstartVariation
     - BasicRoundstartVariation
     - BasicRoundstartVariation
-    - BasicRoundstartVariation # Starlight. Dirtier.
-    - BasicRoundstartVariation # Starlight. This is Janitor Kessler.
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Vampire
@@ -62,8 +62,8 @@
   - vampires
   name: vampire-gamemode-title
   description: vampire-gamemode-description
-  showInVote: True # 🌟Starlight🌟 they have been reworked
-  minPlayers: 50 # 🌟Starlight🌟
+  showInVote: True
+  minPlayers: 50
   rules:
   - Vampire
   - SubGamemodesRuleNoVampires
@@ -81,9 +81,9 @@
   description: changeling-gamemode-description
   showInVote: false
   rules:
-    - SLChangeling #Starlight
-    - SLChangelingLess # Starlight. This is their mode after all, and this is how it was prior.
-    - SubGamemodesRuleNoChangelings # Starlight
+    - SLChangeling
+    - SLChangelingLess
+    - SubGamemodesRuleNoChangelings
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
@@ -94,12 +94,12 @@
     - traitorling
   name: traitorling-title
   description: traitorling-description
-  showInVote: true #Starlight
-  minPlayers: 50 #Starlight
+  showInVote: true
+  minPlayers: 50
   rules:
-    - SLChangeling #Starlight
+    - SLChangeling
     - Traitor
-    - SubGamemodesRuleNoChangelings #Starlight
+    - SubGamemodesRuleNoChangelings
     - BasicStationEventScheduler
     - BasicRoundstartVariation
 
@@ -142,16 +142,16 @@
     - WizardDuel
     - Xenoborgs
     - RampingStationEventScheduler
-    - SLChangeling #Starlight
+    - SLChangeling
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - BasicRoundstartVariation # Starlight, ShitStation
-    - ShitStationEventScheduler # Starlight, ShitStation
-    - Vampire #Starlight
-    - SiliconLiberation #Starlight
-    - Brighteye #Starlight
-    - ThiefGamerule # Starlight, Event Light
-    # - CosmicCult # Starlight
+    - BasicRoundstartVariation
+    - ShitStationEventScheduler
+    - Vampire
+    - SiliconLiberation
+    - Brighteye
+    - ThiefGamerule
+    # - CosmicCult
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -172,23 +172,43 @@
     - WizardDuel # Well, you did say *Aller* at once.
     - Xenoborgs
     - BasicStationEventScheduler
-    - BasicStationEventScheduler # Starlight, ShitStation
-    - ShitStationEventScheduler # Starlight, ShitStation
+    - BasicStationEventScheduler
+    - ShitStationEventScheduler
     - MeteorSwarmScheduler # Meteor mild isn't included in almost aller because in theory the idea is to have a round last more than 10 minutes.
     - RampingStationEventScheduler
     - SpaceTrafficControlEventScheduler
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
-    - BasicRoundstartVariation # Starlight, ShitStation
-    - BasicRoundstartVariation # Starlight, ShitStation
-    - BasicRoundstartVariation # Starlight, ShitStation
-    - BasicRoundstartVariation # Starlight, ShitStation
-    - SLChangeling # Starlight
-    - Vampire #Starlight
-    - SiliconLiberation #Starlight
-    - Brighteye #Starlight
-    - ThiefGamerule # Starlight, Event Light
-    - LoneOpsSpawn # Starlight
-    - RailroadingTerminator # Starlight
-    - RailroadingMinor # Starlight
-    # - CosmicCult # Starlight
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - SLChangeling
+    - Vampire
+    - SiliconLiberation
+    - Brighteye
+    - ThiefGamerule
+    - LoneOpsSpawn
+    - RailroadingTerminator
+    - RailroadingMinor
+    # - CosmicCult
+
+- type: gamePreset
+  id: TerrorSpiders
+  alias:
+  - spiders
+  - terror
+  - terrors
+  - spider
+  name: terrorspiders-gamemode-title
+  description: terrorspiders-gamemode-description
+  showInVote: True
+  minPlayers: 50
+  rules:
+  - TerrorSpidersSpawn
+  - SubGamemodesRuleNoChangelings
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - RailroadingMinor # 🌟Starlight🌟
