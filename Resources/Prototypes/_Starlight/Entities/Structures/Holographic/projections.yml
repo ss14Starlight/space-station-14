@@ -52,7 +52,7 @@
       lifetime: 180
     - type: PointLight
       enabled: true
-      radius: 3
+      radius: 4
       color: orange
       castShadows: false #SL lighting optimization
     - type: Climbable
