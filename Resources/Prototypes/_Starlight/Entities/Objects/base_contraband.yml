@@ -195,7 +195,7 @@
     severity: MedTak
 
 - type: entity
-  id: BaseSecurityScienceCommandRepresentativesContraband
+  id: BaseSecurityScienceCommandNanoTrasenContraband
   parent: BaseRestrictedContraband
   abstract: true
   components:
