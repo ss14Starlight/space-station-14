@@ -86,7 +86,7 @@
   equipment:
     head: ClothingHeadHatHopcap
     eyes: ClothingEyesHudCommand
-    mask: ClothingMaskNeckGaiterRed
+    mask: ClothingGaiterRed # SL
     neck: ClothingNeckCloakHop
     outerClothing: ClothingOuterWinterHoP
 

@@ -289,7 +289,7 @@
   id: BlackstarLegionnaireGear
   equipment:
     head: ClothingHeadHelmetBlackstar
-    mask: ClothingMaskNeckGaiter
+    mask: ClothingGaiterCharcoal
     outerClothing: ClothingOuterHardsuitBlackstar
     jumpsuit: ClothingUniformJumpsuitColorBlack
     gloves: ClothingHandsGlovesCombat

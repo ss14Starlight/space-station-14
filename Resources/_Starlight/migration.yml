@@ -106,3 +106,7 @@ ClothingHandsCatPawsWhiteInsulated: null
 ClothingHandsCatPawsBrownInsulated: null
 ClothingHandsCatPawsBlackInsulated: null
 ClothingHandsCatPawsBlackWhiteInsulated: null
+
+#2026-05-28 # Replace old/Wizden Gaiter with new Gaiters.
+ClothingMaskNeckGaiter: ClothingGaiterCharcoal
+ClothingMaskNeckGaiterRed: ClothingGaiterRed

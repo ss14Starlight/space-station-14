@@ -32,7 +32,7 @@
   equipment:
     eyes: ClothingEyesEyepatch
     ears: ClothingHeadsetFreelance
-    mask: ClothingMaskNeckGaiter
+    mask: ClothingGaiterCharcoal # SL
     neck: ClothingNeckBling
     gloves: ClothingHandsGlovesColorLightBrown
     outerClothing: ClothingOuterCoatPirate

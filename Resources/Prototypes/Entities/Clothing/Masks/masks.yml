@@ -648,31 +648,33 @@
     slots:
     - Snout
 
-- type: entity
-  parent: ClothingMaskBase
-  id: ClothingMaskNeckGaiter
-  name: neck gaiter
-  description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...
-  components:
-  - type: Sprite
-    sprite: Clothing/Mask/neckgaiter.rsi
-  - type: Clothing
-    sprite: Clothing/Mask/neckgaiter.rsi
-  - type: IdentityBlocker
-    coverage: MOUTH
-  - type: Tag
-    tags:
-    - WhitelistChameleon
+# Starlight - Replaced by ClothingGaiterCharcoal & ClothingGaiterRed
+# - type: entity
+#   parent: ClothingMaskBase
+#   id: ClothingMaskNeckGaiter
+#   name: neck gaiter
+#   description: Stylish neck gaiter for your neck, can protect from the cosmic wind?...
+#   components:
+#   - type: Sprite
+#     sprite: Clothing/Mask/neckgaiter.rsi
+#   - type: Clothing
+#     sprite: Clothing/Mask/neckgaiter.rsi
+#   - type: IdentityBlocker
+#     coverage: MOUTH
+#   - type: Tag
+#     tags:
+#     - WhitelistChameleon
 
-- type: entity
-  parent: ClothingMaskNeckGaiter
-  id: ClothingMaskNeckGaiterRed
-  name: red neck gaiter
-  components:
-  - type: Sprite
-    sprite: Clothing/Mask/neckgaiterred.rsi
-  - type: Clothing
-    sprite: Clothing/Mask/neckgaiterred.rsi
+# - type: entity
+#   parent: ClothingMaskNeckGaiter
+#   id: ClothingMaskNeckGaiterRed
+#   name: red neck gaiter
+#   components:
+#   - type: Sprite
+#     sprite: Clothing/Mask/neckgaiterred.rsi
+#   - type: Clothing
+#     sprite: Clothing/Mask/neckgaiterred.rsi
+# Starlight - End
 
 - type: entity
   parent: ClothingMaskClownBase

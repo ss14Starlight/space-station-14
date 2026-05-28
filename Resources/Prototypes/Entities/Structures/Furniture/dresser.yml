@@ -246,7 +246,7 @@
       weight: 0.03
     - id: ClothingOuterClownPriest
       weight: 0.02
-    - id: ClothingMaskNeckGaiter
+    - id: ClothingGaiterCharcoal # SL
       weight: 0.02
     - id: ClothingMaskGas
       weight: 0.008

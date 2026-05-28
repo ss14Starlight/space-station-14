@@ -1,0 +1,118 @@
+- type: entity
+  parent: ClothingMaskBaseButcherable
+  id: ClothingGaiterBase
+  description: A slightly worn neck gaiter, it's loose enough to be worn comfortably like a scarf. Commonly used by outdoorsmen and mercenaries, both to keep warm and keep debris away from the face.
+  abstract: true
+  components:
+  - type: Clothing
+    slots: [mask, neck]
+  - type: IdentityBlocker
+    coverage: MOUTH
+  - type: HideLayerClothing
+    slots:
+    - Snout
+    hideOnToggle: true
+  - type: Tag
+    tags:
+    - ClothMade
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterCharcoal
+  name: charcoal neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/charcoal.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/charcoal.rsi
+
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterRed
+  name: red neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/red.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/red.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterTan
+  name: tan neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/tan.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/tan.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterGreen
+  name: green neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/green.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/green.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterOrange
+  name: orange neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/orange.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/orange.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterBlue
+  name: blue neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/blue.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/blue.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterGray
+  name: gray neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/gray.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/gray.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterPurple
+  name: purple neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/purple.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/purple.rsi
+
+- type: entity
+  parent: ClothingGaiterBase
+  id: ClothingGaiterWhite
+  name: white neck gaiter
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/Gaiter/snow.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Neck/Gaiter/snow.rsi

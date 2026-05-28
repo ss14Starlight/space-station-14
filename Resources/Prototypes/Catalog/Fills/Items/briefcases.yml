@@ -42,7 +42,7 @@
         - id: RubberStampTrader
         - id: PhoneInstrumentSyndicate
         - id: ClothingHandsGlovesCombat
-        - id: ClothingMaskNeckGaiter
+        - id: ClothingGaiterCharcoal # SL
 
 - type: entity
   id: BriefcaseThiefBribingBundleFilled

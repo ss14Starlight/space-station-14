@@ -73,7 +73,7 @@
         children:
         - id: ClothingHeadHatBeretHoS
         - id: ClothingHeadHatHoshat
-        - id: ClothingMaskNeckGaiter
+        - id: ClothingGaiterCharcoal # SL
         - id: ClothingUniformJumpskirtHoSAlt
         - id: ClothingUniformJumpsuitHoSAlt
         - id: ClothingUniformJumpskirtHosFormal

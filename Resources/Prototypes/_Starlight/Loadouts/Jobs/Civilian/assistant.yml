@@ -120,7 +120,7 @@
   - !type:GroupLoadoutEffect
     proto: HonoredAssistant
   equipment:
-    mask: ClothingMaskNeckGaiter
+    mask: ClothingGaiterCharcoal # SL
 
 # Jumpsuit
 - type: loadout
