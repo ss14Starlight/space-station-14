@@ -10,6 +10,7 @@
           - id: Paper
           - id: Pen
           - id: RubberStampIAA
+          - id: Flash
 
 - type: entity
   id: BriefcaseLawyerFilled
