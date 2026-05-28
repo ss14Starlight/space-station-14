@@ -704,16 +704,3 @@
   storage:
     back:
       - PictureFrame
-
-- type: loadout
-  id: ChonoLokeBundleLoadout
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobClown
-      time: 180000 # 50 hours of HONK
-  storage:
-    back:
-    - ChonoLokeBundleBag
-  groupBy: "clowning shit"
