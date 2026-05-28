@@ -1,6 +1,7 @@
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
+using Content.Shared.Tools.Systems;
 using JetBrains.Annotations;
 
 namespace Content.Shared.Nutrition.EntitySystems
@@ -15,10 +16,12 @@ namespace Content.Shared.Nutrition.EntitySystems
         {
             base.Initialize();
 
-            SubscribeLocalEvent<CreamPieComponent, ThrowDoHitEvent>(OnCreamPieHit);
-            SubscribeLocalEvent<CreamPieComponent, LandEvent>(OnCreamPieLand);
-            SubscribeLocalEvent<CreamPiedComponent, ThrowHitByEvent>(OnCreamPiedHitBy);
-        }
+        SubscribeLocalEvent<CreamPieComponent, ThrowDoHitEvent>(OnCreamPieHit);
+        SubscribeLocalEvent<CreamPieComponent, LandEvent>(OnCreamPieLand);
+        SubscribeLocalEvent<CreamPiedComponent, ThrowHitByEvent>(OnCreamPiedHitBy);
+        SubscribeLocalEvent<CreamPieComponent, BeforeToolRefinedEvent>(OnToolRefine);
+        SubscribeLocalEvent<CreamPiedComponent, RejuvenateEvent>(OnRejuvenate);
+    }
 
         public void SplatCreamPie(Entity<CreamPieComponent> creamPie)
         {
@@ -56,17 +59,50 @@ namespace Content.Shared.Nutrition.EntitySystems
             SplatCreamPie(entity);
         }
 
-        private void OnCreamPiedHitBy(EntityUid uid, CreamPiedComponent creamPied, ThrowHitByEvent args)
-        {
-            if (!Exists(args.Thrown) || !TryComp(args.Thrown, out CreamPieComponent? creamPie)) return;
+    private void OnCreamPiedHitBy(Entity<CreamPiedComponent> creamPied, ref ThrowHitByEvent args)
+    {
+        if (creamPied.Comp.CreamPied || !Exists(args.Thrown) || !TryComp<CreamPieComponent>(args.Thrown, out var creamPie))
+            return;
 
-            SetCreamPied(uid, creamPied, true);
+        // TODO: Check if they even have a head that can be hit.
+        SetCreamPied(creamPied.AsNullable(), true);
+        _stunSystem.TryUpdateParalyzeDuration(creamPied.Owner, creamPie.ParalyzeTime);
 
-            CreamedEntity(uid, creamPied, args);
+        // Throwing is not predicted, so the thrower is not equal to the client predicting the collision, so we cannot pass in a user.
+        // TODO: Make the popup API sane.
+        if (_net.IsClient)
+            return;
 
-            _stunSystem.TryUpdateParalyzeDuration(uid, TimeSpan.FromSeconds(creamPie.ParalyzeTime));
-        }
+        // Shown only to the player that was hit.
+        _popup.PopupEntity(
+            Loc.GetString(
+                "cream-pied-component-on-hit-by-message",
+                ("thrown", args.Thrown)),
+            creamPied.Owner, creamPied.Owner);
 
-        protected virtual void CreamedEntity(EntityUid uid, CreamPiedComponent creamPied, ThrowHitByEvent args) {}
+        var otherPlayers = Filter.PvsExcept(creamPied.Owner);
+
+        // Show to everyone else.
+        _popup.PopupEntity(
+            Loc.GetString(
+                "cream-pied-component-on-hit-by-message-others",
+                ("owner", Identity.Entity(creamPied.Owner, EntityManager)),
+                ("thrown", args.Thrown)),
+            creamPied.Owner, otherPlayers, false);
+    }
+
+    private void OnRejuvenate(Entity<CreamPiedComponent> ent, ref RejuvenateEvent args)
+    {
+        SetCreamPied(ent.AsNullable(), false);
+    }
+
+    // TODO
+    // A regression occured here. Previously creampies would activate their hidden payload if you tried to eat them.
+    // However, the refactor to IngestionSystem caused the event to not be reached,
+    // because eating is blocked if an item is inside the food.
+
+    private void OnToolRefine(Entity<CreamPieComponent> ent, ref BeforeToolRefinedEvent args)
+    {
+        ActivatePayload(ent);
     }
 }

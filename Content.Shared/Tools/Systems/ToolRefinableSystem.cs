@@ -1,46 +1,125 @@
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Construction;
+using Content.Shared.Destructible;
+using Content.Shared.FixedPoint;
+using Content.Shared.Gibbing;
 using Content.Shared.Interaction;
+using Content.Shared.Popups;
+using Content.Shared.Random.Helpers;
 using Content.Shared.Storage;
 using Content.Shared.Tools.Components;
-using Robust.Shared.Network;
+using Content.Shared.Verbs;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Tools.Systems;
 
 public sealed partial class ToolRefinablSystem : EntitySystem
 {
-    [Dependency] private INetManager _net = default!;
-    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedToolSystem _toolSystem = default!;
+    [Dependency] private GibbingSystem _gib = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private SharedDestructibleSystem _destructible = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<ToolRefinableComponent, GetVerbsEvent<InteractionVerb>>(AddVerb);
         SubscribeLocalEvent<ToolRefinableComponent, InteractUsingEvent>(OnInteractUsing);
-        SubscribeLocalEvent<ToolRefinableComponent, WelderRefineDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<ToolRefinableComponent, ToolRefineDoAfterEvent>(OnDoAfter);
     }
 
-    private void OnInteractUsing(EntityUid uid, ToolRefinableComponent component, InteractUsingEvent args)
+    #region Subscriptions
+
+    /// <summary> Normal interactions. </summary>
+    private void OnInteractUsing(Entity<ToolRefinableComponent> ent, ref InteractUsingEvent args)
     {
         if (args.Handled)
             return;
 
-        args.Handled = _toolSystem.UseTool(
-            args.Used,
-            args.User,
-            uid,
-            component.RefineTime,
-            component.QualityNeeded,
-            new WelderRefineDoAfterEvent(),
-            fuel: component.RefineFuel);
+        var component = ent.Comp;
+        var uid = ent.Owner;
+        var attemptEvent = new AttemptToolRefineEvent(args.Used);
+        RaiseLocalEvent(args.Target, ref attemptEvent);
+        if (attemptEvent.IsCancelled)
+        {
+            _popup.PopupPredicted(attemptEvent.BlockCause, args.User, args.User);
+            return;
+        }
+
+        args.Handled = UseTool(uid, component, args.Used, args.User);
     }
 
-    private void OnDoAfter(EntityUid uid, ToolRefinableComponent component, WelderRefineDoAfterEvent args)
+    /// <summary> Verb interactions. </summary>
+    private void AddVerb(Entity<ToolRefinableComponent> ent, ref GetVerbsEvent<InteractionVerb> args)
     {
-        if (args.Cancelled)
+        var used = args.Using;
+        var component = ent.Comp;
+
+        if (ent.Comp.VerbText == null || !args.CanInteract || !args.CanAccess)
             return;
 
-        if (_net.IsClient)
+        var user = args.User;
+
+        // Decide what we use as a tool and can it be used for refinement
+        var tool = used ?? user;
+        var verbDisabled = false;
+        string? verbMessage = null;
+
+        if (!_toolSystem.HasQuality(tool, ent.Comp.QualityNeeded))
+        {
+            verbDisabled = true;
+            verbMessage = ent.Comp.ToolMissingQualityTooltip == null
+                ? null
+                : Loc.GetString(ent.Comp.ToolMissingQualityTooltip, ("target", ent.Owner));
+        }
+        // make an attempt to ensure refinement is not blocked.
+        var attemptEvent = new AttemptToolRefineEvent(tool);
+        RaiseLocalEvent(args.Target, ref attemptEvent);
+
+        if (attemptEvent.IsCancelled)
+        {
+            verbDisabled = true;
+            verbMessage = attemptEvent.BlockCause;
+        }
+
+        verbMessage ??= component.VerbDefaultTooltip == null
+            ? null
+            : Loc.GetString(component.VerbDefaultTooltip.Value);
+
+        InteractionVerb verb = new()
+        {
+            Text = Loc.GetString(ent.Comp.VerbText),
+            Icon = ent.Comp.VerbIcon,
+            Disabled = verbDisabled,
+            Message = verbMessage,
+            Act = () =>
+            {
+                if (!verbDisabled)
+                    UseTool(ent, ent, tool, user);
+            },
+        };
+        args.Verbs.Add(verb);
+    }
+
+    /// <summary> DoAfter for refining. </summary>
+    private void OnDoAfter(Entity<ToolRefinableComponent> ent, ref ToolRefineDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Used == null || !args.Target.HasValue)
             return;
 
         var component = ent.Comp;
@@ -68,8 +147,7 @@ public sealed partial class ToolRefinablSystem : EntitySystem
         {
             // TODO: Use RandomPredicted https://github.com/space-wizards/RobustToolbox/pull/5849
             var rndSeed = SharedRandomExtensions.HashCodeCombine((int)_gameTiming.CurTick.Value, args.User.Id, uid.Id);
-            var rng = new RobustRandom();
-            rng.SetSeed(rndSeed);
+            var rng = new System.Random(rndSeed);
             SpawnRefinement(component.RefineResult, uid, rng);
         }
 
@@ -80,22 +158,18 @@ public sealed partial class ToolRefinablSystem : EntitySystem
         _destructible.DestroyEntity(uid);
     }
 
-    private void SpawnRefinement(List<EntitySpawnEntry> spawnList, EntityUid source, IRobustRandom rng)
+    private void SpawnRefinement(List<EntitySpawnEntry> spawnList, EntityUid source, System.Random rng)
     {
         var spawns = EntitySpawnCollection.GetSpawns(spawnList, rng);
         var spawned = new List<EntityUid>(spawns.Count);
-
-        if (_container.TryGetContainingContainer(source, out var container))
-            _container.Remove((source, null, null), container);
-
         foreach (var protoId in spawns)
         {
             var refineResultUid = PredictedSpawnNextToOrDrop(protoId, source);
             spawned.Add(refineResultUid);
 
-            if (container == null || !_container.Insert(refineResultUid, container))
+            if (!_container.IsEntityOrParentInContainer(refineResultUid))
             {
-                var randVect = rng.NextVector2(2.0f, 2.5f);
+                var randVect = rng.NextPolarVector2(2.0f, 2.5f);
                 _physics.SetLinearVelocity(refineResultUid, randVect);
             }
         }
@@ -103,17 +177,19 @@ public sealed partial class ToolRefinablSystem : EntitySystem
         if (!TryComp<ToolRefinableSolutionComponent>(source, out var comp))
             return;
 
-        if (!TryGetSourceSolutionForTransfer(source, comp.SolutionToSplit, out var solutionInfo))
-            return;
+        TryGetSourceSolutionForTransfer(source, comp.SolutionToSplit, out var solutionInfo);
 
-        var (sourceSoln, sourceSolution) = solutionInfo.Value;
-
-        for (var i = spawned.Count; i > 0; i--)
+        foreach (var spawnedUid in spawned)
         {
-            var spawnedUid = spawned[i - 1];
-            var refineResultVolume = sourceSolution.Volume / FixedPoint2.New(i);
-            var lostSolution = _solutionContainer.SplitSolution(sourceSoln, refineResultVolume);
-            FillResult(spawnedUid, comp.SolutionToSet, lostSolution);
+            // Fills refine result if original entity allows.
+            if (solutionInfo.HasValue && comp.SolutionToSet != null)
+            {
+                var (sourceSoln, sourceSolution) = solutionInfo.Value;
+                var refineResultVolume = sourceSolution.Volume / FixedPoint2.New(spawns.Count);
+
+                var lostSolution = _solutionContainer.SplitSolution(sourceSoln, refineResultVolume);
+                FillResult(spawnedUid, comp.SolutionToSet, lostSolution);
+            }
         }
     }
 
@@ -196,6 +272,25 @@ public sealed partial class ToolRefinablSystem : EntitySystem
             fuel: component.RefineFuel
         );
     }
+}
+
+/// <summary>
+/// Event for checking if tool refining of entity is blocked in some complex way.
+/// </summary>
+[ByRefEvent]
+public record struct AttemptToolRefineEvent(
+    EntityUid Using,
+    bool IsCancelled = false,
+    string? BlockCause = null
+);
+
+/// <summary>
+/// Called after slicing of the entity.
+/// </summary>
+[ByRefEvent]
+public record struct BeforeToolRefinedEvent(EntityUid User)
+{
+    public bool Cancelled;
 }
 
 /// <summary>
