@@ -58,9 +58,9 @@
             Warden: [ 1, 1 ]
             Brigmedic: [ 1, 1 ]
             SecurityOfficer: [ 6, 8 ]
+            SecurityCadet: [ 3, 4 ] #intern, not counted
             DutyOfficer: [ 1, 2 ]
             Detective: [ 1, 1 ]
-            SecurityCadet: [ 4, 5 ] #intern, not counted
             #Lawyer: [ 2, 2 ]
             #supply
             SalvageLead: [ 1, 1 ]
