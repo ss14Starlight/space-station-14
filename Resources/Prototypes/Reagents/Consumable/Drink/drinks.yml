@@ -445,11 +445,21 @@
   boilingPoint: 100.0
   meltingPoint: 0.0
   friction: 0.4
+  # Starlight edit start - Make Water work like Ipecac for Dwarfs, but even worse
   metabolisms:
     Drink:
       effects:
       - !type:SatiateThirst
         factor: 4
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Water
+          min: 4
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+        probability: 0.5
+  # Starlight edit end
     Gas:
       effects:
       - !type:HealthChange

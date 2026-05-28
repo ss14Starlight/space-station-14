@@ -120,3 +120,24 @@ language-Lagomorphian-description = A very lynarxical tongue, developed as an in
 
 language-Cosmic-name = Astral Murmur
 language-Cosmic-description = THE CURTAINS MUST FALL
+
+language-Abductor-name = Abductor
+language-Abductor-description = ...
+
+language-Nexus-name = Nexus
+language-Nexus-description = A neural connection that allows them to communicate with others of their species over a technological network.
+
+language-Changeling-name = Hivemind
+language-Changeling-description = ...
+
+language-Dantalion-name = Thrall
+language-Dantalion-description = ...
+
+language-Empathy-name = Empathy
+language-Empathy-description = ...
+
+language-Carpmind-name = Hivemind
+language-Carpmind-description = Various fishy minds.
+
+language-Xenomind-name = Hivemind
+language-Xenomind-description = Various minds of xenos and terrors.

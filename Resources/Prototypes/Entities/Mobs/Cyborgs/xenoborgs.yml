@@ -23,7 +23,7 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 7
+    maxModules: 8 # Starlight
     hasMindState: borg_e
     noMindState: borg_e_r
     moduleWhitelist:
@@ -193,7 +193,7 @@
   - type: MovementAlwaysTouching # it flies in space with tiny thrusters
   - type: FlashImmunity
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5 # Starlight
     hasMindState: borg_e
     noMindState: borg_e_r
     moduleWhitelist:

@@ -1,10 +1,10 @@
-using System.Linq;
 using Content.Server.NodeContainer.Nodes;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Components;
 using Content.Shared.NodeContainer;
 using Content.Shared.Atmos;
 using Robust.Shared.Map.Components;
+using Content.Server.NodeContainer.EntitySystems;
 using Content.Shared.Starlight.CCVar;
 using Robust.Shared.Configuration;
 
@@ -19,7 +19,13 @@ public sealed class PipeDockingSystem : EntitySystem
 
     [Dependency] public readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    private readonly HashSet<EntityUid> _dockConnectionsChecked = new();
+    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
+
+    private readonly List<PipeNode> _dockAPipes = [];
+    private readonly List<PipeNode> _dockBPipes = [];
+    private readonly List<PipeNode> _localPipes = [];
+    private readonly List<PipeNode> _otherPipes = [];
+    private readonly List<PipeNode> _reachablePipeScratch = [];
 
     public bool DockPipes { get; private set; } = true;
 
@@ -30,6 +36,7 @@ public sealed class PipeDockingSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<DockEvent>(OnDocked);
         SubscribeLocalEvent<UndockEvent>(OnUndocked);
 
@@ -49,71 +56,19 @@ public sealed class PipeDockingSystem : EntitySystem
         if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
             return;
 
-        _dockConnectionsChecked.Clear();
+        GetDockConnectingPipes(dockA, _dockAPipes);
+        GetDockConnectingPipes(dockB, _dockBPipes);
 
-        var dockAConnecting = GetDockConnectingPipe(dockA).Where(ShouldDockPipeType).ToList();
-        var dockBConnecting = GetDockConnectingPipe(dockB).Where(ShouldDockPipeType).ToList();
-
-        foreach (var pipeA in dockAConnecting)
+        foreach (var pipeA in _dockAPipes)
         {
-            if (!IsAnchored(pipeA.Owner))
-                continue;
-
-            foreach (var pipeB in dockBConnecting)
+            foreach (var pipeB in _dockBPipes)
             {
-                if (!IsAnchored(pipeB.Owner) || !CanConnect(pipeA, pipeB))
+                if (!CanConnect(pipeA, pipeB))
                     continue;
 
                 LinkPipes(pipeA, pipeB);
             }
         }
-
-        foreach (var dock in new[] { dockA, dockB })
-        {
-            foreach (var pipe in GetDockConnectingPipe(dock).Where(ShouldDockPipeType))
-            {
-                if (!IsAnchored(pipe.Owner))
-                    continue;
-
-                CheckForDockConnections(pipe.Owner, pipe);
-            }
-        }
-    }
-
-    private List<PipeNode> GetDockConnectingPipe(EntityUid dock)
-    {
-        var xform = Transform(dock);
-        if (xform.GridUid == null)
-            return new();
-        if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
-            return new();
-
-        var dockTile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
-        var dockDir = xform.LocalRotation.GetCardinalDir();
-        var dockNodes = new List<PipeNode>();
-
-        foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, dockTile))
-        {
-            if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
-                continue;
-            var entXform = Transform(ent);
-            if (!entXform.Anchored)
-                continue;
-
-            foreach (var node in nodeContainer.Nodes.Values.OfType<PipeNode>())
-            {
-                if (node.Deleting)
-                    continue;
-                if (!ShouldDockPipeType(node))
-                    continue;
-                var hasDir = node.CurrentPipeDirection.HasDirection(dockDir.ToPipeDirection());
-                if (!hasDir)
-                    continue;
-                dockNodes.Add(node);
-            }
-        }
-
-        return dockNodes;
     }
 
     private void OnUndocked(UndockEvent ev)
@@ -121,20 +76,58 @@ public sealed class PipeDockingSystem : EntitySystem
         if (!TryGetDockEntity(ev.DockA, out var dockA) || !TryGetDockEntity(ev.DockB, out var dockB))
             return;
 
-        var pipesA = GetDockConnectingPipe(dockA);
-        var pipesB = GetDockConnectingPipe(dockB);
+        GetDockConnectingPipes(dockA, _dockAPipes, includeDisabled: true);
+        GetDockConnectingPipes(dockB, _dockBPipes, includeDisabled: true);
 
-        foreach (var pipeA in pipesA)
+        foreach (var pipeA in _dockAPipes)
         {
-            if (!IsAnchored(pipeA.Owner))
-                continue;
-
-            foreach (var pipeB in pipesB)
+            foreach (var pipeB in _dockBPipes)
             {
-                if (!IsAnchored(pipeB.Owner) || !CanConnect(pipeA, pipeB))
+                if (!CanConnect(pipeA, pipeB))
                     continue;
 
                 UnlinkPipes(pipeA, pipeB);
+            }
+        }
+    }
+
+    private void GetDockConnectingPipes(EntityUid dock, List<PipeNode> dockNodes, bool includeDisabled = false)
+    {
+        dockNodes.Clear();
+
+        var xform = Transform(dock);
+        if (xform.GridUid == null)
+            return;
+
+        if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
+            return;
+
+        var dockTile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
+        var dockDir = xform.LocalRotation.GetCardinalDir().ToPipeDirection();
+
+        foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, dockTile))
+        {
+            if (ent == dock)
+                continue;
+
+            if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
+                continue;
+
+            foreach (var node in nodeContainer.Nodes.Values)
+            {
+                if (node is not PipeNode pipeNode)
+                    continue;
+
+                if (pipeNode.Deleting)
+                    continue;
+
+                if (!includeDisabled && !ShouldDockPipeType(pipeNode))
+                    continue;
+
+                if (!pipeNode.CurrentPipeDirection.HasDirection(dockDir))
+                    continue;
+
+                dockNodes.Add(pipeNode);
             }
         }
     }
@@ -143,49 +136,51 @@ public sealed class PipeDockingSystem : EntitySystem
 
     #region Pipe Query
 
-    public bool ShouldDockPipeType(PipeNode node)
+    public bool ShouldDockPipeType(PipeNode _)
         => DockPipes;
 
-    public List<PipeNode> GetTilePipes(EntityUid dock)
+    public List<PipeNode> GetTilePipes(EntityUid dock, bool includeDisabled = false)
     {
-        if (!DockPipes)
-            return new();
-        var xform = Transform(dock);
-        if (xform.GridUid == null)
-            return new();
-
-        if (!TryComp<MapGridComponent>(xform.GridUid.Value, out var grid))
-            return new();
-
-        var tile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
         var result = new List<PipeNode>();
-        foreach (var ent in _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tile))
+
+        if (!includeDisabled && !DockPipes)
+            return result;
+
+        if (!TryGetAnchoredTile(dock, out var gridUid, out var grid, out var tile))
+            return result;
+
+        foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid, grid, tile))
         {
             if (ent == dock)
                 continue;
+
             if (!TryComp<NodeContainerComponent>(ent, out var nodeContainer))
                 continue;
-            var entXform = Transform(ent);
-            if (!entXform.Anchored)
-                continue;
-            foreach (var pipe in nodeContainer.Nodes.Values.OfType<PipeNode>().Where(pipe => !pipe.Deleting))
+
+            foreach (var node in nodeContainer.Nodes.Values)
             {
-                if (!ShouldDockPipeType(pipe))
+                if (node is not PipeNode pipe)
                     continue;
+
+                if (pipe.Deleting)
+                    continue;
+
+                if (!includeDisabled && !ShouldDockPipeType(pipe))
+                    continue;
+
                 result.Add(pipe);
             }
         }
+
         return result;
     }
 
-    public bool CanConnect(PipeNode a, PipeNode b)
-    {
-        var result = a.NodeGroupID == b.NodeGroupID
+    public static bool CanConnect(PipeNode a, PipeNode b)
+        => a != b
+            && a.NodeGroupID == b.NodeGroupID
             && a.CurrentPipeLayer == b.CurrentPipeLayer
             && !a.Deleting
             && !b.Deleting;
-        return result;
-    }
 
     #endregion
 
@@ -198,47 +193,44 @@ public sealed class PipeDockingSystem : EntitySystem
     {
         if (!DockPipes)
             return;
-        if (!EntityManager.TryGetComponent<NodeContainerComponent>(pipeEntity, out var nodeContainer))
-            return;
-        var xform = Transform(pipeEntity);
-        if (xform.GridUid == null || !xform.Anchored)
-            return;
-        if (!EntityManager.TryGetComponent<MapGridComponent>(xform.GridUid.Value, out var grid))
-            return;
-        var tile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
-        var anchoredEntities = _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tile).ToList();
-        var dockedEntities = anchoredEntities.Where(ent =>
-            ent != pipeEntity &&
-            EntityManager.TryGetComponent<DockingComponent>(ent, out var docking) &&
-            docking.DockedWith is not null).ToList();
-
-        if (dockedEntities.Count == 0)
+        if (!TryComp<NodeContainerComponent>(pipeEntity, out var nodeContainer))
             return;
 
-        RemoveDockConnections(pipeEntity);
+        if (!TryGetAnchoredTile(pipeEntity, out var gridUid, out var grid, out var tile))
+            return;
 
-        foreach (var ent in dockedEntities)
+        var removedOldConnections = false;
+
+        foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid, grid, tile))
         {
-            var docking = EntityManager.GetComponent<DockingComponent>(ent);
-            var otherDock = docking.DockedWith!.Value;
-
-            var localPipes = GetDockConnectingPipe(ent)
-                .Where(p => p.Owner == pipeEntity && IsAnchored(p.Owner) && ShouldDockPipeType(p))
-                .ToList();
-
-            if (localPipes.Count == 0)
+            if (ent == pipeEntity)
                 continue;
 
-            var pipesOther = GetDockConnectingPipe(otherDock)
-                .Where(p => IsAnchored(p.Owner) && ShouldDockPipeType(p))
-                .ToList();
+            if (!TryComp<DockingComponent>(ent, out var docking) || docking.DockedWith is not { } otherDock)
+                continue;
 
-            foreach (var node in localPipes)
-            foreach (var pipeB in pipesOther)
+            if (!removedOldConnections)
             {
-                if (CanConnect(node, pipeB))
+                RemoveDockConnections(pipeEntity, nodeContainer);
+                removedOldConnections = true;
+            }
+
+            GetDockConnectingPipes(ent, _localPipes);
+            GetDockConnectingPipes(otherDock, _otherPipes);
+
+            foreach (var node in _localPipes)
+            {
+                if (node.Owner != pipeEntity)
+                    continue;
+
+                foreach (var pipeB in _otherPipes)
+                {
+                    if (!CanConnect(node, pipeB))
+                        continue;
+
                     LinkPipes(node, pipeB);
+                }
             }
         }
     }
@@ -252,30 +244,25 @@ public sealed class PipeDockingSystem : EntitySystem
         if (!DockPipes)
             return;
 
-        var xform = Transform(pipeEntity);
-        if (xform.GridUid == null || !xform.Anchored)
+        if (!TryGetAnchoredTile(pipeEntity, out var gridUid, out var grid, out var tile))
             return;
-        if (!_dockConnectionsChecked.Add(pipeEntity))
-            return;
-        if (!EntityManager.TryGetComponent<MapGridComponent>(xform.GridUid.Value, out var grid))
-            return;
-        var tile = _mapSystem.TileIndicesFor(xform.GridUid.Value, grid, xform.Coordinates);
 
-        var anchoredEntities = _mapSystem.GetAnchoredEntities(xform.GridUid.Value, grid, tile).ToList();
-        var dockedEntities = anchoredEntities.Where(ent =>
-            ent != pipeEntity &&
-            EntityManager.TryGetComponent<DockingComponent>(ent, out var docking) &&
-            docking.DockedWith is not null).ToList();
-
-        foreach (var ent in dockedEntities)
+        foreach (var ent in _mapSystem.GetAnchoredEntities(gridUid, grid, tile))
         {
-            var docking = EntityManager.GetComponent<DockingComponent>(ent);
-            var otherDock = docking.DockedWith!.Value;
-            var pipesOther = GetDockConnectingPipe(otherDock).Where(p => IsAnchored(p.Owner));
-            foreach (var pipeB in pipesOther)
+            if (ent == pipeEntity)
+                continue;
+
+            if (!TryComp<DockingComponent>(ent, out var docking) || docking.DockedWith is not { } otherDock)
+                continue;
+
+            GetDockConnectingPipes(otherDock, _otherPipes);
+
+            foreach (var pipeB in _otherPipes)
             {
-                if (CanConnect(pipeNode, pipeB))
-                    LinkPipes(pipeNode, pipeB);
+                if (!CanConnect(pipeNode, pipeB))
+                    continue;
+
+                LinkPipes(pipeNode, pipeB);
             }
         }
     }
@@ -284,41 +271,77 @@ public sealed class PipeDockingSystem : EntitySystem
 
     public void RemoveDockConnections(EntityUid pipeEntity)
     {
-        if (!EntityManager.TryGetComponent<NodeContainerComponent>(pipeEntity, out var nodeContainer))
+        if (!TryComp<NodeContainerComponent>(pipeEntity, out var nodeContainer))
             return;
 
-        foreach (var node in nodeContainer.Nodes.Values.OfType<PipeNode>())
+        RemoveDockConnections(pipeEntity, nodeContainer);
+    }
+
+    private void RemoveDockConnections(EntityUid _, NodeContainerComponent nodeContainer)
+    {
+        foreach (var node in nodeContainer.Nodes.Values)
         {
-            var reachable = node.GetAlwaysReachable();
+            if (node is not PipeNode pipe)
+                continue;
+
+            var reachable = pipe.GetAlwaysReachable();
             if (reachable == null)
                 continue;
 
-            foreach (var target in reachable.ToList())
+            _reachablePipeScratch.Clear();
+
+            foreach (var target in reachable)
             {
                 if (target is not PipeNode pipeNode)
                     continue;
 
-                node.RemoveAlwaysReachable(pipeNode);
-                pipeNode.RemoveAlwaysReachable(node);
+                _reachablePipeScratch.Add(pipeNode);
             }
+
+            if (_reachablePipeScratch.Count == 0)
+                continue;
+
+            foreach (var pipeNode in _reachablePipeScratch)
+            {
+                pipe.RemoveAlwaysReachable(pipeNode);
+                pipeNode.RemoveAlwaysReachable(pipe);
+                _nodeGroupSystem.QueueReflood(pipeNode);
+            }
+
+            _nodeGroupSystem.QueueReflood(pipe);
         }
     }
 
-    private bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
+    private bool TryGetAnchoredTile(
+        EntityUid uid,
+        out EntityUid gridUid,
+        out MapGridComponent grid,
+        out Vector2i tile)
     {
-        var query = EntityQueryEnumerator<DockingComponent>();
-        while (query.MoveNext(out uid, out var docking))
-        {
-            if (ReferenceEquals(docking, component))
-                return true;
-        }
+        gridUid = default;
+        grid = default!;
+        tile = default;
 
-        uid = default;
-        return false;
+        var xform = Transform(uid);
+        if (xform.GridUid is not { } xformGridUid || !xform.Anchored)
+            return false;
+
+        if (!TryComp<MapGridComponent>(xformGridUid, out var gridComp))
+            return false;
+
+        gridUid = xformGridUid;
+        grid = gridComp;
+        tile = _mapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
+        return true;
     }
 
-    private bool IsAnchored(EntityUid uid)
-        => Transform(uid).Anchored;
+#pragma warning disable CS0618 // Using .Owner for Performance.
+    private static bool TryGetDockEntity(DockingComponent component, out EntityUid uid)
+    {
+        uid = component.Owner;
+        return true;
+    }
+#pragma warning restore CS0618
 
     private void LinkPipes(PipeNode a, PipeNode b)
     {
@@ -329,11 +352,34 @@ public sealed class PipeDockingSystem : EntitySystem
 
         a.AddAlwaysReachable(b);
         b.AddAlwaysReachable(a);
+
+        _nodeGroupSystem.QueueReflood(a);
+        _nodeGroupSystem.QueueReflood(b);
     }
 
     private void UnlinkPipes(PipeNode a, PipeNode b)
     {
-        a.RemoveAlwaysReachable(b);
-        b.RemoveAlwaysReachable(a);
+        var reachableA = a.GetAlwaysReachable();
+        var reachableB = b.GetAlwaysReachable();
+
+        var changed = false;
+
+        if (reachableA != null && reachableA.Contains(b))
+        {
+            a.RemoveAlwaysReachable(b);
+            changed = true;
+        }
+
+        if (reachableB != null && reachableB.Contains(a))
+        {
+            b.RemoveAlwaysReachable(a);
+            changed = true;
+        }
+
+        if (!changed)
+            return;
+
+        _nodeGroupSystem.QueueReflood(a);
+        _nodeGroupSystem.QueueReflood(b);
     }
 }

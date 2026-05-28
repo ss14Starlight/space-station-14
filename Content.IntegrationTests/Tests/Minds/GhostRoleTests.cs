@@ -61,8 +61,10 @@ public sealed class GhostRoleTests
         var session = sPlayerMan.Sessions.Single();
         var originalPlayerMindId = session.ContentData()!.Mind!.Value;
 
+        var ghosts = entMan.AllEntities<GhostComponent>();
+
         // Check that there are no ghosts
-        Assert.That(entMan.Count<GhostComponent>(), Is.Zero);
+        Assert.That(!ghosts.Any(), $"Ghosts detected! Count: {ghosts.Count()}, Owners: {string.Join(", ", ghosts.Select(x => x.Owner.Id))}");
 
         // Spawn player entity & attach
         EntityUid originalPlayerMob = default;

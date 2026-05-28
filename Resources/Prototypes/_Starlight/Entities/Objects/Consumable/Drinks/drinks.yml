@@ -15,10 +15,26 @@
     state: icon
 
 - type: entity
+  parent: DrinkGlass
+  id: DrinkTheHighlanderGlass
+  suffix: The Highlander
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Highlander
+          Quantity: 30
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Drinks/highlander.rsi
+    state: icon
+
+- type: entity
   parent: DrinkWaterBottleFull
   id: DrinkWaterBottleEmpty
   name: water bottle
-  description: Simple clean water of unknown origin. You think that maybe you dont want to know it.
+  description: Simple clean water of unknown origin. You think that maybe you don't want to know it.
   components:
   - type: SolutionContainerManager
     solutions:

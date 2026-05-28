@@ -8,11 +8,6 @@ namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed class VampireDecoySystem : EntitySystem
 {
-    private const string DecoyFlashEffectId = "GrenadeFlashEffect";
-    private const float DecoyFlashRange = 3f;
-    private static readonly TimeSpan _decoyFlashDuration = TimeSpan.FromSeconds(4);
-    private static readonly SoundSpecifier _decoyFlashSound = new SoundPathSpecifier("/Audio/Weapons/flash.ogg");
-
     [Dependency] private readonly SharedFlashSystem _flash = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -29,18 +24,19 @@ public sealed class VampireDecoySystem : EntitySystem
             return;
 
         component.Detonated = true;
-        TriggerDecoyFlash(uid);
+        TriggerDecoyFlash((uid, component));
     }
 
-    private void TriggerDecoyFlash(EntityUid uid)
+    private void TriggerDecoyFlash(Entity<VampireDecoyComponent> ent)
     {
+        var (uid, comp) = ent;
         var coords = _transform.GetMapCoordinates(uid);
         var entityCoords = Transform(uid).Coordinates;
 
-        _flash.FlashArea(uid, null, DecoyFlashRange, _decoyFlashDuration, slowTo: 0.5f, displayPopup: true, probability: 1f);
-        _audio.PlayPvs(_decoyFlashSound, entityCoords, AudioParams.Default.WithVolume(1f).WithMaxDistance(DecoyFlashRange));
+        _flash.FlashArea(uid, null, comp.FlashRange, comp.FlashDuration, slowTo: comp.SlowTo, displayPopup: comp.DisplayPopup, probability: comp.Probability);
+        _audio.PlayPvs(comp.FlashSound, entityCoords, AudioParams.Default.WithVolume(1f).WithMaxDistance(comp.FlashRange));
 
-        EntityManager.SpawnEntity(DecoyFlashEffectId, coords);
+        EntityManager.SpawnEntity(comp.FlashEffectId, coords);
         QueueDel(uid);
     }
 }

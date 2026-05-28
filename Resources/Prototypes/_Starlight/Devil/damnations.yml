@@ -1,0 +1,186 @@
+# CURSES
+
+- type: damnation
+  id: Soul
+  name: my soul
+  description: The signator forfeits their soul to you. Upon death, their soul will be sent to the depths of hell, rendering their corpse unrevivable.
+  cost: -10
+  components:
+  - type: Unrevivable
+    reasonMessage: defibrillator-damned
+  actions:
+  - !type:DamnationActionAddAlert
+    alerts:
+    - SoulDebt
+
+- type: damnation
+  id: Pacifism
+  name: give up my will to fight
+  description: The signator gives up their inner fight, becoming unable to bring harm to anything living or inanimate.
+  cost: -3
+  components:
+  - type: Pacified
+    disallowAllCombat: true
+
+- type: damnation
+  id: Blindness
+  name: give up my sight
+  description: The signator forfeits their ability to see.
+  cost: -3
+  components:
+  - type: PermanentBlindness
+    blindness: 0
+
+- type: damnation
+  id: Time
+  name: give up my life
+  description: The signator forfeits their life, leaving them with five minutes left to live.
+  cost: -8
+  reverseOnRemove: false # prevent cheesing it for points
+  components:
+  - type: Doomed
+
+- type: damnation
+  id: Credits
+  name: give up my riches
+  description: The signator forfeits 5000 credits.
+  cost: -5
+  actions:
+  - !type:DamnationActionDeductCredits
+    amount: 5000
+
+- type: damnation
+  id: Purpose
+  name: lose my purpose
+  description: The signator received a fate worse than death.
+  cost: -6
+  components:
+  - type: Cluwne
+
+- type: damnation
+  id: Humanity
+  name: lose my humanity
+  description: The signator will regress into a more primitive form.
+  cost: -5
+  actions:
+  - !type:DamnationActionPolymorph
+    polymorph: IrreversibleMonkey
+
+- type: damnation
+  id: Organ
+  name: give up an organ
+  description: The signator loses a random organ. This could be anything from their lungs to a kidney.
+  cost: -6
+  actions:
+  - !type:DamnationActionRemoveOrgan
+
+- type: damnation
+  id: Terminator
+  name: become a target
+  description: The future is imperceptibly modified, putting the signator square in the sights of a vengeful actor.
+  cost: -4
+  actions:
+  - !type:DamnationActionTerminator
+
+- type: damnation
+  id: Mute
+  name: lose my voice
+  description: Makes the signator mute
+  cost: -2
+  components:
+  - type: Muted
+
+# REWARDS
+
+- type: damnation
+  id: SpaceImmunity
+  name: gain immunity to space
+  description: The signator becomes immune to space, no longer bound by their fear.
+  cost: 8
+  removedComponents:
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.85
+        Heat: 0.1
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+  - type: Temperature
+
+- type: damnation
+  id: AllSeeing
+  name: gain knowledge of my surroundings
+  description: the signator can perceive through walls.
+  cost: 6
+  components:
+    - type: ThermalVision
+  reverseOnRemove: true
+
+- type: damnation
+  id: Magic
+  name: gain arcane powers
+  description: The signator learns some magical transport spells.
+  cost: 16
+  components:
+    - type: Jaunt
+  reverseOnRemove: true
+
+- type: damnation
+  id: Health
+  name: gain self rejuvenation
+  description: The signator gains the ability to totally restore their health, once.
+  cost: 10
+  reverseOnRemove: true
+  actions:
+  - !type:DamnationActionAddAction
+    actions:
+    - ActionInstantRejuvenate
+
+- type: damnation
+  id: Power
+  name: gain power over others
+  description: The signator gains a piece of armor and a blade, so that they can rend their will upon the world.
+  cost: 6
+  actions:
+  - !type:DamnationActionSpawnLoot
+    table: PowerDamnationRandomEquipment
+
+- type: damnation
+  id: Gun
+  name: receive a great equalizer
+  description: The signator receives a gun. We bought some arms futures and it didn't exactly turn out, need to get this crap off our hands.
+  cost: 10
+  actions:
+  - !type:DamnationActionSpawnLoot
+    table: GunDamnationKit
+
+- type: damnation
+  id: Electricity
+  name: gain immunity to electricity
+  description: The signator becomes.... insulated
+  cost: 4
+  components:
+  - type: Insulated
+
+- type: damnation
+  id: Noslip
+  name: gain a sure footing
+  description: The signator cannot slip anymore
+  cost: 5
+  components:
+  - type: NoSlip
+
+# TESTS (not intended for gameplay)
+
+- type: damnation
+  id: TestFail
+  name: fail to sign
+  description: The contract will never be able to complete
+  cost: -10
+  actions:
+  - !type:DamnationActionFail

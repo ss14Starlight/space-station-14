@@ -6,6 +6,11 @@ public sealed class SpeechMessage
 {
     public string Text = "";
     public string? Tts { get; set; }
+
+    /// <summary>
+    /// Original text sent by user, without any accent modifications - useful for checking if players are saying something, regardless of accent
+    /// </summary>
+    public string OriginalText = "";
     public SpeechModifier Modifier { get; set; } = SpeechModifier.None;
 
     public static implicit operator SpeechMessage(string text) => new() { Text = text, Tts = text };

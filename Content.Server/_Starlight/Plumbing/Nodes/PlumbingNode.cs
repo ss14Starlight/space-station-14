@@ -1,18 +1,14 @@
 using Content.Server._Starlight.Plumbing.NodeGroups;
 using Content.Server._Starlight.Plumbing.EntitySystems;
 using Content.Server._Starlight.Plumbing.Components;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.NodeContainer;
 using Content.Shared.Tag;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Map.Components;
-using System.Collections.Generic;
-using System;
 
 namespace Content.Server._Starlight.Plumbing.Nodes;
 
@@ -25,8 +21,8 @@ namespace Content.Server._Starlight.Plumbing.Nodes;
 [Virtual]
 public partial class PlumbingNode : PipeNode
 {
-    private static readonly ProtoId<TagPrototype> PlumbingDuctTag = "PlumbingDuct";
-    private static readonly Dictionary<(EntityUid Owner, string NodeName, PipeDirection Direction), EntityUid> SelectedDuctByMachineSide = new();
+    private static readonly ProtoId<TagPrototype> _plumbingDuctTag = "PlumbingDuct";
+    private static readonly Dictionary<(EntityUid Owner, string NodeName, PipeDirection Direction), EntityUid> _selectedDuctByMachineSide = new();
 
     /// <summary>
     ///     The <see cref="IPlumbingNet"/> this plumbing duct is part of.
@@ -54,7 +50,7 @@ public partial class PlumbingNode : PipeNode
     {
         var mapSystem = entMan.System<SharedMapSystem>();
         var tags = entMan.System<TagSystem>();
-        var isPlumbingDuct = tags.HasTag(Owner, PlumbingDuctTag);
+        var isPlumbingDuct = tags.HasTag(Owner, _plumbingDuctTag);
         var yielded = new HashSet<Node>();
         var nodeName = Name ?? "__unnamed";
 
@@ -119,11 +115,11 @@ public partial class PlumbingNode : PipeNode
 
                 if (firstConnectedCandidate == null)
                 {
-                    SelectedDuctByMachineSide.Remove(sideKey);
+                    _selectedDuctByMachineSide.Remove(sideKey);
                     continue;
                 }
 
-                SelectedDuctByMachineSide[sideKey] = firstConnectedCandidate.Owner;
+                _selectedDuctByMachineSide[sideKey] = firstConnectedCandidate.Owner;
                 CurrentPipeLayer = firstConnectedCandidate.CurrentPipeLayer;
                 selectedByDirection[direction] = firstConnectedCandidate;
             }
@@ -155,14 +151,14 @@ public partial class PlumbingNode : PipeNode
                     if (!pipe.CurrentPipeDirection.HasDirection(direction.GetOpposite()))
                         continue;
 
-                    var otherIsPlumbingDuct = tags.HasTag(pipe.Owner, PlumbingDuctTag);
+                    var otherIsPlumbingDuct = tags.HasTag(pipe.Owner, _plumbingDuctTag);
                     if (otherIsPlumbingDuct)
                         continue;
 
                     var machineNodeName = pipe.Name ?? "__unnamed";
                     var machineSide = direction.GetOpposite();
                     var machineSideKey = (pipe.Owner, machineNodeName, machineSide);
-                    if (SelectedDuctByMachineSide.TryGetValue(machineSideKey, out var selectedDuct) &&
+                    if (_selectedDuctByMachineSide.TryGetValue(machineSideKey, out var selectedDuct) &&
                         selectedDuct != Owner)
                         continue;
 
@@ -201,5 +197,4 @@ public partial class PlumbingNode : PipeNode
 
         return false;
     }
-
 }
