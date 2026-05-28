@@ -445,7 +445,7 @@
   boilingPoint: 100.0
   meltingPoint: 0.0
   friction: 0.4
-  # Starlight edit start - Make Water work like Ipecac for dwarfs, but even worse
+  # Starlight edit start - Make Water work like Ipecac for Dwarfs, but even worse
   metabolisms:
     Drink:
       effects:
