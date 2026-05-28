@@ -1,81 +1,4 @@
 Entries:
-- author: Cvlancer
-  changes:
-  - message: (SPACEMALL) Removed some of the steel and plasteel located inside nuclear reactor. From 30 of each to 10 of each.
-    type: Remove
-  id: 405050
-  time: '2026-05-17T15:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4447
-- author: Cvlancer
-  changes:
-  - message: (SPACEMALL) Removed centrifuge and vial box inside brigmedic.
-    type: Remove
-  id: 405051
-  time: '2026-05-17T15:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4447
-- author: Cvlancer
-  changes:
-  - message: (SPACEMALL) Added more room for nuclear office room.
-    type: Tweak
-  id: 405052
-  time: '2026-05-17T15:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4447
-- author: Cvlancer
-  changes:
-  - message: (SPACEMALL) Changed the reporter camera names to "CK News" short for the popular up and coming Cindykate news group.
-    type: Tweak
-  id: 405053
-  time: '2026-05-17T15:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4447
-- author: Cvlancer
-  changes:
-  - message: (SPACEMALL) Fixed fuel dispenser being mapped the wrong direction in drugstore.
-    type: Fix
-  id: 405054
-  time: '2026-05-17T15:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4447
-- author: teapoterror.
-  changes:
-  - message: NTSF "Primus" Hardsuit. This hardsuit is identical to the original NTSF hardsuit other than design.
-    type: Add
-  id: 405055
-  time: '2026-05-17T15:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4428
-- author: teapoterror.
-  changes:
-  - message: NTSF "Secundus" Hardsuit. This hardsuit has mostly equivalent stats to the Syndicate Juggernaut armor.
-    type: Add
-  id: 405056
-  time: '2026-05-17T15:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4428
-- author: teapoterror.
-  changes:
-  - message: NTSF "Tertius" Hardsuit. This hardsuit contains a bluespace inventory, perfect for stealing your things.
-    type: Add
-  id: 405057
-  time: '2026-05-17T15:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4428
-- author: teapoterror.
-  changes:
-  - message: NTSF "Quartus" Hardsuit. This hardsuit is completely immune to Radiation and Fire, and is excellent against Heat. A future prototype of these NTSF members will have a recharging RCD, CHIMP, and Forcefield Projector as to better aid in defense construction and dealing with anomalies.
-    type: Add
-  id: 405058
-  time: '2026-05-17T15:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4428
-- author: teapoterror.
-  changes:
-  - message: NTSF "Quintus" Hardsuit. This hardsuit has 80% Pierce Resist, making it perfect for killing Nukies.
-    type: Add
-  id: 405059
-  time: '2026-05-17T15:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4428
-- author: teapoterror.
-  changes:
-  - message: NTSF "Sextus" Hardsuit. This hardsuit has no actual modifications - instead, future prototypes of these NTSF members will be wizards.
-    type: Add
-  id: 405060
-  time: '2026-05-17T15:33:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4428
 - author: teapoterror.
   changes:
   - message: NTSF "Septimus" Hardsuit. This hardsuit has increased Slash, Caustic, and Blunt reduction, up to 75%, as well as a minor heat protection buff to 70%. Future prototypes of these NTSF members will also carry Needle Guns filled with Ambuzol+, for rapid cure deployment.
@@ -2799,4 +2722,81 @@ Entries:
   id: 405449
   time: '2026-05-26T22:19:12.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4555
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Dwarves are now Dwarfs.
+    type: Tweak
+  id: 405450
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Dwarfs now only get half value from eating food.
+    type: Tweak
+  id: 405451
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Dwarfs now get food value from drinking alcoholic beverages.
+    type: Tweak
+  id: 405452
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Dwarfs now have a much higher tolerance for alcoholic beverages.
+    type: Tweak
+  id: 405453
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Dwarfs now get special buff effects from certain alcoholic beverages.
+    type: Add
+  id: 405454
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: The Highlander, an absurdly expensive cocktail that lets Dwarfs ignore crit.
+    type: Add
+  id: 405455
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: MobThresholdsStatusEffect, ArmorModStatusEffect, SoundStatusEffect, BonusDamageStatusEffect, BonusScalarStatusEffect.
+    type: Add
+  id: 405456
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: SpawnAttachedTo, a new entity effect for attaching particles etc to mobs.
+    type: Add
+  id: 405457
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: full metamorphic glass prototype for White Gilgamesh.
+    type: Add
+  id: 405458
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Resolved a few stray typos in adjacent drink descriptions.
+    type: Fix
+  id: 405459
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
+- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
+  changes:
+  - message: Corrected the flavor of the Pan-Galactic Gargle Blaster to be faithfully worded to the source material.
+    type: Fix
+  id: 405460
+  time: '2026-05-28T02:56:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4389
 Order: -1
