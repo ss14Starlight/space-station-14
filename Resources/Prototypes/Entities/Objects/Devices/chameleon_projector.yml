@@ -27,6 +27,11 @@
       - MindContainer # no
       - Pda # PDAs currently make you invisible /!\
       - SubFloorHide # no hiding under the floor
+      # Moffstation - Start - Playing cards, hands and deck are invisible due to heavily layered visuals.
+      - PlayingCard
+      - PlayingCardHand
+      - PlayingCardDeck
+      # Moffstation - End
       tags:
       - Catwalk # Catwalks make you invisible
       - Wall # Walls make you invisible

@@ -1331,6 +1331,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborgCold
+    - item: KukriKnife
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-laser3-module }
 
@@ -1349,6 +1350,7 @@
     hands:
     - item: NocturineHypoPlus
     - item: LicoxideHypoPlus
+    - item: MuteToxinHypo
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: xenoborg-hypo2-module }
 
