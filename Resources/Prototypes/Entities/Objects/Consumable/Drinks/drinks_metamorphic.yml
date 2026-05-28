@@ -2589,19 +2589,3 @@
   - type: Icon
     sprite: Objects/Consumable/Drinks/bacchusblessing.rsi
     state: icon
-
-# BEGIN STARLIGHT
-# this drink was missing, so now it is not missing
-- type: entity
-  parent: DrinkGlass
-  id: DrinkWhiteGilgameshGlass
-  suffix: white gilgamesh
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: WhiteGilgamesh
-          Quantity: 30
-# END STARLIGHT
