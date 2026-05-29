@@ -758,7 +758,7 @@
     </ColorBox>
     <ColorBox>
       <Box>
-        ignore stun
+        rapidly recover from stun and knockdown; 90% less Stamina damage taken
       </Box>
     </ColorBox>
     <ColorBox>
