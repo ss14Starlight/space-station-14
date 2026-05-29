@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Abductor Scientists now scale at a rate of 1:90, with a max of 2.
-    type: Tweak
-  id: 405075
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
   - message: Abductor Agents now scale at a rate of 1:70, with a max of 3.
     type: Tweak
   id: 405076
@@ -2799,4 +2792,11 @@ Entries:
   id: 405474
   time: '2026-05-29T21:31:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4577
+- author: Rinary
+  changes:
+  - message: Fixed playtime bypass via NullLink playtime. Now you can freely connect to Beta if you have enough time on another servers or projects connected to null link.
+    type: Fix
+  id: 405475
+  time: '2026-05-29T22:16:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4590
 Order: -1

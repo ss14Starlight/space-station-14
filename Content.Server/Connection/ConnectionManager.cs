@@ -336,8 +336,9 @@ namespace Content.Server.Connection
                     _sawmill.Log(LogLevel.Warning, "Can't get NullLink playtime for {userId}! {ex}", e.UserId, ex);
                 }
 
-                var validAccountAge = record != null &&
-                      record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
+                /// If you see this message and this line in conflict, pls, don't do anything without help from NullLink Team, because you can break age bypass for our servers and downstreams.
+                /// Only change this if you know what you're doing.
+                var validAccountAge = record != null ? record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0 : overallTime.TimeSpent.TotalMinutes >= minMinutesAge;
                 // NullLink-end
 
                 // Use the custom reason if it exists & they don't have the minimum account age
