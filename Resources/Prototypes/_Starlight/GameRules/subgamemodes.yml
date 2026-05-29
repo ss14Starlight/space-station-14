@@ -82,7 +82,7 @@
       tags:
         - CantBecomeRevolutionary
   - type: DynamicRuleCost
-    cost: 75
+    cost: 60
     # Starlight-end
 
 
@@ -111,7 +111,7 @@
       tags:
         - CantBecomeRevolutionary
   - type: DynamicRuleCost
-    cost: 80
+    cost: 70
 
 - type: entity
   parent: Traitor
