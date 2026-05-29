@@ -105,7 +105,8 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
-      radioChannel: Security
+      radioChannel: #starlight, rattle changed from single to list
+      - Security
     #endregion Starlight tracker rattle
 
 #Traitor implants
@@ -383,6 +384,9 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
+      radioChannel: #Starlight, syndicate isn't default rattle channel anymore
+      - Syndicate 
+
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -430,5 +434,6 @@
   description: This implant will inform the Centcomm radio channel should the user fall into critical condition or die.
   categories: [ HideSpawnMenu ]
   components:
-  - type: RattleOnTrigger
-    radioChannel: CentCom
+  - type: RattleOnTrigger #starlight, rattle changed from single to list
+    radioChannel: 
+    - CentCom

@@ -16,7 +16,7 @@ public sealed partial class RattleOnTriggerComponent : BaseXOnTriggerComponent
     /// The radio channel the message will be sent to.
     /// </summary>
     [DataField]
-    public ProtoId<RadioChannelPrototype> RadioChannel = "Syndicate";
+    public List<ProtoId<RadioChannelPrototype>> RadioChannel;
 
     /// <summary>
     /// The message to be send depending on the target's current mob state.
