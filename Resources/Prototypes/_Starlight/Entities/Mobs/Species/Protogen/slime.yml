@@ -29,8 +29,6 @@
         type: StoreBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-      enum.VampireMutationUiKey.Key:
-        type: VampireMutationBoundUserInterface
   - type: Absorbable
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
