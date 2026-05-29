@@ -75,3 +75,6 @@ lobby-state-background-katievssyndie-artist = ramblinger
 
 lobby-state-background-nogalcom-title = When the brigmedic's starting chems run out
 lobby-state-background-nogalcom-artist = deltaVelocity
+
+lobby-state-background-aiderthief-title = Maints Discovery
+lobby-state-background-aiderthief-artist = silkielol
