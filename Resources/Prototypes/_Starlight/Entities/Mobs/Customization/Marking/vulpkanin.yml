@@ -256,6 +256,15 @@
     - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: dalmatian
 
+- type: marking
+  id: VulpEarPossum
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+      state: possum
+
 # Head Markings (Snout)
 - type: marking
   id: VulpSnoutAlt
