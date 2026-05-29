@@ -24,17 +24,17 @@
 - type: loadout
   id: ProtogenArmorLight
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenLight
+    outerClothing2: ClothingOuterArmorProtogenLightUnremovable # Starlight
 
 - type: loadout
   id: ProtogenArmorMedium
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenMedium
+    outerClothing2: ClothingOuterArmorProtogenMediumUnremovable # Starlight
 
 - type: loadout
   id: ProtogenArmorHeavy
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenHeavy
+    outerClothing2: ClothingOuterArmorProtogenHeavyUnremovable # Starlight
 
 #- type: loadout # Starlight start, no Trinary
 #  id: ProtogenTrinaryImplant

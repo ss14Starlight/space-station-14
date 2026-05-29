@@ -29,7 +29,7 @@
   components:
   - type: Item
     size: Huge
-  - type: Unremoveable
+#  - type: Unremoveable # Starlight, we'll make 2 versions
   - type: Tag
     tags:
     - ProtogenCybernetics
@@ -38,7 +38,7 @@
 - type: entity
   parent: ClothingOuterArmorProtogenBase
   id: ClothingOuterArmorProtogenLight
-  name: Light Protogen Cybernetics
+  name: light protogen cybernetics # Starlight, capitalization
   description: Removal of this would require killing you. Comes in-built with light armor plating to shield the cybernetics within.
   components:
   - type: Sprite
@@ -55,10 +55,19 @@
   - type: ExplosionResistance # This is acceptable.
     damageCoefficient: 0.95
 
+# Starlight start
+- type: entity
+  parent: ClothingOuterArmorProtogenLight
+  id: ClothingOuterArmorProtogenLightUnremovable
+  suffix: Unremovable
+  components:
+  - type: Unremoveable
+# Starlight end
+
 - type: entity
   parent: ClothingOuterArmorProtogenBase
   id: ClothingOuterArmorProtogenMedium
-  name: Standard Protogen Cybernetics
+  name: standard protogen cybernetics # Starlight, capitalization
   description: Removal of this would require killing you. Comes in-built with moderate armor plating to shield the cybernetics within and protect the user.
   components:
   - type: Sprite
@@ -69,11 +78,23 @@
       coefficients:
         Slash: 0.95 # Starlight, it's 5%, not the most egregious
         Blunt: 0.95 # Starlight, not getting pierce armor natively
+  - type: ClothingSpeedModifier # Starlight start
+    walkModifier: 1
+    sprintModifier: 0.95 # Starlight end, 5% for 5% armor. Not really a good tradeoff, but it's still not weightless...
+
+# Starlight start
+- type: entity
+  parent: ClothingOuterArmorProtogenMedium
+  id: ClothingOuterArmorProtogenMediumUnremovable
+  suffix: Unremovable
+  components:
+  - type: Unremoveable
+# Starlight end
 
 - type: entity
   parent: ClothingOuterArmorProtogenBase
   id: ClothingOuterArmorProtogenHeavy
-  name: Heavy Protogen Cybernetics
+  name: heavy protogen cybernetics # Starlight, capitalization
   description: Removal of this would require killing you. Comes in-built with heavy armor plating for active combat scenarios. A bit weighty.
   components:
   - type: Sprite
@@ -89,3 +110,12 @@
     sprintModifier: 0.90 #Seems low, but a secvest has 30% w/no reduction or a better example would be plate carrier for 45% reduction. 10% reduction for bit better secvest seems fine to me - Keep in mind that they take increased blunt as well.
   - type: ExplosionResistance
     damageCoefficient: 0.80
+
+# Starlight start
+- type: entity
+  parent: ClothingOuterArmorProtogenHeavy
+  id: ClothingOuterArmorProtogenHeavyUnremovable
+  suffix: Unremovable
+  components:
+  - type: Unremoveable
+# Starlight end

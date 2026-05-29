@@ -107,20 +107,6 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Suit Storage
-    - name: suitstorage2
-      slotTexture: tank
-      slotFlags:   SUITSTORAGE
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 2,4
-      strippingWindowPos: 1,6
-      dependsOn: outerClothing
-      dependsOnComponents:
-      - type: AllowSuitStorage
-      displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
     - name: id
       slotTexture: id
       fullTextureName: template_small
@@ -256,20 +242,6 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Suit Storage
-    - name: suitstorage2
-      slotTexture: tank
-      slotFlags:   SUITSTORAGE
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 2,4
-      strippingWindowPos: 1,6
-      dependsOn: outerClothing
-      dependsOnComponents:
-      - type: AllowSuitStorage
-      displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
     - name: id
       slotTexture: id
       fullTextureName: template_small
@@ -412,22 +384,6 @@
       dependsOnComponents:
       - type: AllowSuitStorage
       displayName: Suit Storage
-      #Far Horizons-Start Breathable Tank Storage
-    - name: suitstorage2
-      slotTexture: tank
-      slotFlags:   SUITSTORAGE
-      slotGroup: MainHotbar
-      stripTime: 3
-      uiWindowPos: 2,4
-      strippingWindowPos: 1,6
-      dependsOn: outerClothing
-      dependsOnComponents:
-      - type: AllowSuitStorage
-      displayName: Tank Storage
-      whitelist:
-        tags:
-        - GasTank
-      #Far Horizons-End
     - name: suitstorage3
       slotTexture: suit_storage
       slotFlags:   SUITSTORAGE
