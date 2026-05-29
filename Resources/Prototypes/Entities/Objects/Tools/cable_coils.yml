@@ -100,30 +100,30 @@
             - ReagentId: Carbon #steel-reinforced
               Quantity: 1
 #FH - Start
-  - type: ConditionalHealing
-    healingDefinitions:
-      - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ] # Starlight
-        healing:
-          damageContainers:
-            - Biological
-            - IPC # Starlight
-          delay: 2
-          damage:
-            types:
-              Heat: -10
-              Cold: -10
-              Shock: -10
-              Caustic: -5 # Starlight, have to halve this, since Caustic is supposed to be hard to heal.
-          healingBeginSound:
-            path: "/Audio/Items/Medical/ointment_begin.ogg"
-            params:
-              volume: 1.0
-              variation: 0.125
-          healingEndSound:
-            path: "/Audio/Items/Medical/ointment_end.ogg"
-            params:
-              volume: 1.0
-              variation: 0.125
+    - type: ConditionalHealing
+      healingDefinitions:
+        - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ] # Starlight
+          healing:
+            damageContainers:
+              - Biological
+              - IPC # Starlight
+            delay: 2
+            damage:
+              types:
+                Heat: -10
+                Cold: -10
+                Shock: -10
+                Caustic: -5 # Starlight, have to halve this, since Caustic is supposed to be hard to heal.
+            healingBeginSound:
+              path: "/Audio/Items/Medical/ointment_begin.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+            healingEndSound:
+              path: "/Audio/Items/Medical/ointment_end.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
 #FH - End
 
 - type: entity

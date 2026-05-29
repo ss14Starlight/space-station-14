@@ -8,7 +8,7 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
   - type: Organ
-  - type: Food
+  - type: Edible
   - type: Extractable
     grindableSolutionName: organ
   - type: SolutionContainerManager
@@ -169,9 +169,9 @@
     heldPrefix: stomach
   - type: Stomach
     specialDigestible:
-    isSpecialDigestibleExclusive: false
       tags:
       - RamChip
+    isSpecialDigestibleExclusive: false
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -234,10 +234,10 @@
     heldPrefix: stomach
   - type: Stomach
     specialDigestible:
-    isSpecialDigestibleExclusive: false
       tags:
       - ClothMade
       - RamChip
+    isSpecialDigestibleExclusive: false
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -289,9 +289,9 @@
           Quantity: 5
   - type: Stomach
     specialDigestible:
-    isSpecialDigestibleExclusive: false
       tags:
       - RamChip
+    isSpecialDigestibleExclusive: false
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
@@ -306,9 +306,9 @@
   components:
   - type: Stomach
     specialDigestible:
-    isSpecialDigestibleExclusive: false
       tags:
       - RamChip
+    isSpecialDigestibleExclusive: false
   - type: SolutionContainerManager
     solutions:
       stomach:

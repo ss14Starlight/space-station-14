@@ -1,6 +1,6 @@
 - type: entity
-  parent: BaseMobProtogen
-  id: [BaseMobProtoSlimePerson, BaseSpeciesPickupableLarge]
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoSlimePerson
   name: Urist McSlimester
   abstract: true
   components:

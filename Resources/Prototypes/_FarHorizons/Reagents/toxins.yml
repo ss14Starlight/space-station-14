@@ -1,0 +1,42 @@
+- type: reagent
+  id: BatteryAcid
+  name: reagent-name-batteryacid
+  group: Toxins
+  desc: reagent-desc-batteryacid
+  physicalDesc: reagent-physical-desc-metallic
+  contrabandSeverity: Minor
+  flavor: shocking
+  color: "#ffe270"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Protogen ] # Harmless to protogens
+          inverted: true
+        damage:
+          types: # Drinking battery acid is bad for you? Woh.
+            Shock: 0.5 
+            Caustic: 0.5
+      - !type:SatiateThirst
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Protogen ]
+        factor: 1 #yummy
+    Metabolites: #Acts like vitamin but for protogens. Keep in mind the -50% healing debuff they get, hence buffed numbers.
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Protogen ]
+        damage:
+          groups:
+            Brute: -1
+            Burn: -1
+      - !type:ModifyBleed #smth smth burns you from the inside so it stops internal bleeding, clearly.
+        amount: -0.5
+      - !type:SatiateHunger
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Protogen ]
