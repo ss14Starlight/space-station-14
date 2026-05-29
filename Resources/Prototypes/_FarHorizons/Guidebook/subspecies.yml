@@ -1,6 +1,6 @@
 # Starlight. I'm going to rewrite every entry, and we've changed every Protogen's resistances, so I think that's sufficient reasoning to move the guidebook entries to our files.
 - type: guideEntry
-  id: Protogen
+  id: TrueProtogen
   name: subspecies-name-protogen
   text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/TrueProtogen.xml"
 
