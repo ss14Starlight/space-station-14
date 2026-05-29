@@ -102,7 +102,7 @@
 #FH - Start
     - type: ConditionalHealing
       healingDefinitions:
-        - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ] # Starlight
+        - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
           healing:
             damageContainers:
               - Biological

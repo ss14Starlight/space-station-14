@@ -66,7 +66,7 @@
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ ProtogenTail ]
+      defaultMarkings: [ LagomorphTailFluffy ]
     HeadTop:
       points: 1
       required: true

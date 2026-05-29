@@ -13,6 +13,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoProtogen
       connections:
@@ -68,6 +69,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoProtoVulp
       connections:
@@ -123,6 +125,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoVox
       connections:
@@ -178,6 +181,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoThaven
       connections:
@@ -405,6 +409,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoReptilian
       connections:
@@ -460,6 +465,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoMoth
       connections:
@@ -515,6 +521,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoHuman
       connections:
@@ -570,6 +577,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoFelionoid
       connections:
@@ -625,6 +633,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoHuman
       connections:
@@ -680,6 +689,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoDiona
       connections:
@@ -732,6 +742,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoCyclorite
       connections:
@@ -843,6 +854,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongue
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoArachnid
       connections:
