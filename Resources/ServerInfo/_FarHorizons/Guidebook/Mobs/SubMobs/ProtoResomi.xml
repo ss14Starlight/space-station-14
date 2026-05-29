@@ -1,0 +1,16 @@
+<Document>
+  # Proto-Resomi
+
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoResomi" Caption=""/>
+  </Box>
+
+  Parts of the romantic movement within resomi society have embraced full cybernetic augmentation like some of their Avali forbearers did before them. Although even within their own movement this is seen as the more extreme and rather opulent kind of veneration. Other resomi outside of the movement of course view this practice as highly vain. The [color=#ffbc48]Nexus[/color] is the only exception to this.
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]25% more heat damage[/color] and [color=#1e90ff]65% less cold damage[/color].
+  
+  [color=red]Oxygen/Water-Based medical chemicals remain a lethal danger for them.[/color]
+</Document>

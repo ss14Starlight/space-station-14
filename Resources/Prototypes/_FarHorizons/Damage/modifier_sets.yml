@@ -27,6 +27,8 @@
   coefficients:
     Shock: 1.25
     Blunt: 1.1
+    Heat: 1.2
+    Cold: 0.5
 
 # Thaven, despite having a reference to it.. Doesn't actually have a damage modifier? Ingame guidebook says they have one. Very odd.
 - type: damageModifierSet
@@ -64,6 +66,8 @@
   coefficients:
     Shock: 1.25
     Blunt: 1.1
+    Cold: 0.35 # Close relation to Avali but not literal freezing-blooded.
+    Heat: 1.25
 
 - type: damageModifierSet
   id: ProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian

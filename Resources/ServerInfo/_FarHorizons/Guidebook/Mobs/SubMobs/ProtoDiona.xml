@@ -1,0 +1,16 @@
+<Document>
+  # Proto-Diona
+<!-- Starlight, renamed back to Diona.-->
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoDiona" Caption=""/>
+  </Box>
+
+  While a Proto-Diona is a rare sight to behold, it's not impossible. Transhumanism exists even among plant-like races, although the practice is typically shunned.
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]50% more heat damage[/color], [color=#FF3636]20% less blunt damage[/color] and [color=#B9BF93]10% less slash damage[/color].
+
+[color=red]WARNING![/color] Splitting into nymphs as a Proto-Diona will [color=red]turn you back into a normal Diona![/color] Choose carefully, is it really worth it to lose your cybernetics?
+</Document>

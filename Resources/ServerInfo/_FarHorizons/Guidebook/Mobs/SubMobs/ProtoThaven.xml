@@ -1,0 +1,13 @@
+<Document>
+  # Proto-Thaven
+
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoThaven" Caption=""/>
+  </Box>
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]15% more heat damage[/color] and [color=#1e90ff]55% less cold damage[/color].
+  - Slowly deal [color=red]0[/color] blunt but [color=red]18[/color] stamina damage with your martial arts techniques. 
+</Document>

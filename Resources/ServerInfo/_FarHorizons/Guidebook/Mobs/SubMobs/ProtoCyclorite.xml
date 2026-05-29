@@ -1,0 +1,13 @@
+<Document>
+  # Proto-Cyclorite
+<!-- Starlight, renamed back to Cyclorite.-->
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoCyclorite" Caption=""/>
+  </Box>
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]15% more heat damage[/color], [color=#1e90ff]55% less cold damage[/color], [color=#FF3636]10% less blunt damage[/color] and [color=#B9BF93]20% less slash damage[/color].
+  - Slowly deal [color=red]13[/color] blunt and [color=red]10[/color] structural damage with your fists of rock.
+</Document>

@@ -1,0 +1,23 @@
+<Document>
+  # Proto-Human
+<!-- Starlight, renamed back to Human.-->
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoHuman" Caption=""/>
+  </Box>
+
+  Interestingly, the term "Protogen" originates from a Human-created fictional species that shares the same appearance as what are refered to as simply "Protogens"- those without a distinct species. 
+  
+  One could argue humanity invented the Protogen species at large by extension, but, the term was only coined after other races started undergoing the same proceedure.
+
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoVulp" Caption=""/>
+    <GuideEntityEmbed Entity="MobProtogen" Caption=""/>
+  </Box>
+ In fact, it was the advent of Protogen-Vulpkanins in particular that really popularized the name "Protogen" due to the striking resemblance to the fictional race.
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]10% more heat damage[/color].
+  - Deal [color=red]5[/color] blunt damage with your fists.
+</Document>

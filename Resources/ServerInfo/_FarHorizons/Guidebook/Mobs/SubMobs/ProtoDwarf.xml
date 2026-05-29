@@ -1,0 +1,17 @@
+<Document>
+  # Proto-Dwarf
+<!-- Starlight, renamed back to Dwarf.-->
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoDwarf" Caption=""/>
+  </Box>
+
+  Despite the difficulties it brings, Proto-Dwarves are typically too prideful to even THINK about shaving their beard to better fit their newfound visor. As such, they are the only race that can be seen sporting a beard ontop of their visor. 
+  
+  (Ignore the fact they don't have one here, nothing I can do.)
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]10% more heat damage[/color].
+  - Deal [color=red]5[/color] blunt damage with your fists.
+</Document>

@@ -65,7 +65,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 5
+        Piercing: 5 # They can keep their pierce.
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:

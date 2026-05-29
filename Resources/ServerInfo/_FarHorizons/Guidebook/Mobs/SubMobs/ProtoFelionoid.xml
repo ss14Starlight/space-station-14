@@ -1,0 +1,12 @@
+<Document>
+  # Proto-Felionoid
+<!-- Starlight, renamed back to Felionoid.-->
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoFelionoid" Caption=""/>
+  </Box>
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Rapidly deal [color=red]3[/color] slashing damage with your short claws.
+</Document>

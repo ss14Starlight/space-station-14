@@ -13,6 +13,10 @@
     - GalacticCommon
     - Machine
     - Bubblish
+  - type: HumanoidAppearance
+    species: ProtoSlimePerson
+    hideLayersOnEquip:
+    - Hair
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:

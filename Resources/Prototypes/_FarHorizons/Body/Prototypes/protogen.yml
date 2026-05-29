@@ -131,9 +131,9 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
+        heart: OrganProtoVoxHeart
         lungs: OrganProtogenLungs # I can't imagine them NOT fixing their nitro dependancy.
-        stomach: OrganProtogenStomach
+        stomach: OrganProtoVoxStomach
         liver: OrganProtogenLiver
         kidneys: OrganProtogenKidneys
         cavity: null

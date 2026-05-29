@@ -19,9 +19,21 @@
         Silicon: 20
     - type: Circuitboard
     - type: Food #FH - Start
+      requiresSpecialDigestion: true
       solution: food
-      delay: 10
+      delay: 4
       forceFeedDelay: 10
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 15
+          reagents:
+          - ReagentId: Tazinide
+            Quantity: 5
+          - ReagentId: Vitamin
+            Quantity: 5
+          - ReagentId: Nutriment
+            Quantity: 5
     - type: Tag
       tags:
       - RamChip #Protogen joke, makes them able to eat them. - FH End

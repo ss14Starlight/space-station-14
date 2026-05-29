@@ -1,7 +1,23 @@
 - type: guideEntry
   id: Protogen
   name: species-name-protogen
-  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Protogen.xml" # Moved to _Starlight due to the number of changes we have to make to them, so we'll maintain them on our own. (We'd pretty much have to <! -- --> comment every single line.)
+  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/Protogen.xml" # Moved to _Starlight due to the number of changes we have to make to them, so we'll maintain them on our own. (We'd pretty much have to <! -- --> comment every single line.)
+  children:
+  - ProtoArachnid
+  - ProtoAvali
+  - ProtoCyclorite # Starlight
+  - ProtoDiona # Starlight
+  - ProtoDwarf # Starlight
+  - ProtoFelionoid # Starlight
+  - ProtoHuman # Starlight
+  - ProtoSlimePerson
+  - ProtoMoth
+  - ProtoReptilian # Starlight
+  - ProtoResomi
+  - ProtoKin
+  - ProtoVox
+  - ProtoVulp
+  - ProtoThaven
 
 - type: guideEntry
   id: IPC

@@ -14,9 +14,13 @@
     - Machine
     - Nekomimetic
     - Cat
+  - type: HumanoidAppearance
+    species: ProtoFelionoid
+    hideLayersOnEquip:
+    - Hair
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Feline/parts.rsi
-    state: full
+    state: fullcat
   - type: Body
     prototype: ProtoFelionoid
     requiredLegs: 2

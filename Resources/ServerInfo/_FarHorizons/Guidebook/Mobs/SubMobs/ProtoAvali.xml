@@ -1,0 +1,18 @@
+<Document>
+  # Proto-Avali
+
+  <Box>
+    <GuideEntityEmbed Entity="MobProtoAvali" Caption=""/>
+  </Box>
+
+  Being a Protogen comes easy to Avali, as they already live in a culture of extensive cybernetic modifcation. The prime example being the [color=#ffbc48]Nexus[/color] which is a Augmented Reality (AR) implant every individual recives in their society.
+
+  ## Changes from the "Protogen" base species.
+  Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.
+
+  - Receive [color=#ffa500]40% more heat damage[/color] and [color=#1e90ff]70% less cold damage[/color].
+
+  With the advent of advanced cybernetics and with some help from their extensive body modifications, Proto-Avali have been able to get rid of their inability to properly process most foods and as such can enjoy and metabolise just about any food under the sun. 
+  
+  [color=red]Oxygen/Water-Based medical chemicals remain a lethal danger for them, however.[/color]
+</Document>
