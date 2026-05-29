@@ -113,7 +113,7 @@
                 Heat: -10
                 Cold: -10
                 Shock: -10
-                Caustic: -5 # Starlight, have to halve this, since Caustic is supposed to be hard to heal.
+                Caustic: -10
             healingBeginSound:
               path: "/Audio/Items/Medical/ointment_begin.ogg"
               params:

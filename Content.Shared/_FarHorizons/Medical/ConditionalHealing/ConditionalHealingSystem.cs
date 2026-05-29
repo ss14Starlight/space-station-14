@@ -27,7 +27,7 @@ public sealed class ConditionalHealingSystem : EntitySystem
             SelectBestMatch((ent, ent.Comp), args.User) is not ConditionalHealingData healing)
             return;
 
-        args.Handled = _healing.TryHeal((ent, healing.MakeComponent()), args.User, args.User);
+        args.Handled = _healing.TryHeal((ent, healing.MakeComponent(ent.Owner)), args.User, args.User); // Starlight, needs an owner.
     }
 
     private void OnAfterInteract(Entity<ConditionalHealingComponent> ent, ref AfterInteractEvent args)
@@ -39,7 +39,7 @@ public sealed class ConditionalHealingSystem : EntitySystem
             SelectBestMatch((ent, ent.Comp), args.Target.Value) is not ConditionalHealingData healing)
             return;
 
-        args.Handled = _healing.TryHeal((ent, healing.MakeComponent()), args.Target.Value, args.User);
+        args.Handled = _healing.TryHeal((ent, healing.MakeComponent(ent.Owner)), args.Target.Value, args.User); // Starlight, needs an owner.
     }
     public ConditionalHealingData? SelectBestMatch(Entity<ConditionalHealingComponent?> item, EntityUid target) =>
         !Resolve(item, ref item.Comp, false)

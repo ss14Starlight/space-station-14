@@ -63,7 +63,7 @@ public sealed class HealingSystem : EntitySystem
             // Far Horizons, handle fake components from conditional healing
             if(args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
                 return;
-            healing = healingData.MakeComponent();
+            healing = healingData.MakeComponent(args.Used.Value); // Starlight, needs to pass an owner.
         }
         
         if (healing.DamageContainers is not null &&
