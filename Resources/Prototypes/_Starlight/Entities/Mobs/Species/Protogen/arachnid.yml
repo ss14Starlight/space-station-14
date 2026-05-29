@@ -58,6 +58,9 @@
       reagents:
       - ReagentId: CopperBlood
         Quantity: 300
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ProtoArachnid
   # Damage (Others)
   - type: MeleeWeapon
     animation: WeaponArcBite

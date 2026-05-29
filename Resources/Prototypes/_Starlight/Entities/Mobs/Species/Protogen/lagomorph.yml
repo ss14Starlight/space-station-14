@@ -1,35 +1,39 @@
 - type: entity
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge, BaseInventoryLagomorph]
-  id: BaseMobLagomorph
-  name: Urist McBnuuy
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoLagomorph
+  name: Urist McLagomorphster
   abstract: true
   components:
-  - type: Body
-    prototype: Lagomorph
-    requiredLegs: 2
-  - type: Absorbable
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
+    - Machine
     - Lagomorphian
     understands:
     - GalacticCommon
+    - Machine
     - Lagomorphian
   - type: StaminaSurge
   - type: Zoomies
+  - type: Wagging
   - type: Icon
-    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi
+    sprite: _Starlight/Mobs/Species/Lagomorph/parts.rsi # This needs to be replaced with Protolagos in the future.
     state: full
   - type: Butcherable
     butcheringType: Spike
     spawned:
     - id: FoodMeatHuman
       amount: 5
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: ProtoLagomorph
+  - type: Body
+    prototype: ProtoLagoMorph
+    requiredLegs: 2
   - type: HumanoidAppearance
-    species: Lagomorph
+    species: ProtoLagomorph
     hideLayersOnEquip:
     - Hair
-    - Snout
   - type: Hunger
     thresholds:
       Overfed: 210
@@ -45,25 +49,15 @@
       Thirsty: 310
       Parched: 155
       Dead: 0
-  - type: Speech
-    speechSounds: ALLagomorph
-    speechVerb: Lagomorph
-    allowedEmotes: ['Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
-  - type: ChatListenerRange # way better at hearing, +2 to all
-    voiceRange: 12
-    whisperClearRange: 4
-    whisperMuffledRange: 7
-    allowExtendListenRange: true
-  - type: Vocal
-    sounds:
-      Male: MaleLagomorph
-      Female: FemaleLagomorph
-      Unsexed: FemaleLagomorph
-  - type: TypingIndicator
-    proto: lagomorph
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: ProtoLagomorph
+  - type: Inventory
+    speciesId: protolagomorph #to be replaced with proto[species] when new sprites are made
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
   - type: MeleeWeapon
     animation: WeaponArcClaw
     soundHit:
@@ -71,14 +65,6 @@
     damage:
       types:
         Slash: 5
-  - type: Tag
-    tags:
-    - CanPilot
-    - FootstepSound
-    - DoorBumpOpener
-    - AnomalyHost
-    - NotLabelable # Starlight, no more labeling people.
-    - Lagomorph
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -124,5 +110,31 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-# for fragile electronics like consoles or shuttle engines.
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - SiliconEmotesFH
+    - NotLabelable
+    - Lagomorph
+    - ProtoLagomorph
+    - Protogen
 
+- type: entity
+  parent: BaseSpeciesDummy
+  id: ApperanceProtoLagomorph
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ProtoLagomorph
+  - type: Inventory
+    speciesId: protolagomorph #to be replaced with proto[species] when new sprites are made
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

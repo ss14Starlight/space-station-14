@@ -1,74 +1,92 @@
+# Starlight. I'm going to rewrite every entry, and we've changed every Protogen's resistances, so I think that's sufficient reasoning to move the guidebook entries to our files.
+- type: guideEntry
+  id: Protogen
+  name: subspecies-name-protogen
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/TrueProtogen.xml"
+
 - type: guideEntry
   id: ProtoArachnid
   name: subspecies-name-protoarachnid
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoArachnid.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoArachnid.xml"
 
 - type: guideEntry
   id: ProtoAvali
   name: subspecies-name-protoavali
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoAvali.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoAvali.xml"
 
 - type: guideEntry
   id: ProtoCyclorite # Starlight start
   name: subspecies-name-protocyclorite # Name changed
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoCyclorite.xml" # Starlight end
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoCyclorite.xml" # Starlight end
 
 - type: guideEntry
   id: ProtoDiona # Starlight start
   name: subspecies-name-protodiona # Name changed
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoDiona.xml" # Starlight end
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoDiona.xml" # Starlight end
 
 - type: guideEntry
   id: ProtoDwarf # Starlight start
   name: subspecies-name-protodwarf # Name changed
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoDwarf.xml" # Starlight end
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoDwarf.xml" # Starlight end
 
 - type: guideEntry
   id: ProtoFelionoid # Starlight start
   name: subspecies-name-protofelionoid # Name changed
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoFelionoid.xml" # Starlight end
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoFelionoid.xml" # Starlight end
 
 - type: guideEntry
   id: ProtoHuman # Starlight start
   name: subspecies-name-protohuman # Name changed
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoHuman.xml" # Starlight end
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoHuman.xml" # Starlight end
 
 - type: guideEntry
   id: ProtoSlimePerson
   name: subspecies-name-protoslimeperson
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoSlimePerson.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoSlimePerson.xml"
 
 - type: guideEntry
   id: ProtoMoth
   name: subspecies-name-protomoth
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoMoth.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoMoth.xml"
 
 - type: guideEntry
   id: ProtoReptilian # Starlight start
   name: subspecies-name-protoreptilian # Name changed
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoReptilian.xml" # Starlight end
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoReptilian.xml" # Starlight end
 
 - type: guideEntry
   id: ProtoResomi
   name: subspecies-name-protoresomi
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoResomi.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoResomi.xml"
 
 - type: guideEntry
   id: ProtoKin
   name: subspecies-name-protokin
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoKin.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoKin.xml"
 
 - type: guideEntry
   id: ProtoVox
   name: subspecies-name-protovox
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoVox.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoVox.xml"
 
 - type: guideEntry
   id: ProtoVulp
   name: subspecies-name-protovulp
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoVulp.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoVulp.xml"
 
 - type: guideEntry
   id: ProtoThaven
   name: subspecies-name-protothaven
-  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/SubMobs/ProtoThaven.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoThaven.xml"
+
+# Starlight start
+- type: guideEntry
+  id: ProtoElf
+  name: subspecies-name-protoelf
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoElf.xml"
+
+- type: guideEntry
+  id: ProtoLagomorph
+  name: subspecies-name-protolagomorph
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoLagomorph.xml"
+# Starlight end

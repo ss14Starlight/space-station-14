@@ -497,6 +497,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag

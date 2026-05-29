@@ -1,58 +1,41 @@
 - type: entity
-  save: false
-  name: Urist McUrister
-  parent: [BaseMobProtogen, BaseSpeciesPickupable]
-  id: BaseMobProtoDwarf
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoElf
+  name: Urist McElgister
   abstract: true
   components:
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
     - Machine
-    - Grumbakul
     understands:
     - GalacticCommon
     - Machine
-    - Grumbakul
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      110: Critical
-      220: Dead
   - type: Absorbable
+  - type: Hunger
+  - type: Thirst
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
     state: full
-  - type: Respirator
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
     damage:
       types:
-        Asphyxiation: 2
-    damageRecovery:
-      types:
-        Asphyxiation: -1.0
+        Blunt: 5
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: ProtoDwarf
-  - type: Body
-    prototype: ProtoDwarf
-    requiredLegs: 2
-  - type: Fixtures
-    fixtures: # TODO: This needs a second fixture just for mob collisions.
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        # they r smaller
-        density: 120
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: ReplacementAccent
-    accent: dwarf
+    damageModifierSet: ProtoElf
   - type: HumanoidAppearance
-    species: ProtoDwarf
+    species: ProtoElf
     hideLayersOnEquip:
     - Hair
   - type: Inventory
@@ -63,14 +46,27 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Wagging
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - SiliconEmotesFH
+    - NotLabelable
+    - Elf
+    - ProtoElf
+    - Protogen
+
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: AppearanceProtoDwarf
+  id: AppearanceProtoElf
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: ProtoDwarf
+    species: ProtoElf
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
