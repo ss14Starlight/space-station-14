@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added a new gamemode for Beta, XenoborgsLP. It's the pre-scaling Xenoborgs gamemode, with the 4 fixed borgs. This gamemode is also used when Xenoborgs spawn as a subgamemode, meaning Sub xenoborgs will always have this base 4.
-    type: Add
-  id: 405068
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
   - message: Derelict Xenoborgs (and a new Derelict Xenoborgi) can now rarely spawn in the derelict cyborg spawn event.
     type: Add
   id: 405069
@@ -2799,4 +2792,11 @@ Entries:
   id: 405467
   time: '2026-05-28T19:30:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4574
+- author: redmushie
+  changes:
+  - message: Debrief turnstiles' access denied sound now has a much shorter range.
+    type: Tweak
+  id: 405468
+  time: '2026-05-29T09:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4571
 Order: -1
