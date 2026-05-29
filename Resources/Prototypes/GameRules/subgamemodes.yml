@@ -61,7 +61,7 @@
       tags:
         - CantBecomeRevolutionary
   - type: DynamicRuleCost
-    cost: 75      
+    cost: 75
       # Starlight-end
 
 - type: entity
