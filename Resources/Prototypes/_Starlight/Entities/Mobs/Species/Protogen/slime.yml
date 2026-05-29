@@ -131,7 +131,7 @@
   - type: Wagging
 
 - type: entity
-  parent: MobHumanDummy
+  parent: BaseSpeciesDummy
   id: MobProtoSlimePersonDummy
   categories: [ HideSpawnMenu ]
   components:
