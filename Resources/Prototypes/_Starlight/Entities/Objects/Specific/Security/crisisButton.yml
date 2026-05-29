@@ -16,7 +16,7 @@
         collection: TriggerActivate
   - type: TriggerOnUse
   - type: RattleOnTrigger
-    radioChannel: 
+    radioChannel:
     - Security
     targetUser: true
     messages:

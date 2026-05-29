@@ -54,7 +54,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: 
+    radioChannel:
     - TSF
 
 - type: entity
@@ -212,7 +212,7 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: RattleOnTrigger
-      radioChannel: 
+      radioChannel:
       - MedTak
     - type: SuitSensor
       faction: MedTak
@@ -259,7 +259,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: 
+    radioChannel:
     - NanoTrasen
 
 # Station Implants

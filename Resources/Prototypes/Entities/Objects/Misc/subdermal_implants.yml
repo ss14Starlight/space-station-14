@@ -385,8 +385,7 @@
     - type: RattleOnTrigger
       targetUser: true
       radioChannel: #Starlight, syndicate isn't default rattle channel anymore
-      - Syndicate 
-
+      - Syndicate
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -435,5 +434,5 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger #starlight, rattle changed from single to list
-    radioChannel: 
+    radioChannel:
     - CentCom
