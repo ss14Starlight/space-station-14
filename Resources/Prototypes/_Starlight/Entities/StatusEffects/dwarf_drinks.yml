@@ -87,7 +87,29 @@
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-whiskey.ogg
       params:
-        volume: -12.0
+        volume: -3.0
+    startPositional: false
+    #endSound:
+    #  path: /Audio/_Starlight/Magic/gust.ogg
+    endPositional: false
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
+  id: BonusArmorIrishBool
+  name: <<IrishBool Status Effect>>
+  components:
+  - type: BonusArmorStatusEffect
+    ignoreKnockdown: false
+    staminaDamageModifier: 0.1
+    explosionResistance: 1.00
+    modifiers:
+      coefficients:
+        Blunt: 1.00
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+      params:
+        volume: -3.0
     startPositional: false
     #endSound:
     #  path: /Audio/_Starlight/Magic/gust.ogg
