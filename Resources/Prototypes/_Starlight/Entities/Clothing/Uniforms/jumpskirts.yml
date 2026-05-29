@@ -755,7 +755,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSkirt
-  name: magistrate's Jumpskirt
+  name: magistrate's jumpskirt
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi

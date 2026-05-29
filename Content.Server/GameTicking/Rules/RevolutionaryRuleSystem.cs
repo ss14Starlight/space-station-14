@@ -32,6 +32,7 @@ using Content.Shared.Cuffs.Components;
 using Robust.Shared.Player;
 
 #region Starlight
+using Content.Server._Starlight.Achievement;
 using Content.Server.AlertLevel;
 using Content.Server.Audio;
 using Content.Server.Chat.Systems;
@@ -88,6 +89,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SpecialLobbyContentSystem _specialLobbyContent = default!;
+    [Dependency] private readonly AchievementSystem _achievements = default!;
     [Dependency] private readonly AlertLevelSystem _alert = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SubdermalImplantSystem _subdermalImplantSystem = default!;
@@ -147,6 +149,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             if (CheckCommandLose(component))
             {
                 _roundEnd.CancelRoundEndCountdown(null, false);
+                AwardRevolutionaryVictoryAchievements();
 
                 // Play the revolutionary end sound globally
                 var filter = Filter.Broadcast();
@@ -261,7 +264,28 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         var head = HasComp<HeadRevolutionaryComponent>(ent);
         args.Append(Loc.GetString(head ? "head-rev-briefing" : "rev-briefing"));
     }
+    // Starlight Start: Rev Victory Achievement
+    private void AwardRevolutionaryVictoryAchievements()
+    {
+        foreach (var session in _player.Sessions)
+        {
+            if (session.AttachedEntity is not { } attached)
+                continue;
 
+            if (!_mind.TryGetMind(session.UserId, out var mindId, out _)
+                || mindId is not { } resolvedMindId)
+                continue;
+
+            if (!_role.MindHasRole<RevolutionaryRoleComponent>(resolvedMindId)
+                && !HasComp<HeadRevolutionaryComponent>(attached))
+            {
+                continue;
+            }
+
+            _achievements.QueueUnlockAchievement(attached, "viva");
+        }
+    }
+    // Starlight End
 
     /// <summary>
     /// STARLIGHT: Called when a Head Rev uses a flash in melee to convert somebody else.

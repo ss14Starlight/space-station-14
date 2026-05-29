@@ -1,7 +1,7 @@
 - type: radioChannel
   id: Law
   name: chat-radio-law
-  keycode: 'l'
+  keycode: "l"
   frequency: 1780
   color: "#ff178b"
   icon:
@@ -12,7 +12,7 @@
 - type: radioChannel
   id: NanoTrasen
   name: chat-radio-nanotrasen
-  keycode: 'p'
+  keycode: "p"
   frequency: 2000
   color: "#2253b5"
   longRange: true
@@ -20,7 +20,7 @@
 - type: radioChannel
   id: Soviet
   name: chat-radio-soviet
-  keycode: 'w'
+  keycode: "w"
   frequency: 1922
   color: "#ed7300"
   longRange: true
@@ -31,7 +31,7 @@
 - type: radioChannel
   id: Expedition
   name: chat-radio-expedition
-  keycode: 'o'
+  keycode: "o"
   frequency: 1550
   color: "#963dca"
   # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
@@ -40,24 +40,22 @@
 - type: radioChannel
   id: TSF
   name: chat-radio-tsf
-  keycode: 'j'
+  keycode: "j"
   frequency: 1922
   color: "#22a7ff"
   longRange: true
-
   # For merchant-type admemes/events
 - type: radioChannel
   id: Merchant
   name: chat-radio-merchant
-  keycode: 'd'
+  keycode: "d"
   frequency: 1882
   color: "#ffce2e"
-
   # For Blackstar mercenaries
 - type: radioChannel
   id: Blackstar
   name: chat-radio-blackstar
-  keycode: 'r'
+  keycode: "r"
   frequency: 1452
   color: "#896e14"
   longRange: true
@@ -66,7 +64,7 @@
 - type: radioChannel
   id: Winds
   name: chat-radio-winds
-  keycode: 'i'
+  keycode: "i"
   frequency: 11037
   color: "#ff00ff"
   longRange: true
@@ -75,7 +73,7 @@
 - type: radioChannel
   id: Aspace
   name: chat-radio-aspace
-  keycode: 'q'
+  keycode: "q"
   frequency: 9999
   color: "#ab489f"
 
@@ -83,7 +81,7 @@
 - type: radioChannel
   id: Global
   name: chat-radio-global
-  keycode: 'g'
+  keycode: "g"
   frequency: 9998
   color: "#954fff"
   longRange: true
@@ -92,7 +90,66 @@
 - type: radioChannel
   id: MedTak
   name: chat-radio-medtak
-  keycode: 'k'
+  keycode: "k"
   frequency: 1505
   color: "#880606"
   longRange: true
+
+# Hiveminds
+- type: radioChannel
+  id: AbductorRadio
+  name: language-Abductor-name
+  frequency: 77778
+  color: "#d600bd"
+  longRange: true
+  anonymousAlias: "{0}"
+  autoTranslate: Abductor
+
+- type: radioChannel
+  id: NexusRadio
+  name: language-Nexus-name
+  frequency: 77779
+  color: "#FF7922"
+  longRange: true
+  anonymousAlias: "User {0}"
+  autoTranslate: Nexus
+
+- type: radioChannel
+  id: CarpRadio
+  name: language-Carptongue-name
+  frequency: 77780
+  color: "#787878"
+  longRange: true
+  autoTranslate: Carpmind
+
+- type: radioChannel
+  id: ChangelingRadio
+  name: language-Changeling-name
+  frequency: 77781
+  color: "#ff75a8"
+  longRange: true
+  autoTranslate: Changeling
+
+- type: radioChannel
+  id: DantalionRadio
+  name: language-Dantalion-name
+  frequency: 77782
+  color: "#066338"
+  longRange: true
+  autoTranslate: Dantalion
+
+- type: radioChannel
+  id: EmpathyRadio
+  name: language-Empathy-name
+  frequency: 77783
+  color: "#8a0060"
+  longRange: true
+  autoTranslate: Empathy
+
+- type: radioChannel
+  id: XenoRadio
+  name: language-Xeno-name
+  frequency: 77784
+  color: "#8f6741"
+  longRange: true
+  autoTranslate: Xenomind
