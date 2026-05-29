@@ -1,7 +1,7 @@
 - type: entity
   id: HolosignEngineeringWarning
   name: engineering warning barrier
-  description: The words flicker as if they mean nothing.
+  description: A barrier of non-solid light, warning everyone of danger around it.
   placement:
     mode: SnapgridCenter
   components:
@@ -12,21 +12,9 @@
     state: icon
   - type: TimedDespawn
     lifetime: 180
-
-- type: entity
-  id: HolosignEngineering
-  parent: HolosignEngineeringWarning
-  name: holographic barrier
-  description: A barrier of non-solid light, warning everyone of danger around it.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Structures/Holo/engineering.rsi
-      state: icon
-    - type: TimedDespawn
-      lifetime: 180
-    - type: PointLight
-      enabled: true
-      radius: 3
-      color: orange
-      castShadows: false
-    - type: Clickable
+  - type: PointLight
+    enabled: true
+    radius: 3
+    color: orange
+    castShadows: false
+  - type: Clickable
