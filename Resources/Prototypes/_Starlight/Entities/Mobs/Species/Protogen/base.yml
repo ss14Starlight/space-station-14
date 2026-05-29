@@ -131,6 +131,7 @@
       - Protogen
       - SiliconEmotesFH
       - NotLabelable
+      - TrueProtogen
   - type: Temperature # Starlight, changed to base stats, since not every species has fur; we can change on a case by case per species
     heatDamageThreshold: 325
     coldDamageThreshold: 260 # Starlight

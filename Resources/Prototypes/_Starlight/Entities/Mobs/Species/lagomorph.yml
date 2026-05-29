@@ -123,3 +123,11 @@
     Blunt: 0.9
     Cold: 0.75
     Heat: 1.25
+- type: Tag
+  tags:
+  - CanPilot
+  - FootstepSound
+  - DoorBumpOpener
+  - AnomalyHost
+  - NotLabelable # Starlight, no more labeling people.
+  - Lagomorph

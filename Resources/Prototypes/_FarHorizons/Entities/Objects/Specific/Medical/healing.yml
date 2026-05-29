@@ -31,6 +31,27 @@
       params:
         volume: 1.0
         variation: 0.125
+  - type: InteractRestriction 
+    restrictInteractionTarget:
+      blacklist:  # All species but IPC and Protogen. Used blacklist instead of whitelist so can be clicked on bags/medkits
+        - Arachnid
+        - Cyclorite
+        - Diona
+        - Dwarf
+        - Felionoid
+        - Human
+        - SlimePerson
+        - Moth
+        - Reptilian
+        - Shadekin
+        - Vox
+        - Vulpkanin
+        - Thaven
+#        - TrueProtogen # Starlight, I mean, I think they can.
+        - Avali
+        - Resomi
+        - Elf # Starlight
+        - Lagomorph # Starlight
   - type: Stack
     stackType: OilPack
     count: 10

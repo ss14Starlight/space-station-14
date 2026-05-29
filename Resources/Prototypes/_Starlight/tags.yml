@@ -219,6 +219,9 @@
   id: ElderArena
 
 - type: Tag
+  id: Elf
+
+- type: Tag
   id: EmergencyWelder
 
 - type: Tag
@@ -338,6 +341,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink

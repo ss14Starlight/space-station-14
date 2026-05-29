@@ -35,3 +35,11 @@
     hideLayersOnEquip:
     - Hair
     - Snout
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable # Starlight, no more labeling people.
+    - Elf
