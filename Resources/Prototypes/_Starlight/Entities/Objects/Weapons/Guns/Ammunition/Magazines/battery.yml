@@ -39,7 +39,7 @@
   parent: BaseMagazineBattery
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeBattery
+    proto: CartridgeBatteryLr30
   - type: Sprite
     layers:
     - state: base

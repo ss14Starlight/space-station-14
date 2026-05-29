@@ -27,3 +27,11 @@
   components:
   - type: CartridgeAmmo
     proto: RedLaserBeam
+
+- type: entity
+  id: CartridgeBatteryLr30
+  name: cartridge (laser)
+  parent: BaseCartridgeBattery
+  components:
+  - type: CartridgeAmmo
+    proto: RedLaserBeamLr30

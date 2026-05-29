@@ -1281,6 +1281,17 @@
         Heat: 20
 
 - type: entity
+  id: RedLaserBeamLr30
+  name: laser beam
+  parent: LaserTrace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 10
+
+- type: entity
   parent: BasicHitscan
   id: IgnitionRedLaser
   categories: [ HideSpawnMenu ]
