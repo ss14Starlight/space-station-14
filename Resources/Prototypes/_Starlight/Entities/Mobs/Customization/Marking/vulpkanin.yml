@@ -682,6 +682,37 @@
     - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: dalmatian_wag
 
+- type: marking
+  id: VulpTailPossum
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: possum
+
+- type: marking
+  id: VulpTailRaccoon
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: raccoon
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: raccoon-stripes
+
+- type: marking
+  id: VulpTailSkunk
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: skunk
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: skunk-top
+
 # Body Markings (Chest)
 - type: marking
   id: VulpBellyCrest
