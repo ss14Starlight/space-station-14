@@ -2,7 +2,7 @@
   # Proto-Felionoid
 <!-- Starlight, renamed back to Felionoid.-->
   <Box>
-    <GuideEntityEmbed Entity="MobProtoFelionoid" Caption=""/>
+    <GuideEntityEmbed Entity="MobProtoFelionoidDummy" Caption=""/>
   </Box>
 
   ## Changes from the "Protogen" base species.

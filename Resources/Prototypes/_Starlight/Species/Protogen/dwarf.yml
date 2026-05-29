@@ -3,7 +3,7 @@
   name: subspecies-name-protodwarf
   roundStart: true
   prototype: MobProtoDwarf
-  sprites: MobProtoHumieSprites
+  sprites: MobProtoHumanSprites
   markingLimits: MobProtoDwarfMarkingLimits
   dollPrototype: MobProtoDwarfDummy
   defaultSkinTone: "#666666"

@@ -2,7 +2,7 @@
   # Proto-Kin
 <!-- Starlight, removed FH lore.-->
   <Box>
-    <GuideEntityEmbed Entity="MobProtoKin" Caption=""/>
+    <GuideEntityEmbed Entity="MobProtoKinDummy" Caption=""/>
   </Box>
 
   Proto-Shadekin are not a common sight, although that's not really due to any societal hangups revolving around cybernetics like plant-based species have. It's due to the fact that to become a Proto-Kin you have

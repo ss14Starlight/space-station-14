@@ -2,7 +2,7 @@
   # Proto-Moth
 
   <Box>
-    <GuideEntityEmbed Entity="MobProtoMoth" Caption=""/>
+    <GuideEntityEmbed Entity="MobProtoMothDummy" Caption=""/>
   </Box>
 
   Despite their best efforts, they were not able to get rid of their fire weakness and even with their metallic body parts they still go up in flames like tinder in a tinderbox. They can handle cold a little better, though.

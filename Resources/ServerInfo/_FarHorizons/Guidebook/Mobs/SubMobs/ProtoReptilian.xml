@@ -2,7 +2,7 @@
   # Proto-Reptile
 <!-- Starlight, renamed back to Reptilian.-->
   <Box>
-    <GuideEntityEmbed Entity="MobProtoReptilian" Caption=""/>
+    <GuideEntityEmbed Entity="MobProtoReptilianDummy" Caption=""/>
   </Box>
 
   lizord

@@ -2,7 +2,7 @@
   # Proto-Cyclorite
 <!-- Starlight, renamed back to Cyclorite.-->
   <Box>
-    <GuideEntityEmbed Entity="MobProtoCyclorite" Caption=""/>
+    <GuideEntityEmbed Entity="MobProtoCycloriteDummy" Caption=""/>
   </Box>
 
   ## Changes from the "Protogen" base species.

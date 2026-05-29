@@ -34,7 +34,7 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
     state: full
   - type: Body
-    prototype: Slime # Replace when I figure out more complex sprites for proto-[species]
+    prototype: ProtoSlime # Replace when I figure out more complex sprites for proto-[species] # Starlight, I'll at least split it for now, so we can make them breathe nitrogen.
     requiredLegs: 2
   - type: Storage
     clickInsert: false
