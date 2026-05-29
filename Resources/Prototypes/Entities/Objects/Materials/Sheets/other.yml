@@ -118,23 +118,31 @@
         - ConstructionMaterial
         - SheetPlasma # Funky atmos - /tg/ gases # Starlight Edit: PlasmaSheet -> SheetPlasma
         - TiderAnvilParts # Starlight
-    - type: Healing
-      damageContainers:
-        - IPC
-      damage:
-        types:
-          Radiation: -10
-      delay: 2
-      healingBeginSound:
-        path: "/Audio/Items/Medical/ointment_begin.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
-      healingEndSound:
-        path: "/Audio/Items/Medical/ointment_end.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
+#FH - Start
+- type: ConditionalHealing
+  healingDefinitions:
+    - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin ] # Starlight
+      healing:
+        damageContainers:
+          - Biological
+          - IPC # Starlight
+        delay: 2
+        damage:
+          types:
+            Poison: -10
+            Radiation: -10
+            Asphyxiation: -10 #In the event IPCs somehow get airloss..
+        healingBeginSound:
+          path: "/Audio/Items/Medical/ointment_begin.ogg"
+          params:
+            volume: 1.0
+            variation: 0.125
+        healingEndSound:
+          path: "/Audio/Items/Medical/ointment_end.ogg"
+          params:
+            volume: 1.0
+            variation: 0.125
+#FH - End
 
 - type: entity
   parent: SheetPlasma

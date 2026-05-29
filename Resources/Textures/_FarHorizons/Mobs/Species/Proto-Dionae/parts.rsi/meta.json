@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Original Sprites by SuperJoelD00D, https://github.com/ParadiseSS13/Paradise/commit/924e8cc949a40ea64a978656dbbc0b43b4a8f33a & EmoGarbage, Reworked Sprites by Killer_Tamashi (Discord), Protogen species by Malice-Risu",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    }
+  ]
+}

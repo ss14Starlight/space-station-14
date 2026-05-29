@@ -1,0 +1,43 @@
+- type: roleLoadout
+  id: ProtogenLoadout
+  groups:
+  - ProtogenCybernetics
+#  - ProtogenTelecomms # Starlight, no Trinary
+# --- # Starlight, removing this odd triple dash
+
+- type: loadoutGroup
+  id: ProtogenCybernetics
+  name: loadout-group-protogen-cybernetics
+  loadouts:
+  - ProtogenArmorLight
+  - ProtogenArmorMedium
+  - ProtogenArmorHeavy
+
+#- type: loadoutGroup # Starlight start, no Trinary
+#  id: ProtogenTelecomms
+#  name: loadout-group-protogen-telecomms
+#  loadouts:
+#  - ProtogenTrinaryImplant # Starlight end
+
+# --- # Starlight, removing this odd triple dash
+
+- type: loadout
+  id: ProtogenArmorLight
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenLight
+
+- type: loadout
+  id: ProtogenArmorMedium
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenMedium
+
+- type: loadout
+  id: ProtogenArmorHeavy
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenHeavy
+
+#- type: loadout # Starlight start, no Trinary
+#  id: ProtogenTrinaryImplant
+#  storage:
+#    back:
+#    - TrinaryImplanter # Starlight end

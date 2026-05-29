@@ -10,6 +10,7 @@
     - type: Tag
       tags:
         - DoorElectronics
+        - RamChip #Protogen joke, makes them able to eat them. - FH
     - type: DoorElectronics
       # Starlight Start
       accessGroups:

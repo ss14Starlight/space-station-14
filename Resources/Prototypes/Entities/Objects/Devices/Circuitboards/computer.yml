@@ -18,6 +18,13 @@
       chemicalComposition:
         Silicon: 20
     - type: Circuitboard
+    - type: Food #FH - Start
+      solution: food
+      delay: 10
+      forceFeedDelay: 10
+    - type: Tag
+      tags:
+      - RamChip #Protogen joke, makes them able to eat them. - FH End
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -327,6 +334,7 @@
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
+    - RamChip # FH
   #Starlight start
   - type: Construction
     deconstructionTarget: null
@@ -367,6 +375,7 @@
     - type: Tag
       tags:
         - ComputerTelevisionCircuitboard
+        - RamChip # FH
 
 - type: entity
   parent: BaseComputerCircuitboard

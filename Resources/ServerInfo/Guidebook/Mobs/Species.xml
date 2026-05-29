@@ -26,6 +26,7 @@
   <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
   <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
   <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="MobProtogen" Caption="Protogen"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
 

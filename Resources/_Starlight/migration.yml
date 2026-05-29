@@ -106,3 +106,11 @@ ClothingHandsCatPawsWhiteInsulated: null
 ClothingHandsCatPawsBrownInsulated: null
 ClothingHandsCatPawsBlackInsulated: null
 ClothingHandsCatPawsBlackWhiteInsulated: null
+
+# 2026-05-28 # Protogen renaming
+ProtoHumie: ProtoHuman
+ProtoFeline: ProtoFelionoid
+ProtoDawi: ProtoDwarf
+ProtoCyclops: ProtoCyclorite
+ProtoDionae: ProtoDiona
+ProtoReptile: ProtoReptilian
