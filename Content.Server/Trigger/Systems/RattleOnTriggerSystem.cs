@@ -48,11 +48,11 @@ public sealed class RattleOnTriggerSystem : EntitySystem
         var message = Loc.GetString(messageId, ("user", target.Value), ("position", posText));
 
         // Sends a message to the radio channels specified by the implant
-        //Starlight Start
+        #region Starlight
         foreach (var radioChannel in ent.Comp.RadioChannel)
         {
             _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(radioChannel), ent.Owner); //Starlight swapped ent.Comp.RadioChannel for radioChannel
         }
-        //Starlight End
+        #endregion
     }
 }
