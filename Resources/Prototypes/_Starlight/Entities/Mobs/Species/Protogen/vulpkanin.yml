@@ -71,7 +71,7 @@
       outerClothing:
         sizeMaps:
           32:
-            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi #temp "fix"
             state: outerClothing
       jumpsuit:
         sizeMaps:

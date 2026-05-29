@@ -107,7 +107,7 @@
     removeEmpty: true
     solutionOnBody: false
     solution: Lung
-    metabolizerTypes: [ Human ]
+    metabolizerTypes: [ Protogen ]
     groups:
     - id: Gas
       rateModifier: 100.0
@@ -136,7 +136,7 @@
     state: heart-on
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Protogen]
     groups:
     - id: Medicine
     - id: Poison
@@ -183,6 +183,7 @@
       - Crayon
       - Pancake
       - RamChip
+      - ReptilianFood
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -206,7 +207,7 @@
     heldPrefix: liver
   - type: Metabolizer
     maxReagents: 1
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Protogen]
     groups:
     - id: Alcohol
       rateModifier: 0.1
@@ -226,7 +227,7 @@
     heldPrefix: kidneys
   - type: Metabolizer
     maxReagents: 5
-    metabolizerTypes: [Human]
+    metabolizerTypes: [Protogen]
     removeEmpty: true
 
 #### Moth Specific ####
@@ -260,6 +261,7 @@
       - Crayon
       - Pancake
       - RamChip
+      - ReptilianFood
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -273,7 +275,7 @@
 #### Dwarf Specific ####
 
 - type: entity
-  id: OrganProtoDawiHeart
+  id: OrganProtoDwarfHeart
   parent: OrganProtogenHeart
   name: Cybernetic Heart
   description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user. #  Starlight, quotation marks removed
@@ -282,7 +284,7 @@
     metabolizerTypes: [Dwarf]
 
 - type: entity
-  id: OrganProtoDawiLiver
+  id: OrganProtoDwarfLiver
   parent: OrganProtogenLiver
   name: Cybernetic Liver
   description: Pairing suggestion: fermented RAM sticks and CPU drives.
@@ -291,7 +293,7 @@
     metabolizerTypes: [Dwarf]
 
 - type: entity
-  id: OrganProtoDawiStomach
+  id: OrganProtoDwarfStomach
   parent: OrganProtogenStomach
   name: Biological Reactor
   description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
@@ -325,6 +327,7 @@
       - Crayon
       - Pancake
       - RamChip
+      - ReptilianFood
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
@@ -353,6 +356,7 @@
       - Crayon
       - Pancake
       - RamChip
+      - ReptilianFood
   - type: SolutionContainerManager
     solutions:
       stomach:

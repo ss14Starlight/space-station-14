@@ -47,11 +47,11 @@ marking-ProtoThavenLights = Circular LEDs
 
 marking-ProtoThavenMediumArmor = Standard Protogen-Thaven Cybernetics
 
-marking-ProtoSlimePersonVisor = Laspii Visor
-marking-ProtoSlimePersonLEDFace = Default Laspii LEDs
+marking-ProtoSlimePersonVisor = Laspi Visor
+marking-ProtoSlimePersonLEDFace = Default Laspi LEDs
 marking-ProtoSlimePersonLights = Circular LEDs
 
-marking-ProtoSlimePersonMediumArmor = Standard Protogen-Laspii Cybernetics
+marking-ProtoSlimePersonMediumArmor = Standard Protogen-Laspi Cybernetics
 
 marking-ProtoKinVisor = Kin Visor
 marking-ProtoKinLEDFace = Default Kin LEDs
@@ -77,25 +77,25 @@ marking-ProtoMothClaws = Long Moth Claws
 
 marking-ProtoMothMediumArmor = Standard Protogen-Moth Cybernetics
 
-marking-ProtoFelineVisor = Feline Visor
-marking-ProtoFelineLEDFace = Default Feline LEDs
-marking-ProtoFelineLights = Circular LEDs
-marking-ProtoFelineClaws = Long Feline Claws
+marking-ProtoFelionoidVisor = Felionoid Visor
+marking-ProtoFelionoidLEDFace = Default Felionoid LEDs
+marking-ProtoFelionoidLights = Circular LEDs
+marking-ProtoFelionoidClaws = Long Felionoid Claws
 
-marking-ProtoFelineMediumArmor = Standard Protogen-Feline Cybernetics
+marking-ProtoFelionoidMediumArmor = Standard Protogen-Feline Cybernetics
 
-marking-ProtoDionaeVisor = Dionae Visor
-marking-ProtoDionaeLEDFace = Default Dionae LEDs
-marking-ProtoDionaeLights = Circular LEDs
-marking-ProtoDionaeVines = Long Dionae Vines
+marking-ProtoDionaVisor = Diona Visor
+marking-ProtoDionaLEDFace = Default Diona LEDs
+marking-ProtoDionaLights = Circular LEDs
+marking-ProtoDionaVines = Long Diona Vines
 
-marking-ProtoDionaeMediumArmor = Standard Protogen-Dionae Cybernetics
+marking-ProtoDionaMediumArmor = Standard Protogen-Diona Cybernetics
 
-marking-ProtoCyclopsVisor = Cyclops Visor
-marking-ProtoCyclopsLEDFace = Default Cyclops LEDs
-marking-ProtoCyclopsLights = Circular LEDs
+marking-ProtoCycloriteVisor = Cyclorite Visor
+marking-ProtoCycloriteLEDFace = Default Cyclorite LEDs
+marking-ProtoCycloriteLights = Circular LEDs
 
-marking-ProtoCyclopsMediumArmor = Standard Protogen-Cyclops Cybernetics
+marking-ProtoCycloriteMediumArmor = Standard Protogen-Cyclorite Cybernetics
 
 marking-ProtoAvaliVisor = Avali Visor
 marking-ProtoAvaliLEDFace = Default Avali LEDs

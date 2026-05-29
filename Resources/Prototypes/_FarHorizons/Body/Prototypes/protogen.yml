@@ -292,6 +292,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongueForked
         eye_implant: null
+        brain_implant: BrainImplantNexus
     torso:
       part: TorsoResomi
       connections:
@@ -575,10 +576,10 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtoDawiHeart
+        heart: OrganProtoDwarfHeart
         lungs: OrganProtogenLungs
-        stomach: OrganProtoDawiStomach
-        liver: OrganProtoDawiLiver
+        stomach: OrganProtoDwarfStomach
+        liver: OrganProtoDwarfLiver
         kidneys: OrganProtogenKidneys
         cavity: null
     right arm:
@@ -729,6 +730,7 @@
         eyes: OrganProtogenEyes
         tongue: OrganProtogenTongueForked
         eye_implant: null
+        brain_implant: BrainImplantNexus
     torso:
       part: TorsoAvali
       connections:

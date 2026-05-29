@@ -33,6 +33,7 @@
   - type: Tag
     tags:
     - ProtogenCybernetics
+    - SurgeryCompatibleArmor
 
 - type: entity
   parent: ClothingOuterArmorProtogenBase

@@ -87,7 +87,11 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
-  - type: HumanoidEMP
+  - type: GlitchOnIonStorm
+    duration: 25
+    ramp: 3
+  - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+    effectCooldown: 2
     effect:
       stunAmount: 5.0
       knockdownAmount: 2.0
