@@ -2719,6 +2719,12 @@
             type: [ Dwarf ]
           time: 3.5
           type: Remove
+        - !type:ModifyStatusEffect
+          effectProto: BonusArmorIrishBool # resist 90% of stamina damage
+          time: 3
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
   # Starlight edit end
   fizziness: 0.15
 
