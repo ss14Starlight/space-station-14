@@ -15,6 +15,26 @@
   - sprite: _Starlight/Mobs/Customization/Generic/head.rsi
     state: head_heavy2
 
+- type: marking
+  id: HeadScarLeft
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson]
+  followSkinColor: true
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+    state: scar-head-l
+
+- type: marking
+  id: HeadScarRight
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Human, Dwarf, Reptilian, SlimePerson]
+  followSkinColor: true
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+    state: scar-head-r
+
 # Head Top
 - type: marking
   id: HeadEarrings
@@ -361,6 +381,24 @@
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_right_arm
 
+- type: marking
+  id: ScarLeftArm
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-arm-l
+
+- type: marking
+  id: ScarRightArm
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-arm-r
+
 # Legs
 - type: marking
   id: LegDollJointsTattooLeft
@@ -499,3 +537,21 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/human_body_hair.rsi
       state: hair_right_leg
+
+- type: marking
+  id: LegScarLeft
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-leg-l
+
+- type: marking
+  id: LegScarRight
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Human, Dwarf, Arachnid, SlimePerson]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Generic/scars.rsi
+      state: scar-leg-r
