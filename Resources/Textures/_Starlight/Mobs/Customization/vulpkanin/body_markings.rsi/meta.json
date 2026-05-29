@@ -59,6 +59,10 @@
     {
       "name": "points_crest-legs",
       "directions": 4
+    },
+    {
+      "name": "skunk",
+      "directions": 4
     }
   ]
 }

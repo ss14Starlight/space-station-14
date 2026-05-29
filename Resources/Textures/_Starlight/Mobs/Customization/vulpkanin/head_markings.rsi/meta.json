@@ -58,6 +58,18 @@
         {
             "name": "vulpine-lines",
             "directions": 4
+        },
+        {
+            "name": "skunk",
+            "directions": 4
+        },
+        {
+            "name": "eyeshadow-lower",
+            "directions": 4
+        },
+        {
+            "name": "eyeshadow-upper",
+            "directions": 4
         }
     ]
 }

@@ -400,6 +400,33 @@
     - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: slash
 
+- type: marking
+  id: VulpHeadSkunk
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+      state: skunk
+
+- type: marking
+  id: VulpHeadEyeshadowLower
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+      state: eyeshadow-lower
+
+- type: marking
+  id: VulpHeadEyeshadowUpper
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+      state: eyeshadow-upper
+
 # Tail Markings
 - type: marking
   id: VulpTail
@@ -749,6 +776,15 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: belly_fox
+
+- type: marking
+  id: VulpBellySkunk
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+      state: skunk
 
 # # Body Markings (Overlay)
 # Eventually layering will allow to have markings on the body not layering above jumpsuits
