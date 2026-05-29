@@ -1,12 +1,12 @@
 - type: entity
   parent: Holoprojector
   id: HoloprojectorEngineering
-  name: engineering holobarrier projector
-  description: Creates a solid but fragile holographic barrier.
+  name: engineering caution holo-projector
+  description: Creates a non-solid warning projection, meant for marking hazards.
   components:
     - type: HolosignProjector
       signProto: HolosignEngineering
-      chargeUse: 90
+      chargeUse: 60
     - type: Sprite
       sprite: _Starlight/Objects/Devices/Holoprojectors/engineering.rsi
       state: icon
@@ -15,7 +15,7 @@
         - HolofanProjector
         - SecBeltEquip
     - type: StaticPrice
-      price: 50
+      price: 40
 
 - type: entity
   parent: HoloprojectorEngineering
