@@ -1,11 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Gamemode Cooldown has decreased from 2 to 1.
-    type: Tweak
-  id: 405067
-  time: '2026-05-17T17:01:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4468
 - author: wonderfulnewworld
   changes:
   - message: Added a new gamemode for Beta, XenoborgsLP. It's the pre-scaling Xenoborgs gamemode, with the 4 fixed borgs. This gamemode is also used when Xenoborgs spawn as a subgamemode, meaning Sub xenoborgs will always have this base 4.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405466
   time: '2026-05-28T12:37:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4573
+- author: redmushie
+  changes:
+  - message: IAA and NTCT debrief access.
+    type: Remove
+  id: 405467
+  time: '2026-05-28T19:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4574
 Order: -1
