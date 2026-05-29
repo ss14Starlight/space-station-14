@@ -306,7 +306,7 @@ namespace Content.Server.Connection
                 var record = await _db.GetPlayerRecordByUserId(userId);
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
 
-                // NullLink
+                // NullLink-start
                 try
                 {
                     if (!bypassAllowed
@@ -328,16 +328,17 @@ namespace Content.Server.Connection
                         && proto.Recognition.TryGetValue(_server ?? "", out var recs))
                     {
                         var nulllinkPlaytime = await serverGrain.GetPlayTime(e.UserId, [PlayTimeTrackingShared.TrackerOverall], [.. recs]);
-                        overallTime.TimeSpent += TimeSpan.FromSeconds(nulllinkPlaytime.Sum(x => x.Time.TotalSeconds));
+                        overallTime.TimeSpent += TimeSpan.FromTicks(nulllinkPlaytime.Sum(x => x.Time.Ticks));
                     }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    _sawmill.Log(LogLevel.Warning, "Can't get NullLink playtime for {userId}! {ex}", e.UserId, ex);
                 }
 
                 var validAccountAge = record != null &&
                       record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
-                // NullLink
+                // NullLink-end
 
                 // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)
@@ -352,7 +353,7 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-account", ("minutes", minMinutesAge)))), null);
                 }
 
-                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalMinutes > minOverallMinutes;
+                var haveMinOverallTime = overallTime.TimeSpent.TotalMinutes >= minOverallMinutes; // NullLink-edit
 
                 // Use the custom reason if it exists & they don't have the minimum time
                 if (customReason != string.Empty && !haveMinOverallTime && !bypassAllowed)

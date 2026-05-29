@@ -14,8 +14,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Arachnid
-    - Diona
-    - Dwarf
+    - Diona # Starlight: Remove Dwarf
     - Human
     - Moth
     - Reptilian
@@ -78,8 +77,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Arachnid
-    - Diona
-    - Dwarf
+    - Diona # Starlight: Remove Dwarf
     - Human
     - Reptilian
     - Vulpkanin
