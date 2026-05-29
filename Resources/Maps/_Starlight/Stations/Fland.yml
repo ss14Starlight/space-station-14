@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 277.0.0
   forkId: starlight
-  forkVersion: 1d0de056ca9d8f8f8b72c844f7b37edb14b1013a
-  time: 05/22/2026 20:29:43
-  entityCount: 37615
+  forkVersion: ed11ce2a349d3ce84786ccf7def08ac37d0d0124
+  time: 05/29/2026 16:24:28
+  entityCount: 37616
 maps:
 - 1
 grids:
@@ -19144,16 +19144,6 @@ entities:
     - type: Transform
       pos: 6.5,-19.5
       parent: 2
-  - uid: 241
-    components:
-    - type: Transform
-      pos: 14.5,-15.5
-      parent: 2
-  - uid: 242
-    components:
-    - type: Transform
-      pos: 16.5,-7.5
-      parent: 2
 - proto: AirlockCargoLocked
   entities:
   - uid: 243
@@ -20701,7 +20691,7 @@ entities:
       pos: -15.5,-4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -61313.05
+      secondsUntilStateChange: -62229.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -21105,6 +21095,18 @@ entities:
     components:
     - type: Transform
       pos: 67.5,28.5
+      parent: 2
+- proto: AirlockMailGlassLocked
+  entities:
+  - uid: 32300
+    components:
+    - type: Transform
+      pos: 14.5,-15.5
+      parent: 2
+  - uid: 37077
+    components:
+    - type: Transform
+      pos: 16.5,-7.5
       parent: 2
 - proto: AirlockMaintAtmoLocked
   entities:
@@ -32333,21 +32335,6 @@ entities:
     - type: Transform
       pos: 17.46454,-8.357296
       parent: 2
-  - uid: 2562
-    components:
-    - type: Transform
-      pos: 17.651236,-17.275812
-      parent: 2
-  - uid: 2563
-    components:
-    - type: Transform
-      pos: 17.484568,-17.411228
-      parent: 2
-  - uid: 2564
-    components:
-    - type: Transform
-      pos: 17.057486,-17.265396
-      parent: 2
   - uid: 2565
     components:
     - type: Transform
@@ -32372,6 +32359,21 @@ entities:
     components:
     - type: Transform
       pos: 15.4645405,-8.841671
+      parent: 2
+  - uid: 37107
+    components:
+    - type: Transform
+      pos: 21.694155,-12.749759
+      parent: 2
+  - uid: 37108
+    components:
+    - type: Transform
+      pos: 21.64728,-12.265384
+      parent: 2
+  - uid: 37616
+    components:
+    - type: Transform
+      pos: 21.631655,-11.827884
       parent: 2
 - proto: BoxCleanerGrenades
   entities:
@@ -100204,11 +100206,25 @@ entities:
     - type: Transform
       pos: 11.5,56.5
       parent: 2
+    - type: BodyScanner
+      tableEntity: 26393
+    - type: DeviceLinkSource
+      linkedPorts:
+        26393:
+        - - BodyScannerSender
+          - BodyScannerReceiver
   - uid: 15698
     components:
     - type: Transform
       pos: 6.5,56.5
       parent: 2
+    - type: BodyScanner
+      tableEntity: 26391
+    - type: DeviceLinkSource
+      linkedPorts:
+        26391:
+        - - BodyScannerSender
+          - BodyScannerReceiver
   - uid: 15699
     components:
     - type: Transform
@@ -115423,11 +115439,6 @@ entities:
     components:
     - type: Transform
       pos: -4.5,-27.5
-      parent: 2
-  - uid: 18206
-    components:
-    - type: Transform
-      pos: 21.5,-12.5
       parent: 2
   - uid: 18207
     components:
@@ -170663,6 +170674,11 @@ entities:
           Nitrogen: 11.655066
 - proto: LockerDetectiveFilled
   entities:
+  - uid: 2564
+    components:
+    - type: Transform
+      pos: -24.5,37.5
+      parent: 2
   - uid: 26019
     components:
     - type: Transform
@@ -171059,6 +171075,18 @@ entities:
     components:
     - type: Transform
       pos: 79.5,34.5
+      parent: 2
+- proto: LockerMailFilled
+  entities:
+  - uid: 2562
+    components:
+    - type: Transform
+      pos: 17.26409,-17.47845
+      parent: 2
+  - uid: 18206
+    components:
+    - type: Transform
+      pos: 17.717215,-17.462826
       parent: 2
 - proto: LockerMedicalFilled
   entities:
@@ -173368,6 +173396,8 @@ entities:
     - type: Transform
       pos: 7.5,56.5
       parent: 2
+    - type: OperatingTable
+      scanner: 15698
   - uid: 26392
     components:
     - type: Transform
@@ -173378,6 +173408,8 @@ entities:
     - type: Transform
       pos: 10.5,56.5
       parent: 2
+    - type: OperatingTable
+      scanner: 15697
   - uid: 26394
     components:
     - type: Transform
@@ -176525,13 +176557,6 @@ entities:
     components:
     - type: Transform
       pos: 116.5,-26.5
-      parent: 2
-- proto: PottedPlant13
-  entities:
-  - uid: 26811
-    components:
-    - type: Transform
-      pos: -24.515121,37.198967
       parent: 2
 - proto: PottedPlant14
   entities:
@@ -204305,6 +204330,11 @@ entities:
     - type: Transform
       pos: 69.5,30.5
       parent: 2
+  - uid: 2563
+    components:
+    - type: Transform
+      pos: 21.5,-12.5
+      parent: 2
   - uid: 14792
     components:
     - type: Transform
@@ -205525,11 +205555,6 @@ entities:
     components:
     - type: Transform
       pos: 70.5,-2.5
-      parent: 2
-  - uid: 31350
-    components:
-    - type: Transform
-      pos: 17.5,-17.5
       parent: 2
   - uid: 31351
     components:
@@ -210904,6 +210929,11 @@ entities:
       parent: 2
 - proto: VendingMachineTankDispenserEngineering
   entities:
+  - uid: 26811
+    components:
+    - type: Transform
+      pos: 110.5,-15.5
+      parent: 2
   - uid: 32295
     components:
     - type: Transform
@@ -210930,11 +210960,6 @@ entities:
     components:
     - type: Transform
       pos: 55.5,-37.5
-      parent: 2
-  - uid: 32300
-    components:
-    - type: Transform
-      pos: 110.5,-15.5
       parent: 2
   - uid: 32301
     components:
@@ -235453,11 +235478,6 @@ entities:
     - type: Transform
       pos: 4.5,-14.5
       parent: 2
-  - uid: 37077
-    components:
-    - type: Transform
-      pos: 20.5,-15.5
-      parent: 2
 - proto: WindoorHydroponicsLocked
   entities:
   - uid: 37078
@@ -235523,6 +235543,13 @@ entities:
     components:
     - type: Transform
       pos: 69.5,30.5
+      parent: 2
+- proto: WindoorMailLocked
+  entities:
+  - uid: 31350
+    components:
+    - type: Transform
+      pos: 20.5,-15.5
       parent: 2
 - proto: WindoorSecure
   entities:
@@ -235666,20 +235693,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 36.5,5.5
       parent: 2
-- proto: WindoorSecureCargoLocked
-  entities:
-  - uid: 37107
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 18.5,-9.5
-      parent: 2
-  - uid: 37108
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 22.5,-10.5
-      parent: 2
 - proto: WindoorSecureChapelLocked
   entities:
   - uid: 37109
@@ -235806,6 +235819,20 @@ entities:
     components:
     - type: Transform
       pos: 60.5,49.5
+      parent: 2
+- proto: WindoorSecureMailLocked
+  entities:
+  - uid: 241
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,-9.5
+      parent: 2
+  - uid: 242
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 22.5,-10.5
       parent: 2
 - proto: WindoorSecureMedicalLocked
   entities:
