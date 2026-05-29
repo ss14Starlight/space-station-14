@@ -7,53 +7,26 @@
   components:
   - type: Transform
     anchored: true
-  - type: Physics
-    bodyType: Static
-    canCollide: false
   - type: Sprite
     sprite: _Starlight/Structures/Holo/engineering.rsi
     state: icon
   - type: TimedDespawn
-    lifetime: 90
-  - type: Damageable
-    damageContainer: Inorganic
-  - type: Destructible
-    thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 30
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
+    lifetime: 180
 
 - type: entity
   id: HolosignEngineering
   parent: HolosignEngineeringWarning
   name: holographic barrier
-  description: A barrier of hard light that blocks movement, but pretty weak.
+  description: A barrier of non-solid light, warning everyone of danger around it.
   components:
-    - type: Physics
-      bodyType: Static
-      canCollide: true
     - type: Sprite
       sprite: _Starlight/Structures/Holo/engineering.rsi
       state: icon
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.3,-0.3,0.3,0.3"
-          mask:
-            - TableMask
-          layer:
-            - TableLayer
     - type: TimedDespawn
       lifetime: 180
     - type: PointLight
       enabled: true
-      radius: 4
+      radius: 3
       color: orange
-      castShadows: false #SL lighting optimization
-    - type: Climbable
+      castShadows: false
     - type: Clickable
