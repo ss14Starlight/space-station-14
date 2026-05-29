@@ -21,3 +21,4 @@ subspecies-name-protoarachnid = Proto-Arachnid
 
 # Starlight Species added after Protogens
 subspecies-name-protoelf = Proto-Aielithii
+subspecies-name-protolagomorph = Proto-Lagomorph

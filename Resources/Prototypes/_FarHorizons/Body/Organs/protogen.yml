@@ -1,7 +1,7 @@
 # TODO - Sprite Avali Protogen organs. Basically the same as the blue ones but darker and yellow- 100% a cosmetic thing.
 
 - type: entity
-  id: BaseProtogenUnGibbable
+  id: BaseProtogenOrgan # Starlight, no Gibbable type, so we'll use this as the top
   parent: BaseItem
   abstract: true
   components:
@@ -29,17 +29,17 @@
     tags:
       - Meat
 
-- type: entity
-  id: BaseProtogenOrgan
-  parent: BaseProtogenUnGibbable
-  abstract: true
-  components:
-  - type: Gibbable
+#- type: entity # Starlight start, no Gibbable component, so we'll use the parent of this
+#  id: BaseProtogenOrgan
+#  parent: BaseProtogenUnGibbable
+#  abstract: true
+#  components:
+#  - type: Gibbable # Starlight end
 
 - type: entity
   id: OrganProtogenBrain
-  parent: [BaseOrganBrain, BaseProtogenUnGibbable]
-  name: Cybernetic Brain
+  parent: [BaseOrganBrain, BaseProtogenOrgan] # Starlight UnGibbable -> BaseProtogenOrgan
+  name: cybernetic brain # Starlight, capitalization
   description: The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210 #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -48,7 +48,7 @@
 - type: entity
   id: OrganProtogenEyes
   parent: [BaseProtogenOrgan, BaseOrganEyes]
-  name: Cybernetic Eyes
+  name: cybernetic eyes # Starlight, capitalization
   description: It's still focusing on you.. Creepy. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -65,7 +65,7 @@
 - type: entity
   id: OrganProtogenTongue
   parent: [BaseProtogenOrgan, BaseOrganTongue]
-  name: Cybernetic Tongue
+  name: cybernetic tongue # Starlight, capitalization
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -74,7 +74,7 @@
 - type: entity
   id: OrganProtogenTongueForked
   parent: [BaseProtogenOrgan, BaseOrganTongue]
-  name: Forked Cybernetic Tongue
+  name: forked cybernetic tongue # Starlight, capitalization
   description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -83,7 +83,7 @@
 - type: entity
   id: OrganProtogenEars
   parent: [BaseProtogenOrgan, BaseOrganEars]
-  name: Cybernetic Ears
+  name: cybernetic ears # Starlight, capitalization
   description: Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -92,7 +92,7 @@
 - type: entity
   id: OrganProtogenLungs
   parent: [BaseProtogenOrgan, BaseOrganLungs]
-  name: Cybernetic Lungs
+  name: cybernetic lungs # Starlight, capitalization
   description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -129,7 +129,7 @@
 - type: entity
   id: OrganProtogenHeart
   parent: [BaseProtogenOrgan, BaseOrganHeart]
-  name: Cybernetic Heart
+  name: cybernetic heart # Starlight, capitalization
   description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -148,7 +148,7 @@
 - type: entity
   id: OrganProtoKinCore
   parent: BaseProtogenOrgan
-  name: Cybernetic Shadekin Core
+  name: cybernetic shadekin core # Starlight, capitalization
   description: The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been. #  Starlight, quotation marks removed
   components:
   - type: Organ
@@ -158,7 +158,7 @@
 - type: entity
   id: OrganProtogenStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  name: Biological Reactor
+  name: biological reactor # Starlight, capitalization
   description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -185,7 +185,7 @@
 - type: entity
   id: OrganProtogenLiver
   parent: [BaseProtogenOrgan, BaseOrganLiver]
-  name: Cybernetic Liver
+  name: cybernetic liver # Starlight, capitalization
   description: Pairing suggestion, fermented RAM sticks and CPU drives. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -203,7 +203,7 @@
 - type: entity
   id: OrganProtogenKidneys
   parent: [BaseProtogenOrgan, BaseOrganKidneys]
-  name: Cybernetic Kidneys
+  name: cybernetic kidneys # Starlight, capitalization
   description: Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -223,7 +223,7 @@
 - type: entity
   id: OrganProtoMothStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  name: Biological Reactor
+  name: biological reactor # Starlight, capitalization
   description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -253,7 +253,7 @@
 - type: entity
   id: OrganProtoDwarfHeart
   parent: OrganProtogenHeart
-  name: Cybernetic Heart
+  name: cybernetic heart # Starlight, capitalization
   description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user. #  Starlight, quotation marks removed
   components:
   - type: Metabolizer
@@ -262,7 +262,7 @@
 - type: entity
   id: OrganProtoDwarfLiver
   parent: OrganProtogenLiver
-  name: Cybernetic Liver
+  name: cybernetic liver # Starlight, capitalization
   description: Pairing suggestion, fermented RAM sticks and CPU drives.
   components:
   - type: Metabolizer
@@ -271,7 +271,7 @@
 - type: entity
   id: OrganProtoDwarfStomach
   parent: OrganProtogenStomach
-  name: Biological Reactor
+  name: biological reactor # Starlight, capitalization
   description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
   components:
   - type: Sprite
@@ -350,7 +350,7 @@
 - type: entity
   id: OrganProtoArachnidHeart
   parent: [BaseProtogenOrgan, OrganProtogenHeart]
-  name: Cybernetic Heart
+  name: cybernetic heart # Starlight, capitalization
   components:
   - type: Sprite
     state: heart-on
@@ -394,7 +394,7 @@
 - type: entity
   id: OrganProtoVoxHeart
   parent: [BaseProtogenOrgan, OrganProtogenHeart]
-  name: Cybernetic Heart
+  name: cybernetic heart
   components:
   - type: Sprite
     state: heart-on
