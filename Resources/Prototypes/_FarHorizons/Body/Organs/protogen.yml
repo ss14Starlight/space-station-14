@@ -186,7 +186,7 @@
   id: OrganProtogenLiver
   parent: [BaseProtogenOrgan, BaseOrganLiver]
   name: Cybernetic Liver
-  description: Pairing suggestion: fermented RAM sticks and CPU drives. #  Starlight, quotation marks removed
+  description: Pairing suggestion, fermented RAM sticks and CPU drives. #  Starlight, quotation marks removed
   components:
   - type: Sprite
     state: liver
@@ -263,7 +263,7 @@
   id: OrganProtoDwarfLiver
   parent: OrganProtogenLiver
   name: Cybernetic Liver
-  description: Pairing suggestion: fermented RAM sticks and CPU drives.
+  description: Pairing suggestion, fermented RAM sticks and CPU drives.
   components:
   - type: Metabolizer
     metabolizerTypes: [Dwarf]
