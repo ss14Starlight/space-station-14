@@ -99,9 +99,11 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoVulpDummy
+  id: ApperanceProtoVulp
   categories: [ HideSpawnMenu ]
   components:
+  - type: HumanoidAppearance
+    species: ProtoVulp
   - type: Inventory
     speciesId: protovulp #to be replaced with proto[species] when new sprites are made
     templateId: protogen

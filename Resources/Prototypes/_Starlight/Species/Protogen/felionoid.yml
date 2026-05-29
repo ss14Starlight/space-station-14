@@ -6,7 +6,7 @@
   sprites: MobProtoFelionoidSprites
   defaultSkinTone: "#666666"
   markingLimits: MobProtoFelionoidMarkingLimits
-  dollPrototype: MobProtoFelionoidDummy
+  dollPrototype: AppearanceProtoFelionoid
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6

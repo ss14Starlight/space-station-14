@@ -181,7 +181,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoMothDummy
+  id: AppearanceProtoMoth
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

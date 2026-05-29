@@ -2,7 +2,7 @@
   # Protogens
 <!-- Heavily modified from Far Horizons' version. No Synth, Damage values changes, etc. -->
   <Box>
-    <GuideEntityEmbed Entity="MobProtogenDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtogen" Caption=""/>
   </Box>
 
   Protogens are not technically a species, but rather a broad term for a person that has modified themselves extensively with cybernetic enhancements that they can no longer be considered their own species anymore.

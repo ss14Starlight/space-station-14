@@ -5,7 +5,7 @@
   prototype: MobProtoCyclorite
   sprites: MobProtoCycloriteSprites
   markingLimits: MobProtoCycloriteMarkingLimits
-  dollPrototype: MobProtoCycloriteDummy
+  dollPrototype: AppearanceProtoCyclorite
   defaultSkinTone: "#FFFFFF"
   skinColoration: Hues
   customName: true

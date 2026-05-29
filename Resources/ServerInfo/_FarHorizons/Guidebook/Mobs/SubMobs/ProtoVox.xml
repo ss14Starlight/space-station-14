@@ -2,7 +2,7 @@
   # Proto-Vox
 
   <Box>
-    <GuideEntityEmbed Entity="MobProtoVoxDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtoVox" Caption=""/>
   </Box>
 
   The main reason for Cyberneticization in Vox is, unsurprisingly, to get rid of their oxygen poisoning first and foremost.

@@ -28,7 +28,7 @@
   <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobProtogenDummy" Caption="Protogen"/> <!--FH-->
+  <GuideEntityEmbed Entity="AppearanceProtogen" Caption="Protogen"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
 

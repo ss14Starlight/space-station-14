@@ -5,7 +5,7 @@
   prototype: MobProtoDwarf
   sprites: MobProtoHumanSprites
   markingLimits: MobProtoDwarfMarkingLimits
-  dollPrototype: MobProtoDwarfDummy
+  dollPrototype: AppearanceProtoDwarf
   defaultSkinTone: "#666666"
   skinColoration: Hues
   customName: true

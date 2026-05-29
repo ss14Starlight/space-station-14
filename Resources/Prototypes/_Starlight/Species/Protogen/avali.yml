@@ -5,7 +5,7 @@
   prototype: MobProtoAvali
   sprites: MobProtoAvaliSprites
   markingLimits: MobProtoAvaliMarkingLimits
-  dollPrototype: MobProtoAvaliDummy
+  dollPrototype: AppearanceProtoAvali
   defaultSkinTone: "#D2B48C"
   skinColoration: Hues
   customName: true

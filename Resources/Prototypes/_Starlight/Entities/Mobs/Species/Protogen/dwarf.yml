@@ -63,9 +63,11 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoDwarfDummy
+  id: AppearanceProtoDwarf
   categories: [ HideSpawnMenu ]
   components:
+  - type: HumanoidAppearance
+    species: ProtoDwarf
   - type: Inventory
     templateId: protogen
     femaleDisplacements:

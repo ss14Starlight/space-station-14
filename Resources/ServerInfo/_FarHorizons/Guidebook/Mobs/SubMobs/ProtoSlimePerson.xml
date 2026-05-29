@@ -2,7 +2,7 @@
   # Proto-Laspi
 <!-- Starlight, renamed back to Laspi.-->
   <Box>
-    <GuideEntityEmbed Entity="MobProtoSlimePersonDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtoSlimePerson" Caption=""/>
   </Box>
 
   Despite their semi-solid nature, Laspi can comfortably support protogen-grade cybernetics. Although it might.. Sink in a little from time to time.

@@ -2,12 +2,10 @@
   # Proto-Moth
 
   <Box>
-    <GuideEntityEmbed Entity="MobProtoMothDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtoMoth" Caption=""/>
   </Box>
 
   Despite their best efforts, they were not able to get rid of their fire weakness and even with their metallic body parts they still go up in flames like tinder in a tinderbox. They can handle cold a little better, though.
-
-  (Sorry they look so weird, it's a marking thing.)
 
   ## Changes from the "Protogen" base species.
   Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.

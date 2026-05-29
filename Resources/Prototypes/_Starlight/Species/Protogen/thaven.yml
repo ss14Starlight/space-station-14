@@ -6,7 +6,7 @@
   sprites: MobProtoThavenSprites
   defaultSkinTone: "#ffffff"
   markingLimits: MobProtoThavenMarkingLimits
-  dollPrototype: MobProtoThavenDummy
+  dollPrototype: AppearanceProtoThaven
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6

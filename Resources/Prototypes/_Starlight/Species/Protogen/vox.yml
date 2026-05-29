@@ -6,7 +6,7 @@
   sprites: MobProtoVoxSprites
   defaultSkinTone: "#6c741d"
   markingLimits: MobProtoVoxMarkingLimits
-  dollPrototype: MobProtoVoxDummy
+  dollPrototype: AppearanceProtoVox
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6

@@ -135,13 +135,13 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoDionaDummy
+  id: AppearanceProtoDiona
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: ProtoDiona
   - type: Inventory
-    templateId: ProtoDiona
+    templateId: protodiona
     femaleDisplacements:
       jumpsuit:
         sizeMaps:

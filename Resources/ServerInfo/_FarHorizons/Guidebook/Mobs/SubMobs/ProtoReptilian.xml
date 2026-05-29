@@ -2,10 +2,8 @@
   # Proto-Reptile
 <!-- Starlight, renamed back to Reptilian.-->
   <Box>
-    <GuideEntityEmbed Entity="MobProtoReptilianDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtoReptilian" Caption=""/>
   </Box>
-
-  lizord
 
   ## Changes from the "Protogen" base species.
   Values listed replace "Protogen" values of that damage catagory, they do not stack ontop of them.

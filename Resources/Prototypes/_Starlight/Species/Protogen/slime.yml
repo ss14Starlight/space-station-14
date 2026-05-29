@@ -6,7 +6,7 @@
   sprites: MobProtoSlimePersonSprites
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobProtoSlimePersonMarkingLimits
-  dollPrototype: MobProtoSlimePersonDummy
+  dollPrototype: AppearanceProtoSlimePerson
   skinColoration: Hues
   customName: true
   minAge: 20

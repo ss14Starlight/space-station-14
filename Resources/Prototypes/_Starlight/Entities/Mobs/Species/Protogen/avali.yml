@@ -131,7 +131,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoAvaliDummy
+  id: AppearanceProtoAvali
   categories: [ HideSpawnMenu ]
   description: A dummy proto-avali meant to be used in character setup.
   components:

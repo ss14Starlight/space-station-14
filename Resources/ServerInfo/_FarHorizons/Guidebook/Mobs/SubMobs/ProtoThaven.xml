@@ -2,7 +2,7 @@
   # Proto-Thaven
 
   <Box>
-    <GuideEntityEmbed Entity="MobProtoThavenDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtoThaven" Caption=""/>
   </Box>
 
   ## Changes from the "Protogen" base species.

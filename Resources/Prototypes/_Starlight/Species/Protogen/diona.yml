@@ -5,7 +5,7 @@
   prototype: MobProtoDiona
   sprites: MobProtoDionaSprites
   markingLimits: MobProtoDionaMarkingLimits
-  dollPrototype: MobProtoDionaDummy
+  dollPrototype: AppearanceProtoDiona
   defaultSkinTone: "#cdb369"
   skinColoration: Hues
   customName: true

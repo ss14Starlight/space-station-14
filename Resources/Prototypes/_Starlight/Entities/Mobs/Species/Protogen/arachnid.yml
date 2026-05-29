@@ -127,11 +127,11 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoArachnidDummy
+  id: AppearanceProtoArachnid
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
-    species: Arachnid
+    species: ProtoArachnid
   - type: Inventory
     templateId: protoarachnid
     speciesId: arachnid

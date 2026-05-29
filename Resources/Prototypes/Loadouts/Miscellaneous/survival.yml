@@ -48,7 +48,6 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Vox
-    - ProtoVox # Far Horizons
 
 # Basic
 - type: loadout

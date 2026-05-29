@@ -6,7 +6,7 @@
   sprites: MobProtoResomiSprites
   defaultSkinTone: "#faf7f7"
   markingLimits: MobProtoResomiMarkingLimits
-  dollPrototype: MobProtoResomiDummy
+  dollPrototype: AppearanceProtoResomi
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6

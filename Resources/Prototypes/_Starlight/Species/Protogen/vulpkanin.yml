@@ -6,7 +6,7 @@
   sprites: MobProtoVulpSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtoVulpMarkingLimits
-  dollPrototype: MobProtoVulpDummy
+  dollPrototype: ApperanceProtoVulp
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6

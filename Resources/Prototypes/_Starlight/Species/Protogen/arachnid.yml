@@ -5,7 +5,7 @@
   prototype: MobProtoArachnid
   sprites: MobProtoArachnidSprites
   markingLimits: MobProtoArachnidMarkingLimits
-  dollPrototype: MobProtoArachnidDummy
+  dollPrototype: AppearanceProtoArachnid
   defaultSkinTone: "#385878"
   skinColoration: Hues
   customName: true

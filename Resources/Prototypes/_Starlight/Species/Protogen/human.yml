@@ -6,7 +6,7 @@
   sprites: MobProtoHumanSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobProtoHumanMarkingLimits
-  dollPrototype: MobProtoHumanDummy
+  dollPrototype: AppearanceProtoHuman
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6

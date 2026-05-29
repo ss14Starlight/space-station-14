@@ -51,9 +51,11 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: MobProtoHumanDummy
+  id: AppearanceProtoHuman
   categories: [ HideSpawnMenu ]
   components:
+  - type: HumanoidAppearance
+    species: ProtoHuman
   - type: Inventory
     templateId: protogen
     femaleDisplacements:

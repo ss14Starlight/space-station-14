@@ -2,7 +2,7 @@
   # Proto-Arachnid
 
   <Box>
-    <GuideEntityEmbed Entity="MobProtoArachnidDummy" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtoArachnid" Caption=""/>
   </Box>
 
   Spooder.
