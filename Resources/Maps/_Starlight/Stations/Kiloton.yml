@@ -3,9 +3,9 @@ meta:
   category: Map
   engineVersion: 277.0.0
   forkId: starlight
-  forkVersion: 1d0de056ca9d8f8f8b72c844f7b37edb14b1013a
-  time: 05/21/2026 17:10:48
-  entityCount: 40824
+  forkVersion: ed11ce2a349d3ce84786ccf7def08ac37d0d0124
+  time: 05/29/2026 17:44:14
+  entityCount: 40825
 maps:
 - 1
 grids:
@@ -12260,6 +12260,8 @@ entities:
             0: 65535
           -2,8:
             0: 255
+          -1,5:
+            0: 16
           -1,7:
             0: 13107
           -1,8:
@@ -12781,11 +12783,9 @@ entities:
           17,-6:
             0: 58623
           17,-5:
-            0: 15087
-            7: 32768
+            0: 47855
           17,-4:
-            0: 819
-            7: 2184
+            0: 3003
           17,-9:
             1: 29440
           17,-7:
@@ -12796,11 +12796,9 @@ entities:
           18,-6:
             0: 61695
           18,-5:
-            0: 49151
-            7: 16384
+            0: 65535
           18,-4:
-            0: 3003
-            7: 1092
+            0: 4095
           19,-7:
             1: 497
           19,-6:
@@ -14743,11 +14741,6 @@ entities:
           temperature: 293.15
           moles:
             Plasma: 6666.982
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-            Oxygen: 20.078888
-            Nitrogen: 75.53487
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -20563,12 +20556,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -59.5,-34.5
       parent: 2
-  - uid: 12441
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,-38.5
-      parent: 2
 - proto: AirlockMaintAtmoLocked
   entities:
   - uid: 634
@@ -20727,6 +20714,13 @@ entities:
     components:
     - type: Transform
       pos: -35.5,-66.5
+      parent: 2
+- proto: AirlockMaintRoboticsLocked
+  entities:
+  - uid: 12441
+    components:
+    - type: Transform
+      pos: -6.5,-38.5
       parent: 2
 - proto: AirlockMaintSalvageMiningLocked
   entities:
@@ -27788,6 +27782,16 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-44.5
+      parent: 2
+  - uid: 23277
+    components:
+    - type: Transform
+      pos: -9.5,-37.5
+      parent: 2
+  - uid: 30762
+    components:
+    - type: Transform
+      pos: -15.5,-37.5
       parent: 2
 - proto: BottleShip
   entities:
@@ -100099,11 +100103,6 @@ entities:
     components:
     - type: Transform
       pos: -38.5,-67.5
-      parent: 2
-  - uid: 23277
-    components:
-    - type: Transform
-      pos: 78.5,-16.5
       parent: 2
   - uid: 40036
     components:
@@ -183345,6 +183344,11 @@ entities:
       parent: 2
 - proto: SpoonPlastic
   entities:
+  - uid: 13659
+    components:
+    - type: Transform
+      pos: -3.2231998,21.386795
+      parent: 2
   - uid: 15451
     components:
     - type: Transform
@@ -210997,11 +211001,6 @@ entities:
     components:
     - type: Transform
       pos: 1.5,22.5
-      parent: 2
-  - uid: 30762
-    components:
-    - type: Transform
-      pos: -3.5,21.5
       parent: 2
   - uid: 30763
     components:
