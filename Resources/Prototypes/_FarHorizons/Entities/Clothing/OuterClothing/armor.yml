@@ -9,17 +9,17 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi
-  - type: Pierceable
-    level: Metal
-  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
-    modifiers:
-      coefficients:
-        Blunt: 0.70
-        Slash: 0.70
-        Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
-        Heat: 0.80
-  - type: ExplosionResistance
-    damageCoefficient: 0.90
+#  - type: Pierceable # Starlight start, we're not keeping these values, but I actually want one of them to have 0 armor, which means the parent needs to lose this armor too.
+#    level: Metal # As neat as it would be, this would push the playerbase even further towards higher calibers.
+#  - type: Armor #Based on /tg/ but slightly compensated to fit the fact that armor stacks in SS14.
+#    modifiers:
+#      coefficients:
+#        Blunt: 0.70
+#        Slash: 0.70
+#        Piercing: 0.70 #Can save you, but bullets will still hurt. Will take about 10 shots from a Viper before critting, as opposed to 7 while unarmored and 16~ with a bulletproof vest.
+#        Heat: 0.80
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.90 # Starlight end
   - type: ArmorSparkEffect
 
 #### Proto-Armor ####
@@ -44,15 +44,15 @@
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
     state: light
-  - type: Armor
-    modifiers:
-      coefficients:
-        Slash: 0.9
-        Piercing: 0.9
-  - type: ClothingSpeedModifier #Ligher armor gives room for cybernetics to give speedbuff is my logic.
-    walkModifier: 1
-    sprintModifier: 1.05 #same speed as cyberlegs
-  - type: ExplosionResistance
+#  - type: Armor # Starlight start, no armor
+#    modifiers:
+#      coefficients:
+#        Slash: 0.9
+#        Piercing: 0.9
+#  - type: ClothingSpeedModifier #Ligher armor gives room for cybernetics to give speedbuff is my logic.
+#    walkModifier: 1
+#    sprintModifier: 1.05 #same speed as cyberlegs # Starlight end
+  - type: ExplosionResistance # This is acceptable.
     damageCoefficient: 0.95
 
 - type: entity
@@ -67,8 +67,8 @@
   - type: Armor
     modifiers: # Not true body armor, so no flat reductions. Could end up stacking undesirably if it had any.
       coefficients:
-        Slash: 0.7
-        Piercing: 0.7
+        Slash: 0.95 # Starlight, it's 5%, not the most egregious
+        Blunt: 0.95 # Starlight, not getting pierce armor natively
 
 - type: entity
   parent: ClothingOuterArmorProtogenBase
@@ -82,8 +82,8 @@
   - type: Armor
     modifiers:
       coefficients:
-        Slash: 0.6
-        Piercing: 0.6
+        Slash: 0.90 # Starlight. 40%'s too much for 10% slowdown.
+        Blunt: 0.90 # Starlight, no free pierce armor. They're weak to blunt, so it evens out somewhat.
   - type: ClothingSpeedModifier
     walkModifier: 1
     sprintModifier: 0.90 #Seems low, but a secvest has 30% w/no reduction or a better example would be plate carrier for 45% reduction. 10% reduction for bit better secvest seems fine to me - Keep in mind that they take increased blunt as well.
