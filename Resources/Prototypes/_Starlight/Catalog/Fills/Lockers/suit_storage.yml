@@ -52,3 +52,5 @@
       amount: 2
     - id: ClothingShoesBootsMagSec
       amount: 2
+    - id: JetpackSecurityFilled # because mapping them manually sucks
+      amount: 2

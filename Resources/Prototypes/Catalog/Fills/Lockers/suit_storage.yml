@@ -199,6 +199,7 @@
     - id: ClothingOuterHardsuitSecurity
     - id: ClothingMaskBreath
     - id: ClothingShoesBootsMagSec
+    - id: JetpackSecurityFilled # Starlight - because mapping these manually sucks
 
 #CE's hardsuit
 - type: entity
