@@ -47,8 +47,8 @@
   components:
   - type: Sprite
     layers:
-      - state: eyeball-l
-      - state: eyeball-r
+    - state: eyeball-l
+    - state: eyeball-r
   - type: Item
     size: Small
     heldPrefix: eyeballs
