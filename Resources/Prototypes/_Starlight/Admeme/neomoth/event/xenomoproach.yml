@@ -338,6 +338,7 @@
       damageContainers:
         - Inorganic
         - Silicon
+        - Hybrid
     - type: ItemSlots
       slots:
         cell_slot:

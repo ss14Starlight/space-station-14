@@ -14,9 +14,11 @@
     - type: ShowHealthBars
       damageContainers:
         - Biological
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
+        - Hybrid
     - type: Tag
       tags:
         - HudMedical
@@ -40,9 +42,11 @@
     damageContainers:
     - Biological
     - IPC
+    - Hybrid
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid
   - type: Tag
     tags:
     - HudMedical

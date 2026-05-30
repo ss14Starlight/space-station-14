@@ -16,6 +16,7 @@
   - type: Healing
     damageContainers:
       - IPC
+      - Hybrid # Starlight
     damage:
       types:
         Bloodloss: -3 #lowers bloodloss damage
@@ -31,7 +32,7 @@
       params:
         volume: 1.0
         variation: 0.125
-  - type: InteractRestriction 
+  - type: InteractRestriction
     restrictInteractionTarget:
       blacklist:  # All species but IPC and Protogen. Used blacklist instead of whitelist so can be clicked on bags/medkits
         - Arachnid

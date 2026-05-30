@@ -101,8 +101,8 @@
         - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
           healing:
             damageContainers:
-              - Biological
               - IPC # Starlight
+              - Hybrid # Starlight
             damage: {}
             delay: 2
             adjustEyeDamage: -1 # 1 glass = 1 weld
