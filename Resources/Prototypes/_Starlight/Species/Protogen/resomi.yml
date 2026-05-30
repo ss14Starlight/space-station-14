@@ -1,7 +1,7 @@
 - type: species
   id: ProtoResomi
   name: subspecies-name-protoresomi
-  roundStart: true
+  roundStart: false # Re-enable when they get new sprites.
   prototype: MobProtoResomi
   sprites: MobProtoResomiSprites
   defaultSkinTone: "#faf7f7"
