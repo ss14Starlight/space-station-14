@@ -3,63 +3,93 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   speciesRestriction: [Dwarf] # Starlight: remove elf ears from humans (and give them to elves)
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_standard
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/ears.rsi
+        state: long_ears_standard
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LongEarsWide
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   speciesRestriction: [Dwarf] # Starlight: remove elf ears from humans (and give them to elves)
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_wide
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/ears.rsi
+        state: long_ears_wide
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LongEarsSmall
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   speciesRestriction: [Dwarf] # Starlight: remove elf ears from humans (and give them to elves)
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_small
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/ears.rsi
+        state: long_ears_small
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LongEarsUpwards
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   speciesRestriction: [Dwarf] # Starlight: remove elf ears from humans (and give them to elves)
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_upwards
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/ears.rsi
+        state: long_ears_upwards
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LongEarsTall
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   speciesRestriction: [Dwarf] # Starlight: remove elf ears from humans (and give them to elves)
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_tall
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/ears.rsi
+        state: long_ears_tall
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LongEarsThin
   bodyPart: HeadTop
   markingCategory: HeadTop
   forcedColoring: true
-  followSkinColor: true
+  # followSkinColor: true
   speciesRestriction: [Dwarf] # Starlight: remove elf ears from humans (and give them to elves)
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/ears.rsi
-    state: long_ears_thin
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/ears.rsi
+        state: long_ears_thin
+      colorSource: HumanSkinColor
+  # Starlight end

@@ -1,0 +1,12 @@
+body-editor-part-torso = Torso
+body-editor-part-head = Head
+body-editor-part-left-arm = Left Arm
+body-editor-part-right-arm = Right Arm
+body-editor-part-left-leg = Left Leg
+body-editor-part-right-leg = Right Leg
+body-editor-part-left-hand = Left Hand
+body-editor-part-right-hand = Right Hand
+body-editor-part-left-foot = Left Foot
+body-editor-part-right-foot = Right Foot
+body-editor-part-hand = Hand
+body-editor-part-foot = Foot

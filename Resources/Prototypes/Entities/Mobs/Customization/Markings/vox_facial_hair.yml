@@ -4,9 +4,14 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: beard_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: beard_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VoxFacialHairColonel
@@ -14,9 +19,14 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: colonel_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: colonel_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VoxFacialHairFu
@@ -24,9 +34,14 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: fu_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: fu_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VoxFacialHairMane
@@ -34,9 +49,14 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: mane_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: mane_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VoxFacialHairManeSmall
@@ -44,9 +64,14 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: manesmall_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: manesmall_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VoxFacialHairNeck
@@ -54,9 +79,14 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: neck_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: neck_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VoxFacialHairTufts
@@ -64,7 +94,12 @@
   markingCategory: FacialHair
   canBeDisplaced: false
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/vox_facial_hair.rsi
-      state: tuft_s
+    body_facialHair:
+        sprite:
+          sprite: Mobs/Customization/vox_facial_hair.rsi
+          state: tuft_s
+        colorSource: HumanFacialHairColor
+  # Starlight end
 

@@ -1,5 +1,5 @@
 - type: marking
-  id: TattooVoxHeartLeftArm
+  id: TattooVoxHeartArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Vox]
@@ -8,23 +8,19 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: heart_l_arm
-
-- type: marking
-  id: TattooVoxHeartRightArm
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Vox]
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
-  sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: heart_r_arm
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: heart_l_arm
+      colorSource: HumanSkinColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: heart_r_arm
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxHiveChest
@@ -36,9 +32,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: hive_s
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: hive_s
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxNightlingChest
@@ -50,9 +51,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: nightling_s
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: nightling_s
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxNightbelt
@@ -64,9 +70,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: nightbelt
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: nightbelt
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxChestV
@@ -78,11 +89,19 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: chest_v_1
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: chest_v_2
+    body_chest@0:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: chest_v_1
+      colorSource: HumanSkinColor
+    body_chest@1:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: chest_v_2
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxUnderbelly
@@ -94,9 +113,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: underbelly
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: underbelly
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxTailRing
@@ -109,9 +133,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: tail_ring
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: tail_ring
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeVoxRight
@@ -123,9 +152,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: tattoo_eye_vox_r
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: tattoo_eye_vox_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeVoxLeft
@@ -137,9 +171,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: tattoo_eye_vox_l
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: tattoo_eye_vox_l
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeshadowVoxSmall
@@ -152,9 +191,14 @@
   markingCategory: Overlay
   speciesRestriction: [Vox]
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: eyeshadow_small
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: eyeshadow_small
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeshadowVoxMedium
@@ -162,9 +206,14 @@
   markingCategory: Overlay
   speciesRestriction: [Vox]
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: eyeshadow_medium
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: eyeshadow_medium
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeshadowVoxLarge
@@ -172,18 +221,28 @@
   markingCategory: Overlay
   speciesRestriction: [Vox]
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: eyeshadow_large
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: eyeshadow_large
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VoxTattooEyeliner
   bodyPart: Eyes
   markingCategory: Overlay
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: eyeliner
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: eyeliner
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VoxBeakCoverStripe
@@ -195,9 +254,14 @@
         !type:TattooColoring
       fallbackColor: "#666666"
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: beakcover_stripe
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: beakcover_stripe
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxBeakCoverTip
@@ -209,9 +273,14 @@
         !type:TattooColoring
       fallbackColor: "#666666"
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: beakcover_tip
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: beakcover_tip
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxArrowHead
@@ -223,9 +292,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: tattoo_arrow_head
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: tattoo_arrow_head
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooVoxNightlingHead
@@ -237,9 +311,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: tattoo_nightling_head
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: tattoo_nightling_head
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxVisage
@@ -251,9 +330,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: visage
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: visage
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxVisageL
@@ -265,9 +349,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: visage_l
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: visage_l
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxVisageR
@@ -279,9 +368,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: visage_r
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: visage_r
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxCheek
@@ -293,7 +387,12 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_tattoos.rsi
-    state: cheekblush
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_tattoos.rsi
+        state: cheekblush
+      colorSource: HumanSkinColor
+  # Starlight end
 

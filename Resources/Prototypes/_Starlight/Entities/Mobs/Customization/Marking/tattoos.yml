@@ -7,9 +7,14 @@
       eye_left:
         type: !type:EyeColoring
   speciesRestriction: [ Resomi ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
-      state: eye_left
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
+          state: eye_left
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: ResomiTattooEyeRight
@@ -20,9 +25,14 @@
       eye_right:
         type: !type:EyeColoring
   speciesRestriction: [ Resomi ]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
-      state: eye_right
+    body_eyes:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
+          state: eye_right
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliTattooEyeLeft
@@ -33,9 +43,14 @@
       eye_left:
         type: !type:EyeColoring
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
-    state: eye_left
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
+        state: eye_left
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: AvaliTattooEyeRight
@@ -46,6 +61,11 @@
       eye_right:
         type: !type:EyeColoring
   speciesRestriction: [ Avali ]
+  # Starlight start
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
-    state: eye_right
+    body_eyes:
+      sprite:
+        sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
+        state: eye_right
+      colorSource: UniqueColor
+  # Starlight end

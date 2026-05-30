@@ -38,7 +38,9 @@
             <BoxContainer Orientation="Horizontal" VerticalExpand="True" SeparationOverride="0">
 
                 <!-- This box holds all the character pickers and job priority button, the left side of the window  -->
-                <BoxContainer MinSize="400 0" Margin="5 0 0 0" Orientation="Vertical">
+                <!-- Starlight start -->
+                <BoxContainer Name="CharacterPickerPanel" MinSize="400 0" Margin="5 0 0 0" Orientation="Vertical">
+                <!-- Starlight end -->
 
                     <!-- Button to edit job priorities -->
                     <Button Name="JobPrioritiesButton"

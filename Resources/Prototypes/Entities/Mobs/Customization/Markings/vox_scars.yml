@@ -3,116 +3,176 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_eye_right
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_eye_right
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarEyeLeft
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_eye_left
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_eye_left
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarTopSurgeryShort
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_top_surgery_short
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_top_surgery_short
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarTopSurgeryLong
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_top_surgery_long
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_top_surgery_long
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarChest
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_chest
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_chest
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarNeck
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_neck
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_neck
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarChestBullets
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_chest_bullets
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_chest_bullets
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarStomachBullets
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_stomach_bullets
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_stomach_bullets
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarFace1
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_face_1
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_face_1
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarFace2
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_face_2
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_face_2
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarEyeRightSmall
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_eye_right_small
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_eye_right_small
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: VoxScarEyeLeftSmall
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vox]
-  followSkinColor: true
+  # followSkinColor: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/vox_scars.rsi
-    state: vox_scar_eye_left_small
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/vox_scars.rsi
+        state: vox_scar_eye_left_small
+      colorSource: HumanSkinColor
+  # Starlight end

@@ -1,0 +1,41 @@
+﻿<ui:BodyTab xmlns="https://spacestation14.io"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:ui="clr-namespace:Content.Client._Starlight.Lobby.UI"
+            HorizontalExpand="True"
+            VerticalExpand="True">
+    <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True">
+        <PanelContainer StyleClasses="PanelDark" MinWidth="220" VerticalExpand="True" HorizontalExpand="True" Margin="0 0 8 0">
+            <ScrollContainer VerticalExpand="True">
+                <BoxContainer Name="ColorPickerList" Access="Public" Orientation="Vertical" HorizontalExpand="True" Margin="6 6 6 6">
+                    <Label Text="Colors" StyleClasses="LabelHeading" />
+                </BoxContainer>
+            </ScrollContainer>
+        </PanelContainer>
+
+        <BoxContainer Orientation="Vertical" HorizontalExpand="False" VerticalExpand="True">
+            <ui:BodyPreviewControl Name="BodyPreview" Access="Public" />
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False" Margin="0 6 0 0">
+                <BoxContainer Name="BodyPartsList" Access="Public" Orientation="Vertical" HorizontalExpand="True" />
+            </ScrollContainer>
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" MinWidth="240" VerticalExpand="True" HorizontalExpand="True" Margin="8 0 0 0">
+            <PanelContainer StyleClasses="PanelDark" HorizontalExpand="True" VerticalExpand="True" Margin="0 0 4 0">
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+                    <BoxContainer Name="SelectedMarkingsList" Access="Public" Orientation="Vertical" HorizontalExpand="True" Margin="6 6 6 6">
+                        <Label Text="Markings" StyleClasses="LabelHeading" />
+                    </BoxContainer>
+                </ScrollContainer>
+            </PanelContainer>
+
+            <PanelContainer StyleClasses="PanelDark" HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="2" Margin="4 0 0 0">
+                <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="6 6 6 6">
+                    <Label Text="Available Markings" StyleClasses="LabelHeading" />
+                    <ScrollContainer Name="AvailableMarkingsScroll" Access="Public" HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
+                        <ui:VirtualGridContainer Name="AvailableMarkingsGrid" Access="Public" Columns="2" />
+                    </ScrollContainer>
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+    </BoxContainer>
+</ui:BodyTab>

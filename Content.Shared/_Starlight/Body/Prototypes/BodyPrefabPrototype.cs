@@ -17,8 +17,10 @@ public sealed partial class BodyPrefabPrototype  : IPrototype
 public partial record struct BodyPartDef(
     EntProtoId<SLBodyPartComponent> BodyPart,
     Dictionary<string, BodyPartDef>? AttachedParts = null,
-    List<BodyPartDef>? ContainedParts = null)
+    List<BodyPartDef>? ContainedParts = null,
+    List<EntProtoId<SLBodyPartComponent>>? Alternatives = null)
 {
     public bool HasSocketedChildren => AttachedParts is { Count: > 0 };
     public bool HasInternalChildren => ContainedParts is { Count: > 0 };
+    public bool HasAlternatives => Alternatives is { Count: > 0 };
 };

@@ -1,0 +1,143 @@
+# SPDX-FileCopyrightText: 2026 Starlight Network
+# SPDX-License-Identifier: MIT
+
+# Layers ordered from bottom to top matching HumanoidVisualLayers enum render order.
+# Each layer declares what it is above/below to establish the sort order.
+
+- type: visualLayer
+  id: body_special
+
+- type: visualLayer
+  id: body_tailExtras
+  aboveLayers:
+    - body_special
+
+- type: visualLayer
+  id: body_lLeg
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_rLeg
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_lFoot
+  aboveLayers:
+    - body_lLeg
+
+- type: visualLayer
+  id: body_rFoot
+  aboveLayers:
+    - body_rLeg
+
+- type: visualLayer
+  id: body_tail
+  aboveLayers:
+    - body_tailExtras
+    - body_lLeg
+    - body_rLeg
+    - body_lFoot
+    - body_rFoot
+
+# - type: visualLayer
+#   id: body_undergarmentBottom
+#   aboveLayers:
+#     - body_lLeg
+#     - body_rLeg
+
+- type: visualLayer
+  id: body_chest
+  belowLayers:
+    - body_lLeg
+    - body_rLeg
+
+# - type: visualLayer
+#   id: body_undergarmentTop
+#   aboveLayers:
+#     - body_chest
+
+- type: visualLayer
+  id: body_lArm
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_rArm
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_lHand
+  aboveLayers:
+    - body_lArm
+
+- type: visualLayer
+  id: body_rHand
+  aboveLayers:
+    - body_rArm
+
+- type: visualLayer
+  id: body_head
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_snout
+  aboveLayers:
+    - body_head
+
+- type: visualLayer
+  id: body_snoutCover
+  aboveLayers:
+    - body_snout
+
+- type: visualLayer
+  id: body_headSide
+  aboveLayers:
+    - body_head
+
+- type: visualLayer
+  id: body_headTop
+  aboveLayers:
+    - body_head
+
+- type: visualLayer
+  id: body_eyes
+  aboveLayers:
+    - body_head
+
+- type: visualLayer
+  id: body_facialHair
+  aboveLayers:
+    - body_snout
+
+- type: visualLayer
+  id: body_hair
+  aboveLayers:
+    - body_headTop
+
+- type: visualLayer
+  id: body_handcuffs
+  aboveLayers:
+    - body_lHand
+    - body_rHand
+
+- type: visualLayer
+  id: body_ensnare
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_stencilMask
+  aboveLayers:
+    - body_head
+
+- type: visualLayer
+  id: body_fire
+  aboveLayers:
+    - body_chest
+
+- type: visualLayer
+  id: body_other

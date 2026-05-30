@@ -203,9 +203,9 @@ public sealed partial class MarkingPicker : Control
     private List<string> GetMarkingStateNames(MarkingPrototype marking)
     {
         List<string> result = new();
-        foreach (var markingState in marking.Sprites)
+        foreach (var markingState in marking.Sprites.Values) // Starlight
         {
-            switch (markingState)
+            switch (markingState.Sprite) // Starlight
             {
                 case SpriteSpecifier.Rsi rsi:
                     result.Add(Loc.GetString($"marking-{marking.ID}-{rsi.RsiState}"));
@@ -236,7 +236,7 @@ public sealed partial class MarkingPicker : Control
         var sortedMarkings = GetMarkings(_selectedMarkingCategory).Values.Where(m =>
             m.ID.ToLower().Contains(filter.ToLower()) ||
             GetMarkingName(m).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => Loc.GetString(GetMarkingName(p)));
+        ).OrderBy(p => GetMarkingName(p)); // Starlight
 
         foreach (var marking in sortedMarkings)
         {
@@ -245,7 +245,7 @@ public sealed partial class MarkingPicker : Control
                 continue;
             }
 
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
+            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites.Values.First().Sprite)); // Starlight
             item.Metadata = marking;
         }
 
@@ -279,7 +279,7 @@ public sealed partial class MarkingPicker : Control
             var _item = new ItemList.Item(CMarkingsUsed)
             {
                 Text = text,
-                Icon = _sprite.Frame0(newMarking.Sprites[0]),
+                Icon = _sprite.Frame0(newMarking.Sprites.Values.First().Sprite), // Starlight
                 Selectable = true,
                 Metadata = newMarking,
                 IconModulate = marking.MarkingColors[0]
@@ -550,7 +550,7 @@ public sealed partial class MarkingPicker : Control
         var item = new ItemList.Item(CMarkingsUsed)
         {
             Text = Loc.GetString("marking-used", ("marking-name", $"{GetMarkingName(marking)}"), ("marking-category", Loc.GetString($"markings-category-{marking.MarkingCategory}"))),
-            Icon = _sprite.Frame0(marking.Sprites[0]),
+            Icon = _sprite.Frame0(marking.Sprites.Values.First().Sprite), // Starlight: Dictionary -> Values.First
             Selectable = true,
             Metadata = marking,
         };
@@ -574,7 +574,7 @@ public sealed partial class MarkingPicker : Control
 
         if (marking.MarkingCategory == _selectedMarkingCategory)
         {
-            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites[0]));
+            var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", _sprite.Frame0(marking.Sprites.Values.First().Sprite)); // Starlight: Dictionary -> Values.First
             item.Metadata = marking;
         }
         _selectedMarking = null;

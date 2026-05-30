@@ -1,9 +1,7 @@
-﻿// SPDX-FileCopyrightText: 2026 Starlight Network
+// SPDX-FileCopyrightText: 2026 Starlight Network
 // SPDX-License-Identifier: MIT
 
-using System.Numerics;
 using Content.Shared._Starlight.Body.Prototypes;
-using Content.Shared.Starlight.Utility;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -13,7 +11,18 @@ namespace Content.Shared._Starlight.Body.Components;
 public sealed partial class BodyPartVisualizerComponent : Component
 {
     [DataField(required: true), AutoNetworkedField]
-    public ExtendedSpriteSpecifier Sprite;
-    [DataField, AutoNetworkedField] public ProtoId<BodyVisualLayerPrototype>? BodyVisualLayer = null;
-    [DataField, AutoNetworkedField] public Vector2 Offset = Vector2.Zero;
+    public Dictionary<VisualLayerKey, BodySpriteSpecifier> BodyVisualLayers = [];
+
+    /// <summary>
+    /// Maps socket name to the set of layer keys
+    /// that should be applied when the part is attached to that socket.
+    /// Layers not listed for the current socket are skipped.
+    /// If empty or missing, all layers are applied unconditionally.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<string, List<VisualLayerKey>> SocketLayers = [];
+
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<MarkingSetPrototype>> MarkingSets = [];
 }
+

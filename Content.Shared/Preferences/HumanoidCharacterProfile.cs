@@ -4,6 +4,7 @@ using Content.Shared.CCVar;
 using Content.Shared.Starlight.CCVar; // Starlight
 using Content.Shared.GameTicking;
 using Content.Shared._CD.Records; // Cosmatic Drift Record System
+using Content.Shared._Starlight.Body.Editor; // Starlight body editor
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
@@ -97,6 +98,11 @@ namespace Content.Shared.Preferences
         // Cosmatic Drift – stores the player's custom record data on the profile itself.
         [DataField("cosmaticDriftCharacterRecords")]
         public PlayerProvidedCharacterRecords? CDCharacterRecords { get; private set; } = PlayerProvidedCharacterRecords.DefaultRecords();
+
+        // Starlight: hierarchical body editor profile. Null until first save under the new editor schema;
+        // converted from legacy <see cref="Appearance"/> markings on demand.
+        [DataField("bodyEditorProfile")]
+        public BodyProfile? BodyEditorProfile { get; private set; }
 
         /// <summary>
         /// When spawning into a round what's the preferred spot to spawn.
@@ -204,6 +210,7 @@ namespace Content.Shared.Preferences
                 : PlayerProvidedCharacterRecords.DefaultRecords();
             CDCharacterRecords.EnsureValid();
             // Cosmatic Drift Record System-end
+            BodyEditorProfile = other.BodyEditorProfile?.Clone(); // Starlight
         }
 
         /// <summary>
@@ -365,6 +372,12 @@ namespace Content.Shared.Preferences
             var copy = new PlayerProvidedCharacterRecords(records);
             copy.EnsureValid();
             return new HumanoidCharacterProfile(this) { CDCharacterRecords = copy };
+        }
+
+        // Starlight replace the hierarchical body editor profile (pass null to clear).
+        public HumanoidCharacterProfile WithBodyEditorProfile(BodyProfile? profile)
+        {
+            return new HumanoidCharacterProfile(this) { BodyEditorProfile = profile?.Clone() };
         }
         // Cosmatic Drift Record System-end
 
@@ -530,6 +543,17 @@ namespace Content.Shared.Preferences
                 return false;
             }
             // Cosmatic Drift Record System-end
+            // Starlight start
+            if (BodyEditorProfile != null)
+            {
+                if (other.BodyEditorProfile == null || !BodyEditorProfile.MemberwiseEquals(other.BodyEditorProfile))
+                    return false;
+            }
+            else if (other.BodyEditorProfile != null)
+            {
+                return false;
+            }
+            // Starlight end
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 

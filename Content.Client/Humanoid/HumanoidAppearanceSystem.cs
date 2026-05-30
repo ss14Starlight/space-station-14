@@ -326,10 +326,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         if (!_markingManager.TryGetMarking(marking, out var prototype))
             return;
 
-        foreach (var sprite in prototype.Sprites)
+        // Starlight start
+        foreach (var bodySprite in prototype.Sprites.Values)
         {
+            var sprite = bodySprite.Sprite;
             if (sprite is not SpriteSpecifier.Rsi rsi)
                 continue;
+        // Starlight-end
 
             var layerId = $"{marking.MarkingId}-{rsi.RsiState}";
             if (!_sprite.LayerMapTryGet(spriteEnt.AsNullable(), layerId, out var index, false))
@@ -389,10 +392,11 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
         visible &= humanoid.BaseLayers.TryGetValue(markingPrototype.BodyPart, out var setting)
            && setting.AllowsMarkings;
 
-        for (var j = 0; j < markingPrototype.Sprites.Count; j++)
+        var j = 0; // Starlight
+        foreach (var bodySprite in markingPrototype.Sprites.Values) // Starlight
         {
-            var markingSprite = markingPrototype.Sprites[j];
-
+            var spriteIndex = j++; // Starlight
+            var markingSprite = bodySprite.Sprite; // Starlight
             if (markingSprite is not SpriteSpecifier.Rsi rsi)
                 return;
 
@@ -400,7 +404,7 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 
             if (!_sprite.LayerMapTryGet((entity.Owner, sprite), layerId, out _, false))
             {
-                var layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, targetLayer + j + 1);
+                var layer = _sprite.AddLayer((entity.Owner, sprite), markingSprite, targetLayer + spriteIndex + 1); // Starlight
                 _sprite.LayerMapSet((entity.Owner, sprite), layerId, layer);
                 _sprite.LayerSetSprite((entity.Owner, sprite), layerId, rsi);
             }
@@ -410,16 +414,13 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             if (!visible || setting == null) // this is kinda implied
                 continue;
 
-            // Okay so if the marking prototype is modified but we load old marking data this may no longer be valid
-            // and we need to check the index is correct.
-            // So if that happens just default to white?
-            if (colors != null && j < colors.Count)
-                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[j]);
+            if (colors != null && spriteIndex < colors.Count) // Starlight
+                _sprite.LayerSetColor((entity.Owner, sprite), layerId, colors[spriteIndex]); // Starlight
             else
                 _sprite.LayerSetColor((entity.Owner, sprite), layerId, Color.White);
 
             if (humanoid.MarkingsDisplacement.TryGetValue(markingPrototype.BodyPart, out var displacementData) && markingPrototype.CanBeDisplaced)
-                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + j + 1, layerId, out _);
+                _displacement.TryAddDisplacement(displacementData, (entity.Owner, sprite), targetLayer + spriteIndex + 1, layerId, out _); // Starlight
 
             //starlight start
             if (isGlowing)

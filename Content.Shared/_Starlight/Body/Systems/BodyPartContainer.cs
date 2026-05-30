@@ -38,7 +38,8 @@ public sealed partial class BodyPartContainer : BaseContainer,
             DebugTools.Assert(_socketLookup.TryGetValue(toAdd.Comp.ParentSocket.Value, out var idx) && idx == -1);
             _socketLookup[toAdd.Comp.ParentSocket.Value] = _bodyParts.Count - 1;
         }
-        entMan.EventBus.RaiseLocalEvent(toAdd,new SLBodyPartAddedEvent(toAdd));
+        var ev = new SLBodyPartAddedEvent(toAdd);
+        entMan.EventBus.RaiseLocalEvent(toAdd, ref ev);
     }
 
     protected override void InternalRemove(EntityUid toRemove, IEntityManager entMan)
@@ -52,13 +53,15 @@ public sealed partial class BodyPartContainer : BaseContainer,
             removed = (_bodyParts[index], _bodyPartComps[index]);
             _bodyParts.RemoveAt(index);
             _bodyPartComps.RemoveAt(index);
-            entMan.EventBus.RaiseLocalEvent(removed, new SLBodyPartRemovedEvent(removed));
+            var removedEv = new SLBodyPartRemovedEvent(removed);
+            entMan.EventBus.RaiseLocalEvent(removed, ref removedEv);
             _socketLookup.Clear();
             return;
         }
         //We use remove swap so that we can maintain socket indices
         removed = (_bodyParts.RemoveSwap(index), _bodyPartComps.RemoveSwap(index));
-        entMan.EventBus.RaiseLocalEvent(removed,new SLBodyPartRemovedEvent(removed));
+        var ev = new SLBodyPartRemovedEvent(removed);
+        entMan.EventBus.RaiseLocalEvent(removed, ref ev);
         if (removed.Comp.ParentSocket != null) //If our removed socket is in the lookup, remove the lookup
             _socketLookup[removed.Comp.ParentSocket.Value] = -1;
         if (index >= _bodyPartComps.Count)

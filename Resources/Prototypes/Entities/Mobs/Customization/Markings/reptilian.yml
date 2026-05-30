@@ -3,128 +3,201 @@
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_aquatic
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_aquatic
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsShort
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_short
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_short
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsSimple
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_simple
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_simple
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsDivinity
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_divinity
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_divinity
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsBig
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_big
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_big
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsAxolotl
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_axolotl
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_axolotl
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsHood
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_hood_primary
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_hood_secondary
+    body_headSide@0:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_hood_primary
+      colorSource: HumanSkinColor
+    body_headSide@1:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_hood_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardFrillsNeckfull
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: frills_neckfull
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: frills_neckfull
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsAngler
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_angler
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_angler
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsCurled
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_curled
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_curled
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsRam
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_ram
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_ram
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsShort
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_short
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_short
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsSimple
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_simple
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_simple
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsDouble
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_double
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_double
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailSmooth
@@ -132,11 +205,19 @@
   waggingId: LizardTailSmoothAnimated # Starlight
   markingCategory: Tail
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_smooth_primary
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_smooth_secondary
+    body_tail@0:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_smooth_primary
+      colorSource: HumanSkinColor
+    body_tail@1:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_smooth_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailLarge
@@ -144,9 +225,14 @@
   waggingId: LizardTailLargeAnimated # Starlight
   markingCategory: Tail
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_large
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_large
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailSpikes
@@ -154,9 +240,14 @@
   waggingId: LizardTailSpikesAnimated # Starlight
   markingCategory: Tail
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_spikes
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_spikes
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailLTiger
@@ -164,9 +255,14 @@
   waggingId: LizardTailLTigerAnimated # Starlight
   markingCategory: Tail
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_ltiger
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_ltiger
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailDTiger
@@ -174,9 +270,14 @@
   waggingId: LizardTailDTigerAnimated # Starlight
   markingCategory: Tail
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_dtiger
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_dtiger
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailAquatic
@@ -184,9 +285,14 @@
   waggingId: LizardTailAquaticAnimated # Starlight
   markingCategory: Tail
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_aquatic
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_aquatic
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardSnoutRound
@@ -194,9 +300,14 @@
   markingCategory: Snout
   forcedColoring: true
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: snout_round
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: snout_round
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardSnoutSharp
@@ -204,182 +315,267 @@
   markingCategory: Snout
   forcedColoring: true
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: snout_sharp
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: snout_sharp
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardSnoutSplotch
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: snout_splotch_primary
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: snout_splotch_secondary
+    body_snout@0:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: snout_splotch_primary
+      colorSource: HumanSkinColor
+    body_snout@1:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: snout_splotch_secondary
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardSnoutVisageRound
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: visage_round
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: visage_round
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardSnoutVisageSharp
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: visage_sharp
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: visage_sharp
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardChestTiger
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: body_tiger
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: body_tiger
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHeadTiger
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: head_tiger
+    body_head:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: head_tiger
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: LizardLArmTiger
+  id: LizardArmTiger
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: l_arm_tiger
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: l_arm_tiger
+      colorSource: HumanSkinColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: r_arm_tiger
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: LizardLLegTiger
+  id: LizardLegTiger
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: l_leg_tiger
-
-- type: marking
-  id: LizardRArmTiger
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Reptilian]
-  sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: r_arm_tiger
-
-- type: marking
-  id: LizardRLegTiger
-  bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Reptilian]
-  sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: r_leg_tiger
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: l_leg_tiger
+      colorSource: HumanSkinColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: r_leg_tiger
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsArgali
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_argali
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_argali
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsAyrshire
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_ayrshire
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_ayrshire
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsMyrsore
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_myrsore
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_myrsore
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsBighorn
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_bighorn
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_bighorn
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsDemonic
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_demonic
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_demonic
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsKoboldEars
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_kobold_ears
+    body_headTop:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_kobold_ears
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardHornsFloppyKoboldEars
   bodyPart: HeadSide
   markingCategory: HeadSide
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: horns_floppy_kobold_ears
+    body_headSide:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: horns_floppy_kobold_ears
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardChestUnderbelly
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: body_underbelly
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: body_underbelly
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardChestBackspikes
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: body_backspikes
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: body_backspikes
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardChestFin
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Reptilian]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: body_fin
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: body_fin
+      colorSource: HumanSkinColor
+  # Starlight end
 
 # Animated
 - type: marking
@@ -388,11 +584,19 @@
   markingCategory: Tail
   staticId: LizardTailSmooth # Starlight
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
-      state: tail_smooth_wagging_primary
-    - sprite: Mobs/Customization/reptilian_parts.rsi
-      state: tail_smooth_wagging_secondary
+    body_tail@0:
+        sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_smooth_wagging_primary
+        colorSource: HumanSkinColor
+    body_tail@1:
+        sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_smooth_wagging_secondary
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailLargeAnimated
@@ -400,9 +604,14 @@
   markingCategory: Tail
   staticId: LizardTailLarge # Starlight
   speciesRestriction: []
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/reptilian_parts.rsi
-    state: tail_large_wagging
+    body_tail:
+      sprite:
+        sprite: Mobs/Customization/reptilian_parts.rsi
+        state: tail_large_wagging
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailSpikesAnimated
@@ -410,9 +619,14 @@
   markingCategory: Tail
   staticId: LizardTailSpikes # Starlight
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
-      state: tail_spikes_wagging
+    body_tail:
+        sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_spikes_wagging
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailLTigerAnimated
@@ -420,9 +634,14 @@
   markingCategory: Tail
   staticId: LizardTailLTiger # Starlight
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
-      state: tail_ltiger_wagging
+    body_tail:
+        sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_ltiger_wagging
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailDTigerAnimated
@@ -430,9 +649,14 @@
   markingCategory: Tail
   staticId: LizardTailDTiger # Starlight
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
-      state: tail_dtiger_wagging
+    body_tail:
+        sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_dtiger_wagging
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: LizardTailAquaticAnimated
@@ -440,6 +664,11 @@
   markingCategory: Tail
   staticId: LizardTailAquatic # Starlight
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: Mobs/Customization/reptilian_parts.rsi
-      state: tail_aquatic_wagging
+    body_tail:
+        sprite:
+          sprite: Mobs/Customization/reptilian_parts.rsi
+          state: tail_aquatic_wagging
+        colorSource: HumanSkinColor
+  # Starlight end

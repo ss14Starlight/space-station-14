@@ -12,36 +12,56 @@
   bodyPart: RFoot
   markingCategory: Overlay
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: pawsocks_feet
+    body_rFoot:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: pawsocks_feet
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: PawSocksLegs
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: pawsocks_legs
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: pawsocks_legs
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: PawSocksHands
   bodyPart: RHand
   markingCategory: Overlay
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: pawsocks_hands
+    body_rHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: pawsocks_hands
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: PawSocksArms
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: pawsocks_arms
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: pawsocks_arms
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxTail
@@ -49,22 +69,38 @@
   markingCategory: Tail
   waggingId: FoxTailAnimated
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_tail
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_tail_inner
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_tail
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_tail_inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxEar
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_ear
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_ear_inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_ear
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_ear_inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: WolfTail
@@ -72,29 +108,47 @@
   markingCategory: Tail
   waggingId: WolfTailAnimated
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: wolf_tail
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: wolf_tail_inner
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: wolf_tail
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: wolf_tail_inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxBelly
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_belly-torso
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_belly-torso
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: FoxSnout
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: vulp_face
+    body_snout:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: vulp_face
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 # Animated
 - type: marking
@@ -103,11 +157,19 @@
   markingCategory: Tail
   staticId: FoxTail
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_fox_waggin
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_fox_inner_waggin
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_fox_waggin
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_fox_inner_waggin
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: WolfTailAnimated
@@ -115,146 +177,246 @@
   markingCategory: Tail
   staticId: WolfTail
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_wolf_waggin
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
-      state: tail_wolf_inner_waggin
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_wolf_waggin
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/vulpkanin.rsi
+          state: tail_wolf_inner_waggin
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEar
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarFade
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp-fade
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp-fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarSharp
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: vulp-sharp
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: vulp-sharp
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarJackal
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: jackal
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: jackal-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: jackal
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: jackal-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarTerrier
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: terrier
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: terrier-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: terrier
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: terrier-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarWolf
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: wolf
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: wolf-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: wolf
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: wolf-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarFennec
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: fennec
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: fennec-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: fennec
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: fennec-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarFox
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: fox
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: fox
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpEarOtie
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: otie
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: otie-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: otie
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: otie-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarTajaran
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: msai
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: msai-inner
+    body_headTop@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: msai
+        colorSource: VulpkaninSkinColor
+    body_headTop@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: msai-inner
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpEarShock
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: shock
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: shock
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpEarCoyote
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: coyote
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: coyote
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpEarDalmatian
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
-      state: dalmatian
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+          state: dalmatian
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 # Head Markings (Snout)
 - type: marking
@@ -262,106 +424,180 @@
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: muzzle_alt
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: muzzle_alt
+        colorSource: VulpkaninSkinColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnout
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: muzzle
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: muzzle
+        colorSource: VulpkaninSkinColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutSharp
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: muzzle_sharp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: muzzle_sharp
+        colorSource: VulpkaninSkinColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutFade
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: muzzle_fade
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: muzzle_fade
+        colorSource: VulpkaninSkinColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutNose
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutMask
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: mask
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: mask
+        colorSource: UniqueColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutVulpine
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: vulpine
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: vulpine-lines
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: vulpine
+        colorSource: UniqueColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: vulpine-lines
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutSwift
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: vulpine-lines
+    body_snout:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: vulpine-lines
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutBlaze
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: blaze
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: blaze
+        colorSource: VulpkaninSkinColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpSnoutPatch
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: patch
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: nose
+    body_snout@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: patch
+        colorSource: VulpkaninSkinColor
+    body_snout@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: nose
+        colorSource: UniqueColor
+  # Starlight end
 
 # Head Markings (Head)
 - type: marking
@@ -369,27 +605,42 @@
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: tiger_head
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: tiger_head
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpHeadTigerFace
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: tiger_face
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: tiger_face
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpHeadSlash
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
-      state: slash
+    body_head:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+          state: slash
+        colorSource: UniqueColor
+  # Starlight end
 
 # Tail Markings
 - type: marking
@@ -398,11 +649,19 @@
   markingCategory: Tail
   waggingId: VulpTailWag
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp-fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailTip
@@ -410,11 +669,19 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   waggingId: VulpTailWagTip
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailWag
@@ -422,11 +689,19 @@
   markingCategory: Tail
   staticId: VulpTail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag-tip #fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag-tip #fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailWagTip
@@ -434,44 +709,76 @@
   markingCategory: Tail
   staticId: VulpTailTip
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_wag-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_wag-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailAlt
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt-fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailAltTip
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: vulp_alt-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: vulp_alt-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailLong
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: long
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: long-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: long
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: long-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFox
@@ -479,11 +786,19 @@
   markingCategory: Tail
   waggingId: VulpTailFoxWag
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox-fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFoxTip
@@ -491,11 +806,19 @@
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
   waggingId: VulpTailFoxWagTip
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox
+        colorSource: VulpkaninSkinColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFoxWag
@@ -503,11 +826,19 @@
   markingCategory: Tail
   staticId: VulpTailFox
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag-fade
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag-fade
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFoxWagTip
@@ -515,11 +846,19 @@
   markingCategory: Tail
   staticId: VulpTailFoxTip
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox_wag-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox_wag-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailBushy
@@ -527,9 +866,14 @@
   markingCategory: Tail
   waggingId: VulpTailBushyWag
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: bushfluff
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: bushfluff
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailBushyWag
@@ -537,9 +881,14 @@
   markingCategory: Tail
   staticId: VulpTailBushy
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: bushfluff_wag
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: bushfluff_wag
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailCoyote
@@ -547,9 +896,14 @@
   markingCategory: Tail
   waggingId: VulpTailCoyoteWag
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: coyote
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: coyote
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpTailCoyoteWag
@@ -557,94 +911,150 @@
   markingCategory: Tail
   staticId: VulpTailCoyote
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: coyote_wag
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: coyote_wag
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailCorgiWag
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: corgi_wag
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: corgi_wag
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailHusky
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: husky-inner
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: husky-outer
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: husky-inner
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: husky-outer
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailHuskyAlt
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: husky
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: husky
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFox2
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox2
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox2
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFox3
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox3
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fox3-tip
+    body_tail@0:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox3
+        colorSource: UniqueColor
+    body_tail@1:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fox3-tip
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFennec
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fennec
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fennec
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpTailOtie
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: otie
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: otie
+        colorSource: VulpkaninSkinColor
+  # Starlight end
 
 - type: marking
   id: VulpTailFluffy
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fluffy
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fluffy
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpTailDalmatianWag
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: dalmatian_wag
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: dalmatian_wag
+        colorSource: UniqueColor
+  # Starlight end
 
 # Body Markings (Chest)
 - type: marking
@@ -652,27 +1062,42 @@
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: belly_crest
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: belly_crest
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpBellyFull
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: belly_full
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: belly_full
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpBellyFox
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: belly_fox
+    body_chest:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: belly_fox
+        colorSource: UniqueColor
+  # Starlight end
 
 # # Body Markings (Overlay)
 # Eventually layering will allow to have markings on the body not layering above jumpsuits
@@ -709,36 +1134,56 @@
   markingCategory: Overlay
   bodyPart: RFoot
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_feet
+    body_rFoot:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_feet
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpPointsCrestLegs
   markingCategory: Legs
   bodyPart: LLeg
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_crest-legs
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_crest-legs
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpPointsFadeLegs
   markingCategory: Legs
   bodyPart: LLeg
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_fade-legs
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_fade-legs
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpPointsSharpLegs
   markingCategory: Legs
   bodyPart: LLeg
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_sharp-legs
+    body_lLeg:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_sharp-legs
+        colorSource: UniqueColor
+  # Starlight end
 
 # Arm Markings
 - type: marking
@@ -746,36 +1191,56 @@
   markingCategory: Overlay
   bodyPart: RHand
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_hands
+    body_rHand:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_hands
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpPointsCrestArms
   markingCategory: Arms
   bodyPart: LArm
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_crest-arms
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_crest-arms
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpPointsFadeArms
   markingCategory: Arms
   bodyPart: LArm
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_fade-arms
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_fade-arms
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: VulpPointsSharpArms
   markingCategory: Arms
   bodyPart: LArm
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
-      state: points_sharp-arms
+    body_lArm:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+          state: points_sharp-arms
+        colorSource: UniqueColor
+  # Starlight end
 
 # Hairs
 - type: marking
@@ -783,189 +1248,294 @@
   bodyPart: Hair
   speciesRestriction: [Vulpkanin]
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: adhara
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: adhara
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairAnita
   bodyPart: Hair
   speciesRestriction: [Vulpkanin]
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: anita
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: anita
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairApollo
   bodyPart: Hair
   speciesRestriction: [Vulpkanin]
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: apollo
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: apollo
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairBelle
   bodyPart: Hair
   speciesRestriction: [Vulpkanin]
   markingCategory: Hair
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: belle
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: belle
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairBraided
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: braided
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: braided
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairBun
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: bun
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: bun
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairCleanCut
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: clean_cut
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: clean_cut
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairCurl
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: curl
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: curl
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairHawk
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: hawk
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: hawk
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairJagged
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: jagged
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: jagged
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairJeremy
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: jeremy
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: jeremy
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairKajam
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: kajam
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: kajam
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairKeid
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: keid
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: keid
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairKleeia
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: kleeia
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: kleeia
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairMizar
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: mizar
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: mizar
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairPunkBraided
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: punkbraided
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: punkbraided
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairRaine
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: raine
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: raine
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairRough
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: rough
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: rough
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairShort
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: short
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: short
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairShort2
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: short2
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: short2
+        colorSource: HumanHairColor
+  # Starlight end
 
 - type: marking
   id: VulpHairSpike
   bodyPart: Hair
   markingCategory: Hair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
-      state: spike
+    body_hair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/hair.rsi
+          state: spike
+        colorSource: HumanHairColor
+  # Starlight end
 
 # Facial Hairs
 - type: marking
@@ -973,36 +1543,56 @@
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
-      state: ruff
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
+          state: ruff
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VulpFacialHairElder
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
-      state: elder
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
+          state: elder
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VulpFacialHairElderChin
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
-      state: elder_chin
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
+          state: elder_chin
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: VulpFacialHairKita
   bodyPart: FacialHair
   markingCategory: FacialHair
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
-      state: kita
+    body_facialHair:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/facial_hair.rsi
+          state: kita
+        colorSource: HumanFacialHairColor
+  # Starlight end
 
 - type: marking
   id: ExtraFluffyTail
@@ -1010,6 +1600,11 @@
   markingCategory: Tail
   staticId: WolfTail
   speciesRestriction: [Vulpkanin]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
-      state: fluffy_tail_ex
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+          state: fluffy_tail_ex
+        colorSource: VulpkaninSkinColor
+  # Starlight end

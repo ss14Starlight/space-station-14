@@ -211,7 +211,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         foreach (var (id, marking) in sortedMarkings)
         {
-            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites[0]));
+            var item = MarkingList.AddItem(Loc.GetString($"marking-{id}"), _sprite.Frame0(marking.Sprites.Values.First().Sprite)); // Starlight
             item.Metadata = marking.ID;
 
             if (_markings[Slot].MarkingId == id)

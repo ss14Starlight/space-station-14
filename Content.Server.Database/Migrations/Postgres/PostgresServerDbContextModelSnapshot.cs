@@ -1538,7 +1538,7 @@ namespace Content.Server.Database.Migrations.Postgres
 
                     b.ToTable("player_data", (string)null);
                 });
-
+            // Starlight
             modelBuilder.Entity("Content.Server.Database.StarLightModel+StarLightProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -1547,6 +1547,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnName("star_light_profile_id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BodyEditorProfile")
+                        .HasColumnType("jsonb")
+                        .HasColumnName("body_editor_profile");
 
                     b.Property<string>("CustomSpecieName")
                         .HasMaxLength(32)

@@ -2,18 +2,21 @@
 // SPDX-License-Identifier: MIT
 
 using Content.Shared._Starlight.Body.Components;
+using Content.Shared._Starlight.Body.Editor;
 using Content.Shared._Starlight.Body.Events;
 using Content.Shared._Starlight.Body.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Reflection;
 namespace Content.Shared._Starlight.Body.Systems;
 
-public sealed partial class BodySystem : EntitySystem
+public sealed partial class SLBodySystem : EntitySystem
 {
     public const string BodyContainerId = "sl_childbodyparts";
     [Dependency] private readonly SharedContainerSystem ContainerSystem = default!;
     [Dependency] private readonly IPrototypeManager Proto = default!;
+    [Dependency] private readonly BodyPartVisualizerSystem BodyPartVisualizer = default!;
 
     public override void Initialize()
     {
@@ -43,14 +46,15 @@ public sealed partial class BodySystem : EntitySystem
         body.Comp.RootPartEntity = EntityManager.SpawnAttachedTo(prefab.Root.BodyPart, new(body.Owner, body.Comp.RootOffset));
         var bodyPart = new Entity<SLBodyPartComponent>(body.Comp.RootPartEntity,
             Comp<SLBodyPartComponent>(body.Comp.RootPartEntity));
-        RecursivelyBuildBodyParts(body, null, bodyPart, prefab.Root);
+        RecursivelyBuildBodyParts(body, null, bodyPart, prefab.Root, BodyPartAddress.Root);
         Dirty(body);
         Dirty(bodyPart);
         return bodyPart;
     }
 
     private void RecursivelyBuildBodyParts(Entity<SLBodyComponent> body, BodyPartContainer? parentContainer,Entity<SLBodyPartComponent> newPart,
-        BodyPartDef partDef)
+        BodyPartDef partDef,
+        BodyPartAddress address)
     {
         var children = EnsureChildren(newPart); //Create the root BodyPart container and ensure that sockets are properly setup!
         body.Comp.BodyParts.Add(newPart); //cache the new bodypart
@@ -62,7 +66,7 @@ public sealed partial class BodySystem : EntitySystem
                 var childPart = new Entity<SLBodyPartComponent>(newChild, Comp<SLBodyPartComponent>(newChild));
                 childPart.Comp.ParentSocket = new BodyPartSocket(socketId, newPart.Comp.Sockets[socketId]);
                 childPart.Comp.Parent = newPart;
-                RecursivelyBuildBodyParts(body, children, childPart, def);
+                RecursivelyBuildBodyParts(body, children, childPart, def, address.Append(socketId));
             }
 
         if (partDef.ContainedParts != null)
@@ -71,13 +75,20 @@ public sealed partial class BodySystem : EntitySystem
                 var newChild = EntityManager.SpawnAttachedTo(def.BodyPart, new EntityCoordinates(newPart, 0, 0));
                 var childPart = new Entity<SLBodyPartComponent>(newChild, Comp<SLBodyPartComponent>(newChild));
                 childPart.Comp.Parent = newPart;
-                RecursivelyBuildBodyParts(body, children, childPart, def);
+                RecursivelyBuildBodyParts(body, children, childPart, def, address);
             }
+        BodyPartVisualizer.BakeAppearance(body, newPart, address);
         Dirty(newPart);
         if (parentContainer != null)
         {
             //Make sure to insert the body part LAST
             ContainerSystem.Insert(newPart.Owner, parentContainer, force: true);
+        }
+        else
+        {
+            // Root part is never inserted into a container, raise the event manually
+            var ev = new SLBodyPartAddedEvent(newPart);
+            RaiseLocalEvent(newPart, ref ev);
         }
     }
 

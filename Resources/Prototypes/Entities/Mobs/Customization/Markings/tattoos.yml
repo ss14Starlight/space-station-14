@@ -8,9 +8,14 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_hive_chest
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_hive_chest
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooNightlingChest
@@ -22,12 +27,17 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_nightling
+    body_chest:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_nightling
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: TattooSilverburghLeftLeg
+  id: TattooSilverburghLeg
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Human, Dwarf, Shadekin, Elf] # Starlight Edit: Add Shadekin and Elf
@@ -36,26 +46,22 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_silverburgh_l_leg
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_silverburgh_l_leg
+      colorSource: HumanSkinColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_silverburgh_r_leg
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: TattooSilverburghRightLeg
-  bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Shadekin, Elf] # Starlight Edit: Add Shadekin and Elf
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
-  sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_silverburgh_r_leg
-
-- type: marking
-  id: TattooCampbellLeftArm
+  id: TattooCampbellArm
   bodyPart: LArm
   markingCategory: Arms
   speciesRestriction: [Human, Dwarf, Shadekin, Elf] # Starlight Edit: Add Shadekin and Elf
@@ -64,26 +70,22 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_campbell_l_arm
+    body_lArm:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_campbell_l_arm
+      colorSource: HumanSkinColor
+    body_rArm:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_campbell_r_arm
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
-  id: TattooCampbellRightArm
-  bodyPart: RArm
-  markingCategory: Arms
-  speciesRestriction: [Human, Dwarf, Shadekin, Elf] # Starlight Edit: Add Shadekin and Elf
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
-  sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_campbell_r_arm
-
-- type: marking
-  id: TattooCampbellLeftLeg
+  id: TattooCampbellLeg
   bodyPart: LLeg
   markingCategory: Legs
   speciesRestriction: [Human, Dwarf, Shadekin, Elf] # Starlight Edit: Add Shadekin and Elf
@@ -92,23 +94,19 @@
       type:
         !type:TattooColoring
       fallbackColor: "#666666"
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_campbell_l_leg
-
-- type: marking
-  id: TattooCampbellRightLeg
-  bodyPart: RLeg
-  markingCategory: Legs
-  speciesRestriction: [Human, Dwarf, Shadekin, Elf] # Starlight Edit: Add Shadekin and Elf
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
-  sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_campbell_r_leg
+    body_lLeg:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_campbell_l_leg
+      colorSource: HumanSkinColor
+    body_rLeg:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_campbell_r_leg
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeRight
@@ -120,9 +118,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_eye_r
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_eye_r
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeLeft
@@ -134,9 +137,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_eye_l
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_eye_l
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeMothRight
@@ -148,9 +156,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_eye_moth_r
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_eye_moth_r
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeMothLeft
@@ -162,9 +175,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_eye_moth_l
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_eye_moth_l
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeVulpkaninRight
@@ -176,9 +194,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_eye_vulpkanin_r
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_eye_vulpkanin_r
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeVulpkaninLeft
@@ -190,9 +213,14 @@
       type:
         !type:EyeColoring
           negative: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: tattoo_eye_vulpkanin_l
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: tattoo_eye_vulpkanin_l
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeshadowUpper
@@ -205,9 +233,14 @@
   markingCategory: Overlay
   speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Elf] # Starlight Edit: Add Elf
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: eyeshadow_upper
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: eyeshadow_upper
+      colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: TattooEyeshadowLower
@@ -215,6 +248,11 @@
   markingCategory: Overlay
   speciesRestriction: [Human, SlimePerson, Reptilian, Dwarf, Elf] # Starlight Edit: Add Elf
   forcedColoring: true
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/tattoos.rsi
-    state: eyeshadow_lower
+    body_eyes:
+      sprite:
+        sprite: Mobs/Customization/tattoos.rsi
+        state: eyeshadow_lower
+      colorSource: UniqueColor
+  # Starlight end

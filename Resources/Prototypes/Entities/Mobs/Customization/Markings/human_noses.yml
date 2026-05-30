@@ -2,53 +2,78 @@
   id: HumanNoseSchnozz
   bodyPart: Snout
   markingCategory: Snout
-  followSkinColor: true
+  # followSkinColor: true
   forcedColoring: true
   speciesRestriction: [Human, Dwarf]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_noses.rsi
-    state: schnozz
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/human_noses.rsi
+        state: schnozz
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: HumanNoseNubby
   bodyPart: Snout
   markingCategory: Snout
-  followSkinColor: true
+  # followSkinColor: true
   forcedColoring: true
   speciesRestriction: [Human, Dwarf]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_noses.rsi
-    state: nubby
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/human_noses.rsi
+        state: nubby
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: HumanNoseDroop
   bodyPart: Snout
   markingCategory: Snout
-  followSkinColor: true
+  # followSkinColor: true
   forcedColoring: true
   speciesRestriction: [Human, Dwarf]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_noses.rsi
-    state: droop
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/human_noses.rsi
+        state: droop
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: HumanNoseBlob
   bodyPart: Snout
   markingCategory: Snout
-  followSkinColor: true
+  # followSkinColor: true
   forcedColoring: true
   speciesRestriction: [Human, Dwarf]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_noses.rsi
-    state: blob
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/human_noses.rsi
+        state: blob
+      colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: HumanNoseUppie
   bodyPart: Snout
   markingCategory: Snout
-  followSkinColor: true
+  # followSkinColor: true
   forcedColoring: true
   speciesRestriction: [Human, Dwarf]
+  # Starlight start
   sprites:
-  - sprite: Mobs/Customization/human_noses.rsi
-    state: uppie
+    body_snout:
+      sprite:
+        sprite: Mobs/Customization/human_noses.rsi
+        state: uppie
+      colorSource: HumanSkinColor
+  # Starlight end

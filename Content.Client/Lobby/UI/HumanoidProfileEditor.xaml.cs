@@ -126,6 +126,10 @@ namespace Content.Client.Lobby.UI
 
         public event Action<List<ProtoId<GuideEntryPrototype>>>? OnOpenGuidebook;
 
+        // Starlight start
+        public event Action<bool>? BodyTabVisibilityChanged;
+        // Starlight end
+
         private readonly ISawmill _sawmill;
 
         #region Starlight
@@ -167,6 +171,11 @@ namespace Content.Client.Lobby.UI
             _preferencesManager = preferencesManager;
             _requirements = requirements;
             _sprite = _entManager.System<SpriteSystem>();
+            // Starlight start
+            BodyTab.Initialize(prototypeManager, _sprite);
+            BodyTab.BodyProfileChanged += OnBodyProfileChanged;
+            BodyTab.ProfileChanged += OnBodyTabProfileChanged;
+            // Starlight end
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -593,6 +602,10 @@ namespace Content.Client.Lobby.UI
             SiliconVoiceButton.OnPressed += _ => _voiceSiliconSelectorWindow.OpenCentered();
 
             SetupTabs();
+            // Starlight start
+            TabContainer.OnTabChanged += OnTabChanged;
+            UpdatePreviewVisibility(TabContainer.CurrentTab);
+            // Starlight end
 
             // Cosmatic Drift Record System-start
             _recordsTab = CreateRecordEditorTab(); // Instantiate the CD record editor UI
@@ -630,10 +643,24 @@ namespace Content.Client.Lobby.UI
             TabContainer.SetTabTitle(2, Loc.GetString("humanoid-profile-editor-antags-tab"));
             TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
             TabContainer.SetTabTitle(4, Loc.GetString("humanoid-profile-editor-markings-tab"));
-            TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-cybernetics-tab"));
-            TabContainer.SetTabTitle(6, Loc.GetString("humanoid-profile-editor-ic-info-tab"));
-            TabContainer.SetTabTitle(7, Loc.GetString("humanoid-profile-editor-ooc-info-tab"));
+            TabContainer.SetTabTitle(5, Loc.GetString("humanoid-profile-editor-body-tab"));
+            TabContainer.SetTabTitle(6, Loc.GetString("humanoid-profile-editor-cybernetics-tab"));
+            TabContainer.SetTabTitle(7, Loc.GetString("humanoid-profile-editor-ic-info-tab"));
+            TabContainer.SetTabTitle(8, Loc.GetString("humanoid-profile-editor-ooc-info-tab"));
         }
+
+        private void OnTabChanged(int tabIndex)
+        {
+            UpdatePreviewVisibility(tabIndex);
+        }
+
+        private void UpdatePreviewVisibility(int tabIndex)
+        {
+            var bodyTabVisible = tabIndex == 5;
+            Preview.Visible = !bodyTabVisible;
+            BodyTabVisibilityChanged?.Invoke(bodyTabVisible);
+        }
+        // Starlight end
         // Cosmatic Drift Record System-start: Build the CD record editor tab and hook persistence callbacks
         private RecordEditorGui CreateRecordEditorTab()
         {
@@ -1107,6 +1134,9 @@ namespace Content.Client.Lobby.UI
             // Cosmatic Drift Record System-end
             RefreshCharacterInfo(); //starlight
             Preview.Initialize(this, _entManager, _preferencesManager, _prototypeManager, _playerManager);
+            // Starlight start
+            BodyTab.SetProfile(Profile);
+            // Starlight end
             ReloadPreview();
         }
 
@@ -1509,6 +1539,38 @@ namespace Content.Client.Lobby.UI
 
             Profile = Profile.WithOOCNotes(Rope.Collapse(args.TextRope).Trim());
             IsDirty = true;
+        }
+
+        private void OnBodyTabMarkingsChanged(List<Marking> markings)
+        {
+            if (Profile is null)
+                return;
+
+            Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithMarkings(markings));
+            BodyTab.SetProfile(Profile);
+            ReloadProfilePreview();
+            IsDirty = true;
+            SetDirty();
+        }
+
+        private void OnBodyProfileChanged(Content.Shared._Starlight.Body.Editor.BodyProfile profile)
+        {
+            if (Profile is null)
+                return;
+
+            // Starlight: persist the hierarchical body editor profile into the character profile
+            // so it gets sent to the server on save.
+            Profile = Profile.WithBodyEditorProfile(profile);
+            IsDirty = true;
+            SetDirty();
+        }
+
+        private void OnBodyTabProfileChanged(HumanoidCharacterProfile profile)
+        {
+            Profile = profile;
+            ReloadProfilePreview();
+            IsDirty = true;
+            SetDirty();
         }
 
         //starlight end

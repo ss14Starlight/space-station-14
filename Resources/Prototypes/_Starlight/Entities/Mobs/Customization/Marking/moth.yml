@@ -3,24 +3,39 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Moth]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Moth/moth_antennae.rsi
-      state: bushyalt
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Moth/moth_antennae.rsi
+          state: bushyalt
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: MothAntennaeEnlarged
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: [Moth]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Moth/moth_antennae.rsi
-      state: enlarged
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Moth/moth_antennae.rsi
+          state: enlarged
+        colorSource: UniqueColor
+  # Starlight end
 
 - type: marking
   id: MothDSwirlWings
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Moth]
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
-      state: dswirl_wings
+    body_tail:
+        sprite:
+          sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
+          state: dswirl_wings
+        colorSource: UniqueColor
+  # Starlight end

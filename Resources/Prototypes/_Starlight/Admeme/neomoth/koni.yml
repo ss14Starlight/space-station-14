@@ -271,27 +271,42 @@
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Admeme/neomoth/markings.rsi
-      state: koni_wings
+    body_tail:
+        sprite:
+          sprite: _Starlight/Admeme/neomoth/markings.rsi
+          state: koni_wings
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: KoniFluff
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Admeme/neomoth/markings.rsi
-      state: koni_fluff
+    body_tail:
+        sprite:
+          sprite: _Starlight/Admeme/neomoth/markings.rsi
+          state: koni_fluff
+        colorSource: HumanSkinColor
+  # Starlight end
 
 - type: marking
   id: KoniCheeks
   bodyPart: Snout
   markingCategory: Snout
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Admeme/neomoth/markings.rsi
-      state: koni_cheeks
+    body_snout:
+        sprite:
+          sprite: _Starlight/Admeme/neomoth/markings.rsi
+          state: koni_cheeks
+        colorSource: HumanSkinColor
+  # Starlight end
 
 # Should refrain from changing color on these
 - type: marking
@@ -299,6 +314,11 @@
   bodyPart: HeadTop
   markingCategory: HeadTop
   speciesRestriction: []
+  # Starlight start
   sprites:
-    - sprite: _Starlight/Admeme/neomoth/markings.rsi
-      state: koni_ears
+    body_headTop:
+        sprite:
+          sprite: _Starlight/Admeme/neomoth/markings.rsi
+          state: koni_ears
+        colorSource: HumanSkinColor
+  # Starlight end
