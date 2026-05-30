@@ -30,6 +30,8 @@
   sprites:
     Eyes: MobProtogenEyes
     Head: MobDionaHead
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
