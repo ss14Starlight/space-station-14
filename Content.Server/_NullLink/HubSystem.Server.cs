@@ -13,6 +13,8 @@ public sealed partial class HubSystem : EntitySystem
     private string? _description;
     private bool? _isAdultOnly;
     private ServerType _serverType = ServerType.NRP;
+    private int? _panicBunkerMinAccountAge;
+    private int? _panicBunkerMinOverallMinutes;
 
     public void InitializeServer()
     {
@@ -23,6 +25,20 @@ public sealed partial class HubSystem : EntitySystem
         _cfg.OnValueChanged(NullLinkCCVars.Title, OnGameHostNameChanged, true);
         _cfg.OnValueChanged(NullLinkCCVars.IsAdultOnly, OnIsAdultOnlyChanged, true);
         _cfg.OnValueChanged(CCVars.HubServerUrl, OnConnectionStringChanged, true);
+        _cfg.OnValueChanged(CCVars.PanicBunkerMinAccountAge, OnPanicBunkerMinAccountAgeChanged, true);
+        _cfg.OnValueChanged(CCVars.PanicBunkerMinOverallMinutes, OnPanicBunkerMinOverallMinutesChanged, true);
+    }
+
+    private void OnPanicBunkerMinAccountAgeChanged(int minAccountAge)
+    {
+        _panicBunkerMinAccountAge = minAccountAge;
+        TryUpdateServer();
+    }
+
+    private void OnPanicBunkerMinOverallMinutesChanged(int minOverallMinutes)
+    {
+        _panicBunkerMinOverallMinutes = minOverallMinutes;
+        TryUpdateServer();
     }
 
     private void OnIsAdultOnlyChanged(bool isAdultOnly)
@@ -83,7 +99,9 @@ public sealed partial class HubSystem : EntitySystem
                         ConnectionString = _connectionString,
                         Description = _description,
                         IsAdultOnly = _isAdultOnly ?? false,
-                        Type = _serverType
+                        Type = _serverType,
+                        PanicBunkerMinAccountAge = _panicBunkerMinAccountAge,
+                        PanicBunkerMinOverallMinutes = _panicBunkerMinOverallMinutes
                     });
                     return;
                 }
