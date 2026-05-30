@@ -5,12 +5,12 @@
   children:
   - ProtogenFrames # Starlight
   - TrueProtogen # Starlight, true Protogen
+  - ProtoElf # Starlight
   - ProtoArachnid
   - ProtoAvali
   - ProtoCyclorite # Starlight
   - ProtoDiona # Starlight
   - ProtoDwarf # Starlight
-  - ProtoElf # Starlight
   - ProtoFelionoid # Starlight
   - ProtoHuman # Starlight
   - ProtoKin # Starlight, moved alphabetically
