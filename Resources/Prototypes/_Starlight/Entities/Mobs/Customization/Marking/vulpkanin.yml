@@ -596,8 +596,8 @@
   markingCategory: Tail
   waggingId: VulpTailDownHuskyWag
   speciesRestriction: [Vulpkanin, ProtoVulp, Protogen] #FH
-  spriteLayers: [Chest, Tail, Chest, Tail, Protogen]
-  spriteColorIndexes: [0, 0, 1, 1, Protogen]
+  spriteLayers: [Chest, Tail, Chest, Tail]
+  spriteColorIndexes: [0, 0, 1, 1]
   sprites:
     - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tail_downhusky_BEHIND_B
@@ -614,8 +614,8 @@
   markingCategory: Tail
   staticId: VulpTailDownHusky
   speciesRestriction: [Vulpkanin, ProtoVulp, Protogen] #FH
-  spriteLayers: [Chest, Tail, Chest, Tail, Protogen]
-  spriteColorIndexes: [0, 0, 1, 1, Protogen]
+  spriteLayers: [Chest, Tail, Chest, Tail]
+  spriteColorIndexes: [0, 0, 1, 1]
   sprites:
     - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: m_tailwag_downhusky_BEHIND_B
