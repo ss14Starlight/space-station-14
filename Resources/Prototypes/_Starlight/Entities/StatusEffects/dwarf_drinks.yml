@@ -96,7 +96,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorIrishBool
-  name: near-total stun immunity
+  name: 90% resistance to Stamina damage
   components:
   - type: BonusArmorStatusEffect
     ignoreKnockdown: false
