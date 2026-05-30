@@ -3,6 +3,7 @@
   mapName: 'Sepultum Station'
   mapPath: /Maps/_Starlight/Stations/Sepultum.yml
   minPlayers: 50
+  maxPlayers: 350
   stations:
     Sepultum:
       stationProto: StandardNanotrasenStation

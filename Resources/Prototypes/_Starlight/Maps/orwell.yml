@@ -3,6 +3,7 @@
   mapName: 'Orwell "Citadel" Station'
   mapPath: /Maps/_Starlight/Stations/Orwell.yml
   minPlayers: 50
+  maxPlayers: 350
   stations:
     StarlightOrwell:
       stationProto: StandardNanotrasenStation

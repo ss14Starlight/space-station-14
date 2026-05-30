@@ -3,6 +3,7 @@
   mapName: 'Lagan'
   mapPath: /Maps/_Starlight/Stations/Lagan.yml
   minPlayers: 50
+  maxPlayers: 350
   stations:
     StarlightLagan:
       stationProto: StandardNanotrasenStation

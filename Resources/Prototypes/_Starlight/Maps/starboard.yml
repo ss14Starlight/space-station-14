@@ -3,6 +3,7 @@
   mapName: 'Starboard'
   mapPath: /Maps/_Starlight/Stations/Starboard.yml
   minPlayers: 90
+  maxPlayers: 500
   stations:
     StarlightStarboard:
       stationProto: StandardNanotrasenStation
