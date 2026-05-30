@@ -81,7 +81,10 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 60
     # Starlight-end
+
 
 #Subgamemode Lings for Vamptraitorlings.
 - type: entity
@@ -94,7 +97,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 4 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 32 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
+      playerRatio: 35 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -107,6 +110,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 70
 
 - type: entity
   parent: Traitor
@@ -170,7 +175,6 @@
         clumsyVaulting: false
       tags:
         - CantBecomeRevolutionary
-
   - type: DynamicRuleCost
     cost: 100
 
