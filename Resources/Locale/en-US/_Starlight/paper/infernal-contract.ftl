@@ -29,3 +29,4 @@ infernal-contract-examine-cost = This contract has a cost of {$value}
 infernal-contract-popup-fail = The contract burns your hand! Something about it isn't right!
 infernal-contract-popup-fail-self = Your hand passes through the contract! This deal isn't for you to sign!
 infernal-contract-edit-fail = Your hand passes through the contract! You can't change the deal!
+infernal-contract-popup-invalid-damnations = Misspellings in contract! Check before signing: {$items}

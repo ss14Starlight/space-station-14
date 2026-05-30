@@ -67,9 +67,9 @@ loadout-group-magistrate-shoes = Magistrate shoes
 loadout-group-iaa-jumpsuit = Internal Affairs Agent jumpsuit
 loadout-group-iaa-neck = Internal Affairs Agent neck
 loadout-group-iaa-shoes = Internal Affairs Agent shoes
-loadout-group-magistrate-outer = Magistrate Outer Clothing
-loadout-group-magistrate-headwear = Magistrate Head
-loadout-group-magistrate-hands = Magistrate Gloves
+loadout-group-magistrate-outer = Magistrate outer clothing
+loadout-group-magistrate-head = Magistrate head
+loadout-group-magistrate-gloves = Magistrate gloves
 
 # Civilian
 loadout-group-civilian-shoes = Shoes

@@ -48,8 +48,20 @@
       path: /Audio/Weapons/Guns/MagOut/revolver_magout.ogg
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
+  # starlight start
   - type: CanDualWield # 🌟Starlight🌟
     dualWieldInaccuracyPenalty: 27
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
+    # starlight end
   - type: StaticPrice
     price: 500
 

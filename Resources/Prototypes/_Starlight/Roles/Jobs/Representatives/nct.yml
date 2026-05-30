@@ -14,8 +14,8 @@
   startingGear: NanotrasenCareerTrainerGear
   icon: JobIconNanotrasenCareerTrainer
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-captain
-  weight: -1
+  supervisors: job-supervisors-nt-personnel
+  displayWeight: 2
   overrideConsoleVisibility: false
   canBeAntag: false
   joinNotifyCrew: true
@@ -43,7 +43,7 @@
 - type: startingGear
   id: NanotrasenCareerTrainerGear
   equipment:
-    id: NanotrasenCareerTrainerPDA
+    id: NanoTrasenCareerTrainerPDA
     ears: ClothingHeadsetNCT
     neck: Whistle
     pocket1: nctdatachip

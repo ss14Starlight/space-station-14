@@ -1,6 +1,6 @@
 - type: entity
   name: X-09 Headsman
-  parent: [BaseItem, BaseCentcommContraband]
+  parent: [BaseItem, BaseNanoTrasenContraband]
   id: WeaponAdmemeX09Headsman
   description: They say the art of execution has evolved a lot over the years. For some people. Not for me.
   components:

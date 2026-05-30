@@ -6,5 +6,4 @@ namespace Content.Server._Starlight.Security;
 [RegisterComponent]
 public sealed partial class SecurityShuttleComponent : Component
 {
-
 }

@@ -4,7 +4,6 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 using Content.Shared.Research.Components;
-using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.NullSpace;
 

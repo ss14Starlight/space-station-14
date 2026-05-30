@@ -13,7 +13,7 @@
   name: chat-radio-centcom
   keycode: 'y'
   frequency: 1337
-  color: "#2681a5"
+  color: "#86d420" # Starlight
   longRange: true
   icon: # Starlight
     sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
@@ -96,6 +96,7 @@
   frequency: 1213
   color: "#b52424"
   longRange: true
+  anonymousAlias: "Agent {0}"
   icon: # Starlight
     sprite: _Starlight/Interface/Radial/Radio/channel_icons.rsi
     state: syndicate

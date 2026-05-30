@@ -1,6 +1,5 @@
 using Content.Server._Starlight.StationEvents.Events;
 using Robust.Shared.Map;
-using Starlight.NullLink.Attributes;
 
 namespace Content.Server._Starlight.StationEvents.Components;
 
@@ -17,9 +16,11 @@ public sealed partial class VentSpawnRuleComponent : Component
     [DataField]
     public bool InsertInVent = true;
 
+    public List<(MapCoordinates Coords, EntityUid Uid)> ValidLocations = new();
+
     /// <summary>
     /// Location that was picked.
     /// </summary>
     [DataField]
-    public (MapCoordinates, EntityUid)? Vent = null;
+    public Dictionary<EntityUid, (MapCoordinates Coords, EntityUid Uid)> Vent = new();
 }
