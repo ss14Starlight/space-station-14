@@ -14,14 +14,14 @@
   </Box>
 
   The Basic-Class light frame boasts the following specs.
-  - Receive [color=#283332]5% less slash damage[/color], [color=#b9bf93]5% less pierce damage[/color], and [color=#fcc203]5% explosion resistance[/color].
+  - Receive [color=#65807d]5% less slash damage[/color], [color=#b9bf93]5% less pierce damage[/color], and [color=#fcc203]5% explosion resistance[/color].
 
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterArmorProtogenLightSpeed" Caption="Hermes-Class"/>
   </Box>
 
   The Hermes-Class light frame boasts the following specs.
-  - Receive [color=#283332]15% more slash damage[/color] and [color=#b9bf93]15% more pierce damage[/color].
+  - Receive [color=#65807d]15% more slash damage[/color] and [color=#b9bf93]15% more pierce damage[/color].
   - Gain a [color=#03fce7]+10% sprint modifier[/color] and a [color=#03fce7]+5% walk modifier[/color].
 
   ## Medium Frames
@@ -30,14 +30,14 @@
   </Box>
 
   The Basic-Class medium frame boasts the following specs.
-  - Receive [color=#283332]10% less slash damage[/color] and [color=#FF3636]5% less blunt damage[/color].
+  - Receive [color=#65807d]10% less slash damage[/color] and [color=#FF3636]5% less blunt damage[/color].
   - Gain a [color=#fc0303]-5% sprint modifier[/color].
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterArmorProtogenMediumMagic" Caption="Hecate-Class"/>
   </Box>
 
   The Hecate-Class medium frame boasts the following specs.
-  - Receive [color=#3a1d8a]15% less poison damage[/color], [color=#bd5902]15% less radiation damage[/color], and [color=#C8FF75]15% less genetic damage[/color].
+  - Receive [color=#64ffe6]15% less poison damage[/color], [color=#bd5902]15% less radiation damage[/color], and [color=#C8FF75]15% less genetic damage[/color].
   - Gain a small amount of biological resistance and some light cold insulation, in exchange for heating up more easily.
   - Gain a [color=#fc0303]-10% sprint modifier[/color].
   - Give off a mild [color=#452e59]purple glow[/color].
@@ -48,7 +48,7 @@
   </Box>
 
   The Basic-Class heavy frame boasts the following specs.
-  - Receive [color=#283332]25% less slash damage[/color], [color=#b9bf93]10% less pierce damage[/color], and[color=#FF3636]15% less blunt damage[/color], and [color=#fcc203]25% explosion resistance[/color].
+  - Receive [color=#65807d]25% less slash damage[/color], [color=#b9bf93]10% less pierce damage[/color], and[color=#FF3636]15% less blunt damage[/color], and [color=#fcc203]25% explosion resistance[/color].
   - Gain a [color=#fc0303]-25% sprint modifier[/color] and a [color=#fc0303]-15% walk modifier[/color].
   <Box>
     <GuideEntityEmbed Entity="ClothingOuterArmorProtogenHeavySpace" Caption="Nyx-Class"/>
