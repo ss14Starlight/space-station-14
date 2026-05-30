@@ -86,8 +86,8 @@
   markingCategory: Special
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtogenLEDFaceNoseless
@@ -95,8 +95,8 @@
   markingCategory: Special
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-      state: noseless
+  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+    state: noseless
 
 - type: marking
   id: ProtogenLEDFaceRound
@@ -104,8 +104,8 @@
   markingCategory: Special
   speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-      state: rounded
+  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+    state: rounded
 
 - type: marking
   id: ProtogenMediumArmor
@@ -113,8 +113,8 @@
   markingCategory: Special
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
+    state: medium
 
 #region VULPKANIN ####
 
@@ -124,8 +124,8 @@
   markingCategory: Overlay
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
-      state: pawsocks_feet
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
+    state: pawsocks_feet
 
 - type: marking
   id: ProtoVulpPawSocksLegs
@@ -133,8 +133,8 @@
   markingCategory: Legs
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
-      state: pawsocks_legs
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/proto-vulp.rsi
+    state: pawsocks_legs
 
 - type: marking
   id: ProtoVulpVisor
@@ -142,8 +142,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp, ProtoReptilian, ProtoHuman] # Starlight, ProtoHumie -> ProtoHuman ProtoReptile -> ProtoReptilian
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
-      state: vulpvisor
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
+    state: vulpvisor
 
 - type: marking
   id: ProtoVulpVisorFourEyes
@@ -151,8 +151,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
-      state: vulpvisor-four-eyes
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
+    state: vulpvisor-four-eyes
 
 - type: marking
   id: ProtoVulpSnoutLong
@@ -160,8 +160,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
-      state: snout
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
+    state: snout
 
 - type: marking
   id: ProtoVulpVisorSideWings
@@ -169,8 +169,8 @@
   markingCategory: Head
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
-      state: side-visor-wings
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_markings.rsi
+    state: side-visor-wings
 
 - type: marking
   id: ProtoVulpMediumArmor
@@ -178,8 +178,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoVulpMediumArmorAngled
@@ -187,8 +187,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
-      state: mediumangled
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
+    state: mediumangled
 
 - type: marking
   id: ProtoVulpLEDFace
@@ -196,8 +196,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoVulpLEDFaceLong
@@ -205,8 +205,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
-      state: long
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
+    state: long
 
 - type: marking
   id: ProtoVulpLEDFaceFourEyes
@@ -214,8 +214,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
-      state: four-eyes
+  - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
+    state: four-eyes
 
 - type: marking
   id: ProtoVulpClaws
@@ -263,8 +263,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVox]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vox/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-vox/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoVoxMediumArmor
@@ -272,8 +272,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVox]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vox/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-vox/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoVoxLEDFace
@@ -281,8 +281,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoVox]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoVoxLights
@@ -310,8 +310,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoThaven]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-thaven/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoThavenMediumArmor
@@ -319,8 +319,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoThaven]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-thaven/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoThavenLEDFace
@@ -328,8 +328,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoThaven]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoThavenLights
@@ -348,8 +348,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoSlimePerson]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-slime/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-slime/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoSlimePersonVisor
@@ -357,8 +357,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoSlimePerson]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-slime/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-slime/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoSlimePersonLEDFace
@@ -366,8 +366,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoSlimePerson]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-slime/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-slime/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoSlimePersonLights
@@ -386,8 +386,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoKin]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-kin/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-kin/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoKinVisor
@@ -395,8 +395,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoKin]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-kin/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-kin/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoKinLEDFace
@@ -404,8 +404,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoKin]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoKinLights
@@ -424,8 +424,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-resomi/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoResomiVisor
@@ -433,8 +433,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-resomi/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoResomiLEDFace
@@ -442,8 +442,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-resomi/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoResomiLights
@@ -462,8 +462,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoReptilian, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
-      state: boxy
+  - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
+    state: boxy
 
 - type: marking
   id: ProtoReptilianClaws # Starlight, ProtoReptile -> ProtoReptilian
@@ -482,8 +482,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoMoth]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-moth/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-moth/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoMothVisor
@@ -491,8 +491,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoMoth]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-moth/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-moth/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoMothLEDFace
@@ -500,8 +500,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoMoth]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoMothLights
@@ -531,8 +531,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-feline/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-feline/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoFelionoidVisor # Starlight, Feline -> Felionoid
@@ -540,8 +540,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-feline/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-feline/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoFelionoidLEDFace # Starlight, Feline -> Felionoid
@@ -549,8 +549,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoFelionoidLights # Starlight, Feline -> Felionoid
@@ -580,8 +580,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-dionae/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoDionaVisor # Starlight, Dionae -> Diona
@@ -589,8 +589,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-dionae/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoDionaLEDFace # Starlight, Dionae -> Diona
@@ -598,8 +598,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoDionaLights # Starlight, Dionae -> Diona
@@ -627,8 +627,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoCycloriteVisor # Starlight, Cyclops -> Cyclorite
@@ -636,8 +636,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoCycloriteLEDFace # Starlight, Cyclops -> Cyclorite
@@ -645,8 +645,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoCycloriteLights # Starlight, Cyclops -> Cyclorite
@@ -665,8 +665,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoAvali]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
-      state: medium
+  - sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
+    state: medium
 
 - type: marking
   id: ProtoAvaliVisor
@@ -674,8 +674,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoAvali]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoAvaliLEDFace
@@ -683,8 +683,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoAvali]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
+    state: face
 
 - type: marking
   id: ProtoAvaliLights
@@ -712,8 +712,8 @@
   markingCategory: Special
   speciesRestriction: [ProtoArachnid]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtoArachnidLEDFace
@@ -721,5 +721,5 @@
   markingCategory: Special
   speciesRestriction: [ProtoArachnid]
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
-      state: face
+  - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
+    state: face
