@@ -93,3 +93,17 @@
   name: Urist McWebster
   parent: BaseMobProtoArachnid
   id: MobProtoArachnid
+
+# Starlight start
+- type: entity
+  save: false
+  name: Urist McElgister
+  parent: BaseMobProtoElf
+  id: MobProtoElf
+
+- type: entity
+  save: false
+  name: Urist McBnuuister
+  parent: BaseMobProtoLagomorph
+  id: MobProtoLagomorph
+# Starlight end
