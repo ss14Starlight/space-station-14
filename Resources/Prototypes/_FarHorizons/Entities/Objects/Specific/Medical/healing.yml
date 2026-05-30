@@ -16,26 +16,26 @@
 # Starlight start
   - type: ConditionalHealing
     healingDefinitions:
-      - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
-        healing:
-          damageContainers:
-            - IPC # Starlight
-            - Hybrid # Starlight
-          delay: 1.6
-          modifyBloodLevel: 15
-          damage:
-            types:
-              Bloodloss: -3
-          healingBeginSound:
-            path: "/Audio/Items/Medical/brutepack_begin.ogg"
-            params:
-              volume: 1.0
-              variation: 0.125
-          healingEndSound:
-            path: "/Audio/Items/Medical/brutepack_end.ogg"
-            params:
-              volume: 1.0
-              variation: 0.125
+    - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
+      healing:
+        damageContainers:
+          - IPC # Starlight
+          - Hybrid # Starlight
+        delay: 1.6
+        modifyBloodLevel: 15
+        damage:
+          types:
+            Bloodloss: -3
+        healingBeginSound:
+          path: "/Audio/Items/Medical/brutepack_begin.ogg"
+          params:
+            volume: 1.0
+            variation: 0.125
+        healingEndSound:
+          path: "/Audio/Items/Medical/brutepack_end.ogg"
+          params:
+            volume: 1.0
+            variation: 0.125
 # Starlight end
   - type: Stack
     stackType: OilPack
