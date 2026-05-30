@@ -6,6 +6,7 @@
 - type: loadoutGroup
   id: ProtogenCybernetics
   name: loadout-group-protogen-cybernetics
+  minLimit: 1
   loadouts:
   - ProtogenArmorLightBasic
   - ProtogenArmorLightSpeed
