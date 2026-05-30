@@ -28,7 +28,7 @@
 - type: loadout
   id: ProtogenArmorMediumBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenMediumBasicsUnremovable
+    outerClothing2: ClothingOuterArmorProtogenMediumBasicUnremovable
 
 - type: loadout
   id: ProtogenArmorMediumMagic
