@@ -74,3 +74,9 @@
     Arms:
       points: 2
       required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

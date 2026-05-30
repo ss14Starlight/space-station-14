@@ -1,10 +1,10 @@
-marking-ProtogenTailShark = shark tail
-marking-ProtogenTailBushy = bushy tail
-marking-ProtogenTail = tail
+marking-ProtogenTailShark = Shark Tail
+marking-ProtogenTailBushy = Bushy Tail
+marking-ProtogenTail = Tail
 
-marking-ProtogenEars = four protogen ears
-marking-ProtogenEarsTips = four protogen ears (tips)
-marking-TwoProtogenEars = two protogen ears
+marking-ProtogenEars = Four protogen ears
+marking-ProtogenEarsTips = Four protogen ears (tips)
+marking-TwoProtogenEars = Two protogen ears
 
 marking-ProtogenLights = Circular LEDs
 marking-ProtogenVisor = Protogen Visor

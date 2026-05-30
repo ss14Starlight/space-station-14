@@ -25,6 +25,8 @@
     Head: MobSlimeHead
     Eyes: MobProtogenEyes
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobSlimeTorso
     HeadTop: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
@@ -70,4 +72,10 @@
       required: false
     Arms:
       points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
       required: false

@@ -27,6 +27,8 @@
     Head: MobProtoVulpHead
     Eyes: MobProtogenEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobProtoVulpTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -75,6 +77,12 @@
       required: false
     Arms:
       points: 6
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
       required: false
 
 - type: humanoidBaseSprite
