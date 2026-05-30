@@ -1,62 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added a new gamemode for Beta, XenoborgsLP. It's the pre-scaling Xenoborgs gamemode, with the 4 fixed borgs. This gamemode is also used when Xenoborgs spawn as a subgamemode, meaning Sub xenoborgs will always have this base 4.
-    type: Add
-  id: 405068
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: Derelict Xenoborgs (and a new Derelict Xenoborgi) can now rarely spawn in the derelict cyborg spawn event.
-    type: Add
-  id: 405069
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: Removed the Changeling gamemode from rotation, due to being generally uninteresting, and diluting the pool.
-    type: Remove
-  id: 405070
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: (Alpha Secret) Traitor +2% (23%), Changeling -5% (0), Vampire +2% (7%), Traitorling +1% (7%).
-    type: Tweak
-  id: 405071
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: (Beta Secret) Changeling -6% (0), Xenoborgs -7% (0), XenoborgsLP +7% (7%), Traitorling +5% (5%), Vamptraitorling +1% (3%).
-    type: Tweak
-  id: 405072
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: Changelings now show up as subantags roughly 10% more of the time, depending on gamemode.
-    type: Tweak
-  id: 405073
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: The Midround Antags now scale. They've all got varying levels of scaling, but generally fall between 70 and 95, depending on the antag's impact. (These numbers are also technically hardcoded... but if we ever reach a point where we need to increase them [250+pop frequently], then I think we'll have a different problem on our hands...).
-    type: Tweak
-  id: 405074
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: Abductor Scientists now scale at a rate of 1:90, with a max of 2.
-    type: Tweak
-  id: 405075
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
   - message: Abductor Agents now scale at a rate of 1:70, with a max of 3.
     type: Tweak
   id: 405076
@@ -2799,4 +2743,60 @@ Entries:
   id: 405467
   time: '2026-05-28T19:30:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4574
+- author: redmushie
+  changes:
+  - message: Debrief turnstiles' access denied sound now has a much shorter range.
+    type: Tweak
+  id: 405468
+  time: '2026-05-29T09:25:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4571
+- author: Ohelig
+  changes:
+  - message: Added some more spam mail.
+    type: Add
+  id: 405469
+  time: '2026-05-29T20:23:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4572
+- author: DONKCO. Scarlet.
+  changes:
+  - message: Added the funniest thing for clowns!.
+    type: Add
+  id: 405470
+  time: '2026-05-29T20:23:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4570
+- author: STARLIGHT TEAM
+  changes:
+  - message: Adjusted antag scaling **temporarily** to be **lower on average**. Odds of several things rolling in gamemodes was reduced to make it less likely we roll every type of antag always every round. Dynamic rule cost was added to some rules to reduce the likelihood of antag types stacking as well.
+    type: Tweak
+  id: 405471
+  time: '2026-05-29T21:07:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4588
+- author: Caws
+  changes:
+  - message: The in-game guidebook SOP for NanoTrasen Personnel has been updated to match the wiki.
+    type: Tweak
+  id: 405472
+  time: '2026-05-29T21:07:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4583
+- author: Caws
+  changes:
+  - message: NanoTrasen Career trainers can now select scarves, LGBT pins, and PDA pens in the loadout menu.
+    type: Fix
+  id: 405473
+  time: '2026-05-29T21:07:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4582
+- author: Sparlight
+  changes:
+  - message: The Ian Toy has remembered how to make dog noises.
+    type: Fix
+  id: 405474
+  time: '2026-05-29T21:31:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4577
+- author: Rinary
+  changes:
+  - message: Fixed playtime bypass via NullLink playtime. Now you can freely connect to Beta if you have enough time on another servers or projects connected to null link.
+    type: Fix
+  id: 405475
+  time: '2026-05-29T22:16:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4590
 Order: -1
