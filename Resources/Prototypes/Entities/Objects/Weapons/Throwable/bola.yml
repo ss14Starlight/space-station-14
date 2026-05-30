@@ -8,7 +8,7 @@
     tags:
     - Bola
   - type: Item
-    size: Normal
+    size: Small # Starlight
   - type: Sprite
     sprite: Objects/Weapons/Throwable/bola.rsi
     state: icon
