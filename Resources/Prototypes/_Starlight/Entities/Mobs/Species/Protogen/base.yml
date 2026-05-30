@@ -130,11 +130,12 @@
       - SiliconEmotesFH
       - NotLabelable
       - TrueProtogen
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42 # Starlight
   - type: TemperatureDamage # Starlight, changed to base stats, since not every species has fur; we can change on a case by case per species
     heatDamageThreshold: 325
     coldDamageThreshold: 260 # Starlight
-    currentTemperature: 310.15
-    specificHeat: 42 # Starlight
     coldDamage:
       types:
         Cold : 0.1 #per second, scales with temperature & other constants

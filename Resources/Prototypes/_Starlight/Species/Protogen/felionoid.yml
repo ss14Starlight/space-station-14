@@ -13,9 +13,10 @@
   subspeciesOf: Protogen
   subspeciesName: subspecies-name-protofelionoid
   loadout: ProtogenLoadout
-  maleFirstNames: names_felionoid
-  femaleFirstNames: names_felionoid
-  naming: First
+  maleFirstNames: names_felionoid_prefix
+  femaleFirstNames: names_felionoid_prefix
+  lastNames: names_felionoid_suffix
+  naming: PrefixSuffix
   minHeight: 0.8
   defaultHeight: 0.8
   maxHeight: 0.9
