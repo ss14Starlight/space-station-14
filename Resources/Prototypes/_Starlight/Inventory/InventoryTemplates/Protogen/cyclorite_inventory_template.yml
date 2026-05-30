@@ -23,8 +23,8 @@
     strippingWindowPos: 2,2
     displayName: Suit
     blacklist:
-    tags:
-    - ProtogenCybernetics
+      tags:
+      - ProtogenCybernetics
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING
@@ -33,8 +33,8 @@
     strippingWindowPos: 1,2
     displayName: Protogen Cybernetics
     whitelist:
-    tags:
-    - ProtogenCybernetics
+      tags:
+      - ProtogenCybernetics
   - name: gloves
     slotTexture: gloves
     slotFlags: GLOVES

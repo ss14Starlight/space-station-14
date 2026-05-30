@@ -82,8 +82,8 @@
     strippingWindowPos: 0,5
     displayName: Back
     blacklist:
-    tags:
-    - PetOnly
+      tags:
+      - PetOnly
   - name: pocket4
     slotTexture: web
     fullTextureName: template_small
@@ -110,8 +110,8 @@
     strippingWindowPos: 2,2
     displayName: Suit
     blacklist:
-    tags:
-    - ProtogenCybernetics
+      tags:
+      - ProtogenCybernetics
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING
@@ -120,8 +120,8 @@
     strippingWindowPos: 1,2
     displayName: Protogen Cybernetics
     whitelist:
-    tags:
-    - ProtogenCybernetics
+      tags:
+      - ProtogenCybernetics
   - name: pocket1
     slotTexture: pocket
     fullTextureName: template_small
