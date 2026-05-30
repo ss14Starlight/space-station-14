@@ -1,1 +1,1 @@
-loadout-group-protogen-cybernetics = Proto-Cybernetics
+loadout-group-protogen-cybernetics = Protogen Frames
