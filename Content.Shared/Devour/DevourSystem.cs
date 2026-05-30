@@ -128,9 +128,13 @@ public sealed class DevourSystem : EntitySystem
         //Only apply if they aren't dead
         if (requiredDamage > 0)
         {
-            var damageToApply = new DamageSpecifier { DamageDict = { { "Caustic", requiredDamage } } };
+            var damageToApply = new DamageSpecifier { DamageDict = { { "Asphyxiation", requiredDamage } } };
 
-            _damageSystem.TryChangeDamage(target, damageToApply);
+            if (!_damageSystem.TryChangeDamage(target, damageToApply)) //This will run as backup if airloss damage cannot be applied
+            {
+                damageToApply = new DamageSpecifier { DamageDict = { { "Caustic", requiredDamage } } };
+                _damageSystem.TryChangeDamage(target, damageToApply);
+            }
         }
         //Starlight-End
 
