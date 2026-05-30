@@ -45,7 +45,7 @@
     normalState: Resomi_minor_burning
     alternateState: Resomi_burning
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoResomi
   - type: HumanoidAppearance
     species: ProtoResomi

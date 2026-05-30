@@ -59,7 +59,7 @@
       - ReagentId: CopperBlood
         Quantity: 300
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoArachnid
   # Damage (Others)
   - type: MeleeWeapon

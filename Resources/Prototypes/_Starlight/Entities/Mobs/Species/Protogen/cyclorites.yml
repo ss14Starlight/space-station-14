@@ -47,7 +47,7 @@
       150: Critical # 50 extra health than base species to crit
       300: Dead # 100 extra damage required to kill
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoCyclorite
   - type: DamageVisuals
     damageOverlayGroups:

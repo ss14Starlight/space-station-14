@@ -50,7 +50,7 @@
     sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
     state: full
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoVulp
   - type: Body
     prototype: ProtoVulp

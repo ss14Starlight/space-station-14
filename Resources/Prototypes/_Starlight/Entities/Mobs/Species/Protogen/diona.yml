@@ -37,7 +37,7 @@
     prototype: ProtoDiona
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoDiona
   - type: DamageVisuals
     damageOverlayGroups:

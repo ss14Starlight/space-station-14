@@ -29,7 +29,7 @@
     prototype: ProtoMoth
     requiredLegs: 2
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoMoth
   - type: ZombieAccentOverride
     accent: zombieMoth

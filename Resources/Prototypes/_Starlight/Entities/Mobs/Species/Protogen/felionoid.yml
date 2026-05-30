@@ -40,7 +40,7 @@
     - id: FoodMeat
       amount: 3
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoFelionoid
   - type: DamageVisuals
     damageOverlayGroups:

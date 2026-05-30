@@ -25,7 +25,7 @@
     - id: FoodMeatHuman
       amount: 5
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoLagomorph
   - type: Body
     prototype: ProtoLagoMorph

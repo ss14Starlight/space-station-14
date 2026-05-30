@@ -32,7 +32,7 @@
       types:
         Blunt: 5
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoHuman
   - type: HumanoidAppearance
     species: ProtoHuman

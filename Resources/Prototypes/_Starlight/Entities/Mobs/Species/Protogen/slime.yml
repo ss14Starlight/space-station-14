@@ -55,7 +55,7 @@
   - type: UseDelay
     delay: 0.5
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoSlimePerson
   - type: PassiveDamage
     allowedStates:

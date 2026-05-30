@@ -92,7 +92,7 @@
     - type: FlashModifier
       modifier: 2
     - type: Damageable
-      damageContainer: Biological
+      damageContainer: Hybrid
       damageModifierSet: ProtoKin
     - type: Reactive
       groups:

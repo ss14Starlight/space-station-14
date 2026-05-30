@@ -70,7 +70,7 @@
     state: full
   - type: Thirst
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: Protogen
   - type: UserInterface
     interfaces:

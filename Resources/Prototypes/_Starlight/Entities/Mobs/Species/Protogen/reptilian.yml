@@ -34,7 +34,7 @@
       amount: 5
   - type: LizardAccent
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Hybrid
     damageModifierSet: ProtoReptilian
   - type: MeleeWeapon
     soundHit:
