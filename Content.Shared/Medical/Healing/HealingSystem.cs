@@ -65,7 +65,7 @@ public sealed class HealingSystem : EntitySystem
                 return;
             healing = healingData.MakeComponent(args.Used.Value); // Starlight, needs to pass an owner.
         }
-        
+
         if (healing.DamageContainers is not null &&
             target.Comp.DamageContainerID is not null &&
             !healing.DamageContainers.Contains(target.Comp.DamageContainerID.Value))

@@ -78,8 +78,8 @@ public sealed partial class HumanoidProfileEditor
 
     private void SpeciesLoadoutPressed(BaseButton.ButtonEventArgs args)
     {
-         if (Profile == null || 
-            !_prototypeManager.TryIndex(Profile.Species, out var species) || 
+         if (Profile == null ||
+            !_prototypeManager.TryIndex(Profile.Species, out var species) ||
             species.Loadout == null ||
             !_prototypeManager.TryIndex(species.Loadout, out var loadoutProto))
             return;

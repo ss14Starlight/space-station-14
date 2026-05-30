@@ -17,7 +17,7 @@
           inverted: true
         damage:
           types: # Drinking battery acid is bad for you? Woh.
-            Shock: 0.5 
+            Shock: 0.5
             Caustic: 0.5
       - !type:SatiateThirst
         conditions:
