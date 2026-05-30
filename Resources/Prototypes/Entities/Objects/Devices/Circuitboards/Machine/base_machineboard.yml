@@ -26,8 +26,6 @@
     - type: FlavorProfile
       flavors:
       - shocking
-    - type: Extractable
-      grindableSolutionName: ramchip
     - type: SolutionContainerManager
       solutions:
         food:
@@ -35,16 +33,6 @@
           reagents:
           - ReagentId: BatteryAcid
             Quantity: 15
-        ramchip:
-          reagents:
-          - ReagentId: BatteryAcid
-            Quantity: 15
-          - ReagentId: Gold
-            Quantity: 10
-          - ReagentId: Iron
-            Quantity: 10
-          - ReagentId: Silicon
-            Quantity: 50
     - type: Tag
       tags:
       - RamChip #Protogen joke, makes them able to eat them.
