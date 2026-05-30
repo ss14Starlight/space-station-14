@@ -28,7 +28,7 @@
     damageContainer: Hybrid
     damageModifierSet: ProtoLagomorph
   - type: Body
-    prototype: ProtoLagoMorph
+    prototype: ProtoLagomorph
     requiredLegs: 2
   - type: HumanoidAppearance
     species: ProtoLagomorph
