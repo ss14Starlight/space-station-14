@@ -31,7 +31,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     /// <summary>
     /// The chat prefix used to begin parsing a language. e.g. <c>^gcThis will parse to Galactic Common</c>.
     /// </summary>
-    public static readonly char ChatPrefixChar = '^';
+    public static readonly char ChatPrefixChar = '+';
 
     /// <summary>
     ///     A cached instance of <see cref="UniversalPrototype"/>
@@ -194,9 +194,10 @@ public abstract partial class SharedLanguageSystem : EntitySystem
 
     #region public api
 
-    public bool CanUnderstand(Entity<LanguageSpeakerComponent?> ent, ProtoId<LanguagePrototype> language)
+    public bool CanUnderstand(Entity<LanguageSpeakerComponent?> ent, ProtoId<LanguagePrototype> language, bool universalcheck = true)
     {
-        if (language == UniversalPrototype || HasComp<UniversalLanguageSpeakerComponent>(ent))
+        if (universalcheck)
+            if (language == UniversalPrototype || HasComp<UniversalLanguageSpeakerComponent>(ent))
             return true;
 
         return Resolve(ent, ref ent.Comp, logMissing: false) && ent.Comp.UnderstoodLanguages.Contains(language);
@@ -243,20 +244,30 @@ public abstract partial class SharedLanguageSystem : EntitySystem
 
         // Begin parsing
         var text = input;
-        if (text.Length<4 || !text.StartsWith(ChatPrefixChar)) return proto;
+        if (!text.StartsWith(ChatPrefixChar)) return proto;
         text = text[1..];
-        var prefix = text[..3];
-        foreach (var langId in ent.Comp.SpokenLanguages)
+        if (text.Length == 0) return proto;
+
+        // Try prefixes of length 3 and 1
+        int[] prefixLengths = [3, 1];
+        foreach (var length in prefixLengths)
         {
-            if (!_prototype.TryIndex(langId, out var lang)) continue;
-            if (lang.ChatPrefix is null) continue;
-            if (lang.ChatPrefix.Length != 3)
-                throw new Exception(
-                    $"Chat prefixes must be 3 characters long. {lang.Name}'s prefix is {lang.ChatPrefix}");
-            if (!lang.ChatPrefix.Equals(prefix, StringComparison.CurrentCultureIgnoreCase)) continue;
-            if(modifyText) input = text[3..];
-            parsed = true;
-            return lang;
+            if (text.Length < length) continue;
+            var prefix = text[..length];
+            foreach (var langId in ent.Comp.SpokenLanguages)
+            {
+                if (!_prototype.TryIndex(langId, out var lang)) continue;
+                if (lang.ChatPrefix is null) continue;
+                if (!(lang.ChatPrefix.Length == 1 || lang.ChatPrefix.Length == 3))
+                    throw new Exception(
+                        $"Chat prefixes must be 1 or 3 characters long. {lang.Name}'s prefix is {lang.ChatPrefix}");
+                if (lang.ChatPrefix.Length == length && lang.ChatPrefix.Equals(prefix, StringComparison.CurrentCultureIgnoreCase))
+                {
+                    if (modifyText) input = text[length..];
+                    parsed = true;
+                    return lang;
+                }
+            }
         }
 
         return proto;

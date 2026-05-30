@@ -1,8 +1,7 @@
-﻿using System.Linq;
+using System.Linq;
 using Content.Server._Starlight.Language;
 using Content.Server.Humanoid;
 using Content.Shared.Actions;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -31,7 +30,6 @@ public sealed partial class OrganSystem : EntitySystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
     [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -100,10 +98,6 @@ public sealed partial class OrganSystem : EntitySystem
         {
             case IntrinsicTranslatorComponent _:
                 _language.UpdateEntityLanguages(ent);
-                break;
-            case TaggedOrganComponent _: //Handle any required updates after tagging here
-                if(TryComp(ent, out CollectiveMindComponent? collectiveMindComp))
-                    _collectiveMind.UpdateCollectiveMind(ent,collectiveMindComp);
                 break;
             case EncryptionKeyHolderComponent encrypt: //Move encryption keys between implant and body
                 if(implant != null)

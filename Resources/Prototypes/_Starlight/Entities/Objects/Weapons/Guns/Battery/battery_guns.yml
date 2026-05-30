@@ -1060,7 +1060,7 @@
   components:
   - type: BatteryAmmoProvider
     proto: FreezeRay
-    fireCost: 150
+    fireCost: 125
   - type: BatterySelfRecharger
     autoRechargeRate: 30
   # "remove" wield bonus and penalty so borgs can use it

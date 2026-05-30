@@ -9,6 +9,12 @@
   id: BaseMobAbductor
   abstract: true
   components:
+  - type: LanguageKnowledge
+    speaks:
+    - Abductor
+    understands:
+    - Abductor
+  - type: UniversalLanguageSpeaker
   - type: Inventory
     templateId: abductor
   #- type: Absorbable Starlight: Done on purpose so the abductors don't get absorbed.

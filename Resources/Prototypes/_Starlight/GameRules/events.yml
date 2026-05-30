@@ -403,40 +403,6 @@
     duration: 1
   - type: IonStormRule
 
-# Terror Spiders
-
-- type: entity
-  id: TerrorSpidersSpawn
-  parent: BaseGameRule
-  components:
-  - type: StationEvent
-    globalAnnouncement: false
-    startAnnouncement: station-event-vent-creatures-start-announcement
-    startAudio:
-      path: /Audio/Announcements/attention.ogg
-    earliestStart: 20
-    weight: 6
-    minimumPlayers: 50
-    duration: null
-  - type: GameRule
-    minPlayers: 50
-  - type: VentSpawnRule
-  - type: AntagSpawner
-    prototype: MobTerrorPrincess
-  - type: TerrorSpiderRule
-  - type: AntagSelection
-    agentName: terror-princess-round-end-agent-name
-    definitions:
-    - spawnerPrototype: SpawnPointGhostTerrorPrincess
-      min: 1
-      max: 3
-      playerRatio: 50
-      pickPlayer: false
-      mindRoles:
-      - MindRoleTerrorPrincess
-  - type: DynamicRuleCost
-    cost: 200
-
 # Multi Paradoxes
 - type: entity
   parent: BaseGameRule

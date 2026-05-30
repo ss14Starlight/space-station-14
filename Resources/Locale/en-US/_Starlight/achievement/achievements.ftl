@@ -68,7 +68,7 @@ achievement-john-syndicate-name = John Syndicate
 achievement-john-syndicate-description = Succeed as a Lone Operative on a round with 200 or more players.
 
 achievement-liver-failure-name = Liver Failure
-achievement-liver-failure-description = Metabolize 250 units of ethanol in a single shift.
+achievement-liver-failure-description = Metabolize 100 units of ethanol in a single shift.
 
 achievement-paradox-undone-name = Paradox Undone
 achievement-paradox-undone-description = Kill your paradox clone.
@@ -99,6 +99,24 @@ achievement-forbidden-candy-description = Get vaporized by touching the supermat
 
 achievement-took-an-arrow-to-the-knee-name = Took an Arrow to the Knee
 achievement-took-an-arrow-to-the-knee-description = Get hit by an arrow.
+
+achievement-haunted-name = Haunted
+achievement-haunted-description = Be followed by at least 20 ghosts at once.
+
+achievement-beyond-reasonable-doubt-name = Beyond Reasonable Doubt
+achievement-beyond-reasonable-doubt-description = Attempt to mindshield a Head Revolutionary.
+
+achievement-viva-name = Viva!
+achievement-viva-description = As a revolutionary, take over the station.
+
+achievement-on-the-run-name = On the Run
+achievement-on-the-run-description = Pick the Criminal card.
+
+achievement-treason-name = Treason
+achievement-treason-description = Join the Syndicate by signing a Syndicate recruitment letter.
+
+achievement-wavering-loyalty-name = Wavering Loyalty
+achievement-wavering-loyalty-description = As a command member, pick the Criminal card.
 
 achievement-that-frezon-stare-name = That Frezon Stare
 achievement-that-frezon-stare-description = Metabolize Frezon.
