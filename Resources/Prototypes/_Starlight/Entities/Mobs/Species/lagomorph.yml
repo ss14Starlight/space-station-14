@@ -63,7 +63,7 @@
     proto: lagomorph
   - type: Damageable
     damageContainer: Biological
-    damageModifierSet: ProtoLagomorph
+    damageModifierSet: Lagomorph
   - type: MeleeWeapon
     animation: WeaponArcClaw
     soundHit:
