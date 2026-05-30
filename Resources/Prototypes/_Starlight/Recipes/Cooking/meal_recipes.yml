@@ -38,6 +38,19 @@
     RightLegFelionoid: 1
 
 - type: microwaveMealRecipe
+  id: RecipeFoodFriedRodentia
+  name: kentucky fried rodentia recipe
+  result: FoodFriedRodentia
+  time: 10
+  reagents:
+    Egg: 5
+    Flour: 10
+    Water: 5
+  solids:
+    HeadRodentia: 1
+    TorsoRodentia: 1
+
+- type: microwaveMealRecipe
   id: RecipeFoodCookedlizard
   name: Volcanic explosion recipe
   result: FoodCookedLizardPlate
@@ -149,6 +162,14 @@
   result: FoodFriedfelionoid
   time: 30
   ingredient: MobFelionoid
+  includeFormerly: true
+
+- type: deepFryingRecipe
+  id: KFRAlternative
+  name: Kentucky Fried Rodentia
+  result: FoodFriedRodentia
+  time: 30
+  ingredient: MobRodentia
   includeFormerly: true
 
 - type: microwaveMealRecipe
