@@ -7,8 +7,7 @@ marking-ProtogenTail-tail_protogen = Tail
 
 marking-ProtogenEars = Four Protogen Ears
 marking-ProtogenEars-ears_protogen = Four Protogen Ears
-marking-ProtogenEarsTips = Four Protogen Ears (Tips)
-marking-ProtogenEarsTips-ears_protogen_tips = Four Protogen Ears (Tips)
+marking-ProtogenEars-ears_protogen_tips = Four Protogen Ears (Tips)
 marking-TwoProtogenEars = Two Protogen Ears
 marking-TwoProtogenEars-two_ears_protogen = Two Protogen Ears
 
