@@ -36,6 +36,8 @@
     Snout: MobHumanoidAnyMarking
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobAvaliTorso
     Tail: MobHumanoidAnyMarking
     LArm: MobAvaliLArm
