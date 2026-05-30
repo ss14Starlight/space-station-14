@@ -20,7 +20,7 @@
       - right leg
       - left leg
       organs:
-        core: OrganProtoKinCore
+        core: OrganShadekinCore
         heart: OrganProtogenHeart
         stomach: OrganProtogenStomach
         liver: OrganProtogenLiver

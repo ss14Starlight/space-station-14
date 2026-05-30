@@ -140,15 +140,15 @@
     size: Small
     heldPrefix: heart
 
-- type: entity
-  id: OrganProtoKinCore
-  parent: BaseProtogenOrgan
-  name: cybernetic shadekin core # Starlight, capitalization
-  description: The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been. #  Starlight, quotation marks removed
-  components:
-  - type: Organ
-  - type: Sprite
-    state: core
+#- type: entity # Starlight start, no cyber core
+#  id: OrganProtoKinCore
+#  parent: BaseProtogenOrgan
+#  name: cybernetic shadekin core # Starlight, capitalization
+#  description: The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been. #  Starlight, quotation marks removed
+#  components:
+#  - type: Organ
+#  - type: Sprite
+#    state: core # Starlight end
 
 - type: entity
   id: OrganProtogenStomach
