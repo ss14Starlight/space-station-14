@@ -29,12 +29,6 @@
     tags:
       - Meat
 
-#- type: entity # Starlight start, no Gibbable component, so we'll use the parent of this
-#  id: BaseProtogenOrgan
-#  parent: BaseProtogenUnGibbable
-#  abstract: true
-#  components:
-#  - type: Gibbable # Starlight end
 
 - type: entity
   id: OrganProtogenBrain
