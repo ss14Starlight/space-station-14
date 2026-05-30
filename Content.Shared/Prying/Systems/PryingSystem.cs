@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Alert;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Doors.Components;
@@ -22,16 +23,37 @@ public sealed class PryingSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<PryingComponent, ComponentStartup>(OnPryingStartup);
+        SubscribeLocalEvent<PryingComponent, ComponentShutdown>(OnPryingShutdown);
 
         // Mob prying doors
         SubscribeLocalEvent<DoorComponent, GetVerbsEvent<AlternativeVerb>>(OnDoorAltVerb);
         SubscribeLocalEvent<DoorComponent, DoorPryDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<DoorComponent, InteractUsingEvent>(TryPryDoor);
     }
+
+    private void OnPryingStartup(Entity<PryingComponent> ent, ref ComponentStartup args)
+    {
+        if (ent.Comp.PryingAlertProtoId == null)
+            return;
+
+        _alerts.ShowAlert(ent.Owner, ent.Comp.PryingAlertProtoId.Value);
+    }
+
+    private void OnPryingShutdown(Entity<PryingComponent> ent, ref ComponentShutdown args)
+    {
+        if (ent.Comp.PryingAlertProtoId == null)
+            return;
+
+        _alerts.ClearAlert(ent.Owner, ent.Comp.PryingAlertProtoId.Value);
+    }
+
 
     private void TryPryDoor(EntityUid uid, DoorComponent comp, InteractUsingEvent args)
     {
@@ -100,7 +122,7 @@ public sealed class PryingSystem : EntitySystem
 
         // hand-prying is much slower
         var modifier = CompOrNull<PryingComponent>(user)?.SpeedModifier ?? unpoweredComp.PryModifier;
-        // Starlight change start: Adds capability for user to pry with "themselves" if they have the pry component, used for mech prying        
+        // Starlight change start: Adds capability for user to pry with "themselves" if they have the pry component, used for mech prying
 
         // user is tool if they have a prying component
         EntityUid? userAsTool = HasComp<PryingComponent>(user) ? user : null;
@@ -127,6 +149,17 @@ public sealed class PryingSystem : EntitySystem
 
             canev = new BeforePryEvent(user, false, false, false);
         }
+
+        // Starlgiht start
+        var userEv = new UserBeforePryEvent(target, canev.PryPowered, canev.Force, canev.StrongPry);
+        RaiseLocalEvent(user, ref userEv);
+
+        if (userEv.Cancelled)
+        {
+            message = userEv.Message;
+            return false;
+        }
+        // Starligt end
 
         RaiseLocalEvent(target, ref canev);
 

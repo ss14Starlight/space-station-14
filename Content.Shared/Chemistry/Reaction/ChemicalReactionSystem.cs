@@ -290,7 +290,7 @@ namespace Content.Shared.Chemistry.Reaction
         }
     }
     // Starlight End
-    
+
     /// <summary>
     ///     Raised directed at the owner of a solution to determine whether the reaction should be allowed to occur.
     /// </summary>

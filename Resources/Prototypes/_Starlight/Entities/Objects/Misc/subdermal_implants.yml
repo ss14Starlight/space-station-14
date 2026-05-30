@@ -201,3 +201,60 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: MindControlImplant
+
+# MedTak
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantMedTak
+  name: MedTak beacon
+  description: This implant will inform the nearest MedTak unit should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      radioChannel: MedTak
+    - type: SuitSensor
+      faction: MedTak
+      randomMode: false
+      controlsLocked: true
+      mode: SensorCords
+      activationContainer: "implant"
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      transmitFrequencyId: SuitSensor
+    - type: StationLimitedNetwork
+      allowNonStationPackets: true
+    - type: WirelessNetworkConnection
+      range: 1500
+
+- type: entity
+  parent: MindShieldImplant
+  id: MedTakMindShieldImplant
+  name: MedTak mindshield implant
+  description: This implant protects operators from mind control devices.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MindShieldImplant
+    mindShieldStatusIcon: MedTakMindShieldIcon
+
+# NanoTrasen Implants
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantNanoTrasen
+  name: nanotrasen radio implant
+  description: This implant grants access to the NanoTrasen channel without a headset. Only authorized for NanoTrasen personnel.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - NanoTrasen
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantNanoTrasen
+  name: nanotrasen death rattle implant
+  description: This implant will inform the NanoTrasen radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel: NanoTrasen

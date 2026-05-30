@@ -18,6 +18,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: ActiveRadio
     channels:
     - Binary
@@ -30,6 +31,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: IgnoreUIRange
   - type: StationAiHeld
   - type: StationAiOverlay
@@ -536,6 +538,7 @@
     layer: 32768
   - type: Sprite
     sprite: Mobs/Silicon/station_ai.rsi
+    drawdepth: CyberspaceObjects # Starlight
     layers:
     - state: ai_camera
 
@@ -773,6 +776,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleConstruction
@@ -816,6 +820,7 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        - BorgModulePrying
         - BorgModuleTool
         - BorgModuleFireExtinguisher
   - type: ItemSlots
@@ -856,6 +861,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleCleaning
@@ -898,6 +904,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleChemical
@@ -941,6 +948,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining
       - BorgModuleTraversal

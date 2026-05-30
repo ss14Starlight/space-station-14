@@ -1,43 +1,23 @@
-using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Server.Afk;
-using Content.Server.Database;
-using Content.Server.Discord;
-using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
 using Content.Server._NullLink.PlayerData;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
-using Content.Shared.Humanoid.Markings;
-using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Starlight.MHelp;
-using Content.Shared.Starlight;
 using Content.Shared._NullLink;
 using JetBrains.Annotations;
 using Robust.Server.Player;
-using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Sockets;
-using System.Text.Json.Nodes;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using System;
 
 namespace Content.Server.Administration.Systems;
 
@@ -103,7 +83,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         var senderIsMentor = _playerRoles.IsMentor(senderSession);
         if (!senderIsAdmin && !senderIsMentor && _rateLimit.CountAction(senderSession, RateLimitKey) != RateLimitStatus.Allowed)
             return;
-        
+
         if (message.Ticket is not Guid ticketId)
         {
             ticketId = Guid.NewGuid();
@@ -130,7 +110,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         if (ticket is null && !_tickets.TryGetValue(ticketId, out ticket))
             return;
         if (ticket.Creator != senderSession.UserId
-        && ((ticket.Mentor is null && !senderIsMentor) || (ticket.Mentor != senderSession.UserId)) 
+        && ((ticket.Mentor is null && !senderIsMentor) || (ticket.Mentor != senderSession.UserId))
         && !(senderIsAdmin || senderIsMentor))
             return;
         var escapedText = FormattedMessage.EscapeText(message.Text);
@@ -244,7 +224,7 @@ public sealed partial class MentorSystem : SharedMentorSystem
         var mentorEnt = senderSession.AttachedEntity;
         if (!HasComp<GhostComponent>(mentorEnt))
             return;
-        
+
         var playerSession = _playerManager.GetSessionById(ticket.Creator);
 
         if (playerSession.AttachedEntity.HasValue)

@@ -123,12 +123,12 @@ public abstract class SharedEvolvingSystem : EntitySystem
             return false;
 
         List<EntityUid> objectivesToUpdate = new();
-        
+
         foreach (var obj in mind.Objectives)
         {
             if (!HasComp<EvolveConditionComponent>(obj))
                 continue;
-            
+
             objectivesToUpdate.Add(obj);
         }
 
@@ -144,10 +144,10 @@ public abstract class SharedEvolvingSystem : EntitySystem
         }
         else if (increment)
             foreach (var objective in objectivesToUpdate)
-                if (TryComp<EvolveConditionComponent>(objective, out var evolveCondition) 
+                if (TryComp<EvolveConditionComponent>(objective, out var evolveCondition)
                     && (objType == null || evolveCondition.ConditionType == objType))
                     evolveCondition.Count += 1;
-        
+
         return true;
     }
 
@@ -206,12 +206,12 @@ public abstract class SharedEvolvingSystem : EntitySystem
     {
         if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return false;
-        
+
         return TryRemoveObjectives(mindId, mind, component, delete, force);
     }
 
     private bool TryRemoveObjectives(EntityUid mindId, MindComponent mind, EvolvingComponent component, bool delete = true, bool force = false)
-    {        
+    {
         bool removedAny = false;
         foreach (var obj in component.Objectives)
             if (_mindSystem.TryRemoveObjective(mindId, mind, obj, delete: delete, force: force))

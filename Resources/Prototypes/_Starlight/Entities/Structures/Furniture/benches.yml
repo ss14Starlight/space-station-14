@@ -48,6 +48,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_end_left.rsi
     state: base
+  - type: Construction
+    graph: BenchSL
+    node: pewLeft
 
 - type: entity
   name: Wood Pew
@@ -58,6 +61,9 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_end_right.rsi
     state: base
+  - type: Construction
+    graph: BenchSL
+    node: pewRight
 
 - type: entity
   name: Wood Pew
@@ -68,8 +74,20 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/Benches/pew_middle.rsi
     state: base
+  - type: Construction
+    graph: BenchSL
+    node: pewMid
 
-#Bench White
+#region Bench White
+- type: entity
+  name: comfortable bench
+  id: BenchWhiteComfy
+  parent: BenchComfy
+  components:
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBench
+
 - type: entity
   name: comfortable bench
   suffix: Corner. White
@@ -90,6 +108,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBenchCorner
 
 - type: entity
   name: comfortable bench
@@ -111,6 +132,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBenchLeft
 
 - type: entity
   name: comfortable bench
@@ -132,6 +156,9 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBenchRight
 
 - type: entity
   name: comfortable bench
@@ -153,8 +180,11 @@
     bodyType: Static
   - type: StaticPrice
     price: 35
+  - type: Construction
+    graph: BenchSL
+    node: whiteComfBenchMid
 
-#Bench Red
+#region Bench Red
 - type: entity
   id: BenchRedComfy
   suffix: Solo. Red
@@ -182,6 +212,9 @@
       color: "#767e82"
     - state: cover
       color: "#8c4141"
+  - type: Construction
+    graph: BenchSL
+    node: redComfBenchCorner
 
 - type: entity
   id: BenchRedComfyEndLeft
@@ -195,6 +228,9 @@
       color: "#767e82"
     - state: cover
       color: "#8c4141"
+  - type: Construction
+    graph: BenchSL
+    node: redComfBenchLeft
 
 - type: entity
   id: BenchRedComfyEndRight
@@ -208,6 +244,9 @@
       color: "#767e82"
     - state: cover
       color: "#8c4141"
+  - type: Construction
+    graph: BenchSL
+    node: redComfBenchRight
 
 - type: entity
   id: BenchRedComfyMiddle
@@ -221,8 +260,11 @@
       color: "#767e82"
     - state: cover
       color: "#8c4141"
+  - type: Construction
+    graph: BenchSL
+    node: redComfBenchMid
 
-#Bench Blue
+#region Bench Blue
 - type: entity
   id: BenchBlueComfy
   suffix: Solo. Blue
@@ -250,6 +292,9 @@
       color: "#767e82"
     - state: cover
       color: "#334e6d"
+  - type: Construction
+    graph: BenchSL
+    node: blueComfBenchCorner
 
 - type: entity
   id: BenchBlueComfyEndLeft
@@ -263,6 +308,9 @@
       color: "#767e82"
     - state: cover
       color: "#334e6d"
+  - type: Construction
+    graph: BenchSL
+    node: blueComfBenchLeft
 
 - type: entity
   id: BenchBlueComfyEndRight
@@ -276,6 +324,9 @@
       color: "#767e82"
     - state: cover
       color: "#334e6d"
+  - type: Construction
+    graph: BenchSL
+    node: blueComfBenchRight
 
 - type: entity
   id: BenchBlueComfyMiddle
@@ -289,8 +340,11 @@
       color: "#767e82"
     - state: cover
       color: "#334e6d"
+  - type: Construction
+    graph: BenchSL
+    node: blueComfBenchMid
 
-#Bench Gray
+#region Bench Gray
 - type: entity
   id: BenchGrayComfy
   suffix: Solo. Gray
@@ -302,6 +356,9 @@
       color: "#767e82"
     - state: bench_solo_cover
       color: "#767e82"
+  - type: Construction
+    graph: BenchSL
+    node: grayComfBench
 
 - type: entity
   id: BenchGrayComfyCorner
@@ -315,6 +372,9 @@
       color: "#767e82"
     - state: cover
       color: "#767e82"
+  - type: Construction
+    graph: BenchSL
+    node: grayComfBenchCorner
 
 - type: entity
   id: BenchGrayComfyEndLeft
@@ -328,6 +388,9 @@
       color: "#767e82"
     - state: cover
       color: "#767e82"
+  - type: Construction
+    graph: BenchSL
+    node: grayComfBenchLeft
 
 - type: entity
   id: BenchGrayComfyEndRight
@@ -341,6 +404,9 @@
       color: "#767e82"
     - state: cover
       color: "#767e82"
+  - type: Construction
+    graph: BenchSL
+    node: grayComfBenchRight
 
 - type: entity
   id: BenchGrayComfyMiddle
@@ -354,8 +420,11 @@
       color: "#767e82"
     - state: cover
       color: "#767e82"
+  - type: Construction
+    graph: BenchSL
+    node: grayComfBenchMid
 
-#Bench Green
+#region Bench Green
 - type: entity
   id: BenchGreenComfy
   suffix: Solo. Green
@@ -367,6 +436,9 @@
       color: "#767e82"
     - state: bench_solo_cover
       color: "#3c9950"
+  - type: Construction
+    graph: BenchSL
+    node: greenComfBench
 
 - type: entity
   id: BenchGreenComfyCorner
@@ -380,6 +452,9 @@
       color: "#767e82"
     - state: cover
       color: "#3c9950"
+  - type: Construction
+    graph: BenchSL
+    node: greenComfBenchCorner
 
 - type: entity
   id: BenchGreenComfyEndLeft
@@ -393,6 +468,9 @@
       color: "#767e82"
     - state: cover
       color: "#3c9950"
+  - type: Construction
+    graph: BenchSL
+    node: greenComfBenchLeft
 
 - type: entity
   id: BenchGreenComfyEndRight
@@ -406,6 +484,9 @@
       color: "#767e82"
     - state: cover
       color: "#3c9950"
+  - type: Construction
+    graph: BenchSL
+    node: greenComfBenchRight
 
 - type: entity
   id: BenchGreenComfyMiddle
@@ -419,3 +500,6 @@
       color: "#767e82"
     - state: cover
       color: "#3c9950"
+  - type: Construction
+    graph: BenchSL
+    node: greenComfBenchMid

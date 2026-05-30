@@ -63,7 +63,7 @@
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon
-    - type: PickRandomDepartment   
+    - type: PickRandomDepartment
 
 - type: entity
   id: RRCardBrighteyeLights

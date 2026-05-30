@@ -1,7 +1,5 @@
 using Content.Server.Ghost;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.Mind;
@@ -9,13 +7,15 @@ using Content.Shared.Mobs;
 using Content.Shared.VentCrawl.Components;
 using Robust.Shared.Player;
 using Content.Shared.NodeContainer;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.VentCrawl;
 
-public sealed class BeingVentCrawlSystem : EntitySystem
+public sealed partial class BeingVentCrawlSystem : EntitySystem
 {
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-    [Dependency] private readonly IEntityManager _entities = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {
@@ -36,14 +36,13 @@ public sealed class BeingVentCrawlSystem : EntitySystem
         {
             var session = actor.PlayerSession;
 
-            var minds = _entities.System<SharedMindSystem>();
-            if (!minds.TryGetMind(session, out var mindId, out var mind))
+            if (!_mindSystem.TryGetMind(session, out var mindId, out var mind))
             {
-                mindId = minds.CreateMind(session.UserId);
-                mind = _entities.GetComponent<MindComponent>(mindId);
+                mindId = _mindSystem.CreateMind(session.UserId);
+                mind = Comp<MindComponent>(mindId);
             }
 
-            _entities.System<GhostSystem>().OnGhostAttempt(mindId, true, true, true, mind);
+            _ghost.OnGhostAttempt(mindId, true, true, true, mind);
         }
     }
 

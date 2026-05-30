@@ -20,12 +20,7 @@ public sealed partial class IPCBoundUserInterface(EntityUid owner, Enum uiKey) :
             SendMessage(new IPCEjectBrainBuiMessage());
         };
 
-        /* The eject battery button is currently bugged and freezes the individual who uses it. Uncomment this when a fix is applied!
-         _menu.EjectBatteryButtonPressed += () =>
-        {
-            SendMessage(new IPCEjectBatteryBuiMessage());
-        };
-
+        /* Unsure why this thing is commented but... Lets keep it commented.
         _menu.NameChanged += name =>
         {
             SendMessage(new IPCSetNameBuiMessage(name));

@@ -1,5 +1,3 @@
-<!-- IT'S NOT WIZDENS REPO, IF YOU WANT TO ADD YOUR CHANGES ON ALL SERVERS, CREATE PR TO WIZDENS REPO -->
-
 ## Short description
 <!-- What do you propose to change with your PR? -->
 

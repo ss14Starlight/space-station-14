@@ -10,6 +10,6 @@ public sealed partial class RestrictNestingItemComponent : Component
     /// <summary>
     /// How many seconds it takes to pickup an item with this component
     /// </summary>
-    [DataField("doAfter")] 
+    [DataField("doAfter")]
     public TimeSpan DoAfter = TimeSpan.FromSeconds(5.0);
 }

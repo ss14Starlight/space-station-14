@@ -12,12 +12,30 @@ public sealed class GlitchingSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
 
+    private TimeSpan _nextUpdate = TimeSpan.Zero;
+    private TimeSpan _refreshRate = TimeSpan.FromSeconds(5);
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<GlitchOnEMPComponent, EmpPulseEvent>((ent, ref _) =>
             ApplyGlitch(ent.Owner, ent.Comp.Duration, ent.Comp.Ramp));
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_timing.CurTime < _nextUpdate) return;
+        _nextUpdate = _timing.CurTime + _refreshRate;
+
+        var query = EntityQueryEnumerator<GlitchingEffectComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (_timing.CurTime >= comp.FinishAt)
+                RemCompDeferred<GlitchingEffectComponent>(uid);
+        }
     }
 
     public void ApplyGlitch(EntityUid uid, TimeSpan effectDuration, TimeSpan effectRamp)

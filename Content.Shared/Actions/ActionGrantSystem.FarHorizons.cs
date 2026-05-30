@@ -18,7 +18,7 @@ public sealed partial class ActionGrantSystem
         var newActions = ent.Comp.Actions.Union(actions).ToList();
         if (newActions == ent.Comp.Actions)
             return;
-        
+
         ActionGrantComponent combinedComp = new()
         {
             Actions = newActions
@@ -34,7 +34,7 @@ public sealed partial class ActionGrantSystem
         actions.Add(action);
         RemoveActions(ent, actions);
     }
-        
+
     public void RemoveActions(Entity<ActionGrantComponent> ent, List<EntProtoId> actions)
     {
         var newActions = ent.Comp.Actions.Except(actions).ToList();

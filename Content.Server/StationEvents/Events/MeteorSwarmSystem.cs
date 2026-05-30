@@ -26,7 +26,7 @@ public sealed class MeteorSwarmSystem : StationEventSystem<MeteorSwarmComponent>
         base.Added(uid, component, gameRule, args);
 
         component.WaveCounter = component.Waves.Next(RobustRandom);
-        
+
         //Starlight begin
         if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
         if (component.Announcement is { } locId)
@@ -43,7 +43,7 @@ public sealed class MeteorSwarmSystem : StationEventSystem<MeteorSwarmComponent>
 
         //Starlight begin
         if(!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        
+
         if (stationEvent.TargetStation is null) return;
         if (_station.GetLargestGrid(stationEvent.TargetStation.Value) is not { } grid)
             return;

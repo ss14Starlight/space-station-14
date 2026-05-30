@@ -3,9 +3,10 @@
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: nuclear centrifuge
   description: A large machine that can be used to separate radioactive isotopes from spent fuel.
+  categories: [ DoNotMap ] # Starlight
   components:
   - type: Sprite
-    sprite: _FarHorizons/Structures/Machines/nuclear_centrifuge.rsi
+    sprite: _Starlight/Structures/Machines/nuclear_centrifuge.rsi #SL Edit
     snapCardinals: true
     layers:
     - state: centrifuge

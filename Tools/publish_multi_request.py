@@ -78,15 +78,15 @@ def get_files_to_publish() -> Iterable[str]:
 def get_engine_version():
     try:
         version_file = "RobustToolbox/MSBuild/Robust.Engine.Version.props"
-        
+
         tree = ET.parse(version_file)
         root = tree.getroot()
-        
+
         version = root.find(".//Version")
-        
+
         if version is None or not version.text:
             raise ValueError(f"Version not found in {version_file}")
-        
+
         return version.text.strip()
     except Exception as e:
         print(f"Error reading version from {version_file}: {e}")

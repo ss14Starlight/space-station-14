@@ -1,17 +1,26 @@
 <Document>
 # Prisoner Treatment
 
-1. Prisoners must be read their list of crimes before the warden before sentencing can commence. Any time spent in confinement must be subtracted from the total time of their sentence.
-
-2. Arrested prisoners are to be searched upon entry to Security. ID's and PDA's are to be removed from prisoners while in confinement. Prisoners are to be provided/allowed their own radio communications equipment.
-
-Prisoner searches include:
-- Pockets
-- PDA Slot
-- Bags
-- Coats/overwear
-
-3. Prisoners placed into confinement are to be unrestrained. Prisoners who become combative or pose a flight risk may be restrained at the Warden's discretion.
-
-4. Prisoners who receive perma/execution sentences may request a trial for their crimes, as decided by a jury of 12 of their peers. This may be waived in the face of imminent station destruction.
-</Document> 
+- 1.\n
+Prisoners cannot be confined without a valid sentence. To be considered valid, a sentence must:\n\n
+1.1\n
+Have clearly defined which part of Corporate Law was broken.\n
+1.2\n
+Have clearly defined how said law was broken.\n\n
+1.3\n
+Be overheard and clearly approved by the Warden or Head of Security.\n\n
+1.4\n
+Be read aloud to the prisoner themselves.
+- 2.\n
+Arresting officers are responsible for ensuring that prisoners are not let into the brig with dangerous equipment or tools enabling their escape, they are to be searched and said equipment is to be confiscated.
+- 3.\n
+Prisoners are to have their PDA's confiscated, and provided with a Prisoner ID for the duration of their stay in the brig.
+- 4.\n
+All the prisoner's non-confiscated belongings are to be returned to them, including their PDA, following the end of their sentence.
+- 5.\n
+Prisoners are to be unrestrained in the brig by default, but may be re-restrained if overly unruly.
+- 6.\n
+Prisoners may request a trial, but are not entitled to one unless their sentence is permanent, capital or involves designation as an Enemy of the Corporation.
+- 7.\n
+Prisoners may request a lawyer at any time, and are entitled to be visited by them if one is present and willing.
+</Document>

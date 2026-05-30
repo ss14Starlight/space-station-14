@@ -61,7 +61,7 @@ namespace Content.Server.StationEvents.Events
                 }
             }
 
-            
+
             component.Unpowered.Clear();
         }
 

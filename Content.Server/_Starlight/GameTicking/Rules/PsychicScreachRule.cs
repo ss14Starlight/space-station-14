@@ -1,7 +1,7 @@
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Server._Starlight.Bluespace;
 using Content.Server._Starlight.GameTicking.Rules.Components;
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Power.Components;
@@ -74,8 +74,9 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                 _light.TryDestroyBulb(ent, light);
             else
             {
-                _light.ToggleBlinkingLight(ent, light, true);
-                Timer.Spawn(TimeSpan.FromSeconds(10), () => _light.ToggleBlinkingLight(ent, light, false));
+                var blinking = EnsureComp<BlinkingPoweredLightComponent>(ent);
+                blinking.StopBlinkingTime = Timing.CurTime + TimeSpan.FromSeconds(10);
+                Dirty(ent, blinking);
             }
         }
 
@@ -132,7 +133,6 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                 else
                     todrain = 0;
 
-                
                 _batterySystem.SetCharge((ent, battery), todrain);
             }
         });

@@ -455,7 +455,7 @@
   name: m1911
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponM1911
-  description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
+  description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
   - type: Sprite
@@ -552,7 +552,7 @@
   name: PDW-9 taser pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponPDW9
-  description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
+  description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
   - type: Sprite
@@ -991,3 +991,83 @@
       - FiringPinLaser
   - type: FiringPinHolder
     supportedPins: [ Laser ]
+
+# NTNC
+- type: entity
+  name: cyborg pulse carbine
+  parent: [ BaseCentcommContraband, WeaponAdvancedLaser ]
+  id: CentcommCyborgLaser
+  description: A pulse carbine modified for use by cyborgs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: stun
+      map: ["enum.FireModesLayers.FireMode"]
+    - state: stun-unshaded-0
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: Appearance
+  - type: BatteryAmmoProvider
+    proto: TaserBolt
+    fireCost: 100
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: TaserBolt
+      fireCost: 100
+      magState: stun
+      visualState: stun
+    - proto: RedLaserBeam
+      fireCost: 50
+      magState: kill
+      visualState: kill
+    - proto: DestroyBeam
+      fireCost: 300
+      magState: destroy
+      visualState: destroy
+  - type: MagazineVisuals
+    magState: stun
+    steps: 5
+    zeroVisible: true
+  - type: GunFireModeSounds
+    sounds:
+      2:
+        path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 100
+    autoRechargePauseTime: 5
+
+# Xenoborgs
+- type: entity
+  parent: [WeaponLaserCannon, BaseXenoborgContraband]
+  id: WeaponLaserCannonXenoborgCold
+  name: xenoborg bitterfrost cannon
+  components:
+  - type: BatteryAmmoProvider
+    proto: FreezeRay
+    fireCost: 125
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+  # "remove" wield bonus and penalty so borgs can use it
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Gun
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 2

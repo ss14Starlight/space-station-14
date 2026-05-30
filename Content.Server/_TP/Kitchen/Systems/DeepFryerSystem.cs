@@ -73,7 +73,7 @@ public sealed class DeepFryerSystem : EntitySystem
             }
         }
     }
-	
+
 
     /// <summary>
     ///     AfterInteractUsing event for the deep fryer.
@@ -279,7 +279,7 @@ public sealed class DeepFryerSystem : EntitySystem
             // If the fryer is enabled and powered, play the looping frying sound and update visuals.
 			if (!_power.IsPowered(uid))
 				//sets active state to off visusally when power is removed, also removed continue; that causing the visual active state to be stuck
-				_appearance.SetData(uid, DeepFryerVisuals.Active, false); 
+				_appearance.SetData(uid, DeepFryerVisuals.Active, false);
 
             if (!deepFryerComp.IsEnabled)
                 continue;
@@ -381,7 +381,7 @@ public sealed class DeepFryerSystem : EntitySystem
         // Once removed, we spawn the recipe result and insert it into the container. Seamless!
         _container.Remove(friedEntUid, container);
         QueueDel(friedEntUid);
-		
+
 		//consume oil per fry for food
 		if (_solutionContainer.TryGetSolution(fryerEntUid, deepFryerComp.SolutionContainerId, out var solutionEnt, out _))
 		{
@@ -469,7 +469,7 @@ public sealed class DeepFryerSystem : EntitySystem
             _metaData.SetEntityName(friedEntUid, itemMeta.EntityName.Insert(0, "lightly-fried "));
             deepFriedComp.CurrentFriedLevel = SharedDeepFriedComponent.FriedLevel.LightlyFried;
         }
-		
+
 		//consumes fry oil per fry for nonfood
 		if (_solutionContainer.TryGetSolution(fryerEntUid, deepFryerComp.SolutionContainerId, out var solutionEnt, out _))
 		{

@@ -55,6 +55,14 @@
   - type: NotJobRequirement
     jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ]
 
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorLawStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Magistrate, IAA, Lawyer ]
+
   # Base Steal NTR / IAA / Magi
 - type: entity
   abstract: true
@@ -134,7 +142,7 @@
   components:
   - type: StealCondition
     stealGroup: RDDiplomaSteal
-    
+
 - type: entity
   parent: BaseCMOStealObjective
   id: CMOLicenseStealObjective
@@ -144,24 +152,27 @@
 
   # Documents Steal Objective Shit
 - type: entity
-  parent: BaseNTRStealObjective
+  parent: BaseTraitorNanoTrasenStealObjective
   id: CorporateSecretsStealObjective
   components:
   - type: StealCondition
+    owner: job-name-ntrep
     stealGroup: CorporateSecretsSteal
 
 - type: entity
-  parent: BaseIAAStealObjective
+  parent: BaseTraitorLawStealObjective
   id: CriminalReportsStealObjective
   components:
   - type: StealCondition
+    owner: job-name-iaa
     stealGroup: CriminalReportsSteal
 
 - type: entity
-  parent: BaseMagistrateStealObjective
+  parent: BaseTraitorLawStealObjective
   id: SecureKnowledgeStealObjective
   components:
   - type: StealCondition
+    owner: job-name-magistrate
     stealGroup: SecureKnowledgeSteal
 
 - type: entity
@@ -186,11 +197,18 @@
     stealGroup: AccessConfigurator
 
 - type: entity
+  parent: BaseTraitorCommandStealObjective
+  id: CaptainTabletStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CaptainTablet
+
+- type: entity
   parent: BaseTraitorStealObjective
   id: EncryptionKeyHybridStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Captain, NanoTrasenRepresentative, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+    jobs: [ Captain, NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Lawyer, ResearchDirector, Roboticist, Scientist, ResearchAssistant ]
   - type: StealCondition
     stealGroup: EncryptionKeyHybrid
 
@@ -339,7 +357,7 @@
     difficulty: 2.5 # Mildly easier to obtain.
 
   # RP OBJECTIVES START
-  
+
 - type: entity
   parent: BaseStoryObjective
   id: RetrieveContrabandObjective
@@ -378,7 +396,7 @@
       unique: true
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi
-        state: icon   
+        state: icon
 
 
 - type: entity
@@ -436,7 +454,7 @@
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi
         state: icon
-        
+
 - type: entity
   parent: BaseStoryObjective
   id: ManifestoObjective
@@ -626,6 +644,19 @@
   components:
     - type: Objective
       difficulty: 0.5 # Easy, lets you slander people for fun.
+      unique: true
+      icon:
+        sprite: _Starlight/Interface/Misc/rp_icon.rsi
+        state: icon
+
+- type: entity
+  parent: BaseStoryObjective
+  id: SyndielandObjective
+  name: Reopen Syndieland, and make some serious cash on behalf of the Syndicate.
+  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  components:
+    - type: Objective
+      difficulty: 2 # Doing this should take the majority of your shift, so it can be higher difficulty.
       unique: true
       icon:
         sprite: _Starlight/Interface/Misc/rp_icon.rsi

@@ -8,7 +8,7 @@
       sprite: _Starlight/Structures/tower_of_babel.rsi
       offset: 0,0.5
       noRot: true
-      layers: 
+      layers:
         - state: Tower_0
           map: ["enum.TowerOfBabelLayers.Tower"]
     - type: Icon
@@ -62,7 +62,6 @@
       thresholds: [0, 150, 300]
       trackAllDamage: true
       overlay: false
-      targetLayers: 
+      targetLayers:
         - enum.TowerOfBabelLayers.Tower
     - type: TowerOfBabel
-    

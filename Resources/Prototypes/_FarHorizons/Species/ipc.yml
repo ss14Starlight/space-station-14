@@ -1,12 +1,12 @@
 - type: species
   id: IPC
   name: species-name-ipc
-  roundStart: false
+  roundStart: true
   prototype: MobIPC
   sprites: MobIPCSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobIPCMarkingLimits
-  dollPrototype: MobIPCDummy
+  dollPrototype: AppearanceIPC
   skinColoration: Hues
   customName: true
   roundstartCyberwareCapacity: 6
@@ -22,7 +22,6 @@
     Snout: MobHumanoidAnyMarking
     Chest: MobIPCTorso
     HeadTop: MobHumanoidAnyMarking
-    HeadSide: MobHumanoidAnyMarking
     Eyes: MobIPCEyes
     LArm: MobIPCLArm
     RArm: MobIPCRArm
@@ -49,16 +48,17 @@
       points: 1
       required: false
       defaultMarkings: [ MarkingStandardHead ]
-    HeadSide:
+    Eyes:
       points: 1
       required: false
     Chest:
       points: 1
       required: false
-    Legs:
+      defaultMarkings: [ MarkingStandardChest ]
+    Legs: # Default arms continue to overlay. A fix would be easy if left and right legs were distinct marking categories, and if feet and legs were similarly so.
       points: 4
       required: false
-    Arms:
+    Arms: # Default arms continue to overlay. A fix would be easy if left and right arms were distinct marking categories, and if arms and hands were similarly so.
       points: 4
       required: false
 
@@ -96,20 +96,20 @@
 - type: humanoidBaseSprite
   id: MobIPCTorso
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: torso_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCTorsoMale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: torso_m
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCTorsoFemale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/IPC/parts.rsi
-    state: torso_f
+    sprite: _FarHorizons/Mobs/Species/IPC/blank.rsi
+    state: blank
 
 - type: humanoidBaseSprite
   id: MobIPCLLeg

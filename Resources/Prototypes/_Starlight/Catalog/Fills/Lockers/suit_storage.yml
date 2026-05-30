@@ -9,12 +9,13 @@
         children:
         - id: OxygenTankFilled
         - id: NitrogenTankFilled
+        - id: CoolingUnit
         - id: ClothingOuterHardsuitBlueshield
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagBSO
   - type: AccessReader
     access: [["BlueShield"]]
-  
+
 - type: entity
   id: SuitStorageBlueShieldBluespaced
   suffix: BlueShield, Bluespaced

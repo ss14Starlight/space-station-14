@@ -44,7 +44,7 @@
       components:
       - Shadekin
       - TheDarkImmune
-    maximumDuration: 2m 
+    maximumDuration: 2m
   - type: DrunkStatusEffect
   - type: DrowsinessStatusEffect
     sleepIncident: false

@@ -225,7 +225,7 @@ public sealed partial class GasTurbineWindow : FancyWindow
         {
             BladeEntityView.SetEntity(msg.Blade!.Value);
             BladeInfoName.Text = Identity.Name(_entityManager.GetEntity(msg.Blade!.Value), _entityManager);
-        }  
+        }
 
         BladeInfo.Visible = bladeExists;
         BladeInfoIntegrity.Text = Math.Round(msg.Health * 100 / msg.HealthMax).ToString() + "%";

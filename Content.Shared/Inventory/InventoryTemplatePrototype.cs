@@ -46,6 +46,13 @@ public sealed partial class SlotDefinition
     /// </summary>
     [DataField("stripHidden")] public bool StripHidden { get; private set; }
 
+    // Starlight start
+    /// <summary>
+    ///     Whether or not this slot is completely hidden from the strip menu for other players.
+    /// </summary>
+    [DataField("hideFromStrip")] public bool HideFromStrip { get; private set; }
+    // Starlight end
+
     /// <summary>
     ///     Offset for the clothing sprites.
     /// </summary>

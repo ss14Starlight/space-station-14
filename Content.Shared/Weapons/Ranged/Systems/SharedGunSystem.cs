@@ -484,7 +484,7 @@ public abstract partial class SharedGunSystem : EntitySystem
             _shake.Screenshake(user, null, gunShakeRotation);
         }
         //Starlight end
-        
+
         if (!userImpulse || !TryComp<PhysicsComponent>(user, out var userPhysics))
             return true;
 

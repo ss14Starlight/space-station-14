@@ -22,16 +22,16 @@
         - id: Pen
 
 - type: entity
-  parent: ClothingBackpackSyndicateBundle
-  id: ClothingBackpackSyndicateElegantRaidBundle
-  name: syndicate elegant raid suit bundle
-  description: "Contains the Syndicate's durable raid armor suit, now more elegant."
+  parent: ClothingBackpackBunnyGang
+  id: ClothingBackpackBunnyGangBundle
+  name: Bunny Gang Backpack
+  suffix: Filled
+  description: A sword that is actually a backpack. Its impressive how they managed to fit things in there, even so, inventory management will be a trial.
   components:
-    - type: EntityTableContainerFill
-      containers:
-        storagebase: !type:AllSelector
-          children:
-            - id: ClothingOuterMaidArmorRaid
-            - id: ClothingHeadHelmetRaid
-            - id: ClothingHandsGlovesCombat
-            - id: ClothingUnderSocksMurder
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingHeadHatBunnyGang
+        - id: ClothingNeckBunnyGang
+        - id: ClothingOuterBunnyGang

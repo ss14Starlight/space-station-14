@@ -39,9 +39,9 @@
       - material: Cable
         amount: 2
         doAfter: 5
-        
+
 # Starlight-start: Maintenance Panel for Lockers
-        
+
   - node: Cutted
     actions:
     - !type:SetWiresPanelSecurity
@@ -308,7 +308,7 @@
       steps:
       - tool: Welding
         doAfter: 15
-      
+
 # Starlight-end: Maintenance Panel for Lockers
 
 - type: constructionGraph

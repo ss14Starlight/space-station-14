@@ -87,7 +87,7 @@ public sealed partial class StationEventComponent : Component
     /// </summary>
     [DataField]
     public bool OccursDuringRoundEnd = true;
-    
+
     //Starlight begin
     /// <summary>
     /// The station being targeted by this event. Note: does not actually limit to that station unless you only use this when making your event.

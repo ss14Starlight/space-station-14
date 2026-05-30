@@ -39,7 +39,7 @@ public sealed partial class BatteryDrainerComponent : Component
     public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks");
 
     // Far Horizons
-    // Disable left click interactions 
+    // Disable left click interactions
     [DataField]
     public bool DisableHandInteraction = false;
 }

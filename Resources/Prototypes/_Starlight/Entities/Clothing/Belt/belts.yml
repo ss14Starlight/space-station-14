@@ -192,7 +192,7 @@
         - BallisticAmmoProvider
         - Ammo
 
-# USSP 
+# USSP
 
 - type: entity
   parent: [ClothingBeltStorageBase, BaseSovietContraband]
@@ -226,7 +226,7 @@
         - JawsOfLife
         - GPS
         - WeldingMask
-                
+
         #Starlight
         - ImprovisedCrowbar
         - ImprovisedScrewdriver
@@ -274,7 +274,7 @@
         whitelist:
           tags:
           - Wirecutter
-          
+
           #Starlight
           - ImprovisedWirecutter
       crowbar:
@@ -303,7 +303,7 @@
         whitelist:
           tags:
           - Wrench
-          
+
           #Starlight
           - ImprovisedWrench
       multitool:
@@ -358,7 +358,7 @@
     sprite: _Starlight/Clothing/Belt/tsf_webbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.1
-    
+
 - type: entity
   parent: [ BaseSalvageContraband, ClothingBeltStorageBase ]
   id: ClothingBeltSalvageMercWebbing

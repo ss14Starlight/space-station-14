@@ -46,12 +46,13 @@
     NTRepBriefcaseSecureStealObjective: 0.75 # Same as most NT Rep stuff.
     BSOHardsuitStealObjective: 0.75 # Same as the above...
     BSOMagbootsStealObjective: 0.75 # Easier to hide, at least.
-    BSOWeaponStealObjective: 0.75 # Blue Shield weapons. Includes the X-01 and SP8T.
+    BSOWeaponStealObjective: 0.75 # Blue Shield weapons. Includes the X-01 and Blueguard Service Pistol.
     CorporateSecretsStealObjective: 0.75 #Starlight Unique Target
     CriminalReportsStealObjective: 0.75 #Starlight Unique Target
     SecureKnowledgeStealObjective:  0.75 #Starlight Unique Target
+    CaptainTabletStealObjective: 0.75 # #Starlight Unique Target
     # Starlight end
-    
+
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -172,17 +173,5 @@
     RenaultStealObjective: 1
     ShivaStealObjective: 1
     TropicoStealObjective: 1
-
-# Starlight start
-- type: weightedRandom # Starlight
-  id: ThiefObjectiveGroupEscape # Starlight
-  weights: # Starlight
-    ThiefObjectiveGroupEscapeForced: 1 # Starlight, have to do it this way because it's hardcoded to pick a group from a group
-
-- type: weightedRandom
-  id: ThiefObjectiveGroupEscapeForced # Starlight
-  weights:
-#    EscapeThiefShuttleObjective: # Starlight forced already anyways
-    EscapeMasterThiefObjective: 1 # Starlight
 
 #Crew, wizard, when you code it...

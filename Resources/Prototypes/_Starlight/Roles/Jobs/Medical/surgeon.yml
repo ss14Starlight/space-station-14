@@ -11,10 +11,11 @@
   icon: "JobIconSurgeon"
   supervisors: job-supervisors-cmo
   canBeAntag: true
+  displayWeight: 5
   access:
   - Medical
   - Maintenance
-  - Surgery 
+  - Surgery
   extendedAccess:
   - Paramedic
   - Surgery

@@ -1,4 +1,5 @@
-﻿using Content.Shared.Body.Part;
+﻿using Content.Shared._Starlight.Medical.Body.Part;
+using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Chemistry.Reagent;
@@ -118,7 +119,7 @@ public abstract partial class SharedSurgerySystem
 
             SoundSpecifier? endSound = null;
             foreach(var usedTool in specificToolComp)
-            {  
+            {
                 var requestedTool = stepComp.Tools?.FirstOrDefault().Key;
                 if(requestedTool != null)
                     if(usedTool.ToolType.Contains(requestedTool))

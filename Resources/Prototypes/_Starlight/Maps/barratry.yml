@@ -38,7 +38,7 @@
             MedicalDoctor: [ 4, 4 ]
             MedicalIntern: [ 3, 3 ]
             Paramedic: [ 1, 1 ]
-            Surgeon: [ 2, 2 ]  
+            Surgeon: [ 2, 2 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
@@ -54,11 +54,11 @@
             Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
             CargoTechnician: [ 4, 4 ]
             MailTech: [ 1, 2 ]
-            MiningSpecialist: [ 3, 3 ]
-            SalvageLead: [ 1, 1 ]
             #civilian
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]

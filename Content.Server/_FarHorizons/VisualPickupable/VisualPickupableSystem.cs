@@ -25,7 +25,7 @@ public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
         var clone = SpawnAttachedTo(_cloneEnt, Transform(args.User).Coordinates);
         _transform.SetParent(clone, args.User);
         ent.Comp.ClonedVisuals = clone;
-        
+
         var cloneComp = EnsureComp<PickupableVisualsComponent>(clone);
         cloneComp.Source = ent;
         Dirty<PickupableVisualsComponent>((clone, cloneComp));
@@ -35,7 +35,7 @@ public sealed class VisualPickupableSystem : SharedVisualPickupableSystem
     {
         if (args.Handled ||
             ent.Comp.ClonedVisuals == null) return;
-        
+
         Del(ent.Comp.ClonedVisuals);
         ent.Comp.ClonedVisuals = null;
     }

@@ -1,5 +1,4 @@
 # Conditions
-
 - type: entity
   id: CrewCondition
   categories: [ HideSpawnMenu ]
@@ -12,10 +11,11 @@
       - Abductor
       - Skeleton
       - Terminator
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
-      
+
 # Example(Smokeable) Prototype
 
 - type: entity
@@ -31,7 +31,7 @@
     image: /Textures/_Starlight/Railroading/criminal.png
     description: rr-criminal-desc
   - type: RailroadFaxOnChosen
-    addresses: 
+    addresses:
     - Captain's Office
     - Captain
     - Security
@@ -46,12 +46,13 @@
     letters:
     - name: rr-criminal-letter-name
       content: rr-criminal-1-letter-content
+      paperPrototype: PaperNTCC
       stampState: paper_stamp-centcom
       stampedBy:
         - stampedColor: "#006666"
           stampedName: rr-nt-isd
   - type: RailroadFaxOnFailed
-    addresses: 
+    addresses:
     - Captain's Office
     - Captain
     - Security
@@ -66,6 +67,7 @@
     letters:
     - name: rr-criminal-failed-name
       content: rr-criminal-failed-content
+      paperPrototype: PaperNTCC
       stampState: paper_stamp-centcom
       stampedBy:
         - stampedColor: "#006620"

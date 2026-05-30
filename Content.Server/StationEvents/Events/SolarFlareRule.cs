@@ -75,7 +75,7 @@ public sealed class SolarFlareRule : StationEventSystem<SolarFlareRuleComponent>
                 args.Cancelled = true;
         }
     }
-    
+
     //Starlight begin
     private void OnCustomRadioReceiveAttempt(ref CustomRadioReceiveAttemptEvent args)
     {

@@ -35,7 +35,7 @@ public sealed partial class GasTurbineBladeComponent : GasTurbinePartComponent
 {
     [GuidebookData]
     public float GuidebookIntegrity => Math.Max(1, 5 * Properties.Hardness);
-    
+
     [GuidebookData]
     public float GuidebookInertia => Math.Max(200, 200 * Properties.Density);
 }

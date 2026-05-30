@@ -3,7 +3,6 @@ using Content.Client.Administration.Managers;
 using Content.Shared.Starlight.MHelp;
 using Content.Shared.Starlight.CCVar;
 using Content.Shared.Administration;
-using Content.Shared.Input;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
 using Robust.Client.Graphics;
@@ -16,8 +15,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared._NullLink;
-using Content.Client.Stylesheets;
-
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
@@ -93,9 +90,7 @@ public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSys
     }
 
     private void OnTypingUpdated(MHelpTypingUpdated args, EntitySessionEventArgs session)
-    {
-        UIHelper?.PeopleTypingUpdated(args);
-    }
+        => UIHelper?.PeopleTypingUpdated(args);
 
     public void EnsureUIHelper()
     {

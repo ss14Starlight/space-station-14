@@ -90,11 +90,11 @@
 
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsLawyer
-  suffix: Lawyer, Locked
+  id: DoorElectronicsInternalAffairs # Starlight
+  suffix: Internal Affairs, Locked # Starlight
   components:
   - type: AccessReader
-    access: [["Lawyer"]]
+    access: [["IAA"]] # Starlight: Lawyer -> IAA.
 
 - type: entity
   parent: DoorElectronics
@@ -230,11 +230,11 @@
 
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsSecurityLawyer
-  suffix: Security/Lawyer, Locked
+  id: DoorElectronicsSecurityInternalAffairs
+  suffix: Security/Internal Affairs, Locked # Starlight
   components:
   - type: AccessReader
-    access: [["Security"], ["Lawyer"]]
+    access: [["Security"], ["IAA"]] # Starlight: Lawyer -> IAA.
 
 - type: entity
   parent: DoorElectronics

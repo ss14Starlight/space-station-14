@@ -111,7 +111,7 @@ public abstract class SharedSpaceNinjaSystem : EntitySystem
         if (HasComp<GrapplingGunComponent>(args.Used))
             return;
         // Moffstation - End
-        
+
         Popup.PopupClient(Loc.GetString("gun-disabled"), ent, ent);
         args.Cancel();
     }

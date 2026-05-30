@@ -497,7 +497,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -526,7 +525,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -606,7 +604,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -632,7 +629,6 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
-    - IPC
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1104,7 +1100,7 @@
     - type: OrganBrain
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: brain-slime
+    state: brain
 
 - type: entity
   parent: SurgeryBase
@@ -1134,7 +1130,7 @@
     - type: OrganBrain
   - type: Sprite
     sprite: Mobs/Species/Slime/organs.rsi
-    state: brain-slime
+    state: brain
 #
 - type: entity
   parent: SurgeryBase

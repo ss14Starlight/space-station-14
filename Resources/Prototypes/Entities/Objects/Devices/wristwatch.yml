@@ -42,7 +42,7 @@
     materialComposition:
       Steel: 300
   - type: Engraveable # Starlight edit
-    engraveVerb: "engraving-verb-engrave" 
+    engraveVerb: "engraving-verb-engrave"
 
 - type: entity
   id: WristwatchGold

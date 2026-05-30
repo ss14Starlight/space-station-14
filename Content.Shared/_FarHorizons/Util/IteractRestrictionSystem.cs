@@ -29,11 +29,11 @@ public sealed class InteractRestrictionSystem : EntitySystem
             if (targetRestrict.Blacklist != null &&
                 _tagSystem.HasAnyTag(target.Value, targetRestrict.Blacklist))
                     ev.Cancel();
-            
+
             if (targetRestrict.Whitelist != null &&
                 !_tagSystem.HasAnyTag(target.Value, targetRestrict.Whitelist))
                     ev.Cancel();
-            
+
             if (ev.Cancelled)
                 _popupSystem.PopupClient(Loc.GetString("interact-restriction-restricted-target", ("item", Identity.Entity(ent, EntityManager)), ("target", Identity.Entity(target.Value, EntityManager))), user);
         }
@@ -42,11 +42,11 @@ public sealed class InteractRestrictionSystem : EntitySystem
             if (sourceRestrict.Blacklist != null &&
                 _tagSystem.HasAnyTag(user, sourceRestrict.Blacklist))
                     ev.Cancel();
-            
+
             if (sourceRestrict.Whitelist != null &&
                 !_tagSystem.HasAnyTag(user, sourceRestrict.Whitelist))
                     ev.Cancel();
-            
+
             if (ev.Cancelled)
                 _popupSystem.PopupClient(Loc.GetString("interact-restriction-restricted-source", ("item", Identity.Entity(ent, EntityManager))), user);
         }

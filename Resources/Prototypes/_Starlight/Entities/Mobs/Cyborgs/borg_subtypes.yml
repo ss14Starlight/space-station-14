@@ -65,6 +65,18 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
+- type: entity
+  parent: BorgEngineerSubtypeBase
+  id: BorgEngineerSubtypeTallborgMMeka
+  name: MMeka Engineering
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-engi/mmeka_engi.rsi
+      spriteBodyState: borg-alt
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 # region Generic
 
 - type: entity
@@ -173,6 +185,18 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
+- type: entity
+  parent: BorgJanitorSubtypeBase
+  id: BorgJanitorSubtypeTallborgMMeka
+  name: MMeka Janitor
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-jani/mmeka_jani.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 # region Medical
 
 - type: entity
@@ -253,6 +277,18 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
+- type: entity
+  parent: BorgMedicalSubtypeBase
+  id: BorgMedicalSubtypeTallborgMMeka
+  name: MMeka Medical
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-med/mmeka_med.rsi
+      spriteBodyState: borg-alt
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 # region Mining(Salvage)
 
 - type: entity
@@ -333,6 +369,18 @@
       spriteToggleLightState: beetle_l
       inventoryTemplateId: borg
 
+- type: entity
+  parent: BorgMiningSubtypeBase
+  id: BorgMiningSubtypeTallborgMMeka
+  name: MMeka Salvage
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-salv/mmeka_salv.rsi
+      spriteBodyState: borg-alt
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 # region Service
 
 - type: entity
@@ -419,6 +467,18 @@
       spriteToggleLightState: cricket_l
       inventoryTemplateId: borgDutch
 
+- type: entity
+  parent: BorgServiceSubtypeBase
+  id: BorgServiceSubtypeTallborgMMeka
+  name: Meka Service
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-service/meka_alt_service.rsi
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 # region Security
 
 - type: entity
@@ -552,6 +612,31 @@
       spriteToggleLightState: real_tech_l
       inventoryTemplateId: borgTall
 
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgCargoSubtypeTallborgMeka
+  name: Meka Cargo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/meka_cargo.rsi
+      spriteBodyState: borg-alt
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
+
+- type: entity
+  parent: BorgCargoSubtypeBase
+  id: BorgCargoSubtypeTallborgMMeka
+  name: MMeka Cargo
+  components:
+    - type: BorgSubtypeDefinition
+      spritePath: _Starlight/Mobs/Silicon/Chassis/tallborgs/tallborgs-cargo/mmeka_cargo.rsi
+      spriteBodyState: borg-alt
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
+      inventoryTemplateId: Tallborg
 # region Purrfus
 
 - type: entity

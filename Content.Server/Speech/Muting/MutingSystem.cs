@@ -22,7 +22,7 @@ namespace Content.Server.Speech.Muting
             SubscribeLocalEvent<MutedComponent, SpeakAttemptEvent>(OnSpeakAttempt);
             SubscribeLocalEvent<MutedComponent, EmoteEvent>(OnEmote, before: new[] { typeof(VocalSystem), typeof(MumbleAccentSystem) });
             SubscribeLocalEvent<MutedComponent, ScreamActionEvent>(OnScreamAction, before: new[] { typeof(VocalSystem) });
-            
+
             // Starlight START
             // Remove when WizDen finally migrates mute status effect to StatusEffectNew
             SubscribeLocalEvent<MutedComponent, StatusEffectAppliedEvent>((_, _, ref args) => EnsureComp<MutedComponent>(args.Target));
@@ -60,7 +60,7 @@ namespace Content.Server.Speech.Muting
 
             // Starlight-start: Cannot mute if there's no speech involved
             var language = _languages.GetLanguage(uid);
-            if (!language.SpeechOverride.RequireSpeech)
+            if (!language.Speech.RequireSpeech)
                 return;
             // Starlight-end
 

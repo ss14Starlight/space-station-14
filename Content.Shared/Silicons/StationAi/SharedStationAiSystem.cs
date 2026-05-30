@@ -352,7 +352,7 @@ public abstract partial class SharedStationAiSystem : EntitySystem
         var isBorg = HasComp<BorgBrainComponent>(args.Target.Value);
         var isShunted = TryComp<StationAIShuntComponent>(args.Target.Value, out var shunt) && shunt.Return != null;
         var borgHaveMind = TryComp<MindContainerComponent>(args.Target.Value, out var mindContainer) && mindContainer.HasMind;
-        
+
         // Starlight-end
 
         if (cardHasAi && (coreHasAi || borgHaveMind)) // Starlight-edit

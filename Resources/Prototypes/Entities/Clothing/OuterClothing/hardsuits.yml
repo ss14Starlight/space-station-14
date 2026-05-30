@@ -82,7 +82,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #Spationaut Hardsuit
 - type: entity
@@ -120,7 +119,6 @@
     - WhitelistChameleon
     - HardsuitSpatio
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #Salvage Hardsuit
 - type: entity
@@ -144,8 +142,8 @@
     modifiers:
       coefficients:
       # region starlight: lowered values
-        Blunt: 0.7 
-        Slash: 0.7 
+        Blunt: 0.7
+        Slash: 0.7
         Piercing: 0.8
         # end region starlight
         Heat: 0.7
@@ -162,7 +160,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #Goliath Hardsuit
 - type: entity
@@ -200,10 +197,9 @@
     node: hardsuitGoliath
   - type: Tag
     tags:
-    - CorgiWearable
+    - CorgiWearable #Starlight
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 # Hardsuit
 - type: entity
@@ -225,17 +221,17 @@
     modifiers:
       coefficients:
       # region starlight: maxim lowered values
-        Blunt: 0.65 
-        Slash: 0.65 
-        Piercing: 0.65 
-        Heat: 0.6 
-        Radiation: 0.3 
-        Caustic: 0.8 
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.65
+        Heat: 0.6
+        Radiation: 0.3
+        Caustic: 0.8
   - type: ClothingSpeedModifier
     walkModifier: 0.85
-    sprintModifier: 0.85 
+    sprintModifier: 0.85
   - type: ExplosionResistance
-    damageCoefficient: 0.4 
+    damageCoefficient: 0.4
     # end region starlight
   - type: HeldSpeedModifier #Starlight addition
   - type: TemperatureProtection
@@ -310,7 +306,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #Brigmedic Hardsuit
 - type: entity
@@ -355,7 +350,6 @@
     - Hardsuit
     - CorgiWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 #Starlight end
 
 #Warden's Hardsuit
@@ -393,6 +387,11 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
   - type: StealTarget # Starlight
     stealGroup: WardenHardsuit # Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable #Starlight
+    - WhitelistChameleon
 
 #Captain's Hardsuit
 - type: entity
@@ -433,7 +432,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: StealTarget # Starlight
     stealGroup: CaptainHardsuit # Starlight
 
@@ -477,7 +475,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: StealTarget # Starlight
     stealGroup: CEHardsuit # Starlight
 
@@ -514,7 +511,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: StealTarget # Starlight
     stealGroup: CMOHardsuit # Starlight
 
@@ -559,7 +555,6 @@
     - HighRiskItem
     - CorgiWearable
     - Hardsuit
-    - IPCExternalCooling # Far Horizons
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
@@ -628,6 +623,12 @@
     delay: 10.0
   - type: StealTarget # Starlight
     stealGroup: HOSHardsuit # Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - CorgiWearable
+    - Hardsuit
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -669,7 +670,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #ANTAG HARDSUITS
 #Blood-red Hardsuit
@@ -719,7 +719,6 @@
     - WhitelistChameleon
     - CorgiWearable
     - ScurretWearable
-    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 5000
 
@@ -743,7 +742,6 @@
     - Hardsuit
     - CorgiWearable # Starlight
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -795,7 +793,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -840,7 +837,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 
 #Cybersun Juggernaut Hardsuit
@@ -898,7 +894,6 @@
     - Hardsuit
     - WhitelistChameleon
     - RequiredForLmgTag #Starlight
-    - IPCExternalCooling # Far Horizons
 
 #Wizard Hardsuit
 - type: entity
@@ -938,7 +933,6 @@
     - CorgiWearable
     - Hardsuit
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: TheDarkImmune # SL
 
 #Ling Space Suit
@@ -1082,7 +1076,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -1103,7 +1096,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -1126,7 +1118,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #ERT Medic Hardsuit
 - type: entity
@@ -1147,7 +1138,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #ERT Security Hardsuit
 - type: entity
@@ -1165,7 +1155,7 @@
     lowPressureMultiplier: 1000
   - type: ExplosionResistance
     damageCoefficient: 0.5 #Starlight edit
-  - type: StaminaResistance 
+  - type: StaminaResistance
     damageCoefficient: 0.75
   - type: Armor #Starlight edit - all resists are new, ert sec was formerly a copy of elite suit, it should not be.
     modifiers:
@@ -1184,7 +1174,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -1205,7 +1194,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #Deathsquad
 - type: entity
@@ -1256,7 +1244,6 @@
     - Hardsuit
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #CBURN Hardsuit
 - type: entity
@@ -1411,12 +1398,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 1
+        Blunt: 0.75 # Starlight start
+        Slash: 0.75
+        Piercing: 0.85 # Starlight end
         Heat: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.95 # Starlight, giving it something over the armor
+    sprintModifier: 0.95 # Starlight
   - type: HeldSpeedModifier
   - type: Unremoveable

@@ -33,6 +33,18 @@
       },
       {
           "name": "kudzu_11"
+      },
+	  {
+          "name": "kudzu_east"
+      },
+      {
+          "name": "kudzu_north"
+      },
+      {
+          "name": "kudzu_south"
+      },
+      {
+          "name": "kudzu_west"
       }
   ]
 }

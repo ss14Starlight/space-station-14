@@ -1,7 +1,7 @@
 - type: entity
   name: cluwnebeast
   id: MobCluwneBeast
-  parent: SimpleMobBase
+  parent: SimpleMobBase #starlight Nubody will not pass.
   description: A cluwne beast, nightmare fuel, time to run!
   categories: [ Spawner ]
   components:
@@ -96,9 +96,11 @@
       Female: CluwneBeast
       Unsexed: CluwneBeast
   - type: StutteringAccent
+  # Starlight - start
   - type: Body
     prototype: Human
     requiredLegs: 2
+  # Starlight - end
   - type: Cluwne
     unremovable: true #Starlight
     isCluwne: false

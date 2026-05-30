@@ -79,7 +79,7 @@
       types:
         Blunt: 1
   - type: HitscanStaminaDamage
-    staminaDamage: 12   
+    staminaDamage: 12
   - type: HitscanBasicVisuals
     muzzleFlash:
       sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
@@ -173,7 +173,7 @@
       types:
         Piercing: 45 # +30%
   - type: HitscanStaminaDamage
-    staminaDamage: 10    
+    staminaDamage: 10
   - type: HitscanPierce
     chance: 0.03
     deviation: 0.05
@@ -507,7 +507,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: ap
-      
+
 - type: entity
   id: BulletPistolTrace40SP
   parent: BulletTrace
@@ -530,7 +530,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: sp
-  
+
 - type: entity
   id: BulletPistolTrace40HP
   parent: BulletTrace
@@ -553,7 +553,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: bullet
-  
+
 - type: entity
   id: BulletPistolTrace40FMJ
   parent: BulletTrace
@@ -577,7 +577,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: fmj
-  
+
 - type: entity
   id: BulletPistolTrace40AP
   parent: BulletTrace
@@ -998,7 +998,7 @@
   - type: HitscanStaminaDamage
     staminaDamage: 40
   - type: HitscanPierce
-    chance: 0   
+    chance: 0
   - type: HitscanBasicVisuals
     bullet:
       sprite:
@@ -1067,7 +1067,7 @@
     proto: PelletShotgunTrace
     count: 12
     spread: 15
-    
+
 - type: entity
   id: PelletShotgunBirdshotTrace
   parent: BulletTrace
@@ -1312,7 +1312,7 @@
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_blue
 
-- type: entity 
+- type: entity
   id: DeleteBeam
   name: erasing beam
   parent: BasicHitscanNoBeam
@@ -1333,7 +1333,7 @@
     impactFlash:
       sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
       state: impact_blue
-      
+
 - type: entity
   id: DisablerBoltPractice
   name: disabler bolt practice
@@ -1371,7 +1371,7 @@
     staminaDamage: 15
   - type: HitscanCyberneticDisruption
     disableChance: 0.1
-      
+
 - type: entity
   id: TaserBolt
   name: taser bolt
@@ -1394,7 +1394,7 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: spark
       color: "#ffff33"
-      
+
 - type: entity
   id: TaserBoltExtreme
   name: taser bolt
@@ -1415,7 +1415,7 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: spark
       color: "#ffff33"
-      
+
 - type: entity
   id: AdvancedTaserBolt
   name: taser bolt
@@ -1438,7 +1438,7 @@
         sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
         state: spark
       color: "#ffff33"
-      
+
 - type: entity
   id: EmpPulse
   name: EMP impulse
@@ -1471,7 +1471,7 @@
       sprite:
         sprite: _Starlight/Objects/Weapons/Guns/Projectiles/projectiles.rsi
         state: declone
-      
+
 - type: entity
   id: SniperBolt
   name: sniper bolt
@@ -1640,7 +1640,7 @@
       sprite:
         sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
         state: heavylaser
-  
+
 - type: entity
   parent: BasicHitscanNoBeam
   id: FreezeRay

@@ -45,6 +45,7 @@
         - id: MechGygaxSyndieFilled
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
         - id: ToolboxSyndicateFilled
         - id: PlushieNuke
 
@@ -62,5 +63,6 @@
         - id: MechMaulerSyndieFilled
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
         - id: ToolboxSyndicateFilled
         - id: PlushieNuke

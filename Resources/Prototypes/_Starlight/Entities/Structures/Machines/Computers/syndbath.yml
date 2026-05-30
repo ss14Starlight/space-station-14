@@ -67,7 +67,7 @@
   - type: ChildEntities
     childPrototypes:
       - prototype: SyndBathOverlay
-        
+
 - type: entity
   id: SyndBathOverlay
   name: netrunner bathroom
@@ -104,6 +104,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy

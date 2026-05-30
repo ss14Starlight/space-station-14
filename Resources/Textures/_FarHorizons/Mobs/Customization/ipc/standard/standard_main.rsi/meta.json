@@ -1,7 +1,7 @@
 {
   "version": 2,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Original drawn by @robustyanka on Discord, modified by @pspritechologist",
+  "copyright": "Original drawn by @robustyanka on Discord, modified by @pspritechologist.",
   "size": {
     "x": 32,
     "y": 32
@@ -9,6 +9,10 @@
   "states": [
     {
       "name": "head_m",
+      "directions": 4
+    },
+    {
+      "name": "torso_m",
       "directions": 4
     }
   ]

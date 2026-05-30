@@ -2,16 +2,16 @@
   id: Abyss
   desc: salvage-biome-mod-abyss
   biome: Abyss
-  difficulties: 
+  difficulties:
     - Moderate
-    - Challenging   
+    - Challenging
  #   - Difficult
 
 - type: salvageBiomeMod
   id: TrueAbyss
   desc: salvage-biome-mod-true-abyss
   biome: TrueAbyss
-  difficulties: 
+  difficulties:
     - Impossible
 
 #- type: salvageDungeonMod
@@ -23,16 +23,16 @@
 #    - Grasslands
 #    - Caves
 #    - Snow
-#  difficulties: 
+#  difficulties:
 #    - Impossible
-  
+
 - type: salvageDungeonMod
   id: ShipWreck
   desc: salvage-dungeon-mod-soviet-stronghold
   proto: ShipWreckDungeon
   biomes:
     - Grasslands
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -47,7 +47,7 @@
     - Grasslands
     - Caves
     - Snow
-  difficulties: 
+  difficulties:
     - Difficult
 
 - type: salvageDungeonMod
@@ -56,7 +56,7 @@
   proto: SovietStrategicResourcesWarehouseDungeon
   biomes:
     - TrueAbyss
-  difficulties: 
+  difficulties:
     - Impossible
 
 #- type: salvageDungeonMod
@@ -65,7 +65,7 @@
 #  proto: ElderArenaDungeon
 #  biomes:
 #    - Abyss
-#  difficulties: 
+#  difficulties:
 #    - Difficult
 
 - type: salvageDungeonMod
@@ -76,7 +76,7 @@
     #- LowDesert
     - Abyss
     - Grasslands
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -87,7 +87,7 @@
   proto: LavaBrig
   biomes:
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -98,7 +98,7 @@
   proto: Mineshaft
   biomes:
     - Caves
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -109,7 +109,7 @@
   proto: SnowyLabs
   biomes:
     - Snow
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -120,7 +120,7 @@
   proto: Haunted
   biomes:
     - Caves
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -143,7 +143,7 @@
     #- LowDesert
     - Grasslands
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -157,10 +157,10 @@
     - Caves
     #- LowDesert
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
-    
+
 - type: salvageTemperatureMod
   id: Melting
   desc: salvage-temperature-mod-extreme-heat
@@ -168,9 +168,9 @@
   temperature: 1273.15 # 1000C hot hot hot
   biomes:
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
-  
+
 - type: salvageTemperatureMod
   id: Cold
   desc: salvage-temperature-mod-cold
@@ -181,7 +181,7 @@
     #- LowDesert
     - Grasslands
     - Snow
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -194,7 +194,7 @@
   biomes:
     - Caves
     - Snow
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
 
@@ -205,7 +205,7 @@
   temperature: 123.15 # -150C
   biomes:
     - Snow
-  difficulties: 
+  difficulties:
     - Challenging
 
 # Air mixtures
@@ -217,7 +217,7 @@
   biomes:
     - Caves
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
     - Easy
@@ -249,10 +249,10 @@
     - Snow
     - Grasslands
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
- 
+
 - type: salvageAirMod
   id: Poisoned
   cost: 2
@@ -267,10 +267,10 @@
     - Snow
     - Grasslands
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
- 
+
 - type: salvageAirMod
   id: Poison
   cost: 3
@@ -283,10 +283,10 @@
     - Caves
     - Snow
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
     - Moderate
- 
+
 - type: salvageAirMod
   id: Plasma
   cost: 4
@@ -299,9 +299,9 @@
   biomes:
     - Caves
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
- 
+
 - type: salvageAirMod
   id: Burnable
   cost: 5
@@ -314,6 +314,5 @@
   biomes:
     - Caves
     - Lava
-  difficulties: 
+  difficulties:
     - Challenging
- 

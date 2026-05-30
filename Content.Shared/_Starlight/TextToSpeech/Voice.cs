@@ -29,6 +29,6 @@ public sealed partial class VoicePrototype : IPrototype
     [DataField]
     public string? Copyright { get; private set; }
 
-    [DataField]  
+    [DataField]
     public string? License { get; private set; }
 }

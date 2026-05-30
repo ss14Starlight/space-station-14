@@ -23,7 +23,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
         _playerResourcesManager.TrySetResources(playerData.Session, playerData.Resources);
         return ValueTask.CompletedTask;
     }
-    
+
     public ValueTask UpdateResource(ResourceChangedEvent ev)
     {
         if (!_resourcesEnabled

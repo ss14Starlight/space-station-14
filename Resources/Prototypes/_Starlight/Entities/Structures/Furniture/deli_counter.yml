@@ -8,7 +8,7 @@
   - type: InteractionOutline
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/deli_stand.rsi
-    layers: 
+    layers:
       - state: deli_stand
       - map: ["enum.StorageFillLayers.Fill"]
         visible: false

@@ -7,6 +7,66 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/angel.rsi
       state: angel
     color: "#ffffff"
+  trail:
+    color: "#FFFFFF"
+    maxPoints: 40
+    lineWidth: 2.6
+    minDistance: 0.10
+    decayDelay: 2.6
+    decayInterval: 0.15
+    shader: HolyStarsTrail
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: PatronReq
+
+- type: ghostTheme
+  id: ClownTheme
+  name: Clown
+  description: Honk from beyond the veil.
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/clown.rsi
+      state: clown
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: PatronReq
+
+- type: ghostTheme
+  id: FaithlessTheme
+  name: Faithless
+  description: A wandering faithless spirit.
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/faithless.rsi
+      state: faithless
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: PatronReq
+
+- type: ghostTheme
+  id: MushroomTheme
+  name: Mushroom
+  description: Soft spores, gentle haunting.
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/mushroom.rsi
+      state: mushroom
+    color: "#ffffff"
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: PatronReq
+
+- type: ghostTheme
+  id: WalkerTheme
+  name: Walker
+  description: Still shambling after death.
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/walker.rsi
+      state: walker
+    color: "#ffffff"
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq
@@ -20,6 +80,12 @@
       sprite: _Starlight/Mobs/Customization/GhostThemes/shadow_demon.rsi
       state: shadow_demon
     color: "#ffffff"
+  trail:
+    color: "#FFFFFF"
+    maxPoints: 64
+    lineWidth: 0.65
+    minDistance: 0.10
+    shader: NightSkyTrail
   requirements:
   - !type:DiscordRolesRequirement
     requirement: PatronReq

@@ -4,7 +4,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorDarkBlue
     head: ClothingHeadHatWizard
-    back: ClothingBackpack # Wizard backpack?
+    back: ClothingBackpackWizard # Starlight, Wizard backpack!
     outerClothing: ClothingOuterWizard
     shoes: ClothingShoesWizard
     id: WizardPDA
@@ -22,12 +22,12 @@
     outerClothing: ClothingOuterWizardRed
 
 - type: startingGear
-  id: WizardVioletGear
+  id: WizardPurpleGear # Starlight, violet -> Purple
   parent: WizardBlueGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorPurple
-    head: ClothingHeadHatVioletwizard
-    outerClothing: ClothingOuterWizardViolet
+    head: ClothingHeadHatPurplewizard # Starlight, violet -> Purple
+    outerClothing: ClothingOuterWizardPurple # Starlight, violet -> Purple
 
 - type: chameleonOutfit
   id: WizardChameleonOutfit

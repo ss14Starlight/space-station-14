@@ -75,7 +75,7 @@
   - type: ActivatableUI
     key: enum.DigitalLockUiKey.Key
   - type: GenericVisualizer
-    visuals: 
+    visuals:
       enum.DigitalLockVisuals.Spark:
         spark:
           False: { visible: false }
@@ -83,7 +83,7 @@
   - type: AmbientSound
     enabled: false
     range: 20
-    sound: 
+    sound:
       collection: "sparks"
   - type: LockVisuals
     stateLocked: closed
@@ -95,7 +95,7 @@
   - type: LockedStorage
   - type: GuideHelp
     guides:
-    - CombinationLocks  
+    - CombinationLocks
 
 - type: entity
   parent: BaseWallSafe

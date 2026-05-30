@@ -15,7 +15,7 @@
     icon: Interface/Actions/defile.png
   - type: InstantAction
     event: !type:RevenantDefileActionEvent
-  - type: EorgAction # Starlight
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -28,7 +28,7 @@
     useDelay: 20
   - type: InstantAction
     event: !type:RevenantOverloadLightsActionEvent
-  - type: EorgAction # Starlight
+  - type: EorgPreventAction # Starlight
 
 #- type: entity
 #  parent: BaseAction
@@ -41,7 +41,7 @@
 #    useDelay: 20
 #  - type: InstantAction
 #    event: !type:RevenantBlightActionEvent
-#  - type: EorgAction # Starlight
+#  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -54,4 +54,4 @@
     useDelay: 20
   - type: InstantAction
     event: !type:RevenantMalfunctionActionEvent
-  - type: EorgAction # Starlight
+  - type: EorgPreventAction # Starlight

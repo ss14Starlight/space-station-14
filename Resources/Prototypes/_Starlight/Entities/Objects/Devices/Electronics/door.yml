@@ -75,7 +75,7 @@
       tags:
         - DoorElectronics
     - type: DoorElectronics
-      accessGroups: 
+      accessGroups:
       - Xenoborg
     - type: StaticPrice
       price: 55

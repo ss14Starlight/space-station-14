@@ -30,6 +30,7 @@
     <ProjectReference Include="..\Content.Starlight.Codegen\Content.Starlight.Codegen.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DeltaV\Storage\EntitySystems\" />
     <Folder Include="Objectives\Interfaces\" />
     <Folder Include="_Starlight\Achievement\" />
   </ItemGroup>

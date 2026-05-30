@@ -15,10 +15,10 @@
     state: oilpack
   - type: Healing
     damageContainers:
-      - Biological
+      - IPC
     damage:
       types:
-        Bloodloss: -0.5 #lowers bloodloss damage
+        Bloodloss: -3 #lowers bloodloss damage
     delay: 1.6
     modifyBloodLevel: 15 #restores about 5% blood per use on standard humanoids.
     healingBeginSound:
@@ -31,10 +31,6 @@
       params:
         volume: 1.0
         variation: 0.125
-  - type: InteractRestriction 
-    restrictInteractionTarget:
-       whitelist:
-        - IPC
   - type: Stack
     stackType: OilPack
     count: 10

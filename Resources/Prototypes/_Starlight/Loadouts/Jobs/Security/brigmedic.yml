@@ -176,7 +176,7 @@
   storage:
     back:
     - DarkBeaker
-    
+
 - type: loadout
   id: SilverBeakerBrigmedic
   effects:

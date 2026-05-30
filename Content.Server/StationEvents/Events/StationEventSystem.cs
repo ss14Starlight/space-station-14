@@ -50,9 +50,9 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         //Starlight end stationEvent.TargetStation = station;
 
         Announce(stationEvent, stationEvent.StartAnnouncement, false, stationEvent.StartAnnouncementColor, stationEvent.StartAudio);
-        
+
         // we don't want to send to players who aren't in game (i.e. in the lobby)
-        
+
         //Starlight end
     }
 
@@ -126,7 +126,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             }
         }
     }
-    
+
     //Starlight begin
     public void Announce(StationEventComponent stationEvent, LocId? announcementLocId, bool dispatchSound, Color? colorOverride = null, SoundSpecifier? soundOverride = null)
     {
@@ -138,7 +138,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
             ChatSystem.DispatchFilteredAnnouncement(allPlayersInGame,
                 Loc.GetString(announcementLocId), playSound: dispatchSound,
                 colorOverride: colorOverride);
-                
+
             if(soundOverride is not null) Audio.PlayGlobal(soundOverride, allPlayersInGame, true);
         }
         else

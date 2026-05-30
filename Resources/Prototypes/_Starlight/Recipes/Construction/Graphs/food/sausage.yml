@@ -2,7 +2,7 @@
   id: MeatSausage
   start: start
   graph:
-  
+
   - node: start
     edges:
     - to: sausage
@@ -11,6 +11,6 @@
         sound: /Audio/Effects/sizzle.ogg
       steps:
       - minTemperature: 335
-      
+
   - node: sausage
     entity: FoodSausageCooked

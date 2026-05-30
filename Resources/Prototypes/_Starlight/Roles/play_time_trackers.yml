@@ -30,7 +30,7 @@
 
 - type: playTimeTracker
   id: JobSurgeon
-  
+
 - type: playTimeTracker
   id: JobMailTech
 
@@ -39,7 +39,7 @@
 
 - type: playTimeTracker
   id: JobNTSF
-  
+
 - type: playTimeTracker
   id: JobDecimus
 
@@ -51,7 +51,7 @@
 
 - type: playTimeTracker
   id: JobTSFCrew
-  
+
 - type: playTimeTracker
   id: JobTSFMarine
 

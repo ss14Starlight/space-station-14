@@ -100,7 +100,7 @@ public static class NullLink
             ServerStatus.Round => "Round",
             ServerStatus.RoundEnding => "Ending",
             _ => "Unknown"
-        };  
+        };
     }
 
     [Serializable, NetSerializable]

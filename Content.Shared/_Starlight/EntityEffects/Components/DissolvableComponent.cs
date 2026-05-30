@@ -11,14 +11,14 @@ public sealed partial class DissolvableComponent : Component
     # region Resisting
     [DataField]
     public bool Resisting;
-    
+
     [DataField]
     public TimeSpan? ResistingStartedOn = null;
-    
+
     [DataField]
     public TimeSpan ResistingTime = TimeSpan.FromSeconds(2);
     # endregion
-    
+
     # region Update
     [DataField]
     public TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);
@@ -27,7 +27,7 @@ public sealed partial class DissolvableComponent : Component
     [DataField]
     public TimeSpan LastTimeUpdated = TimeSpan.Zero;
     # endregion
-    
+
     [DataField]
     public EntityUid? Effect = null;
 

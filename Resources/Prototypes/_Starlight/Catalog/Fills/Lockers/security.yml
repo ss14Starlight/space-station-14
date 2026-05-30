@@ -84,6 +84,10 @@
         - id: ClothingUniformJumpskirtCorpsman
         - id: ClothingBeltCorpsmanFilled
         - id: ClothingHandsGlovesBlackNitrile
+        - id: BottleCaseSecurityFilled
+          amount: 2
+        - id: PenPackSecurityFilled
+          amount: 2
         - id: ClothingShoesBootsMagSec
           amount: 2
         - id: BedsheetBrigmedicStrange
@@ -176,7 +180,7 @@
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
   id: GunSafeHeavyWeapons # To save remapping
-  name: DMR safe 
+  name: DMR safe
   description: Contains a set of L10 DMRs
   components:
   - type: EntityTableContainerFill

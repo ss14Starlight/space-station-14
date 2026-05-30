@@ -1,8 +1,10 @@
 using Content.Shared.Actions;
+using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared.DoAfter;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Polymorph;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -20,40 +22,155 @@ public sealed partial class VampireGlareActionEvent : InstantActionEvent
     [DataField]
     public float Range = 1f;
 
+    /// <summary>Amount glare effects are multiplied by when the vampire is weak and the target has flash protection</summary>
+    [DataField]
+    public float FlashImmunityEffectScaleWeak = 0.0f;
+    /// <summary>Amount glare effects are multiplied by when the vampire is mid-level and the target has flash protection</summary>
+    [DataField]
+    public float FlashImmunityEffectScaleMid = 0.75f;
+
+    /// <summary>
+    /// Amount the effect is multiplied by when the vampire is high level
+    /// </summary>
+    [DataField]
+    public float FlashImmunityEffectScaleStrong = 1f;
+
+    /// <summary>
+    /// Amount the effect is multiplied by when the vampire is FullPower
+    /// </summary>
+    [DataField]
+    public float GlareEffectScaleFull = 1.5f;
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity in front of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan FrontParalyzeDuration = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    /// How many seconds do we need to Paralyze entity behind of glare source.
+    /// </summary>
+    [DataField]
+    public TimeSpan SideParalyzeDuration = TimeSpan.FromSeconds(2);
+
     /// <summary>
     /// How much we need to apply stamina damage on entity in front of glare source
     /// </summary>
     [DataField]
-    public float FrontStaminaDamage = 30f;
+    public float FrontStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply stamina damage on entity behind of glare source
     /// </summary>
     [DataField]
-    public float BehindStaminaDamage = 30f;
+    public float BehindStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply stamina damage on entity which is located to the left or right of glare source
     /// </summary>
     [DataField]
-    public float SideStaminaDamage = 40f;
+    public float SideStaminaDamage = 25f;
 
     /// <summary>
     /// How much we need to apply additional stamina damage on entity in front of glare source.
     /// </summary>
     [DataField]
-    public float DotStaminaDamage = 15f;
+    public float DotStaminaDamage = 5f;
+
+    [DataField]
+    public int DotTickCount = 10;
+
+    [DataField]
+    public TimeSpan DotTickInterval = TimeSpan.FromSeconds(1);
 
     /// <summary>
-    /// How many seconds do we need to mute entity in front of glare source.
+    /// chem and amount to inject to targets.
     /// </summary>
     [DataField]
-    public TimeSpan MuteDuration = TimeSpan.FromSeconds(8);
+    public Dictionary<string, FixedPoint2> Reagents = new Dictionary<string, FixedPoint2>{ {"MuteToxin", 0.5} };
+
+    /// <summary>
+    /// Minimum dot product of vector between vampire direction facing and target direction to proc the forward facing portion of the glare ability
+    /// </summary>
+    [DataField]
+    public float DotForwardLimit = 0.7f;
+
+    /// <summary>
+    /// Maximum dot product of vector between vampire direction facing and target direction to proc the backwards facing portion of the glare ability
+    /// </summary>
+    [DataField]
+    public float DotBackwardLimit = -0.7f;
 }
 
-public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent;
+public sealed partial class VampireSleepActionEvent : EntityTargetActionEvent
+{
+    /// <summary>
+    ///     Channel duration, in seconds, before the target is put to sleep
+    /// </summary>
+    [DataField]
+    public TimeSpan ChannelTime = TimeSpan.FromSeconds(5);
+    [DataField]
+    public float SleepDistanceThreshold = 2.5f; //How far a target may be for sleep to work
+    [DataField]
+    public float SleepMovementThreshold = 0.1f; //How far a target may move for sleep to work during the do after
+}
 
-public sealed partial class VampireRejuvenateIIActionEvent : InstantActionEvent;
+[Serializable, NetSerializable]
+public sealed partial class VampireSleepDoAfterEvent : SimpleDoAfterEvent
+{
+    [DataField]
+    public int BloodCost = 15;
+    [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(10);
+
+}
+
+public sealed partial class VampireRejuvenateIActionEvent : InstantActionEvent
+{
+    [DataField]
+    public bool ResetStamina = true;
+
+    [DataField]
+    public bool RemoveStuns = true;
+}
+
+public sealed partial class VampireRejuvenateIIActionEvent : InstantActionEvent
+{
+    [DataField]
+    public bool ResetStamina = true;
+
+    [DataField]
+    public bool RemoveStuns = true;
+
+    [DataField]
+    public FixedPoint2 ReagentPurgeAmount = FixedPoint2.New(10);
+
+    [DataField]
+    public HashSet<string> PurgedMetabolismGroups = new()
+    {
+        "Poison",
+    };
+
+    [DataField]
+    public int HealTicks = 5;
+
+    [DataField]
+    public TimeSpan HealTickInterval = TimeSpan.FromSeconds(3.5);
+
+    [DataField]
+    public Dictionary<string, FixedPoint2> HealGroups = new()
+    {
+        { "Brute", FixedPoint2.New(4) },
+        { "Burn", FixedPoint2.New(4) },
+    };
+
+    [DataField]
+    public Dictionary<string, FixedPoint2> HealTypes = new()
+    {
+        { "Poison", FixedPoint2.New(4) },
+        { "Asphyxiation", FixedPoint2.New(5) },
+    };
+}
 
 public sealed partial class VampireClassSelectActionEvent : InstantActionEvent;
 
@@ -83,10 +200,19 @@ public sealed class VampireProgressionChangedEvent : EntityEventArgs { }
 
 #endregion
 
+[ByRefEvent]
+public record struct VampireActionUseAttemptEvent(EntityUid User, EntityUid? ActionEntity = null, int BloodCost = 0, bool ShowPopup = true)
+{
+    public bool Allowed;
+}
+
 #region Hemomancer
 
 // Vampiric Claws
 public sealed partial class VampireHemomancerClawsActionEvent : InstantActionEvent;
+
+[ByRefEvent]
+public readonly record struct VampireHemomancerClawsActivatedEvent(EntityUid Performer);
 
 // Blood Tendril
 public sealed partial class VampireHemomancerTendrilsActionEvent : WorldTargetActionEvent
@@ -180,6 +306,9 @@ public sealed partial class VampireBloodEruptionActionEvent : InstantActionEvent
 
     [DataField]
     public float TargetRange = 2f;
+
+    [DataField]
+    public string PuddleReagent = "Blood";
 }
 
 // The Blood Bringer's Rite
@@ -208,6 +337,12 @@ public sealed partial class VampireBloodBringersRiteActionEvent : InstantActionE
 
     [DataField]
     public int Cost = 10;
+
+    [DataField]
+    public int MaxTicks = 150;
+
+    [DataField(required: true)]
+    public EntProtoId BeamPrototype;
 }
 
 #endregion
@@ -296,6 +431,9 @@ public sealed partial class VampireExtinguishActionEvent : InstantActionEvent
 public sealed partial class VampireShadowBoxingActionEvent : EntityTargetActionEvent
 {
     [DataField]
+    public TimeSpan Duration = TimeSpan.FromSeconds(10);
+
+    [DataField]
     public TimeSpan Interval = TimeSpan.FromSeconds(0.9);
 
     [DataField]
@@ -306,6 +444,15 @@ public sealed partial class VampireShadowBoxingActionEvent : EntityTargetActionE
 
     [DataField]
     public SoundSpecifier? HitSound;
+
+    [DataField]
+    public EntProtoId PunchEffectPrototype = "WeaponArcPunch";
+}
+
+[ByRefEvent]
+public record struct VampireShadowBoxingStartAttemptEvent(EntityUid Performer, EntityUid Target)
+{
+    public bool Cancelled;
 }
 
 [Serializable, NetSerializable]
@@ -320,7 +467,7 @@ public sealed class VampireShadowBoxingPunchEvent : EntityEventArgs
         Target = target;
     }
     [DataField]
-    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33); 
+    public TimeSpan PunchLifetime = TimeSpan.FromSeconds(0.33);
     [DataField]
     public string EffectProto = "VampireShadowBoxingPunch";
 }
@@ -385,7 +532,7 @@ public sealed partial class VampirePacifyActionEvent : EntityTargetActionEvent
     [DataField]
     public TimeSpan PacifyDuration = TimeSpan.FromSeconds(40);
 }
-        
+
 public sealed partial class VampireSubspaceSwapActionEvent : EntityTargetActionEvent
 {
     [DataField]
@@ -395,6 +542,9 @@ public sealed partial class VampireSubspaceSwapActionEvent : EntityTargetActionE
     public float SlowMultiplier = 0.4f;
     [DataField]
     public TimeSpan HysteriaDuration = TimeSpan.FromSeconds(15);
+
+    [DataField(required: true)]
+    public List<HysteriaDisguiseSprite> HysteriaDisguiseSprites = new();
 }
 
 public sealed partial class VampireDecoyActionEvent : InstantActionEvent
@@ -403,7 +553,22 @@ public sealed partial class VampireDecoyActionEvent : InstantActionEvent
     public TimeSpan DecoyDuration = TimeSpan.FromSeconds(6);
     [DataField]
     public TimeSpan InvisibilityDuration = TimeSpan.FromSeconds(6);
+    [DataField]
+    public float DecoyVisibility = -1f;
+    [DataField]
+    public bool DecoyFlashDisplayPopup = true;
+    [DataField]
+    public float DecoyFlashProbability = 1f;
 }
+
+[ByRefEvent]
+public record struct VampireDecoyActivatedEvent(
+    Entity<DantalionComponent> Dantalion,
+    VampireDecoyActionEvent Action,
+    TimeSpan InvisibilityDuration,
+    bool HadStealthComponent,
+    bool PreviousStealthEnabled,
+    float PreviousStealthVisibility);
 
 public sealed partial class VampireRallyThrallsActionEvent : InstantActionEvent
 {
@@ -433,7 +598,22 @@ public sealed partial class VampireBloodBondActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public TimeSpan TickInterval = TimeSpan.FromSeconds(2);
+
+    [DataField(required: true)]
+    public EntProtoId BeamPrototype;
 }
+
+[ByRefEvent]
+public record struct VampireBloodBondStartAttemptEvent(Entity<DantalionComponent> Dantalion)
+{
+    public bool Cancelled;
+}
+
+[ByRefEvent]
+public readonly record struct VampireBloodBondStartedEvent(Entity<DantalionComponent> Dantalion, VampireBloodBondActionEvent Action);
+
+[ByRefEvent]
+public readonly record struct VampireBloodBondStoppedEvent(Entity<DantalionComponent> Dantalion);
 
 public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent
 {
@@ -454,6 +634,10 @@ public sealed partial class VampireMassHysteriaActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public TimeSpan HysteriaDuration = TimeSpan.FromSeconds(30);
+
+    [DataField(required: true)]
+    public List<HysteriaDisguiseSprite> HysteriaDisguiseSprites = new();
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/sound_hallucinations_im_here1.ogg");
 }
@@ -477,6 +661,30 @@ public sealed partial class VampireBloodSwellActionEvent : InstantActionEvent
     /// </summary>
     [DataField]
     public float MeleeBonusDamage = 14f;
+
+    [DataField]
+    public ProtoId<DamageTypePrototype> MeleeBonusDamageType = "Blunt";
+
+    [DataField]
+    public HashSet<string> ReducedDamageTypes = new()
+    {
+        "Blunt",
+        "Slash",
+        "Piercing",
+        "Heat",
+        "Cold",
+        "Shock",
+        "Caustic",
+    };
+
+    [DataField]
+    public float IncomingDamageMultiplier = 0.5f;
+
+    [DataField]
+    public float StaminaDamageMultiplier = 0.5f;
+
+    [DataField]
+    public float StatusEffectDurationMultiplier = 0.5f;
 }
 
 public sealed partial class VampireBloodRushActionEvent : InstantActionEvent
@@ -529,8 +737,18 @@ public sealed partial class VampireDemonicGraspActionEvent : WorldTargetActionEv
     /// </summary>
     [DataField]
     public float ProjectileSpeed = 15f;
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/exit_blood.ogg");
+
+    [DataField]
+    public TimeSpan TileInterval = TimeSpan.FromMilliseconds(50);
+
+    [DataField]
+    public EntProtoId EffectPrototype = "VampireDemonicGraspEffect";
+
+    [DataField]
+    public EntProtoId ImmobilizedEffectPrototype = "VampireImmobilizedEffect";
 }
 
 public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
@@ -558,27 +776,9 @@ public sealed partial class VampireChargeActionEvent : WorldTargetActionEvent
     /// </summary>
     [DataField]
     public float ChargeSpeed = 35f;
-    
+
     [DataField]
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/Footsteps/largethud.ogg");
-}
-
-/// <summary>
-/// Event for syncing demonic grasp projectile visuals
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class VampireDemonicGraspVisualEvent : EntityEventArgs
-{
-    public NetEntity Source { get; }
-    public NetCoordinates Target { get; }
-    public float Speed { get; }
-
-    public VampireDemonicGraspVisualEvent(NetEntity source, NetCoordinates target, float speed)
-    {
-        Source = source;
-        Target = target;
-        Speed = speed;
-    }
 }
 
 #endregion

@@ -10,7 +10,7 @@ public sealed class PilotSupportModuleSystem : EntitySystem
 {
     [Dependency] private readonly SharedMechSystem _mech = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -37,17 +37,17 @@ public sealed class PilotSupportModuleSystem : EntitySystem
                     mech.PilotWhitelist.Tags.AddRange(module.PilotWhitelist.Tags);
                 }
             }
-            
+
             mech.Dirty();
         }
     }
-    
+
     private void OnModuleRemoved(Entity<PilotSupportModuleComponent> entity, ref MechEquipmentRemovedEvent args)
     {
         if (TryComp<MechComponent>(args.Mech, out var mech) && TryComp<PilotSupportModuleComponent>(entity, out var module))
         {
             _mech.TryEject(args.Mech, mech);
-            
+
             if (mech.PilotWhitelist != null && module.PilotWhitelist != null)
             {
                 if (mech.PilotWhitelist.Components != null && module.PilotWhitelist.Components != null)

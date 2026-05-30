@@ -35,7 +35,7 @@
   components:
   - type: Sprite
     state: brain
-  
+
 - type: entity
   id: OrganAbductorEyes
   parent: [BaseAbductorOrgan, BaseOrganEyes]

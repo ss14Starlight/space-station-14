@@ -25,7 +25,8 @@ public sealed partial class VampireComponent : Component
     {
         "ActionVampireToggleFangs",
         "ActionVampireGlare",
-        "ActionVampireRejuvenateI"
+        "ActionVampireRejuvenateI",
+        "ActionVampireSleep"
     };
 
     /// <summary>
@@ -64,8 +65,62 @@ public sealed partial class VampireComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public bool FangsExtended = false;
-    public float sipAmount = 10f;
 
+    /// <summary>
+    /// amount of blood in u consumed by the vampire per bite
+    /// </summary>
+    [DataField]
+    public float SipAmount = 10f;
+    /// <summary>
+    /// damage per 1u of blood drawn from target
+    /// </summary>
+    [DataField]
+    public float SipPierceDamage = 0.05f;
+    /// <summary>
+    /// how much blood drawn from target is actually drank vs spilled from humanoids
+    /// </summary>
+    [DataField]
+    public float HumanoidEfficiency = 0.5f;
+    /// <summary>
+    /// how much blood drawn from target is actually drank vs spilled from animals
+    /// </summary>
+    [DataField]
+    public float NonHumanoidEfficiency = 0.125f;
+    /// <summary>
+    /// how much blood is gained when the target is dead (0 disables drinking from the dead completely)
+    /// </summary>
+    [DataField]
+    public float DeadEfficiency = 0.75f;
+    /// <summary>
+    /// How much blood is gained when the target has not yet rotted (less than 30 seconds since death)
+    /// </summary>
+    [DataField]
+    public float Rot0Efficiency = 1.0f;
+    /// <summary>
+    /// How much blood is gained when the target is at the initial stage of rot (less than 3:30 since death)
+    /// </summary>
+    [DataField]
+    public float Rot1Efficiency = 0.5f;
+    /// <summary>
+    /// How much blood is gained when the target is at the mid stage of rot (less than 6:45 since death)
+    /// </summary>
+    [DataField]
+    public float Rot2Efficiency = 0.25f;
+    /// <summary>
+    /// How much blood is gained when the target is at the late stage of rot (less than 10:00 since death)
+    /// </summary>
+    [DataField]
+    public float Rot3Efficiency = 0.1f;
+    /// <summary>
+    /// How much blood is gained when the target is fully rotted (more than 10:00 since death)
+    /// </summary>
+    [DataField]
+    public float Rot4Efficiency = 0.0f;
+    /// <summary>
+    /// How far a target may be for biting to work
+    /// </summary>
+    [DataField]
+    public float BiteDistanceThreshold = 1.5f;
 
     /// <summary>
     /// Current blood fullness used instead of normal food needs.
@@ -82,15 +137,16 @@ public sealed partial class VampireComponent : Component
     /// <summary>
     /// Decay rate per second for blood fullness.
     /// </summary>
+    [DataField]
     public float FullnessDecayPerSecond = 0.15f;
 
     /// <summary>
-    /// When <see cref="BloodFullness"/> is empty, apply a strong movement slowdown.
+    /// When <see cref="BloodFullness"/> is empty, apply a movement slowdown.
     /// </summary>
     [DataField]
-    public float StarvationWalkSpeedModifier = 0.2f;
+    public float StarvationWalkSpeedModifier = 0.7f;
     [DataField]
-    public float StarvationSprintSpeedModifier = 0.2f;
+    public float StarvationSprintSpeedModifier = 0.7f;
 
     /// <summary>
     /// When <see cref="BloodFullness"/> is empty, drain this much <see cref="DrunkBlood"/> per second.
@@ -113,6 +169,7 @@ public sealed partial class VampireComponent : Component
     /// </summary>
     public Dictionary<EntityUid, int> BloodDrunkFromTargets = new();
 
+    [DataField]
     public int MaxBloodPerTarget = 200;
     public EntityUid? SpawnedClaws = null;
     [DataField]
@@ -126,6 +183,18 @@ public sealed partial class VampireComponent : Component
     [DataField]
     public float HolyPlaceRange = 8f;
 
+    /// <summary>
+    /// Healing factors
+    /// </summary>
+    [DataField]
+    public int VampHealBurn = 2;
+    [DataField]
+    public int VampHealBrute = 2;
+    [DataField]
+    public int VampHealAsphyxiation = 10;
+    [DataField]
+    public int VampHealPois = 4;
+
     [DataField]
     public ProtoId<ReagentPrototype> HolyWaterReagentId = "Holywater";
     [AutoPausedField]
@@ -133,18 +202,35 @@ public sealed partial class VampireComponent : Component
     public TimeSpan NextHolyPlaceTick = TimeSpan.Zero;
     public TimeSpan NextHolyPlacePopup = TimeSpan.Zero;
 
+    public float StarvationDrunkBloodDrainAccumulator;
+
     [ViewVariables(VVAccess.ReadOnly)]
     public int LastRefreshedBloodLevel = -1;
 
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public bool FullPower = false;
-
+    /// <summary>Amount of blood that must be drank for the vampire to be considered for max level</summary>
+    [DataField]
+    public int FullPowerThreshold = 1000;
+    /// <summary>Amount of Unique Victims for the vampire to be considered for max level</summary>
+    [DataField]
+    public int FullPowerUniqueHumanoids = 8;
+    /// <summary>Amount of blood drank for the vampire to be considered mid-level</summary>
+    [DataField]
+    public int MidPowerThreshold = 200;
+    /// <summary>Amount of blood drank for the vampire to be considered high-level</summary>
+    [DataField]
+    public int HighPowerThreshold = 600;
+    /// <summary>number of Unique victims the vampire has drank from so far</summary>
     [ViewVariables(VVAccess.ReadOnly), DataField, AutoNetworkedField]
     public int UniqueHumanoidVictims = 0;
 
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
     [AutoPausedField]
     public TimeSpan NextUpdate;
+
+    [AutoPausedField]
+    public TimeSpan LastUpdate;
 
     [DataField]
     public TimeSpan UpdateDelay = TimeSpan.FromSeconds(1);

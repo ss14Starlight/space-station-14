@@ -35,7 +35,7 @@
     - id: ClothingBeltSecurityFilled
     - id: Flash
     - id: ClothingEyesGlassesSecurity
-    - id: ClothingHandsGlovesCombat
+#    - id: ClothingHandsGlovesCombat # Starlight, they spawn with these now.
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
     - id: ClothingOuterWinterWarden
@@ -58,6 +58,7 @@
     - id: ClothingOuterHardsuitWarden
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight - Beep, Boop!
     - id: ClothingMaskBreath
 
 - type: entity
@@ -120,6 +121,8 @@
     - id: ClothingHeadHatBeretCorpsman #Starlight
     - id: ClothingBeltCorpsmanFilled #Starlight
     - id: ClothingHandsGlovesBlackNitrile #Starlight
+    - id: BottleCaseSecurityFilled # Starlight
+    - id: PenPackSecurityFilled # Starlight
 #    - id: ClothingEyesGlassesSecurity #Starlight, replacing with brigmed glasses.
     - id: WeaponTaser
     - id: WeaponDisabler
@@ -252,16 +255,12 @@
       amount: 2
     - id: WeaponPistolEnforcer
       amount: 1
-    #- id: WeaponMachinePistolMk64
-      #amount: 1
     - id: MagazinePistolSP
       amount: 4
     - id: MagazinePistolHP
       amount: 2
     - id: MagazinePistolFMJ
       amount: 2
-    #- id: MagazinePistolHighCapacitySP
-      #amount: 2
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

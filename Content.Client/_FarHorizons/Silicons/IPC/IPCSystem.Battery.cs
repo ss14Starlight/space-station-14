@@ -23,11 +23,11 @@ public sealed partial class IPCSystem
 
     private void OnPlayerAttached(Entity<IPCBatteryComponent> ent, ref LocalPlayerAttachedEvent args) => UpdateBatteryAlert(ent);
 
-    protected override void UpdateBattery(float frameTime) 
+    protected override void UpdateBattery(float frameTime)
     {
         if (_player.LocalEntity is not { } localPlayer)
             return;
-        
+
         if (_timing.CurTime < _nextUpdate)
             return;
 

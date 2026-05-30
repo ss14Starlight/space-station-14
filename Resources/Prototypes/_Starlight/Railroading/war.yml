@@ -1,6 +1,5 @@
 - type: entity
   id: RRCardWar
-  parent: CrewCondition
   categories: [ HideSpawnMenu ]
   components:
   - type: RailroadSpawnFlow

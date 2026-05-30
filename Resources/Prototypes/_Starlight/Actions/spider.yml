@@ -111,7 +111,7 @@
     canTargetSelf: false
     whitelist:
       components:
-      - HumanoidAppearance
+      - WrapEntityHolder
     event: !type:EggInjectionEvent
 
 - type: entity
@@ -158,16 +158,14 @@
   description: Spawns a web pole that spawns webs around at free tiles.
   components:
   - type: Action
-    icon: 
+    icon:
       sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings_48.rsi
       state: pole
     useDelay: 3
-  # Starlight-start
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
     rechargeDuration: 300 # 5 mins
-  # Starlight-end
   - type: InstantAction
     event: !type:SpiderWebBuildingActionEvent
       building: WebEntityBeacon
@@ -179,16 +177,54 @@
   description: Spawns a web cocoon that heals spider which entered in it.
   components:
   - type: Action
-    icon: 
+    icon:
       sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings.rsi
       state: cocoon
     useDelay: 3
-  # Starlight-start
   - type: LimitedCharges
     maxCharges: 1
   - type: AutoRecharge
     rechargeDuration: 300 # 5 mins
-  # Starlight-end
   - type: InstantAction
     event: !type:SpiderWebBuildingActionEvent
       building: WebCocoon
+
+- type: entity
+  parent: BaseAction
+  id: ActionSpiderBuildingGenerator
+  name: Ammonia generator
+  description: Spawns an ammonia generator that fills rooms with atmosphere.
+  components:
+  - type: Action
+    icon:
+      sprite: _Starlight/Structures/Specific/TerrorSpiders/buildings.rsi
+      state: ammonia_gen
+    useDelay: 3
+  - type: LimitedCharges
+    maxCharges: 1
+  - type: AutoRecharge
+    rechargeDuration: 600 # 10 mins
+  - type: InstantAction
+    event: !type:SpiderWebBuildingActionEvent
+      building: AmmoniaEggGenerator
+
+- type: entity
+  id: ActionEntityWrap
+  name: Wrap
+  description: Wrap a target in web, immobilizing them.
+  components:
+  - type: Action
+    useDelay: 3
+    itemIconStyle: BigAction
+    sound: /Audio/Effects/pop.ogg
+    icon:
+      sprite:  _Starlight/Interface/Actions/actions_spider.rsi
+      state: wrap
+  - type: TargetAction
+    interactOnMiss: false
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - HumanoidAppearance
+    event: !type:WrapActionEvent

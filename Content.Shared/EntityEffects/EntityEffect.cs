@@ -40,7 +40,7 @@ public abstract partial class EntityEffect
     [DataField]
     public float Probability = 1.0f;
 
-    public virtual string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
+    public virtual string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => null; // Starlight
 
     /// <summary>
     /// If this effect is logged, how important is the log?

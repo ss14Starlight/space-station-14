@@ -6,7 +6,7 @@
   sprites: MobRodentiaSprites
   defaultSkinTone: "#747474"
   markingLimits: MobRodentiaMarkingLimits
-  dollPrototype: MobRodentiaDummy
+  dollPrototype: AppearanceRodentia
   skinColoration: Hues
   maleFirstNames: names_rodentia_male
   femaleFirstNames: names_rodentia_female
@@ -16,18 +16,17 @@
   - Male
   - Female
   - Unsexed
-#  minHeight: 0.8 # MIKEY figure out stats for this
-#  defaultHeight: 0.8
-#  maxHeight: 0.9
-#  standardSize: 170
-#  standardWeight: 48
-#  standardDensity: 45
+  standardSize: 100
+  standardWeight: 50
+  standardDensity: 60
+  maxHeight: 1
+  minHeight: 0.85
 
 - type: speciesBaseSprites
   id: MobRodentiaSprites
   sprites:
     Head: MobRodentiaHead
-#    Hair: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     Chest: MobRodentiaTorso
@@ -49,43 +48,42 @@
 - type: markingPoints
   id: MobRodentiaMarkingLimits
   points:
-#    Hair:
-#      points: 1
-#      required: false
-#    FacialHair:
-#      points: 1
-#      required: false
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
     Tail:
       points: 1
       required: true
-      defaultMarkings: [ RodentiaTailDefault ]
+      defaultMarkings: [ RodentiaTailMouse ]
+      onlyWhitelisted: true
     Legs:
       points: 4
       required: false
+      onlyWhitelisted: true
     Arms:
       points: 4
       required: false
+      onlyWhitelisted: true
     Snout:
       points: 1
       required: false
+      onlyWhitelisted: true
     HeadTop:
       points: 1
       required: true
-      defaultMarkings: [ RodentiaHeadTopEarDefault ]
+      defaultMarkings: [ RodentiaHeadTopEarMouse ]
+      onlyWhitelisted: true
     HeadSide:
       points: 1
       required: false
+      onlyWhitelisted: true
     Chest:
       points: 2
       required: false
-#    UndergarmentBottom:
-#      points: 1
-#      required: true
-#      defaultMarkings: [ RMCUnderwearBoxersBlue ]
-#    UndergarmentTop:
-#      points: 1
-#      required: true
-#      defaultMarkings: [ RMCUndershirtStandard ]
+      onlyWhitelisted: true
 
 - type: humanoidBaseSprite
   id: MobRodentiaEyes
@@ -176,5 +174,3 @@
   baseSprite:
     sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
     state: r_foot
-
-# MIKEY add tail part here for crazyphantom

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from RU Paradise Station",
+    "copyright": "Taken from RU Paradise Station, resprited by ScorchFollower for Starlight SS14",
     "size": {
         "x": 32,
         "y": 32
@@ -15,15 +15,6 @@
         },
         {
             "name": "bolt-open"
-        },
-        {
-            "name": "icon_dust"
-        },
-        {
-            "name": "base_dust"
-        },
-        {
-            "name": "bolt-open_dust"
         },
         {
             "name": "mag-0"

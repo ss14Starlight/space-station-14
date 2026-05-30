@@ -10,7 +10,7 @@ public sealed partial class GlitchingEffectComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public float Intensity = 0;
-    
+
     [ViewVariables, AutoNetworkedField] public TimeSpan StartAt = TimeSpan.MaxValue;
     [ViewVariables, AutoNetworkedField] public TimeSpan FinishAt = TimeSpan.MaxValue;
     [ViewVariables, AutoNetworkedField] public TimeSpan RampDuration = TimeSpan.FromSeconds(1);

@@ -326,7 +326,7 @@ public sealed class GhostRoleSystem : EntitySystem
             return;
 
         // Starlight - Start
-        if (role.Comp.Important)
+        if (role.Comp.Important && !role.Comp.HasNotifiedGhosts)
         {
             var message = Loc.GetString("ghost-important-role", ("rolename", role.Comp.RoleName));
             TryPrototypes(role, out var antags, out var jobs);
@@ -344,8 +344,8 @@ public sealed class GhostRoleSystem : EntitySystem
                 _audio.PlayGlobal(new SoundPathSpecifier("/Audio/_Starlight/Misc/ghost_ping.ogg"), Filter.SinglePlayer(player), false);
                 _chat.ChatMessageToOne(ChatChannel.Server, message, message, default, false, player.Channel);
             }
+            role.Comp.HasNotifiedGhosts = true; // Ghost Role cannot be important after being showed to all Ghost, meaning no poping in/out to spam it.
         }
-        role.Comp.Important = false; // Ghost Role cannot be important after being showed to all Ghost, meaning no poping in/out to spam it.
         // Starlight - End
 
         _ghostRoles[role.Comp.Identifier = GetNextRoleIdentifier()] = role;

@@ -14,7 +14,7 @@
                     <Label Name="ChargeLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5 0 0 0"/>
                 </ProgressBar>
                 <Control MinWidth="5"/>
-            <!--    <Button Name="EjectBatteryButton" ToggleMode="False" Text="{Loc 'borg-ui-remove-battery'}" StyleClasses="OpenLeft"/> 
+            <!--    <Button Name="EjectBatteryButton" ToggleMode="False" Text="{Loc 'borg-ui-remove-battery'}" StyleClasses="OpenLeft"/>
             The eject battery button is currently bugged and freezes the individual who uses it. Uncomment this when a fix is applied!-->
             </BoxContainer>
             <customControls:HSeparator Margin="0 10 0 10"/>

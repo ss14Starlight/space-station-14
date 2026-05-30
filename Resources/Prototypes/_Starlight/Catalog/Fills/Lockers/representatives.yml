@@ -16,7 +16,7 @@
         - id: ClothingUniformJumpsuitNtrep
         - id: ClothingOuterCoatNtrep
         - id: ClothingShoesBootsLaceup
-        - id: ClothingHeadsetAltCommand
+        - id: ClothingHeadsetAltRepresentative
         - id: WeaponDisabler
         - id: LuxuryPen
         - id: BoxFolderClipboardFilled
@@ -53,7 +53,7 @@
         - id: ClothingHeadHatPwig
         - id: MagistrateUniformSuit
         - id: MagistrateUniformSkirt
-        - id: ClothingOuterRobesJudge
+        - id: ClothingOuterRobesMagistrate
         - id: ClothingShoesBootsLaceup
         - id: ClothingHeadsetMagistrate
         - id: WeaponDisabler
@@ -101,6 +101,23 @@
           tableId: CriminalDocumentTable
 
 - type: entity
+  id: LockerNCTFilled
+#  categories: [ ShouldMapStation ]
+  suffix: Filled
+  parent: LockerNCT
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingEyesGlassesCommand
+        - id: BookSpaceLaw
+        - id: LuxuryPen
+        - id: BoxFolderNanoTrasenClipboard
+        - id: BoxFolderBlue
+        - id: BriefcaseBrown # Empty
+
+- type: entity
   id: LockerBlueshieldFilled
   categories: [ ShouldMapStation ]
   suffix: Filled
@@ -111,7 +128,6 @@
       entity_storage: !type:AllSelector
         children:
         - id: FlashlightSeclite
-        - id: ClothingHandsGlovesCombat
         - id: ClothingShoesBootsJack
         - id: TrackingImplanter
           amount: 3

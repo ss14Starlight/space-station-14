@@ -11,7 +11,7 @@
 
     <BoxContainer Orientation="Horizontal">
 
-        <Label 
+        <Label
             Name="NoServerLabel"
             Text="{Loc crew-monitoring-ui-no-server-label}"
             StyleClasses="LabelHeading"

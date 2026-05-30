@@ -50,7 +50,7 @@ public sealed class NuclearCentrifugeSystem : EntitySystem
         {
             if(!comp.Processing)
                 continue;
-            
+
             if(comp.FuelToExtract>0)
             {
                 var delta = Math.Min(comp.FuelToExtract, 0.5f);
@@ -62,7 +62,7 @@ public sealed class NuclearCentrifugeSystem : EntitySystem
                 if(comp.ExtractedFuel > 1)
                 {
                     // If this while loop causes problems, blame whoever put 1.78e308 plutonium in the centrifuge
-                    while (comp.ExtractedFuel > 1) 
+                    while (comp.ExtractedFuel > 1)
                     {
                         var plutoniumStack = Spawn("IngotPlutonium1", Transform(uid).Coordinates);
                         _stackSystem.SetCount(plutoniumStack, Math.Clamp((int)Math.Floor(comp.ExtractedFuel), 1, _stackSize));

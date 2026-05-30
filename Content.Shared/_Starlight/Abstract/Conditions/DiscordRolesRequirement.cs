@@ -31,7 +31,7 @@ public sealed partial class DiscordRolesRequirement : BaseRequirement
         base.Handle(user);
 
         return Requirement is not null
-            && _protos.TryIndex(Requirement, out var roleReq) 
+            && _protos.TryIndex(Requirement, out var roleReq)
             && _nulllinkPlayerRoles.IsAnyRole(user, roleReq.Roles);
     }
 }

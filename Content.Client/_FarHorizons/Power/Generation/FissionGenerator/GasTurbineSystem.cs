@@ -78,7 +78,7 @@ public sealed class GasTurbineSystem : EntitySystem
             return;
         }
 
-        if (Math.Abs(comp.RPM - comp.AnimRPM) > comp.BestRPM * 0.1) 
+        if (Math.Abs(comp.RPM - comp.AnimRPM) > comp.BestRPM * 0.1)
             _animationPlayer.Stop(uid, state); // Current anim is stale, time for a new one
 
         if (_animationPlayer.HasRunningAnimation(uid, state))

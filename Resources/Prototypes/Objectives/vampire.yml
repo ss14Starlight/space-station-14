@@ -50,7 +50,7 @@
     difficulty: 1
 
 #- type: entity Starlight start
-#  parent: BaseVampireStealObjective 
+#  parent: BaseVampireStealObjective
 #  id: EnergyMagnumVampireStealObjective # Removed in favor of combined shotgun-magnum objective
 #  components:
 #  - type: Objective
@@ -149,7 +149,7 @@
     icon:
       sprite: /Textures/_Starlight/Vampire/actions_vampire.rsi
       state: survive_icon
-      
+
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective

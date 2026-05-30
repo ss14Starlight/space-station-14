@@ -39,8 +39,7 @@ public sealed partial class IPCThermalRegulationComponent : Component
     [DataField(required: true)]
     public float ProduceHeat;
 
-    [DataField(required: true)]
-    public float RadiateHeat;
+    [DataField(required: true)] public float RadiateHeatEfficiency;
 
     [DataField(required: true)]
     public float MinEffectivePressure;
@@ -69,11 +68,6 @@ public sealed partial class IPCThermalRegulationComponent : Component
     }
 
     public TimeSpan CanSwitchModeIn = TimeSpan.Zero;
-
-    [DataField]
-    public ProtoId<TagPrototype> ExternalCoolingTag;
-    [DataField]
-    public HashSet<string> ExternalCoolingCheckSlots;
 
     [DataField]
     public LocId FansOffExamineText = "ipc-thermals-examine-off";

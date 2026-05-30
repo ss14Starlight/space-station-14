@@ -1537,7 +1537,7 @@ public sealed class StyleStarlight : StyleBase
             Element<Button>().Class(ClassCardBorder)
                 .Prop(ContainerButton.StylePropertyStyleBox, cardBorder),
             // Small Button ---
-            Element<Button>().Class("ButtonSmall") 
+            Element<Button>().Class("ButtonSmall")
                 .Prop(ContainerButton.StylePropertyStyleBox, smallButtonBase),
 
             Child().Parent(Element<Button>().Class("ButtonSmall"))

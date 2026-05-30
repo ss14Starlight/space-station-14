@@ -1,5 +1,7 @@
 ﻿using System.Linq;
-using Content.Shared._Starlight.Antags.TerrorSpider;
+using Content.Shared._Starlight.Actions.Components;
+using Content.Shared.Actions;
+using Content.Shared.Charges.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Popups;
 using Content.Shared.Spider;
@@ -9,34 +11,31 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Antags.TerrorSpider;
 
-public sealed class EggInjectSystem : EntitySystem
+public sealed partial class EggInjectSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedUserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedChargesSystem _charges = default!;
 
-    private readonly EntProtoId[] _eggs =
-    [
-        "TerrorRedEggSpiderFertilized",
-        "TerrorGreenSpiderFertilized",
-        "TerrorGrayEggSpiderFertilized"
-    ];
     public override void Initialize()
     {
         SubscribeLocalEvent<EggInjectionEvent>(EggInjection);
         SubscribeLocalEvent<SpiderComponent, EggInjectionDoAfterEvent>(EggInjectionDoAfter);
 
+        SubscribeLocalEvent<TerrorPrincessComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<EggsLayingEvent>(EggsLaying);
         Subs.BuiEvents<TerrorPrincessComponent>(EggsLayingUiKey.Key, subs => subs.Event<EggsLayingBuiMsg>(OnEggsLaying));
     }
+
+    private void OnMapInit(Entity<TerrorPrincessComponent> ent, ref MapInitEvent _) => ent.Comp.LayEggAction = _actions.AddAction(ent.Owner, ent.Comp.LayEggActionId);
 
     private void EggsLaying(EggsLayingEvent ev)
     {
         if (ev.Handled || !_timing.IsFirstTimePredicted)
             return;
-        
-        ev.Handled = true;
 
         if (TryComp(ev.Performer, out ActorComponent? actor))
             _uiSystem.OpenUi(ev.Performer, EggsLayingUiKey.Key, actor.PlayerSession);
@@ -44,46 +43,59 @@ public sealed class EggInjectSystem : EntitySystem
 
     private void OnEggsLaying(EntityUid uid, TerrorPrincessComponent component, EggsLayingBuiMsg args)
     {
-        if (!_timing.IsFirstTimePredicted)
+        if (!component.Eggs.Contains(args.Egg) || !TryComp(uid, out ActorComponent? actor))
             return;
-        
-        if (_eggs.Contains(args.Egg) && TryComp(uid, out ActorComponent? actor))
-        {
-            SpawnAtPosition(args.Egg, Transform(uid).Coordinates);
-            _uiSystem.CloseUi(uid, EggsLayingUiKey.Key, actor.PlayerSession);
-        }
+
+        if (component.LayEggAction == null || !_charges.TryUseCharge(component.LayEggAction.Value))
+            return;
+
+        PredictedSpawnAtPosition(args.Egg, Transform(uid).Coordinates);
+        _uiSystem.CloseUi(uid, EggsLayingUiKey.Key, actor.PlayerSession);
     }
 
     private void EggInjectionDoAfter(Entity<SpiderComponent> ent, ref EggInjectionDoAfterEvent args)
     {
-        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted)
+        if (args.Cancelled || args.Handled || !_timing.IsFirstTimePredicted || args.Target == null || !TryComp<WrapEntityHolderComponent>(args.Target.Value, out var wrapEntityHolder))
             return;
-        
-        args.Handled = true;
 
-        if (args.Target.HasValue && !HasComp<HasEggHolderComponent>(args.Target.Value))
+        if (wrapEntityHolder.Hold == null)
         {
-            EnsureComp<EggHolderComponent>(args.Target.Value);
-            EnsureComp<HasEggHolderComponent>(args.Target.Value);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-cocoon-empty"), ent, ent);
+            return;
+        }
+
+        if (!HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
+        {
+            args.Handled = true;
+            EnsureComp<EggHolderComponent>(wrapEntityHolder.Hold.Value);
+            EnsureComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value);
             var ev = new EggsInjectedEvent();
             RaiseLocalEvent(ent, ev);
         }
+        else
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ent, ent);
     }
 
     private void EggInjection(EggInjectionEvent ev)
     {
-        if (ev.Handled)
+        if (ev.Handled || !TryComp<WrapEntityHolderComponent>(ev.Target, out var wrapEntityHolder))
             return;
 
-        ev.Handled = true;
-        
-        if (HasComp<HasEggHolderComponent>(ev.Target))
+        if (wrapEntityHolder.Hold == null)
         {
-            _popup.PopupEntity("The target already contains eggs.", ev.Performer);
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-cocoon-empty"), ev.Performer, ev.Performer);
             return;
         }
 
-        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(6), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
+        ev.Handled = true;
+
+        if (HasComp<HasEggHolderComponent>(wrapEntityHolder.Hold.Value))
+        {
+            _popup.PopupPredicted(Loc.GetString("terror-spider-egg-inject-already-has-eggs"), ev.Performer, ev.Performer);
+            return;
+        }
+
+        var doAfter = new DoAfterArgs(EntityManager, ev.Performer, TimeSpan.FromSeconds(ev.InjectionDelay), new EggInjectionDoAfterEvent(), ev.Performer, ev.Target)
         {
             BreakOnMove = true,
             BreakOnDamage = true,

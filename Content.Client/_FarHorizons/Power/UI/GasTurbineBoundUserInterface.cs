@@ -29,7 +29,7 @@ public sealed class GasTurbineBoundUserInterface : BoundUserInterface, IBuiPreTi
     {
         EntityUid? turbineUid = null;
         if (_entityManager.TryGetComponent<GasTurbineMonitorComponent>(Owner, out var turbineMonitorComponent))
-            if (!_entityManager.TryGetEntity(turbineMonitorComponent.turbine, out turbineUid) || turbineUid == null 
+            if (!_entityManager.TryGetEntity(turbineMonitorComponent.turbine, out turbineUid) || turbineUid == null
                 || !_entityManager.HasComponent<GasTurbineComponent>(turbineUid))
                 return;
 

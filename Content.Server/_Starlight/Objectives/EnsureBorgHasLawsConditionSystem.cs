@@ -26,7 +26,7 @@ public sealed class EnsureBorgHasLawsConditionSystem : EntitySystem
         {
             if (!_whitelist.CheckBoth(lawBoundEnt, ent.Comp.LawEntityBlacklist, ent.Comp.LawEntityWhitelist))
                 continue;
-            
+
             var laws = _siliconLaw.GetLaws(lawBoundEnt, lawBound);
 
             if (laws.Laws.Count == 0)

@@ -148,7 +148,7 @@ public sealed class LockSystem : EntitySystem
 
         if (!CanToggleLock(uid, user, quiet: false))
             return false;
-        
+
         if (lockComp.MindShieldLock && !HasMindshield(uid, user, quiet: false))
             return false;
 
@@ -250,7 +250,7 @@ public sealed class LockSystem : EntitySystem
 
         if (!CanToggleLock(uid, user, quiet: false))
             return false;
-        
+
         if (lockComp.MindShieldLock && !HasMindshield(uid, user, quiet: false))
             return false;
 
@@ -368,7 +368,7 @@ public sealed class LockSystem : EntitySystem
 
         return false;
     }
-    
+
     private bool HasMindshield(EntityUid uid, EntityUid user, bool quiet = true)
     {
         if (HasComp<MindShieldComponent>(user))

@@ -16,7 +16,6 @@
     - CorgiWearable
     - WhitelistChameleon
     - CorgiWearable
-    - IPCExternalCooling # Far Horizons
 
 #Syndicate EVA
 - type: entity
@@ -34,7 +33,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
   - type: StaticPrice
     price: 1000 # Helmet is 500
 
@@ -93,7 +91,6 @@
     - SuitEVA
     - MonkeyWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
 
 #NTSRA Voidsuit / Ancient Voidsuit
 - type: entity
@@ -144,13 +141,15 @@
         Heat: 0.90
         Radiation: 0.75
         Caustic: 0.5
-  - type: ZombificationResistance 
+        Cold: 0.7 # Starlight
+  - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.5 # Starlight Edit
   - type: GroupExamine
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetVoidParamed
+    redirectDraw: true # Starlight-edit
   - type: ItemToggle
     onUse: false
     soundActivate:
@@ -178,8 +177,20 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+      cell_slot: !type:ContainerSlot # Starlight-edit
   - type: Tag
     tags:
     - CorgiWearable
     - WhitelistChameleon
-    - IPCExternalCooling # Far Horizons
+  # Starlight-start
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+        blacklist:
+          tags:
+          - MechReactor
+  # Starlight-end

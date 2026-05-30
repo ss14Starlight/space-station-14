@@ -33,6 +33,81 @@
       state: tall_ears_cut_R_inner
 
 - type: marking
+  id: LagomorphEarsDeer
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: deer
+
+- type: marking
+  id: LagomorphEarsDeerAntlers
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: deer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antlers
+
+- type: marking
+  id: LagomorphEarsDeerAntlersSmall
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: deer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antler-small
+
+- type: marking
+  id: LagomorphEarsDeerAntlersJolly
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: deer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antler-jolly
+
+- type: marking
+  id: LagomorphEarsDeerAntlersW
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: deer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antler-w
+
+- type: marking
+  id: LagomorphEarsDeerAntlersDriedbush
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: deer
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: antler-driedbush
+
+- type: marking
+  id: LagomorphEarsAirplane
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Lagomorph]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: airplane
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: inner_airplane
+
+- type: marking
   id: LagomorphEarsFloppy
   bodyPart: HeadTop
   markingCategory: HeadTop
@@ -211,7 +286,7 @@
       state: short_inner
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: antlers-short-ears
-    
+
 - type: marking
   id: LagomorphEarsAntlersMedium
   bodyPart: HeadTop
@@ -314,6 +389,8 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: fluffy_tail
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: fluffy_tail_twotone
 
 - type: marking
   id: LagomorphTailLong
@@ -323,6 +400,8 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: long_tail
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: long_tail_twotone
 
 - type: marking
   id: LagomorphTailCotton
@@ -332,6 +411,8 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: cotton_tail
+    - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
+      state: cotton_tail_twotone
 
 # Chest Markings
 
@@ -445,7 +526,7 @@
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: l_arm_mitt
 
-- type: marking    
+- type: marking
   id: LagomorphHandMittsR
   bodyPart: RHand
   markingCategory: Arms
@@ -453,7 +534,7 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: r_hand_mitt
-  
+
 - type: marking
   id: LagomorphHandMittsL
   bodyPart: LHand

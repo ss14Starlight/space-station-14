@@ -4,7 +4,7 @@
   name: Saw Through Limb
   components:
   - type: SurgeryStep
-    duration: 16 
+    duration: 16
     tools:
     - type: BoneSaw
   - type: Sprite

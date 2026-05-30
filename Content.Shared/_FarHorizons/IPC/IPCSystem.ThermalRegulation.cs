@@ -16,9 +16,9 @@ public abstract partial class SharedIPCSystem
     {
         if (args.IsInDetailsRange)
             args.PushText(Loc.GetString(
-                ent.Comp.FansCurrentlyOff || ent.Comp.CurrentMode == null ? 
+                ent.Comp.FansCurrentlyOff || ent.Comp.CurrentMode == null ?
                 ent.Comp.FansOffExamineText :
-                ent.Comp.CurrentMode.ExamineText, 
+                ent.Comp.CurrentMode.ExamineText,
             ("entity", Identity.Entity(ent, EntityManager))), 10);
     }
 }

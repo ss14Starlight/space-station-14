@@ -22,14 +22,14 @@ public sealed class SlimeScannerSystem : EntitySystem
         SubscribeLocalEvent<SlimeScannerComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<XenobiologyConsoleComponent, ConsoleMsgToScannerEvent>(OnConsoleMsgToScanner);
     }
-    
+
     private void OnAfterInteract(Entity<SlimeScannerComponent> entity, ref AfterInteractEvent args)
     {
         if (!_entityManager.TryGetComponent<ActorComponent>(args.User, out var actor)) return;
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target, out var slime)) return;
         var metaData = MetaData(args.Target.Value);
         if (!_entityManager.TryGetComponent<HungerComponent>(args.Target, out var hunger)) return;
-        
+
         SendInformation(actor, slime, metaData, hunger);
         RaiseNetworkEvent(new SlimeScannerSoundMessage()
         {
@@ -44,7 +44,7 @@ public sealed class SlimeScannerSystem : EntitySystem
         if (!_entityManager.TryGetComponent<SlimeComponent>(args.Target, out var slime)) return;
         var metaData = MetaData(args.Target);
         if (!_entityManager.TryGetComponent<HungerComponent>(args.Target, out var hunger)) return;
-        
+
         SendInformation(actor, slime, metaData, hunger);
 
         args.Handled = true;

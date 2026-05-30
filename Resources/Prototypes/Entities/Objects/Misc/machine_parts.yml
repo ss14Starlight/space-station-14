@@ -9,8 +9,12 @@
       sprite: Objects/Misc/stock_parts.rsi
     - type: Item
       size: Tiny
-    - type: Stack
-      count: 1
+    # Starlight start
+    - type: UserInterface
+      interfaces:
+        enum.StackCustomSplitUiKey.Key:
+          type: StackCustomSplitBoundUserInterface
+    # Starlight end
     - type: Tag
       tags:
       - ConstructionMaterial

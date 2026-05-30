@@ -61,13 +61,13 @@
     endSound:
       path: /Audio/Items/change_jaws.ogg
   - type: WirecutterSurgery
-    speed: 0.6 
+    speed: 0.6
     startSound:
       path: /Audio/Items/jaws_cut.ogg
     endSound:
       path: /Audio/Items/change_jaws.ogg
   - type: CrowbarSurgery
-    speed: 0.6 
+    speed: 0.6
     startSound:
       path: /Audio/Items/jaws_cut.ogg
     endSound:

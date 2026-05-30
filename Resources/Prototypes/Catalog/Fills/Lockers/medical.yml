@@ -1,19 +1,20 @@
+# Medical supply lockers
+
 - type: entityTable
   id: LockerFillMedicine
   table: !type:AllSelector
     children:
-    - id: BoxSyringe
-    - id: ChemistryBottleEpinephrine
-    - id: Brutepack
-      amount: !type:ConstantNumberSelector
-        value: 2
-    - id: Ointment
-      amount: !type:ConstantNumberSelector
-        value: 2
-    - id: Bloodpack
-      amount: !type:ConstantNumberSelector
-        value: 2
-    - id: Gauze
+    - !type:NestedSelector
+      tableId: CoreMedicineReagentBottleTable
+      rolls: 2
+    - !type:GroupSelector # Basic topicals
+      rolls: 7
+      children:
+      - id: Brutepack
+      - id: Ointment
+      - id: Bloodpack
+      - id: Gauze
+        weight: 0.5
 
 - type: entity
   parent: LockerMedicine
@@ -36,17 +37,17 @@
       entity_storage: !type:NestedSelector
         tableId: LockerFillMedicine
 
+# Medical role lockers
+
 - type: entityTable
   id: LockerFillMedicalDoctor
   table: !type:AllSelector
     children:
-    - id: HandheldHealthAnalyzer
-      prob: 0.6
+    # Starlight start
     - id: ClothingHeadMirror
       prob: 0.1
     - id: ClothingHandsGlovesLatex
     - id: ClothingHeadsetMedical
-    - id: ClothingEyesHudMedical
     - !type:GroupSelector
       children:
       - id: ClothingHeadHatSurgcapGreen
@@ -64,7 +65,16 @@
       - id: UniformScrubsColorPurple
         weight: 0.05
     - id: ClothingMaskSterile
+    - id: Syringe
+    - id: BottleCaseMedicalFilled
+    - id: PenPackMedicalFilled
+    #Starlight end
+    - id: ClothingEyesHudMedical
+    - id: ClothingBeltMedicalFilled
     - id: JetInjector
+    - id: HandheldHealthAnalyzer
+    - id: ChemistryBottleLaughter # Widely recognized as the best medicine :o)
+      prob: 0.01
 
 - type: entity
   parent: LockerMedical
@@ -91,26 +101,33 @@
   id: LockerFillChemistry
   table: !type:AllSelector
     children:
-    - id: BoxSyringe
-   #- id: BoxBeaker # Starlight start
-   #- id: BoxBeaker
-   #  prob: 0.3
+    # Starlight start
+    - id: RPLD
     - id: BoxBeakerSmall
     - id: BoxBeakerLarge
     - id: BoxJug
     - id: PatchPack
-      amount: 2 # Starlight end
-    - id: BoxPillCanister
-    - id: BoxBottle
-    - id: BoxVial
-    - id: PlasmaChemistryVial
+      amount: 2
+    # Starlight end
+    - id: ClothingEyesGlassesChemical
     - id: ChemBag
-    - id: RPLD # Starlight
-    - id: ClothingHandsGlovesLatex
-    - id: ClothingHeadsetMedical
-    - id: ClothingMaskSterile
+    - id: Dropper
     - id: HandLabeler
-      prob: 0.5
+    - id: BarSpoon # Should be replaced by a stirring tool with medical theming, like a glass rod
+    - id: PlasmaChemistryVial
+    - !type:AllSelector # The wonderful world of chemical storage
+      children:
+      - id: BoxSyringe
+      - id: BoxBottle
+      - id: BoxVial
+      # - id: BoxBeaker # Starlight
+      - id: BoxPillCanister
+      - !type:GroupSelector # Remind chemists once in a while of alternate storage options
+        prob: 0.2
+        children:
+        - id: SprayBottle
+        - id: Bucket
+        - id: DrinkCartonMilk
 
 - type: entity
   parent: LockerChemistry
@@ -126,23 +143,21 @@
   id: LockerFillParamedic
   table: !type:AllSelector
     children:
-    - id: ClothingOuterHardsuitVoidParamed
-    - id: ClothingOuterCoatParamedicWB
-    - id: ClothingHeadHatParamedicsoft
-    - id: ClothingOuterWinterPara
-    - id: ClothingUniformJumpsuitParamedic
-    - id: ClothingUniformJumpskirtParamedic
     - id: ClothingEyesHudMedical
-    - id: ClothingHandsGlovesLatex
-    - id: ClothingHeadsetMedical
-    - id: ClothingMaskSterile
-    - id: HandheldGPSBasic
-    - id: MedkitFilled
-      prob: 0.3
+    - id: ClothingOuterHardsuitVoidParamed
+    - id: ClothingBeltMedicalEMTFilled
     - id: JetInjector
-    - id: PlushieKiosha #starlight
-    - id: EmergencyHandheldCrewMonitor #starlight
-    - id: JawsOfLifeMed #Starlight
+    - id: EmergencyHandheldCrewMonitor # Starlight
+    - id: JawsOfLifeMed # Starlight
+    - id: BottleCaseParamedicFilled # Starlight, they don't get the pen pouch, they already get a ton of their own special toys.
+    # - id: HandheldHealthAnalyzer Starlight - kind of just junk in the locker at this point, use your PDA or get one at a nanomed
+    - id: BoxBodyBag
+    # Starlight edit - rollerbeds - these are mapped, printable and in your bag round start
+    # - !type:GroupSelector
+    #   children:
+    #   - id: RollerBedSpawnFolded
+    #   - id: CheapRollerBedSpawnFolded
+    #   - id: EmergencyRollerBedSpawnFolded
 
 - type: entity
   parent: LockerParamedic

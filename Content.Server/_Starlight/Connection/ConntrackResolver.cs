@@ -116,7 +116,7 @@ public sealed class ConntrackResolver
         return true;
     }
 
-    private static string FormatHostForUrl(IPAddress address) 
+    private static string FormatHostForUrl(IPAddress address)
         => address.AddressFamily == AddressFamily.InterNetworkV6
             ? $"[{address}]"
             : address.ToString();

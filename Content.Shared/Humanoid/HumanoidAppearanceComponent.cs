@@ -118,7 +118,7 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// If null, the entity was not spawned with a profile.
     /// </summary>
     public HumanoidCharacterProfile? BaseProfile;
-    
+
     public static readonly Dictionary<Sex, string> DefaultSexVoice = new()
     {
         {Sex.Male, "Voljin"},

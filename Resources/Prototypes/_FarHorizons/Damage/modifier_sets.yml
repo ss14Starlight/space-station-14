@@ -3,8 +3,8 @@
   coefficients:
     Shock: 1.5 # Insulated these components are not.
     Blunt: 1.2 # Delicate internals
-    Slash: 0.7 # Plasteel frames
-    Piercing: 0.7
+    Slash: 0.9
+    Caustic: 0.9
 
 - type: damageModifierSet
   id: StructuralReactorCasing # StructuralMetallicStrong(er), it's going to take more than a mere baseball bat to do any real damage

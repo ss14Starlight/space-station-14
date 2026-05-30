@@ -11,7 +11,7 @@ public sealed partial class NullSpaceBlockerComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public bool BypassPVS = false;
-    
+
     /// <summary>
     /// Will force Unphase any ent that touches it.
     /// </summary>

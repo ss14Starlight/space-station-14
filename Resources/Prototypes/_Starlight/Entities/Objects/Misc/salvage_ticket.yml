@@ -21,6 +21,10 @@
       SalvageTicket: 1
   - type: StaticPrice
     price: 0
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
     stackType: SalvageTicket
     count: 1
@@ -63,7 +67,7 @@
   name: stack-ticket
   icon: { sprite: /Textures/_Starlight/Objects/Economy/salvage_ticket.rsi, state: icon }
   spawn: SalvageTicket
-  
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket5
@@ -71,7 +75,7 @@
   components:
   - type: Stack
     count: 5
-  
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket10
@@ -79,7 +83,7 @@
   components:
   - type: Stack
     count: 10
-    
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket15
@@ -87,7 +91,7 @@
   components:
   - type: Stack
     count: 15
-    
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket20
@@ -95,7 +99,7 @@
   components:
   - type: Stack
     count: 20
-    
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket25
@@ -103,7 +107,7 @@
   components:
   - type: Stack
     count: 25
-    
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket30
@@ -111,7 +115,7 @@
   components:
   - type: Stack
     count: 30
-    
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket50
@@ -119,7 +123,7 @@
   components:
   - type: Stack
     count: 50
-    
+
 - type: entity
   parent: SalvageTicket
   id: SalvageTicket100

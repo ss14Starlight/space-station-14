@@ -287,7 +287,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         // Have we already reached the point of max stamina damage?
         if (component.Critical)
             return;
-        
+
         var staminaModifyEvent = new StaminaModifyEvent(value);
         RaiseLocalEvent(uid, staminaModifyEvent);
 
@@ -394,7 +394,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
             var totalDecayMod =
                 comp.DecayModifiers.Aggregate<(NetEntity, float, TimeSpan), float>(1,
                     (current, modifier) => current * modifier.Item2);
-            
+
             TakeStaminaDamage(
                 uid,
                 comp.AfterCritical ? -comp.Decay * comp.AfterCritDecayMultiplier * totalDecayMod : -comp.Decay * totalDecayMod, // Recover faster after crit
@@ -481,10 +481,10 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 public sealed class StaminaModifyEvent: EntityEventArgs, IInventoryRelayEvent
 {
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET;
-    
+
     public float Damage;
     public float Modifier;
-    
+
     public StaminaModifyEvent(float damage, float modifier = 1.0f)
     {
         Damage = damage;

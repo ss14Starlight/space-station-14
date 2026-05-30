@@ -1,27 +1,21 @@
 <Document>
 # Parole
 
-1. A criminal is sentenced to parole.
-
-Criminals may be sentenced to parole if:
-
-- They request parole before or during their sentence and Warden or Head of Security approves. The request should always be approved if a prisoner has been cooperative during their incarceration and served at least half their sentence. All other situations are up to discretion.
-- A member of the Legal Department justifiably orders parole at the conclusion of a trial or investigation.
-
-2. If the paroled individual has just been sentenced, they are to have their gear confiscated as-per instructions in Prisoner Treatment.
-
-- Warden or Head of Security may allow some possession to remain with the paroled individual during this time, at their discretion.
-
-3. Paroled individual is to be marked in the criminal records as "Paroled".
-
-4. Paroled individual is to be released from security.
-
-5. Warden and Head of Security may order the paroled individual to check in at security during parole.
-
-- Failure to comply in under 5 minutes should be considered breach of custody.
-- Paroled individuals should not be required to check in more frequently than once every 15 minutes.
-- Warrants are not required to search paroled individuals.
-
-6. When their sentence is up the paroled individual should return to security to collect their belongings and be marked as discharged. 
+- 1.\n
+To ensure the continued output of departments, security is encouraged to provide Parole when sensible.\n\n
+1.1\n
+Parole may be applied as the result of a trial, or at the Warden or Head of Security's discretion.
+- 2.\n
+Paroled Prisoners are to be released from Security and marked "Paroled" in the Criminal Records System.
+- 3.\n
+The Warden or Head of Security may request the paroled individual to "check in" at security during the duration of their parole.
+3.1\n
+Failure to comply in under 5 minutes is to be considered breach of custody.\n\n
+3.2\n
+This should not be done more than every 15 minutes.\n\n
+3.3\n
+Paroled individuals may be searched at all times by Security.
+- 4.\n
+When the sentence is up, the parolee may return to security to retrieve any temporarily confiscated equipment, such as tools.
 
 </Document>

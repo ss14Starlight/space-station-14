@@ -19,6 +19,6 @@
       sprite: Objects/Specific/Cargo/mail.rsi
       state: icon
   - type: RailroadDonationReward
-    amount: 
+    amount:
       min: 5
       max: 15

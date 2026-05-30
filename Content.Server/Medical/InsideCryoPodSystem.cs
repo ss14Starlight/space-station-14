@@ -1,5 +1,5 @@
-﻿using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
+﻿using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Medical.Components;
 using Content.Shared.Medical.Cryogenics;
 

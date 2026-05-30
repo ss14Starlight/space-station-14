@@ -81,7 +81,7 @@
     tags:
       - FootstepSound
       - DoorBumpOpener
-        
+
 - type: entity
   parent: BaseMobDinosaur
   id: BaseMobDinosaurCarno
@@ -112,7 +112,7 @@
   parent: BaseMobDinosaur
   id: MobDinosaurCompy
   name: compsognathus
-  description: Over-sized chickens 
+  description: Over-sized chickens
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -185,18 +185,16 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
-    
+
 - type: entity
   id: FoodEggCompyFertilized
   parent: FoodEgg
   suffix: Fertilized, Compy
   components:
-    - type: Timer
     - type: TimedSpawner
       prototypes:
         - MobDinosaurCompy
       intervalSeconds: 20
       minimumEntitiesSpawned: 1
       maximumEntitiesSpawned: 2
-    - type: TimedDespawn #delete the egg after the compy spawns
-      lifetime: 21
+      despawnWhenDone: true #delete the egg after the compy spawns

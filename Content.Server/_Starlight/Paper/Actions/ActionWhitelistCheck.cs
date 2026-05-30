@@ -15,9 +15,9 @@ public sealed partial class ActionWhitelistCheck : OnSignAction
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist = null;
-    
+
     private EntityWhitelistSystem _whitelistSystem = default!;
-    
+
     public override bool Action(EntityUid paper, ActionsOnSignComponent component, EntityUid target)
     {
         if (!_whitelistSystem.CheckBoth(target, Blacklist, Whitelist))

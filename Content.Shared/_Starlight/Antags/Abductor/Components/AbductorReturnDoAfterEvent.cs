@@ -40,10 +40,10 @@ public sealed partial class AbductorAttractDoAfterEvent : SimpleDoAfterEvent
 
     [DataField("victim", required: true)]
     public NetEntity Victim;
-    
+
     [DataField("dispencer", required: true)]
     public NetEntity Dispencer;
-    
+
     private AbductorAttractDoAfterEvent()
     {
     }

@@ -31,7 +31,7 @@ public sealed class WeatherRule : StationEventSystem<WeatherRuleComponent>
 
         if (grid is null)
             return;
-        
+
         component.Map = Transform(grid.Value).MapID; // SL
 
         // Starlight - Edited

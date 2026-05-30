@@ -100,7 +100,7 @@ public sealed class ParallaxOverlay : Overlay
         // SL - Allow supporting Sprites to we can use Frames!
         Texture tex;
         if (layer.Config.Sprite)
-            tex = _sprite.GetFrame(layer.Sprite, _timing.CurTime);
+            tex = _sprite.GetFrame(layer.Sprite!, _timing.CurTime);
         else
             tex = layer.Texture;
 

@@ -563,7 +563,7 @@
     # Intellicard:
       # sprite: Objects/Devices/ai_card.rsi
       # state: full
-      
+
 - type: stationAiCustomization
   parent: StationAiIconBase
   id: StationAiIconMalicious

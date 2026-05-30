@@ -13,7 +13,7 @@ public sealed class XenobiologyConsoleCameraTaggerSystem : EntitySystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly StationAiSystem _stationAiSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -27,7 +27,7 @@ public sealed class XenobiologyConsoleCameraTaggerSystem : EntitySystem
             return;
         if (!_stationAiSystem.AddTag(stationAiVisionComponent, "xenobiology")) return;
         if (!_entityManager.TryGetComponent<ActorComponent>(args.User, out var actorComponent)) return;
-        
+
         var channel = actorComponent.PlayerSession.Channel;
         var message = "Connected camera to the Xenobiology Console network.";
         _chatManager.ChatMessageToOne(ChatChannel.Local, message, message, EntityUid.Invalid, false, channel);

@@ -189,9 +189,9 @@ public abstract class SharedWieldableSystem : EntitySystem
 
     private void OnUseInHand(EntityUid uid, WieldableComponent component, UseInHandEvent args)
     {
-        if (args.Handled 
+        if (args.Handled
             || (TryComp<ChamberMagazineAmmoProviderComponent>(uid, out var chamber) // Starlight-start
-                && chamber.BoltClosed == false 
+                && chamber.BoltClosed == false
                 && _hands.GetEmptyHandCount(args.User) == 0)) // Starlight-end
             return;
 

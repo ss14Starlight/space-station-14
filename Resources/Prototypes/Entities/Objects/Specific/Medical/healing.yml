@@ -14,7 +14,7 @@
     price: 0
   # Starlight-edit: start
   - type: ItemPrice
-    priceCategory: medical  
+    priceCategory: medical
   #Starlight-edit: end
 
 - type: entity
@@ -214,7 +214,7 @@
 
 - type: entity
   name: blood pack
-  description: Contains a groundbreaking universal blood replacement created by Nanotrasen's advanced medical science.
+  description: Contains a groundbreaking universal blood replacement created by NanoTrasen's advanced medical science. # SL
   parent: BaseHealingItem
   id: Bloodpack
   suffix: Full
@@ -229,6 +229,7 @@
   - type: Healing
     damageContainers:
       - Biological
+
     damage:
       types:
         Bloodloss: -0.5 #lowers bloodloss damage
@@ -244,10 +245,6 @@
       params:
         volume: 1.0
         variation: 0.125
-  - type: InteractRestriction #Far Horizons
-    restrictInteractionTarget:
-      blacklist:
-      - IPC
   - type: Stack
     stackType: Bloodpack
     count: 10
@@ -281,8 +278,10 @@
       damageContainers:
         - Biological
       damage:
-        groups:
-          Brute: 5 # Tourniquets HURT!
+      #region Starlight
+      #  groups:
+      #    Brute: 5 # removed: doing brute damage means that putting on a tourniquet makes you bleed (??)
+      #endregion Starlight
         types:
           Asphyxiation: 5 # Essentially Stopping all blood reaching a part of your body
       bloodlossModifier: -10 # Tourniquets stop bleeding

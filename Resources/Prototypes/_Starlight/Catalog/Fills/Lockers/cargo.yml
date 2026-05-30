@@ -12,6 +12,8 @@
   table: !type:AllSelector
     children:
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: CoolingUnit
     - id: ClothingShoesBootsMag
     - id: ClothingOuterHardsuitSpatioLead
     - id: ClothingMaskGasExplorer
@@ -187,7 +189,7 @@
       - id: ClothingUniformJumpsuitCargo
       - id: ClothingUniformJumpskirtCargo
       - !type:GroupSelector
-        children: 
+        children:
         - id: ClothingBackpackCargo
         - id: ClothingBackpackSatchelCargo
         - id: ClothingBackpackDuffelCargo
@@ -202,7 +204,7 @@
       - id: WeaponMeleeBoxcutter
       - id: HandheldGPSBasic
       - !type:GroupSelector
-        children: 
+        children:
         - id: BoxFolderRedCargo
         - id: BoxFolderBlueCargo
         - id: BoxFolderYellowCargo
@@ -223,7 +225,7 @@
         - id: BoxCardboard
           prob: 0.3
       - !type:GroupSelector
-        children: 
+        children:
         - id: BoxFolderClipboard
           weight: 0.1
         - id: BoxFolderClipboardEmpty
@@ -272,7 +274,7 @@
       - id: ClothingUniformJumpsuitMail
       - id: ClothingUniformJumpskirtMail
       - !type:GroupSelector
-        children: 
+        children:
         - id: ClothingBackpackCargo
         - id: ClothingBackpackSatchelCargo
         - id: ClothingBackpackDuffelCargo
@@ -295,7 +297,7 @@
         - id: BoxCardboard
           prob: 0.2
       - !type:GroupSelector
-        children: 
+        children:
         - id: BoxFolderClipboard
           weight: 0.1
         - id: BoxFolderClipboardEmpty

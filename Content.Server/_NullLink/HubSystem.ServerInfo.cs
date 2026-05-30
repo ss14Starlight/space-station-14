@@ -1,26 +1,22 @@
 ﻿using System.Threading.Tasks;
-using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
-using Content.Server.Players.RateLimiting;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
-using Content.Shared.Administration.Events;
-using Robust.Server.Player;
-using Robust.Shared.Configuration;
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 using Starlight.NullLink;
 using ServerInfoRequest = Starlight.NullLink.ServerInfo;
+using Content.Server.Administration.Systems;
+using System.Linq;
 
 namespace Content.Server._NullLink;
 
 public sealed partial class HubSystem : EntitySystem
 {
     private static readonly TimeSpan _minInterval = TimeSpan.FromMilliseconds(300);
-    private TimeSpan _lastSent;         
-    private bool _sendScheduled;   
+    private TimeSpan _lastSent;
+    private bool _sendScheduled;
     private int _maxPlayers;
     private string _mapName = "Unknown";
     private string _gamemodeName = "Unknown";
@@ -30,21 +26,23 @@ public sealed partial class HubSystem : EntitySystem
     public void InitializeServerInfo()
     {
         _cfg.OnValueChanged(CCVars.SoftMaxPlayers, OnSoftMaxPlayersChanged, true);
+        _cfg.OnValueChanged(CCVars.PanicBunkerEnabled, OnPanicBunkerChanged, true);
 
         SubscribeLocalEvent<RoundRestartCleanupEvent>(_ => OnLobby());
         SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => OnRoundEnding());
         SubscribeLocalEvent<RoundStartingEvent>(_ => OnRoundStart());
-        SubscribeLocalEvent<PanicBunkerChangedEvent>(OnPanicBunkerChanged);
 
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
+        _adminManager.OnAdminsCountChanged += OnAdminsCountChanged;
+        _adminManager.OnActiveAdminsCountChanged += OnActiveAdminsCountChanged;
     }
 
-    private void OnPanicBunkerChanged(PanicBunkerChangedEvent args)
+    private void OnPanicBunkerChanged(bool enabled)
     {
-        if (_serverInfo.PanicBunkerActive == args.Status.Enabled) return;
+        if (_serverInfo.PanicBunkerActive == enabled) return;
         _serverInfo = _serverInfo with
         {
-            PanicBunkerActive = args.Status.Enabled
+            PanicBunkerActive = enabled
         };
         TryUpdateServerInfo();
     }
@@ -61,7 +59,28 @@ public sealed partial class HubSystem : EntitySystem
         _serverInfo = _serverInfo with
         {
             Players = _playerManager.PlayerCount,
-            MaxPlayers = _maxPlayers
+            MaxPlayers = _maxPlayers,
+            Mentors = _playerRoles.Mentors.ToList().Count,
+        };
+        TryUpdateServerInfo();
+    }
+
+    private void OnAdminsCountChanged(int count)
+    {
+        if (_serverInfo.Admins == count) return;
+        _serverInfo = _serverInfo with
+        {
+            Admins = count
+        };
+        TryUpdateServerInfo();
+    }
+
+    private void OnActiveAdminsCountChanged(int count)
+    {
+        if (_serverInfo.ActiveAdmins == count) return;
+        _serverInfo = _serverInfo with
+        {
+            ActiveAdmins = count
         };
         TryUpdateServerInfo();
     }
@@ -118,11 +137,11 @@ public sealed partial class HubSystem : EntitySystem
             return;
         }
 
-        if (_sendScheduled)              
+        if (_sendScheduled)
             return;
 
         _sendScheduled = true;
-        var delay = nextAllowed - now;   
+        var delay = nextAllowed - now;
 
         Pipe.RunInBackground(async () =>
         {
@@ -133,7 +152,7 @@ public sealed partial class HubSystem : EntitySystem
             }
             finally
             {
-                _sendScheduled = false; 
+                _sendScheduled = false;
             }
         },
         ex => _sawmill.Log(LogLevel.Warning, ex,
@@ -144,8 +163,8 @@ public sealed partial class HubSystem : EntitySystem
     {
         _lastSent = _timing.RealTime;
 
-        return _actors.TryGetServerGrain(out var serverGrain) 
-            ? serverGrain!.UpdateServerInfo(_serverInfo) 
+        return _actors.TryGetServerGrain(out var serverGrain)
+            ? serverGrain.UpdateServerInfo(_serverInfo)
             : ValueTask.CompletedTask;
     }
 }

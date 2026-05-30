@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Anomaly.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared.Verbs;
-using Robust.Shared.Prototypes;
 using Content.Shared.Anomaly;
 using Content.Shared.Alert;
 using Content.Shared.Actions;
@@ -154,7 +153,7 @@ public sealed class DarkPortalSystem : EntitySystem
 
         args.Cancel();
     }
-    
+
     private void OnGetInteractionVerbs(EntityUid uid, DarkPortalComponent component, ref GetVerbsEvent<InteractionVerb> args)
     {
         if (!args.CanAccess || component.Brighteye != args.User || !TryComp<AnomalyComponent>(uid, out var anomaly))

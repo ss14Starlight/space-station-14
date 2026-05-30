@@ -1,0 +1,54 @@
+﻿- type: body
+  id: Slime
+  name: "slime"
+  root: torso
+  slots:
+    head:
+      part: HeadSlime
+      connections:
+      - torso
+      organs:
+        eyes: OrganSlimePeepoids # Starlight
+        tongue: OrganSlimeSlurpoid # Starlight
+        eye_implant: null
+    torso:
+      part: TorsoSlime
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganSlimeHeart
+        core: SentientSlimeCore
+        lungs: OrganSlimeLungs
+        cavity: null
+        brain_implant: null # 🌟Starlight🌟
+    right arm:
+      part: RightArmSlime
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmSlime
+      connections:
+      - left hand
+    right hand:
+      part: RightHandSlime
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
+    left hand:
+      part: LeftHandSlime
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
+    right leg:
+      part: RightLegSlime
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegSlime
+      connections:
+      - left foot
+    right foot:
+      part: RightFootSlime
+    left foot:
+      part: LeftFootSlime

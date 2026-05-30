@@ -39,7 +39,7 @@
       sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
       state: scalpel
     - type: SurgeryStepEmoteEffect
-    
+
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepRetractSkin
@@ -53,12 +53,12 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: retractor
-    
+
 - type: entity
   parent: SurgeryStepRetractSkin
   id: SurgeryStepRetractMembrane
   name: Retract the membrane
-     
+
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepCoagulateJellyFlow

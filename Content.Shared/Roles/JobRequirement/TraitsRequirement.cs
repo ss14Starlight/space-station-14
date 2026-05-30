@@ -41,7 +41,7 @@ public sealed partial class TraitsRequirement : JobRequirement
             sb.Append(Loc.GetString(protoManager.Index(t).Name) + " ");
         }
         // Starlight: No color here, in .ftl instead
-        
+
         // Starlight BEGIN
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
             Inverted ? "role-timer-blacklisted-traits-pass" : "role-timer-whitelisted-traits-pass",
@@ -58,7 +58,7 @@ public sealed partial class TraitsRequirement : JobRequirement
             Inverted ? "role-timer-blacklisted-traits-fail" : "role-timer-whitelisted-traits-fail",
             ("traits", sb)));
         return false;
-        
+
         /*
         if (!Inverted)
         {

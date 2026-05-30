@@ -34,40 +34,6 @@
   - !type:BuyerAccessCondition
 
 - type: listing
-  id: VendorMiningMechClarke
-  productEntity: MechClarke
-  cost:
-    SalvageTicket: 700
-  categories:
-  - MiningEquipment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerAccessCondition
-
-#- type: listing
-#  id: VendorMiningClothingOuterHardsuitMaxim
-#  productEntity: ClothingOuterHardsuitMaxim
-#  cost:
-#    SalvageTicket: 1500
-#  categories:
-#  - MiningEquipment
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 3
-#  - !type:BuyerAccessCondition
-
-#- type: listing
-#  id: VendorMiningClothingOuterHardsuitLuxury
-#  productEntity: ClothingOuterHardsuitLuxury
-#  cost:
-#    SalvageTicket: 150
-#  categories:
-#  - MiningEquipment
-#  conditions:
-#  - !type:BuyerAccessCondition
-
-- type: listing
   id: VendorMiningClothingOuterHardsuitAdvancedMining
   productEntity: ClothingOuterHardsuitAdvancedMining
   cost:
@@ -89,16 +55,6 @@
   conditions:
   - !type:BuyerAccessCondition
 
-#- type: listing
-#  id: VendorMiningClothingOuterHardsuitSpatio
-#  productEntity: ClothingOuterHardsuitSpatio
-#  cost:
-#    SalvageTicket: 100
-#  categories:
-#  - MiningEquipment
-#  conditions:
-#  - !type:BuyerAccessCondition
-    
 - type: listing
   id: VendorMiningClothingOuterHardsuitSpaceHazard
   productEntity: ClothingOuterHardsuitSpaceHazard
@@ -131,6 +87,18 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorMiningPickaxeDiamond
+  productEntity: PickaxeDiamond
+  cost:
+    SalvageTicket: 300
+  categories:
+  - MiningEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:BuyerAccessCondition
 
 - type: listing
@@ -205,7 +173,7 @@
   id: VendorMiningWeaponMechMelleDrillDiamond
   productEntity: WeaponMechMelleDrillDiamond
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 800
   categories:
   - MiningEquipment
   conditions:
@@ -244,16 +212,6 @@
     - !type:ListingLimitedStockCondition
       stock: 4
     - !type:BuyerAccessCondition
-
-#- type: listing
-#  id: VendorMiningExpeditionEncryptionKey
-#  productEntity: EncryptionKeyExpedition
-#  cost:
-#    SalvageTicket: 100
-#  categories:
-#  - MiningEquipment
-#  conditions:
-#  - !type:BuyerAccessCondition
 
 #consumables
 - type: listing

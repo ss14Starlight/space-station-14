@@ -1,4 +1,29 @@
-﻿- type: body
+﻿- type: entity
+  id: CheekStorage
+  name: cheek storage
+  description: The cheeks of an animal, capable of storing small objects.
+  noSpawn: true
+  components:
+    - type: Storage
+      clickInsert: false
+      grid:
+        - 0,0,1,1
+      maxItemSize: Small
+      blacklist:
+        components:
+          - Sharp
+          - MindContainer
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: [ ]
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Dumpable
+
+- type: body
   id: Rodentia
   name: "rodentia"
   root: torso
@@ -21,11 +46,11 @@
       - right leg
       - left leg
       organs:
-        heart: OrganHumanHeart
+        heart: OrganRodentiaHeart
         lungs: OrganHumanLungs
-        stomach: OrganHumanStomach
-        liver: OrganHumanLiver
-        kidneys: OrganHumanKidneys
+        stomach: OrganRodentiaStomach
+        liver: OrganAnimalLiver
+        kidneys: OrganAnimalKidneys
         cavity: null
     right arm:
       part: RightArmRodentia
@@ -55,4 +80,3 @@
       part: RightFootRodentia
     left foot:
       part: LeftFootRodentia
-#   tail: # MIKEY add tail for crazyphantom

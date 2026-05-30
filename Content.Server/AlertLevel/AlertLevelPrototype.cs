@@ -66,7 +66,7 @@ public sealed partial class AlertLevelDetail
     /// Will this alert level force emergency lights on for the station that's active?
     /// </summary>
     [DataField("forceEnableEmergencyLights")] public bool ForceEnableEmergencyLights { get; private set; } = false;
-    
+
     /// <summary>
     /// Will this alert level dim regular lights, and with what multiplier?
     /// </summary>

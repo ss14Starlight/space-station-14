@@ -114,7 +114,7 @@ public sealed class HitscanBasicRaycastSystem : EntitySystem
         // Do visuals without an event. They should always happen and putting it on the attempt event is weird!
         // If more stuff gets added here, it should probably be turned into an event.
         // FireEffects(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), ent.Owner); // Starlight - comment out, as we want to aggregate these
-        
+
         args.OutputTrace.Add(GenerateTraceStep(args.FromCoordinates, distanceTried, args.ShotDirection.ToAngle(), result?.HitEntity)); // Starlight - add the visuals for this particular leg of the hitscan into the trace
 
         // Admin logging

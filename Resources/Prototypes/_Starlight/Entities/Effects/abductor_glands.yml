@@ -15,7 +15,7 @@
   id: AbductorGravityGlandGravityWell
   suffix: Gravity
   parent: GlandEffectBase
-  components: 
+  components:
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Effects/Grenades/Supermatter/supermatter_start.ogg

@@ -481,7 +481,7 @@
         types:
             Heat: 4
   - type: ItemToggleSize
-    activatedSize: Small 
+    activatedSize: Small
   - type: ItemToggleHot #Starlight-end
   - type: PointLight
     enabled: false
@@ -640,7 +640,7 @@
   - type: Item
     sprite: Objects/Tools/Lighters/donkco.rsi
   - type: Welder #
-    fuelConsumption: 0.02 
+    fuelConsumption: 0.02
     fuelLitCost: 0.01 # Starlight-edit
     tankSafe: true
   - type: Tag

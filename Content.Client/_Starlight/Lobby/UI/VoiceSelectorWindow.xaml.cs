@@ -7,104 +7,103 @@ using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Utility;
 
-namespace Content.Client._Starlight.Lobby.UI
+namespace Content.Client._Starlight.Lobby.UI;
+
+[GenerateTypedNameReferences]
+public sealed partial class VoiceSelectorWindow : DefaultWindow
 {
-    [GenerateTypedNameReferences]
-    public sealed partial class VoiceSelectorWindow : DefaultWindow
+
+    public List<VoicePrototype> Voices { get; set; } = [];
+
+    public Action<VoicePrototype>? OnVoiceSelected;
+
+    public Action? OnPreviewRequested;
+
+    public VoicePrototype? CurrentVoice { get; private set; } = null;
+
+    public Sex? _filter = null;
+
+    public VoiceSelectorWindow(List<VoicePrototype> voices)
     {
+        RobustXamlLoader.Load(this);
 
-        public List<VoicePrototype> Voices { get; set; } = [];
+        VoiceList.OnItemSelected += OnItemSelected;
 
-        public Action<VoicePrototype>? OnVoiceSelected;
+        UpdateVoices(voices);
 
-        public Action? OnPreviewRequested;
+        GenderFilter.AddItem(Loc.GetString("voice-selector-filter-all"));
 
-        public VoicePrototype? CurrentVoice { get; private set; } = null;
+        int i = 1;
 
-        public Sex? _filter = null;
-
-        public VoiceSelectorWindow(List<VoicePrototype> voices)
+        foreach (var sex in Enum.GetValues<Sex>())
         {
-            RobustXamlLoader.Load(this);
-
-            VoiceList.OnItemSelected += OnItemSelected;
-
-            UpdateVoices(voices);
-
-            GenderFilter.AddItem(Loc.GetString("voice-selector-filter-all"));
-
-            int i = 1;
-
-            foreach (var sex in Enum.GetValues<Sex>())
-            {
-                GenderFilter.AddItem(sex.ToString(), i);
-                GenderFilter.SetItemMetadata(i, sex);
-                i++;
-            }
-
-            GenderFilter.OnItemSelected += OnFilterSelected;
-
-            SearchLine.OnTextChanged += _ => FilterAndUpdateVoices();
-
-            PreviewButton.OnPressed += _ => OnPreviewRequested?.Invoke();
+            GenderFilter.AddItem(sex.ToString(), i);
+            GenderFilter.SetItemMetadata(i, sex);
+            i++;
         }
 
-        private void OnFilterSelected(OptionButton.ItemSelectedEventArgs args)
+        GenderFilter.OnItemSelected += OnFilterSelected;
+
+        SearchLine.OnTextChanged += _ => FilterAndUpdateVoices();
+
+        PreviewButton.OnPressed += _ => OnPreviewRequested?.Invoke();
+    }
+
+    private void OnFilterSelected(OptionButton.ItemSelectedEventArgs args)
+    {
+        GenderFilter.SelectId(args.Id);
+        var metadata = args.Button.GetItemMetadata(args.Id);
+        if (metadata is not null and Sex result)
         {
-            GenderFilter.SelectId(args.Id);
-            var metadata = args.Button.GetItemMetadata(args.Id);
-            if (metadata != null && metadata is Sex result)
-            {
-                _filter = result;
-                FilterAndUpdateVoices();
-            }
-            else
-            {
-                _filter = null;
-                FilterAndUpdateVoices();
-            }
+            _filter = result;
+            FilterAndUpdateVoices();
         }
-
-        private void OnItemSelected(ItemList.ItemListSelectedEventArgs obj)
+        else
         {
-            if (obj.ItemList.TryGetValue(obj.ItemIndex, out var item) && item.Metadata is VoicePrototype voice)
-            {
-                OnVoiceSelected?.Invoke(voice);
-                CurrentVoice = voice;
-                CurrentVoiceLabel.Text = Loc.GetString("voice-selector-current-voice", ("voice", Loc.GetString(voice.Name)));
-            }
+            _filter = null;
+            FilterAndUpdateVoices();
         }
+    }
 
-        public void FilterAndUpdateVoices()
+    private void OnItemSelected(ItemList.ItemListSelectedEventArgs obj)
+    {
+        if (obj.ItemList.TryGetValue(obj.ItemIndex, out var item) && item.Metadata is VoicePrototype voice)
         {
-            var voices = Voices.Where(v => (_filter == null || v.Sex == _filter) && Loc.GetString(v.Name).StartsWith(SearchLine.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
-            UpdateVoices(voices, updateList: false);
-        }
-
-        public void UpdateVoices(List<VoicePrototype> voices, bool updateList = true, bool updateVoice = true)
-        {
-            if (updateList)
-            {
-                Voices.Clear();
-                Voices.AddRange(voices);
-            }
-            VoiceList.Clear();
-            foreach (var voice in voices)
-                VoiceList.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", metadata: voice);
-
-            if (updateVoice && CurrentVoice != null)
-                SelectVoice(CurrentVoice);
-        }
-
-        public void SelectVoice(VoicePrototype voice)
-        {
-            var item = VoiceList.Where(x => x.Metadata is VoicePrototype voice1 && voice1.ID == voice.ID);
-            if (item.Any())
-                item.First().Selected = true;
-
+            OnVoiceSelected?.Invoke(voice);
             CurrentVoice = voice;
-
             CurrentVoiceLabel.Text = Loc.GetString("voice-selector-current-voice", ("voice", Loc.GetString(voice.Name)));
         }
+    }
+
+    public void FilterAndUpdateVoices()
+    {
+        var voices = Voices.Where(v => (_filter == null || v.Sex == _filter) && Loc.GetString(v.Name).StartsWith(SearchLine.Text, StringComparison.InvariantCultureIgnoreCase)).ToList();
+        UpdateVoices(voices, updateList: false);
+    }
+
+    public void UpdateVoices(List<VoicePrototype> voices, bool updateList = true, bool updateVoice = true)
+    {
+        if (updateList)
+        {
+            Voices.Clear();
+            Voices.AddRange(voices);
+        }
+        VoiceList.Clear();
+        foreach (var voice in voices)
+            VoiceList.AddItem($"[{voice.Sex}] {Loc.GetString(voice.Name)}", metadata: voice);
+
+        if (updateVoice && CurrentVoice != null)
+            SelectVoice(CurrentVoice);
+    }
+
+    public void SelectVoice(VoicePrototype voice)
+    {
+        var item = VoiceList.Where(x => x.Metadata is VoicePrototype voice1 && voice1.ID == voice.ID);
+        if (item.Any())
+            item.First().Selected = true;
+
+        CurrentVoice = voice;
+
+        CurrentVoiceLabel.Text = Loc.GetString("voice-selector-current-voice", ("voice", Loc.GetString(voice.Name)));
     }
 }

@@ -5,7 +5,7 @@
   prototype: MobAbductor
   sprites: MobAbductorSprites
   markingLimits: MobHumanMarkingLimits
-  dollPrototype: MobAbductorDummy
+  dollPrototype: AppearanceAbductor
   skinColoration: HumanToned
   defaultSkinTone: "#BFC2C7"
 

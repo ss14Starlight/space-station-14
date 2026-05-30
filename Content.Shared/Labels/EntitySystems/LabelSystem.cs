@@ -122,8 +122,8 @@ public sealed partial class LabelSystem : EntitySystem
 
             args.PushMarkup(Loc.GetString("comp-paper-label-has-label"));
             var text = paper.Content;
-            // STARLIGHT: Remove all markup for the examine text.
-            var message = FormattedMessage.FromMarkupPermissive(text.TrimEnd()).ToString();
+            // STARLIGHT: Remove MOST markup for the examine text.
+            var message = FormattedMessage.FromMarkupPermissive(text.TrimEnd()).SanitizeWhitelist(FormattedMessageSanitizer.PaperLabelTags).ToMarkup();
             args.PushMarkup(message);
         }
     }

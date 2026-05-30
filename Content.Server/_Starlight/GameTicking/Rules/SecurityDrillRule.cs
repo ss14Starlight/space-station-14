@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.AlertLevel;
 using Content.Server.StationEvents.Components;
@@ -13,42 +14,46 @@ public sealed class SecurityDrillRule : StationEventSystem<SecurityDrillRuleComp
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     protected override void Added(EntityUid uid, SecurityDrillRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        EntityUid? chosenStation = null;
-        if (!TryComp<StationEventComponent>(uid, out var stationEvent)) return;
-        chosenStation = stationEvent.TargetStation;
-        if (chosenStation is null)
-            if (!TryGetRandomStation(out chosenStation))
-                return;
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+            return;
 
-        var str = Loc.GetString("security-drill-event-fail-announcement");
+        var station = stationEvent.TargetStation;
+        if (station is null && !TryGetRandomStation(out station))
+            return;
 
-        // Check Alert Level
-        if (TryComp<AlertLevelComponent>(chosenStation, out var alert) && alert.CurrentLevel == "green")
+        if (!TryComp<AlertLevelComponent>(station, out var alert))
+            return;
+
+        if (alert.CurrentLevel != component.RequiredAlertLevel)
         {
-            if (_random.Prob(0.2f))
-                str = Loc.GetString("security-drill-basic", ("drill", Loc.GetString($"security-drill-basic-{_random.Next(1, 5)}")));
-            else
-            {
-                HashSet<string> target = new();
-                var crewMembers = _recordsSystem.GetRecordsOfType<GeneralStationRecord>(chosenStation.Value);
-                foreach (var crewMember in crewMembers)
-                    target.Add(crewMember.Item2.Name);
-
-                if (_random.Prob(0.3f))
-                    str = Loc.GetString("security-drill-detain",
-                        ("target", _random.Pick(target)));
-                else
-                    str = Loc.GetString("security-drill-questioning",
-                        ("target", _random.Pick(target)),
-                        ("drill", Loc.GetString($"security-drill-questioning-{_random.Next(1, 6)}")));
-            }
+            stationEvent.StartAnnouncement = _loc.GetString(component.FailAnnouncement);
+            base.Added(uid, component, gameRule, args);
+            return;
         }
 
-        stationEvent.StartAnnouncement = str;
+        if (_random.Prob(component.BasicDrillChance))
+        {
+            stationEvent.StartAnnouncement = _loc.GetString(component.BasicDrillLocKey,
+                ("drill", _random.Pick(component.BasicDrillVariants)));
+        }
+        else
+        {
+            var crew = _recordsSystem.GetRecordsOfType<GeneralStationRecord>(station.Value).ToArray();
+            if (crew.Length == 0)
+                return;
 
+            var target = _random.Pick(crew).Item2.Name;
+
+            stationEvent.StartAnnouncement = _random.Prob(component.DetainChance)
+                ? _loc.GetString(component.DetainLocKey, ("target", target))
+                : _loc.GetString(component.QuestioningLocKey,
+                    ("target", target),
+                    ("drill", _random.Pick(component.QuestioningVariants)));
+        }
         base.Added(uid, component, gameRule, args);
     }
 }

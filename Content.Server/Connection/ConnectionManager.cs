@@ -29,6 +29,7 @@ using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
 using Content.Shared.Starlight;
 using Content.Shared.Starlight.CCVar;
+using Robust.Shared.Utility;
 #endregion Starlight
 
 /*
@@ -71,6 +72,7 @@ namespace Content.Server.Connection
     {
         [Dependency] private readonly IActorRouter _actors = default!; // NullLink
         [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayerManager = default!; // NullLink
+        [Dependency] private readonly IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
         [Dependency] private readonly IPlayerManager _plyMgr = default!;
         [Dependency] private readonly IServerNetManager _netMgr = default!;
         [Dependency] private readonly IServerDbManager _db = default!;
@@ -93,13 +95,24 @@ namespace Content.Server.Connection
         private IPIntel.IPIntel _ipintel = default!;
         private ConntrackResolver _conntrack = default!; // Starlight
 
-        private RoleRequirementPrototype? _bunkerBypass; // NullLink
+        // nulllink start
+        private RoleRequirementPrototype? _bunkerBypass;
+        private ServerPlaytimeRecognitionPrototype? _serverPlaytimeRecognition;
+        private string? _project;
+        private string? _server;
+        // nulllink end
+
         public void PostInit()
         {
             InitializeWhitelist();
-            _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
-                => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true); // NullLink
+
             _conntrack = new ConntrackResolver(_http, _cfg, _logManager); // Starlight
+            // NullLink start
+            _cfg.OnValueChanged(NullLinkCCVars.Project, x => _project = x, true);
+            _cfg.OnValueChanged(NullLinkCCVars.Server, x => _server = x, true);
+            _cfg.OnValueChanged(NullLinkCCVars.BunkerBypass, reqProtoId
+                => _bunkerBypass = _prototypeManager.TryIndex<RoleRequirementPrototype>(reqProtoId, out var proto) ? proto : null, true);
+            // NullLink end
         }
 
         public void Initialize()
@@ -268,8 +281,7 @@ namespace Content.Server.Connection
             {
                 return (ConnectionDenyReason.NoHwid, Loc.GetString("hwid-required"), null);
             }
-
-            var bans = await _db.GetServerBansAsync(addr, userId, hwId, modernHwid, includeUnbanned: false);
+            var bans = await _banManager.GetServerBansAsync(addr, userId, hwId, modernHwid, includeUnbanned: false); // NullLink-edit: move to general method at Manager
             if (bans.Count > 0)
             {
                 var firstBan = bans[0];
@@ -292,11 +304,9 @@ namespace Content.Server.Connection
 
                 var minMinutesAge = _cfg.GetCVar(CCVars.PanicBunkerMinAccountAge);
                 var record = await _db.GetPlayerRecordByUserId(userId);
-                var validAccountAge = record != null &&
-                                      record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0;
                 var bypassAllowed = _cfg.GetCVar(CCVars.BypassBunkerWhitelist) && await _db.GetWhitelistStatusAsync(userId);
 
-                // NullLink Bypass start
+                // NullLink-start
                 try
                 {
                     if (!bypassAllowed
@@ -307,7 +317,29 @@ namespace Content.Server.Connection
                 catch (Exception)
                 {
                 }
-                // NullLink Bypass end
+
+                var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
+                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall) ?? new();
+
+                try
+                {
+                    if (_actors.TryGetServerGrain(out var serverGrain)
+                        && _prototypeManager.TryIndex<ServerPlaytimeRecognitionPrototype>(_project ?? "", out var proto)
+                        && proto.Recognition.TryGetValue(_server ?? "", out var recs))
+                    {
+                        var nulllinkPlaytime = await serverGrain.GetPlayTime(e.UserId, [PlayTimeTrackingShared.TrackerOverall], [.. recs]);
+                        overallTime.TimeSpent += TimeSpan.FromTicks(nulllinkPlaytime.Sum(x => x.Time.Ticks));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    _sawmill.Log(LogLevel.Warning, "Can't get NullLink playtime for {userId}! {ex}", e.UserId, ex);
+                }
+
+                /// If you see this message and this line in conflict, pls, don't do anything without help from NullLink Team, because you can break age bypass for our servers and downstreams.
+                /// Only change this if you know what you're doing.
+                var validAccountAge = record != null ? record.FirstSeenTime.CompareTo(DateTimeOffset.UtcNow - TimeSpan.FromMinutes(minMinutesAge)) <= 0 : overallTime.TimeSpent.TotalMinutes >= minMinutesAge;
+                // NullLink-end
 
                 // Use the custom reason if it exists & they don't have the minimum account age
                 if (customReason != string.Empty && !validAccountAge && !bypassAllowed)
@@ -322,9 +354,7 @@ namespace Content.Server.Connection
                             ("reason", Loc.GetString("panic-bunker-account-reason-account", ("minutes", minMinutesAge)))), null);
                 }
 
-                var minOverallMinutes = _cfg.GetCVar(CCVars.PanicBunkerMinOverallMinutes);
-                var overallTime = (await _db.GetPlayTimes(e.UserId)).Find(p => p.Tracker == PlayTimeTrackingShared.TrackerOverall);
-                var haveMinOverallTime = overallTime != null && overallTime.TimeSpent.TotalMinutes > minOverallMinutes;
+                var haveMinOverallTime = overallTime.TimeSpent.TotalMinutes >= minOverallMinutes; // NullLink-edit
 
                 // Use the custom reason if it exists & they don't have the minimum time
                 if (customReason != string.Empty && !haveMinOverallTime && !bypassAllowed)

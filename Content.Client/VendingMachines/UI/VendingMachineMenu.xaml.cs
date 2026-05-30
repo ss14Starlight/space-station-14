@@ -24,8 +24,8 @@ namespace Content.Client.VendingMachines.UI
         private readonly Dictionary<EntProtoId, EntityUid> _dummies = [];
          // 🌟Starlight start🌟
         private readonly Dictionary<EntProtoId, (ListContainerButton Button, VendingMachineItem Item)> _listItems = new();
-        private readonly Dictionary<EntProtoId, uint> _amounts = new(); 
-        private readonly Dictionary<EntProtoId, int> _prices = new(); 
+        private readonly Dictionary<EntProtoId, uint> _amounts = new();
+        private readonly Dictionary<EntProtoId, int> _prices = new();
          // 🌟Starlight end🌟
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Content.Client.VendingMachines.UI
         /// </summary>
         /// <param name="balance">Current player balance</param>
         public void UpdateBalance(int balance) => BalanceLabel.Text = $"Balance: {balance}₡";
-        
+
         /// <summary>
         /// Toggles the balance display
         /// </summary>
@@ -102,7 +102,7 @@ namespace Content.Client.VendingMachines.UI
 
             var item = new VendingMachineItem(protoID, itemName, amount, price, _showPrices);
             // 🌟Starlight🌟 end
-            
+
             _listItems[protoID] = (button, item);
 
             button.AddChild(item);
@@ -119,9 +119,9 @@ namespace Content.Client.VendingMachines.UI
         {
             _enabled = enabled;
             // 🌟Starlight🌟 start
-            _showPrices = showPrices; 
+            _showPrices = showPrices;
             _listItems.Clear();
-             _prices.Clear(); 
+             _prices.Clear();
             // 🌟Starlight🌟 end
             _amounts.Clear();
 
@@ -167,8 +167,8 @@ namespace Content.Client.VendingMachines.UI
 
                 var itemName = Identity.Name(dummy, _entityManager);
                 //🌟Starlight🌟 start
-                var itemText = showPrices && entry.Price > 0 ? 
-                    $"{itemName} [{entry.Amount}] - {entry.Price} ₡" : 
+                var itemText = showPrices && entry.Price > 0 ?
+                    $"{itemName} [{entry.Amount}] - {entry.Price} ₡" :
                     $"{itemName} [{entry.Amount}]";
                 //🌟Starlight🌟 end
                 _amounts[entry.ID] = entry.Amount;
@@ -218,12 +218,12 @@ namespace Content.Client.VendingMachines.UI
             }
         }
 
-        private string GetItemText(EntityUid dummy, uint amount, int price, bool showPrices = true) // 🌟Starlight🌟 
+        private string GetItemText(EntityUid dummy, uint amount, int price, bool showPrices = true) // 🌟Starlight🌟
         {
             var itemName = Identity.Name(dummy, _entityManager); // 🌟Starlight🌟
-            return showPrices && price > 0 ? 
-                $"{itemName} [{amount}] - {price} ₡" : 
-                $"{itemName} [{amount}]"; 
+            return showPrices && price > 0 ?
+                $"{itemName} [{amount}] - {price} ₡" :
+                $"{itemName} [{amount}]";
         }
 
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)

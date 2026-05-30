@@ -28,7 +28,7 @@ public sealed class TerrorEggSystem : AccUpdateEntitySystem
     private void RemoveEgg(Entity<EggHolderComponent> ent, ref ComponentShutdown args) => _eggs.Remove(ent.Owner);
 
     protected override float Threshold { get; set; } = 1f;
-    protected override void AccUpdate()
+    protected override void AccUpdate(float _)
     {
         foreach (var egg in _eggs)
         {
@@ -38,7 +38,7 @@ public sealed class TerrorEggSystem : AccUpdateEntitySystem
             _damageable.TryChangeDamage(egg.Value.Owner, _damage, false);
             if (egg.Value.Comp.Counter >= 300)
             {
-                var entity = EntityManager.SpawnEntity(_random.Pick(_terrorSpiders), Transform(egg.Value.Owner).Coordinates);
+                PredictedSpawnAtPosition(_random.Pick(_terrorSpiders), Transform(egg.Value.Owner).Coordinates);
                 RemComp<EggHolderComponent>(egg.Value.Owner);
             }
         }

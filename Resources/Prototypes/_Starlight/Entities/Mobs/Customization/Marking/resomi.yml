@@ -283,7 +283,7 @@
   - sprite: _Starlight/Mobs/Customization/Resomi/resomi_markings.rsi
     state: back_patch_full
 
-# Arm Markings    
+# Arm Markings
 - type: marking
   id: ResomiLArmFeathersComplex
   bodyPart: LHand

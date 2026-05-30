@@ -183,7 +183,7 @@
         - id: MagazineRifleSP
           amount: 3
         - id: MagazineRifleSP #Starlight, for the estoc
-          amount: 2 
+          amount: 2
         - id: MagazineLightRifleBoxSP
           amount: 3
         - id: MagazineShotgunSlug
@@ -292,6 +292,27 @@
         - id: ClothingMiscChameleon # Starlight Removed the Implanter from the backpack to make space for the Medal slot item.
 
 - type: entity
+  parent: ClothingBackpackChameleon
+  id: ClothingBackpackChameleonFillAgent
+  suffix: Fill, Chameleon, Syndie
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ChameleonAgentPDA
+        - id: ClothingUniformJumpsuitChameleon
+        - id: ClothingOuterChameleon
+        - id: ClothingNeckChameleon
+        - id: ClothingMaskGasChameleon
+        - id: ClothingHeadHatChameleon
+        - id: ClothingHandsChameleon
+        - id: ClothingEyesChameleon
+        - id: ClothingHeadsetChameleon
+        - id: ClothingShoesChameleon
+        - id: ChameleonControllerImplanter
+
+- type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateEVABundle
   name: syndicate EVA bundle
@@ -307,6 +328,7 @@
         - id: ClothingHandsGlovesColorYellowBudget
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit # Starlight
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -355,6 +377,7 @@
     - id: ClothingHandsGlovesCombat
     - id: DoubleEmergencyOxygenTankFilled
     - id: DoubleEmergencyNitrogenTankFilled
+    - id: EmergencyCoolingUnit # Starlight
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

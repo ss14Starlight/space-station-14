@@ -104,7 +104,7 @@
 
 - type: entity
   parent: AirlockGlass
-  id: AirlockMiningCargoGlass 
+  id: AirlockMiningCargoGlass
   suffix: Mining
   components:
   - type: Sprite
@@ -201,7 +201,7 @@
 
 - type: entity
   parent: AirlockGlass
-  id: AirlockMailGlass 
+  id: AirlockMailGlass
   suffix: Mail
   components:
   - type: Sprite
@@ -257,7 +257,7 @@
   id: AirlockHatchPirate
   name: airtight hatch
   suffix: Pirate
-  
+
 # Brigmedic
 - type: entity
   parent: Airlock

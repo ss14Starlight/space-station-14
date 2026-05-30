@@ -22,13 +22,13 @@ public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourc
         _cfg.OnValueChanged(NullLinkCCVars.ResourcesEnabled, UpdateResources, true);
     }
 
-    private void UpdateResources(bool obj) 
+    private void UpdateResources(bool obj)
         => _resourcesEnabled = obj;
 
     public override bool TryUpdateResource(ICommonSession session, string id, double value, bool skipNullLink = false)
     {
 
-        if (_sharedPlayers.GetPlayerData(session) is not { } data 
+        if (_sharedPlayers.GetPlayerData(session) is not { } data
             || value == 0) // If we don't have any difference - we don't need to call null link.
             return false;
 
@@ -67,7 +67,7 @@ public sealed class NullLinkPlayerResourcesManager : SharedNullLinkPlayerResourc
 
         data.Resources[id] = value;
 
-        if (!_resourcesEnabled 
+        if (!_resourcesEnabled
             || skipNullLink
             || !_actors.Enabled
             || !_actors.TryGetServerGrain(out var serverGrain) )

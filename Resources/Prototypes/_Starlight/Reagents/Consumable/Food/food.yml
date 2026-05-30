@@ -35,14 +35,26 @@
             Brute: -0.8
       - !type:ModifyBloodLevel
         amount: 1
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
+        factor: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 1.5
   - !type:PlantAdjustHealth
     amount: 0.75
   pricePerUnit: 3
-  
+
 # The worst part of Christmas. Functionally the same as Syrup.
 - type: reagent
   id: CranberrySauce
@@ -58,8 +70,19 @@
   metabolisms:
     Food:
       effects:
+      # Starlight edit start - Make food 50% less effective for dwarfs
+      - !type:SatiateHunger
+        factor: 3.0
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
       - !type:SatiateHunger
         factor: 6.0
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   pricePerUnit: 5
   footstepSound:
     collection: FootstepSlime
@@ -83,7 +106,19 @@
         damage:
           groups:
             Brute: -0.4
+      # Starlight edit start - Make food 50% less effective for dwarfs
       - !type:SatiateHunger
+        factor: 0.75
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+      - !type:SatiateHunger
+        factor: 1.5
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Dwarf ]
+          inverted: true
+      # Starlight edit end
   pricePerUnit: 3
   footstepSound:
     collection: FootstepSlime

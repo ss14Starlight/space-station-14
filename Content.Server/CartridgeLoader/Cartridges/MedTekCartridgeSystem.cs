@@ -25,7 +25,7 @@ public sealed class MedTekCartridgeSystem : EntitySystem
         //FarHorizons Start
         SubscribeLocalEvent<HealthAnalyzerComponent, MedTekActionEvent>(OnMedTekAction);
         SubscribeLocalEvent<HealthAnalyzerComponent, GetItemActionsEvent>(OnGetActions);
-        SubscribeLocalEvent<HealthAnalyzerComponent, InventoryRelayedEvent<GetVerbsEvent<InnateVerb>>>(AddVerbAnalyzer); 
+        SubscribeLocalEvent<HealthAnalyzerComponent, InventoryRelayedEvent<GetVerbsEvent<InnateVerb>>>(AddVerbAnalyzer);
         //FarHorizons End
     }
 
@@ -66,7 +66,7 @@ public sealed class MedTekCartridgeSystem : EntitySystem
             };
             args.Args.Verbs.Add(verb);
         }
-    }   
+    }
 
     private void OnGetActions(Entity<HealthAnalyzerComponent> ent, ref GetItemActionsEvent args)
     {
@@ -75,7 +75,7 @@ public sealed class MedTekCartridgeSystem : EntitySystem
             args.AddAction(ref ent.Comp.ActionEntity, ent.Comp.Action);
         }
     }
-    
+
     private void OnMedTekAction(Entity<HealthAnalyzerComponent> ent, ref MedTekActionEvent args)
     {
         var user = args.Performer;
@@ -86,5 +86,5 @@ public sealed class MedTekCartridgeSystem : EntitySystem
             _interactionSystem.InteractDoAfter(user, ent.Owner, target, patientCoordinates, true);
         }
     }
-    //FarHorizons End 
+    //FarHorizons End
 }

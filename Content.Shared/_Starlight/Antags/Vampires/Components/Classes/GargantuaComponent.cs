@@ -1,5 +1,8 @@
 using System.Numerics;
+using Content.Shared.FixedPoint;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 
@@ -23,6 +26,16 @@ public sealed partial class GargantuaComponent : VampireClassComponent
     /// </summary>
     public Vector2 ChargeDirectionVector;
 
+    public float ChargeSpeed;
+
+    public float ChargeCreatureDamage;
+
+    public float ChargeCreatureThrowDistance;
+
+    public float ChargeStructuralDamage;
+
+    public SoundSpecifier? ChargeSound;
+
     [DataField]
     public TimeSpan BloodSwellShootPopupCooldown = TimeSpan.FromSeconds(1f);
     [DataField]
@@ -30,4 +43,23 @@ public sealed partial class GargantuaComponent : VampireClassComponent
 
     [DataField]
     public EntityUid? BloodSwellShootLastGun;
+
+    [DataField]
+    public int PassiveHealBloodThreshold = 300;
+
+    [DataField]
+    public Dictionary<string, FixedPoint2> PassiveHealGroups = new()
+    {
+        { "Brute", FixedPoint2.New(3) },
+        { "Burn", FixedPoint2.New(3) },
+    };
+
+    [DataField]
+    public float OverwhelmingForcePrySpeedModifier = 10f;
+
+    [DataField]
+    public int OverwhelmingForceDoorPryBloodCost = 15;
+
+    [DataField]
+    public SoundSpecifier OverwhelmingForcePrySound = new SoundPathSpecifier("/Audio/Items/crowbar.ogg");
 }

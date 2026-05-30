@@ -9,9 +9,9 @@ public sealed partial class ActionSpawnEntity : OnSignAction
     /// </summary>
     [DataField]
     public List<EntProtoId> Entities = [];
-    
+
     private IEntityManager _entityManager = default!;
-    
+
     public override bool Action(EntityUid paper, ActionsOnSignComponent component, EntityUid target)
     {
         if (!_entityManager.TryGetComponent<TransformComponent>(target, out var xform))
@@ -24,7 +24,5 @@ public sealed partial class ActionSpawnEntity : OnSignAction
     }
 
     public override void ResolveIoC()
-    {
-        _entityManager = IoCManager.Resolve<IEntityManager>();
-    }
+        => _entityManager = IoCManager.Resolve<IEntityManager>();
 }

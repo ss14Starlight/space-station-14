@@ -24,7 +24,7 @@ public sealed partial class GroupLoadoutEffect : LoadoutEffect
             // Starlight BEGIN
             if (!effect.Validate(profile, loadout, session, collection, out var effectReason))
                 success = false;
-            
+
             if (!reason.IsEmpty)
                 reason.PushNewline();
             reason.AddMessage(effectReason);

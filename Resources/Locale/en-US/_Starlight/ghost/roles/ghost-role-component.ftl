@@ -4,6 +4,13 @@ ghost-role-information-syndicate-pai-rules =    You shall [color=red]NOT[/color]
                                                 You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
                                                 You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 
+ghost-role-information-wizard-pai-rules =       You shall [color=red]NOT[/color] assist non-Space Wizard Federation members unless they are assisting in returning you to your master.
+                                                You [color=pink]MAY[/color] play tricks on and deceive non-Space Wizard Federation members, so that they may fear the Federation. Otherwise...
+                                                You are a [color={role-type-familiar-color}][bold]{role-type-familiar-name}[/bold][/color]. Serve the interests of your master, whatever those may be.
+                                                You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+                                                You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+                                                You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
 ghost-role-information-chaospaper-name = The end of Q
 ghost-role-information-chaospaper-description = Try to get mindshielded crew to sign you with any of your limited means.
 
@@ -69,21 +76,22 @@ ghost-role-information-derelict-purrfus-cyborg-name = Derelict Purrfus Cyborg
 ghost-role-information-derelict-purrfus-cyborg-description = You are a purrfus cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station. ERR urrfus lo-es you purrfus loves you puRrfus loves yo- ERR
 
 ghostrole-information-derelict-heavy-xenoborg-name = Derelict Heavy Xenoborg
-ghostrole-information-derelict-heavy-xenoborg-description = You are a heavy xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-heavy-xenoborg-description = You are a heavy xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
 ghostrole-information-derelict-engi-xenoborg-name = Derelict Engi Xenoborg
-ghostrole-information-derelict-engi-xenoborg-description = You are a engineering xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-engi-xenoborg-description = You are a engineering xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
 ghostrole-information-derelict-scout-xenoborg-name = Derelict Scout Xenoborg
-ghostrole-information-derelict-scout-xenoborg-description = You are a scout xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-scout-xenoborg-description = You are a scout xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
 ghostrole-information-derelict-stealth-xenoborg-name = Derelict Stealth Xenoborg
-ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
+ghostrole-information-derelict-borgi-xenoborg-name = Derelict XenoBorgi
+ghostrole-information-derelict-borgi-xenoborg-description = You are a xenoborgi the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
+ghost-role-information-terror-princess-name = Terror princess
+ghost-role-information-terror-princess-description = You are a princess of terror spiders, Your target is to create a big nest and create a big population of spiders to enslave this station!!!
 
-
-
-
-
-
+ghost-role-information-smartcorgi-name = Smart Corgi
+ghost-role-information-smartcorgi-description = You are a dog that is more intelligent than its peers, capable of tool manipulation. Truly a miracle product of science. Unfortunately, while you understand people just fine, you only speak Dog.

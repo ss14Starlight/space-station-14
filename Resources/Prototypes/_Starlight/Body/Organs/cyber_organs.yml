@@ -28,7 +28,7 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_night
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
@@ -54,7 +54,7 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_thermal
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: ThermalVision
   - type: OrganVisualization
     layer: Eyes
@@ -82,7 +82,7 @@
       - state: eyeball-l
       - state: eyeball-r
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NoirOverlay
   - type: OrganVisualization
     layer: Eyes
@@ -118,7 +118,7 @@
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
     state: tongue
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: UnableToTaste
 
 - type: entity
@@ -174,7 +174,7 @@
       - state: kidney-l
       - state: kidney-r
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: ThirstRateMultiplier
       multiplier: 1.25
 

@@ -4,10 +4,10 @@
   name: aquarium
   description: Do not tap the glass.
   components:
-  - type: AmbientSound 
+  - type: AmbientSound
     volume: -4
     range: 3
-    sound: 
+    sound:
       path: /Audio/Ambience/Objects/flowing_water_open.ogg
   - type: Sprite
     noRot: true

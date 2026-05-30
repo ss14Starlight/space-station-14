@@ -1,0 +1,37 @@
+- type: entity
+  parent: ClothingMultipleHeadphones
+  id: ClothingMultipleHeadphonesReporter
+  name: reporter's headphones
+  description: Checking in with the studio now... you don't say!?
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Multiple/headphones_reporter.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    equippedPrefix: off
+    sprite: _Starlight/Clothing/Multiple/headphones_reporter.rsi
+    slots:
+    - HEAD
+    - EARS
+    - NECK
+
+- type: entity
+  parent: ClothingMultipleHeadphones
+  id: ClothingMultipleHeadphonesHighEnd
+  name: high-end headphones
+  description: Perfect for audiophiles everywhere.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Multiple/headphones_high-end.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Clothing
+    equippedPrefix: off
+    sprite: _Starlight/Clothing/Multiple/headphones_high-end.rsi
+    slots:
+    - HEAD
+    - EARS
+    - NECK

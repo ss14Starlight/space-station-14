@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Construction.Components;
 using Content.Shared.Administration.Logs;
@@ -16,6 +15,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+#region Starlight
+using System.Linq;
+#endregion
 
 namespace Content.Shared.Construction;
 
@@ -104,7 +106,7 @@ public abstract class SharedFlatpackSystem : EntitySystem
                 _popup.PopupEntity(Loc.GetString("flatpack-unpack-no-room"), uid, args.User);
             return;
         }
-        
+
         if (comp.RandomEntities != null)
             comp.Entity = _random.Pick(comp.RandomEntities);
 

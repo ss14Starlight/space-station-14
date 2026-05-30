@@ -1,0 +1,17 @@
+- type: marking
+  id: FelionoidFootPawMittensR
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  pawmittens_footR
+
+- type: marking
+  id: FelionoidFootPawMittensL
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  pawmittens_footL

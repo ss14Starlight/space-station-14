@@ -28,3 +28,42 @@
     - type: Tag
       tags:
         - Fruit
+
+- type: entity
+  id: TrashMimanaPeelStealthy
+  parent: TrashMimanaPeel
+  name: mimana peel
+  suffix: Stealthy
+  components:
+  - type: Stealth
+    minVisibility: .15
+    maxVisibility: 1
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.37
+    movementVisibilityRate: 0.50
+
+- type: entity
+  name: devilish apple
+  parent: FoodProduceBase
+  id: FoodEvilApple
+  description: A fruit born of pure evil, eating it just might bring the doctors to you.
+  components:
+    - type: FlavorProfile
+      flavors:
+        - perfid
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 14
+          reagents:
+            - ReagentId: DevilJuice
+              Quantity: 5
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/evil_apple.rsi
+    - type: Item
+      heldPrefix: produce
+    - type: Produce
+      seedId: evilApple
+    - type: Tag
+      tags:
+        - Fruit

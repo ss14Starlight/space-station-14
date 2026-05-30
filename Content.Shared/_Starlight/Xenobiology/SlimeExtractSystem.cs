@@ -29,7 +29,7 @@ public sealed class SlimeExtractSystem : EntitySystem
         SubscribeLocalEvent<SlimeExtractActiveReactionComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<SlimeExtractComponent, ExaminedEvent>(OnExamined);
     }
-    
+
     public bool IsSolutionRequirementFulfilled(Dictionary<ProtoId<ReagentPrototype>, FixedPoint2> requiredSolution, Solution currentSolution)
     {
         foreach (var req in requiredSolution)
@@ -37,7 +37,7 @@ public sealed class SlimeExtractSystem : EntitySystem
             var amount = currentSolution.GetTotalPrototypeQuantity(req.Key);
             if (amount < req.Value) return false;
         }
-        
+
         return true;
     }
 
@@ -127,7 +127,7 @@ public sealed class SlimeExtractSystem : EntitySystem
             entity.Comp.ActiveReactions[activeReaction] += args.PausedTime;
         }
     }
-    
+
     private void OnExamined(Entity<SlimeExtractComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange)

@@ -37,7 +37,7 @@ public sealed class Box2IConstructorCommand : ToolshedCommand
         RemComp<Box2IConstructorComponent>(uid);
         return uid;
     }
-    
+
     [CommandImplementation("clean")]
     public IEnumerable<EntityUid> Clean([PipedArgument] IEnumerable<EntityUid> uid) => uid.Select(Clean);
 }

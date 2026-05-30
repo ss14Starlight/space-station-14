@@ -129,15 +129,15 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     {
         if (args.Handled)
             return;
-        
+
         // Starlight-start: AI upload console linking
-        if (!component.Subverted 
-            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore) 
+        if (!component.Subverted
+            && TryComp<StationAiCoreComponent>(Transform(uid).ParentUid, out var aiCore)
             && aiCore.LawConsole != null
-            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container) 
-            && container.ContainedEntities.Count != 0 
-            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider) 
-            && provider != null 
+            && _container.TryGetContainer(aiCore.LawConsole.Value, "circuit_holder", out var container)
+            && container.ContainedEntities.Count != 0
+            && TryComp(container.ContainedEntities.First(), out SiliconLawProviderComponent? provider)
+            && provider != null
             && component.Laws != provider.Laws)
         {
             component.Laws = provider.Laws;
@@ -404,7 +404,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
             return;
         }
         _popup.PopupEntity(Loc.GetString("lawboard-emag-popup"), ent);
-        
+
         args.Repeatable = true;
         args.Handled = true;
     }

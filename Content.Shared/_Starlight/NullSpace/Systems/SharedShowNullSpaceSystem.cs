@@ -1,14 +1,10 @@
 using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared.Actions;
 using Content.Shared.Interaction.Events;
 
 namespace Content.Shared._Starlight.NullSpace;
 
 public abstract partial class SharedShowNullSpaceSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    private const string ActionCosmicBlankId = "ActionCosmicBlank";
-
     public override void Initialize()
     {
         base.Initialize();

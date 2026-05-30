@@ -175,6 +175,7 @@
     - id: ClothingOuterHardsuitAtmos
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingMaskBreath
 
 - type: entity
@@ -224,6 +225,7 @@
     - id: ClothingOuterHardsuitEngineering
     - id: OxygenTankFilled
     - id: NitrogenTankFilled # Starlight - vox gang
+    - id: CoolingUnit # Starlight
     - id: ClothingShoesBootsMag
     - id: ClothingMaskBreath
 

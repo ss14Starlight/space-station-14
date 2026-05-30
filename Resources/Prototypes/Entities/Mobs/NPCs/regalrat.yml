@@ -1,7 +1,7 @@
 - type: entity
   name: rat king
   id: MobRatKing
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
   description: He's da rat. He make da roolz.
   components:
   # Starlight-start: Languages
@@ -12,7 +12,7 @@
     understands:
     - GalacticCommon
     - Mouse
-    - Crittish # Rodentia language
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: ThermalVision # Starlight-edit: Thermal Vision
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -71,9 +71,11 @@
       types:
         Slash: 12
         Piercing: 8
+  # Starlight - start
   - type: Body
     prototype: Rat
     requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
+  # Starlight - end
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200
@@ -181,7 +183,7 @@
 - type: entity
   name: rat servant
   id: MobRatServant
-  parent: [ SimpleMobBase, MobCombat ]
+  parent: [ SimpleMobBase, MobCombat ] # Starlight Edit: Removed BaseMobRat
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
@@ -274,9 +276,11 @@
       types:
         Slash: 5
         Piercing: 3
+  # Starlight - start
   - type: Body
     prototype: Rat
     requiredLegs: 0 # TODO: Make more than 1 leg, set to 0 to avoid sprint speed being reset by the body system
+  # Starlight - end
   - type: Hunger # probably should be prototyped
     thresholds:
       Overfed: 200

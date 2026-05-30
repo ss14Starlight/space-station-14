@@ -16,6 +16,7 @@
     ClothingOuterFlannelBlue: 2
     ClothingOuterFlannelGreen: 2
     ClothingOuterCoatBomber: 3
+    ClothingOuterCoatField: 2 # Starlight
 #Starlight Start
     ClothingUniformTurtleneckColorWhite: 2
     ClothingUniformTurtleneckColorGrey: 2
@@ -49,10 +50,24 @@
     ClothingUniformTurtleneckSkirtColorLightBrown: 2
     ClothingUniformTurtleneckSkirtColorBrown: 2
     ClothingUniformTurtleneckSkirtColorMaroon: 2
+    ClothingHandsMittensColorWhite: 2
+    ClothingHandsMittensColorGray: 2
+    ClothingHandsMittensColorBlack: 2
+    ClothingHandsMittensColorBlue: 2
+    ClothingHandsMittensColorTeal: 2
+    ClothingHandsMittensColorGreen: 2
+    ClothingHandsMittensColorOrange: 2
+    ClothingHandsMittensColorRed: 2
+    ClothingHandsMittensColorYellow: 2
+    ClothingHandsMittensColorPurple: 2
+    ClothingHandsMittensColorLightBrown: 2
+    ClothingHandsMittensColorBrown: 2
 #Starlight End
     ClothingHeadHatCanadaBeanie: 4
     ClothingHeadHatSantahat: 2
     ClothingHeadHatXmasCrown: 2
+  contrabandInventory: # Starlight
+    ClothingHandsMittensColorDarkBlack: 2 # Starlight
   emaggedInventory:
     ClothingNeckScarfStripedSyndieGreen: 3
     ClothingNeckScarfStripedSyndieRed: 3

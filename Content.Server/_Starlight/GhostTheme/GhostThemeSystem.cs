@@ -50,7 +50,7 @@ public sealed class GhostThemeSystem : EntitySystem
         _euiManager.OpenEui(eui, session);
         eui.StateDirty();
     }
-    
+
     public void CloseEui(ICommonSession session)
     {
         if (!_openUis.ContainsKey(session))
@@ -60,7 +60,7 @@ public sealed class GhostThemeSystem : EntitySystem
 
         eui?.Close();
     }
-    
+
     public void ChangeColor(ICommonSession session, Color color)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
@@ -72,14 +72,11 @@ public sealed class GhostThemeSystem : EntitySystem
         Dirty(attached, themes);
 
         var playerData = _playerRoles.GetPlayerData(attached);
-        if (playerData != null)
-        {
-            playerData.GhostThemeColor = color;
-        }
+        playerData?.GhostThemeColor = color;
 
         _appearance.SetData(attached, GhostThemeVisualLayers.Color, color);
     }
-    
+
     public void ChangeTheme(ICommonSession session, string theme)
     {
         if (session.AttachedEntity is not { Valid: true } attached ||
@@ -101,7 +98,7 @@ public sealed class GhostThemeSystem : EntitySystem
 
         _appearance.SetData(attached, GhostThemeVisualLayers.Base, theme);
     }
-    
+
     public void UpdateAllEui()
     {
         foreach (var eui in _openUis.Values)

@@ -264,7 +264,7 @@
 - type: entity
   id: NuclearReactorSmall
   parent: [BaseNuclearReactorSmall, NuclearReactorCrew, ReactorPrefab5x5Normal]
-  
+
 - type: entity
   id: NuclearReactorSmallRandom
   parent: [BaseNuclearReactorSmall, NuclearReactorCrew, ReactorPrefabRandom]

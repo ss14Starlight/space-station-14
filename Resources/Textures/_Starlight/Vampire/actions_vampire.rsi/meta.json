@@ -27,6 +27,9 @@
         },
         {
             "name": "survive_icon"
+        },
+        {
+            "name": "sleep_icon"
         }
     ]
 }

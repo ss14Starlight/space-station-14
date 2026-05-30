@@ -132,7 +132,7 @@ accent-pirate-replacement-42 = port
 accent-pirate-replaced-43 = front
 accent-pirate-replacement-43 = bow
 
-accent-pirate-replaced-44 = food 
+accent-pirate-replaced-44 = food
 accent-pirate-replacement-44  = chow
 
 accent-pirate-replaced-45 = meal
@@ -241,7 +241,7 @@ accent-pirate-replaced-79 = ceiling
 accent-pirate-replacement-79 = aloft
 
 accent-pirate-replaced-80 = tile
-accent-pirate-replacement-80 = deck 
+accent-pirate-replacement-80 = deck
 
 accent-pirate-replaced-81 = cleaning
 accent-pirate-replacement-81 = having a field day
@@ -256,7 +256,7 @@ accent-pirate-replaced-84 = flukies
 accent-pirate-replacement-84 = a soup sandwich
 
 accent-pirate-replaced-85 = nukies
-accent-pirate-replacement-85 = boarding party 
+accent-pirate-replacement-85 = boarding party
 
 accent-pirate-replaced-86 = head of personnel
 accent-pirate-replacement-86 = boatswain
@@ -268,7 +268,7 @@ accent-pirate-replaced-88 = bartender
 accent-pirate-replacement-88 = squid
 
 accent-pirate-replaced-89 = dead
-accent-pirate-replacement-89 = swimming with the fishes 
+accent-pirate-replacement-89 = swimming with the fishes
 
 accent-pirate-replaced-90 = execution
 accent-pirate-replacement-90 = walking the plank

@@ -24,19 +24,19 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     /// </summary>
     [AutoPausedField]
     public TimeSpan LastInterfaceUpdate = TimeSpan.Zero;
-    
+
     /// <summary>
     ///     STARLIGHT: When the last update was received. Used to determine if the server is online.
     /// </summary>
     [DataField]
     public TimeSpan LastSensorDataReceivedAt = TimeSpan.Zero;
-    
+
     /// <summary>
     ///     STARLIGHT: Whether paging is enabled.
     /// </summary>
     [DataField]
     public bool PagingEnabled = true;
-    
+
     /// <summary>
     ///     STARLIGHT: The sound to play when paged.
     /// </summary>
@@ -55,13 +55,13 @@ public sealed partial class CrewMonitoringConsoleComponent : Component
     /// </summary>
     [DataField]
     public bool PagingSoundLocal = false;
-    
+
     /// <summary>
     ///     STARLIGHT: When the last paging trigger was received.
     /// </summary>
     [DataField]
     public TimeSpan LastPagingTriggerReceivedAt = TimeSpan.Zero;
-    
+
     /// <summary>
     ///     STARLIGHT: The delay between paging visuals getting enabled and timing out if the UI isn't interacted with.
     /// </summary>

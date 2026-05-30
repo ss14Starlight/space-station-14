@@ -13,7 +13,7 @@ public sealed partial class SurgeryToolComponent : Component
     /*
     [DataField, AutoNetworkedField]
     public float Speed = 1;
-    
+
     [DataField, AutoNetworkedField]
     public float SuccessRate = 1f;
 

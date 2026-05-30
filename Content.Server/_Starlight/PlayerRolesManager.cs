@@ -6,8 +6,6 @@ using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
-using Content.Server._NullLink.Core;
-using Content.Shared._NullLink;
 
 namespace Content.Server.Starlight;
 
@@ -24,7 +22,7 @@ public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjec
 
     private ISawmill _sawmill = default!;
 
-    public void Initialize() 
+    public void Initialize()
     {
         _netMgr.RegisterNetMessage<MsgUpdatePlayerStatus>();
         _sawmill = _logger.GetSawmill("player_manager");

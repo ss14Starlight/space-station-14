@@ -44,7 +44,7 @@ public record struct HitscanTraceEvent
 
 
     /// <summary>
-    /// The effect list being used 
+    /// The effect list being used
     /// </summary>
     public List<HitscanTrace>? OutputTrace;
     #endregion
@@ -132,7 +132,7 @@ public record struct HitscanDamageDealtEvent
     /// The amount of damage that the target was dealt.
     /// </summary>
     public DamageSpecifier DamageDealt;
-    
+
     // Starlight begin
     /// <summary>
     /// Data for the hitscan that was fired.

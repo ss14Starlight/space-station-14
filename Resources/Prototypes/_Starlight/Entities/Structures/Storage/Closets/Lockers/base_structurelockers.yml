@@ -37,7 +37,7 @@
       map: ["enum.ElectrifiedLayers.Sparks"]
   - type: EntityStorage
     capacity: 60
-  
+
 - type: entity
   id: LockerLargeBaseSecure
   parent: LockerLargeBase

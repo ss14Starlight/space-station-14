@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McRat # MIKEY - compare to resomi. lookup 'Urist McRaptor'
+  name: Urist McRat
   parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupable]
   id: BaseMobRodentia
   abstract: true
@@ -8,10 +8,10 @@
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - Crittish # MIKEY - is "crittish" the right word for it
+    - Squeakish
     understands:
     - GalacticCommon
-    - Crittish
+    - Squeakish
     - Mouse
   - type: Absorbable
   - type: Hunger
@@ -22,6 +22,10 @@
     prototype: Rodentia
     requiredLegs: 2
   - type: Thirst
+  - type: MouthStorage
+    mouthProto: CheekStorage
+    openStorageAction: ActionOpenMouthStorage
+    spitDamageThreshold: 3
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -34,7 +38,7 @@
       170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      51: 0.7  #Basicly 60% and 80% 
+      51: 0.7  #Basicly 60% and 80%
       68: 0.5
   - type: HumanoidAppearance
     species: Rodentia
@@ -43,18 +47,25 @@
     - HeadTop
     - HeadSide
     - Snout
-#    markingsDisplacement:
-#      Hair:
-#        sizeMaps:
-#          32:
-#            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-#            state: hair
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hair
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: facialhair
+    undergarmentTop: UndergarmentTopTanktopRodentia
+    undergarmentBottom: UndergarmentBottomBoxersRodentia
   - type: TypingIndicator
     proto: rodentia
   - type: Speech
     speechVerb: Rodentia
     speechSounds: Squeak
-    allowedEmotes: ['Squeak'] # MIKEY - add more emotes. Look at MobMouse for inspo?
+    allowedEmotes: ['Squeak']
   - type: Fixtures
     fixtures:
       fix1:
@@ -67,10 +78,52 @@
           - MobMask
         layer:
           - MobLayer
-#  - type: Sprite
-#    netsync: false
-#    noRot: true
-#    drawdepth: Mobs
+  - type: Sprite # Drawlayers. Top to bottom in order I believe.
+    netsync: false
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ] # Starlight: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ] # Starlight: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ] # Starlight start: Layering fix
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ] # Starlight end: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ] # Starlight start: Layering fix
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false # Starlight end: Layering fix
+    - map: [ "clownedon" ]
+      sprite: "_Starlight/Effects/creampie.rsi"
+      state: "creampie_rodentia"
+      visible: false
   - type: MeleeWeapon
     soundHit:
       collection: AlienClaw
@@ -97,7 +150,7 @@
           state: inHand
   - type: Inventory
     speciesId: rodentia
-    displacements: # MIKEY - verify all work
+    displacements:
       jumpsuit:
         sizeMaps:
           32:
@@ -143,36 +196,76 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: shoes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: neck
   - type: AlwaysTriggerMousetrap
   - type: CrawlUnderObjects
     actionProto: ActionToggleSneakMode
+  - type: Tag
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - Rodentia
+      - NotLabelable
+  - type: Item
+    size: Huge
+    allowDirectHandPickup: false
+    shape:
+      - 0, 0, 5, 3
+  - type: VisualPickupable
+    offsetFront: -0.16, -0.12
+    offsetBack: -0.16, 0.05
+  - type: Rummager
+  - type: DamageVisuals
+    thresholds: [ 10, 30, 50, 70]
+    targetLayers:
+      - "enum.HumanoidVisualLayers.Chest"
+      - "enum.HumanoidVisualLayers.Head"
+      - "enum.HumanoidVisualLayers.LArm"
+      - "enum.HumanoidVisualLayers.LLeg"
+      - "enum.HumanoidVisualLayers.RArm"
+      - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: _Starlight/Mobs/Effects/Rodentia/brute_damage.rsi
+        color: "#CC0000"
+      Burn:
+        sprite: _Starlight/Mobs/Effects/Rodentia/burn_damage.rsi
+  - type: FireVisuals
+    sprite: _Starlight/Mobs/Effects/onfire.rsi
+    normalState: Resomi_minor_burning # Yes this is intentional, it works fine for rodentia.
+    alternateState: Rodentia_burning
 
 - type: entity
-  save: false
-  name: Rodentia Dummy
   parent: BaseSpeciesDummy
   id: MobRodentiaDummy
   categories: [ HideSpawnMenu ]
-  description: A dummy rodentia meant to be used in character setup.
   components:
   - type: HumanoidAppearance
     species: Rodentia
+    undergarmentTop: UndergarmentTopTanktop
+    undergarmentBottom: UndergarmentBottomBoxers
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hair
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: facialhair
   - type: Body
     prototype: Rodentia
-  - type: Hands
-    leftHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-          state: inHand
-    rightHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
-          state: inHand
   - type: Inventory
-    speciesId: rodentia
-    displacements: # MIKEY - verify all work
+    speciesId: Rodentia
+    displacements:
       jumpsuit:
         sizeMaps:
           32:
@@ -218,3 +311,8 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: shoes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: neck

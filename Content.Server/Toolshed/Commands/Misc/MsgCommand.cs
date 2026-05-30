@@ -17,7 +17,7 @@ namespace Content.Server.Toolshed.Commands.Misc;
 public sealed class MsgCommand : ToolshedCommand
 {
     [Dependency] private IChatManager _chatManager = default!;
-    
+
     private PrayerSystem? _prayer;
     private PopupSystem? _popup;
     private TipsSystem? _tips;
@@ -51,7 +51,7 @@ public sealed class MsgCommand : ToolshedCommand
             yield return ent;
         }
     }
-    
+
     [CommandImplementation("chat")]
     public IEnumerable<ICommonSession> Chat([PipedArgument] IEnumerable<ICommonSession> targets, string message)
     {
@@ -94,7 +94,7 @@ public sealed class MsgCommand : ToolshedCommand
         }
         _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
     }
-    
+
     [CommandImplementation("tippy")]
     public IEnumerable<ICommonSession> Tippy([PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
     {

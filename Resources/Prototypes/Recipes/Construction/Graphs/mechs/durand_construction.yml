@@ -162,7 +162,7 @@
       - tag: DurandArmor
         name: construction-graph-tag-durand-armor-plates
         icon:
-          sprite: "Objects/Specific/Mech/Mechs/Basic/durand.rsi"
+          sprite: "_Starlight/Objects/Specific/Mechs/Mechs/durand.rsi"
           state: durand_armor
         completed:
         - !type:VisualizerDataInt

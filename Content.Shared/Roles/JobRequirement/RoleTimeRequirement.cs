@@ -66,7 +66,7 @@ public sealed partial class RoleTimeRequirement : JobRequirement
             ("required", formattedRequired),
             ("job", Loc.GetString(proto)),
             ("departmentColor", departmentColor.ToHex())));
-        
+
         if (jobProto is null)
         {
             if (!protoManager.TryIndex<PlayTimeTrackerPrototype>(proto, out var tracker))

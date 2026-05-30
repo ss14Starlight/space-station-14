@@ -208,7 +208,7 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (args.Handled || !pryingCapable || !door.ClickOpen)
             return;
         // Starlight edit end
-        
+
         if (!TryToggleDoor(uid, door, args.User, predicted: true))
             _pryingSystem.TryPry(uid, args.User, out _);
 

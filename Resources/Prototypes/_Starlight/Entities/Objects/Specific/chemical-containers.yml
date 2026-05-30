@@ -12,7 +12,7 @@
         reagents:
         - ReagentId: Uranium
           Quantity: 200
-          
+
 - type: entity
   parent: Jug
   suffix: Corn oil
@@ -237,3 +237,123 @@
         reagents:
         - ReagentId: Amoxla
           Quantity: 200
+
+# Golden jugs
+- type: entity
+  parent: GoldenJug
+  suffix: bicaridine
+  id: JugGoldenBicaridine
+  components:
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 400
+
+- type: entity
+  parent: GoldenJug
+  suffix: dermaline
+  id: JugGoldenDermaline
+  components:
+  - type: Label
+    currentLabel: reagent-name-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 400
+
+# Large cryo chemical beakers
+- type: entity
+  suffix: cryoxadone
+  parent: LargeBeaker
+  id: CryoxadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-cryoxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Cryoxadone
+          Quantity: 100
+
+- type: entity
+  suffix: doxarubixadone
+  parent: LargeBeaker
+  id: DoxarubixadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-doxarubixadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Doxarubixadone
+          Quantity: 100
+
+- type: entity
+  suffix: arcryox
+  parent: LargeBeaker
+  id: ArcryoxBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-arcryox
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Arcryox
+          Quantity: 100
+
+- type: entity
+  suffix: necrosol
+  parent: LargeBeaker
+  id: NecrosolBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-necrosol
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Necrosol
+          Quantity: 100
+
+- type: entity
+  suffix: chronexaline
+  parent: LargeBeaker
+  id: ChronexalineBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-chronexaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Chronexaline
+          Quantity: 100
+
+- type: entity
+  suffix: aloxadone
+  parent: LargeBeaker
+  id: AloxadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-aloxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Aloxadone
+          Quantity: 100

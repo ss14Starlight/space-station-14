@@ -1,0 +1,34 @@
+- type: language
+  id: Squeakish
+  icon: LanguageIconSqueakish
+  speech:
+    color: "#B09286" # MIKEY - needs new color
+    fontId: Squeakish # MIKEY - needs custom font
+    obfuscationFont: true
+  obfuscation:
+    !type:SyllableObfuscation
+    minSyllables: 1
+    maxSyllables: 2
+    replacement:
+      - skrit
+      - chit
+      - skreek
+      - pip
+      - peep
+      - nib
+      - snik
+      - chee
+      - titch
+      - skik
+      - kik
+      - tik
+      - skik
+      - snik
+      - chit
+      - skit
+      - skik
+      - pip
+      - peep
+      - chii
+      - chuu
+      - skree

@@ -18,7 +18,7 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
-  
+
 - type: entity
   parent: BaseMagazineBoxRifle
   id: MagazineBoxRifleRubber

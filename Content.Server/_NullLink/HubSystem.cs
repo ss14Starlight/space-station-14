@@ -8,13 +8,14 @@ using Content.Shared._NullLink;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
-using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Starlight.NullLink;
 using NLServer = Starlight.NullLink.Server;
 using NLServerInfo = Starlight.NullLink.ServerInfo;
 using Content.Server.GameTicking;
+using Content.Server.Administration.Managers;
+using Content.Server._NullLink.PlayerData;
 
 namespace Content.Server._NullLink;
 
@@ -22,14 +23,16 @@ public sealed partial class HubSystem : EntitySystem, IServerObserver, IServerIn
 {
     private const int MaxEventsPerTick = 2;
 
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private INullLinkPlayerManager _playerRoles = default!;
 
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IGameMapManager _gameMapManager = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IGameMapManager _gameMapManager = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     private ISawmill _sawmill = default!;
 

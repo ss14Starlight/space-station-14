@@ -14,7 +14,6 @@ public sealed partial class RailroadingCrewRetentionTaskSystem : EntitySystem
 {
     [Dependency] private readonly RailroadingSystem _railroading = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly StationCrewStatisticsSystem _stats = default!;
 
     public override void Initialize()
     {
@@ -45,7 +44,7 @@ public sealed partial class RailroadingCrewRetentionTaskSystem : EntitySystem
         }
     }
 
-    private void OnCollectObjectiveInfo(Entity<RailroadCrewRetentionTaskComponent> ent, ref CollectObjectiveInfoEvent args) 
+    private void OnCollectObjectiveInfo(Entity<RailroadCrewRetentionTaskComponent> ent, ref CollectObjectiveInfoEvent args)
         => args.Objectives.Add(new ObjectiveInfo
     {
         Title = Loc.GetString(ent.Comp.Message, ("threshold", (int)(ent.Comp.Threshold * 100))),

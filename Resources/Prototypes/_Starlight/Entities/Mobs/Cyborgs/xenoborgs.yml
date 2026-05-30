@@ -52,7 +52,7 @@
           map: ["enum.BorgVisualLayers.Light"]
           shader: unshaded
           visible: false
-        #- state: borg_crystal # See https://github.com/space-wizards/space-station-14/pull/37869, it looks better duplicated supposedly 
+        #- state: borg_crystal # See https://github.com/space-wizards/space-station-14/pull/37869, it looks better duplicated supposedly
         #  shader: unshaded
         - state: borg_crystal
           shader: shaded
@@ -63,7 +63,7 @@
     - type: BorgChassis
       jobIconOverride: JobIconXenoborg # Starlight
       jobTitleOverride: chat-radio-xenoborg # Starlight
-      maxModules: 7
+      maxModules: 8
       hasMindState: borg_e
       noMindState: borg_e_r
       moduleWhitelist:
@@ -151,7 +151,7 @@
 - type: entity
   parent: BaseXenoborgChassisDerelict
   id: XenoborgScoutDerelict
-  name: scout xenoborg
+  name: derelict scout xenoborg
   components:
     - type: Sprite
       sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_scout.rsi #Starlight Borg RSI Atomization
@@ -172,7 +172,7 @@
     - type: MovementAlwaysTouching # it flies in space with tiny thrusters
     - type: FlashImmunity
     - type: BorgChassis
-      maxModules: 4
+      maxModules: 5
       hasMindState: borg_e
       noMindState: borg_e_r
       moduleWhitelist:
@@ -184,15 +184,15 @@
     - type: MovementSpeedModifier # faster
       baseWalkSpeed : 3
       baseSprintSpeed : 6
-    
+
 
 - type: entity
   parent: BaseXenoborgChassisDerelict
   id: XenoborgStealthDerelict
-  name: stealth xenoborg
+  name: derelict stealth xenoborg
   components:
     - type: Sprite
-      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_stealth.rsi 
+      sprite: _Starlight/Mobs/Silicon/Chassis/xeno_derelict_stealth.rsi
       layers:
         - state: borg
         - state: borg_e
@@ -212,7 +212,7 @@
       noMindState: borg_e_r
       moduleWhitelist:
         tags:
-          - BorgModuleGeneric 
+          - BorgModuleGeneric
           - BorgModuleScience # science orb, idk what else to give this one
           - XenoborgModuleGeneric
           - XenoborgModuleStealth

@@ -152,7 +152,7 @@ public abstract class SharedDisposalUnitSystem : EntitySystem
                     return;
                 }
                 // STARLIGHT END
-                
+
                 _handsSystem.TryDropIntoContainer((args.User, args.Hands), args.Using.Value, component.Container, checkActionBlocker: false);
                 _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User):player} inserted {ToPrettyString(args.Using.Value)} into {ToPrettyString(uid)}");
                 AfterInsert(uid, component, args.Using.Value, args.User);

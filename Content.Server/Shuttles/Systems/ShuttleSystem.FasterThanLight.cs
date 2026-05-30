@@ -4,11 +4,9 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Events;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
-using Content.Shared.Ghost;
-using Content.Shared.Maps;
 using Content.Shared.Parallax;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
@@ -30,7 +28,8 @@ using Content.Server._Starlight.Station; // Starlight
 using Content.Server.Camera; // Starlight
 using Content.Shared._Starlight.Camera; // Starlight
 using Content.Shared.Station.Components; // Starlight
-using Robust.Server.Player; // Starlight
+using Robust.Server.Player;
+using Content.Shared.Body.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -121,7 +120,7 @@ public sealed partial class ShuttleSystem
                 break; // can break, we already found the grid that created this station
             }
         //Starlight end
-        
+
         // Add all grid maps as ftl destinations that anyone can FTL to.
         foreach (var gridUid in ev.Station.Comp.Grids)
         {
@@ -501,7 +500,7 @@ public sealed partial class ShuttleSystem
 
         if (!Exists(entity.Comp1.TargetCoordinates.EntityId))
         {
-            // Starlight edit Start: Yeah... Lets not do the first map in the list. 
+            // Starlight edit Start: Yeah... Lets not do the first map in the list.
             // Fallback chain:
             // 1) map we started from, 2) any map with a station grid, 3) first map entity.
             EntityUid? fallbackMap = null;
@@ -692,7 +691,7 @@ public sealed partial class ShuttleSystem
                         break;
                     }
             }
-            
+
             if (curTime < comp.StateTime.End)
                 continue;
 

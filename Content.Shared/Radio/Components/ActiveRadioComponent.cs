@@ -15,7 +15,7 @@ public sealed partial class ActiveRadioComponent : Component, ISupportsCustomCha
     /// </summary>
     [DataField, AutoNetworkedField] //Starlight edit
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
-    
+
     //Starlight begin
     /// <summary>
     /// The custom channels that this radio is listening on.

@@ -191,6 +191,3 @@
     - type: BodyPart
       partType: Foot
       symmetry: Right
-
-# - type: entity
-#   id: TailRodentia # MIKEY add tail for crazyphantom - refer to Species/rodentia.yml `RodentiaTailDefault`

@@ -23,6 +23,10 @@
       NTCredit: 1
   - type: StaticPrice
     price: 0
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
     stackType: NTCredit
     count: 1
@@ -37,21 +41,21 @@
     - cash_30
     - cash_40
     - cash_50
-    - cash_51  
-    - cash_70  
-    - cash_90  
-    - cash_100 
-    - cash_101 
-    - cash_133 
-    - cash_166 
-    - cash_200 
-    - cash_201 
-    - cash_300 
-    - cash_400 
-    - cash_500 
-    - cash_501 
-    - cash_700 
-    - cash_900 
+    - cash_51
+    - cash_70
+    - cash_90
+    - cash_100
+    - cash_101
+    - cash_133
+    - cash_166
+    - cash_200
+    - cash_201
+    - cash_300
+    - cash_400
+    - cash_500
+    - cash_501
+    - cash_700
+    - cash_900
     - cash_1000
     - cash_1001
     - cash_3000

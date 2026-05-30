@@ -18,7 +18,7 @@ public sealed partial class RailroadMetabolizeTaskComponent : Component
 
     [DataField]
     public HashSet<ReagentQuantity> Reagents = [];
-    
+
     public Dictionary<string, FixedPoint2> MetabolizedReagents = [];
 
     [DataField]

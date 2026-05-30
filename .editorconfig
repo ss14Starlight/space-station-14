@@ -1,6 +1,10 @@
 ﻿# Remove the line below if you want to inherit .editorconfig settings from higher directories
 root = true
 
+[*]
+insert_final_newline = true
+trim_trailing_whitespace = true
+
 # C# files
 [*.cs]
 
@@ -13,8 +17,6 @@ tab_width = 4
 
 # New line preferences
 end_of_line = lf
-insert_final_newline = true
-trim_trailing_whitespace = true
 
 #### .NET Code Actions ####
 

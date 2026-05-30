@@ -179,13 +179,13 @@
         type: StrippableBoundUserInterface
       enum.SurgeryUIKey.Key:
         type: SurgeryBui
-  - type: Respirator 
+  - type: Respirator
     minSaturation: 5.0
   - type: NoSlip
   - type: FlashImmunity
   - type: Loadout
     prototypes: [ GearNyrMouseOps ]
-  - type: NightVision 
+  - type: NightVision
   - type: ThermalVision
 
 - type: startingGear

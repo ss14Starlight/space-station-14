@@ -30,7 +30,7 @@
   - type: TileFrictionModifier
     modifier: 0.001
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/_Starlight/Magic/cantrip.ogg
   - type: StaticPrice
     price: 0 # Not sellable.
@@ -78,7 +78,7 @@
     lifetime: 5
   - type: AlwaysHot
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/_Starlight/Magic/ember.ogg
   - type: StaticPrice
     price: 0 # Not sellable.
@@ -131,7 +131,7 @@
   - type: DeleteOnSolutionEmpty
     solution: pen
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/_Starlight/Magic/cantrip.ogg
   - type: SolutionContainerManager
     solutions:
@@ -166,7 +166,7 @@
     tags:
     - HideContextMenu
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: "/Audio/_Starlight/Magic/gust.ogg"
       params:
         volume: 0.1
@@ -229,7 +229,7 @@
   - type: DeleteOnSolutionEmpty
     solution: pen
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/_Starlight/Magic/ember.ogg
   - type: SolutionContainerManager
     solutions:

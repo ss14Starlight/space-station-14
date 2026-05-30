@@ -677,7 +677,7 @@ namespace Content.Server.Voting.Managers
         private Dictionary<GamePresetPrototype, string> GetGamePresets()
         {
             var presets = new Dictionary<GamePresetPrototype, string>();
-            
+
             var prototypeId = _cfg.GetCVar(StarlightCCVars.RoundVotingChancesPrototype);
 
             if (!_prototypeManager.TryIndex<RoundVotingChancesPrototype>(prototypeId, out var chancesPrototype))

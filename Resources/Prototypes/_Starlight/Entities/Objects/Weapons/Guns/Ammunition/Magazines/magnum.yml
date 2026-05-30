@@ -17,7 +17,7 @@
 - type: entity
   id: BaseMagazineMagnumSubMachineGun
   name: SMG magazine (.45 magnum)
-  parent: BaseItem
+  parent: [BaseItem, BaseSecuritySalvageContraband]
   abstract: true
   components:
   - type: Tag
@@ -333,7 +333,7 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#40F57A"
-        
+
 - type: entity
   id: MagazineMagnumRifleSP
   name: rifle magazine (.45 magnum)
@@ -513,7 +513,7 @@
       - state: inhand-right-mag
       - state: inhand-right-stripe
         color: "#E7EEEE"
-        
+
 - type: entity
   id: MagazineDMRPractice
   name: "DMR magazine (.45 magnum practice)"

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseSecurityContraband, ClothingShoesMilitaryBaseUntieable]
+  parent: [ClothingShoesBootsMagBase, BaseSecurityContraband, ClothingShoesMilitaryBase]
   id: ClothingShoesBootsMagSec
   name: security magboots
   description: A pair of standard magnetic boots, issued alongside the Security Hardsuit.

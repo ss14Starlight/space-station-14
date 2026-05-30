@@ -169,7 +169,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     {
         _system?.OpenNewLife();
     }
-    
+
     private void GhostThemePressed() //🌟Starlight🌟
     {
         _system?.OpenGhostTheme();

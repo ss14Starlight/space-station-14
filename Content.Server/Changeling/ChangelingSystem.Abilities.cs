@@ -32,6 +32,7 @@ using Content.Server.Changeling.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
+using Content.Server._Starlight.Language;
 // Starlight edit end
 
 namespace Content.Server.Changeling;
@@ -40,6 +41,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
     [Dependency] private readonly ChangelingIdentitySystem _changelingIdentitySystem = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";
@@ -67,9 +69,13 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         SubscribeLocalEvent<ChangelingComponent, ActionAnatomicPanaceaEvent>(OnAnatomicPanacea);
         SubscribeLocalEvent<ChangelingComponent, ActionAugmentedEyesightEvent>(OnAugmentedEyesight);
+        SubscribeLocalEvent<ChangelingComponent, ActionNightEyesightEvent>(OnNightEyesight); // Starlight
+        SubscribeLocalEvent<ChangelingComponent, ActionThermalEyesightEvent>(OnThermalEyesight); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionBiodegradeEvent>(OnBiodegrade);
         SubscribeLocalEvent<ChangelingComponent, ActionChameleonSkinEvent>(OnChameleonSkin);
         SubscribeLocalEvent<ChangelingComponent, ActionEphedrineOverdoseEvent>(OnEphedrineOverdose);
+        SubscribeLocalEvent<ChangelingComponent, ActionDesoxyephedrineOverdoseEvent>(OnDesoxyephedrineOverdose); // Starlight
+        SubscribeLocalEvent<ChangelingComponent, ActionAmalgamOverdoseEvent>(OnAmalgamOverdose); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionFleshmendEvent>(OnHealUltraSwag);
         SubscribeLocalEvent<ChangelingComponent, ActionLastResortEvent>(OnLastResort);
         SubscribeLocalEvent<ChangelingComponent, ActionLesserFormEvent>(OnLesserForm);
@@ -143,13 +149,13 @@ public sealed partial class ChangelingSystem : EntitySystem
             var blood = originalBlood.Clone();
             blood.ScaleTo(originalBlood.Volume);
             var ferroAcid = new ReagentQuantity(FerrochromicAcidPrototype, originalBlood.Volume);
-        
+
             _blood.ChangeBloodReagents(target, new Solution([ferroAcid]));
             _blood.SpillAllSolutions(target);
             _blood.ChangeBloodReagents(target, blood);
         }
         // Starlight edit end
-        
+
         EnsureComp<AbsorbedComponent>(target);
 
         var popup = Loc.GetString("changeling-absorb-end-self-ling");
@@ -307,7 +313,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
 
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args) => ToggleStrainedMuscles(uid, comp);
-    
+
     private void ToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp)
     {
         if (!comp.StrainedMusclesActive)
@@ -401,14 +407,39 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (HasComp<FlashImmunityComponent>(uid))
         {
-            _popup.PopupEntity(Loc.GetString("changeling-passive-active"), uid, uid);
+            RemComp<FlashImmunityComponent>(uid); // Starlight, they need to be able to disable it to use the other visions due to how flash protection is written.
+            _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid); // Starlight
             return;
         }
 
         EnsureComp<FlashImmunityComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
+    #region Starlight
+    private void OnNightEyesight(EntityUid uid, ChangelingComponent comp, ref ActionNightEyesightEvent args)
+    {
+        if (HasComp<NightVisionComponent>(uid))
+        {
+            RemComp<NightVisionComponent>(uid);
+            _popup.PopupEntity(Loc.GetString("changeling-passive-disable"), uid, uid);
+            return;
+        }
 
+        EnsureComp<NightVisionComponent>(uid);
+        _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
+    }
+    private void OnThermalEyesight(EntityUid uid, ChangelingComponent comp, ref ActionThermalEyesightEvent args)
+    {
+        if (HasComp<ThermalVisionComponent>(uid))
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-passive-active"), uid, uid);
+            return;
+        }
+
+        EnsureComp<ThermalVisionComponent>(uid);
+        _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
+    }
+    #endregion
     private void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
     {
         if (TryComp<CuffableComponent>(uid, out var cuffs) && cuffs.Container.ContainedEntities.Count > 0)
@@ -483,6 +514,43 @@ public sealed partial class ChangelingSystem : EntitySystem
             return;
         }
     }
+    #region Starlight
+    private void OnDesoxyephedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionDesoxyephedrineOverdoseEvent args)
+    {
+        var stam = EnsureComp<StaminaComponent>(uid);
+        stam.StaminaDamage = 0;
+
+        var reagents = new Dictionary<string, FixedPoint2>
+        {
+            { "Desoxyephedrine", 15f }
+        };
+        if (TryInjectReagents(uid, reagents))
+            _popup.PopupEntity(Loc.GetString("changeling-inject"), uid, uid);
+        else
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
+            return;
+        }
+    }
+
+    private void OnAmalgamOverdose(EntityUid uid, ChangelingComponent comp, ref ActionAmalgamOverdoseEvent args)
+    {
+        var stam = EnsureComp<StaminaComponent>(uid);
+        stam.StaminaDamage = 0;
+
+        var reagents = new Dictionary<string, FixedPoint2>
+        {
+            { "Amalgam", 15f }
+        };
+        if (TryInjectReagents(uid, reagents))
+            _popup.PopupEntity(Loc.GetString("changeling-inject"), uid, uid);
+        else
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-inject-fail"), uid, uid);
+            return;
+        }
+    }
+    #endregion
 
     // john space made me do this
     private void OnHealUltraSwag(EntityUid uid, ChangelingComponent comp, ref ActionFleshmendEvent args)
@@ -503,7 +571,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     public void OnLesserForm(EntityUid uid, ChangelingComponent comp, ref ActionLesserFormEvent args)
     {
-        var newUid = TransformEntity(uid, protoId: "MobMonkey", comp: comp);
+        var newUid = TransformEntity(uid, protoId: "MobLingMonkey", comp: comp); // Starlight - fix lesser form
         if (newUid == null)
         {
             comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
@@ -537,6 +605,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         EnsureComp<HivemindComponent>(uid);
+
+        _language.AddLanguage(uid, "Changeling");
 
         _popup.PopupEntity(Loc.GetString("changeling-hivemind-start"), uid, uid);
     }

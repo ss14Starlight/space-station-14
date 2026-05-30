@@ -14,9 +14,6 @@ public enum IPCUiKey : byte
 public sealed class IPCEjectBrainBuiMessage : BoundUserInterfaceMessage;
 
 [Serializable, NetSerializable]
-public sealed class IPCEjectBatteryBuiMessage : BoundUserInterfaceMessage;
-
-[Serializable, NetSerializable]
 public sealed class IPCSetNameBuiMessage(string name) : BoundUserInterfaceMessage
 {
     public string Name = name;

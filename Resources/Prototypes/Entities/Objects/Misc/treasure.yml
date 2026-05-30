@@ -149,16 +149,16 @@
   components:
   - type: Sprite
     sprite: _CD/Objects/Misc/antique_coins.rsi
-    state: antiquecoin 
+    state: antiquecoin
   - type: Item
     size: Tiny
   - type: StaticPrice
     price: 75
   - type: Engraveable
     engraveVerb: "engraving-verb-engrave"
-    noEngravingText: "engraving-coin-no-message" 
-    engraveSuccessMessage: "engraving-coin-succeed" 
-    hasEngravingText: "engraving-coin-has-message" 
+    noEngravingText: "engraving-coin-no-message"
+    engraveSuccessMessage: "engraving-coin-succeed"
+    hasEngravingText: "engraving-coin-has-message"
 
 - type: entity
   parent: TreasureCoinIron
@@ -177,7 +177,7 @@
     state: antiquecoin_gold
   - type: StaticPrice
     price: 175
-    
+
 # starlight end
 
 - type: entity
@@ -196,7 +196,7 @@
   components:
   - type: Sprite
     sprite: Objects/Misc/coins.rsi # SL - keeping the old sprite
-    state: coin_diamond            
+    state: coin_diamond
   - type: StaticPrice
     price: 500
 

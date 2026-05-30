@@ -8,5 +8,5 @@ namespace Content.Shared._Starlight.FiringPins.Functionality;
 [RegisterComponent]
 public sealed partial class FiringPinExpeditionComponent : Component
 {
-    
+
 }

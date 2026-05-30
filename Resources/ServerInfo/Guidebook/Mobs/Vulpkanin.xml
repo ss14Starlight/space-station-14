@@ -2,7 +2,7 @@
   # Vulpkanin
 
   <Box>
-    <GuideEntityEmbed Entity="MobVulpkanin" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption=""/>
   </Box>
 
   Vulpkanin, due to their dense fur, [color=#1e90ff]prefer colder temperatures[/color] and [color=#ffa500]heat up faster.[/color]

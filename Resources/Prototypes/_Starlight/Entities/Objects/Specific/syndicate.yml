@@ -60,7 +60,7 @@
   - type: Store
     balance:
       BuildToken: 0
-      
+
 # Debug uplink 2000 coins
 - type: entity
   parent: [ BaseUplinkRadio, StorePresetShuttleBuilderDangerous ]

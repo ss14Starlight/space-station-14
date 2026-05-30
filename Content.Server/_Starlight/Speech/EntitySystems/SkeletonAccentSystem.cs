@@ -41,6 +41,6 @@ public sealed partial class SkeletonAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccentGet(EntityUid uid, SkeletonAccentComponent component, AccentGetEvent args) 
+    private void OnAccentGet(EntityUid uid, SkeletonAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message, component);
 }

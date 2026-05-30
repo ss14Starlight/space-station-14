@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge]
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableHuge, BaseInventoryLagomorph]
   id: BaseMobLagomorph
   name: Urist McBnuuy
   abstract: true
@@ -116,19 +116,6 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-
-- type: entity
-  parent: BaseSpeciesDummy
-  id: MobLagomorphDummy
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: HumanoidAppearance
-    species: Lagomorph
-  - type: Body
-    prototype: Lagomorph
-  - type: Inventory
-    speciesId: lagomorph
-
 # for fragile electronics like consoles or shuttle engines.
 - type: damageModifierSet
   id: Lagomorph

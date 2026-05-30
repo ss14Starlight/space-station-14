@@ -16,7 +16,7 @@ public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly HungerSystem _hunger = default!;
     [Dependency] private readonly ThirstSystem _thirst = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -54,13 +54,13 @@ public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
             stamina.DecayModifiers.Add((GetNetEntity(uid), surge.StaminaRegenModifier.Value, endTime));
         if (surge.StaminaResistModifier is not null)
             stamina.ResistanceModifiers.Add((GetNetEntity(uid), surge.StaminaResistModifier.Value, endTime));
-        
+
         if (surge.HungerDrain is not null)
                 _hunger.AddHungerDrain(uid, surge.HungerDrain.Value, endTime);
-        
+
         if (surge.ThirstDrain is not null)
                 _thirst.AddThirstDrain(uid, surge.ThirstDrain.Value, endTime);
-        
+
         _alerts.ShowAlert(uid, surge.SurgeAlert);
         surge.Active = true;
         ev.Handled = true;
@@ -75,13 +75,13 @@ public sealed class StaminaSurgeSystem : SharedStaminaSurgeSystem
         {
             if (!surge.Active || _timing.CurTime < surge.EffectEndTime) continue;
             surge.Active = false;
-            
+
             stamina.CooldownModifiers.RemoveAll(x => x.Item1 == GetNetEntity(uid) && x.Item3 == surge.EffectEndTime);
             stamina.DecayModifiers.RemoveAll(x => x.Item1 == GetNetEntity(uid) && x.Item3 == surge.EffectEndTime);
             stamina.ResistanceModifiers.RemoveAll(x => x.Item1 == GetNetEntity(uid) && x.Item3 == surge.EffectEndTime);
 
             _alerts.ClearAlert(uid, surge.SurgeAlert);
-            
+
             _hunger.RemoveHungerDrain(uid, surge.EffectEndTime);
             _thirst.RemoveThirstDrain(uid, surge.EffectEndTime);
         }

@@ -62,7 +62,7 @@ public sealed class RandomSpriteSystem: SharedRandomSpriteSystem
                 }
 
                 component.Selected.Add(layer.Key, (selectedState.Key, color));
-                
+
                 if (component.HeldPrefixes.Count > 0 && component.HeldPrefixes.ContainsKey(selectedState.Key))
                 {
                     var prefix = component.HeldPrefixes[selectedState.Key];

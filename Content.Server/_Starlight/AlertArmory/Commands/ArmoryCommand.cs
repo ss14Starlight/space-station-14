@@ -16,8 +16,6 @@ public sealed class ArmoryCommand : IConsoleCommand
     public string Command => "armory";
     public string Description => "Send, recall, or list armory shuttles.";
     public string Help => GetDynamicHelp();
-    private const string NoStationError = "No station with armories found.";
-    private const string NoArmoryConfigError = "Station does not have armory shuttles configured.";
     private const string UnknownArmoryError = "Unknown armory '{0}'.";
     private const string InTransitError = "Armory '{0}' is currently in transit.";
     private const string SendingMessage = "Sending armory '{0}' to the station.";
@@ -62,21 +60,6 @@ public sealed class ArmoryCommand : IConsoleCommand
             return;
         }
 
-        // Try to find the station
-        // var stationUid = GetStationUid(shell, entMan, stationSystem);
-        //
-        // if (stationUid == null)
-        // {
-        //     shell.WriteError(NoStationError);
-        //     return;
-        // }
-        //
-        // if (!entMan.TryGetComponent<AlertArmoryStationComponent>(stationUid.Value, out var stationComp))
-        // {
-        //     shell.WriteError(NoArmoryConfigError);
-        //     return;
-        // }
-
         var action = args[0].ToLowerInvariant();
 
         switch (action)
@@ -117,11 +100,12 @@ public sealed class ArmoryCommand : IConsoleCommand
         return null;
     }
 
-    private static void ListArmories(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, string[] args)
+    private static void ListArmories(IConsoleShell shell, IEntityManager entMan, StationSystem stationSys, string[] _)
     {
         foreach (var station in stationSys.GetStations())
         {
-            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
+            if (!entMan.TryGetComponent<AlertArmoryStationComponent>(station, out var comp))
+                continue;
             var stationName = entMan.GetComponent<MetaDataComponent>(station).EntityName;
             shell.WriteLine($"Available armories for station {stationName}:");
 
@@ -155,8 +139,9 @@ public sealed class ArmoryCommand : IConsoleCommand
 
         foreach (var station in targetStations)
         {
-            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
-            
+            if (!entMan.TryGetComponent<AlertArmoryStationComponent>(station, out var comp))
+                continue;
+
             if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
                 return;
 
@@ -174,7 +159,7 @@ public sealed class ArmoryCommand : IConsoleCommand
             shell.WriteError("Usage: armory recall <stationid/all> <armoryid>");
             return;
         }
-        
+
         List<EntityUid> targetStations = [];
         if(args[1]=="all") targetStations.AddRange(stationSys.GetStations());
         else if (entMan.TryParseNetEntity(args[1], out var uid))
@@ -182,8 +167,9 @@ public sealed class ArmoryCommand : IConsoleCommand
 
         foreach (var station in targetStations)
         {
-            var comp = entMan.GetComponent<AlertArmoryStationComponent>(station);
-            
+            if (!entMan.TryGetComponent<AlertArmoryStationComponent>(station, out var comp))
+                continue;
+
             if (!ValidateAndCheckTransit(shell, entMan, comp, args[2].ToLowerInvariant(), out var armoryKey))
                 return;
 
@@ -233,7 +219,7 @@ public sealed class ArmoryCommand : IConsoleCommand
                 CompletionHelper.Components<StationDataComponent>(args[1], entMan)
                     .Append(new CompletionOption("all")),
                 "Station ID or all");
-        
+
         if (args.Length == 3)
         {
             var subcommand = args[0].ToLowerInvariant();

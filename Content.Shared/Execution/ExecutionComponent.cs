@@ -14,7 +14,7 @@ public sealed partial class ExecutionComponent : Component
     /// How long the melee execution duration lasts.
     /// </summary>
     public static float MeleeDoAfterDuration = 5f;
-    
+
     /// <summary>
     /// How long the gun execution duration lasts.
     /// </summary>

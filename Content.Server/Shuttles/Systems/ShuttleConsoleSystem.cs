@@ -45,10 +45,23 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
 
-    // _Starlight - periodic blip/laser update
+    #region Starlight
+    // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
-    private float _blipUpdateTimer = 0f;
+    private float _blipUpdateTimer;
+
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(250);
+
+    /// <summary>
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
+    /// </summary>
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(10);
+    #endregion
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -126,26 +139,28 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         _consoles.Clear();
         _lookup.GetChildEntities(gridUid, _consoles);
         DockingInterfaceState? dockState = null;
+        DockingPortStates? dockingPortStates = null; // Starlight
 
         foreach (var entity in _consoles)
         {
-            UpdateState(entity, ref dockState);
+            UpdateState(entity, ref dockState, ref dockingPortStates); // Starlight: +dockingPortStates
         }
     }
 
     /// <summary>
     /// Refreshes all of the data for shuttle consoles.
     /// </summary>
-    public void RefreshShuttleConsoles()
+    public void RefreshShuttleConsoles(bool forceUpdate = true)
     {
         var exclusions = new List<ShuttleExclusionObject>();
         GetExclusions(ref exclusions);
         var query = AllEntityQuery<ShuttleConsoleComponent>();
         DockingInterfaceState? dockState = null;
+        DockingPortStates? dockingPortStates = null; // Starlight
 
         while (query.MoveNext(out var uid, out _))
         {
-            UpdateState(uid, ref dockState);
+            UpdateState(uid, ref dockState, ref dockingPortStates, forceUpdate); // Starlight: +dockingPortStates
         }
     }
 
@@ -172,13 +187,15 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         ref AnchorStateChangedEvent args)
     {
         DockingInterfaceState? dockState = null;
-        UpdateState(uid, ref dockState);
+        DockingPortStates? dockingPortStates = null; // Starlight
+        UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
     }
 
     private void OnConsolePowerChange(EntityUid uid, ShuttleConsoleComponent component, ref PowerChangedEvent args)
     {
         DockingInterfaceState? dockState = null;
-        UpdateState(uid, ref dockState);
+        DockingPortStates? dockingPortStates = null; // Starlight
+        UpdateState(uid, ref dockState, ref dockingPortStates); // Starlight
     }
 
     private bool TryPilot(EntityUid user, EntityUid uid)
@@ -259,9 +276,19 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         return result;
     }
 
-    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState)
+    private void UpdateState(EntityUid consoleUid, ref DockingInterfaceState? dockState, ref DockingPortStates? dockingPortStates, bool forceUpdate = true) // Starlight: +DockingPortStates, forceUpdate
     {
         EntityUid? entity = consoleUid;
+
+        // Starlight BEGIN
+        if (!TryComp<ShuttleConsoleComponent>(consoleUid, out var component)) return;
+        var shouldIdleUpdate = component.LastInterfaceUpdateTime + _idleUpdateInterval < _timing.CurTime;
+        var shouldActiveUpdate = component.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _ui.IsUiOpen(consoleUid, ShuttleConsoleUiKey.Key);
+        if (!_ui.HasUi(consoleUid, ShuttleConsoleUiKey.Key) || !(forceUpdate || shouldIdleUpdate || shouldActiveUpdate))
+            return;
+        component.LastInterfaceUpdateTime = _timing.CurTime;
+        // Starlight END
 
         var getShuttleEv = new ConsoleShuttleEvent
         {
@@ -277,15 +304,16 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         NavInterfaceState navState;
         ShuttleMapInterfaceState mapState;
         dockState ??= GetDockState();
+        dockingPortStates ??= GetDockingPortStates(); // Starlight
 
         if (shuttleGridUid != null && entity != null)
         {
-            navState = GetNavState(entity.Value, dockState.Docks);
+            navState = GetNavState(entity.Value); // Starlight: -dockState.Docks
             mapState = GetMapState(shuttleGridUid.Value);
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>());
+            navState = new NavInterfaceState(0f, null, null); // Starlight: -dict
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -332,7 +360,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 }
             }
 
-            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState));
+            _ui.SetUiState(consoleUid, ShuttleConsoleUiKey.Key, new ShuttleBoundUserInterfaceState(navState, mapState, dockState, dockingPortStates)); // Starlight: +dockingPortStates
         }
     }
 
@@ -363,15 +391,14 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         // Starlight - Start
         _blipUpdateTimer += frameTime;
-        if (_blipUpdateTimer < BlipUpdateInterval)
-            return;
-        _blipUpdateTimer = 0f;
+        if (_blipUpdateTimer >= BlipUpdateInterval)
+        {
+            _blipUpdateTimer = 0;
+            // _Starlight - prune expired Apollo laser traces before syncing state
+            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        }
 
-        // _Starlight - prune expired Apollo laser traces before syncing state
-        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
-
-        RefreshShuttleConsoles();
-        // Starlight - End
+        RefreshShuttleConsoles(false); // Starlight
     }
 
     protected override void HandlePilotShutdown(EntityUid uid, PilotComponent component, ComponentShutdown args)
@@ -448,33 +475,32 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// <summary>
     /// Specific for a particular shuttle.
     /// </summary>
-    public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity, Dictionary<NetEntity, List<DockingPortState>> docks)
+    public NavInterfaceState GetNavState(Entity<RadarConsoleComponent?, TransformComponent?> entity) // Starlight: -docks
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, null, null);  // Starlight: -docks
 
         return GetNavState(
             entity,
-            docks,
             entity.Comp2.Coordinates,
             entity.Comp2.LocalRotation);
     }
 
     public NavInterfaceState GetNavState(
-        Entity<RadarConsoleComponent?, TransformComponent?> entity,
-        Dictionary<NetEntity, List<DockingPortState>> docks,
+        Entity<RadarConsoleComponent?, TransformComponent?> entity, // Starlight: -docks
         EntityCoordinates coordinates,
         Angle angle)
     {
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle, docks);
+            return new NavInterfaceState(SharedRadarConsoleSystem.DefaultMaxRange, GetNetCoordinates(coordinates), angle); // Starlight: -docks
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
-            angle,
-            docks);
+            angle); // Starlight: -docks
     }
+
+    public DockingPortStates GetDockingPortStates() => new(GetAllDocks()); // Starlight
 
     /// <summary>
     /// Global for all shuttles.
@@ -482,8 +508,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// <returns></returns>
     public DockingInterfaceState GetDockState()
     {
-        var docks = GetAllDocks();
-        return new DockingInterfaceState(docks);
+        // var docks = GetAllDocks(); // Starlight
+        return new DockingInterfaceState(); // Starlight: -docks
     }
 
     /// <summary>

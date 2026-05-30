@@ -1,0 +1,84 @@
+light_mode unshaded;
+
+uniform highp vec2 headPos;
+uniform highp vec2 tailPos;
+uniform highp float totalLength;
+
+varying highp vec2 worldPos;
+
+void vertex() {
+    worldPos = aPos;
+}
+
+highp float hash(highp vec2 p) {
+    return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453);
+}
+
+void fragment() {
+    highp vec2 fragUV = FRAGCOORD.xy * SCREEN_PIXEL_SIZE;
+
+    highp float distFromHead = distance(fragUV, headPos);
+    highp float distFromTail = distance(fragUV, tailPos);
+    highp float totalDist = distFromHead + distFromTail;
+
+    highp float t = totalDist > 0.001 ? clamp(distFromTail / totalDist, 0.0, 1.0) : 1.0;
+
+    // Pure black base — fully transparent, stars add their own alpha
+    highp vec3 col = vec3(0.0);
+    highp float alpha = 0.0;
+
+    // Golden stars in world space
+    highp vec2 starGrid = worldPos * 4.0;
+    highp vec2 starCell = floor(starGrid);
+    highp vec2 starLocal = fract(starGrid) - 0.5;
+
+    highp vec2 starOffset = vec2(hash(starCell), hash(starCell + vec2(73.0, 157.0))) - 0.5;
+    highp vec2 toStar = starLocal - starOffset * 0.5;
+    highp float starDist = length(toStar);
+
+    // ~40% cells have a star
+    highp float starChance = hash(starCell + vec2(31.0, 97.0));
+
+    // Per-star properties from hash
+    highp float starSeed = hash(starCell + vec2(51.0, 203.0));
+    highp float shapeSeed = hash(starCell + vec2(89.0, 43.0));
+    highp float colorSeed = hash(starCell + vec2(17.0, 251.0));
+
+    // Lifecycle: spawn, shrink, respawn
+    highp float cycle = 3.0 + starSeed * 4.0;
+    highp float phase = mod(TIME + starSeed * cycle, cycle);
+    highp float life = phase / cycle;
+
+    // Larger stars — shaped ones are even bigger
+    highp float maxRadius = shapeSeed > 0.6 ? (0.20 + starSeed * 0.15) : (0.12 + starSeed * 0.10);
+    highp float radius = maxRadius * (1.0 - life);
+
+    // Star shape for ~40% of stars: modulate distance by angle to create points
+    highp float angle = atan(toStar.y, toStar.x);
+    highp float starShape = 1.0;
+    if (shapeSeed > 0.6) {
+        highp float points = shapeSeed > 0.8 ? 5.0 : 4.0;
+        starShape = 0.4 + 0.6 * abs(cos(angle * points * 0.5));
+    }
+    highp float shapedDist = starDist / starShape;
+
+    highp float star = step(0.6, starChance) * (1.0 - smoothstep(0.0, radius, shapedDist));
+
+    // Twinkle — less dimming
+    highp float twinkle = 0.8 + 0.2 * sin(TIME * (3.0 + starSeed * 5.0));
+    star *= twinkle;
+
+    // Fade out as star shrinks — less aggressive
+    star *= smoothstep(0.0, 0.3, 1.0 - life);
+
+    // Color: golden → white based on colorSeed
+    highp vec3 gold = vec3(1.0, 0.75, 0.2);
+    highp vec3 warm = vec3(1.0, 0.9, 0.5);
+    highp vec3 white = vec3(1.0, 1.0, 0.95);
+    highp vec3 starColor = mix(gold, mix(warm, white, colorSeed), colorSeed);
+
+    col += starColor * star * 1.5;
+    alpha = clamp(star * 2.0, 0.0, 1.0) * t;
+
+    COLOR = vec4(col, alpha);
+}

@@ -6,7 +6,6 @@ using Content.Server.Cloning;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Medical.SuitSensors;
 using Content.Server.Objectives.Components;
-using Content.Shared.CollectiveMind;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Gibbing.Components;
 using Content.Shared.Medical.SuitSensor;
@@ -16,7 +15,7 @@ using Robust.Shared.Random;
 // Starlight start
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
-using Robust.Shared.Prototypes; 
+using Robust.Shared.Prototypes;
 using Content.Shared.Eye.Blinding.Components;
 // Starlight end
 
@@ -29,7 +28,6 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly CloningSystem _cloning = default!;
     [Dependency] private readonly SuitSensorSystem _sensor = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMindUpdate = default!;
     [Dependency] private readonly IChatManager _chatManager = default!; // SL add
     [Dependency] private readonly IPrototypeManager _proto = default!; // SL add
     [Dependency] private readonly IComponentFactory _componentFactory = default!; // SL add
@@ -45,7 +43,7 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
     protected override void Started(EntityUid uid, ParadoxCloneRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         base.Started(uid, component, gameRule, args);
-        
+
         // check if we got enough potential cloning targets, otherwise cancel the gamerule so that the ghost role does not show up
         var allHumans = _mind.GetAliveHumans();
 
@@ -126,10 +124,6 @@ public sealed class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxCloneRuleComp
         _sensor.SetAllSensors(clone.Value, SuitSensorMode.SensorOff);
 
         args.Entity = clone;
-
-        //starlight fix for collective minds
-        _collectiveMindUpdate.ForceCloneFrom(ent.Comp.OriginalBody.Value, clone.Value); // copy over the collective mind data from the original to the clone
-        //starlight end
 
         // Starlight-edit
         TryCopyVampireAbilities(ent.Comp.OriginalBody.Value, clone.Value);

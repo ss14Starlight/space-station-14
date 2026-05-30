@@ -4,7 +4,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Station.Components;
 using Content.Server._Starlight.Thaven; //Starlight
-using Content.Shared._Starlight.Thaven.Components; //Starlight 
+using Content.Shared._Starlight.Thaven.Components; //Starlight
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Shared._FarHorizons.Silicons.Glitching;
 
@@ -49,11 +49,11 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
         //Starlight begin | Ion storm affects Thaven moods
         var moodsQuery = EntityQueryEnumerator<ThavenMoodsComponent, TransformComponent>();
         while (moodsQuery.MoveNext(out var ent, out var moodHolder, out var xform))
-        {            
+        {
             // only affect Thaven Moods holders on the station
             if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != chosenStation)
                 continue;
-        
+
             _thavenMood.OnIonStorm((ent, moodHolder));
         }
         //Startlight end

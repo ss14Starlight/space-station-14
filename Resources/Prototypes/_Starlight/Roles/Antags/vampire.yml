@@ -12,3 +12,10 @@
     - IPC
     inverted: true
   playTimeTracker: AntagVampire
+
+- type: antag
+  id: Thrall
+  name: roles-antag-thrall-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-thrall-objective

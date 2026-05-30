@@ -340,11 +340,11 @@
     startSound:
       path: /Audio/Items/drill_use.ogg
   - type: ScrewdriverSurgery
-    speed: 0.6 
+    speed: 0.6
     startSound:
       path: /Audio/Items/drill_use.ogg
   - type: WrenchSurgery
-    speed: 0.6 
+    speed: 0.6
     startSound:
       path: /Audio/Items/drill_use.ogg
   # 🌟Starlight-end🌟

@@ -16,23 +16,20 @@ namespace Content.Server._Starlight.Objectives.Systems;
 /// </summary>
 public sealed class TeachALessonConditionSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroad = default!; // Starlight
+    [Dependency] private readonly RailroadingSystem _railroad = default!;
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
 
-        // Starlight - Start
         SubscribeLocalEvent<TeachALessonConditionComponent, RailroadingCardChosenEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, RailroadingCardCompletionQueryEvent>(OnTaskCompletionQuery);
         SubscribeLocalEvent<TeachALessonConditionComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
-        // Starlight - End
     }
 
-    // Starlight Start
     private void OnCollectObjectiveInfo(Entity<TeachALessonConditionComponent> ent, ref CollectObjectiveInfoEvent args)
     {
         if (!HasComp<RailroadCardComponent>(ent.Owner) || !TryComp<TargetObjectiveComponent>(ent.Owner, out var target))
@@ -52,12 +49,9 @@ public sealed class TeachALessonConditionSystem : EntitySystem
 
         args.IsCompleted = ent.Comp.HasDied;
     }
-    // Starlight End
 
     private void OnGetProgress(Entity<TeachALessonConditionComponent> ent, ref ObjectiveGetProgressEvent args)
-    {
-        args.Progress = ent.Comp.HasDied ? 1.0f : 0.0f;
-    }
+        => args.Progress = ent.Comp.HasDied ? 1.0f : 0.0f;
 
     private void OnAfterAssign(Entity<TeachALessonConditionComponent> ent)
     {
@@ -73,12 +67,12 @@ public sealed class TeachALessonConditionSystem : EntitySystem
             return;
         var targetComponent = EnsureComp<TeachALessonTargetComponent>(targetMobUid.Value);
         targetComponent.Teachers.Add(ent);
-        
+
     }
 
     private void OnMobStateChanged(Entity<TeachALessonTargetComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead) 
+        if (args.NewMobState != MobState.Dead)
             return;
         foreach (var teacher in ent.Comp.Teachers)
         {
@@ -87,7 +81,6 @@ public sealed class TeachALessonConditionSystem : EntitySystem
 
             condition.HasDied = true;
 
-            // Starlight
             if (TryComp<RailroadableComponent>(teacher, out var railroadable)
             && railroadable.ActiveCard is not null)
                 _railroad.InvalidateProgress((teacher, railroadable));

@@ -6,7 +6,7 @@
   abstract: true
   components:
   - type: BoneGel
-    speed: 1.0 
+    speed: 1.0
     startSound:
       path: /Audio/Items/Medical/ointment_begin.ogg
     endSound:
@@ -47,7 +47,7 @@
     state: abductor
   - type: SolutionRegeneration
     solution: container
-    generated: 
+    generated:
       reagents:
       - ReagentId: BoneGel
         Quantity: 1
@@ -95,7 +95,7 @@
   - type: BoneSetter
   - type: SolutionRegeneration
     solution: container
-    generated: 
+    generated:
       reagents:
       - ReagentId: BoneGel
         Quantity: 1

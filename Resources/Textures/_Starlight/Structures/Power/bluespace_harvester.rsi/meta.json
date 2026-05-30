@@ -9,7 +9,7 @@
   "states": [
     {
         "name": "bluespace_tap",
-        "copyright": "Paradise Station RU",  
+        "copyright": "Paradise Station RU",
         "delays":[
             [0.1,0.1,0.1,0.1]
         ]

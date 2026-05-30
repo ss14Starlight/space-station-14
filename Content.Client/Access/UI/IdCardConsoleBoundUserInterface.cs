@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 using static Content.Shared.Access.Components.IdCardConsoleComponent;
 // Starlight-edit: Start
 using Robust.Client.UserInterface;
-using Content.Shared._Starlight.Access; 
+using Content.Shared._Starlight.Access;
 // Starlight-edit: End
 
 namespace Content.Client.Access.UI
@@ -67,7 +67,7 @@ namespace Content.Client.Access.UI
             _window?.UpdateState(castState);
         }
 
-        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<JobPrototype> newJobPrototype)
+        public void SubmitData(string newFullName, string newJobTitle, List<ProtoId<AccessLevelPrototype>> newAccessList, ProtoId<JobPrototype>? newJobPrototype) // Starlight: Nullable newJobPrototype
         {
             if (newFullName.Length > _maxNameLength)
                 newFullName = newFullName[.._maxNameLength];

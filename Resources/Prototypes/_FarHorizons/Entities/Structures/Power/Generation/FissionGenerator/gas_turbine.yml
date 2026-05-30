@@ -145,9 +145,9 @@
     sprite: _FarHorizons/Structures/Power/Generation/FissionGenerator/small_gas_turbine.rsi
   - type: GasTurbine
     inletPos: 1, -1
-    inletRot: 0 
+    inletRot: 0
     outletPos: -1, -1
-    outletRot: 0 
+    outletRot: 0
     arrowPrototype: GasTurbineSmallFlowArrow
 
 - type: entity
@@ -185,7 +185,7 @@
   parent: [BaseGasTurbineSmall, GasTurbineSalvage]
   suffix: "Salvage"
 #endregion
-  
+
 #region Support Entities
 # Arrow to indicate flow
 - type: entity

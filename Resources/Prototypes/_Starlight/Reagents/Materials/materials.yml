@@ -13,7 +13,7 @@
   icon: { sprite: _Starlight/Objects/Materials/paper_roll.rsi, state: icon_100 }
   color: "#ffffff"
   price: 0.01
-  
+
 - type: material
   id: BluespaceCrystal
   stackEntity: BluespaceCrystal1

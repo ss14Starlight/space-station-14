@@ -18,18 +18,19 @@
       program: 33
     - type: Sprite
       drawdepth: Mobs
-      sprite: Mobs/Pets/corgi.rsi
+      sprite: _Starlight/Mobs/Pets/corgi.rsi
+      state: Borgi
       layers:
       # Additional layers required for borg states
       - map: ["enum.DamageStateVisualLayers.Base"]
-        state: corgi
+        state: Borgi
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
         state: body-overlay-2
         visible: false
       - map: ["enum.BorgVisualLayers.Body"]
-        state: corgi
+        state: Borgi
         visible: false
       - state: corgitag
         map: ["enum.BorgVisualLayers.Light"]
@@ -201,8 +202,8 @@
       stunTime: 5
     - type: BorgTransponder
       sprite:
-        sprite: Mobs/Pets/corgi.rsi
-        state: corgi
+        sprite: _Starlight/Mobs/Pets/corgi.rsi
+        state: Borgi
       name: borgi
     - type: DeviceNetwork
       deviceNetId: Wireless

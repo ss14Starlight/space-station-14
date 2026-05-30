@@ -53,8 +53,8 @@ public sealed partial class StationAiCustomizationMenu : FancyWindow
         }
 
         Title = Loc.GetString("station-ai-customization-menu");
-        
-        //Starlight begin | Add option to rename self if they are 
+
+        //Starlight begin | Add option to rename self if they are
         if (stationAiCustomization is null) return;
         if (!stationAiCustomization.RenameAvailable) return;
         var nameContainer = new BoxContainer();

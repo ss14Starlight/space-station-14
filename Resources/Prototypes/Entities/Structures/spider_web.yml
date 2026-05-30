@@ -22,7 +22,7 @@
     visuals:
       base:
         - options: Default
-          data:  
+          data:
             sprite: Structures/floor_web.rsi
             drawdepth: WallMountedItems
         - options: Arachnophobia
@@ -31,7 +31,7 @@
             drawdepth: WallMountedItems
       enum.CornerLayers.SE:
         - options: Default
-          data:  
+          data:
             sprite: Structures/floor_web.rsi
             drawdepth: WallMountedItems
         - options: Arachnophobia
@@ -40,7 +40,7 @@
             drawdepth: WallMountedItems
       enum.CornerLayers.SW:
         - options: Default
-          data:  
+          data:
             sprite: Structures/floor_web.rsi
             drawdepth: WallMountedItems
         - options: Arachnophobia
@@ -49,7 +49,7 @@
             drawdepth: WallMountedItems
       enum.CornerLayers.NE:
         - options: Default
-          data:  
+          data:
             sprite: Structures/floor_web.rsi
             drawdepth: WallMountedItems
         - options: Arachnophobia
@@ -58,7 +58,7 @@
             drawdepth: WallMountedItems
       enum.CornerLayers.NW:
         - options: Default
-          data:  
+          data:
             sprite: Structures/floor_web.rsi
             drawdepth: WallMountedItems
         - options: Arachnophobia

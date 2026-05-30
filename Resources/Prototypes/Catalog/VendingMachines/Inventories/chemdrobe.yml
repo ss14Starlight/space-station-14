@@ -1,24 +1,28 @@
 - type: vendingMachineInventory
   id: ChemDrobeInventory
   startingInventory:
-    ClothingUniformJumpsuitChemistry: 2
-    ClothingUniformJumpskirtChemistry: 2
-    ClothingOuterCoatLabChem: 2
-    ClothingShoesColorWhite: 2
+    ClothingHeadHatBeretChemist: 2 # Starlight
+    ClothingHeadNurseHatChemist: 2 # Starlight
+    ClothingShoesBootsWinterChem: 2 # Starlight
+    ClothingEyeGlassesChemicalPrescription: 2 # Starlight
+    # Starlight start - reverting to two stock instead of one
+    # Essential
+    ClothingEyesGlassesChemical: 2
+    HandLabeler: 2
+    # Optional
+    ClothingHeadsetMedical: 2
     ClothingBackpackChemistry: 2
     ClothingBackpackSatchelChemistry: 2
     ClothingBackpackDuffelChemistry: 2
     ChemBag: 2
-    HandLabeler: 3
-    ClothingBeltMedical: 2
-    ClothingHeadHatBeretChemist: 2 # Starlight
-    ClothingHeadNurseHatChemist: 2 # Starlight
-    ClothingHandsGlovesLatex: 2
-    ClothingHeadsetMedical: 2
+    ClothingUniformJumpsuitChemistry: 2
+    ClothingUniformJumpskirtChemistry: 2
+    ClothingOuterCoatLabChem: 2
+    ClothingOuterCoatLabChemistLong: 2 # DeltaV
     ClothingOuterWinterChem: 2
-    ClothingShoesBootsWinterChem: 2 # Starlight
-    ClothingEyesGlassesChemical: 2
-    ClothingEyeGlassesChemicalPrescription: 2 # Starlight
+    ClothingHandsGlovesLatex: 2
+    ClothingShoesColorWhite: 2
+    # Starlight end
   contrabandInventory:
     ToyFigurineChemist: 1
 

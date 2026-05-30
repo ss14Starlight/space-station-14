@@ -780,7 +780,7 @@
     understands:
     - Mouse
     - GalacticCommon
-    - Crittish # Rodentia
+    - Squeakish # Rodentia
   # Starlight-end
   - type: Sprite
     drawdepth: SmallMobs
@@ -876,7 +876,7 @@
       base:
         - options: Default
           data:
-            drawdepth: Mobs   
+            drawdepth: Mobs
             sprite: Mobs/Pets/shiva.rsi
             map: ["enum.DamageStateVisualLayers.Base", "movement"]
             state: shiva

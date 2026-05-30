@@ -17,7 +17,7 @@ public sealed partial class RailroadTimerTaskComponent : Component
     [DataField]
     public TimeSpan Started = TimeSpan.Zero;
 
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
+    [DataField]
     public TimeSpan EndTime = TimeSpan.Zero;
 
     [DataField]

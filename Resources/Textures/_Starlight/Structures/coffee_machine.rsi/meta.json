@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites taken from Aurora at https://github.com/Aurorastation/Aurora.3/blob/HEAD/icons/obj/chemical.dmi",
+  "size": {
+    "x": 48,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "coffee_machine",
+      "directions": 4
+    }
+  ]
+}

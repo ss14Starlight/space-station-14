@@ -72,6 +72,15 @@
   coefficients:
     Heat: -10.0
 
+# Starlight-start: small armor plating for the security cyborg chassis
+- type: damageModifierSet
+  id: SecurityBorgArmor
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+# Starlight-end
+
 # terminator's flesh damage set
 # we want it to be tanky, but it should be pretty easy to gib it into endoskeleton form
 - type: damageModifierSet

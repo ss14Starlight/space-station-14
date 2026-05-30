@@ -63,7 +63,7 @@
     defaultChannel: CentCom
   - type: Sprite
     layers:
-    - state: crypt_blue
+    - state: crypt_silver # Starlight
     - state: nano_label
 
 - type: entity
@@ -197,7 +197,7 @@
     - state: robotics_label
 
 - type: entity
-  parent: [ EncryptionKey, BaseSecurityLawyerContraband ]
+  parent: [ EncryptionKey, BaseSecurityContraband ] # Starlight
   id: EncryptionKeySecurity
   name: security encryption key
   description: An encryption key used by security.

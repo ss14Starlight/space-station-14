@@ -105,15 +105,15 @@ public abstract class SharedQuoremCheckSystem : EntitySystem
 
         // Remove this pack from the list of packs
         _packGroups.Remove(component.PackId, out var pack);
-        
+
         pack ??= new HashSet<EntityUid>();
-        
+
         // Combine packs
         _packGroups[targetComponent.PackId].UnionWith(pack);
-            
+
         // How many members are in the pack
         var packSize = _packGroups[targetComponent.PackId].Count;
-        
+
         // Update other pack members
         foreach (var packMemberUid in _packGroups[targetComponent.PackId])
         {
@@ -131,26 +131,26 @@ public abstract class SharedQuoremCheckSystem : EntitySystem
         comp.PackId = newPackId;
         UpdateHostile((uid, comp), packSize);
     }
-    
+
     /// <summary>
-    /// Remove a pack member on death 
+    /// Remove a pack member on death
     /// </summary>
     private void OnPackmateDeath(Entity<QuoremCheckComponent> ent, ref MobStateChangedEvent args)
     {
         if (args.NewMobState != MobState.Dead)
             return;
-        
+
         if (!_packGroups.TryGetValue(ent.Comp.PackId, out var pack))
             return;
         pack.Remove(ent);
         ent.Comp.PackId = _nextId;
         _nextId++;
-        
+
         // If there are now 0 members in the pack remove it
         if(pack.Count == 0)
             _packGroups.Remove(ent.Comp.PackId);
     }
-    
+
     /// <summary>
     /// Change faction to a hostile faction
     /// </summary>
@@ -163,7 +163,7 @@ public abstract class SharedQuoremCheckSystem : EntitySystem
         SpawnAttachedTo(ent.Comp.QuoremEffect, coords);
         _audio.PlayPvs(ent.Comp.QuoremSound, ent.Owner);
     }
-    
+
     /// <summary>
     /// Check to see if the Quorem has been reached. If so become hostile
     /// </summary>

@@ -17,14 +17,14 @@ public sealed partial class SlimeEatOperator : HTNOperator
     /// </summary>
     [DataField("targetKey", required: true)]
     public string TargetKey = string.Empty;
-    
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
         _slimeSystem = sysManager.GetEntitySystem<SlimeSystem>();
         _slimeBrainSystem = sysManager.GetEntitySystem<SlimeBrainSystem>();
     }
-    
+
     public override void TaskShutdown(NPCBlackboard blackboard, HTNOperatorStatus status)
     {
         blackboard.Remove<EntityUid>(TargetKey);
@@ -34,21 +34,21 @@ public sealed partial class SlimeEatOperator : HTNOperator
     public override HTNOperatorStatus Update(NPCBlackboard blackboard, float frameTime)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
-        
+
         if (!_entMan.TryGetComponent<SlimeComponent>(owner, out var slime))
             return HTNOperatorStatus.Failed;
 
         if (!blackboard.TryGetValue<EntityUid>(TargetKey, out var target, _entMan) || _entMan.Deleted(target))
             return HTNOperatorStatus.Failed;
-        
+
         if (!_slimeBrainSystem.IsEdibleBySlimeTest(target))
             return HTNOperatorStatus.Failed;
 
         if (!_slimeSystem.TryEat((owner, slime), target))
             return HTNOperatorStatus.Failed;
-        
+
         _slimeBrainSystem.SlimeSuccessfulEat(owner);
-        
+
         return HTNOperatorStatus.Finished;
     }
 }

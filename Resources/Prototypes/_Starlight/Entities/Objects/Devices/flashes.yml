@@ -6,7 +6,7 @@
   components:
     - type: LimitedCharges
       maxCharges: 0
-      
+
 - type: entity
   name: flash
   parent: Flash

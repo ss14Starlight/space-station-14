@@ -116,9 +116,9 @@
     containerSlotId: beakerSlot
     enabled: false
   # Starlight-end
-  
+
 # Starlight-start: power cell chem dispenser
-  
+
 - type: entity
   abstract: true
   id: ReagentDispenserBasePowerCell
@@ -163,5 +163,5 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
-  
+
 # Starlight-end: power cell chem dispenser

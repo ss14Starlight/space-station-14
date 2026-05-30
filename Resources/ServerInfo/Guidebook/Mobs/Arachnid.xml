@@ -2,7 +2,7 @@
   # Arachnids
 
   <Box>
-    <GuideEntityEmbed Entity="MobArachnid" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceArachnid" Caption=""/>
   </Box>
 
   They have two additional Pocket slots in their inventory. They can eat raw meat without any ill effects, but some foods like chocolate and onion poisons them.

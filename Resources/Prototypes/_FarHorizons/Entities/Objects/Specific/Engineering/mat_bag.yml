@@ -19,7 +19,7 @@
         variation: 0.250
   - type: AltUseToggle
   - type: ComponentToggler
-    components: 
+    components:
     - type: MagnetPickup
       requiresEquipping: false
   - type: Sprite

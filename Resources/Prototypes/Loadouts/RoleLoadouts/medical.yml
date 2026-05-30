@@ -1,0 +1,119 @@
+## Role Loadouts
+
+- type: roleLoadout
+  id: JobChiefMedicalOfficer
+  groups:
+  - GroupTankHarness
+  - ChiefMedicalOfficerHead
+  - MedicalMask
+  - ChiefMedicalOfficerJumpsuit
+  - MedicalGloves # Starlight
+  - MedicalBackpack
+  - ChiefMedicalOfficerOuterClothing
+  - ChiefMedicalOfficerNeck
+  - ChiefMedicalOfficerShoes
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - ChiefMedicalOfficerJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobMedicalDoctor
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves # Starlight
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - MedicalDoctorPDA
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - MedicalDoctorJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobMedicalIntern
+  groups:
+  - GroupTankHarness
+  - MedicalInternJumpsuit
+  # 🌟Starlight🌟 start
+  - MedicalGloves
+  - MedicalDoctorHead
+  - MedicalMask
+#  - MedicalDoctorJumpsuit # Already have this
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - MedicalEyewear
+  # 🌟Starlight🌟 end
+  # - Glasses Starlight
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - MedicalInternJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobChemist
+  groups:
+  - GroupTankHarness
+  - ChemistHead # 🌟Starlight🌟
+  - MedicalMask
+  - ChemistJumpsuit
+  - MedicalGloves # Starlight
+  - ChemistBackpack
+  - ChemistOuterClothing
+  # 🌟Starlight🌟 start
+  - ChemistBag
+  - ChemistShoes
+  - ChemistPDA
+  - ChemistEyewear
+  - ChemistBeaker
+  - ChemistLabeler
+  #- MedicalShoes
+  #- Glasses
+  # 🌟Starlight🌟 end
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - ChemistJobTrinkets
+  - GroupSpeciesBreathToolMedical
+
+- type: roleLoadout
+  id: JobParamedic
+  groups:
+  - GroupTankHarness
+  - ParamedicHead
+  - MedicalMask
+  - ParamedicJumpsuit
+  - MedicalGloves # Starlight
+  - MedicalBackpack
+  - ParamedicOuterClothing
+  - ParamedicShoes
+  - ParamedicPDA # 🌟Starlight🌟
+  - MedicalEyewear # Starlight
+  # - Glasses Starlight
+  - SurvivalMedical
+  - Trinkets
+  - Scarves # 🌟Starlight🌟
+  - Pins # 🌟Starlight🌟
+  - Pens # 🌟Starlight🌟
+  - ParamedicJobTrinkets
+  - GroupSpeciesBreathToolMedical

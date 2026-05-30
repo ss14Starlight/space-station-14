@@ -21,11 +21,10 @@ public sealed class GameruleOnSignSytem : EntitySystem
 
     private void OnMapInit(EntityUid uid, GameruleOnSignComponent comp, ref MapInitEvent init)
     {
-        if (comp.KeepFaxable) 
+        if (comp.KeepFaxable)
             return;
         RemComp<FaxableObjectComponent>(uid); //cause this breaks shit like infinite antags
     }
-
 
     private void OnPaperSigned(EntityUid uid, GameruleOnSignComponent component, PaperSignedEvent args)
     {
@@ -50,6 +49,5 @@ public sealed class GameruleOnSignSytem : EntitySystem
             var ent = _gameTicker.AddGameRule(rule.Id);
             _gameTicker.StartGameRule(ent);
         }
-
     }
 }

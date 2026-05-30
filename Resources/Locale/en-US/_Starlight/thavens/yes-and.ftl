@@ -32,7 +32,7 @@ thaven-mood-very-religious-name = You Are Very Religious
 thaven-mood-very-religious-desc = You should visit the shrine regularly to pray, and speak with a chaplain if possible.
 
 thaven-mood-only-speak-to-command-name = VIP
-thaven-mood-only-speak-to-command-desc = You are too important to speak to the rabble. You will only speak to command.
+thaven-mood-only-speak-to-command-desc = You are too important to speak to the rabble. You will only speak to command and other Thaven.
 
 thaven-mood-scheduler-name = Punctual
 thaven-mood-scheduler-desc = You believe that time must be strictly managed. Everything should be scheduled in advance, and tardiness is exceptionally rude.
@@ -219,4 +219,25 @@ thaven-mood-empath-name = Empath
 thaven-mood-empath-desc = You are heavily influenced by the emotions of others.
 
 thaven-mood-red-light-green-light-name = Red Light, Green Light
-thaven-mood-red-light-green-light-desc = You feel like you can't move when there are eyes on you.
+thaven-mood-red-light-green-light-desc = You feel like you can't move when anyone wearing red is looking at you.
+
+thaven-mood-cold-blooded-name = Cold-blooded
+thaven-mood-cold-blooded-desc = You always feel cold.
+
+thaven-mood-deja-vu-name = Déjà Vu
+thaven-mood-deja-vu-desc = You feel like all of today has happened before.
+
+thaven-mood-impending-doom-name = Impending Doom
+thaven-mood-impending-doom-desc = Something bad is going to happen, and you know exactly where and when.
+
+thaven-mood-rebel-name = Rebel
+thaven-mood-rebel-desc = You feel the need to speak ill of those in charge.
+
+thaven-mood-amateur-photographer-name = Amateur Photographer
+thaven-mood-amateur-photographer-desc = You feel the need to use flashes to take pictures of everyone on station.
+
+thaven-mood-insecure-name = Insecure
+thaven-mood-insecure-desc = You care deeply what people think about you, particularly about your {$appearance}.
+
+thaven-mood-live-laugh-love-name = Live Laugh Love
+thaven-mood-live-laugh-love-desc = Live the shift like it's your last. Laugh at every joke. Spread the joys and love of the station.

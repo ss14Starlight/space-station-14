@@ -1,0 +1,46 @@
+- type: marking
+  id: FelionoidLegPawMittensL
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  pawmittens_legsL
+
+- type: marking
+  id: FelionoidLegPawMittensR
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  pawmittens_legsR
+
+- type: marking
+  id: FelionoidLegTabbyL
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  Tabby_LegL
+
+- type: marking
+  id: FelionoidLegTabbyR
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state:  Tabby_LegR
+
+- type: marking
+  id: FelionoidLegCalicoL
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: calico1_legL
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: calico2_legL

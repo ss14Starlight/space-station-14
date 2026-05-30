@@ -886,11 +886,11 @@ namespace Content.Client.Lobby.UI
                 // Far Horizons, hide subspecies from list
                 if (_species[i].SubspeciesOf != null)
                     continue;
-                    
+
                 var name = Loc.GetString(_species[i].Name);
                 SpeciesButton.AddItem(name, i);
 
-                if (Profile?.Species.Equals(_species[i].ID) == true || 
+                if (Profile?.Species.Equals(_species[i].ID) == true ||
                     _species.Find(p => p.ID == Profile?.Species)?.SubspeciesOf == _species[i].ID) // Far Horizons
                 {
                     SpeciesButton.SelectId(i);
@@ -955,7 +955,7 @@ namespace Content.Client.Lobby.UI
                 {
                     selector.UnlockRequirements();
                 }
-                
+
                 // Starlight BEGIN: Always show job requirements, even when they're met
                 // Append requirement details to description, separated by a clear line
                 if (!reason.IsEmpty)
@@ -1262,7 +1262,7 @@ namespace Content.Client.Lobby.UI
                         ? FormattedMessage.FromUnformatted(job.LocalizedDescription)
                         : FormattedMessage.Empty;
                     var allowed = _requirements.IsAllowed(job, Profile, out var reason);
-                    
+
                     // Append the reason to the description.
                     if (!description.IsEmpty)
                     {
@@ -1270,7 +1270,7 @@ namespace Content.Client.Lobby.UI
                         description.PushNewline();
                     }
                     description.AddMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
-                    
+
                     selector.Setup(items, job.LocalizedName, 200, description, icon, job.Guides);
 
                     if (!allowed)

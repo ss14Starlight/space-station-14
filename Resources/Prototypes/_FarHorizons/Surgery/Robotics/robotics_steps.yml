@@ -21,7 +21,7 @@
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
-        
+
 
 - type: entity
   parent: SurgeryStepBase
@@ -165,7 +165,7 @@
   name: Unweld Limb
   components:
   - type: SurgeryStep
-    duration: 16 
+    duration: 16
     tools:
     - type: WelderSurgery
   - type: Sprite
@@ -271,7 +271,7 @@
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
-  
+
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepConnectOpticWire

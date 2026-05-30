@@ -21,11 +21,11 @@
             Captain: [ 1, 1 ]
             # cargo
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 3 ]
-            MiningSpecialist: [ 2, 2 ]
-            CargoTechnician: [ 3, 3 ]
-            MailTech: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 3, 3 ]
+            MiningSpecialist: [ 2, 2 ]
+            MailTech: [ 1, 1 ]
             # engineering
             ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 2, 2 ]
@@ -63,10 +63,12 @@
             Clown: [ 1, 1 ]
             Janitor: [ 1, 1 ]
             Librarian: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 2, 2 ]
             Reporter: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
+            Performer: [ 2, 2 ]
             Assistant: [ -1, -1 ]
             # silicon
             StationAi: [ 1, 1 ]

@@ -5,9 +5,9 @@ namespace Content.Shared._FarHorizons.Silicons.IPC;
 
 public abstract partial class SharedIPCSystem
 {
-    protected virtual void SetupBrain() => 
+    protected virtual void SetupBrain() =>
         SubscribeLocalEvent<IPCBrainHolderComponent, ComponentStartup>(OnStartup);
 
-    private void OnStartup(Entity<IPCBrainHolderComponent> ent, ref ComponentStartup args) => 
+    private void OnStartup(Entity<IPCBrainHolderComponent> ent, ref ComponentStartup args) =>
         ent.Comp.BrainContainerSlot = _container.EnsureContainer<ContainerSlot>(ent, ent.Comp.BrainContainerSlotID);
 }

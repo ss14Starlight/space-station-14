@@ -4,7 +4,6 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._NullLink;
 
-[Virtual]
 public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlayerResourcesManager
 {
     [Dependency] private readonly ILogManager _logManager = default!;
@@ -14,7 +13,7 @@ public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlay
     protected ISawmill _sawmill = default!;
 
 
-    public virtual void Initialize() 
+    public virtual void Initialize()
         => _sawmill = _logManager.GetSawmill("_null.resources");
 
     #region Setters
@@ -48,7 +47,7 @@ public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlay
     {
         if (_sharedPlayers.GetPlayerData(session) is not { } data)
             return false;
-        
+
         if (data.Resources.TryGetValue(id, out var current))
             data.Resources[id] = current + value;
         else
@@ -107,7 +106,7 @@ public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlay
     public bool TryGetResource(ICommonSession session, string id, [NotNullWhen(true)] out double? value)
     {
         value = null;
-        if (!TryGetResources(session, out var values) 
+        if (!TryGetResources(session, out var values)
             || !values.TryGetValue(id, out var Value))
             return false;
 

@@ -21,9 +21,9 @@ public sealed partial class RailroadDarkTaskSystem : AccUpdateEntitySystem
         SubscribeLocalEvent<RailroadDarkTaskComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
     }
 
-    protected override void AccUpdate()
+    protected override void AccUpdate(float _)
     {
-        var query = EntityQueryEnumerator<RailroadDarkTaskComponent>();
+        var query = AllEntityQuery<RailroadDarkTaskComponent>();
         while (query.MoveNext(out var ent, out var comp))
         {
             if (comp.IsCompleted) continue;
@@ -70,7 +70,5 @@ public sealed partial class RailroadDarkTaskSystem : AccUpdateEntitySystem
     }
 
     private void OnTaskPicked(Entity<RailroadDarkTaskComponent> ent, ref RailroadingCardChosenEvent args)
-    {
-        ent.Comp.Target = CheckDarkTilesOnStation() + ent.Comp.Amount.Next(_random);
-    }
+        => ent.Comp.Target = CheckDarkTilesOnStation() + ent.Comp.Amount.Next(_random);
 }

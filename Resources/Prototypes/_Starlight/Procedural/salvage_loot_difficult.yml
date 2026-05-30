@@ -242,7 +242,7 @@
           cost: 2
 
         - proto: DrinkVodkizineBottleFull
-          cost: 3                    
+          cost: 3
         - proto: MedkitBruteFilled
           cost: 6
         - proto: MedkitBurnFilled

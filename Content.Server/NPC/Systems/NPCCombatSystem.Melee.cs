@@ -60,7 +60,7 @@ public sealed partial class NPCCombatSystem
     private void Attack(EntityUid uid, NPCMeleeCombatComponent component, TimeSpan curTime, EntityQuery<PhysicsComponent> physicsQuery, EntityQuery<TransformComponent> xformQuery)
     {
         component.Status = CombatStatus.Normal;
-        
+
         if (TryComp<BuckleComponent>(uid, out var buckle) && buckle.BuckledTo != null)
             _buckle.Unbuckle((uid, buckle), uid);
 

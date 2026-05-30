@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Server.Chemistry.Components;
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared.Chemistry.EntitySystems;
@@ -11,6 +10,7 @@ using Content.Shared.Tag;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
