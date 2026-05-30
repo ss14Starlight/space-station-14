@@ -181,7 +181,7 @@
   id: OrganProtogenLiver
   parent: [BaseProtogenOrgan, BaseOrganLiver]
   name: cybernetic liver # Starlight, capitalization
-  description: Pairing suggestion, fermented RAM sticks and CPU drives. #  Starlight, quotation marks removed
+  description: Pairing suggestion, a side of fermented RAM sticks and a nice CPU. #  Starlight, quotation marks removed
   components:
   - type: Sprite
     state: liver
