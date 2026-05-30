@@ -68,6 +68,11 @@
       "name": "neck",
       "directions": 4,
       "copyright": "by DocMoth"
+    },
+    {
+      "name": "hair",
+      "directions": 4,
+      "copyright": "by Huaqas (GitHub)"
     }
   ]
 }
