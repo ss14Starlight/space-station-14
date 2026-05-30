@@ -11,7 +11,7 @@
   customName: true
   roundstartCyberwareCapacity: 6
   hasSubspecies: true # This is the "parent" species that will be displayed in species list as well as subspecies list
-  subspeciesName: subspecies-name-protogen # This name is dispayed when you're picking subspecies
+  subspeciesName: subspecies-name-trueprotogen # This name is dispayed when you're picking subspecies
   loadout: ProtogenLoadout
 
 - type: speciesBaseSprites

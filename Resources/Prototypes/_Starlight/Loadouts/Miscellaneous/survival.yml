@@ -177,6 +177,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Elf
+    - ProtoElf
 
 - type: loadout
   id: EmergencyNonbreatherSecurity

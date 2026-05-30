@@ -37,10 +37,11 @@
     - Thaven # Starlight
     - ProtoThaven # Far Horizons
     - Lagomorph # Starlight
+    - ProtoLagomorph # Starlight
     - Protogen # Far Horizons
-    
-    
-    
+
+
+
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox

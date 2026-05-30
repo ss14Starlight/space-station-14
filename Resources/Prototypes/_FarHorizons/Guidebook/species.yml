@@ -3,6 +3,7 @@
   name: species-name-protogen
   text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/Protogen.xml" # Moved to _Starlight due to the number of changes we have to make to them, so we'll maintain them on our own. (We'd pretty much have to <! -- --> comment every single line.)
   children:
+  - ProtogenFrames # Starlight
   - TrueProtogen # Starlight, true Protogen
   - ProtoArachnid
   - ProtoAvali
@@ -12,13 +13,13 @@
   - ProtoElf # Starlight
   - ProtoFelionoid # Starlight
   - ProtoHuman # Starlight
+  - ProtoKin # Starlight, moved alphabetically
   - ProtoLagomorph # Starlight
   - ProtoSlimePerson
   - ProtoThaven # Starlight, moved alphabetically
   - ProtoMoth
   - ProtoReptilian # Starlight
   - ProtoResomi
-  - ProtoKin
   - ProtoVox
   - ProtoVulp
 
