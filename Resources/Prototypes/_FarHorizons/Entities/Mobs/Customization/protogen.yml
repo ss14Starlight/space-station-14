@@ -68,8 +68,8 @@
   markingCategory: Special
   speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
-    - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
-      state: visor
+  - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
+    state: visor
 
 - type: marking
   id: ProtogenVisorRound
