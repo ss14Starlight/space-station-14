@@ -28,9 +28,8 @@
 
     ## Diet
     Rodentia are a ravenous species, and are constantly on the hunt for food. They will often find themselves getting hungrier [bold]33% Faster[/bold] than other species.
-    However, Rodentia aren't picky eaters. They can both raw and cooked meats. They can even consume trash directly from the disposal bin!
-    However, their stomach never evolved to process Theobromine and Allicin. Meaning they will take poison damage from consuming Chocolate, Tea, Coffee, Onions or Garlic.
-    <!-- MIKEY - remove the note on chocolate/coffe/etc when fixed -->
+    However, Rodentia aren't picky eaters. They can both raw and cooked meats, as well as food and drink containing Theobromine and Allicin, like Chocolate, Tea,
+    Coffee, Onions or Garlic. They can even consume trash directly from the disposal bin!
 
     ## Rummage
     Using their scavenging skills, Rodentia can rummage through [bold]Disposal Chutes[/bold] to find food.

@@ -46,7 +46,7 @@
       - right leg
       - left leg
       organs:
-        heart: OrganAnimalHeart
+        heart: OrganRodentiaHeart
         lungs: OrganHumanLungs
         stomach: OrganRodentiaStomach
         liver: OrganAnimalLiver

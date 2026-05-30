@@ -12,7 +12,9 @@
 
 - type: entity
   id: OrganRodentiaStomach
-  parent: [OrganHumanStomach, BaseOrganStomach]
+  parent: OrganHumanStomach
+  name: stomach
+  suffix: Rodentia
   components:
     - type: Stomach
       specialDigestible:
@@ -28,3 +30,10 @@
           reagents:
             - ReagentId: UncookedAnimalProteins
               Quantity: 5
+
+- type: entity
+  id: OrganRodentiaHeart
+  parent: OrganHumanHeart
+  name: heart
+  suffix: Rodentia
+  description: "The animal-like heart of a Rodentia."
