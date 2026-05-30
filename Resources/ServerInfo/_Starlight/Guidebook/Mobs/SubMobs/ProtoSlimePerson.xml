@@ -1,6 +1,6 @@
 <Document>
   # Proto-Laspi
-<!-- Starlight, renamed back to Laspi.-->
+
   <Box>
     <GuideEntityEmbed Entity="AppearanceProtoSlimePerson" Caption=""/>
   </Box>
