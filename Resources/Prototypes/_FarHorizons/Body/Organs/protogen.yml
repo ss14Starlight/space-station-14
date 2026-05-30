@@ -60,7 +60,8 @@
     heldPrefix: eyeballs
   - type: OrganVisualization
     layer: Eyes
-    prototype: MobHumanoidEyes
+    prototypes: # Starlight
+          Default: MobHumanoidEyes # Starlight
 
 - type: entity
   id: OrganProtogenTongue

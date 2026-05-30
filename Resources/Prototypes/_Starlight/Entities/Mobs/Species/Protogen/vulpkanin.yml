@@ -99,7 +99,7 @@
 
 - type: entity
   parent: BaseSpeciesDummy
-  id: ApperanceProtoVulp
+  id: AppearanceProtoVulp
   categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance

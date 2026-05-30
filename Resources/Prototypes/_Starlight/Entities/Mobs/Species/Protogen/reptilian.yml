@@ -44,7 +44,7 @@
     damage:
       types:
         Slash: 5
-  - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 400
     coldDamageThreshold: 285
     currentTemperature: 310.15

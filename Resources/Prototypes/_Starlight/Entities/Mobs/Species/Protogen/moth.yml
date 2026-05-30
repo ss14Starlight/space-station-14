@@ -59,7 +59,7 @@
     damage:
       types:
         Heat: 4.5
-  - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 320
     coldDamageThreshold: 230
     currentTemperature: 310.15

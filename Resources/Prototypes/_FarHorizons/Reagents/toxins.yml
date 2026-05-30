@@ -8,7 +8,7 @@
   flavor: shocking
   color: "#ffe270"
   metabolisms:
-    Bloodstream:
+    Poison:
       effects:
       - !type:HealthChange
         conditions:
@@ -24,7 +24,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Protogen ]
         factor: 1 #yummy
-    Metabolites: #Acts like vitamin but for protogens. Keep in mind the -50% healing debuff they get, hence buffed numbers.
+    Medicine: #Acts like vitamin but for protogens. Keep in mind the -50% healing debuff they get, hence buffed numbers.
       effects:
       - !type:HealthChange
         conditions:

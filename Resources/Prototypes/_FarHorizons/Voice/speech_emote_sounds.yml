@@ -89,7 +89,7 @@
       collection: ResomiCalls
     Squawk:
       collection: ResomiSquawk
-    Mar:
+    Marr:
       path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
     Wurble:
       path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
@@ -103,7 +103,7 @@
   sounds:
     Snarl:
       collection: VulpkaninSnarls
-    Mar:
+    Marr:
       path: /Audio/_Starlight/Voice/Shadekin/mar.ogg
     Wurble:
       path: /Audio/_Starlight/Voice/Shadekin/wurble.ogg
