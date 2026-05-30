@@ -21,7 +21,9 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+    - Protogen
     - Diona
+    - ProtoDiona
     - SiliconEmotesFH
     - NotLabelable
   - type: HumanoidAppearance

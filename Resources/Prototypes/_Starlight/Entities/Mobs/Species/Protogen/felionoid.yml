@@ -76,6 +76,7 @@
     - DoorBumpOpener
     - AnomalyHost
     - Felionoid
+    - ProtoFelionoid
     - SiliconEmotesFH
     - NotLabelable
   - type: Fixtures

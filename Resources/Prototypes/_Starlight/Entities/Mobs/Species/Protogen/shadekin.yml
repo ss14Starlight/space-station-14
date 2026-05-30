@@ -199,6 +199,17 @@
       alternateState: Standing
     - type: UniversalHealModifier
       modifier: 0.5
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+        - Protogen
+        - Shadekin
+        - ProtoKin
+        - SiliconEmotesFH
+        - NotLabelable
 
 - type: entity
   save: false

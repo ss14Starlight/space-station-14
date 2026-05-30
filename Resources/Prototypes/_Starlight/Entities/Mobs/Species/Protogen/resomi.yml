@@ -230,7 +230,9 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+    - Protogen
     - Resomi
+    - ProtoResomi
     - SiliconEmotesFH
     - NotLabelable
   - type: NightVision

@@ -541,6 +541,9 @@
   id: SecuredLocker
 
 - type: Tag
+  id: Shadekin
+
+- type: Tag
   id: ShadekinCore
 
 - type: Tag
