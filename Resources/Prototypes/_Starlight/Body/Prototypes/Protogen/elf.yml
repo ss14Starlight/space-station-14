@@ -1,6 +1,6 @@
 - type: body
   id: ProtoElf
-  name: proto-aielithii
+  name: proto-elf
   root: torso
   slots:
     head:
