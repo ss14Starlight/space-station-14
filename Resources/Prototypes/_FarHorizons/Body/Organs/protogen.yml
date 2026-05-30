@@ -98,8 +98,8 @@
   components:
   - type: Sprite
     layers:
-      - state: lung-l
-      - state: lung-r
+    - state: lung-l
+    - state: lung-r
   - type: Item
     size: Small
     heldPrefix: lungs
