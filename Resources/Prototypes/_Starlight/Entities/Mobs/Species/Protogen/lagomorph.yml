@@ -50,7 +50,7 @@
       Parched: 155
       Dead: 0
   - type: Inventory
-    speciesId: protolagomorph #to be replaced with proto[species] when new sprites are made
+    speciesId: lagomorph #to be replaced with proto[species] when new sprites are made
     templateId: protogen
     femaleDisplacements:
       jumpsuit:
@@ -130,7 +130,7 @@
   - type: HumanoidAppearance
     species: ProtoLagomorph
   - type: Inventory
-    speciesId: protolagomorph #to be replaced with proto[species] when new sprites are made
+    speciesId: lagomorph #to be replaced with proto[species] when new sprites are made
     templateId: protogen
     femaleDisplacements:
       jumpsuit:
