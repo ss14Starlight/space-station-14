@@ -111,9 +111,6 @@
       params:
         volume: -3.0
     startPositional: false
-    #endSound:
-    #  path: /Audio/_Starlight/Magic/gust.ogg
-    endPositional: false
 
 - type: entity
   parent: BonusArmorDwarfGeneric
