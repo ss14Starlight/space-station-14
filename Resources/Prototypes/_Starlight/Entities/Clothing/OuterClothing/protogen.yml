@@ -116,8 +116,8 @@
     heatingCoefficient: 1.15
     coolingCoefficient: 0.45 # It's effectively a winter coat if you think about it.
   - type: PointLight # Little light to go with it. Glow.
-    radius: 1
-    energy: 1.5
+    radius: 2.5
+    energy: 2
     color: "#452e59"
   - type: DarkLight
   - type: ClothingSpeedModifier
