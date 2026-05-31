@@ -73,6 +73,19 @@
   technologyPrerequisites:
     - CyberLimbsTech
     - AdvancedAnomalyResearch
+
+- type: technology
+  id: RodentiaEvent
+  name: research-technology-rodentia-event
+  icon:
+    sprite: _Starlight/Mobs/Species/Rodentia/parts.rsi
+    state: full
+  discipline: Experimental
+  tier: 2
+  cost: 12000
+  radioChannels:
+    - Command
+
 # Tier 3
 
 # Tier 4
