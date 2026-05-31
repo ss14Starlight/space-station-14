@@ -2,7 +2,7 @@
 - type: guideEntry
   id: Plumbing
   name: guide-entry-plumbing
-  text: "/ServerInfo/_StarLight/Guidebook/Engineering/Plumbing.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/Plumbing.xml"
   children:
   - PlumbingFlow
   - PlumbingMachines
@@ -10,9 +10,9 @@
 - type: guideEntry
   id: PlumbingFlow
   name: guide-entry-plumbingflow
-  text: "/ServerInfo/_StarLight/Guidebook/Engineering/PlumbingFlow.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/PlumbingFlow.xml"
 
 - type: guideEntry
   id: PlumbingMachines
   name: guide-entry-plumbingmachines
-  text: "/ServerInfo/_StarLight/Guidebook/Engineering/PlumbingMachines.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Engineering/PlumbingMachines.xml"
