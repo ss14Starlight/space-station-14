@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.EntityConditions.Conditions.Body;
 public sealed partial class HasComponentsCondition : EntityConditionBase<HasComponentsCondition>
 {
     [DataField(required: true)]
-    public List<ComponentRegistration> Components = default!;
+    public ComponentRegistry Components = default!;
 
     [DataField]
     public bool All = false;
@@ -19,9 +19,7 @@ public sealed partial class HasComponentsCondition : EntityConditionBase<HasComp
         List<String> componentNames = new();
 
         foreach (var registration in Components)
-        {
-            componentNames.Add(registration.Name);
-        }
+            componentNames.Add(registration.Key);
 
         var names = ContentLocalizationManager.FormatListToOr(componentNames);
 

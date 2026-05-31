@@ -13,9 +13,9 @@ public sealed partial class HasComponentsEntityConditionSystem : EntityCondition
 
     protected override void Condition(Entity<MetaDataComponent> entity, ref EntityConditionEvent<HasComponentsCondition> args)
     {
-        foreach (var registration in args.Condition.Components)
+        foreach (var (_, registration) in args.Condition.Components)
         {
-            if (_entity.HasComponent(entity.Owner, registration))
+            if (_entity.HasComponent(entity.Owner, registration.Component.GetType()))
             {
                 if (!args.Condition.All)
                 {
