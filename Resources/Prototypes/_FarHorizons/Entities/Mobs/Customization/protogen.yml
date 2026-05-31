@@ -424,7 +424,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/body_armor.rsi
+  - sprite: _Starlight/Mobs/Customization/proto-resomi/body_armor.rsi # Starlight, new body sprite
     state: medium
 
 - type: marking
@@ -433,7 +433,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/visor_shapes.rsi
+  - sprite: _Starlight/Mobs/Customization/proto-resomi/visor_shapes.rsi # Starlight, new body sprite
     state: visor
 
 - type: marking
@@ -442,7 +442,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/led_shapes_face.rsi
+  - sprite: _Starlight/Mobs/Customization/proto-resomi/led_shapes_face.rsi # Starlight, new body sprite
     state: face
 
 - type: marking
@@ -451,7 +451,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _FarHorizons/Mobs/Customization/proto-resomi/led_shapes_body.rsi
+  - sprite: _Starlight/Mobs/Customization/proto-resomi/led_shapes_body.rsi # Starlight, new body sprite
     state: body
 
 #region REPTILIAN ####
