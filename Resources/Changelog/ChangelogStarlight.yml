@@ -1,34 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Xenoborgs (in their standalone gamemode) now scale with (pre-round, readied up) player population at a rate of 1:17 (min 4), and have semi-randomized starting borgs. (They cannot have more than 2 of any type of borg.).
-    type: Tweak
-  id: 405085
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: Moved Starlight gamemodes to _Starlight.
-    type: Tweak
-  id: 405086
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: The wand of carp polymorph now ends on crit, and doesn't transfer damage to your original body.
-    type: Tweak
-  id: 405087
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
-  - message: Thieves can now actually roll the Master Thief Objective.
-    type: Fix
-  id: 405088
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
   - message: ShitStation no longer has non-functional roundstart events. (migrations, ion storm, borg spawn..).
     type: Fix
   id: 405089
@@ -2799,4 +2771,32 @@ Entries:
   id: 405484
   time: '2026-05-31T18:02:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4591
+- author: Rinary
+  changes:
+  - message: Changed win conditions for terror spiders to score system instead of died crew percentage. This means that spiders win only if there's enough died crew AND alive spiders.
+    type: Tweak
+  id: 405485
+  time: '2026-05-31T19:30:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4613
+- author: Rinary
+  changes:
+  - message: Changed win conditions for terror spiders, now they instantly lose if princesses are died.
+    type: Tweak
+  id: 405486
+  time: '2026-05-31T19:30:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4613
+- author: Rinary
+  changes:
+  - message: Changed win conditions for terror spiders, now they have minor lose and minor win if crew is evacuated before spiders died or win.
+    type: Tweak
+  id: 405487
+  time: '2026-05-31T19:30:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4613
+- author: Rinary
+  changes:
+  - message: Fixed terror spiders ammonia immune, now they shouldn't die from it.
+    type: Fix
+  id: 405488
+  time: '2026-05-31T19:30:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4613
 Order: -1
