@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Abductor Agents now scale at a rate of 1:70, with a max of 3.
-    type: Tweak
-  id: 405076
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
-- author: wonderfulnewworld
-  changes:
   - message: Derelict Borgs now scale at a rate of 1:80, with a max of 2.
     type: Tweak
   id: 405077
@@ -2799,4 +2792,11 @@ Entries:
   id: 405475
   time: '2026-05-29T22:16:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4590
+- author: STARLIGHT TEAM
+  changes:
+  - message: Physics optimization.
+    type: Tweak
+  id: 405476
+  time: '2026-05-30T09:41:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4597
 Order: -1
