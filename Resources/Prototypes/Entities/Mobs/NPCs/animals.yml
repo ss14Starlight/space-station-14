@@ -1370,6 +1370,11 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: belt-monkey
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: hand-monkey
   # Starlight End
   - type: Deathgasp
     prototype: MonkeyDeathgasp
@@ -1417,16 +1422,6 @@
     #   Hand:
     #     location: Left
     # Starlight edit End: Reverted NuBody
-    leftHandDisplacement: # Starlight start, hand displacements
-      sizeMaps:
-        32:
-          sprite: _Starlight/Mobs/Animals/displacements.rsi
-          state: hand_l-monkey
-    rightHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _Starlight/Mobs/Animals/displacements.rsi
-          state: hand_r-monkey # Starlight end
   - type: ComplexInteraction
   - type: GenericVisualizer
     visuals:
@@ -1752,17 +1747,11 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: belt-kobold
-  - type: Hands
-    leftHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _Starlight/Mobs/Animals/displacements.rsi
-          state: hand_l-kobold
-    rightHandDisplacement:
-      sizeMaps:
-        32:
-          sprite: _Starlight/Mobs/Animals/displacements.rsi
-          state: hand_r-kobold
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Animals/displacements.rsi
+            state: hand-kobold
   # Starlight End
 
 - type: entity
