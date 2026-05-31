@@ -20,7 +20,8 @@
     ProtoLagomorph: 2
     Avali: 3
     ProtoAvali: 1
-    Resomi: 3 # ProtoResomi currently disabled until new sprites
+    Resomi: 3
+    ProtoResomi: 1
     Felionoid: 3
     ProtoFelionoid: 1
     Thaven: 2
