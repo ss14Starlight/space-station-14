@@ -13,7 +13,7 @@
     slotFlags: OUTERCLOTHING
     stripTime: 6
     uiWindowPos: 2,1
-    strippingWindowPos: 2,2
+    strippingWindowPos: 1,2
     displayName: Suit
     blacklist:
       tags:
@@ -21,9 +21,9 @@
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING
-    stripTime: 6
+    stripTime: 4800
     uiWindowPos: 1,1
-    strippingWindowPos: 1,2
+    strippingWindowPos: 0,3
     displayName: Protogen Cybernetics
     whitelist:
       tags:
@@ -32,7 +32,7 @@
     slotTexture: gloves
     slotFlags: GLOVES
     uiWindowPos: 2,2
-    strippingWindowPos: 2,1
+    strippingWindowPos: 2,2
     displayName: Gloves
   - name: neck
     slotTexture: neck
@@ -40,6 +40,12 @@
     uiWindowPos: 0,2
     strippingWindowPos: 0,1
     displayName: Neck
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 2,0
+    strippingWindowPos: 2,1
+    displayName: Misc
   - name: mask
     slotTexture: mask
     slotFlags: MASK

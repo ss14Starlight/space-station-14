@@ -1,22 +1,19 @@
 # Moved here due to the significant changes we're making.
+#### Proto-Armor ####
 - type: entity
-  abstract: true
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
-  id: ClothingOuterArmorBaseFH
-  name: armor base
-  description: The normal armor base has a sec contra label, which means anything inhereting takes it. Please use this one instead!
+  id: ClothingOuterArmorProtogenBase
+  abstract: true
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/security.rsi
+    sprite: Clothing/OuterClothing/Armor/security.rsi # Just a placeholder, since it's overwritten below.
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 3600 # You shouldn't be able to equip/unequip this, but if we make it removable it'll cause problems when you get gibbed, so we're just giving it an obscene timer.
+    unequipDelay: 3600  # Same as above.
   - type: ArmorSparkEffect
-
-#### Proto-Armor ####
-- type: entity
-  parent: ClothingOuterArmorBaseFH
-  id: ClothingOuterArmorProtogenBase
-  components:
   - type: Item
     size: Huge
   - type: Tag
@@ -59,22 +56,8 @@
         Piercing: 1.15
   - type: ClothingSpeedModifier
     walkModifier: 1.05 # I mean, sure I guess.
-    sprintModifier: 1.1 #Speed for weakness. Worth the trade?
+    sprintModifier: 1.05 #Speed for weakness. Worth the trade?
 # No explosion resist. This armor is entirely for increasing your speed.
-
-- type: entity
-  parent: ClothingOuterArmorProtogenLightBasic
-  id: ClothingOuterArmorProtogenLightBasicUnremovable
-  suffix: Unremovable
-  components:
-  - type: Unremoveable
-
-- type: entity
-  parent: ClothingOuterArmorProtogenLightSpeed
-  id: ClothingOuterArmorProtogenLightSpeedUnremovable
-  suffix: Unremovable
-  components:
-  - type: Unremoveable
 
 # Medium Frames
 - type: entity
@@ -124,26 +107,12 @@
     walkModifier: 1
     sprintModifier: 0.90 # Not too slow, and you get some niche resistances.
 
-- type: entity
-  parent: ClothingOuterArmorProtogenMediumBasic
-  id: ClothingOuterArmorProtogenMediumBasicUnremovable
-  suffix: Unremovable
-  components:
-  - type: Unremoveable
-
-- type: entity
-  parent: ClothingOuterArmorProtogenMediumMagic
-  id: ClothingOuterArmorProtogenMediumMagicUnremovable
-  suffix: Unremovable
-  components:
-  - type: Unremoveable
-
 # Heavy Frames
 - type: entity
   parent: ClothingOuterArmorProtogenBase
   id: ClothingOuterArmorProtogenHeavyBasic
   name: Basic-Class heavy protogen frame
-  description: Comes in-built with heavy armor plating for active combat scenarios. A bit weighty. Removal of this would require killing you.
+  description: Comes in-built with heavy armor plating for active combat scenarios. Very heavy. Removal of this would require killing you.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
@@ -164,7 +133,7 @@
   parent: ClothingOuterArmorProtogenBase
   id: ClothingOuterArmorProtogenHeavySpace
   name: Nyx-Class heavy protogen frame
-  description: Comes in-built with heavy armor plating for active combat scenarios. A bit weighty. Removal of this would require killing you.
+  description: Comes in-built with heavy insulation for spacefaring. A bit weighty. Removal of this would require killing you.
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
@@ -190,17 +159,3 @@
     - ProtogenCybernetics
     - SurgeryCompatibleArmor
     - SuitEVA
-
-- type: entity
-  parent: ClothingOuterArmorProtogenHeavyBasic
-  id: ClothingOuterArmorProtogenHeavyBasicUnremovable
-  suffix: Unremovable
-  components:
-  - type: Unremoveable
-
-- type: entity
-  parent: ClothingOuterArmorProtogenHeavySpace
-  id: ClothingOuterArmorProtogenHeavySpaceUnremovable
-  suffix: Unremovable
-  components:
-  - type: Unremoveable

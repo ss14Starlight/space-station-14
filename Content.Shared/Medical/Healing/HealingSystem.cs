@@ -60,10 +60,11 @@ public sealed class HealingSystem : EntitySystem
 
         if (!TryComp(args.Used, out HealingComponent? healing))
         {
-            // Far Horizons, handle fake components from conditional healing
-            if(args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
+            // Far Horizons, handle conditional healing items.
+            if (args.Used is null || _conditionalHealing.SelectBestMatch(args.Used.Value, target) is not ConditionalHealingData healingData)
                 return;
-            healing = healingData.MakeComponent(args.Used.Value); // Starlight, needs to pass an owner.
+            var healingEntity = _conditionalHealing.ValidateConditionalHealing(args.Used.Value, healingData); // Starlight, healing component validation
+            healing = healingEntity.Comp; // Starlight, apply it.
         }
 
         if (healing.DamageContainers is not null &&

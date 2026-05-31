@@ -129,9 +129,7 @@
             delay: 2
             damage:
               types:
-                Poison: -10
                 Radiation: -10
-                Asphyxiation: -10 #In the event IPCs somehow get airloss..
             healingBeginSound:
               path: "/Audio/Items/Medical/ointment_begin.ogg"
               params:

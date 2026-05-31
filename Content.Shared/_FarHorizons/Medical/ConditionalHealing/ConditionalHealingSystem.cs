@@ -27,7 +27,7 @@ public sealed class ConditionalHealingSystem : EntitySystem
             SelectBestMatch((ent, ent.Comp), args.User) is not ConditionalHealingData healing)
             return;
 
-        args.Handled = _healing.TryHeal((ent, healing.MakeComponent(ent.Owner)), args.User, args.User); // Starlight, needs an owner.
+        args.Handled = _healing.TryHeal(ValidateConditionalHealing(ent.Owner, healing), args.User, args.User); // Starlight, healing component validation
     }
 
     private void OnAfterInteract(Entity<ConditionalHealingComponent> ent, ref AfterInteractEvent args)
@@ -39,8 +39,28 @@ public sealed class ConditionalHealingSystem : EntitySystem
             SelectBestMatch((ent, ent.Comp), args.Target.Value) is not ConditionalHealingData healing)
             return;
 
-        args.Handled = _healing.TryHeal((ent, healing.MakeComponent(ent.Owner)), args.Target.Value, args.User); // Starlight, needs an owner.
+        args.Handled = _healing.TryHeal(ValidateConditionalHealing(ent.Owner, healing), args.Target.Value, args.User); // Starlight, healing component validation
     }
+
+    #region Starlight
+    public Entity<HealingComponent> ValidateConditionalHealing(EntityUid owner, ConditionalHealingData healing)
+    {
+        var component = EnsureComp<HealingComponent>(owner); // We have to make sure it actually has the healing component, or it'll crash.
+        component.Damage = healing.Damage;
+        component.BloodlossModifier = healing.BloodlossModifier;
+        component.ModifyBloodLevel = healing.ModifyBloodLevel;
+        component.DamageContainers = healing.DamageContainers;
+        component.Delay = healing.Delay;
+        component.SelfHealPenaltyMultiplier = healing.SelfHealPenaltyMultiplier;
+        component.HealingBeginSound = healing.HealingBeginSound;
+        component.HealingEndSound = healing.HealingEndSound;
+        component.SolutionDrain = healing.SolutionDrain;
+        component.ReagentsToDrain = healing.ReagentsToDrain;
+        component.AdjustEyeDamage = healing.AdjustEyeDamage;
+        return new Entity<HealingComponent>(owner, component);
+    }
+    #endregion
+
     public ConditionalHealingData? SelectBestMatch(Entity<ConditionalHealingComponent?> item, EntityUid target) =>
         !Resolve(item, ref item.Comp, false)
             ? null

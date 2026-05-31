@@ -9,6 +9,8 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
+      - ReagentId: BatteryAcid # Starlight, juicy
+        Quantity: 5 # Starlight
       - ReagentId: Blood
         Quantity: 10
 
@@ -25,6 +27,8 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
+      - ReagentId: BatteryAcid # Starlight, juicy
+        Quantity: 15 # Starlight
       - ReagentId: Blood
         Quantity: 20
 
@@ -41,6 +45,8 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
+      - ReagentId: BatteryAcid # Starlight, juicy
+        Quantity: 5 # Starlight
       - ReagentId: Blood
         Quantity: 10
 

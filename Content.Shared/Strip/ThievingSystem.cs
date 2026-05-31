@@ -10,7 +10,7 @@ public sealed partial class ThievingSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
     //Starlight start
     private readonly TimeSpan MaxStripReduction = TimeSpan.FromSeconds(-2); // Since we kept thieving gloves, we need to prevent insta-thieving.
-    private readonly TimeSpan AdminStripReduction = TimeSpan.FromSeconds(-1000); // Admins still need to be able to instant strip. Their time is 9999, but I've kept this at 1000 incase an admin somehow gets steal time reduced to 9998.
+    private readonly TimeSpan AdminStripReduction = TimeSpan.FromSeconds(-9500); // Admins still need to be able to instant strip. Their time is 9999, but I've kept this at 9500 incase an admin somehow gets steal time reduced to 9998, and because there was actually a case where I wanted a stripTime of over 1000.
     //Starlight end
 
     public override void Initialize()

@@ -36,10 +36,9 @@ public sealed partial class ConditionalHealingData
 
     [DataField]
     public int AdjustEyeDamage = 0;
-
-    public HealingComponent MakeComponent(EntityUid owner) // Starlight, needs an owner
-    {
-        var component = new HealingComponent() // Starlight
+    #region Starlight
+    /*public HealingComponent MakeComponent() => // We're literally just getting rid of this part entirely.
+        new()
         {
             Damage = Damage,
             BloodlossModifier = BloodlossModifier,
@@ -52,10 +51,8 @@ public sealed partial class ConditionalHealingData
             SolutionDrain = SolutionDrain,
             ReagentsToDrain = ReagentsToDrain,
             AdjustEyeDamage = AdjustEyeDamage
-        };
-        component.Owner = owner; // Starlight
-        return component; // Starlight
-    }
+        };*/
+    #endregion
 }
 
 [Serializable, NetSerializable, DataDefinition]
