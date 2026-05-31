@@ -20,7 +20,10 @@ public sealed partial class TerrorSpiderRuleComponent : Component
 
     public TerrorSpidersWinStatus Status = TerrorSpidersWinStatus.Lose;
 
+    [DataField]
     public TimeSpan AnnouncementDelay = TimeSpan.FromSeconds(10);
+
+    [DataField]
     public TimeSpan RoundEndDelay = TimeSpan.FromSeconds(25);
 
     /// <summary>

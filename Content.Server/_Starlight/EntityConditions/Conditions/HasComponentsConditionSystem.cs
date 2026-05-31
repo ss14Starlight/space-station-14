@@ -7,7 +7,7 @@ namespace Content.Server._Starlight.EntityConditions.Conditions;
 /// Returns true if this entity has any of the listed metabolizer types.
 /// </summary>
 /// <inheritdoc cref="EntityConditionSystem{T, TCondition}"/>
-public sealed partial class HasComponentsConditionSystem : EntityConditionSystem<MetaDataComponent, HasComponentsCondition>
+public sealed partial class HasComponentsEntityConditionSystem : EntityConditionSystem<MetaDataComponent, HasComponentsCondition>
 {
     [Dependency] private EntityManager _entity = default!;
 
@@ -30,6 +30,9 @@ public sealed partial class HasComponentsConditionSystem : EntityConditionSystem
             }
         }
 
-        args.Result = true;
+        // Reached only if no early return fired:
+        //   All == true  -> every component was present
+        //   All == false -> no component was present
+        +args.Result = args.Condition.All;
     }
 }

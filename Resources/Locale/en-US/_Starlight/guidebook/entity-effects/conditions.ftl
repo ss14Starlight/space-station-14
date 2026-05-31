@@ -11,6 +11,6 @@ entity-condition-guidebook-blood-reagent-threshold =
 
 entity-condition-guidebook-has-components =
     the target { $shouldhave ->
-                    [true] does not have
-                    *[false] has
+                    [true] has
+                    *[false] does not have
                } the component {$name}
