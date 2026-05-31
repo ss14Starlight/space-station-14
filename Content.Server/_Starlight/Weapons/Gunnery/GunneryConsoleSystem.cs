@@ -314,11 +314,13 @@ public sealed class GunneryConsoleSystem : EntitySystem
                     continue;
 
                 var cooldown = (float)Math.Max(0.0, (gunComp.NextFire - _timing.CurTime).TotalSeconds);
+                var shape = TryComp<RadarBlipComponent>(gunUid, out var blip) ? blip.Shape : BlipShape.Square;
                 cannons.Add(new CannonBlipData(
                     GetNetCoordinates(gunXform.Coordinates),
                     GetNetEntity(gunUid),
                     MetaData(gunUid).EntityName,
-                    cooldown));
+                    cooldown,
+                    shape));
             }
         }
 

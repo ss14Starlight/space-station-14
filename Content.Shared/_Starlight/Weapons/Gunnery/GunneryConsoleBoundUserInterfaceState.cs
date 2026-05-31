@@ -1,4 +1,5 @@
 using Content.Shared.Shuttles.BUIStates;
+using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 
@@ -65,11 +66,15 @@ public readonly struct CannonBlipData
     /// <summary>Remaining cooldown in seconds; 0 when the cannon is ready to fire.</summary>
     public readonly float CooldownSeconds;
 
-    public CannonBlipData(NetCoordinates coordinates, NetEntity entity, string name, float cooldownSeconds = 0f)
+    /// <summary>Radar blip shape; Triangle indicates a capital-class weapon.</summary>
+    public readonly BlipShape Shape;
+
+    public CannonBlipData(NetCoordinates coordinates, NetEntity entity, string name, float cooldownSeconds = 0f, BlipShape shape = BlipShape.Square)
     {
         Coordinates     = coordinates;
         Entity          = entity;
         Name            = name;
         CooldownSeconds = cooldownSeconds;
+        Shape           = shape;
     }
 }

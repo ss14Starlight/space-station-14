@@ -40,11 +40,11 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 50
+    projectileSpeed: 150
     fireRate: 1.0
     burstFireRate: 4
     shotsPerBurst: 2
-    burstCooldown: 52.5
+    burstCooldown: 28.0
     selectedMode: Burst
     angleDecay: 30
     minAngle: 0
@@ -75,9 +75,9 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: RadarBlip
     color: "#FFB300"
-    scale: 1.2
+    scale: 1.4
     shape: Square
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 5000
@@ -92,7 +92,7 @@
   id: ShuttleGunApollo
   parent: ShuttleGunBase
   name: Apollo Heavy Laser Cannon
-  description: A devastating heavy laser cannon system designed for siege warfare. Fires an extremely powerful laser beam that melts through armor and structures. Slow recharge time between shots.
+  description: A heavy plasma cannon. Launches charged plasma bolts that detonate on impact, dealing direct heat damage and a moderate area-of-effect explosion. Sustained fire possible while power cells remain. [Hardpoint Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Apollo.rsi
@@ -112,7 +112,11 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
+    projectileSpeed: 80
     fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
       params:
@@ -133,15 +137,11 @@
   - type: BatteryAmmoProvider
     proto: ApolloHeavyLaser
     fireCost: 500
-  - type: RadarLaserTracker
-    laserColor: "#FF44FF"
-    traceDuration: 0.75
-    maxRange: 35.0
   - type: RadarBlip
     color: "#FF44FF"
     scale: 1.4
     shape: Square
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: AutoLoader
     container: cell_slot
@@ -198,7 +198,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 40
+    projectileSpeed: 50
     fireRate: 0.5
     selectedMode: SemiAuto
     angleDecay: 20
@@ -233,7 +233,7 @@
     color: "#44FF88"
     scale: 1.0
     shape: Circle
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 6000
@@ -284,7 +284,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 150    # railgun slug velocity
+    projectileSpeed: 170    # railgun slug velocity
     fireRate: 100           # instant fire when loaded - delay is the manual reload
     burstCooldown: 180      # Starlight: 3-minute cooldown after firing
     selectedMode: SemiAuto
@@ -318,9 +318,9 @@
         volume: 3
   - type: RadarBlip
     color: "#FF6600"
-    scale: 1.5
+    scale: 2.0
     shape: Triangle
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 25000
@@ -397,7 +397,7 @@
     color: "#FFEE00"
     scale: 1.0
     shape: Square
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 5500
@@ -492,7 +492,7 @@
     color: "#00FFAA"
     scale: 1.0
     shape: Circle
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 6000
@@ -506,7 +506,7 @@
   id: ShuttleGunAutocannon
   parent: ShuttleGunBase
   name: L85 20mm autocannon
-  description: A light 20mm ballistic autocannon designed for rapid fire and suppressing smaller targets at close range. Cheap, light.
+  description: A light 20mm ballistic autocannon for anti-personnel suppression. Fires fully automatic while the trigger is held. Rounds are too small to damage walls or structures — effective against infantry and unarmored targets only. [Light Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/50cal.rsi
@@ -544,9 +544,12 @@
           acts: ["Destruction"]
   - type: Gun
     fireRate: 12
-    projectileSpeed: 160
+    projectileSpeed: 150
+    selectedMode: FullAuto
     minAngle: 0
     maxAngle: 5
+    availableModes:
+    - FullAuto
     soundGunshot:
       path: /Audio/_Starlight/Weapons/Shuttleguns/slammer.ogg
       params:
@@ -570,9 +573,9 @@
   - type: ExtensionCableReceiver
   - type: RadarBlip
     color: "#88BBFF"
-    scale: 0.8
+    scale: 0.6
     shape: Square
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
 
 # Dravon 75mm Artillery Cannon - Full-auto, medium range, longer reach than AK570
@@ -615,7 +618,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 37   # halved range
+    projectileSpeed: 100
     fireRate: 0.9
     selectedMode: FullAuto
     angleDecay: 30
@@ -649,7 +652,7 @@
     color: "#FFB300"
     scale: 1.0
     shape: Square
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 7500
@@ -699,7 +702,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 18   # halved range
+    projectileSpeed: 90
     fireRate: 1.2
     selectedMode: FullAuto
     angleDecay: 30
@@ -731,9 +734,9 @@
         ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
   - type: RadarBlip
     color: "#FF9900"
-    scale: 1.0
+    scale: 1.2
     shape: Square
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 7000
@@ -819,7 +822,7 @@
     color: "#FF2200"
     scale: 2.5
     shape: Triangle
-    requireInSpace: true
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 50000
@@ -829,7 +832,7 @@
   id: ShuttleGunScylla
   parent: ShuttleGunBase
   name: Scylla Laser Railgun
-  description: An experimental grid-powered laser railgun that focuses ship power into a devastating 2-width electromagnetic beam. Draws directly from the ship's APC grid — no power cages required, but it will tax your reactor. Range exceeds 1 kilometer. The long recharge cycle after each shot is the only thing preventing total battlefield dominance.
+  description: An experimental grid-powered laser cannon. Charges ship power into a massive laser bolt that travels at extreme velocity and detonates on impact with a catastrophic explosion. The longest effective range of any ship-mounted weapon. Draws directly from the ship's APC grid. [Capital Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
@@ -864,6 +867,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
+    projectileSpeed: 120
     fireRate: 1
     burstCooldown: 30     # 30-second recharge after each shot
     soundGunshot:
@@ -887,15 +891,11 @@
   - type: BatteryAmmoProvider
     proto: ScyllaWideLaser
     fireCost: 5000
-  - type: RadarLaserTracker
-    laserColor: "#00CCFF"
-    traceDuration: 1.5
-    maxRange: 1200.0
   - type: RadarBlip
     color: "#00CCFF"
-    scale: 1.8
-    shape: Square
-    requireInSpace: true
+    scale: 2.0
+    shape: Triangle
+    requireInSpace: false
   - type: GunneryTrackable
   - type: StaticPrice
     price: 40000
@@ -905,7 +905,7 @@
   id: ShuttleGunDynamre
   parent: ShuttleGunBase
   name: AMX-9 DYNAMRE Dual Turbolaser
-  description: A twin-barreled turbolaser system mounting two Apollo-class heavy laser emitters in a single housing. Both barrels fire simultaneously, delivering twice the destructive payload per trigger pull. Significantly heavier than the standard Apollo. Requires an Omega-capacity power cage to operate.
+  description: A twin-barreled plasma cannon. Each trigger pull launches two large plasma blobs simultaneously, each detonating on impact with a devastating area-of-effect explosion. Significantly heavier than the standard Apollo. Requires an Omega-capacity power cage to operate. [Capital Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Dynamre.rsi
@@ -940,10 +940,11 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
+    projectileSpeed: 70
     fireRate: 0.6
     shotsPerBurst: 2
     burstFireRate: 50
-    burstCooldown: 3.0
+    burstCooldown: 10.0
     selectedMode: Burst
     availableModes:
     - Burst
@@ -969,15 +970,11 @@
   - type: BatteryAmmoProvider
     proto: DynamreDualLaser
     fireCost: 1000
-  - type: RadarLaserTracker
-    laserColor: "#FF44FF"
-    traceDuration: 0.75
-    maxRange: 35.0
   - type: RadarBlip
     color: "#FF44FF"
-    scale: 1.6
-    shape: Square
-    requireInSpace: true
+    scale: 1.8
+    shape: Triangle
+    requireInSpace: false
   - type: GunneryTrackable
   - type: AutoLoader
     container: cell_slot

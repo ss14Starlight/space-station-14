@@ -45,7 +45,6 @@
                 <ScrollContainer VerticalExpand="True">
                     <ItemList
                         Name="CannonList"
-                        VerticalExpand="True"
                         SelectMode="Single" />
                 </ScrollContainer>
             </PanelContainer>

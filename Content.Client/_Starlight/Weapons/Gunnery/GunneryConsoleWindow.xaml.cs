@@ -1,5 +1,6 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Weapons.Gunnery;
+using Content.Shared.Shuttles.Components;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
@@ -27,6 +28,8 @@ public sealed class GunneryConsoleWindow : FancyWindow
     // ── Cannon list state ──────────────────────────────────────────────────
 
     private List<CannonBlipData> _cannons = [];
+    /// <summary>Re-entrancy guard: true while we are programmatically syncing list selection.</summary>
+    private bool _syncingList;
 
     public GunneryConsoleWindow()
     {
@@ -71,20 +74,51 @@ public sealed class GunneryConsoleWindow : FancyWindow
         }
 
         _radarControl.UpdateState(state);
-        _cannons = state.Cannons;
 
-        // Rebuild the cannon list with cooldown info.
-        _cannonList.Clear();
-        foreach (var cannon in _cannons)
+        var newCannons = state.Cannons;
+
+        // Determine whether the set of cannons changed or only their cooldowns did.
+        var setChanged = newCannons.Count != _cannons.Count;
+        if (!setChanged)
         {
-            var label = cannon.CooldownSeconds > 0f
-                ? $"{cannon.Name} [{cannon.CooldownSeconds:F1}s]"
-                : cannon.Name;
-            _cannonList.AddItem(label);
+            for (var i = 0; i < newCannons.Count; i++)
+            {
+                if (newCannons[i].Entity != _cannons[i].Entity)
+                {
+                    setChanged = true;
+                    break;
+                }
+            }
         }
 
-        // Restore list selection from radar control.
-        SyncListSelectionToRadarSelection();
+        _cannons = newCannons;
+
+        if (setChanged)
+        {
+            // Cannon set changed — fully rebuild list, then restore selection.
+            _syncingList = true;
+            try
+            {
+                _cannonList.Clear();
+                foreach (var cannon in _cannons)
+                {
+                    _cannonList.AddItem(GetCannonLabel(cannon));
+                }
+            }
+            finally
+            {
+                _syncingList = false;
+            }
+            SyncListSelectionToRadarSelection();
+        }
+        else
+        {
+            // Only cooldowns changed — update text in-place so scroll position is preserved.
+            for (var i = 0; i < _cannons.Count; i++)
+            {
+                _cannonList[i].Text = GetCannonLabel(_cannons[i]);
+            }
+        }
 
         // Guidance indicator.
         _guidanceLabel.Text = state.TrackedGuidedProjectile != null
@@ -96,8 +130,18 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
     // ── Helpers ────────────────────────────────────────────────────────────
 
+    private static string GetCannonLabel(CannonBlipData cannon)
+    {
+        // Only show the ticking cooldown for capital-class guns (Triangle blip shape).
+        // On fast guns the changing number causes the layout to reflow and shift the radar.
+        if (cannon.Shape == BlipShape.Triangle && cannon.CooldownSeconds > 0f)
+            return $"{cannon.Name} [{cannon.CooldownSeconds:F1}s]";
+        return cannon.Name;
+    }
+
     private void OnListItemSelected(ItemList.ItemListSelectedEventArgs args)
     {
+        if (_syncingList) return;
         if (args.ItemIndex < 0 || args.ItemIndex >= _cannons.Count)
             return;
 
@@ -107,6 +151,7 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
     private void OnListItemDeselected(ItemList.ItemListDeselectedEventArgs args)
     {
+        if (_syncingList) return;
         if (args.ItemIndex < 0 || args.ItemIndex >= _cannons.Count)
             return;
 
@@ -116,8 +161,17 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
     private void SyncListSelectionToRadarSelection()
     {
-        for (var i = 0; i < _cannons.Count; i++)
-            _cannonList[i].Selected = _radarControl.SelectedCannons.Contains(_cannons[i].Entity);
+        if (_syncingList) return;
+        _syncingList = true;
+        try
+        {
+            for (var i = 0; i < _cannons.Count; i++)
+                _cannonList[i].Selected = _radarControl.SelectedCannons.Contains(_cannons[i].Entity);
+        }
+        finally
+        {
+            _syncingList = false;
+        }
     }
 
     private void UpdateStatus()
