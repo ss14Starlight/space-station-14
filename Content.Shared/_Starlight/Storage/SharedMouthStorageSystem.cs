@@ -15,7 +15,6 @@ namespace Content.Shared._Starlight.Storage;
 
 public abstract partial class SharedMouthStorageSystem : EntitySystem
 {
-    [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ThrowingSystem _throwing = default!;
