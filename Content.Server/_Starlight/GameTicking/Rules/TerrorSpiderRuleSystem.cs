@@ -244,6 +244,9 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
         if (shouldUseMinGate && spidersList.Count < component.MinSpidersCountForWin)
             return 0;
 
+        if (spidersList.Count == 0)
+            return 0;
+
         var crewDeadAmount = CountGoneEntities(crewList);
         var spidersDeadAmount = CountGoneEntities(spidersList);
 
