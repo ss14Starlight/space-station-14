@@ -68,41 +68,41 @@ namespace Content.Server._Starlight.CosmicCult;
 /// <summary>
 /// Where all the main stuff for Cosmic Cultists happens.
 /// </summary>
-public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponent>
+public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponent>
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-    [Dependency] private readonly EuiManager _euiMan = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly IVoteManager _votes = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly MonumentSystem _monument = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly ServerGlobalSoundSystem _sound = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly VisibilitySystem _visibility = default!;
-    [Dependency] private readonly LanguageSystem _languageSystem = default!;
-    [Dependency] private readonly WeatherSystem _weather = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private EmergencyShuttleSystem _emergency = default!;
+    [Dependency] private EuiManager _euiMan = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private IVoteManager _votes = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private MonumentSystem _monument = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private ServerGlobalSoundSystem _sound = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private VisibilitySystem _visibility = default!;
+    [Dependency] private LanguageSystem _languageSystem = default!;
+    [Dependency] private WeatherSystem _weather = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -279,9 +279,16 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         var cultQuery = EntityQueryEnumerator<CosmicCultComponent, MetaDataComponent>();
         while (cultQuery.MoveNext(out var cult, out _, out var metadata))
         {
+            if (!_mind.TryGetMind(cult, out var mindId, out var mind) ||
+                !_playerMan.TryGetSessionById(mind.UserId, out _))
+                continue;
+
             var playerInfo = metadata.EntityName;
             cultists.Add((playerInfo, cult));
         }
+
+        if (cultists.Count == 0)
+            return;
 
         var options = new VoteOptions
         {
@@ -799,14 +806,20 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
     private void OnComponentShutdown(Entity<CosmicCultComponent> uid, ref ComponentShutdown args)
     {
-        if (TerminatingOrDeleted(uid))
-            return;
         if (AssociatedGamerule(uid) is not { } cult)
             return;
+
         var cosmicGamerule = cult.Comp;
 
-        if (TerminatingOrDeleted(uid.Owner))
+        var isDeleting = TerminatingOrDeleted(uid.Owner);
+        if (isDeleting)
+        {
+            cosmicGamerule.TotalCult--;
+            cosmicGamerule.Cultists.Remove(uid);
+            AdjustCultObjectiveConversion(-1);
             return;
+        }
+
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 

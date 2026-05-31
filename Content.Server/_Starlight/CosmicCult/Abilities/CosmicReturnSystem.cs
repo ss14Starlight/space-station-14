@@ -9,11 +9,11 @@ using Content.Shared._Starlight.Polymorph.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicReturnSystem : EntitySystem
+public sealed partial class CosmicReturnSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
 
     public override void Initialize()
     {
@@ -25,10 +25,10 @@ public sealed class CosmicReturnSystem : EntitySystem
 
     private void OnAstralProjectionGlyph(Entity<CosmicGlyphAstralProjectionComponent> uid, ref TryActivateGlyphEvent args)
     {
-        _damageable.TryChangeDamage(args.User, uid.Comp.ProjectionDamage, true);
-
         if (!_mind.TryGetMind(args.User, out var mindId, out var mind))
             return;
+
+        _damageable.TryChangeDamage(args.User, uid.Comp.ProjectionDamage, true);
 
         var projectionEnt = Spawn(uid.Comp.SpawnProjection, Transform(uid).Coordinates);
 

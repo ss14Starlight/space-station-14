@@ -12,14 +12,14 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicIngressSystem : EntitySystem
+public sealed partial class CosmicIngressSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly DoorSystem _door = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private DoorSystem _door = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PopupSystem _popup = default!;
     private readonly SoundSpecifier _ingressSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
     private readonly EntProtoId _genericVFX = "CosmicGenericVFX";
 

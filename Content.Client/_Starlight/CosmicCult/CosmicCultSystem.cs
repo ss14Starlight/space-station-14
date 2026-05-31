@@ -16,9 +16,9 @@ namespace Content.Client._Starlight.CosmicCult;
 
 public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 {
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private readonly ResPath _rsiPath = new("/Textures/_Starlight/CosmicCult/Effects/ability_siphonvfx.rsi");
 
@@ -62,7 +62,6 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
         if (args.Alert.ID != ent.Comp.EntropyAlert)
             return;
         var entropy = Math.Clamp(ent.Comp.EntropyStored, 0, 14);
-        var sprite = args.SpriteViewEnt.Comp;
         _sprite.LayerSetRsiState(args.SpriteViewEnt.Owner, AlertVisualLayers.Base, $"base{entropy}");
         _sprite.LayerSetRsiState(args.SpriteViewEnt.Owner, CultAlertVisualLayers.Counter, $"num{entropy}");
     }

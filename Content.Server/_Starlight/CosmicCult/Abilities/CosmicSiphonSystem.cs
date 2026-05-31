@@ -13,14 +13,14 @@ using Content.Server._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicSiphonSystem : EntitySystem
+public sealed partial class CosmicSiphonSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private CosmicCultRuleSystem _cultRule = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -89,5 +89,6 @@ public sealed class CosmicSiphonSystem : EntitySystem
         _cultRule.IncrementCultObjectiveEntropy(uid);
         EnsureComp<CosmicDebuffQueueComponent>(target, out var cosmicDebuffQueue);
         cosmicDebuffQueue.DebuffQuant++;
+        Dirty(target, cosmicDebuffQueue);
     }
 }
