@@ -39,9 +39,11 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
         return storage.Container.ContainedEntities.Count > 0;
     }
 
-    private void OnDowned(EntityUid uid, MouthStorageComponent component, DownedEvent args) => SpitOutMouth(uid, component);
+    private void OnDowned(EntityUid uid, MouthStorageComponent component, DownedEvent args) =>
+        SpitOutMouth(uid, component);
 
-    private void OnDisarmed(EntityUid uid, MouthStorageComponent component, DisarmedEvent args) => SpitOutMouth(uid, component);
+    private void OnDisarmed(EntityUid uid, MouthStorageComponent component, DisarmedEvent args) =>
+        SpitOutMouth(uid, component);
 
     private void OnDamageModified(EntityUid uid, MouthStorageComponent component, DamageChangedEvent args)
     {
@@ -76,7 +78,8 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
         if (component.MouthId == null)
             return;
 
-        if (!TryComp<StorageComponent>(component.MouthId.Value, out var storage)|| storage.Container.ContainedEntities.Count == 0)
+        if (!TryComp<StorageComponent>(component.MouthId.Value, out var storage)
+            || storage.Container.ContainedEntities.Count == 0)
             return;
 
         var dumpQueue = _container.EmptyContainer(storage.Container, true, Transform(uid).Coordinates);
