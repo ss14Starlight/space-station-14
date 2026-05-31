@@ -143,7 +143,7 @@
           32:
             sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
             state: neck
-      misc: # Starlight
+      misc:
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Resomi/displacement.rsi
