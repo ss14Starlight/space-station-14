@@ -33,6 +33,6 @@ public sealed partial class HasComponentsEntityConditionSystem : EntityCondition
         // Reached only if no early return fired:
         //   All == true  -> every component was present
         //   All == false -> no component was present
-        +args.Result = args.Condition.All;
+        args.Result = args.Condition.All;
     }
 }
