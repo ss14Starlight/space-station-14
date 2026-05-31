@@ -6,12 +6,14 @@ using Content.Shared.Paper;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.Whitelist;
+using Content.Shared.Whitelist; // Starlight
+using Content.Server._Starlight.Achievement; // Starlight: Achievements
 
 namespace Content.Server._Starlight.Paper;
 
 public sealed class AntagOnSignSystem : EntitySystem
 {
+    [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
 
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
@@ -21,6 +23,8 @@ public sealed class AntagOnSignSystem : EntitySystem
     private ISawmill _sawmill = default!;
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";
+    private const string SyndicateRecruitmentLetterId = "MailSyndicateSpamLetter"; // Starlight: Achievements
+    private const string RRSyndicateRecruitmentLetterId = "RRMailSyndicateSpamLetter"; // Starlight: Achievements
 
     public override void Initialize()
     {
@@ -67,7 +71,13 @@ public sealed class AntagOnSignSystem : EntitySystem
             var generic = fmakeantag.MakeGenericMethod(targetComp.GetType());
             generic.Invoke(_antag, [session, antag.Antag.Id]);
         }
-
+        // Starlight Start: Achievements
+        if (TryComp<MetaDataComponent>(uid, out var meta)
+            && meta.EntityPrototype?.ID is SyndicateRecruitmentLetterId or RRSyndicateRecruitmentLetterId)
+        {
+            _achievements.QueueUnlockAchievement(signer, "treason");
+        }
+        // Starlight End
         if (component.ParadoxClone)
         {
             var ruleEnt = _gameTicker.AddGameRule(_paradoxCloneRuleId);
