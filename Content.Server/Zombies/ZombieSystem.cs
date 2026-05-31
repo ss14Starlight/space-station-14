@@ -283,7 +283,7 @@ namespace Content.Server.Zombies
                 else
                 {
                     if (HasComp<ZombieImmuneComponent>(uid) || cannotSpread
-                    || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp))) //Starlight fix: Infection-proof suits don't just loose their resistance on death.
+                    || !_random.Prob(GetZombieInfectionChance(uid, entity.Comp))) //Starlight fix: Infection-proof suits don't just lose their resistance on death.
                         continue;
 
                     // If the target is dead and can be infected, infect.
