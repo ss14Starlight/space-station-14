@@ -66,7 +66,7 @@
   - type: Puller
     needsHands: false
   - type: Icon
-    sprite: _FarHorizons/Mobs/Species/Proto-Resomi/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Resomi/parts.rsi
     state: full
   - type: Body
     prototype: ProtoResomi
