@@ -512,7 +512,7 @@
         pda-punpun
   - type: PdaBorderColor
     borderColor: "#333333"
-    accentVColor: "#3e3ac3"
+    accentVColor: "#ffdc54"
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-punpun
