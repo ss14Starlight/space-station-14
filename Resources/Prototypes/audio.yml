@@ -122,6 +122,7 @@
     - /Audio/Ambience/ambigen10.ogg
     - /Audio/Ambience/ambigen11.ogg
     - /Audio/Ambience/ambigen12.ogg
+    - /Audio/Ambience/ambigen13.ogg # Starlight-edit: Return removed ambience track.
     - /Audio/Ambience/ambigen14.ogg
     - /Audio/Ambience/ambigen15.ogg
 
@@ -262,6 +263,12 @@
     - !type:GridInRangeRule
       inverted: true
       range: 3
+    - !type:OnMapTagRule # Starlight
+      mapTag: TheDark
+      inverted: true
+    - !type:OnMapTagRule # Starlight
+      mapTag: NukiePlanet
+      inverted: true
 
 # TODO
 - type: rules

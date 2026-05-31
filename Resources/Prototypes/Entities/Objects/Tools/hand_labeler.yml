@@ -20,6 +20,11 @@
         enum.HandLabelerUiKey.Key:
           type: HandLabelerBoundUserInterface
     - type: HandLabeler
+    # Starlight-start
+      blacklist:
+        tags:
+          - NotLabelable
+    # Starlight-end
       whitelist:
         components:
           - Item

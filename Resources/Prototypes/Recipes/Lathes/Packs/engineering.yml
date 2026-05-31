@@ -96,3 +96,6 @@
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard
   - WeaponTurretPointDefenseMachineCircuitboard #Starlight
+  - BladeServerRackMachineCircuitboard # Moffstation - Blade Server Rack constructibility
+  - ElectrolyzerMachineCircuitboard # Funky atmos - /tg/ gases
+  - SMESHyperAdvancedMachineCircuitboard #SL Edit

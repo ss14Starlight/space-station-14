@@ -1,0 +1,49 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/dev/icons/obj/suitcooler.dmi",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "equipped-BACKPACK",
+            "directions": 4
+        },
+        {
+            "name": "equipped-SUITSTORAGE",
+            "directions": 4
+        },
+        {
+            "name": "icon"
+        },
+        {
+            "name": "eicon"
+        },
+        {
+            "name": "battery-0"
+        },
+        {
+            "name": "battery-1"
+        },
+        {
+            "name": "battery-2"
+        },
+        {
+            "name": "battery-3"
+        },
+        {
+            "name": "battery-4"
+        },
+        {
+            "name": "battery-5",
+            "delays": [
+                [
+                    0.1,
+                    0.1
+                ]
+            ]
+        }
+    ]
+}

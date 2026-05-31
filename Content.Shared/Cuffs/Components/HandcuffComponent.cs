@@ -91,6 +91,14 @@ public sealed partial class HandcuffComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public SoundSpecifier EndUncuffSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/cuff_takeoff_end.ogg");
+
+    #region Starlight
+    [DataField]
+    public bool MustBeUsedFromHand = true;
+
+    [DataField]
+    public bool BreakOnCuffingFailed = false;
+    #endregion Starlight
 }
 
 /// <summary>

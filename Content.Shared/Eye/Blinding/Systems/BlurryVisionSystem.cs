@@ -21,7 +21,7 @@ public sealed class BlurryVisionSystem : EntitySystem
         args.Args.CorrectionPower *= glasses.Comp.CorrectionPower;
     }
 
-    public void UpdateBlurMagnitude(Entity<BlindableComponent?> ent)
+    public void UpdateBlurMagnitude(Entity<BlindableComponent?> ent, bool glasses) // starlight change: glasses param
     {
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
@@ -36,20 +36,21 @@ public sealed class BlurryVisionSystem : EntitySystem
             return;
         }
 
+        ent.Comp.IsWearingGlasses = glasses && ent.Comp.GlassesFixable; // Starlight-edit
         var blurry = EnsureComp<BlurryVisionComponent>(ent);
-        blurry.Magnitude = blur;
+        blurry.Magnitude = glasses && ent.Comp.GlassesFixable ? 0 : blur; // starlight
         blurry.CorrectionPower = ev.CorrectionPower;
         Dirty(ent, blurry);
     }
 
     private void OnGlassesEquipped(Entity<VisionCorrectionComponent> glasses, ref GotEquippedEvent args)
     {
-        UpdateBlurMagnitude(args.Equipee);
+        UpdateBlurMagnitude(args.Equipee, true); // starlight change: glasses param
     }
 
     private void OnGlassesUnequipped(Entity<VisionCorrectionComponent> glasses, ref GotUnequippedEvent args)
     {
-        UpdateBlurMagnitude(args.Equipee);
+        UpdateBlurMagnitude(args.Equipee, false); // starlight change: glasses param
     }
 }
 

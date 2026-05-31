@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Popsicle and stick sprite taken from tgstation and modified by Swept then further modified by Github Afrokada / Discord cooldolphin, wrappers made by Afrokada",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "smokesicle"
+    },
+    {
+      "name": "smokesicle-open"
+    },
+    {
+      "name": "smokesicle-trash"
+    },
+    {
+      "name": "spicy-smokesicle"
+    },
+    {
+      "name": "spicy-smokesicle-open"
+    },
+    {
+      "name": "spicy-smokesicle-trash"
+    },
+    {
+      "name": "legendsicle"
+    },
+    {
+      "name": "legendsicle-open"
+    },
+    {
+      "name": "legendsicle-trash"
+    },
+    {
+      "name": "jumbo-closed"
+    },
+    {
+      "name": "jumbo-trash"
+    },
+    {
+      "name": "cornuto-closed"
+    },
+    {
+      "name": "cornuto-trash"
+    },
+    {
+      "name": "popsicle-orange-closed"
+    },
+    {
+      "name": "popsicle-orange-trash"
+    },
+    {
+      "name": "popsicle-berry-closed"
+    },
+    {
+      "name": "popsicle-berry-trash"
+    },
+    {
+      "name": "smokesicle-stick"
+    }
+  ]
+}

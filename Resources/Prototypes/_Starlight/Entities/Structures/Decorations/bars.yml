@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseWallmountMetallic
+  id: PrisonBars
+  name: prison bars
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Window
+  components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: WallMount
+    arc: 360
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/bars.rsi
+    state: bars
+    snapCardinals: true
+    drawdepth: WallMountedItems
+  - type: StaticPrice
+    price: 30
+  - type: Transform
+    anchored: true
+  - type: Tag
+    tags:
+      - ForceFixRotations
+      - Window
+  - type: Icon
+    sprite: _Starlight/Structures/Furniture/bars.rsi
+    state: bars
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb {}
+        mask:
+        - FullTileMask
+        layer:
+        - GlassLayer

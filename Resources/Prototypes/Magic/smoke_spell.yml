@@ -14,3 +14,4 @@
     event: !type:InstantSpawnSpellEvent
       prototype: WizardSmoke
       posData: !type:TargetInFront
+  - type: EorgPreventAction # Starlight

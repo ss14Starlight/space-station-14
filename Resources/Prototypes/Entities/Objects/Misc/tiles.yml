@@ -13,6 +13,12 @@
     damage:
       types:
         Blunt: 5
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Stack
     count: 1
   - type: Damageable
@@ -36,13 +42,18 @@
             volume: -8
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 5
+# STARLIGHT START
+#  - type: DamageOnLand
+#    damage:
+#      types:
+#        Blunt: 5
+# STARLIGHT END
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation
+  - type: Tag #FH
+    tags:
+    - ConstructionMaterial
 
 - type: entity
   name: steel dark checker tile
@@ -997,6 +1008,50 @@
   - type: Stack
     stackType: FloorTileOldConcreteSmooth
 
+- type: entity
+  parent: FloorTileItemBase
+  id: FloorTileItemIronsandConcrete
+  name: iron sand concrete tile
+  components:
+  - type: Sprite
+    state: ironsandconcrete
+  - type: Item
+    heldPrefix: ironsandconcrete
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorIronsandConcrete
+  - type: Stack
+    stackType: FloorTileIronsandConcrete
+
+- type: entity
+  parent: FloorTileItemIronsandConcrete
+  id: FloorTileItemIronsandConcreteMono
+  name: iron sand concrete mono tile
+  components:
+  - type: Sprite
+    state: ironsandconcrete-mono
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorIronsandConcreteMono
+  - type: Stack
+    stackType: FloorTileIronsandConcreteMono
+
+- type: entity
+  parent: FloorTileItemIronsandConcrete
+  id: FloorTileItemIronsandConcreteSmooth
+  name: iron sand concrete smooth
+  components:
+  - type: Sprite
+    state: ironsandconcrete-smooth
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorIronsandConcreteSmooth
+  - type: Stack
+    stackType: FloorTileIronsandConcreteSmooth
+
 # Carpets
 - type: entity
   name: blue arcade floor
@@ -1608,6 +1663,40 @@
     - FloorAstroAsteroidSandBorderless
   - type: Stack
     stackType: FloorTileAstroAsteroidSand
+
+- type: entity
+  parent: FloorTileItemBase
+  id: FloorTileItemAstroIronsand
+  name: astro-ironsand
+  description: Fake red sand. Imported from fake Mars.
+  components:
+  - type: Sprite
+    state: astro-ironsand
+  - type: Item
+    heldPrefix: ironsand
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorAstroIronsand
+  - type: Stack
+    stackType: FloorTileAstroIronsand
+
+- type: entity
+  parent: FloorTileItemBase
+  id: FloorTileItemAstroIronsandBorderless
+  name: borderless astro-ironsand
+  description: Fake red sand. Imported from fake Mars.
+  components:
+  - type: Sprite
+    state: ironsand
+  - type: Item
+    heldPrefix: ironsand
+  - type: FloorTile
+    outputs:
+    - Plating
+    - FloorAstroIronsandBorderless
+  - type: Stack
+    stackType: FloorTileAstroIronsandBorderless
 
 - type: entity
   parent: FloorTileItemBase

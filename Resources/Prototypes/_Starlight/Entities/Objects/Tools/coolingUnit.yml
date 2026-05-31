@@ -1,0 +1,82 @@
+- type: entity
+  parent: BaseItem
+  id: CoolingUnit
+  name: portable cooling unit
+  description: A large portable heat sink with liquid cooled radiator packaged into a modified backpack.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tanks/coolingunit.rsi
+      layers:
+        - state: icon
+        - state: battery-0
+          shader: unshaded
+          visible: false
+          map: ["power"]
+    - type: Appearance
+    - type: Item
+      size: Huge
+    - type: Clothing
+      quickEquip: false
+      sprite: _Starlight/Objects/Tanks/coolingunit.rsi
+      slots:
+        - Back
+        - suitStorage
+    - type: ToggleCellDraw
+    - type: UseDelay
+      delay: 1
+    - type: PowerCellDraw
+      drawRate: 2
+    - type: ItemToggle
+      soundActivate: /Audio/Items/flashlight_on.ogg
+      soundDeactivate: /Audio/Items/flashlight_on.ogg
+    - type: CoolingUnit
+    - type: ToggleableVisuals
+      spriteLayer: power
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          blacklist:
+            tags:
+              - MechReactor
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 185
+    - type: StaticPrice
+      price: 30
+
+- type: entity
+  parent: CoolingUnit
+  id: EmergencyCoolingUnit
+  name: emergency cooling unit
+  description: An easily portable heat sink for emergencies. Contains very little power, rated for survival use only.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Tanks/coolingunit.rsi
+      layers:
+        - state: eicon
+    - type: Item
+      size: Normal
+    - type: Clothing
+      sprite: null
+      slots:
+        - Pocket
+        - Belt
+        - suitStorage
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellSmall
+          whitelist:
+            tags:
+              - PowerCellSmall
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 100

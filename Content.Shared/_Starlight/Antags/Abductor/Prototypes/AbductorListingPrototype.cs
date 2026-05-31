@@ -5,19 +5,18 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Starlight.Antags.Abductor;
 
 [Prototype("abductorListing")]
-[Serializable, NetSerializable]
 [DataDefinition]
 public sealed partial class AbductorListingPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
-    
+
     [DataField(required: true)]
-    public string Name;
-    
+    public LocId Name;
+
     [DataField(required: true)]
     public EntProtoId ProductEntity;
-    
+
     [DataField(required: true)]
     public int Cost;
 }

@@ -85,18 +85,25 @@
       RedLaserBeam: 0.40
       IgnitionRedLaser: 0.40
       DestroyBeam: 0.40
+      RadOrb: 0.40
+      FreezeRay: 0.40
       # Starlight-end
   - type: IgnitionSource
     temperature: 700
   # 🌟Starlight-start🌟
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.6
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
-  - type: Scalpel
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   # 🌟Starlight-end🌟
 
 - type: entity

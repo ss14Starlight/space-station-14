@@ -1,0 +1,14 @@
+- type: entity
+  parent: CrateSecgear
+  id: CrateSecurityReflectiveArmor
+  name: reflective armor crate
+  description: Contains three reflective vests. Requires Security access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterArmorReflective
+          amount: 3
+        - id: ClothingHeadHelmetReflective
+          amount: 3

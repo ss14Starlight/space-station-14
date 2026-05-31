@@ -133,7 +133,7 @@
   equipment:
     back: ClothingBackpackSatchelAdmin
     id: AdminPDA
-    belt: ClothingBeltChiefEngineerFilled #starlight start 
+    belt: ClothingBeltChiefEngineerFilled #starlight start
   storage:
     back:
     - AccessConfiguratorUniversal
@@ -145,7 +145,7 @@
     - RubberStampCRD
     - RubberStampCCD
     - RubberStampCSD
-    - RubberStampCDD 
+    - RubberStampCDD
     - RubberStampAcknowledged
     - RubberStampMissingStamps
     - RubberStampIncorrectStamps
@@ -154,7 +154,7 @@
     - RubberStampSentToATS
     - RubberStampDeferToCommand
     - RubberStampStandby
-    - RubberStampApproved 
+    - RubberStampApproved
     - RubberStampDenied #starlight end
 
 #Gladiator with spear

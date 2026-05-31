@@ -41,14 +41,12 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly IReflectionManager _reflectionManager = default!;
     [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
@@ -79,11 +77,11 @@ public abstract partial class SharedSurgerySystem : EntitySystem
         partEnt = default;
         step = default;
 
-        if (!HasComp<SurgeryTargetComponent>(body) 
-             || !IsLyingDown(body) 
-             || !_entitySystem.TryEntity(targetPart, out partEnt) 
-             || !_entitySystem.TryGetSingleton(surgery, out var surgeryEntId) 
-             || !_entitySystem.TryEntity(surgeryEntId, out surgeryEnt) 
+        if (!HasComp<SurgeryTargetComponent>(body)
+             || !IsLyingDown(body)
+             || !_entitySystem.TryEntity(targetPart, out partEnt)
+             || !_entitySystem.TryGetSingleton(surgery, out var surgeryEntId)
+             || !_entitySystem.TryEntity(surgeryEntId, out surgeryEnt)
              || !_entitySystem.TryGetSingleton(stepId, out step)
              || !surgeryEnt.Comp.Steps.Contains(stepId))
             return false;
@@ -107,7 +105,7 @@ public abstract partial class SharedSurgerySystem : EntitySystem
     {
         if (_standing.IsDown(entity))
             return true;
-        
+
         if (HasComp<ItemComponent>(entity))
             return true;
 

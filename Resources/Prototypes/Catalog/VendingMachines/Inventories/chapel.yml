@@ -22,11 +22,17 @@
     TogaUniformSuit: 1
     ClothingOuterBurnedRobes: 1
     ClothingKitsuneMask: 1
+    ClothingNeckEyeAmulet: 1
+    ClothingNeckMoonAmulet: 1
+    ClothingNeckStarAmulet: 1
+    ClothingNeckSunAmulet: 1
     #Endofstarlight
     BoxCandle: 2
     BoxCandleSmall: 2
     Urn: 5
     Bible: 1
+    CosmicCenser: 1 # Starlight: Cosmic Cult
+    TarotCardDeckBox: 1 # Moffstation - Add Tarot cards to the chapel vending machine.
   contrabandInventory:
     FoodBakedBunHotX: 2
     DrinkWineBottleFull: 1
@@ -40,3 +46,7 @@
     ClothingHeadHatHoodCulthood: 3
     ClothingShoesCult: 4
     BedsheetCult: 4
+    #Starlight Start
+    ClothingShoesRatvar: 1
+    ClothingOuterCoatRatvarRobes: 1
+    #Starlight End

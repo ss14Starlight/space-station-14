@@ -1,9 +1,7 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
-using Robust.Server.GameObjects;
 using Content.Shared.Examine;
-using Robust.Server.Containers;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
@@ -18,17 +16,26 @@ using Content.Shared.Actions;
 using Content.Shared.Station;
 using Content.Shared.Popups;
 using Content.Shared.Body.Systems;
-using Content.Shared.Body.Events;
 using Content.Shared.Body.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Tag;
 using Robust.Shared.Random;
-using Content.Shared.Bed.Sleep;
 using Content.Server._Starlight.NullSpace;
 using Content.Server._Starlight.Bluespace;
 using Content.Server.Stunnable;
-using Content.Server.Body.Systems;
 using Content.Shared.Damage.Systems;
+using Content.Server.DoAfter;
+using Content.Shared.Ensnaring;
+using Robust.Shared.Audio.Systems;
+using Content.Shared.StatusEffectNew;
+using Content.Shared.Mobs.Components;
+using Robust.Shared.Map.Components;
+using Content.Server.GameTicking;
+using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Medical.Body.Events;
+using Robust.Shared.Containers;
+using Content.Server.Examine;
+using Robust.Server.GameObjects;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -38,8 +45,6 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _speed = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
@@ -50,11 +55,22 @@ public sealed partial class ShadekinSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
     [Dependency] private readonly NullSpacePhaseSystem _nullspace = default!;
     [Dependency] private readonly StunSystem _stunSystem = default!;
+    [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedEnsnareableSystem _ensnareable = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
 
     private static readonly ProtoId<TagPrototype> _theDarkTag = "TheDark";
+    private static readonly ProtoId<TagPrototype> _coreTag = "ShadekinCore";
+    private static readonly ProtoId<TagPrototype> _damagedCoreTag = "DamagedShadekinCore";
+    private TimeSpan _nextUpdate = TimeSpan.Zero;
+    private TimeSpan _updateCooldown = TimeSpan.FromSeconds(1f);
 
     private sealed class LightCone
     {
@@ -81,19 +97,18 @@ public sealed partial class ShadekinSystem : EntitySystem
         SubscribeLocalEvent<OrganShadekinCoreComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<OrganShadekinCoreComponent, OrganAddedToBodyEvent>(CoreOrganInit);
 
+        SubscribeLocalEvent<ShadekinComponent, ComponentShutdown>((uid, _, _) => RemComp<BrighteyeComponent>(uid));
         SubscribeLocalEvent<ShadekinComponent, EyeColorInitEvent>(OnEyeColorChange);
         SubscribeLocalEvent<ShadekinComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeedModifiers);
         SubscribeLocalEvent<ShadekinComponent, NullSpaceShuntEvent>(NullSpaceShunt);
+        SubscribeLocalEvent<ShadekinComponent, BeforeDamageChangedEvent>((uid, _, args) => args.Damage.DamageDict["Asphyxiation"] = 0);
 
         InitializeBrighteye();
         InitializeAbilities();
     }
 
     private void CoreOrganInit(EntityUid uid, OrganShadekinCoreComponent component, OrganAddedToBodyEvent args)
-    {
-        if (component.OrganOwner is null)
-            component.OrganOwner = args.Body;
-    }
+        => component.OrganOwner ??= args.Body;
 
     private void OnExamined(EntityUid uid, OrganShadekinCoreComponent component, ref ExaminedEvent args)
     {
@@ -115,7 +130,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void NullSpaceShunt(EntityUid uid, ShadekinComponent component, NullSpaceShuntEvent args)
     {
-        if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body), out _))
+        if (TryComp<BodyComponent>(uid, out var body) && _bodySystem.TryGetOrgansWithComponent<OrganShadekinCoreComponent>((uid, body), out _)) // Wizden
         {
             _popup.PopupEntity(Loc.GetString("shadekin-shunt"), uid, uid, PopupType.LargeCaution);
             _stunSystem.TryKnockdown(uid, TimeSpan.FromSeconds(1), autoStand: false);
@@ -124,9 +139,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     }
 
     public void UpdateAlert(EntityUid uid, ShadekinComponent component, short state)
-    {
-        _alerts.ShowAlert(uid, component.ShadekinAlert, state);
-    }
+        => _alerts.ShowAlert(uid, component.ShadekinAlert, state);
 
     private Angle GetAngle(EntityUid lightUid, SharedPointLightComponent lightComp, EntityUid targetUid)
     {
@@ -158,11 +171,17 @@ public sealed partial class ShadekinSystem : EntitySystem
     {
         var illumination = 0f;
 
-        var lightQuery = _lookup.GetEntitiesInRange<PointLightComponent>(Transform(uid).Coordinates, 20, LookupFlags.Uncontained);
+        var shadeQuery = _lookup.GetEntitiesInRange<ShadegenComponent>(Transform(uid).Coordinates, 10); // Why 10 when theres different ranges? because light check does not go above 20.
+
+        foreach (var shadegen in shadeQuery)
+            if (_transform.InRange(Transform(uid).Coordinates, Transform(shadegen.Owner).Coordinates, shadegen.Comp.Range))
+                return illumination;
+
+        var lightQuery = _lookup.GetEntitiesInRange<PointLightComponent>(Transform(uid).Coordinates, 10, LookupFlags.All | LookupFlags.Approximate);
 
         foreach (var light in lightQuery)
         {
-            if (HasComp<DarkLightComponent>(light))
+            if (HasComp<DarkLightComponent>(light.Owner) || HasComp<ShadegenAffectedComponent>(light.Owner))
                 continue;
 
             if (!light.Comp.Enabled
@@ -170,8 +189,13 @@ public sealed partial class ShadekinSystem : EntitySystem
                 || light.Comp.Energy <= 0)
                 continue;
 
-            var (lightPos, lightRot) = _transform.GetWorldPositionRotation(light);
-            lightPos += lightRot.RotateVec(light.Comp.Offset);
+            // Check if our entity is in a container with OccludesLight, if yes, is it the same as the light?
+            if (_container.TryGetContainingContainer(uid, out var uidcontainer) && uidcontainer.OccludesLight && !_container.IsInSameOrNoContainer(uid, light.Owner))
+                continue;
+
+            // Same as above but this time we check the light entity instead of our entity.
+            if (_container.TryGetContainingContainer(light.Owner, out var lightcontainer) && lightcontainer.OccludesLight && !_container.IsInSameOrNoContainer(uid, light.Owner))
+                continue;
 
             if (!_examine.InRangeUnOccluded(light, uid, light.Comp.Radius, null))
                 continue;
@@ -215,9 +239,9 @@ public sealed partial class ShadekinSystem : EntitySystem
         if (!TryComp<PassiveDamageComponent>(uid, out var passive))
             return;
 
-        if (shadekinState == ShadekinState.Annoying ||
-            shadekinState == ShadekinState.High ||
-            shadekinState == ShadekinState.Extreme)
+        if (shadekinState is ShadekinState.Annoying or
+            ShadekinState.High or
+            ShadekinState.Extreme)
         {
             passive.DamageCap = 1;
         }
@@ -255,7 +279,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void OnRefreshMovementSpeedModifiers(EntityUid uid, ShadekinComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (component.CurrentState == ShadekinState.High || component.CurrentState == ShadekinState.Extreme)
+        if (component.CurrentState is ShadekinState.High or ShadekinState.Extreme)
         {
             if (!TryComp<MovementSpeedModifierComponent>(uid, out var movement))
                 return;
@@ -269,7 +293,7 @@ public sealed partial class ShadekinSystem : EntitySystem
     {
         if (shadekinState == ShadekinState.Dark)
             EnsureComp<NightVisionComponent>(uid);
-        else
+        else if (TryComp<NightVisionComponent>(uid, out var nightvision) && !nightvision.Clothes)
             RemComp<NightVisionComponent>(uid);
     }
 
@@ -298,13 +322,30 @@ public sealed partial class ShadekinSystem : EntitySystem
     /// </summary>
     /// <param name="uid"></param>
     /// <returns></returns>
-    private bool AreWeInTheDark(EntityUid uid)
+    public bool AreWeInTheDark(EntityUid uid)
     {
         var mapUid = Transform(uid).MapUid;
         if (mapUid is not null && _tag.HasTag(mapUid.Value, _theDarkTag))
             return true;
 
         return false;
+    }
+
+    /// <summary>
+    /// Spawn "The Dark"
+    /// </summary>
+    public void SpawnTheDark()
+    {
+        var query = EntityQueryEnumerator<MapComponent>();
+        while (query.MoveNext(out var mapuid, out var mapcomp))
+        {
+            if (mapcomp.MapPaused)
+                continue;
+
+            if (_tag.HasTag(mapuid, _theDarkTag))
+                return;
+        }
+        _gameTicker.StartGameRule("TheDarkMap");
     }
 
     public override void Update(float frameTime)
@@ -325,7 +366,7 @@ public sealed partial class ShadekinSystem : EntitySystem
             {
                 // I had a brain moment, apprently if one is false its does not check for the other?
             }
-            else if (!_container.IsEntityInContainer(uid))
+            else
                 lightExposure = GetLightExposure(uid);
 
             CheckThresholds(uid, component, lightExposure);
@@ -337,13 +378,36 @@ public sealed partial class ShadekinSystem : EntitySystem
             if (component.CurrentState == ShadekinState.Extreme)
                 ApplyLightDamage(uid, 1);
 
-            if (TryComp<BodyComponent>(uid, out var body))
-                foreach (var core in _bodySystem.GetBodyOrganEntityComps<OrganShadekinCoreComponent>((uid, body)))
-                    if (core.Comp1.OrganOwner != uid)
-                        ApplyCoreDamage(uid, 1);
-
             if (TryComp<BrighteyeComponent>(uid, out var brighteye))
                 UpdateEnergy(uid, component, brighteye);
+        }
+
+        // The Dark Effects - This only applies for Ents that are IN THE DARK.
+        if (_timing.CurTime > _nextUpdate)
+        {
+            _nextUpdate = _timing.CurTime + _updateCooldown;
+
+            var thedarkmobquery = EntityQueryEnumerator<MobStateComponent>();
+            while (thedarkmobquery.MoveNext(out var uid, out var _))
+            {
+                var remove = false;
+
+                if (_status.HasStatusEffect(uid, "StatusEffectTheDarkMap"))
+                {
+                    if (HasComp<ShadekinComponent>(uid) || HasComp<TheDarkImmuneComponent>(uid))
+                        remove = true;
+
+                    if (!remove)
+                        foreach (var entity in _lookup.GetEntitiesIntersecting(Transform(uid).Coordinates))
+                            if (TryComp<TheDarkImmuneComponent>(entity, out var blocker) && blocker.Ranged)
+                                remove = true;
+                }
+
+                if (AreWeInTheDark(uid) && !remove)
+                    _status.TrySetStatusEffectDuration(uid, "StatusEffectTheDarkMap");
+                else
+                    _status.TryRemoveStatusEffect(uid, "StatusEffectTheDarkMap");
+            }
         }
     }
 }

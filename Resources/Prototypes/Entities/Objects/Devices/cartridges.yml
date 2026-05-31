@@ -77,7 +77,7 @@
     - type: CrewManifestCartridge
 
 - type: entity
-  parent: BasePDACartridge
+  parent: [ BasePDACartridge, BaseEngineeringContraband ] #SL Edit added Engie Contra
   id: NetProbeCartridge
   name: NetProbe cartridge
   description: A program for getting the address and frequency of network devices.
@@ -94,7 +94,7 @@
     - type: NetProbeCartridge
 
 - type: entity
-  parent: BasePDACartridge
+  parent: [ BasePDACartridge, BaseSecurityContraband ] #SL Edit added Security Contra
   id: LogProbeCartridge
   name: LogProbe cartridge
   description: A program for getting access logs from devices.
@@ -115,9 +115,11 @@
     - type: GuideHelp
       guides:
       - Forensics
+    - type: StealTarget # Starlight
+      stealGroup: LogProbeCartridge # Starlight
 
 - type: entity
-  parent: BasePDACartridge
+  parent: [ BasePDACartridge, BaseSecurityContraband ] #SL Edit added Security Contra
   id: WantedListCartridge
   name: Wanted list cartridge
   description: A program to get a list of wanted persons.
@@ -155,6 +157,8 @@
         sprite: Objects/Specific/Medical/healthanalyzer.rsi
         state: icon
     - type: MedTekCartridge
+    - type: StealTarget # Starlight
+      stealGroup: MedTekCartridge # Starlight
 
 - type: entity
   parent: BasePDACartridge
@@ -173,3 +177,5 @@
         sprite: Objects/Devices/gps.rsi
         state: icon
     - type: AstroNavCartridge
+    - type: StealTarget # Starlight
+      stealGroup: AstroNavCartridge # Starlight

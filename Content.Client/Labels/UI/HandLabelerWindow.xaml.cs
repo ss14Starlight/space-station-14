@@ -138,7 +138,7 @@ namespace Content.Client.Labels.UI
         {
             ResetLabelButton.Disabled = (LabelLineEdit.Text == _initialLabel);
             ClearLabelButton.Disabled = (LabelLineEdit.Text == "");
-            
+
             // Starlight begin
             var labelExists = false;
             foreach (var item in SavedLabelsList)
@@ -150,8 +150,8 @@ namespace Content.Client.Labels.UI
                 }
             }
             SaveLabelButton.Disabled = string.IsNullOrWhiteSpace(_label) || labelExists;
-            
-            DeleteLabelButton.Text = _deleteMode 
+
+            DeleteLabelButton.Text = _deleteMode
                 ? Loc.GetString("hand-labeler-delete-mode-text")
                 : Loc.GetString("hand-labeler-delete-label-text");
 
@@ -176,7 +176,7 @@ namespace Content.Client.Labels.UI
         {
             var savedLabelsStr = string.Join('\n', _savedLabels);
             _cfg.SetCVar(StarlightCCVars.HandLabelerSavedLabels, savedLabelsStr);
-            _cfg.SaveToFile(); 
+            _cfg.SaveToFile();
         }
          // Starlight end
     }

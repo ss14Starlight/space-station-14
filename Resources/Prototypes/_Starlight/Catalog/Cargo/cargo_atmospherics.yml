@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: AtmosphericsWaterVapor
+  icon:
+    sprite: _Starlight/Structures/Storage/canister-ui.rsi
+    state: water_vapor
+  product: WaterVaporCanister
+  cost: 2000
+  category: cargoproduct-category-name-atmospherics
+  group: market

@@ -1,0 +1,9 @@
+- files: ["bell.svg"]
+  license: "CC-BY-4.0"
+  copyright: "Taken from https://coreui.io/icons/"
+  source: "https://coreui.io/icons/"
+
+- files: ["hamburger_icon.svg.png"]
+  license: "CC0-1.0"
+  copyright: "Released into the public domain"
+  source: "https://github.com/moff-station/moff-station-14/pull/257"

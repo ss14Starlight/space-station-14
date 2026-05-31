@@ -112,6 +112,7 @@
       enabled: true
       radius: 3
       color: red
+      castShadows: false #SL lighting optimization
     - type: Climbable
     - type: Clickable
 
@@ -143,6 +144,7 @@
     enabled: true
     radius: 3
     color: blue
+    castShadows: false #SL lighting optimization
   - type: Clickable
   - type: ContainmentField
     throwForce: 0

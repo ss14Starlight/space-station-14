@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from Paradise Station 13",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "enthrall"
+        },
+        {
+            "name": "pacify"
+        },
+        {
+            "name": "decoy"
+        },
+        {
+            "name": "thralls_up"
+        },
+        {
+            "name": "hysteria"
+        },
+        {
+            "name": "blood_bond"
+        },
+        {
+            "name": "communication"
+        },
+        {
+            "name": "subspace_swap"
+        }
+    ]
+}

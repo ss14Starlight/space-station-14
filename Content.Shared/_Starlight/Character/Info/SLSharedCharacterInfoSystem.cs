@@ -26,7 +26,6 @@ namespace Content.Shared._Starlight.Character.Info;
 /// </summary>
 public abstract class SLSharedCharacterInfoSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
     [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;

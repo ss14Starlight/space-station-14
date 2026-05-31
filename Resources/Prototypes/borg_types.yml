@@ -13,6 +13,7 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
@@ -44,6 +45,7 @@
     - BorgModuleEngineering
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -52,6 +54,16 @@
   radioChannels:
   - Engineering
   - Science
+
+  # Starlight start: Engiborg hud
+  addComponents:
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - IPC
+  - type: ShowAccessReaderSettings
+  # Starlight end
 
   # Visual
   inventoryTemplateId: borgShort
@@ -82,8 +94,10 @@
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
+    - BorgModuleMining #STARLIGHT
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -92,6 +106,7 @@
   radioChannels:
   - Supply
   - Science
+  - Expedition #Starlight
 
   # Visual
   inventoryTemplateId: borgTall
@@ -125,7 +140,8 @@
     - BorgModuleJanitor
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
 
@@ -158,7 +174,8 @@
     - BorgModuleMedical
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
   - BorgModuleRescue
@@ -212,16 +229,17 @@
     - BorgModuleService
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModulePrying
+  - BorgModuleTool # Starlight
   - BorgModuleMusique
-  # Starlight start 
+  # Starlight start
   - BorgModuleBartending
   - BorgModuleCooking
   - BorgModuleBotany
   - BorgModuleBooks
   # Starlight end
   - BorgModuleClowning
-  
+
   radioChannels:
   - Science
   - Service

@@ -9,7 +9,7 @@ public sealed partial class MutateIntoEntityEntityEffectSystem : EntityEffectSys
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedMindSystem _sharedMindSystem = default!;
-    
+
     protected override void Effect(Entity<MindContainerComponent> entity, ref EntityEffectEvent<MutateIntoEntity> args)
     {
         var proto = args.Effect.Entity;

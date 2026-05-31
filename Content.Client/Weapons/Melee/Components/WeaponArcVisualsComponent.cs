@@ -20,4 +20,7 @@ public enum WeaponArcAnimation : byte
     None,
     Thrust,
     Slash,
+    //Starlight begin
+    OldSlash,
+    OldThrust,
 }

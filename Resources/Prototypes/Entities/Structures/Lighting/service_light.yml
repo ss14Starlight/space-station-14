@@ -20,6 +20,7 @@
     softness: 3
     offset: "0, 0"
     enabled: false
+    castShadows: false #SL lighting optimization
   - type: PoweredLight
     bulb: Bulb
     on: false

@@ -1,0 +1,78 @@
+- type: latheCategory
+  id: Surgery
+  name: lathe-category-surgery
+
+- type: latheCategory
+  id: Cyberlimbs
+  name: lathe-category-cyberlimbs
+
+- type: latheCategory
+  id: Implants
+  name: lathe-category-implants
+
+# HoP/Robotics
+- type: latheCategory
+  id: Hardsuits
+  name: lathe-category-hardsuits
+
+- type: latheCategory
+  id: Softsuits
+  name: lathe-category-softsuits
+
+- type: latheCategory
+  id: EVAs
+  name: lathe-category-evas
+
+- type: latheCategory
+  id: Helmets
+  name: lathe-category-helmets
+
+- type: latheCategory
+  id: Hoods
+  name: lathe-category-hoods
+
+# Doc Printer
+
+- type: latheCategory
+  id: Reports
+  name: lathe-category-reports
+
+- type: latheCategory
+  id: Statements
+  name: lathe-category-statements
+
+- type: latheCategory
+  id: InquiriesAndAppeals
+  name: lathe-category-inquiries-and-appeals
+
+- type: latheCategory
+  id: Complaints
+  name: lathe-category-complaints
+
+- type: latheCategory
+  id: Permissions
+  name: lathe-category-permissions
+
+- type: latheCategory
+  id: OrdersAndInstructions
+  name: lathe-category-orders-and-instructions
+
+- type: latheCategory
+  id: Evidence
+  name: lathe-category-evidence
+
+- type: latheCategory
+  id: ConclusionsAndDecisions
+  name: lathe-category-conclusions-and-decisions
+
+- type: latheCategory
+  id: ErrorDocument
+  name: lathe-category-error
+
+- type: latheCategory
+  id: Communications
+  name: lathe-category-communication
+
+- type: latheCategory
+  id: Silicon
+  name: lathe-category-silicon

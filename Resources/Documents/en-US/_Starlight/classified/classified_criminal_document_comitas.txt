@@ -1,0 +1,23 @@
+[head=1][color=#ad0101]────────────────────[/color][/head]
+[color=#C70667]█░░ █▀▀█ █░░░█[/color] [head=3]  [color=#ad0101]INTERNAL AFFAIRS BUREAU[/color][/head]
+[color=#C70667]█░░ █▄▄█ █▄█▄█[/color][bolditalic]  [color=#ad0101] No one is above the law[/color][/bolditalic]
+[color=#C70667]▀▀▀ ▀░░▀ ░▀░▀░[/color]   [color=#aaaaaa][italic]OFFICIAL LAW OFFICE DOCUMENT[/italic][/color]
+[head=1][color=#ad0101]────────────────────
+Classified Criminal Report
+────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Comitas Systems
+[bold]Association:[/bold] The Syndicate, the Spinward Syndicate
+[bold]Objectives:[/bold] Data Collection
+
+Comitas Systems is a now defunct corporation that specialized in surveillance and information, pioneering the use of AUGVR to investigate virtual recreations of events captures on multiple cameras.
+
+Comitas was heavily involved with the original Syndicate behind closed doors, and paid for the assassination of Hephaestus CEO Viktor Iavarone in 2452. This information was leaked to the TSF, and the heads of Comitas went into hiding.
+
+Comitas Systems' CEO was captured and killed, however his daughter ███████ █████████ evaded capture.
+
+Comitas Systems software and hardware is heavily integrated into nearly every system in the Starlight Sector due to their assets being seized by NanoTrasen following their dismantling by the Trans-Solar Federation. This poses a significant potential security risk, but the cost of removing and replacing these systems exceeds corporate budget at this time, and has only been completed in some key systems.
+[/mono]
+
+[head=1][color=#ad0101]────────────────────[/color][/head]
+

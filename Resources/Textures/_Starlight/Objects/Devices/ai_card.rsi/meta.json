@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taked from Paradise Station.",
+    "copyright": "Taked from Paradise Station and TG Station. Rat, Royal, and Sillycon by Conflee for Starlight.",
     "size": {
         "x": 32,
         "y": 32
@@ -283,6 +283,33 @@
                     0.3
                 ]
             ]
+        },
+        {
+            "name": "ahasuerus_card"
+        },
+        {
+            "name": "alterego_card"
+        },
+        {
+            "name": "child_card"
+        },
+        {
+            "name": "godfrey_card"
+        },
+        {
+            "name": "honeycomb_card"
+        },
+        {
+            "name": "hourglass_card"
+        },
+        {
+            "name": "rat_card"
+        },
+        {
+            "name": "royal_card"
+        },
+        {
+            "name": "sillycon_card"
         }
     ]
 }

@@ -70,7 +70,7 @@ public sealed class PullingSystem : EntitySystem
         SubscribeLocalEvent<PullableComponent, StopBeingPulledAlertEvent>(OnStopBeingPulledAlert);
         SubscribeLocalEvent<PullableComponent, GetInteractingEntitiesEvent>(OnGetInteractingEntities);
 
-        SubscribeLocalEvent<PullerComponent, UpdateMobStateEvent>(OnStateChanged, after: [typeof(MobThresholdSystem)]);
+        SubscribeLocalEvent<PullerComponent, MobStateChangedEvent>(OnStateChanged, after: [typeof(MobThresholdSystem)]);
         SubscribeLocalEvent<PullerComponent, AfterAutoHandleStateEvent>(OnAfterState);
         SubscribeLocalEvent<PullerComponent, EntGotInsertedIntoContainerMessage>(OnPullerContainerInsert);
         SubscribeLocalEvent<PullerComponent, EntityUnpausedEvent>(OnPullerUnpaused);
@@ -113,8 +113,13 @@ public sealed class PullingSystem : EntitySystem
         if (args.PullerUid != uid)
             return;
 
-        if (TryComp(args.PullerUid, out PullerComponent? pullerComp) && !pullerComp.NeedsHands)
+        //Starlight begin: add ability for object to ignore needshands
+        if (!TryComp<PullableComponent>(args.PulledUid, out var pulled))
             return;
+
+        if ((TryComp(args.PullerUid, out PullerComponent? pullerComp) && !pullerComp.NeedsHands) || pulled.IgnoreNeedsHands)
+            return;
+        //Starlight end
 
         if (!_virtual.TrySpawnVirtualItemInHand(args.PulledUid, uid))
         {
@@ -139,12 +144,12 @@ public sealed class PullingSystem : EntitySystem
         }
     }
 
-    private void OnStateChanged(EntityUid uid, PullerComponent component, ref UpdateMobStateEvent args)
+    private void OnStateChanged(EntityUid uid, PullerComponent component, ref MobStateChangedEvent args)
     {
         if (component.Pulling == null)
             return;
 
-        if (TryComp<PullableComponent>(component.Pulling, out var comp) && (args.State == MobState.Critical || args.State == MobState.Dead))
+        if (TryComp<PullableComponent>(component.Pulling, out var comp) && (args.NewMobState == MobState.Critical || args.NewMobState == MobState.Dead))
         {
             TryStopPull(component.Pulling.Value, comp);
         }
@@ -438,12 +443,17 @@ public sealed class PullingSystem : EntitySystem
             return false;
         }
 
-        if (pullerComp.NeedsHands
+        //Starlight begin: ignore needshands
+        if (!TryComp<PullableComponent>(pullableUid, out var pullable))
+            return false;
+
+        if (pullerComp.NeedsHands && !pullable.IgnoreNeedsHands
             && !_handsSystem.TryGetEmptyHand(puller, out _)
             && pullerComp.Pulling == null)
         {
             return false;
         }
+        //Starlight end
 
         if (!_blocker.CanInteract(puller, pullableUid))
         {

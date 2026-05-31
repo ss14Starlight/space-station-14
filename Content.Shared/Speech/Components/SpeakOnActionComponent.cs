@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Speech;
 using Content.Shared.Speech.EntitySystems;
 using Robust.Shared.GameStates;
 
@@ -14,4 +15,18 @@ public sealed partial class SpeakOnActionComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public LocId? Sentence;
+
+    // starlight start
+    [DataField, AutoNetworkedField]
+    public LocId? Tts;
+
+    [DataField, AutoNetworkedField]
+    public SpeechModifier Modifier = SpeechModifier.None;
+
+    /// <summary>
+    /// Should this be sent as a whisper?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Whisper = false;
+    // starlight end
 }

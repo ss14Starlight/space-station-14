@@ -10,7 +10,7 @@ public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string VerbName { get; private set; } = default!;
+    public LocId VerbName { get; private set; } = default!;
 
     //ripped mostly from InteractionPopup component
 
@@ -19,7 +19,7 @@ public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
     /// Nullable in case none is specified on the yaml prototype.
     /// </summary>
     [DataField("interactString")]
-    public string? InteractString;
+    public LocId? InteractString;
 
     /// <summary>
     /// Sound effect to be played when the interaction succeeds.
@@ -32,7 +32,7 @@ public sealed partial class PhysicalSocialInteractionPrototype : IPrototype
     /// If set, shows a message to all surrounding players but NOT the current player.
     /// </summary>
     [DataField("messagePerceivedByOthers")]
-    public string? MessagePerceivedByOthers;
+    public LocId? MessagePerceivedByOthers;
 
     /// <summary>
     /// Will the sound effect be perceived by entities not involved in the interaction?

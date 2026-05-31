@@ -111,6 +111,7 @@
         blacklist:
           tags:
           - PotatoBattery
+          - MechReactor #Starlight
 
 - type: entity
   parent: [ BaseItemRecharger, ConstructibleMachine ]
@@ -175,6 +176,7 @@
         blacklist:
           tags:
           - PotatoBattery
+          - MechReactor #Starlight
 
 - type: entity
   parent: BaseItemRecharger
@@ -200,6 +202,7 @@
         blacklist:
           tags:
           - PotatoBattery
+          - MechReactor #Starlight
 
 - type: entity
   parent: [ BaseItemRecharger, BaseWallmount ]
@@ -228,6 +231,7 @@
         blacklist:
           tags:
           - PotatoBattery
+          - MechReactor #Starlight
 
 - type: entity
   parent: BaseRecharger
@@ -256,6 +260,8 @@
     whitelist:
       components:
       - BorgChassis
+      tags:
+      - IPC
   - type: Construction
     containers:
     - machine_parts
@@ -299,11 +305,14 @@
     whitelist:
       components:
       - BorgChassis
+      tags:
+      - IPC
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: StationAIShuntThrough # Starlight
 
 - type: entity
   parent: BorgCharger

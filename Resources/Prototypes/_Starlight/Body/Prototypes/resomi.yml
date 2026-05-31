@@ -1,0 +1,57 @@
+﻿- type: body
+  id: Resomi
+  name: "resomi"
+  root: torso
+  slots:
+    head:
+      part: HeadResomi
+      connections:
+      - torso
+      organs:
+        brain: OrganResomiBrain
+        eyes: OrganResomiEyes
+        tongue: OrganHumanTongue
+        eye_implant: null
+        brain_implant: BrainImplantNexus # 🌟Starlight🌟
+    torso:
+      part: TorsoResomi
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganResomiHeart # Starlight
+        lungs: OrganResomiLungs
+        stomach: OrganResomiStomach
+        liver: OrganResomiLiver
+        kidneys: OrganResomiKidneys
+        cavity: null
+    right arm:
+      part: RightArmResomi
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmResomi
+      connections:
+      - left hand
+    right hand:
+      part: RightHandResomi
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
+    left hand:
+      part: LeftHandResomi
+      organs: # 🌟Starlight🌟
+        hand_implant: null # 🌟Starlight🌟
+    right leg:
+      part: RightLegResomi
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegResomi
+      connections:
+      - left foot
+    right foot:
+      part: RightFootResomi
+    left foot:
+      part: LeftFootResomi

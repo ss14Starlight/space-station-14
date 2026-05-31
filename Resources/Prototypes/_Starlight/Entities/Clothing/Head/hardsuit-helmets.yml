@@ -1,0 +1,1440 @@
+## ARCHETYPES
+# Head-mounted light archetypes. These are the archetypes we've identified and group helmet lights into.
+# Base types ClothingHeadLightBase and ClothingHeadSuitWithLightBase no longer have radius/energy specified,
+# so using one of the below archetypes is required.
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsBasic # Basic, non-job specific, e.g. the firesuit helmet.
+  components:
+    - type: PointLight
+      radius: 5
+      energy: 1
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsIntermediate # Intermediate, intended for non-combat jobs.
+  components:
+    - type: PointLight
+      radius: 5
+      energy: 2
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsAdvanced # Advanced, intended for combatant jobs.
+  components:
+    - type: PointLight
+      radius: 6
+      energy: 3
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsProfessional # Professional, for e.g. CE, ERT, Mining hardsuit.
+  components:
+    - type: PointLight
+      radius: 7
+      energy: 2.5
+
+- type: entity
+  abstract: true
+  id: ClothingHeadLightParamsFloodlight # Floodlight, for e.g. Advanced mining hardsuit.
+  components:
+    - type: PointLight
+      radius: 9
+      energy: 3
+
+## END OF ARCHETYPES
+
+#BSO Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
+  id: ClothingHeadHelmetHardsuitBlueshield
+  categories: [ HideSpawnMenu ]
+  name: blue shield hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/blueshield.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+
+#NTREP Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
+  id: ClothingHeadHelmetHardsuitNtrep
+  categories: [ HideSpawnMenu ]
+  name: NanoTrasen representative's hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/ntrep.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/ntrep.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+
+#Magi Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitMagistrate
+  categories: [ HideSpawnMenu ]
+  name: magistrate's hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/magi.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/magi.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+
+#Clown Battlesuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
+  id: ClothingHeadHelmetBattlesuitClown
+  name: clown battlesuit helmet
+  description: Armored battlesuit helmet for silly needs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/clown_bs_helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/clown_bs_helmet.rsi
+  - type: PointLight
+    color: "#ffa1e3"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+#Mercenary Hardsuit
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitMercenary
+  name: mercenary hardsuit helmet
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hardsuits/mercenary.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hardsuits/mercenary.rsi
+    - type: PressureProtection
+      highPressureMultiplier: 0.45
+      lowPressureMultiplier: 10000
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+
+#Space Hazard Suit
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHardsuitSpaceHazard
+  name: space hazard helmet
+  description: Keeps the cold sulfuric embrace of space out.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/spacehazard.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/spacehazard.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.6
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadHardsuitBase #[ ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitInfiltration
+  categories: [ HideSpawnMenu ]
+  name: syndicate infiltration hardsuit helmet
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  #- type: PointLight
+    #color: "#880808"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable
+
+# USSP
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, BaseSovietContraband, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsIntermediate ]
+  id: ClothingHeadHelmetHardsuitSovietMarine
+  name: SSF marine hardsuit helmet
+  description: From the soviet dieselpunk world.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Helmets/sovietmarine_helmet.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Helmets/sovietmarine_helmet.rsi
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET-unshaded
+        shader: unshaded
+      head-vox:
+      - state: on-equipped-HELMET-unshaded-vox
+        shader: unshaded
+      head-resomi:
+      - state: on-equipped-HELMET-unshaded-resomi
+        shader: unshaded
+      head-felionoid:
+      - state: on-equipped-HELMET-unshaded-felionoid
+        shader: unshaded
+      head-cyclorite:
+      - state: on-equipped-HELMET-unshaded-cyclorite
+        shader: unshaded
+      head-vulpkanin:
+      - state: on-equipped-HELMET-unshaded-vulpkanin
+        shader: unshaded
+      head-avali:
+      - state: on-equipped-HELMET-unshaded-avali
+        shader: unshaded
+  - type: PointLight
+    color: "#50ff50"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
+  id: ClothingHeadHelmetHardsuitLuxmax
+  categories: [ HideSpawnMenu ]
+  name: QM's luxury maxim hardsuit helmet
+  description: This thing is made of solid gold, its a wonder you can keep your head up with it on.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/luxmax.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/luxmax.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: PointLight
+    color: "#adfffd"
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+
+# Experimental Security Hardsuit
+- type: entity
+  parent: [ ClothingHeadHelmetHardsuitSecurity, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
+  id: ClothingHeadHelmetHardsuitSecurityExperimental
+  name: experimental security hardsuit helmet
+  description: Heavily armored hardsuit helmet for security needs, now with lights!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/experimental_security.rsi
+  - type: PointLight
+    color: "#ffeead"
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+  - type: PressureProtection
+    highPressureMultiplier: 0.425
+    lowPressureMultiplier: 1000
+
+#Spationaut Lead Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsAdvanced ]
+  id: ClothingHeadHelmetHardsuitSpatioLead
+  name: spationaut lead hardsuit helmet
+  description: A sturdy decorated helmet designed for complex industrial operations in space.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/leadspatiohelm.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+      head-vox:
+        - state: equipped-head-light-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: equipped-head-light-vulpkanin
+          shader: unshaded
+      head-reptilian:
+        - state: equipped-head-light-reptilian
+          shader: unshaded
+      head-dog:
+        - state: equipped-head-light-dog
+          shader: unshaded
+      head-resomi:
+        - state: equipped-head-light-resomi
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-light-avali
+          shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+        - state: equipped-head
+        - state: equipped-head-unshaded
+          shader: unshaded
+      head-vox:
+        - state: equipped-head-vox
+        - state: equipped-head-unshaded-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: equipped-head-vulpkanin
+        - state: equipped-head-unshaded-vulpkanin
+          shader: unshaded
+      head-reptilian:
+        - state: equipped-head-reptilian
+        - state: equipped-head-unshaded-reptilian
+          shader: unshaded
+      head-dog:
+        - state: equipped-head-dog
+        - state: equipped-head-unshaded-dog
+          shader: unshaded
+      head-resomi:
+        - state: equipped-head-resomi
+        - state: equipped-head-unshaded-resomi
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-avali
+        - state: equipped-head-unshaded-avali
+          shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.72
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+      - CorgiWearable
+
+#Advanced Mining Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsFloodlight ]
+  id: ClothingHeadHelmetHardsuitAdvancedMining
+  name: advanced mining hardsuit helmet
+  description: A specially designed helmet for mining operations.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/advmining.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+      head-vox:
+        - state: equipped-head-light-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: equipped-head-light-vulpkanin
+          shader: unshaded
+      head-reptilian:
+        - state: equipped-head-light-reptilian
+          shader: unshaded
+      head-dog:
+        - state: equipped-head-light-dog
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-light-avali
+          shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+        - state: equipped-head
+        - state: equipped-head-unshaded
+          shader: unshaded
+      head-vox:
+        - state: equipped-head-vox
+        - state: equipped-head-unshaded-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: equipped-head-vulpkanin
+        - state: equipped-head-unshaded-vulpkanin
+          shader: unshaded
+      head-reptilian:
+        - state: equipped-head-reptilian
+        - state: equipped-head-unshaded-reptilian
+          shader: unshaded
+      head-dog:
+        - state: equipped-head-dog
+        - state: equipped-head-unshaded-dog
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-avali
+        - state: equipped-head-unshaded-avali
+          shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+      - CorgiWearable
+
+#Mining Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsProfessional ]
+  id: ClothingHeadHelmetHardsuitMining
+  name: mining hardsuit helmet
+  description: A special helmet designed for work in a hazardous, low pressure environments encountered during space mining. Has dual floodlights.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/mining.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+      head-vox:
+        - state: equipped-head-light-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: equipped-head-light-vulpkanin
+          shader: unshaded
+      head-reptilian:
+        - state: equipped-head-light-reptilian
+          shader: unshaded
+      head-dog:
+        - state: equipped-head-light-dog
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-light-avali
+          shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+        - state: equipped-head
+        - state: equipped-head-unshaded
+          shader: unshaded
+      head-vox:
+        - state: equipped-head-vox
+        - state: equipped-head-unshaded-vox
+          shader: unshaded
+      head-vulpkanin:
+        - state: equipped-head-vulpkanin
+        - state: equipped-head-unshaded-vulpkanin
+          shader: unshaded
+      head-reptilian:
+        - state: equipped-head-reptilian
+        - state: equipped-head-unshaded-reptilian
+          shader: unshaded
+      head-dog:
+        - state: equipped-head-dog
+        - state: equipped-head-unshaded-dog
+          shader: unshaded
+      head-avali:
+        - state: equipped-head-avali
+        - state: equipped-head-unshaded-avali
+          shader: unshaded
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+      - CorgiWearable
+
+# Generic Hardsuits
+#Generic Basic Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitGeneric
+  name: basic hardsuit helmet
+  description: A basic hardsuit helmet. Comes with a light.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: PointLight
+    color: "#880808"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: HandheldLight
+    addPrefix: false
+  - type: Pierceable
+    level: Metal
+
+
+#Generic Fire Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitAtmos
+  id: ClothingHeadHelmetHardsuitFireGeneric
+  name: fire hardsuit helmet
+  description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/atmospherics.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#adffe6"
+
+#Generic Radiation Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitEngineering
+  id: ClothingHeadHelmetHardsuitRadiationGeneric
+  name: radiation hardsuit helmet
+  description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/engineering.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#feffad"
+
+#Generic Medical Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMedical
+  id: ClothingHeadHelmetHardsuitMedicalGeneric
+  name: pathology hardsuit helmet
+  description: Lightweight medical hardsuit helmet that doesn't restrict your head movements.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/medical.rsi
+  - type: PointLight
+    color: "#adf1ff"
+
+#Generic Armored Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMedical
+  id: ClothingHeadHelmetHardsuitArmoredGeneric
+  name: armored hardsuit helmet
+  description: Armored hardsuit helmet for security needs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/security.rsi
+  - type: PointLight
+    color: "#ffeead"
+
+# Advanced Hardsuits
+#Advanced Hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitAdvanced
+  name: advanced hardsuit helmet
+  description: An advanced hardsuit helmet. Pierces through darkness.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/infiltrationsyndie.rsi
+  - type: PointLight
+    color: "#880808"
+    radius: 7
+    energy: 3
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: HandheldLight
+    addPrefix: false
+  - type: Pierceable
+    level: Metal
+
+
+#Advanced Fire Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitAtmos
+  id: ClothingHeadHelmetHardsuitFireAdvanced
+  name: advanced fire hardsuit helmet
+  description: A special hardsuit helmet designed for working in low-pressure, high thermal environments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/atmospherics.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#adffe6"
+
+#Advanced Radiation Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitEngineering
+  id: ClothingHeadHelmetHardsuitRadiationAdvanced
+  name: advanced radiation hardsuit helmet
+  description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/engineering.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#feffad"
+
+#Advanced Medical Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMedical
+  id: ClothingHeadHelmetHardsuitMedicalAdvanced
+  name: advanced pathology hardsuit helmet
+  description: Lightweight medical hardsuit helmet that doesn't restrict your head movements.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/medical.rsi
+  - type: PointLight
+    color: "#adf1ff"
+
+#Advanced Armored Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitMedical
+  id: ClothingHeadHelmetHardsuitArmoredAdvanced
+  name: advanced armored hardsuit helmet
+  description: Armored hardsuit helmet for security needs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/security.rsi
+  - type: PointLight
+    color: "#ffeead"
+
+#Advanced Salvage Hardsuit
+- type: entity
+  parent: ClothingHeadHelmetHardsuitSalvage
+  id: ClothingHeadHelmetHardsuitSalvageAdvanced
+  name: advanced salvage hardsuit helmet
+  description: A special helmet designed for work in a hazardous, low pressure environment. Has reinforced plating for wildlife encounters and dual floodlights.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/salvage.rsi
+  - type: PointLight
+    radius: 7
+    energy: 3
+
+# Golden
+- type: entity
+  parent: ClothingHeadHelmetHardsuitAtmos
+  id: ClothingHeadHelmetHardsuitAtmosGolden
+  name: golden atmos hardsuit helmet
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has thermal shielding. Use of expensive alloys have made it lighter than its non-golden counterpart.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/atmospherics_golden.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#adffe6"
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitEngineering
+  id: ClothingHeadHelmetHardsuitEngineeringGolden
+  name: golden engineering hardsuit helmet
+  description: A golden hardsuit that protects against hazardous, low pressure environments. Has radiation shielding. Use of expensive alloys have made it lighter than its non-golden counterpart.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/engineering_golden.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: PointLight
+    color: "#feffad"
+
+# NanoTrasen Special Forces
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsProfessional ]
+  id: ClothingHeadHelmetHardsuitNTSF
+  name: NanoTrasen special forces hardsuit helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#b8dfff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFPrimus
+  name: NTSF primus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Primus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Primus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#b4eb8f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFSecundus
+  name: NTSF secundus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Secundus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Secundus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#b4eb8f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.70
+        Radiation: 0.70
+        Caustic: 0.70
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFTertius
+  name: NTSF tertius helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Tertius.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Tertius.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#ebc88f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFQuartus
+  name: NTSF quartus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Quartus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Quartus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#b4eb8f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFQuintus
+  name: NTSF quintus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Quintus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Quintus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#ebc88f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFSextus
+  name: NTSF sextus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Sextus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Sextus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#0035ff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFSeptimus
+  name: NTSF septimus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Septimus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Septimus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#b4eb8f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.70
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFOctavius
+  name: NTSF octavius helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Octavius.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Octavius.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#e35930"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.70
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitNTSFNonus
+  name: NTSF nonus helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Nonus.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/NTSF_Helm_Nonus.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#e330c5"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Radiation: 0.75
+        Caustic: 0.80
+
+- type: entity
+  parent: [ BaseNanoTrasenContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, ClothingHeadLightParamsProfessional ]
+  id: ClothingHeadHelmetHardsuitDecimus
+  name: decimus hardsuit helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/Decimus_Helm.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+    - state: light-overlay
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+        - state: equipped-head-light
+          shader: unshaded
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/Decimus_Helm.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+      - state: equipped-head-unshaded
+        shader: unshaded
+  - type: PointLight
+    color: "#b4eb8f"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+
+# TSF
+- type: entity
+  parent: [BaseTSFContraband, ClothingHeadHardsuitBase]
+  id: ClothingHeadHelmetHardsuitTSFMARSOC
+  name: MARSOC helmet
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine Special Operations Command. Armored, space ready, and fireproof.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_marsoc.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_marsoc.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: FlashImmunity
+    blocksSpecialVision: false
+  - type: ClothesNightVision
+  - type: FireProtection
+    reduction: 1
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+        Caustic: 0
+
+- type: entity
+  parent: [BaseTSFContraband, ClothingHeadHardsuitBase]
+  id: ClothingHeadHelmetHardsuitTSFPhantom
+  name: Phantom helmet
+  description: A helmet worn by marines of the Trans-Solar Federation's Marine special Operations Phantom. Armored, space ready and stealthy.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_phantom.rsi
+    layers:
+    - state: icon
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Hardsuits/tsf_phantom.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-head
+  - type: BreathMask
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+  - type: ShowHealthIcons
+  - type: FlashImmunity
+    blocksSpecialVision: false
+  - type: ClothesNightVision
+  - type: FireProtection
+    reduction: 1
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.75
+        Heat: 0.75
+        Caustic: 0
+
+#Thanatos Helmet (Starlight version of Deathsquad)
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase ]
+  id: ClothingHeadHelmetHardsuitThanatos
+  name: Thanatos helmet
+  description: A robust helmet for special operations.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/deathsquad.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/deathsquad.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Pierceable
+    level: Rock
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - CorgiWearable

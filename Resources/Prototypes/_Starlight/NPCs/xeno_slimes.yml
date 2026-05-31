@@ -1,0 +1,112 @@
+- type: htnCompound
+  id: SlimeMainCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:RandomOperator
+            targetKey: IdleTime
+            minKey: MinimumIdleTime
+            maxKey: MaximumIdleTime
+          preconditions:
+            - !type:NotHungryPrecondition
+              minHungerState: Okay
+
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime
+
+        - !type:HTNPrimitiveTask
+          operator: !type:SlimeSplitOperator
+            splitAmount: 4
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: SlimeEatCompound
+
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SlimeFindEdibleTargetOperator
+            targetFoodTag: Monkey
+
+# DO NOT UNCOMMENT UNTIL SlimeGoToFeedingSpotCompound IS FIXED
+#    - tasks:
+#        - !type:HTNCompoundTask
+#          task: SlimeGoToFeedingSpotCompound
+
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+- type: htnCompound
+  id: SlimeEatCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SlimeTargetKnownEdibleTargetOperator
+            targetKey: EatTarget
+            targetMoveKey: TargetCoordinates
+          preconditions:
+            - !type:HungryPrecondition
+              minHungerState: Okay
+
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: MovementRange
+            amount: 0.5
+
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+
+        - !type:HTNPrimitiveTask
+          operator: !type:SlimeEatOperator
+            targetKey: EatTarget
+
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: IdleTime
+            amount: 1
+
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime
+
+# DO NOT USE THIS, THIS IS BROKEN
+# The MoveToOperator is not a move to a location, but rather a move to another entity
+# Which means it doesn't work for my purposes, as I want to move the slime to a specific location
+# This is kept here for development in phase 3. Please don't remove it. All that needs changing is the MoveToOperator
+# Once a MoveToLocationOperator has been made, I can drop it in as a replacement and add it back to the slime behavior
+- type: htnCompound
+  id: SlimeGoToFeedingSpotCompound
+  branches:
+    - tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:SlimeLocateFeedingSpotOperator
+            targetMoveKey: TargetCoordinates
+
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: MovementRange
+            amount: 0.5
+
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            pathfindInPlanning: false
+
+        - !type:HTNPrimitiveTask
+          operator: !type:SetFloatOperator
+            targetKey: IdleTime
+            amount: 1
+
+        - !type:HTNPrimitiveTask
+          operator: !type:WaitOperator
+            key: IdleTime
+          preconditions:
+            - !type:KeyExistsPrecondition
+              key: IdleTime

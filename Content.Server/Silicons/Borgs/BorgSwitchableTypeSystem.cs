@@ -21,19 +21,33 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         var prototype = Prototypes.Index(borgType);
 
         // Assign radio channels
-        string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels];
-        if (TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter))
-            transmitter.Channels = [.. radioChannels];
+        //Starlight begin
+        TryComp(ent, out IntrinsicRadioTransmitterComponent? transmitter);
+        TryComp(ent, out ActiveRadioComponent? activeRadio);
 
-        if (TryComp(ent, out ActiveRadioComponent? activeRadio))
+        string[] radioChannels = [.. ent.Comp.InherentRadioChannels, .. prototype.RadioChannels,
+            .. (transmitter != null && transmitter.Channels.Contains("Syndicate")) || (activeRadio != null && activeRadio.Channels.Contains("Syndicate"))
+                ? new[] { "Syndicate" } : []]; //If the borg has the Syndicate channel already (emagged before picking a chassis), they should not lose it when picking a chassis.
+
+        if (transmitter != null)
+        {
+            transmitter.Channels = [.. radioChannels];
+            Dirty(ent.Owner, transmitter);
+        }
+
+        if (activeRadio != null)
+        {
             activeRadio.Channels = [.. radioChannels];
+            Dirty(ent.Owner, activeRadio);
+        }
+        //Starlight end
 
         // Borg transponder for the robotics console
         if (TryComp(ent, out BorgTransponderComponent? transponder))
         {
             _borgSystem.SetTransponderSprite(
                 (ent.Owner, transponder),
-                new SpriteSpecifier.Rsi(new ResPath(prototype.SpritePath), prototype.SpriteBodyState));
+                new SpriteSpecifier.Rsi(prototype.SpritePath, prototype.SpriteBodyState));
 
             _borgSystem.SetTransponderName(
                 (ent.Owner, transponder),

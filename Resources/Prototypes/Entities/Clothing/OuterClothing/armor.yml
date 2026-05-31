@@ -71,6 +71,11 @@
         Heat: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.80
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingOuterArmorBase
@@ -92,10 +97,19 @@
         Piercing: 0.9
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
   - type: Reflect
-    reflectProb: 1
+    reflectProb: 0.65 # STARLIGHT: Vest base reflect probability, adds with helmet to 100%
     reflects:
       - Energy
     reflectingInHands: false
+  # STARLIGHT: Component for set bonus system. Stores original reflection and tag for vest piece.
+  - type: ReflectiveSetBonus
+    vestTag: ReflectiveArmorVest
+# Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+    - ReflectiveArmorVest # STARLIGHT: Tag for set bonus system detection
 
 #Detective's vest
 - type: entity
@@ -110,7 +124,7 @@
     sprite: Clothing/OuterClothing/Vests/detvest.rsi
 
 - type: entity
-  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  parent: [ ClothingOuterBaseMedium, AllowSuitStorageClothing ]
   id: ClothingOuterArmorBaseCarapace
   abstract: true
   components:
@@ -124,10 +138,6 @@
         Caustic: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.65
-  - type: ClothingSpeedModifier
-    walkModifier: 1.0
-    sprintModifier: 1.0
-  - type: HeldSpeedModifier
   - type: GroupExamine
 
 - type: entity
@@ -155,10 +165,16 @@
     sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/centcomm_carapace.rsi
+# Starlight Start
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+# Starlight End
 
 #Web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: [ClothingOuterArmorBase, ClothingOuterStorageBase, BaseSyndicateContraband]
   id: ClothingOuterVestWeb
   name: web vest
   description: A synthetic armor vest. This one has added webbing and ballistic plates.
@@ -178,7 +194,6 @@
         Heat: 0.9
     # Starlight-start
     staminaModifier: 0.55
-    ignoreKnockdown: true
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.9
@@ -187,7 +202,7 @@
 
 #Elite web vest
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseSyndicateContraband]
+  parent: ClothingOuterVestWeb # SL: reparent
   id: ClothingOuterVestWebElite
   name: elite web vest
   description: A synthetic armor vest. This one has added webbing and heat resistant fibers.
@@ -210,7 +225,6 @@
         Caustic: 0.5
     # Starlight-start
     staminaModifier: 0.35
-    ignoreKnockdown: true
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.5
@@ -239,8 +253,6 @@
         Slash: 0.7
         Piercing: 0.5
         Heat: 0.9
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
 
 
 # Armor covering multiple body parts including limbs
@@ -275,11 +287,13 @@
     # Starlight-end
   - type: ExplosionResistance
     damageCoefficient: 0.35
-  - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
-    damageCoefficient: 0.45
+  # Starlight-start - Disables upstream stamina resistance
+  # - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
+  #   damageCoefficient: 0.45
+  # Starlight-end
   - type: ClothingSpeedModifier
-    walkModifier: 1
-    sprintModifier: 1.1
+    walkModifier: 0.9
+    sprintModifier: 0.9
   #Shoulder mounted flashlight
   - type: ToggleableVisuals
     spriteLayer: light
@@ -289,6 +303,9 @@
         shader: unshaded
       outerClothing-vox:
       - state: equipped-OUTERCLOTHING-light-vox
+        shader: unshaded
+      outerClothing-dog:
+      - state: equipped-OUTERCLOTHING-light-dog
         shader: unshaded
   - type: ItemTogglePointLight
   - type: Appearance
@@ -321,13 +338,17 @@
         startValue: 0.1
         endValue: 2.0
         isLooped: true
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 600
     startingCharge: 600
-  - type: PredictedBatterySelfRecharger
+  - type: BatterySelfRecharger
     autoRechargeRate: 2
   - type: Item
     size: Normal
+#starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSecurityContraband]
@@ -352,6 +373,11 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -569,9 +595,10 @@
         Heat: 0.5
         Radiation: 0.5
         Caustic: 0.5
+    staminaModifier: 0.25 # Starlight, the armor's okay.. but not really substantial given the weapons crew has.
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.65
+    walkModifier: 0.8 # Starlight, they can be a little faster.
+    sprintModifier: 0.75 # Starlight
   - type: HeldSpeedModifier
   - type: ExplosionResistance
     damageCoefficient: 0.5

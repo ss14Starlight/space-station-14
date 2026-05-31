@@ -49,7 +49,7 @@ public sealed partial class MassDriverSecurityWireAction : ComponentWireAction<M
             && EntityManager.TryGetComponent<MassDriverComponent>(wire.Owner, out var driver))
             driver.Hacked = false;
     }
-    
+
     private enum PulseTimeoutKey : byte
     {
         Key

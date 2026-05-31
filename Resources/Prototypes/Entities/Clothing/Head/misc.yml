@@ -37,6 +37,12 @@
     - Hair
     - HeadTop
     - HeadSide
+#Starlight
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
+#Starlight End
 
 - type: entity
   parent: ClothingHeadBase
@@ -56,7 +62,7 @@
     node: flowerwreath
 
 - type: entity
-  parent: ClothingHeadLightBase
+  parent: [ ClothingHeadLightBase, ClothingHeadLightParamsBasic ] # Starlight
   id: ClothingHeadHatPumpkin
   name: pumpkin hat
   description: A jack o' lantern! Believed to ward off evil spirits.
@@ -79,6 +85,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
   - type: HideLayerClothing
     slots:
     - Hair
@@ -210,7 +221,7 @@
   id: ClothingHeadHatCatEars
   name: cat ears
   description: "NYAH!"
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL change
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
@@ -255,7 +266,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatDogEars
   name: doggy ears
-  description: Only for good boys.
+  description: Only for good dogs. # SL: we gender neutral in this mf spacestation
   categories: [ DoNotMap ]
   components:
   - type: Sprite
@@ -363,14 +374,29 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadHatHairflower
+  id: ClothingHeadHatHairFlowerBase # Moffstation - Color Changing Hairflower
   name: hairflower
   description: A beautiful hairflower that can be inserted between locks of hair.
+  # Moffstation - Begin - Color Changing Hairflower
+  abstract: true
   components:
   - type: Sprite
-    sprite: Clothing/Head/Misc/hairflower.rsi
-  - type: Clothing
-    sprite: Clothing/Head/Misc/hairflower.rsi
+    sprite: _Moffstation/Clothing/Head/Misc/hairflower.rsi
+  - type: ChameleonClothing
+    slot: HEAD
+#    default: idfk
+    requireTag: HairFlower
+    affectedByEmp: false
+  - type: UserInterface
+    interfaces:
+      enum.ChameleonUiKey.Key:
+        type: ChameleonBoundUserInterface
+  - type: Tag
+    tags:
+    - ClothMade #idk man its on the parent
+    - WhitelistChameleon
+    - HairFlower
+# Moffstation - Color Changing Hairflower End
 
 - type: entity
   parent: ClothingHeadBase

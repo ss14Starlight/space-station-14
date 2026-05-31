@@ -1,35 +1,29 @@
-using System.Diagnostics.CodeAnalysis;
-using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.Pinpointer;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Components;
 using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.EntitySerialization;
 using Robust.Shared.Utility;
 using Content.Shared.Station.Components;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
-using System.Linq;
 using Content.Server._Starlight.Station;
+using Content.Shared.CCVar;
 using Content.Shared.Popups;
-using Content.Shared.Tag;
-using Robust.Shared.Prototypes;
 using Content.Shared.Mobs.Components;
-using Robust.Shared.Player;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Starlight.AlertArmory;
 
 public sealed class AlertArmorySystem : EntitySystem
 {
+    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
@@ -47,7 +41,7 @@ public sealed class AlertArmorySystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<AlertArmoryStationComponent, StationPostInitEvent>(InitializeAlertArmoryStation);
-        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown); // Starlight
+        SubscribeLocalEvent<AlertArmoryStationComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLStartedEvent>(OnFTLStart);
         SubscribeLocalEvent<AlertArmoryShuttleComponent, FTLTagEvent>(SetShuttleTag);
@@ -63,7 +57,9 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void InitializeAlertArmoryStation(EntityUid uid, AlertArmoryStationComponent comp, StationPostInitEvent ev)
     {
-        //Starlight start
+        if (!_config.GetCVar(CCVars.GridFill))
+            return;
+
         if (TryComp<StationDataComponent>(uid, out var station))
             foreach (var grid in station.Grids)
             {
@@ -72,8 +68,7 @@ public sealed class AlertArmorySystem : EntitySystem
                     return;
                 break; // can break, we already found the grid that created this station
             }
-        //Starlight end
-        
+
         var map = _map.CreateMap(out var mapId);
         _meta.SetEntityName(map, $"AlertArmories {uid}");
 
@@ -117,7 +112,6 @@ public sealed class AlertArmorySystem : EntitySystem
     ///</summary>
     private void OnStartup(EntityUid uid, AlertArmoryShuttleComponent comp, ComponentStartup ev) => EnsureComp<PreventPilotComponent>(uid);
 
-    // Starlight Start
     /// <summary>
     /// remove armories if parent station is deleted
     /// </summary>
@@ -125,7 +119,6 @@ public sealed class AlertArmorySystem : EntitySystem
     {
         foreach (var grid in comp.Grids.Values) QueueDel(grid);
     }
-    // Starlight End
     private void OnFTLStart(Entity<AlertArmoryShuttleComponent> ent, ref FTLStartedEvent ev)
     {
         if (ev.FromMapUid != ent.Comp.ArmorySpaceUid) //if we are not coming from armory space. drop people. this allows including eg: ERT on a armory if you want.
@@ -135,11 +128,12 @@ public sealed class AlertArmorySystem : EntitySystem
             // Announce recall at the start of FTL back to armory space
             var xform = Transform(ent.Owner);
             var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString((ent.Owner, xform)));
+            var station = MetaData(ent.Comp.Station).EntityName;
 
             if (ent.Comp.RecallAnnouncement != null)
             {
                 _chat.DispatchGlobalAnnouncement(
-                    Loc.GetString(ent.Comp.RecallAnnouncement, ("location", location)),
+                    Loc.GetString(ent.Comp.RecallAnnouncement, [("location", location), ("station", station)]),
                     colorOverride: ent.Comp.RecallAnnouncementColor ?? Color.PaleVioletRed);
             }
         }
@@ -169,12 +163,13 @@ public sealed class AlertArmorySystem : EntitySystem
 
         var xform = Transform(uid);
         var location = FormattedMessage.RemoveMarkupPermissive(_nav.GetNearestBeaconString((uid, xform)));
+        var station = MetaData(comp.Station).EntityName;
 
         // Announce arrival at station
         if (ev.MapUid != comp.ArmorySpaceUid && comp.Announcement != null)
         {
             _chat.DispatchGlobalAnnouncement(
-                Loc.GetString(comp.Announcement, ("location", location)),
+                Loc.GetString(comp.Announcement, [("location", location), ("station", station)]),
                 colorOverride: comp.AnnouncementColor ?? Color.PaleVioletRed);
         }
 

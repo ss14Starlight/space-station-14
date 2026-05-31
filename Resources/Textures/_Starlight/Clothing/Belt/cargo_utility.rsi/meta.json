@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039, modified by wonderfulnewworld based on ItsAbby's Far Horizons version",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TG Station, ItsAbby, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4,
+	  "copyright": "TG Station, ItsAbby, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "TG Station, ItsAbby, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "TG Station, ItsAbby, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

@@ -151,6 +151,7 @@
       radius: 3
       energy: 3
       color: "#363636"
+    - type: DarkLight # Starlight
     - type: Destructible
       thresholds:
         - trigger:

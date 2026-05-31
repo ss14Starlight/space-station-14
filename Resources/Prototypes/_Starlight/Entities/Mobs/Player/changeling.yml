@@ -1,0 +1,12 @@
+- type: entity
+  parent: [ MobMonkey, StorePresetChangeling ]
+  id: MobLingMonkey
+  suffix: Do Not Map
+  components:
+    - type: ChangelingDevour
+    - type: ChangelingIdentity
+    - type: UserInterface # Ensures that lesser form has necessary UIs
+      interfaces:
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+          requireInputValidation: false

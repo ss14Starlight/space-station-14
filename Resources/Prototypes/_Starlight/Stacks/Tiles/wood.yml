@@ -1,0 +1,17 @@
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileDarkWood
+  name: stack-dark-wood-floor
+  spawn: FloorTileItemWood
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileDarkWoodPattern
+  name: stack-dark-wood-pattern-floor
+  spawn: FloorTileItemWoodPattern
+
+- type: stack
+  parent: BaseTileStack
+  id: FloorTileDarkWoodLarge
+  name: stack-dark-large-wood-floor
+  spawn: FloorTileItemWoodLarge

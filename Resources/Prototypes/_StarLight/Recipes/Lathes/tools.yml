@@ -1,7 +1,0 @@
-# Emergency Welder
-- type: latheRecipe
-  parent: BaseToolRecipe
-  id: WelderMini
-  result: WelderMini
-  materials:
-    Steel: 250

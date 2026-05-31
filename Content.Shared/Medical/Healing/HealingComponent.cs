@@ -71,4 +71,9 @@ public sealed partial class HealingComponent : Component
     [DataField]
     public List<ReagentQuantity> ReagentsToDrain = new();
     #endregion
+
+    #region FarHorizons
+    [DataField]
+    public int AdjustEyeDamage = 0;
+    #endregion
 }

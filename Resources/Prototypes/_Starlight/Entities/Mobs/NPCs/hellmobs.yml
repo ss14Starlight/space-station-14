@@ -1,0 +1,143 @@
+- type: entity
+  parent: SimpleSpaceMobBase
+  id: BaseMobBluespaceHarvester
+  name: bluespace creature
+  description: A horrific entity from beyond bluespace.
+  abstract: true
+  components:
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+    blackboard:
+      NavClimb: !type:Bool
+        true
+      NavSmash: !type:Bool
+        true
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+  - type: MovementAlwaysTouching
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: Stamina
+    baseCritThreshold: 50
+    animationThreshold: 25
+  - type: CombatMode
+  - type: ReplacementAccent
+    accent: genericAggressive
+
+- type: entity
+  parent: BaseMobBluespaceHarvester
+  id: MobBluespaceHarvesterMiGo
+  name: Creature
+  description: A fast, insectoid creature from the depths of bluespace. Its movements are erratic and hard to predict.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Animals/Hellmobs/mi_go.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement" ]
+      state: migo_base
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: migo_move
+    noMovementLayers:
+      movement:
+        state: migo_base
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: migo_base
+      Dead:
+        Base: migo_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      70: Dead
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 8
+        Piercing: 4
+
+- type: entity
+  parent: BaseMobBluespaceHarvester
+  id: MobBluespaceHarvesterBlankBody
+  name: blank body
+  description: A shambling humanoid husk, empty of thought but driven by malice.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Animals/Hellmobs/blankbody.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: blank_body
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: blank_body
+      Dead:
+        Base: blank_body
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.8
+    baseSprintSpeed: 1.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 6
+
+- type: entity
+  parent: BaseMobBluespaceHarvester
+  id: MobBluespaceHarvesterOtherthing
+  name: otherthing
+  description: A massive, lumbering abomination. It moves slowly but can take tremendous punishment.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Starlight/Mobs/Animals/Hellmobs/otherthing.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: otherthing
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: otherthing
+      Dead:
+        Base: otherthing_dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0.4
+    baseSprintSpeed: 0.8
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+    angle: 0
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Blunt: 15
+        Structural: 10

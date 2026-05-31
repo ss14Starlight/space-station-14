@@ -1,3 +1,4 @@
+using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
@@ -32,6 +33,11 @@ public sealed partial class RailroadRuleComponent : Component
     [NonSerialized]
     public Dictionary<ProtoId<JobPrototype>, List<Entity<RailroadCardComponent, RuleOwnerComponent>>> PoolByJob = [];
 
+    // Similar to the job pool but for objective related cards (ie, DAGD).
+    // Ideally they'd be in a different slot, to not overlap job cards, but I don't think I know how to do that...
+    [NonSerialized]
+    public Dictionary<EntProtoId<ObjectiveComponent>, List<Entity<RailroadCardComponent, RuleOwnerComponent>>> PoolByObjective = [];
+
     [DataField]
     public List<EntProtoId<RailroadCardComponent>> Cards = [];
 
@@ -50,5 +56,6 @@ public sealed partial class RailroadRuleComponent : Component
         PreCardIssuance,
         CardIssuance,
         CycleDelay,
+        Stopped
     }
 }

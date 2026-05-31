@@ -63,7 +63,7 @@
       state: mech_lights_on
   - type: InstantAction
     event: !type:ToggleActionEvent
-    
+
 - type: entity
   id: ActionMechToggleInternals
   name: Toggle Internals
@@ -97,7 +97,7 @@
       state: mech_siren_on
   - type: InstantAction
     event: !type:MechToggleSirensEvent
-    
+
 - type: entity
   id: ActionMechToggleThrusters
   name: Toggle Thrusters
@@ -114,7 +114,7 @@
       state: mech_thrusters_on
   - type: InstantAction
     event: !type:MechToggleThrustersEvent
-    
+
 - type: entity
   id: ActionMechToggleNightVision
   name: Toggle Camera

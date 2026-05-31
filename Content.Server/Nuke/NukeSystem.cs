@@ -18,12 +18,18 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._Starlight.Lock; // Starlight-edit
+using Robust.Shared.Timing;
+
+#region Starlight
+using Content.Server._Starlight.Lock;
+using Content.Server.GameTicking;
+using Content.Server._NullLink.Helpers;
+using Content.Server._Starlight.Achievement;
+using Robust.Server.Player;
+#endregion Starlight
 
 namespace Content.Server.Nuke;
 
@@ -46,7 +52,14 @@ public sealed class NukeSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly DigitalLockSystem _digitalLock = default!; // Starlight-edit
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    #region Starlight
+    [Dependency] private readonly DigitalLockSystem _digitalLock = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly AchievementSystem _achievements = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    #endregion
 
     /// <summary>
     ///     Used to calculate when the nuke song should start playing for maximum kino with the nuke sfx
@@ -240,6 +253,12 @@ public sealed class NukeSystem : EntitySystem
         if (component.Status != NukeStatus.AWAIT_CODE)
             return;
 
+        var curTime = _timing.CurTime;
+        if (curTime < component.LastCodeEnteredAt + SharedNukeComponent.EnterCodeCooldown)
+            return; // Validate that they are not entering codes faster than the cooldown.
+
+        component.LastCodeEnteredAt = curTime;
+
         UpdateStatus(uid, component);
         UpdateUserInterface(uid, component);
     }
@@ -292,8 +311,22 @@ public sealed class NukeSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
+        var wasArmed = component.Status == NukeStatus.ARMED; // Starlight: Achievements
         DisarmBomb(uid, component);
+        // Starlight start: Achievements
+        if (!wasArmed || component.Status != NukeStatus.COOLDOWN)
+        {
+            args.Handled = true;
+            return;
+        }
 
+        if (_playerManager.TryGetSessionByEntity(args.User, out var session))
+        {
+            _achievements.TryUnlockAchievementAsync(session, "finish_the_fight")
+                .AsTask()
+                .FireAndForget();
+        }
+        // Starlight end: Achievements
         var ev = new NukeDisarmSuccessEvent();
         RaiseLocalEvent(ev);
 
@@ -500,8 +533,18 @@ public sealed class NukeSystem : EntitySystem
         var y = (int) pos.Y;
         var posText = $"({x}, {y})";
 
-        // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
-        _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
+        // Starlight-start
+        if (_gameTicker.IsGameRuleActive("Nukeops"))
+        {
+            // We are collapsing the randomness here, otherwise we would get separate random song picks for checking duration and when actually playing the song afterwards
+            _selectedNukeSong = _audio.ResolveSound(component.ArmMusic);
+        }
+        else
+        {
+            //special music for loneops
+            _selectedNukeSong = _audio.ResolveSound(component.ArmMusicLone);
+        }
+        // Starlight-end
 
         // warn a crew
         var announcement = Loc.GetString("nuke-component-announcement-armed",
@@ -612,6 +655,7 @@ public sealed class NukeSystem : EntitySystem
         RaiseLocalEvent(new NukeExplodedEvent()
         {
             OwningStation = transform.GridUid,
+            EndRound = component.EndRound, // Starlight, for ending the round
         });
 
         _sound.StopStationEventMusic(uid, StationEventMusicType.Nuke);
@@ -684,6 +728,7 @@ public sealed class NukeSystem : EntitySystem
 public sealed class NukeExplodedEvent : EntityEventArgs
 {
     public EntityUid? OwningStation;
+    public bool EndRound; // Starlight, for ending the round
 }
 
 /// <summary>

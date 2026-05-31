@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Conflee, edits by Vonte, magnet animation by Vonte, recolored into Senior Mail by wonderfulnewworld (Github)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Conflee, Vonte, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "magnet",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ],
+	  "copyright": "Vonte",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "equipped-BELT",
+      "directions": 4,
+	  "copyright": "Conflee, Vonte, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Conflee, Vonte, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Conflee, Vonte, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

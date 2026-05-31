@@ -1,7 +1,7 @@
 - type: vendingMachineInventory
   id: ChemVendInventory
   startingInventory:
-    Jug: 4
+    Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
     JugAluminium: 2
     JugCarbon: 4
     JugChlorine: 1
@@ -27,11 +27,13 @@
     DrinkLithiumFlask: 1
     StrangePill: 3
     ChemistryBottleToxin: 1
+  emaggedInventory: # Starlight
+    OminousPill: 2 # Starlight, good luck man.
 
 - type: vendingMachineInventory
   id: ChemVendInventorySyndicate
   startingInventory:
-    Jug: 4
+    Jug: 8 # Starlight - four jugs isn't nearly enough for high populations.
     JugAluminium: 2
     JugCarbon: 4
     JugChlorine: 1
@@ -56,9 +58,10 @@
     PlasmaChemistryVial: 1
   contrabandInventory:
     DrinkLithiumFlask: 1
-    StrangePill: 3
+    OminousPill: 3 # Starlight, StrangePill in SyndieJuice replaced by OminousPill. More dangerous.
     ChemistryBottlePax: 3
     ChemistryBottleMuteToxin: 3
     ChemistryBottleLead: 2
     ChemistryBottleToxin: 1
-
+  emaggedInventory: # Starlight
+    StrangePill: 2 # Starlight

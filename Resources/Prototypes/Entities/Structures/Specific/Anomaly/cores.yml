@@ -170,6 +170,9 @@
     energy: 2.0
     color: "#793a80"
     castShadows: false
+  - type: Tag # Starlight
+    tags:
+      - AnomalyCoreShadow
 
 - type: entity
   parent: BaseAnomalyCore
@@ -266,7 +269,6 @@
     energy: 3.5
     color: "#cb5b7e"
     castShadows: false
-
 - type: entity
   parent: BaseAnomalyInertCore
   id: AnomalyCoreRockInert

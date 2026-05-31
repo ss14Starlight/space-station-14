@@ -142,7 +142,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitChaplain
-  name: chaplain's jumpsuit
+  name: chaplain jumpsuit # Starlight: chaplain's -> chaplain
   description: It's a black jumpsuit, often worn by religious folk.
   components:
     - type: Sprite
@@ -504,6 +504,11 @@
     sprite: Clothing/Uniforms/Jumpsuit/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/brigmedic.rsi
+  - type: Armor # Starlight start, so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90 # Starlight end
 
 - type: entity
   parent: ClothingUniformBase
@@ -658,7 +663,7 @@
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpsuitSecGrey
   name: grey security jumpsuit
-  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+  description: A tactical relic of years past before NanoTrasen decided it was cheaper to dye the suits red instead of washing out the blood. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/security_grey.rsi
@@ -669,7 +674,7 @@
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformSecurityTrooper
   name: trooper uniform
-  description: A formal uniform issued to the Nanotrasen Troopers, usually it comes with a car.
+  description: A formal uniform issued to the NanoTrasen Troopers, usually it comes with a car. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/security_trooper.rsi
@@ -680,7 +685,7 @@
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpsuitWarden
   name: warden's uniform
-  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+  description: A formal security suit for officers complete with NanoTrasen belt buckle. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/warden.rsi
@@ -788,7 +793,7 @@
       sprite: Clothing/Uniforms/Jumpsuit/lawyergood.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
   id: ClothingUniformJumpsuitPyjamaSyndicateBlack
   name: black syndicate pyjamas
   description: For those long nights in perma.
@@ -799,7 +804,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicateblack.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
   id: ClothingUniformJumpsuitPyjamaSyndicatePink
   name: pink syndicate pyjamas
   description: For those long nights in perma.
@@ -810,7 +815,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/pyjamasyndicatepink.rsi
 
 - type: entity
-  parent: [UnsensoredClothingUniformBase, BaseMajorContraband] #SL EDIT, Syndie to Major
+  parent: [UnsensoredClothingUniformBase, BaseMinorContraband] #SL EDIT, Syndie to minor
   id: ClothingUniformJumpsuitPyjamaSyndicateRed
   name: red syndicate pyjamas
   description: For those long nights in perma.
@@ -1014,7 +1019,7 @@
   parent: [ BaseCentcommContraband, ClothingUniformBase ]
   id: ClothingUniformJumpsuitERTChaplain
   name: ERT chaplain uniform
-  description: A special suit made for Central Command's elite chaplain corps.
+  description: A special suit made for Central Command's elite Chaplain corps. # Starlight
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpsuit/ert_chaplain.rsi
@@ -1176,7 +1181,7 @@
     sprite: Clothing/Uniforms/Jumpsuit/hawaiyellow.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseSyndicateContraband]
+  parent: [ClothingUniformBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: ClothingUniformJumpsuitSyndieFormal
   name: syndicate formal suit
   description: "The syndicate's uniform is made in an elegant style, it's even a pity to do dirty tricks in this."

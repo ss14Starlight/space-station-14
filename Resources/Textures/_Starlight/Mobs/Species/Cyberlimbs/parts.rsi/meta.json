@@ -467,6 +467,76 @@
       "copyright": "Citrea"
     },
     {
+      "name": "l_scribe_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_scribe_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_scribe_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_scribe_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_scribe_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_scribe_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_herakles_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_herakles_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_investigator_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_investigator_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_investigator_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_investigator_arm",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_investigator_hand",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_investigator_hand_TOOLS",
+      "directions": 4,
+      "copyright": "Citrea"
+    },
+    {
       "name": "l_leg_hydraulic",
       "directions": 4,
       "delays": [
@@ -537,6 +607,52 @@
     },
     {
       "name": "r_leg_pilebunker",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "l_leg_cargo",
+      "directions": 4,
+      "delays": [
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ],
+        [
+          0.3,
+          2.0
+        ]
+      ],
+      "copyright": "Citrea"
+    },
+    {
+      "name": "r_leg_cargo",
       "directions": 4,
       "delays": [
         [

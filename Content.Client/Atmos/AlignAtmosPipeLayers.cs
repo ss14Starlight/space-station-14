@@ -40,8 +40,10 @@ public sealed class AlignAtmosPipeLayers : SnapgridCenter
     private const float MouseDeadzoneRadius = 0.25f;
 
     private Color _guideColor = new Color(0, 0, 0.5785f);
-    private const float GuideRadius = 0.1f;
-    private const float GuideOffset = 0.21875f;
+    // Carpmosia-start - 5 pipe layers
+    private const float GuideRadius = 0.05f;
+    private const float GuideOffset = 0.125f;
+    // Carpmosia-end - 5 pipe layers
 
     public AlignAtmosPipeLayers(PlacementManager pMan) : base(pMan)
     {
@@ -72,6 +74,10 @@ public sealed class AlignAtmosPipeLayers : SnapgridCenter
             args.WorldHandle.DrawCircle(worldPosition, GuideRadius, _guideColor);
             args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset, GuideOffset)), GuideRadius, _guideColor);
             args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset, GuideOffset)), GuideRadius, _guideColor);
+            // Carpmosia-start - 5 pipe layers
+            args.WorldHandle.DrawCircle(worldPosition + gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
+            args.WorldHandle.DrawCircle(worldPosition - gridRotation.RotateVec(new Vector2(multi * GuideOffset * 2, GuideOffset * 2)), GuideRadius, _guideColor);
+            // Carpmosia-end - 5 pipe layers
         }
 
         base.Render(args);
@@ -107,11 +113,20 @@ public sealed class AlignAtmosPipeLayers : SnapgridCenter
         var mouseCoordsDiff = _unalignedMouseCoords.Position - MouseCoords.Position;
         var layer = AtmosPipeLayer.Primary;
 
-        if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+        if (mouseCoordsDiff.Length() > MouseDeadzoneRadius / 2) // Carpmosia-edit - 5 pipe layers
         {
             // Determine the direction of the mouse is relative to the center of the tile, adjusting for the player eye and grid rotation
             var direction = (new Angle(mouseCoordsDiff) + _eyeManager.CurrentEye.Rotation + gridRotation + Math.PI / 2).GetCardinalDir();
-            layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+            // Carpmosia-start - 5 pipe layers
+            if (mouseCoordsDiff.Length() > MouseDeadzoneRadius)
+            {
+                layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Quaternary : AtmosPipeLayer.Quinary;
+            }
+            else
+            {
+                layer = (direction == Direction.North || direction == Direction.East) ? AtmosPipeLayer.Secondary : AtmosPipeLayer.Tertiary;
+            }
+            // Carpmosia-end - 5 pipe layers
         }
 
         // Update the construction menu placer

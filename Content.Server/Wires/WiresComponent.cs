@@ -32,10 +32,10 @@ public sealed partial class WiresComponent : Component
     /// </summary>
     [ViewVariables]
     public int WireSeed { get; set; }
-    
+
     [ViewVariables]
     public bool ViewWires = false;
-    
+
     [DataField]
     public ProtoId<TagPrototype> ShowWiresTag = "ShowWires";
 

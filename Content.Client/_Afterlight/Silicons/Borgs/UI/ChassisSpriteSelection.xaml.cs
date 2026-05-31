@@ -63,7 +63,7 @@ public sealed partial class ChassisSpriteSelection : Control
                 VerticalExpand = true
             };
 
-            content.AddChild(CreateTextureRect(subtype.SpritePath ?? new(borgTypePrototype.SpritePath), subtype.SpriteBodyState ?? borgTypePrototype.SpriteBodyState));
+            content.AddChild(CreateTextureRect(subtype.SpritePath ?? borgTypePrototype.SpritePath, subtype.SpriteBodyState ?? borgTypePrototype.SpriteBodyState));
             content.AddChild(new Label{ Text = subtype.Price is not null and > 0 ? ent.Name + $" ({subtype.Price}₡)" : ent.Name });
             button.AddChild(content);
             button.OnPressed += _ =>
@@ -99,7 +99,7 @@ public sealed partial class ChassisSpriteSelection : Control
             VerticalExpand = true
         };
 
-        content.AddChild(CreateTextureRect(new(borgTypePrototype.SpritePath), borgTypePrototype.SpriteBodyState));
+        content.AddChild(CreateTextureRect(borgTypePrototype.SpritePath, borgTypePrototype.SpriteBodyState));
         content.AddChild(new Label{ Text = "default" });
         button.AddChild(content);
 

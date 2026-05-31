@@ -23,10 +23,10 @@ ban-banned-2 = The ban reason is: "{$reason}"
 ban-banned-3 = Attempts to circumvent this ban such as creating a new account will be logged.
 
 soft-player-cap-full = The server is full!
-panic-bunker-account-denied = This server is in panic bunker mode, often enabled as a precaution against raids. New connections by accounts not meeting certain requirements are temporarily not accepted. Try again later
-panic-bunker-account-denied-reason = This server is in panic bunker mode, often enabled as a precaution against raids. New connections by accounts not meeting certain requirements are temporarily not accepted. Try again later. Reason: "{$reason}"
-panic-bunker-account-reason-account = Your Space Station 14 account is too new. It must be older than {$minutes} minutes
-panic-bunker-account-reason-overall = Your overall playtime on the server must be greater than {$minutes} $minutes
+panic-bunker-account-denied = Server is in panic bunker mode. Ask admin at Discord to let you in, or wait for an hour or so.
+panic-bunker-account-denied-reason = Server is in panic bunker mode. Ask admin at Discord to let you in, or wait for an hour or so. To always bypass panic bunker {$reason}
+panic-bunker-account-reason-account = your SS14 account must be older than {$minutes} minutes.
+panic-bunker-account-reason-overall = your overall playtime on this server must be greater than {$minutes} $minutes.
 
 whitelist-playtime = You do not have enough playtime to join this server. You need at least {$minutes} minutes of playtime to join this server.
 whitelist-player-count = This server is currently not accepting players. Please try again later.

@@ -51,7 +51,7 @@ public sealed partial class InventoryComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public Dictionary<string, DisplacementData> MaleDisplacements = new();
-    
+
     //Starlight begin
     /// <summary>
     /// Force the stupid fucking client clothing system to use displacements, disregarding species ID.

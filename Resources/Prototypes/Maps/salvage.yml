@@ -18,11 +18,6 @@
   sizeString: salvage-map-wreck-size-small
 
 - type: salvageMap
-  id: Small3
-  mapPath: /Maps/Salvage/small-3.yml
-  sizeString: salvage-map-wreck-size-small
-
-- type: salvageMap
   id: SmallAISurveyDrone
   mapPath: /Maps/Salvage/small-ai-survey-drone.yml
   sizeString: salvage-map-wreck-size-small
@@ -147,6 +142,13 @@
   sizeString: salvage-map-wreck-size-medium
 
 # """Large""" maps
+
+# Starlight
+# Moved from small due to sheer station damage caused by mass/plastinium walls. This grid is 22x22
+- type: salvageMap
+  id: MazeMap
+  mapPath: /Maps/Salvage/small-3.yml
+  sizeString: salvage-map-wreck-size-large
 
 - type: salvageMap
   id: StationStation

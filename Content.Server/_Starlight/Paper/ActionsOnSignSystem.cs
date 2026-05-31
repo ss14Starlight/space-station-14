@@ -8,17 +8,17 @@ namespace Content.Server._Starlight.Paper;
 public sealed class ActionsOnSignSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ActionsOnSignComponent, PaperSignedEvent>(OnPaperSigned);
         SubscribeLocalEvent<ActionsOnSignComponent, MapInitEvent>(OnMapInit);
     }
-    
+
     private void OnMapInit(EntityUid uid, ActionsOnSignComponent comp, MapInitEvent init)
     {
-        if (comp.KeepFaxable) 
+        if (comp.KeepFaxable)
             return;
         RemComp<FaxableObjectComponent>(uid); //cause this breaks shit like infinite antags
     }
@@ -53,7 +53,7 @@ public sealed class ActionsOnSignSystem : EntitySystem
                 action.ResolveIoC();
                 action.IoCInjected = true;
             }
-            
+
             if (action.TargetsPaper)
             {
                 if (action.Action(paper, component, paper))

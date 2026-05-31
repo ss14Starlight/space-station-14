@@ -9,6 +9,10 @@ using Robust.Client.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
+#region Starlight
+using Content.Client._Starlight.Alert;
+#endregion
+
 namespace Content.Client.Silicons.Borgs;
 
 /// <inheritdoc/>
@@ -18,16 +22,17 @@ public sealed partial class BorgSystem : SharedBorgSystem
     [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly PredictedBatterySystem _battery = default!;
+    [Dependency] private readonly SharedBatterySystem _battery = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly BatteryAlertSystem _batteryAlert = default!; // Starlight
 
     public override void Initialize()
     {
         base.Initialize();
 
-        InitializeBattery();
+        //InitializeBattery(); Starlight - moved into generic system.
 
         SubscribeLocalEvent<BorgChassisComponent, AppearanceChangeEvent>(OnBorgAppearanceChanged);
         SubscribeLocalEvent<MMIComponent, AppearanceChangeEvent>(OnMMIAppearanceChanged);
@@ -55,7 +60,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         base.OnInserted(chassis, ref args);
         UpdateUI(chassis.AsNullable());
         UpdateBorgAppearance((chassis, chassis.Comp));
-        UpdateBatteryAlert((chassis.Owner, chassis.Comp, null));
+        _batteryAlert.TryUpdateBatteryAlert(chassis.Owner); // Starlight-edit
     }
 
     protected override void OnRemoved(Entity<BorgChassisComponent> chassis, ref EntRemovedFromContainerMessage args)
@@ -66,7 +71,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
         base.OnRemoved(chassis, ref args);
         UpdateUI(chassis.AsNullable());
         UpdateBorgAppearance((chassis, chassis.Comp));
-        UpdateBatteryAlert((chassis.Owner, chassis.Comp, null));
+        _batteryAlert.TryUpdateBatteryAlert(chassis.Owner); // Starlight-edit
     }
 
     private void UpdateBorgAppearance(Entity<BorgChassisComponent?, AppearanceComponent?, SpriteComponent?> ent)
@@ -127,11 +132,5 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         borg.Comp.HasMindState = hasMindState;
         borg.Comp.NoMindState = noMindState;
-    }
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-        UpdateBattery(frameTime);
     }
 }

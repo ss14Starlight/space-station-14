@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Cricket and Noble by Conflee. Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870",
+    "copyright": "Cricket and Noble by Conflee (and edited by TacoLlama). Edits by Conflee, originals taken from Paradise Station at https://github.com/ParadiseSS13/Paradise/commit/34f3823923b7692533b7a99c6f2a8bc91c834870",
     "states": [
         {
             "name": "borg",
@@ -237,6 +237,30 @@
         },
         {
             "name": "cricket_l",
+            "directions": 4
+        },
+		{
+            "name": "beetle",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
+        },
+        {
+            "name": "beetle_e",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
+        },
+        {
+            "name": "beetle_e_r",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
+            "directions": 4
+        },
+        {
+            "name": "beetle_l",
+			"license": "CC-BY-SA-4.0",
+			"copyright": "Sprited by Davyei (Github) for Moffstation at (https://github.com/moff-station/moff-station-14/pull/1023)",
             "directions": 4
         }
     ]

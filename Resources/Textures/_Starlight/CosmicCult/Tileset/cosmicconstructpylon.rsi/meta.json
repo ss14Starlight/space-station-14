@@ -1,0 +1,30 @@
+{
+    "version": 1,
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "states": [
+        {
+            "name": "base",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "base-overlay",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075]]
+        },
+        {
+            "name": "spawnin",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.11, 0.11, 0.11, 0.11, 0.11, 0.05, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 99]]
+        },
+        {
+            "name": "spawnin-overlay",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.11, 0.11, 0.11, 0.11, 0.11, 0.05, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 99]]
+        }
+    ]
+}

@@ -10,10 +10,10 @@ public sealed class PlayerRolesReqManager : SharedPlayerRolesReqManager
     [Dependency] private readonly INullLinkPlayerManager _playerManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
 
-    public override bool IsAllRolesAvailable(EntityUid uid) 
+    public override bool IsAllRolesAvailable(EntityUid uid)
         => _player.TryGetSessionByEntity(uid, out var session)
             && AllRoles is not null
-            && _playerManager.TryGetPlayerData(session.UserId, out var playerData) 
+            && _playerManager.TryGetPlayerData(session.UserId, out var playerData)
             && AllRoles.Roles.Any(playerData.Roles.Contains);
 
     public override bool IsAllRolesAvailable(ICommonSession session)

@@ -67,3 +67,21 @@
       item:
       - ThrowingKnife
 
+- type: entity
+  id: SecureBriefings
+  name: Secure Briefing Documents
+  suffix: Do Not Map
+  description: A set of classified documents to inform new members of Security
+  parent: [ BoxFolderRedEmpty, BaseCommandContraband ]
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: BriefDocumentRevs
+        - id: BriefDocumentLings
+        - id: BriefDocumentBrightEyes
+        - id: BriefDocumentVampires
+        - id: BriefDocumentSyndicate
+        - id: BriefDocumentWizard
+        - id: BriefDocumentXorgs

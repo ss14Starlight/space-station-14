@@ -11,11 +11,63 @@
         amount: 2
         doAfter: 1
 
+    # Carpmosia-start - Atmos Alt Prototypes
+    - to: filterAlt1
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: filterAlt2
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: filterAlt3
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: filterAlt4
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Carpmosia-end - Atmos Alt Prototypes
+
     - to: filterflipped
       steps:
       - material: Steel
         amount: 2
         doAfter: 1
+
+    # Carpmosia-start - Atmos Alt Prototypes
+    - to: filterflippedAlt1
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: filterflippedAlt2
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: filterflippedAlt3
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: filterflippedAlt4
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Carpmosia-end - Atmos Alt Prototypes
 
     # Mixer
     - to: mixer
@@ -24,17 +76,95 @@
         amount: 2
         doAfter: 1
 
+    # Carpmosia-start - Atmos Alt Prototypes
+    - to: mixerAlt1
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerAlt2
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerAlt3
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerAlt4
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Carpmosia-end - Atmos Alt Prototypes
+
     - to: mixerflipped
       steps:
       - material: Steel
         amount: 2
         doAfter: 1
 
+    # Carpmosia-start - Atmos Alt Prototypes
+    - to: mixerflippedAlt1
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerflippedAlt2
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerflippedAlt3
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerflippedAlt4
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Carpmosia-end - Atmos Alt Prototypes
+
     - to: pneumaticvalve
       steps:
       - material: Steel
         amount: 2
         doAfter: 1
+
+    # Carpmosia-start - Atmos Alt Prototypes
+    - to: pneumaticvalveAlt1
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: pneumaticvalveAlt2
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: pneumaticvalveAlt3
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: pneumaticvalveAlt4
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+    # Carpmosia-end - Atmos Alt Prototypes
 
   # Filter
   - node: filter
@@ -53,6 +183,72 @@
       - tool: Welding
         doAfter: 1
 
+  # Carpmosia-start - Atmos Alt Prototypes
+  - node: filterAlt1
+    entity: GasFilterAlt1
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: filterAlt2
+    entity: GasFilterAlt2
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: filterAlt3
+    entity: GasFilterAlt3
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: filterAlt4
+    entity: GasFilterAlt4
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+  # Carpmosia-end - Atmos Alt Prototypes
+
   - node: filterflipped
     entity: GasFilterFlipped
     edges:
@@ -68,6 +264,72 @@
       steps:
       - tool: Welding
         doAfter: 1
+
+  # Carpmosia-start - Atmos Alt Prototypes
+  - node: filterflippedAlt1
+    entity: GasFilterFlippedAlt1
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: filterflippedAlt2
+    entity: GasFilterFlippedAlt2
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: filterflippedAlt3
+    entity: GasFilterFlippedAlt3
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: filterflippedAlt4
+    entity: GasFilterFlippedAlt4
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+  # Carpmosia-end - Atmos Alt Prototypes
 
   # Mixer
   - node: mixer
@@ -86,6 +348,72 @@
       - tool: Welding
         doAfter: 1
 
+  # Carpmosia-start - Atmos Alt Prototypes
+  - node: mixerAlt1
+    entity: GasMixerAlt1
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: mixerAlt2
+    entity: GasMixerAlt2
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: mixerAlt3
+    entity: GasMixerAlt3
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: mixerAlt4
+    entity: GasMixerAlt4
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+  # Carpmosia-end - Atmos Alt Prototypes
+
   - node: mixerflipped
     entity: GasMixerFlipped
     edges:
@@ -101,6 +429,71 @@
       steps:
       - tool: Welding
         doAfter: 1
+  # Carpmosia-start - Atmos Alt Prototypes
+  - node: mixerflippedAlt1
+    entity: GasMixerFlippedAlt1
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: mixerflippedAlt2
+    entity: GasMixerFlippedAlt2
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: mixerflippedAlt3
+    entity: GasMixerFlippedAlt3
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: mixerflippedAlt4
+    entity: GasMixerFlippedAlt4
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+  # Carpmosia-end - Atmos Alt Prototypes
 
   - node: pneumaticvalve
     entity: PressureControlledValve
@@ -117,3 +510,68 @@
       steps:
       - tool: Welding
         doAfter: 1
+  # Carpmosia-start - Atmos Alt Prototypes
+  - node: pneumaticvalveAlt1
+    entity: PressureControlledValveAlt1
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: pneumaticvalveAlt2
+    entity: PressureControlledValveAlt2
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: pneumaticvalveAlt3
+    entity: PressureControlledValveAlt3
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  - node: pneumaticvalveAlt4
+    entity: PressureControlledValveAlt4
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+  # Carpmosia-end - Atmos Alt Prototypes

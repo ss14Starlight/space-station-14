@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
 using Content.Shared.ActionBlocker;
-using Content.Shared.Body.Part;
 using Content.Shared.CombatMode;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Explosion;
@@ -21,6 +20,8 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Combat.Disarming;
+using Content.Shared._Starlight.Medical.Body.Part; // Starlight
 
 namespace Content.Server.Hands.Systems
 {
@@ -49,8 +50,10 @@ namespace Content.Server.Hands.Systems
 
             SubscribeLocalEvent<HandsComponent, DisarmedEvent>(OnDisarmed, before: new[] {typeof(StunSystem), typeof(SharedStaminaSystem)});
 
+            // Starlight Start: Reverted NuBody
             SubscribeLocalEvent<HandsComponent, BodyPartAddedEvent>(HandleBodyPartAdded);
             SubscribeLocalEvent<HandsComponent, BodyPartRemovedEvent>(HandleBodyPartRemoved);
+            // Starlight End: Reverted NuBody
 
             SubscribeLocalEvent<HandsComponent, ComponentGetState>(GetComponentState);
 
@@ -98,6 +101,7 @@ namespace Content.Server.Hands.Systems
             if (TryComp(uid, out PullerComponent? puller) && TryComp(puller.Pulling, out PullableComponent? pullable))
                 _pullingSystem.TryStopPull(puller.Pulling.Value, pullable);
 
+            if (HasComp<NoDisarmComponent>(GetActiveItem(args.Target))) return; // Starlight
             var offsetRandomCoordinates = _transformSystem.GetMoverCoordinates(args.Target).Offset(_random.NextVector2(1f, 1.5f));
             if (!ThrowHeldItem(args.Target, offsetRandomCoordinates))
                 return;
@@ -106,7 +110,7 @@ namespace Content.Server.Hands.Systems
 
             args.Handled = true; // no shove/stun.
         }
-
+        // Starlight Start: Reverted NuBody
         private void HandleBodyPartAdded(Entity<HandsComponent> ent, ref BodyPartAddedEvent args)
         {
             if (args.Part.Comp.PartType != BodyPartType.Hand)
@@ -132,7 +136,7 @@ namespace Content.Server.Hands.Systems
 
             RemoveHand(uid, args.Slot);
         }
-
+        // Starlight End: Reverted NuBody
         #region interactions
 
         private bool HandleThrowItem(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)

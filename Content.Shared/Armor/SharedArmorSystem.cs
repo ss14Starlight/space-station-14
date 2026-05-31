@@ -1,4 +1,4 @@
-﻿using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
@@ -6,13 +6,14 @@ using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
-using Content.Shared.Stunnable; // Starlight-edit
 
 #region Starlight
 using Content.Shared.Stunnable;
 #endregion Starlight
 
 namespace Content.Shared.Armor;
+
+// STARLIGHT NOTE: Make sure any edits to this are also reflected in Content.Shared/_Starlight/Magic/Systems/SharedArmorModSystem.cs
 
 /// <summary>
 ///     This handles logic relating to <see cref="ArmorComponent" />
@@ -41,8 +42,10 @@ public abstract class SharedArmorSystem : EntitySystem
     /// </summary>
     private void OnKnockdownAttempt(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<KnockDownAttemptEvent> args)
     {
-        if (component.IgnoreKnockdown)
+        // Starlight edit start - add check for voluntary value, cancel only involuntary knockdown
+        if (component.IgnoreKnockdown && !args.Args.Voluntary)
             args.Args.Cancelled = true;
+        // Starlight edit end
     }
     #endregion
 
@@ -69,16 +72,16 @@ public abstract class SharedArmorSystem : EntitySystem
 
         args.Args.Damage = DamageSpecifier.ApplyModifierSet(args.Args.Damage, component.Modifiers, args.Args.ArmorPenetration, args.Args.CanHeal); // 🌟Starlight🌟
     }
-    
+
     private void OnStaminaDamageModify(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<StaminaModifyEvent> args)
     {
         if (args.Args.Damage < 0)
             return;
-        
+
         if (args.Args.Modifier > component.StaminaDamageModifier)
             args.Args.Modifier = component.StaminaDamageModifier;
     }
-    
+
     private void OnBorgDamageModify(EntityUid uid, ArmorComponent component,
         ref BorgModuleRelayedEvent<DamageModifyEvent> args)
     {
@@ -118,7 +121,7 @@ public abstract class SharedArmorSystem : EntitySystem
                 ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
             ));
         }
-        
+
         msg.PushNewline();
         var staminaType = Loc.GetString("armor-damage-type-stamina");
         msg.AddMarkupOrThrow(Loc.GetString("armor-stamina-value",

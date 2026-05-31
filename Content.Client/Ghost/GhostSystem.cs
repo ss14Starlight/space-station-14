@@ -34,10 +34,13 @@ namespace Content.Client.Ghost
                 _ghostVisibility = value;
 
                 var query = AllEntityQuery<GhostComponent, SpriteComponent>();
-                while (query.MoveNext(out var uid, out _, out var sprite))
+                //Starlight begin: ghost admemes
+                while (query.MoveNext(out var uid, out var ghost, out var sprite))
                 {
+                    if (!value && ghost.AlwaysVisible) value = true;
                     _sprite.SetVisible((uid, sprite), value || uid == _playerManager.LocalEntity);
                 }
+                //Starlight end
             }
         }
 
@@ -150,8 +153,7 @@ namespace Content.Client.Ghost
 
         private void OnGhostState(EntityUid uid, GhostComponent component, ref AfterAutoHandleStateEvent args)
         {
-            if (TryComp<SpriteComponent>(uid, out var sprite))
-                _sprite.LayerSetColor((uid, sprite), 0, component.Color);
+            // Starlight: Ignore GhostComponent color, instead rely on GhostThemeComponent appearance.
 
             if (uid != _playerManager.LocalEntity)
                 return;

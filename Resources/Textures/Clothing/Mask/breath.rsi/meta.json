@@ -81,6 +81,10 @@
     {
       "name": "up-equipped-MASK-vulpkanin",
       "directions": 4
-    }
+    },
+	{
+      "name": "up-equipped-MASK-hamster",
+      "directions": 4
+	}
   ]
 }

@@ -1,4 +1,3 @@
-using Content.Server.Body.Systems;
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
@@ -17,6 +16,10 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 
+#region Starlight
+using Content.Shared.Gibbing;
+#endregion Starlight
+
 namespace Content.Server.Dragon;
 
 public sealed partial class DragonSystem : EntitySystem
@@ -31,7 +34,7 @@ public sealed partial class DragonSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly BodySystem _body = default!; //starlight
+    [Dependency] private readonly GibbingSystem _gib = default!; //starlight
 
     private EntityQuery<CarpRiftsConditionComponent> _objQuery;
 
@@ -104,7 +107,7 @@ public sealed partial class DragonSystem : EntitySystem
             {
                 var xform = Transform(uid);
                 Spawn(comp.NoRiftDeathEffect, _transform.GetMapCoordinates(uid, xform: xform));
-                _body.GibBody(uid, gibOrgans: false); // REND HIS FLESH!!!!!!!!!!!!!
+                _gib.Gib(uid, dropGiblets: false); // REND HIS FLESH!!!!!!!!!!!!!
             }
             //starlight end
         }
@@ -274,10 +277,8 @@ public sealed partial class DragonSystem : EntitySystem
         if (!Resolve(dragonUid, ref comp)) // Starlight edit
             return;
 
-        // do reset the rift count since crew destroyed the rift, not deleted by the dragon dying.
         // Starlight edit Start
         comp.Rifts.Remove(riftUid);
-
         // Reset the rift count in objectives since crew destroyed a rift
         if (TryComp<MindContainerComponent>(dragonUid, out var mindContainer) && mindContainer.HasMind)
         {

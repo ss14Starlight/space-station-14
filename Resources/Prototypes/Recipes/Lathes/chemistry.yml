@@ -52,7 +52,7 @@
     Steel: 500
     Plastic: 500
     Plasma: 150
-    Silver: 50
+    BluespaceCrystal: 200 # SL
 
 - type: latheRecipe
   id: SyringeBluespace
@@ -63,7 +63,7 @@
     Plastic: 150
     Glass: 250
     Plasma: 100
-    Silver: 50
+    BluespaceCrystal: 100 # SL
 
 - type: latheRecipe
   id: PillCanister
@@ -91,11 +91,19 @@
     Steel: 250
 
 - type: latheRecipe
-  id: BaseChemistryEmptyVial
-  result: BaseChemistryEmptyVial
+  id: ChemistryEmptyVial
+  result: ChemistryEmptyVial
   completetime: 2
   materials:
     Glass: 100
+    Wood: 20
+
+- type: latheRecipe
+  id: ChemistryEmptyVialSmall
+  result: ChemistryEmptyVialSmall
+  completetime: 2
+  materials:
+    Glass: 50
     Wood: 20
 
 - type: latheRecipe

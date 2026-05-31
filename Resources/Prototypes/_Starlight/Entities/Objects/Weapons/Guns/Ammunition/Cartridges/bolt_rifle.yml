@@ -1,0 +1,59 @@
+# Starlight
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: Cartridge48Rifle
+  name: cartridge (.48 rifle)
+  description: A heavy intermediate cartridge of uncertain origin. Sits somewhere between a magnum round and an anti-materiel shell. Proprietary — don't expect to find it on any shelf.
+  components:
+  - type: Tag
+    tags:
+    - Cartridge48Rifle
+  - type: CartridgeAmmo
+    proto: Bullet48RifleFMJ
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 25
+# Starlight
+
+- type: entity
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: SpeedLoader48Rifle
+  name: "speed loader (.48 rifle)"
+  description: A stripper clip pre-loaded with .48 rifle rounds. Feeds directly into the Lionhunter's internal magazine. Proprietary and hard to come by.
+  components:
+  - type: Tag
+    tags:
+    - SpeedLoader48Rifle
+  - type: SpeedLoader
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    fillDelay: 0.1
+    whitelist:
+      tags:
+      - Cartridge48Rifle
+    capacity: 10
+    proto: Cartridge48Rifle
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/LightRifle/light_rifle_speed_loader.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-5
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 50

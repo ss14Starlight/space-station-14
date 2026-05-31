@@ -1,11 +1,5 @@
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Actions;
-using Content.Shared.DoAfter;
-using Robust.Shared.Prototypes;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage.Components;
-using Content.Shared.Weapons.Melee.Events;
 using Content.Shared._Starlight.Combat.OnHit;
 
 namespace Content.Server._Starlight.Combat.OnHit;

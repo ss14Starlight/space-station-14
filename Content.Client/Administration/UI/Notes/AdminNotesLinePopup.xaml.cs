@@ -11,8 +11,8 @@ namespace Content.Client.Administration.UI.Notes;
 [GenerateTypedNameReferences]
 public sealed partial class AdminNotesLinePopup : Popup
 {
-    public event Action<int, NoteType>? OnEditPressed;
-    public event Action<int, NoteType>? OnDeletePressed;
+    public event Action<int, NoteType, string?>? OnEditPressed; // Starlight-edit: ID, Type, Project
+    public event Action<int, NoteType, string?>? OnDeletePressed; // Starlight-edit ID, Type, Project
 
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
@@ -23,6 +23,7 @@ public sealed partial class AdminNotesLinePopup : Popup
 
         NoteId = note.Id;
         NoteType = note.NoteType;
+        NoteProject = string.IsNullOrEmpty(note.ProjectName) ? null : note.ProjectName; // Starlight-edit
         DeleteButton.Visible = showDelete;
         EditButton.Visible = showEdit;
 
@@ -37,7 +38,7 @@ public sealed partial class AdminNotesLinePopup : Popup
             : Loc.GetString("admin-notes-round-id", ("id", note.Round));
         CreatedByLabel.Text = Loc.GetString("admin-notes-created-by", ("author", note.CreatedByName));
         CreatedAtLabel.Text = Loc.GetString("admin-notes-created-at", ("date", note.CreatedAt.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss")));
-        EditedByLabel.Text = Loc.GetString("admin-notes-last-edited-by", ("author", note.EditedByName));
+        EditedByLabel.Text = Loc.GetString("admin-notes-last-edited-by", ("author", note.EditedByName ?? "")); // Starlight-edit
         EditedAtLabel.Text = Loc.GetString("admin-notes-last-edited-at", ("date", note.LastEditedAt?.ToLocalTime().ToString("yyyy-MM-dd HH:mm:ss") ?? Loc.GetString("admin-notes-edited-never")));
         ExpiryTimeLabel.Text = note.ExpiryTime == null
             ? Loc.GetString("admin-notes-expires-never")
@@ -55,11 +56,12 @@ public sealed partial class AdminNotesLinePopup : Popup
 
     public int NoteId { get; }
     public NoteType NoteType { get; }
+    public string? NoteProject { get; } // Starlight-edit
     private TimeSpan? DeleteResetOn { get; set; }
 
     private void EditPressed(ButtonEventArgs args)
     {
-        OnEditPressed?.Invoke(NoteId, NoteType);
+        OnEditPressed?.Invoke(NoteId, NoteType, NoteProject); // Starlight-edit
         Close();
     }
 
@@ -74,7 +76,7 @@ public sealed partial class AdminNotesLinePopup : Popup
         }
 
         ResetDeleteButton();
-        OnDeletePressed?.Invoke(NoteId, NoteType);
+        OnDeletePressed?.Invoke(NoteId, NoteType, NoteProject); // Starlight-edit
         Close();
     }
 

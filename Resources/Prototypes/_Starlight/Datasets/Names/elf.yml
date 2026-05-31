@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: NamesFirstElfMale
+  values:
+    prefix: names-first-elf-male-dataset-
+    count: 200
+
+- type: localizedDataset
+  id: NamesFirstElfFemale
+  values:
+    prefix: names-first-elf-female-dataset-
+    count: 200
+
+- type: localizedDataset
+  id: NamesLastElf
+  values:
+    prefix: names-last-elf-dataset-
+    count: 200

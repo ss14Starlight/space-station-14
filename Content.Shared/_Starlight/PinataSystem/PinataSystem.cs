@@ -1,9 +1,8 @@
 //Copyright © 2025 .cerol (Discord), Licensed under MIT License.
 //Changes after https://github.com/ss14Starlight/space-station-14/pull/2054/commits/e18dafedad110b20cdc17d054fe35413a1831f59 licensed under Starlight License.
 
-using Content.Shared.Body.Events;
 using Content.Shared.Damage;
-using Content.Shared.Gibbing.Events;
+using Content.Shared.Gibbing;
 using Content.Shared.Throwing;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.EntitySelectors;
@@ -28,22 +27,22 @@ public sealed class PinataSystem : EntitySystem
 
         SubscribeLocalEvent<PinataComponent, DamageModifyEvent>(OnHit);
         SubscribeLocalEvent<PinataComponent, BeingGibbedEvent>(OnGib);
-        SubscribeLocalEvent<PinataComponent, EntityGibbedEvent>(OnGibAlt);
+        SubscribeLocalEvent<PinataComponent, GibbedBeforeDeletionEvent>(OnGibAlt);
     }
 
     //This is from most explicit gib effects
-    private void OnGibAlt(Entity<PinataComponent> ent, ref EntityGibbedEvent args) => RemoveGibbedParts(ent, args.DroppedEntities);
+    private void OnGibAlt(Entity<PinataComponent> ent, ref GibbedBeforeDeletionEvent args) => RemoveGibbedParts(ent, args.Giblets);
 
     //This is from taking too much damage and gibbing.
-    private void OnGib(Entity<PinataComponent> ent, ref BeingGibbedEvent args) => RemoveGibbedParts(ent, args.GibbedParts);
+    private void OnGib(Entity<PinataComponent> ent, ref BeingGibbedEvent args) => RemoveGibbedParts(ent, args.Giblets);
 
     private void RemoveGibbedParts(Entity<PinataComponent> ent, ICollection<EntityUid> guts)
     {
         foreach (var organ in guts)
             QueueDel(organ);
-        
+
         guts.Clear();
-        
+
         if (ent.Comp.GibTable == null)
             return;
 
@@ -55,7 +54,7 @@ public sealed class PinataSystem : EntitySystem
         var damPerGroup = args.Damage.GetDamagePerGroup(_proto);
         if (!damPerGroup.TryGetValue("Brute", out var brute) || brute <= 5 || ent.Comp.HitTable == null) //Has to be a decent hit
             return;
-            
+
         SpawnItem(ent, ent.Comp.HitTable);
     }
 

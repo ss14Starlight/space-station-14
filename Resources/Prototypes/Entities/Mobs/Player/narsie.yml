@@ -84,7 +84,9 @@
     - Command
     - CentCom
     - Engineering
+    - Law # Starlight
     - Medical
+    - NanoTrasen # Starlight
     - Science
     - Security
     - Service
@@ -92,7 +94,6 @@
     - Syndicate
     globalReceive: true
   - type: Physics
-    bodyType: Dynamic
     bodyStatus: InAir
   - type: CanMoveInAir
   # singulose components

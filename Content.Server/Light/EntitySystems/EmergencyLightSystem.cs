@@ -132,7 +132,8 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         RaiseLocalEvent(uid, new EmergencyLightEvent(state));
     }
 
-    public override void Update(float frameTime)
+    //Starlight: -5 seconds from each integration test with a large map.
+    protected override void AccUpdate(float frameTime)
     {
         var query = EntityQueryEnumerator<ActiveEmergencyLightComponent, EmergencyLightComponent, BatteryComponent>();
         while (query.MoveNext(out var uid, out _, out var emergencyLight, out var battery))
@@ -153,7 +154,7 @@ public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
         }
         else
         {
-            _battery.SetCharge((entity.Owner, battery), battery.CurrentCharge + entity.Comp.ChargingWattage * frameTime * entity.Comp.ChargingEfficiency);
+            _battery.ChangeCharge((entity.Owner, battery), entity.Comp.ChargingWattage * frameTime * entity.Comp.ChargingEfficiency);
             if (_battery.IsFull((entity.Owner, battery)))
             {
                 if (TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))

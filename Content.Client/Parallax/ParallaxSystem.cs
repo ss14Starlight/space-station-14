@@ -60,6 +60,12 @@ public sealed class ParallaxSystem : SharedParallaxSystem
         return _parallax.GetParallaxLayers(GetParallax(_map.GetMapOrInvalid(mapId)));
     }
 
+    // Starlight
+    public ParallaxLayerPrepared[] GetParallaxLayers(string parallax)
+    {
+        return _parallax.GetParallaxLayers(parallax);
+    }
+
     public string GetParallax(MapId mapId)
     {
         return GetParallax(_map.GetMapOrInvalid(mapId));

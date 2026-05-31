@@ -1,0 +1,62 @@
+- type: vampireClass
+  id: Hemomancer
+  tooltip: vampire-class-hemomancer-tooltip
+  icon:
+    sprite: _Starlight/Vampire/Haemomancer.rsi
+    state: claws
+  classComponent: Hemomancer
+  actions:
+    - ActionVampireHemomancerClaws
+    - ActionVampireSanguinePool
+    - ActionVampireHemomancerTendrils
+    - ActionVampireBloodBarrier
+    - ActionVampireBloodEruption
+    - ActionVampireBloodBringersRite
+    - ActionVampirePredatorSense
+
+- type: vampireClass
+  id: Umbrae
+  tooltip: vampire-class-umbrae-tooltip
+  icon:
+    sprite: _Starlight/Vampire/Umbrae.rsi
+    state: cloak_of_darkness
+  classComponent: Umbrae
+  actions:
+    - ActionVampireCloakOfDarkness
+    - ActionVampireShadowSnare
+    - ActionVampireShadowAnchor
+    - ActionVampireShadowBoxing
+    - ActionVampireDarkPassage
+    - ActionVampireExtinguish
+    - ActionVampireEternalDarkness
+
+- type: vampireClass
+  id: Gargantua
+  tooltip: vampire-class-gargantua-tooltip
+  icon:
+    sprite: _Starlight/Vampire/Gargantua.rsi
+    state: blood_swell
+  classComponent: Gargantua
+  actions:
+    - ActionVampireBloodSwell
+    - ActionVampireBloodRush
+    - ActionVampireSeismicStomp
+    - ActionVampireOverwhelmingForce
+    - ActionVampireDemonicGrasp
+    - ActionVampireCharge
+
+- type: vampireClass
+  id: Dantalion
+  tooltip: vampire-class-dantalion-tooltip
+  icon:
+    sprite: _Starlight/Vampire/Dantalion.rsi
+    state: enthrall
+  classComponent: Dantalion
+  actions:
+    - ActionVampireEnthrall
+    - ActionVampirePacify
+    - ActionVampireSubspaceSwap
+    - ActionVampireDecoy
+    - ActionVampireRallyThralls
+    - ActionVampireBloodBond
+    - ActionVampireMassHysteria

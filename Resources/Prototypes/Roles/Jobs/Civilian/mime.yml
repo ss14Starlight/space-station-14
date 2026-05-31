@@ -23,7 +23,7 @@
   id: MimeGear
   equipment:
     gloves: ClothingHandsGlovesColorWhite
-    shoes: ClothingShoesColorWhite
+#    shoes: ClothingShoesColorWhite # Starlight, loadout options
     id: MimePDA
     pocket1: CrayonMime
     ears: ClothingHeadsetService

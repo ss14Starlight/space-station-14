@@ -47,4 +47,32 @@
   roles:
   - 1447273163204464862 # Carp Game Winner
   discord: roles-req-discord-starlight
-  rolesLoc: roles-req-carpgames-winner
+  rolesLoc: roles-req-carpgames-roles
+
+- type: roleRequirementPrototype
+  id: TicketsAdministratorReq
+  roles:
+  - 1475631679409492108 # Tickets administrator
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-ticketsadministrator-roles
+
+- type: roleRequirementPrototype
+  id: FirstWritingContestReq
+  roles:
+  - 1494477781772275732 # First Writing Contest Winner
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-first-writing-roles
+
+- type: roleRequirementPrototype
+  id: SeniorDeveloperReq
+  roles:
+  - 1473631364048879759 # Senior Developer
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-senior-developer
+
+- type: roleRequirementPrototype
+  id: DeveloperReq
+  roles:
+  - 1272899036571238521 # Developer
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-developer

@@ -1,0 +1,38 @@
+- type: job
+  id: Performer
+  name: job-name-performer
+  description: job-description-performer
+  playTimeTracker: JobPerformer
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Civilian
+    time: 0.5h
+  startingGear: PerformerGear
+  icon: "JobIconPerformer"
+  supervisors: job-supervisors-service-arts
+  access:
+  - Theatre
+  - Maintenance
+  extendedAccess:
+  - Service
+  - Bar
+  - Kitchen
+  - Hydroponics
+
+- type: startingGear
+  id: PerformerGear
+  equipment:
+    id: PerformerPDA
+    ears: ClothingHeadsetService
+
+- type: chameleonOutfit
+  id: PerformerChameleonOutfit
+  job: Performer
+  equipment:
+    head: ClothingHeadHatTophat
+    eyes: ClothingEyesGlassesSunglasses
+    mask: ClothingMaskBreath
+    neck: ClothingMultipleHeadphones
+    jumpsuit: ClothingUniformJumpsuitPerformerMusician
+    outerClothing: ClothingOuterWinterMime
+    gloves: ClothingHandsGlovesColorBlack

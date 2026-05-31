@@ -1,7 +1,6 @@
 using Content.Server.Audio;
-using Content.Shared.GameTicking.Components;
+using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared.GameTicking.Prototypes;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking;
@@ -33,7 +32,7 @@ public sealed class SpecialLobbyContentSystem : EntitySystem
         music = specialContent.Music;
 
         //starlight start, art credit system
-        if (_protoMan.TryIndex<LobbyBackgroundPrototype>(specialContent.Background, out var proto))
+        if (_protoMan.TryIndex(specialContent.Background, out var proto))
         {
             background = proto;
         }

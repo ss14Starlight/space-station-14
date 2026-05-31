@@ -25,7 +25,6 @@ public abstract class SharedJumpSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedChargesSystem _chargesSystem = default!;
 
     public override void Initialize()
@@ -107,34 +106,45 @@ public abstract class SharedJumpSystem : EntitySystem
 
         if (args.FromGrid && !_mapMan.TryFindGridAt(userMapCoords, out _, out _)) return;
 
-        TryJump(performer, targetCoords, target, 15f, args.ToPointer, args.Sound, args.Distance);
+        TryJump(performer, targetCoords, args, target, 15f, args.ToPointer, args.Sound, args.Distance);
     }
 
-    public bool TryJump(Entity<JumpComponent?> performer, EntityCoordinates targetCoords, EntityUid? target = null, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
+    public bool TryJump(EntityUid performer, EntityCoordinates targetCoords, JumpActionEvent args, EntityUid? target = null, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (!Resolve(performer, ref performer.Comp, false)
-            || performer.Comp.ActionEntity == null
-            || !TryComp<ActionComponent>(performer.Comp.ActionEntity, out var action)
-            || _action.IsCooldownActive(action))
+        if (args.Action == null || _action.IsCooldownActive(args.Action))
             return false;
 
         if (target == null)
             target = performer;
 
-        Jump(new Entity<JumpComponent>(performer, performer.Comp), target.Value, targetCoords, speed, toPointer, sound, distance, decreaseCharges);
+        Jump(performer, target.Value, targetCoords, args, speed, toPointer, sound, distance, decreaseCharges);
         return true;
     }
 
-    public void Jump(Entity<JumpComponent> performer, EntityUid target, EntityCoordinates targetCoords, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
+    public bool TryJump(Entity<JumpComponent?> performer, EntityCoordinates targetCoords, EntityUid? target = null, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
     {
-        if (performer.Comp.ActionEntity == null)
+        if (!Resolve(performer, ref performer.Comp, false)
+            || performer.Comp.ActionEntity == null || !TryComp(performer.Comp.ActionEntity, out ActionComponent? action))
+            return false;
+
+        var jump = new JumpActionEvent()
+        {
+            Performer=performer,
+            Action=(performer.Comp.ActionEntity.Value, action),
+        };
+        return TryJump(performer, targetCoords, jump, target, speed, toPointer, sound, distance, decreaseCharges);
+    }
+
+    public void Jump(EntityUid performer, EntityUid target, EntityCoordinates targetCoords,  JumpActionEvent args, float speed = 15f, bool toPointer = false, SoundSpecifier? sound = null, float? distance = null, bool decreaseCharges = false)
+    {
+        if (args.Action == null)
             return;
 
-        if (TryComp<LimitedChargesComponent>(performer.Comp.ActionEntity, out var limitedCharges)
-            && !_chargesSystem.HasCharges((performer.Comp.ActionEntity.Value, limitedCharges), 1))
+        if (TryComp<LimitedChargesComponent>(args.Action.Owner, out var limitedCharges)
+            && !_chargesSystem.HasCharges((args.Action.Owner, limitedCharges), 1))
             return;
-        else if (performer.Comp.ActionEntity != null && decreaseCharges)
-            _chargesSystem.TryUseCharge(performer.Comp.ActionEntity.Value);
+        else if (args.Action.Owner != null && decreaseCharges)
+            _chargesSystem.TryUseCharge(args.Action.Owner);
 
         var userTransform = Transform(target);
         var userMapCoords = _transform.GetMapCoordinates(userTransform);
@@ -145,8 +155,8 @@ public abstract class SharedJumpSystem : EntitySystem
             && (!toPointer || Vector2.Distance(userMapCoords.Position, targetMapCoords.Position) > distance))
             vector = Vector2.Normalize(vector) * distance.Value;
 
-        if (TryComp<ActionComponent>(performer.Comp.ActionEntity, out var action) && (limitedCharges == null || limitedCharges.MaxCharges <= 1))
-            _action.SetCooldown((performer.Comp.ActionEntity.Value, action), TimeSpan.FromSeconds(performer.Comp.Cooldown));
+        if (TryComp<ActionComponent>(args.Action.Owner, out var action) && (limitedCharges == null || limitedCharges.MaxCharges <= 1))
+            _action.SetCooldown((args.Action.Owner, action), args.Action.Comp.UseDelay?? TimeSpan.FromSeconds(1));
 
         _throwing.TryThrow(target, vector, baseThrowSpeed: speed, doSpin: false);
 

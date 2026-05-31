@@ -1,25 +1,17 @@
-using System.Collections.Generic;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Starlight.Sound;
-using Content.Shared.Friction;
 using Content.Shared.Maps;
-using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared.Starlight.CCVar;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Threading;
@@ -30,23 +22,23 @@ namespace Content.Server._Starlight.Physics;
 
 public sealed class SLMoverController : SharedMoverController
 {
-    private static readonly Gauge ActiveMoverGauge = Metrics.CreateGauge(
+    private static readonly Gauge _activeMoverGauge = Metrics.CreateGauge(
         "physics_active_mover_count",
         "Active amount of InputMovers being processed by MoverController");
 
-    private static readonly Gauge ActivePrioritizedMoverGauge = Metrics.CreateGauge(
+    private static readonly Gauge _activePrioritizedMoverGauge = Metrics.CreateGauge(
     "physics_active_prioritized_mover_count"    ,
     "Active amount of prioritized InputMovers being processed by MoverController");
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IParallelManager _parallel = default!; 
-    [Dependency] private readonly IPlayerManager _players = default!; 
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
-    private HandleMobMovementJob _handleMobMovementJob; 
+    private HandleMobMovementJob _handleMobMovementJob;
 
-    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
+    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, TransformComponent)>)> _shuttlePilots = new();
 
     public override void Initialize()
     {
@@ -56,7 +48,7 @@ public sealed class SLMoverController : SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
-        _handleMobMovementJob = new HandleMobMovementJob(this); 
+        _handleMobMovementJob = new HandleMobMovementJob(this);
     }
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref PlayerAttachedEvent args)
@@ -72,19 +64,13 @@ public sealed class SLMoverController : SharedMoverController
     }
 
     private void OnPlayerAttached(Entity<InputMoverComponent> entity, ref PlayerAttachedEvent args)
-    {
-        SetMoveInput(entity, MoveButtons.None);
-    }
+        => SetMoveInput(entity, MoveButtons.None);
 
     private void OnPlayerDetached(Entity<InputMoverComponent> entity, ref PlayerDetachedEvent args)
-    {
-        SetMoveInput(entity, MoveButtons.None);
-    }
+        => SetMoveInput(entity, MoveButtons.None);
 
     protected override bool CanSound()
-    {
-        return true;
-    }
+        => true;
 
     private readonly HashSet<EntityUid> _moverAdded = new();
     private readonly List<Entity<InputMoverComponent>> _movers = [];
@@ -155,8 +141,8 @@ public sealed class SLMoverController : SharedMoverController
             if (sound.HasValue)
                 _audio.PlayPredicted(sound.Value.SoundSpecifier, sound.Value.Source, sound.Value.User, sound.Value.AudioParams);
 
-        ActiveMoverGauge.Set(_movers.Count);
-        ActivePrioritizedMoverGauge.Set(_prioritizedMovers.Count);
+        _activeMoverGauge.Set(_movers.Count);
+        _activePrioritizedMoverGauge.Set(_prioritizedMovers.Count);
 
         HandleShuttleMovement(frameTime);
     }
@@ -186,7 +172,7 @@ public sealed class SLMoverController : SharedMoverController
         // If we can't move then just use tile-friction / no movement handling.
         if (!mover.CanMove
             || !PhysicsQuery.TryComp(uid, out var physicsComponent)
-            || PullableQuery.TryGetComponent(uid, out var pullable) && pullable.BeingPulled)
+            || (PullableQuery.TryGetComponent(uid, out var pullable) && pullable.BeingPulled))
         {
             UsedMobMovement[uid] = false;
             return null;
@@ -488,12 +474,12 @@ public sealed class SLMoverController : SharedMoverController
 
     private void HandleShuttleMovement(float frameTime)
     {
-        var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
+        var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, TransformComponent ConsoleXform)>)>();
 
         // We just mark off their movement and the shuttle itself does its own movement
-        var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
+        var activePilotQuery = EntityQueryEnumerator<PilotComponent>();
         var shuttleQuery = GetEntityQuery<ShuttleComponent>();
-        while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
+        while (activePilotQuery.MoveNext(out var uid, out var pilot))
         {
             var consoleEnt = pilot.Console;
 
@@ -514,11 +500,11 @@ public sealed class SLMoverController : SharedMoverController
 
             if (!newPilots.TryGetValue(gridId!.Value, out var pilots))
             {
-                pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+                pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, TransformComponent)>());
                 newPilots[gridId.Value] = pilots;
             }
 
-            pilots.Item2.Add((uid, pilot, mover, xform));
+            pilots.Item2.Add((uid, pilot, xform));
         }
 
         // Reset inputs for non-piloted shuttles.
@@ -550,7 +536,7 @@ public sealed class SLMoverController : SharedMoverController
             var brakeCount = 0;
             var angularCount = 0;
 
-            foreach (var (pilotUid, pilot, _, consoleXform) in pilots)
+            foreach (var (pilotUid, pilot, consoleXform) in pilots)
             {
                 var (strafe, rotation, brakes) = GetPilotVelocityInput(pilot);
 
@@ -585,7 +571,7 @@ public sealed class SLMoverController : SharedMoverController
                 if (body.LinearVelocity.Length() > 0f)
                 {
                     // Minimum brake velocity for a direction to show its thrust appearance.
-                    const float appearanceThreshold = 0.1f;
+                    const float AppearanceThreshold = 0.1f;
 
                     // Get velocity relative to the shuttle so we know which thrusters to fire
                     var shuttleVelocity = (-shuttleNorthAngle).RotateVec(body.LinearVelocity);
@@ -595,7 +581,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.West);
 
-                        if (shuttleVelocity.X < -appearanceThreshold)
+                        if (shuttleVelocity.X < -AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.East);
 
                         var index = (int) Math.Log2((int) DirectionFlag.East);
@@ -605,7 +591,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.East);
 
-                        if (shuttleVelocity.X > appearanceThreshold)
+                        if (shuttleVelocity.X > AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.West);
 
                         var index = (int) Math.Log2((int) DirectionFlag.West);
@@ -616,7 +602,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.South);
 
-                        if (shuttleVelocity.Y < -appearanceThreshold)
+                        if (shuttleVelocity.Y < -AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.North);
 
                         var index = (int) Math.Log2((int) DirectionFlag.North);
@@ -626,7 +612,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.North);
 
-                        if (shuttleVelocity.Y > appearanceThreshold)
+                        if (shuttleVelocity.Y > AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
 
                         var index = (int) Math.Log2((int) DirectionFlag.South);
@@ -794,15 +780,11 @@ public sealed class SLMoverController : SharedMoverController
     // See PR #24008
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static float Vector2Dot(Vector2 value1, Vector2 value2)
-    {
-        return Vector2.Dot(value1, value2);
-    }
+        => Vector2.Dot(value1, value2);
 
     private bool CanPilot(EntityUid shuttleUid)
-    {
-        return TryComp<FTLComponent>(shuttleUid, out var ftl)
-        && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0
+    => (TryComp<FTLComponent>(shuttleUid, out var ftl)
+        && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0)
             || HasComp<PreventPilotComponent>(shuttleUid);
-    }
 
 }

@@ -24,6 +24,17 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
+    # Starlight Start
+    - id: PsychicScreach
+    - id: SecurityDrill
+    - id: DoorRuntime
+    - id: RadStorm
+    - id: AuroraCaelus
+    - id: SpaceWhale
+    - id: CommunicationBlackout
+    - id: NightShift
+    - id: SyndicateDeadDrop
+    # Starlight End
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -32,6 +43,7 @@
     - id: ClosetSkeleton
     - id: KingRatMigration
     - id: RevenantSpawn
+    - id: RailroadingTerminator # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -47,6 +59,7 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight
+    - id: TerrorSpidersSpawn # Starlight
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -55,19 +68,28 @@
   table: !type:GroupSelector
     children:
     - !type:GroupSelector # Standard NT Borgs
-      weight: 85
+      weight: 80 # Starlight
       children:
         - id: DerelictEngineerCyborgSpawn
         - id: DerelictGenericCyborgSpawn
         - id: DerelictJanitorCyborgSpawn
         - id: DerelictMedicalCyborgSpawn
         - id: DerelictMiningCyborgSpawn
-        - id: DerelictBorgiSpawn # Starlight
+        - id: DerelictPurrfusCyborgSpawn # Starlight
     - !type:GroupSelector # Other Borgs
       weight: 15
       children:
-        - id: DerelictSyndicateAssaultCyborgSpawn
-    
+        - id: DerelictBorgiSpawn # Starlight start
+    - !type:GroupSelector # Derelict Xenoborgs
+      weight: 5
+      children:
+        - id: XenoBorgHeavyDerelictSpawn
+        - id: XenoBorgEngiDerelictSpawn
+        - id: XenoBorgScoutDerelictSpawn
+        - id: XenoBorgStealthDerelictSpawn
+        - id: XenoBorgiDerelictSpawn
+   #     - id: DerelictSyndicateAssaultCyborgSpawn # Starlight end - no more derelict Syndicate borgs
+
 - type: entity
   id: BaseStationEvent
   parent: BaseGameRule
@@ -103,6 +125,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/announce.ogg
@@ -119,6 +142,7 @@
       min:  30
       max:  30
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncementColor: "#18abf5"
     startAudio:
       path: /Audio/Announcements/announce.ogg
@@ -142,6 +166,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 7
     duration: 1
     minimumPlayers: 15
@@ -152,6 +177,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-bureaucratic-error-announcement
     earliestStart: 40 # 🌟Starlight🌟 Why could this happen roundstart?!
     minimumPlayers: 40 # 🌟Starlight🌟
@@ -170,6 +196,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-clerical-error-announcement
     minimumPlayers: 15
     weight: 5
@@ -181,6 +208,7 @@
   id: ClosetSkeleton
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 5
     duration: 1
     minimumPlayers: 10
@@ -192,6 +220,7 @@
   id: DragonSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 3 # 🌟Starlight🌟 Casualization
     earliestStart: 50 # 🌟Starlight🌟 Casualization
     reoccurrenceDelay: 45 # 🌟Starlight🌟 Casualization
@@ -223,6 +252,7 @@
   id: NinjaSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 3 # 🌟Starlight🌟 Casualization
     duration: null
     earliestStart: 45 # 🌟Starlight🌟 Casualization
@@ -248,7 +278,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalEVA
+      - RoleSurvivalSpaceNinja
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -269,6 +299,10 @@
         nameFormat: name-format-ninja
       mindRoles:
       - MindRoleNinja
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -277,7 +311,7 @@
   id: ParadoxCloneSpawn
   components:
   - type: StationEvent
-    weight: 5
+    weight: 4 # Starlight
     duration: null
     earliestStart: 20
     reoccurrenceDelay: 20
@@ -300,7 +334,7 @@
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
-      # - RoleSurvivalVoxTank - Starlight edit - Should no longer be needed
+      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
       briefing:
         text: paradox-clone-role-greeting
         color: lightblue
@@ -331,14 +365,15 @@
     duration: 1
     earliestStart: 30
     reoccurrenceDelay: 60
-    minimumPlayers: 30
+    minimumPlayers: 45 # 🌟Starlight🌟 Casualization
   - type: AntagSelection
     agentName: wizard-round-end-name
     definitions:
     - spawnerPrototype: SpawnPointGhostWizard
       min: 1
-      max: 1
-      playerRatio: 1
+      max: 3 # Starlight
+      prefRoles: [ Wizard ] #starlight
+      playerRatio: 60 # Starlight, you know, could be neat for multiple wizards to late spawn.
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
@@ -346,8 +381,7 @@
       briefing:
         text: wizard-role-greeting
         color: Turquoise
-        # TODO: Need Wizard Start sound
-        #sound: "/Audio/Ambience/Antag/wizard_start.ogg"
+        sound: "/Audio/_Starlight/Ambience/Antag/wizard.ogg" # Starlight
       # TODO: WizardComp as needed
       components:
       - type: UniversalLanguageSpeaker
@@ -361,6 +395,11 @@
         nameFormat: name-format-wizard
       mindRoles:
       - MindRoleWizard
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+        - Wizard
+      # Starlight-end
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
@@ -377,6 +416,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -400,6 +440,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 5
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
@@ -411,39 +452,41 @@
     maxDuration: 120
   - type: PowerGridCheckRule
 
-- type: entity
-  parent: BaseGameRule
-  id: SolarFlare
-  components:
-  - type: StationEvent
-    weight: 8
-    startAnnouncement: station-event-solar-flare-start-announcement
-    endAnnouncement: station-event-solar-flare-end-announcement
-    startAudio:
-      path: /Audio/_Starlight/Announcements/attention.ogg
-    duration: 120
-    maxDuration: 240
-  - type: SolarFlareRule
-    onlyJamHeadsets: true
-    affectedChannels:
-    - Common
-    extraChannels:
-    - Command
-    - Engineering
-    - Medical
-    - Science
-    - Security
-    - Service
-    - Supply
-    extraCount: 2
-    lightBreakChancePerSecond: 0.0003
-    doorToggleChancePerSecond: 0.001
+# SL - Moved to WIP
+# - type: entity
+#   parent: BaseGameRule
+#   id: SolarFlare
+#   components:
+#   - type: StationEvent
+#     weight: 8
+#     startAnnouncement: station-event-solar-flare-start-announcement
+#     endAnnouncement: station-event-solar-flare-end-announcement
+#     startAudio:
+#       path: /Audio/_Starlight/Announcements/attention.ogg
+#     duration: 120
+#     maxDuration: 240
+#   - type: SolarFlareRule
+#     onlyJamHeadsets: true
+#     affectedChannels:
+#     - Common
+#     extraChannels:
+#     - Command
+#     - Engineering
+#     - Medical
+#     - Science
+#     - Security
+#     - Service
+#     - Supply
+#     extraCount: 2
+#     lightBreakChancePerSecond: 0.0003
+#     doorToggleChancePerSecond: 0.001
 
 - type: entity
   id: VentClog
   parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -458,6 +501,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -479,6 +523,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/Announcements/attention.ogg
@@ -500,6 +545,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -517,6 +563,7 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
       path: /Audio/_Starlight/Announcements/attention.ogg
@@ -538,6 +585,7 @@
     minimumPlayers: 40
     weight: 1 # Zombies was happening basically every single survival round, so now it's super rare
     duration: 1
+    occursDuringRoundEnd: false
   - type: ZombieRule
   - type: AntagSelection
     definitions:
@@ -571,7 +619,7 @@
   - type: StationEvent
     earliestStart: 55 # 🌟Starlight🌟 Casualization
     weight: 3 # 🌟Starlight🌟 Casualization
-    minimumPlayers: 20
+    minimumPlayers: 35 # 🌟Starlight🌟 Casualization
     duration: null # LoneOpsSpawn needs an infinite duration so that it inherits the NukeOpsRule things of an actually appropriate end scrreen (not always "Neutral outcome!") and... ending the game if the station is nuked.
   - type: RuleGrids
   - type: LoadMapRule
@@ -600,6 +648,10 @@
         - Syndicate
       mindRoles:
       - MindRoleLoneops
+      # Starlight-start
+      tags:
+        - CantBecomeRevolutionary
+      # Starlight-end
   - type: DynamicRuleCost
     cost: 75
 
@@ -608,6 +660,7 @@
   id: SleeperAgents
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     earliestStart: 40 # 🌟Starlight🌟 Casualization
     weight: 6 # 🌟Starlight🌟 Casualization
     minimumPlayers: 15
@@ -623,8 +676,8 @@
     - prefRoles: [ TraitorSleeper ]
       fallbackRoles: [ Traitor ]
       min: 1
-      max: 2
-      playerRatio: 10
+      max: 10 # Starlight, scaling and futureproofing.
+      playerRatio: 32  # Starlight. Beta will never get more than 2, same as before, but Alpha can actually gain a decent amount.
       blacklist:
         components:
         - AntagImmune
@@ -652,6 +705,7 @@
   parent: BaseGameRule
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     earliestStart: 20
     minimumPlayers: 15
     weight: 6
@@ -667,6 +721,7 @@
   id: IonStorm
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 8
     reoccurrenceDelay: 20
     duration: 1
@@ -693,12 +748,13 @@
   parent: BaseStationEventShortDelay
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     startAudio:
       path: /Audio/Announcements/attention.ogg
     weight: 2
     minimumPlayers: 25
     reoccurrenceDelay: 20
-    maxOccurrences: 2 
+    maxOccurrences: 2
   - type: GreytideVirusRule
     accessGroups:
     - Cargo
@@ -728,6 +784,7 @@
   id: DerelictEngineerCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -741,7 +798,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictEngineeringCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -749,6 +807,7 @@
   id: DerelictGenericCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -762,7 +821,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -770,6 +830,7 @@
   id: DerelictJanitorCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -783,7 +844,8 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictJanitorCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
@@ -791,6 +853,7 @@
   id: DerelictMedicalCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -812,6 +875,7 @@
   id: DerelictMiningCyborgSpawn
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -825,14 +889,16 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictMiningCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
-  id: DerelictSyndicateAssaultCyborgSpawn
+  id: DerelictSyndicateAssaultCyborgSpawn # Starlight - admeme only, not rollable
   components:
   - type: StationEvent
+    globalAnnouncement: false # Starlight
     weight: 2.5
     earliestStart: 25
     reoccurrenceDelay: 20
@@ -846,5 +912,6 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDerelictSyndicateAssaultCyborg
       min: 1
-      max: 1
+      max: 2 # Starlight
+      playerRatio: 80 # Starlight. They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
       pickPlayer: false

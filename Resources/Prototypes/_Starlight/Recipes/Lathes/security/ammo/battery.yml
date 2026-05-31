@@ -1,0 +1,14 @@
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBatteryLr30
+  result: MagazineBatteryLr30
+  materials:
+    Steel: 50
+    Plastic: 600
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineBoxBattery
+  result: MagazineBoxBattery
+  materials:
+    Steel: 800

@@ -1,0 +1,49 @@
+- type: cargoProduct
+  id: SupermatterFlatpackPurchase
+  icon:
+    sprite: _Starlight/Objects/Specific/supermatter.rsi
+    state: supermatter
+  product: CrateSupermatterFlatpack
+  cost: 8000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: TEGFlatpackPurchase
+  icon:
+    sprite: Structures/Power/Generation/teg.rsi
+    state: teg
+  product: CrateTEGFlatpack
+  cost: 6000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: ReflectorFlatpackPurchase
+  icon:
+    sprite: _Starlight/Structures/Reflector/reflector.rsi
+    state: reflector_box
+  product: ReflectorFlatpack
+  cost: 5000
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: EngineeringRPD
+  icon:
+    sprite: _Starlight/Objects/Tools/rpd.rsi
+    state: icon
+  product: CrateRPD
+  cost: 800
+  category: cargoproduct-category-name-engineering
+  group: market
+
+- type: cargoProduct
+  id: PlumbingRPLD
+  icon:
+    sprite: _Starlight/Objects/Tools/rpld.rsi
+    state: icon
+  product: CrateRPLD
+  cost: 800
+  category: cargoproduct-category-name-medical
+  group: market

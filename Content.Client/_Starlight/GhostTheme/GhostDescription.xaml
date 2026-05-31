@@ -1,6 +1,6 @@
-<BoxContainer Orientation="Vertical" xmlns:ghostTheme="clr-namespace:Content.Client._Starlight.GhostTheme" 
-							 xmlns="https://spacestation14.io" 
-							 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+<BoxContainer Orientation="Vertical" xmlns:ghostTheme="clr-namespace:Content.Client._Starlight.GhostTheme"
+							 xmlns="https://spacestation14.io"
+							 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                              xmlns:maths="clr-namespace:Robust.Shared.Maths;assembly=Robust.Shared.Maths"
 							 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls">
 	<TextureRect Name="PreviewImage" Access="Public" HorizontalAlignment="Center" VerticalAlignment="Top" TextureScale="2 2" />

@@ -1,0 +1,41 @@
+- type: job
+  id: Surgeon
+  name: job-name-surgeon
+  description: job-description-surgeon
+  playTimeTracker: JobSurgeon
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 57600 #16 hrs
+  startingGear: SurgeonGear
+  icon: "JobIconSurgeon"
+  supervisors: job-supervisors-cmo
+  canBeAntag: true
+  displayWeight: 5
+  access:
+  - Medical
+  - Maintenance
+  - Surgery
+  extendedAccess:
+  - Paramedic
+  - Surgery
+  - Chemistry
+
+- type: startingGear
+  id: SurgeonGear
+  equipment:
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+  inhand:
+    - ClothingBackpackDuffelSurgeryFilled
+
+- type: chameleonOutfit
+  id: SurgeonChameleonOutfit
+  job: Surgeon
+  equipment:
+    head: ClothingHeadNurseHat
+    eyes: ClothingEyesHudMedical
+    mask: ClothingMaskSterile
+    neck: ClothingNeckStethoscope
+    outerClothing: ClothingOuterCoatLab
+    gloves: ClothingHandsGlovesLatex

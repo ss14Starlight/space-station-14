@@ -1,0 +1,77 @@
+- type: entity
+  name: finka
+  parent: [BaseKnife, BaseSovietContraband]
+  id: Finka
+  description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
+  components:
+  - type: Tag
+    tags:
+    - CombatKnife
+    - Knife
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/finka.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Slash: 9
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    ignoreResistances: true
+    damage:
+      types:
+        Slash: 5
+        Piercing: 15
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/finka.rsi
+  - type: StaticPrice
+    price: 1250
+
+- type: entity
+  name: ForceableFollow finka
+  parent: [Finka, BaseSovietContraband]
+  id: FinkaAdmeme
+  suffix: Admeme
+  description: Legendary SNKVD dagger, an excellent melee weapon, and it's said there was a secret technique for throwing this knife.
+  components:
+  - type: Tag
+    tags:
+    - ForceableFollow
+  - type: Item
+    sprite: _Starlight/Objects/Weapons/Melee/finka_admeme.rsi
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/finka_admeme.rsi
+    state: icon
+
+- type: entity
+  name: shiv
+  id: XenoShiv
+  parent: ScalpelShiv
+  description: A weak knife, really only used to keep others away. # Could become a decent tool or weapon with right tool mods.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    swingLeft: true
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+- type: entity
+  name: combat knife
+  parent: [ CombatKnife, BaseXenoborgContraband ]
+  id: XenoKnife
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 10

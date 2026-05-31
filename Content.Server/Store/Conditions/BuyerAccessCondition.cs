@@ -25,7 +25,7 @@ public sealed partial class BuyerAccessCondition : ListingCondition
         var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
         var ent = args.EntityManager;
 
-        if (!ent.TryGetComponent<MindComponent>(args.Buyer, out var mind) 
+        if (!ent.TryGetComponent<MindComponent>(args.Buyer, out var mind)
             || mind.CurrentEntity is null) return false;
         var buyer = mind.CurrentEntity.Value;
 

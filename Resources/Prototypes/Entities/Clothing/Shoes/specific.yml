@@ -120,6 +120,8 @@
   - type: SpeedModifierContactCapClothing
     maxContactSprintSlowdown: 0.7
     maxContactWalkSlowdown: 0.7
+  - type: StealTarget # Starlight
+    stealGroup: GaloshesCollection # Starlight
 
 - type: entity
   parent: [ClothingShoesBaseButcherable, BaseHighlyIllegalContraband]

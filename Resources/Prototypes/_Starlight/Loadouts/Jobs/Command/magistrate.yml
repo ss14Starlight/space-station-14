@@ -1,0 +1,50 @@
+#Uniforms
+- type: loadout
+  id: MagistrateJumpsuit
+  equipment:
+    jumpsuit: MagistrateUniformSuit
+
+
+- type: loadout
+  id: MagistrateJumpskirt
+  equipment:
+    jumpsuit: MagistrateUniformSkirt
+
+#Hands
+- type: loadout
+  id: MagistrateWhiteGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorWhite
+
+- type: loadout
+  id: MagistrateBlackGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlack
+
+#Outerwear
+- type: loadout
+  id: MagistrateRobes
+  equipment:
+    outerClothing: ClothingOuterRobesMagistrate
+
+- type: loadout
+  id: MagistrateLongcoat
+  equipment:
+    outerClothing: ClothingOuterCoatMagi
+
+#Headwear
+- type: loadout
+  id: MagistrateHeadPwig
+  equipment:
+    head: ClothingHeadHatPwig
+
+#Eyewear
+- type: loadout
+  id: MagistrateSecGlasses
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: MagistrateSkillGlasses
+  equipment:
+    eyes: ClothingEyesSunGlassesHudSkill

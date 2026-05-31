@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Content.Server.Body.Components;
+﻿using Content.Shared.Body.Components;
 using Content.Shared.EntityConditions;
 using Content.Shared.EntityConditions.Conditions.Body;
 

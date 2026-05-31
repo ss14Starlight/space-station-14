@@ -12,14 +12,19 @@
     speaks:
     - GalacticCommon
     - Carptongue
+    - Carpmind
     understands:
     - GalacticCommon
     - Carptongue
+    - Carpmind
     - Thaveyan
   # Starlight-end
   - type: ThermalVision
   - type: Bloodstream
-    bloodMaxVolume: 600
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 650
   - type: AntagMonsterScaling ## Starlight
   - type: GhostRole
     allowMovement: true
@@ -28,6 +33,7 @@
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
+    important: true # SL
     mindRoles:
     - MindRoleGhostRoleTeamAntagonist
     raffle:
@@ -120,6 +126,7 @@
     - RadiationProtection
     - Adrenaline
   - type: Temperature
+  - type: TemperatureDamage
     heatDamageThreshold: 2400
   - type: Metabolizer
     solutionOnBody: false
@@ -162,6 +169,11 @@
       - Door
       tags:
       - Wall
+    # Starlight start - no eating indestructible walls
+    blacklist:
+      tags:
+      - Inedible
+    # Starlight end
   - type: Tag
     tags:
     - CannotSuicide
@@ -199,7 +211,7 @@
     - MinorAntagonists
   #region Starlight
   - type: Damageable
-    damageModifierSet: DragonResistances 
+    damageModifierSet: DragonResistances
   #endregion Starlight
 
 - type: entity
@@ -230,6 +242,7 @@
   - type: GhostRole
     description: ghost-role-information-space-dragon-dungeon-description
     rules: ghost-role-information-space-dragon-dungeon-rules
+    important: true # SL
     raffle:
       settings: default
   - type: SlowOnDamage
@@ -263,6 +276,7 @@
     priority: 3
   - type: InstantAction
     event: !type:DragonSpawnRiftActionEvent
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -285,6 +299,7 @@
       tags:
       - Wall
     event: !type:DevourActionEvent
+  - type: EorgPreventAction # Starlight
 
 - type: entity
   parent: BaseAction
@@ -302,3 +317,4 @@
     range: 0
   - type: WorldTargetAction
     event: !type:ActionGunShootEvent
+  - type: EorgPreventAction # Starlight

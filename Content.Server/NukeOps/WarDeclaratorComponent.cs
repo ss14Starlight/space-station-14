@@ -40,6 +40,20 @@ public sealed partial class WarDeclaratorComponent : Component
     public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Announcements/war.ogg");
 
     /// <summary>
+    /// Starlight
+    /// Music that players after the war declaration.
+    /// </summary>
+    [DataField]
+    public SoundSpecifier WarMusic = new SoundCollectionSpecifier("WarMusic");
+
+    /// <summary>
+    /// Starlight
+    /// Trigger Gamma Alert shortly after war declaration.
+    /// </summary>
+    [DataField]
+    public bool GammaAlert = true;
+
+    /// <summary>
     /// Fluent ID for the declaration sender title
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]

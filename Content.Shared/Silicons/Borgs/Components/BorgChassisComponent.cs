@@ -1,4 +1,4 @@
-﻿using Content.Shared.Alert;
+using Content.Shared.StatusIcon;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
@@ -6,7 +6,6 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Content.Shared.StatusIcon; // Starlight
 
 namespace Content.Shared.Silicons.Borgs.Components;
 
@@ -22,7 +21,7 @@ public sealed partial class BorgChassisComponent : Component
     /// <summary>
     /// Is this borg currently activated?
     /// If activated the borg
-    /// - has door access,
+    /// - has door access, // Starlight
     /// - can use modules and
     /// - has full movement speed.
     /// To be activated the borg
@@ -108,6 +107,7 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [ViewVariables]
     public int ModuleCount => ModuleContainer.ContainedEntities.Count;
+
     #endregion
 
     /// <summary>
@@ -125,16 +125,16 @@ public sealed partial class BorgChassisComponent : Component
     #endregion
 
     /// <summary>
-    /// The battery charge alert.
+    /// The battery charge alert. Starlight-edit: moved to external system.
     /// </summary>
-    [DataField]
-    public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
+    //[DataField]
+    //public ProtoId<AlertPrototype> BatteryAlert = "BorgBattery";
 
     /// <summary>
-    /// The alert for a missing battery.
+    /// The alert for a missing battery. 1Code has comments. Press enter to view.
     /// </summary>
-    [DataField]
-    public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
+    //[DataField]
+    //public ProtoId<AlertPrototype> NoBatteryAlert = "BorgBatteryNone";
 
     /// <summary>
     /// The next update time the battery is checked for automatic reactivation.
@@ -148,7 +148,7 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [DataField]
     public bool CanOpenSelfUi;
-    
+
     // Starlight begin
     [DataField] public ProtoId<JobIconPrototype> JobIconOverride = "JobIconBorg";
     [DataField] private string? _jobTitle;

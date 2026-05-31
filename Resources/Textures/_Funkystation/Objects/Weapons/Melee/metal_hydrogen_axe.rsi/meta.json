@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "license": "CC-BY-NC-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    },
+	{
+      "name": "wielded-inhand-left",
+      "directions": 4,
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    },
+	{
+      "name": "wielded-inhand-right",
+      "directions": 4,
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4,
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    },
+    {
+      "name": "equipped-BACKSTORAGE",
+      "directions": 4,
+      "copyright": "Taken from https://github.com/tgstation/tgstation"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 - type: entity
-  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages #starlight Nubody will not pass.
   id: BaseBorgChassisNotIonStormable
   name: cyborg
   description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
@@ -104,7 +104,9 @@
     - Science
   - type: ZombieImmune
   - type: Repairable
-    doAfterDelay: 10
+    damageValue: -10 # 10 seconds to repair from crit
+    doAfterDelay: 1
+    fuelCost: 0.5
     allowSelfRepair: false
   - type: BorgChassis
   - type: LockingWhitelist
@@ -134,7 +136,14 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
+  # Starlight - start
   - type: Body
+  # Starlight - end
   - type: StatusEffects
     allowed:
     - Flashed
@@ -143,6 +152,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
+    allowedEmotes: ['Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
@@ -235,6 +245,7 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+    - SiliconEmotesFH #FH, yes it's intentional that there's two of them.
   - type: Emoting
   - type: GuideHelp
     guides:
@@ -245,11 +256,17 @@
     damageProtection:
       flatReductions:
         Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
+  - type: BypassLock
+  - type: BypassLockRequiresMobState
+    requiredMobState:
+    - Critical
+    - Dead
   #region Starlight
   - type: CyborgSparkEffect
   - type: StationAIShunt #Starlight allow shunting into all borgs
   - type: BorgSwitchableSubtype # Afterlight change
   - type: Crawler
+  - type: BatteryAlert
   - type: Blindable
   - type: EyeProtection
   - type: Stripping
@@ -259,6 +276,7 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   #endregion
+  - type: GlitchOnEMP #Far Horizons
 
 - type: entity
   abstract: true
@@ -310,6 +328,7 @@
     networkSet: true
     nameSet: True
     id: Xenoborg
+    useEntityNameAsCameraId: true
   - type: Explosive
     explosionType: Minibomb
     deleteAfterExplosion: false # let damage threshold gib the borg
@@ -332,7 +351,7 @@
     - NanoTrasenSilicon # starlight
   - type: Access
     groups:
-    - AllAccess
+    - CyborgAllAccess # Starlight
     tags:
     - Borg
   - type: AccessReader
@@ -379,6 +398,8 @@
       Unsexed: UnisexSiliconSyndicate
   - type: PointLight
     color: "#dd200b"
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 
 - type: entity
   id: BaseBorgChassisDerelict
@@ -390,7 +411,7 @@
     - NanoTrasenSilicon #The seemingly best fit. It was a regular NT cyborg once, after all. starlight
   - type: Access
     groups:
-    - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
+    - CyborgAllAccess # Starlight
   - type: AccessReader
     access: [["Command"], ["Robotics"]] # Starlight
   - type: StartIonStormed
@@ -437,10 +458,12 @@
 #      Unsexed: UnisexSiliconSyndicate
 #  - type: PointLight
 #    color: "#dd200b"
+#  - type: BypassLock
+#    bypassDelay: 15 # We don't want people to easily be able to remove syndieborg brains.
 # end region starlight
 
 - type: entity
-  parent: BaseBorgChassisNotIonStormable
+  parent: [BaseXenoSiliconLanguages, BaseBorgChassisNotIonStormable] # Starlight, they can understand xeno
   id: BaseXenoborgChassis
   name: xenoborg
   description: A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army.
@@ -472,9 +495,9 @@
     - Mothership
     - Xenoborg
     - Binary
-  - type: Repairable
-    doAfterDelay: 13 # 25% more HP, so 30% more time to heal
   - type: BorgChassis
+    jobIconOverride: JobIconXenoborg # Starlight
+    jobTitleOverride: chat-radio-xenoborg # Starlight
     maxModules: 0
     hasMindState: robot_e
     noMindState: robot_e_r
@@ -529,7 +552,7 @@
           collection: MetalBreak
       - !type:SpawnEntitiesBehavior
         spawn:
-          PinpointerMothership: # drop a pinpointer to the mothership upon being destructed
+          PinpointerMothershipPiece: # drop a piece of core pinpointer upon being destructed (4 pieces to make a core pinpointer)
             min: 1
             max: 1
       - !type:EmptyContainersBehaviour
@@ -540,7 +563,8 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: PointLight
-    color: "#0033ff"
+    color: "#3010ff"
+    energy: 7
   - type: GuideHelp
     guides:
     - Cyborgs
@@ -556,3 +580,5 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Xenoborg
+  - type: BypassLock
+    bypassDelay: 15 # We don't want people to easily be able to remove xenoborg brains.

@@ -50,25 +50,33 @@
     roleDescription: pai-system-role-description
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
     wipeVerbText: pai-system-wipe-device-verb-text
     wipeVerbPopup: pai-system-wiped-device
     stopSearchVerbText: pai-system-stop-searching-verb-text
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter #Starlight pAI comms rework, see PR #3299
+    channels: [] # Starlight
   - type: ActiveRadio
-    channels:
-    - Common
+  - type: ContainerContainer #Starlight pAI comms rework, see PR #3299
+    containers:
+      key_slots: !type:Container
+  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
+    keySlots: 1
   - type: DoAfter
   - type: Actions
   - type: ActionGrant
     actions:
     - ActionPAIOpenShop
+    - ActionPAIPDA #Starlight pAI can open PDAs, see PR #3272
+    - ActionPAIConsole #Starlight pAI can open consoles
   - type: Store
     name: store-preset-name-pai #Starlight name change for data purity
     categories:
     - PAIAbilities
+    - Languages #Starlight
     currencyWhitelist:
     - SiliconMemory
     balance:
@@ -108,8 +116,10 @@
     tags:
     - SiliconEmotes
   # Starlight Start
+    - CanPilot
   - type: Blindable
   - type: ParentCanBlockVision
+  - type: ContentEye
   # Starlight End
 
 - type: entity
@@ -131,13 +141,13 @@
     roleDescription: pai-system-role-description-syndicate
     roleRules: ghost-role-information-syndicate-pai-rules
     mindRoles:
-    - MindRoleGhostRoleFamiliar
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Syndicate
-  - type: ActiveRadio
-    channels:
-    - Syndicate
+    - MindRoleGhostRolePAI
+  - type: ContainerFill #Starlight pAI comms rework, see PR #3299
+    containers:
+      key_slots:
+      - EncryptionKeySyndiePAI
+  - type: EncryptionKeyHolder #Starlight pAI comms rework, see PR #3299
+    keySlots: 2
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -166,8 +176,6 @@
       shader: unshaded
       map: ["screen"]
   - type: Appearance
-  - type: StaticPrice
-    price: 5000
 
 - type: entity
   parent: PersonalAI
@@ -188,7 +196,7 @@
     roleDescription: pai-system-role-description-potato
     roleRules: ghost-role-information-familiar-rules
     mindRoles:
-    - MindRoleGhostRoleFamiliar
+    - MindRoleGhostRolePAI
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -200,6 +208,8 @@
   - type: Construction
     graph: PotatoAI
     node: potatoai
+
+# PAI Actions
 
 - type: entity
   parent: ActionIntrinsicStore

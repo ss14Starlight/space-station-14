@@ -24,6 +24,10 @@ public sealed partial class TriggerSystem
             && (ent.Comp.MaxTriggers == null || ent.Comp.MaxTriggers > 0)
         )
         {
+            if (_whitelist.IsWhitelistFail(ent.Comp.Whitelist, args.OtherEntity) ||
+                _whitelist.IsWhitelistPass(ent.Comp.Blacklist, args.OtherEntity))
+                return;
+
             if (ent.Comp.MaxTriggers != null)
             {
                 ent.Comp.MaxTriggers--;

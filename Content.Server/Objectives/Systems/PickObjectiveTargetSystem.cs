@@ -6,6 +6,8 @@ using Content.Server.Revolutionary.Components;
 using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.Mind.Filters;
+using Content.Shared._Starlight.Railroading.Events;
+using Content.Shared._Starlight.Railroading;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -25,6 +27,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         SubscribeLocalEvent<PickSpecificPersonComponent, ObjectiveAssignedEvent>(OnSpecificPersonAssigned);
         SubscribeLocalEvent<PickRandomPersonComponent, ObjectiveAssignedEvent>(OnRandomPersonAssigned);
         SubscribeLocalEvent<PickRandomPersonComponent, MapInitEvent>(OnMapInit); // SL add
+        SubscribeLocalEvent<PickRandomPersonComponent, RailroadingAssignedEvent>(OnRailroadingAssigned); // SL
     }
 
     // SL start
@@ -33,6 +36,32 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
         // inject new filter blacklisting NoObjectiveTargetComponent
         var filter = new BodyMindFilter { Whitelist = { Components = ["NoObjectiveTarget"] }, Inverted = true };
         ent.Comp.Filters.Add(filter);
+    }
+
+    private void OnRailroadingAssigned(Entity<PickRandomPersonComponent> ent, ref RailroadingAssignedEvent args)
+    {
+        if (!HasComp<RailroadableComponent>(args.Subject))
+            return;
+
+        // invalid objective prototype
+        if (!TryComp<TargetObjectiveComponent>(ent, out var target))
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        // target already assigned
+        if (target.Target != null)
+            return;
+
+        // couldn't find a target :(
+        if (_mind.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.Subject) is not { } picked)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        _target.SetTarget(ent, picked, target);
     }
     // SL end
 
@@ -79,7 +108,7 @@ public sealed class PickObjectiveTargetSystem : EntitySystem
             return;
 
         // couldn't find a target :(
-        if (_mind.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId) is not {} picked)
+        if (_mind.PickFromPool(ent.Comp.Pool, ent.Comp.Filters, args.MindId) is not { } picked)
         {
             args.Cancelled = true;
             return;

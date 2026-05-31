@@ -4,7 +4,7 @@ using Content.Client.Chemistry.EntitySystems;
 using Content.Client.Guidebook.Richtext;
 using Content.Client.Message;
 using Content.Client.UserInterface.ControlExtensions;
-using Content.Shared.Body.Prototypes;
+using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;

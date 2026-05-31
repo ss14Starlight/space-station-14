@@ -98,9 +98,9 @@ public static class NullLink
             ServerStatus.Offline => "Offline",
             ServerStatus.Lobby => "Lobby",
             ServerStatus.Round => "Round",
-            ServerStatus.RoundEnding => "Round Ending",
+            ServerStatus.RoundEnding => "Ending",
             _ => "Unknown"
-        };  
+        };
     }
 
     [Serializable, NetSerializable]

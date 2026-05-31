@@ -1,13 +1,10 @@
-using Content.Shared.Starlight.GhostTheme;
-using Content.Shared.Starlight;
-using Content.Shared.Ghost;
-using Content.Shared.Weapons.Ranged.Systems;
+using Content.Client._Starlight.Trail;
+using Content.Server.Administration.Systems;
+using Content.Shared._Starlight.GhostTheme;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.GameObjects;
-using Content.Server.Administration.Systems;
 
-namespace Content.Client.Starlight.GhostTheme;
+namespace Content.Client._Starlight.GhostTheme;
 
 public sealed class GhostThemeSystem : EntitySystem
 {
@@ -22,11 +19,11 @@ public sealed class GhostThemeSystem : EntitySystem
         SubscribeLocalEvent<GhostThemeComponent, AppearanceChangeEvent>(OnAppearance);
     }
 
-    private void OnAppearance(Entity<GhostThemeComponent> ent, ref AppearanceChangeEvent args) 
+    private void OnAppearance(Entity<GhostThemeComponent> ent, ref AppearanceChangeEvent args)
     {
         var spriteType = _entities.Entity<SpriteComponent>(ent.Owner);
 
-        if (!_appearance.TryGetData<string>(ent.Owner, GhostThemeVisualLayers.Base, out var Theme) 
+        if (!_appearance.TryGetData<string>(ent.Owner, GhostThemeVisualLayers.Base, out var Theme)
             || !_appearance.TryGetData<Color>(ent.Owner, GhostThemeVisualLayers.Color, out var Color)
             || !_prototypeManager.TryIndex<GhostThemePrototype>(Theme, out var ghostThemePrototype))
             return;
@@ -38,10 +35,30 @@ public sealed class GhostThemeSystem : EntitySystem
         _sprite.SetDrawDepth(spriteType, DrawDepth.Default + 11);
         spriteType.Comp?.LayerSetShader(layer, "unshaded");
 
-        if(spriteType.Comp == null)
+        if (spriteType.Comp == null)
             return;
 
         spriteType.Comp.NoRotation = ghostThemePrototype.SpriteSpecifier.SpriteRotation;
         spriteType.Comp.OverrideContainerOcclusion = true;
+
+        // Apply trail effect
+        if (ghostThemePrototype.Trail != null)
+        {
+            var trail = EnsureComp<TrailComponent>(ent.Owner);
+            trail.TrailColor = ghostThemePrototype.Trail.Color;
+            trail.FadeColor = ghostThemePrototype.Trail.FadeColor;
+            trail.MaxPoints = ghostThemePrototype.Trail.MaxPoints;
+            trail.LineWidth = ghostThemePrototype.Trail.LineWidth;
+            trail.MinDistance = ghostThemePrototype.Trail.MinDistance;
+            trail.DecayDelay = ghostThemePrototype.Trail.DecayDelay;
+            trail.DecayInterval = ghostThemePrototype.Trail.DecayInterval;
+            trail.Shader = ghostThemePrototype.Trail.Shader;
+            trail.Mode = ghostThemePrototype.Trail.Mode;
+            trail.SkipSamples = ghostThemePrototype.Trail.SkipSamples;
+        }
+        else
+        {
+            RemComp<TrailComponent>(ent.Owner);
+        }
     }
 }

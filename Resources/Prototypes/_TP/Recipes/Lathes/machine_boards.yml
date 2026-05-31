@@ -1,0 +1,4 @@
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: TP14DeepFryerCircuitboardRecipe
+  result: TP14DeepFryerCircuitboard

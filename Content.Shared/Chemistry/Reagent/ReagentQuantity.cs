@@ -71,7 +71,7 @@ public partial struct ReagentQuantity : IEquatable<ReagentQuantity>, IRobustClon
         id = Reagent;
         quantity = Quantity;
     }
-    
+
     //Starlight-start
     public void SetQuantity(FixedPoint2 quantity)
     {

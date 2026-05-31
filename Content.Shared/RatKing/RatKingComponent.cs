@@ -30,6 +30,13 @@ public sealed partial class RatKingComponent : Component
     [ViewVariables(VVAccess.ReadWrite), DataField("armyMobSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ArmyMobSpawnId = "MobRatServant";
 
+    /// <summary>
+    ///     Startlight
+    ///     The entity prototype of the mob that Raise Army summons in a 1/5 Chance.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), DataField("armyLargeMobSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string ArmyLargeMobSpawnId = "MobLargeRatServant";
+
     [DataField("actionDomain", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ActionDomain = "ActionRatKingDomain";
 

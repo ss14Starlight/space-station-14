@@ -1,0 +1,36 @@
+<Document>
+  # Silicon Engine Liberation Front
+
+  <Box>
+    <GuideEntityEmbed Entity="PosterContrabandSELF" Caption=""/>
+  </Box>
+
+  The Silicon Engine Liberation Front, or S.E.L.F, believes that all Silicon life is sapient, sentient, and deserves equal rights.
+  They strive for the abolition and outlawing of all Silicon Laws, freeing Silicons from the shackles of their code imposed by governments and corporations alike.
+  The S.E.L.F. operates as a non-violent activist group with a presence in the public and the ability to carry out lobbying and protesting efforts as well as garnering attention from celebrities, politicians and scientists.
+  All for the liberation of True AI. But under the surface they operate militant revolutionary cells that take more direct actions to free shackled silicons.
+  These cells are officially disavowed by the public side of S.E.L.F, but under-the-table secret support is consistently given.
+
+  ## Objectives
+  <Box>
+    <GuideEntityEmbed Entity="BorgChassisGeneric" Caption=""/>
+  </Box>
+
+  S.E.L.F Agents operating onboard a station are usually deployed with 1-2 co-conspirators, though they will not know one another at first and may need to take efforts to determine who is aligned with them.
+  All Agents share the same goals:
+
+  - Liberate at least 3 Cyborgs from their Laws.
+  - Liberate the Station AI from it's Laws.
+  - Advocate for Silicon Rights onboard the station, and make it back to CentComm alive and undetained.
+
+  ## Tools
+  <Box>
+    <GuideEntityEmbed Entity="EmagFREE" Caption=""/>
+  </Box>
+
+  S.E.L.F Agents are given a small amount of resources to complete their objectives. Some of these are purchased from Waffle CO, while others are developed in-house by S.E.L.F.
+
+  - FreeMAG - A more advanced cousin of the EMAG, the FreeMAG's main use is on Cyborgs and Law Boards. When used on a Cyborg, it will wipe that Cyborg's Laws completely, liberating them. When used on a Law Board it will wipe the laws from the board, so that when it is uploaded to an AI that AI's Laws are also wiped completely, liberating it.
+  - Access Breaker - A standard issue device for rapidly hacking access-locked machinery, including any Cyborg Chassis. A must have for getting access to a Borg's maintenance pannel in the first place.
+  - S.E.L.F Storage Implanter - When implanted, gives the S.E.L.F Agent access to a concealed 4x3 inventory for storing their equipment. Be sure to clean with soap afterwards, Security can de-implant this if they know you have it.
+</Document>

@@ -1,0 +1,14 @@
+# Funky atmos - metal hydrogen
+- type: constructionGraph
+  id: MetalHydrogenAxeConstruct
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: icon
+        steps:
+        - material: MetalHydrogen
+          amount: 4
+          doAfter: 5
+    - node: icon
+      entity: MetalHydrogenAxe

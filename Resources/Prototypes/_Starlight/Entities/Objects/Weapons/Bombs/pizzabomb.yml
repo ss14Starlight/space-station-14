@@ -1,0 +1,23 @@
+﻿# Originally developed on Harmony, ported to Starlight with permission
+- type: entity
+  parent: FoodBoxPizzaFilled
+  id: Pizzabomb
+  suffix: Bomb
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Bombs/Pizzabomb.rsi
+  - type: TwoStageTrigger #Trigger the sound trigger, delay, then explode
+    triggerDelay: 0.5
+    components:
+      - type: ExplodeOnTrigger # Explode after the delay
+        keysIn:
+        - stageTwo
+  - type: EmitSoundOnTrigger
+    sound: /Audio/Machines/microwave_done_beep.ogg
+  - type: TriggerOnUiOpen # Timer is triggered on storage open
+  - type: Explosive # Weak explosion in a very small radius. Doesn't break underplating.
+    explosionType: Default
+    totalIntensity: 130
+    intensitySlope: 10
+    maxIntensity: 10
+    canCreateVacuum: false

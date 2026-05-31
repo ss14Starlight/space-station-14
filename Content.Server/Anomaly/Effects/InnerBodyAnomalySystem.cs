@@ -1,15 +1,16 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Stunnable;
+using Content.Shared.Actions;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
@@ -20,12 +21,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.Anomaly.Effects;
 
-public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
+// Far Horizons - made partial
+public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 {
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly AnomalySystem _anomaly = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
@@ -34,6 +36,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly ActionGrantSystem _actionGrant = default!;
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -94,7 +97,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 
         ent.Comp.Injected = true;
 
-        EntityManager.AddComponents(ent, injectedAnom.Components);
+        ProcessComponents(ent, injectedAnom.Components, true); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -131,10 +134,12 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
+        // Starlight Start
         if (!TryComp<BodyComponent>(ent, out var body))
             return;
+        // Starlight End
 
-        _body.GibBody(ent, true, body, splatModifier: 5f);
+        _gibbing.Gib(ent.Owner);
     }
 
     private void OnSeverityChanged(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySeverityChangedEvent args)
@@ -210,8 +215,12 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
         if (!ent.Comp.Injected)
             return;
 
+        // Starlight Start
+        ent.Comp.Injected = false;
+        Dirty(ent);
+        // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            EntityManager.RemoveComponents(ent, injectedAnom.Components);
+            ProcessComponents(ent, injectedAnom.Components, false); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
@@ -235,7 +244,41 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
             _adminLog.Add(LogType.Anomaly, LogImpact.Medium,$"{ToPrettyString(ent)} is no longer a host for the anomaly.");
         }
 
-        ent.Comp.Injected = false;
-        RemCompDeferred<AnomalyComponent>(ent);
+        // ent.Comp.Injected = false; // Starlight Edit: Moved
+        // RemCompDeferred<AnomalyComponent>(ent); // Starlight Edit: Removed
     }
+
+    #region Starlight
+    private void ProcessComponents(
+        EntityUid target,
+        ComponentRegistry components,
+        bool add)
+    {
+        foreach (var comp in components)
+        {
+            var componentType = comp.Value.Component.GetType();
+            if (add)
+            {
+                EntityManager.AddComponent(target, comp.Value);
+                if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
+                    TryComp<ActionGrantComponent>(target, out var oldComp))
+                {
+                    _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+                }
+
+                continue;
+            }
+
+            if (comp.Value.Component is ActionGrantComponent removeActionGrantComp &&
+                TryComp<ActionGrantComponent>(target, out var removeOldComp))
+            {
+                _actionGrant.RemoveActions((target, removeOldComp), removeActionGrantComp.Actions);
+                continue;
+            }
+
+            if (HasComp(target, componentType))
+                EntityManager.RemoveComponent(target, componentType);
+        }
+    }
+    #endregion
 }

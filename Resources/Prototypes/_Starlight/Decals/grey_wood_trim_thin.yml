@@ -1,0 +1,118 @@
+- type: decal
+  id: GrayWoodTrimThinBox
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_box
+
+- type: decal
+  id: GrayWoodTrimThinCornerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_corner_ne
+
+- type: decal
+  id: GrayWoodTrimThinCornerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_corner_se
+
+- type: decal
+  id: GrayWoodTrimThinCornerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_corner_nw
+
+- type: decal
+  id: GrayWoodTrimThinCornerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_corner_sw
+
+- type: decal
+  id: GrayWoodTrimThinInnerNe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_inner_ne
+
+- type: decal
+  id: GrayWoodTrimThinInnerSe
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_inner_se
+
+- type: decal
+  id: GrayWoodTrimThinInnerNw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_inner_nw
+
+- type: decal
+  id: GrayWoodTrimThinInnerSw
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_inner_sw
+
+- type: decal
+  id: GrayWoodTrimThinEndN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_end_n
+
+- type: decal
+  id: GrayWoodTrimThinEndE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_end_e
+
+- type: decal
+  id: GrayWoodTrimThinEndS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_end_s
+
+- type: decal
+  id: GrayWoodTrimThinEndW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_end_w
+
+- type: decal
+  id: GrayWoodTrimThinLineN
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_line_n
+
+- type: decal
+  id: GrayWoodTrimThinLineE
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_line_e
+
+- type: decal
+  id: GrayWoodTrimThinLineS
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_line_s
+
+- type: decal
+  id: GrayWoodTrimThinLineW
+  tags: ["station", "markings"]
+  sprite:
+    sprite: _Starlight/Decals/gray_wood_trim.rsi
+    state: thin_line_w

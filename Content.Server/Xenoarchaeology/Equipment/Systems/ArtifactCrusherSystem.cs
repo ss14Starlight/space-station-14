@@ -1,12 +1,14 @@
-using Content.Server.Body.Systems;
 using Content.Server.Stack;
-using Content.Shared.Body.Components;
+using Content.Shared.Gibbing;
 using Content.Shared.Storage.Components;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Equipment;
 using Content.Shared.Xenoarchaeology.Equipment.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 
@@ -14,7 +16,7 @@ namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 public sealed class ArtifactCrusherSystem : SharedArtifactCrusherSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly GibbingSystem _gibbing = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
@@ -41,10 +43,12 @@ public sealed class ArtifactCrusherSystem : SharedArtifactCrusherSystem
                 }
             }
 
+            // Starlight Start: Reverted NuBody
             if (!TryComp<BodyComponent>(contained, out var body))
                 Del(contained);
+            // Starlight End: Reverted NuBody
 
-            var gibs = _body.GibBody(contained, body: body, gibOrgans: true);
+            var gibs = _gibbing.Gib(contained);
             foreach (var gib in gibs)
             {
                 ContainerSystem.Insert((gib, null, null, null), crusher.OutputContainer);

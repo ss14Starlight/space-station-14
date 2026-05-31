@@ -1,0 +1,2 @@
+station-event-radstorm-start-announcement = High levels of radiation detected near the station. Do not conduct space walks until the radiation has passed!
+station-event-radstorm-end-announcement = The radiation threat has passed. Please return to your workplaces.

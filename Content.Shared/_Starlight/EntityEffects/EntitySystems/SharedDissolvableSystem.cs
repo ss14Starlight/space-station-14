@@ -11,8 +11,8 @@ public abstract class SharedDissolvableSystem : EntitySystem
     [Dependency] private readonly SharedIgnitionSourceSystem _ignitionSourceSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    
-    
+
+
     public void UpdateAppearance(EntityUid uid, DissolvableComponent? dissolvable = null, AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref dissolvable, ref appearance))
@@ -58,7 +58,7 @@ public abstract class SharedDissolvableSystem : EntitySystem
         _adminLogger.Add(LogType.Flammable, $"{ToPrettyString(uid):entity} stopped being on dissolve damage");
         dissolvable.OnDissolve = false;
         dissolvable.DissolveStacks = 0;
-        
+
         if (dissolvable.Effect != null)
         {
             EntityManager.QueueDeleteEntity(dissolvable.Effect);

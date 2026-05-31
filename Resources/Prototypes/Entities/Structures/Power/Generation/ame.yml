@@ -199,6 +199,7 @@
     radius: 5
     energy: 0.5
     color: "#00AAFF"
+    castShadows: false #SL lighting optimization
   - type: Appearance
   - type: GenericVisualizer
     visuals:

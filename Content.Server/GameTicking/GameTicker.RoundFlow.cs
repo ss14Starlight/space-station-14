@@ -8,6 +8,7 @@ using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
+using Content.Shared.Maps;
 using Content.Shared.Mind;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
@@ -42,7 +43,7 @@ namespace Content.Server.GameTicking
 
         private static readonly Gauge RoundLengthMetric = Metrics.CreateGauge(
             "ss14_round_length",
-            "Round length in seconds.");     
+            "Round length in seconds.");
 #if EXCEPTION_TOLERANCE
         [ViewVariables]
         private int _roundStartFailCount = 0;
@@ -391,6 +392,8 @@ namespace Content.Server.GameTicking
 #endif
 
                 readyPlayers.Add(session);
+
+                // Starlight - we've removed some code here for generating a random humanoid profile for players without any profiles on roundstart.
                 readyPlayerIds.Add(userId);
             }
 
@@ -421,7 +424,11 @@ namespace Content.Server.GameTicking
             // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
             _map.InitializeMap(DefaultMap);
 
+            StartGamePresetRules(); // Starlight - Start any map-attached game rules
+
             SpawnPlayers(readyPlayers, readyPlayerIds, force);
+
+            StartGamePresetRules(); // Starlight - Start any player-attached game rules
 
             _roundStartDateTime = DateTime.UtcNow;
             RunLevel = GameRunLevel.InRound;
@@ -724,7 +731,7 @@ namespace Content.Server.GameTicking
             _mapManager.Restart();
 
             _banManager.Restart();
-            
+
             _bugManager.Restart(); // Starlight
 
             _gameMapManager.ClearSelectedMap();

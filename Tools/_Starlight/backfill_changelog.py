@@ -40,12 +40,12 @@ def get_existing_changelog_entries():
     """Load existing changelog entries and return a set of existing PR numbers"""
     import yaml
     import re
-    
+
     existing_entries = set()
-    
+
     # We know changelog_path is not None due to validation above
     assert changelog_path is not None
-    
+
     if os.path.exists(changelog_path):
         print(f"Loading existing changelog from {changelog_path}")
         with open(changelog_path, "r", encoding='utf-8') as file:
@@ -63,7 +63,7 @@ def get_existing_changelog_entries():
                         existing_entries.add(potential_pr)
     else:
         print(f"Changelog file does not exist at {changelog_path}")
-    
+
     print(f"Found {len(existing_entries)} existing changelog entries for PRs: {sorted(existing_entries)}")
     return existing_entries
 
@@ -71,69 +71,69 @@ def find_missing_changelog_prs():
     """Find PRs that need changelog entries and return their numbers"""
     # Get existing changelog entries to avoid duplicates
     existing_pr_numbers = get_existing_changelog_entries()
-    
+
     print(f"\n=== Checking last {commits_count} commits ===")
-    
+
     # Get recent commits from the main branch
     commits = list(repo.get_commits(sha='Starlight'))[:commits_count]
-    
+
     missing_prs = []
     processed_count = 0
     skipped_count = 0
-    
+
     for commit in commits:
         processed_count += 1
         commit_message = commit.commit.message
         print(f"\n--- Commit {processed_count}/{commits_count} ---")
         print(f"Commit SHA: {commit.sha[:8]}")
         print(f"Commit message: {commit_message.split(chr(10))[0]}")  # First line only
-        
+
         # Extract PR number from commit message
         pr_number = extract_pr_number_from_commit_message(commit_message)
-        
+
         if not pr_number:
             print("  No PR number found in commit message, skipping")
             continue
-            
+
         print(f"  Found PR number: {pr_number}")
-        
+
         # Check if we already have changelog entry for this PR
         if pr_number in existing_pr_numbers:
             print(f"  Changelog entry for PR #{pr_number} already exists, skipping")
             skipped_count += 1
             continue
-        
+
         try:
             # Get the PR to check if it's merged and has body
             pr = repo.get_pull(pr_number)
-            
+
             if not pr.merged:
                 print(f"  PR #{pr_number} is not merged, skipping")
                 continue
-                
+
             print(f"  PR #{pr_number} title: {pr.title}")
-            
+
             if not pr.body:
                 print(f"  PR #{pr_number} has no body, skipping")
                 continue
-            
+
             # Check if PR body contains :cl: tag
             if ":cl:" not in pr.body:
                 print(f"  No ':cl:' tag found in PR #{pr_number} body, skipping")
                 continue
-            
+
             print(f"  PR #{pr_number} needs changelog entry")
             missing_prs.append(pr_number)
-            
+
         except Exception as e:
             print(f"  Error processing PR #{pr_number}: {str(e)}")
             continue
-    
+
     print(f"\n=== Summary ===")
     print(f"Processed {processed_count} commits")
     print(f"Found {len(missing_prs)} PRs needing changelog entries")
     print(f"Skipped {skipped_count} PRs (already have changelog entries)")
-    
+
     if missing_prs:
         print(f"Missing PRs: {missing_prs}")
         # Output as JSON for GitHub Actions

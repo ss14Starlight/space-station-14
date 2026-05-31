@@ -61,7 +61,7 @@ namespace Content.Server.Dragon
 
         //starlight
         [DataField]
-        public string NoRiftDeathEffect = "EffectFlashDragonDisappear";
+        public EntProtoId NoRiftDeathEffect = "EffectFlashDragonDisappear";
 
         /// <summary>
         /// NPC faction to re-add after being zombified.

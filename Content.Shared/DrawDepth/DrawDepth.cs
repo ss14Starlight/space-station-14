@@ -9,13 +9,17 @@ namespace Content.Shared.DrawDepth
         /// <summary>
         ///     This is for sub-floors, the floors you see after prying off a tile.
         /// </summary>
-        LowFloors = DrawDepthTag.Default - 20,
+        LowFloors = DrawDepthTag.Default - 22, // Carpmosia-edit - 5 pipe layers
 
         // various entity types that require different
         // draw depths, as to avoid hiding
         #region SubfloorEntities
-        ThickPipe = DrawDepthTag.Default - 19,
-        ThickWire = DrawDepthTag.Default - 18,
+        // Carpmosia-start - 5 pipe layers
+        ThickPipe = DrawDepthTag.Default - 21,
+        ThickWire = DrawDepthTag.Default - 20,
+        ThinPipeAlt4 = DrawDepthTag.Default - 19,
+        ThinPipeAlt3 = DrawDepthTag.Default - 18,
+        // Carpmosia-end - 5 pipe layers
         ThinPipeAlt2 = DrawDepthTag.Default - 17,
         ThinPipeAlt1 = DrawDepthTag.Default - 16,
         ThinPipe = DrawDepthTag.Default - 15,
@@ -124,5 +128,14 @@ namespace Content.Shared.DrawDepth
         ///    the pointing arrow, the drag & drop ghost-entity, and some debug tools.
         /// </summary>
         Overlays = DrawDepthTag.Default + 13,
+
+        // Starlight - start
+        CyberspaceOverlays = DrawDepthTag.Default + 14,
+        /// <summary>
+        ///     Objects that exist in cyberspace and should render above the StationAI dark overlay (ZIndex 14).
+        ///     Assign this to any entity that must be visible to the AI regardless of camera coverage.
+        /// </summary>
+        CyberspaceObjects = DrawDepthTag.Default + 100,
+        // Starlight - end
     }
 }

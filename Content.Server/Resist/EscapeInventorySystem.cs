@@ -10,6 +10,7 @@ using Content.Shared.Resist;
 using Content.Shared.Storage;
 using Content.Shared.Tag; // Starlight Edit
 using Robust.Server.GameObjects; // Starlight Edit
+using Robust.Shared.Prototypes; // Starlight
 using Robust.Shared.Containers;
 
 namespace Content.Server.Resist;
@@ -23,6 +24,8 @@ public sealed class EscapeInventorySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!; // Starlight Edit
     [Dependency] private readonly TransformSystem _transformSystem = default!; // Starlight Edit
+
+    private static readonly ProtoId<TagPrototype> PersonnelStorageTag = "PersonnelStorage"; // Starlight
 
     public override void Initialize()
     {
@@ -62,9 +65,9 @@ public sealed class EscapeInventorySystem : EntitySystem
             AttemptEscape(uid, container.Owner, component);
             return;
         }
-        
+
         // Uncontested - Escape from borg modules and such
-        if (_tagSystem.HasTag(container.Owner, "PersonnelStorage"))
+        if (_tagSystem.HasTag(container.Owner, PersonnelStorageTag))
         {
             AttemptEscape(uid, container.Owner, component);
         }
@@ -99,7 +102,7 @@ public sealed class EscapeInventorySystem : EntitySystem
 
         // Starlight edit start - Special handling for borg modules
         if (_containerSystem.TryGetContainingContainer((uid, null, null), out var container) &&
-            _tagSystem.HasTag(container.Owner, "PersonnelStorage"))
+            _tagSystem.HasTag(container.Owner, PersonnelStorageTag))
         {
             // Remove from the container and put on the floor
             _containerSystem.Remove((uid, Transform(uid)), container, reparent: false);

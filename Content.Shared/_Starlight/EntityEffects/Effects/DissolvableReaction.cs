@@ -17,7 +17,6 @@ namespace Content.Shared.Starlight.EntityEffects.Effects;
 public sealed partial class DissolvableReactionEntityEffectSystem : EntityEffectSystem<DissolvableComponent, DissolvableReaction>
 {
     [Dependency] private readonly SharedDissolvableSystem _dissolvable = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly EntityManager _entMan = default!;
@@ -48,7 +47,7 @@ public sealed partial class DissolvableReaction : EntityEffectBase<DissolvableRe
 
     [DataField]
     public float MultiplierOnExisting = -1f;
-    
+
     [DataField(required: true)]
     [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier Damage = new();
@@ -56,11 +55,9 @@ public sealed partial class DissolvableReaction : EntityEffectBase<DissolvableRe
     [DataField]
     public EntProtoId? DissolveEffectPrototype = "ThermiteEntity";
 
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-    {
-        return Loc.GetString("reagent-effect-guidebook-dissolvable-reaction",
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => // Starlight
+        loc.GetString("reagent-effect-guidebook-dissolvable-reaction",
                 ("chance", Probability));
-    }
 
     public override LogImpact? Impact => LogImpact.Medium;
 }

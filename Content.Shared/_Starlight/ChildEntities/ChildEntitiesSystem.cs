@@ -18,17 +18,15 @@ public sealed partial class ChildEntitiesSystem : EntitySystem
         foreach (var child in ent.Comp.ChildPrototypes)
         {
             var coords = Transform(ent).Coordinates;
+            var rotation = Transform(ent).LocalRotation;
 
             coords = coords.WithPosition(coords.Position + child.Offset);
 
-            if (_net.IsServer)
-            {
-                var childEnt = SpawnAttachedTo(child.Prototype, coords);
-                ent.Comp.Children.Add(childEnt);
-            }
-            else
-                PredictedSpawnAtPosition(child.Prototype, coords);
+            var childEnt = PredictedSpawnAttachedTo(child.Prototype, coords, null, rotation);
+            ent.Comp.Children.Add(childEnt);
         }
+
+        Dirty(ent);
     }
 
     private void OnShutdown(Entity<ChildEntitiesComponent> ent, ref ComponentShutdown args)
@@ -38,10 +36,7 @@ public sealed partial class ChildEntitiesSystem : EntitySystem
             if (TerminatingOrDeleted(child))
                 continue;
 
-            if (_net.IsServer)
-                QueueDel(child);
-            else
-                PredictedQueueDel(child);
+            PredictedQueueDel(child);
         }
     }
 }

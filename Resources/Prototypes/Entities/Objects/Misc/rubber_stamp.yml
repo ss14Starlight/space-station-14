@@ -21,6 +21,9 @@
     size: Tiny
   - type: StealTarget
     stealGroup: Stamp
+  - type: Tag # Starlight start
+    tags:
+    - Stamp # Starlight end
 
 - type: entity
   name: alternate rubber stamp
@@ -67,7 +70,7 @@
   name: chaplain's rubber stamp
   parent: RubberStampBase
   id: RubberStampChaplain
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-chaplain
@@ -84,16 +87,17 @@
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-lawyer
-    stampedColor: "#233D57"
-    stampState: "paper_stamp-lawyer"
+    stampedColor: "#496130" # Starlight, Lawyer is green now
+    stampState: "paper_stamp-lawyer-sl" # Starlight
   - type: Sprite
+    sprite: _Starlight/Objects/Misc/stamps.rsi  # Starlight
     state: stamp-lawyer
 
 - type: entity
   name: clown's rubber stamp
   parent: RubberStampBase
   id: RubberStampClown
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-clown
@@ -158,7 +162,7 @@
   name: mime's rubber stamp
   parent: RubberStampBase
   id: RubberStampMime
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-mime
@@ -208,7 +212,7 @@
 
 - type: entity
   name: syndicate rubber stamp
-  parent: [RubberStampBase, BaseSyndicateContraband]
+  parent: [RubberStampBase, BaseMinorContraband] #SL Edit Syndie > Minor Contra
   id: RubberStampSyndicate
   categories: [ DoNotMap ]
   components:
@@ -275,7 +279,7 @@
   name: psychologist's rubber stamp
   parent: RubberStampBase
   id: RubberStampPsychologist
-  categories: [ DoNotMap ]
+  # categories: [ DoNotMap ] # SL removal
   description: A rubber stamp for stamping important documents. Prescribe those treatments!
   components:
   - type: Stamp

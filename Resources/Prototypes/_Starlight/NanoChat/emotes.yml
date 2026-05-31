@@ -1,0 +1,168 @@
+# Reactions emotes
+- type: nanoChatEmote
+  id: godo
+  category: Reactions
+  searchTags: ["godo", "happy", "godo"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/godo.png
+
+- type: nanoChatEmote
+  id: do
+  category: Reactions
+  searchTags: ["godo", "neutral"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/do.png
+
+- type: nanoChatEmote
+  id: donow
+  category: Reactions
+  searchTags: ["godo", "determined", "motivated"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/donow.png
+
+- type: nanoChatEmote
+  id: gocrazy
+  category: Reactions
+  searchTags: ["godo", "crazy", "insane"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/donot.png
+
+- type: nanoChatEmote
+  id: gosad
+  category: Reactions
+  searchTags: ["godo", "sad", "depressed"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/dontdo.png
+
+- type: nanoChatEmote
+  id: godover
+  category: Reactions
+  searchTags: ["godo", "over", "done"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/godover.png
+
+- type: nanoChatEmote
+  id: golove
+  category: Reactions
+  searchTags: ["godo", "love", "heart"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/golove.png
+
+# Plushie emotes
+- type: nanoChatEmote
+  id: arachnid
+  category: Plushies
+  searchTags: ["spider", "plushie", "toy"]
+  sprite:
+    sprite: Objects/Fun/Plushies/arachnid.rsi
+    state: icon
+
+- type: nanoChatEmote
+  id: floorgoblin
+  category: Plushies
+  searchTags: ["goblin", "plushie", "toy"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/floorgoblin.png
+
+- type: nanoChatEmote
+  id: hampter
+  category: Plushies
+  searchTags: ["hamster", "plushie", "toy", "cute"]
+  sprite:
+    sprite: Objects/Fun/Plushies/hampter.rsi
+    state: icon
+
+- type: nanoChatEmote
+  id: human
+  category: Plushies
+  searchTags: ["human", "plushie", "toy"]
+  sprite:
+    sprite: Objects/Fun/Plushies/human.rsi
+    state: icon
+
+- type: nanoChatEmote
+  id: lizard
+  category: Plushies
+  searchTags: ["lizard", "plushie", "toy", "reptile"]
+  sprite:
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: icon
+
+- type: nanoChatEmote
+  id: moth
+  category: Plushies
+  searchTags: ["moth", "plushie", "toy", "insect"]
+  sprite:
+    sprite: Objects/Fun/Plushies/moth.rsi
+    state: icon
+
+- type: nanoChatEmote
+  id: rainbowcarp
+  category: Plushies
+  searchTags: ["carp", "fish", "rainbow", "plushie"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/rainbowcarp.png
+
+- type: nanoChatEmote
+  id: rainbowlizard
+  category: Plushies
+  searchTags: ["lizard", "rainbow", "plushie", "colorful"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/rainbowlizardplush.png
+
+- type: nanoChatEmote
+  id: rouny
+  category: Plushies
+  searchTags: ["rouny", "plushie", "toy"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/rouny.png
+
+- type: nanoChatEmote
+  id: slime
+  category: Plushies
+  searchTags: ["slime", "plushie", "toy", "goo"]
+  sprite:
+    sprite: Objects/Fun/Plushies/slime.rsi
+    state: icon
+
+- type: nanoChatEmote
+  id: spacelizard
+  category: Plushies
+  searchTags: ["lizard", "space", "plushie", "astronaut"]
+  sprite:
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: plushie_spacelizard
+
+- type: nanoChatEmote
+  id: vox
+  category: Plushies
+  searchTags: ["vox", "plushie", "toy", "bird"]
+  sprite:
+    sprite: Objects/Fun/Plushies/vox.rsi
+    state: icon
+
+# Misc Emotes
+- type: nanoChatEmote
+  id: chime
+  category: Character
+  searchTags: ["sound", "bell"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/chime.png
+
+- type: nanoChatEmote
+  id: chirp
+  category: Character
+  searchTags: ["sound", "bird"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/chirp.png
+
+- type: nanoChatEmote
+  id: clap
+  category: Character
+  searchTags: ["hands", "applause"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/clap.png
+
+- type: nanoChatEmote
+  id: click
+  category: Character
+  searchTags: ["sound"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/click.png
+
+- type: nanoChatEmote
+  id: honk
+  category: Character
+  searchTags: ["clown", "funny", "sound"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/honk.png
+
+- type: nanoChatEmote
+  id: squeak
+  category: Character
+  searchTags: ["sound", "mouse"]
+  sprite: /Textures/_Starlight/Interface/Nanochat/Emotes/squeak.png

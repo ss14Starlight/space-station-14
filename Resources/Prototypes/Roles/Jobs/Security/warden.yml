@@ -6,7 +6,10 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobSecurityOfficer
-      time: 20h # Starlight
+      time: 15h # Starlight
+    - !type:RoleTimeRequirement # Starlight
+      role: JobDutyOfficer # Starlight
+      time: 5h # Starlight
     - !type:RoleTimeRequirement
       role: JobDetective # Starlight
       time: 1h # Starlight
@@ -16,6 +19,7 @@
   supervisors: job-supervisors-hos
   canBeAntag: false
   access:
+  - Cadet # Starlight
   - Security
   - Brig
   - Armory
@@ -53,5 +57,5 @@
     jumpsuit: ClothingUniformJumpsuitWarden
     neck: Dinkystar
     belt: ClothingBeltSecurity
-    gloves: ClothingHandsGlovesCombat
+    # gloves: ClothingHandsGlovesCombat # Starlight
     shoes: ClothingShoesBootsJack

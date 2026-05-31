@@ -1,0 +1,52 @@
+- type: entity
+  parent: [AirSensorVoxBase, GasVentPumpAlt1, GasVentPumpVox]
+  id: GasVentPumpVoxAlt1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentPumpAlt2, GasVentPumpVox]
+  id: GasVentPumpVoxAlt2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentScrubberAlt1, GasVentScrubberVox]
+  id: GasVentScrubberVoxAlt1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasVentScrubberAlt2, GasVentScrubberVox]
+  id: GasVentScrubberVoxAlt2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasDualPortVentPump]
+  id: GasDualPortVentPumpVox
+  components:
+  - type: AtmosPipeLayers
+    spriteRsiPaths: {}
+    alternativePrototypes:
+      Primary: GasDualPortVentPumpVox
+      Secondary: GasDualPortVentPumpVoxAlt1
+      Tertiary: GasDualPortVentPumpVoxAlt2
+      Quaternary: GasDualPortVentPumpVoxAlt3
+      Quinary: GasDualPortVentPumpVoxAlt4
+
+- type: entity
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt1, GasDualPortVentPumpVox]
+  id: GasDualPortVentPumpVoxAlt1
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt2, GasDualPortVentPumpVox]
+  id: GasDualPortVentPumpVoxAlt2
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt3, GasDualPortVentPumpVox]
+  id: GasDualPortVentPumpVoxAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [AirSensorVoxBase, GasDualPortVentPumpAlt4, GasDualPortVentPumpVox]
+  id: GasDualPortVentPumpVoxAlt4
+  categories: [ HideSpawnMenu ]

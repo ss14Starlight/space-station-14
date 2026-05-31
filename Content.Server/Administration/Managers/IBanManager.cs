@@ -1,5 +1,7 @@
+using System.Collections.Immutable;
 using System.Net;
 using System.Threading.Tasks;
+using Content.Server.Database;
 using Content.Shared.Database;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
@@ -23,7 +25,7 @@ public interface IBanManager
     /// <param name="minutes">Number of minutes to ban for. 0 and null mean permanent</param>
     /// <param name="severity">Severity of the resulting ban note</param>
     /// <param name="reason">Reason for the ban</param>
-    public void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason);
+    public Task CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason);
 
     /// <summary>
     /// Gets a list of prefixed prototype IDs with the player's role bans.
@@ -96,7 +98,7 @@ public interface IBanManager
     /// <param name="severity">Severity of the resulting ban note</param>
     /// <param name="reason">Reason for the ban</param>
     /// <param name="timeOfBan">Time when the ban was applied, used for grouping role bans</param>
-    public void WebhookUpdateRoleBans(
+    public Task WebhookUpdateRoleBans(
         NetUserId? target,
         string? targetUsername,
         NetUserId? banningAdmin,
@@ -122,4 +124,32 @@ public interface IBanManager
     /// </summary>
     /// <param name="pSession">Player's session</param>
     public void SendRoleBans(ICommonSession pSession);
+
+    #region Starlight
+    /// <summary>
+    /// Retrieves a list of server ban definitions matching the specified criteria.
+    /// </summary>
+    public Task<List<ServerBanDef>> GetServerBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
+
+    /// <summary>
+    /// Creates a record of an unban action for a previously issued server ban.
+    /// </summary>
+    public Task CreateServerUnban(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime);
+
+    /// <summary>
+    /// Retrieves the details of a server ban with the specified identifier.
+    /// </summary>
+    public Task<ServerBanDef?> GetServerBanAsync(int id, string? project = null, string? server = null);
+
+    /// <summary>
+    /// Retrieves a server ban record that matches the specified address, user ID, hardware ID, or set of
+    /// modern hardware IDs.
+    /// </summary>
+    public Task<ServerBanDef?> GetServerBanAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds);
+
+    /// <summary>
+    /// Retrieves a list of server role bans that match the specified criteria.
+    /// </summary>
+    public Task<List<ServerRoleBanDef>> GetServerRoleBansAsync(IPAddress? address, NetUserId? userId, ImmutableArray<byte>? hwId, ImmutableArray<ImmutableArray<byte>>? modernHWIds, bool includeUnbanned = true);
+    #endregion
 }

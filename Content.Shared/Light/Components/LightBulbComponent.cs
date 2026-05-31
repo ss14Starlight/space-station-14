@@ -18,6 +18,13 @@ public sealed partial class LightBulbComponent : Component
     public Color Color = Color.White;
 
     /// <summary>
+    /// Starlight
+    /// Is this light dimmable?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool Dimmable = true;
+
+    /// <summary>
     /// The type of lightbulb. Tube/bulb/etc...
     /// </summary>
     [DataField("bulb")]

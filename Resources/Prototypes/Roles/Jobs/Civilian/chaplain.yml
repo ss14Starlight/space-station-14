@@ -23,6 +23,7 @@
   storage:
     back:
     - RubberStampChaplain
+    - CosmicCenser # Starlight: Cosmic Cult
 
 - type: chameleonOutfit
   id: ChaplainChameleonOutfit

@@ -1,0 +1,37 @@
+- type: marking
+  id: FelionoidHeadTiger
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: Tiger_stripes_face
+
+- type: marking
+  id: FelionoidHeadTabby
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: Tabby_head
+
+- type: marking
+  id: FelionoidHeadCalico
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: calico1_head
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: calico2_head
+
+- type: marking
+  id: FelionoidHeadStripes
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Felionoid]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
+      state: head_stripes

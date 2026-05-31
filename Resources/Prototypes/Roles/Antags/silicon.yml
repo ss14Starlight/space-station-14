@@ -4,9 +4,12 @@
   antagonist: true
   setPreference: false
   objective: roles-antag-subverted-silicon-objective
+  # Starlight start
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 86400 # 24h STARLIGHT
+    time: 24h
   - !type:RoleTimeRequirement
     role: JobBorg
-    time: 21600 # 6h STARLIGHT
+    time: 6h
+  playTimeTracker: AntagSubvertedSilicon
+  # Starlight end

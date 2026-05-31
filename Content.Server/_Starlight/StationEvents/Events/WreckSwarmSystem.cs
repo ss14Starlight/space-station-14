@@ -1,32 +1,25 @@
 using System.Numerics;
 using System.Linq;
-using Content.Server.Chat.Systems;
-using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Salvage;
-using Robust.Server.Audio;
-using Robust.Shared.Audio;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
+public sealed class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
 {
-    private readonly List<SalvageMapPrototype> _salvageMaps = new();
+    private readonly List<SalvageMapPrototype> _salvageMaps = [];
 
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
@@ -34,9 +27,7 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     protected override void Added(EntityUid uid, WreckSwarmComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
-    {
-        base.Added(uid, component, gameRule, args);
-    }
+        => base.Added(uid, component, gameRule, args);
 
     protected override void ActiveTick(EntityUid uid, WreckSwarmComponent component, GameRuleComponent gameRule, float frameTime)
     {
@@ -46,8 +37,15 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
             return;
         }
 
-        var station = RobustRandom.Pick(_station.GetStations());
-        if (_station.GetLargestGrid(station) is not { } grid)
+        // tf are you doing without one of these
+        if (!TryComp<StationEventComponent>(uid, out var stationEvent))
+        {
+            ForceEndSelf(uid, gameRule);
+            return;
+        }
+
+        if (stationEvent.TargetStation is null) return;
+        if (_station.GetLargestGrid(stationEvent.TargetStation.Value) is not { } grid)
         {
             ForceEndSelf(uid, gameRule);
             return;
@@ -66,7 +64,7 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
         var angle = RobustRandom.NextAngle();
         var spawnAngle = RobustRandom.NextAngle();
 
-        var offset = angle.RotateVec(new Vector2((maximumDistance - minimumDistance) * RobustRandom.NextFloat() + minimumDistance, 0));
+        var offset = angle.RotateVec(new Vector2(((maximumDistance - minimumDistance) * RobustRandom.NextFloat()) + minimumDistance, 0));
 
         var spawnPosition = new MapCoordinates(center + offset, mapId);
 
@@ -79,7 +77,7 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
            )
         {
             // We couldn't load it, or it loaded empty - blame it on CC
-            Announce(Loc.GetString("station-event-incoming-wreck-swarm-spawn-failed"), null);
+            // Announce(stationEvent, Loc.GetString("station-event-incoming-wreck-swarm-spawn-failed"), false);
 
             _mapSystem.DeleteMap(wreckMapXform.MapID);
 
@@ -107,7 +105,7 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
         _mapSystem.DeleteMap(wreckMapXform.MapID);
 
         if (component.Announcement is { } locId)
-            Announce(Loc.GetString(locId), component.AnnouncementSound);
+            Announce(stationEvent, Loc.GetString(locId), false, null, component.AnnouncementSound);
 
         // Done processing, don't recur on next tick
         ForceEndSelf(uid, gameRule);
@@ -128,17 +126,6 @@ public sealed class WreckSwarmSystem : GameRuleSystem<WreckSwarmComponent>
             var map = RobustRandom.Pick(_salvageMaps);
 
             return map.MapPath;
-        }
-    }
-
-    private void Announce(string announcement, SoundSpecifier? sound) {
-        // Let the players know (but we don't want to send to players who aren't in game (i.e. in the lobby))
-        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
-
-        _chat.DispatchFilteredAnnouncement(allPlayersInGame, announcement, playSound: false, colorOverride: Color.Gold);
-
-        if (sound is not null) {
-            _audio.PlayGlobal(sound, allPlayersInGame, true);
         }
     }
 }

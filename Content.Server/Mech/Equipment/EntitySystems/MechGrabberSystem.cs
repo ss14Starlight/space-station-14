@@ -9,6 +9,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Wall;
+using Content.Shared.Whitelist;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -30,6 +31,7 @@ public sealed class MechGrabberSystem : EntitySystem
     [Dependency] private readonly InteractionSystem _interaction = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -127,16 +129,14 @@ public sealed class MechGrabberSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
         var target = args.Target;
 
         if (args.Target == args.User || component.DoAfter != null)
             return;
 
-        if ((TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static) ||
-            HasComp<WallMountComponent>(target)) // Starlight change: Removes check for mob type since checked for component later
-        {
+        if ((TryComp<PhysicsComponent>(target, out var physics) && physics.BodyType == BodyType.Static)) // Starlight change: Removes check for mob type since checked for component later
             return;
-        }
 
         if (Transform(target).Anchored)
             return;
@@ -153,9 +153,12 @@ public sealed class MechGrabberSystem : EntitySystem
         if (!_interaction.InRangeUnobstructed(args.User, target))
             return;
 
+        if (_whitelistSystem.IsWhitelistPass(component.Blacklist, target)) // Starlight - Add a blacklist... why is this here not there earlier?
+            return;
+
         if (!component.CanGrabMobs && HasComp<MobStateComponent>(target)) // Starlight change checks for if entity is a mob and if the claw can pick it up
-            return;       
-        
+            return;
+
         args.Handled = true;
         component.AudioStream = _audio.PlayPvs(component.GrabSound, uid)?.Entity;
         var doAfterArgs = new DoAfterArgs(EntityManager, args.User, component.GrabDelay, new GrabberDoAfterEvent(), uid, target: target, used: uid)

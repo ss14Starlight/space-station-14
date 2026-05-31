@@ -1,0 +1,17 @@
+- type: entity
+  abstract: true
+  parent: Clothing
+  id: ClothingMiscBase
+  components:
+  - type: Item
+    size: Small
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - misc
+  - type: Sprite
+    state: icon
+  - type: Tag
+    tags:
+    - Recyclable
+    - WhitelistChameleon

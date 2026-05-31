@@ -24,12 +24,15 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Body.Systems;
 using Content.Server.GameTicking;
+using Robust.Shared.GameObjects.Components.Localization;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Prometheus;
+using Content.Server._Starlight.Administration.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server._Starlight.Antags.Components;
 // Starlight End
 
 namespace Content.Server.Station.Systems;
@@ -44,7 +47,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
     [Dependency] private readonly ActorSystem _actors = default!;
     [Dependency] private readonly IdCardSystem _cardSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    //[Dependency] private readonly IConfigurationManager _configurationManager = default!; // Starlight-removed - we dropped the one use of this
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
@@ -53,6 +56,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly LimbSystem _limbSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
+    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
 
     private List<CyberneticImplant> _allCybernetics = default!; // Starlight
 
@@ -149,13 +154,14 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             {
                 EquipRoleLoadout(jobEntity, loadout, roleProto!, profile); // Starlight edit
             }
-            
+
             // Raise gear equipped event for non-humanoid jobs
             var jobEntityGearEv = new StartingGearEquippedEvent(jobEntity);
             RaiseLocalEvent(jobEntity, ref jobEntityGearEv);
             // Starlight End
 
             DoJobSpecials(job, jobEntity);
+            AddComp<StationCrewComponent>(jobEntity); // Starlight-edit
             _identity.QueueIdentityUpdate(jobEntity);
             return jobEntity;
         }
@@ -165,7 +171,23 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (!_prototypeManager.TryIndex<SpeciesPrototype>(speciesId, out var species))
             throw new ArgumentException($"Invalid species prototype was used: {speciesId}");
 
-        entity ??= Spawn(species.Prototype, coordinates);
+        // Starlight Start
+        if (profile?.ForcedPrototype != "" && profile is not null)
+        {
+            if (!_prototypeManager.Resolve(profile.ForcedPrototype, out _))
+                throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
+            entity = Spawn(profile.ForcedPrototype, coordinates);
+            var resolvedEntity = (EntityUid)entity;
+            var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
+            _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
+
+            _autolog.LogToDiscord(Loc.GetString("autolog-forcedprototype", ("character", profile.Name), ("prototype", profile.ForcedPrototype)));
+        }
+        else
+        {
+            // Starlight End
+            entity ??= Spawn(species.Prototype, coordinates);
+        } // Starlight
 
         if (profile != null)
         {
@@ -193,6 +215,11 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
+
+        // Far Horizons species loadouts
+        if (species.Loadout != null && _prototypeManager.TryIndex(species.Loadout.Value, out var speciesLoadoutProto) && profile != null && profile.SpeciesLoadout != null)
+            EquipRoleLoadout(entity.Value, profile.SpeciesLoadout, speciesLoadoutProto);
+
         // Starlight end
 
         /* Starlight - add comment
@@ -217,7 +244,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         }
 
         DoJobSpecials(job, entity.Value);
+        AddComp<StationCrewComponent>(entity.Value); // Starlight-edit
         _identity.QueueIdentityUpdate(entity.Value);
+        if (profile?.ForcedPrototype != "")
+            RaiseLocalEvent(entity.Value, new ForcedPrototypeDoSpecialEvent()); // Starlight
 
         #region StarlightStats
         if (entity.HasValue)
@@ -261,45 +291,52 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <summary>
     /// Replaces humanoid's limbs with cybernetics on spawn
     /// </summary>
-    private void SetupCybernetics(EntityUid entity, List<string> cybernetics){
+    private void SetupCybernetics(EntityUid entity, List<string> cybernetics)
+    {
         if (!TryComp(entity, out TransformComponent? transform) ||
             !TryComp(entity, out HumanoidAppearanceComponent? appearance) ||
-            !TryComp(entity, out BodyComponent? bodyComp)) {
-                return;
-            }
+            !TryComp(entity, out BodyComponent? bodyComp))
+        {
+            return;
+        }
         Entity<TransformComponent, HumanoidAppearanceComponent, BodyComponent> body = (entity, transform, appearance, bodyComp);
 
         var installedCyberlimbs = _allCybernetics.Where(p => cybernetics.Contains(p.ID) && p.Type == CyberneticImplantType.Limb).ToList();
         // We don't need to manually attach limbs that are already attached by other limbs
         var filteredCyberlimbs = installedCyberlimbs.Where(p => !installedCyberlimbs.Where(v => v.AttachedParts.Contains(p.ID)).Any())
                                                     .Select(p => p.ID).ToList();
-                                               
-        
-        foreach (var implant in filteredCyberlimbs){
+
+
+        foreach (var implant in filteredCyberlimbs)
+        {
             var implantEnt = _prototypeManager.Index<EntityPrototype>(implant);
 
             var newPart = Spawn(implant, body.Comp1.Coordinates);
-            if(!TryComp(newPart, out BodyPartComponent? bodyPartComp)){
+            if (!TryComp(newPart, out BodyPartComponent? bodyPartComp))
+            {
                 Del(newPart);
                 continue;
             }
 
             var oldPartId = _bodySystem.GetBodyChildrenOfType(entity, bodyPartComp.PartType).FirstOrDefault(p => p.Component.Symmetry == bodyPartComp.Symmetry);
-            if(!TryComp(oldPartId.Id, out TransformComponent? oldPartTransform) ||
+            if (!TryComp(oldPartId.Id, out TransformComponent? oldPartTransform) ||
                !TryComp(oldPartId.Id, out MetaDataComponent? oldPartMetadata) ||
-               !TryComp(oldPartId.Id, out BodyPartComponent? oldPartBodyPart)){
+               !TryComp(oldPartId.Id, out BodyPartComponent? oldPartBodyPart))
+            {
                 Del(newPart);
                 continue;
-               }
+            }
             Entity<TransformComponent, MetaDataComponent, BodyPartComponent> oldPart = (oldPartId.Id, oldPartTransform, oldPartMetadata, oldPartBodyPart);
 
-            if(!_bodySystem.TryGetParentBodyPart(oldPart.Owner, out var parentUid, out var parentBodyPart)){
+            if (!_bodySystem.TryGetParentBodyPart(oldPart.Owner, out var parentUid, out var parentBodyPart))
+            {
                 Del(newPart);
                 continue;
             }
 
             var slot = CyberneticImplant.SlotIDFromBodypart(bodyPartComp);
-            if(slot == ""){
+            if (slot == "")
+            {
                 Del(newPart);
                 continue;
             }
@@ -307,7 +344,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             _limbSystem.Amputatate(body, oldPart);
             Del(oldPartId.Id);
             _limbSystem.AttachLimb((entity, appearance), slot, (parentUid.Value, parentBodyPart), (newPart, bodyPartComp));
-        }      
+        }
     }
 
     /// <summary>

@@ -3,6 +3,7 @@
   startingInventory:
     OxygenTankFilled: 13  #Starlight +3
     NitrogenTankFilled: 13  #Starlight +3
+    CoolingUnit: 13 #Starlight
 
 - type: vendingMachineInventory
   id: TankDispenserEngineeringInventory
@@ -10,3 +11,4 @@
     PlasmaTankFilled: 10
     NitrogenTankFilled: 10
     OxygenTankFilled: 10
+    CoolingUnit: 10 #Starlight

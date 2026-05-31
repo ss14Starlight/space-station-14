@@ -1,0 +1,35 @@
+<Document>
+  # Wizard Duel
+
+  <Box>
+    [color=#457573][italic]I CHALLENGE THEE TO A DUEL![/italic][/color]
+  </Box>
+  <Box>
+    <GuideEntityEmbed Entity="ClothingHeadHatRedwizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatWizard" Caption=""/>
+    <GuideEntityEmbed Entity="ClothingHeadHatYellowwizard" Caption=""/><!-- Starlight, Yellow Wizard -->
+    <GuideEntityEmbed Entity="ClothingHeadHatGreenwizard" Caption=""/><!-- Starlight, Green Wizard -->
+    <GuideEntityEmbed Entity="ClothingHeadHatPurplewizard" Caption=""/><!-- Starlight, violet -> Purple, and moved to after Green Wizard. -->
+    <GuideEntityEmbed Entity="ClothingHeadHatOrangewizard" Caption=""/><!-- Starlight, Orange Wizard -->
+  </Box>
+  In aeons of conflict and strife, the various schools of the Space Wizards Federation have learned to resolve their differences in ways that best reflect their unpredictable nature; the ancient rite of a wizard duel!
+  With each faction sending one of their own to act as the representative of their school, these wizards compete to prove that their mastery of sorcery and magic is unparalleled, helping decide the future of the Space Wizards Federation in events following.
+
+  As a result, wizard duelists are a [color=red][bold]Solo Antagonists[/color][/bold] role that causes trouble on station not through direct antagonization, but rather collateral damage fighting other wizard duelists.<!-- Starlight, changed to Solo Antagonists -->
+
+  ## The Rites of Dueling
+  <Box>
+    <GuideEntityEmbed Entity="WizardTeleportScroll" Caption=""/>
+  </Box>
+
+  Each wizard duel is a unique and chaotic experience, and often causes untold destruction to any souls unfortunate to be caught in between.
+  With this in mind, there are a few traditions set in place from wizards of yore, that must be upheld for any sanctioned duel:
+  - No duel shall take place on Space Wizards Federation grounds.
+  - All duelists must set the terms of engagement prior to the cast of the first spell.
+  - Once the terms of engagement are set, no duelist shall breach said terms.
+
+  Terms of engagement often consist of discussion of what spells, wands, and equipment are valid or prohibited from use, what defines victory and defeat, and if collaboration with battleground denizens is permitted.
+
+  Most importantly of all, be creative! Simple combat duels and pointless killing of lesser denizens is unimaginative, and the Space Wizards Federation would rather at least one of you return alive.<!-- Starlight, suggestion that they don't just start RDMing. -->
+
+</Document>

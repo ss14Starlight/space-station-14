@@ -8,3 +8,17 @@
   id: ReporterJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtReporter
+
+# Starlight Start
+- type: loadout
+  id: DigiboardMassMedia
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 72000 # 20 hours of breaking all of the news in half.
+  storage:
+    back:
+    - DigiboardMassMedia
+# Starlight End

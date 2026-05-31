@@ -33,6 +33,19 @@
       state: generic_keys
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
+  # Starlight Start
+  - type: EdgeConnection
+    connectionKey: computers
+    allowedDirections: East, West
+  - type: ItemSlots
+    slots:
+      pai_slot:
+        name: Personal AI Device
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - PAI
+  # Starlight End
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -47,10 +60,18 @@
         enum.WiresVisualLayers.MaintenancePanel:
           True: { visible: false }
           False: { visible: true }
+      # Starlight Start
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        computerLayerBody:
+          None: { state: computer, sprite: Structures/Machines/computers.rsi }
+          West: { state: computer_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East: { state: computer_l, sprite: _Starlight/Structures/Machines/computers.rsi }
+          East, West: { state: computer_l_r, sprite: _Starlight/Structures/Machines/computers.rsi }
+      # Starlight End
   - type: LitOnPowered
   - type: PointLight
-    radius: 1.5
-    energy: 3.0
+    radius: 2.5 #SL 1.5 - > 2.5
+    energy: 1.5 #SL 3.0 -> 1.5
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
@@ -70,6 +91,7 @@
     containers:
       board: !type:Container
         ents: []
+      pai_slot: !type:ContainerSlot {} # Starlight-edit
   - type: LightningTarget
     priority: 1
   - type: RequireProjectileTarget

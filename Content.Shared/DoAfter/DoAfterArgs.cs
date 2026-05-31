@@ -1,5 +1,6 @@
 using Content.Shared.FixedPoint;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Magic.Components; // Starlight
 
 namespace Content.Shared.DoAfter;
 
@@ -48,6 +49,16 @@ public sealed partial class DoAfterArgs
 
     [DataField]
     public bool ForceNet;
+
+    // Starlight-start
+    [NonSerialized]
+    [DataField]
+    public EntityUid? DistanceTarget;
+
+    [DataField]
+    public NetEntity? NetDistanceTarget;
+
+    // Starlight-end
 
     #region Event options
     /// <summary>
@@ -206,6 +217,14 @@ public sealed partial class DoAfterArgs
     {
         User = user;
         Delay = delay;
+
+        // BEGIN STARLIGHT
+        if (entManager.TryGetComponent<BonusScalarComponent>(user, out var bonusScalarComp))
+        {
+            Delay *= bonusScalarComp.doAfterDelay;
+        }
+        // END STARLIGHT
+
         Target = target;
         Used = used;
         EventTarget = eventTarget;
@@ -267,12 +286,14 @@ public sealed partial class DoAfterArgs
         BlockDuplicate = other.BlockDuplicate;
         CancelDuplicate = other.CancelDuplicate;
         DuplicateCondition = other.DuplicateCondition;
+        DistanceTarget = other.DistanceTarget; // Starlight-edit
 
         // Networked
         NetUser = other.NetUser;
         NetTarget = other.NetTarget;
         NetUsed = other.NetUsed;
         NetEventTarget = other.NetEventTarget;
+        NetDistanceTarget = other.NetDistanceTarget; // Starlight-edit
 
         Event = other.Event.Clone();
     }

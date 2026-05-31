@@ -7,10 +7,10 @@
     mode: AlignAtmosPipeLayers
   components:
   - type: Sprite
-    sprite: Structures/Piping/Atmospherics/gas_pipe_sensor.rsi
+    sprite: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor.rsi # Carpmosia-edit - 5 pipe layers
     drawdepth: BelowFloor
     layers:
-    - sprite: Structures/Piping/Atmospherics/pipe.rsi
+    - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi # Carpmosia-edit - 5 pipe layers
       map: [ "enum.PipeVisualLayers.Pipe" ]
       state: pipeStraight
     - map: ["base"]
@@ -20,13 +20,21 @@
       shader: unshaded
   - type: AtmosPipeLayers
     spriteRsiPaths:
-      Primary: Structures/Piping/Atmospherics/gas_pipe_sensor.rsi
-      Secondary: Structures/Piping/Atmospherics/gas_pipe_sensor_alt1.rsi
-      Tertiary: Structures/Piping/Atmospherics/gas_pipe_sensor_alt2.rsi
+      # Carpmosia-start - 5 pipe layers
+      Primary: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor.rsi
+      Secondary: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt1.rsi
+      Tertiary: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt2.rsi
+      Quaternary: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt3.rsi
+      Quinary: _Carpmosia/Structures/Piping/Atmospherics/gas_pipe_sensor_alt4.rsi
+      # Carpmosia-end - 5 pipe layers
     alternativePrototypes:
       Primary: GasPipeSensor
       Secondary: GasPipeSensorAlt1
       Tertiary: GasPipeSensorAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeSensorAlt3
+      Quinary: GasPipeSensorAlt4
+      # Carpmosia-end - 5 pipe layers
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -54,6 +62,14 @@
     tags:
     - AirSensor
     - Unstackable
+  # Starlight start
+  - type: VentCrawlTube
+  - type: VentCrawlTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawlTube: !type:Container
+  - type: ChildBlockVision
+  # Starlight end
   - type: GuideHelp
     guides:
     - AtmosphericNetworkMonitor
@@ -71,6 +87,10 @@
       Primary: GasPipeSensorDistribution
       Secondary: GasPipeSensorDistributionAlt1
       Tertiary: GasPipeSensorDistributionAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeSensorDistributionAlt3
+      Quinary: GasPipeSensorDistributionAlt4
+      # Carpmosia-end - 5 pipe layers
 
 - type: entity
   parent: GasPipeSensor
@@ -84,6 +104,10 @@
       Primary: GasPipeSensorWaste
       Secondary: GasPipeSensorWasteAlt1
       Tertiary: GasPipeSensorWasteAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeSensorWasteAlt3
+      Quinary: GasPipeSensorWasteAlt4
+      # Carpmosia-end - 5 pipe layers
 
 - type: entity
   parent: GasPipeSensor
@@ -97,6 +121,10 @@
       Primary: GasPipeSensorMixedAir
       Secondary: GasPipeSensorMixedAirAlt1
       Tertiary: GasPipeSensorMixedAirAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeSensorMixedAirAlt3
+      Quinary: GasPipeSensorMixedAirAlt4
+      # Carpmosia-end - 5 pipe layers
 
 - type: entity
   parent: GasPipeSensor
@@ -110,6 +138,10 @@
       Primary: GasPipeSensorTEGHot
       Secondary: GasPipeSensorTEGHotAlt1
       Tertiary: GasPipeSensorTEGHotAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeSensorTEGHotAlt3
+      Quinary: GasPipeSensorTEGHotAlt4
+      # Carpmosia-end - 5 pipe layers
 
 - type: entity
   parent: GasPipeSensor
@@ -123,3 +155,7 @@
       Primary: GasPipeSensorTEGCold
       Secondary: GasPipeSensorTEGColdAlt1
       Tertiary: GasPipeSensorTEGColdAlt2
+      # Carpmosia-start - 5 pipe layers
+      Quaternary: GasPipeSensorTEGColdAlt3
+      Quinary: GasPipeSensorTEGColdAlt4
+      # Carpmosia-end - 5 pipe layers

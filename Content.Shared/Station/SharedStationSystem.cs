@@ -92,10 +92,11 @@ public abstract partial class SharedStationSystem : EntitySystem
         if (!Resolve(entity, ref xform))
             throw new ArgumentException("Tried to use an abstract entity!", nameof(entity));
 
-        if (TryComp<StationTrackerComponent>(entity, out var stationTracker))
+        if (TryComp<StationTrackerComponent>(entity, out var stationTracker)
+            && (stationTracker.Station ?? stationTracker.LastStation) is { } station) // Starlight
         {
             // We have a specific station we are tracking and are tethered to.
-            return stationTracker.Station;
+            return station; // Starlight
         }
 
         if (HasComp<StationDataComponent>(entity))

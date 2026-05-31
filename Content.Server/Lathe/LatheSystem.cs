@@ -175,15 +175,8 @@ namespace Content.Server.Lathe
             if (!CanProduce(uid, recipe, quantity, component))
                 return false;
 
-            foreach (var (mat, amount) in recipe.Materials)
-            {
-                var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int)(-amount * component.MaterialUseMultiplier)
-                    : -amount;
-                adjustedAmount *= quantity;
-
-                _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
-            }
+            foreach (var (mat, amount) in GetAdjustedAmount(component, recipe))
+                _materialStorage.TryChangeMaterialAmount(uid, mat, -amount * quantity);
 
             if (component.Queue.Last is { } node && node.ValueRef.Recipe == recipe.ID)
                 node.ValueRef.ItemsRequested += quantity;
@@ -207,6 +200,10 @@ namespace Content.Server.Lathe
             var recipe = _proto.Index(batch.Recipe);
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
+            // Starlight Begin
+            // Ensure the production time is at least one tick to avoid issue with multiple recipes completing at once causing lag.
+           time = MathHelper.Max(time, _timing.TickPeriod);
+            // Starlight End
 
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
@@ -220,10 +217,12 @@ namespace Content.Server.Lathe
             UpdateRunningAppearance(uid, true);
             UpdateUserInterfaceState(uid, component);
 
-            if (time == TimeSpan.Zero)
-            {
-                FinishProducing(uid, component, lathe);
-            }
+            // Starlight Begin
+            // if (time == TimeSpan.Zero)
+            // {
+            //     FinishProducing(uid, component, lathe);
+            // }
+            // Starlight End
             return true;
         }
 
@@ -237,13 +236,19 @@ namespace Content.Server.Lathe
                 var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
                 if (currentRecipe.Result is { } resultProto)
                 {
-                    var result = Spawn(resultProto, Transform(uid).Coordinates);
+
+                    //Starlight Start
+                    var transform = Transform(uid).Coordinates;
+                    if (_container.IsEntityInContainer(uid))
+                        transform = Transform(_container.GetContainingContainers(uid).Last().Owner).Coordinates;
+                    var result = Spawn(resultProto, transform);
                     _stack.TryMergeToContacts(result);
                     if (currentRecipe.PrintTicket)
                     {
-                        var tickets = Spawn(currentRecipe.TicketProtoId, Transform(uid).Coordinates);
+                        var tickets = Spawn(currentRecipe.TicketProtoId, transform);
                         _stack.TryMergeToContacts(tickets);
                     }
+                    //Starlight End
                 }
 
                 if (currentRecipe.ResultReagents is { } resultReagents &&
@@ -385,6 +390,48 @@ namespace Content.Server.Lathe
             return GetAvailableRecipes(uid, component).Contains(recipe.ID);
         }
 
+        /// <summary>
+        /// Iterator returning adjusted amount of material needed to
+        /// produce a given recipe
+        /// </summary>
+        private static IEnumerable<(ProtoId<MaterialPrototype> mat, int amount)> GetAdjustedAmount(LatheComponent lathe, LatheRecipePrototype recipe)
+        {
+            foreach (var (mat, amount) in recipe.Materials)
+            {
+                var adjustedAmount = recipe.ApplyMaterialDiscount
+                    ? (int)(amount * lathe.MaterialUseMultiplier)
+                    : amount;
+
+                yield return (mat, adjustedAmount);
+            }
+        }
+
+        /// <summary>
+        /// Refunds the material cost of the currently running recipe,
+        /// without cancelling production
+        /// </summary>
+        private void RefundCurrentRecipe(EntityUid uid, LatheComponent lathe)
+        {
+            _proto.Resolve(lathe.CurrentRecipe, out var recipe);
+
+            foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
+                _materialStorage.TryChangeMaterialAmount(uid, mat, amount);
+        }
+
+        /// <summary>
+        /// Refunds the material cost of a given batch,
+        /// without deleting it
+        /// </summary>
+        private void RefundBatch(EntityUid uid, LatheComponent lathe, LatheRecipeBatch batch)
+        {
+            var delta = batch.ItemsRequested - batch.ItemsPrinted;
+
+            _proto.Resolve(batch.Recipe, out var recipe);
+
+            foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
+                _materialStorage.TryChangeMaterialAmount(uid, mat, amount * delta);
+        }
+
         public void AbortProduction(EntityUid uid, LatheComponent? component = null)
         {
             if (!Resolve(uid, ref component))
@@ -407,6 +454,7 @@ namespace Content.Server.Lathe
                     }
                 }
 
+                RefundCurrentRecipe(uid, component);
                 component.CurrentRecipe = null;
             }
             RemCompDeferred<LatheProducingComponent>(uid);
@@ -460,6 +508,7 @@ namespace Content.Server.Lathe
                 LogImpact.Low,
                 $"{ToPrettyString(args.Actor):player} deleted a lathe job for ({batch.ItemsPrinted}/{batch.ItemsRequested}) {GetRecipeName(batch.Recipe)} at {ToPrettyString(uid):lathe}");
 
+            RefundBatch(uid, component, batch);
             component.Queue.Remove(node);
             UpdateUserInterfaceState(uid, component);
         }
@@ -518,6 +567,7 @@ namespace Content.Server.Lathe
                 LogImpact.Low,
                 $"{ToPrettyString(args.Actor):player} aborted printing {GetRecipeName(component.CurrentRecipe.Value)} at {ToPrettyString(uid):lathe}");
 
+            RefundCurrentRecipe(uid, component);
             component.CurrentRecipe = null;
             FinishProducing(uid, component);
         }

@@ -44,6 +44,13 @@ using Robust.Shared.Utility;
 using Content.Shared.Rounding;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Enumerators;
+#region Starlight
+using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Lock;
+using Content.Shared.Tools.Components;
+using Content.Shared.Tools.Systems;
+using Robust.Shared.Network;
+#endregion
 
 namespace Content.Shared.Storage.EntitySystems;
 
@@ -73,6 +80,10 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
     [Dependency] private   readonly TagSystem _tag = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
+    #region Starlight
+    [Dependency] private readonly SharedToolSystem _tool = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    #endregion
 
     private EntityQuery<ItemComponent> _itemQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -147,6 +158,7 @@ public abstract class SharedStorageSystem : EntitySystem
         SubscribeLocalEvent<StorageComponent, InteractUsingEvent>(OnInteractUsing, after: new[] { typeof(ItemSlotsSystem) });
         SubscribeLocalEvent<StorageComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<StorageComponent, OpenStorageImplantEvent>(OnImplantActivate);
+        SubscribeLocalEvent<StorageComponent, OpenStorageOrganEvent>(OnOrganActivate);//Starlight
         SubscribeLocalEvent<StorageComponent, AfterInteractEvent>(AfterInteract);
         SubscribeLocalEvent<StorageComponent, DestructionEventArgs>(OnDestroy);
         SubscribeLocalEvent<StorageComponent, BoundUserInterfaceMessageAttempt>(OnBoundUIAttempt);
@@ -445,6 +457,11 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!Resolve(uid, ref storageComp, false))
             return;
 
+        // Starlight-start: TODO change this to before storage opened event
+        if (HasComp<LockedStorageComponent>(uid) && TryComp<LockComponent>(uid, out var lockComponent) && lockComponent.Locked)
+            return;
+        // Starlight-end
+
         // prevent spamming bag open / honkerton honk sound
         silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && UseDelay.IsDelayed((uid, useDelay), id: OpenUiUseDelayID);
         if (!CanInteract(entity, (uid, storageComp), silent: silent))
@@ -519,6 +536,11 @@ public abstract class SharedStorageSystem : EntitySystem
         if (attemptEv.Cancelled)
             return;
 
+        // Starlight Start: let valid tool interactions win over storage click-insert.
+        if (ShouldDeferClickInsertToToolInteraction(uid, args.Used))
+            return;
+        // Starlight End
+
         PlayerInsertHeldEntity((uid, storageComp), args.User);
         // Always handle it, even if insertion fails.
         // We don't want to trigger any AfterInteract logic here.
@@ -572,6 +594,29 @@ public abstract class SharedStorageSystem : EntitySystem
 
         args.Handled = true;
     }
+
+    //Starlight Start
+    /// <summary>
+    /// Specifically for storage organs.
+    /// </summary>
+    private void OnOrganActivate(EntityUid uid, StorageComponent storageComp, OpenStorageOrganEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if(!TryComp(uid, out StorageOrganComponent? organ) || organ.ActionKey != args.Key)
+            return;
+
+        var uiOpen = UI.IsUiOpen(uid, StorageComponent.StorageUiKey.Key, args.Performer);
+
+        if (uiOpen)
+            UI.CloseUi(uid, StorageComponent.StorageUiKey.Key, args.Performer);
+        else
+            OpenStorageUI(uid, args.Performer, storageComp, false);
+
+        args.Handled = true;
+    }
+    //Starlight End
 
     /// <summary>
     /// Allows a user to pick up entities by clicking them, or pick up all entities in a certain radius
@@ -1703,7 +1748,7 @@ public abstract class SharedStorageSystem : EntitySystem
     /// <summary>
     /// Updates the occupied grid mask for the entity.
     /// </summary>
-    protected void UpdateOccupied(Entity<StorageComponent> ent)
+    public void UpdateOccupied(Entity<StorageComponent> ent) // Starlight edit - Need this public for toolshed command otherwise i will go insane
     {
         ent.Comp.OccupiedGrid.Clear();
         RemoveOccupied(ent.Comp.Grid, ent.Comp.OccupiedGrid);
@@ -2048,6 +2093,42 @@ public abstract class SharedStorageSystem : EntitySystem
         return true;
     }
 
+    // Starlight Start
+    private bool ShouldDeferClickInsertToToolInteraction(EntityUid uid, EntityUid used)
+    {
+        if (TryComp(uid, out SimpleToolUsageComponent? simpleTool))
+        {
+            if (_tool.HasQuality(used, simpleTool.Quality))
+                return true;
+
+            // Client prediction may not know the dynamically selected SimpleToolUsage quality.
+            // If the target has a simple tool interaction and the held item is a tool,
+            // do not predict storage insertion. The server remains authoritative below.
+            if (_net.IsClient && HasComp<ToolComponent>(used))
+                return true;
+        }
+
+        if (TryComp(uid, out DigitalLockComponent? digitalLock))
+        {
+            if (_tool.HasQuality(used, digitalLock.OpenQuality))
+                return true;
+
+            if (digitalLock.MaintenanceOpen
+                && digitalLock.Code != ""
+                && _tool.HasQuality(used, digitalLock.ResetQuality))
+            {
+                return true;
+            }
+
+            // Same idea for client prediction: avoid visually inserting a held tool into
+            // storage when a lock/tool interaction may be about to happen.
+            if (_net.IsClient && HasComp<ToolComponent>(used))
+                return true;
+        }
+
+        return false;
+    }
+    // Starlight End
     [Serializable, NetSerializable]
     protected sealed class StorageComponentState : ComponentState
     {

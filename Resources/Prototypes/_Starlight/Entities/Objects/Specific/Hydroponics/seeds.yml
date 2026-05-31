@@ -1,0 +1,20 @@
+- type: entity
+  parent: SeedBase
+  name: packet of organ tree seeds
+  id: OrganTreeSeeds
+  components:
+  - type: Seed
+    seedId: organTree
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Hydroponics/organtree.rsi
+
+
+- type: entity
+  parent: SeedBase
+  name: packet of devilish apple seeds
+  id: EvilAppleSeeds
+  components:
+    - type: Seed
+      seedId: evilApple
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/evil_apple.rsi

@@ -4,7 +4,7 @@ using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.VentCraw;
+using Content.Shared.VentCrawl;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Melee;
 
@@ -79,7 +79,7 @@ public sealed partial class MeleeOperator : HTNOperator, IHtnConditionalShutdown
     public override void PlanShutdown(NPCBlackboard blackboard)
     {
         base.PlanShutdown(blackboard);
-        
+
         ConditionalShutdown(blackboard);
     }
 

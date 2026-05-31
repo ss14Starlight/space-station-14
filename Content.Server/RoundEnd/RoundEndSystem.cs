@@ -410,7 +410,7 @@ namespace Content.Server.RoundEnd
                 SetAutoCallTime();
             }
         }
-        
+
         public TimeSpan TimeToCallShuttle()
         {
             var autoCalledBefore = _autoCalledBefore

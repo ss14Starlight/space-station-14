@@ -16,10 +16,14 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 #region Starlight
+using System.Linq;
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Starlight.Radio;
+using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
-using Content.Shared.CollectiveMind;
 using Robust.Shared.Serialization;
+using Content.Shared._Starlight.Speech;
 #endregion Starlight
 
 namespace Content.Shared.Chat;
@@ -38,7 +42,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     public const char EmotesAltPrefix = '*';
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
-    public const char CollectiveMindPrefix = '+';
 
     public const char DefaultChannelKey = 'h';
 
@@ -72,8 +75,6 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// Cache of the keycodes for faster lookup.
     /// </summary>
     private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
-    
-    private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!;
 
     public override void Initialize()
     {
@@ -84,8 +85,6 @@ public abstract partial class SharedChatSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
         CacheEmotes();
-
-        CacheCollectiveMinds(); // Starlight
     }
 
     protected virtual void OnPrototypeReload(PrototypesReloadedEventArgs obj)
@@ -95,21 +94,12 @@ public abstract partial class SharedChatSystem : EntitySystem
 
         if (obj.WasModified<EmotePrototype>())
             CacheEmotes();
-        
-        if (obj.WasModified<CollectiveMindPrototype>()) // Starlight
-            CacheCollectiveMinds(); // Starlight
     }
 
     private void CacheRadios()
     {
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
-            .ToFrozenDictionary(x => x.KeyCode);
-    }
-    
-    private void CacheCollectiveMinds()
-    {
-        _prototypeManager.PrototypesReloaded -= OnPrototypeReload;
-        _mindKeyCodes = _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>()
+            .Where(x => x.KeyCode != '\0') // Starlight - Check if KeyCode is not the default null character
             .ToFrozenDictionary(x => x.KeyCode);
     }
 
@@ -181,10 +171,12 @@ public abstract partial class SharedChatSystem : EntitySystem
         string input,
         out string output,
         out RadioChannelPrototype? channel,
+        out CustomRadioChannelData? customChannel, //Starlight
         bool quiet = false)
     {
         output = input.Trim();
         channel = null;
+        customChannel = null; //Starlight
 
         if (input.Length == 0)
             return false;
@@ -216,56 +208,142 @@ public abstract partial class SharedChatSystem : EntitySystem
             var ev = new GetDefaultRadioChannelEvent();
             RaiseLocalEvent(source, ev);
 
+            //Starlight begin
             if (ev.Channel != null)
-                _prototypeManager.TryIndex(ev.Channel, out channel);
+                if (!_prototypeManager.TryIndex(ev.Channel, out channel))
+                {
+                    TryGetCustomChannel(source, ev.Channel, out customChannel);
+                }
+            //Starlight end
             return true;
         }
 
-        if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
+        // Starlight begin
+        var protoResult = TryGetChannelsFromKeyCode(source, channelKey, out var channelMatches);
+        var customResult = TryGetCustomChannelsFromKeyCode(source, channelKey, out var customChannelMatches);
+        RadioChannelPrototype? protoMatch = null;
+        foreach (var match in channelMatches.Where(p => p.KeyCode == channelKey))
+            protoMatch = match;
+        if (protoResult && !customResult)
         {
-            var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
-            _popup.PopupEntity(msg, source, source);
+            if (protoMatch is not null)
+            {
+                channel = protoMatch;
+                return true;
+            }
         }
 
+        if (customResult && !protoResult)
+        {
+            if (customChannelMatches.Count == 1 || input.Length < 3)
+            {
+                customChannel = customChannelMatches.First();
+                return true;
+            }
+            var idx = input[2].ToString();
+            var isNum = int.TryParse(idx, out var num);
+            if (!isNum || num == 0 || !customChannelMatches.TryGetValue(num, out var match))
+            {
+                customChannel = customChannelMatches[0];
+                return true;
+            }
+
+            output = SanitizeMessageCapital(input[3..].TrimStart());
+            customChannel = match;
+            return true;
+        }
+
+        if (customResult && protoResult)
+        {
+            if (input.Length < 3 && protoMatch is not null)
+            {
+                channel = protoMatch;
+                return true;
+            }
+            var idx = input[2].ToString();
+            var isNum = int.TryParse(idx, out var num);
+            if (!isNum)
+            {
+                channel = protoMatch;
+                return true;
+            }
+            num--;
+            if (!customChannelMatches.TryGetValue(num, out var match))
+            {
+                channel = protoMatch;
+                return true;
+            }
+            output = SanitizeMessageCapital(input[3..].TrimStart());
+            customChannel = match;
+            return true;
+        }
+        if(_net.IsServer) _popup.PopupEntity(Loc.GetString("chat-manager-no-such-channel", ("key", channelKey)), source, source);
         return true;
+        //Starlight end
     }
-    
-    public bool TryProccessCollectiveMindMessage(
-        EntityUid source,
-        string input,
-        out string output,
-        out CollectiveMindPrototype? channel,
-        bool quiet = false)
+
+    //Starlight begin
+    public bool TryGetCustomChannel(EntityUid source, string channelId, [NotNullWhen(true)] out CustomRadioChannelData? customChannel)
     {
-        output = input.Trim();
-        channel = null;
-
-        if (input.Length == 0)
-            return false;
-
-        if (!input.StartsWith(CollectiveMindPrefix))
-            return false;
-
-        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
+        customChannel = null;
+        if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
+            if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
+                foreach (var channel in headsetRadio.CustomChannels.Where(channel => channel.Id == channelId))
+                {
+                    customChannel = channel;
+                    return true;
+                }
+        if(TryComp<IntercomComponent>(source, out var intercom))
         {
-            output = SanitizeMessageCapital(input[1..].TrimStart());
-            if (!quiet)
-                _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
-            return true;
+            foreach (var channel in intercom.CustomChannels.Where(channel => channel.Id == channelId))
+            {
+                customChannel = channel;
+                return true;
+            }
         }
 
-        var channelKey = input[1];
-        channelKey = char.ToLower(channelKey);
-        output = SanitizeMessageCapital(input[2..].TrimStart());
-
-        if (_mindKeyCodes.TryGetValue(channelKey, out channel) || quiet)
+        if (!TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio)) return false;
+        foreach (var channel in radio.CustomChannels.Where(channel => channel.Id == channelId))
+        {
+            customChannel = channel;
             return true;
-
-        var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
-        _popup.PopupEntity(msg, source, source);
+        }
 
         return false;
     }
+
+    private bool TryGetCustomChannelsFromKeyCode(EntityUid source, char keycode,
+        out List<CustomRadioChannelData> customChannels)
+    {
+        customChannels = [];
+        if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
+            if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
+                customChannels.AddRange(headsetRadio.CustomChannels.Where(channel => channel.Keycode == keycode));
+
+        if (TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio))
+            customChannels.AddRange(radio.CustomChannels.Where(channel => channel.Keycode == keycode));
+        return customChannels.Count > 0;
+    }
+
+    private bool TryGetChannelsFromKeyCode(EntityUid source, char keycode,
+        out List<RadioChannelPrototype> presentChannels)
+    {
+        presentChannels = [];
+        if (TryComp<WearingHeadsetComponent>(source, out var wearingHeadset))
+            if (TryComp<ActiveRadioComponent>(wearingHeadset.Headset, out var headsetRadio))
+                presentChannels.AddRange(headsetRadio.Channels
+                    .Where(channel => _prototypeManager.HasIndex(channel))
+                    .Select(proto => _prototypeManager.Index(proto))
+                    .Where(channel => channel.KeyCode == keycode));
+
+        if (TryComp<IntrinsicRadioTransmitterComponent>(source, out var radio))
+            presentChannels.AddRange(radio.Channels
+                .Where(channel => _prototypeManager.HasIndex(channel))
+                .Select(proto => _prototypeManager.Index(proto))
+                .Where(channel => channel.KeyCode == keycode));
+        return presentChannels.Count > 0;
+    }
+    //Starlight end
 
     public string SanitizeMessageCapital(string message)
     {
@@ -279,7 +357,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     // Starlight start
     public string SanitizeMessageOfEvilCharacters(string message)
     {
-        
+
         foreach (char c in ICDisallowedCharacters)
         {
             message = message.Replace($"{c}", "");
@@ -421,7 +499,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="ignoreActionBlocker">If set to true, action blocker will not be considered for whether an entity can send this message.</param>
     public virtual void TrySendInGameICMessage(
         EntityUid source,
-        string message,
+        SpeechMessage message, // Starlight
         InGameICChatType desiredType,
         bool hideChat,
         bool hideLog = false,
@@ -447,7 +525,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="languageOverride">Interpret this message as being in the specified language</param> // Starlight
     public virtual void TrySendInGameICMessage(
         EntityUid source,
-        string message,
+        SpeechMessage message, // Starlight
         InGameICChatType desiredType,
         ChatTransmitRange range,
         bool hideLog = false,
@@ -488,11 +566,12 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="announcementSound">Sound to play.</param>
     /// <param name="colorOverride">Optional color for the announcement message.</param>
     public virtual void DispatchGlobalAnnouncement(
-        string message,
+        SpeechMessage message,
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null
+        Color? colorOverride = null,
+        EntityUid? speaker = null // Starlight
         )
     { }
 
@@ -508,12 +587,13 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="colorOverride">Optional color for the announcement message.</param>
     public virtual void DispatchFilteredAnnouncement(
         Filter filter,
-        string message,
+        SpeechMessage message, // Starlight
         EntityUid? source = null,
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
+        Color? colorOverride = null,
+        bool recordToReplay = true) // Starlight
     { }
 
     /// <summary>
@@ -527,7 +607,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     /// <param name="colorOverride">Optional color for the announcement message.</param>
     public virtual void DispatchStationAnnouncement(
         EntityUid source,
-        string message,
+        SpeechMessage message, // Starlight
         string? sender = null,
         bool playDefaultSound = true,
         SoundSpecifier? announcementSound = null,
@@ -560,8 +640,7 @@ public enum InGameICChatType : byte
 {
     Speak,
     Emote,
-    Whisper,
-    CollectiveMind // Starlight
+    Whisper
 }
 
 /// <summary>

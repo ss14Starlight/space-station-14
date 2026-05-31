@@ -102,6 +102,7 @@
     - type: TriggerOnMobstateChange
       mobState:
       - Critical
+      - Dead
     - type: RattleOnTrigger
       targetUser: true
       radioChannel: Security
@@ -245,6 +246,25 @@
       enum.ChameleonControllerKey.Key:
         type: ChameleonControllerBoundUserInterface
 
+- type: entity
+  parent: BaseSubdermalImplant
+  id: VoiceMaskImplant
+  name: voice mask implant
+  description: This implant allows you to change your voice at will.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    implantAction: ActionChangeVoiceMaskImplant
+  - type: VoiceMask
+    overrideIdentity: true
+  - type: UserInterface
+    interfaces:
+      enum.VoiceMaskUIKey.Key:
+        type: VoiceMaskBoundUserInterface
+  - type: Tag
+    tags:
+    - SubdermalImplant
+
 #Nuclear Operative/Special Exclusive implants
 
 - type: entity
@@ -383,7 +403,7 @@
   parent: BaseSubdermalImplant
   id: MindShieldImplant
   name: mindshield implant
-  description: This implant will ensure loyalty to Nanotrasen and prevent mind control devices.
+  description: This implant will ensure loyalty to NanoTrasen and prevent mind control devices. # SL
   categories: [ HideSpawnMenu ]
   components:
    - type: SubdermalImplant
@@ -394,7 +414,7 @@
 - type: entity
   parent: BaseSubdermalImplant
   id: RadioImplantCentcomm
-  name: radio implant
+  name: centcomm radio implant # Starlight
   description: This implant grants access to the Centcomm channel without a headset. Only authorized for Centcomm employees.
   categories: [ HideSpawnMenu ]
   components:

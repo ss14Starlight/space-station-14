@@ -32,6 +32,8 @@
     - VendingMachineSovietSoda #Boda
     - VendingMachineSpaceUp
     - VendingMachineStarkist
+    - VendingMachineDonk #SL
+    - VendingMachineIceCream #SL
     chance: 1
 
 

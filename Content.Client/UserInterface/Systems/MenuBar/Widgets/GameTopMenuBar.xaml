@@ -116,11 +116,10 @@
         AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"
         />
   <ui:MenuButton
-        Name="MHelpButton"
+        Name="AchievementButton"
         Access="Internal"
-        Icon="{xe:Tex '/Textures/Interface/mhelp.svg.192dpi.png'}"
-        BoundKey = "{x:Static is:ContentKeyFunctions.OpenMHelp}"
-        ToolTip="{Loc 'ui-options-function-open-m-help'}"
+        Icon="{xe:Tex '/Textures/_Starlight/Interface/Achievements/achievements.png'}"
+        ToolTip="{Loc 'game-hud-open-achievement-menu-button-tooltip'}"
         MinSize="42 64"
         HorizontalExpand="True"
         AppendStyleClass="{x:Static style:StyleClass.ButtonSquare}"

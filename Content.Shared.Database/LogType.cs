@@ -391,6 +391,7 @@ public enum LogType
     /// Tiles related interactions.
     /// </summary>
     Tile = 86,
+    ObjectiveSummary = 422, // Starlight
 
     /// <summary>
     /// A client has sent too many chat messages recently and is temporarily blocked from sending more.
@@ -478,6 +479,11 @@ public enum LogType
     /// Events relating to midi playback.
     /// </summary>
     Instrument = 103,
+
+    /// <summary>
+    /// Events related to players connecting/disconnecting.
+    /// </summary>
+    Connection = 104,
 
     #region Starlight log flags
     Railroading = 1000,

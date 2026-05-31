@@ -46,7 +46,15 @@
             <SpriteView Name="View"
                         Scale="4 4"
                         HorizontalAlignment="Center" />
-            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center">
+            <!-- Starlight-start: Plumbing valve -->
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 4">
+                <Button Name="ValveButton"
+                        Access="Public"
+                        Text="{Loc 'reagent-dispenser-window-valve-closed'}"
+                        StyleClasses="" />
+            </BoxContainer>
+            <!-- Starlight-end -->
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 4"><!-- Starlight: Margin -->
                 <Button Name="ClearButton"
                         Access="Public"
                         Text="{Loc 'reagent-dispenser-window-clear-button'}"

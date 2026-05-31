@@ -22,7 +22,7 @@ namespace Content.Shared.Kitchen
 
         [DataField]
         public string Group = "Other";
-        
+
         /// <summary>
         /// What kind of device needs to cook this? (Microwave/Oven/Stove)
         /// </summary>

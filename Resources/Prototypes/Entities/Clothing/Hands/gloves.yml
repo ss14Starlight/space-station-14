@@ -253,7 +253,6 @@
     - components:
       - type: BatteryDrainer
       - type: StunProvider
-        cooldown: 10
         noPowerPopup: ninja-no-power
         whitelist:
           components:
@@ -274,7 +273,7 @@
       - type: CriminalRecordsHacker
 
 - type: entity
-  parent: [ ClothingHandsGlovesColorBlack, BaseSecurityEngineeringContraband ]
+  parent: [ ClothingHandsGlovesColorBlack, BaseEngineeringSecurityCommandContraband ] # SL edit: Engi/Sec/Command contra
   id: ClothingHandsGlovesCombat
   name: combat gloves
   description: These tactical gloves are fireproof and shock resistant.
@@ -303,7 +302,7 @@
     fiberColor: fibers-black
 
 - type: entity
-  parent: [ BaseEngineeringSecurityContraband, ClothingHandsGlovesCombat ] #Starlight EngSec contra
+  parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat ] # SL edit: Engi/Sec/Command/Salvage/Mining contra
   id: ClothingHandsMercGlovesCombat
   name: mercenary combat gloves
   description: High-quality combat gloves to protect hands from mechanical damage during combat.
@@ -407,6 +406,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
+    - BibleThwackRemovable
   #endregion Starlight
 
 - type: entity
@@ -533,7 +533,7 @@
   parent: [ClothingHandsBase, BaseGrandTheftContraband]
   id: ClothingHandsKnuckleDustersQM
   name: QM's golden knuckle dusters
-  description: "24karat gold infused with plasteel and branded with the Nanotrasen logo. A true symbol of the Quartermaster's might."
+  description: "24karat gold infused with plasteel and branded with the NanoTrasen logo. A true symbol of the Quartermaster's might." # SL
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/KnuckleDusters/goldenknuckleduster.rsi
@@ -652,7 +652,7 @@
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
   - type: LandAtCursor # it deals stamina damage when thrown
-  - type: PredictedBattery
+  - type: Battery
     maxCharge: 1000
     startingCharge: 1000
   - type: GuideHelp

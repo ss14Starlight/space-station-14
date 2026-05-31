@@ -26,7 +26,7 @@ public sealed partial class HandheldLightComponent : Component
 
     [DataField("turnOffSound")]
     public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/Items/flashlight_off.ogg");
-    
+
     [DataField("needsCharge")]
     public bool NeedsCharge = true;
 
@@ -69,6 +69,15 @@ public sealed partial class HandheldLightComponent : Component
     /// </summary>
     [DataField("radiatingBehaviourId")]
     public string RadiatingBehaviourId { get; set; } = string.Empty;
+
+    #region Starlight
+
+    /// <summary>
+    /// Entity to draw power from instead of the component owner. This is used for clothing-mounted flashlights to draw from the clothing instead of the item itself.
+    /// </summary>
+    public EntityUid? DrawSource;
+
+    #endregion
 
     [Serializable, NetSerializable]
     public sealed class HandheldLightComponentState : ComponentState

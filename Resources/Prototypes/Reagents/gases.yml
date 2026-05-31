@@ -47,7 +47,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant ]
+          type: [ Human, Animal, Rat, Plant, Arachnid, Moth ]
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -62,6 +62,7 @@
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
         ignoreResistances: true
+        maxScale: 16 # Starlight: Cap damage at ~20 per breath (inhale+exhale) to be sure there is time to respond.
         damage:
           types:
             Poison: 0.7
@@ -232,6 +233,9 @@
         damage:
           types:
             Cold: 0.5 # liquid nitrogen is cold
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
     Gas:
       effects:
       - !type:Oxygenate
@@ -253,6 +257,13 @@
         ratios:
           NitrousOxide: 1.0
           Nitrogen: -1.0
+    Medicine:
+      effects:
+        - !type:ModifyBloodLevel
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          amount: 0.4
 
 - type: reagent
   id: NitrousOxide
@@ -296,6 +307,10 @@
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
           inverted: true
+        # Funkystation Start: Funky atmos - /tg/ gases
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+        # Funkystation End: Funky atmos - /tg/ gases
         type: Local
         visualType: Medium
         messages: [ "effect-sleepy" ]
@@ -306,6 +321,10 @@
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
           inverted: true
+        # Funkystation Start: Funky atmos - /tg/ gases
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+        # Funkystation End: Funky atmos - /tg/ gases
         walkSpeedModifier: 0.65
         sprintSpeedModifier: 0.65
       - !type:ModifyStatusEffect
@@ -314,6 +333,10 @@
         - !type:MetabolizerTypeCondition
           type: [ Slime ]
           inverted: true
+        # Funkystation Start: Funky atmos - /tg/ gases
+        - !type:BloodReagentCondition
+          reagent: NitrosylPlasmide
+        # Funkystation End: Funky atmos - /tg/ gases
         effectProto: StatusEffectForcedSleeping
         time: 12 #Starlight
         type: Update
@@ -352,9 +375,9 @@
       - !type:ModifyStatusEffect
         effectProto: StatusEffectSeeingRainbow
         type: Add
-        time: 15
+        time: 60 # Starlight: Liquid frezon way more potent (its denser!)
       - !type:Drunk
-        boozePower: 15
+        boozePower: 30  # Starlight: Liquid frezon way more potent (its denser!)
       - !type:PopupMessage
         type: Local
         messages: [ "frezon-lungs-cold" ]
@@ -379,9 +402,9 @@
         minScale: 1
         effectProto: StatusEffectSeeingRainbow
         type: Add
-        time: 500
+        time: 20  # Starlight: Down from 500 (holy shit)
       - !type:Drunk
-        boozePower: 500
+        boozePower: 10 # Starlight: Down from 500 (holy shit)
         minScale: 1
       - !type:PopupMessage
         type: Local

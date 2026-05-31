@@ -3,6 +3,11 @@ using Content.Server._Starlight.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Objectives.Components;
+using Content.Shared._Starlight.Railroading.Events;
+using Content.Server._Starlight.Objectives.Events;
+using Content.Shared._Starlight.Railroading;
+using Content.Shared.Objectives;
+using Content.Server._Starlight.Railroading;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
@@ -11,21 +16,44 @@ namespace Content.Server._Starlight.Objectives.Systems;
 /// </summary>
 public sealed class TeachALessonConditionSystem : EntitySystem
 {
+    [Dependency] private readonly RailroadingSystem _railroad = default!;
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<TeachALessonTargetComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>(OnAfterAssign);
+        SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveAfterAssignEvent>((ent, ref _) => OnAfterAssign(ent));
         SubscribeLocalEvent<TeachALessonConditionComponent, ObjectiveGetProgressEvent>(OnGetProgress);
+
+        SubscribeLocalEvent<TeachALessonConditionComponent, RailroadingCardChosenEvent>((ent, ref _) => OnAfterAssign(ent));
+        SubscribeLocalEvent<TeachALessonConditionComponent, RailroadingCardCompletionQueryEvent>(OnTaskCompletionQuery);
+        SubscribeLocalEvent<TeachALessonConditionComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
+    }
+
+    private void OnCollectObjectiveInfo(Entity<TeachALessonConditionComponent> ent, ref CollectObjectiveInfoEvent args)
+    {
+        if (!HasComp<RailroadCardComponent>(ent.Owner) || !TryComp<TargetObjectiveComponent>(ent.Owner, out var target))
+            return;
+
+        args.Objectives.Add(new ObjectiveInfo
+        {
+            Title = target.Title,
+            Icon = target.Icon,
+            Progress = ent.Comp.HasDied ? 1.0f : 0.0f,
+        });
+    }
+
+    private void OnTaskCompletionQuery(Entity<TeachALessonConditionComponent> ent, ref RailroadingCardCompletionQueryEvent args)
+    {
+        if (args.IsCompleted == false) return;
+
+        args.IsCompleted = ent.Comp.HasDied;
     }
 
     private void OnGetProgress(Entity<TeachALessonConditionComponent> ent, ref ObjectiveGetProgressEvent args)
-    {
-        args.Progress = ent.Comp.HasDied ? 1.0f : 0.0f;
-    }
+        => args.Progress = ent.Comp.HasDied ? 1.0f : 0.0f;
 
-    private void OnAfterAssign(Entity<TeachALessonConditionComponent> ent, ref ObjectiveAfterAssignEvent args)
+    private void OnAfterAssign(Entity<TeachALessonConditionComponent> ent)
     {
         if (!TryComp(ent.Owner, out TargetObjectiveComponent? targetObjective))
             return;
@@ -39,19 +67,23 @@ public sealed class TeachALessonConditionSystem : EntitySystem
             return;
         var targetComponent = EnsureComp<TeachALessonTargetComponent>(targetMobUid.Value);
         targetComponent.Teachers.Add(ent);
-        
+
     }
 
     private void OnMobStateChanged(Entity<TeachALessonTargetComponent> ent, ref MobStateChangedEvent args)
     {
-        if (args.NewMobState != MobState.Dead) 
+        if (args.NewMobState != MobState.Dead)
             return;
         foreach (var teacher in ent.Comp.Teachers)
         {
             if(!TryComp(teacher, out TeachALessonConditionComponent? condition))
                 continue;
+
             condition.HasDied = true;
-            
+
+            if (TryComp<RailroadableComponent>(teacher, out var railroadable)
+            && railroadable.ActiveCard is not null)
+                _railroad.InvalidateProgress((teacher, railroadable));
         }
     }
 }

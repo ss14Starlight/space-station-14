@@ -1,5 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Server.Forensics;
 using Content.Shared.Body.Components;
@@ -17,6 +16,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Content.Shared.Atmos;
+using Content.Server._Starlight.Medical.Body.Systems;
 
 namespace Content.Server.Nutrition.EntitySystems
 {
@@ -157,7 +157,7 @@ namespace Content.Server.Nutrition.EntitySystems
                 }
 
                 _reactiveSystem.DoEntityReaction(containerManager.Owner, inhaledSolution, ReactionMethod.Ingestion);
-                _bloodstreamSystem.TryAddToChemicals((containerManager.Owner, bloodstream), inhaledSolution);
+                _bloodstreamSystem.TryAddToBloodstream((containerManager.Owner, bloodstream), inhaledSolution);
             }
 
             _timer -= UpdateTimer;

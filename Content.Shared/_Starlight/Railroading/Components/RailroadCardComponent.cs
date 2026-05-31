@@ -7,13 +7,20 @@ namespace Content.Shared._Starlight.Railroading;
 public sealed partial class RailroadCardComponent : Component
 {
     [DataField(required: true)]
-    public string Title;
+    public LocId Title;
 
     [DataField(required: true)]
-    public string Description;
+    public LocId Description;
 
     [DataField(required: true)]
     public string Icon;
+
+    /// <summary>
+    /// If true, will show objective is antag Summary, if false its will show in the Card list.
+    /// * Note: Its will only show if antag/gamerule AntagSelectionComponent with agentname.
+    /// </summary>
+    [DataField]
+    public bool ShowObjective = false;
 
     [DataField]
     public Color Color = Color.White;
@@ -26,4 +33,6 @@ public sealed partial class RailroadCardComponent : Component
 
     [DataField]
     public List<Texture> Images = [];
+
+    public EntityUid Subject;
 }

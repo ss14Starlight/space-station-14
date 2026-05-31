@@ -14,8 +14,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Arachnid
-    - Diona
-    - Dwarf
+    - Diona # Starlight: Remove Dwarf
     - Human
     - Moth
     - Reptilian
@@ -24,6 +23,7 @@
     - Resomi #🌟Starlight🌟
     - Avali #🌟Starlight🌟
     - Thaven # Starlight
+    - Lagomorph # Starlight
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
@@ -31,13 +31,6 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Vox
-
-- type: loadoutEffectGroup #🌟Starlight🌟
-  id: NonBreather
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Shadekin
 
 # Basic
 - type: loadout
@@ -58,16 +51,6 @@
     back:
     - BoxSurvivalNitrogen
 
-# NonBreathers, ie. Shadekin 🌟Starlight🌟
-- type: loadout
-  id: EmergencyNonBreather
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalNonBreather
-
 # Clown
 - type: loadout
   id: EmergencyOxygenClown
@@ -87,15 +70,6 @@
     back:
     - BoxHugNitrogen
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherClown
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxHugNonBreather
-
 # Mime
 - type: loadoutEffectGroup
   id: OxygenBreatherMime
@@ -103,8 +77,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Arachnid
-    - Diona
-    - Dwarf
+    - Diona # Starlight: Remove Dwarf
     - Human
     - Reptilian
     - Vulpkanin
@@ -143,15 +116,6 @@
     back:
     - BoxMimeMoth
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-      - BoxMimeNonBreather
-
 # Engineering / Extended
 - type: loadout
   id: EmergencyOxygenExtended
@@ -170,15 +134,6 @@
   storage:
     back:
     - BoxSurvivalEngineeringNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherExtended
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalEngineeringNonBreather
 
 # Medical
 - type: loadout
@@ -199,15 +154,6 @@
     back:
     - BoxSurvivalMedicalNitrogen
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherMedical
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalMedicalNonBreather
-
 # Security
 - type: loadout
   id: EmergencyOxygenSecurity
@@ -226,15 +172,6 @@
   storage:
     back:
     - BoxSurvivalSecurityNitrogen
-
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonbreatherSecurity
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NonBreather
-  storage:
-    back:
-    - BoxSurvivalSecurityNonBreather
 
 # Syndicate
 - type: loadout
@@ -255,27 +192,39 @@
     back:
     - BoxSurvivalSyndicateNitrogen
 
-- type: loadout #🌟Starlight🌟
-  id: EmergencyNonBreatherSyndicate
+# Military / Double Extended
+- type: loadout
+  id: EmergencyOxygenMilitaryDouble
   effects:
   - !type:GroupLoadoutEffect
-    proto: NonBreather
+    proto: OxygenBreather
+  equipment:
+    pocket1: DoubleEmergencyOxygenTankFilled
   storage:
     back:
-    - BoxSurvivalNonBreatherSyndicate
+    - BoxSurvivalMilitaryDouble
+
+- type: loadout
+  id: EmergencyNitrogenMilitaryDouble
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  equipment:
+    pocket1: DoubleEmergencyNitrogenTankFilled
+  storage:
+    back:
+    - BoxSurvivalMilitaryDoubleNitrogen
 
 # Pre-equipped species gear
 
 # Full tank for vox as part of any Survival loadout
-# Starlight edit start - Removed - vox no longer spawn with nitrogen tanks automatically
-# - type: loadout
-#   id: LoadoutSpeciesVoxNitrogen
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     suitstorage: DoubleEmergencyNitrogenTankFilled
-# Starlight edit end
+- type: loadout
+  id: LoadoutSpeciesVoxNitrogen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    suitstorage: DoubleEmergencyNitrogenTankFilled
 
 # Full EVA Tank, Any Species
 - type: loadout
@@ -312,37 +261,35 @@
     pocket1: DoubleEmergencyOxygenTankFilled
 
 # Tank Harness
-# Starlight edit start - Removed - vox no longer spawn with gas tanks
-# - type: loadout
-#   id: LoadoutTankHarness
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     outerClothing: ClothingOuterVestTank
+- type: loadout
+  id: LoadoutTankHarness
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    outerClothing: ClothingOuterVestTank
 
 # Breath Tool On Face
-# - type: loadout
-#   id: LoadoutSpeciesBreathTool
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     mask: ClothingMaskBreath
+- type: loadout
+  id: LoadoutSpeciesBreathTool
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskBreath
 
-# - type: loadout
-#   id: LoadoutSpeciesBreathToolMedical
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     mask: ClothingMaskBreathMedical
+- type: loadout
+  id: LoadoutSpeciesBreathToolMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskBreathMedical
 
-# - type: loadout
-#   id: LoadoutSpeciesBreathToolSecurity
-#   effects:
-#   - !type:GroupLoadoutEffect
-#     proto: EffectSpeciesVox
-#   equipment:
-#     mask: ClothingMaskGasSecurity
-# Starlight edit end
+- type: loadout
+  id: LoadoutSpeciesBreathToolSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesVox
+  equipment:
+    mask: ClothingMaskGasSecurity

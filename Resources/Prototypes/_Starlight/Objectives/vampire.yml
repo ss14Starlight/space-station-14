@@ -1,0 +1,88 @@
+# Vampires
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireCMOHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist ] # Too easy.
+  - type: StealCondition
+    stealGroup: CMOHardsuit
+  - type: Objective
+    difficulty: 1 # Base implementation has hardsuits at difficulty of 1, so alright...
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireCEHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ ChiefEngineer, StationEngineer, AtmosphericTechnician, TechnicalAssistant ] # Too easy.
+  - type: StealCondition
+    stealGroup: CEHardsuit
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireHOSHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ] # Too easy.
+  - type: StealCondition
+    stealGroup: HOSHardsuit
+  - type: Objective
+    difficulty: 1.3 # It's the HoS, man.
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireQMHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead ] # Too easy.
+  - type: StealCondition
+    stealGroup: QMHardsuit
+  - type: Objective
+    difficulty: 1
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireCaptainHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Captain, HeadOfPersonnel, HeadOfSecurity, ResearchDirector, ChiefEngineer, ChiefMedicalOfficer, Quartermaster, NanoTrasenRepresentative, Magistrate, BlueShield ] # Too easy.
+  - type: StealCondition
+    stealGroup: CaptainHardsuit
+  - type: Objective
+    difficulty: 2.5 # Good luck. Rest of Cap's stuff is already 2.5.
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireNTRepHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ] # Too easy.
+  - type: StealCondition
+    stealGroup: NTRepHardsuit
+  - type: Objective
+    difficulty: 1.3 # Bridge
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireBSOHardsuitStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ] # Too easy.
+  - type: StealCondition
+    stealGroup: BSOHardsuit
+  - type: Objective
+    difficulty: 1.3 # Bridge
+
+- type: entity
+  parent: BaseVampireStealObjective
+  id: VampireBSOWeaponStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ] # Too easy.
+  - type: StealCondition
+    stealGroup: BSOWeapon
+  - type: Objective
+    difficulty: 2 # Equal to HoS's in difficulty.

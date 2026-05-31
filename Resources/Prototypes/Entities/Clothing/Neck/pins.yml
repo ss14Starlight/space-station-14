@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingNeckBase
+  parent: ClothingMiscBase # starlight: neck -> misc
   id: ClothingNeckPinBase
   abstract: true
   name: pin

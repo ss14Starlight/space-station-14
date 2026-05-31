@@ -1,0 +1,6 @@
+- type: material
+  id: MetalHydrogen
+  stackEntity: MetalHydrogen1
+  name: materials-metal-hydrogen
+  icon: { sprite: Objects/Materials/ingots.rsi, state: hydrogen }
+  price: 2.50 # $250 for 1 unit

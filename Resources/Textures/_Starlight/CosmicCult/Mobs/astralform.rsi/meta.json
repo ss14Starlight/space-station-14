@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "base-body",
+            "copyright": "A custom item by AftrLite(Github)",
+            "delays": [[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12]]
+        },
+        {
+            "name": "ascended-body",
+            "copyright": "A custom item by AftrLite(Github)",
+            "delays": [[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12]]
+        },
+        {
+            "name": "effect-underlay",
+            "copyright": "A custom item by AftrLite(Github)",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1]]
+        }
+    ]
+}

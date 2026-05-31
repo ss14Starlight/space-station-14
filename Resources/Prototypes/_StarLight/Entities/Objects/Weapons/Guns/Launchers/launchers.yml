@@ -1,9 +1,0 @@
-- type: entity
-  parent: WeaponLauncherHydra
-  id: WeaponLauncherHydraEMP
-  name: hydra
-  suffix: EMP
-  description: PLOOP... ZAP
-  components:
-  - type: RevolverAmmoProvider
-    proto: GrenadeEMP

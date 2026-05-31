@@ -15,13 +15,14 @@
                 <ui:OptionSlider Name="SpeechBubbleSpeakerOpacitySlider" Title="{Loc 'ui-options-speech-bubble-speaker-opacity'}" />
                 <ui:OptionSlider Name="SpeechBubbleBackgroundOpacitySlider" Title="{Loc 'ui-options-speech-bubble-background-opacity'}" />
                 <CheckBox Name="AutoFillHighlightsCheckBox" Text="{Loc 'ui-options-auto-fill-highlights'}" />
-                <ui:OptionColorSlider Name="HighlightsColorSlider" 
-                    Title="{Loc 'ui-options-highlights-color'}" 
+                <ui:OptionColorSlider Name="HighlightsColorSlider"
+                    Title="{Loc 'ui-options-highlights-color'}"
                     Example="{Loc 'ui-options-highlights-color-example'}"/>
                 <Label Text="{Loc 'ui-options-accessability-header-content'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="CensorNudityCheckBox" Text="{Loc 'ui-options-censor-nudity'}" />
                 <CheckBox Name="ArachnophobiaCheckBox" Text="{Loc 'ui-options-arachnophobia'}" /> <!-- Starlight -->
+                <CheckBox Name="DisableJobIconAnimationCheckBox" Text="{Loc 'ui-options-disable-job-icon-animation'}" /> <!-- Starlight -->
             </BoxContainer>
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />

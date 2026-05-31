@@ -36,6 +36,8 @@ public sealed class ClientClothingSystem : ClothingSystem
         {"outerClothing", "OUTERCLOTHING"},
         {Jumpsuit, "INNERCLOTHING"},
         {"neck", "NECK"},
+        {"misc", "NECK"}, // Starlight: misc slot
+        {"MISC", "NECK"}, // Starlight: misc slot
         {"back", "BACKPACK"},
         {"belt", "BELT"},
         {"gloves", "HAND"},

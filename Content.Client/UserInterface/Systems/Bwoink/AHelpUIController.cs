@@ -28,6 +28,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Client._Starlight.MHelp;
 
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
@@ -41,13 +42,14 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
     [Dependency] private readonly IInputManager _input = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly StaffHelpUIController _staffHelp = default!;
 
     private BwoinkSystem? _bwoinkSystem;
-    private Controls.MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;
-    private Button? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton;
+    public Controls.MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;
+    public Button? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton;
     public IAHelpUIHandler? UIHelper;
     private bool _discordRelayActive;
-    private bool _hasUnreadAHelp;
+    public bool _hasUnreadAHelp;
     private bool _bwoinkSoundEnabled;
     private string? _aHelpSound;
 
@@ -92,8 +94,10 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
 
     private void AHelpButtonPressed(BaseButton.ButtonEventArgs obj)
     {
-        EnsureUIHelper();
-        UIHelper!.ToggleWindow();
+        // EnsureUIHelper();
+        // UIHelper!.ToggleWindow();
+
+        _staffHelp.ToggleWindow();
     }
 
     public void OnSystemLoaded(BwoinkSystem system)
@@ -102,7 +106,7 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         _bwoinkSystem.OnBwoinkTextMessageRecieved += ReceivedBwoink;
 
         _input.SetInputCommand(ContentKeyFunctions.OpenAHelp,
-            InputCmdHandler.FromDelegate(_ => ToggleWindow()));
+            InputCmdHandler.FromDelegate(_ => _staffHelp.ToggleWindow()));
     }
 
     public void OnSystemUnloaded(BwoinkSystem system)
@@ -249,18 +253,20 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
         helper.Control.PopOut.Visible = false;
     }
 
-    private void UnreadAHelpReceived()
+    public void UnreadAHelpReceived()
     {
-        GameAHelpButton?.StyleClasses.Add(StyleClass.Negative);
-        LobbyAHelpButton?.StyleClasses.Add(StyleClass.Negative);
+        // GameAHelpButton?.StyleClasses.Add(StyleClass.Negative);
+        // LobbyAHelpButton?.StyleClasses.Add(StyleClass.Negative);
         _hasUnreadAHelp = true;
+        _staffHelp.RefreshAhelpButton();
     }
 
     private void UnreadAHelpRead()
     {
-        GameAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
-        LobbyAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
+        // GameAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
+        // LobbyAHelpButton?.StyleClasses.Remove(StyleClass.Negative);
         _hasUnreadAHelp = false;
+        _staffHelp.RefreshAhelpButton();
     }
 
     public void OnStateEntered(GameplayState state)

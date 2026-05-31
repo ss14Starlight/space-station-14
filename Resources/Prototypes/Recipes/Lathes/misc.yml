@@ -151,14 +151,16 @@
   materials:
     Steel: 600
 
-- type: latheRecipe
-  id: ClothingShoesBootsSpeed
-  result: ClothingShoesBootsSpeed
-  completetime: 2
-  materials:
-    Steel: 1500
-    Plastic: 1000
-    Silver: 500
+# Starlight edit start - Replaced with speed legs
+#- type: latheRecipe
+#  id: ClothingShoesBootsSpeed
+#  result: ClothingShoesBootsSpeed
+#  completetime: 2
+#  materials:
+#    Steel: 1500
+#    Plastic: 1000
+#    Silver: 500
+#Starlight edit end
 
 - type: latheRecipe
   id: ClothingShoesBootsJump

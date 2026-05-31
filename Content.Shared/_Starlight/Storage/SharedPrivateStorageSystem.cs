@@ -20,12 +20,11 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<PrivateStorageComponent, PrivateStorageDoAfterEvent>(OnDoAfter);
         SubscribeLocalEvent<PrivateStorageComponent, GetVerbsEvent<ActivationVerb>>(AddPrivateStorageVerb);
         SubscribeLocalEvent<PrivateStorageComponent, ActivateInWorldEvent>(OnActivate, after: [typeof(SharedStrippableSystem)]);
@@ -35,7 +34,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
     {
         if(args.Cancelled)
             return;
-        
+
         if(args.Handled)
             return;
 
@@ -91,7 +90,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
         }
         args.Verbs.Add(verb);
     }
-    
+
     /// <summary>
     /// Code used to open storage with action button over the verb
     /// Required to be separated from Storage System due to doAfter needed for others to open it
@@ -113,7 +112,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
 
         args.Handled = true;
     }
-    
+
     private bool CanInteract(EntityUid user, Entity<PrivateStorageComponent> storage, bool canInteract = true, bool silent = true)
     {
         if (HasComp<BypassInteractionChecksComponent>(user))
@@ -155,7 +154,7 @@ public abstract class SharedPrivateStorageSystem : EntitySystem
             BlockDuplicate = true,
             CancelDuplicate = true
         };
-        
+
         _popup.PopupEntity(Loc.GetString(component.AccessPopup, ("user", user)), uid, uid, PopupType.Medium);
         _doAfter.TryStartDoAfter(doAfterArgs);
     }

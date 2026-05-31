@@ -1,0 +1,21 @@
+{
+  "version": 1,
+
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Paradise and Starlight",
+
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+    "states": [
+        {
+            "name": "slime_potion",
+			"copyright": "https://github.com/ParadiseSS13/Paradise/blob/HEAD/icons/mob/actions/actions.dmi"
+        },
+		{
+            "name": "slime_potion_action",
+			"copyright": "https://github.com/ParadiseSS13/Paradise/blob/HEAD/icons/mob/actions/actions.dmi"
+        }
+    ]
+}

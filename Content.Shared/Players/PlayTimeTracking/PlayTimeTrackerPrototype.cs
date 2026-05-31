@@ -9,4 +9,15 @@ namespace Content.Shared.Players.PlayTimeTracking;
 public sealed partial class PlayTimeTrackerPrototype : IPrototype
 {
     [IdDataField] public string ID { get; private set; } = default!;
+
+    // Starlight start
+    /// <summary>
+    ///     The name of this job as displayed to players.
+    /// </summary>
+    [DataField]
+    public LocId Name { get; private set; } = "generic-unknown";
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string LocalizedName => Loc.GetString(Name);
+    // Starlight end
 }

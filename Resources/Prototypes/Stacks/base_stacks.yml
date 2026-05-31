@@ -5,38 +5,43 @@
   abstract: true
   id: BaseVerySmallStack
   maxCount: 5
+  splitAmounts: [1] # Starlight
 
 # size used by topicals and machine parts
 - type: stack
   abstract: true
   id: BaseSmallStack
   maxCount: 10
+  splitAmounts: [1,5] # Starlight
 
 # Default size
 - type: stack
   abstract: true
   id: BaseMediumStack
   maxCount: 30
+  splitAmounts: [1,5,10] # Starlight
 
 - type: stack
   abstract: true
   id: BaseLargeStack
   maxCount: 50
+  splitAmounts: [1,5,10,25] # Starlight
 
 - type: stack
   abstract: true
   id: BaseVeryLargeStack
   maxCount: 100
+  splitAmounts: [1,5,10,25,50] # Starlight
 
 # size used by "sheets." Usually materials like steel, glass, or plasma
 - type: stack
   abstract: true
   id: BaseSheetStack
-  maxCount: 30
+  parent: BaseMediumStack # Starlight
 
 # Used by tiles
 - type: stack
   abstract: true
   id: BaseTileStack
   icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: steel }
-  maxCount: 30
+  parent: BaseMediumStack # Starlight

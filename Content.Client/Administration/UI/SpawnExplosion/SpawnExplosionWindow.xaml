@@ -8,7 +8,7 @@
             <Label Text="{Loc 'admin-explosion-eui-label-type'}" MinSize="120 0" />
             <OptionButton Name="ExplosionOption" MinSize="70 0" HorizontalExpand="True" />
         </BoxContainer>
-        
+
         <BoxContainer Orientation="Horizontal">
             <Label Text="{Loc 'admin-explosion-eui-label-mapid'}" MinSize="120 0" />
             <OptionButton Name="MapOptions" MinSize="70 0" HorizontalExpand="True" />

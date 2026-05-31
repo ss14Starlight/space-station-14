@@ -44,7 +44,7 @@ namespace Content.Client.Info
             var button = new Button { Text = Loc.GetString("server-info-connect-discord-button") };
             button.OnPressed += _ => {
                 var link = _playerRoles.GetDiscordLink();
-                if(link != null) 
+                if(link != null)
                     uriOpener.OpenUri(link);
             };
             buttons.AddChild(button);

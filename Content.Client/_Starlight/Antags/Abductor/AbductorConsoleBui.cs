@@ -4,7 +4,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
-using static Content.Shared.Pinpointer.SharedNavMapSystem;
 using static Robust.Client.UserInterface.Control;
 
 namespace Content.Client._Starlight.Antags.Abductor;
@@ -12,19 +11,18 @@ namespace Content.Client._Starlight.Antags.Abductor;
 [UsedImplicitly]
 public sealed class AbductorConsoleBui : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
 
     [ViewVariables]
     private AbductorConsoleWindow? _window;
     [ViewVariables]
-    private bool armorDisabled = false;
+    private bool _armorDisabled = false;
     [ViewVariables]
-    private bool armorLocked = false;
+    private bool _armorLocked = false;
     [ViewVariables]
-    private AbductorArmorModeType armorMode = AbductorArmorModeType.Stealth;
+    private AbductorArmorModeType _armorMode = AbductorArmorModeType.Stealth;
     [ViewVariables]
-    private int balance = 0;
+    private int _balance = 0;
     public AbductorConsoleBui(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
 
@@ -41,7 +39,7 @@ public sealed class AbductorConsoleBui : BoundUserInterface
             Update(s);
     }
 
-    private void Update(AbductorConsoleBuiState state)
+    private void Update(AbductorConsoleBuiState _)
     {
         TryInitWindow();
 
@@ -63,11 +61,11 @@ public sealed class AbductorConsoleBui : BoundUserInterface
         _window.TeleportTabButton.OnPressed += _ => View(ViewType.Teleport);
 
         _window.ExperimentTabButton.OnPressed += _ => View(ViewType.Experiment);
-        
+
         _window.ArmorControlTabButton.OnPressed += _ => View(ViewType.ArmorControl);
-        
+
         _window.ShopTabButton.OnPressed += _ => View(ViewType.Shop);
-        
+
         _window.CombatModeButton.OnPressed += _ => {
             _window.StealthModeButton.Disabled = false;
             _window.CombatModeButton.Disabled = true;
@@ -76,7 +74,7 @@ public sealed class AbductorConsoleBui : BoundUserInterface
                 Mode = AbductorArmorModeType.Combat,
             });
         };
-        
+
         _window.StealthModeButton.OnPressed += _ => {
             _window.StealthModeButton.Disabled = true;
             _window.CombatModeButton.Disabled = false;
@@ -85,8 +83,8 @@ public sealed class AbductorConsoleBui : BoundUserInterface
                 Mode = AbductorArmorModeType.Stealth,
             });
         };
-        
-        if (armorMode == AbductorArmorModeType.Combat)
+
+        if (_armorMode == AbductorArmorModeType.Combat)
         {
             _window.CombatModeButton.Disabled = true;
             _window.StealthModeButton.Disabled = false;
@@ -96,23 +94,23 @@ public sealed class AbductorConsoleBui : BoundUserInterface
             _window.CombatModeButton.Disabled = false;
             _window.StealthModeButton.Disabled = true;
         }
-        
+
         _window.LockArmorButton.OnPressed += _ =>
         {
             SendMessage(new AbductorLockBuiMsg());
-            
-            armorLocked = !armorLocked;
-            
-            if (!armorLocked)
+
+            _armorLocked = !_armorLocked;
+
+            if (!_armorLocked)
                 _window.LockArmorButton.Text = Loc.GetString("abductors-ui-lock-armor");
             else
                 _window.LockArmorButton.Text = Loc.GetString("abductors-ui-unlock-armor");
         };
-        
+
         foreach (var itemPrototype in _protoManager.EnumeratePrototypes<AbductorListingPrototype>())
             AddShopItem(itemPrototype.Name, itemPrototype.Cost, itemPrototype.ProductEntity);
     }
-    
+
     private void AddShopItem(string itemName, int price, EntProtoId productEntity)
     {
         if (_window == null)
@@ -136,11 +134,11 @@ public sealed class AbductorConsoleBui : BoundUserInterface
 
         buyButton.OnPressed += _ =>
         {
-            if (balance >= price)
-                balance -= price;
-            
-            _window.BalanceLabel.SetMessage($"Balance: {balance}");
-            
+            if (_balance >= price)
+                _balance -= price;
+
+            _window.BalanceLabel.SetMessage($"Balance: {_balance}");
+
             SendMessage(new AbductorItemBuyedBuiMsg()
             {
                 Item = productEntity,
@@ -164,7 +162,7 @@ public sealed class AbductorConsoleBui : BoundUserInterface
         var padMsg = new FormattedMessage();
         padMsg.AddMarkupOrThrow(state.AlienPadFound ? "pad: [color=green]connected[/color]" : "pad: [color=red]not found[/color]");
         _window.PadLabel.SetMessage(padMsg);
-        
+
         var dispencerMsg = new FormattedMessage();
         dispencerMsg.AddMarkupOrThrow(state.DispencerFound ? "dispencer: [color=green]connected[/color]" : "dispencer: [color=red]not found[/color]");
         _window.DispencerLabel.SetMessage(dispencerMsg);
@@ -177,7 +175,7 @@ public sealed class AbductorConsoleBui : BoundUserInterface
             SendMessage(new AbductorAttractBuiMsg());
             Close();
         };
-        _window.TargetLabel.SetMessage(msg, new Type[1] { typeof(ColorTag) });
+        _window.TargetLabel.SetMessage(msg, [typeof(ColorTag)]);
 
         // experiment tab
 
@@ -195,20 +193,20 @@ public sealed class AbductorConsoleBui : BoundUserInterface
             SendMessage(new AbductorCompleteExperimentBuiMsg());
             Close();
         };
-        
-        // armor tab     
-        armorLocked = state.ArmorLocked;
-        
-        if (!armorLocked)
+
+        // armor tab
+        _armorLocked = state.ArmorLocked;
+
+        if (!_armorLocked)
             _window.LockArmorButton.Text = Loc.GetString("abductors-ui-lock-armor");
         else
             _window.LockArmorButton.Text = Loc.GetString("abductors-ui-unlock-armor");
-        
-        armorDisabled = state.ArmorFound;
-        
-        armorMode = state.CurrentArmorMode;
-        
-        if (armorMode == AbductorArmorModeType.Combat)
+
+        _armorDisabled = state.ArmorFound;
+
+        _armorMode = state.CurrentArmorMode;
+
+        if (_armorMode == AbductorArmorModeType.Combat)
         {
             _window.CombatModeButton.Disabled = true;
             _window.StealthModeButton.Disabled = false;
@@ -218,17 +216,17 @@ public sealed class AbductorConsoleBui : BoundUserInterface
             _window.CombatModeButton.Disabled = false;
             _window.StealthModeButton.Disabled = true;
         }
-        
-        UpdateDisabledPanel(armorDisabled);
-        
+
+        UpdateDisabledPanel(_armorDisabled);
+
         // shop tab
-        
+
         if (state.CurrentBalance != null)
-            balance = state.CurrentBalance.Value;
-        
-        _window.BalanceLabel.SetMessage($"Balance: {balance}");
+            _balance = state.CurrentBalance.Value;
+
+        _window.BalanceLabel.SetMessage($"Balance: {_balance}");
     }
-    
+
     private void UpdateDisabledPanel(bool disable)
     {
         if (_window == null)
@@ -267,8 +265,8 @@ public sealed class AbductorConsoleBui : BoundUserInterface
         _window.ExperimentTab.Visible = type == ViewType.Experiment;
         _window.ArmorControlTab.Visible = type == ViewType.ArmorControl;
         _window.ShopTab.Visible = type == ViewType.Shop;
-        
-        UpdateDisabledPanel(armorDisabled);
+
+        UpdateDisabledPanel(_armorDisabled);
     }
 
     private enum ViewType

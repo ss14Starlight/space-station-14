@@ -1,0 +1,376 @@
+- type: entity
+  parent: Jug
+  suffix: uranium
+  id: JugUranium
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-uranium
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Uranium
+          Quantity: 200
+
+# Did you know there is no zinc jug
+- type: entity
+  parent: Jug
+  suffix: zinc
+  id: JugZinc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-zinc
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Zinc
+          Quantity: 200
+
+
+- type: entity
+  parent: Jug
+  suffix: Corn oil
+  id: JugCornoil
+  components:
+  - type: Label
+    currentLabel: reagent-name-corn-oil
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Cornoil
+          Quantity: 200
+
+# Medicine Jugs for Chemist Locker
+- type: entity
+  parent: Jug
+  suffix: arithrazine
+  id: JugArithrazine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-arithrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Arithrazine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: diphenhydramine
+  id: JugDiphenhydramine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-diphenhydramine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Diphenhydramine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: cryoxadone
+  id: JugCryoxadone
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-cryoxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Cryoxadone
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: doxarubixadone
+  id: JugDoxarubixadone
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-doxarubixadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Doxarubixadone
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: aloxadone
+  id: JugAloxadone
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-aloxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Aloxadone
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: sigynate
+  id: JugSigynate
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-sigynate
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Sigynate
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: leporazine
+  id: JugLeporazine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-leporazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Leporazine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: bruizine
+  id: JugBruizine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-bruizine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Bruizine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: lacerinol
+  id: JugLacerinol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-lacerinol
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: pyrazine
+  id: JugPyrazine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-pyrazine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Pyrazine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: insuzine
+  id: JugInsuzine
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-insuzine
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Insuzine
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: ambuzol
+  id: JugAmbuzol
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-ambuzol
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Ambuzol
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: ambuzol plus
+  id: JugAmbuzolPlus
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-ambuzol-plus
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: AmbuzolPlus
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: amoxla
+  id: JugAmoxla
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Label
+    currentLabel: reagent-name-amoxla
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        reagents:
+        - ReagentId: Amoxla
+          Quantity: 200
+
+# Golden jugs
+- type: entity
+  parent: GoldenJug
+  suffix: bicaridine
+  id: JugGoldenBicaridine
+  components:
+  - type: Label
+    currentLabel: reagent-name-bicaridine
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Bicaridine
+          Quantity: 400
+
+- type: entity
+  parent: GoldenJug
+  suffix: dermaline
+  id: JugGoldenDermaline
+  components:
+  - type: Label
+    currentLabel: reagent-name-dermaline
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Dermaline
+          Quantity: 400
+
+# Large cryo chemical beakers
+- type: entity
+  suffix: cryoxadone
+  parent: LargeBeaker
+  id: CryoxadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-cryoxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Cryoxadone
+          Quantity: 100
+
+- type: entity
+  suffix: doxarubixadone
+  parent: LargeBeaker
+  id: DoxarubixadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-doxarubixadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Doxarubixadone
+          Quantity: 100
+
+- type: entity
+  suffix: arcryox
+  parent: LargeBeaker
+  id: ArcryoxBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-arcryox
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Arcryox
+          Quantity: 100
+
+- type: entity
+  suffix: necrosol
+  parent: LargeBeaker
+  id: NecrosolBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-necrosol
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Necrosol
+          Quantity: 100
+
+- type: entity
+  suffix: chronexaline
+  parent: LargeBeaker
+  id: ChronexalineBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-chronexaline
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Chronexaline
+          Quantity: 100
+
+- type: entity
+  suffix: aloxadone
+  parent: LargeBeaker
+  id: AloxadoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-aloxadone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Aloxadone
+          Quantity: 100

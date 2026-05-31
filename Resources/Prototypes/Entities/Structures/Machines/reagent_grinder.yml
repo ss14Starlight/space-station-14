@@ -61,6 +61,12 @@
   name: industrial reagent grinder
   description: An industrial reagent grinder.
   components:
+  - type: Appearance
+  # Starlight-start: Plumbing connector visuals
+  - type: PlumbingConnectorAppearance
+    offset: 0.09375
+  - type: AtmosPipeColor
+  # Starlight-end
   - type: SolutionContainerManager
     solutions:
       output:
@@ -103,3 +109,30 @@
     solution: output
   - type: ExaminableSolution
     solution: output
+  # Starlight - Plumbing integration
+  - type: PlumbingOutlet
+    solutionName: output
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
+  - type: NodeContainer
+    nodes:
+      outletNorth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West

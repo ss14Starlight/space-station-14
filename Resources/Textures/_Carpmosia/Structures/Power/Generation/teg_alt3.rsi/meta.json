@@ -1,0 +1,177 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "circ-2",
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modifed by Atakku (github) for 5 layer piping.",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "circ-2-light",
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modifed by Atakku (github) for 5 layer piping.",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "circ-1",
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modifed by Atakku (github) for 5 layer piping.",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "circ-1-light",
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modifed by Atakku (github) for 5 layer piping.",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "circ-0",
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modifed by Atakku (github) for 5 layer piping.",
+      "directions": 4
+    },
+    {
+      "name": "circ-0-light",
+      "copyright": "Taken from https://github.com/Baystation12/Baystation12/blob/fc2196fa74492570e5abb847085afca0e53f4ea8/icons/obj/power.dmi. Modified to split light layers. Modifed by Atakku (github) for 5 layer piping.",
+      "directions": 4
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[head=1][color=#135285]────────────────────[/color][/head]
+[color=#1b67a5]█▄░░█ ▀▀█▀▀[/color] [head=3] [color=#135285]NanoTrasen[/color][/head]
+[color=#1b67a5]█▀█▄█ ░░█░░[/color] [head=3] [color=#135285]Representative[/color][/head]
+[color=#1b67a5]█░░▀█ ░░█░░[/color]  [color=#aaaaaa][italic]OFFICIAL CORPORATE DOCUMENT[/italic][/color]
+[head=1][color=#135285]────────────────────[/color][/head]
+[head=2][color=#135285][bold]Classified Corporate Document[/bold][/color][/head]
+[head=1][color=#135285]────────────────────[/color][/head]
+[mono]
+[bold]Subject:[/bold] Abductors
+[bold]Association:[/bold] Unknown
+[bold]Objectives:[/bold] Unknown
+
+Central Security Division has identified and verified the validity of claims of 'Abductors' operating within the Starlight Sector and targeting Central Command Contractors.
+
+Reports are unreliable as subjects of the Abductors return heavily medicated and delirious if they are even awake at all.
+
+Surgical examination of subjects have concluded that the purpose of these abductions is to surgically remove the patient's heart and replace it with a strange gland of unknown composition. Effects of this surgery vary wildly, and immediate removal is advised.
+
+The end goal of these abductions is unknown.
+[/mono]
+
+
+[head=1][color=#135285]────────────────────[/color][/head]

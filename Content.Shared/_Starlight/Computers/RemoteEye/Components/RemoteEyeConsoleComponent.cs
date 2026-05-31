@@ -19,7 +19,7 @@ public sealed partial class RemoteEyeConsoleComponent : Component
     public EntProtoId RemoteEntityProto;
 
     [DataField]
-    public EntityUid? RemoteEntity; 
+    public EntityUid? RemoteEntity;
 
     [DataField(readOnly: true)]
     public EntityWhitelist? Whitelist;
@@ -29,4 +29,17 @@ public sealed partial class RemoteEyeConsoleComponent : Component
 
     [DataField]
     public Color Color { get; set; } = Color.White;
+
+    /// <summary>
+    /// If true, instead of showing a UI, will set the camera's location to the console's location.
+    /// Meant for structures like the Xenobiology console where the console's viewing area is the same as the user's location.
+    /// </summary>
+    [DataField(readOnly: true)]
+    public bool ViewOnConsolePosition = false;
+
+    /// <summary>
+    /// Set of users currently using the console.
+    /// </summary>
+    [ViewVariables]
+    public HashSet<EntityUid> Users = new();
 }

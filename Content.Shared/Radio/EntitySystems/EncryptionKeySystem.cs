@@ -10,11 +10,14 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Wires;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
+
+#region Starlight
+using Content.Shared._Starlight.Radio;
+using Content.Shared.Interaction.Components;
+#endregion
 
 namespace Content.Shared.Radio.EntitySystems;
 
@@ -42,16 +45,42 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntInsertedIntoContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EntRemovedFromContainerMessage>(OnContainerModified);
         SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionRemovalFinishedEvent>(OnKeyRemoval);
+
+        SubscribeLocalEvent<EncryptionKeyHolderComponent, EncryptionKeyToggleMessage>(OnEncryptionKeyToggle);
     }
+
+    // Starlight
+    private void OnEncryptionKeyToggle(EntityUid uid, EncryptionKeyHolderComponent comp, ref EncryptionKeyToggleMessage args)
+    {
+        foreach (var key in comp.KeyContainer.ContainedEntities)
+        {
+            if (!TryComp<EncryptionKeyComponent>(key, out var keyComp))
+                continue;
+
+            if (keyComp.Channels.Contains(args.ProtoId))
+            {
+                keyComp.Channels.Remove(args.ProtoId);
+                keyComp.MutedChannels.Add(args.ProtoId);
+                UpdateChannels(uid, comp);
+            }
+            else if (keyComp.MutedChannels.Contains(args.ProtoId))
+            {
+                keyComp.MutedChannels.Remove(args.ProtoId);
+                keyComp.Channels.Add(args.ProtoId);
+                UpdateChannels(uid, comp);
+            }
+        }
+    }
+    // Starlight End
 
     private void OnKeyRemoval(EntityUid uid, EncryptionKeyHolderComponent component, EncryptionRemovalFinishedEvent args)
     {
         if (args.Cancelled)
             return;
 
-        var contained = component.KeyContainer.ContainedEntities.ToArray();
-        _container.EmptyContainer(component.KeyContainer, reparent: false);
-        foreach (var ent in contained)
+        List<EntityUid> removedKeys = _container.EmptyContainer(component.KeyContainer, reparent: false); //Starlight fixed unremovable keys being removable
+        if (removedKeys.Count == 0) return; //Starlight fixed unremovable keys being removable
+        foreach (var ent in removedKeys) //Starlight fixed unremovable keys being removable
         {
             _hands.PickupOrDrop(args.User, ent, dropNear: true);
         }
@@ -66,6 +95,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             return;
 
         component.Channels.Clear();
+        component.CustomChannels.Clear(); // Starlight
         component.DefaultChannel = null;
 
         foreach (var ent in component.KeyContainer.ContainedEntities)
@@ -73,6 +103,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             if (TryComp<EncryptionKeyComponent>(ent, out var key))
             {
                 component.Channels.UnionWith(key.Channels);
+                component.CustomChannels.UnionWith(key.CustomChannels); // Starlight
                 component.DefaultChannel ??= key.DefaultChannel;
             }
         }
@@ -98,7 +129,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         }
         else if (TryComp<ToolComponent>(args.Used, out var tool)
                  && _tool.HasQuality(args.Used, component.KeysExtractionMethod, tool)
-                 && component.KeyContainer.ContainedEntities.Count > 0) // dont block deconstruction
+                 && component.KeyContainer.ContainedEntities.Count(key => !HasComp(key, typeof(UnremoveableComponent))) != 0) //Starlight fixed unremovable keys being removable
         {
             args.Handled = true;
             TryRemoveKey(uid, component, args, tool);
@@ -149,12 +180,6 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             return;
         }
 
-        if (component.KeyContainer.ContainedEntities.Count == 0)
-        {
-            _popup.PopupClient(Loc.GetString("encryption-keys-no-keys"), uid, args.User);
-            return;
-        }
-
         _tool.UseTool(args.Used, args.User, uid, 1f, component.KeysExtractionMethod, new EncryptionRemovalFinishedEvent(), toolComponent: tool);
     }
 
@@ -169,8 +194,8 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
         // 🌟Starlight🌟 start
-        if (!component.CanBeExamined)   
-            return;                     
+        if (!component.CanBeExamined)
+            return;
         // 🌟Starlight🌟 end
         if (component.KeyContainer.ContainedEntities.Count == 0)
         {
@@ -178,16 +203,19 @@ public sealed partial class EncryptionKeySystem : EntitySystem
             return;
         }
 
-        if (component.Channels.Count > 0)
+        if (component.Channels.Count > 0 || component.CustomChannels.Count > 0) // Starlight edit
         {
             using (args.PushGroup(nameof(EncryptionKeyComponent)))
             {
                 args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
+                //Starlight begin
                 AddChannelsExamine(component.Channels,
+                    component.CustomChannels,
                     component.DefaultChannel,
                     args,
                     _protoManager,
                     "examine-encryption-channel");
+                //Starlight end
             }
         }
     }
@@ -197,10 +225,16 @@ public sealed partial class EncryptionKeySystem : EntitySystem
         if (!args.IsInDetailsRange)
             return;
 
-        if(component.Channels.Count > 0)
+        //Starlight begin
+        if(component.Channels.Count > 0 || component.CustomChannels.Count > 0)
         {
-            args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
-            AddChannelsExamine(component.Channels, component.DefaultChannel, args, _protoManager, "examine-encryption-channel");
+            using (args.PushGroup(nameof(EncryptionKeyComponent)))
+            {
+                args.PushMarkup(Loc.GetString("examine-encryption-channels-prefix"));
+                AddChannelsExamine(component.Channels, component.CustomChannels, component.DefaultChannel, args, _protoManager,
+                    "examine-encryption-channel");
+            }
+            //Starlight end
         }
     }
 
@@ -210,7 +244,7 @@ public sealed partial class EncryptionKeySystem : EntitySystem
     /// <param name="channels">HashSet of channels in headset, encryptionkey or etc.</param>
     /// <param name="protoManager">IPrototypeManager for getting prototypes of channels with their variables.</param>
     /// <param name="channelFTLPattern">String that provide id of pattern in .ftl files to format channel with variables of it.</param>
-    public void AddChannelsExamine(HashSet<ProtoId<RadioChannelPrototype>> channels, string? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern)
+    public void AddChannelsExamine(HashSet<ProtoId<RadioChannelPrototype>> channels, HashSet<CustomRadioChannelData> customChannels, string? defaultChannel, ExaminedEvent examineEvent, IPrototypeManager protoManager, string channelFTLPattern) // Starlight edit
     {
         RadioChannelPrototype? proto;
         foreach (var id in channels)
@@ -228,24 +262,64 @@ public sealed partial class EncryptionKeySystem : EntitySystem
                 ("freq", proto.Frequency / 10f)));
         }
 
-        if (defaultChannel != null && _protoManager.TryIndex(defaultChannel, out proto))
+        //Starlight begin
+        foreach (var id in customChannels)
         {
-            if (HasComp<HeadsetComponent>(examineEvent.Examined))
+            var key = id.Id == SharedChatSystem.CommonChannel.Id
+                ? SharedChatSystem.RadioCommonPrefix.ToString()
+                : $"{SharedChatSystem.RadioChannelPrefix}{id.Keycode}";
+
+            examineEvent.PushMarkup(Loc.GetString(channelFTLPattern,
+                ("color", id.Color),
+                ("key", key),
+                ("id", id.LocalizedName),
+                ("freq", id.Frequency / 10f)));
+        }
+
+        if (defaultChannel != null)
+        {
+            if (_protoManager.TryIndex(defaultChannel, out proto))
             {
-                var msg = Loc.GetString("examine-headset-default-channel",
-                ("prefix", SharedChatSystem.DefaultChannelPrefix),
-                ("channel", proto.LocalizedName),
-                ("color", proto.Color));
-                examineEvent.PushMarkup(msg);
+                if (HasComp<HeadsetComponent>(examineEvent.Examined))
+                {
+                    var msg = Loc.GetString("examine-headset-default-channel",
+                        ("prefix", SharedChatSystem.DefaultChannelPrefix),
+                        ("channel", proto.LocalizedName),
+                        ("color", proto.Color));
+                    examineEvent.PushMarkup(msg);
+                }
+                if (HasComp<EncryptionKeyComponent>(examineEvent.Examined))
+                {
+                    var msg = Loc.GetString("examine-encryption-default-channel",
+                        ("channel", proto.LocalizedName),
+                        ("color", proto.Color));
+                    examineEvent.PushMarkup(msg);
+                }
             }
-            if (HasComp<EncryptionKeyComponent>(examineEvent.Examined))
+            else
             {
-                var msg = Loc.GetString("examine-encryption-default-channel",
-                ("channel", proto.LocalizedName),
-                ("color", proto.Color));
-                examineEvent.PushMarkup(msg);
+                foreach (var channel in customChannels.Where(channel => channel.Id == defaultChannel))
+                {
+                    if (HasComp<HeadsetComponent>(examineEvent.Examined))
+                    {
+                        var msg = Loc.GetString("examine-headset-default-channel",
+                            ("prefix", SharedChatSystem.DefaultChannelPrefix),
+                            ("channel", channel.LocalizedName),
+                            ("color", channel.Color));
+                        examineEvent.PushMarkup(msg);
+                    }
+                    if (HasComp<EncryptionKeyComponent>(examineEvent.Examined))
+                    {
+                        var msg = Loc.GetString("examine-encryption-default-channel",
+                            ("channel", channel.LocalizedName),
+                            ("color", channel.Color));
+                        examineEvent.PushMarkup(msg);
+                    }
+                    break;
+                }
             }
         }
+        //Starlight end
     }
 
     [Serializable, NetSerializable]

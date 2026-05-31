@@ -2,7 +2,7 @@
   # Vox
 
   <Box>
-    <GuideEntityEmbed Entity="MobVox" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceVox" Caption=""/>
   </Box>
 
   [color=#ffa500]Warning! This species is not recommended for new players due to their fatal allergy to oxygen![/color]
@@ -10,9 +10,6 @@
   Vox breathe nitrogen, and [color=#ffa500] oxygen is toxic to them.[/color]
   Unfortunately, space stations tend to be full of oxygen,
   so Vox must use an internal nitrogen supply at almost all times to avoid fatal exposure.
-
-  The years of bioengineering have allowed Vox to develop a special set of lungs that can be filled with any breathable gas mixture.
-  It can hold up to 10L of gas, and allows for about half an hour of breathing without any modifications.
 
   Vox always spawn wearing working nitrogen internals equipment.
   A spare breathing mask and an emergency nitrogen canister is provided in their survival box.
@@ -25,6 +22,8 @@
   letting them quickly eat, drink, take oral medication, and so on.
   A thirty second oxygen exposure takes them two minutes to recover from.
   If their health does not seem to improve within a minute of oxygen exposure, they should seek medical attention.
+
+  Vox airloss and blood level can be treated with Amoxla, as well as standard Saline and Dexalin, due to their unique biology compared to other ammonia-based blood species.
 
   Vox deal Slash damage with their unarmed attack.
 

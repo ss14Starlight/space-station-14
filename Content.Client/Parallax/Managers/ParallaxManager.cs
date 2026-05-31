@@ -5,6 +5,7 @@ using Content.Client.Parallax.Data;
 using Content.Shared.CCVar;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Configuration;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Parallax.Managers;
 
@@ -98,10 +99,13 @@ public sealed class ParallaxManager : IParallaxManager
             }
             else
             {
-                layers = await Task.WhenAll(
+                // Explicitly allocate params array to avoid sandbox violation since C# 14.
+                var tasks = new[]
+                {
                     LoadParallaxLayers(parallaxPrototype.Layers, loadedLayers, cancel),
-                    LoadParallaxLayers(parallaxPrototype.LayersLQ, loadedLayers, cancel)
-                );
+                    LoadParallaxLayers(parallaxPrototype.LayersLQ, loadedLayers, cancel),
+                };
+                layers = await Task.WhenAll(tasks);
             }
 
             cancel.ThrowIfCancellationRequested();
@@ -151,6 +155,7 @@ public sealed class ParallaxManager : IParallaxManager
         var prepared = new ParallaxLayerPrepared()
         {
             Texture = await config.Texture.GenerateTexture(cancel),
+            Sprite = config.RSI, // SL
             Config = config
         };
 

@@ -12,6 +12,14 @@ namespace Content.Shared.Drowsiness;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
 public sealed partial class DrowsinessStatusEffectComponent : Component
 {
+    // Starlight
+    [DataField]
+    public bool SleepIncident = true;
+
+    // Starlight
+    [DataField]
+    public bool KnockdownIncident = false;
+
     /// <summary>
     /// The random time between sleeping incidents, (min, max).
     /// </summary>

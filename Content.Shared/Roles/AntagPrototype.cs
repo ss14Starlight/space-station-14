@@ -1,7 +1,12 @@
 using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Content.Shared.Preferences.Loadouts; // Starlight
+
+#region Starlight
+using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Preferences.Loadouts;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+#endregion Starlight
 
 namespace Content.Shared.Roles;
 
@@ -58,13 +63,12 @@ public sealed partial class AntagPrototype : IPrototype
     [DataField]
     public List<ProtoId<GuideEntryPrototype>>? Guides;
 
-    // Starlight Start
+    // Starlight start
     /// <summary>
     /// Antag Loadout prototype
     /// </summary>
     [DataField]
     public List<ProtoId<RoleLoadoutPrototype>>? RoleLoadout;
-    // Starlight End
 
     /// <summary>
     /// If this is not null, this antag will be allowed to be displayed on the character customization screen if that
@@ -73,4 +77,11 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<StartingGearPrototype>? PreviewStartingGear;
+
+    /// <summary>
+    /// Which playtime tracker this role should contribute towards.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<PlayTimeTrackerPrototype>))]
+    public string? PlayTimeTracker { get; private set; } = default!;
+    // Starlight end
 }

@@ -10,7 +10,7 @@ namespace Content.Server.Store.Conditions;
 /// Basically copied from PlayerCountConidition.
 /// </remarks>
 public sealed partial class ListingPlayerCountCondition : ListingCondition
-{   
+{
     /// <summary>
     /// Minimum players needed for this listing to be available.
     /// </summary>
@@ -23,13 +23,13 @@ public sealed partial class ListingPlayerCountCondition : ListingCondition
     [DataField]
     public int Maximum = 500;
 
-    private static ISharedPlayerManager? _playerManager;
+    private static ISharedPlayerManager? s_playerManager;
 
     public override bool Condition(ListingConditionArgs args)
     {
-        _playerManager ??= IoCManager.Resolve<ISharedPlayerManager>();
+        s_playerManager ??= IoCManager.Resolve<ISharedPlayerManager>();
 
-        var playerCount = _playerManager.PlayerCount;
+        var playerCount = s_playerManager.PlayerCount;
 
         return playerCount >= Minimum && playerCount <= Maximum;
     }

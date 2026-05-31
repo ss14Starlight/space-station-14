@@ -1,0 +1,5 @@
+- type: guideEntry
+  id: DeepFriedRecipes
+  name: guide-entry-sl-deepfried-recipes
+  text: "/ServerInfo/_Starlight/Guidebook/Service/DeepFriedRecipes.xml"
+  filterEnabled: True

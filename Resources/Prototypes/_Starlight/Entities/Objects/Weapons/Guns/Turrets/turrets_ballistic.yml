@@ -1,0 +1,57 @@
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretPirate
+  suffix: Pirate
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Pirate
+  - type: Gun
+    fireRate: 3.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretPirateDisposable
+  name: disposable ballistic turret
+  suffix: Pirate, Disposable
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Pirate
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 600
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:TriggerBehavior
+  - type: Gun
+    fireRate: 1.3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolFMJ
+    capacity: 50
+  - type: TriggerOnEmptyGunshot
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 10
+    intensitySlope: 1.5
+    totalIntensity: 30
+    canCreateVacuum: false

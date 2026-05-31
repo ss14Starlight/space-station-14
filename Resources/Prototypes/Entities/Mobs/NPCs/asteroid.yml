@@ -1,10 +1,11 @@
 - type: entity
   id: BaseMobAsteroid
-  parent:
+  parent: #starlight Nubody will not pass.
   - BaseMob
   - MobDamageable
   - MobAtmosExposed
   - MobCombat
+  # - BaseMobAnimal # Starlight Edit: Reverted NuBody
   abstract: true
   components:
   - type: Reactive
@@ -12,8 +13,10 @@
       Flammable: [Touch]
       Extinguish: [Touch]
       Acidic: [Touch, Ingestion]
+  # Starlight - start
   - type: Body
     prototype: Animal
+  # Starlight - end
   - type: Climbing
   - type: NameIdentifier
     group: GenericNumber
@@ -49,8 +52,10 @@
     baseWalkSpeed : 2.00
     baseSprintSpeed : 2.00
   - type: Bloodstream
-    bloodMaxVolume: 350
-    chemicalMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 350
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -404,8 +409,10 @@
     capacity: 1
     count: 1
   - type: Bloodstream
-    bloodMaxVolume: 200
-    chemicalMaxVolume: 0
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 200
   - type: NpcFactionMember
     factions:
     - SimpleHostile

@@ -13,7 +13,7 @@ public sealed partial class CharacterInspectWindow : FancyWindow
         InspectTabs.SetTabTitle(0, Loc.GetString("character-info-ic"));
         InspectTabs.SetTabTitle(1, Loc.GetString("character-info-ooc"));
         InspectTabs.SetTabTitle(2, Loc.GetString("character-info-background"));
-        OnClose += () => { ClearCharacter(); };
+        OnClose += ClearCharacter;
     }
 
     public void SetCharacter(EntityUid? entityUid, IEntityManager entityManager, EntityUid viewer)

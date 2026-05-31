@@ -274,7 +274,9 @@ public abstract partial class SharedStunSystem
 
         if (!Resolve(entity, ref entity.Comp2, false))
         {
-            TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false);
+            // Starlight edit start - Add voluntary value
+            TryKnockdown(entity.Owner, entity.Comp1.DefaultKnockedDuration, true, false, false, false, true);
+            // Starlight edit end
             return;
         }
 

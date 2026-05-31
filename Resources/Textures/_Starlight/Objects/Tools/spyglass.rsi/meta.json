@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Aurora Station at https://github.com/Aurorastation/Aurora.3/blob/HEAD/icons/obj/item/binoculars.dmi. Modified by Conflee for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "captain_spyglass"
+    },
+    {
+      "name": "improvised_spyglass"
+    },
+	{
+      "name": "spyglass"
+    }
+  ]
+}

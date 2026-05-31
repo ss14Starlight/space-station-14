@@ -1,0 +1,16 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Sec and base sunglasses taken from tgstation at commit https://github.com/tgstation/tgstation/commit/5a73e8f825ff279e82949b9329783a9e3070e2da, combined with noir glasses from goonstation at commit https://github.com/goonstation/goonstation/commit/9affe47cd1b192f6d1900a64a5b5a07a54251e37, Musician glasses from the same commit as this file, and all mixed together by wonderfulnewworld (GitHub) for Starlight.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+			"copyright": "TG Station (traced back to Goonstation pre-2010), Goonstation, wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

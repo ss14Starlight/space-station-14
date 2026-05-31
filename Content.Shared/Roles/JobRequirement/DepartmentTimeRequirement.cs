@@ -32,7 +32,7 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan>? playTimes,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlight: Always return reason
     {
         reason = new FormattedMessage();
 
@@ -43,8 +43,8 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
         var playtime = TimeSpan.Zero;
 
         //NullLink start
-        if (player is not null && IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player))
-            return true;
+        var bypass = player is not null &&
+                     IoCManager.Resolve<ISharedNullLinkPlayerRolesReqManager>().IsAllRolesAvailable(player);
         //NullLink end
 
         // Check all jobs' departments
@@ -64,13 +64,23 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
 
         var deptDiffSpan = Time - playtime;
         var deptDiff = deptDiffSpan.TotalMinutes;
-        var formattedDeptDiff = ContentLocalizationManager.FormatPlaytime(deptDiffSpan);
+        var formattedCurrent = ContentLocalizationManager.FormatPlaytime(playtime); // Starlight
+        var formattedRequired = ContentLocalizationManager.FormatPlaytime(Time); // Starlight
         var nameDepartment = "role-timer-department-unknown";
 
         if (protoManager.Resolve(Department, out var departmentIndexed))
         {
             nameDepartment = departmentIndexed.Name;
         }
+
+        // Starlight BEGIN: Default reason is success
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
+            Inverted ? "role-timer-department-not-too-high" : "role-timer-department-sufficient",
+            ("current", formattedCurrent),
+            ("required", formattedRequired),
+            ("department", Loc.GetString(nameDepartment)),
+            ("departmentColor", department.Color.ToHex())));
+        // Starlight END
 
         if (!Inverted)
         {
@@ -79,20 +89,22 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
 
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-department-insufficient",
-                ("time", formattedDeptDiff),
+                ("current", formattedCurrent), // Starlight
+                ("required", formattedRequired), // Starlight
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
-            return false;
+            return bypass; // NullLink
         }
 
         if (deptDiff <= 0)
         {
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-department-too-high",
-                ("time", formattedDeptDiff),
+                ("current", formattedCurrent), // Starlight
+                ("required", formattedRequired), // Starlight
                 ("department", Loc.GetString(nameDepartment)),
                 ("departmentColor", department.Color.ToHex())));
-            return false;
+            return bypass; // NullLink
         }
 
         return true;

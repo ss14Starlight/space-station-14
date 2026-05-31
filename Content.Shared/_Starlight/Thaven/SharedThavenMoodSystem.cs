@@ -7,8 +7,8 @@ namespace Content.Shared._Starlight.Thaven;
 
 public abstract class SharedThavenMoodSystem : EntitySystem
 {
-    
-    public static readonly ProtoId<DatasetPrototype> YesAndDataset = "ThavenMoodsYesAnd";  
+
+    public static readonly ProtoId<DatasetPrototype> YesAndDataset = "ThavenMoodsYesAnd";
     public static readonly ProtoId<DatasetPrototype> NoAndDataset = "ThavenMoodsNoAnd";
     public static readonly ProtoId<DatasetPrototype> WildcardDataset = "ThavenMoodsWildcard";
 

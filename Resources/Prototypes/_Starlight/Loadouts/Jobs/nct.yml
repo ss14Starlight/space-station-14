@@ -1,0 +1,26 @@
+#Uniforms
+- type: loadout
+  id: JumpsuitNCT
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNCT
+
+- type: loadout
+  id: JumpskirtNCT
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNCT
+
+#Hats
+- type: loadout
+  id: Drilltrainer
+  equipment:
+    head: ClothingHeadHatDrilltrainer
+
+- type: loadout
+  id: BeretNCTGreen
+  equipment:
+    head: ClothingHeadHatBeretNCTGreen
+
+- type: loadout
+  id: BeretNCTBlack
+  equipment:
+    head: ClothingHeadHatBeretNCTBlack

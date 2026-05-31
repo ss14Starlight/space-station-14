@@ -27,17 +27,17 @@ public sealed partial class SlimeProcessorComponent : Component
     /// </summary>
     [DataField("slimeAcquireCooldown", required: true), AutoNetworkedField]
     public TimeSpan SlimeAcquireCooldown = default!;
-    
+
     /// <summary>
     /// The name of the container the slime corpses are stored in.
     /// </summary>
     public const string SlimeContainerName = "slimes";
-    
+
     /// <summary>
     /// Container for dead slimes inserted in the processor.
     /// </summary>
     [ViewVariables]
-    public ContainerSlot SlimeContainer = default!;
+    public Container SlimeContainer = default!;
 }
 
 /// <summary>

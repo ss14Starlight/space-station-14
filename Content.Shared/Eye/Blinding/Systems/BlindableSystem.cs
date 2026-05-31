@@ -31,7 +31,7 @@ public sealed class BlindableSystem : EntitySystem
 
     private void OnDamageChanged(Entity<BlindableComponent> ent, ref EyeDamageChangedEvent args)
     {
-        _blurriness.UpdateBlurMagnitude((ent.Owner, ent.Comp));
+        _blurriness.UpdateBlurMagnitude((ent.Owner, ent.Comp), ent.Comp.IsWearingGlasses); // Starlight-edit
         _eyelids.UpdateEyesClosable((ent.Owner, ent.Comp));
     }
 

@@ -30,8 +30,17 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/kudzu.rsi
-      state: kudzu_11
+      sprite: _Starlight/Objects/Misc/kudzu.rsi ### SL Start
+      layers:
+      - state: kudzu_11
+      - map: [ "enum.EdgeLayer.South" ]
+        state: kudzu_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: kudzu_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: kudzu_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: kudzu_west ### SL End
       drawdepth: Overdoors
     - type: KudzuVisuals
     - type: Clickable
@@ -56,6 +65,7 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - type: Temperature
+    - type: TemperatureDamage
       heatDamage:
         types:
           Heat: 5
@@ -103,6 +113,12 @@
     - type: Tag
       tags:
       - Ruminant
+    #SL Start
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: SmoothEdge
+    #SL End
 
 - type: entity
   id: WeakKudzu
@@ -121,8 +137,17 @@
   components:
     - type: Sprite
       drawdepth: HighFloorObjects
-      sprite: Objects/Misc/kudzuflower.rsi
-      state: kudzu_11
+      sprite: _Starlight/Objects/Misc/kudzuflower.rsi ### SL Start
+      layers:
+      - state: kudzu_11
+      - map: [ "enum.EdgeLayer.South" ]
+        state: kudzu_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: kudzu_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: kudzu_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: kudzu_west ### SL End
     - type: Kudzu
       spriteVariants: 5
       spreadChance: 0.01
@@ -150,6 +175,12 @@
     - type: Tag
       tags:
       - Ruminant
+    #SL Start
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: SmoothEdge
+    #SL End
 
 - type: entity
   id: KudzuFlowerAngry
@@ -183,8 +214,17 @@
           path:
             "/Audio/Weapons/slash.ogg"
     - type: Sprite
-      sprite: Objects/Misc/fleshkudzu.rsi
-      state: kudzu_11
+      sprite: _Starlight/Objects/Misc/fleshkudzu.rsi ### SL Start
+      layers:
+      - state: kudzu_11
+      - map: [ "enum.EdgeLayer.South" ]
+        state: kudzu_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: kudzu_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: kudzu_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: kudzu_west ### SL End
       drawdepth: Overdoors
     - type: KudzuVisuals
     - type: Clickable
@@ -226,6 +266,7 @@
           Cold: -1.0
           Blunt: -0.5 # Needs to be balanced (approx 3x) with vacuum damage to stall but not kill Kudzu
     - type: Temperature
+    - type: TemperatureDamage
       heatDamage:
         types:
           Heat: 10
@@ -265,6 +306,12 @@
       tags:
       - Meat
       - Ruminant
+    #SL Start
+    - type: IconSmooth
+      key: walls
+      mode: NoSprite
+    - type: SmoothEdge
+    #SL End
 
 - type: entity
   name: dark haze

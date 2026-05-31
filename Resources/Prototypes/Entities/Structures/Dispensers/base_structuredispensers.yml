@@ -5,11 +5,21 @@
   placement:
     mode: SnapgridCenter
   components:
+  # Starlight-start: Make dispenser rotatable.
   - type: Transform
     anchored: true
-    noRot: true
+    noRot: false
+  - type: Rotatable
+    rotateWhileAnchored: true
+  # Starlight-end
   - type: Clickable
   - type: InteractionOutline
+  - type: Appearance
+  # Starlight-start: Plumbing connector visuals
+  - type: PlumbingConnectorAppearance
+    offset: 0.09375
+  - type: AtmosPipeColor
+  # Starlight-end
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -71,16 +81,44 @@
       machine_parts: !type:Container
       beakerSlot: !type:ContainerSlot
       storagebase: !type:Container
-  - type: StaticPrice
-    price: 1000
   - type: WiresPanel
   - type: EmptyOnMachineDeconstruct
     containers:
     - storagebase
     - beakerSlot
-  
+  # Starlight-start: Plumbing outlet
+  - type: NodeContainer
+    nodes:
+      outletNorth:  # Provides reagents TO the network (all directions)
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: North
+      outletEast:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: East
+      outletSouth:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: South
+      outletWest:
+        !type:PlumbingNode
+        nodeGroupID: Plumbing
+        pipeDirection: West
+  - type: PlumbingOutlet
+    solutionName: beaker
+    connectedOutlets: true
+    outletNames:
+    - outletNorth
+    - outletEast
+    - outletSouth
+    - outletWest
+    containerSlotId: beakerSlot
+    enabled: false
+  # Starlight-end
+
 # Starlight-start: power cell chem dispenser
-  
+
 - type: entity
   abstract: true
   id: ReagentDispenserBasePowerCell
@@ -110,6 +148,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
+        #Starlight End
 
 
 - type: entity
@@ -120,5 +163,5 @@
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: ActivatableUIRequiresPower
-  
+
 # Starlight-end: power cell chem dispenser

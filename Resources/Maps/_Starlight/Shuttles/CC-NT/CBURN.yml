@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 266.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/24/2025 19:38:34
-  entityCount: 1258
+  time: 05/22/2026 05:30:13
+  entityCount: 1280
 maps: []
 grids:
 - 1
@@ -581,67 +581,27 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
-          - 21.824879
-          - 82.10312
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 21.824879
+            Nitrogen: 82.10312
         - volume: 2500
           immutable: True
-          moles:
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+          moles: {}
         - volume: 2500
           temperature: 293.1495
           moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         - volume: 2500
           temperature: 293.14975
           moles:
-          - 20.078888
-          - 75.53487
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
+            Oxygen: 20.078888
+            Nitrogen: 75.53487
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
+    - type: NavMap
+    - type: ExplosionAirtightGrid
 - proto: AirlockCentralCommandGlassLocked
   entities:
   - uid: 95
@@ -2973,12 +2933,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 17.5,0.5
       parent: 1
-  - uid: 812
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 17.5,1.5
-      parent: 1
   - uid: 813
     components:
     - type: Transform
@@ -3251,18 +3205,8 @@ entities:
         immutable: False
         temperature: 293.1465
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -3445,6 +3389,16 @@ entities:
     components:
     - type: Transform
       pos: 13.5,3.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: FuelDispenser
+  entities:
+  - uid: 1277
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,9.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -5232,18 +5186,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -5273,18 +5217,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
 - proto: Gyroscope
   entities:
   - uid: 392
@@ -5587,6 +5521,96 @@ entities:
     - type: Transform
       pos: 13.591483,-0.5105796
       parent: 1
+  - uid: 1259
+    components:
+    - type: Transform
+      pos: 13.301806,-0.46875
+      parent: 1
+  - uid: 1260
+    components:
+    - type: Transform
+      pos: 13.301806,-0.4375
+      parent: 1
+  - uid: 1261
+    components:
+    - type: Transform
+      pos: 13.458056,-0.375
+      parent: 1
+  - uid: 1262
+    components:
+    - type: Transform
+      pos: 13.676806,-0.4375
+      parent: 1
+  - uid: 1263
+    components:
+    - type: Transform
+      pos: 13.676806,-0.53125
+      parent: 1
+  - uid: 1264
+    components:
+    - type: Transform
+      pos: 13.551806,-0.59375
+      parent: 1
+  - uid: 1265
+    components:
+    - type: Transform
+      pos: 13.333056,-0.625
+      parent: 1
+  - uid: 1266
+    components:
+    - type: Transform
+      pos: 13.301806,-0.609375
+      parent: 1
+  - uid: 1267
+    components:
+    - type: Transform
+      pos: 13.301806,-0.46875
+      parent: 1
+  - uid: 1268
+    components:
+    - type: Transform
+      pos: 13.411181,-0.34375
+      parent: 1
+  - uid: 1269
+    components:
+    - type: Transform
+      pos: 13.567431,-0.34375
+      parent: 1
+  - uid: 1270
+    components:
+    - type: Transform
+      pos: 13.645556,-0.4375
+      parent: 1
+  - uid: 1271
+    components:
+    - type: Transform
+      pos: 13.598681,-0.546875
+      parent: 1
+  - uid: 1272
+    components:
+    - type: Transform
+      pos: 13.489306,-0.59375
+      parent: 1
+  - uid: 1273
+    components:
+    - type: Transform
+      pos: 13.411181,-0.578125
+      parent: 1
+  - uid: 1274
+    components:
+    - type: Transform
+      pos: 13.364306,-0.53125
+      parent: 1
+  - uid: 1275
+    components:
+    - type: Transform
+      pos: 13.473681,-0.453125
+      parent: 1
+  - uid: 1276
+    components:
+    - type: Transform
+      pos: 13.536181,-0.390625
+      parent: 1
 - proto: MedicalBed
   entities:
   - uid: 116
@@ -5647,6 +5671,18 @@ entities:
     components:
     - type: Transform
       pos: 11.496431,15.586448
+      parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 1279
+    components:
+    - type: Transform
+      pos: 1.4750524,9.668329
+      parent: 1
+  - uid: 1280
+    components:
+    - type: Transform
+      pos: 1.6156774,9.574579
       parent: 1
 - proto: MicrophoneInstrument
   entities:
@@ -6084,6 +6120,12 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-7.5
+      parent: 1
+  - uid: 1278
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,9.5
       parent: 1
 - proto: Railing
   entities:
@@ -6752,18 +6794,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -6786,18 +6818,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -6820,18 +6842,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
+          Oxygen: 1.7459903
+          Nitrogen: 6.568249
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
@@ -7209,6 +7221,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-5.5
+      parent: 1
+- proto: VendingMachineMedicalBase
+  entities:
+  - uid: 812
+    components:
+    - type: Transform
+      pos: 17.5,1.5
       parent: 1
 - proto: WallShuttle
   entities:

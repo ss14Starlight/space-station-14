@@ -31,9 +31,12 @@
     sound:
       path: /Audio/Ambience/Objects/fireplace.ogg
   - type: PointLight
-    radius: 3
-    energy: 3
+    radius: 4.5 #SL
+    energy: 2 #SL
     color: "#FF6F00"
+    mask: /Textures/Effects/LightMasks/cone.png #SL
+    autoRot: true #SL
+    offset: "0, 0.3" #SL
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic

@@ -1,3 +1,4 @@
+using Content.Shared._Moffstation.BladeServer; // Moffstation
 using Content.Shared.Construction.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
@@ -27,6 +28,13 @@ public sealed partial class BoardNodeEntity : IGraphNodeEntity
             return null;
 
         var board = container.ContainedEntities[0];
+
+        // Moffstation - Begin - Blade Server construction
+        // Check if the construction is a Blade Server Frame first so that we don't accidentally return machine frame info.
+        if (args.EntityManager.HasComponent<BladeServerFrameComponent>(uid) &&
+            args.EntityManager.TryGetComponent<BladeServerBoardComponent>(board, out var bladeServer ))
+            return bladeServer.Prototype;
+        // Moffstation - End
 
         // There should not be a case where more than one of these components exist on the same entity
         if (args.EntityManager.TryGetComponent(board, out MachineBoardComponent? machine))

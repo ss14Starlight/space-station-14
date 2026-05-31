@@ -1,0 +1,268 @@
+# Empty variants
+
+- type: entity
+  parent: AirCanister
+  id: AirCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+
+- type: entity
+  parent: OxygenCanister
+  id: OxygenCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  id: LiquidOxygenCanisterEmpty
+  parent: LiquidOxygenCanister
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: NitrogenCanister
+  id: NitrogenCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  id: LiquidNitrogenCanisterEmpty
+  parent: LiquidNitrogenCanister
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: CarbonDioxideCanister
+  id: CarbonDioxideCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  id: LiquidCarbonDioxideCanisterEmpty
+  parent: LiquidCarbonDioxideCanister
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: PlasmaCanister
+  id: PlasmaCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: TritiumCanister
+  id: TritiumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: WaterVaporCanister
+  id: WaterVaporCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: AmmoniaCanister
+  id: AmmoniaCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: NitrousOxideCanister
+  id: NitrousOxideCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: FrezonCanister
+  id: FrezonCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+# Funkystation Empty Canisters
+
+- type: entity
+  parent: BZCanister
+  id: BZCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HealiumCanister
+  id: HealiumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: NitriumCanister
+  id: NitriumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: PluoxiumCanister
+  id: PluoxiumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HydrogenCanister
+  id: HydrogenCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HyperNobliumCanister
+  id: HyperNobliumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: ProtoNitrateCanister
+  id: ProtoNitrateCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: ZaukerCanister
+  id: ZaukerCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HalonCanister
+  id: HalonCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: HeliumCanister
+  id: HeliumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: AntiNobliumCanister
+  id: AntiNobliumCanisterEmpty
+  suffix: Empty
+  components:
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+- type: entity
+  parent: GasCanister
+  id: RainbowCanisterEmpty
+  name: rainbow canister
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    layers:
+    - state: rainbow
+  - type: GasCanister
+    gasMixture:
+      volume: 1500
+
+# Broken variants
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: LiquidOxygenCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: l_oxygen_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: LiquidNitrogenCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: l_nitrogen_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: LiquidCarbonDioxideCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: carbon_broken
+
+- type: entity
+  parent: GasCanisterBrokenBase
+  id: RainbowCanisterBroken
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/canister.rsi
+    state: rainbow_broken

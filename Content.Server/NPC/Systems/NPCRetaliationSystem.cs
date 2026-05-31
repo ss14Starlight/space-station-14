@@ -57,7 +57,7 @@ public sealed class NPCRetaliationSystem : EntitySystem
 
         if(raiseEvent) // Starlight
             RaiseLocalEvent(ent, new AfterRetaliationEvent(ent, target)); // Starlight
-        
+
         return true;
     }
 

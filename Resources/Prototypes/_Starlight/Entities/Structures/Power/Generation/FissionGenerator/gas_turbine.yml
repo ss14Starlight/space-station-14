@@ -1,0 +1,38 @@
+- type: entity
+  id: GasTurbinePrefabEmpty
+  abstract: true
+  components:
+  - type: ItemSlots
+    slots:
+      blade_slot:
+        name: Turbine Blade
+        startingItem: null
+        whitelist:
+          components:
+            - GasTurbineBlade
+      stator_slot:
+        name: Turbine Stator
+        startingItem: null
+        whitelist:
+          components:
+            - GasTurbineStator
+
+- type: entity
+  id: GasTurbineEmpty
+  parent: [GasTurbinePrefabEmpty, GasTurbineCrew, BaseGasTurbine]
+  suffix: "Empty"
+
+- type: entity
+  id: GasTurbineEmptySalvage
+  parent: [GasTurbinePrefabEmpty, GasTurbineSalvage, BaseGasTurbine]
+  suffix: "Salvage, Empty"
+
+- type: entity
+  id: GasTurbineSmallEmpty
+  parent: [GasTurbinePrefabEmpty, GasTurbineCrew, BaseGasTurbineSmall]
+  suffix: "Empty"
+
+- type: entity
+  id: GasTurbineSmallEmptySalvage
+  parent: [GasTurbinePrefabEmpty, GasTurbineSalvage, BaseGasTurbineSmall]
+  suffix: "Salvage, Empty"

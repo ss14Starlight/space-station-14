@@ -1,0 +1,249 @@
+# Basic
+- type: entity
+  id: LockerSteelLarge
+  parent: LockerLargeBaseSecure
+  name: large secure closet
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: secure
+    stateDoorOpen: secure_open
+    stateDoorClosed: secure_door
+
+# Security Officer
+- type: entity
+  id: LockerSecurityLarge
+  parent: LockerLargeBaseSecure
+  name: large security officer's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: sec
+    stateDoorOpen: sec_open
+    stateDoorClosed: sec_door
+  - type: AccessReader
+    access: [["Security"], ["Cadet"]]
+
+# Warden
+- type: entity
+  id: LockerWardenLarge
+  parent: LockerLargeBaseSecure
+  name: large warden's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: warden
+    stateDoorOpen: sec_open
+    stateDoorClosed: warden_door
+  - type: AccessReader
+    access: [["Armory"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+# Brigmedic
+- type: entity
+  id: LockerBrigmedicLarge
+  parent: LockerLargeBaseSecure
+  name: large brigmedic's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: brigmedic
+    stateDoorOpen: sec_open
+    stateDoorClosed: brigmedic_door
+  - type: AccessReader
+    access: [["Brigmedic"]]
+
+# NanoTrasen Representatives
+#BSO
+- type: entity
+  id: LockerBlueshield
+  parent: LockerBaseSecure
+  name: blueshield officer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: bso
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: bso_door
+  - type: AccessReader
+    access: [["BlueShield"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#Magistrate
+- type: entity
+  id: LockerMagistrate
+  parent: LockerBaseSecure
+  name: magistrate's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: magi
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: magi_door
+  - type: AccessReader
+    access: [["Magistrate"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#IAA
+- type: entity
+  id: LockerIAA
+  parent: LockerBaseSecure
+  name: internal affairs agent's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: iaa
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: iaa_door
+  - type: AccessReader
+    access: [["IAA"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#NCT
+- type: entity
+  id: LockerNCT
+  parent: LockerBaseSecure
+  name: NanoTrasen career trainer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: nct
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: nct_door
+  - type: AccessReader
+    access: [["Command"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+# Salvage Lead
+- type: entity
+  id: LockerSalvageLead
+  parent: LockerBaseSecure
+  name: salvage lead's locker
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: salvagelead
+      stateDoorOpen: salvagelead_open
+      stateDoorClosed: salvagelead_door
+    - type: AccessReader
+      access: [["SalvageLead"]]
+
+# Salvage Specialist (regular) is in wizden files
+# Salvage Specialist (Large)
+- type: entity
+  id: LockerSalvageSpecialistLarge
+  parent: LockerLargeBaseSecure
+  name: large salvage specialist's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: salvage
+    stateDoorOpen: salvage_open
+    stateDoorClosed: salvage_door
+  - type: AccessReader
+    access: [["Salvage"]]
+
+# Mining Specialist
+- type: entity
+  id: LockerMiningSpecialist
+  parent: LockerBaseSecure
+  name: mining specialist's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: miner
+    stateDoorOpen: miner_open
+    stateDoorClosed: miner_door
+  - type: AccessReader
+    access: [["Mining"]]
+
+- type: entity
+  id: LockerMiningSpecialistLarge
+  parent: LockerLargeBaseSecure
+  name: large mining specialist's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet-large.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: miner
+    stateDoorOpen: miner_open
+    stateDoorClosed: miner_door
+  - type: AccessReader
+    access: [["Mining"]]
+
+# Cargo Technician
+- type: entity
+  id: LockerCargo
+  name: cargo technician's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: cargo
+      stateDoorOpen: cargo_open
+      stateDoorClosed: cargo_door
+    - type: AccessReader
+      access: [["Cargo"]]
+
+# Mail Technician
+- type: entity
+  id: LockerMail
+  name: mail technician's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: mail
+      stateDoorOpen: mail_open
+      stateDoorClosed: mail_door
+    - type: AccessReader
+      access: [["Mail"]]
+
+# Janitor locker
+- type: entity
+  id: LockerJanitor
+  name: janitorial locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: janitor
+      stateDoorOpen: janitor_open
+      stateDoorClosed: janitor_door
+    - type: AccessReader
+      access: [["Janitor"]]
+
+# ERT version
+- type: entity
+  id: LockerJanitorCC
+  parent: LockerJanitor
+  suffix: Central Command
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]

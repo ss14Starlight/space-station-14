@@ -1,6 +1,5 @@
 ﻿using Content.Server.StationEvents.Events;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents.Components;
@@ -9,7 +8,7 @@ namespace Content.Server.StationEvents.Components;
 public sealed partial class WreckSwarmComponent : Component
 {
     [DataField]
-    public float Velocity = 20f;
+    public float Velocity = 50f;
 
     /// <summary>
     /// The announcement played when a meteor swarm begins.

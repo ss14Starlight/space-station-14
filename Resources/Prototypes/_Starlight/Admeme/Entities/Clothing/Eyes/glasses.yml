@@ -1,0 +1,51 @@
+- type: entity
+  parent: [ClothingEyesBase, BaseNanoTrasenContraband]
+  id: ClothingEyesGlassesNTNC
+  name: NanoTrasen navy marine glasses
+  description: Standard-issue glasses for NanoTrasen Navy Marines.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/ntnc.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/ntnc.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
+  parent: [ ClothingEyesBase, BaseMedTakContraband ]
+  id: ClothingEyesGlassesMedTak
+  name: MedTak glasses
+  description: A pair of glasses issued to MedTak dispatchers, with a built in heads up display and active flash adjustment.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/medtak.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/medtak.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - IPC
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5

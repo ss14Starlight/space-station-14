@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Starlight.Achievement; // Starlight: Achievements
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.NPC;
@@ -14,18 +15,23 @@ using Content.Shared.Pointing;
 using Content.Shared.Random.Helpers;
 using Content.Shared.RatKing;
 using Robust.Shared.Map;
+using Robust.Shared.Random;
 
 namespace Content.Server.RatKing
 {
     /// <inheritdoc/>
     public sealed class RatKingSystem : SharedRatKingSystem
     {
+        private const int RodentiaRexServantThreshold = 30; // Starlight: Achievements
+
+        [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
         [Dependency] private readonly AtmosphereSystem _atmos = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly HTNSystem _htn = default!;
         [Dependency] private readonly HungerSystem _hunger = default!;
         [Dependency] private readonly NPCSystem _npc = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
+        [Dependency] private readonly IRobustRandom _random = default!; // Starlight
 
         public override void Initialize()
         {
@@ -55,12 +61,24 @@ namespace Content.Server.RatKing
             }
             args.Handled = true;
             _hunger.ModifyHunger(uid, -component.HungerPerArmyUse, hunger);
-            var servant = Spawn(component.ArmyMobSpawnId, Transform(uid).Coordinates);
+
+            // Starlight - Start
+            var selectedservant = component.ArmyMobSpawnId;
+            if (_random.Next(1, 6) == 1)
+                selectedservant = component.ArmyLargeMobSpawnId;
+
+            var servant = Spawn(selectedservant, Transform(uid).Coordinates);
+            // Starlight - End
+
             var comp = EnsureComp<RatKingServantComponent>(servant);
             comp.King = uid;
             Dirty(servant, comp);
 
             component.Servants.Add(servant);
+            // Starlight start: Achievements
+            if (component.Servants.Count >= RodentiaRexServantThreshold)
+                _achievements.QueueUnlockAchievement(uid, "rodentia_rex");
+            // Starlight end: Achievements
             _npc.SetBlackboard(servant, NPCBlackboard.FollowTarget, new EntityCoordinates(uid, Vector2.Zero));
             UpdateServantNpc(servant, component.CurrentOrder);
         }

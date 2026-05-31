@@ -1,0 +1,35 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cessation",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "blades",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "warding",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "knowledge",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "truth",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "projection",
+            "copyright": "A custom item by AftrLite (Github)."
+        }
+    ]
+}

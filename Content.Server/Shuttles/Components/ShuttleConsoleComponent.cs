@@ -4,6 +4,7 @@ using Content.Shared.Shuttles.Components;
 namespace Content.Server.Shuttles.Components
 {
     [RegisterComponent]
+    [AutoGenerateComponentPause] // Starlight
     public sealed partial class ShuttleConsoleComponent : SharedShuttleConsoleComponent
     {
         [ViewVariables]
@@ -20,5 +21,26 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField("whitelistSpecific")]
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
+
+        #region Starlight
+        /// <summary>
+        /// When the last interface update was transmitted.
+        /// </summary>
+        [AutoPausedField]
+        public TimeSpan LastInterfaceUpdateTime;
+
+        /// <summary>
+        /// Which container slot to use for slotted PAIs.
+        /// </summary>
+        [DataField]
+        public string PaiSlotId = "pai_slot";
+
+        /// <summary>
+        /// Speed the entity is physically thrown when rammed out.
+        /// </summary>
+        [DataField]
+        public float ItemThrowSpeedOnRam = 6f;
+
+        #endregion
     }
 }

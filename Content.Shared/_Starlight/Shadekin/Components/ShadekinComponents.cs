@@ -26,6 +26,11 @@ public sealed partial class ShadekinComponent : Component
 
     [DataField("thresholds", required: true)]
     public SortedDictionary<FixedPoint2, ShadekinState> Thresholds = new();
+
+    /// <summary>
+    /// whether to flicker lights or not. default on
+    /// </summary>
+    [DataField] public bool DoLightFlicker = true;
 }
 
 [Serializable, NetSerializable]
@@ -55,7 +60,7 @@ public sealed partial class OrganShadekinCoreComponent : Component
     public double DmagedPrice = 200;
 
     [DataField]
-    public double UndmagedPrice = 30000;
+    public double UndmagedPrice = 50000;
 }
 #endregion
 
@@ -71,6 +76,12 @@ public sealed partial class BrighteyeComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> RejuvenationAlert { get; set; } = "ShadekinRejuvenateAlert";
+
+    /// <summary>
+    /// Is the Bright-Eye a Lesser Version (non orignal core owner)?
+    /// </summary>
+    [DataField]
+    public bool LesserKin = false;
 
     /// <summary>
     /// How many Energy the brighteye has.
@@ -103,16 +114,46 @@ public sealed partial class BrighteyeComponent : Component
     public EntityUid? PhaseAction;
 
     [DataField]
+    public EntityUid? DarkTrapAction;
+
+    [DataField]
+    public EntityUid? ShadeSkipAction;
+
+    [DataField]
+    public EntityUid? CreateShadeAction;
+
+    [DataField]
     public EntProtoId BrighteyePortalAction = "BrighteyePortalAction";
 
     [DataField]
     public EntProtoId BrighteyePhaseAction = "BrighteyePhaseAction";
 
     [DataField]
+    public EntProtoId BrighteyeDarkTrapAction = "BrighteyeDarkTrapAction";
+
+    [DataField]
+    public EntProtoId BrighteyeShadeSkipAction = "BrighteyeShadeSkipAction";
+
+    [DataField]
+    public EntProtoId BrighteyeCreateShadeAction = "BrighteyeCreateShadeAction";
+
+    [DataField]
     public int PortalCost = 150;
 
     [DataField]
-    public int PhaseCost = 50;
+    public int PhaseCost = 50; // Scales with CurrentState.
+
+    [DataField]
+    public int DarkTrapCost = 80;
+
+    [DataField]
+    public int ShadeSkipCost = 50; // Scales with CurrentState.
+
+    [DataField]
+    public TimeSpan ShadeSkipStunAmount =  TimeSpan.FromSeconds(10);
+
+    [DataField]
+    public int CreateShadeCost = 50;
 
     [DataField]
     public EntProtoId ShadekinShadow = "ShadekinShadow";
@@ -122,6 +163,12 @@ public sealed partial class BrighteyeComponent : Component
 
     [DataField]
     public EntProtoId PortalShadekin = "PortalShadekin";
+
+    [DataField]
+    public EntProtoId ShadekinTrap = "ShadekinTrapSpawn";
+
+    [DataField]
+    public bool PortalNeedStation = true;
 }
 
 public sealed class OnAttemptEnergyUseEvent : CancellableEntityEventArgs
@@ -159,8 +206,22 @@ public sealed class OnBrighteyeRejuvenateAttemptEvent : CancellableEntityEventAr
 }
 #endregion
 #region Abilities
+
+[RegisterComponent]
+public sealed partial class DarkTrapComponent : Component
+{
+    [DataField]
+    public EntProtoId DarkNet = "ShadekinDarkNet";
+
+    [DataField]
+    public TimeSpan StunAmount =  TimeSpan.FromSeconds(10);
+}
+
 public sealed partial class BrighteyePortalActionEvent : InstantActionEvent { }
 public sealed partial class BrighteyePhaseActionEvent : InstantActionEvent { }
+public sealed partial class BrighteyeDarkTrapActionEvent : InstantActionEvent { }
+public sealed partial class BrighteyeShadeSkipActionEvent : EntityTargetActionEvent { }
+public sealed partial class BrighteyeCreateShadeActionEvent : InstantActionEvent { }
 
 [Serializable, NetSerializable]
 public sealed partial class PhaseDoAfterEvent : SimpleDoAfterEvent

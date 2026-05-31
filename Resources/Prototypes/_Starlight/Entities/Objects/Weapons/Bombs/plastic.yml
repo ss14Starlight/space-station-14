@@ -1,0 +1,51 @@
+﻿- type: entity
+  name: composition X-4
+  description: Used to put even bigger holes in areas you really hate.
+  parent: [BasePlasticExplosive, BaseSyndicateContraband]
+  id: X4
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Bombs/x4.rsi
+    state: icon
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Bombs/x4.rsi
+    slots:
+    - HEAD
+    quickEquip: false
+    equipDelay: 3
+    unequipDelay: 6
+  - type: TriggerOnActivate
+  - type: TriggerOnSignal
+  - type: TriggerOnStuck
+    keyOut: stuck
+  - type: ToggleTriggerCondition # for toggling the start on stuck ability
+    keys:
+    - stuck
+    toggleVerb: toggle-trigger-condition-stick-verb
+    toggleOn: toggle-trigger-condition-stick-on
+    toggleOff: toggle-trigger-condition-stick-off
+  - type: TimerTrigger
+    keysIn:
+    - trigger
+    - stuck
+    delay: 10
+    delayOptions: [10, 30, 60, 120, 300]
+    initialBeepDelay: 0
+    beepSound: /Audio/Machines/Nuke/general_beep.ogg
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
+  - type: Explosive # Powerful explosion in a very small radius. Doesn't break underplating.
+    explosionType: DemolitionCharge
+    totalIntensity: 90
+    intensitySlope: 5
+    maxIntensity: 50
+    canCreateVacuum: false
+  - type: ExplodeOnTrigger
+    keysIn:
+    - timer
+  - type: StaticPrice
+    price: 700 # 5000 for a bundle of 8

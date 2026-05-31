@@ -3,7 +3,7 @@ namespace Content.Shared.Economy
     [RegisterComponent]
     public sealed partial class ItemPriceComponent : Component
     {
-        [DataField] 
+        [DataField]
         public string PriceCategory = string.Empty;
 
         [DataField]

@@ -1,0 +1,121 @@
+- type: entity
+  parent: BaseSlimeExtract
+  id: BaseSlimeExtractFilled
+  abstract: true
+  components:
+    - type: FilledSlimeExtract
+    - type: SolutionContainerManager
+      solutions:
+        container:
+          reagents:
+            - ReagentId: Water
+              Quantity: 15
+            - ReagentId: Blood
+              Quantity: 15
+            - ReagentId: Plasma
+              Quantity: 15
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, GraySlimeExtract]
+  id: GraySlimeExtractFilled
+  name: gray slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, OrangeSlimeExtract]
+  id: OrangeSlimeExtractFilled
+  name: orange slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, PurpleSlimeExtract]
+  id: PurpleSlimeExtractFilled
+  name: purple slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, BlueSlimeExtract]
+  id: BlueSlimeExtractFilled
+  name: blue slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, MetalSlimeExtract]
+  id: MetalSlimeExtractFilled
+  name: metal slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, YellowSlimeExtract]
+  id: YellowSlimeExtractFilled
+  name: yellow slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, DarkPurpleSlimeExtract]
+  id: DarkPurpleSlimeExtractFilled
+  name: dark purple slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, DarkBlueSlimeExtract]
+  id: DarkBlueSlimeExtractFilled
+  name: dark blue slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, SilverSlimeExtract]
+  id: SilverSlimeExtractFilled
+  name: silver slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, BluespaceSlimeExtract]
+  id: BluespaceSlimeExtractFilled
+  name: bluespace slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, SepiaSlimeExtract]
+  id: SepiaSlimeExtractFilled
+  name: sepia slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, CeruleanSlimeExtract]
+  id: CeruleanSlimeExtractFilled
+  name: cerulean slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, PyriteSlimeExtract]
+  id: PyriteSlimeExtractFilled
+  name: pyrite slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, RedSlimeExtract]
+  id: RedSlimeExtractFilled
+  name: red slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, GreenSlimeExtract]
+  id: GreenSlimeExtractFilled
+  name: green slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, PinkSlimeExtract]
+  id: PinkSlimeExtractFilled
+  name: pink slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, GoldSlimeExtract]
+  id: GoldSlimeExtractFilled
+  name: gold slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, OilSlimeExtract]
+  id: OilSlimeExtractFilled
+  name: oil slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, BlackSlimeExtract]
+  id: BlackSlimeExtractFilled
+  name: black slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, LightPinkSlimeExtract]
+  id: LightPinkSlimeExtractFilled
+  name: light pink slime extract (filled)
+
+- type: entity
+  parent: [BaseSlimeExtractFilled, AdamantineSlimeExtract]
+  id: AdamantineSlimeExtractFilled
+  name: adamantine slime extract (filled)

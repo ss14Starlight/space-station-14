@@ -1,0 +1,69 @@
+# Funky atmos - metal hydrogen
+- type: entity
+  parent: ClothingOuterArmorBase
+  id: ClothingOuterArmorMetalHydrogen
+  name: metal hydrogen armor
+  description: A superb armor made with the toughest and rarest materials available to man.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Clothing/OuterClothing/Armor/metal_hydrogen_armor.rsi
+  - type: Clothing
+    sprite: _Funkystation/Clothing/OuterClothing/Armor/metal_hydrogen_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: Construction
+    graph: MetalHydrogenArmor
+    node: armor
+  - type: Tag
+    tags:
+      - MetalHydrogenArmor
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorAtmosian
+  name: atmosian armor
+  description: An atmos fire suit bolstered with metal hydrogen.
+  components:
+  - type: Sprite
+    sprite: _Funkystation/Clothing/OuterClothing/Armor/atmosian_armor.rsi
+  - type: Clothing
+    sprite: _Funkystation/Clothing/OuterClothing/Armor/atmosian_armor.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.05
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.70
+        Piercing: 0.80
+        Heat: 0.50
+        Cold: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+  - type: FireProtection
+    reduction: 0.8
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: GroupExamine
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: Construction
+    graph: AtmosianArmor
+    node: armor

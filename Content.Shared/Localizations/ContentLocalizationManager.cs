@@ -84,6 +84,24 @@ namespace Content.Shared.Localizations
             return new LocValueString(string.Format(formatter, "{0:N}", number).TrimEnd('0').TrimEnd(char.Parse(formatter.NumberDecimalSeparator)));
         }
 
+        // Starlight start
+        private static readonly Dictionary<string, string> NonStandardPlurals = new() {
+            { "thief", "thieves" },
+            { "knife", "knives" },
+            { "life", "lives" },
+            { "leaf", "leaves" },
+            { "deer", "deer" },
+            { "fish", "fish" },
+            { "carp", "carp" },
+            { "half", "halves" },
+            { "die", "dice" },
+            { "foot", "feet" },
+            { "scarf", "scarves" },
+            { "shelf", "shelves" },
+            { "person", "people" },
+        };
+        // Starlight end
+
         private static readonly Regex PluralEsRule = new("^.*(s|sh|ch|x|z)$");
 
         private ILocValue FormatMakePlural(LocArgs args)
@@ -91,6 +109,15 @@ namespace Content.Shared.Localizations
             var text = ((LocValueString) args.Args[0]).Value;
             var split = text.Split(" ", 1);
             var firstWord = split[0];
+            // Starlight start
+            if (NonStandardPlurals.TryGetValue(firstWord, out var replacement))
+            {
+                if (split.Length == 1)
+                    return new LocValueString($"{replacement}");
+                else
+                    return new LocValueString($"{replacement} {split[1]}");
+            }
+            // Starlight end
             if (PluralEsRule.IsMatch(firstWord))
             {
                 if (split.Length == 1)

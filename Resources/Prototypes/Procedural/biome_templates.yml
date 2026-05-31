@@ -591,6 +591,12 @@
         - FloorAsteroidSand
       entities:
         - AsteroidRock
+        # Starlight Start
+        - AsteroidRockTin
+        - AsteroidRockQuartz
+        - AsteroidRockCoal
+        - AsteroidRock
+        #Starlight End
     - !type:BiomeTileLayer
       threshold: -1.0
       tile: FloorAsteroidSand

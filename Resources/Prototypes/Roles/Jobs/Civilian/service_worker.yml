@@ -15,8 +15,10 @@
   - Maintenance
   - Bar
   - Kitchen
+  - Hydroponics # Starlight
   extendedAccess:
-  - Hydroponics
+  - Theatre # Starlight
+#  - Hydroponics # Starlight
 
 - type: startingGear
   id: ServiceWorkerGear
@@ -36,5 +38,6 @@
     eyes: ClothingEyesGlassesSunglasses
     mask: ClothingMaskGas
     neck: ClothingNeckScarfStripedBrown
+    jumpsuit: ClothingUniformJumpsuitServiceWorkerBartender # Starlights
     outerClothing: ClothingOuterVest
     gloves: ClothingHandsGlovesColorBlack

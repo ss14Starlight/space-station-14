@@ -77,7 +77,7 @@ public sealed class MentorMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
             OpenWindow();
     }
 
-    public void DiscordRelayChanged(bool active)
+    public void DiscordRelayChanged(bool _)
     {
     }
 
@@ -94,9 +94,7 @@ public sealed class MentorMHelpUIHandler(NetUserId owner) : IMHelpUIHandler
     }
 
     public void OnRequestClosed(WindowRequestClosedEventArgs args)
-    {
-        Close();
-    }
+        => Close();
 
     private void EnsureControl()
     {

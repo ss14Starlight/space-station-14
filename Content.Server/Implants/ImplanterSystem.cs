@@ -63,7 +63,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
             if (args.User == target)
             {
                 Implant(target, target, uid, component);
-                
+
                 // STARLIGHT: Check if this implanter should dissolve on use
                 if (component.DissolveOnUse)
                 {
@@ -90,7 +90,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         // STARLIGHT: Check if the implantation is allowed before starting the doafter
         if (!CanImplant(user, target, implanter, component, out var implant, out _))
             return;
-            
+
         var args = new DoAfterArgs(EntityManager, user, component.ImplantTime, new ImplantEvent(), implanter, target: target, used: implanter)
         {
             BreakOnDamage = true,
@@ -101,7 +101,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         if (!_doAfter.TryStartDoAfter(args))
             return;
 
-        _popup.PopupEntity(Loc.GetString("injector-component-injecting-user"), target, user);
+        _popup.PopupEntity(Loc.GetString("injector-component-needle-injecting-user"), target, user);
 
         var userName = Identity.Entity(user, EntityManager);
         _popup.PopupEntity(Loc.GetString("implanter-component-implanting-target", ("user", userName)), user, target, PopupType.LargeCaution);
@@ -134,7 +134,8 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         };
 
         if (_doAfter.TryStartDoAfter(args))
-            _popup.PopupEntity(Loc.GetString("injector-component-injecting-user"), target, user);
+            _popup.PopupEntity(Loc.GetString("injector-component-needle-injecting-user"), target, user);
+
     }
 
     private void OnImplant(EntityUid uid, ImplanterComponent component, ImplantEvent args)

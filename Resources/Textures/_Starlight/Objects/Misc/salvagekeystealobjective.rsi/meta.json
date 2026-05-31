@@ -1,0 +1,18 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Original keys created by DSC@300074782328750080 for Space Station 14 | crypt states modified by Flareguy for Space Station 14 | Starlight specific keys created by JustAdler for https://github.com/ss14Starlight/space-station-14",
+    "size":
+    {
+        "x": 32,
+        "y": 32
+    },
+    "states":
+    [
+        {
+            "name": "icon",
+			"copyright": "DSC@300074782328750080, Flareguy, JustAdler",
+			"license": "CC-BY-SA-3.0"
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "panel_open",
+            "copyright": "Taken from Resources/Textures/Structures/Storage/closet.rsi, edited by CrazyPhantom (Github)"
+        }
+    ]
+}

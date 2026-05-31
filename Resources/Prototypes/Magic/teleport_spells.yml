@@ -42,3 +42,4 @@
   - type: EntityTargetAction
     event: !type:VoidApplauseSpellEvent
       effect: EffectVoidBlink
+  - type: EorgPreventAction # Starlight

@@ -1,7 +1,5 @@
 ﻿using Content.Shared.DoAfter;
 using Content.Shared.Mech.Components;
-using Content.Shared.Mech;
-using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -22,27 +20,9 @@ public sealed partial class MechEquipmentComponent : Component
     /// The mech that the equipment is inside of.
     /// </summary>
     [ViewVariables] public EntityUid? EquipmentOwner;
-    
+
     [DataField("equipmentType")] public EquipmentType EquipmentType = EquipmentType.Active;
 }
-
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class MechEquipmentActionComponent : Component
-{
-    [DataField]
-    [AutoNetworkedField]
-    public bool EquipmentToggled = false;
-    
-    [DataField]
-    [AutoNetworkedField]
-    public bool EquipmentComponentAdded = false;
-    
-    [DataField("actionId")]
-    public EntProtoId EquipmentAction = "";
-    
-    [DataField] public EntityUid? EquipmentActionEntity;
-}
-
 
 /// <summary>
 /// Raised on the equipment when the installation is finished successfully

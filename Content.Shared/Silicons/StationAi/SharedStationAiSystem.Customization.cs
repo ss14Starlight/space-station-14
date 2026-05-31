@@ -55,7 +55,7 @@ public abstract partial class SharedStationAiSystem
         if (groupPrototype.Category == StationAiCustomizationType.CoreIconography && TryComp<StationAiHolderComponent>(entity, out var stationAiHolder))
             UpdateAppearance((entity, stationAiHolder));
     }
-    
+
     // Starlight begin
     private void OnStationAiRename(EntityUid uid, StationAiCoreComponent comp, StationAiRenameMessage args)
     {

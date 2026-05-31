@@ -7,7 +7,14 @@ using Content.Shared.Implants;
 using Content.Shared.Mindshield.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.Roles.Components;
-using Robust.Shared.Containers;
+
+#region Starlight
+using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.Implants.Components;
+using Content.Shared.Popups;
+using Content.Server._Starlight.Achievement;
+#endregion
+
 
 namespace Content.Server.Mindshield;
 
@@ -17,6 +24,7 @@ namespace Content.Server.Mindshield;
 /// </summary>
 public sealed class MindShieldSystem : EntitySystem
 {
+    [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
     [Dependency] private readonly IAdminLogManager _adminLogManager = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
@@ -26,14 +34,31 @@ public sealed class MindShieldSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<MindShieldImplantComponent, AddImplantAttemptEvent>(OnAttemptImplant); // Starlight edit
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantImplantedEvent>(OnImplantImplanted);
         SubscribeLocalEvent<MindShieldImplantComponent, ImplantRemovedEvent>(OnImplantRemoved);
     }
 
+    // Starlight-edit start
+    private void OnAttemptImplant(EntityUid uid, MindShieldImplantComponent comp, AddImplantAttemptEvent args)
+    {
+        if (HasComp<HeadRevolutionaryComponent>(args.Target))
+            _achievements.QueueUnlockAchievement(args.User, "beyond_reasonable_doubt");
+
+        if (HasComp<MindControlComponent>(args.Target)) // this SHOULD just be a yml blacklist on the implanter, but it refuses to work T-T
+        {
+            _popupSystem.PopupEntity(Loc.GetString("mind-control-prevents-mindshield"), args.User, args.User, PopupType.Small);
+            args.Cancel();
+        }
+    }
+    // Starlight-edit end
+
     private void OnImplantImplanted(Entity<MindShieldImplantComponent> ent, ref ImplantImplantedEvent ev)
     {
-        EnsureComp<MindShieldComponent>(ev.Implanted);
+        var mindshield = EnsureComp<MindShieldComponent>(ev.Implanted);
+        mindshield.MindShieldStatusIcon = ent.Comp.MindShieldStatusIcon;
         MindShieldRemovalCheck(ev.Implanted, ev.Implant);
+        Dirty(ev.Implanted, mindshield);
     }
 
     /// <summary>

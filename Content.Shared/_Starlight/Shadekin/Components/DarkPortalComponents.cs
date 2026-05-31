@@ -28,6 +28,12 @@ public sealed partial class DarkPortalComponent : Component
 [RegisterComponent]
 public sealed partial class DarkHubComponent : Component
 {
+    /// <summary>
+    /// If true, this is the Hub.
+    /// </summary>
+    [DataField]
+    public bool Hub = true;
+
     [DataField]
     public EntProtoId ShadekinShadow = "ShadekinShadow";
 }

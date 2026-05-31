@@ -9,9 +9,6 @@
   - ExosuitFabricatorMachineCircuitboard
   - CutterMachineCircuitboard
   - BorgChargerCircuitboard
-  # Starlight-start
-  - SlimeProcessorMachineCircuitboard
-  # Starlight-end
 
 ## Dynamic
 
@@ -33,7 +30,7 @@
   recipes:
   - ClothingShoesBootsMagSci
   - ClothingShoesBootsMoon
-  - ClothingShoesBootsSpeed
+  #- ClothingShoesBootsSpeed # Starlight edit - replaced with speed legs
   - ClothingShoesBootsJump
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding

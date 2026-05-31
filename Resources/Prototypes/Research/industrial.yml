@@ -45,8 +45,10 @@
   cost: 7500
   recipeUnlocks:
   - PowerCellHigh
+  - MechReactorHigh #Starlight
   - TurboItemRechargerCircuitboard
   - SMESAdvancedMachineCircuitboard
+  - SMESHyperAdvancedMachineCircuitboard #SL
   radioChannels:
   - Engineering
 
@@ -134,6 +136,8 @@
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
   - WallmountMassScannerElectronics # Starlight
+  technologyPrerequisites:
+  - SpaceScanning # starlight
   radioChannels:
   - Engineering
 
@@ -150,6 +154,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - ElectrolyzerMachineCircuitboard # Funky atmos = /tg/ gases
   technologyPrerequisites:
   - AtmosphericTech
   radioChannels:
@@ -169,9 +174,11 @@
     - PowerDrill
     - JawsOfLife
     - BorgModuleAdvancedTool
+    - BorgModuleAdvancedPlumbing
     - Fulton
     - FultonBeacon
   radioChannels:
+  - Engineering # starlight
   - Supply
 
 - type: technology
@@ -184,11 +191,12 @@
   tier: 2
   cost: 12500
   recipeUnlocks:
-    - OreBagOfHolding
     - MiningDrillDiamond
     - AdvancedMineralScannerEmpty
     - MechEquipmentDrillDiamond
     - BorgModuleAdvancedMining
+  technologyPrerequisites:
+  - SalvageEquipment # starlight
   radioChannels:
   - Supply
 
@@ -204,11 +212,14 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
+  - OreBagOfHolding # SL - Moved to BluespaceStorage.
   - ClothingBackpackHolding
   - ClothingBackpackSatchelHolding
   - ClothingBackpackDuffelHolding
   technologyPrerequisites:
   - BluespaceManipulation
+  radioChannels:
+  - Supply # starlight
 
 - type: technology
   id: OptimizedMicrogalvanism
@@ -222,5 +233,10 @@
   recipeUnlocks:
   - PowerCellMicroreactor
   - PowerCellHyper
+  - MechReactorMicro #Starlight
+  - MechReactorHyper #Starlight
   technologyPrerequisites:
   - AdvancedPowercells
+  - PowerGeneration # starlight
+  radioChannels:
+  - Engineering # starlight

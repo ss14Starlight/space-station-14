@@ -1,28 +1,32 @@
 <Document>
   # Species
 
-  Nanotrasen employs a variety of sapient species.
+  NanoTrasen employs a variety of sapient species.
 
   <Box>
-  <GuideEntityEmbed Entity="MobHuman" Caption="Human"/>
-  <GuideEntityEmbed Entity="MobMoth" Caption="Moth Person"/>
-  <GuideEntityEmbed Entity="MobReptilian" Caption="Reptilian"/>
-  <GuideEntityEmbed Entity="MobSlimePerson" Caption="Laspi"/>
-  <GuideEntityEmbed Entity="MobArachnid" Caption="Arachnid"/>
-  <GuideEntityEmbed Entity="MobDiona" Caption="Diona"/>
+  <GuideEntityEmbed Entity="AppearanceElf" Caption="Aelithii"/>
+  <GuideEntityEmbed Entity="AppearanceArachnid" Caption="Arachnid"/>
+  <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
+  <GuideEntityEmbed Entity="AppearanceDiona" Caption="Diona"/>
+  <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
+  <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobVulpkanin" Caption="Vulpkanin"/>
-  <GuideEntityEmbed Entity="MobCyclorite" Caption="Cyclorite"/>
-  <GuideEntityEmbed Entity="MobVox" Caption="Vox"/>
-  <GuideEntityEmbed Entity="MobThaven" Caption="Thaven"/>
-  <GuideEntityEmbed Entity="MobResomi" Caption="Resomi"/>
+  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
+  <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
+  <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
+  <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
+  <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="MobDwarf" Caption="Dwarf"/>
-  <GuideEntityEmbed Entity="MobFelionoid" Caption="Felionoid"/>
-  <GuideEntityEmbed Entity="MobAvali" Caption="Avali"/>
-  <GuideEntityEmbed Entity="MobShadekin" Caption="Shadekin"/>
+  <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
+  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
+  <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
+  <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
+  <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
+  <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
 
 </Document>

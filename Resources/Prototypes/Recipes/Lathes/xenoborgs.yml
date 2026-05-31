@@ -13,8 +13,6 @@
   categories:
   - Modules
   completetime: 2
-  materials:
-    Glass: 3000
 
 # xenoborgs
 
@@ -51,17 +49,63 @@
 
 # modules
 
+## engi xenoborg modules
+
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleDoorControlRecipe
+  result: XenoborgModuleDoorControl
+  materials:
+    Steel: 1500
+    Glass: 1500
+
+# Starlight start
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleTileGunRecipe
+  result: XenoborgModuleTileGun
+  materials:
+    Steel: 1000 # Starlight, since they use crystals for these, but we don't have that pr yet.
+    Glass: 1000 # Starlight, support module, so cheaper.
+# Counted as Starlight because there's a chance wizden puts it above the door module instead, so I'm putting this here so future person merging this doesn't have to jump to another file to find it.
+# Starlight end
+
+## heavy xenoborg modules
+
 - type: latheRecipe
   parent: BaseXenoborgModulesRecipe
   id: XenoborgModuleHeavyLaserRecipe
   result: XenoborgModuleHeavyLaser
+  materials:
+    Steel: 1500
+    Glass: 1500
+
+## scout xenoborg modules
 
 - type: latheRecipe
   parent: BaseXenoborgModulesRecipe
   id: XenoborgModuleEnergySwordRecipe
   result: XenoborgModuleEnergySword
+  materials:
+    Steel: 1500
+    Glass: 1500
+
+# Starlight start
+- type: latheRecipe
+  parent: BaseXenoborgModulesRecipe
+  id: XenoborgModuleJumpRecipe
+  result: XenoborgModuleJump
+  materials:
+    Steel: 500 # Starlight, since they use crystals for these, but we don't have that pr yet.
+    Glass: 500 # Starlight, support module, so cheaper.
+# Counted as Starlight because there's a chance wizden puts it above the sword module instead, so I'm putting this here so future person merging this doesn't have to jump to another file to find it.
+# Starlight end
+
+## stealth xenoborg modules
 
 - type: latheRecipe
   parent: BaseXenoborgModulesRecipe
   id: XenoborgModuleSuperCloakDeviceRecipe
   result: XenoborgModuleSuperCloakDevice
+  materials:
+    Glass: 3000

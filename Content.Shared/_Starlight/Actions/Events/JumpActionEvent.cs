@@ -2,7 +2,7 @@ using Content.Shared.Actions;
 using Robust.Shared.Audio;
 
 namespace Content.Shared._Starlight.Actions.Events;
-  
+
 [Virtual]
 public partial class JumpActionEvent : WorldTargetActionEvent
 {
@@ -20,6 +20,9 @@ public partial class JumpActionEvent : WorldTargetActionEvent
 
     [DataField]
     public SoundSpecifier? Sound = default;
+
+    [DataField]
+    public bool IsCybernetic = false;
 }
 
 public sealed partial class JetJumpActionEvent : JumpActionEvent

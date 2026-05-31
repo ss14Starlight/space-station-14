@@ -20,8 +20,6 @@
   - type: Physics
     bodyType: Dynamic
     bodyStatus: InAir
-    angularDamping: 0
-    linearDamping: 0
   - type: Fixtures
     fixtures:
       projectile:
@@ -45,11 +43,7 @@
     tileBreakScale: 2
   - type: TileFrictionModifier
     modifier: 0
-  - type: MobState # Needed to be a target // Starlight
-  - type: NpcFactionMember # Starlight
-    factions:
-    - PointDefenseTarget
-
+  - type: PDTarget # Starlight
 
 - type: entity
   parent: BaseMeteor

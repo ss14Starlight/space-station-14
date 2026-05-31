@@ -16,7 +16,7 @@ public sealed partial class ActionCancelChance : OnSignAction
     {
         return _random.NextFloat() > Chance;
     }
-    
+
     public override void ResolveIoC()
     {
         _random = IoCManager.Resolve<IRobustRandom>();

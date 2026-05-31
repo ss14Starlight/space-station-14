@@ -1,19 +1,17 @@
-using Content.Server.NodeContainer;
 using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
-using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-// Starlight Start: DockCableSystem
+// Starlight Start: CableDockingSystem
 using System.Collections.Generic;
 using Robust.Shared.Utility;
-// Starlight End
+// Starlight End: CableDockingSystem
 
 namespace Content.Server.Power.Nodes
 {
     [DataDefinition]
     public sealed partial class CableNode : Node
     {
-        // Starlight Start: DockCableSystem
+        // Starlight Start: CableDockingSystem
         private HashSet<CableNode>? _alwaysReachable;
 
         public void AddAlwaysReachable(CableNode node)
@@ -30,14 +28,15 @@ namespace Content.Server.Power.Nodes
         }
 
         public HashSet<CableNode>? GetAlwaysReachable() => _alwaysReachable;
-        // Starlight End
-        public override IEnumerable<Node> GetReachableNodes(TransformComponent xform,
+        // Starlight End: CableDockingSystem
+        public override IEnumerable<Node> GetReachableNodes(
+            Entity<TransformComponent> xform,
             EntityQuery<NodeContainerComponent> nodeQuery,
             EntityQuery<TransformComponent> xformQuery,
-            MapGridComponent? grid,
+            Entity<MapGridComponent>? grid,
             IEntityManager entMan)
         {
-            // Starlight Start: DockCableSystem
+            // Starlight Start: CableDockingSystem
             if (_alwaysReachable != null)
             {
                 var remQ = new RemQueue<CableNode>();
@@ -57,18 +56,19 @@ namespace Content.Server.Power.Nodes
                     _alwaysReachable.Remove(node);
                 }
             }
-            // Starlight End
-            if (!xform.Anchored || grid == null)
+            // Starlight End: CableDockingSystem
+            if (!xform.Comp.Anchored || grid is not { } gridEnt)
                 yield break;
 
-            var gridIndex = grid.TileIndicesFor(xform.Coordinates);
+            var mapSystem = entMan.System<SharedMapSystem>();
+            var gridIndex = mapSystem.TileIndicesFor(gridEnt, xform.Comp.Coordinates);
 
             // While we go over adjacent nodes, we build a list of blocked directions due to
             // incoming or outgoing wire terminals.
             var terminalDirs = 0;
             List<(Direction, Node)> nodeDirs = new();
 
-            foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, grid, gridIndex))
+            foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, gridEnt, gridIndex, mapSystem))
             {
                 if (node is CableNode && node != this)
                 {
@@ -109,12 +109,12 @@ namespace Content.Server.Power.Nodes
                 yield return node;
             }
         }
-        // Starlight Start: DockCableSystem
+        // Starlight Start: CableDockingSystem
         public override void OnAnchorStateChanged(IEntityManager entityManager, bool anchored)
         {
             base.OnAnchorStateChanged(entityManager, anchored);
 
-            var dockCableSystem = entityManager.System<Content.Server.Power.EntitySystems.DockCableSystem>();
+            var dockCableSystem = entityManager.System<Server._Starlight.Power.EntitySystems.CableDockingSystem>();
             if (anchored)
             {
                 dockCableSystem.TryConnectDockedCable(this);
@@ -124,6 +124,6 @@ namespace Content.Server.Power.Nodes
                 dockCableSystem.RemoveDockConnections(this);
             }
         }
-        // Starlight End
+        // Starlight End: CableDockingSystem
     }
 }

@@ -1,0 +1,8 @@
+namespace Content.Shared._Starlight.Medical.Body.Events;
+
+[ByRefEvent]
+public record struct ShiverAttemptEvent(EntityUid Uid)
+{
+    public readonly EntityUid Uid = Uid;
+    public bool Cancelled = false;
+}

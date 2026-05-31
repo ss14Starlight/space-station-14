@@ -8,9 +8,11 @@
   - SciFlash
   - CyborgEndoskeleton
   # Starlight-start
-  - MechAirTank 
+  - MechAirTank
   - MechThruster
   - AiInterfaceCube
+  - MechReactorStandard
+  - EmptyOilPack
   # Starlight-end
 
 - type: latheRecipePack
@@ -21,9 +23,7 @@
   - BorgModuleFireExtinguisher
   - BorgModuleInflatable
   - BorgModuleArtistry
-  # Starlight-start
-  - BorgModuleUppies
-  # Starlight-end
+  - BorgModuleUppies # Starlight
 
 - type: latheRecipePack
   id: BorgLimbsStatic
@@ -48,8 +48,12 @@
   - BorgModuleAdvancedCleaning
   - BorgModuleAdvancedTool
   - BorgModuleAdvancedClowning
-  - BorgModuleAdvancedChemical
+  - BorgModuleAdvancedTopical
   - BorgModuleAdvancedMining
+  - BorgModuleAdvancedLoading # Starlight
+  - BorgModuleSurgical # Starlight
+  - BorgModuleAdvancedPlumbing # Starlight
+  - BorgModuleMiningDefense # Starlight
 
 - type: latheRecipePack
   id: MechParts

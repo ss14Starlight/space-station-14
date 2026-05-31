@@ -1,0 +1,144 @@
+# Base spider ling
+
+- type: entity
+  name: spiderling
+  parent: SimpleMobBase
+  id: MobSpiderlingBase
+  description: a small spider which growth into unknown big and dangerous spider.
+  abstract: true
+  components:
+  - type: OptionsVisualizer
+    visuals:
+      base:
+        - options: Default
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/spiderling.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+        - options: Arachnophobia
+          data:
+            drawdepth: Mobs
+            sprite: _Starlight/Mobs/Animals/Spiders/Arachnophobia/spiderling.rsi
+            map: ["enum.DamageStateVisualLayers.Base", "movement"]
+            state: alive
+  - type: LanguageKnowledge
+    speaks:
+    - Chittin
+    understands:
+    - Chittin
+  - type: VentCrawler
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 50
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+        - SpiderlingImpassable
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: alive
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Body
+    prototype: AnimalHemocyanin
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+  - type: ReplacementAccent
+    accent: xeno
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
+  - type: Bloodstream
+    bloodReferenceSolution:
+        reagents:
+        - ReagentId: CopperBlood
+          Quantity: 50
+  - type: Speech
+    speechVerb: Arachnid
+    speechSounds: Arachnid
+    allowedEmotes: ['Click', 'Chitter']
+  - type: Vocal
+    sounds:
+      Male: UnisexArachnid
+      Female: UnisexArachnid
+      Unsexed: UnisexArachnid
+  - type: TypingIndicator
+    proto: spider
+  - type: Tag
+    tags:
+    - FootstepSound
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleWebAvoidanceCompound
+  - type: Jump
+
+# Default
+- type: entity
+  parent: MobSpiderlingBase
+  id: MobSpiderling
+  components:
+  - type: VentCrawler
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.00
+    baseSprintSpeed : 5.00
+  - type: TimedSpawner
+    intervalSeconds: 90
+    despawnWhenDone: true
+    requiredState: Alive
+
+- type: entity
+  name: spiderling
+  parent: MobSpiderling
+  id: MobSpiderlingTerrorRed
+  suffix: Terror Red
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorRed
+
+- type: entity
+  name: spiderling
+  parent: MobSpiderling
+  id: MobSpiderlingTerrorGray
+  suffix: Terror Gray
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorGray
+
+- type: entity
+  name: spiderling
+  parent: MobSpiderling
+  id: MobSpiderlingTerrorGreen
+  suffix: Terror Green
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobTerrorGreen
+
+- type: entity
+  name: spiderling
+  parent: MobSpiderling
+  id: MobSpiderlingSpiderAngry
+  suffix: Giant Spider
+  components:
+  - type: TimedSpawner
+    prototypes:
+    - MobGiantSpiderAngry
+    intervalSeconds: 60

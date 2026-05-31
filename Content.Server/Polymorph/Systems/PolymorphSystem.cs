@@ -25,6 +25,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Shared.Serialization.Manager; // Starlight
+using Content.Shared._Starlight.Language.Components; // Starlight
+using System.Linq; // Starlight
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -57,7 +59,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphableComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<PolymorphedEntityComponent, MapInitEvent>(OnMapInit);
 
-        SubscribeLocalEvent<PolymorphableComponent, PolymorphActionEvent>(OnPolymorphActionEvent);
+        SubscribeLocalEvent<PolymorphableComponent, PolymorphActionEvent>(OnPolymorphActionEvent); // Starlight-edit
+        SubscribeLocalEvent<PolymorphableComponent, PolymorphConfigActionEvent>(OnPolymorphConfigActionEvent); // Starlight
         SubscribeLocalEvent<PolymorphedEntityComponent, RevertPolymorphActionEvent>(OnRevertPolymorphActionEvent);
 
         SubscribeLocalEvent<PolymorphedEntityComponent, BeforeFullySlicedEvent>(OnBeforeFullySliced);
@@ -117,15 +120,21 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
     }
 
+    // Starlight begin - Why the fuck these can't just be one event handler listening for BasePolymorphActionEvent is fucking beyond me.
     private void OnPolymorphActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphActionEvent args)
     {
-        if (!_proto.Resolve(args.ProtoId, out var prototype) || args.Handled)
-            return;
-
-        PolymorphEntity(ent, prototype.Configuration);
-
+        if (args.Handled) return;
+        PolymorphEntity(ent, args.Config);
         args.Handled = true;
     }
+
+    private void OnPolymorphConfigActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphConfigActionEvent args)
+    {
+        if (args.Handled) return;
+        PolymorphEntity(ent, args.Config);
+        args.Handled = true;
+    }
+    // Starlight end
 
     private void OnRevertPolymorphActionEvent(Entity<PolymorphedEntityComponent> ent,
         ref RevertPolymorphActionEvent args)
@@ -202,7 +211,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         // mostly just for vehicles
         _buckle.TryUnbuckle(uid, uid, true);
-        
+
         var targetTransformComp = Transform(uid);
 
         if (configuration.PolymorphSound != null)
@@ -219,6 +228,32 @@ public sealed partial class PolymorphSystem : EntitySystem
         _mindSystem.MakeSentient(child);
 
         // Starlight - start
+
+        // Try to get the language knowledge from the new entity so we can apply this to
+        // the polymorph target
+        LanguageKnowledgeComponent? polymorphedEntityKnownLanguages = null;
+        LanguageSpeakerComponent? polymorphedEntitySpokenLanguages = null;
+        if (configuration.TransferLanguages)
+        {
+            if (TryComp<LanguageKnowledgeComponent>(child, out var formerEntityKnownLanguages))
+            {
+                polymorphedEntityKnownLanguages = new LanguageKnowledgeComponent
+                {
+                    Speaks = [.. formerEntityKnownLanguages.Speaks],
+                    Understands = [.. formerEntityKnownLanguages.Understands]
+                };
+            }
+            if (TryComp<LanguageSpeakerComponent>(child, out var formerEntitySpokenLanguages))
+            {
+                polymorphedEntitySpokenLanguages = new LanguageSpeakerComponent
+                {
+                    SpokenLanguages = [.. formerEntitySpokenLanguages.SpokenLanguages],
+                    UnderstoodLanguages = [.. formerEntitySpokenLanguages.UnderstoodLanguages],
+                    CurrentLanguage = formerEntitySpokenLanguages.CurrentLanguage
+                };
+            }
+        }
+
         // Copy specified components over
         foreach (var compName in configuration.CopiedComponents)
         {
@@ -226,10 +261,9 @@ public sealed partial class PolymorphSystem : EntitySystem
                 || !EntityManager.TryGetComponent(uid, reg.Idx, out var comp))
                 continue;
 
-            var copy = _serialization.CreateCopy(comp, notNullableOverride: true);
-            copy.Owner = child;
-            AddComp(child, copy, true);
+            EntityManager.CopyComponent(uid, child, comp);
         }
+
         // Startlight - end
 
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
@@ -302,6 +336,24 @@ public sealed partial class PolymorphSystem : EntitySystem
         EnsurePausedMap();
         if (PausedMap != null)
             _transform.SetParent(uid, targetTransformComp, PausedMap.Value);
+
+        // Starlight Begin
+        // If the polymorph target has any languages, move them over to the target
+        if (configuration.TransferLanguages)
+        {
+            if (TryComp<LanguageKnowledgeComponent>(child, out var knownLanguage) && polymorphedEntityKnownLanguages != null)
+            {
+                knownLanguage.Speaks = [.. knownLanguage.Speaks.Union(polymorphedEntityKnownLanguages.Speaks)];
+                knownLanguage.Understands = [.. knownLanguage.Understands.Union(polymorphedEntityKnownLanguages.Understands)];
+            }
+            if (TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage) && polymorphedEntitySpokenLanguages != null)
+            {
+                spokenLanguage.SpokenLanguages = [.. spokenLanguage.SpokenLanguages.Union(polymorphedEntitySpokenLanguages.SpokenLanguages)];
+                spokenLanguage.UnderstoodLanguages = [.. spokenLanguage.UnderstoodLanguages.Union(polymorphedEntitySpokenLanguages.UnderstoodLanguages)];
+                spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage;
+            }
+        }
+        // Starlight End
 
         // Raise an event to inform anything that wants to know about the entity swap
         var ev = new PolymorphedEvent(uid, child, false);
@@ -391,7 +443,7 @@ public sealed partial class PolymorphSystem : EntitySystem
             RemComp<UncryoableComponent>(parent);
         }
         //#endregion Starlight
-        
+
         if (TryComp<PolymorphableComponent>(parent, out var polymorphableComponent))
             polymorphableComponent.LastPolymorphEnd = _gameTiming.CurTime;
 
@@ -457,4 +509,41 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (actions.TryGetValue(id, out var action))
             _actions.RemoveAction(target.Owner, action);
     }
+
+    //Starlight begin
+    public void CreatePolymorphAction(string id, PolymorphConfiguration config, EntityUid target, PolymorphableComponent? comp)
+    {
+        if (!Resolve(target, ref comp)) return;
+        comp.PolymorphConfigActions ??= new();
+        if (comp.PolymorphConfigActions.ContainsKey(id))
+            return;
+
+        var entProto = _proto.Index(config.Entity);
+
+        EntityUid? actionId = default!;
+        if (!_actions.AddAction(target, ref actionId, RevertPolymorphId, target))
+            return;
+
+        comp.PolymorphConfigActions.Add(id, actionId.Value);
+
+        var metaDataCache = MetaData(actionId.Value);
+        _metaData.SetEntityName(actionId.Value, Loc.GetString("polymorph-self-action-name", ("target", entProto.Name)), metaDataCache);
+        _metaData.SetEntityDescription(actionId.Value, Loc.GetString("polymorph-self-action-description", ("target", entProto.Name)), metaDataCache);
+
+        if (_actions.GetAction(actionId) is not {} action)
+            return;
+
+        _actions.SetIcon((action, action.Comp), new SpriteSpecifier.EntityPrototype(config.Entity));
+        _actions.SetEvent(action, new PolymorphConfigActionEvent(config));
+    }
+
+    public void RemovePolymorphAction(string id, EntityUid target, PolymorphableComponent? comp)
+    {
+        if (!Resolve(target, ref comp)) return;
+        if (comp.PolymorphConfigActions is not { } actions) return;
+        if (!actions.TryGetValue(id, out var action)) return;
+        _actions.RemoveAction(target, action);
+        actions.Remove(id);
+    }
+    //Starlight end
 }

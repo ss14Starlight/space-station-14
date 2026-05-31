@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Content.Server.Administration.BanList;
+using Content.Server.Administration.Managers; // NullLink-edit: move to general method at Manager
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Shared.Administration;
@@ -16,7 +17,8 @@ public sealed class BanListCommand : LocalizedCommands
 {
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
+    //[Dependency] private readonly IServerDbManager _dbManager = default!; NullLink-edit: move to general method at Manager
+    [Dependency] private readonly IBanManager _banManager = default!; // NullLink-edit: move to general method at Manager
     [Dependency] private readonly EuiManager _eui = default!;
 
     public override string Command => "banlist";
@@ -39,7 +41,7 @@ public sealed class BanListCommand : LocalizedCommands
 
         if (shell.Player is not { } player)
         {
-            var bans = await _dbManager.GetServerBansAsync(data.LastAddress, data.UserId, data.LastLegacyHWId, data.LastModernHWIds, false);
+            var bans = await _banManager.GetServerBansAsync(data.LastAddress, data.UserId, data.LastLegacyHWId, data.LastModernHWIds, false); // NullLink-edit: move to general method at Manager
 
             if (bans.Count == 0)
             {

@@ -3,6 +3,11 @@
   name: job-name-librarian
   description: job-description-librarian
   playTimeTracker: JobLibrarian
+  requirements:
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
   startingGear: LibrarianGear
   icon: "JobIconLibrarian"
   supervisors: job-supervisors-hop
@@ -29,7 +34,11 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - Grumbakul
+      - Aielic
+      - Classical
       - Darktongue
+      - Lagomorphian
       understands:
       - GalacticCommon
       - Scratch
@@ -46,7 +55,11 @@
       - Thaveyan
       - VoxPidgin
       - Sign
+      - Grumbakul
+      - Aielic
+      - Classical
       - Darktongue
+      - Lagomorphian
   # Starlight end
 
 - type: startingGear

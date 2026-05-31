@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Content.Client._Starlight.Tag;
-using Content.Client.Silicons.StationAi;
+﻿using Content.Client._Starlight.Tag;
 using Content.Shared._Starlight.OnCollide;
-using Content.Shared.Silicons.StationAi;
-using Content.Shared.Tag;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 

@@ -1,4 +1,4 @@
-﻿### Stunbaton component
+### Stunbaton component
 
 comp-stunbaton-stun = Stunned
 

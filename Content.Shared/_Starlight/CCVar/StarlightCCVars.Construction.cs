@@ -9,4 +9,4 @@ public sealed partial class StarlightCCVars
     /// </summary>
     public static readonly CVarDef<int> ConstructionMaxGhostsPerTile =
         CVarDef.Create("construction.max_ghosts_per_tile", 6, CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
-} 
+}

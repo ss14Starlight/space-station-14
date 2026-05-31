@@ -1,5 +1,3 @@
-<!-- IT'S NOT WIZDENS REPO, IF YOU WANT TO ADD YOUR CHANGES ON ALL SERVERS, CREATE PR TO WIZDENS REPO -->
-
 ## Short description
 <!-- What do you propose to change with your PR? -->
 
@@ -17,7 +15,7 @@ If your PR contains in-game changes you must provide screenshots/videos of the c
 - [ ] I do not require assistance to complete the PR.
 - [ ] Before posting/requesting review of a PR, I have verified that the changes work.
 - [ ] I have added screenshots/videos of the changes, or this PR does not change in-game mechanics.
-- [ ] I affirm that my changes are licensed under the [Starlight Fork License](https://github.com/ss14Starlight/space-station-14/blob/Starlight/LICENSE-Starlight.TXT) and grant permission for use in this repository under its conditions.
+- [ ] I affirm that my changes are licensed under the [MIT License](https://github.com/ss14Starlight/space-station-14/blob/Starlight/LICENSE.TXT) and grant permission for use in this repository under its conditions.
 
 **Changelog**
 <!--

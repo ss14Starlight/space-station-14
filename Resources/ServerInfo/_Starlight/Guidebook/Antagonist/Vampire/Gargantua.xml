@@ -1,0 +1,41 @@
+<Document>
+  # Vampire: Gargantua
+
+  <Box>
+    [color=#c56929][italic]"When subtlety ends — you begin..."[/italic][/color]
+  </Box>
+
+  Gargantua is the breakthrough and brawler class. You become a direct threat, but you pay for it in visibility.
+  Your job is to choose the moment when stealth stops being profitable and end the scene with force.
+
+  ## Role in the Round
+
+   [bold]Breakpoint[/bold]: break security formations, force entry, delete solo patrols.
+   [bold]Evac disruption[/bold]: hit critical points (bridge/med/armory) with good timing.
+
+  ## Toolkit (Total Blood Threshold | Cost)
+
+  [bold](150 | 30)[/bold] Blood Swell
+   Temporarily reduces incoming damage and shortens stun durations.
+   Limitation: you cannot use guns while it is active.
+   After 400 total blood, it also adds extra melee damage.
+
+  [bold](250 | 30)[/bold] Blood Rush
+   A short speed spike: chase, escape, or crash into a formation.
+
+  [bold](250 | 30)[/bold] Seismic Stomp
+   Slam the ground: knocks down and throws nearby creatures; can break floor tiles.
+   Great for creating chaos and resetting distance.
+
+  [bold](600 | 0)[/bold] Overwhelming Force (toggle)
+   Automatically pries unpowered doors.
+   While active, you can't be pushed or pulled.
+   Cost is blood per door (~5).
+
+  [bold](800 | 20)[/bold] Demonic Grasp
+   A ranged “hand” up to 15 tiles: immobilizes the target and can pull them to you in combat mode.
+
+  [bold](1000 | 30)[/bold] Charge
+   A charge to break through and finish targets.
+
+</Document>

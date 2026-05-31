@@ -1,4 +1,5 @@
-﻿using Content.Shared.Bed.Sleep;
+﻿using Content.Server.Stunnable;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Drowsiness;
 using Content.Shared.StatusEffectNew;
 using Content.Shared.StatusEffectNew.Components;
@@ -12,6 +13,7 @@ public sealed class DrowsinessSystem : SharedDrowsinessSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private readonly StunSystem _stunSystem = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -46,7 +48,13 @@ public sealed class DrowsinessSystem : SharedDrowsinessSystem
             // Make sure the sleep time doesn't cut into the time to next incident.
             drowsiness.NextIncidentTime += duration;
 
-            _statusEffects.TryAddStatusEffectDuration(statusEffect.AppliedTo.Value, SleepingSystem.StatusEffectForcedSleeping, duration);
+            // Starlight - Start
+            if (drowsiness.SleepIncident)
+                _statusEffects.TryAddStatusEffectDuration(statusEffect.AppliedTo.Value, SleepingSystem.StatusEffectForcedSleeping, duration);
+
+            if (drowsiness.KnockdownIncident)
+                _stunSystem.TryKnockdown(statusEffect.AppliedTo.Value, duration, force: true);
+            // Starlight - End
         }
     }
 }

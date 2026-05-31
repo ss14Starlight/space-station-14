@@ -1,0 +1,9 @@
+- type: cargoProduct
+  id: SecurityReflectiveArmor
+  icon:
+    sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
+    state: icon
+  product: CrateSecurityReflectiveArmor
+  cost: 6000
+  category: cargoproduct-category-name-security
+  group: market

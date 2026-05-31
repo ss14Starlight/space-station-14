@@ -60,4 +60,4 @@
 - type: guideEntry
   id: Cyborgs
   name: guide-entry-cyborgs
-  text: "/ServerInfo/Guidebook/Science/Cyborgs.xml"
+  text: "/ServerInfo/_Starlight/Guidebook/Science/Cyborgs.xml" #Starlight Edit

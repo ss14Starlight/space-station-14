@@ -1,4 +1,5 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Starlight.CryoTeleportation;
 
@@ -9,7 +10,7 @@ public sealed partial class StationCryoTeleportationComponent : Component
     public TimeSpan TransferDelay = TimeSpan.FromSeconds(420); //7 Minutes
 
     [DataField]
-    public string PortalPrototype = "CryoPortal";
+    public EntProtoId PortalPrototype = "CryoPortal";
 
     [DataField]
     public SoundSpecifier TransferSound = new SoundPathSpecifier("/Audio/Effects/teleport_departure.ogg");

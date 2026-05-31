@@ -1,0 +1,202 @@
+- type: reagent
+  parent: Blood
+  id: AbductorBlood
+  name: reagent-name-abductor-blood
+  group: Biological
+  desc: reagent-desc-abductor-blood
+  flavor: abductorBlood
+  color: "#d600bd"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-abductor
+
+- type: reagent
+  parent: Blood
+  id: AvaliBlood
+  name: reagent-name-avali-blood
+  group: Biological
+  desc: reagent-desc-avali-blood
+  flavor: beer
+  color: "#6C3BAA"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-avali
+
+- type: reagent
+  parent: Blood
+  id: ResomiBlood
+  name: reagent-name-resomi-blood
+  group: Biological
+  desc: reagent-desc-resomi-blood
+  flavor: beer
+  color: "#6C3BAA"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-resomi
+
+- type: reagent
+  parent: Blood
+  id: DarkBlood
+  name: reagent-name-dark-blood
+  group: Biological
+  desc: reagent-desc-dark-blood
+  flavor: metallic
+  color: "#1c1624"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-unidentifiable
+  metabolisms:
+    Poison:
+      effects:
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: DarkBlood
+          min: 10
+        effectProto: StatusEffectTheDark
+        type: Add
+        time: 5
+
+- type: reagent
+  parent: Blood
+  id: CycloriteBlood
+  name: reagent-name-cyclorite-blood
+  group: Biological
+  desc: reagent-desc-cyclorite-blood
+  flavor: acid
+  color: "#9457eb"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-strong-smelling
+  plantMetabolism:
+    - !type:PlantAdjustToxins
+      amount: 5
+    - !type:PlantAdjustWeeds
+      amount: -1
+    - !type:PlantAdjustHealth
+      amount: -2
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+        - !type:HealthChange
+          ignoreResistances: false
+          damage:
+            types:
+              Caustic: 0.1
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+            inverted: true
+        - !type:Emote
+          emote: Scream
+          probability: 0.1
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Cyclorite ]
+            inverted: true
+  metabolisms:
+    Poison:
+      metabolismRate: 1.00 # slightly faster metabolism for an acid
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Caustic: 1
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite, Bloodsucker ]
+              inverted: true
+        - !type:PopupMessage
+          type: Local
+          visualType: Large
+          messages: [ "generic-reagent-effect-burning-insides" ]
+          probability: 0.2
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite, Bloodsucker ]
+              inverted: true
+        - !type:Emote
+          emote: Scream
+          probability: 0.2
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite, Bloodsucker ]
+              inverted: true
+    Medicine:
+      effects:
+        - !type:HealthChange
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Bloodsucker ]
+          damage:
+            groups:
+              Brute: -3
+              Burn: -1.25
+
+- type: reagent
+  id: Amalgam
+  name: reagent-name-amalgam
+  group: Biological
+  desc: reagent-desc-amalgam
+  physicalDesc: reagent-physical-desc-unidentifiable
+  flavor: acid
+  color: "#FBDEDB"
+  boilingPoint: 212.0
+  meltingPoint: 170.0
+  metabolisms:
+    Narcotic:
+      effects:
+      # Main effects
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina # Keep going!
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 1.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 2
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 2
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 2
+      # Side effects
+      - !type:Jitter
+      # OD
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Amalgam
+          min: 30 # Starts hurting if you somehow manage to double-dose.
+        damage:
+          types:
+            Poison: 5
+      # Interactions
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+    Medicine:
+      effects:
+      # It's like hyperzine, but without the healing.
+      - !type:ResetNarcolepsy
+      - !type:SatiateHunger
+        factor: 1
+      - !type:SatiateThirst
+        factor: 1
+

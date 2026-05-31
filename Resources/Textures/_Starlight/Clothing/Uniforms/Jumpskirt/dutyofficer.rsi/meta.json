@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edited by Conflee based on sprites created by Flareguy using sprites from tgstation at commit https://github.com/tgstation/tgstation/commit/c838ba21dae97db345e0113f99596decd1d66039 & the jumpsuit base found in color.rsi.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Flareguy and Conflee"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "Flareguy and Conflee"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Flareguy and Conflee"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Flareguy and Conflee"
+    }
+  ]
+}

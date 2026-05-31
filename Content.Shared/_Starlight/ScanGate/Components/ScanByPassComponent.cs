@@ -6,7 +6,7 @@ namespace Content.Shared._Starlight.ScanGate.Components;
 [RegisterComponent]
 public sealed partial class ScanByPassComponent : Component
 {
-    /// <summary> 
+    /// <summary>
     /// Whether the entity needs to be powered to bypass the scan gate.
     /// </summary>
     [DataField("powered")]

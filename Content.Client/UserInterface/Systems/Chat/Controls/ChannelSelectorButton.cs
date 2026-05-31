@@ -1,6 +1,6 @@
 using System.Numerics;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Chat;
+using Content.Shared._Starlight.Radio; // Starlight
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
@@ -69,18 +69,20 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         };
     }
 
-    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio, CollectiveMindPrototype? collectiveMind)
+    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio, CustomRadioChannelData? customRadio) //Starlight edit
     {
         if (radio != null)
         {
             Text = Loc.GetString(radio.Name);
             Modulate = radio?.Color ?? ChannelSelectColor(channel);
         }
-        else if (collectiveMind != null)
+        //Starlight begin
+        else if (customRadio is not null)
         {
-            Text = Loc.GetString(collectiveMind.Name);
-            Modulate = collectiveMind.Color;
+            Text = Loc.GetString(customRadio.Name);
+            Modulate = customRadio?.Color ?? ChannelSelectColor(channel);
         }
+        //Starlight end
         else
         {
             Text = ChannelSelectorName(channel);

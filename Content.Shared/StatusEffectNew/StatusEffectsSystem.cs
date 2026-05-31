@@ -5,6 +5,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using System.Collections.Concurrent; // Starlight
 
 namespace Content.Shared.StatusEffectNew;
 
@@ -14,6 +15,7 @@ namespace Content.Shared.StatusEffectNew;
 /// </summary>
 public sealed partial class StatusEffectsSystem : EntitySystem
 {
+    [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
@@ -21,6 +23,8 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
     private EntityQuery<StatusEffectContainerComponent> _containerQuery;
     private EntityQuery<StatusEffectComponent> _effectQuery;
+
+    public static ConcurrentDictionary<string, byte> StatusEffectPrototypes = new(); // Starlight
 
     public override void Initialize()
     {
@@ -35,8 +39,12 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
         SubscribeLocalEvent<RejuvenateRemovedStatusEffectComponent, StatusEffectRelayedEvent<RejuvenateEvent>>(OnRejuvenate);
 
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+
         _containerQuery = GetEntityQuery<StatusEffectContainerComponent>();
         _effectQuery = GetEntityQuery<StatusEffectComponent>();
+
+        ReloadStatusEffectsCache();
     }
 
     public override void Update(float frameTime)
@@ -58,6 +66,25 @@ public sealed partial class StatusEffectsSystem : EntitySystem
                 continue;
 
             PredictedQueueDel(ent);
+        }
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (!args.WasModified<EntityPrototype>())
+            return;
+
+        ReloadStatusEffectsCache();
+    }
+
+    private void ReloadStatusEffectsCache()
+    {
+        StatusEffectPrototypes.Clear();
+
+        foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
+                StatusEffectPrototypes.TryAdd(ent.ID, 0); // Starlight
         }
     }
 
@@ -199,9 +226,14 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
         statusEffect = effect;
 
+        // Starlight START
+        if (effectComp.MaximumDuration != null && duration > effectComp.MaximumDuration)
+            duration = effectComp.MaximumDuration;
+        // Starlight END
+
         var endTime = delay == null ? _timing.CurTime + duration : _timing.CurTime + delay + duration;
         SetStatusEffectEndTime((effect.Value, effectComp), endTime);
-        var startTime = delay == null ? TimeSpan.Zero : _timing.CurTime + delay.Value;
+        var startTime = delay == null ? _timing.CurTime : _timing.CurTime + delay.Value;
         SetStatusEffectStartTime(effect.Value, startTime);
 
         TryApplyStatusEffect((statusEffect.Value, effectComp));
@@ -262,8 +294,15 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         if (effect.Comp.EndEffectTime is null)
             return;
 
+        // Starlight START
+        var uncappedEndTime = effect.Comp.EndEffectTime + delta;
+        var exceedsMaximumDuration = effect.Comp.MaximumDuration != null
+            && uncappedEndTime - _timing.CurTime > effect.Comp.MaximumDuration;
+        var endTime = exceedsMaximumDuration ? _timing.CurTime + effect.Comp.MaximumDuration : uncappedEndTime;
+        // Starlight END
+
         // Add to the current end effect time, if we're here we should have one set already, and if it's null it's probably infinite.
-        SetStatusEffectEndTime((effect, effect.Comp), effect.Comp.EndEffectTime.Value + delta);
+        SetStatusEffectEndTime((effect, effect.Comp), endTime); // Starlight: Use our endTime
     }
 
     private void SetStatusEffectEndTime(Entity<StatusEffectComponent?> ent, TimeSpan? endTime)

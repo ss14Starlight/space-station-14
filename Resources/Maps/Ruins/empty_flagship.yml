@@ -12112,14 +12112,14 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 55.5,-18.5
       parent: 1
-- proto: TowelColorBlue
+- proto: TowelColorWhite
   entities:
   - uid: 965
     components:
     - type: Transform
       pos: 21.459341,-21.931286
       parent: 1
-- proto: TowelColorBrown
+- proto: TowelColorWhite
   entities:
   - uid: 2658
     components:

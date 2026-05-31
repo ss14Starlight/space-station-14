@@ -162,6 +162,15 @@
       ]
     },
     {
+      "name": "theta",
+      "delays": [
+        [
+          0.8,
+          0.8
+        ]
+      ]
+    },
+    {
       "name": "orange",
       "delays": [
         [

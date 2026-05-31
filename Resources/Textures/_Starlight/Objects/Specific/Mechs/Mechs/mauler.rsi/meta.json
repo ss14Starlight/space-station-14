@@ -1,0 +1,21 @@
+{
+  "copyright" : "Taken from https://github.com/tgstation/tgstation at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a",
+  "license" : "CC-BY-SA-3.0",
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states" : [
+    {
+      "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "base-broken"
+    },
+    {
+      "name": "base-open"
+    }
+  ]
+}

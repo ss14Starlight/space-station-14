@@ -6,6 +6,7 @@ using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
 using Content.Shared.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 
 namespace Content.Shared.Starlight.Medical.Surgery;
 // Based on the RMC14.
@@ -26,13 +27,27 @@ public abstract partial class SharedSurgerySystem
         SubscribeLocalEvent<SurgeryAnyAccentConditionComponent, SurgeryValidEvent>(OnAnyAccentConditionValid);
         SubscribeLocalEvent<SurgeryAnyLimbSlotConditionComponent, SurgeryValidEvent>(OnAnyLimbSlotConditionValid);
         SubscribeLocalEvent<SurgeryLimbSlotConditionComponent, SurgeryValidEvent>(OnLimbSlotConditionValid);
+        SubscribeLocalEvent<SurgeryHasCompConditionComponent, SurgeryValidEvent>(OnHasCompConditionValid);
+    }
+
+    private void OnHasCompConditionValid(Entity<SurgeryHasCompConditionComponent> ent, ref SurgeryValidEvent args)
+    {
+        if (ent.Comp.Component == null)
+            return; // nothing to check
+
+        foreach (var comp in (ent.Comp.Component ?? []).Values)
+            if (!EntityManager.HasComponent(args.Body, comp.Component.GetType()))
+            {
+                args.Cancelled = true;
+                return;
+            }
     }
 
     private void OnOrganDontExistConditionValid(Entity<SurgeryOrganDontExistConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (ent.Comp.Organ?.Count != 1) return;
         var type = ent.Comp.Organ.Values.First().Component.GetType();
-        
+
         if (ent.Comp.Container != null)
         {
             foreach (var slotId in Comp<BodyPartComponent>(args.Part).Organs.Keys)
@@ -41,7 +56,7 @@ public abstract partial class SharedSurgerySystem
                 {
                     if (!_containers.TryGetContainer(args.Part, ent.Comp.Container, out var container))
                         continue;
-                    
+
                     foreach (var containedEnt in container.ContainedEntities)
                     {
                         if (HasComp(containedEnt, type))
@@ -67,11 +82,11 @@ public abstract partial class SharedSurgerySystem
     private void OnOrganExistConditionValid(Entity<SurgeryOrganExistConditionComponent> ent, ref SurgeryValidEvent args)
     {
         if (ent.Comp.Organ?.Count != 1) return;
-        
+
         var type = ent.Comp.Organ.Values.First().Component.GetType();
-        
+
         EntityUid mainPart = args.Part;
-        
+
         if (TryComp<BodyPartComponent>(args.Body, out var itemPart))
             mainPart = args.Body;
 
@@ -83,11 +98,11 @@ public abstract partial class SharedSurgerySystem
                 {
                     if (!_containers.TryGetContainer(mainPart, SharedBodySystem.GetOrganContainerId(ent.Comp.Container), out var container))
                         continue;
-                        
+
                     foreach (var containedEnt in container.ContainedEntities)
                         if (HasComp(containedEnt, type))
                             return;
-                        
+
                     args.Cancelled = true;
                 }
             }
@@ -109,7 +124,7 @@ public abstract partial class SharedSurgerySystem
 
         if (TryComp<BodyPartComponent>(args.Body, out var itemPart) && itemPart.PartType is BodyPartType item && !ent.Comp.Parts.Contains(item))
         {
-            Logger.Warning("don't have part at part");
+            Log.Warning("don't have part at part");
             args.Cancelled = true;
         }
 
@@ -153,7 +168,7 @@ public abstract partial class SharedSurgerySystem
         else
             args.Cancelled = true;
     }
-    private void OnLimbSlotConditionValid(Entity<SurgeryLimbSlotConditionComponent> ent, ref SurgeryValidEvent args) 
+    private void OnLimbSlotConditionValid(Entity<SurgeryLimbSlotConditionComponent> ent, ref SurgeryValidEvent args)
         => args.Cancelled = !(_containers.TryGetContainer(args.Part, SharedBodySystem.GetPartSlotContainerId(ent.Comp.Slot), out var container)
             && container.ContainedEntities.Count == 0);
 }

@@ -1,0 +1,9 @@
+- type: latheRecipePack
+  id: CassetteTape
+  recipes:
+  - CassetteTape
+
+- type: latheRecipePack
+  id: TapeRecorder
+  recipes:
+  - TapeRecorder

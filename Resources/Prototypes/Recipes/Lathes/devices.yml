@@ -137,9 +137,9 @@
   completetime: 5
   materials:
     Steel: 2000
-    Silver: 750
     Plasma: 1500
     Uranium: 150
+    BluespaceCrystal: 500 # SL
 
 - type: latheRecipe
   parent: ClothingBackpackHolding
@@ -192,6 +192,7 @@
     Steel: 700
     Glass: 100
     Uranium: 200
+    BluespaceCrystal: 300 # SL
 
 - type: latheRecipe
   id: WeaponProtoKineticAccelerator

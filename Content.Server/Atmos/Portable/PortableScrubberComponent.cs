@@ -29,7 +29,19 @@ namespace Content.Server.Atmos.Portable
             Gas.WaterVapor,
             Gas.Ammonia,
             Gas.NitrousOxide,
-            Gas.Frezon
+            Gas.Frezon,
+            // Funkystation Start: Funky atmos - /tg/ gases
+            Gas.BZ,
+            Gas.Healium,
+            Gas.Nitrium,
+            Gas.Hydrogen,
+            Gas.HyperNoblium,
+            Gas.ProtoNitrate,
+            Gas.Zauker,
+            Gas.Halon,
+            Gas.Helium,
+            Gas.AntiNoblium,
+            // Funkystation End: Funky atmos - /tg/ gases
         };
 
         [ViewVariables(VVAccess.ReadWrite)]

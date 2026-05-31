@@ -49,6 +49,8 @@ public sealed class PermanentBlindnessSystem : EntitySystem
         if (!TryComp<BlindableComponent>(blindness.Owner, out var blindable))
             return;
 
+        blindable.GlassesFixable = blindness.Comp.GlassesFixable; // starlight
+
         if (blindness.Comp.Blindness != 0)
             _blinding.SetMinDamage((blindness.Owner, blindable), blindness.Comp.Blindness);
         else

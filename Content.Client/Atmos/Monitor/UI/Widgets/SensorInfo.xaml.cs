@@ -21,6 +21,10 @@ public sealed partial class SensorInfo : BoxContainer
     public event Action<AtmosSensorData>? SensorDataCopied;
     private string _address;
 
+    // Starlight-start: Air alarm buttons for enabling/disabling all thresholds
+    private Button _enableAll => CEnableAll;
+    private Button _disableAll => CDisableAll;
+    // Starlight-end
     private ThresholdControl _pressureThreshold;
     private ThresholdControl _temperatureThreshold;
     private Dictionary<Gas, ThresholdControl> _gasThresholds = new();
@@ -99,6 +103,23 @@ public sealed partial class SensorInfo : BoxContainer
         {
             SensorDataCopied?.Invoke(data);
         };
+
+        // Starlight-start: Air alarm buttons for enabling/disabling all thresholds
+        _enableAll.OnPressed += _ =>
+        {
+            foreach (var threshold in GetAllThresholds())
+            {
+                threshold.SetEnabled(true);
+            }
+        };
+        _disableAll.OnPressed += _ =>
+        {
+            foreach (var threshold in GetAllThresholds())
+            {
+                threshold.SetEnabled(false);
+            }
+        };
+        // Starlight-end
     }
 
     public void ChangeData(AtmosSensorData data)
@@ -151,5 +172,18 @@ public sealed partial class SensorInfo : BoxContainer
             control.UpdateThresholdData(threshold, data.Gases[gas] / data.TotalMoles);
         }
     }
+
+    // Starlight-start: Air alarm buttons for enabling/disabling all thresholds
+    private IEnumerable<ThresholdControl> GetAllThresholds()
+    {
+        yield return _pressureThreshold;
+        yield return _temperatureThreshold;
+
+        foreach (var threshold in _gasThresholds.Values)
+        {
+            yield return threshold;
+        }
+    }
+    // Starlight-end
 
  }

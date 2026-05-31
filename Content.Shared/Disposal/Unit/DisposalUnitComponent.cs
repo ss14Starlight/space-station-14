@@ -111,6 +111,14 @@ public sealed partial class DisposalUnitComponent : Component
     [DataField, AutoNetworkedField]
     public bool Engaged;
 
+    // STARLIGHT START
+    /// <summary>
+    /// Maximum allowable items in the container on flush
+    /// </summary>
+    [DataField]
+    public int MaxItems = 50;
+    // STARLIGHT END
+
     /// <summary>
     /// Next time this unit will flush. Is the lesser of <see cref="FlushDelay"/> and <see cref="AutomaticEngageTime"/>
     /// </summary>

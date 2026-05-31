@@ -20,6 +20,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Utility;
 using static Content.Client.CharacterInfo.CharacterInfoSystem;
 using static Robust.Client.UserInterface.Controls.BaseButton;
+using Content.Client._Starlight.CustomObjectiveSummary; // Starlight
 
 namespace Content.Client.UserInterface.Systems.Character;
 
@@ -29,6 +30,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly CustomObjectiveSummaryUIController _objective = default!; // Starlight
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
@@ -129,7 +131,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             return;
         }
 
-        var (entity, job, objectives, minds, briefing, entityName) = data;
+        var (entity, job, objectives, briefing, entityName) = data;
 
         //starlight start
         _window.CharacterInfo.CharacterPreview.SetCharacter(entity, job);
@@ -139,7 +141,6 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         UpdateRoleType();
         _window.CharacterInfo.Objectives.RemoveAllChildren();
         _window.CharacterInfo.ObjectivesLabel.Visible = objectives.Any();
-        _window.CharacterInfo.Minds.RemoveAllChildren();
         //starlight end
 
         foreach (var (groupId, conditions) in objectives)
@@ -181,26 +182,19 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             _window.CharacterInfo.Objectives.AddChild(objectiveControl); //starlight
         }
 
-
-        if (minds != null && minds.Count > 0)
+        // Starlight Start: Custom objective summary
+        if (objectives.Count > 0)
         {
-            var mindsControl = new CharacterMindsControl
+            var button = new Button
             {
-                Orientation = BoxContainer.LayoutOrientation.Vertical
+                Text = Loc.GetString("custom-objective-button-text"),
+                Margin = new Thickness(0, 10, 0, 10)
             };
-            var mindDescriptionMessage = new FormattedMessage();
-            mindDescriptionMessage.AddText("Available collective minds:");
-            foreach (var mindPrototype in minds)
-            {
-                mindDescriptionMessage.AddText("\n");
-                mindDescriptionMessage.PushColor(mindPrototype.Key.Color);
-                mindDescriptionMessage.AddText($"{mindPrototype.Key.LocalizedName}: +{mindPrototype.Key.KeyCode}");
-                mindDescriptionMessage.AddText($" (Number {mindPrototype.Value.MindId})");
-                mindDescriptionMessage.Pop();
-            }
-            mindsControl.Description.SetMessage(mindDescriptionMessage);
-            _window.CharacterInfo.Objectives.AddChild(mindsControl); //starlight
+            button.OnPressed += _ => _objective.OpenWindow();
+
+            _window.CharacterInfo.Objectives.AddChild(button);
         }
+        // Starlight End
 
         if (briefing != null)
         {

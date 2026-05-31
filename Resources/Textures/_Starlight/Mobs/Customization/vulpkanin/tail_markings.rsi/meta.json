@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from https://github.com/ParadiseSS13/Paradise edited by Floofers",
+  "copyright": "Taken from https://github.com/ParadiseSS13/Paradise edited by Floofers, extra fluffy tail by orsonik.",
   "size": {"x": 32, "y": 32},
   "states": [
     {
@@ -114,6 +114,50 @@
       "directions": 4
     },
     {
+      "name": "m_tail_downhusky_BEHIND_B",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4
+    },
+    {
+      "name": "m_tail_downhusky_BEHIND_C",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4
+    },
+    {
+      "name": "m_tail_downhusky_FRONT_B",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4
+    },
+    {
+      "name": "m_tail_downhusky_FRONT_C",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4
+    },
+    {
+      "name": "m_tailwag_downhusky_BEHIND_B",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4,
+      "delays": [[0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2]]
+    },
+    {
+      "name": "m_tailwag_downhusky_BEHIND_C",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4,
+      "delays": [[0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2]]
+    },
+    {
+      "name": "m_tailwag_downhusky_FRONT_B",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4,
+      "delays": [[0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2]]
+    },
+    {
+      "name": "m_tailwag_downhusky_FRONT_C",
+      "copyright": "Taken from https://github.com/ARF-SS13/coyote-frontier, copyright coyote-bayou",
+      "directions": 4,
+      "delays": [[0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2], [0.6, 0.2, 0.2, 0.2]]
+    },
+    {
       "name": "fox2",
       "directions": 4
     },
@@ -141,6 +185,10 @@
       "name": "dalmatian_wag",
       "directions": 4,
       "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+    },
+    {
+      "name": "fluffy_tail_ex",
+      "directions": 4
     }
   ]
 }

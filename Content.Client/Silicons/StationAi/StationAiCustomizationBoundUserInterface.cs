@@ -28,7 +28,7 @@ public sealed class StationAiCustomizationBoundUserInterface : BoundUserInterfac
     {
         SendPredictedMessage(new StationAiCustomizationMessage(groupProtoId, customizationProtoId));
     }
-    
+
     // Starlight begin
     public void SendStationAiRenameMessage(string newName)
     {

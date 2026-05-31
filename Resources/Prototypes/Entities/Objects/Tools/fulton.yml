@@ -68,7 +68,13 @@
       - state: inhand-left-fulton
       right:
       - state: inhand-right-fulton
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: Fulton
     count: 10
   - type: Sprite

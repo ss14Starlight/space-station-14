@@ -1,3 +1,4 @@
+using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Trigger.Components.Triggers;
@@ -26,4 +27,12 @@ public sealed partial class TriggerOnCollideComponent : BaseTriggerOnXComponent
     /// </summary>
     [DataField, AutoNetworkedField]
     public int? MaxTriggers = null;
+
+    // Starlight - Start
+    [DataField]
+    public EntityWhitelist? Whitelist;
+
+    [DataField]
+    public EntityWhitelist? Blacklist;
+    // Starlight - End
 }

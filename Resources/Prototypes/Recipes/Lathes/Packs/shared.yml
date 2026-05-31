@@ -25,6 +25,7 @@
   - LedLightBulb
   - DimLightBulb
   - WarmLightBulb
+  - BlackLightTube # Starlight
 
 - type: latheRecipePack
   id: PowerCellsStatic
@@ -72,3 +73,4 @@
   - PKAUpgradeDamage
   - PKAUpgradeRange
   - PKAUpgradeFireRate
+  - FiringPinExpedition # starlight

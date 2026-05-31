@@ -17,7 +17,7 @@ public sealed partial class TitleBuilderPrototype : IPrototype
     public string Separator = "-";
 }
 
-// In each segment, the first text in the list will be selected. 
+// In each segment, the first text in the list will be selected.
 [DataDefinition]
 public sealed partial class TitleSegment
 {

@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Client.Construction;
 using Content.Client.Examine;
 using Content.Client.Gameplay;
+using Content.Client.Interaction;
 using Content.IntegrationTests.Pair;
 using Content.Server.Hands.Systems;
 using Content.Server.Stack;
@@ -134,6 +135,7 @@ public abstract partial class InteractionTest
     protected InteractionTestSystem CTestSystem = default!;
     protected ISawmill CLogger = default!;
     protected SharedUserInterfaceSystem CUiSys = default!;
+    protected DragDropSystem CDragDropSys = default!;
 
     // player components
     protected HandsComponent? Hands;
@@ -208,6 +210,7 @@ public abstract partial class InteractionTest
         CConSys = CEntMan.System<ConstructionSystem>();
         ExamineSys = CEntMan.System<ExamineSystem>();
         CUiSys = CEntMan.System<SharedUserInterfaceSystem>();
+        CDragDropSys = CEntMan.System<DragDropSystem>();
 
         // Setup map.
         if (TestMapPath == null)
@@ -271,8 +274,16 @@ public abstract partial class InteractionTest
     [TearDown]
     public async Task TearDownInternal()
     {
-        await Server.WaitPost(() => MapSystem.DeleteMap(MapId));
-        await Pair.CleanReturnAsync();
+        // Starlight edit Start
+        if (Pair != null!)
+        {
+            // Ensure the base Cleanup() handles map deletion properly inside CleanReturnAsync.
+            // LoadTestMap does not set Pair.TestMap, so we set it here for both code paths.
+            // Do NOT call MapSystem.DeleteMap before CleanReturnAsync — it corrupts game state.
+            Pair.TestMap ??= MapData;
+            await Pair.CleanReturnAsync();
+        }
+        // Starlight edit End
         await TearDown();
     }
 

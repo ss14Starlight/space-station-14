@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Starlight.FiringPins; // starlight
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
@@ -41,7 +42,7 @@ namespace Content.Server.Construction
             // Event handling. Add your subscriptions here! Just make sure they're all handled by EnqueueEvent.
             SubscribeLocalEvent<ConstructionComponent, InteractUsingEvent>(EnqueueEvent,
                 new []{typeof(AnchorableSystem), typeof(PryingSystem), typeof(WeldableSystem)},
-                new []{typeof(EncryptionKeySystem)});
+                new []{typeof(EncryptionKeySystem), typeof(FiringPinSystem)}); // starlight
             SubscribeLocalEvent<ConstructionComponent, OnTemperatureChangeEvent>(EnqueueEvent);
             SubscribeLocalEvent<ConstructionComponent, PartAssemblyPartInsertedEvent>(EnqueueEvent);
         }

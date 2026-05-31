@@ -40,10 +40,17 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         if (!Resolve(uid, ref keyHolder))
             return;
 
-        if (keyHolder.Channels.Count == 0)
+        if (keyHolder.Channels.Count == 0 && keyHolder.CustomChannels.Count == 0) // Starlight
             RemComp<ActiveRadioComponent>(uid);
+        //Starlight begin
         else
-            EnsureComp<ActiveRadioComponent>(uid).Channels = new(keyHolder.Channels);
+        {
+            var comp = EnsureComp<ActiveRadioComponent>(uid);
+            comp.Channels = new(keyHolder.Channels);
+            comp.CustomChannels = new(keyHolder.CustomChannels);
+            Dirty(uid, comp);
+        }
+        //Starlight end
     }
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)
@@ -52,9 +59,13 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             && TryComp(component.Headset, out EncryptionKeyHolderComponent? keys)
             && keys.Channels.Contains(args.Channel.ID))
         {
-            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
+            _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, args.Language); // Starlight-edit: This literally never specified language??? bruh.
             args.Channel = null; // prevent duplicate messages from other listeners.
         }
+        //Starlight begin
+        if (args.UsingCustomChannel && args.CustomChannel is not null)
+            _radio.SendCustomRadioMessage(uid, args.Message.Text, args.CustomChannel, component.Headset, args.Language); // Custom channel data is already confirmed to exist on this headset
+        //Starlight end
     }
 
     protected override void OnGotEquipped(EntityUid uid, HeadsetComponent component, GotEquippedEvent args)
@@ -115,17 +126,16 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         // Starlight - Start
         if (TryComp(parent, out ActorComponent? actor))
         {
-            var canUnderstand = _language.CanUnderstand(parent, args.Language.ID);
+            var canUnderstand = _language.CanUnderstand(parent, args.Language.ID) || args.Language.Speech.RadioChannel is not null;
             var msg = new MsgChatMessage
             {
                 Message = canUnderstand ? args.OriginalChatMsg : args.LanguageObfuscatedChatMsg
             };
             _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
         }
-        // Starlight - End
-        #region Starlight
+
         if (parent != args.MessageSource && TryComp(args.MessageSource, out TextToSpeechComponent? _))
             args.Receivers.Add(parent);
-        #endregion Starlight
+        // Starlight - End
     }
 }

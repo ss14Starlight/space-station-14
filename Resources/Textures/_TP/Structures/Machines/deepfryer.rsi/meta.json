@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Created by lev_tobecontinued for Trieste Port 14, edited by Conflee for Starlight",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "table-icon"
+    },
+    {
+      "name": "active",
+      "delays": [
+        [0.2, 0.2, 0.2, 0.2]
+      ]
+    },
+    {
+      "name": "table-active",
+      "delays": [
+        [0.2, 0.2, 0.2, 0.2]
+      ]
+    }
+  ]
+}

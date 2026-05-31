@@ -258,16 +258,16 @@ namespace Content.Client.Access.UI
                     if (!_prototypeManager.TryIndex(groupId, out var proto))
                         continue;
 
-                    var groupTags = proto.Tags.Where(tag => 
-                        _prototypeManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto) && 
+                    var groupTags = proto.Tags.Where(tag =>
+                        _prototypeManager.TryIndex<AccessLevelPrototype>(tag, out var accessProto) &&
                         accessProto.CanAddToIdCard).ToList();
-                    
+
                     if (groupTags.Count == 0)
                         continue;
-                        
+
                     var matchingTags = groupTags.Count(tag => allowedAccess.Contains(tag));
                     var threshold = Math.Max(1, Math.Min(3, groupTags.Count / 2));
-                    
+
                     if (matchingTags >= threshold)
                         groupsWithCoverage.Add(groupId);
                 }
@@ -362,17 +362,16 @@ namespace Content.Client.Access.UI
 
         private void SubmitData()
         {
+            // Don't send this if it isn't dirty.
             var jobProtoDirty = _lastJobProto != null &&
                                 _jobPrototypeIds[JobPresetOptionButton.SelectedId] != _lastJobProto;
-            // Starlight-edit: Start
-            // Only submit access levels that are allowed by the server
-            var filteredAccess = _pendingPressedAccessLevels.Where(x => _allowedAccessLevels.Contains(x)).ToList();
 
+            // Starlight-edit: Start
             _owner?.SubmitData(
                 FullNameLineEdit.Text,
                 JobTitleLineEdit.Text,
-                filteredAccess,
-                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
+                _pendingPressedAccessLevels.ToList(),
+                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : null);
 
             // Clear the override after submit so next UpdateState can update pressed state as normal
             _pendingAccessOverride = false;

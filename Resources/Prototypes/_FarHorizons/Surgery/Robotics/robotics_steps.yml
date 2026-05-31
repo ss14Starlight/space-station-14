@@ -1,0 +1,373 @@
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveScrews
+  name: Remove Screws
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRestoreScrews
+  name: Restore Screws
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveInnerScrews
+  name: Remove Inner Screws
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRestoreInnerScrews
+  name: Restore Inner Screws
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExposeCoolantChannels
+  name: Expose Coolant Channels
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectCoolantChannels
+  name: Connect Coolant Channels
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: WrenchSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnweldJoints
+  name: Unweld Joints
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepWeldJoints
+  name: Weld Joints
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+  - type: SurgeryClearProgress
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPryPlating
+  name: Pry Outer Plating
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: CrowbarSurgery
+  - type: Sprite
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPositionPlating
+  name: Position Plating Back
+  components:
+  - type: SurgeryStep
+  - type: Sprite
+    sprite: Objects/Materials/Sheets/metal.rsi
+    state: plasteel
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepExposeWiringConnections
+  name: Expose Wiring Connections
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectWiringConnections
+  name: Connect Wiring Connections
+  components:
+  - type: SurgeryStep
+    duration: 5
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnboltNuts
+  name: Unbolt Nuts
+  components:
+  - type: SurgeryStep
+    tools:
+    - type: WrenchSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRobotAmputation
+  name: Unweld Limb
+  components:
+  - type: SurgeryStep
+    duration: 16
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+  - type: SurgeryStepAmputationEffect
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnweldSkull
+  name: Unweld Skull
+  components:
+    - type: SurgeryStep
+      duration: 20
+      tools:
+      - type: WelderSurgery
+    - type: Sprite
+      sprite: Objects/Tools/welder.rsi
+      state: icon
+    - type: SurgeryStepAmputationEffect
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveInnerPlating
+  name: Remove Inner Plating
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: WelderSurgery
+  - type: Sprite
+    sprite: Objects/Tools/welder.rsi
+    state: icon
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareImplantSiteCavityRobot
+  name: Prepare Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveItemCavityRobot
+  name: Remove Item
+  components:
+  - type: SurgeryStep
+    duration: 6
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: Item
+    slot: cavity
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepCutOpticWire
+  name: Cut Optic Wire
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveEyeImplantRobot
+  name: Remove Eye Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: EyeImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPrepareImplantSiteEyesRobot
+  name: Prepare Implant Site
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectOpticWire
+  name: Connect Optic Wire
+  components:
+  - type: SurgeryStep
+    duration: 4
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveEyesRobot
+  name: Remove Eye
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: OrganEyes
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepDisconnectModulator
+  name: Disconnect Voice Modulator
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepUnscrewModulator
+  name: Unscrew Voice Modulator
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: ScrewdriverSurgery
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: OrganTongue
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepScrewModulator
+  name: Screw In Voice Modulator
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: ScrewdriverSurgery
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepConnectModulator
+  name: Reconnect Voice Modulator
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: WirecutterSurgery
+  - type: Sprite
+    sprite: Objects/Tools/wirecutters.rsi
+    state: cutters-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepPositionModulator
+  name: Position Voice Modulator
+  components:
+  - type: SurgeryStep
+    duration: 2
+    tools:
+    - type: OrganTongue
+    bodyRemove:
+    - type: Muted
+  - type: SurgeryStepOrganInsert
+    slot: tongue
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
+    state: tongue

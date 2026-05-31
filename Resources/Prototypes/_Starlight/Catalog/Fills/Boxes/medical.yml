@@ -1,0 +1,71 @@
+- type: entity
+  name: small beaker box
+  parent: BoxCardboard
+  id: BoxBeakerSmall
+  description: A box containing four small beakers.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,1
+    maxItemSize: Normal
+  - type: Item
+    shape:
+    - 0,0,3,1
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Beaker
+          amount: 4
+  - type: Sprite
+    layers:
+      - state: box
+      - state: beaker
+
+- type: entity
+  name: large beaker box
+  parent: BoxCardboard
+  id: BoxBeakerLarge
+  description: A box containing four large beakers.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+  - type: Item
+    shape:
+    - 0,0,3,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: LargeBeaker
+          amount: 4
+  - type: Sprite
+    layers:
+      - state: box
+      - state: beaker
+
+- type: entity
+  name: jug box
+  parent: BoxCardboard
+  id: BoxJug
+  description: A box containing four chemical storage jugs.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Normal
+  - type: Item
+    shape:
+    - 0,0,3,3
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: Jug
+          amount: 4
+  - type: Sprite
+    layers:
+      - state: box
+      - state: beaker

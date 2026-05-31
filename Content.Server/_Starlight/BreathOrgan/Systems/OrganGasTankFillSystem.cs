@@ -23,10 +23,10 @@ public sealed class OrganGasTankFillSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<GasCanisterComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<GasCanisterComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
     }
 
-    private void OnGetVerbs(Entity<GasCanisterComponent> canister, ref GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetVerbs(Entity<GasCanisterComponent> canister, ref GetVerbsEvent<Verb> args)
     {
         if (!args.CanAccess || !args.CanInteract || args.Hands == null)
             return;
@@ -37,7 +37,7 @@ public sealed class OrganGasTankFillSystem : EntitySystem
 
         var allOrganTanks = _body.GetBodyOrganEntityComps<GasTankComponent>((args.User, body));
         var organTanks = new List<Entity<GasTankComponent, OrganGasTankFillableComponent, OrganComponent>>();
-        
+
         foreach (var organTank in allOrganTanks)
         {
             var (tankEntity, gasTank, organ) = organTank;
@@ -46,7 +46,7 @@ public sealed class OrganGasTankFillSystem : EntitySystem
                 organTanks.Add((tankEntity, gasTank, fillable, organ));
             }
         }
-        
+
         // Check if we have any organs to refill
         if (organTanks.Count == 0)
             return;
@@ -57,35 +57,34 @@ public sealed class OrganGasTankFillSystem : EntitySystem
 
         // Add a verb to refill the organ
         var user = args.User;
-        args.Verbs.Add(new AlternativeVerb
+        args.Verbs.Add(new Verb
         {
             Text = Loc.GetString("verb-fill-organ"),
-            Act = () => FillOrganGasTanks(canister, user, organTanks),
-            Priority = 1
+            Act = () => FillOrganGasTanks(canister, user, organTanks)
         });
     }
 
     private void FillOrganGasTanks(
         Entity<GasCanisterComponent> canister,
-        EntityUid user,
+        EntityUid _,
         List<Entity<GasTankComponent, OrganGasTankFillableComponent, OrganComponent>> organTanks)
     {
         // Check if the canister has any moles
         if (canister.Comp.Air.TotalMoles <= 0)
             return;
-        
+
         var canisterPressure = canister.Comp.Air.Pressure;
         var filledAny = false;
         foreach (var organTank in organTanks)
         {
             var (tankEntity, gasTank, fillable, organ) = organTank;
-            
+
             var currentPressure = gasTank.Air.Pressure;
             var targetPressure = fillable.TargetPressure;
-            
+
             // Limit how much we can fill to the pressure in the canister (the same way gas tanks work)
             var effectiveTargetPressure = Math.Min(targetPressure, canisterPressure);
-            
+
             if (currentPressure >= effectiveTargetPressure - 0.01f)
                 continue; // Skip if we already have more gas than we could fill from the canister
 

@@ -21,6 +21,10 @@ guide-entry-sl-rule-10 = Rule 10
 guide-entry-sl-rule-11 = Rule 11
 guide-entry-sl-rule-12 = Rule 12
 guide-entry-sl-rule-13 = Rule 13
+guide-entry-sl-rule-14 = Rule 14
+guide-entry-sl-rule-15 = Rule 15
+guide-entry-sl-rule-16 = Rule 16
+guide-entry-sl-metashield = Metashield
 
 guide-entry-sl-silicon-1 = Sil.Rule 1
 guide-entry-sl-silicon-2 = Sil.Rule 2
@@ -39,6 +43,7 @@ guide-entry-sl-code-red = Code Red
 guide-entry-sl-code-gamma = Code Gamma
 guide-entry-sl-code-delta = Code Delta
 guide-entry-sl-code-yellow = Code Yellow
+guide-entry-sl-code-orange = Code Orange
 guide-entry-sl-code-violet = Code Violet
 
 guide-entry-sl-emergency-sops = Emergency
@@ -67,6 +72,7 @@ guide-entry-sl-money-accounts-and-space-credits = Money Accounts and Space Credi
 guide-entry-sl-security-sop-intro = Security
 guide-entry-sl-security-sop-cadet = Cadet
 guide-entry-sl-security-sop-securityofficer = Security Officer
+guide-entry-sl-security-sop-dutyofficer = Duty Officer
 guide-entry-sl-security-sop-detective = Detective
 guide-entry-sl-security-sop-brigmedic = Brigmedic
 guide-entry-sl-security-sop-warden = Warden
@@ -74,6 +80,11 @@ guide-entry-sl-security-sop-headofsecurity = Head of Security
 guide-entry-sl-security-sop-prisonertreatment = Prisoner Treatment
 guide-entry-sl-security-sop-parole = Parole
 guide-entry-sl-security-sop-permitacquisition = Permit Acquisiton
+guide-entry-sl-security-sop-specialsituations = Special Situations
+guide-entry-sl-security-sop-enemy-of-corporation = Enemies of the Corporation
+guide-entry-sl-security-sop-hostage-situations = Hostage Situations
+
+guide-entry-rules-supernatural-entities = Supernatural Entities
 
 guide-entry-sl-legal-sop-intro = Legal
 
@@ -129,11 +140,38 @@ guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
 guide-entry-sl-nano-trasen-employee-sop-safety-protocol = Safety Protocol
 guide-entry-sl-nano-trasen-employee-sop-staff-intro = Staff Procedures
 guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
-guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
+guide-entry-sl-nano-trasen-employee-sop-bso = Blueshield Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
+guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer
 
 guide-entry-sl-service-sop-intro = Service
 guide-entry-sl-service-sop-genproc-intro = General Procedures
 guide-entry-sl-service-sop-staff-intro = Staff Procedures
 guide-entry-sl-service-sop-headofpersonnel = Head of Personnel
+guide-entry-sl-service-sop-lawyer = Lawyer
+
+guide-entry-abductors = Abductors
+guide-entry-terror-spiders = Terror Spiders
+guide-entry-devil = Devil
+
+guide-entry-sl-deepfried-recipes = Deep Fried
+
+# Plumbing guides
+guide-entry-plumbing = Plumbing
+guide-entry-plumbingflow = Reagent Flow
+guide-entry-plumbingmachines = Plumbing Machines
+
+# Records
+guide-entry-records = Character Records
+
+# Tools
+guide-entry-tools-combination-locks = Combination Locks
+
+
+# Roleplay
+guide-entry-roleplay-intro = Roleplay Guides
+guide-entry-roleplay-01 = The Basics
+guide-entry-roleplay-02 = Collaborative Storytelling
+guide-entry-roleplay-03 = Losing Is Fun
+guide-entry-roleplay-04 = Acting With Mechanics

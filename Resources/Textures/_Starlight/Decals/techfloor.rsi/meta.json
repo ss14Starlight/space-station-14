@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Conflee (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "techfloor_bend_ne"
+    },
+	{
+      "name": "techfloor_bend_nw"
+    },
+	{
+      "name": "techfloor_bend_se"
+    },
+	{
+      "name": "techfloor_bend_sw"
+    },
+	{
+      "name": "techfloor_corner_ne"
+    },
+	{
+      "name": "techfloor_corner_nw"
+    },
+	{
+      "name": "techfloor_corner_se"
+    },
+	{
+      "name": "techfloor_corner_sw"
+    },
+	{
+      "name": "techfloor_east"
+    },
+	{
+      "name": "techfloor_north"
+    },
+	{
+      "name": "techfloor_south"
+    },
+	{
+      "name": "techfloor_west"
+    }
+  ]
+}

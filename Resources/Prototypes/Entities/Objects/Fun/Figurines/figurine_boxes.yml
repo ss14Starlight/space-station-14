@@ -1,0 +1,101 @@
+- type: entity
+  id: MysteryFigureBoxTrash
+  parent: BaseItem
+  name: unfolded cardboard box
+  description: A small, unfolded cardboard toy box.
+  components:
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 50
+  - type: Sprite
+    sprite: Objects/Fun/figurines.rsi
+    state: fig_box_unfolded
+  - type: Tag
+    tags:
+    - Trash
+  - type: SpaceGarbage
+
+- type: entity
+  parent: BaseItem
+  id: MysteryFigureBox
+  name: mystery spacemen minifigure box
+  description: A box containing a mystery minifigure. The side of the box depicts a few blacked-out 'rare' figures, including one with a large, non-humanoid shilouette.
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/figurines.rsi
+    layers:
+      - state: fig_box
+  - type: TriggerOnActivate
+  - type: DeleteOnTrigger
+  - type: EmitSoundOnTrigger
+    positional: true
+    predicted: true
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: SpawnEntityTableOnTrigger
+    useMapCoords: true
+    table: !type:AllSelector
+      children:
+      - id: MysteryFigureBoxTrash
+      - !type:NestedSelector
+        tableId: AllFigurinesTable
+
+- type: entity
+  parent: BaseItem
+  id: MysteryLighterBox
+  name: Novelty lighter mystery box
+  suffix: Filled
+  description: A box of discontinued promotional lighters. A faded and scratched label on the side reads, "May contain contraband." #Starlight-edit
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/figurines.rsi
+    layers:
+    - state: fig_box
+  - type: SpawnItemsOnUse
+    items:
+      - id: MysteryFigureBoxTrash
+      - id: CybersunFlippo
+        orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
+      - id: InterdyneFlippo
+        orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
+      - id: NanotrasenFlippo
+        orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
+      - id: WaffleCoFlippo
+        orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
+      - id: HonkCoFlippo
+        orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
+      - id: GorlexMatchbox
+        orGroup: Lighterbox
+        weight: 0.05 #Starlight-edit
+      - id: DonkcoLighter
+        orGroup: Lighterbox
+        weight: 0.15 #Starlight-edit
+      - id: SyndicateFlippo
+        orGroup: Lighterbox
+        weight: 0.05 #Starlight-edit
+
+- type: entity
+  parent: MysteryLighterBox
+  id: UplinkLighterBox
+  suffix: Uplink
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: MysteryFigureBoxTrash
+      - id: CybersunFlippo
+        orGroup: Lighterbox
+      - id: InterdyneFlippo
+        orGroup: Lighterbox
+      - id: WaffleCoFlippo
+        orGroup: Lighterbox
+      - id: GorlexMatchbox
+        orGroup: Lighterbox
+      - id: DonkcoLighter
+        orGroup: Lighterbox
+      - id: SyndicateFlippo
+        orGroup: Lighterbox
