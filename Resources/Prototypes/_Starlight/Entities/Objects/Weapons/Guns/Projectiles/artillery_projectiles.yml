@@ -56,9 +56,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 260      # medium blast, ~4-5 tile radius
+    totalIntensity: 200      # medium blast, ~4 tile radius
     intensitySlope: 7
-    maxIntensity: 24
+    maxIntensity: 20
     canCreateVacuum: true
   - type: PointLight
     enabled: true
@@ -153,15 +153,15 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 500
-        Blunt: 150
-        Structural: 600
+        Piercing: 900
+        Blunt: 300
+        Structural: 1200
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 350
-    intensitySlope: 10
-    maxIntensity: 28
+    totalIntensity: 200      # tight shockwave — penetrator, not a grenade
+    intensitySlope: 20
+    maxIntensity: 18
     canCreateVacuum: true
   - type: PointLight
     enabled: true
@@ -189,16 +189,16 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 600
-        Blunt: 200
-        Structural: 800
-        Radiation: 100
+        Piercing: 300
+        Blunt: 100
+        Structural: 400
+        Radiation: 200
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 800
-    intensitySlope: 6
-    maxIntensity: 60
+    totalIntensity: 4000     # ship-killing detonation — obliterates entire vessels
+    intensitySlope: 3
+    maxIntensity: 120
     canCreateVacuum: true
   - type: PointLight
     enabled: true

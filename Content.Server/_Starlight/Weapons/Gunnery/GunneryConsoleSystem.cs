@@ -33,6 +33,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
 
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
@@ -153,6 +154,14 @@ public sealed class GunneryConsoleSystem : EntitySystem
             var aimAngle = (targetMapPos.Position - cannonMapPos.Position).ToAngle() + new Angle(Math.PI / 2);
             _transform.SetWorldRotation(cannon, aimAngle);
         }
+
+        // Prevent firing at the same grid the cannon is mounted on.
+        var cannonGridUid = Transform(cannon).GridUid;
+        if (cannonGridUid != null
+            && cannonMapPos.MapId == targetMapPos.MapId
+            && _mapManager.TryFindGridAt(targetMapPos, out var targetGridUid, out _)
+            && targetGridUid == cannonGridUid.Value)
+            return;
 
         if (TryComp<RadarConsoleComponent>(uid, out var radar) && CannonBlocked(cannon, radar.MaxRange, cannonMapPos.Position, targetMapPos.Position))
             return;

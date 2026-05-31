@@ -200,12 +200,12 @@
   - type: Gun
     projectileSpeed: 50
     fireRate: 0.5
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     angleDecay: 20
     minAngle: 0
     maxAngle: 8
     availableModes:
-    - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
       params:
@@ -372,12 +372,12 @@
   - type: Gun
     projectileSpeed: 25
     fireRate: 0.5
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     angleDecay: 30
     minAngle: 0
     maxAngle: 20
     availableModes:
-    - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
       params:
@@ -869,6 +869,9 @@
   - type: Gun
     projectileSpeed: 120
     fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
     burstCooldown: 30     # 30-second recharge after each shot
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
