@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNTNCOfficer
   name: NanoTrasen navy officer's jumpskirt
   description: Standard issue NanoTrasen Navy Marine jumpskirt. This one's for an officer.
@@ -10,7 +10,7 @@
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
 
 - type: entity
-  parent: [ ClothingUniformSkirtBase, BaseCentcommContraband ]
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
   id: ClothingUniformJumpskirtNTNCEnsign
   name: NanoTrasen navy ensign's jumpskirt
   description: Standard issue NanoTrasen Navy Marine jumpskirt. This one's for an ensign.

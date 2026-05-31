@@ -19,7 +19,6 @@
       understands:
       - Ancestor
       - Bat
-      - Carptongue
       - Cat
       - Chicken
       - Dog
@@ -30,6 +29,7 @@
       - Pig
       - ScurretSign
       - Xeno
+      - Carptongue
       # While spoken by some crew, these are spoken by slimes and spiders as their language
       - Bubblish
       - Chittin

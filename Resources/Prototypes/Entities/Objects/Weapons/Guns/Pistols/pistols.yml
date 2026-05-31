@@ -84,6 +84,16 @@
       - FiringPinPistol
   - type: FiringPinHolder
     supportedPins: [ Pistol, GunUpgrade ]
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 6
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: MetalThud
+  - type: AltFireMelee
   # starlight end
 
 - type: entity

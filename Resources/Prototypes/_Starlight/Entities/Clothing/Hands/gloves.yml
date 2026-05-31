@@ -46,9 +46,9 @@
     fiberMaterial: fibers-red-and-black-woven
 
 - type: entity
-  parent: ClothingHandsGlovesSyntheticBase
+  parent: ClothingHandsMittensBase # That's why these exist in real life.
   id: ClothingHandsCatPaws
-  name: cat paws gloves
+  name: cat paw mittens
   description: Extra soft cat paws, especially made for the most stern assistants.
   abstract: true
   components:
@@ -60,6 +60,7 @@
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsWhite
+  name: white cat paw mittens
   components:
   - type: Sprite
     state: white
@@ -68,11 +69,12 @@
       gloves:
       - state: white-equipped-HAND
   - type: Fiber
-    fiberColor: fibers-white
+    fiberColor: fibers-white-fur
 
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsBrown
+  name: brown cat paw mittens
   components:
   - type: Sprite
     state: brown
@@ -81,11 +83,12 @@
       gloves:
       - state: brown-equipped-HAND
   - type: Fiber
-    fiberColor: fibers-brown
+    fiberColor: fibers-brown-fur
 
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsBlack
+  name: black cat paw mittens
   components:
   - type: Sprite
     state: black
@@ -94,11 +97,12 @@
       gloves:
       - state: black-equipped-HAND
   - type: Fiber
-    fiberColor: fibers-black
+    fiberColor: fibers-black-fur
 
 - type: entity
   parent: ClothingHandsCatPaws
   id: ClothingHandsCatPawsBlackWhite
+  name: black-white cat paw mittens
   components:
   - type: Sprite
     state: black_white
@@ -107,43 +111,7 @@
       gloves:
       - state: black_white-equipped-HAND
   - type: Fiber
-    fiberColor: fibers-grey
-
-- type: entity
-  parent: ClothingHandsCatPawsWhite
-  name: insulated cat paws
-  id: ClothingHandsCatPawsWhiteInsulated
-  components:
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-insulative
-
-- type: entity
-  parent: ClothingHandsCatPawsBrown
-  id: ClothingHandsCatPawsBrownInsulated
-  name: insulated cat paws
-  components:
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-insulative
-
-- type: entity
-  parent: ClothingHandsCatPawsBlack
-  id: ClothingHandsCatPawsBlackInsulated
-  name: insulated cat paws
-  components:
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-insulative
-
-- type: entity
-  parent: ClothingHandsCatPawsBlackWhite
-  id: ClothingHandsCatPawsBlackWhiteInsulated
-  name: insulated cat paws
-  components:
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-insulative
+    fiberColor: fibers-grey-fur
 
 - type: entity
   parent: [ BaseEngineeringSecurityCommandSalvageMiningContraband, ClothingHandsGlovesCombat ]

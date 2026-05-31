@@ -10,8 +10,10 @@
     - type: LanguageKnowledge
       speaks:
       - Carptongue
+      - Carpmind
       understands:
       - Carptongue
+      - Carpmind
       - Thaveyan
       - GalacticCommon
 

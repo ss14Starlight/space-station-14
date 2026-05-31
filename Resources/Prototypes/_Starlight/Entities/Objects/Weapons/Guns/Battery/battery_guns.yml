@@ -1051,3 +1051,23 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 100
     autoRechargePauseTime: 5
+
+# Xenoborgs
+- type: entity
+  parent: [WeaponLaserCannon, BaseXenoborgContraband]
+  id: WeaponLaserCannonXenoborgCold
+  name: xenoborg bitterfrost cannon
+  components:
+  - type: BatteryAmmoProvider
+    proto: FreezeRay
+    fireCost: 125
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+  # "remove" wield bonus and penalty so borgs can use it
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Gun
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 2

@@ -672,11 +672,11 @@
 
 - type: entity
   parent: BasePDA
-  id: NanotrasenCareerTrainerPDA
+  id: NanoTrasenCareerTrainerPDA
   name: NanoTrasen career trainer PDA
   components:
   - type: Pda
-    id: NanotrasenCareerTrainerIDCard
+    id: NanoTrasenCareerTrainerIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:

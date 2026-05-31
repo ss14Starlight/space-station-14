@@ -25,7 +25,7 @@
 - type: loadout
   id: MagistrateRobes
   equipment:
-    outerClothing: ClothingOuterRobesJudge
+    outerClothing: ClothingOuterRobesMagistrate
 
 - type: loadout
   id: MagistrateLongcoat

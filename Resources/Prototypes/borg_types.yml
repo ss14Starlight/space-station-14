@@ -13,6 +13,7 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
@@ -44,6 +45,7 @@
     - BorgModuleEngineering
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -95,6 +97,7 @@
     - BorgModuleMining #STARLIGHT
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -137,6 +140,7 @@
     - BorgModuleJanitor
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
@@ -170,6 +174,7 @@
     - BorgModuleMedical
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
@@ -224,6 +229,7 @@
     - BorgModuleService
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleMusique
   # Starlight start
