@@ -71,9 +71,6 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
     /// </summary>
     private void SpitOutMouth(EntityUid uid, MouthStorageComponent component)
     {
-        if (!_gameTiming.IsFirstTimePredicted)
-            return;
-
         if (component.MouthId == null)
             return;
 
