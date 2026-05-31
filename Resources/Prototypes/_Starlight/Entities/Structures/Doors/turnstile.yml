@@ -37,7 +37,7 @@
   suffix: Central Command
   components:
     - type: AccessReader
-      access: [["Central Command"]]
+      access: [["CentralCommand"]]
 
 - type: entity
   id: TurnstileCentCommDebrief
