@@ -28,7 +28,7 @@
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING
-    stripTime: 4800 # You *really* shouldn't be able to strip this, but if we make the actual armor unremovable, it'll lead to awkward things when you get gibbed and someone picks it up.
+    stripTime: 4499 # You *really* shouldn't be able to strip this, but if we make the actual armor unremovable, it'll lead to awkward things when you get gibbed and someone picks it up.
     uiWindowPos: 1,1
     strippingWindowPos: 0,3
     displayName: Protogen Cybernetics
