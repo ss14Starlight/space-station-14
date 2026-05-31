@@ -82,3 +82,17 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Duffels/blueshield.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelCryostorageBelongings
+  name: lost property bag
+  description: A sealed bag holding the belongings of a crew member who left for cryosleep. Things can be taken out, but nothing can be put back in.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/duffel.rsi
+  - type: Storage
+    maxItemSize: Ginormous
+    grid:
+    - 0,0,19,19
+  - type: ReadOnlyStorage
