@@ -8,8 +8,8 @@
     - type: Action
       itemIconStyle: BigAction
       icon:
-        sprite: _Starlight/Interface/Actions/actions_syndrunner.rsi
-        state: exit
+        sprite: _Starlight/Interface/Actions/actions_doll.rsi
+        state: break_shell
     - type: ConfirmableAction
       popup: doll-shed-shell-action
     - type: InstantAction
@@ -35,8 +35,8 @@
     - type: Action
       itemIconStyle: BigAction
       icon:
-        sprite: _Starlight/Interface/Actions/actions_syndrunner.rsi
-        state: exit
+        sprite: _Starlight/Interface/Actions/actions_doll.rsi
+        state: break_shard
       useDelay: 60
     - type: ConfirmableAction
       popup: doll-snap-shell-action
