@@ -20,8 +20,6 @@
       layers:
         - state: turnstile
           map: [ "enum.TurnstileVisualLayers.Base" ]
-    - type: AccessReader
-      access: [] # All access
 
 - type: entity
   id: TurnstileCentCommCommand
