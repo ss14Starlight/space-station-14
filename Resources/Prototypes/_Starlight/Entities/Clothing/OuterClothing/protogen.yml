@@ -11,8 +11,8 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi # Just a placeholder, since it's overwritten below.
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
-    equipDelay: 4800 # You shouldn't be able to equip/unequip this, but if we make it removable it'll cause problems when you get gibbed, so we're just giving it an obscene timer.
-    unequipDelay: 4800  # Same as above.
+    equipDelay: 4499 # You shouldn't be able to equip/unequip this, but if we make it removable it'll cause problems when you get gibbed, so we're just giving it an obscene timer.
+    unequipDelay: 4499  # Same as above.
   - type: ArmorSparkEffect
   - type: Item
     size: Huge
