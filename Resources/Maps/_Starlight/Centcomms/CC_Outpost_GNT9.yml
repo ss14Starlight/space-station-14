@@ -52505,8 +52505,7 @@ entities:
       pos: 0.5,2.5
       parent: 1
     - type: AccessReader
-      accessListsOriginal:
-      - - Command
+      accessListsOriginal: []
 - proto: TurnstileCentCommDebrief
   entities:
   - uid: 7532
