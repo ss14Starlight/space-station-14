@@ -540,6 +540,6 @@
       organs:
         stomach: OrganMothStomach
     lefthand:
-      part: LeftHandSmartCorgi
+      part: LeftHandAnimal
     righthand:
-      part: RightHandSmartCorgi
+      part: RightHandAnimal
