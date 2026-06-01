@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: ShitStation no longer has non-functional roundstart events. (migrations, ion storm, borg spawn..).
-    type: Fix
-  id: 405089
-  time: '2026-05-17T17:01:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4391
 - author: Swonki
   changes:
   - message: Low Velocity Immovable Rod.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405488
   time: '2026-05-31T19:30:25.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4613
+- author: Conflee
+  changes:
+  - message: Added the 'Beep 100' Memorial Poster. It spawns sometimes from the Contraband Poster Spawner, so look out for it in maints. RIP Beep 100.
+    type: Add
+  id: 405489
+  time: '2026-06-01T03:43:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4614
 Order: -1
