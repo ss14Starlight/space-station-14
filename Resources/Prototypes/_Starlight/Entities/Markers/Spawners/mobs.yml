@@ -101,8 +101,7 @@
       sprite: Mobs/Animals/kobold.rsi
   - type: ConditionalSpawner
     prototypes:
-    - MobKoboldAdvanced
-
+    - MobKobold
 
 - type: entity
   parent: MarkerBase
