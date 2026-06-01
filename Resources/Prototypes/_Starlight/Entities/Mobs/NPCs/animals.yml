@@ -27,15 +27,38 @@
   name: monkey
   suffix: Advanced
   id: MobMonkeyAdvanced
-  parent: MobMonkey
+  parent: [MobBaseAncestor, BaseSpeciesPickupable]
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
+  - type: NameIdentifier
+    group: Monkey
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-primate
+  - type: AlwaysRevolutionaryConvertible
   - type: GhostRole
     prob: 0.05
     makeSentient: true
     name: ghost-role-information-monkey-advanced-name
     description: ghost-role-information-monkey-advanced-description
     rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: Clumsy
+    gunShootFailDamage:
+      types:
+        Blunt: 5
+        Piercing: 4
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
+    clumsySound:
+      path: /Audio/Animals/monkey_scream.ogg
+  - type: Tag
+    tags:
+      - Monkey
   - type: Body
     prototype: AdvancedPrimate
   - type: Inventory
@@ -62,7 +85,7 @@
   name: kobold
   suffix: Advanced
   id: MobKoboldAdvanced
-  parent: MobKobold
+  parent: MobBaseKobold
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   components:
   - type: GhostRole
@@ -71,6 +94,17 @@
     name: ghost-role-information-kobold-advanced-name
     description: ghost-role-information-kobold-advanced-description
     rules: ghost-role-information-nonantagonist-rules
+  - type: Clumsy
+    gunShootFailDamage:
+      types:
+        Blunt: 2
+        Piercing: 7
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
+    clumsySound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
   - type: Body
     prototype: AdvancedPrimate
     requiredLegs: 1
