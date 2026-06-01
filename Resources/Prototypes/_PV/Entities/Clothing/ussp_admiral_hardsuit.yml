@@ -60,28 +60,43 @@
     sprite: _PV/Clothing/Head/Helmets/ussp_admiral_helmet.rsi
   - type: Clothing
     sprite: _PV/Clothing/Head/Helmets/ussp_admiral_helmet.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      head-vox:
+      - state: equipped-HELMET-vox
+      head-resomi:
+      - state: equipped-HELMET-resomi
+      head-felionoid:
+      - state: equipped-HELMET-felionoid
+      head-cyclorite:
+      - state: equipped-HELMET-cyclorite
+      head-vulpkanin:
+      - state: equipped-HELMET-vulpkanin
+      head-avali:
+      - state: equipped-HELMET-avali
   - type: ToggleableVisuals
     clothingVisuals:
       head:
-      - state: on-equipped-HELMET-unshaded
+      - state: equipped-HELMET-unshaded
         shader: unshaded
       head-vox:
-      - state: on-equipped-HELMET-unshaded-vox
+      - state: equipped-HELMET-unshaded-vox
         shader: unshaded
       head-resomi:
-      - state: on-equipped-HELMET-unshaded-resomi
+      - state: equipped-HELMET-unshaded-resomi
         shader: unshaded
       head-felionoid:
-      - state: on-equipped-HELMET-unshaded-felionoid
+      - state: equipped-HELMET-unshaded-felionoid
         shader: unshaded
       head-cyclorite:
-      - state: on-equipped-HELMET-unshaded-cyclorite
+      - state: equipped-HELMET-unshaded-cyclorite
         shader: unshaded
       head-vulpkanin:
-      - state: on-equipped-HELMET-unshaded-vulpkanin
+      - state: equipped-HELMET-unshaded-vulpkanin
         shader: unshaded
       head-avali:
-      - state: on-equipped-HELMET-unshaded-avali
+      - state: equipped-HELMET-unshaded-avali
         shader: unshaded
   - type: PointLight
     color: green
