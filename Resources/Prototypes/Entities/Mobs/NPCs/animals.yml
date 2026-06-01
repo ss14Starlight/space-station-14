@@ -1353,6 +1353,7 @@
     - GalacticCommon
     - Ancestor
   # Starlight-end
+  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
     canDisarm: true
   - type: Inventory
@@ -1365,16 +1366,6 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: jumpsuit-monkey
-      belt:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Animals/displacements.rsi
-            state: belt-monkey
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Animals/displacements.rsi
-            state: hand-monkey
   # Starlight End
   - type: Deathgasp
     prototype: MonkeyDeathgasp
