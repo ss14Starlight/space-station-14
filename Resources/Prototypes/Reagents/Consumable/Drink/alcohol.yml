@@ -70,7 +70,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   fizziness: 0.6
-  # Starlight edit start - Make Ale work as a replacement for water for dwarfs
+  # Starlight edit start - Make Ale work as a replacement for water for dwarves
   metabolisms:
     Drink:
       effects:
@@ -110,7 +110,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.6
-  # Starlight edit start - Make Beer work as food replacement for dwarfs
+  # Starlight edit start - Make Beer work as food replacement for dwarves
   metabolisms:
     Drink:
       effects:
@@ -250,7 +250,7 @@
         damage:
           types:
             Poison: 1.2
-      # dwarfs take less toxin damage and heal a marginal amount of brute
+      # dwarves take less toxin damage and heal a marginal amount of brute
       - !type:HealthChange
         conditions:
         - !type:ReagentCondition
@@ -261,7 +261,7 @@
         damage:
           types:
             Poison: 0.02
-      # Starlight edit start - Make Ethanol not damage brute for dwarfs, we have drinks for that now, as well as add a vomit threshold as a counter to that
+      # Starlight edit start - Make Ethanol not damage brute for dwarves, we have drinks for that now, as well as add a vomit threshold as a counter to that
       # - !type:HealthChange
       #   conditions:
       #   - !type:ReagentCondition
@@ -287,7 +287,7 @@
         - !type:ReagentCondition
           reagent: Ethanol
           min: 12
-        # dwarfs immune to vomiting from alcohol
+        # dwarves immune to vomiting from alcohol
         - !type:MetabolizerTypeCondition
           type: [ Dwarf ]
           inverted: true
@@ -537,7 +537,7 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Vodka heal radiation like Hyronalin for dwarfs
+  # Starlight edit start - Make Vodka heal radiation like Hyronalin for dwarves
   metabolisms:
     Drink:
       effects:
@@ -659,7 +659,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make AlienBrainHemorrhage heal cellular damage for dwarfs
+  # Starlight edit start - Make AlienBrainHemorrhage heal cellular damage for dwarves
   metabolisms:
     Drink:
       effects:
@@ -691,7 +691,7 @@
   metamorphicMaxFillLevels: 4
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make AlliesCocktail heal burn for dwarfs while in critical
+  # Starlight edit start - Make AlliesCocktail heal burn for dwarves while in critical
   metabolisms:
     Drink:
       effects:
@@ -740,7 +740,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Amasec heal like Arithrazine for dwarfs
+  # Starlight edit start - Make Amasec heal like Arithrazine for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1126,7 +1126,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make CrushDepth work like Barozine (space immunity) for dwarfs
+  # Starlight edit start - Make CrushDepth work like Barozine (space immunity) for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1181,7 +1181,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make DarkandStormy heal like Insuzine for dwarfs
+  # Starlight edit start - Make DarkandStormy heal like Insuzine for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1344,7 +1344,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make ElectricShark give dwarfs slow immunity
+  # Starlight edit start - Make ElectricShark give dwarves slow immunity
   metabolisms:
     Drink:
       effects:
@@ -1550,7 +1550,7 @@
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: hooch
   color: "#664e00"
-  # Starlight edit start - Make Hooch work like Ephedrine for dwarfs
+  # Starlight edit start - Make Hooch work like Ephedrine for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1595,7 +1595,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   fizziness: 0.6
-  # Starlight edit start - Make IcedBeer heal like Dermaline for dwarfs
+  # Starlight edit start - Make IcedBeer heal like Dermaline for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1691,7 +1691,7 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make IrishCoffee increase movement speed for dwarfs
+  # Starlight edit start - Make IrishCoffee increase movement speed for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1790,7 +1790,7 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Manhattan give dwarfs NoSlip component
+  # Starlight edit start - Make Manhattan give dwarves NoSlip component
   metabolisms:
     Drink:
       effects:
@@ -1839,7 +1839,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   fizziness: 0.7
-  # Starlight edit start - Make ManlyDorf heal like Bicaridine for dwarfs
+  # Starlight edit start - Make ManlyDorf heal like Bicaridine for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1885,7 +1885,7 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Martini work like Potassium Iodide for dwarfs
+  # Starlight edit start - Make Martini work like Potassium Iodide for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1919,7 +1919,7 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.4
-  # Starlight edit start - Make Mead work like Tricordrazine for dwarfs
+  # Starlight edit start - Make Mead work like Tricordrazine for dwarves
   metabolisms:
     Drink:
       effects:
@@ -1989,7 +1989,7 @@
   metamorphicMaxFillLevels: 6
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Moonshine heal like Sigynate for dwarfs
+  # Starlight edit start - Make Moonshine heal like Sigynate for dwarves
   metabolisms:
     Drink:
       effects:
@@ -2104,7 +2104,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make RedMead heal like Saline + Dexaline for dwarfs
+  # Starlight edit start - Make RedMead heal like Saline + Dexaline for dwarves
   metabolisms:
     Drink:
       effects:
@@ -2173,7 +2173,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Radler heal brute for dwarfs while in critical
+  # Starlight edit start - Make Radler heal brute for dwarves while in critical
   metabolisms:
     Drink:
       effects:
@@ -2373,7 +2373,7 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make TequilaSunrise work like Tranexamic Acid for dwarfs
+  # Starlight edit start - Make TequilaSunrise work like Tranexamic Acid for dwarves
   metabolisms:
     Drink:
       effects:
@@ -2564,7 +2564,7 @@
   physicalDesc: reagent-physical-desc-creamy
   flavor: white-gilgamesh
   color: "#e5d27e"
-  # Starlight edit start - Make WhiteGilgamesh heal like Dylovene for dwarfs
+  # Starlight edit start - Make WhiteGilgamesh heal like Dylovene for dwarves
   metabolisms:
     Drink:
       effects:
@@ -2705,7 +2705,7 @@
           effectProto: StatusEffectDrowsiness
           time: 1
           type: Remove
-  # Starlight edit start - Make IrishBool remove Stun from dwarfs
+  # Starlight edit start - Make IrishBool remove Stun from Dwarves
         - !type:ModifyStatusEffect
           conditions:
           - !type:MetabolizerTypeCondition
@@ -2719,6 +2719,12 @@
             type: [ Dwarf ]
           time: 3.5
           type: Remove
+        - !type:ModifyStatusEffect
+          effectProto: BonusArmorIrishBool # resist 90% of stamina damage
+          time: 3
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Dwarf ]
   # Starlight edit end
   fizziness: 0.15
 
@@ -2751,7 +2757,7 @@
           effectProto: StatusEffectDrowsiness
           time: 1
           type: Remove
-  # Starlight edit start - Make BudgetInsulsDrink give dwarfs Insulated component
+  # Starlight edit start - Make BudgetInsulsDrink give dwarves Insulated component
         - !type:GenericStatusEffect
           conditions:
           - !type:MetabolizerTypeCondition
@@ -2808,7 +2814,7 @@
   metamorphicMaxFillLevels: 3
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make Rubberneck work like Desoxyephedrine (meth) for dwarfs
+  # Starlight edit start - Make Rubberneck work like Desoxyephedrine (meth) for dwarves
   metabolisms:
     Drink:
       effects:
@@ -3144,7 +3150,7 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.3
-  # Starlight edit start - Make TheSunAlsoRises give dwarfs NightVision component
+  # Starlight edit start - Make TheSunAlsoRises give dwarves NightVision component
       - !type:GenericStatusEffect
         conditions:
         - !type:MetabolizerTypeCondition
@@ -3215,7 +3221,7 @@
   metamorphicMaxFillLevels: 2
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
-  # Starlight edit start - Make BacchusBlessing heal like Omnizine for dwarfs
+  # Starlight edit start - Make BacchusBlessing heal like Omnizine for dwarves
   metabolisms:
     Drink:
       effects:

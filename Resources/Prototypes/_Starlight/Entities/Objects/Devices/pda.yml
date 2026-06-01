@@ -494,6 +494,29 @@
   - type: Icon
     state: pda-internservice
 
+# Pun Pun
+- type: entity
+  parent: BasePDA
+  id: PunPunPDA
+  name: pun pun's PDA
+  description: Smells like bananas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PunPunIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-punpun
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#ffdc54"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-punpun
+
 - type: entity
   parent: BasePDA
   id: CommanderPDA
