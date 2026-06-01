@@ -1733,16 +1733,6 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: jumpsuit-kobold
-      belt:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Animals/displacements.rsi
-            state: belt-kobold
-      gloves:
-        sizeMaps:
-          32:
-            sprite: _Starlight/Mobs/Animals/displacements.rsi
-            state: hand-kobold
   # Starlight End
 
 - type: entity
