@@ -255,17 +255,17 @@
     Hew:
       collection: Hew
     Gasp:
-      collection: FemaleGasp
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
     Sigh:
-      collection: FemaleSigh
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
     Crying:
       collection: ResomiCry
     Cough:
-      collection: FemaleCoughs
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
     Yawn:
-      collection: FemaleYawn
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg
     Hisses:
       collection: FelionoidHisses
     Purr:
