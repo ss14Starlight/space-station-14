@@ -31,6 +31,9 @@ public abstract partial class BaseDotMatrixTag : IMarkupTagHandler
         "DotMatrixDuoCondensedBoldItalic",
     ];
 
+    /// <summary>
+    /// Enum with bit masks for indexing the above font variation array.
+    /// </summary>
     private enum FontVariation
     {
         Duo = 8,

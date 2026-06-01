@@ -102,7 +102,9 @@ public static class FormattedMessageSanitizer
                 if (depth > 0)
                     continue;
 
-                // Anything outside deleted blocks is permitted.
+                // If we reach here, it's not a deleted block, and it's not a leading tag,
+                // so we're done for sure too.
+                done = true;
                 sanitized.PushTag(node);
             }
 

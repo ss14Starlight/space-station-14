@@ -783,8 +783,8 @@ public sealed class FaxSystem : EntitySystem
     private static string PrependContentMetadata(string content, string currentTime, FaxPrintout payload, FaxMachineComponent comp)
     {
         const string MetaFormat = """
-        [meta][dots=bold]Sent:     {0} by {1}
-        Received: {2} by {3}[/dots]
+        [meta][dots bold]Sent: {0} at {1}
+        Rcvd: {2} at {3}[/dots]
         [/meta]{4}
         """;
         return string.Format(MetaFormat, payload.MetaSentAt, payload.MetaSender, currentTime, comp.FaxName, content);
