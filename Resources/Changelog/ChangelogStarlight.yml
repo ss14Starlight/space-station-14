@@ -1,39 +1,4 @@
 Entries:
-- author: Swonki
-  changes:
-  - message: Low Velocity Immovable Rod.
-    type: Add
-  id: 405090
-  time: '2026-05-17T17:32:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4464
-- author: StrangerOfParadiseOG
-  changes:
-  - message: Added recipes for diluted ammonia blood to be centrifuged and stirred.
-    type: Add
-  id: 405091
-  time: '2026-05-17T18:12:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4386
-- author: StrangerOfParadiseOG
-  changes:
-  - message: Fixed avali and resomi body parts giving the wrong types of blood when grinded.
-    type: Fix
-  id: 405092
-  time: '2026-05-17T18:12:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4386
-- author: StrangerOfParadiseOG
-  changes:
-  - message: Fixed avali being poisoned from ammonia gas.
-    type: Fix
-  id: 405093
-  time: '2026-05-17T18:12:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4386
-- author: Arkanic, sprites by DocMoth, design assistance by Vincolan
-  changes:
-  - message: Add the Devil antagonist, a solo, MRP-focused antagonist whose goal is to contractually buy the souls of crew through shady deals and swindles.
-    type: Add
-  id: 405094
-  time: '2026-05-18T04:33:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3860
 - author: Cringe_Cursed
   changes:
   - message: 'Added lightgrid system for gameplay-side light exposure checks (pros: perfomance, cons: brain death).'
@@ -2799,4 +2764,39 @@ Entries:
   id: 405489
   time: '2026-06-01T03:43:19.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4614
+- author: Arkanic
+  changes:
+  - message: Fix low fps when changing character size in the profile editor.
+    type: Fix
+  id: 405490
+  time: '2026-06-01T08:21:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4615
+- author: STARLIGHT TEAM
+  changes:
+  - message: The WinterDrobe now has access to the other generic colored winter coats instead of just the gray one.
+    type: Add
+  id: 405491
+  time: '2026-06-01T09:05:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4618
+- author: STARLIGHT TEAM
+  changes:
+  - message: Added fingerless budget insulated gloves. Assistants can now spawn with them instead of the normal fingerless insuls.
+    type: Add
+  id: 405492
+  time: '2026-06-01T09:05:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4618
+- author: STARLIGHT TEAM
+  changes:
+  - message: Assistants can now spawn with the yellow mittens.
+    type: Add
+  id: 405493
+  time: '2026-06-01T09:05:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4618
+- author: STARLIGHT TEAM
+  changes:
+  - message: Assistants can now spawn with the correct gray winter coat. (The one with a hood option.).
+    type: Tweak
+  id: 405494
+  time: '2026-06-01T09:05:17.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4618
 Order: -1
