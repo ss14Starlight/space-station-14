@@ -1,0 +1,140 @@
+- type: entity
+  parent: [BaseMob, StripableInventoryBase, BaseSiliconLanguages] #Starlight Languages #starlight Nubody will not pass.
+  id: MaintainceDroneDerelict
+  name: Maintaince Drone
+  suffix: Derelict
+  description: A small maintaince drone, Fit to fix the station, It looks like it needs fixing itself.
+  components:
+  - type: TextToSpeech
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: CombatMode
+  - type: NoSlip
+  - type: StaticPrice
+    price: 1250
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4.5
+  - type: Sprite
+    sprite: _Starlight/Mobs/Silicon/Chassis/Maintsderelict.rsi
+    layers:
+    - state: Derelict-Maintsdrone
+    - state: Derelict-Maintsdrone
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: Derelict-Maintsdrone
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: RotationVisuals
+    horizontalRotation: 90
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead # There incredibly small, Therefor they have a VERY low durability
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      # Only used for NT borgs that can switch type, defined here to avoid copy-pasting the rest of this component.
+      enum.BorgSwitchableTypeUiKey.SelectBorgType:
+        type: BorgSelectTypeUserInterface
+  - type: ActivatableUI
+    key: enum.BorgUiKey.Key
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: SiliconLawProvider
+    laws: MaintanceDroneDerelictLawset
+  - type: Inventory
+    templateId: borg
+  - type: Hands
+    showInHands: false
+    disableExplosionRecursion: true
+    canBeStripped: false
+  - type: ComplexInteraction
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Engineering
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - Science
+    - Engineering
+  - type: ZombieImmune
+  - type: Repairable
+    damageValue: -10 # 10 seconds to repair from crit
+    doAfterDelay: 1
+    fuelCost: 0.5
+    allowSelfRepair: false
+  - type: BorgChassis
+  - type: LockingWhitelist
+    blacklist:
+      components:
+      - BorgChassis
+      - RoboticsConsole
+  - type: WiresPanel
+  - type: ActivatableUIRequiresPanel
+  - type: NameIdentifier
+    group: Silicon
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
+      cell_slot: !type:ContainerSlot { }
+      borg_module: !type:Container { }
+      part-container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: Access
+    enabled: false # needs a player so that scientists can't drag around an empty borg for free AA
+  - type: PowerCellDraw
+    drawRate: 0.6
+    enabled: false # the borg is only activated when a player takes over, otherwise the battery is likely empty
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        #Starlight Start
+        blacklist:
+          tags:
+          - MechReactor
