@@ -76,6 +76,7 @@
   - type: Rehydratable
     possibleSpawns:
     - MobMonkey
+    - MobMonkeyAdvanced # Starlight
   - type: Tag
     tags:
     - Meat
@@ -89,6 +90,7 @@
   - type: Rehydratable
     possibleSpawns:
     - MobKobold
+    - MobKoboldAdvanced # Starlight
 
 - type: entity
   parent: RehydratableAnimalCube

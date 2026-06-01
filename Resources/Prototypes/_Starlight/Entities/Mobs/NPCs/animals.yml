@@ -27,13 +27,20 @@
   name: monkey
   suffix: Advanced
   id: MobMonkeyAdvanced
-  parent: MobMonkey # Starlight Edit: Removed BaseMobAnimal
-  description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
-  abstract: true
+  parent: MobMonkey
+  description: New church of neo-darwinists actually believe that EVERY animal evolved from a monkey. Tastes like pork, and killing them is both fun and relaxing.
   components:
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-monkey-advanced-name
+    description: ghost-role-information-monkey-advanced-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: Body
+    prototype: AdvancedPrimate
   - type: Inventory
-    templateId: monkey
-    speciesId: monkey
+    templateId: advancedmonkey
+    speciesId: advancedmonkey
     displacements:
       jumpsuit:
         sizeMaps:
@@ -50,12 +57,6 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-monkey
-  - type: GhostRole
-    prob: 0.05
-    makeSentient: true
-    name: ghost-role-information-monkey-advanced-name
-    description: ghost-role-information-monkey-advanced-description
-    rules: ghost-role-information-nonantagonist-rules
 
 - type: entity
   name: kobold
@@ -63,7 +64,6 @@
   id: MobKoboldAdvanced
   parent: MobKobold
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
-  abstract: true
   components:
   - type: GhostRole
     prob: 0.05
@@ -71,7 +71,12 @@
     name: ghost-role-information-kobold-advanced-name
     description: ghost-role-information-kobold-advanced-description
     rules: ghost-role-information-nonantagonist-rules
+  - type: Body
+    prototype: AdvancedPrimate
+    requiredLegs: 1
   - type: Inventory
+    templateId: advancedmonkey
+    speciesId: advancedmonkey
     displacements:
       jumpsuit:
         sizeMaps:

@@ -1,5 +1,5 @@
 - type: inventoryTemplate
-  id: monkey
+  id: advancedmonkey
   slots:
   - name: head
     slotTexture: head
@@ -37,6 +37,26 @@
     strippingWindowPos: 2,4
     dependsOn: jumpsuit
     displayName: ID
+  - name: belt # Starlight start
+    slotTexture: belt
+    fullTextureName: template_small
+    slotFlags: BELT
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 3,1
+    strippingWindowPos: 1,5
+    displayName: Belt
+  - name: pocket1
+    slotTexture: pocket
+    fullTextureName: template_small
+    slotFlags: POCKET
+    slotGroup: MainHotbar
+    stripTime: 3
+    uiWindowPos: 0,3
+    strippingWindowPos: 1,4
+    dependsOn: jumpsuit
+    displayName: Pocket 1
+    stripHidden: true # Starlight end
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags:   SUITSTORAGE
@@ -58,3 +78,9 @@
     whitelist:
       tags:
         - MonkeyWearable
+  - name: gloves
+    slotTexture: gloves
+    slotFlags: GLOVES
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,2
+    displayName: Gloves
