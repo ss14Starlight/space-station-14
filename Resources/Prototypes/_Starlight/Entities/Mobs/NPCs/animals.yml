@@ -24,26 +24,16 @@
   - type: GhostTakeoverAvailable
 
 - type: entity
-  name: advanced genetic ancestor
-  id: MobBaseAncestorAdvanced
-  parent: MobBaseAncestor # Starlight Edit: Removed BaseMobAnimal
+  name: monkey
+  suffix: Advanced
+  id: MobMonkeyAdvanced
+  parent: MobMonkey # Starlight Edit: Removed BaseMobAnimal
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    understands:
-    - GalacticCommon
-    - Ancestor
-  # Starlight-end
-  - type: CombatMode
-    canDisarm: true
   - type: Inventory
     templateId: monkey
     speciesId: monkey
-  # Starlight Start
     displacements:
       jumpsuit:
         sizeMaps:
@@ -60,245 +50,27 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-monkey
-  # Starlight End
-  - type: Deathgasp
-    prototype: MonkeyDeathgasp
-  - type: Cuffable
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 90
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 80
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Stripping
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      state: monkey
-      sprite: Mobs/Animals/monkey.rsi
-    - map: [ "jumpsuit" ]
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "ears" ]
-    - map: [ "id" ]
-    - map: [ "outerClothing" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
-  - type: Hands
-    # Starlight edit Start: Reverted NuBody
-    # activeHandId: Hand
-    # hands:
-    #   Hand:
-    #     location: Left
-    # Starlight edit End: Reverted NuBody
-  - type: ComplexInteraction
-  - type: GenericVisualizer
-    visuals:
-      enum.CreamPiedVisuals.Creamed:
-        clownedon:
-          True: {visible: true}
-          False: {visible: false}
-  # Starlight - start
-  - type: Body
-    prototype: Primate
-    requiredLegs: 1 # TODO: More than 1 leg
-  # Starlight - end
-  - type: CreamPied
-  - type: FireVisuals
-    sprite: Mobs/Effects/onfire.rsi
-    normalState: Monkey_burning
-  - type: InteractionPopup
-    successChance: 0.9
-    interactSuccessString: petting-success-monkey
-    interactFailureString: petting-failure-monkey
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Animals/ferret_happy.ogg
-    interactFailureSound:
-      path: /Audio/Items/wirecutter.ogg
-  - type: MeleeWeapon
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    angle: 30
-    animation: WeaponArcBite
-    damage:
-      types:
-        Blunt: 3
-        Piercing: 3
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 3
-  - type: Puller
-    needsHands: false
-  - type: CanHostGuardian
-  - type: NPCRetaliation
-    attackMemoryLength: 10
-  - type: FactionException
-  - type: NpcFactionMember
-    factions:
-      - Passive
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-  - type: IdExaminable
-  - type: Tag
-    tags:
-    - VimPilot
-    - DoorBumpOpener
-    - AnomalyHost
-  - type: Reactive
-    groups:
-      Flammable: [ Touch ]
-      Extinguish: [ Touch ]
-    reactions:
-    - reagents: [ Water, SpaceCleaner ]
-      methods: [ Touch ]
-      effects:
-      - !type:WashCreamPie
-  - type: Crawler
-  - type: StatusIcon
-  - type: CosmicCenserTarget # Stellar - Cosmic Cult
-
-- type: entity
-  name: kobold
-  id: MobBaseKoboldAdvanced
-  parent: MobBaseKobold
-  description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
-  abstract: true
-  components:
-  # Starlight-start: Languages
-  - type: LanguageKnowledge
-    speaks:
-    - Ancestor
-    - Draconic
-    understands:
-    - GalacticCommon
-    - Ancestor
-    - Draconic
-  # Starlight-end
-  - type: NameIdentifier
-    group: Kobold
-  - type: LizardAccent
-  - type: Speech
-    speechSounds: Lizard
-    speechVerb: Reptilian
-    allowedEmotes: ['Thump']
-  - type: Vocal
-    sounds:
-      Male: MaleReptilian
-      Female: FemaleReptilian
-      Unsexed: MaleReptilian
-  - type: BodyEmotes
-    soundsId: ReptilianBodyEmotes
-  - type: TypingIndicator
-    proto: lizard
-  - type: InteractionPopup
-    successChance: 0.9
-    interactSuccessString: petting-success-monkey
-    interactFailureString: petting-failure-monkey
-    interactSuccessSpawn: EffectHearts
-    interactSuccessSound:
-      path: /Audio/Animals/lizard_happy.ogg
-    interactFailureSound:
-      path: /Audio/Items/wirecutter.ogg
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      60: Critical
-      125: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 5
-  - type: MeleeWeapon
-    soundHit:
-      collection: AlienClaw
-    angle: 30
-    animation: WeaponArcClaw
-    damage:
-      types:
-        Slash: 5
-        Piercing: 4
-  - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 42
-  - type: TemperatureDamage
-    heatDamageThreshold: 360
-    coldDamageThreshold: 285
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
-      sprite: Mobs/Animals/kobold.rsi
-      state: kobold
-    - map: [ "outline" ]
-      sprite: Mobs/Animals/kobold.rsi
-      state: outline
-    - map: [ "horns" ]
-      sprite: Mobs/Customization/reptilian_parts.rsi
-      state: horns_short
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
-      color: "#ffffff"
-      sprite: Objects/Misc/handcuffs.rsi
-      state: body-overlay-2
-      visible: false
-    - map: [ "ears" ]
-    - map: [ "id" ]
-    - map: [ "mask" ]
-    - map: [ "head" ]
-    - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
-      visible: false
-  - type: RandomSprite
-    getAllGroups: true
-    available:
-      - enum.DamageStateVisualLayers.Base:
-          kobold: KoboldColors
-      - horns:
-          horns_curled: KoboldHornColors
-          horns_ram: KoboldHornColors
-          horns_short: KoboldHornColors
-          horns_myrsore: KoboldHornColors
-          horns_bighorn: KoboldHornColors
-          horns_argali: KoboldHornColors
-          horns_ayrshire: KoboldHornColors
-          horns_floppy_kobold_ears: Inherit
-          horns_double: Inherit
-          horns_kobold_ears: Inherit
-  - type: Butcherable
-    butcheringType: Spike
-    spawned:
-    - id: FoodMeat
-      amount: 2
-  - type: AlwaysRevolutionaryConvertible
-  - type: GhostTakeoverAvailable
-  - type: SentienceTarget
-    flavorKind: station-event-random-sentience-flavor-kobold
   - type: GhostRole
     prob: 0.05
     makeSentient: true
-    name: ghost-role-information-kobold-name
-    description: ghost-role-information-kobold-description
+    name: ghost-role-information-monkey-advanced-name
+    description: ghost-role-information-monkey-advanced-description
     rules: ghost-role-information-nonantagonist-rules
-  # Starlight Start
+
+- type: entity
+  name: kobold
+  suffix: Advanced
+  id: MobKoboldAdvanced
+  parent: MobKobold
+  description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
+  abstract: true
+  components:
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-kobold-advanced-name
+    description: ghost-role-information-kobold-advanced-description
+    rules: ghost-role-information-nonantagonist-rules
   - type: Inventory
     displacements:
       jumpsuit:
@@ -316,4 +88,4 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
-  # Starlight End
+
