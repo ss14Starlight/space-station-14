@@ -51,44 +51,22 @@
     - Solgov # SL
   - type: UserInterface
     interfaces:
-      enum.SolarControlConsoleUiKey.Key:
-        type: SolarControlConsoleBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
       enum.SecureCommandTerminalUiKey.Key: # STARLIGHT
-        type: SecureCommandTerminalBui
+        type: SecureCommandTerminalBoundUserInterface
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
-      enum.CargoConsoleUiKey.Orders:
-        type: CargoOrderConsoleBoundUserInterface
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
-      # Cosmatic Drift Record System-start
-      enum.CharacterRecordConsoleKey.Key:
-        type: CharacterRecordConsoleBoundUserInterface
-      # Cosmatic Drift Record System-end
-      enum.GeneralStationRecordConsoleKey.Key:
-      # who the fuck named this bruh
-        type: GeneralStationRecordConsoleBoundUserInterface
   - type: IntrinsicUI
     uis:
-      enum.SolarControlConsoleUiKey.Key:
-        toggleAction: ActionAGhostShowSolar
       enum.CommunicationsConsoleUiKey.Key:
         toggleAction: ActionAGhostShowCommunications
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
-      enum.CargoConsoleUiKey.Orders:
-        toggleAction: ActionAGhostShowCargo
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionAGhostShowCrewMonitoring
-      # Cosmatic Drift Record System-start
-      enum.CharacterRecordConsoleKey.Key:
-        toggleAction: ActionAGhostShowCharacterRecords
-      # Cosmatic Drift Record System-end
-      enum.GeneralStationRecordConsoleKey.Key:
-        toggleAction: ActionAGhostShowStationRecords
-  - type: SolarControlConsole # look ma i AM the computer!
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
     color: "#1d8bad"
@@ -102,13 +80,7 @@
   - type: CargoOrderConsole
   - type: CrewMonitoringConsole
     pagingEnabled: false # Starlight
-  - type: GeneralStationRecordConsole
     canDeleteEntries: true
-    # Cosmatic Drift Record System-start
-  - type: CharacterRecordConsole
-    consoleType: Admin
-  - type: CriminalRecordsConsole
-  # Cosmatic Drift Record System-end
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
