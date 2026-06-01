@@ -28,7 +28,6 @@
   - name: outerClothing2
     slotTexture: suit
     slotFlags: OUTERCLOTHING
-    stripTime: 4499
     uiWindowPos: 1,1
     strippingWindowPos: 0,3
     displayName: Protogen Cybernetics

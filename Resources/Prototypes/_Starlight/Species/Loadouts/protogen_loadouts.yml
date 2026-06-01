@@ -18,29 +18,29 @@
 - type: loadout
   id: ProtogenArmorLightBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenLightBasic
+    outerClothing2: ClothingOuterArmorProtogenLightBasicUnremovable
 
 - type: loadout
   id: ProtogenArmorLightSpeed
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenLightSpeed
+    outerClothing2: ClothingOuterArmorProtogenLightSpeedUnremovable
 
 - type: loadout
   id: ProtogenArmorMediumBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenMediumBasic
+    outerClothing2: ClothingOuterArmorProtogenMediumBasicUnremovable
 
 - type: loadout
   id: ProtogenArmorMediumMagic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenMediumMagic
+    outerClothing2: ClothingOuterArmorProtogenMediumMagicUnremovable
 
 - type: loadout
   id: ProtogenArmorHeavyBasic
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenHeavyBasic
+    outerClothing2: ClothingOuterArmorProtogenHeavyBasicUnremovable
 
 - type: loadout
   id: ProtogenArmorHeavySpace
   equipment:
-    outerClothing2: ClothingOuterArmorProtogenHeavySpace
+    outerClothing2: ClothingOuterArmorProtogenHeavySpaceUnremovable
