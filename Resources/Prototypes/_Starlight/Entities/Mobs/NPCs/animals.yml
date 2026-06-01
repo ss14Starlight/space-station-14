@@ -40,7 +40,7 @@
     prototype: AdvancedPrimate
   - type: Inventory
     templateId: advancedmonkey
-    speciesId: advancedmonkey
+    speciesId: monkey
     displacements:
       jumpsuit:
         sizeMaps:
@@ -76,7 +76,7 @@
     requiredLegs: 1
   - type: Inventory
     templateId: advancedmonkey
-    speciesId: advancedmonkey
+    speciesId: monkey
     displacements:
       jumpsuit:
         sizeMaps:
