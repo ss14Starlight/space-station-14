@@ -27,6 +27,12 @@
     uiWindowPos: 1,0
     strippingWindowPos: 0,2
     displayName: Jumpsuit
+  - name: gloves
+    slotTexture: gloves
+    slotFlags: GLOVES
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,2
+    displayName: Gloves
   - name: id
     slotTexture: id
     fullTextureName: template_small
@@ -37,7 +43,7 @@
     strippingWindowPos: 2,4
     dependsOn: jumpsuit
     displayName: ID
-  - name: belt # Starlight start
+  - name: belt
     slotTexture: belt
     fullTextureName: template_small
     slotFlags: BELT
@@ -56,7 +62,7 @@
     strippingWindowPos: 1,4
     dependsOn: jumpsuit
     displayName: Pocket 1
-    stripHidden: true # Starlight end
+    stripHidden: true
   - name: suitstorage
     slotTexture: suit_storage
     slotFlags:   SUITSTORAGE
@@ -78,9 +84,3 @@
     whitelist:
       tags:
         - MonkeyWearable
-  - name: gloves
-    slotTexture: gloves
-    slotFlags: GLOVES
-    uiWindowPos: 2,1
-    strippingWindowPos: 2,2
-    displayName: Gloves
