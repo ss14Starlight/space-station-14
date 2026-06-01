@@ -256,6 +256,15 @@
     - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
       state: dalmatian
 
+- type: marking
+  id: VulpEarPossum
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/ear_markings.rsi
+      state: possum
+
 # Head Markings (Snout)
 - type: marking
   id: VulpSnoutAlt
@@ -390,6 +399,33 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
       state: slash
+
+- type: marking
+  id: VulpHeadSkunk
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+      state: skunk
+
+- type: marking
+  id: VulpHeadEyeshadowLower
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+      state: eyeshadow-lower
+
+- type: marking
+  id: VulpHeadEyeshadowUpper
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/head_markings.rsi
+      state: eyeshadow-upper
 
 # Tail Markings
 - type: marking
@@ -682,6 +718,37 @@
     - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
       state: dalmatian_wag
 
+- type: marking
+  id: VulpTailPossum
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: possum
+
+- type: marking
+  id: VulpTailRaccoon
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: raccoon
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: raccoon-stripes
+
+- type: marking
+  id: VulpTailSkunk
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: skunk
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/tail_markings.rsi
+      state: skunk-top
+
 # Body Markings (Chest)
 - type: marking
   id: VulpBellyCrest
@@ -709,6 +776,15 @@
   sprites:
     - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
       state: belly_fox
+
+- type: marking
+  id: VulpBellySkunk
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Vulpkanin]
+  sprites:
+    - sprite: _Starlight/Mobs/Customization/vulpkanin/body_markings.rsi
+      state: skunk
 
 # # Body Markings (Overlay)
 # Eventually layering will allow to have markings on the body not layering above jumpsuits

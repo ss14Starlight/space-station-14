@@ -106,13 +106,13 @@
   - !type:GroupLoadoutEffect
     proto: HonoredAssistant
   equipment:
-    gloves: ClothingHandsGlovesFingerlessInsulated
+    gloves: ClothingHandsGlovesFingerlessBudget # Starlight, replace with fingerless budget insuls
 
 # Outerclothing
 - type: loadout
   id: AssistantWintercoat
   equipment:
-    outerClothing: ClothingOuterWinterCoat
+    outerClothing: ClothingOuterWinterColorGray # Starlight, it has a hood
 
 # Feet
 - type: loadout

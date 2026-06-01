@@ -67,7 +67,7 @@
 - type: polymorph
   id: WizardForcedMonkey
   configuration:
-    entity: MobMonkey
+    entity: MobMonkeyAdvanced # Starlight, it's somewhat more enjoyable to play.
     forced: true
     duration: 120 #STARLIGHT
     inventory: None
@@ -176,7 +176,7 @@
 - type: polymorph
   id: ArtifactMonkey
   configuration:
-    entity: MobMonkey
+    entity: MobMonkeyAdvanced # Starlight, it's somewhat more enjoyable to play.
     forced: true
     transferName: true
     allowRepeatedMorphs: true

@@ -129,7 +129,7 @@
         children:
         - id: FlashlightSeclite
         - id: ClothingShoesBootsJack
-        - id: TrackingImplanter
+        - id: CommandTrackerImplanter
           amount: 3
         - id: MedkitAdvancedFilled
         - id: WeaponMultiphaseGun

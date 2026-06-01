@@ -129,7 +129,17 @@
   - type: ShowMindShieldIcons
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - IPC
   - type: ShowHealthIcons
+    damageContainers:
+      - Biological
+      - Inorganic
+      - Silicon
+      - IPC
   - type: ShowHungerIcons
   - type: ShowThirstIcons # Starlight END
   - type: ShowContrabandDetails
