@@ -15,21 +15,10 @@
   parent: OrganHumanStomach
   name: stomach
   suffix: Rodentia
+  description: "The resistant stomach of a Rodentia."
   components:
-    - type: Stomach
-      specialDigestible:
-        tags:
-          - Trash
-      isSpecialDigestibleExclusive: false
-    - type: SolutionContainerManager
-      solutions:
-        stomach:
-          maxVol: 50
-        food:
-          maxVol: 5
-          reagents:
-            - ReagentId: UncookedAnimalProteins
-              Quantity: 5
+    - type: Metabolizer
+      metabolizerTypes: [ Rodentia ]
 
 - type: entity
   id: OrganRodentiaHeart
@@ -37,3 +26,6 @@
   name: heart
   suffix: Rodentia
   description: "The animal-like heart of a Rodentia."
+  components:
+    - type: Metabolizer
+      metabolizerTypes: [ Rodentia ]

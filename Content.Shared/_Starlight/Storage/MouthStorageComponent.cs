@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Storage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
@@ -12,22 +11,16 @@ public sealed partial class MouthStorageComponent : Component
 {
     public const string MouthContainerId = "mouth";
 
-    [DataField, AutoNetworkedField]
-    public EntProtoId? OpenStorageAction;
+    [DataField, AutoNetworkedField] public EntProtoId? OpenStorageAction;
 
-    [DataField, AutoNetworkedField]
-    public EntityUid? Action;
+    [DataField, AutoNetworkedField] public EntityUid? Action;
 
-    [DataField]
-    public EntProtoId MouthProto = "ActionOpenMouthStorage";
+    [DataField] public EntProtoId MouthProto = "ActionOpenMouthStorage";
 
-    [ViewVariables]
-    public Container Mouth = default!;
+    [ViewVariables] public Container Mouth = default!;
 
-    [DataField]
-    public EntityUid? MouthId;
+    [DataField, AutoNetworkedField] public EntityUid? MouthId;
 
     // Mimimum inflicted damage on hit to spit out items
-    [DataField]
-    public FixedPoint2 SpitDamageThreshold = FixedPoint2.New(2);
+    [DataField] public FixedPoint2 SpitDamageThreshold = FixedPoint2.New(2);
 }

@@ -9,6 +9,7 @@
     speaks:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
     understands:
     - GalacticCommon
     - Mouse
@@ -194,6 +195,7 @@
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
