@@ -153,3 +153,10 @@
   background: /Textures/_Starlight/LobbyScreens/NoGalCom.webp
   title: lobby-state-background-nogalcom-title
   artist: lobby-state-background-nogalcom-artist
+
+- type: lobbyBackground
+  id: AiderThief
+  background: /Textures/_Starlight/LobbyScreens/AiderThief.webp
+  title: lobby-state-background-aiderthief-title
+  artist: lobby-state-background-aiderthief-artist
+

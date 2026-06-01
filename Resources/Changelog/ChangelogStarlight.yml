@@ -1,25 +1,4 @@
 Entries:
-- author: Cringe_Cursed
-  changes:
-  - message: 'Added lightgrid system for gameplay-side light exposure checks (pros: perfomance, cons: brain death).'
-    type: Add
-  id: 405095
-  time: '2026-05-18T04:52:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3968
-- author: Cringe_Cursed
-  changes:
-  - message: Added light debug overlay.
-    type: Add
-  id: 405096
-  time: '2026-05-18T04:52:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/3968
-- author: Scarlet.
-  changes:
-  - message: Removed the admeme tag from the ntsf axe.
-    type: Remove
-  id: 405097
-  time: '2026-05-18T05:29:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4461
 - author: STARLIGHT TEAM
   changes:
   - message: Human observation console looks as it should.
@@ -2799,4 +2778,25 @@ Entries:
   id: 405494
   time: '2026-06-01T09:05:17.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4618
+- author: Scarlet Lightweaver
+  changes:
+  - message: Removed the magical crayon for now due to the ongoning lag issues.
+    type: Remove
+  id: 405495
+  time: '2026-06-01T09:56:39.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4609
+- author: silkielol, deltaVelocity
+  changes:
+  - message: '"Maints Discovery", a new piece of menu art featuring a thief and his stash.'
+    type: Add
+  id: 405496
+  time: '2026-06-01T09:56:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4599
+- author: redmushie
+  changes:
+  - message: AGhost also sees IPC and Cyborg health bars.
+    type: Fix
+  id: 405497
+  time: '2026-06-01T09:56:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4611
 Order: -1
