@@ -152,6 +152,29 @@
     listNumber: false
 
 - type: entity
+  parent: [ IDCardStandard, BaseCommandContraband ]
+  id: CCGreenShieldIDCard
+  name: CentComm Greenshield Officer ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: gold
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#1b67a5"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#1b67a5"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: NTNCBlueShield
+    - type: PresetIdCard
+      job: CentralCommandGreenShield
+    - type: NanoChatCard
+      listNumber: false
+
+- type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
   id: SalvageLeadIDCard
   name: salvage lead ID card

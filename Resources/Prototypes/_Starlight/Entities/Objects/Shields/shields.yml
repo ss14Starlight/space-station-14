@@ -433,10 +433,10 @@
       spriteLayer: shield
       inhandVisuals:
         left:
-          - state: geshield-inhand-left-on
+          - state: ginhand-left-shield
             shader: unshaded
         right:
-          - state: geshield-inhand-right-on
+          - state: ginhand-right-shield
             shader: unshaded
     - type: PointLight
       netsync: false

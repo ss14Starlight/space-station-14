@@ -581,6 +581,36 @@
 
 - type: entity
   parent: BasePDA
+  id: CentCommGreenShieldPDA
+  name: Green Shield Officer's PDA
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/pda.rsi
+    - type: Pda
+      id: CCGreenShieldIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-ntnc-cs
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pda.rsi
+      state: pda-ntnc-cs
+    - type: CartridgeLoader
+      uiKey: enum.PdaUiKey.Key
+      preinstalled:
+        - CrewManifestCartridge
+        - NotekeeperCartridge
+        - NanoTaskCartridge
+        - NewsReaderCartridge
+        - MedTekCartridge
+        - WantedListCartridge
+        - LogProbeCartridge
+        - AstroNavCartridge
+        - NanoChatCartridge
+
+- type: entity
+  parent: BasePDA
   id: NTNCCSPDA
   name: nt nc naval officer's PDA
   components:

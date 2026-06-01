@@ -564,7 +564,7 @@
 ## CC Blueshield
 
 - type: entity
-  name: Central Command Greenshield
+  name: CentComm Greenshield
   suffix: Basic
   id: RandomHumanoidCCGreenshieldSpawnerBasic
   components:
@@ -572,11 +572,11 @@
       sprite: _Starlight/Markers/jobs.rsi
       state: obs
     - type: RandomHumanoidSpawner
-      settings: NTNCConsortiumGreenshieldBasic
+      settings: CCGreenshieldBasic
 
 - type: randomHumanoidSettings
   id: CCGreenshieldBasic
-  parent: EventHumanoidNTNC
+  parent: EventHumanoidCentcomm
   randomizeName: false
   components:
     - type: GhostRole
@@ -586,9 +586,9 @@
       important: true # SL
       raffle:
         settings: default
-      job: NTNCBlueShield
+      job: CentralCommandGreenShield
     - type: Loadout
-      prototypes: [NTNCBasicGear]
+      prototypes: [GSOGear]
       roleLoadout: [RoleSurvivalStandard]
     - type: RandomMetadata
       nameSegments:

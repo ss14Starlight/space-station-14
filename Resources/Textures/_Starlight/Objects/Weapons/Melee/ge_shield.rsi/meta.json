@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "license": "CC-BY-SA-3.0", //I have no idea...
+  "license": "CC-BY-SA-3.0",
   "copyright": "Modified from Citadel station 13 at https://github.com/Citadel-Station-13/Citadel-Station-13/commit/84223c65f5caf667a84f3c0f49bc2a41cdc6c4e3",
   "size": {
     "x": 32,
@@ -22,11 +22,11 @@
       "name": "geshield-on"
     },
     {
-      "name": "geshield-inhand-right-on",
+      "name": "ginhand-right-shield",
       "directions": 4
     },
     {
-      "name": "geshield-inhand-left-on",
+      "name": "ginhand-left-shield",
       "directions": 4
     }
   ]
