@@ -15,6 +15,15 @@ namespace Content.IntegrationTests.Tests.Storage;
 public sealed class StorageTest
 {
     /// <summary>
+    /// Storages intentionally allowed to hold items larger than themselves, exempt from the arbitrage check.
+    /// </summary>
+    private static readonly HashSet<string> StorageSizeArbitrageExempt = new()
+    {
+        // lost property bag: deliberately holds a whole cryo'd crew member's belongings
+        "ClothingBackpackDuffelCryostorageBelongings",
+    };
+
+    /// <summary>
     /// Can an item store more than itself weighs.
     /// In an ideal world this test wouldn't need to exist because sizes would be recursive.
     /// </summary>
@@ -36,6 +45,7 @@ public sealed class StorageTest
                 if (!proto.TryGetComponent<StorageComponent>("Storage", out var storage) ||
                     storage.Whitelist != null ||
                     storage.MaxItemSize == null ||
+                    StorageSizeArbitrageExempt.Contains(proto.ID) ||
                     !proto.TryGetComponent<ItemComponent>("Item", out var item))
                     continue;
 
