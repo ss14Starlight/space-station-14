@@ -28,6 +28,7 @@ public static class UserFormattableTags
         typeof(CheckTagHandler),
         typeof(DotsTag),
         typeof(DotHeadTag),
+        typeof(MetaTag),
         // Starlight end
     ];
 }
