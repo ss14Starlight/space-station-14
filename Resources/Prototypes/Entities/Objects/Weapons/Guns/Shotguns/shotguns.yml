@@ -102,6 +102,7 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    pump: true
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -168,15 +169,18 @@
   description: A premium semi-automatic shotgun, and the pride of all security forces. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
   components: # intend for Enforcer to have wider choke for semi-auto function
   - type: Gun
-    spread: 5
-    pump: true
+    spread: 15
   - type: Sprite
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
+    capacity: 4 #Starlight 7-> 4
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
@@ -196,7 +200,7 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: Gun
-    spread: 15
+    spread: 5
     pump: true
     fireRate: 1
   - type: Sprite
