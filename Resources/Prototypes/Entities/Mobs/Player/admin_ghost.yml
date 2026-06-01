@@ -51,14 +51,25 @@
     - Solgov # SL
   - type: UserInterface
     interfaces:
+      enum.SolarControlConsoleUiKey.Key:
+        type: SolarControlConsoleBoundUserInterface
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
       enum.SecureCommandTerminalUiKey.Key: # STARLIGHT
         type: SecureCommandTerminalBui
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
+      enum.CargoConsoleUiKey.Orders:
+        type: CargoOrderConsoleBoundUserInterface
       enum.CrewMonitoringUIKey.Key:
         type: CrewMonitoringBoundUserInterface
+      # Cosmatic Drift Record System-start
+      enum.CharacterRecordConsoleKey.Key:
+        type: CharacterRecordConsoleBoundUserInterface
+      # Cosmatic Drift Record System-end
+      enum.GeneralStationRecordConsoleKey.Key:
+      # who the fuck named this bruh
+        type: GeneralStationRecordConsoleBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.CommunicationsConsoleUiKey.Key:
@@ -67,6 +78,7 @@
         toggleAction: ActionAGhostShowRadar
       enum.CrewMonitoringUIKey.Key:
         toggleAction: ActionAGhostShowCrewMonitoring
+  - type: SolarControlConsole # look ma i AM the computer!
   - type: CommunicationsConsole
     title: comms-console-announcement-title-centcom
     color: "#1d8bad"
@@ -80,7 +92,13 @@
   - type: CargoOrderConsole
   - type: CrewMonitoringConsole
     pagingEnabled: false # Starlight
+  - type: GeneralStationRecordConsole
     canDeleteEntries: true
+    # Cosmatic Drift Record System-start
+  - type: CharacterRecordConsole
+    consoleType: Admin
+  - type: CriminalRecordsConsole
+  # Cosmatic Drift Record System-end
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
@@ -126,6 +144,15 @@
 
 - type: entity
   parent: BaseAGhostAction
+  id: ActionAGhostShowSolar
+  name: Solar Control Interface
+  description: View a Solar Control Interface.
+  components:
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
+
+- type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowCommunications
   name: Communications Interface
   description: View a Communications Interface.
@@ -154,6 +181,15 @@
 
 - type: entity
   parent: BaseAGhostAction
+  id: ActionAGhostShowCargo
+  name: Cargo Ordering Interface
+  description: View a Cargo Ordering Interface.
+  components:
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
+
+- type: entity
+  parent: BaseAGhostAction
   id: ActionAGhostShowCrewMonitoring
   name: Crew Monitoring Interface
   description: View a Crew Monitoring Interface.
@@ -165,3 +201,17 @@
     priority: -8
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
+
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionAGhostShowStationRecords
+  name: Station Records Interface
+  description: View a Station Records Interface.
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: station_records }
+    iconOn: { sprite: Interface/Actions/actions_ai.rsi, state: station_records }
+    keywords: [ "AI", "console", "interface" ]
+    priority: -7
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }
