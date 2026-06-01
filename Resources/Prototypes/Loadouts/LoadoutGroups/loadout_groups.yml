@@ -368,6 +368,7 @@
   minLimit: 0
   loadouts:
   - AssistantGloves
+  - AssistantMittens # Starlight
   - GreyGloves #starlight
 
 - type: loadoutGroup
