@@ -86,9 +86,7 @@ namespace Content.Server.Decals
 
             PvsEnabled = value;
 
-            // Force the next update to run immediately after toggling PVS
-            // so players do not wait up to one batch interval for fresh decal state.
-            _pvsUpdateAccumulator = PvsUpdateInterval;
+            _pvsUpdateAccumulator = PvsUpdateInterval; // Starlight: Update immediately after toggling PVS.
 
             if (value)
                 return;
