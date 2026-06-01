@@ -54,7 +54,7 @@
       enum.CommunicationsConsoleUiKey.Key:
         type: CommunicationsConsoleBoundUserInterface
       enum.SecureCommandTerminalUiKey.Key: # STARLIGHT
-        type: SecureCommandTerminalBoundUserInterface
+        type: SecureCommandTerminalBui
       enum.RadarConsoleUiKey.Key:
         type: RadarConsoleBoundUserInterface
       enum.CrewMonitoringUIKey.Key:
@@ -126,15 +126,6 @@
 
 - type: entity
   parent: BaseAGhostAction
-  id: ActionAGhostShowSolar
-  name: Solar Control Interface
-  description: View a Solar Control Interface.
-  components:
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
-
-- type: entity
-  parent: BaseAGhostAction
   id: ActionAGhostShowCommunications
   name: Communications Interface
   description: View a Communications Interface.
@@ -163,15 +154,6 @@
 
 - type: entity
   parent: BaseAGhostAction
-  id: ActionAGhostShowCargo
-  name: Cargo Ordering Interface
-  description: View a Cargo Ordering Interface.
-  components:
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
-
-- type: entity
-  parent: BaseAGhostAction
   id: ActionAGhostShowCrewMonitoring
   name: Crew Monitoring Interface
   description: View a Crew Monitoring Interface.
@@ -183,17 +165,3 @@
     priority: -8
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
-
-- type: entity
-  parent: BaseAGhostAction
-  id: ActionAGhostShowStationRecords
-  name: Station Records Interface
-  description: View a Station Records Interface.
-  components:
-  - type: Action
-    icon: { sprite: Interface/Actions/actions_ai.rsi, state: station_records }
-    iconOn: { sprite: Interface/Actions/actions_ai.rsi, state: station_records }
-    keywords: [ "AI", "console", "interface" ]
-    priority: -7
-  - type: InstantAction
-    event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }
