@@ -18,3 +18,13 @@
       seedId: evilApple
     - type: Sprite
       sprite: _Starlight/Objects/Specific/Hydroponics/evil_apple.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of resinfera seeds
+  id: ResinferaSeeds
+  components:
+    - type: Seed
+      seedId: resinfera
+    - type: Sprite
+      sprite: _Starlight/Objects/Specific/Hydroponics/resinfera.rsi

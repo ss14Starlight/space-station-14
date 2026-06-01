@@ -48,3 +48,27 @@
       Min: 1
       Max: 10
       PotencyDivisor: 10
+
+
+- type: seed
+  id: resinfera
+  name: seeds-resinfera-name
+  noun: seeds-noun-seeds
+  displayName: seeds-resinfera-display-name
+  plantRsi: _Starlight/Objects/Specific/Hydroponics/resinfera.rsi
+  packetPrototype: ResinferaSeeds
+  productPrototypes:
+    - FoodResinfera
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 2
+  potency: 10
+  growthStages: 5
+  waterConsumption: 0.3
+  nutrientConsumption: 1.5
+  chemicals:
+    Acrileni:
+      Min: 1
+      Max: 20
+      PotencyDivisor: 7

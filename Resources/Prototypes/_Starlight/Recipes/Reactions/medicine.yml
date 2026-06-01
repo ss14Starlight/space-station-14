@@ -51,3 +51,16 @@
       amount: 1
   products:
     Infernaline: 2
+
+- type: reaction
+  id: Briomadine
+  impact: Medium
+  reactants:
+    Bruizine:
+      amount: 1
+    Razorium:
+      amount: 1
+    Acrileni:
+      amount: 1
+  products:
+    Briomadine: 2
