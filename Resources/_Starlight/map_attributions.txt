@@ -9,11 +9,11 @@
 - files: ["barratry.yml"]
   authors: Emogarbage, Scribbles0, Starlight Team
 
-- files: ["cog.yml"]
-  authors: Spacemann, Starlight Team
-
 - files: ["cluster.yml"]
   authors: Scribbles0, CawsForConcern (remake), Starlight Team
+
+- files: ["cog.yml"]
+  authors: Spacemann, Starlight Team
 
 - files: ["cork.yml"]
   authors: PubliclyExecutedPig, cujo, Starlight Team
