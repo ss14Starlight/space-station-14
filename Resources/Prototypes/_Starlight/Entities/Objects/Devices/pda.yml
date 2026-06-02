@@ -519,6 +519,15 @@
     state: pda-punpun
 
 - type: entity
+  parent: BotanistPDA
+  id: KikiPDA
+  name: kiki's PDA
+  description: Has an earthy scent.
+  components:
+  - type: Pda
+    id: KikiIDCard
+
+- type: entity
   parent: BasePDA
   id: CommanderPDA
   name: commander PDA
