@@ -3,9 +3,9 @@ using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client.UserInterface.RichText;
+namespace Content.Client._Starlight.UserInterface.RichText;
 
-public abstract partial class BaseDotMatrixTag : IMarkupTagHandler
+public abstract partial class BaseDotMatrixTagHandler : IMarkupTagHandler
 {
     /// <summary>
     /// Four-bit lookup table for font variants. See <see cref="FontVariation"/>.

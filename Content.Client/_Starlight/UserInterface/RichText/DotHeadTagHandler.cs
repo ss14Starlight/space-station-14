@@ -1,13 +1,13 @@
 ﻿using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
 
-namespace Content.Client.UserInterface.RichText;
+namespace Content.Client._Starlight.UserInterface.RichText;
 
 /// <summary>
 /// Combination of the [dots] and [head] tags. Unfortunately, normal [head] tags replace the font on the font stack.
 /// This provides a more convenient alternative for players, such as [dots duo condensed size=24] being equivalent to [dothead=1]
 /// </summary>
-public sealed partial class DotHeadTag : BaseDotMatrixTag
+public sealed partial class DotHeadTagHandler : BaseDotMatrixTagHandler
 {
     public override string Name => "dothead";
 
