@@ -62,7 +62,7 @@
       tags:
       - Dwarf
   - type: SpeakOnTrigger
-    text: "We're rich!"
+    text: dwarf-callout-wealth
     targetUser: true
   #END STARLIGHT
   - type: Tag

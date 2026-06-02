@@ -34,7 +34,7 @@
         tags:
         - Dwarf
     - type: SpeakOnTrigger
-      text: Mushroom!
+      text: dwarf-callout-mushroom
       targetUser: true
     #END STARLIGHT
     - type: Damageable
@@ -111,7 +111,7 @@
       tags:
       - Dwarf
   - type: SpeakOnTrigger
-    text: Mushroom!
+    text: dwarf-callout-mushroom
     targetUser: true
   #END STARLIGHT
   - type: Tag
@@ -174,7 +174,7 @@
       tags:
       - Dwarf
   - type: SpeakOnTrigger
-    text: Mushroom!
+    text: dwarf-callout-mushroom
     targetUser: true
   #END STARLIGHT
   - type: Construction
