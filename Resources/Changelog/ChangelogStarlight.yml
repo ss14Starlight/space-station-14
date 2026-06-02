@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Rinary
   changes:
-  - message: Added Tier 3 Terror Spiders to the Guidebook.
-    type: Add
-  id: 405158
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
   - message: Added a Xeno collective mind (+x). Xenos and Terror Spiders can talk in it.
     type: Add
   id: 405159
@@ -2799,4 +2792,11 @@ Entries:
   id: 405557
   time: '2026-06-01T13:36:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4620
+- author: STARLIGHT TEAM
+  changes:
+  - message: Hotfix for UI that went insane.
+    type: Fix
+  id: 405558
+  time: '2026-06-01T23:30:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4629
 Order: -1
