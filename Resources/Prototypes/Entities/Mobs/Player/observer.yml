@@ -86,16 +86,18 @@
     - AllowGhostShownByEvent
     - Ghost
   - type: ComplexInteraction
-  - type: UserInterface # for observer mass scanner
+  - type: RadarConsole
+    followEntity: true
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+  - type: UserInterface
     interfaces:
-      enum.RadarConsoleUiKey.Key:
-        type: RadarConsoleBoundUserInterface
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
         toggleAction: ActionAGhostShowRadar
-  - type: RadarConsole
-    followEntity: true
 - type: entity
   parent: BaseMentalAction
   id: ActionGhostBoo
