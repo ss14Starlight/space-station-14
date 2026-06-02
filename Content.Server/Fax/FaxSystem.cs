@@ -470,7 +470,7 @@ public sealed class FaxSystem : EntitySystem
 
         var name = Loc.GetString("fax-machine-printed-paper-name");
 
-        var printout = new FaxPrintout(args.Content, name, args.Label, prototype);
+        var printout = new FaxPrintout(args.Content, name, args.Label, prototype, retainMetadata: true); // Starlight
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
 
