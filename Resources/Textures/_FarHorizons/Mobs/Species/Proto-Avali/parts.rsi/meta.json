@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Original Sprites by SuperJoelD00D, Github MozarteanChaos / Discord mozarteanchaos (213813868282118144) & Github Zeyria / Discord zeyria (232964236186353664), Reworked Sprites by Killer_Tamashi (Discord), Protogen species by Malice-Risu",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    }
+  ]
+}

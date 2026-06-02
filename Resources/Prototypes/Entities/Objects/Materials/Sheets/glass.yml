@@ -95,22 +95,28 @@
               Quantity: 10
     - type: QuickConstructable # DEN quick construction
       category: Glass
-    - type: Healing
-      damageContainers:
-        - IPC
-      damage: {}
-      delay: 2
-      adjustEyeDamage: -1
-      healingBeginSound:
-        path: "/Audio/Items/Medical/ointment_begin.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
-      healingEndSound:
-        path: "/Audio/Items/Medical/ointment_end.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
+#FH - Start
+    - type: ConditionalHealing
+      healingDefinitions:
+        - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
+          healing:
+            damageContainers:
+              - IPC # Starlight
+              - Hybrid # Starlight
+            damage: {}
+            delay: 2
+            adjustEyeDamage: -1 # 1 glass = 1 weld
+            healingBeginSound:
+              path: "/Audio/Items/Medical/ointment_begin.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+            healingEndSound:
+              path: "/Audio/Items/Medical/ointment_end.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+#FH - End
 
 - type: entity
   parent: SheetGlass

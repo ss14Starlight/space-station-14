@@ -3,30 +3,33 @@
 
   NanoTrasen employs a variety of sapient species.
 
+<!-- Starlight start, reorganizing all of this alphabetically-->
   <Box>
   <GuideEntityEmbed Entity="AppearanceElf" Caption="Aelithii"/>
   <GuideEntityEmbed Entity="AppearanceArachnid" Caption="Arachnid"/>
+  <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
   <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
   <GuideEntityEmbed Entity="AppearanceDiona" Caption="Diona"/>
   <GuideEntityEmbed Entity="AppearanceDwarf" Caption="Dwarf"/>
-  <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
-  <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
+  <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
+  <GuideEntityEmbed Entity="AppearanceHuman" Caption="Human"/>
+  <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
   <GuideEntityEmbed Entity="AppearanceSlimePerson" Caption="Laspi"/>
+  <GuideEntityEmbed Entity="AppearanceMoth" Caption="Moth Person"/>
+  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
+  </Box>
+  <Box>
+  <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
+  <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
+  <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
   <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>
   <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Vulpkanin"/>
-  <GuideEntityEmbed Entity="AppearanceCyclorite" Caption="Cyclorite"/>
   </Box>
   <Box>
-  <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
-  <GuideEntityEmbed Entity="AppearanceResomi" Caption="Resomi"/>
-  <GuideEntityEmbed Entity="AppearanceFelionoid" Caption="Felionoid"/>
-  <GuideEntityEmbed Entity="AppearanceAvali" Caption="Avali"/>
-  <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
-  <GuideEntityEmbed Entity="AppearanceLagomorph" Caption="Lagomorph"/>
+  <GuideEntityEmbed Entity="AppearanceProtogen" Caption="Protogen"/> <!--FH-->
   <GuideEntityEmbed Entity="AppearanceIPC" Caption="IPC"/> <!--FH-->
   </Box>
-
+<!-- Starlight end, reorganizing all of this alphabetically-->
 </Document>

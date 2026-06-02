@@ -2,7 +2,7 @@
   id: FelionoidFootPawMittensR
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_footR
@@ -11,7 +11,7 @@
   id: FelionoidFootPawMittensL
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_footL

@@ -2,7 +2,7 @@
   id: AvaliHairBigPonytail
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_bigponytail_primary
@@ -15,7 +15,7 @@
   id: AvaliHairCockatiel
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_cockatiel_primary
@@ -26,7 +26,7 @@
   id: AvaliHairCockatoo
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_cockatoo_primary
@@ -37,7 +37,7 @@
   id: AvaliHairDuelFeather
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_dualfeather_primary
@@ -48,7 +48,7 @@
   id: AvaliHairHooked
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_hooked_primary
@@ -59,7 +59,7 @@
   id: AvaliHairJay
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_jay_primary
@@ -70,7 +70,7 @@
   id: AvaliHairLongFeather
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_longfeather_primary
@@ -81,7 +81,7 @@
   id: AvaliHairPunk
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ] # FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/Avali/avali_crests.rsi
       state: avali_crest_punk_primary

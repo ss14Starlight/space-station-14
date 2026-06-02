@@ -2,7 +2,7 @@
   id: FelionoidLegPawMittensL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_legsL
@@ -11,7 +11,7 @@
   id: FelionoidLegPawMittensR
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_legsR
@@ -20,7 +20,7 @@
   id: FelionoidLegTabbyL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  Tabby_LegL
@@ -29,7 +29,7 @@
   id: FelionoidLegTabbyR
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  Tabby_LegR
@@ -38,7 +38,7 @@
   id: FelionoidLegCalicoL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico1_legL

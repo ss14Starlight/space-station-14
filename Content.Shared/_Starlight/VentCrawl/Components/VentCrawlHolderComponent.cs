@@ -1,8 +1,6 @@
-using System.Numerics;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Robust.Shared.Audio;
-using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -11,18 +9,13 @@ namespace Content.Shared.VentCrawl.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 public sealed partial class VentCrawlHolderComponent : Component
 {
-    public Container Container
-    {
-        get => field ?? throw new InvalidOperationException("Container not initialized");
-        set;
-    } = null;
-
     [ViewVariables]
     public float StartingTime { get; set; }
 
     [ViewVariables]
     public float TimeLeft { get; set; }
 
+    [AutoNetworkedField]
     public bool IsMoving = false;
 
     [ViewVariables]
@@ -42,6 +35,7 @@ public sealed partial class VentCrawlHolderComponent : Component
     public EntityUid? CurrentTube { get; set; }
 
     [ViewVariables]
+    [AutoNetworkedField]
     public bool HasExitAction { get; set; }
 
     [ViewVariables]
@@ -54,6 +48,7 @@ public sealed partial class VentCrawlHolderComponent : Component
     public static readonly TimeSpan CrawlDelay = TimeSpan.FromSeconds(0.5);
 
     [ViewVariables]
+    [AutoNetworkedField]
     public TimeSpan LastCrawl;
 
     [DataField("crawlSound")]
@@ -65,6 +60,7 @@ public sealed partial class VentCrawlHolderComponent : Component
     [DataField]
     public EntProtoId<ActionComponent> ActionProto = "VentCrawlExitAction";
 
+    [AutoNetworkedField]
     public List<EntityUid> ProvidedActions = new();
 
     /// <summary>

@@ -117,6 +117,7 @@
       - PosterContrabandARFRadio
       - PosterContrabandGEC
       - PosterContrabandHereticalExomorph
+      - PosterContrabandBeep100
       #endregion Starlight
     chance: 1
 

@@ -1,4 +1,29 @@
 - type: guideEntry
+  id: Protogen
+  name: species-name-protogen
+  text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/Protogen.xml" # Moved to _Starlight due to the number of changes we have to make to them, so we'll maintain them on our own. (We'd pretty much have to <! -- --> comment every single line.)
+  children:
+  - ProtogenFrames # Starlight
+  - TrueProtogen # Starlight, true Protogen
+  - ProtoElf # Starlight
+  - ProtoArachnid
+  - ProtoAvali
+  - ProtoCyclorite # Starlight
+  - ProtoDiona # Starlight
+  - ProtoDwarf # Starlight
+  - ProtoFelionoid # Starlight
+  - ProtoHuman # Starlight
+  - ProtoKin # Starlight, moved alphabetically
+  - ProtoLagomorph # Starlight
+  - ProtoSlimePerson
+  - ProtoThaven # Starlight, moved alphabetically
+  - ProtoMoth
+  - ProtoReptilian # Starlight
+  - ProtoResomi
+  - ProtoVox
+  - ProtoVulp
+
+- type: guideEntry
   id: IPC
   name: species-name-ipc
   text: "/ServerInfo/_FarHorizons/Guidebook/Mobs/IPC.xml"

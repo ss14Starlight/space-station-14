@@ -1,0 +1,170 @@
+- type: entity
+  save: false
+  name: Urist McAvalister
+  parent: [ BaseMobProtogen, BaseColdBird, BaseSpeciesPickupable ]
+  id: BaseMobProtoAvali
+  abstract: true
+  components:
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      - Scratch
+      understands:
+      - GalacticCommon
+      - Machine
+      - Scratch
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+        - Protogen
+        - Avali
+        - ProtoAvali
+        - SiliconEmotesFH
+        - NotLabelable
+    - type: HumanoidAppearance
+      species: ProtoAvali
+    - type: Hunger # on 2x more
+      thresholds:
+        Overfed: 250
+        Okay: 200
+        Peckish: 150
+        Starving: 100
+        Dead: 0
+      baseDecayRate: 0.03
+    - type: Icon
+      sprite: _FarHorizons/Mobs/Species/Proto-Avali/parts.rsi
+      state: full
+    - type: Body
+      prototype: ProtoAvali
+      requiredLegs: 2
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+        - id: FoodMeatChicken
+          amount: 3
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        90: Critical
+        180: Dead
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 95 #tiny
+          restitution: 0.0
+          mask:
+            - MobMask
+          layer:
+            - MobLayer
+    - type: MovementSpeedModifier
+      baseWeightlessAcceleration: 1.6 # Avalis are specifically built to fly in low-g environments
+      baseWeightlessFriction: 1
+      baseWeightlessModifier: 1
+    - type: Damageable
+      damageContainer: Hybrid
+      damageModifierSet: ProtoAvali
+    - type: DamageVisuals
+      damageOverlayGroups:
+        Brute:
+          sprite: Mobs/Effects/brute_damage.rsi
+          color: "#6C3BAA"
+    - type: Bloodstream
+      bloodReferenceSolution:
+        reagents:
+        - ReagentId: AvaliBlood
+          Quantity: 300
+    - type: MeleeWeapon
+      soundHit:
+        path: /Audio/Weapons/pierce.ogg
+      angle: 30
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Slash: 6.25
+    - type: Stasis
+      enterStasisAction: ActionStasisEnter
+      exitStasisAction: ActionStasisExit
+      updateInterval: 1s
+      healingPerUpdate:
+        types:
+          Heat: 2
+          Cold: 2
+        groups:
+          Brute: 6
+      bleedHealPerUpdate: 1.0
+      critHealingModifier: 0.5
+      stasisDamageReduction: 0.7
+    - type: Inventory
+      speciesId: avali
+      templateId: protogen
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
+        shoes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: shoes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: head
+        hand:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: hand
+        back:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: back
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtoAvali
+  categories: [ HideSpawnMenu ]
+  description: A dummy proto-avali meant to be used in character setup.
+  components:
+    - type: HumanoidAppearance
+      species: ProtoAvali
+    - type: Inventory
+      speciesId: Avali
+      templateId: protogen
+      displacements:
+        jumpsuit:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: jumpsuit
+        shoes:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: shoes
+        head:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: head
+        hand:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: hand
+        back:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Avali/displacement.rsi
+              state: back
