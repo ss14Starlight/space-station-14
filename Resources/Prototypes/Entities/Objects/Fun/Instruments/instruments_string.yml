@@ -6,6 +6,8 @@
   - type: Tag
     tags:
     - StringInstrument
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseStringInstrument
@@ -17,6 +19,8 @@
     slots:
     - back
     - suitStorage
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseStringInstrumentClothing
@@ -26,6 +30,8 @@
   components:
   - type: Instrument
     program: 27
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Clean": {27: 0}
@@ -42,6 +48,8 @@
   components:
   - type: Instrument
     program: 33
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Fingered": {33: 0}
@@ -59,6 +67,8 @@
   components:
   - type: Instrument
     program: 29
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Overdrive": {29: 0}
@@ -87,6 +97,8 @@
   components:
   - type: Instrument
     program: 24
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Nylon": {24: 0}
@@ -135,6 +147,8 @@
   components:
   - type: Instrument
     program: 120
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/guitarlessfrets.rsi
 
@@ -145,6 +159,8 @@
   components:
   - type: Instrument
     program: 105
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/banjo.rsi
 
@@ -156,6 +172,8 @@
   components:
   - type: Instrument
     program: 40
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Classical": {40: 0}
@@ -171,6 +189,8 @@
   components:
   - type: Instrument
     program: 41
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/viola.rsi
 
@@ -182,6 +202,8 @@
   components:
   - type: Instrument
     program: 42
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/cello.rsi
   - type: Item

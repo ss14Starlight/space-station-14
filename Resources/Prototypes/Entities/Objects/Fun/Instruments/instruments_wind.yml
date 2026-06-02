@@ -6,6 +6,8 @@
   - type: Tag
     tags:
     - WoodwindInstrument
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -15,6 +17,8 @@
   components:
   - type: Instrument
     program: 66
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Soprano": {64: 0}
@@ -61,6 +65,8 @@
     program: 71
   - type: Sprite
     sprite: Objects/Fun/Instruments/clarinet.rsi
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -72,6 +78,8 @@
     program: 73
   - type: Sprite
     sprite: Objects/Fun/Instruments/flute.rsi
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -83,6 +91,8 @@
     program: 74
   - type: Sprite
     sprite: Objects/Fun/Instruments/recorder.rsi
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -94,13 +104,15 @@
     program: 75
   - type: Sprite
     sprite: Objects/Fun/Instruments/panflute.rsi
+  - type: ActivatableUI
+    inHandsOnly: false
 
 #if you change this to some cringe-ass zelda reference so help me god i will shoot you dead.
 - type: entity
   parent: BaseWoodwindInstrument
   id: OcarinaInstrument
   name: ocarina
-  description: Good for playing lullabies.
+  description: Good for playing lullabies. # hehe zelda
   components:
   - type: Instrument
     program: 79
@@ -108,6 +120,8 @@
     sprite: Objects/Fun/Instruments/ocarina.rsi
   - type: Item
     size: Small
+  - type: ActivatableUI
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -121,3 +135,5 @@
     sprite: Objects/Fun/Instruments/bagpipes.rsi
   - type: Item
     size: Large
+  - type: ActivatableUI
+    inHandsOnly: false

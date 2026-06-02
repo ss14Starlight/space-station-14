@@ -14,6 +14,8 @@
   components:
   - type: Instrument
     program: 9
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/glockenspiel.rsi
 
@@ -25,6 +27,8 @@
   components:
   - type: Instrument
     program: 10
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/musicbox.rsi
   - type: Item
@@ -38,6 +42,8 @@
   components:
   - type: Instrument
     program: 13
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/structureinstruments.rsi
     state: xylophone
@@ -50,6 +56,8 @@
   components:
   - type: Instrument
     program: 52
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: SwappableInstrument
     instrumentList:
       "Aah": {52: 0}
@@ -74,6 +82,8 @@
   components:
   - type: Instrument
     program: 115
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/woodblock.rsi
 
@@ -85,6 +95,8 @@
   components:
   - type: Instrument
     program: 119
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/reversecymbal.rsi
 

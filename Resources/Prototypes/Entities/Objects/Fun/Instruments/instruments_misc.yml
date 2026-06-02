@@ -9,6 +9,8 @@
     state: lung-l
   - type: Instrument
     program: 121
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Item
     size: Small
 
@@ -23,6 +25,8 @@
     state: seashell
   - type: Instrument
     program: 122
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Item
     size: Small
 
@@ -37,6 +41,8 @@
     state: birdtoy
   - type: Instrument
     program: 123
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Item
     size: Small
     storedRotation: 90
@@ -55,6 +61,8 @@
        path: /Audio/Items/ring.ogg
   - type: Instrument
     program: 124
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Item
     size: Small
     storedRotation: -90
@@ -88,6 +96,8 @@
     state: helicopter
   - type: Instrument
     program: 125
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Item
     size: Small
     storedRotation: -90
@@ -103,6 +113,8 @@
     state: cannedapplause
   - type: Instrument
     program: 126
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Item
     size: Tiny
 
@@ -114,6 +126,8 @@
   components:
   - type: Instrument
     program: 127
+  - type: ActivatableUI
+    inHandsOnly: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/gunpet.rsi
   - type: Item
