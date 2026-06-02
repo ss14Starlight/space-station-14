@@ -1,0 +1,15 @@
+<Document>
+  # Proto-Vox
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoVox" Caption=""/>
+  </Box>
+
+  The main reason for Cyberneticization in Vox is, unsurprisingly, to get rid of their oxygen poisoning first and foremost.
+
+  ## Resistances
+  - Receive [color=#ffa500]20% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]30% less cold damage[/color] and [color=#64ffe6]10% less poison damage[/color].
+
+  With the advent of advanced cybernetics and with some help from their extensive body modifications, Proto-Vox have been able to get rid of their fatal oxygen weakness, and while they still breathe nitrogen, oxygen is no longer toxic to them.
+</Document>

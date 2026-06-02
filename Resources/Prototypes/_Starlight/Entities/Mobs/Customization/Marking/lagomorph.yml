@@ -3,7 +3,7 @@
   id: LagomorphEarsTall
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: tall_ears_outer
@@ -14,7 +14,7 @@
   id: LagomorphEarsTallCutLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: tall_ears_cut_L_outer
@@ -25,7 +25,7 @@
   id: LagomorphEarsTallCutRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: tall_ears_cut_R_outer
@@ -36,7 +36,7 @@
   id: LagomorphEarsDeer
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: deer
@@ -45,7 +45,7 @@
   id: LagomorphEarsDeerAntlers
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: deer
@@ -56,7 +56,7 @@
   id: LagomorphEarsDeerAntlersSmall
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: deer
@@ -67,7 +67,7 @@
   id: LagomorphEarsDeerAntlersJolly
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: deer
@@ -78,7 +78,7 @@
   id: LagomorphEarsDeerAntlersW
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: deer
@@ -89,7 +89,7 @@
   id: LagomorphEarsDeerAntlersDriedbush
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: deer
@@ -100,7 +100,7 @@
   id: LagomorphEarsAirplane
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: airplane
@@ -111,7 +111,7 @@
   id: LagomorphEarsFloppy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: floppy_ears
@@ -120,7 +120,7 @@
   id: LagomorphEarsFloppyCutLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: floppy_ears_cut_L
@@ -129,7 +129,7 @@
   id: LagomorphEarsFloppyCutRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: floppy_ears_cut_R
@@ -138,7 +138,7 @@
   id: LagomorphEarsMedium
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: standard
@@ -149,7 +149,7 @@
   id: LagomorphEarsLoppy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: loppy
@@ -160,7 +160,7 @@
   id: LagomorphEarsLoppyLarge
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: loppy_large
@@ -171,7 +171,7 @@
   id: LagomorphEarsSharp
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: sharp
@@ -182,7 +182,7 @@
   id: LagomorphEarsShort
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: short
@@ -193,7 +193,7 @@
   id: LagomorphEarsRotund
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: rotund
@@ -206,7 +206,7 @@
   id: LagomorphAntlers
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: antlers
@@ -215,7 +215,7 @@
   id: LagomorphEarsAntlersFloppy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: floppy_ears
@@ -226,7 +226,7 @@
   id: LagomorphEarsAntlersLoppy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: loppy
@@ -239,7 +239,7 @@
   id: LagomorphEarsAntlersLoppyLarge
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: loppy_large
@@ -252,7 +252,7 @@
   id: LagomorphEarsAntlersRotund
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: rotund
@@ -265,7 +265,7 @@
   id: LagomorphEarsAntlersSharp
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: sharp
@@ -278,7 +278,7 @@
   id: LagomorphEarsAntlersShort
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: short
@@ -291,7 +291,7 @@
   id: LagomorphEarsAntlersMedium
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: standard
@@ -304,7 +304,7 @@
   id: LagomorphEarsAntlersTall
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: tall_ears_outer
@@ -319,7 +319,7 @@
   id: LagomorphEyeScarLeft
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: eye_scar_L
@@ -328,7 +328,7 @@
   id: LagomorphEyeScarRight
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: eye_scar_R
@@ -337,7 +337,7 @@
   id: LagomorphDewlap
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: dewlap
@@ -347,7 +347,7 @@
 #   id: LagomorphFloppyPiercingLeft
 #   bodyPart: HeadTop
 #   markingCategory: HeadSide
-#   speciesRestriction: [Lagomorph]
+#   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
 #   sprites:
 #     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
 #       state: floppy_ears_piercing_L
@@ -356,7 +356,7 @@
 #   id: LagomorphFloppyPiercingRight
 #   bodyPart: HeadSide
 #   markingCategory: HeadSide
-#   speciesRestriction: [Lagomorph]
+#   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
 #   sprites:
 #     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
 #       state: floppy_ears_piercing_R
@@ -365,7 +365,7 @@
 #   id: LagomorphTallPiercingLeft
 #   bodyPart: HeadSide
 #   markingCategory: HeadSide
-#   speciesRestriction: [Lagomorph]
+#   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
 #   sprites:
 #     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
 #       state: tall_ears_piercing_L
@@ -374,7 +374,7 @@
 #   id: LagomorphTallPiercingRight
 #   bodyPart: HeadSide
 #   markingCategory: HeadSide
-#   speciesRestriction: [Lagomorph]
+#   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
 #   sprites:
 #     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
 #       state: tall_ears_piercing_R
@@ -385,7 +385,7 @@
   id: LagomorphTailFluffy
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: fluffy_tail
@@ -396,7 +396,7 @@
   id: LagomorphTailLong
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: long_tail
@@ -407,7 +407,7 @@
   id: LagomorphTailCotton
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: cotton_tail
@@ -420,7 +420,7 @@
   id: LagomorphChestScarLeft
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: chest_scar_L
@@ -429,7 +429,7 @@
   id: LagomorphChestScarRight
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: chest_scar_R
@@ -438,7 +438,7 @@
   id: LagomorphBackScarLeft
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: back_scar_L
@@ -447,7 +447,7 @@
   id: LagomorphBackScarRight
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: back_scar_R
@@ -456,7 +456,7 @@
   id: LagomorphBellyColour
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: belly_color
@@ -465,7 +465,7 @@
   id: LagomorphTorsoSpots
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: torso_spots
@@ -476,7 +476,7 @@
   id: LagomorphBraceletL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: bracelet_L
@@ -485,7 +485,7 @@
   id: LagomorphBraceletR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: bracelet_R
@@ -494,7 +494,7 @@
   id: LagomorphArmSpotsL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: left_arm_spots
@@ -503,7 +503,7 @@
   id: LagomorphArmSpotsR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: right_arm_spots
@@ -512,7 +512,7 @@
   id: LagomorphArmMittsR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: r_arm_mitt
@@ -521,7 +521,7 @@
   id: LagomorphArmMittsL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: l_arm_mitt
@@ -530,7 +530,7 @@
   id: LagomorphHandMittsR
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: r_hand_mitt
@@ -539,7 +539,7 @@
   id: LagomorphHandMittsL
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: l_hand_mitt
@@ -550,7 +550,7 @@
   id: LagomorphLegSpotsL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: left_leg_spots
@@ -559,7 +559,7 @@
   id: LagomorphLegSpotsR
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: right_leg_spots
@@ -568,7 +568,7 @@
   id: LagomorphLegSockL
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: leg_socks
@@ -577,7 +577,7 @@
   id: LagomorphFootSockR
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: feet_socks
@@ -586,7 +586,7 @@
   id: LagomorphClaws
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: claws
@@ -597,7 +597,7 @@
   id: LagomorphBinderTop
   bodyPart: Chest
   markingCategory: Special
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: binder_top
@@ -606,7 +606,7 @@
   id: LagomorphBraTop
   bodyPart: Chest
   markingCategory: Special
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: bra_top
@@ -615,7 +615,7 @@
   id: LagomorphTankTop
   bodyPart: Chest
   markingCategory: Special
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: tank_top
@@ -624,7 +624,7 @@
   id: LagomorphBoxers
   bodyPart: Chest
   markingCategory: Special
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: boxer_bottoms
@@ -633,7 +633,7 @@
   id: LagomorphPanties
   bodyPart: Chest
   markingCategory: Special
-  speciesRestriction: [Lagomorph]
+  speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
       state: panty_bottoms

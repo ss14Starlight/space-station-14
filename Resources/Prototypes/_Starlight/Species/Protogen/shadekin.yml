@@ -1,0 +1,87 @@
+- type: species
+  id: ProtoKin
+  name: subspecies-name-protokin
+  roundStart: true
+  prototype: MobProtoKin
+  sprites: MobProtoKinSprites
+  defaultSkinTone: "#ffffff"
+  markingLimits: MobProtoKinMarkingLimits
+  dollPrototype: AppearanceProtoKin
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen
+  subspeciesName: subspecies-name-protokin
+  maleFirstNames: names_shadekin
+  femaleFirstNames: names_shadekin
+  naming: First
+  minAge: 20
+  maxAge: 300
+  youngAge: 100
+  oldAge: 200
+  loadout: ProtogenLoadout
+
+- type: speciesBaseSprites
+  id: MobProtoKinSprites
+  sprites:
+    Hair: MobHumanoidAnyMarking
+    Head: MobShadekinHead
+    Eyes: MobProtogenEyes
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobShadekinTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobShadekinLArm
+    RArm: MobShadekinRArm
+    LHand: MobShadekinLHand
+    RHand: MobShadekinRHand
+    LLeg: MobShadekinLLeg
+    RLeg: MobShadekinRLeg
+    LFoot: MobShadekinLFoot
+    RFoot: MobShadekinRFoot
+
+- type: markingPoints
+  id: MobProtoKinMarkingLimits
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtoKinMediumArmor, ProtoKinVisor, ProtoKinLights, ProtoKinLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [TailShadekin]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [EarsShadekin]
+    Head:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

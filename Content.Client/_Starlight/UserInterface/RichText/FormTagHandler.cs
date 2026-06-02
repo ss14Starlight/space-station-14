@@ -1,12 +1,12 @@
-using System.Numerics;
 using System.Diagnostics.CodeAnalysis;
-using Robust.Client.UserInterface.RichText;
-using Robust.Client.UserInterface.Controls;
-using Robust.Client.UserInterface;
-using Robust.Shared.Utility;
+using System.Numerics;
 using Content.Client.Paper.UI;
+using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface.RichText;
+using Robust.Shared.Utility;
 
-namespace Content.Client.UserInterface.RichText;
+namespace Content.Client._Starlight.UserInterface.RichText;
 
 /// <summary>
 /// Converts [form] tags into clickable buttons that open fill-in dialogs.

@@ -1,0 +1,95 @@
+# We've rewritten every entry, and we've changed every Protogen's resistances, so I think that's sufficient reasoning to move the guidebook entries to our files.
+- type: guideEntry
+  id: ProtogenFrames
+  name: guidebook-armor-protogen
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtogenFrames.xml"
+
+- type: guideEntry
+  id: TrueProtogen
+  name: subspecies-name-trueprotogen
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/TrueProtogen.xml"
+
+- type: guideEntry
+  id: ProtoArachnid
+  name: subspecies-name-protoarachnid
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoArachnid.xml"
+
+- type: guideEntry
+  id: ProtoAvali
+  name: subspecies-name-protoavali
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoAvali.xml"
+
+- type: guideEntry
+  id: ProtoCyclorite
+  name: subspecies-name-protocyclorite
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoCyclorite.xml"
+
+- type: guideEntry
+  id: ProtoDiona
+  name: subspecies-name-protodiona
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoDiona.xml"
+
+- type: guideEntry
+  id: ProtoDwarf
+  name: subspecies-name-protodwarf
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoDwarf.xml"
+
+- type: guideEntry
+  id: ProtoFelionoid
+  name: subspecies-name-protofelionoid
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoFelionoid.xml"
+
+- type: guideEntry
+  id: ProtoElf
+  name: subspecies-name-protoelf
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoElf.xml"
+
+- type: guideEntry
+  id: ProtoHuman
+  name: subspecies-name-protohuman
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoHuman.xml"
+
+- type: guideEntry
+  id: ProtoKin
+  name: subspecies-name-protokin
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoKin.xml"
+
+- type: guideEntry
+  id: ProtoLagomorph
+  name: subspecies-name-protolagomorph
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoLagomorph.xml"
+
+- type: guideEntry
+  id: ProtoSlimePerson
+  name: subspecies-name-protoslimeperson
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoSlimePerson.xml"
+
+- type: guideEntry
+  id: ProtoMoth
+  name: subspecies-name-protomoth
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoMoth.xml"
+
+- type: guideEntry
+  id: ProtoReptilian
+  name: subspecies-name-protoreptilian
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoReptilian.xml"
+
+- type: guideEntry
+  id: ProtoResomi
+  name: subspecies-name-protoresomi
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoResomi.xml"
+
+- type: guideEntry
+  id: ProtoThaven
+  name: subspecies-name-protothaven
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoThaven.xml"
+
+- type: guideEntry
+  id: ProtoVox
+  name: subspecies-name-protovox
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoVox.xml"
+
+- type: guideEntry
+  id: ProtoVulp
+  name: subspecies-name-protovulp
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/SubMobs/ProtoVulp.xml"

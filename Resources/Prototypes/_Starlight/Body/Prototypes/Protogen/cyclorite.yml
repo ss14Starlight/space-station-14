@@ -1,0 +1,53 @@
+- type: body
+  id: ProtoCyclorite # Starlight, name changed
+  name: proto-cyclorite # Starlight, quotation marks removed, name changed
+  root: torso
+  slots:
+    head:
+      part: HeadCyclorite
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoCyclorite
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganProtogenHeart
+        lungs: OrganProtoCycloriteLungs # Starlight
+        stomach: OrganProtogenStomach
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmCyclorite
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmCyclorite
+      connections:
+      - left hand
+    right hand:
+      part: RightHandCyclorite
+    left hand:
+      part: LeftHandCyclorite
+    right leg:
+      part: RightLegCyclorite
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegCyclorite
+      connections:
+      - left foot
+    right foot:
+      part: RightFootCyclorite
+    left foot:
+      part: LeftFootCyclorite
