@@ -27,6 +27,12 @@
         All: !type:GroupSelector
           children:
           - id: FoodSpaceshroom
+    # BEGIN STARLIGHT
+    - type: TriggerOnPointedAt
+    - type: SpeakOnTrigger
+      text: Mushroom!
+      targetUser: true
+    #END STARLIGHT
     - type: Damageable
       damageContainer: StructuralInorganic
       damageModifierSet: Wood
