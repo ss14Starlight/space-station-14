@@ -7,6 +7,129 @@
     Caustic: 0.9
 
 - type: damageModifierSet
+  id: Protogen # Weaker IPC values, on account of being half-robot
+  coefficients:
+    Shock: 1.25
+    Heat: 1.2 # Fur my beloved
+    Cold: 0.5 # Starlight. Base Protogen has *nothing* else going for them, so they're allowed to have this massive resist. The other Protogen subspecies, however, have all received a 15-20% increase on Cold, since we actually have Cold weapons now.
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: ProtoVulp # Inherits Protogen with Vulp-like twist (better/worse cold/heat)
+  coefficients:
+    Shock: 1.25
+    Heat: 1.25 # Fur my beloved
+    Cold: 0.45 # Starlight, Vulps also have nothing else going for them.
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: ProtoVox
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Heat: 1.2
+    Cold: 0.7 # Starlight
+    Poison: 0.9 # Starlight
+
+# Thaven, despite having a reference to it.. Doesn't actually have a damage modifier? Ingame guidebook says they have one. Very odd.
+- type: damageModifierSet
+  id: ProtoThaven
+  coefficients:
+    Shock: 1.25
+    Heat: 1.15
+    Cold: 0.65 # Starlight
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: ProtoSlimePerson # Roundstart armor nullifies the brute weaknesses pmuch
+  coefficients:
+    Shock: 1.25
+    Blunt: 0.7
+    Slash: 1.1 # Same as our base Laspi
+    Piercing: 1.1 # Same as our base Laspi
+    Cold: 1.3 # Starlight, 1.4 -> 1.3
+    Poison: 0.8
+
+- type: damageModifierSet
+  id: ProtoKin
+  coefficients:
+    Asphyxiation: 0 # They don't breathe, but there's still ways to get airloss damage via chem OD.
+    Cold: 0.6 # Starlight
+    Heat: 1.15
+    Cellular: 0.50 # Starlight, We're not giving them 75% Cellular on top of all the other stuff.
+    Bloodloss: 1.35
+    Shock: 1.35 # They're already weak to Shock.
+    Radiation: 1.3
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: ProtoResomi
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.55 # Starlight
+    Heat: 1.25
+
+- type: damageModifierSet
+  id: ProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
+  coefficients: # Swaps heat with cold
+    Shock: 1.25
+    Cold: 1.15 # Starlight, they can actually lose a little.
+    Heat: 0.5
+    Slash: 0.9 # Something they should have with "tougher skin" according to the notes in the other modifer file
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: ProtoMoth
+  coefficients:
+    Shock: 1.25
+    Cold: 0.6 # Starlight
+    Heat: 1.2
+    Blunt: 1.1
+
+- type: damageModifierSet
+  id: ProtoHuman # Starlight, name change
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.7 # Starlight
+    Heat: 1.1 #Insulated but no fur
+
+- type: damageModifierSet
+  id: ProtoFelionoid # Starlight, name change
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.65 # Starlight
+    Heat: 1.2 #Short fur, not thick enough to add to insulation
+
+- type: damageModifierSet
+  id: ProtoDiona # Starlight, name change
+  coefficients:
+    Blunt: 0.8
+    Slash: 0.9
+    Heat: 1.5
+    Cold: 0.65 # Starlight, they don't have much going for them...
+    Shock: 1.10 # Starlight, they're made of wood.
+
+- type: damageModifierSet
+  id: ProtoCyclorite # Starlight, name change
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.85 # Starlight
+    Shock: 1.25
+    Cold: 0.55 # Starlight, Rock
+    Heat: 1.15 #Same reason
+
+- type: damageModifierSet
+  id: ProtoAvali
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.5 # Starlight
+    Heat: 1.4
+
+- type: damageModifierSet
   id: StructuralReactorCasing # StructuralMetallicStrong(er), it's going to take more than a mere baseball bat to do any real damage
   coefficients:
     Blunt: 0.1          # you

@@ -17,6 +17,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
 
 - type: entity
@@ -33,6 +34,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
 
 - type: entity
   parent: SurgeryBase
@@ -50,6 +52,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -71,6 +74,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -92,6 +96,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -115,6 +120,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
 
 - type: entity
   parent: SurgeryCloseIncision
@@ -132,6 +138,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Head
@@ -152,6 +159,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Arm
@@ -177,6 +185,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: Sprite
     sprite: Mobs/Species/Skeleton/parts.rsi
@@ -248,6 +257,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -276,6 +286,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -302,6 +313,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -328,6 +340,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -358,6 +371,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -386,6 +400,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -414,6 +429,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -440,6 +456,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -468,6 +485,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -497,6 +515,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -525,6 +544,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -552,6 +572,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -578,6 +599,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -604,6 +626,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -629,6 +652,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -836,6 +860,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -877,6 +902,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -908,6 +934,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -938,6 +965,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1021,6 +1049,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1062,6 +1091,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1092,6 +1122,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1122,6 +1153,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - SlimePerson
+    - ProtoSlimePerson
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1167,6 +1199,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1193,6 +1226,7 @@
   - type: SurgerySpeciesCondition
     speciesBlacklist:
     - SlimePerson
+    - ProtoSlimePerson
     - IPC
   - type: SurgeryPartCondition
     parts:
@@ -1222,6 +1256,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - Shadekin
+    - ProtoKin
   - type: SurgeryPartCondition
     parts:
     - Torso
@@ -1248,6 +1283,7 @@
     speciesBlacklist: []
     speciesWhitelist:
     - Shadekin
+    - ProtoKin
   - type: SurgeryPartCondition
     parts:
     - Torso

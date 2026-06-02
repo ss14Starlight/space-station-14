@@ -1,0 +1,81 @@
+- type: species
+  id: ProtoSlimePerson
+  name: subspecies-name-protoslimeperson
+  roundStart: true
+  prototype: MobProtoSlimePerson
+  sprites: MobProtoSlimePersonSprites
+  defaultSkinTone: "#b8b8b8"
+  markingLimits: MobProtoSlimePersonMarkingLimits
+  dollPrototype: AppearanceProtoSlimePerson
+  skinColoration: Hues
+  customName: true
+  minAge: 20
+  youngAge: 40
+  oldAge: 100
+  maxAge: 130
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen
+  subspeciesName: subspecies-name-protoslimeperson
+  loadout: ProtogenLoadout
+
+- type: speciesBaseSprites
+  id: MobProtoSlimePersonSprites
+  sprites:
+    Hair: MobSlimeMarkingAlfa
+    Head: MobSlimeHead
+    Eyes: MobProtogenEyes
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobSlimeTorso
+    HeadTop: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobSlimeLArm
+    RArm: MobSlimeRArm
+    LHand: MobSlimeLHand
+    RHand: MobSlimeRHand
+    LLeg: MobSlimeLLeg
+    RLeg: MobSlimeRLeg
+    LFoot: MobSlimeLFoot
+    RFoot: MobSlimeRFoot
+
+- type: markingPoints
+  id: MobProtoSlimePersonMarkingLimits
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtoSlimePersonMediumArmor, ProtoSlimePersonVisor, ProtogenLights, ProtoSlimePersonLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    HeadTop:
+      points: 1
+      required: false
+    Head:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

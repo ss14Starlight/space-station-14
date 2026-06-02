@@ -1,0 +1,16 @@
+<Document>
+  # Proto-Kin
+<!-- Starlight, removed FH lore.-->
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoKin" Caption=""/>
+  </Box>
+
+  Proto-Shadekin are not a common sight, although that's not really due to any societal hangups revolving around cybernetics like plant-based species have. It's due to the fact that to become a Proto-Kin you have
+  to give up your only hope of trying to return to your home reality. Such an operation cements their presence in our reality forever, until the day they die.
+
+  And for many, that's a very tough pill to swallow.
+
+  ## Resistances
+  - Receive [color=#ffa500]15% more heat damage[/color], [color=#8147ff]35% more shock damage[/color], [color=#800000]35% more bloodloss damage[/color], [color=#BD5902]30% more radiation damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]40% less cold damage[/color] and [color=#C8FF75]50% less genetic damage[/color].
+</Document>

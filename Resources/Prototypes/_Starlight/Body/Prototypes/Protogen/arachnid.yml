@@ -1,0 +1,53 @@
+- type: body
+  id: ProtoArachnid
+  name: proto-arachnid # Starlight, quotation marks removed
+  root: torso
+  slots:
+    head:
+      part: HeadArachnid
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoArachnid
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganProtoArachnidHeart
+        lungs: OrganProtogenLungs
+        stomach: OrganProtogenStomach
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmArachnid
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmArachnid
+      connections:
+      - left hand
+    right hand:
+      part: RightHandArachnid
+    left hand:
+      part: LeftHandArachnid
+    right leg:
+      part: RightLegArachnid
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegArachnid
+      connections:
+      - left foot
+    right foot:
+      part: RightFootArachnid
+    left foot:
+      part: LeftFootArachnid
