@@ -25,10 +25,8 @@
   - type: LanguageKnowledge
     speaks:
     - Chittin
-    - Darktongue
     understands:
     - Chittin
-    - Darktongue
   - type: VentCrawler
   - type: Physics
   - type: Fixtures
@@ -42,6 +40,7 @@
         - SmallMobMask
         layer:
         - SmallMobLayer
+        - SpiderlingImpassable
   - type: DamageStateVisuals
     states:
       Alive:
@@ -86,7 +85,7 @@
   - type: MobMover
   - type: HTN
     rootTask:
-      task: SimpleAvoidanceCompound
+      task: SimpleWebAvoidanceCompound
   - type: Jump
 
 # Default
@@ -107,6 +106,7 @@
   name: spiderling
   parent: MobSpiderling
   id: MobSpiderlingTerrorRed
+  suffix: Terror Red
   components:
   - type: TimedSpawner
     prototypes:
@@ -116,6 +116,7 @@
   name: spiderling
   parent: MobSpiderling
   id: MobSpiderlingTerrorGray
+  suffix: Terror Gray
   components:
   - type: TimedSpawner
     prototypes:
@@ -125,6 +126,7 @@
   name: spiderling
   parent: MobSpiderling
   id: MobSpiderlingTerrorGreen
+  suffix: Terror Green
   components:
   - type: TimedSpawner
     prototypes:
@@ -134,6 +136,7 @@
   name: spiderling
   parent: MobSpiderling
   id: MobSpiderlingSpiderAngry
+  suffix: Giant Spider
   components:
   - type: TimedSpawner
     prototypes:

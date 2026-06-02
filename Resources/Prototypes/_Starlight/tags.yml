@@ -144,6 +144,9 @@
   id: ClarkeTreads
 
 - type: Tag
+  id: ChonoLoke
+
+- type: Tag
   id: ClownKudzu
 
 - type: Tag
@@ -217,6 +220,9 @@
 
 - type: Tag
   id: ElderArena
+
+- type: Tag
+  id: Elf
 
 - type: Tag
   id: EmergencyWelder
@@ -340,6 +346,9 @@
   id: LabellerRefillPaper
 
 - type: Tag
+  id: Lagomorph
+
+- type: Tag
   id: LoneOpsUplink
 
 - type: Tag
@@ -437,6 +446,18 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModuleBlacklistXenoborgEngiWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgHeavyWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgScoutWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgStealthWeapon
+
+- type: Tag
   id: Nexus
 
 - type: Tag
@@ -450,9 +471,6 @@
 
 - type: Tag
   id: OvenMachineBoard
-
-- type: Tag
-  id: PaddyMech
 
 - type: Tag
   id: ParaKnife
@@ -480,6 +498,12 @@
 
 - type: Tag
   id: PrototypeJawsOfLife
+
+- type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
 
 - type: Tag
   id: PrototypeVibroblade
@@ -515,6 +539,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore

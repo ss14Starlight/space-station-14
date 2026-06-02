@@ -32,12 +32,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #region Starlight
+using Content.Shared._Starlight.Time;
+using Content.Shared._Starlight.Utility;
 using Content.Shared.Cargo.Components;
-using Content.Server.Storage.EntitySystems;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
-using Robust.Server.Containers;
-using System.Linq;
+using Robust.Shared.Utility;
 #endregion Starlight
 
 namespace Content.Server.Fax;
@@ -62,7 +62,8 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!;
 
     // Starlight start
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedTimeSystem _time = default!;
     // Starlight end
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
@@ -320,6 +321,8 @@ public sealed class FaxSystem : EntitySystem
                     args.Data.TryGetValue(FaxConstants.FaxSlipReason, out string? slipReason);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderQuantity, out int? slipOrderQuantity);
                     args.Data.TryGetValue(FaxConstants.FaxSlipOrderAccount, out string? slipAccount);
+                    args.Data.TryGetValue(FaxConstants.FaxMetaSender, out string? metaSender);
+                    args.Data.TryGetValue(FaxConstants.FaxMetaSentAt, out string? metaSentAt);
                     // Starlight-end
 
 
@@ -336,7 +339,10 @@ public sealed class FaxSystem : EntitySystem
                         slipRequester,
                         slipReason,
                         slipOrderQuantity,
-                        slipAccount); // Starlight-end
+                        slipAccount,
+                        retainMetadata: false,
+                        metaSender,
+                        metaSentAt); // Starlight-end
                     Receive(uid, printout, args.SenderAddress);
 
                     break;
@@ -464,7 +470,7 @@ public sealed class FaxSystem : EntitySystem
 
         var name = Loc.GetString("fax-machine-printed-paper-name");
 
-        var printout = new FaxPrintout(args.Content, name, args.Label, prototype);
+        var printout = new FaxPrintout(args.Content, name, args.Label, prototype, retainMetadata: true); // Starlight
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
 
@@ -516,7 +522,8 @@ public sealed class FaxSystem : EntitySystem
                                        cargoSlipComponent?.Requester,
                                        cargoSlipComponent?.Reason,
                                        cargoSlipComponent?.OrderQuantity,
-                                       cargoSlipComponent?.Account); //starlight-end
+                                       cargoSlipComponent?.Account,
+                                       retainMetadata: true); //starlight-end
 
         component.PrintingQueue.Enqueue(printout);
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -588,8 +595,12 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxPaperStampedByData] = paper.StampedBy;
         }
 
-        //starlight start
-        //This feels bad and hacky, probably better ways to do this...
+        #region Starlight
+        payload[FaxConstants.FaxMetaSender] = component.FaxName;
+        payload[FaxConstants.FaxMetaSentAt] = GetTimeStamp();
+
+        // Cargo slip logic
+        // This feels bad and hacky, probably better ways to do this...
         //chnaged faxConstants.cs and FaxMachineComponent.cs with hacky
         if (TryComp<CargoSlipComponent>(sendEntity, out var cargoSlipComponent))
         {
@@ -599,9 +610,7 @@ public sealed class FaxSystem : EntitySystem
             payload[FaxConstants.FaxSlipOrderQuantity] = cargoSlipComponent?.OrderQuantity;
             payload[FaxConstants.FaxSlipOrderAccount] = cargoSlipComponent?.Account.Id;
         }
-
-
-        //starlight end
+        #endregion Starlight
 
         _deviceNetworkSystem.QueuePacket(uid, component.DestinationFaxAddress, payload);
 
@@ -631,6 +640,8 @@ public sealed class FaxSystem : EntitySystem
         var faxName = Loc.GetString("fax-machine-popup-source-unknown");
         if (fromAddress != null && component.KnownFaxes.TryGetValue(fromAddress, out var fax)) // If message received from unknown fax address
             faxName = fax;
+        if (!string.IsNullOrEmpty(printout.MetaSender)) // Starlight: Prefer MetaSender as it's more up to date
+            faxName = printout.MetaSender; // Starlight
 
         _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-received", ("from", faxName)), uid);
         _appearanceSystem.SetData(uid, FaxMachineVisuals.VisualState, FaxMachineVisualState.Printing);
@@ -653,7 +664,11 @@ public sealed class FaxSystem : EntitySystem
 
         if (TryComp<PaperComponent>(printed, out var paper))
         {
-            _paperSystem.SetContent((printed, paper), printout.Content);
+            #region Starlight
+            _paperSystem.SetContent((printed, paper), printout.RetainMetadata
+                ? printout.Content
+                : PrependContentMetadata(StripContentMetadata(printout.Content), GetTimeStamp(), printout, component));
+            #endregion
 
             // Apply stamps
             if (printout.StampState != null)
@@ -675,8 +690,9 @@ public sealed class FaxSystem : EntitySystem
             _labelSystem.Label(printed, label);
         }
 
-        // Starlight Start || this is such a hack T-T
-        if (printout.Product != null && printout.Requester != null && printout.Reason != null && printout.OrderQuantity != null && printout.Account != null)
+        #region Starlight
+        // this is such a hack T-T
+        if (printout is { Product: not null, Requester: not null, Reason: not null, OrderQuantity: not null, Account: not null })
         {
             var slip = EnsureComp<CargoSlipComponent>(printed);
             slip.Product = printout.Product;
@@ -685,7 +701,7 @@ public sealed class FaxSystem : EntitySystem
             slip.OrderQuantity = printout.OrderQuantity.Value;
             slip.Account = printout.Account;
         }
-        // Starlight end
+        #endregion
 
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"\"{component.FaxName}\" {ToPrettyString(uid):tool} printed {ToPrettyString(printed):subject}: {printout.Content}");
     }
@@ -747,4 +763,33 @@ public sealed class FaxSystem : EntitySystem
         }
         //starlight end
     }
+
+    #region Starlight
+
+    private string GetTimeStamp()
+    {
+        var date = _time.GetDate();
+        var time = _time.GetShiftDuration();
+        return string.Format($"{date} {time:hh\\:mm}");
+    }
+
+    private static string StripContentMetadata(string content)
+    {
+        var parsed = new FormattedMessage();
+        parsed.AddMarkupPermissive(content);
+        return parsed.RemoveLeading(["meta"]).ToMarkup();
+    }
+
+    private static string PrependContentMetadata(string content, string currentTime, FaxPrintout payload, FaxMachineComponent comp)
+    {
+        const string MetaFormat = """
+        [meta][dots bold]Sent: {0} at {1}
+        Rcvd: {2} at {3}[/dots]
+        [/meta]{4}
+        """;
+        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
+            currentTime, FormattedMessage.EscapeText(comp.FaxName), content);
+    }
+
+    #endregion
 }

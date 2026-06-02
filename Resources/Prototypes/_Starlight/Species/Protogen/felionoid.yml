@@ -1,0 +1,89 @@
+- type: species
+  id: ProtoFelionoid
+  name: subspecies-name-protofelionoid
+  roundStart: true
+  prototype: MobProtoFelionoid
+  sprites: MobProtoFelionoidSprites
+  defaultSkinTone: "#666666"
+  markingLimits: MobProtoFelionoidMarkingLimits
+  dollPrototype: AppearanceProtoFelionoid
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen
+  subspeciesName: subspecies-name-protofelionoid
+  loadout: ProtogenLoadout
+  maleFirstNames: names_felionoid_prefix
+  femaleFirstNames: names_felionoid_prefix
+  lastNames: names_felionoid_suffix
+  naming: PrefixSuffix
+  minHeight: 0.8
+  defaultHeight: 0.8
+  maxHeight: 0.9
+  standardSize: 170
+  standardWeight: 48
+  standardDensity: 45
+
+- type: speciesBaseSprites
+  id: MobProtoFelionoidSprites
+  sprites:
+    Eyes: MobProtogenEyes
+    Head: MobFelionoidHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobFelionoidTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobFelionoidLArm
+    RArm: MobFelionoidRArm
+    LHand: MobFelionoidLHand
+    RHand: MobFelionoidRHand
+    LLeg: MobFelionoidLLeg
+    RLeg: MobFelionoidRLeg
+    LFoot: MobFelionoidLFoot
+    RFoot: MobFelionoidRFoot
+
+- type: markingPoints
+  id: MobProtoFelionoidMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtoFelionoidMediumArmor, ProtoFelionoidVisor, ProtoFelionoidLights, ProtoFelionoidLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ FelionoidTailAnimated ]
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

@@ -15,8 +15,7 @@ using Robust.Shared.Input;
 
 #region Starlight
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
-using static Content.Shared.Paper.PaperComponent;
+using Content.Client._Starlight.UserInterface.RichText;
 #endregion Starlight
 
 namespace Content.Client.Paper.UI

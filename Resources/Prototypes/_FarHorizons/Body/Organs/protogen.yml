@@ -1,0 +1,444 @@
+# TODO - Sprite Avali Protogen organs. Basically the same as the blue ones but darker and yellow- 100% a cosmetic thing.
+
+- type: entity
+  id: BaseProtogenOrgan # Starlight, no Gibbable type, so we'll use this as the top
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+  - type: Organ
+  - type: Edible
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+
+- type: entity
+  id: OrganProtogenBrain
+  parent: [BaseOrganBrain, BaseProtogenOrgan] # Starlight UnGibbable -> BaseProtogenOrgan
+  name: cybernetic brain # Starlight, capitalization
+  description: The source of incredible, unending intelligence. 01201020 02102111 01201210 02121012 20121210 #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: brain
+
+- type: entity
+  id: OrganProtogenEyes
+  parent: [BaseProtogenOrgan, BaseOrganEyes]
+  name: cybernetic eyes # Starlight, capitalization
+  description: It's still focusing on you.. Creepy. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    layers:
+    - state: eyeball-l
+    - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes: # Starlight
+          Default: MobHumanoidEyes # Starlight
+
+- type: entity
+  id: OrganProtogenTongue
+  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  name: cybernetic tongue # Starlight, capitalization
+  description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganProtogenTongueForked
+  parent: [BaseProtogenOrgan, BaseOrganTongue]
+  name: forked cybernetic tongue # Starlight, capitalization
+  description: A completely glowing organ commonly used for lying or self-expression. Sometimes both. Now split in two. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: tongueforked
+
+- type: entity
+  id: OrganProtogenEars
+  parent: [BaseProtogenOrgan, BaseOrganEars]
+  name: cybernetic ears # Starlight, capitalization
+  description: Process audio at a higher quality than most humanoids, allowing for greater appreciation of techno music #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganProtogenLungs
+  parent: [BaseProtogenOrgan, BaseOrganLungs]
+  name: cybernetic lungs # Starlight, capitalization
+  description: Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    layers:
+    - state: lung-l
+    - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
+    metabolizerTypes: [ Protogen ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganProtogenHeart
+  parent: [BaseProtogenOrgan, BaseOrganHeart]
+  name: cybernetic heart # Starlight, capitalization
+  description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Protogen]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
+
+#- type: entity # Starlight start, no cyber core
+#  id: OrganProtoKinCore
+#  parent: BaseProtogenOrgan
+#  name: cybernetic shadekin core # Starlight, capitalization
+#  description: The result of a one-time operation to restore a shadekin's core, it is bright once more- but not as bright as it could've been. #  Starlight, quotation marks removed
+#  components:
+#  - type: Organ
+#  - type: Sprite
+#    state: core # Starlight end
+
+- type: entity
+  id: OrganProtogenStomach
+  parent: [OrganAnimalStomach, BaseOrganStomach]
+  name: biological reactor # Starlight, capitalization
+  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganProtogenLiver
+  parent: [BaseProtogenOrgan, BaseOrganLiver]
+  name: cybernetic liver # Starlight, capitalization
+  description: Pairing suggestion, a side of fermented RAM sticks and a nice CPU. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    state: liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Protogen]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1
+
+- type: entity
+  id: OrganProtogenKidneys
+  parent: [BaseProtogenOrgan, BaseOrganKidneys]
+  name: cybernetic kidneys # Starlight, capitalization
+  description: Pumps toxins out of the bloodstream and serves as a minor biological battery for electrical components #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    layers:
+    - state: kidney-l
+    - state: kidney-r
+  - type: Item
+    size: Small
+    heldPrefix: kidneys
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Protogen]
+    removeEmpty: true
+
+#### Moth Specific ####
+
+- type: entity
+  id: OrganProtoMothStomach
+  parent: [OrganAnimalStomach, BaseOrganStomach]
+  name: biological reactor # Starlight, capitalization
+  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - ClothMade
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+#### Dwarf Specific ####
+
+- type: entity
+  id: OrganProtoDwarfHeart
+  parent: OrganProtogenHeart
+  name: cybernetic heart # Starlight, capitalization
+  description: Doesn't actually need to beat, simply mimics the movement to provide comfort for the user. #  Starlight, quotation marks removed
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Dwarf]
+
+- type: entity
+  id: OrganProtoDwarfLiver
+  parent: OrganProtogenLiver
+  name: cybernetic liver # Starlight, capitalization
+  description: Pairing suggestion, fermented RAM sticks and CPU drives.
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Dwarf]
+
+- type: entity
+  id: OrganProtoDwarfStomach
+  parent: OrganProtogenStomach
+  name: biological reactor # Starlight, capitalization
+  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: Metabolizer
+    # mm very yummy
+    maxReagents: 5
+    metabolizerTypes: [Dwarf]
+
+#### Avali specific organs ####
+
+- type: entity
+  id: OrganProtoAvaliStomach
+  parent: OrganProtogenStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganProtoAvaliHeart
+  parent: OrganProtogenHeart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Avali]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: OrganProtoAvaliLiver
+  parent: OrganProtogenLiver
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+    updateInterval: 1.5
+    maxReagents: 1
+    metabolizerTypes: [Avali]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+
+# Arachnid
+
+- type: entity
+  id: OrganProtoArachnidHeart
+  parent: [BaseProtogenOrgan, OrganProtogenHeart]
+  name: cybernetic heart # Starlight, capitalization
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: Metabolizer
+    updateInterval: 1.5
+    maxReagents: 2
+    metabolizerTypes: [Arachnid]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+# Starlight start
+# Cyclorite
+- type: entity
+  id: OrganProtoCycloriteLungs
+  parent: OrganProtogenLungs
+  name: cybernetic lungs
+  suffix: Cyclorite
+  description: Filters nitrogen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system.
+  components:
+  - type: Lung
+    alert: LowNitrogen
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
+    metabolizerTypes: [ Slime ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+
+# Starlight end
+
+# Vox
+
+- type: entity
+  id: OrganProtoVoxStomach
+  parent: OrganProtogenStomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Vox]
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - RamChip
+      - Trash
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+
+- type: entity
+  id: OrganProtoVoxHeart
+  parent: [BaseProtogenOrgan, OrganProtogenHeart]
+  name: cybernetic heart # Starlight, capitalization
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Item
+    size: Small
+    heldPrefix: heart
+  - type: Metabolizer
+    metabolizerTypes: [Vox]
+
+# Starlight Start
+
+- type: entity
+  id: OrganProtoVoxLungs
+  parent: OrganProtogenLungs
+  name: cybernetic lungs
+  suffix: Vox
+  description: Filters nitrogen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier. Entirely cybernetic in nature, working in tandem with the visor's filtration system. #  Starlight, quotation marks removed
+  components:
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: Lung
+    metabolizerTypes: [ Slime ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: Lung
+    alert: LowNitrogen
+
+# Starlight end

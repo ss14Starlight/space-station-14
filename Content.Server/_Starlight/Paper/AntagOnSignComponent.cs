@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 using Component = Robust.Shared.GameObjects.Component;
-using Content.Shared.Whitelist; // Starlight
+using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.Paper;
 

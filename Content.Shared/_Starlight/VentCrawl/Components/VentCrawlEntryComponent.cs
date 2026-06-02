@@ -1,3 +1,4 @@
+using Content.Shared.Actions.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.VentCrawl.Components;

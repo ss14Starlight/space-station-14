@@ -41,7 +41,11 @@
       - id: MobFox
       - id: MobFerret
       - id: MobMonkey
+      - id: MobMonkeyAdvanced # Starlight
+        weight: 0.5 # Starlight, they can be rarer than the normal monkeys.
       - id: MobKobold
+      - id: MobKoboldAdvanced # Starlight
+        weight: 0.5 # Starlight, they can be rarer than the normal kobolds.
     # minor aggressive mobs
     - !type:GroupSelector
       children:

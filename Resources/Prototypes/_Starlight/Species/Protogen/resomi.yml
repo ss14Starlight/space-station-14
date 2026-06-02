@@ -1,0 +1,90 @@
+- type: species
+  id: ProtoResomi
+  name: subspecies-name-protoresomi
+  roundStart: true
+  prototype: MobProtoResomi
+  sprites: MobProtoResomiSprites
+  defaultSkinTone: "#faf7f7"
+  markingLimits: MobProtoResomiMarkingLimits
+  dollPrototype: AppearanceProtoResomi
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
+  subspeciesName: subspecies-name-protoresomi
+  maleFirstNames: names_resomi_first
+  femaleFirstNames: names_resomi_first
+  lastNames: names_resomi_packs
+  naming: FirstLast
+  minAge: 20
+  youngAge: 100
+  oldAge: 250
+  maxAge: 300
+  standardSize: 150
+  standardWeight: 40
+  standardDensity: 17
+  loadout: ProtogenLoadout
+
+- type: speciesBaseSprites
+  id: MobProtoResomiSprites
+  sprites:
+    Hair: MobHumanoidAnyMarking
+    Eyes: MobProtogenEyes
+    Head: MobResomiHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobResomiTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobResomiLArm
+    RArm: MobResomiRArm
+    LHand: MobResomiLHand
+    RHand: MobResomiRHand
+    LLeg: MobResomiLLeg
+    RLeg: MobResomiRLeg
+    LFoot: MobResomiLFoot
+    RFoot: MobResomiRFoot
+
+- type: markingPoints
+  id: MobProtoResomiMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtoResomiMediumArmor, ProtoResomiVisor, ProtoResomiLights, ProtoResomiLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    HeadTop:
+      points: 4
+      required: false
+    Head:
+      points: 6
+      required: false
+    Chest:
+      points: 4
+      required: false
+    Legs:
+      points: 6
+      required: false
+    Arms:
+      points: 6
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false

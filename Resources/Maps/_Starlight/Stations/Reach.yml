@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 05/03/2026 01:38:45
-  entityCount: 3114
+  engineVersion: 277.0.0
+  forkId: starlight
+  forkVersion: ed11ce2a349d3ce84786ccf7def08ac37d0d0124
+  time: 05/29/2026 18:10:16
+  entityCount: 3124
 maps:
 - 1
 grids:
@@ -2493,6 +2493,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,10.5
+      parent: 2
+- proto: BarricadeBlock
+  entities:
+  - uid: 3120
+    components:
+    - type: Transform
+      pos: -2.5,13.5
       parent: 2
 - proto: BarSignTheLightbulb
   entities:
@@ -9537,6 +9544,20 @@ entities:
     - type: Transform
       pos: 2.3683515,-0.47065163
       parent: 2
+- proto: ExosuitFabricator
+  entities:
+  - uid: 3117
+    components:
+    - type: Transform
+      pos: -3.5,11.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
 - proto: ExtinguisherCabinetFilled
   entities:
   - uid: 1408
@@ -14898,6 +14919,13 @@ entities:
     - type: Transform
       pos: 2.6738424,-3.4859672
       parent: 2
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 3124
+    components:
+    - type: Transform
+      pos: -2.50319,12.471364
+      parent: 2
 - proto: MopBucket
   entities:
   - uid: 2113
@@ -14949,6 +14977,13 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-10.5
+      parent: 2
+- proto: OperatingTable
+  entities:
+  - uid: 3122
+    components:
+    - type: Transform
+      pos: -2.5,12.5
       parent: 2
 - proto: OreProcessor
   entities:
@@ -17318,6 +17353,15 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: SignRobo
+  entities:
+  - uid: 3121
+    components:
+    - type: Transform
+      pos: -3.5,13.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignScience
   entities:
   - uid: 2486
@@ -17377,6 +17421,15 @@ entities:
     components:
     - type: Transform
       pos: -19.5,4.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
+- proto: SignXenobio
+  entities:
+  - uid: 3119
+    components:
+    - type: Transform
+      pos: -2.5,13.5
       parent: 2
     - type: Fixtures
       fixtures: {}
@@ -17726,6 +17779,13 @@ entities:
     - type: Transform
       pos: 4.5,16.5
       parent: 2
+- proto: SpawnPointLawyer
+  entities:
+  - uid: 3116
+    components:
+    - type: Transform
+      pos: 6.5,13.5
+      parent: 2
 - proto: SpawnPointMagistrate
   entities:
   - uid: 2543
@@ -17835,6 +17895,13 @@ entities:
     components:
     - type: Transform
       pos: -10.5,8.5
+      parent: 2
+- proto: SpawnPointRoboticist
+  entities:
+  - uid: 3123
+    components:
+    - type: Transform
+      pos: -2.5,11.5
       parent: 2
 - proto: SpawnPointSalvageLead
   entities:
@@ -18980,6 +19047,13 @@ entities:
     - type: Transform
       pos: -6.5,-6.5
       parent: 2
+- proto: VendingMachineLegalDrobe
+  entities:
+  - uid: 3115
+    components:
+    - type: Transform
+      pos: 5.5,13.5
+      parent: 2
 - proto: VendingMachineMedical
   entities:
   - uid: 2718
@@ -18993,6 +19067,13 @@ entities:
     components:
     - type: Transform
       pos: -14.5,7.5
+      parent: 2
+- proto: VendingMachineRobotics
+  entities:
+  - uid: 3118
+    components:
+    - type: Transform
+      pos: -3.5,12.5
       parent: 2
 - proto: VendingMachineSalvage
   entities:

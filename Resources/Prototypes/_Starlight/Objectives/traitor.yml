@@ -55,6 +55,14 @@
   - type: NotJobRequirement
     jobs: [ NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer ]
 
+- type: entity
+  abstract: true
+  parent: BaseTraitorStealObjective
+  id: BaseTraitorLawStealObjective
+  components:
+  - type: NotJobRequirement
+    jobs: [ Magistrate, IAA, Lawyer ]
+
   # Base Steal NTR / IAA / Magi
 - type: entity
   abstract: true
@@ -144,24 +152,27 @@
 
   # Documents Steal Objective Shit
 - type: entity
-  parent: BaseNTRStealObjective
+  parent: BaseTraitorNanoTrasenStealObjective
   id: CorporateSecretsStealObjective
   components:
   - type: StealCondition
+    owner: job-name-ntrep
     stealGroup: CorporateSecretsSteal
 
 - type: entity
-  parent: BaseIAAStealObjective
+  parent: BaseTraitorLawStealObjective
   id: CriminalReportsStealObjective
   components:
   - type: StealCondition
+    owner: job-name-iaa
     stealGroup: CriminalReportsSteal
 
 - type: entity
-  parent: BaseMagistrateStealObjective
+  parent: BaseTraitorLawStealObjective
   id: SecureKnowledgeStealObjective
   components:
   - type: StealCondition
+    owner: job-name-magistrate
     stealGroup: SecureKnowledgeSteal
 
 - type: entity
@@ -197,7 +208,7 @@
   id: EncryptionKeyHybridStealObjective
   components:
   - type: NotJobRequirement
-    jobs: [ Captain, NanoTrasenRepresentative, BlueShield, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet ]
+    jobs: [ Captain, NanoTrasenRepresentative, Magistrate, BlueShield, IAA, NanotrasenCareerTrainer, Quartermaster, CargoTechnician, MailTech, MiningSpecialist, SalvageSpecialist, SalvageLead, MedicalDoctor, Paramedic, ChiefMedicalOfficer, MedicalIntern, Surgeon, Chemist, Psychologist, SecurityOfficer, HeadOfSecurity, Detective, Warden, Brigmedic, DutyOfficer, SecurityCadet, Lawyer, ResearchDirector, Roboticist, Scientist, ResearchAssistant ]
   - type: StealCondition
     stealGroup: EncryptionKeyHybrid
 

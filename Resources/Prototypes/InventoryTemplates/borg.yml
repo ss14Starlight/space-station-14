@@ -90,3 +90,19 @@
       tags:
         - Medal
   # 🌟Starlight🌟 end
+
+  # 🌟Starlight🌟 start
+- type: inventoryTemplate
+  id: Tallborg
+  slots:
+  - name: misc
+    slotTexture: misc
+    slotFlags: MISC
+    uiWindowPos: 0,2
+    strippingWindowPos: 0,1
+    displayName: Medal
+    offset: 0.01, -0.125
+    whitelist:
+      tags:
+        - Medal
+  # 🌟Starlight🌟 end

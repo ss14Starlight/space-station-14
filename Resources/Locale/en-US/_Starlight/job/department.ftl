@@ -1,3 +1,3 @@
 department-Law = Law Department
-department-Representatives = NT Representatives
+department-NT = NanoTrasen Personnel
 department-TSF = Trans-Solar Federation

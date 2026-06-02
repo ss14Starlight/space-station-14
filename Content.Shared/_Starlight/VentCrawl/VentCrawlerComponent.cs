@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.VentCrawl;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class VentCrawlerComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
@@ -12,7 +12,6 @@ public sealed partial class VentCrawlerComponent : Component
 
     public float EnterDelay = 2.5f;
 }
-
 
 [Serializable, NetSerializable]
 public sealed partial class EnterVentDoAfterEvent : SimpleDoAfterEvent
