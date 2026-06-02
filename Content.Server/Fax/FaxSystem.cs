@@ -787,7 +787,8 @@ public sealed class FaxSystem : EntitySystem
         Rcvd: {2} at {3}[/dots]
         [/meta]{4}
         """;
-        return string.Format(MetaFormat, payload.MetaSentAt, payload.MetaSender, currentTime, comp.FaxName, content);
+        return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
+            currentTime, FormattedMessage.EscapeText(comp.FaxName), content);
     }
 
     #endregion
