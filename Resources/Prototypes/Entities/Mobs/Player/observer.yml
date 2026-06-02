@@ -85,6 +85,17 @@
     tags: # BAD: Intentional removal of inherited tag
     - AllowGhostShownByEvent
     - Ghost
+  - type: ComplexInteraction
+  - type: UserInterface # for observer mass scanner
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: RadarConsole
+    followEntity: true
 - type: entity
   parent: BaseMentalAction
   id: ActionGhostBoo
@@ -148,3 +159,18 @@
     iconOn: Interface/Actions/ghostHearingToggled.png
   - type: InstantAction
     event: !type:ToggleGhostHearingActionEvent
+
+- type: entity
+  parent: BaseAGhostAction
+  id: ActionAGhostShowRadar
+  name: Mass Scanner Interface
+  description: View a Mass Scanner Interface.
+  components:
+  - type: Action
+    icon: { sprite: Interface/Actions/actions_ai.rsi, state: mass_scanner }
+    iconOn: { sprite: Interface/Actions/actions_ai.rsi, state: comms_console }
+    keywords: [ "AI", "console", "interface" ]
+    checkCanInteract: false
+    priority: 1
+  - type: InstantAction
+    event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
