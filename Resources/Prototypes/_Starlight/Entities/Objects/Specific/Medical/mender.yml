@@ -6,12 +6,7 @@
   abstract: true
   components:
   - type: Sprite
-    layers:
-    - state: mender
-      map: ["enum.SolutionContainerLayers.Base"]
-    - state: mender1
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: false
+    sprite: _Starlight/Objects/Specific/Medical/mender.rsi
   - type: Item
     heldPrefix: mender
   - type: SolutionContainerManager
@@ -43,6 +38,8 @@
   description: A device used to heal patients brute, burn or both damage types. Uses bicaridine to work.
   parent: BaseAutoMender
   components:
+  - type: Sprite
+    state: menderBrute
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -83,6 +80,8 @@
   description: A device used to heal patients brute, burn or both damage types. Uses dermalin to work.
   parent: BaseAutoMender
   components:
+  - type: Sprite
+    state: menderBurn
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
