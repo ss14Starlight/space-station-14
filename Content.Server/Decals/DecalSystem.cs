@@ -542,7 +542,7 @@ namespace Content.Server.Decals
             _dirtyChunks.Clear();
         }
 
-        // Starlight Start: For sendign decals when PVS is disabled.
+        // Starlight Start: For sending decals when PVS is disabled.
         private void DirtyChangedGrids()
         {
             foreach (var ent in _dirtyChunks.Keys)
@@ -557,7 +557,7 @@ namespace Content.Server.Decals
         {
             var chunksInRange = _chunking.GetChunksForSession(player, ChunkSize, _chunkIndexPool, _chunkViewerPool);
             var staleChunks = _chunkViewerPool.Get();
-            // Starlight edit Start: If th player dosent have an entry add one
+            // Starlight edit Start: If the player doesn't have an entry add one
             if (!_previousSentChunks.TryGetValue(player, out var previouslySent))
             {
                 previouslySent = new();
