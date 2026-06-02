@@ -222,6 +222,9 @@
   id: ElderArena
 
 - type: Tag
+  id: Elf
+
+- type: Tag
   id: EmergencyWelder
 
 - type: Tag
@@ -341,6 +344,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -494,6 +500,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -527,6 +539,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore

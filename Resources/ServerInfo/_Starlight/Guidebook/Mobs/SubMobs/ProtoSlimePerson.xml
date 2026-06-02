@@ -1,0 +1,13 @@
+<Document>
+  # Proto-Laspi
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoSlimePerson" Caption=""/>
+  </Box>
+
+  Despite their semi-solid nature, Laspi can comfortably support protogen-grade cybernetics. Although it might.. Sink in a little from time to time.
+
+  ## Resistances
+  - Receive [color=#8147ff]25% more shock damage[/color], [color=#65807d]10% more slash damage[/color], [color=#b9bf93]10% more pierce damage[/color], and [color=#1e90ff]30% more cold damage[/color].
+  - Receive [color=#FF3636]30% less blunt damage[/color] and [color=#64ffe6]20% less poison damage[/color].
+</Document>

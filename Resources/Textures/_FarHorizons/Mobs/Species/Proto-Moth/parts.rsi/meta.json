@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Original Sprites by SuperJoelD00D, https://github.com/tgstation/tgstation/commit/1d0eadcb126fc3581eed33490f4be2a88157af58 & https://github.com/PixelTheKermit, Reworked Sprites by Killer_Tamashi (Discord), Protogen species by Malice-Risu",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "full"
+    }
+  ]
+}

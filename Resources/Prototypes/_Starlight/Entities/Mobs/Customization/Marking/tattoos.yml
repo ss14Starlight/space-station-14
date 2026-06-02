@@ -6,7 +6,7 @@
     layers:
       eye_left:
         type: !type:EyeColoring
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi, ProtoResomi ]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
       state: eye_left
@@ -19,7 +19,7 @@
     layers:
       eye_right:
         type: !type:EyeColoring
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi, ProtoResomi ]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_eyes.rsi
       state: eye_right
@@ -32,7 +32,7 @@
     layers:
       eye_left:
         type: !type:EyeColoring
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
     state: eye_left
@@ -45,7 +45,7 @@
     layers:
       eye_right:
         type: !type:EyeColoring
-  speciesRestriction: [ Avali ]
+  speciesRestriction: [ Avali, ProtoAvali ]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Avali/avali_eyes.rsi
     state: eye_right

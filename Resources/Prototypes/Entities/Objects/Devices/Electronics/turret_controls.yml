@@ -13,6 +13,7 @@
   - type: Tag
     tags:
     - TurretControlElectronics
+    - RamChip #Protogen joke, makes them able to eat them. - FH
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelElectronicsBase

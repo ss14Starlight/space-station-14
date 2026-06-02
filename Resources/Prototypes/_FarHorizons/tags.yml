@@ -19,4 +19,61 @@
   id: OilPack
 
 - type: Tag
+  id: ProtoArachnid
+
+- type: Tag
+  id: ProtoAvali
+
+- type: Tag
+  id: ProtoCyclorite # Starlight, Cyclops -> Cyclorite
+
+- type: Tag
+  id: ProtoDwarf # Starlight, Dawi -> Dwarf
+
+- type: Tag
+  id: ProtoDiona # Starlight, Dionae -> Diona
+
+- type: Tag
+  id: ProtoFelionoid # Starlight, Feline -> Felionoid
+
+- type: Tag
+  id: ProtoHuman # Starlight, Humie -> Human
+
+- type: Tag
+  id: ProtoMoth
+
+- type: Tag
+  id: ProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
+
+- type: Tag
+  id: ProtoResomi
+
+- type: Tag
+  id: ProtoSlimePerson
+
+- type: Tag
+  id: ProtoThaven
+
+- type: Tag
+  id: ProtoVox
+
+- type: Tag
+  id: ProtoVulp
+
+- type: Tag
+  id: ProtoKin
+
+- type: Tag
+  id: Protogen
+
+- type: Tag
+  id: ProtogenCybernetics
+
+- type: Tag
+  id: RamChip
+
+- type: Tag
   id: SiliconEmotesFH
+
+- type: Tag
+  id: TrueProtogen

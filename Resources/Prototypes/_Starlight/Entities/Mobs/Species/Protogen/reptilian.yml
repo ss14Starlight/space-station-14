@@ -1,0 +1,133 @@
+- type: entity
+  save: false
+  name: Urisst' Mztosster
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoReptilian
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    - Draconic
+    understands:
+    - GalacticCommon
+    - Machine
+    - Draconic
+  - type: Absorbable
+  - type: HumanoidAppearance
+    species: ProtoReptilian
+    hideLayersOnEquip:
+    - Hair
+  - type: Puller
+    needsHands: false
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Reptile/parts.rsi
+    state: full
+  - type: Body
+    prototype: ProtoReptilian
+    requiredLegs: 2
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatLizard
+      amount: 5
+  - type: LizardAccent
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: ProtoReptilian
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Slash: 5
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42
+  - type: TemperatureDamage
+    heatDamageThreshold: 400
+    coldDamageThreshold: 285
+    coldDamage:
+      types:
+        Cold : 1.5 #per second, scales with temperature & other constants
+    heatDamage: # Swaps heat for cold, lizards thrive in hot temps
+      types:
+        Heat : 0.1 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      301: 0.9
+      295: 0.8
+      285: 0.7
+  - type: Wagging
+  - type: Inventory
+    speciesId: reptilian
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtoReptilian
+  categories: [ HideSpawnMenu ]
+  description: A dummy proto-reptile meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: ProtoReptilian
+  - type: Inventory
+    speciesId: reptilian
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: jumpsuit-female
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: head
+      mask:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Reptilian/displacement.rsi
+            state: mask

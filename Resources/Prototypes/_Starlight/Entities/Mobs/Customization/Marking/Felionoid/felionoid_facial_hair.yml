@@ -2,7 +2,7 @@
   id: FelionoidFacialHairBeard
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: beard_s
@@ -11,7 +11,7 @@
   id: FelionoidFacialHairColonel
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: colonel_s
@@ -20,7 +20,7 @@
   id: FelionoidFacialHairFu
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: fu_s
@@ -29,7 +29,7 @@
   id: FelionoidFacialHairMane
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: mane_s
@@ -38,7 +38,7 @@
   id: FelionoidFacialHairNeck
   bodyPart: FacialHair
   markingCategory: FacialHair
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/facial_hair.rsi
       state: neck_s
