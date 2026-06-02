@@ -50,7 +50,7 @@
     name: ghost-role-information-kiki-name
     description: ghost-role-information-kiki-description
     rules: ghost-role-information-nonantagonist-rules
-    job: Botanist # 2hr botany requirement
+    job: Botanist
   - type: GhostTakeoverAvailable
   - type: Butcherable
     butcheringType: Spike
