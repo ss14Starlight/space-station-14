@@ -10,7 +10,7 @@
   id: ProtogenTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali] # Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
+  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: tail_protogen
@@ -19,7 +19,7 @@
   id: ProtogenTailBushy
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali] # Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
+  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: bushy_tail_protogen
@@ -28,7 +28,7 @@
   id: ProtogenTailShark
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali] # Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
+  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoResomi, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: shark_tail_protogen
@@ -37,7 +37,7 @@
   id: ProtogenEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali] #resomi too smol + Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
+  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali, ProtoElf, ProtoLagomorph] #resomi too smol + Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: ears_protogen
@@ -48,16 +48,16 @@
   id: TwoProtogenEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali] #resomi too smol + Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
+  speciesRestriction: [Protogen, ProtoVulp, ProtoVox, ProtoThaven, ProtoKin, ProtoHuman, ProtoMoth, ProtoFelionoid, ProtoDwarf, ProtoCyclorite, ProtoAvali, ProtoElf, ProtoLagomorph] #resomi too smol + Starlight, ProtoHumie -> ProtoHuman, ProtoFeline -> ProtoFelionoid, ProtoDawi -> ProtoDwarf, ProtoCyclops -> ProtoCyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/protogen.rsi
     state: two_ears_protogen
 
 - type: marking
   id: ProtogenLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
     state: body
@@ -66,7 +66,7 @@
   id: ProtogenVisor
   bodyPart: LFoot
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
+  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
     state: visor
@@ -75,7 +75,7 @@
   id: ProtogenVisorRound
   bodyPart: LFoot
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
+  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
     state: rounded
@@ -84,7 +84,7 @@
   id: ProtogenLEDFace
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: face
@@ -93,7 +93,7 @@
   id: ProtogenLEDFaceNoseless
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: noseless
@@ -102,16 +102,16 @@
   id: ProtogenLEDFaceRound
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
+  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: rounded
 
 - type: marking
   id: ProtogenMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
     state: medium
@@ -174,7 +174,7 @@
 
 - type: marking
   id: ProtoVulpMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
@@ -183,7 +183,7 @@
 
 - type: marking
   id: ProtoVulpMediumArmorAngled
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
@@ -237,7 +237,7 @@
 
 - type: marking
   id: ProtoVulpLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
@@ -246,7 +246,7 @@
 
 - type: marking
   id: ProtoVulpLightsAngled
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
@@ -268,7 +268,7 @@
 
 - type: marking
   id: ProtoVoxMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoVox]
   sprites:
@@ -286,7 +286,7 @@
 
 - type: marking
   id: ProtoVoxLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoVox]
   sprites:
@@ -315,7 +315,7 @@
 
 - type: marking
   id: ProtoThavenMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoThaven]
   sprites:
@@ -333,7 +333,7 @@
 
 - type: marking
   id: ProtoThavenLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoThaven]
   sprites:
@@ -344,7 +344,7 @@
 
 - type: marking
   id: ProtoSlimePersonMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoSlimePerson]
   sprites:
@@ -371,7 +371,7 @@
 
 - type: marking
   id: ProtoSlimePersonLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoSlimePerson]
   sprites:
@@ -382,7 +382,7 @@
 
 - type: marking
   id: ProtoKinMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoKin]
   sprites:
@@ -409,7 +409,7 @@
 
 - type: marking
   id: ProtoKinLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoKin]
   sprites:
@@ -420,7 +420,7 @@
 
 - type: marking
   id: ProtoResomiMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
@@ -447,7 +447,7 @@
 
 - type: marking
   id: ProtoResomiLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
@@ -460,7 +460,7 @@
   id: ProtoReptilianLEDFaceBoxy # Starlight, ProtoReptile -> ProtoReptilian
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [ProtoReptilian, ProtoHuman, ProtoDwarf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: boxy
@@ -478,7 +478,7 @@
 
 - type: marking
   id: ProtoMothMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoMoth]
   sprites:
@@ -505,7 +505,7 @@
 
 - type: marking
   id: ProtoMothLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoMoth]
   sprites:
@@ -527,7 +527,7 @@
 
 - type: marking
   id: ProtoFelionoidMediumArmor # Starlight, Feline -> Felionoid
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
@@ -554,7 +554,7 @@
 
 - type: marking
   id: ProtoFelionoidLights # Starlight, Feline -> Felionoid
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
@@ -576,7 +576,7 @@
 
 - type: marking
   id: ProtoDionaMediumArmor # Starlight, Dionae -> Diona
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
@@ -603,7 +603,7 @@
 
 - type: marking
   id: ProtoDionaLights # Starlight, Dionae -> Diona
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
@@ -623,7 +623,7 @@
 
 - type: marking
   id: ProtoCycloriteMediumArmor # Starlight, Cyclops -> Cyclorite
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
@@ -650,7 +650,7 @@
 
 - type: marking
   id: ProtoCycloriteLights # Starlight, Cyclops -> Cyclorite
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
@@ -661,7 +661,7 @@
 
 - type: marking
   id: ProtoAvaliMediumArmor
-  bodyPart: RFoot
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoAvali]
   sprites:
@@ -688,7 +688,7 @@
 
 - type: marking
   id: ProtoAvaliLights
-  bodyPart: RHand
+  bodyPart: UndergarmentTop # Starlight, render below clothes
   markingCategory: Special
   speciesRestriction: [ProtoAvali]
   sprites:
