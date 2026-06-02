@@ -12,7 +12,7 @@ public static class FormattedMessageSanitizer
     /// Simple tags that are safe to use for item labels. No interactive tags, size changes (head tag) or images.
     /// </summary>
     public static string[] ItemLabelTags =
-        ["color", "bold", "bolditalic", "italic", "mono", "dots", "dothead"];
+        ["color", "bold", "bolditalic", "italic", "mono", "dots"];
 
     /// <summary>
     /// Tags that are safe to use for paper labels, like invoices that can be attached to crates.
