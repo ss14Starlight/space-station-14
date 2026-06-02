@@ -640,7 +640,7 @@ public sealed class FaxSystem : EntitySystem
         var faxName = Loc.GetString("fax-machine-popup-source-unknown");
         if (fromAddress != null && component.KnownFaxes.TryGetValue(fromAddress, out var fax)) // If message received from unknown fax address
             faxName = fax;
-        if (printout.MetaSender != null) // Starlight: Prefer MetaSender
+        if (!string.IsNullOrEmpty(printout.MetaSender)) // Starlight: Prefer MetaSender as it's more up to date
             faxName = printout.MetaSender; // Starlight
 
         _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-received", ("from", faxName)), uid);
