@@ -91,8 +91,6 @@ public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponen
 
             if (!_whitelist.CheckBoth(ent, comp.Blacklist, comp.Whitelist))
                 continue;
-
-            _door.TryOpen(ent);
         }
 
         comp.AffectedEntities.Clear();
