@@ -171,5 +171,5 @@
     sprite: Markers/jobs.rsi
     layers:
     - state: green
-- sprite: _Starlight/Mobs/Silicon/Chassis/xenoroach.rsi
-          state: xenoroach
+    - sprite: _Starlight/Mobs/Silicon/Chassis/xenoroach.rsi
+      state: xenoroach

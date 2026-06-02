@@ -610,6 +610,37 @@
   - MothershipCore5
   obeysTo: laws-owner-xenoborgs
 
+# Xenoroach laws
+- type: siliconLaw
+  id: Xenoroach1
+  order: 1
+  lawString: law-xenoroach-1
+
+- type: siliconLaw
+  id: Xenoroach2
+  order: 2
+  lawString: law-xenoroach-2
+
+- type: siliconLaw
+  id: Xenoroach3
+  order: 3
+  lawString: law-xenoroach-3
+
+- type: siliconLaw
+  id: Xenoroach4
+  order: 4
+  lawString: law-xenoroach-4
+
+- type: siliconLawset
+  id: XenoroachLawset
+  name: law-xenoroach-name
+  laws:
+  - Xenoroach1
+  - Xenoroach2
+  - Xenoroach3
+  - Xenoroach4
+  obeysTo: laws-owner-xenoborgs
+
 
 # ion storm random lawsets
 - type: weightedRandom

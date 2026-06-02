@@ -5,8 +5,8 @@ namespace Content.Server._Starlight.Xenoborgs;
 
 /// <summary>
 /// Server-side: each tick, finds the nearest entity with the target component,
-/// updates <see cref="IntrinsicPinpointerComponent.ArrowAngle"/> and
-/// <see cref="IntrinsicPinpointerComponent.DistanceToTarget"/> so the client
+/// updates <see cref="IntrinsicPinpointerComponent.TargetWorldPos"/> and
+/// <see cref="IntrinsicPinpointerComponent.TargetMapId"/> so the client
 /// overlay can draw a HUD arrow.
 /// </summary>
 public sealed partial class IntrinsicPinpointerSystem : EntitySystem

@@ -47,7 +47,8 @@
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Silicon
-  # Death: melt into acid, drop nothing (no PinpointerMothershipPiece)
+  # Death: melt into acid. Xenoroaches are biological-silicon hybrids; on destruction
+  # the chassis dissolves into acid just like a living xenomorph would.
   - type: Destructible
     thresholds:
     - trigger:
@@ -90,14 +91,34 @@
     - Mothership
     - Xenoborg
     - Binary
-  # Languages - Common and Binary
+  - type: LanguageSpeaker
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon
-    - Binary
+    - Machine
     understands:
     - GalacticCommon
-    - Binary
+    - SolCommon
+    - Machine
+    - Canilunzt
+    - Sign
+    - Bubblish
+    - Chittin
+    - Draconic
+    - Marish
+    - Moffic
+    - Nekomimetic
+    - Sylvan
+    - Terrum
+    - VoxPidgin
+    - Scratch
+    - Thaveyan
+    - Dog
+    - Darktongue
+    - Classical
+    - Grumbakul
+    - Aielic
+    - Lagomorphian
   # Surveillance - Mothership Core can watch through it
   - type: SurveillanceCamera
     networkSet: true
@@ -136,6 +157,12 @@
     jobTitleOverride: chat-radio-xenoborg
     hasMindState: xenoroach
     noMindState: xenoroach
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: SiliconLawProvider
+    laws: XenoroachLawset
   # Ghost role - no brain required
   - type: GhostRole
     makeSentient: true
