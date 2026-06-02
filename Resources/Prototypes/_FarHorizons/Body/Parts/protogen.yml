@@ -1,0 +1,253 @@
+- type: entity
+  id: PartProtogen
+  parent: [BaseItem, BasePart]
+  name: protogen body part # Starlight, quotation marks removed
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: BatteryAcid # Starlight, juicy
+        Quantity: 5 # Starlight
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: TorsoProtogen
+  name: protogen torso # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: BatteryAcid # Starlight, juicy
+        Quantity: 15 # Starlight
+      - ReagentId: Blood
+        Quantity: 20
+
+- type: entity
+  id: HeadProtogen
+  name: protogen head # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: BatteryAcid # Starlight, juicy
+        Quantity: 5 # Starlight
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmProtogen
+  name: left protogen arm # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmProtogen
+  name: right protogen arm # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandProtogen
+  name: left protogen hand # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandProtogen
+  name: right protogen hand # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegProtogen
+  name: left protogen leg # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegProtogen
+  name: right protogen leg # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootProtogen
+  name: left protogen foot # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootProtogen
+  name: right protogen foot # Starlight, quotation marks removed
+  parent: [PartProtogen, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: "r_foot"
+
+#### VULPKANIN ####
+
+- type: entity
+  id: TorsoProtoVulp
+  name: proto-vulp torso # Starlight, quotation marks removed
+  parent: TorsoProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "torso_m"
+
+- type: entity
+  id: HeadProtoVulp
+  name: proto-vulp head # Starlight, quotation marks removed
+  parent: HeadProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "head_m"
+
+- type: entity
+  id: LeftArmProtoVulp
+  name: left proto-vulp arm # Starlight, quotation marks removed
+  parent: LeftArmProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmProtoVulp
+  name: right proto-vulp arm # Starlight, quotation marks removed
+  parent: RightArmProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandProtoVulp
+  name: left proto-vulp hand # Starlight, quotation marks removed
+  parent: LeftHandProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandProtoVulp
+  name: right proto-vulp hand # Starlight, quotation marks removed
+  parent: RightHandProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegProtoVulp
+  name: left proto-vulp leg # Starlight, quotation marks removed
+  parent: LeftLegProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegProtoVulp
+  name: right proto-vulp leg # Starlight, quotation marks removed
+  parent: RightLegProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootProtoVulp
+  name: left proto-vulp foot # Starlight, quotation marks removed
+  parent: LeftFootProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootProtoVulp
+  name: right proto-vulp foot # Starlight, quotation marks removed
+  parent: RightFootProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: "r_foot"
+
+#### Vox ####
+
+- type: entity
+  id: LeftHandProtoVox
+  name: left proto-vox hand # Starlight, quotation marks removed
+  parent: LeftHandProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandProtoVox
+  name: right proto-vox hand # Starlight, quotation marks removed
+  parent: RightHandProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftFootProtoVox
+  name: left proto-vox foot # Starlight, quotation marks removed
+  parent: LeftFootProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootProtoVox
+  name: right proto-vox foot # Starlight, quotation marks removed
+  parent: RightFootProtogen
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
+    state: "r_foot"

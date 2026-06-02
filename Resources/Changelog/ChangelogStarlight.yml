@@ -1,81 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Added Tier 3 Terror Spiders to the Guidebook.
-    type: Add
-  id: 405158
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Added a Xeno collective mind (+x). Xenos and Terror Spiders can talk in it.
-    type: Add
-  id: 405159
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Terror purple now evolves into Prince of terror after spinning 36 webs.
-    type: Tweak
-  id: 405160
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Terror black now evolves into Mother of terror after spinning 36 webs.
-    type: Tweak
-  id: 405161
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Terror white now evolves into Princess of terror after injecting 6 eggs into humanoids.
-    type: Tweak
-  id: 405162
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Princess of terror spawn now scales with players 1:65.
-    type: Tweak
-  id: 405163
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Tier 3 Terror Spiders can now actually be evolved into.
-    type: Fix
-  id: 405164
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: wonderfulnewworld, Rinary
-  changes:
-  - message: Updates method used to spawn terror spiders from injected humanoids to a more modern one.
-    type: Fix
-  id: 405165
-  time: '2026-05-21T18:05:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4498
-- author: CrazyPhantom
-  changes:
-  - message: Fixed VGroid sometimes not generating with ore.
-    type: Fix
-  id: 405166
-  time: '2026-05-21T19:29:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4485
-- author: Scarlet Lightweaver
-  changes:
-  - message: Overhauled the blackstar faction! witn inspiration from The Wolf Brigade!.
-    type: Tweak
-  id: 405167
-  time: '2026-05-21T19:51:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4435
-- author: Caws
-  changes:
-  - message: (Leth) Librarians.
-    type: Add
-  id: 405168
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
 - author: Caws
   changes:
   - message: (Leth) Brand new Library.
@@ -2799,4 +2722,81 @@ Entries:
   id: 405557
   time: '2026-06-01T13:36:20.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4620
+- author: STARLIGHT TEAM
+  changes:
+  - message: Hotfix for UI that went insane.
+    type: Fix
+  id: 405558
+  time: '2026-06-01T23:30:43.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4629
+- author: Way
+  changes:
+  - message: Forgot to make the engineering holoprojector obtainable.
+    type: Fix
+  id: 405559
+  time: '2026-06-02T08:35:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4631
+- author: CrazyPhantom
+  changes:
+  - message: Optimized Decals.
+    type: Fix
+  id: 405560
+  time: '2026-06-02T09:23:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4623
+- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
+  changes:
+  - message: Adds Protogens, Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Diona, Proto-Dwarves, Proto-Aielithii, Proto-Felionoids, Proto-Humans, Proto-Lagomorphs, Proto-Moths, Proto-Reptilians, Proto-Resomi, Proto-Laspi, Proto-Thaven, Proto-Voxes, and Proto-Vulps.
+    type: Add
+  id: 405561
+  time: '2026-06-02T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4600
+- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
+  changes:
+  - message: Added 6 protogen frames.
+    type: Add
+  id: 405562
+  time: '2026-06-02T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4600
+- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
+  changes:
+  - message: Added the battery acid reagent. Protogen can get it by eating computer parts (ram chips), or chemistry can make it with 1u SulfuricAcid and 3u Water. It deals some damage to non-Protogens.
+    type: Add
+  id: 405563
+  time: '2026-06-02T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4600
+- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
+  changes:
+  - message: Protogen can now eat computer boards.
+    type: Add
+  id: 405564
+  time: '2026-06-02T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4600
+- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
+  changes:
+  - message: Fixed some of the species appearances in the guidebook showing up as human, and made the species follow guidebook alphabetical order.
+    type: Fix
+  id: 405565
+  time: '2026-06-02T10:25:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4600
+- author: redmushie
+  changes:
+  - message: Dot matrix fonts for paperwork, see PR for details.
+    type: Add
+  id: 405566
+  time: '2026-06-02T11:42:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4626
+- author: redmushie
+  changes:
+  - message: Fax machines now print metadata like which machine sent the fax and when it was received. Not to worry, antagonists can still tamper with it. See PR for details.
+    type: Add
+  id: 405567
+  time: '2026-06-02T11:42:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4626
+- author: Johnny
+  changes:
+  - message: Some unnecessary Aghost things.
+    type: Remove
+  id: 405568
+  time: '2026-06-02T13:23:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4621
 Order: -1
