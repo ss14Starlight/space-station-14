@@ -178,3 +178,11 @@
   - type: Implanter
     implant: DeathRattleImplantMedTak
 
+#Station
+- type: entity
+  id: CommandTrackerImplanter
+  name: command tracker implanter
+  parent: BaseImplantOnlyImplanter
+  components:
+  - type: Implanter
+    implant: CommandTrackingImplant

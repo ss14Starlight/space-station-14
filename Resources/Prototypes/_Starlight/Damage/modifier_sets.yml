@@ -60,12 +60,61 @@
     Heat: 0.75
     Bloodloss: 0
 
+# ProtoDwarf
+- type: damageModifierSet
+  id: ProtoDwarf
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.65
+    Heat: 1.15 # Their beards.
+    Poison: 0.85 # Alcohol-optimized organs.
+
+# ProtoArachnid
+- type: damageModifierSet
+  id: ProtoArachnid
+  coefficients:
+    Shock: 1.25
+    Blunt: 1.1
+    Cold: 0.70
+    Heat: 1.2
+    Poison: 0.90 # Don't really have a good reason, all things considered.
+    Caustic: 0.85 # Dense webs?
+
 - type: damageModifierSet
   id: Elf
   coefficients:
     Poison: 0.75
     Cellular: 0.9 # magic makes the flesh is less corruptible
     Blunt: 1.2 # brittle bones, etc.
+
+# ProtoElf
+- type: damageModifierSet
+  id: ProtoElf
+  coefficients:
+    Shock: 1.15 # They can counter some of the shock, magic resistance.
+    Heat: 1.15 # They can share this with thaven, they've got similar enough body types.
+    Cold: 0.7 # Bog standard cold resist.
+    Poison: 0.75
+    Blunt: 1.25 # blunt's gonna be fatal to them
+# Cellular resist gone, half body machine is fighting against magic skin.
+
+# Lagomorph
+- type: damageModifierSet
+  id: Lagomorph
+  coefficients:
+    Blunt: 0.9
+    Cold: 0.75
+    Heat: 1.25
+
+# ProtoLagomorph
+- type: damageModifierSet
+  id: ProtoLagomorph
+  coefficients:
+    Shock: 1.25
+    Cold: 0.60 # They're already good against cold, so theirs can be lower.
+    Heat: 1.35 # Even worse off than Vulps.
+# Blunt weakness cancels out
 
 - type: damageModifierSet
   id: SlimeFireproofPotionEffect

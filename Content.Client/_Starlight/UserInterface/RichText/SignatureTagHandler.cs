@@ -1,12 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Robust.Client.UserInterface.RichText;
+using Content.Client.Paper.UI;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
-using Content.Client.Paper.UI;
 
-namespace Content.Client.UserInterface.RichText;
+namespace Content.Client._Starlight.UserInterface.RichText;
 
 /// <summary>
 /// Converts [signature] tags into clickable buttons that sign with the player's name.

@@ -71,6 +71,14 @@
     damage:
       types:
         Slash: 5
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable # Starlight, no more labeling people.
+    - Lagomorph
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -117,9 +125,4 @@
       state: "creampie_human"
       visible: false
 # for fragile electronics like consoles or shuttle engines.
-- type: damageModifierSet
-  id: Lagomorph
-  coefficients:
-    Blunt: 0.9
-    Cold: 0.75
-    Heat: 1.25
+

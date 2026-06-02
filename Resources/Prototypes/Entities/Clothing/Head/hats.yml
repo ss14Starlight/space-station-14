@@ -723,6 +723,13 @@
         color: "#a60b0b"
       - state: pompom-equipped-HELMET
         color: "#a60b0b"
+  - type: TemperatureProtection # Starlight start
+    heatingCoefficient: 1
+    coolingCoefficient: 0.75
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.9 # Starlight end
 
 - type: entity
   parent: ClothingHeadHatWizardBase

@@ -1,0 +1,82 @@
+- type: species
+  id: ProtoArachnid
+  name: subspecies-name-protoarachnid
+  roundStart: true
+  prototype: MobProtoArachnid
+  sprites: MobProtoArachnidSprites
+  markingLimits: MobProtoArachnidMarkingLimits
+  dollPrototype: AppearanceProtoArachnid
+  defaultSkinTone: "#385878"
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen
+  subspeciesName: subspecies-name-protoarachnid
+  loadout: ProtogenLoadout
+  maleFirstNames: NamesArachnidFirst
+  femaleFirstNames: NamesArachnidFirst
+  lastNames: NamesArachnidLast
+  sexes:
+  - Unsexed
+
+- type: speciesBaseSprites
+  id: MobProtoArachnidSprites
+  sprites:
+    Eyes: MobProtogenEyes
+    Head: MobArachnidHead
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Chest: MobArachnidTorso
+    Tail: MobHumanoidAnyMarking
+    LArm: MobArachnidLArm
+    RArm: MobArachnidRArm
+    LHand: MobArachnidLHand
+    RHand: MobArachnidRHand
+    LLeg: MobArachnidLLeg
+    RLeg: MobArachnidRLeg
+    LFoot: MobArachnidLFoot
+    RFoot: MobArachnidRFoot
+
+- type: markingPoints
+  id: MobProtoArachnidMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor, ProtoArachnidVisor, ProtogenLights, ProtoArachnidLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ ArachnidAppendagesDefault ]
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 2
+      required: false
+    HeadSide:
+      points: 1
+      required: true
+      defaultMarkings: [ ArachnidCheliceraeDownwards ]
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false

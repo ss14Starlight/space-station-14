@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "vulp-sharp and vulp-fade taken from https://github.com/ParadiseSS13/Paradise/ every thing else taken from https://github.com/VOREStation/VOREStation/ edited by Floofers",
+  "copyright": "vulp-sharp and vulp-fade taken from https://github.com/ParadiseSS13/Paradise/ every thing else taken from https://github.com/VOREStation/VOREStation/ edited by Floofers, possum by hanz5579 (discord)",
   "size": {"x": 32, "y": 32},
   "states": [
     {
@@ -82,6 +82,10 @@
     },
     {
       "name": "dalmatian",
+      "directions": 4
+    },
+    {
+      "name": "possum",
       "directions": 4
     }
   ]

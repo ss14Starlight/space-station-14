@@ -2,7 +2,7 @@
   id: HairResomiBackstrafe
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiBackstrafe
@@ -11,7 +11,7 @@
   id: HairResomiBurstShort
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiBurstShort
@@ -20,7 +20,7 @@
   id: HairResomiDefault
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiDefault
@@ -29,7 +29,7 @@
   id: HairResomiDroopy
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiDroopy
@@ -38,7 +38,7 @@
   id: HairResomiEars
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiEars
@@ -47,7 +47,7 @@
   id: HairResomiFluffymohawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiFluffymohawk
@@ -56,7 +56,7 @@
   id: HairResomiHedge
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiHedge
@@ -65,7 +65,7 @@
   id: HairResomiLongway
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiLongway
@@ -74,7 +74,7 @@
   id: HairResomiMane
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiMane
@@ -83,7 +83,7 @@
   id: HairResomiManeBeardless
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiManeBeardless
@@ -92,7 +92,7 @@
   id: HairResomiMohawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiMohawk
@@ -101,7 +101,7 @@
   id: HairResomiMushroom
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiMushroom
@@ -110,7 +110,7 @@
   id: HairResomiNotree
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiNotree
@@ -119,7 +119,7 @@
   id: HairResomiSpiky
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiSpiky
@@ -128,7 +128,7 @@
   id: HairResomiPointy
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiPointy
@@ -137,7 +137,7 @@
   id: HairResomiTwies
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiTwies
@@ -146,7 +146,7 @@
   id: HairResomiUpright
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiUpright
@@ -155,7 +155,7 @@
   id: HairResomiLong
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Resomi/resomi_hair.rsi
       state: ResomiLong

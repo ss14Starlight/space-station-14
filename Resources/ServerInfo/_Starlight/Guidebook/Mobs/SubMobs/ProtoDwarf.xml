@@ -1,0 +1,13 @@
+<Document>
+  # Proto-Dwarf
+<!-- Starlight, renamed back to Dwarf.-->
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoDwarf" Caption=""/>
+  </Box>
+
+  Despite the difficulties it brings, Proto-Dwarves are typically too prideful to even THINK about shaving their beard to better fit their newfound visor. As such, they are the only race that can be seen sporting a beard ontop of their visor.
+
+  ## Resistances
+  - Receive [color=#ffa500]15% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#64ffe6]25% less poison damage[/color] and [color=#1e90ff]35% less cold damage[/color].
+</Document>
