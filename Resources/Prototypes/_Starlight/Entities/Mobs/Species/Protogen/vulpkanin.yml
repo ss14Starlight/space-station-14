@@ -1,0 +1,120 @@
+- type: entity
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoVulp
+  name: Urist McVulpster
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+#    - Trinary # Starlight, no Trinary
+    - Canilunzt
+    understands:
+    - GalacticCommon
+    - Machine
+#    - Trinary # Starlight, no Trinary
+    - Canilunzt
+    - Fox
+    - Dog
+  - type: Wagging
+  - type: Hunger # on 1.5x more
+    thresholds:
+      Overfed: 250
+      Okay: 200
+      Peckish: 150
+      Starving: 100
+      Dead: 0
+    baseDecayRate: 0.125 # Starlight
+  - type: Thirst # Starlight start, on 1.5x more
+    thresholds:
+      OverHydrated: 650
+      Okay: 500
+      Thirsty: 350
+      Parched: 200
+      Dead: 0
+    baseDecayRate: 0.125
+  - type: TemperatureDamage # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
+    heatDamageThreshold: 325
+    coldDamageThreshold: 230
+    coldDamage:
+      types:
+        Cold : 0.05 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 1.75 #per second, scales with temperature & other constants
+  - type: Temperature # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
+    currentTemperature: 310.15
+    specificHeat: 46 # Starlight end
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: full
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: ProtoVulp
+  - type: Body
+    prototype: ProtoVulp
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: ProtoVulp
+    hideLayersOnEquip:
+    - Hair
+  - type: Inventory
+    speciesId: protovulp #to be replaced with proto[species] when new sprites are made
+    templateId: protogen
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: head
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi #temp "fix"
+            state: outerClothing
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: shoes
+  - type: ContentEye
+    targetZoom: "1.125, 1.125"
+    maxZoom: "1.125, 1.125"
+  - type: MeleeWeapon # Starlight start
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 2
+        Slash: 3
+  - type: MessyDrinker
+    spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid, Starlight end
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtoVulp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ProtoVulp
+  - type: Inventory
+    speciesId: protovulp #to be replaced with proto[species] when new sprites are made
+    templateId: protogen
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Proto-Vulp/displacement.rsi
+            state: shoes

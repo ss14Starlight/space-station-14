@@ -1,0 +1,53 @@
+- type: body
+  id: ProtoAvali
+  name: proto-avali # Starlight, quotation marks removed
+  root: torso
+  slots:
+    head:
+      part: HeadAvali
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongueForked
+        eye_implant: null
+        brain_implant: BrainImplantNexus
+    torso:
+      part: TorsoAvali
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganProtoAvaliHeart
+        lungs: OrganProtogenLungs
+        stomach: OrganProtoAvaliStomach
+        liver: OrganProtoAvaliLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmAvali
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmAvali
+      connections:
+      - left hand
+    right hand:
+      part: RightHandAvali
+    left hand:
+      part: LeftHandAvali
+    right leg:
+      part: RightLegAvali
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegAvali
+      connections:
+      - left foot
+    right foot:
+      part: RightFootAvali
+    left foot:
+      part: LeftFootAvali

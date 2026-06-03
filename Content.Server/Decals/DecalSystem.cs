@@ -42,6 +42,10 @@ namespace Content.Server.Decals
         private readonly Dictionary<ICommonSession, Dictionary<NetEntity, HashSet<Vector2i>>> _previousSentChunks = new();
         private static readonly Vector2 _boundsMinExpansion = new(0.01f, 0.01f);
         private static readonly Vector2 _boundsMaxExpansion = new(1.01f, 1.01f);
+        // Starlight Start
+        private const float PvsUpdateInterval = 0.10f; // 10 Hz
+        private float _pvsUpdateAccumulator;
+        // Starlight End
 
         private UpdatePlayerJob _updateJob;
         private List<ICommonSession> _sessions = new();
@@ -82,12 +86,14 @@ namespace Content.Server.Decals
 
             PvsEnabled = value;
 
+            _pvsUpdateAccumulator = PvsUpdateInterval; // Starlight: Update immediately after toggling PVS.
+
             if (value)
                 return;
 
             foreach (var playerData in _previousSentChunks.Values)
             {
-                playerData.Clear();
+                ReturnPreviousSentChunks(playerData); // Starlight Edit: Return hashets to the pool.
             }
 
             var query = AllEntityQuery<DecalGridComponent, MetaDataComponent>();
@@ -123,17 +129,28 @@ namespace Content.Server.Decals
                 var bounds = new Box2(tilePos - _boundsMinExpansion, tilePos + _boundsMaxExpansion);
                 var toRemove = new RemQueue<uint>();
 
+                // Starlight Start: Only create a chunk if the tile contains decals that need to move.
+                var movedDecals = false;
+                DecalChunk? newChunk = null;
+                // Starlight End
+
                 foreach (var (oldDecalId, decal) in oldChunk.Decals)
                 {
                     if (!bounds.Contains(decal.Coordinates))
                         continue;
 
                     var newDecalId = newComp.ChunkCollection.NextDecalId++;
-                    var newChunk = chunkCollection.GetOrNew(chunkIndices);
+                    newChunk ??= chunkCollection.GetOrNew(chunkIndices); // Starlight Edit: Only create a new chunk if we need to move a decal into it.
                     newChunk.Decals[newDecalId] = decal;
                     newComp.DecalIndex[newDecalId] = chunkIndices;
                     toRemove.Add(oldDecalId);
+                    movedDecals = true; // Starlight
                 }
+
+                // Starlight Start: Avoid creating and dirtying chunks if nothing happened.
+                if (!movedDecals)
+                    continue;
+                // Starlight End
 
                 foreach (var oldDecalId in toRemove)
                 {
@@ -141,13 +158,15 @@ namespace Content.Server.Decals
                     oldComp.DecalIndex.Remove(oldDecalId);
                 }
 
-                DirtyChunk(ev.Grid, chunkIndices, chunkCollection.GetOrNew(chunkIndices));
+                DirtyChunk(ev.Grid, chunkIndices, newChunk!); // Starlight Edit: Only dirty the new chunk if we moved a decal into it.
 
                 if (oldChunk.Decals.Count == 0)
                     oldChunkCollection.Remove(chunkIndices);
 
-                if (toRemove.List?.Count > 0)
-                    DirtyChunk(ev.OldGrid, chunkIndices, oldChunk);
+                // Starlight edit Start: Dirty the old chunk because the moved decals were removed.
+                // if (toRemove.List?.Count > 0)
+                DirtyChunk(ev.OldGrid, chunkIndices, oldChunk);
+                // Starlight edit End
             }
         }
 
@@ -206,13 +225,34 @@ namespace Content.Server.Decals
             switch (e.NewStatus)
             {
                 case SessionStatus.InGame:
+                    // Starlight Start: Return existing hashets to the pool when a player rejoins.
+                    if (_previousSentChunks.TryGetValue(e.Session, out var existing))
+                        ReturnPreviousSentChunks(existing);
+                    // Starlight End
+
                     _previousSentChunks[e.Session] = new();
                     break;
                 case SessionStatus.Disconnected:
-                    _previousSentChunks.Remove(e.Session);
+                    // Starlight Edit Start: Return hashsets to the pool when a player disconnects.
+                    if (_previousSentChunks.Remove(e.Session, out var chunks))
+                        ReturnPreviousSentChunks(chunks);
+                    // Starlight edit End
                     break;
             }
         }
+
+        // Starlight Start: helper to return hashsets to the pool.
+        private void ReturnPreviousSentChunks(Dictionary<NetEntity, HashSet<Vector2i>> chunks)
+        {
+            foreach (var (_, indices) in chunks)
+            {
+                indices.Clear();
+                _chunkIndexPool.Return(indices);
+            }
+
+            chunks.Clear();
+        }
+        // Starlight End
 
         private void OnDecalPlacementRequest(RequestDecalPlacementEvent ev, EntitySessionEventArgs eventArgs)
         {
@@ -387,6 +427,18 @@ namespace Content.Server.Decals
             if (!Resolve(gridId, ref comp))
                 return false;
 
+            // Starlight Start: If the decal is already at the target position, do nothing.
+            var newGrid = _transform.GetGrid(coordinates);
+            if (newGrid == gridId &&
+                comp.DecalIndex.TryGetValue(decalId, out var indices) &&
+                comp.ChunkCollection.ChunkCollection.TryGetValue(indices, out var chunk) &&
+                chunk.Decals.TryGetValue(decalId, out var decal) &&
+                decal.Coordinates.Equals(coordinates.Position))
+            {
+                return true;
+            }
+            // Starlight End
+
             if (!RemoveDecalInternal(gridId, decalId, out var removed, comp))
                 return false;
 
@@ -403,10 +455,27 @@ namespace Content.Server.Decals
 
             var chunk = comp.ChunkCollection.ChunkCollection[indices];
             var decal = chunk.Decals[decalId];
-            chunk.Decals[decalId] = modifyDecal(decal);
+            // Starlight edit Start: If the decal is already the target value, do nothing.
+            var modified = modifyDecal(decal);
+
+            if (DecalValueEquals(decal, modified))
+                return true;
+
+            chunk.Decals[decalId] = modified;
+            // Starlight edit End
             DirtyChunk(gridId, indices, chunk);
             return true;
         }
+
+        // Starlight Start: Helper to compare two decals for value equality.
+        private static bool DecalValueEquals(Decal left, Decal right)
+            => left.Coordinates.Equals(right.Coordinates)
+                && left.Id == right.Id
+                && Equals(left.Color, right.Color)
+                && left.Angle.Equals(right.Angle)
+                && left.ZIndex == right.ZIndex
+                && left.Cleanable == right.Cleanable;
+        // Starlight End
 
         public bool SetDecalColor(EntityUid gridId, uint decalId, Color? value, DecalGridComponent? comp = null)
             => ModifyDecal(gridId, decalId, x => x.WithColor(value), comp);
@@ -432,20 +501,30 @@ namespace Content.Server.Decals
         {
             base.Update(frameTime);
 
-            foreach (var ent in _dirtyChunks.Keys)
-            {
-                if (TryGetEntity(ent, out var uid) && TryComp(uid, out DecalGridComponent? decals))
-                    Dirty(uid.Value, decals);
-            }
+            // Starlight edit Start: Dirty chunks are now processed in batches on a timer instead of every tick.
+            // foreach (var ent in _dirtyChunks.Keys)
+            // {
+            //     if (TryGetEntity(ent, out var uid) && TryComp(uid, out DecalGridComponent? decals))
+            //         Dirty(uid.Value, decals);
+            // }
+            // Starlight edit End
 
             if (!PvsEnabled)
             {
+                DirtyChangedGrids(); // Starlight: Send decals when PVS is disabled.
                 _dirtyChunks.Clear();
                 return;
             }
 
-            if (PvsEnabled)
-            {
+            // Starlight edit Start: Batch dirty chunks instead of running every tick. At a rate of PvsUpdateInterval.
+            _pvsUpdateAccumulator += frameTime;
+
+            if (_pvsUpdateAccumulator < PvsUpdateInterval)
+                return;
+
+            _pvsUpdateAccumulator = 0f;
+            // Starlight edit End
+
                 _sessions.Clear();
 
                 foreach (var session in _playerManager.Sessions)
@@ -458,16 +537,35 @@ namespace Content.Server.Decals
 
                 if (_sessions.Count > 0)
                     _parMan.ProcessNow(_updateJob, _sessions.Count);
-            }
+            // } // Starlight Edit
 
             _dirtyChunks.Clear();
         }
+
+        // Starlight Start: For sending decals when PVS is disabled.
+        private void DirtyChangedGrids()
+        {
+            foreach (var ent in _dirtyChunks.Keys)
+            {
+                if (TryGetEntity(ent, out var uid) && TryComp(uid, out DecalGridComponent? decals))
+                    Dirty(uid.Value, decals);
+            }
+        }
+        // Starlight End
 
         public void UpdatePlayer(ICommonSession player)
         {
             var chunksInRange = _chunking.GetChunksForSession(player, ChunkSize, _chunkIndexPool, _chunkViewerPool);
             var staleChunks = _chunkViewerPool.Get();
-            var previouslySent = _previousSentChunks[player];
+            // Starlight edit Start: If the player doesn't have an entry add one
+            if (!_previousSentChunks.TryGetValue(player, out var previouslySent))
+            {
+                previouslySent = new();
+                _previousSentChunks[player] = previouslySent;
+            }
+            // Starlight edit End
+
+            var gridsToRemove = new RemQueue<NetEntity>(); // Starlight: Queue grids for removing instead of removing them in the loop.
 
             // Get any chunks not in range anymore
             // Then, remove them from previousSentChunks (for stuff like grids out of range)
@@ -478,7 +576,7 @@ namespace Content.Server.Decals
                 // Mark the whole grid as stale and flag for removal.
                 if (!chunksInRange.TryGetValue(netGrid, out var chunks))
                 {
-                    previouslySent.Remove(netGrid);
+                    gridsToRemove.Add(netGrid); // Starlight Edit: Queue the for removal instead of removing it here.
 
                     // Was the grid deleted?
                     if (TryGetEntity(netGrid, out var gridId) && HasComp<MapGridComponent>(gridId.Value))
@@ -516,6 +614,13 @@ namespace Content.Server.Decals
                 staleChunks.Add(netGrid, elmo);
             }
 
+            // Starlight Start: Remove after enumerating.
+            foreach (var netGrid in gridsToRemove)
+            {
+                previouslySent.Remove(netGrid);
+            }
+            // Starlight End
+
             var updatedChunks = _chunkViewerPool.Get();
             foreach (var (netGrid, gridChunks) in chunksInRange)
             {
@@ -543,6 +648,11 @@ namespace Content.Server.Decals
                 else
                     updatedChunks[netGrid] = newChunks;
             }
+
+            // Starlight Start: Clear the dictionary.
+            chunksInRange.Clear();
+            _chunkViewerPool.Return(chunksInRange);
+            // Starlight End
 
             //send all gridChunks to client
             SendChunkUpdates(player, updatedChunks, staleChunks);
