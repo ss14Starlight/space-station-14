@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 05/03/2026 01:29:55
-  entityCount: 16943
+  engineVersion: 277.0.0
+  forkId: starlight
+  forkVersion: ed11ce2a349d3ce84786ccf7def08ac37d0d0124
+  time: 05/29/2026 18:22:45
+  entityCount: 16947
 maps:
 - 1
 grids:
@@ -9295,28 +9295,12 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,26.5
       parent: 2
-  - uid: 126
-    components:
-    - type: MetaData
-      name: Law Office
-    - type: Transform
-      pos: -4.5,-7.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
   - uid: 127
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 55.5,32.5
       parent: 2
-  - uid: 128
-    components:
-    - type: Transform
-      pos: 0.5,-10.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: AirlockCaptainLocked
   entities:
   - uid: 129
@@ -10706,6 +10690,13 @@ entities:
       parent: 2
     - type: AccessReader
       accessListsOriginal: []
+- proto: AirlockInternalAffairsGlassLocked
+  entities:
+  - uid: 126
+    components:
+    - type: Transform
+      pos: -4.5,-7.5
+      parent: 2
 - proto: AirlockJanitorLocked
   entities:
   - uid: 312
@@ -10835,6 +10826,13 @@ entities:
     components:
     - type: Transform
       pos: 42.5,-11.5
+      parent: 2
+- proto: AirlockMaintInternalAffairsLocked
+  entities:
+  - uid: 128
+    components:
+    - type: Transform
+      pos: 0.5,-10.5
       parent: 2
 - proto: AirlockMaintJanitorLocked
   entities:
@@ -44082,13 +44080,6 @@ entities:
     - type: Transform
       pos: 76.5,-4.5
       parent: 2
-- proto: ClosetLegalFilled
-  entities:
-  - uid: 6635
-    components:
-    - type: Transform
-      pos: 17.5,29.5
-      parent: 2
 - proto: ClosetMaintenanceFilledRandom
   entities:
   - uid: 6636
@@ -46953,6 +46944,13 @@ entities:
     - type: Transform
       pos: 17.5,-4.5
       parent: 2
+- proto: DefaultStationBeaconIAA
+  entities:
+  - uid: 7067
+    components:
+    - type: Transform
+      pos: -1.5,-9.5
+      parent: 2
 - proto: DefaultStationBeaconJanitorsCloset
   entities:
   - uid: 7065
@@ -46966,13 +46964,6 @@ entities:
     components:
     - type: Transform
       pos: 35.5,-9.5
-      parent: 2
-- proto: DefaultStationBeaconLawOffice
-  entities:
-  - uid: 7067
-    components:
-    - type: Transform
-      pos: -1.5,-9.5
       parent: 2
 - proto: DefaultStationBeaconLibrary
   entities:
@@ -51042,7 +51033,7 @@ entities:
       pos: -1.5,-11.5
       parent: 2
     - type: FaxMachine
-      name: Law Office
+      name: IAA
   - uid: 7752
     components:
     - type: Transform
@@ -76379,6 +76370,13 @@ entities:
     - type: Transform
       pos: 38.482082,-17.438766
       parent: 2
+- proto: HandheldMachineAnalyzer
+  entities:
+  - uid: 16947
+    components:
+    - type: Transform
+      pos: 52.51561,8.282518
+      parent: 2
 - proto: HandLabeler
   entities:
   - uid: 7017
@@ -79232,6 +79230,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 42.838287,27.630411
       parent: 2
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 16946
+    components:
+    - type: Transform
+      pos: 52.54686,8.605434
+      parent: 2
 - proto: MedkitToxinFilled
   entities:
   - uid: 11717
@@ -80183,60 +80188,66 @@ entities:
       pos: 65.52396,-13.395477
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11825
     components:
     - type: Transform
       pos: 65.85208,-13.442352
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11826
     components:
     - type: Transform
       pos: 17.877897,-26.451574
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11827
     components:
     - type: Transform
       pos: 17.877897,-26.451574
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11828
     components:
     - type: Transform
       pos: 6.699466,40.553192
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11829
     components:
     - type: Transform
       pos: 6.480716,40.693703
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: PartRodMetal1
   entities:
   - uid: 11830
@@ -80246,50 +80257,55 @@ entities:
       pos: 36.467148,38.49088
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11831
     components:
     - type: Transform
       pos: 58.547253,48.6787
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11832
     components:
     - type: Transform
       pos: 66.52919,38.621952
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11833
     components:
     - type: Transform
       pos: 58.734753,48.4912
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 11834
     components:
     - type: Transform
       pos: 66.58378,38.434452
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: Pen
   entities:
   - uid: 11835
@@ -87871,50 +87887,55 @@ entities:
     - type: InsideEntityStorage
       storage: 6965
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 13083
     components:
     - type: Transform
       pos: 33.519444,-17.381672
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 13084
     components:
     - type: Transform
       pos: 16.999237,-26.465462
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 13085
     components:
     - type: Transform
       pos: 16.999237,-26.465462
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 13086
     components:
     - type: Transform
       pos: 55.510555,17.572374
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
   - uid: 13087
     components:
     - type: Transform
@@ -87922,10 +87943,11 @@ entities:
       pos: 55.527084,17.569584
       parent: 2
     - type: UserInterface
-      actors: {}
       interfaces:
         enum.StackCustomSplitUiKey.Key:
           type: StackCustomSplitBoundUserInterface
+          requireInputValidation: True
+          interactionRange: 2
 - proto: SheetPlasma
   entities:
   - uid: 6967
@@ -89859,6 +89881,15 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: SignIAA
+  entities:
+  - uid: 13288
+    components:
+    - type: Transform
+      pos: -4.5,-6.5
+      parent: 2
+    - type: Fixtures
+      fixtures: {}
 - proto: SignInterrogation
   entities:
   - uid: 13283
@@ -89907,13 +89938,6 @@ entities:
       fixtures: {}
 - proto: SignLawyer
   entities:
-  - uid: 13288
-    components:
-    - type: Transform
-      pos: -4.5,-6.5
-      parent: 2
-    - type: Fixtures
-      fixtures: {}
   - uid: 13289
     components:
     - type: Transform
@@ -91906,6 +91930,18 @@ entities:
     components:
     - type: Transform
       pos: -25.5,-13.5
+      parent: 2
+- proto: SpawnPointLawyer
+  entities:
+  - uid: 16944
+    components:
+    - type: Transform
+      pos: 21.5,30.5
+      parent: 2
+  - uid: 16945
+    components:
+    - type: Transform
+      pos: 21.5,32.5
       parent: 2
 - proto: SpawnPointLibrarian
   entities:
@@ -96800,6 +96836,13 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-7.5
+      parent: 2
+- proto: VendingMachineLegalDrobe
+  entities:
+  - uid: 6635
+    components:
+    - type: Transform
+      pos: 17.5,29.5
       parent: 2
 - proto: VendingMachineMedical
   entities:
@@ -109573,6 +109616,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 72.5,20.5
       parent: 2
+- proto: WindoorSecureCourtroomLocked
+  entities:
+  - uid: 16767
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 22.5,31.5
+      parent: 2
 - proto: WindoorSecureEngineeringLocked
   entities:
   - uid: 16751
@@ -109698,16 +109749,6 @@ entities:
         16712:
         - - DoorStatus
           - Close
-- proto: WindoorSecureSecurityInternalAffairsLocked
-  entities:
-  - uid: 16767
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 22.5,31.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal: []
 - proto: WindoorSecureSecurityLocked
   entities:
   - uid: 16768

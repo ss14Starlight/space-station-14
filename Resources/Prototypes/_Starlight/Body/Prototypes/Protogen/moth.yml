@@ -1,0 +1,53 @@
+- type: body
+  id: ProtoMoth
+  name: proto-moth # Starlight, quotation marks removed
+  root: torso
+  slots:
+    head:
+      part: HeadMoth
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoMoth
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganProtogenHeart
+        lungs: OrganProtogenLungs
+        stomach: OrganProtoMothStomach # Can eat everything.
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmMoth
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmMoth
+      connections:
+      - left hand
+    right hand:
+      part: RightHandMoth
+    left hand:
+      part: LeftHandMoth
+    right leg:
+      part: RightLegMoth
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegMoth
+      connections:
+      - left foot
+    right foot:
+      part: RightFootMoth
+    left foot:
+      part: LeftFootMoth

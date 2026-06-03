@@ -24,6 +24,7 @@
             Botanist: [ 1, 1 ]
             Chef: [ 1, 1 ]
             Janitor: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
             ServiceWorker: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -40,6 +41,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 1, 1 ]
+            Roboticist: [ 1, 1 ]
             ResearchAssistant: [ 1, 1 ]
             #security
             HeadOfSecurity: [ 1, 1 ]

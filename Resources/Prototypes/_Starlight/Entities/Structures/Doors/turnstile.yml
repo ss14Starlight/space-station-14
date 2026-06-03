@@ -14,15 +14,30 @@
   id: TurnstileCentComm
   parent: Turnstile
   name: central command turnstile
-  suffix: Command
   components:
     - type: Sprite
       sprite: _Starlight/Structures/Doors/cc-turnstile.rsi
       layers:
         - state: turnstile
           map: [ "enum.TurnstileVisualLayers.Base" ]
+
+- type: entity
+  id: TurnstileCentCommCommand
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Command
+  components:
     - type: AccessReader
       access: [["Command"]]
+
+- type: entity
+  id: TurnstileCentCommCentralCommand
+  parent: TurnstileCentComm
+  name: central command turnstile
+  suffix: Central Command
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]
 
 - type: entity
   id: TurnstileCentCommDebrief

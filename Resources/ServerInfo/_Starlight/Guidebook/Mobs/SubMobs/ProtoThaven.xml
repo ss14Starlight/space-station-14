@@ -1,0 +1,11 @@
+<Document>
+  # Proto-Thaven
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoThaven" Caption=""/>
+  </Box>
+
+  ## Resistances
+  - Receive [color=#ffa500]15% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]35% less cold damage[/color].
+</Document>

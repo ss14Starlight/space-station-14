@@ -125,6 +125,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
+        - ProtoKin
         - IPC
       inverted: true
 
@@ -160,6 +161,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
+        - ProtoKin
   conflicts:
     - ExtremeLightSensitivity
 
@@ -182,5 +184,6 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
+        - ProtoKin
   conflicts:
     - HighLightSensitivity

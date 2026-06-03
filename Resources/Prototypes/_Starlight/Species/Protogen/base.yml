@@ -1,0 +1,174 @@
+- type: species
+  id: Protogen
+  name: species-name-protogen
+  roundStart: true
+  prototype: MobProtogen
+  sprites: MobProtogenSprites
+  defaultSkinTone: "#ffda93"
+  markingLimits: MobProtogenMarkingLimits
+  dollPrototype: AppearanceProtogen
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  hasSubspecies: true # This is the "parent" species that will be displayed in species list as well as subspecies list
+  subspeciesName: subspecies-name-trueprotogen # This name is dispayed when you're picking subspecies
+  loadout: ProtogenLoadout
+
+- type: speciesBaseSprites
+  id: MobProtogenSprites
+  sprites:
+#   Hair: MobHumanoidAnyMarking not used in this series, but serves as template for others.
+    Head: MobProtogenHead
+    Eyes: MobProtogenEyes
+    Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Chest: MobProtogenTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobProtogenLArm
+    RArm: MobProtogenRArm
+    LHand: MobProtogenLHand
+    RHand: MobProtogenRHand
+    LLeg: MobProtogenLLeg
+    RLeg: MobProtogenRLeg
+    LFoot: MobProtogenLFoot
+    RFoot: MobProtogenRFoot
+
+- type: markingPoints
+  id: MobProtogenMarkingLimits
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor, ProtogenLights, ProtogenLEDFace, ProtogenVisor ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenTail ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenEars ]
+    Chest:
+      points: 4
+      required: false
+    Legs:
+      points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    Arms:
+      points: 4
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobProtogenEyes
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: eyes
+
+- type: humanoidBaseSprite
+  id: MobProtogenAnyMarking
+
+- type: humanoidBaseSprite
+  id: MobProtogenMarkingMatchSkin
+  markingsMatchSkin: true
+
+- type: humanoidBaseSprite
+  id: MobProtogenHead
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobProtogenHeadMale
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobProtogenHeadFemale
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobProtogenTorso
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobProtogenTorsoMale
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobProtogenTorsoFemale
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobProtogenLLeg
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobProtogenLArm
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobProtogenLHand
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobProtogenLFoot
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobProtogenRLeg
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobProtogenRArm
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobProtogenRHand
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobProtogenRFoot
+  baseSprite:
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: r_foot
