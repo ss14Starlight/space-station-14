@@ -95,7 +95,7 @@
       collection: ProtoShadekinWurble
     Snarl:
       collection: ProtoVulpSnarls
-  
+
 - type: emoteSounds
   id: ProtoHumanFSounds
   params:
