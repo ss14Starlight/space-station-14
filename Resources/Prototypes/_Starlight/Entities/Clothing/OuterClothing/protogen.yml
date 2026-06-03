@@ -214,5 +214,5 @@
   - type: Armor
     modifiers: {}
   - type: ExplosionResistance
-    modifiers: {}
+    damageCoefficient: 1.0
   - type: Unremoveable
