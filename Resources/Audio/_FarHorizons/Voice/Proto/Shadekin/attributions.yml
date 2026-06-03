@@ -1,0 +1,8 @@
+# This file, as well as contents of this directory in general, is a copy of Resources/Audio/_Starlight/Voice/Shadekin with minor edits
+- files: ["wurble.ogg", "mar.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from CHOMPStation - added robotics effect by princess_gurchi"
+  source: "https://github.com/CHOMPStation2/CHOMPStation2"
+
+- files: ["scream_m1.ogg", "scream_m2.ogg", "scream_f1.ogg", "scream_f2.ogg"]
+  copyright: "No attribution given at source (Resources/Audio/_Starlight/Voice/Shadekin). - added robotics effect by princess_gurchi"

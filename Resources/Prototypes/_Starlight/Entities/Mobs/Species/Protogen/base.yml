@@ -172,9 +172,9 @@
     allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
-      Male: MaleProtogen
-      Female: FemaleProtogen
-      Unsexed: MaleProtogen
+      Male: ProtoHumanMSounds
+      Female: ProtoHumanFSounds
+      Unsexed: ProtoHumanMSounds
   - type: UniversalHealModifier
     modifier: 0.5
 

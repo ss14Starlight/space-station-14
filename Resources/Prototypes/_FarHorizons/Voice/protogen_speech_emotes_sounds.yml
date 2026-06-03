@@ -1,0 +1,493 @@
+- type: emoteSounds
+  id: ProtoHumanMSounds
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: ProtoHumanMScreams
+    Laugh:
+      collection: ProtoHumanMLaugh
+    Sneeze:
+      collection: ProtoHumanMSneezes
+    Cough:
+      collection: ProtoHumanMCoughs
+    CatMeow:
+      collection: ProtoFelionoidMeow
+    CatHisses:
+      collection: ProtoFelionoidHiss
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    Purr:
+      collection: ProtoFelionoidPurr
+    Yawn:
+      collection: ProtoHumanMYawn
+    Snore:
+      collection: ProtoHumanSnores
+    Sigh:
+      collection: ProtoHumanMSigh
+    Crying:
+      collection: ProtoHumanMCry
+    Whistle:
+      collection: ProtoHumanWhistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+    Mew:
+      collection: ProtoFelionoidMew
+    Meow:
+      collection: ProtoFelionoidMeow
+    Trill:
+      collection: ProtoFelionoidTrill
+    Bark:
+      collection: ProtoVulpBark
+    Yip:
+      collection: ProtoVulpYip
+    Whine:
+      collection: ProtoVulpWhine
+    Growl:
+      collection: ProtoVulpGrowl
+    Howl:
+      collection: ProtoVulpHowl
+    Liss:
+      collection: ProtoReptilianHiss
+    Lurr:
+      collection: ProtoReptilianPurr
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    Squish:
+      collection: Squishes
+    Hisses:
+      collection: ProtoFelionoidHiss
+    Click:
+      path: /Audio/Voice/Arachnid/arachnid_click.ogg
+    Chitter:
+      collection: ProtoMothChitter
+    Squeak:
+      collection: ProtoMothSqueak
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+    Chirp:
+      collection: ProtoResomiChirp
+    Scree:
+      collection: ProtoResomiScrees
+    Call:
+      collection: ProtoResomiCalls
+    Squawk:
+      collection: ProtoResomiSquawk
+    Marr:
+      collection: ProtoShadekinMarr
+    Wurble:
+      collection: ProtoShadekinWurble
+    Snarl:
+      collection: ProtoVulpSnarls
+  
+- type: emoteSounds
+  id: ProtoHumanFSounds
+  params:
+    variation: 0.125
+  sounds:
+    Snarl:
+      collection: ProtoVulpSnarls
+    Marr:
+      collection: ProtoShadekinMarr
+    Wurble:
+      collection: ProtoShadekinWurble
+    Chirp:
+      collection: ProtoResomiChirp
+    Scree:
+      collection: ProtoResomiScrees
+    Call:
+      collection: ProtoResomiCalls
+    Squawk:
+      collection: ProtoResomiSquawk
+    Scream:
+      collection: ProtoHumanFScreams
+    Laugh:
+      collection: ProtoHumanFLaugh
+    Sneeze:
+      collection: ProtoHumanFSneezes
+    Cough:
+      collection: ProtoHumanFCoughs
+    Hisses:
+      collection: ProtoFelionoidHiss
+    Purr:
+      collection: ProtoFelionoidPurr
+    CatMeow:
+      collection: ProtoFelionoidMeow
+    CatHisses:
+      collection: ProtoFelionoidHiss
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    Yawn:
+      collection: ProtoHumanFYawn
+    Snore:
+      collection: ProtoHumanSnores
+    Sigh:
+      collection: ProtoHumanFSigh
+    Crying:
+      collection: ProtoHumanFCry
+    Whistle:
+      collection: ProtoHumanWhistles
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Mew:
+      collection: ProtoFelionoidMew
+    Meow:
+      collection: ProtoFelionoidMeow
+    Trill:
+      collection: ProtoFelionoidTrill
+    Bark:
+      collection: ProtoVulpBark
+    Yip:
+      collection: ProtoVulpYip
+    Whine:
+      collection: ProtoVulpWhine
+    Growl:
+      collection: ProtoVulpGrowl
+    Howl:
+      collection: ProtoVulpHowl
+    Liss:
+      collection: ProtoReptilianHiss
+    Lurr:
+      collection: ProtoReptilianPurr
+    Rattle:
+      path: /Audio/_Starlight/Voice/Reptilian/lizard_rattle.ogg
+    Squish:
+      collection: Squishes
+    Click:
+      path: /Audio/Voice/Arachnid/arachnid_click.ogg
+    Chitter:
+      collection: ProtoMothChitter
+    Squeak:
+      collection: ProtoMothSqueak
+    Beep:
+      path: /Audio/Machines/twobeep.ogg
+    Chime:
+      path: /Audio/Machines/chime.ogg
+    Buzz:
+      path: /Audio/Machines/buzz-sigh.ogg
+    Buzz-Two:
+      path: /Audio/Machines/buzz-two.ogg
+    Honk:
+      path: /Audio/Items/bikehorn.ogg
+    Ping:
+      path: /Audio/Effects/Cargo/ping.ogg
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoResomiMSounds
+  sounds:
+    Scream:
+      collection: ProtoResomiScreams
+    Laugh:
+      collection: ProtoResomiLaugh
+    Whistle:
+      collection: ProtoResomiWhistles
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoResomiFSounds
+  sounds:
+    Scream:
+      collection: ProtoResomiScreams
+    Laugh:
+      collection: ProtoResomiLaugh
+    Whistle:
+      collection: ProtoResomiWhistles
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoVulpMSounds
+  sounds:
+    Sneeze:
+      collection: ProtoVulpSneeze
+    Yawn:
+      collection: ProtoVulpYawns
+    Scream:
+      collection: ProtoVulpScreams
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoVulpFSounds
+  sounds:
+    Sneeze:
+      collection: ProtoVulpSneeze
+    Yawn:
+      collection: ProtoVulpYawns
+    Scream:
+      collection: ProtoVulpScreams
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoReptilianMSounds
+  sounds:
+    Scream:
+      collection: ProtoReptilianScreams
+    Laugh:
+      collection: ProtoReptilianLaugh
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoReptilianFSounds
+  sounds:
+    Scream:
+      collection: ProtoReptilianScreams
+    Laugh:
+      collection: ProtoReptilianLaugh
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoVoxMSounds
+  sounds:
+    Scream:
+      collection: ProtoVoxScreams
+    Laugh:
+      collection: ProtoVoxLaugh
+    Crying:
+      collection: ProtoVoxCry
+    Sigh:
+      collection: ProtoVoxSigh
+    Sneeze:
+      collection: ProtoVoxSneezes
+    Cough:
+      collection: ProtoVoxCoughs
+    Chitter:
+      collection: ProtoVoxChitter
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoVoxFSounds
+  sounds:
+    Scream:
+      collection: ProtoVoxScreams
+    Laugh:
+      collection: ProtoVoxLaugh
+    Crying:
+      collection: ProtoVoxCry
+    Sigh:
+      collection: ProtoVoxSigh
+    Sneeze:
+      collection: ProtoVoxSneezes
+    Cough:
+      collection: ProtoVoxCoughs
+    Chitter:
+      collection: ProtoVoxChitter
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoDionaMSounds
+  sounds:
+    Laugh:
+      collection: DionaLaugh
+    Sneeze:
+      collection: DionaSneeze
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoDionaFSounds
+  sounds:
+    Laugh:
+      collection: DionaLaugh
+    Sneeze:
+      collection: DionaSneeze
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoArachnidMSounds
+  sounds:
+    Scream:
+      collection: ProtoArachnidScreams
+    Laugh:
+      collection: ProtoArachnidLaugh
+    Chitter:
+      collection: ProtoArachnidChitter
+    Crying:
+      collection: ProtoArachnidCry
+    Cough:
+      collection: ProtoArachnidCoughs
+    Yawn:
+      collection: ProtoArachnidYawn
+    Sigh:
+      collection: ProtoArachnidSigh
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoArachnidFSounds
+  sounds:
+    Scream:
+      collection: ProtoArachnidScreams
+    Laugh:
+      collection: ProtoArachnidLaugh
+    Chitter:
+      collection: ProtoArachnidChitter
+    Crying:
+      collection: ProtoArachnidCry
+    Cough:
+      collection: ProtoArachnidCoughs
+    Yawn:
+      collection: ProtoArachnidYawn
+    Sigh:
+      collection: ProtoArachnidSigh
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoMothMSounds
+  sounds:
+    Scream:
+      collection: ProtoMothScreams
+    Laugh:
+      collection: ProtoMothLaugh
+    Crying:
+      collection: ProtoMothCry
+    Cough:
+      collection: ProtoMothCoughs
+    Yawn:
+      collection: ProtoMothYawn
+    Sigh:
+      collection: ProtoMothSigh
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoMothFSounds
+  sounds:
+    Scream:
+      collection: ProtoMothScreams
+    Laugh:
+      collection: ProtoMothLaugh
+    Crying:
+      collection: ProtoMothCry
+    Cough:
+      collection: ProtoMothCoughs
+    Yawn:
+      collection: ProtoMothYawn
+    Sigh:
+      collection: ProtoMothSigh
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoFelionoidMSounds
+  sounds:
+    Scream:
+      collection: ProtoFelionoidScreams
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoFelionoidFSounds
+  sounds:
+    Scream:
+      collection: ProtoFelionoidScreams
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoCycloriteMSounds
+  sounds:
+    Scream:
+      collection: ProtoCycloriteScreams
+    Laugh:
+      collection: ProtoCycloriteLaugh
+    Sneeze:
+      collection: ProtoCycloriteCoughs
+    Cough:
+      collection: ProtoCycloriteCoughs
+    Crying:
+      collection: ProtoCycloriteScreams
+    Whistle:
+      collection: ProtoCycloriteWhistles
+    Yawn:
+      collection: ProtoCycloriteYawn
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoCycloriteFSounds
+  sounds:
+    Scream:
+      collection: ProtoCycloriteScreams
+    Laugh:
+      collection: ProtoCycloriteLaugh
+    Sneeze:
+      collection: ProtoCycloriteCoughs
+    Cough:
+      collection: ProtoCycloriteCoughs
+    Crying:
+      collection: ProtoCycloriteScreams
+    Whistle:
+      collection: ProtoCycloriteWhistles
+    Yawn:
+      collection: ProtoCycloriteYawn
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoAvaliMSounds
+  sounds:
+    Scream:
+      collection: ProtoAvaliScreams
+    Laugh:
+      collection: ProtoAvaliLaugh
+    Crying:
+      collection: ProtoAvaliCry
+    Whistle:
+      collection: ProtoResomiWhistles
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoAvaliFSounds
+  sounds:
+    Scream:
+      collection: ProtoAvaliScreams
+    Laugh:
+      collection: ProtoAvaliLaugh
+    Crying:
+      collection: ProtoAvaliCry
+    Whistle:
+      collection: ProtoResomiWhistles
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanMSounds
+  id: ProtoShadekinMSounds
+  sounds:
+    Scream:
+      collection: ProtoShadekinMScreams
+    Growl:
+      collection: ProtoFelionoidGrowl
+
+- type: emoteSounds
+  parent: ProtoHumanFSounds
+  id: ProtoShadekinFSounds
+  sounds:
+    Scream:
+      collection: ProtoShadekinMScreams
+    Growl:
+      collection: ProtoFelionoidGrowl

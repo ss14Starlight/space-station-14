@@ -1,0 +1,15 @@
+# This file, as well as contents of this directory in general, is a copy of Resources/Audio/_Starlight/Voice/Avali and Resources/Audio/_Starlight/Effects with minor edits
+- files: ["avali_laugh"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Made by @randomposter. with sounds taken from Steam 'Avali sounds' mod / Starbound. Made by Steam user: https://steamcommunity.com/id/Nefuki with permission. - added robotics effect by princess_gurchi"
+  source: "https://discord.com/channels/1168210010233376858/1168217282988757116/1316157844281884752"
+
+- files: ["avali_cry"]
+  license: "CC-BY-NC-SA-4.0"
+  copyright: "Voice made by @lillian_industries (Discord) and editted by Huaqas (Discord). - added robotics effect by princess_gurchi"
+  source: "https://discord.com/channels/1322447119252062260/1380861162362503371/1381604298735095921"
+
+- files: ["avali_scream"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Taken from Steam mod / Starbound. Made by Steam user: https://steamcommunity.com/id/wonky2 with permission. - added robotics effect by princess_gurchi"
+  source: "https://steamcommunity.com/sharedfiles/filedetails/?id=3001955034"

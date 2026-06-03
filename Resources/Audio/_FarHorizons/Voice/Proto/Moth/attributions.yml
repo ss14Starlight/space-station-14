@@ -1,0 +1,30 @@
+# This file, as well as contents of this directory in general, is a copy of Resources/Audio/Voice/Moth and Resources/Audio/_Starlight/Voice/Moth with minor edits
+- files: ["moth_scream.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from https://github.com/tgstation/tgstation/commit/31c19654e0f641166ecd80c672ea05362fd19488 - added robotics effect by princess_gurchi"
+  source: "https://github.com/tgstation/tgstation/commits/master/sound/voice/moth/scream_moth.ogg"
+
+- files: ["moth_laugh.ogg, moth_chitter.ogg, moth_squeak.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Taken from https://github.com/BeeStation/BeeStation-Hornet/commit/11ba3fa04105c93dd96a63ad4afaef4b20c02d0d - added robotics effect by princess_gurchi"
+  source: "https://github.com/BeeStation/BeeStation-Hornet/blob/11ba3fa04105c93dd96a63ad4afaef4b20c02d0d/sound/emotes/"
+  
+- files: ["moth_cough.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by elim Guerrero Ruz on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github). - added robotics effect by princess_gurchi"
+  source: "https://www.inaturalist.org/observations/99285950"
+
+- files: ["moth_cry.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Tobias Gratzer on iNaturalist.org, modified by Entings (Github) and honeyed-lemons (Github). - added robotics effect by princess_gurchi"
+  source: "https://www.inaturalist.org/observations/246194812"
+
+- files: ["moth_sigh.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Brad Walker on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github). - added robotics effect by princess_gurchi"
+  source: "https://www.inaturalist.org/observations/64873292"
+
+- files: ["moth_yawn.ogg"]
+  license: "CC-BY-NC-4.0"
+  copyright: "Recorded by Jonathan Fréchette on iNaturalist.org, modified by Squamatic (Github) and honeyed-lemons (Github). - added robotics effect by princess_gurchi"
+  source: "https://www.inaturalist.org/observations/32944727"
