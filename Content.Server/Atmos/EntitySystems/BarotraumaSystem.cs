@@ -141,6 +141,11 @@ namespace Content.Server.Atmos.EntitySystems
                 {
                     var found = false;
 
+                    var groupHPModifier = 0f;
+                    var groupHPMultiplier = 1f;
+                    var groupLPModifier = 0f;
+                    var groupLPMultiplier = 1f;
+
                     foreach (var slot in group)
                     {
                         if (!TryGetProtectionFromSlot(uid, slot, inv, contMan,
@@ -152,11 +157,10 @@ namespace Content.Server.Atmos.EntitySystems
 
                         found = true;
 
-                        hPModifier = Math.Max(hPModifier, itemHighModifier.Value);
-                        hPMultiplier = Math.Max(hPMultiplier, itemHighMultiplier.Value);
-                        lPModifier = Math.Min(lPModifier, itemLowModifier.Value);
-                        lPMultiplier = Math.Min(lPMultiplier, itemLowMultiplier.Value);
-                        break;
+                        groupHPModifier = Math.Max(groupHPModifier, itemHighModifier.Value);
+                        groupHPMultiplier = Math.Max(groupHPMultiplier, itemHighMultiplier.Value);
+                        groupLPModifier = Math.Min(groupLPModifier, itemLowModifier.Value);
+                        groupLPMultiplier = Math.Min(groupLPMultiplier, itemLowMultiplier.Value);
                     }
 
                     if (!found)
@@ -167,6 +171,11 @@ namespace Content.Server.Atmos.EntitySystems
                         lPMultiplier = 1f;
                         break;
                     }
+
+                    hPModifier = Math.Max(hPModifier, groupHPModifier);
+                    hPMultiplier = Math.Max(hPMultiplier, groupHPMultiplier);
+                    lPModifier = Math.Min(lPModifier, groupLPModifier);
+                    lPMultiplier = Math.Min(lPMultiplier, groupLPMultiplier);
                 }
                 #endregion
 
