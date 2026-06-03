@@ -15,6 +15,7 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - Hybrid
 
 # Blackstar Combat Suit
 - type: entity

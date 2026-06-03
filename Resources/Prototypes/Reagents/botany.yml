@@ -257,6 +257,12 @@
         - !type:ReagentCondition
           reagent: Ammonia
           min: 1
+        # Starlight-start
+        - !type:HasComponentsCondition
+          inverted: true
+          components:
+          - type: TerrorSpider
+        # Starlight-end
         ignoreResistances: true
         damage:
           types:
@@ -270,6 +276,12 @@
         - !type:ReagentCondition
           reagent: Ammonia
           min: 0.8
+        # Starlight-start
+        - !type:HasComponentsCondition
+          inverted: true
+          components:
+          - type: TerrorSpider
+        # Starlight-end
       - !type:PopupMessage
         type: Local
         visualType: Medium

@@ -115,7 +115,7 @@ public sealed class CardSelectionEui : BaseEui
                         .AddClass("CardBanner")
                         .Modulate(card.Color)
                         .Label(x => x.WithText(card.Icon)
-                                    .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 32)
+                                    .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 32)
                                     .WithMargin(new Thickness(-7, 0, -11, -4))
                                     .WithMouseFilter(Control.MouseFilterMode.Pass)
                                     .WhenMouseEntered(_ => panel.Modulate(Color.ForestGreen))
@@ -133,7 +133,7 @@ public sealed class CardSelectionEui : BaseEui
 
                     if (card.CreditReward is { } creditReward)
                         box.Label(x => x.WithText("")
-                                .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 24)
+                                .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 24)
                                 .WithMouseFilter(Control.MouseFilterMode.Pass)
                                 .WithTooltip(Loc.GetString("rr-credit-reward", ("Min", creditReward.Min), ("Max", creditReward.Max)))
                                 .WhenMouseEntered(_ => x.Modulate(Color.Cyan))
@@ -142,7 +142,7 @@ public sealed class CardSelectionEui : BaseEui
 
                     if (card.HasSecretAccess)
                         box.Label(x => x.WithText("")
-                                .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 24)
+                                .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 24)
                                 .WithMouseFilter(Control.MouseFilterMode.Pass)
                                 .WithTooltip(Loc.GetString("rr-secret-access-hint"))
                                 .WhenMouseEntered(_ => x.Modulate(Color.Cyan))

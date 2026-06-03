@@ -666,7 +666,9 @@
       table: !type:GroupSelector
         children:
         - id: MobMonkey
-          weight: 95.0
+          weight: 80.0 # Starlight
+        - id: MobMonkeyAdvanced # Starlight
+          weight: 15.0 # Starlight
         - id: MobGorilla
           weight: 5.0
 

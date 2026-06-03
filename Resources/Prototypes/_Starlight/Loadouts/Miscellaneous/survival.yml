@@ -4,6 +4,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Shadekin
+    - ProtoKin
 
 - type: loadoutEffectGroup
   id: OxygenBreatherDwarf
@@ -11,6 +12,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Dwarf
+    - ProtoDwarf
 
 - type: loadoutEffectGroup
   id: IPC
@@ -175,6 +177,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Elf
+    - ProtoElf
 
 - type: loadout
   id: EmergencyNonbreatherSecurity
