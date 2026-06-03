@@ -47,16 +47,6 @@
     - /Audio/_FarHorizons/Voice/Proto/Moth/moth_scream.ogg
 
 - type: soundCollection
-  id: ProtoResomiScreams
-  files:
-    - /Audio/_FarHorizons/Voice/Proto/Resomi/resomi_scream.ogg
-
-- type: soundCollection
-  id: ProtoReptilianScreams
-  files:
-    - /Audio/_FarHorizons/Voice/Proto/Reptilian/reptilian_scream.ogg
-
-- type: soundCollection
   id: ProtoShadekinMScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_m1.ogg

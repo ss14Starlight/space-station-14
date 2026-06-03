@@ -19,11 +19,6 @@
   license: CC-BY-SA-3.0
   source: https://github.com/BlackMajor/Citadel-Station-13/blob/c2b09cf3ee949e9454a10d8f8fa40296bf435428/modular_citadel/sound/voice/raptor_purr.ogg
 
-- files: [reptilian_scream.ogg]
-  copyright: '"scream_lizard.ogg" by Skyrat-SS13 - added robotics effect by princess_gurchi'
-  license:
-  source: https://github.com/Skyrat-SS13/Skyrat-tg/pull/892
-
 - files: ["lizard_happy.ogg"]
   license: "CC-BY-NC-SA-4.0"
   copyright: "Provided by DaturoDewitt. Created using transformed and layered samples bundled with Logic Pro X - added robotics effect by princess_gurchi"

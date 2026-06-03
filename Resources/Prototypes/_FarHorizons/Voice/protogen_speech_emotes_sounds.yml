@@ -162,7 +162,7 @@
     Yip:
       collection: ProtoVulpYip
     Whine:
-      collection: ProtoVulpWhine
+      collection: Whine # Starlight
     Growl:
       collection: ProtoVulpGrowl
     Howl:
@@ -199,7 +199,7 @@
   id: ProtoResomiMSounds
   sounds:
     Scream:
-      collection: ProtoResomiScreams
+      collection: ProtoAvaliScreams # Starlight
     Laugh:
       collection: ProtoResomiLaugh
     Whistle:
@@ -212,7 +212,7 @@
   id: ProtoResomiFSounds
   sounds:
     Scream:
-      collection: ProtoResomiScreams
+      collection: ProtoAvaliScreams # Starlight
     Laugh:
       collection: ProtoResomiLaugh
     Whistle:
@@ -247,7 +247,7 @@
   id: ProtoReptilianMSounds
   sounds:
     Scream:
-      collection: ProtoReptilianScreams
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
     Laugh:
       collection: ProtoReptilianLaugh
 
@@ -256,7 +256,7 @@
   id: ProtoReptilianFSounds
   sounds:
     Scream:
-      collection: ProtoReptilianScreams
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg # Starlight
     Laugh:
       collection: ProtoReptilianLaugh
 
@@ -479,7 +479,7 @@
   id: ProtoShadekinMSounds
   sounds:
     Scream:
-      collection: ProtoShadekinMScreams
+      collection: ShadekinMaleScreams # Starlight
     Growl:
       collection: ProtoFelionoidGrowl
 
@@ -488,6 +488,6 @@
   id: ProtoShadekinFSounds
   sounds:
     Scream:
-      collection: ProtoShadekinMScreams
+      collection: ShadekinFemaleScreams # Starlight
     Growl:
       collection: ProtoFelionoidGrowl

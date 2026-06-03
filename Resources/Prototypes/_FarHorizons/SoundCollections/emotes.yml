@@ -1,3 +1,4 @@
+# Selective non-NC content taken only.
 - type: soundCollection
   id: ProtoHumanMLaugh
   files:
@@ -88,22 +89,6 @@
   id: ProtoVulpHowl
   files:
   - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/howl.ogg
-
-- type: soundCollection
-  id: ProtoVulpWhine
-  files:
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_1.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_2.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_3.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_4.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_5.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_6.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_7.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_8.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_9.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_10.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_11.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/whine_12.ogg
 
 - type: soundCollection
   id: ProtoFelionoidGrowl
