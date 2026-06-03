@@ -53,13 +53,14 @@
     - type: ItemPrice
       priceCategory: miscellaneous
     - type: SurgeryTool
+      behavior:
+        successRate: 0.6 # really not ideal, but in a pinch...
+        speed: 0.7
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+        endSound:
+          path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
     - type: Retractor
-      successRate: 0.6 # really not ideal, but in a pinch...
-      speed: 1.5
-      startSound:
-        path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
-      endSound:
-        path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
   # 🌟Starlight-end🌟
 
 - type: entity

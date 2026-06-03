@@ -10,9 +10,10 @@
     - 0,0,1,1
     - 0,0,1,1
   - type: SurgeryTool
-    speed: 2
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+    behavior:
+      speed: 2
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
 
 - type: entity
   name: drill
@@ -23,9 +24,10 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: drill
   - type: SurgeryTool
-    speed: 2
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+    behavior:
+      speed: 2
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -39,9 +41,10 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: drillripper
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

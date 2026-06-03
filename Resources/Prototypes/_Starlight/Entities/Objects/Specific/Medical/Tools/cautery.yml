@@ -6,11 +6,12 @@
   - type: Sprite
     state: abductor
   - type: SurgeryTool
-    speed: 2
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+    behavior:
+      speed: 2
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
 
 - type: entity
   name: cautery
@@ -21,11 +22,12 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: cautery
   - type: SurgeryTool
-    speed: 2
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+    behavior:
+      speed: 2
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -39,11 +41,12 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: cauteryripper
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

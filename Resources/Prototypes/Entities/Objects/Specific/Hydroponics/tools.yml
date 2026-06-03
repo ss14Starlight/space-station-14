@@ -108,13 +108,14 @@
       Steel: 100
   # 🌟Starlight-start🌟
   - type: SurgeryTool
+    behavior:
+      successRate: 0.4
+      speed: 1.25
+      startSound:
+        path: /Audio/Effects/chop.ogg
+      endSound:
+        path: /Audio/Effects/chop.ogg
   - type: BoneSaw
-    successRate: 0.4
-    speed: 0.8
-    startSound:
-      path: /Audio/Effects/chop.ogg
-    endSound:
-      path: /Audio/Effects/chop.ogg
   # 🌟Starlight-end🌟
 
 - type: entity

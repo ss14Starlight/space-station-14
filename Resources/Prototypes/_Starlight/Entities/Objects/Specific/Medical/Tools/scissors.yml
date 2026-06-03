@@ -13,11 +13,12 @@
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     storedRotation: 90
   - type: SurgeryTool
-    speed: 2.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+    behavior:
+      speed: 2.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
 
 - type: entity
   name: retractor
@@ -29,11 +30,12 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: retractor
   - type: SurgeryTool
-    speed: 2.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+    behavior:
+      speed: 2.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -48,11 +50,12 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: retractorripper
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9
@@ -72,9 +75,10 @@
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
     state: abductor-hemostat
   - type: SurgeryTool
-    speed: 2.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+    behavior:
+      speed: 2.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
 
 - type: entity
   name: hemostat
@@ -86,9 +90,10 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: hemostat
   - type: SurgeryTool
-    speed: 2.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+    behavior:
+      speed: 2.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -103,9 +108,10 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: hemostatripper
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9
@@ -128,9 +134,10 @@
     heldPrefix: setter
     storedRotation: 90
   - type: SurgeryTool
-    speed: 2.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    behavior:
+      speed: 2.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
 
 - type: entity
   name: bone setter
@@ -142,9 +149,10 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: bonesetter
   - type: SurgeryTool
-    speed: 2.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    behavior:
+      speed: 2.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -159,9 +167,10 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: bonesetterripper
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

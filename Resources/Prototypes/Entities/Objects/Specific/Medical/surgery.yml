@@ -11,7 +11,9 @@
   - type: Tag
     tags:
     - SurgeryTool
+  # Starlight-start
   - type: SurgeryTool
+  # Starlight-end
 # Cautery
 
 - type: entity
@@ -32,12 +34,15 @@
         Heat: 5
     soundHit:
       path: /Audio/Effects/lightburn.ogg
+  # Starlight-start
   - type: SurgeryTool
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+    behavior:
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
+  # Starlight-end
 
 # Drill
 
@@ -63,10 +68,13 @@
       path: /Audio/Items/drill_hit.ogg
   - type: StaticPrice
     price: 40
+  # Starlight-start
   - type: SurgeryTool
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+    behavior:
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
   - type: SurgicalDrill
+  # Starlight-end
 
 # Scalpel
 
@@ -100,12 +108,15 @@
         Slash: 8
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
+  # Starlight-start
   - type: Scalpel
   - type: SurgeryTool
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+    behavior:
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  # Starlight-end
 
 - type: entity
   name: shiv
@@ -117,12 +128,15 @@
     state: shiv
   - type: Item
     heldPrefix: shiv
-  - type: SurgeryTool #Starlight
-    speed: 1.4
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  # Starlight-start
+  - type: SurgeryTool
+    behavior:
+      speed: 0.7
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  # Starlight-end
   - type: Fixtures
     fixtures:
       fix1:
@@ -149,13 +163,16 @@
     damage:
       types:
         Slash: 12
+  # Starlight-start
   - type: SurgeryTool
-    speed: 0.6
-    successRate: 1.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+    behavior:
+      speed: 1.7
+      successRate: 1.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  # Starlight-end
 
 - type: entity
   name: laser scalpel
@@ -167,14 +184,30 @@
     state: laser
   - type: Item
     heldPrefix: laser
+  # Starlight-start
   - type: Hemostat
   - type: Cautery
-  - type: SurgeryTool
-    speed: 0.3
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  - type: MultipleSurgeryTool
+    behaviors:
+      Hemostat:
+        speed: 3.5
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+        endSound:
+          path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+      Cautery:
+        speed: 3.5
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+        endSound:
+          path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+      Scalpel:
+        speed: 3.5
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+        endSound:
+          path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+  # Starlight-end
 
 # Scissors
 - type: entity
@@ -194,14 +227,17 @@
   parent: BaseScissors
   description: A surgical tool used to hold open incisions.
   components:
+  # Starlight-start
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
   - type: Retractor
   - type: SurgeryTool
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+    behavior:
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+  # Starlight-end
 
 - type: entity
   name: advanced retractor
@@ -209,19 +245,22 @@
   parent: Retractor
   description: A surgical tool used to hold open incisions.
   components:
+  # Starlight-start
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: advanced-retractor
   - type: Item
     sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     storedRotation: 45
   - type: SurgeryTool
-    speed: 0.6
-    successRate: 1.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+    behavior:
+      speed: 1.7
+      successRate: 1.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/retractor2.ogg
+  # Starlight-end
 
 - type: entity
   name: hemostat
@@ -229,16 +268,19 @@
   parent: BaseScissors
   description: A surgical tool used to compress blood vessels to prevent bleeding.
   components:
+  # Starlight-start
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: hemostat
   - type: Item
     heldPrefix: hemostat
     storedRotation: 90
   - type: SurgeryTool
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+    behavior:
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
   - type: Hemostat
+  # Starlight-end
 
 - type: entity
   name: advanced hemostat
@@ -246,14 +288,17 @@
   parent: Hemostat
   description: A surgical tool used to compress blood vessels to prevent bleeding.
   components:
+  # Starlight-start
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: advanced-hemostat
   - type: SurgeryTool
-    speed: 0.6
-    successRate: 1.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+    behavior:
+      speed: 1.7
+      successRate: 1.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+  # Starlight-end
 
 - type: entity
   name: bone setter
@@ -261,16 +306,19 @@
   parent: BaseScissors
   description: A surgical tool used for setting bones.
   components:
+  # Starlight-start
   - type: Sprite
-    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi #Starlight
+    sprite: _Starlight/Objects/Specific/Medical/scissors.rsi
     state: setter
   - type: Item
     heldPrefix: setter
     storedRotation: 90
   - type: BoneSetter
   - type: SurgeryTool
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    behavior:
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+  # Starlight-end
 
 - type: entity
   name: advanced bone setter
@@ -278,21 +326,24 @@
   parent: BoneSetter
   description: A surgical tool used for setting bones. It also breaks them quite well.
   components:
+  # Starlight-start
   - type: MeleeWeapon
     damage:
       groups:
         Brute: 15
   - type: Sprite
-    sprite: Objects/Specific/Medical/Surgery/scissors.rsi # Starlight
+    sprite: Objects/Specific/Medical/Surgery/scissors.rsi
     state: advanced-setter
   - type: Item
     heldPrefix: setter
     storedRotation: 45
   - type: SurgeryTool
-    speed: 0.6
-    successRate: 1.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    behavior:
+      speed: 1.7
+      successRate: 1.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+  # Starlight-end
 
 # Saws
 
@@ -316,10 +367,13 @@
   - type: Tool
     qualities:
       - Sawing
+  # Starlight-start
   - type: SurgeryTool
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_saw.ogg
+    behavior:
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_saw.ogg
   - type: BoneSaw
+  # Starlight-end
 
 # No melee for regular saw because have you ever seen someone use a band saw as a weapon? It's dumb.
 
@@ -342,11 +396,14 @@
       path: /Audio/Weapons/bladeslice.ogg
   - type: Tool
     speedModifier: 0.5
+  # Starlight-start
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_saw.ogg
+    behavior:
+      speed: 1.25
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/bone_saw.ogg
   - type: BoneSaw
+  # Starlight-end
 
 - type: entity
   name: circular saw
@@ -366,12 +423,15 @@
       path: /Audio/Items/drill_hit.ogg
   - type: Tool
     speedModifier: 1.5
+  # Starlight-start
   - type: SurgeryTool
-    speed: 0.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
-    endSound:
-      path: /Audio/Items/drill_hit.ogg
+    behavior:
+      speed: 2
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+      endSound:
+        path: /Audio/Items/drill_hit.ogg
+  # Starlight-end
 
 - type: entity
   name: advanced circular saw
@@ -387,13 +447,16 @@
     attackRate: 1.5
   - type: Tool
     speedModifier: 2.0
+  # Starlight-start
   - type: SurgeryTool
-    speed: 0.2
-    successRate: 1.5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
-    endSound:
-      path: /Audio/Items/drill_hit.ogg
+    behavior:
+      speed: 5
+      successRate: 1.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+      endSound:
+        path: /Audio/Items/drill_hit.ogg
+  # Starlight-end
 
 # BoneGel
 

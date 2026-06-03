@@ -6,11 +6,12 @@
   - type: Sprite
     state: abductor
   - type: SurgeryTool
-    speed: 5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+    behavior:
+      speed: 5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 
 - type: entity
   name: scalpel
@@ -21,11 +22,12 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: scalpel
   - type: SurgeryTool
-    speed: 5
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+    behavior:
+      speed: 5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -39,11 +41,12 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: scalpelripper
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

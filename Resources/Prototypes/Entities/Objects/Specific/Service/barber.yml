@@ -30,10 +30,11 @@
       path: "/Audio/Weapons/bladeslice.ogg"
   # 🌟Starlight-start🌟
   - type: SurgeryTool
-    successRate: 0.1 # Using something sharp as a hemostat is very dangerous
-    speed: 0.7
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+    behavior:
+      successRate: 0.1 # Using something sharp as a hemostat is very dangerous
+      speed: 0.7
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
   - type: Hemostat
   # 🌟Starlight-end🌟
   - type: PhysicalComposition

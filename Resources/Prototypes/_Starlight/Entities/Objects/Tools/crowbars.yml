@@ -35,9 +35,10 @@
       - Crowbar
   - type: SurgeryTool
     behavior:
-      startSound:
-        path: /Audio/Items/crowbar.ogg
-      speed: 0.7
+      behavior:
+        startSound:
+          path: /Audio/Items/crowbar.ogg
+        speed: 0.7
 
 - type: entity
   name: improvised crowbar

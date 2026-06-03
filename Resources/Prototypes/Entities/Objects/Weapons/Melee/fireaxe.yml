@@ -52,12 +52,13 @@
     fireStacks: -4
   # 🌟Starlight-start🌟
   - type: SurgeryTool
-    successRate: 0.6
-    speed: 1.7
-    startSound:
-      path: "/Audio/Effects/chop.ogg"
-    endSound:
-      path: "/Audio/Effects/chop.ogg"
+    behavior:
+      successRate: 0.6
+      speed: 1.7
+      startSound:
+        path: "/Audio/Effects/chop.ogg"
+      endSound:
+        path: "/Audio/Effects/chop.ogg"
   - type: BoneSaw
   # 🌟Starlight-end🌟
 

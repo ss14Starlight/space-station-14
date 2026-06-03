@@ -54,7 +54,8 @@
     sprite: _Starlight/Objects/Specific/Medical/surgery.rsi
     state: bonegel
   - type: SurgeryTool
-    speed: 0.4
+    behavior:
+      speed: 2.5
   - type: Tag
     tags:
       - CyberHandItem
@@ -69,9 +70,8 @@
     sprite: Objects/Specific/Medical/Surgery/bone_gel.rsi
     state: bone-gel
   - type: SurgeryTool
-    speed: 1
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/bone_setter.ogg
+    behavior:
+      speed: 1
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

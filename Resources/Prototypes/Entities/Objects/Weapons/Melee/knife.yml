@@ -33,12 +33,13 @@
         useSound: /Audio/Items/screwdriver.ogg
         SpeedModifier: 0.05
   - type: SurgeryTool
+    behavior:
+      successRate: 0.9
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
   - type: Scalpel
-    successRate: 0.9
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
 # Starlight end
 
 - type: entity

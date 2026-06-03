@@ -49,11 +49,12 @@
     delay: 1
 # Starlight-start
   - type: SurgeryTool
-    successRate: 0.5
-    speed: 5 #Chainsaws are very fast
-    startSound:
-      path: /Audio/Weapons/chainsawwield.ogg
-    endSound:
-      path: /Audio/Weapons/chainsaw.ogg
+    behavior:
+      successRate: 0.5
+      speed: 5 #Chainsaws are very fast
+      startSound:
+        path: /Audio/Weapons/chainsawwield.ogg
+      endSound:
+        path: /Audio/Weapons/chainsaw.ogg
   - type: BoneSaw
 # Starlight-end

@@ -9,11 +9,12 @@
   - type: Tool
     speedModifier: 0.4
   - type: SurgeryTool
-    speed: 10
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
-    endSound:
-      path: /Audio/Items/drill_hit.ogg
+    behavior:
+      speed: 10
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+      endSound:
+        path: /Audio/Items/drill_hit.ogg
 
 - type: entity
   name: circular saw
@@ -27,11 +28,12 @@
   - type: Tool
     speedModifier: 0.4
   - type: SurgeryTool
-    speed: 10
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
-    endSound:
-      path: /Audio/Items/drill_hit.ogg
+    behavior:
+      speed: 10
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+      endSound:
+        path: /Audio/Items/drill_hit.ogg
   - type: Tag
     tags:
       - CyberHandItem
@@ -48,11 +50,12 @@
   - type: Tool
     speedModifier: 1
   - type: SurgeryTool
-    speed: 0.8
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/saw.ogg
-    endSound:
-      path: /Audio/Items/drill_hit.ogg
+    behavior:
+      speed: 0.8
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/saw.ogg
+      endSound:
+        path: /Audio/Items/drill_hit.ogg
   - type: HeldSpeedModifier
     walkModifier: 1
     sprintModifier: 0.9

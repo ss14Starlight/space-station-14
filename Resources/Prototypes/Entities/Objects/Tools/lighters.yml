@@ -6,11 +6,13 @@
   components:
 # Starlight-start
   - type: SurgeryTool
-    successRate: 0.1
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
+    behavior:
+      successRate: 0.8
+      speed: 0.5
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
 # Starlight-end
   - type: IgnitionSource

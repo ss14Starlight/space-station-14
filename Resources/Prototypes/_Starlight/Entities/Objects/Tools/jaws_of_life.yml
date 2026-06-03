@@ -68,12 +68,20 @@
     soundHit:
       collection: MetalThud
   # 🌟Starlight-start🌟
-  - type: SurgeryTool
+  - type: MultipleSurgeryTool
+    behaviors:
+      Tool:
+        speed: 1.25
+        startSound:
+          path: /Audio/Items/jaws_cut.ogg
+        endSound:
+          path: /Audio/Items/change_jaws.ogg
+      BoneSaw:
+        successRate: 0.8
+        speed: 1.25
+        startSound:
+          path: /Audio/Items/jaws_cut.ogg
+        endSound:
+          path: /Audio/Items/change_jaws.ogg
   - type: BoneSaw
-    successRate: 0.8
-    speed: 0.8
-    startSound:
-      path: /Audio/Items/jaws_cut.ogg
-    endSound:
-      path: /Audio/Items/change_jaws.ogg
   # 🌟Starlight-end🌟

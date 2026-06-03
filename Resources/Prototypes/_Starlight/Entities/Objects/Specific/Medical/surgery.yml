@@ -11,8 +11,9 @@
     sprite: _Starlight/Objects/Decoration/Flora/Abyss/obelisk.rsi
     state: obelisk01
   - type: SurgeryTool
-    speed: 10
-    alwaysSuccess: true
+    behavior:
+      speed: 10
+      alwaysSuccess: true
   - type: Scalpel
   - type: Cautery
   - type: SurgicalDrill
@@ -26,3 +27,11 @@
       reagents:
       - ReagentId: BoneGel
         Quantity: 5
+  - type: Tool
+    qualities:
+      - Anchoring # Wrench Surgery
+      - Prying    # Crowbar Surgery
+      - Screwing  # Screwdriver Surgery
+      - Cutting   # Wirecutter Surgery
+      - Welding   # Welder Surgery
+      - Pulsing   # Multitool Surgery (Currently Unused)

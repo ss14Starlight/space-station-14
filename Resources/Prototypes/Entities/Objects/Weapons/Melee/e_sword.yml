@@ -91,19 +91,22 @@
   - type: IgnitionSource
     temperature: 700
   # 🌟Starlight-start🌟
-  - type: SurgeryTool
+  - type: MultipleSurgeryTool
+    behaviors:
+      Scalpel:
+        successRate: 0.6
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
+        endSound:
+          path: /Audio/_Starlight/Medical/Surgery/scalpel2.ogg
+      Cautery:
+        successRate: 0.6
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+        endSound:
+          path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Scalpel
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
-    successRate: 0.6
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   # 🌟Starlight-end🌟
 
 - type: entity

@@ -66,12 +66,13 @@
     color: "#93F02E"
   - type: Unremoveable
   - type: SurgeryTool
+    behavior:
+      successRate: 1
+      startSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+      endSound:
+        path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
-    successRate: 1
-    startSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
-    endSound:
-      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: IgnitionSource
     ignited: true
   - type: TimedDespawn

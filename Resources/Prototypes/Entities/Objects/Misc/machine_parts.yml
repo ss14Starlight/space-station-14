@@ -37,9 +37,10 @@
     - type: ItemPrice
       priceCategory: tool_cheap
     - type: SurgeryTool
-      successRate: 0.3 # These are crude but, can grab things
-      speed: 0.7
-      startSound:
-        path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
+      behavior:
+        successRate: 0.3 # These are crude but, can grab things
+        speed: 0.7
+        startSound:
+          path: /Audio/_Starlight/Medical/Surgery/hemostat1.ogg
     - type: Hemostat
     # 🌟Starlight-end🌟

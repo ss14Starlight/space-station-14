@@ -43,12 +43,13 @@
   - type: Item
     sprite: _Starlight/Objects/Weapons/Melee/cyberchainsaw.rsi
   - type: SurgeryTool
-    successRate: 0.6
-    speed: 5
-    startSound:
-      path: /Audio/Weapons/chainsawwield.ogg
-    endSound:
-      path: /Audio/Weapons/chainsaw.ogg
+    behavior:
+      successRate: 0.6
+      speed: 5
+      startSound:
+        path: /Audio/Weapons/chainsawwield.ogg
+      endSound:
+        path: /Audio/Weapons/chainsaw.ogg
   - type: BoneSaw
   - type: Tag
     tags:
