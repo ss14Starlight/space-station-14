@@ -396,7 +396,7 @@
 
 - type: entity
   name: green energy shield
-  parent: [BaseItem, BaseSyndicateContraband]
+  parent: [BaseItem, BaseCentcommContraband ]
   id: GreenEnergyShield
   description: Exotic energy shield, when folded, can even fit in your pocket.
   components:
@@ -423,6 +423,23 @@
           visible: false
           shader: unshaded
           map: [ "shield" ]
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellSmall
+          whitelist:
+            tags:
+              - PowerCell
+              - PowerCellSmall
+    - type: PowerCellDraw
+      drawRate: 1
+      useCharge: 0
     - type: Item
       size: Small
       sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi

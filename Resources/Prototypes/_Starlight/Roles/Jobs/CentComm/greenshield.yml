@@ -186,7 +186,7 @@
       sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
       state: bag
     - type: AccessReader
-      access: [["CentralCommand"]]
+      access: [["BlueShield"]]
     - type: Destructible
       thresholds:
         - trigger:
@@ -225,7 +225,7 @@
       autoUnlock: true
       autoLock: true
     - type: AccessReader
-      access: [ [ "CentralCommand" ] ]
+      access: [ [ "BlueShield" ] ]
     - type: Item
       size: Small
       shape:

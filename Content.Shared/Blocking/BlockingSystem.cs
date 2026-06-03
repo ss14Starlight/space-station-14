@@ -9,6 +9,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
+using Content.Shared.PAI;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Toggleable;
@@ -173,7 +174,7 @@ public sealed partial class BlockingSystem : EntitySystem
             var mobQuery = GetEntityQuery<MobStateComponent>();
             foreach (var uid in intersecting)
             {
-                if (uid != user && mobQuery.HasComponent(uid))
+                if (uid != user && mobQuery.HasComponent(uid) && !HasComp<PAIComponent>(uid)) //Starlight edit, pai's being in a player inventory otherwise blocks shield deployment, not a very robust solution (mouse in pocket) but not sure how else to do it.
                 {
                     TooCloseError(user);
                     return false;
