@@ -1,0 +1,109 @@
+- type: entity
+  save: false
+  name: Urist McToaster
+  parent: BaseMobProtogen
+  id: MobProtogen
+
+- type: entity
+  save: false
+  name: Urist McVulpster
+  parent: BaseMobProtoVulp
+  id: MobProtoVulp
+
+- type: entity
+  save: false
+  name: Urist McVoxster
+  parent: BaseMobProtoVox
+  id: MobProtoVox
+
+- type: entity
+  save: false
+  name: Urist McEarster
+  parent: BaseMobProtoThaven
+  id: MobProtoThaven
+
+- type: entity
+  save: false
+  name: Urist McSlimester
+  parent: BaseMobProtoSlimePerson
+  id: MobProtoSlimePerson
+
+- type: entity
+  save: false
+  name: Urist McDuskin
+  parent: BaseMobProtoKin
+  id: MobProtoKin
+
+- type: entity
+  save: false
+  name: Urist McRapster
+  parent: BaseMobProtoResomi
+  id: MobProtoResomi
+
+- type: entity
+  save: false
+  name: Urisst' Mztosster
+  parent: BaseMobProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
+  id: MobProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
+
+- type: entity
+  save: false
+  name: Urist McFluffster
+  parent: BaseMobProtoMoth
+  id: MobProtoMoth
+
+- type: entity
+  save: false
+  name: Urist McHandster
+  parent: BaseMobProtoHuman # Starlight, Humie -> Human
+  id: MobProtoHuman # Starlight, Humie -> Human
+
+- type: entity
+  save: false
+  name: Urist McFelinster
+  parent: BaseMobProtoFelionoid # Starlight, Feline -> Felionoid
+  id: MobProtoFelionoid # Starlight, Feline -> Felionoid
+
+- type: entity
+  save: false
+  name: Urist McUrister # Starlight, to match with our Dwarf naming changes
+  parent: BaseMobProtoDwarf # Starlight, Dawi -> Dwarf
+  id: MobProtoDwarf # Starlight, Dawi -> Dwarf
+
+- type: entity
+  save: false
+  name: Urist McPlantster
+  parent: BaseMobProtoDiona # Starlight, Dionae -> Diona
+  id: MobProtoDiona # Starlight, Dionae -> Diona
+
+- type: entity
+  save: false
+  name: Urist McCyclorister # Starlight, Cyclops -> Cyclorite
+  parent: BaseMobProtoCyclorite # Starlight, Cyclops -> Cyclorite
+  id: MobProtoCyclorite # Starlight, Cyclops -> Cyclorite
+
+- type: entity
+  save: false
+  name: Urist McAvalister
+  parent: BaseMobProtoAvali
+  id: MobProtoAvali
+
+- type: entity
+  save: false
+  name: Urist McWebster
+  parent: BaseMobProtoArachnid
+  id: MobProtoArachnid
+
+# Starlight start
+- type: entity
+  save: false
+  name: Urist McElgister
+  parent: BaseMobProtoElf
+  id: MobProtoElf
+
+- type: entity
+  save: false
+  name: Urist McBnuuister
+  parent: BaseMobProtoLagomorph
+  id: MobProtoLagomorph
+# Starlight end
