@@ -471,16 +471,16 @@
     - MysteryLighterBox
   groupBy: "smokeables"
 
-- type: loadout
-  id: MagicCrayon
-  effects:
-    - !type:JobRequirementLoadoutEffect
-      requirement:
-        !type:OverallPlaytimeRequirement
-        time: 360000 # 100hr
-  storage:
-    back:
-      - CrayonMagic
+#- type: loadout
+#  id: MagicCrayon
+#  effects:
+#    - !type:JobRequirementLoadoutEffect
+#      requirement:
+#        !type:OverallPlaytimeRequirement
+#        time: 360000 # 100hr
+#  storage:
+#    back:
+#      - CrayonMagic
 
 - type: loadout
   id: HappyHonk

@@ -127,10 +127,12 @@
     damageContainers:
     - Biological
     - IPC
+    - Hybrid
   - type: ShowHealthIcons
     damageContainers:
     - Biological
     - IPC
+    - Hybrid
   - type: Tag
     tags:
     - HudMedical
@@ -154,12 +156,14 @@
         - Inorganic
         - Silicon
         - IPC
+        - Hybrid
     - type: ShowHealthIcons
       damageContainers:
         - Biological
         - Inorganic
         - Silicon
         - IPC
+        - Hybrid
     - type: FlashImmunity
     - type: EyeProtection
       protectionTime: 5

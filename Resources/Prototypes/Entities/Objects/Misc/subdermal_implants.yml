@@ -105,7 +105,8 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
-      radioChannel: Security
+      radioChannel:
+      - Security
     #endregion Starlight tracker rattle
 
 #Traitor implants
@@ -383,6 +384,7 @@
       - Dead
     - type: RattleOnTrigger
       targetUser: true
+      radioChannel: [Syndicate] #Starlight, syndicate isn't default rattle channel anymore
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -431,4 +433,4 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: CentCom
+    radioChannel: [CentCom] # Starlight: List

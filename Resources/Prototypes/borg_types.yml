@@ -62,6 +62,7 @@
     - Inorganic
     - Silicon
     - IPC
+    - Hybrid
   - type: ShowAccessReaderSettings
   # Starlight end
 
@@ -189,9 +190,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - Hybrid # Starlight, Protogens
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid # Starlight, Protogens
 
   # Visual
   inventoryTemplateId: borgDutch

@@ -693,7 +693,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Vampire ] # SL - add Vampire
+          type: [ Animal, Vox, Vampire, Protogen ] # SL - add Vampire  / FH - add Protogen
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -703,12 +703,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ] # Starlight - add Vampire
+          type: [ Animal, Vox, Plant, Vampire, Protogen ] # SL - add Vampire  / FH - add Protogen
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Vampire ] # Starlight - add Vampire
+          type: [ Animal, Vox, Plant, Vampire, Protogen ] # SL - add Vampire  / FH - add Protogen
           inverted: true
         damage:
           types:
@@ -738,6 +738,12 @@
           type: [ Vampire ]
         reagent: Protein
         amount: 0.5
+      - !type:AdjustReagent #FH
+        conditions: #FH
+        - !type:MetabolizerTypeCondition #FH
+          type: [ Protogen ] #FH
+        reagent: Protein #FH
+        amount: 0.5 #FH
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
