@@ -66,26 +66,10 @@ public abstract partial class SharedSurgerySystem
         // Calculate success
 
         var tools = GetTools(args.User);
-
-        DamageSpecifier damage = new();
-        var validTool = EntityUid.Invalid;
-        if (tools.FirstOrDefault() is { Valid: true } heldItem && TryComp<MeleeWeaponComponent>(heldItem, out var melee) && melee?.Damage != null) // First item it's by default held item so it has bigger priority.
-        {
-            damage = melee.Damage;
-            validTool = heldItem;
-        }
-        else
-        {
-            foreach (var tool in tools)
-                if (TryComp(tool, out MeleeWeaponComponent? toolMelee) && toolMelee.Damage.GetTotal() > damage.GetTotal())
-                {
-                    damage = toolMelee.Damage;
-                    validTool = tool;
-                }
-        }
+        var (validTool, damage) = GetBestTool(tools);
 
         var random = RandomPredicted.GetPredictedRandom(_random, _timing);
-        var successRate = CalculateStepSuccessRate(args.User, ent, step, validTool, out var reason); // Reason of lowered rate.
+        var successRate = CalculateStepSuccessRate(args.User, ent, step, validTool, out var reason, out _); // Reason of lowered rate.
         var alwaysSuccess = validTool != EntityUid.Invalid && TryGetBehavior(validTool, step) is { } behavior && behavior.AlwaysSuccess;
 #pragma warning disable CS0618 // To bypass unnecessary warning on prob methods for System.Random(which is returned in predicted random)
         if (!alwaysSuccess && !random.Prob(successRate))
@@ -117,6 +101,28 @@ public abstract partial class SharedSurgerySystem
         RaiseLocalEvent(step, ref evComplete);
 
         RefreshUI(ent);
+    }
+
+    public (EntityUid tool, DamageSpecifier damage) GetBestTool(List<EntityUid> tools)
+    {
+        DamageSpecifier damage = new();
+        var validTool = EntityUid.Invalid;
+        if (tools.FirstOrDefault() is { Valid: true } heldItem && TryComp<MeleeWeaponComponent>(heldItem, out var melee) && melee?.Damage != null) // First item it's by default held item so it has bigger priority.
+        {
+            damage = melee.Damage;
+            validTool = heldItem;
+        }
+        else
+        {
+            foreach (var tool in tools)
+                if (TryComp(tool, out MeleeWeaponComponent? toolMelee) && toolMelee.Damage.GetTotal() > damage.GetTotal())
+                {
+                    damage = toolMelee.Damage;
+                    validTool = tool;
+                }
+        }
+
+        return (validTool, damage);
     }
 
     private void OnClearProgressStep(Entity<SurgeryClearProgressComponent> ent, ref SurgeryStepCompleteEvent args)

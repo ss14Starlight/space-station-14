@@ -4,6 +4,10 @@
   name: Urist McRobot
   abstract: true
   components:
+  # Starlight-start
+  - type: SurgeryTarget
+    bypassHygienePenalty: true
+  # Starlight-end
   - type: LanguageKnowledge
     speaks:
     - GalacticCommon

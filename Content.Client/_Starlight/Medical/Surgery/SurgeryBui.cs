@@ -1,7 +1,9 @@
 using System.Linq;
+using System.Text;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Hands.Systems;
 using Content.Server.Administration.Systems;
+using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Part;
 using Content.Shared.Starlight.Medical.Surgery;
@@ -201,7 +203,7 @@ public sealed class SurgeryBui : BoundUserInterface
         var stepName = new FormattedMessage();
         stepName.AddText(_entities.GetComponent<MetaDataComponent>(step).EntityName);
 
-        var stepButton = new SurgeryStepButton { Step = step, TooltipTextSupplier = () => stepName.ToString() };
+        var stepButton = new SurgeryStepButton { Step = step, TooltipTextSupplier = stepName.ToString() };
         stepButton.Button.OnPressed += _ => SendMessage(new SurgeryStepChosenBuiMsg()
         {
             Step = stepId,
@@ -344,9 +346,25 @@ public sealed class SurgeryBui : BoundUserInterface
 
             var stepDescription = _entities.GetComponent<MetaDataComponent>(stepButton.Step).EntityDescription;
             var chance = "100";
-            if (_player.LocalEntity is { } player1 && _system.GetTools(player1).FirstOrDefault() is { Valid: true } tool)
-                chance = Math.Round((_system.CalculateStepSuccessRate(player1, Owner, stepButton.Step, tool, out _) * 100), 1).ToString() + "%";
-            Func<string> stepTooltip = !string.IsNullOrEmpty(stepDescription) ? (() => stepDescription + "\nChance to successfully done this operation: " + chance) : (() => (stepName.ToString() + "\nChance to successfully done this operation: " + chance) ?? "Empty");
+            List<string> factors = new();
+            if (_player.LocalEntity is { } player1 && _system.GetBestTool(_system.GetTools(player1)).tool is { Valid: true } tool)
+                chance = Math.Round(_system.CalculateStepSuccessRate(player1, Owner, stepButton.Step, tool, out _, out factors) * 100, 1).ToString() + "%";
+            var sb = new StringBuilder();
+
+            sb.AppendLine(!string.IsNullOrEmpty(stepDescription)
+                ? stepDescription
+                : stepName.ToString());
+
+            sb.AppendLine($"Success chance: {chance}");
+
+            sb.AppendLine(factors.Count > 0 ? $"Factors:" : "");
+
+            foreach (var factor in factors)
+            {
+                sb.AppendLine($"• {factor}");
+            }
+
+            var tooltip = sb.ToString();
 
             if (status == StepStatus.Complete)
                 stepButton.Button.Modulate = Color.Green;
@@ -356,7 +374,7 @@ public sealed class SurgeryBui : BoundUserInterface
                 if (_player.LocalEntity is { } player &&
                     !_system.CanPerformStep(player, Owner, part.PartType, stepButton.Step, false, out var popup, out var reason, out _))
                 {
-                    stepButton.TooltipTextSupplier = popup != null ? (() => popup) : stepTooltip;
+                    stepButton.TooltipTextSupplier = popup ?? tooltip;
                     stepButton.Button.Disabled = true;
 
                     switch (reason)
@@ -385,7 +403,7 @@ public sealed class SurgeryBui : BoundUserInterface
                     }
                 }
                 else
-                    stepButton.TooltipTextSupplier = stepTooltip;
+                    stepButton.TooltipTextSupplier = tooltip;
             }
 
             var texture = _entities.GetComponentOrNull<SpriteComponent>(stepButton.Step)?.Icon?.Default;

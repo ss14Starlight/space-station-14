@@ -11,7 +11,7 @@ public sealed partial class SurgeryStepButton : ChoiceControl
 {
     public EntityUid Step { get; set; }
 
-    public Func<string> TooltipTextSupplier { get; set; } = () => string.Empty;
+    public string TooltipTextSupplier { get; set; } = string.Empty;
 
     public SurgeryStepButton()
     {
@@ -20,5 +20,5 @@ public sealed partial class SurgeryStepButton : ChoiceControl
         Button.TooltipSupplier = SupplyTooltip;
     }
 
-    private Control? SupplyTooltip(Control sender) => new RecipeTooltip(TooltipTextSupplier());
+    private Control? SupplyTooltip(Control sender) => new RecipeTooltip(TooltipTextSupplier);
 }
