@@ -80,6 +80,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         SubscribeLocalEvent<ChangelingComponent, ActionLastResortEvent>(OnLastResort);
         SubscribeLocalEvent<ChangelingComponent, ActionLesserFormEvent>(OnLesserForm);
         SubscribeLocalEvent<ChangelingComponent, ActionSpacesuitEvent>(OnSpacesuit);
+        SubscribeLocalEvent<ChangelingComponent, ActionProtogenDisguiseEvent>(OnProtogenDisguise); // Starlight
         SubscribeLocalEvent<ChangelingComponent, ActionHivemindAccessEvent>(OnHivemindAccess);
         SubscribeLocalEvent<ChangelingComponent, FakeMindShieldToggleEvent>(OnFakeMindShieldToggle);
 
@@ -596,6 +597,19 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         PlayMeatySound(uid, comp);
     }
+    #region Starlight
+    public void OnProtogenDisguise(EntityUid uid, ChangelingComponent comp, ref ActionProtogenDisguiseEvent args)
+    {
+        if (!TryToggleItem(uid, ProtogenDisguisePrototype, comp, "outerClothing2"))
+        {
+            _popup.PopupEntity(Loc.GetString("changeling-equip-protogen-fail"), uid, uid);
+            comp.Chemicals += Comp<ChangelingActionComponent>(args.Action).ChemicalCost;
+            return;
+        }
+
+        PlayMeatySound(uid, comp);
+    }
+    #endregion
     public void OnHivemindAccess(EntityUid uid, ChangelingComponent comp, ref ActionHivemindAccessEvent args)
     {
         if (HasComp<HivemindComponent>(uid))

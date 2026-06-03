@@ -434,6 +434,22 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+# Starlight start
+- type: listing
+  id: EvolutionMenuUtilityProtogen
+  name: evolutionmenu-utility-protogen-name
+  description: evolutionmenu-utility-protogen-desc
+  icon: { sprite: _Starlight/Actions/changeling.rsi, state: protogen_armor }
+  productAction: ActionToggleProtogenDisguise
+  cost:
+    EvolutionPoint: 0
+  categories:
+  - ChangelingAbilityUtility
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+# Starlight end
+
 - type: listing
   id: EvolutionMenuUtilityHivemindAccess
   name: evolutionmenu-utility-hivemindaccess-name
