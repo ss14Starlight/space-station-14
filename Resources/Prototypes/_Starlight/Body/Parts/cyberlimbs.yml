@@ -347,7 +347,7 @@
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSilverReaper
-        Rodentia: Rodentia
+        Rodentia: RodentiaCyberLHandSilverReaper
         Resomi: ResomiCyberLHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
