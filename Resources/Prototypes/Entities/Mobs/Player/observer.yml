@@ -85,6 +85,19 @@
     tags: # BAD: Intentional removal of inherited tag
     - AllowGhostShownByEvent
     - Ghost
+  - type: ComplexInteraction # Starlight-start
+  - type: RadarConsole
+    followEntity: true
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.RadarConsoleUiKey.Key:
+          type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionObserverShowRadar # Starlight-end
 - type: entity
   parent: BaseMentalAction
   id: ActionGhostBoo

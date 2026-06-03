@@ -1,0 +1,79 @@
+- type: species
+  id: ProtoCyclorite
+  name: subspecies-name-protocyclorite
+  roundStart: true
+  prototype: MobProtoCyclorite
+  sprites: MobProtoCycloriteSprites
+  markingLimits: MobProtoCycloriteMarkingLimits
+  dollPrototype: AppearanceProtoCyclorite
+  defaultSkinTone: "#FFFFFF"
+  skinColoration: Hues
+  customName: true
+  maleFirstNames: names_cyclorite
+  femaleFirstNames: names_cyclorite
+  naming: First
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen
+  subspeciesName: subspecies-name-protocyclorite
+  loadout: ProtogenLoadout
+  minHeight: 0.9
+  defaultHeight: 1
+  maxHeight: 1.2
+  standardSize: 170
+  standardWeight: 100
+  standardDensity: 110
+
+- type: speciesBaseSprites
+  id: MobProtoCycloriteSprites
+  sprites:
+    Eyes: MobProtogenEyes
+    Head: MobCycloriteHead
+    Snout: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Chest: MobCycloriteTorso
+    LArm: MobCycloriteLArm
+    RArm: MobCycloriteRArm
+    LHand: MobCycloriteLHand
+    RHand: MobCycloriteRHand
+    LLeg: MobCycloriteLLeg
+    RLeg: MobCycloriteRLeg
+    LFoot: MobCycloriteLFoot
+    RFoot: MobCycloriteRFoot
+
+- type: markingPoints
+  id: MobProtoCycloriteMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtoCycloriteMediumArmor, ProtoCycloriteVisor, ProtoCycloriteLights, ProtoCycloriteLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 3
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 4
+      required: false

@@ -1,0 +1,196 @@
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobProtogen
+  name: Urist McToaster
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+  - type: Sprite
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: [ "outerClothing2" ] # FH
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
+    doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
+    allowSelfRepair: true
+    fuelCost: 10
+    damage:
+      groups:
+        Brute: -30 # 5 for each type with reduction applied
+  - type: Hunger
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: Protogen
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+      enum.ThavenMoodsUiKey.Key: # impstation edit
+        type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
+  - type: GlitchOnIonStorm
+    duration: 25
+    ramp: 3
+  - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+    effectCooldown: 2
+    effect:
+      stunAmount: 5.0
+      knockdownAmount: 2.0
+      slowdownAmount: 15.0
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      dropItemsFrom:
+        - body_part_slot_right hand
+        - body_part_slot_left hand
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 10
+          Heat: 10
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch # Starlight
+    animation: WeaponArcFist # Starlight, blunt base, change on a case by case basis
+    damage:
+      types:
+        Blunt: 5 # Starlight
+  - type: Body
+    prototype: Protogen
+    requiredLegs: 2
+  - type: Tag
+    tags:
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+      - AnomalyHost
+      - Protogen
+      - SiliconEmotesFH
+      - NotLabelable
+      - TrueProtogen
+  - type: Temperature
+    currentTemperature: 310.15
+    specificHeat: 42 # Starlight
+  - type: TemperatureDamage # Starlight, changed to base stats, since not every species has fur; we can change on a case by case per species
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260 # Starlight
+    coldDamage:
+      types:
+        Cold : 0.1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 1.5 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.9 # Starlight start
+      280: 0.8
+      260: 0.7 # Starlight end
+  - type: HumanoidAppearance
+    species: Protogen
+    hideLayersOnEquip:
+    - Hair
+  - type: Inventory
+    speciesId: protogen #to be replaced with proto[species] when new sprites are made
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
+            state: jumpsuit-female
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.9 #per second, halved compared to normal. / Starlight, changed back to base 0.9.
+  - type: TypingIndicator # TODO - Find "protogen" noises. Idk.
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+  - type: Vocal
+    sounds:
+      Male: MaleProtogen
+      Female: FemaleProtogen
+      Unsexed: MaleProtogen
+  - type: UniversalHealModifier
+    modifier: 0.5
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtogen
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Protogen
+  - type: Inventory
+    speciesId: protogen #to be replaced with proto[species] when new sprites are made
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
+            state: jumpsuit-female

@@ -1,0 +1,53 @@
+- type: body
+  id: ProtoThaven
+  name: proto-thaven # Starlight, quotation marks removed
+  root: torso
+  slots:
+    head:
+      part: HeadThaven
+      connections:
+      - torso
+      organs:
+        brain: OrganThavenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoThaven
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganProtogenHeart
+        lungs: OrganProtogenLungs # I can't imagine them NOT fixing their nitro dependancy.
+        stomach: OrganProtogenStomach
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmThaven
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmThaven
+      connections:
+      - left hand
+    right hand:
+      part: RightHandThaven
+    left hand:
+      part: LeftHandThaven
+    right leg:
+      part: RightLegThaven
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegThaven
+      connections:
+      - left foot
+    right foot:
+      part: RightFootThaven
+    left foot:
+      part: LeftFootThaven

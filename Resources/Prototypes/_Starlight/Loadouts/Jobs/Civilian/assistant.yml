@@ -468,6 +468,14 @@
   equipment:
     gloves: ClothingHandsGlovesColorGray
 
+- type: loadout
+  id: AssistantMittens
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: HonoredAssistant
+  equipment:
+    gloves: ClothingHandsMittensColorYellow # Starlight, replace with fingerless budget insuls
+
 # Outerclothing
 - type: loadout
   id: GreyHoodieA

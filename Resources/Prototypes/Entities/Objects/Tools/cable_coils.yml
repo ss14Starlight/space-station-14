@@ -99,26 +99,32 @@
               Quantity: 2
             - ReagentId: Carbon #steel-reinforced
               Quantity: 1
-    - type: Healing
-      damageContainers:
-        - IPC
-      damage:
-        types:
-          Heat: -10
-          Cold: -10
-          Shock: -10
-          Caustic: -10
-      delay: 2
-      healingBeginSound:
-        path: "/Audio/Items/Medical/ointment_begin.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
-      healingEndSound:
-        path: "/Audio/Items/Medical/ointment_end.ogg"
-        params:
-          volume: 1.0
-          variation: 0.125
+#FH - Start
+    - type: ConditionalHealing
+      healingDefinitions:
+        - allowedTags: [ IPC, Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
+          healing:
+            damageContainers:
+              - IPC # Starlight
+              - Hybrid # Starlight
+            delay: 2
+            damage:
+              types:
+                Heat: -10
+                Cold: -10
+                Shock: -10
+                Caustic: -10
+            healingBeginSound:
+              path: "/Audio/Items/Medical/ointment_begin.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+            healingEndSound:
+              path: "/Audio/Items/Medical/ointment_end.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+#FH - End
 
 - type: entity
   parent: CableHVStack

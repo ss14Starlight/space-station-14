@@ -39,11 +39,20 @@ public sealed class RattleOnTriggerSystem : EntitySystem
         if (!ent.Comp.Messages.TryGetValue(mobstate.CurrentState, out var messageId))
             return;
 
+        if (ent.Comp.RadioChannel == null) //starlight
+            return;
+
         // Gets the location of the user
         var posText = FormattedMessage.RemoveMarkupOrThrow(_navMap.GetNearestBeaconString(target.Value));
 
         var message = Loc.GetString(messageId, ("user", target.Value), ("position", posText));
-        // Sends a message to the radio channel specified by the implant
-        _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(ent.Comp.RadioChannel), ent.Owner);
+
+        // Sends a message to the radio channels specified by the implant
+        #region Starlight
+        foreach (var radioChannel in ent.Comp.RadioChannel)
+        {
+            _radio.SendRadioMessage(ent.Owner, message, _prototypeManager.Index(radioChannel), ent.Owner); //Starlight swapped ent.Comp.RadioChannel for radioChannel
+        }
+        #endregion
     }
 }
