@@ -47,18 +47,6 @@
     - /Audio/_FarHorizons/Voice/Proto/Moth/moth_scream.ogg
 
 - type: soundCollection
-  id: ProtoShadekinMScreams
-  files:
-    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_m1.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_m2.ogg
-
-- type: soundCollection
-  id: ProtoShadekinFScreams
-  files:
-    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_f1.ogg
-    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_f2.ogg
-
-- type: soundCollection
   id: ProtoVoxScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Vox/shriek1.ogg
