@@ -1,4 +1,3 @@
-using Content.Server.GameTicking;
 using Content.Shared.Paper;
 using Content.Shared.Whitelist;
 using Content.Shared.Fax.Components;
@@ -27,7 +26,6 @@ public sealed class ObjectiveOnSignSystem : EntitySystem
             return;
         RemComp<FaxableObjectComponent>(uid); //cause this breaks shit like infinite antags
     }
-
 
     private void OnPaperSigned(EntityUid uid, ObjectiveOnSignComponent component, PaperSignedEvent args)
     {
@@ -63,6 +61,5 @@ public sealed class ObjectiveOnSignSystem : EntitySystem
             if (!_mind.TryAddObjective(mindId.Value, mind, rule.Id))
                 Log.Warning($"Failed to add objective {rule.Id} to {ToPrettyString(signer):player}.");
         }
-
     }
 }

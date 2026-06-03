@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/23/2026 03:22:22
-  entityCount: 4168
+  time: 05/22/2026 05:59:21
+  entityCount: 4170
 maps:
 - 1
 grids:
@@ -14853,6 +14853,13 @@ entities:
     - type: Transform
       pos: 9.931004,-12.29363
       parent: 2
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 4169
+    components:
+    - type: Transform
+      pos: 10.505244,-11.947434
+      parent: 2
 - proto: MedkitToxinFilled
   entities:
   - uid: 2323
@@ -14868,7 +14875,7 @@ entities:
       pos: -3.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18059.734
+      secondsUntilStateChange: -18166.713
       state: Opening
   - uid: 2325
     components:
@@ -14876,7 +14883,7 @@ entities:
       pos: -3.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18060.602
+      secondsUntilStateChange: -18167.58
       state: Opening
 - proto: MinimoogInstrument
   entities:
@@ -15077,6 +15084,13 @@ entities:
     components:
     - type: Transform
       pos: -23.025232,-2.4473848
+      parent: 2
+- proto: OilPack
+  entities:
+  - uid: 4170
+    components:
+    - type: Transform
+      pos: 1.7956285,-17.395563
       parent: 2
 - proto: OperatingTable
   entities:
@@ -19126,8 +19140,6 @@ entities:
     - type: Transform
       pos: 1.4812105,4.649179
       parent: 2
-    - type: IntrinsicRadioTransmitter
-      channels: []
 - proto: SyndieFlag
   entities:
   - uid: 2989
@@ -25246,7 +25258,7 @@ entities:
       pos: -15.5,-5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20329.297
+      secondsUntilStateChange: -20436.275
       state: Opening
   - uid: 4163
     components:
@@ -25254,6 +25266,6 @@ entities:
       pos: -15.5,-4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20329.73
+      secondsUntilStateChange: -20436.709
       state: Opening
 ...

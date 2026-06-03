@@ -31,13 +31,16 @@ public static class FaxConstants
     public const string FaxSyndicateData = "fax_data_i_am_syndicate";
     public const string FaxPaperLockedData = "fax_data_locked";
 
-    // starlight-start
+    #region Starlight
     // Cargo Slips Data
-
     public const string FaxSlipProduct = "fax_slip_product_id";
     public const string FaxSlipRequester = "fax_slip_requester";
     public const string FaxSlipReason = "fax_slip_reason";
     public const string FaxSlipOrderQuantity = "fax_slip_order_quantity";
     public const string FaxSlipOrderAccount = "fax_slip_order_account";
-    // starlight-end
+
+    // Metadata
+    public const string FaxMetaSender = "fax_meta_sender";
+    public const string FaxMetaSentAt = "fax_meta_sent_at";
+    #endregion
 }

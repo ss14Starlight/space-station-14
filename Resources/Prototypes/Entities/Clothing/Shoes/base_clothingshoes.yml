@@ -76,3 +76,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.025
     coolingCoefficient: 0.6 # Starlight
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Cold: 0.90 # Starlight end

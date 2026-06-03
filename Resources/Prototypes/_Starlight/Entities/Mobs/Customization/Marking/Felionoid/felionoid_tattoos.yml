@@ -2,7 +2,7 @@
   id: TattooFelionoidHeartLeftArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   coloring:
     default:
       type:
@@ -16,7 +16,7 @@
   id: TattooFelionoidHeartRightArm
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   coloring:
     default:
       type:
@@ -30,7 +30,7 @@
   id: TattooFelionoidHiveChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   coloring:
     default:
       type:
@@ -44,7 +44,7 @@
   id: TattooFelionoidNightlingChest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   coloring:
     default:
       type:

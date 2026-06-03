@@ -577,7 +577,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     /// <summary>
     /// If all auth groups are satisfied, begin the countdown and charge the fee.
     /// </summary>
-    private void CheckAndStartCountdown(EntityUid stationUid,
+    private void CheckAndStartCountdown(EntityUid _,
         SecureCommandTerminalStationComponent stationComp,
         string requestId, SecureCommandTerminalRequestPrototype proto)
     {
@@ -688,7 +688,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
     {
         var tags = _access.FindAccessTags(actor);
         return proto.AuthGroups.Any(group =>
-            group.Any(tag => tags.Contains((Robust.Shared.Prototypes.ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)));
+            group.Any(tag => tags.Contains((ProtoId<Content.Shared.Access.AccessLevelPrototype>)tag)));
     }
 
     private bool IsWarDeclared()

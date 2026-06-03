@@ -28,6 +28,7 @@
             Librarian: [ 1, 1 ]
             ServiceWorker: [ 3, 3 ]
             Zookeeper: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
             Reporter: [ 1, 2 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -54,7 +55,7 @@
             Detective: [ 1, 1 ]
             SecurityCadet: [ 5, 5 ]
             Brigmedic: [ 1, 1 ]
-            DutyOfficer: [ 1, 2 ]
+            DutyOfficer: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]

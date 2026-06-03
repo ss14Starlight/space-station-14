@@ -1,8 +1,6 @@
 using Content.Server._Starlight.Plumbing.Components;
 using Content.Server._Starlight.Plumbing.Nodes;
-using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Popups;
-using Content.Server.UserInterface;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -174,9 +172,7 @@ public sealed class PlumbingFilterSystem : EntitySystem
     }
 
     private void OnUIOpened(Entity<PlumbingFilterComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateUI(ent);
-    }
+        => UpdateUI(ent);
 
     private void UpdateUI(Entity<PlumbingFilterComponent> ent)
     {

@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Anomaly.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared.Verbs;
-using Robust.Shared.Prototypes;
 using Content.Shared.Anomaly;
 using Content.Shared.Alert;
 using Content.Shared.Actions;

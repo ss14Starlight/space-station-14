@@ -585,7 +585,7 @@
 # NanoTrasen Special Forces
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSF
   name: NanoTrasen special forces hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.
@@ -633,7 +633,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSF
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFPrimus
   name: NTSF primus hardsuit
   description: The famous blue striped armor of NTSF Task Force One "Primus". The best of the best NanoTrasen has to offer.
@@ -681,7 +681,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFPrimus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFSecundus
   name: NTSF secundus hardsuit
   description: The reinforced chassis of this armor makes it extremely slow, but supremely durable. Worn by NTSF Task force "Secundus", and their steamroller approach to combat.
@@ -729,7 +729,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFSecundus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFTertius
   name: NTSF tertius hardsuit
   description: Nailing it down won't save you. Utilized by Task Force "Tertius", infamous for being the "Repo Men" of NanoTrasen, taking what is theirs - and usually plenty more. Comes with built in blue space storage!
@@ -790,7 +790,7 @@
          type: StorageBoundUserInterface
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFQuartus
   name: NTSF quartus hardsuit
   description: Only the most dangerous transports, volatile artifacts, and deadly prisoners fall under the watchful eye of NTSF Task Force Quartus.
@@ -838,7 +838,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFQuartus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFQuintus
   name: NTSF quintus hardsuit
   description: Specially designed to combat Syndicate weaponry, there's no better gear for crushing Gorlex skulls.
@@ -886,7 +886,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFQuintus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFSextus
   name: NTSF sextus hardsuit
   description: The uncanny markings upon the armor cause great discomfort to all who see them. Its labyrinthine gold inlays tell an esoteric story of magecraft.
@@ -934,7 +934,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFSextus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFSeptimus
   name: NTSF septimus hardsuit
   description: I am pest control guy. *Grabs Pulse Rifle* - and THIS is my pest control.
@@ -982,7 +982,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFSeptimus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitNTSFOctavius
   name: NTSF octavius hardsuit
   description: Start prayin', commie.
@@ -1030,7 +1030,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFOctavius
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase, BaseToggleClothing]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase, BaseToggleClothing]
   id: ClothingOuterHardsuitNTSFNonus
   name: NTSF nonus hardsuit
   description: May NanoTrasen have mercy, for I have none.
@@ -1114,7 +1114,7 @@
       clothingPrototype: ClothingHeadHelmetHardsuitNTSFNonus
 
 - type: entity
-  parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
+  parent: [BaseNanoTrasenContraband, ClothingOuterHardsuitBase]
   id: ClothingOuterHardsuitDecimus
   name: decimus hardsuit
   description: If you can read this, it's already too late.

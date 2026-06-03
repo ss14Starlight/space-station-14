@@ -8,7 +8,6 @@ using Content.Shared._Starlight.Antags.Vampires.Systems;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CombatMode.Pacification;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
@@ -32,6 +31,7 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Chemistry.EntitySystems;
 using Robust.Shared.Prototypes;
 using Content.Server.EUI;
+using Content.Server._Starlight.Language;
 using Content.Server.Roles;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
@@ -44,7 +44,6 @@ public sealed class DantalionSystem : EntitySystem
 
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!;
     [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
     [Dependency] private readonly VampireSystem _vampire = default!;
     [Dependency] private readonly Content.Server.Actions.ActionsSystem _actions = default!;
@@ -63,6 +62,7 @@ public sealed class DantalionSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly EuiManager _euiMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly LanguageSystem _language = default!;
     [Dependency] private readonly RoleSystem _role = default!;
 
     public override void Initialize()
@@ -72,6 +72,8 @@ public sealed class DantalionSystem : EntitySystem
         SubscribeLocalEvent<DantalionComponent, VampireEnthrallActionEvent>(OnEnthrall);
         SubscribeLocalEvent<DantalionComponent, VampireEnthrallDoAfterEvent>(OnEnthrallDoAfter);
         SubscribeLocalEvent<VampireThrallComponent, ComponentShutdown>(OnThrallShutdown);
+
+        SubscribeLocalEvent<DantalionComponent, ComponentInit>((uid, _, _) => _language.AddLanguage(uid, "Dantalion"));
         SubscribeLocalEvent<DantalionComponent, ComponentShutdown>(OnDantalionShutdown);
 
         SubscribeLocalEvent<DantalionComponent, VampirePacifyActionEvent>(OnPacify);
@@ -262,8 +264,7 @@ public sealed class DantalionSystem : EntitySystem
 
         TryAssignThrallObeyObjective(uid, target, thrallComp);
 
-        if (TryComp<CollectiveMindComponent>(target, out var cmComp))
-            _collectiveMind.UpdateCollectiveMind(target, cmComp);
+        _language.AddLanguage(target, "Dantalion");
 
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-success", ("target", Identity.Entity(target, EntityManager))), uid, uid);
         _popup.PopupEntity(Loc.GetString("vampire-enthrall-target"), target, target, PopupType.Medium);
@@ -339,8 +340,7 @@ public sealed class DantalionSystem : EntitySystem
         //Remove the component
         RemComp<VampireThrallComponent>(thrall);
 
-        if (TryComp<CollectiveMindComponent>(thrall, out var cmComp))
-            _collectiveMind.UpdateCollectiveMind(thrall, cmComp);
+        _language.RemoveLanguage(thrall, "Dantalion");
 
         //If everything worked, thrall gets stunned for a few seconds for them to register that something has changed and notice they are no longer a thrall
         var stunTime = comp.DeconvertStunDuration;

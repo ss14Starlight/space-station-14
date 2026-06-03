@@ -1,0 +1,52 @@
+- type: body
+  id: ProtoKin
+  name: protokin # Starlight, quotation marks removed
+  root: torso
+  slots:
+    head:
+      part: HeadShadekin
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongueForked
+        eye_implant: null
+    torso:
+      part: TorsoShadekin
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        core: OrganShadekinCore
+        heart: OrganProtogenHeart
+        stomach: OrganProtogenStomach
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmShadekin
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmShadekin
+      connections:
+      - left hand
+    right hand:
+      part: RightHandShadekin
+    left hand:
+      part: LeftHandShadekin
+    right leg:
+      part: RightLegShadekin
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegShadekin
+      connections:
+      - left foot
+    right foot:
+      part: RightFootShadekin
+    left foot:
+      part: LeftFootShadekin

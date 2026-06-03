@@ -1,5 +1,4 @@
 using Content.Server._Starlight.Plumbing.Components;
-using Content.Server.UserInterface;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -40,7 +39,7 @@ public sealed class PlumbingSynthesizerSystem : EntitySystem
     ///     How often to update the UI when open (in seconds).
     /// </summary>
     private const float UiUpdateIntervalSeconds = 0.5f;
-    private static readonly TimeSpan UiUpdateInterval = TimeSpan.FromSeconds(UiUpdateIntervalSeconds);
+    private static readonly TimeSpan _uiUpdateInterval = TimeSpan.FromSeconds(UiUpdateIntervalSeconds);
 
     public override void Initialize()
     {
@@ -72,16 +71,14 @@ public sealed class PlumbingSynthesizerSystem : EntitySystem
 
             if (!_nextUiUpdate.TryGetValue(uid, out var nextUpdate) || curTime >= nextUpdate)
             {
-                _nextUiUpdate[uid] = curTime + UiUpdateInterval;
+                _nextUiUpdate[uid] = curTime + _uiUpdateInterval;
                 UpdateUI((uid, synth));
             }
         }
     }
 
     private void OnComponentRemove(Entity<PlumbingSynthesizerComponent> ent, ref ComponentRemove args)
-    {
-        _nextUiUpdate.Remove(ent.Owner);
-    }
+        => _nextUiUpdate.Remove(ent.Owner);
 
     private void OnSynthesizerUpdate(Entity<PlumbingSynthesizerComponent> ent, ref PlumbingDeviceUpdateEvent args)
     {
@@ -169,9 +166,7 @@ public sealed class PlumbingSynthesizerSystem : EntitySystem
     }
 
     private void OnUIOpened(Entity<PlumbingSynthesizerComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateUI(ent);
-    }
+        => UpdateUI(ent);
 
     private void UpdateUI(Entity<PlumbingSynthesizerComponent> ent)
     {

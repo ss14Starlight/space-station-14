@@ -595,7 +595,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         markingObject.Forced = forced;
         if (color != null)
         {
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            // Starlight edit - color only the marking's exposed color slots.
+            for (var i = 0; i < prototype.ColorSlotCount; i++)
             {
                 markingObject.SetColor(i, color.Value);
             }

@@ -200,3 +200,35 @@
         visualType: Large
         messages: [ "barozine-effect-skin-burning", "barozine-effect-muscle-contract" ]
         probability: 0.1
+
+- type: reagent
+  id: Infernaline
+  name: reagent-name-infernaline
+  group: Medicine
+  desc: reagent-desc-infernaline
+  physicalDesc: reagent-physical-desc-otherworldly
+  flavor: bitter
+  color: "#DE8063"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Cellular: -2.5
+              Heat: 0.2
+        - !type:ModifyBleed
+          conditions:
+            - !type:ReagentCondition
+              reagent: Infernaline
+              min: 11
+          amount: 0.5
+
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+              type: [ Cyclorite ]
+          reagent: Infernaline
+          amount: -0.5
+          # Starlight-End

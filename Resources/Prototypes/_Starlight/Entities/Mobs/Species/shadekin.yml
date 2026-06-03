@@ -12,10 +12,9 @@
       understands:
         - GalacticCommon
         - Marish
+        - Empathy
     - type: Inventory
       speciesId: shadekin
-    - type: CollectiveMind
-      blockWhenUnconscious: true
     - type: Shadekin
       thresholds:
         0.8: Low

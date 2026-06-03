@@ -1,0 +1,145 @@
+- type: entity
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoSlimePerson
+  name: Urist McSlimester
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    - Bubblish
+    understands:
+    - GalacticCommon
+    - Machine
+    - Bubblish
+  - type: HumanoidAppearance
+    species: ProtoSlimePerson
+    hideLayersOnEquip:
+    - Hair
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
+  - type: Absorbable
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Slime/parts.rsi
+    state: full
+  - type: Body
+    prototype: ProtoSlime # Replace when I figure out more complex sprites for proto-[species] # Starlight, I'll at least split it for now, so we can make them breathe nitrogen.
+    requiredLegs: 2
+  - type: Storage
+    clickInsert: false
+    showVerb: false
+    openOnActivate: false
+    grid:
+    - 0,0,1,2
+    maxItemSize: Large
+    storageInsertSound:
+      path: /Audio/Voice/Slime/slime_squish.ogg
+  - type: PrivateStorage
+    accessDelay: 3.0
+    accessPopup: "laspi-storage-accessing"
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UseDelay
+    delay: 0.5
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: ProtoSlimePerson
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 65
+    damage:
+      types:
+        Heat: -0.14
+      groups:
+        Brute: -0.14
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#2cf274"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Slime
+        Quantity: 300
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 1
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPie
+    - reagents: [ Water ]
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Heat: 0.25 # Starlight-edit
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "slime-hurt-by-water-popup" ]
+        probability: 0.25
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatSlime
+      amount: 5
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.2
+    damageRecovery:
+      types:
+        Asphyxiation: -1.0
+    maxSaturation: 15
+  - type: Inventory
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: ShowThirstIcons
+  - type: SolutionScanner
+  - type: Wagging
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtoSlimePerson
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ProtoSlimePerson
+  - type: Inventory
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

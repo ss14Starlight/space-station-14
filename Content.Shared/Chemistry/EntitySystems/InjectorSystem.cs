@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Starlight.Chemistry.Events; // Starlight
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Events;
@@ -517,7 +518,7 @@ public sealed partial class InjectorSystem : EntitySystem
         else
             _solutionContainer.Refill(target, targetSolution, removedSolution);
 
-        RaiseLocalEvent(target, new SuccessfulInjectEvent(user, injector.Owner, target, removedSolution.Clone())); // Starlight: Achievements
+        RaiseLocalEvent(target, new SuccessfulInjectEvent(user, injector.Owner, target, removedSolution.Clone()), true); // Starlight: Achievements
 
         LocId msgSuccess = target == user ? "injector-component-inject-success-message-self" : "injector-component-inject-success-message";
 

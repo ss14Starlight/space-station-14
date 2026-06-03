@@ -116,6 +116,8 @@
       - Medical
       - Service
       - Engineering
+      - Law
+      - NanoTrasen
       privilegedIdSlot:
         name: id-card-clipboard-priviliged-id
         ejectSound: /Audio/Machines/id_swipe.ogg

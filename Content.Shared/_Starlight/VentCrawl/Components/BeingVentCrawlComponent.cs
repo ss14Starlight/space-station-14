@@ -1,32 +1,29 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared.VentCrawl.Components;
 
 /// <summary>
 /// A component indicating that the entity is in the process of moving through the venting process
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class BeingVentCrawlComponent : Component
 {
     /// <summary>
-    /// The entity that contains this object in the vent
-    /// </summary>
-    [DataField("holder")]
-    private EntityUid _holder;
-
-    /// <summary>
     /// Gets or sets up a holder entity
     /// </summary>
+    [DataField("holder"), AutoNetworkedField]
     public EntityUid Holder
     {
-        get => _holder;
+        get;
         set
         {
-            if (_holder == value)
+            if (field == value)
                 return;
 
             if (value == default)
                 throw new ArgumentException("Holder cannot be default EntityUid");
 
-            _holder = value;
+            field = value;
         }
     }
 }

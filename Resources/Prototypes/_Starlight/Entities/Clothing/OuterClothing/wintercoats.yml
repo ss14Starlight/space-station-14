@@ -26,6 +26,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.75
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -59,6 +60,7 @@
       coefficients:
         Slash: 0.95
         Heat: 0.90
+        Cold: 0.85 # Starlight
         Caustic: 0.75
     priceMultiplier: 0.15
   - type: ToggleableClothing
@@ -87,6 +89,7 @@
         Slash: 0.65
         Piercing: 0.80
         Heat: 0.75
+        Cold: 0.70 # Starlight
         Caustic: 0.95
   - type: ExplosionResistance
     damageCoefficient: 0.85
