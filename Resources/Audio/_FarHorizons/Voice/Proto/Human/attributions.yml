@@ -19,8 +19,8 @@
   source: "https://freesound.org/people/jackstrebor/sounds/34782/"
 
 - files:
-  - cry_male_1
-  - cry_male_2
+  - cry_male_1.ogg # SL
+  - cry_male_2.ogg # SL
   license: "CC-BY-4.0"
   copyright: "Taken from https://freesound.org/. Convert from WAV to OGG, is divided into several parts. - added robotics effect by princess_gurchi"
   source: "https://freesound.org/people/jacobmathiassen/sounds/254869/"
