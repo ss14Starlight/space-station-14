@@ -47,11 +47,17 @@
   parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
   id: AppearanceDwarf
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Dwarf
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryFemaleJumpsuit]
   id: AppearanceElf
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Elf
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryFelionoid]
@@ -154,6 +160,8 @@
   id: AppearanceThaven
   categories: [ HideSpawnMenu ]
   components:
+  - type: HumanoidAppearance
+    species: Thaven
   - type: Sprite
     scale: 1, 1
 
@@ -179,6 +187,9 @@
   parent: BaseSpeciesDummy
   id: AppearanceIPC
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: IPC
 
 - type: entity
   parent: [BaseSpeciesDummy, BaseInventoryVulpkanin]

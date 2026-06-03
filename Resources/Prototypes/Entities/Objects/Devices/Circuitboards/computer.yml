@@ -18,6 +18,24 @@
       chemicalComposition:
         Silicon: 20
     - type: Circuitboard
+    - type: Edible #FH - Start
+      requiresSpecialDigestion: true
+      delay: 3
+      forceFeedDelay: 10
+    - type: FlavorProfile
+      flavors:
+      - shocking
+    - type: SolutionContainerManager
+      solutions:
+        food:
+          maxVol: 15
+          reagents:
+          - ReagentId: BatteryAcid
+            Quantity: 15
+    - type: Tag
+      tags:
+      - RamChip #Protogen joke, makes them able to eat them.
+# FH - End
 
 - type: entity
   parent: BaseComputerCircuitboard
@@ -327,6 +345,7 @@
   - type: Tag
     tags:
     - SurveillanceCameraMonitorCircuitboard
+    - RamChip # FH
   #Starlight start
   - type: Construction
     deconstructionTarget: null
@@ -367,6 +386,7 @@
     - type: Tag
       tags:
         - ComputerTelevisionCircuitboard
+        - RamChip # FH
 
 - type: entity
   parent: BaseComputerCircuitboard

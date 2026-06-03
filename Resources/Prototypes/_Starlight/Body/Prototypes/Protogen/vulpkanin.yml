@@ -1,0 +1,53 @@
+- type: body
+  id: ProtoVulp
+  name: proto-vulp # Starlight, quotation marks removed
+  root: torso
+  slots:
+    head:
+      part: HeadProtoVulp
+      connections:
+      - torso
+      organs:
+        brain: OrganProtogenBrain
+        eyes: OrganProtogenEyes
+        tongue: OrganProtogenTongue
+        eye_implant: null
+        brain_implant: null
+    torso:
+      part: TorsoProtoVulp
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganProtogenHeart
+        lungs: OrganProtogenLungs
+        stomach: OrganProtogenStomach # Dear god.. they can eat CHOCOLATE.
+        liver: OrganProtogenLiver
+        kidneys: OrganProtogenKidneys
+        cavity: null
+    right arm:
+      part: RightArmProtoVulp
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmProtoVulp
+      connections:
+      - left hand
+    right hand:
+      part: RightHandProtoVulp
+    left hand:
+      part: LeftHandProtoVulp
+    right leg:
+      part: RightLegProtoVulp
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegProtoVulp
+      connections:
+      - left foot
+    right foot:
+      part: RightFootProtoVulp
+    left foot:
+      part: LeftFootProtoVulp

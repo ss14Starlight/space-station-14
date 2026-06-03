@@ -138,6 +138,7 @@
     - !type:SpeciesRequirement
       species:
         - Felionoid
+        - ProtoFelionoid
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -162,6 +163,7 @@
     - !type:SpeciesRequirement
       species:
         - Vulpkanin
+        - ProtoVulp
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -185,6 +187,8 @@
       species:
         - Avali
         - Resomi
+        - ProtoAvali
+        - ProtoResomi
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -229,6 +233,7 @@
     - !type:SpeciesRequirement
       species:
         - Dwarf
+        - ProtoDwarf
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -251,6 +256,7 @@
     - !type:SpeciesRequirement
       species:
         - Human
+        - ProtoHuman
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -273,6 +279,7 @@
     - !type:SpeciesRequirement
       species:
         - Vox
+        - ProtoVox
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -295,6 +302,7 @@
     - !type:SpeciesRequirement
       species:
         - Reptilian
+        - ProtoReptilian
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -317,6 +325,7 @@
     - !type:SpeciesRequirement
       species:
         - Shadekin
+        - ProtoKin
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -339,6 +348,7 @@
     - !type:SpeciesRequirement
       species:
         - SlimePerson
+        - ProtoSlimePerson
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -361,6 +371,7 @@
     - !type:SpeciesRequirement
       species:
         - Cyclorite
+        - ProtoCyclorite
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -383,6 +394,7 @@
     - !type:SpeciesRequirement
       species:
         - Diona
+        - ProtoDiona
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -410,6 +422,7 @@
     - !type:SpeciesRequirement
       species:
         - Moth
+        - ProtoMoth
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -432,6 +445,7 @@
     - !type:SpeciesRequirement
       species:
         - Thaven
+        - ProtoThaven
       inverted: true
     - !type:TraitsRequirement
       traits:
@@ -454,6 +468,7 @@
     - !type:SpeciesRequirement
       species:
         - Lagomorph
+        - ProtoLagomorph
       inverted: true
     - !type:TraitsRequirement
       traits:

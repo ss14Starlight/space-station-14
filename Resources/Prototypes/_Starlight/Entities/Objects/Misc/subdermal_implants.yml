@@ -54,7 +54,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: TSF
+    radioChannel:
+    - TSF
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -211,7 +212,8 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: RattleOnTrigger
-      radioChannel: MedTak
+      radioChannel:
+      - MedTak
     - type: SuitSensor
       faction: MedTak
       randomMode: false
@@ -257,4 +259,19 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: NanoTrasen
+    radioChannel:
+    - NanoTrasen
+
+# Station Implants
+- type: entity
+  parent: TrackingImplant
+  id: CommandTrackingImplant
+  name: command tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the security and command radio channels.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel:
+      - Security
+      - Command
