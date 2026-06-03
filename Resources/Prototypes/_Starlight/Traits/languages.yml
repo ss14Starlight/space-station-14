@@ -481,9 +481,18 @@
   description: trait-language-squeakish-desc
   category: LanguageTraits
   cost: 2
-  components:
-    - type: LanguageSpeaker
-  languagesSpoken:
-    - Squeakish
-  languagesUnderstood:
-    - Squeakish
+  effects:
+    - !type:LanguageEffect
+      languagesSpoken:
+        - Squeakish
+      languagesUnderstood:
+        - Squeakish
+  requirements:
+    - !type:SpeciesRequirement
+      species:
+        - Rodentia
+      inverted: true
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
