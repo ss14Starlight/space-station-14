@@ -15,7 +15,7 @@
   - type: Instrument
     program: 62
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Electro": {62: 0} #i needed generic sounding synth presets, sue me
@@ -33,7 +33,7 @@
   - type: Instrument
     program: 21
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Standard": {21: 0}
@@ -50,7 +50,7 @@
   - type: Instrument
     program: 108
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/kalimba.rsi
   - type: Item

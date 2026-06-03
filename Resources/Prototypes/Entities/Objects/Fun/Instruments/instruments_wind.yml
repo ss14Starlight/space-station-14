@@ -7,7 +7,7 @@
     tags:
     - WoodwindInstrument
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -18,7 +18,7 @@
   - type: Instrument
     program: 66
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Soprano": {64: 0}
@@ -53,7 +53,7 @@
     slots:
     - neck
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -66,7 +66,7 @@
   - type: Sprite
     sprite: Objects/Fun/Instruments/clarinet.rsi
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -79,7 +79,7 @@
   - type: Sprite
     sprite: Objects/Fun/Instruments/flute.rsi
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -92,7 +92,7 @@
   - type: Sprite
     sprite: Objects/Fun/Instruments/recorder.rsi
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -105,7 +105,7 @@
   - type: Sprite
     sprite: Objects/Fun/Instruments/panflute.rsi
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 #if you change this to some cringe-ass zelda reference so help me god i will shoot you dead.
 - type: entity
@@ -121,7 +121,7 @@
   - type: Item
     size: Small
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -136,4 +136,4 @@
   - type: Item
     size: Large
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false

@@ -16,7 +16,7 @@
   - type: Instrument
     program: 56
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Standard": {56: 0}
@@ -33,7 +33,7 @@
   - type: Instrument
     program: 57
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/trombone.rsi
 
@@ -46,7 +46,7 @@
   - type: Instrument
     program: 60
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/frenchhorn.rsi
 
@@ -60,6 +60,6 @@
     program: 3
     bank: 100 # Defined in space-station-14.sf2
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/euphonium.rsi

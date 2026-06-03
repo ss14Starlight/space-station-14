@@ -10,7 +10,7 @@
   - type: Instrument
     program: 121
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Item
     size: Small
 
@@ -26,7 +26,7 @@
   - type: Instrument
     program: 122
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Item
     size: Small
 
@@ -42,7 +42,7 @@
   - type: Instrument
     program: 123
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Item
     size: Small
     storedRotation: 90
@@ -62,7 +62,7 @@
   - type: Instrument
     program: 124
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Item
     size: Small
     storedRotation: -90
@@ -97,7 +97,7 @@
   - type: Instrument
     program: 125
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Item
     size: Small
     storedRotation: -90
@@ -114,7 +114,7 @@
   - type: Instrument
     program: 126
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Item
     size: Tiny
 
@@ -127,7 +127,7 @@
   - type: Instrument
     program: 127
   - type: ActivatableUI
-    inHandsOnly: false
+    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/gunpet.rsi
   - type: Item
