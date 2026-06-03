@@ -97,7 +97,7 @@
   - type: IntrinsicUI
     uis:
       enum.RadarConsoleUiKey.Key:
-        toggleAction: ActionAGhostShowRadar # Starlight-end
+        toggleAction: ActionObserverShowRadar # Starlight-end
 - type: entity
   parent: BaseMentalAction
   id: ActionGhostBoo

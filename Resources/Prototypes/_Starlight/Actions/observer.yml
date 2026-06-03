@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseAGhostAction
-  id: ActionAGhostShowRadar
+  id: ActionObserverShowRadar
   name: Mass Scanner Interface
   description: View a Mass Scanner Interface.
   components:
@@ -9,6 +9,6 @@
     iconOn: { sprite: Interface/Actions/actions_ai.rsi, state: comms_console }
     keywords: [ "AI", "console", "interface" ]
     checkCanInteract: false
-    priority: -10
+    priority: -20
   - type: InstantAction
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
