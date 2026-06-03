@@ -48,7 +48,7 @@
     Yip:
       collection: ProtoVulpYip
     Whine:
-      collection: ProtoVulpWhine
+      collection: Whine
     Growl:
       collection: ProtoVulpGrowl
     Howl:
