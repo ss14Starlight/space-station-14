@@ -1,7 +1,7 @@
 # Moved here due to the significant changes we're making.
 #### Proto-Armor ####
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  parent: ClothingOuterBaseMedium
   id: ClothingOuterArmorProtogenBase
   abstract: true
   components:
@@ -156,7 +156,7 @@
     damageCoefficient: 0.75
 
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
+  parent: [ClothingOuterArmorProtogenBase, AllowSuitStorageClothing]
   id: ClothingOuterArmorProtogenHeavySpace
   name: Nyx-Class heavy protogen frame
   description: Comes in-built with heavy insulation for spacefaring. A bit weighty. Removal of this would require killing you.

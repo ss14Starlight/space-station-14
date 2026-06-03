@@ -161,6 +161,11 @@
             sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
             state: jumpsuit-female
   - type: Barotrauma
+    protectionSlots:
+    - head
+    alternativeProtectionSlots:
+    - - outerClothing
+      - outerClothing2
     damage:
       types:
         Blunt: 0.9 #per second, halved compared to normal. / Starlight, changed back to base 0.9.
