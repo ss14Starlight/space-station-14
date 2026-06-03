@@ -1,0 +1,190 @@
+- type: entity
+  parent: [BaseMobProtogen, BaseSpeciesPickupableHuge]
+  id: BaseMobProtoCyclorite
+  name: Urist McCyclorister
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    - Terrum
+    understands:
+    - GalacticCommon
+    - Machine
+    - Terrum
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Cyclops/parts.rsi
+    state: full
+  - type: NightVision
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 10
+  - type: HumanoidAppearance
+    species: ProtoCyclorite
+    hideLayersOnEquip:
+    - Hair
+  - type: Body
+    prototype: ProtoCyclorite
+    requiredLegs: 2
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 300 # heavier due to being made from rocky skin, same weight as diona
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical # 50 extra health than base species to crit
+      300: Dead # 100 extra damage required to kill
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: ProtoCyclorite
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#9457eb"
+  - type: MeleeWeapon
+    soundHit:
+      collection: AlienClaw
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 0.5
+    damage:
+      types:
+        Blunt: 13
+        Structural: 10
+  - type: Sprite
+    scale: 1.08, 1.08
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: CycloriteBlood
+        Quantity: 300
+  - type: MovementSpeedModifierScale
+    movementSpeedScale: 0.5
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      90: 0.5 # 0.75 w/ Speed Modifier Scale, 60% of base health based on BaseMobSpecies
+      120: 0 # 0.5 w/ Speed Modifier Scale, 80% of base health based on BaseMobSpecies
+  - type: Crawler
+    standTime: 4
+    knockdownDamageThreshold: 10
+  - type: Stamina
+    forceStandStamina: 20
+  - type: CombatMode
+    canDisarm: true
+    disarmFailChance: 0.5 # 50 stamina damage with 50% chance
+  - type: Inventory
+    speciesId: cyclorite
+    templateId: protocyclorite
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: hand
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: shoes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: neck
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: belt
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: outer
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtoCyclorite
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ProtoCyclorite
+  - type: Body
+    prototype: ProtoCyclorite
+  - type: Inventory
+    speciesId: cyclorite
+    templateId: protocyclorite
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: hand
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: head
+      back:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Cyclorite/displacement.rsi
+            state: shoes
