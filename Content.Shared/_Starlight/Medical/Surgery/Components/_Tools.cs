@@ -97,7 +97,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
 }
 
 [DataDefinition]
-public sealed class SurgeryToolBehavior
+public sealed partial class SurgeryToolBehavior
 {
     /// <summary>
     /// Determines how fast you will do operation. For example if operation takes 5s, and you have speed = 2, it will take 2.5 sec.

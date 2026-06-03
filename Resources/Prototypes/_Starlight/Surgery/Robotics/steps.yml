@@ -5,7 +5,9 @@
   components:
   - type: SurgeryStep
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -17,7 +19,9 @@
   components:
   - type: SurgeryStep
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -31,7 +35,9 @@
   - type: SurgeryStep
     duration: 5
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -44,7 +50,9 @@
   - type: SurgeryStep
     duration: 4
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -57,7 +65,9 @@
   - type: SurgeryStep
     duration: 4
     tools:
-    - type: WirecutterSurgery
+    - type: Tool
+      qualities:
+      - Cutting
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -70,7 +80,9 @@
   - type: SurgeryStep
     duration: 5
     tools:
-    - type: WrenchSurgery
+    - type: Tool
+      qualities:
+      - Anchoring
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: icon
@@ -82,7 +94,9 @@
   components:
   - type: SurgeryStep
     tools:
-    - type: WelderSurgery
+    - type: Tool
+      qualities:
+      - Welding
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
     state: icon
@@ -94,7 +108,9 @@
   components:
   - type: SurgeryStep
     tools:
-    - type: WelderSurgery
+    - type: Tool
+      qualities:
+      - Welding
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
     state: icon
@@ -107,7 +123,9 @@
   components:
   - type: SurgeryStep
     tools:
-    - type: CrowbarSurgery
+    - type: Tool
+      qualities:
+      - Prying
   - type: Sprite
     sprite: Objects/Tools/crowbar.rsi
     state: icon
@@ -130,10 +148,13 @@
   - type: SurgeryStep
     duration: 4
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
+
 - type: entity
   parent: SurgeryStepBase
   id: SurgeryStepConnectWiringConnections
@@ -142,7 +163,9 @@
   - type: SurgeryStep
     duration: 5
     tools:
-    - type: WirecutterSurgery
+    - type: Tool
+      qualities:
+      - Cutting
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -154,7 +177,9 @@
   components:
   - type: SurgeryStep
     tools:
-    - type: WrenchSurgery
+    - type: Tool
+      qualities:
+      - Anchoring
   - type: Sprite
     sprite: Objects/Tools/wrench.rsi
     state: icon
@@ -167,7 +192,9 @@
   - type: SurgeryStep
     duration: 16
     tools:
-    - type: WelderSurgery
+    - type: Tool
+      qualities:
+      - Welding
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
     state: icon
@@ -181,7 +208,9 @@
     - type: SurgeryStep
       duration: 20
       tools:
-      - type: WelderSurgery
+    - type: Tool
+      qualities:
+      - Welding
     - type: Sprite
       sprite: Objects/Tools/welder.rsi
       state: icon
@@ -195,7 +224,9 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: WelderSurgery
+    - type: Tool
+      qualities:
+      - Welding
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
     state: icon
@@ -208,7 +239,9 @@
   - type: SurgeryStep
     duration: 4
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -221,7 +254,9 @@
   - type: SurgeryStep
     duration: 6
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -238,7 +273,9 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: WirecutterSurgery
+    - type: Tool
+      qualities:
+      - Cutting
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -251,7 +288,9 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: SurgeryStepOrganExtract
     organ:
     - type: EyeImplant
@@ -267,7 +306,9 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -280,7 +321,9 @@
   - type: SurgeryStep
     duration: 4
     tools:
-    - type: WirecutterSurgery
+    - type: Tool
+      qualities:
+      - Cutting
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -292,7 +335,9 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganEyes
@@ -308,7 +353,9 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: WirecutterSurgery
+    - type: Tool
+      qualities:
+      - Cutting
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -321,7 +368,9 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: SurgeryStepOrganExtract
     organ:
     - type: OrganTongue
@@ -337,7 +386,9 @@
   - type: SurgeryStep
     duration: 2
     tools:
-    - type: ScrewdriverSurgery
+    - type: Tool
+      qualities:
+      - Screwing
   - type: Sprite
     sprite: Objects/Tools/screwdriver.rsi
     state: screwdriver-map
@@ -350,7 +401,9 @@
   - type: SurgeryStep
     duration: 3
     tools:
-    - type: WirecutterSurgery
+    - type: Tool
+      qualities:
+      - Cutting
   - type: Sprite
     sprite: Objects/Tools/wirecutters.rsi
     state: cutters-map
@@ -371,3 +424,39 @@
   - type: Sprite
     sprite: _FarHorizons/Mobs/Species/IPC/organs.rsi
     state: tongue
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveHandImplantRobot
+  name: Remove Hand Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Tool
+      qualities:
+      - Screwing
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: HandImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
+
+- type: entity
+  parent: SurgeryStepBase
+  id: SurgeryStepRemoveBrainImplantRobot
+  name: Remove Brain Implant
+  components:
+  - type: SurgeryStep
+    duration: 3
+    tools:
+    - type: Tool
+      qualities:
+      - Screwing
+  - type: SurgeryStepOrganExtract
+    organ:
+    - type: BrainImplant
+  - type: Sprite
+    sprite: Objects/Tools/screwdriver.rsi
+    state: screwdriver-map
