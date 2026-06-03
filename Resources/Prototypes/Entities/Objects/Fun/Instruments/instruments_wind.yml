@@ -53,7 +53,7 @@
     slots:
     - neck
   - type: ActivatableUI
-    requireActiveHand: false
+    inHandsOnly: false
 
 - type: entity
   parent: BaseWoodwindInstrument
