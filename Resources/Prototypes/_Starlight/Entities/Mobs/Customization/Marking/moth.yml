@@ -2,7 +2,7 @@
   id: MothAntennaeBushyAlt
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, ProtoMoth, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Moth/moth_antennae.rsi
       state: bushyalt
@@ -11,7 +11,7 @@
   id: MothAntennaeEnlarged
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, ProtoMoth, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Moth/moth_antennae.rsi
       state: enlarged
@@ -20,7 +20,7 @@
   id: MothDSwirlWings
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Moth]
+  speciesRestriction: [Moth, ProtoMoth, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Moth/moth_wings.rsi
       state: dswirl_wings

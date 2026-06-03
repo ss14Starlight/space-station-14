@@ -122,6 +122,10 @@
     tags:
     - Soup
     - Fruit # I don't know what this is but its' a salad so sure
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: herb salad
@@ -154,6 +158,10 @@
     tags:
     - Fruit
     - Soup
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: valid salad
@@ -187,6 +195,10 @@
     - Meat
     - Fruit
     - Soup
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: coleslaw
@@ -214,6 +226,10 @@
           Quantity: 10
         - ReagentId: Allicin
           Quantity: 8
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: caesar salad
@@ -240,6 +256,10 @@
           Quantity: 15
         - ReagentId: Vitamin
           Quantity: 30
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: kimchi salad
@@ -267,6 +287,10 @@
           Quantity: 15
         - ReagentId: Allicin
           Quantity: 2
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: fruit salad
@@ -294,6 +318,10 @@
     tags:
     - Fruit
     - Soup
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: jungle salad
@@ -322,6 +350,10 @@
     tags:
     - Fruit
     - Soup
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: citrus salad
@@ -350,6 +382,10 @@
     tags:
     - Fruit
     - Soup
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 - type: entity
   name: salad of eden
@@ -376,6 +412,10 @@
           Quantity: 5
         - ReagentId: Omnizine
           Quantity: 5
+  - type: Edible #Starlight
+    utensil:
+    - Fork
+    - Spoon
 
 # Rice
 
