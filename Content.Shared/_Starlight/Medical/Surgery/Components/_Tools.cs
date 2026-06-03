@@ -96,6 +96,7 @@ public sealed partial class SurgicalDrillComponent : Component, ISurgeryToolComp
     public string ToolName => "a surgical drill";
 }
 
+[DataDefinition]
 public sealed class SurgeryToolBehavior
 {
     /// <summary>
