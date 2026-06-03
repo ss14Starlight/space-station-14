@@ -46,7 +46,7 @@
     allowRevives: false
   - type: Damageable
     damageContainer: Inorganic
-    damageModifierSet: Silicon
+    damageModifierSet: Electronic
   # Death: melt into acid. Xenoroaches are biological-silicon hybrids; on destruction
   # the chassis dissolves into acid just like a living xenomorph would.
   - type: Destructible
@@ -148,6 +148,9 @@
     sounds:
       Unsexed: UnisexSiliconXenoborg
     wilhelmProbability: 0
+  - type: RandomMetadata
+    nameSegments:
+    - NamesXenoborg
   - type: TypingIndicator
     proto: xenoborg
   - type: NameIdentifier
@@ -157,6 +160,11 @@
     jobTitleOverride: chat-radio-xenoborg
     hasMindState: xenoroach
     noMindState: xenoroach
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
   - type: SiliconLawBound
   - type: ActionGrant
     actions:

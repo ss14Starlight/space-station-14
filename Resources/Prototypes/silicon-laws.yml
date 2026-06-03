@@ -626,11 +626,6 @@
   order: 3
   lawString: law-xenoroach-3
 
-- type: siliconLaw
-  id: Xenoroach4
-  order: 4
-  lawString: law-xenoroach-4
-
 - type: siliconLawset
   id: XenoroachLawset
   name: law-xenoroach-name
@@ -638,7 +633,6 @@
   - Xenoroach1
   - Xenoroach2
   - Xenoroach3
-  - Xenoroach4
   obeysTo: laws-owner-xenoborgs
 
 
