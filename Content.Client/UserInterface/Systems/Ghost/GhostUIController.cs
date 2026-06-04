@@ -169,17 +169,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     }
 
     private void NewLifePressed() //🌟Starlight🌟
-    {
-        _system?.OpenNewLife();
-    }
+        =>  _system?.OpenNewLife();
 
     private void CharacterEditorPressed() //🌟Starlight🌟
-    {
-        UIManager.GetUIController<LobbyUIController>().OpenCharacterSetupWindow();
-    }
+        => UIManager.GetUIController<LobbyUIController>().OpenCharacterSetupWindow();
 
     private void GhostThemePressed() //🌟Starlight🌟
-    {
-        _system?.OpenGhostTheme();
-    }
+        => _system?.OpenGhostTheme();
 }
