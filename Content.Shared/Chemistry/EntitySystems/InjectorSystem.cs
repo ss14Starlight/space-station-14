@@ -561,9 +561,19 @@ public sealed partial class InjectorSystem : EntitySystem
         }
 
         var applicableTargetSolution = targetSolution.Comp.Solution;
-        // If a whitelist exists, remove all non-whitelisted reagents from the target solution temporarily
+        var reagentWhitelist = injector.Comp.ReagentWhitelist;
+
+        // Check for whitelist, if the solution does not contain anything on the whitelist return false before going further.
+        if (reagentWhitelist is not null && !reagentWhitelist.Any(reagent => applicableTargetSolution.ContainsPrototype(reagent)))
+        {
+            var msg = target.Owner == user ? "injector-component-cannot-draw-message-self" : "injector-component-cannot-draw-message";
+            _popup.PopupClient(Loc.GetString(msg, ("target", Identity.Entity(target.Owner, EntityManager))), injector.Owner, user);
+            return false;
+        }
+
+        // remove all non-whitelisted reagents from the target solution temporarily.
         var temporarilyRemovedSolution = new Solution();
-        if (injector.Comp.ReagentWhitelist is { } reagentWhitelist)
+        if (reagentWhitelist is not null)
         {
             temporarilyRemovedSolution = applicableTargetSolution.SplitSolutionWithout(applicableTargetSolution.Volume, reagentWhitelist.ToArray());
         }
