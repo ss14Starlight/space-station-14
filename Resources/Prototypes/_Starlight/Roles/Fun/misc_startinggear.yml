@@ -1,0 +1,8 @@
+- type: startingGear
+  id: MobKoboldGear
+  equipment:
+    head: ClothingHeadBandBotany
+    ears: ClothingHeadsetService
+    jumpsuit: ClothingUniformJumpskirtHydroponics
+    belt: ClothingBeltPlantFilled
+    id: KikiPDA
