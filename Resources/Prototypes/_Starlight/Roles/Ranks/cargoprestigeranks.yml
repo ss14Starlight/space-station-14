@@ -1,0 +1,29 @@
+﻿- type: rank
+  id: CargoSpecialist
+  name: Cargo Specialist
+  requirement: CargoPrestigeReq
+  priority: High
+
+- type: rank
+  id: MailSpecialist
+  name: Mail Specialist
+  requirement: CargoPrestigeReq
+  priority: High
+
+- type: rank
+  id: ModelSalvager
+  name: Model Salvager
+  requirement: CargoPrestigeReq
+  priority: High
+
+- type: rank
+  id: ModelSalvageLead
+  name: Model Salvage Lead
+  requirement: CargoPrestigeReq
+  priority: High
+
+- type: rank
+  id: QuartermasterGeneral
+  name: Quatermaster General
+  requirement: CargoPrestigeReq
+  priority: High

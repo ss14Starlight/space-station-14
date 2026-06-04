@@ -1,0 +1,29 @@
+﻿- type: rank
+  id: MasterJanitor
+  name: Master Janitor
+  requirement: ServicePrestigeReq
+  priority: High
+
+- type: rank
+  id: MasterBartender
+  name: Master Bartender
+  requirement: ServicePrestigeReq
+  priority: High
+
+- type: rank
+  id: MessOfficer
+  name: Mess Officer
+  requirement: ServicePrestigeReq
+  priority: High
+
+- type: rank
+  id: DoctorBotany
+  name: Master Botanist
+  requirement: ServicePrestigeReq
+  priority: High
+
+- type: rank
+  id: ChiefSteward
+  name: Chief Steward
+  requirement: ServicePrestigeReq
+  priority: High

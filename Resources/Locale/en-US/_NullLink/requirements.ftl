@@ -24,5 +24,15 @@ roles-req-first-writing-roles = First Writing Contest Winner
 roles-req-senior-developer = Senior Developer
 roles-req-developer = Developer
 
+roles-req-sec-prestige = Chief of Security
+roles-req-med-prestige = Surgeon General
+roles-req-cargo-prestige = Quartermaster General
+roles-req-sci-prestige = Master Researcher
+roles-req-engi-prestige = Master Engineer
+roles-req-service-prestige = Chief Steward
+roles-req-cap-prestige = Admiral
+roles-req-ntr-prestige = Protocol Commissar
+roles-req-law-prestige = Grand Magistrate
+
 triesteport-main = TRIESTEPORT
 overall = overall

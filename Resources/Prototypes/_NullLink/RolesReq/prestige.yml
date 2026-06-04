@@ -1,0 +1,53 @@
+﻿- type: roleRequirementPrototype
+  id: SecurityPrestigeReq
+  roles: 1512114803739590759
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-sec-prestige
+
+- type: roleRequirementPrototype
+  id: MedicalPrestigeReq
+  roles: 1512124034144534709
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-med-prestige
+
+- type: roleRequirementPrototype
+  id: CargoPrestigeReq
+  roles: 1512123865428660385
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-cargo-prestige
+
+- type: roleRequirementPrototype
+  id: SciencePrestigeReq
+  roles: 1512129560580325617
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-sci-prestige
+
+- type: roleRequirementPrototype
+  id: EngineeringPrestigeReq
+  roles: 1512120278304559245
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-engi-prestige
+
+- type: roleRequirementPrototype
+  id: ServicePrestigeReq
+  roles: 1512140713595375826
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-service-prestige
+
+- type: roleRequirementPrototype
+  id: CaptainPrestigeReq
+  roles: 1512136612631281664
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-cap-prestige
+
+- type: roleRequirementPrototype
+  id: NTRPrestigeReq
+  roles: 1512136452668919828
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-ntr-prestige
+
+- type: roleRequirementPrototype
+  id: LawPrestigeReq
+  roles: 1512115268736913519
+  discord: roles-req-discord-starlight
+  rolesLoc: roles-req-law-prestige

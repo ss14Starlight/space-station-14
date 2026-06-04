@@ -1,4 +1,5 @@
-﻿using Content.Shared.Access;
+﻿using Content.Shared._Starlight.Roles.Ranks;
+using Content.Shared.Access;
 using Content.Shared.Guidebook;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
@@ -169,6 +170,9 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        [DataField]
+        public List<ProtoId<RankPrototype>>? Ranks; // Starlight
     }
 
     /// <summary>

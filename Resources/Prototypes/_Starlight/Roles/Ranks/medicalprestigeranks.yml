@@ -1,0 +1,23 @@
+﻿- type: rank
+  id: MedicalSpecialist
+  name: Medical Specialist
+  requirement: MedicalPrestigeReq
+  priority: High
+
+- type: rank
+  id: SpecialistSurgeon
+  name: Specialist Surgeon
+  requirement: MedicalPrestigeReq
+  priority: High
+
+- type: rank
+  id: ChemicalSpecialist
+  name: Chemical Specialist
+  requirement: MedicalPrestigeReq
+  priority: High
+
+- type: rank
+  id: SurgeonGeneral
+  name: Surgeon General
+  requirement: MedicalPrestigeReq
+  priority: High

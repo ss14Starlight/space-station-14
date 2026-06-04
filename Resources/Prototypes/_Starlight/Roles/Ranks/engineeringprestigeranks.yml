@@ -1,0 +1,17 @@
+﻿- type: rank
+  id: MasterEngineer
+  name: Master Engineer
+  requirement: EngineeringPrestigeReq
+  priority: High
+
+- type: rank
+  id: AtmosphericSpecialist
+  name: Atmospheric Specialist
+  requirement: EngineeringPrestigeReq
+  priority: High
+
+- type: rank
+  id: EngineeringSpecialist
+  name: Engineering Specialist
+  requirement: EngineeringPrestigeReq
+  priority: High

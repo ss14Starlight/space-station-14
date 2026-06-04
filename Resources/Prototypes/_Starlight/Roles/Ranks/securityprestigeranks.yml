@@ -1,0 +1,29 @@
+﻿- type: rank
+  id: ModelOfficer
+  name: Model Officer
+  requirement: SecurityPrestigeReq
+  priority: High
+
+- type: rank
+  id: DutySpecialist
+  name: Duty Specialist
+  requirement: SecurityPrestigeReq
+  priority: High
+
+- type: rank
+  id: BrigmedicalSpecialist
+  name: Brigmedical Specialist
+  requirement: SecurityPrestigeReq
+  priority: High
+
+- type: rank
+  id: ModelWarden
+  name: Model Warden
+  requirement: SecurityPrestigeReq
+  priority: High
+
+- type: rank
+  id: ChiefOfSecurity
+  name: Chief of Security
+  requirement: SecurityPrestigeReq
+  priority: High
