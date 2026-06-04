@@ -1,69 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Leth) IPC repair area to Robotics.
-    type: Add
-  id: 405175
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) SciDrobe to Science.
-    type: Add
-  id: 405176
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Electrolyzer added to Atmos.
-    type: Add
-  id: 405177
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Water vapor gas miner added to Atmos.
-    type: Add
-  id: 405178
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) CO2 gas miner added to Atmos.
-    type: Add
-  id: 405179
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Grill added to Kitchen.
-    type: Add
-  id: 405180
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Happy Honk vending machine added to Mess Hall.
-    type: Add
-  id: 405181
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Pride-O-Mat added to Barracks south of HOP.
-    type: Add
-  id: 405182
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Shipyard console added to Captain's Room.
-    type: Add
-  id: 405183
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
   - message: (Leth) Added cyborg recharging stations to GenPop.
     type: Add
   id: 405184
@@ -2799,4 +2736,67 @@ Entries:
   id: 405574
   time: '2026-06-03T12:08:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4633
+- author: wonderfulnewworld
+  changes:
+  - message: Protogen armor markings now mostly render beneath clothes.
+    type: Tweak
+  id: 405575
+  time: '2026-06-04T05:55:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4642
+- author: wonderfulnewworld
+  changes:
+  - message: All protogens whose base species can have hair can now have hair instead of just laspi and a few others.
+    type: Fix
+  id: 405576
+  time: '2026-06-04T05:55:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4642
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Aielithii and Proto-Lagomorph now have access to protogen specific markings.
+    type: Fix
+  id: 405577
+  time: '2026-06-04T05:55:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4642
+- author: DevCS-CP
+  changes:
+  - message: Implant Extractor can remove command tracking implant.
+    type: Add
+  id: 405578
+  time: '2026-06-04T05:55:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4653
+- author: wonderfulnewworld
+  changes:
+  - message: Protokin are now strippable.
+    type: Fix
+  id: 405579
+  time: '2026-06-04T05:55:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4646
+- author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
+  changes:
+  - message: Added robotic versions of nearly every emote in game for Protogens to use.
+    type: Add
+  id: 405580
+  time: '2026-06-04T06:25:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4650
+- author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
+  changes:
+  - message: Diona, Vox and Vulpkanins now have unique sneeze sounds.
+    type: Add
+  id: 405581
+  time: '2026-06-04T06:25:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4650
+- author: wonderfulnewworld
+  changes:
+  - message: Changelings can now make a fake Protogen frame, allowing them to properly disguise as protogen.
+    type: Add
+  id: 405582
+  time: '2026-06-04T06:25:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4645
+- author: wonderfulnewworld
+  changes:
+  - message: Ghost roles that don't use your character will not use Protogen, since they don't spawn with their armor frames.
+    type: Tweak
+  id: 405583
+  time: '2026-06-04T06:25:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4645
 Order: -1

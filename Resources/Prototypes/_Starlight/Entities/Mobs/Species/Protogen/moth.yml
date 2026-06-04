@@ -124,6 +124,11 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_moth"
         visible: false
+  - type: Vocal
+    sounds:
+      Male: ProtoMothMSounds
+      Female: ProtoMothFSounds
+      Unsexed: ProtoMothMSounds
   - type: Inventory
     speciesId: moth
     templateId: protogen
