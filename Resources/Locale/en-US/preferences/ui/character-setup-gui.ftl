@@ -1,5 +1,4 @@
 character-setup-gui-character-setup-label = Character setup
-character-setup-window-title = Character Editor
 character-setup-gui-character-setup-adminremarks-button = Admin Remarks
 character-setup-gui-character-setup-stats-button = Stats
 character-setup-gui-character-setup-rules-button = Rules

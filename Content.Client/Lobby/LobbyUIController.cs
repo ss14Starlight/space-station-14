@@ -295,7 +295,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         var window = new CharacterSetupWindow
         {
-            Title = Loc.GetString("character-setup-window-title"),
+            Title = Loc.GetString("ghost-gui-character-editor-button"),
         };
         window.MinSize = window.SetSize = new Vector2(1400, 700); // Might need adjusting but felt good to me
 
