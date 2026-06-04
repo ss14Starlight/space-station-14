@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Leth) Added an unlocked MegaSeed Servitor added to GenPop for prisoners.
-    type: Add
-  id: 405174
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
   - message: (Leth) IPC repair area to Robotics.
     type: Add
   id: 405175
@@ -2799,4 +2792,11 @@ Entries:
   id: 405573
   time: '2026-06-03T09:30:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4638
+- author: Johnny
+  changes:
+  - message: Observers are now able to use mass scanners.
+    type: Add
+  id: 405574
+  time: '2026-06-03T12:08:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4633
 Order: -1
