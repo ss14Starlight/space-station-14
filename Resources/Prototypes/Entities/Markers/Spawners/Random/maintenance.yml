@@ -407,7 +407,7 @@
         - id: Brutepack1
         - id: Ointment1
         - id: Gauze1
-      - id: Bola
+      - id: MakeshiftBola #Starlight
       - id: SurvivalKnife
       - id: ScalpelShiv
       - id: Shiv

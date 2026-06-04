@@ -112,7 +112,7 @@
       orGroup: loot
     - id: SoapNT
       orGroup: loot
-    - id: Bola
+    - id: SecurityBola #Starlight
       orGroup: loot
     - id: Spear
       orGroup: loot

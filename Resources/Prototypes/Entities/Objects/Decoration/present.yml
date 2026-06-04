@@ -362,7 +362,7 @@
         orGroup: GiftPool
       - id: ClothingUniformJumpsuitEngineeringHazard
         orGroup: GiftPool
-      - id: Bola
+      - id: SecurityBola #Starlight
         orGroup: GiftPool
       - id: GlowstickGreen
         orGroup: GiftPool

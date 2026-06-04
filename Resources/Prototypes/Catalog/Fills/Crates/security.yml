@@ -121,5 +121,5 @@
         - id: BoxFlashbang
         - id: BoxStinger
         - id: BoxTearGas
-        - id: Bola # replace with 4 e-bolas when added
+        - id: SecurityBola #Starlight # replace with 4 e-bolas when added
           amount: 4

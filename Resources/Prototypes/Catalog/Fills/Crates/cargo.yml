@@ -121,7 +121,7 @@
       weight: 0.1
     - id: WeaponShotgunHandmade
     - id: WeaponFlareGun
-    - id: Bola
+    - id: SecurityBola #Starlight
     - id: Shovel
     - id: WeaponTurretXeno
     - !type:NestedSelector

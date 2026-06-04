@@ -200,7 +200,7 @@
         - id: Handcuffs
         - id: Handcuffs
         - id: GrenadeShrapnel
-        - id: Bola
+#        - id: Bola #Starlight: Removed Bola in place of Security & Makeshift bolas
         - id: HoloprojectorSecurity
 
 - type: entity
