@@ -74,6 +74,11 @@
       "name": "hair",
       "directions": 4,
       "copyright": "by Huaqas (GitHub)"
+    },
+    {
+      "name": "facialhair",
+      "directions": 4,
+      "copyright": "by Huaqas (GitHub)"
     }
   ]
 }
