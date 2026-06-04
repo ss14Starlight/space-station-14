@@ -23,7 +23,7 @@ public sealed partial class MindTests
     [Test]
     public async Task TestDeleteVisiting()
     {
-        await using var pair = await SetupPair();
+        await using var pair = await SetupPair(dirty: true); // Starlight, this keeps failing, so I'm going to try seeing if this fixes it.
         var server = pair.Server;
 
         var entMan = server.ResolveDependency<IServerEntityManager>();
@@ -220,7 +220,7 @@ public sealed partial class MindTests
     [Test]
     public async Task TestGhostToAghost()
     {
-        await using var pair = await SetupPair();
+        await using var pair = await SetupPair(dirty: true); // Starlight, this keeps failing because it fails to delete the ghost, so I'm going to try seeing if this fixes it.
         var server = pair.Server;
         var entMan = server.ResolveDependency<IServerEntityManager>();
         var playerMan = server.ResolveDependency<IPlayerManager>();
