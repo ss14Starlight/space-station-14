@@ -54,13 +54,13 @@ public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponen
             if (TryComp<ElectrifiedComponent>(ent, out var electrified))
                 _electrocution.SetElectrified((ent, electrified), true);
 
+            // turn off the airlock safety - we want to force doors to close (even if people are present)
+            if (TryComp<AirlockComponent>(ent, out var airlockComp) && airlockComp.Powered)
+                _airlock.SetSafety(airlockComp, false);
+
             // bolt all eligible doors
             if (TryComp<DoorBoltComponent>(ent, out var boltComp))
             {
-                // turn off the airlock safety - we want to force doors to close (even if people are present)
-                if (TryComp<AirlockComponent>(ent, out var airlockComp) && airlockComp.Powered)
-                    _airlock.SetSafety(airlockComp, false);
-
                 // bolt doors if welded or closed; if doors are open, try to close them before bolting
                 if (doorComp.State is DoorState.Welded or DoorState.Closed)
                     _door.SetBoltsDown((ent, boltComp), true);
