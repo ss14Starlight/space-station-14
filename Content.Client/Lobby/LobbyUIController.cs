@@ -293,7 +293,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         // detach the gui from it's parent (Most of the time the lobby)
         characterGui.Orphan();
 
-        var window = new DefaultWindow
+        var window = new CharacterSetupWindow
         {
             Title = Loc.GetString("character-setup-window-title"),
         };
@@ -310,6 +310,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         _characterSetupWindow = window;
         window.OpenCentered();
+    }
+
+    private sealed class CharacterSetupWindow : DefaultWindow
+    {
+        public CharacterSetupWindow()
+        {
+            CloseButton.Visible = false;
+        }
     }
     // end starlight
 
