@@ -19,6 +19,8 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Examine;
 using Content.Shared.Localizations;
+using Content.Shared.PowerCell; //Starlight
+using Content.Shared.PowerCell.Components; //Starlight
 
 namespace Content.Shared.Weapons.Reflect;
 
@@ -35,6 +37,7 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly PowerCellSystem _powerCell = default!; //Starlight
 
     public override void Initialize()
     {
@@ -110,6 +113,14 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
+        var availableEnergy = 0;
+        if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
+        {
+            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.DamageEnergyDraw);
+            if (availableEnergy <= 0)
+                return false;
+        }
+
         // 🌟Starlight🌟 start
         var reflectionChance = reflector.Comp.ReflectProb;
 
@@ -129,6 +140,9 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
+        if (availableEnergy > 0)
+            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.DamageEnergyDraw, user: user))
+                return false; // if no battery or no charge, doesn't work and reflect fails
 
         if (reflector.Comp.OverrideAngle is not null)
         {
@@ -206,11 +220,30 @@ public sealed class ReflectSystem : EntitySystem
             reflectionChance = enhancedChance;
         }
 
+        var availableEnergy = 0;
+        if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
+        {
+            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.DamageEnergyDraw);
+            if (availableEnergy <= 0)
+            {
+                newDirection = null;
+                return false;
+            }
+        }
+
         if (!_random.Prob(reflectionChance))
         {
             newDirection = null;
             return false;
         }
+
+
+        if (availableEnergy > 0)
+            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.DamageEnergyDraw, user: user))
+            {
+                newDirection = null;
+                return false; // if no battery or no charge, doesn't work and reflect fails
+            }
 
         PlayAudioAndPopup(reflector.Comp, user);
 

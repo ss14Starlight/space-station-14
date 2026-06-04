@@ -61,6 +61,13 @@ public sealed partial class ReflectComponent : Component
     [DataField("overrideAngle"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public Angle? OverrideAngle = null;
 
+    // 🌟Starlight🌟
+    /// <summary>
+    /// If the shield requires power to function, how much power to consume for a reflection
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float DamageEnergyDraw = 10f;
+
     /// <summary>
     /// The sound to play when reflecting.
     /// </summary>

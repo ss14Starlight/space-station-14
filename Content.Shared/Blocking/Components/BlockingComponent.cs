@@ -81,7 +81,7 @@ public sealed partial class BlockingComponent : Component
     /// <summary>
     /// How much energy will be spent from the battery per unit of damage taken by the shield.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float DamageEnergyDraw = 10f;
 
     #endregion

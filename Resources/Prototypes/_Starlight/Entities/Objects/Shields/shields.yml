@@ -395,6 +395,111 @@
       price: 350
 
 - type: entity
+  name: greenlight shield
+  parent: [Lantern, BaseCentcommContraband ] #Yes I am using a flashlight as a base, shockingly easiest way to get things working
+  id: GreenLightShield
+  description: Exotic energy shield, when folded, can even fit in your pocket.
+  components:
+    - type: HandheldLight
+      addPrefix: false
+      wattage: 2
+      turnOnSound: !type:SoundPathSpecifier
+        path: /Audio/Weapons/ebladeon.ogg
+      turnOffSound: !type:SoundPathSpecifier
+        path: /Audio/Weapons/ebladeoff.ogg
+    - type: LightBehaviour
+      behaviours:
+        - !type:FadeBehaviour
+          id: radiating
+          maxDuration: 2.0
+          startValue: 3.0
+          endValue: 2.0
+          isLooped: true
+          reverseWhenFinished: true
+        - !type:PulseBehaviour
+          id: blinking
+          interpolate: Nearest
+          maxDuration: 1.0
+          startValue: 0.1
+          endValue: 2.0
+          isLooped: true
+    - type: UseDelay
+      delay: 2
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          #Starlight Start
+          blacklist:
+            tags:
+              - MechReactor
+            components:
+              - BatterySelfRecharger
+          #Starlight End
+    - type: PointLight
+      enabled: false
+      radius: 2
+      energy: 2.5
+      color: "#439909"
+      netsync: false
+    - type: ItemTogglePointLight
+    - type: StealTarget #for the lulz
+      stealGroup: LAMP
+    - type: ToggleableVisuals
+      spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: ginhand-left-shield
+            shader: unshaded
+        right:
+          - state: ginhand-right-shield
+            shader: unshaded
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
+      layers:
+        - state: geshield-icon
+        - state: geshield-on
+          color: "#FFFFFF"
+          visible: false
+          shader: unshaded
+          map: [ "shield" ]
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
+      heldPrefix: geshield
+    - type: ItemToggleSize
+      activatedSize: Huge
+    - type: ItemToggleActiveSound
+      activeSound: !type:SoundPathSpecifier
+        path: /Audio/Weapons/ebladehum.ogg
+    - type: Reflect
+      reflectProb: 0.95
+      reflects:
+        - Energy
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.9
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 1.2
+          Slash: 0.85
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 10
+    - type: Appearance
+    - type: Damageable
+      damageContainer: Shield
+    - type: ItemToggle
+
+- type: entity
   name: green energy shield
   parent: [BaseItem, BaseCentcommContraband ]
   id: GreenEnergyShield
@@ -483,6 +588,7 @@
         flatReductions:
           Heat: 1
           Piercing: 1
+      damageEnergyDraw: 10
     - type: Appearance
     - type: Damageable
       damageContainer: Shield

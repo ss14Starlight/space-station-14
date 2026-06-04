@@ -1,9 +1,9 @@
+using System.ComponentModel;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Item.ItemToggle; //Starlight
 using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Power; //Starlight
 using Content.Shared.PowerCell; //Starlight
 using Content.Shared.PowerCell.Components; //Starlight
 using Robust.Shared.Audio.Systems;
@@ -28,41 +28,27 @@ public sealed partial class BlockingSystem
         SubscribeLocalEvent<BlockingUserComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<BlockingUserComponent, EntityTerminatingEvent>(OnEntityTerminating);
 
-        SubscribeLocalEvent<BlockingUserComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty); //Starlight;
-        SubscribeLocalEvent<BlockingUserComponent, PowerCellChangedEvent>(OnPowerCellChanged); //Starlight
-        SubscribeLocalEvent<BlockingUserComponent, ChargeChangedEvent>(OnChargeChanged); //Starlight
-        SubscribeLocalEvent<BlockingUserComponent, PowerChangedEvent>(OnPowerChanged); //Starlight
+        SubscribeLocalEvent<BlockingComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty); //Starlight;
+        SubscribeLocalEvent<BlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged); //Starlight;
     }
 
-    #region Starlight
+ #region Starlight
     //If power cell is empty,the shield should be disabled
-    private void OnPowerCellEmpty(EntityUid uid, BlockingUserComponent component, PowerCellSlotEmptyEvent args)
+    private void OnPowerCellEmpty(EntityUid uid, BlockingComponent component, PowerCellSlotEmptyEvent args)
     {
-        TryDeactivate(component);
+        TryDeactivate(uid);
     }
     //If power cell is swapped,the shield should be disabled
-    private void OnPowerCellChanged(EntityUid uid, BlockingUserComponent component, PowerCellChangedEvent args)
+    private void OnPowerCellChanged(EntityUid uid, BlockingComponent component, PowerCellChangedEvent args)
     {
         if (args.Ejected)
-            TryDeactivate(component);
+            TryDeactivate(uid);
     }
-    //If power battery runs dead, the shield should be disabled
-    private void OnChargeChanged(EntityUid uid, BlockingUserComponent component, ChargeChangedEvent args)
+    private bool TryDeactivate(EntityUid uid)
     {
-        if (args.CurrentCharge == 0)
-            TryDeactivate(component);
-    }
-    //If power cell is swapped,the shield should be disabled
-    private void OnPowerChanged(EntityUid uid, BlockingUserComponent component, PowerChangedEvent args)
-    {
-        TryDeactivate(component);
-    }
-    private bool TryDeactivate(BlockingUserComponent component)
-    {
-        if (component.BlockingItem is not { } item || !HasComp<BlockingComponent>(item))
+        if (!HasComp<BlockingComponent>(uid))
             return false;
-
-        if (TryComp<ItemToggleComponent>(item, out var itemToggle))
+        if (TryComp<ItemToggleComponent>(uid, out var itemToggle))
         {
             if (!itemToggle.Activated)
                 return false;
@@ -71,9 +57,8 @@ public sealed partial class BlockingSystem
         {
             return false;
         }
-        return _itemToggle.TryDeactivate(item, predicted: false);
+        return _itemToggle.TryDeactivate(uid, predicted: false);
     }
-
     #endregion
 
     private void OnParentChanged(EntityUid uid, BlockingUserComponent component, ref EntParentChangedMessage args)
@@ -107,6 +92,7 @@ public sealed partial class BlockingSystem
         if (TryComp<ItemToggleComponent>(item, out var itemToggle))
             if (!itemToggle.Activated)
                 return;
+
         //Starlight End
         #endregion
 
@@ -119,7 +105,7 @@ public sealed partial class BlockingSystem
 
         #region Starlight
         // A shield that uses power to function needs to use that power
-        if (!TryComp<PowerCellSlotComponent>(item, out var slot))
+        if (!HasComp<PowerCellSlotComponent>(item))
         {
             _damageable.TryChangeDamage((item, dmgComp), blockFraction * args.OriginalDamage); //Original Wizden code, this should be applicable in the majority of cases
         }
@@ -129,7 +115,7 @@ public sealed partial class BlockingSystem
             var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
             if (availableEnergy <= 0)
             {
-                TryDeactivate(component);
+                //TryDeactivate(component.BlockingItem.Value);
                 return; //If the power cell is empty, no damage will be blocked
             }
 
