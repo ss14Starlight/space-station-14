@@ -88,6 +88,16 @@
       sprite: _Starlight/Structures/Wallmounts/signs.rsi
       state: mining
 
+- type: entity
+  parent: BaseSign
+  id: SignHeat
+  name: heating sign
+  description: A sign indicating the presence of heating equipment.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Structures/Wallmounts/signs.rsi
+      state: heat
+
 # Xenoborg
 
 - type: entity
