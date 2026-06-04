@@ -18,6 +18,7 @@ public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponen
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
     [Dependency] private readonly SharedAirlockSystem _airlock = default!;
+    private const float DoorCloseBoltDelay = 0.5f;
 
     /// <summary>
     /// Bolts, electrifies, and turns off the safety wire of any door with AI access.
@@ -64,7 +65,7 @@ public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponen
                 if (doorComp.State is DoorState.Welded or DoorState.Closed)
                     _door.SetBoltsDown((ent, boltComp), true);
                 else if (_door.TryClose(ent, doorComp))
-                    Timer.Spawn(TimeSpan.FromSeconds(0.5f), () => _door.SetBoltsDown((ent, boltComp), true));
+                    Timer.Spawn(TimeSpan.FromSeconds(DoorCloseBoltDelay), () => _door.SetBoltsDown((ent, boltComp), true));
             }
 
             // add to list so we can undo all of this later
