@@ -12,6 +12,15 @@
         },
         {
             "name": "menderBurn"
-        }
+        },
+        {
+			"name": "fillLight1"
+		},
+		{
+			"name": "fillLight2"
+		},
+		{
+			"name": "fillLight3"
+		}
     ]
 }
