@@ -1,48 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Leth) Brand new Library.
-    type: Add
-  id: 405169
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Lawyers.
-    type: Add
-  id: 405170
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Lawyer Office next to NCT Office.
-    type: Add
-  id: 405171
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Added signs for Lawyer, IAA, NTR, and Magistrate.
-    type: Add
-  id: 405172
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Departmental communications consoles added to Head of Staff's respective offices.
-    type: Add
-  id: 405173
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
-  - message: (Leth) Added an unlocked MegaSeed Servitor added to GenPop for prisoners.
-    type: Add
-  id: 405174
-  time: '2026-05-22T09:11:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4506
-- author: Caws
-  changes:
   - message: (Leth) IPC repair area to Robotics.
     type: Add
   id: 405175
@@ -2799,4 +2757,46 @@ Entries:
   id: 405568
   time: '2026-06-02T13:23:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4621
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Reptilians now have their intended 15% heat resist instead of 50%.
+    type: Fix
+  id: 405569
+  time: '2026-06-02T20:15:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4637
+- author: Rhetorica
+  changes:
+  - message: TriggerOnPointedAt. Automation enters the gestural interface era.
+    type: Add
+  id: 405570
+  time: '2026-06-02T21:05:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4636
+- author: Rhetorica
+  changes:
+  - message: Dwarfs now shout "Mushroom!" when pointing at fungus (excluding those growing in hydroponics trays and soil).
+    type: Add
+  id: 405571
+  time: '2026-06-02T21:05:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4636
+- author: Rhetorica
+  changes:
+  - message: Dwarfs now shout "We're rich!" when pointing at a stack of gold ore.
+    type: Add
+  id: 405572
+  time: '2026-06-02T21:05:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4636
+- author: wonderfulnewworld
+  changes:
+  - message: Added a new Botanist pet/ghost role, Kiki. She's like Pun Pun, but for botany. Comes with her own PDA, botany belt, clothes, and headset.
+    type: Add
+  id: 405573
+  time: '2026-06-03T09:30:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4638
+- author: Johnny
+  changes:
+  - message: Observers are now able to use mass scanners.
+    type: Add
+  id: 405574
+  time: '2026-06-03T12:08:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4633
 Order: -1
