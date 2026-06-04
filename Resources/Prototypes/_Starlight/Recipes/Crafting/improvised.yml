@@ -583,3 +583,11 @@
   targetNode: jetpack
   category: construction-category-tools
   objectType: Item
+
+- type: construction
+  id: MakeshiftBola
+  graph: MakeshiftBola
+  startNode: start
+  targetNode: bola
+  category: construction-category-weapons
+  objectType: Item

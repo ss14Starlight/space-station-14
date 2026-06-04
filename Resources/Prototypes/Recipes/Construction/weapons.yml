@@ -86,13 +86,14 @@
   category: construction-category-weapons
   objectType: Item
 
-- type: construction
-  id: Bola
-  graph: Bola
-  startNode: start
-  targetNode: bola
-  category: construction-category-weapons
-  objectType: Item
+#- type: construction
+#  id: Bola
+#  graph: Bola
+#  startNode: start
+#  targetNode: bola
+#  category: construction-category-weapons
+#  objectType: Item
+# Split into security and makeshift bolas for Starlight
 
 - type: construction
   id: WoodenBuckler
