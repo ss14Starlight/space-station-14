@@ -170,10 +170,10 @@
   components: # intend for Enforcer to have wider choke for semi-auto function
   - type: Gun
     spread: 15
-  - type: Sprite
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
