@@ -64,3 +64,47 @@
       amount: 1
   products:
     Briomadine: 2
+
+- type: reaction
+  id: BrioLacerinol
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Lacerinol:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: BrioPuncturase
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Puncturase:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: BrioBruizine
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Bruizine:
+      amount: 1
+  products:
+    Ipecac: 1
+
+- type: reaction
+  id: BrioBicaridine
+  impact: Medium
+  reactants:
+    Briomadine:
+      amount: 1
+    Bicaridine:
+      amount: 1
+  products:
+    Ipecac: 1

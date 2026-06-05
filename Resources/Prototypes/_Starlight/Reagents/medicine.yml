@@ -291,7 +291,7 @@
       - !type:HealthChange
         damage:
           types:
-            Blunt: -1
+            Piercing: -1
       # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
