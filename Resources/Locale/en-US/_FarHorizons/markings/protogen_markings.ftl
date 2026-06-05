@@ -184,3 +184,9 @@ marking-ProtoArachnidVisor = Arachnid Visor
 marking-ProtoArachnidVisor-visor = Arachnid Visor
 marking-ProtoArachnidLEDFace = Default Arachnid LEDs
 marking-ProtoArachnidLEDFace-face = Default Arachnid LEDs
+
+# Starlight
+marking-ProtoLagomorphVisor = Lagomorph Visor
+marking-ProtoLagomorphVisor-visor = Lagomorph Visor
+marking-ProtoLagomorphLEDFace = Default Lagomorph LEDs
+marking-ProtoLagomorphLEDFace-face = Default Lagomorph LEDs
