@@ -142,26 +142,33 @@
   parent: EventHumanoidCentcomm
   speciesBlacklist:
     - Arachnid
-    - ProtoArachnid
     - Diona
-    - ProtoDiona
     - Reptilian
-    - ProtoReptilian
     - Resomi
-    - ProtoResomi
     - Vox
-    - ProtoVox
     - Vulpkanin
-    - ProtoVulp
     - Avali
-    - ProtoAvali
     - Felionoid
-    - ProtoFelionoid
     - Shadekin
-    - ProtoKin
     - Thaven
+    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
+    - ProtoDiona
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+    - ProtoAvali
+    - ProtoFelionoid
+    - ProtoKin
     - ProtoThaven
+    - ProtoCyclorite
+    - ProtoDwarf
+    - ProtoMoth
+    - ProtoSlimePerson
+    - ProtoLagomorph
+    - ProtoElf
     - Protogen
+    - ProtoHuman
   components:
     - type: GhostRole
       name: ghost-role-information-nanotrasen-special-forces-name
@@ -213,7 +220,7 @@
     - Felionoid
     - Shadekin
     - Thaven
-    - ProtoArachnid
+    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
     - ProtoDiona
     - ProtoReptilian
     - ProtoResomi
@@ -223,7 +230,14 @@
     - ProtoFelionoid
     - ProtoKin
     - ProtoThaven
+    - ProtoCyclorite
+    - ProtoDwarf
+    - ProtoMoth
+    - ProtoSlimePerson
+    - ProtoLagomorph
+    - ProtoElf
     - Protogen
+    - ProtoHuman
   components:
     - type: GhostRole
       name: ghost-role-information-decimus-name
@@ -448,6 +462,8 @@
     - ProtoSlimePerson
     - ProtoLagomorph
     - ProtoElf
+    - Protogen
+    - ProtoHuman # Re-enable if we figure out how to force equip armor on them.
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-marine-name

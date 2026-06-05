@@ -251,7 +251,11 @@ public abstract partial class InventorySystem
             return false;
 
         DebugTools.Assert(slotDefinition.Name == slot);
-        if (slotDefinition.DependsOn != null)
+        #region Starlight
+        // We're going to check for alternative dependencies here, so we'll have to extend this down below.
+        if (!AreSlotDependenciesMet(target, itemUid, slotDefinition, inventory))
+            return false;
+        /*if (slotDefinition.DependsOn != null)
         {
             if (!TryGetSlotEntity(target, slotDefinition.DependsOn, out EntityUid? slotEntity, inventory))
                 return false;
@@ -268,7 +272,8 @@ public abstract partial class InventorySystem
                         return false;
                 }
             }
-        }
+        }*/
+        #endregion
 
         var fittingInPocket = slotDefinition.SlotFlags.HasFlag(SlotFlags.POCKET) &&
                               item != null &&
@@ -468,11 +473,20 @@ public abstract partial class InventorySystem
 
         foreach (var slotDef in inventory.Slots)
         {
-            if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
-            {
+        #region Starlight
+                if (slotDef == slotDefinition || !SlotDependsOn(slotDef, slotDefinition.Name))
+                    continue;
+
+                // If this slot has an OR dependency, do not drop it as long as one of the other dependency slots is still occupied
+                // and satisfies dependsOnComponents.
+                if (TryGetSlotEntity(target, slotDef.Name, out var dependentItem, inventory) &&
+                    AreSlotDependenciesMet(target, dependentItem.Value, slotDef, inventory))
+                    continue;
+        #endregion
+            //{ // Starlight
                 //this recursive call might be risky
                 TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
-            }
+            //} // Starlight
         }
 
         // we check if any items were dropped, and make a popup if they were.
@@ -555,7 +569,58 @@ public abstract partial class InventorySystem
 
         return true;
     }
+    #region Starlight
+    // Extended alternative slot region.
+    private bool AreSlotDependenciesMet(EntityUid target, EntityUid itemUid, SlotDefinition slotDefinition, InventoryComponent inventory)
+    {
+        if (slotDefinition.DependsOn != null &&
+            !IsDependencySlotValid(target, itemUid, slotDefinition, slotDefinition.DependsOn, inventory))
+            return false;
 
+        if (slotDefinition.DependsOnAny.Count > 0)
+        {
+            // I don't like how many fors this gets into, but since realistically the most anyone will ever use this for is 2 or 3... it's not the worst, right?
+            foreach (var dependencySlot in slotDefinition.DependsOnAny)
+            {
+                if (IsDependencySlotValid(target, itemUid, slotDefinition, dependencySlot, inventory))
+                    return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsDependencySlotValid(EntityUid target, EntityUid itemUid, SlotDefinition slotDefinition, string dependencySlot, InventoryComponent inventory)
+    {
+        if (!TryGetSlotEntity(target, dependencySlot, out EntityUid? slotEntity, inventory))
+            return false;
+
+        if (slotDefinition.DependsOnComponents is not { } componentRegistry)
+            return true;
+
+        foreach (var (_, entry) in componentRegistry)
+        {
+            if (!HasComp(slotEntity, entry.Component.GetType()))
+                return false;
+
+            if (TryComp<AllowSuitStorageComponent>(slotEntity, out var comp) &&
+                _whitelistSystem.IsWhitelistFailOrNull(comp.Whitelist, itemUid))
+                return false;
+        }
+
+        return true;
+    }
+
+    private static bool SlotDependsOn(SlotDefinition slotDefinition, string dependencySlot)
+    {
+        if (slotDefinition.DependsOn == dependencySlot)
+            return true;
+
+        return slotDefinition.DependsOnAny.Contains(dependencySlot);
+    }
+    #endregion
     public bool TryGetSlotEntity(EntityUid uid, string slot, [NotNullWhen(true)] out EntityUid? entityUid, InventoryComponent? inventoryComponent = null, ContainerManagerComponent? containerManagerComponent = null)
     {
         entityUid = null;
