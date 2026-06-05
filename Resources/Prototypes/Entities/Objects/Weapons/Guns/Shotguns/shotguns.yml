@@ -102,7 +102,6 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    pump: true
   - type: ItemSlots
     slots:
       gun_magazine:
