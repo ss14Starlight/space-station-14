@@ -51,7 +51,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     private JobPriorityEditor? _jobPriorityEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
 
-    /// begin starlight 
+    /// begin starlight
     /// <summary>
     /// character editor window, see OpenCharacterSetupWindow()
     /// </summary>
