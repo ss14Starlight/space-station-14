@@ -17,4 +17,4 @@ reagent-name-briomadine = briomadine
 reagent-desc-briomadine = An advanced semi-natural medicine used to treat serious brute damage. 
 
 reagent-name-acrileni = acrileni
-reagent-desc-acrileni = A weak natural medicine able to treat light blunt damage. 
+reagent-desc-acrileni = A weak natural medicine able to treat light peircing damage. 
