@@ -487,7 +487,7 @@
 
 - type: marking
   id: ProtoMothVisor
-  bodyPart: RFoot
+  bodyPart: RHand # Starlight, moth markings are in a different order
   markingCategory: Special
   speciesRestriction: [ProtoMoth]
   sprites:

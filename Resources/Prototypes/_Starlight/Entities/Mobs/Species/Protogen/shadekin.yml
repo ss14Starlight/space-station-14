@@ -160,6 +160,11 @@
                   max: 1
             - !type:BurnBodyBehavior {}
     - type: Barotrauma
+      protectionSlots:
+      - head
+      alternativeProtectionSlots:
+      - - outerClothing
+        - outerClothing2
       damage:
         types:
           Blunt: 0.85 #per second, scales with pressure and other constants.
