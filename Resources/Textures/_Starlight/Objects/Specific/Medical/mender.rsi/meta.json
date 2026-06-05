@@ -8,19 +8,42 @@
     },
     "states": [
         {
-            "name": "menderBrute"
+            "name": "menderBrute",
+            "delays": [
+                [
+                  0.2,
+                  0.2,
+                  0.2
+                ]
+              ]
         },
         {
-            "name": "menderBurn"
+            "name": "menderBurn",
+            "delays": [
+                [
+                  0.2,
+                  0.2,
+                  0.2
+                ]
+              ]
         },
         {
-			"name": "fillLight1"
+			"name": "fillIndicator1"
 		},
 		{
-			"name": "fillLight2"
+			"name": "fillIndicator2"
 		},
 		{
-			"name": "fillLight3"
+			"name": "fillIndicator3"
+		},
+        {
+			"name": "fillIndicator4"
+		},
+		{
+			"name": "fillIndicator5"
+		},
+		{
+			"name": "fillIndicator6"
 		}
     ]
 }

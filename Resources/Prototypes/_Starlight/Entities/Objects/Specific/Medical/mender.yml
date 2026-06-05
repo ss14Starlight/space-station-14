@@ -21,8 +21,8 @@
     solution: injector
   - type: Appearance
   - type: SolutionContainerVisuals
-    maxFillLevels: 3
-    fillBaseName: fillLight
+    maxFillLevels: 6
+    fillBaseName: fillIndicator
     solutionName: injector
   - type: Tag
     tags:
@@ -42,7 +42,7 @@
     layers:
     - state: menderBrute
       map: ["enum.SolutionContainerLayers.Base"]
-    - state: fillLight1
+    - state: fillIndicator6
       color: "#FFFFFF"
       map: [ "enum.SolutionContainerLayers.Fill" ]
       visible: true
@@ -90,7 +90,7 @@
     layers:
     - state: menderBurn
       map: ["enum.SolutionContainerLayers.Base"]
-    - state: fillLight1
+    - state: fillIndicator6
       map: [ "enum.SolutionContainerLayers.Fill" ]
   - type: Healing
     solutionDrain: true
