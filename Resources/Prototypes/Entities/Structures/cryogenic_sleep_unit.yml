@@ -75,6 +75,7 @@
 - type: entity
   parent: CryogenicSleepUnit
   id: CryogenicSleepUnitSpawnerLateJoin
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Spawner, LateJoin
   components:
     - type: ContainerSpawnPoint
