@@ -1,0 +1,77 @@
+- type: entity
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoElf
+  name: Urist McElgister
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - Machine
+  - type: Absorbable
+  - type: Hunger
+  - type: Thirst
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
+    state: full
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 5
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: ProtoElf
+  - type: HumanoidAppearance
+    species: ProtoElf
+    hideLayersOnEquip:
+    - Hair
+  - type: Inventory
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: Wagging
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - SiliconEmotesFH
+    - NotLabelable
+    - Elf
+    - ProtoElf
+    - Protogen
+
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: AppearanceProtoElf
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ProtoElf
+  - type: Inventory
+    templateId: protogen
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

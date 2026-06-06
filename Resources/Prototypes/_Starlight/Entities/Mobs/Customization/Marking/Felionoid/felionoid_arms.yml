@@ -2,7 +2,7 @@
   id: FelionoidArmPawMittensL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_armsL
@@ -11,7 +11,7 @@
   id: FelionoidArmPawMittensR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  pawmittens_armsR
@@ -20,7 +20,7 @@
   id: FelionoidArmTabbyL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  Tabby_armL
@@ -29,7 +29,7 @@
   id: FelionoidArmTabbyR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state:  Tabby_armR
@@ -38,7 +38,7 @@
   id: FelionoidArmCalicoR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico2_ArmR
@@ -47,7 +47,7 @@
   id: FelionoidArmCalicoL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico2_ArmL
@@ -56,7 +56,7 @@
   id: FelionoidArmStripesR
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: r_arm_stripes
@@ -65,7 +65,7 @@
   id: FelionoidArmStripesL
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: l_arm_stripes

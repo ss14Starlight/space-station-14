@@ -162,8 +162,8 @@ public sealed partial class FaxPrintout
     [DataField]
     public bool Locked { get; private set; }
 
-    // Starlight-start
-    // cargo slips data
+    #region Starlight
+    // Cargo slips data
     [DataField]
     public string? Product{ get; private set; }
 
@@ -179,7 +179,26 @@ public sealed partial class FaxPrintout
     [DataField]
     public string? Account{ get; private set; }
 
-    // Starlight-end
+    // Metadata
+
+    /// <summary>
+    /// Whether to retain existing metadata when printing the fax. Relevant when copying instead of sending.
+    /// </summary>
+    [DataField]
+    public bool RetainMetadata { get; private set; }
+
+    /// <summary>
+    /// The name of the sending fax machine.
+    /// </summary>
+    [DataField]
+    public string? MetaSender { get; private set; }
+
+    /// <summary>
+    /// The formatted timestamp of when this fax was sent.
+    /// </summary>
+    [DataField]
+    public string? MetaSentAt { get; private set; }
+    #endregion
 
     private FaxPrintout()
     {
@@ -198,7 +217,10 @@ public sealed partial class FaxPrintout
         string? requester = null,
         string? reason = null,
         int? orderQuantity = null,
-        string? account = null
+        string? account = null,
+        bool? retainMetadata = false,
+        string? metaSender = null,
+        string? metaSentAt = null
         //starlight-end
         )
     {
@@ -215,6 +237,9 @@ public sealed partial class FaxPrintout
         Reason = reason;
         OrderQuantity = orderQuantity;
         Account = account;
+        RetainMetadata = retainMetadata ?? false;
+        MetaSender = metaSender;
+        MetaSentAt = metaSentAt;
         // Starlight-end
 
 
