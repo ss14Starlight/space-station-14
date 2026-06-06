@@ -30,6 +30,7 @@
     - alertType: Rooted
     - alertType: Pacified
     - alertType: Stealthy
+    - alertType: DwarfCourage # Starlight
     - alertType: Offer # Starlight
 
 - type: entity

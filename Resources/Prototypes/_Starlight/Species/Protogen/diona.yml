@@ -1,0 +1,92 @@
+- type: species
+  id: ProtoDiona
+  name: subspecies-name-protodiona
+  roundStart: true
+  prototype: MobProtoDiona
+  sprites: MobProtoDionaSprites
+  markingLimits: MobProtoDionaMarkingLimits
+  dollPrototype: AppearanceProtoDiona
+  defaultSkinTone: "#cdb369"
+  skinColoration: Hues
+  customName: true
+  maleFirstNames: NamesDionaFirst
+  femaleFirstNames: NamesDionaFirst
+  lastNames: NamesDionaLast
+  naming: TheFirstofLast
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen
+  subspeciesName: subspecies-name-protodiona
+  loadout: ProtogenLoadout
+  standardSize: 200
+  standardWeight: 145
+  standardDensity: 130
+  minAge: 30
+  youngAge: 40
+  oldAge: 150
+  maxAge: 250
+
+- type: speciesBaseSprites
+  id: MobProtoDionaSprites
+  sprites:
+    Eyes: MobProtogenEyes
+    Head: MobDionaHead
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    Chest: MobDionaTorso
+    LArm: MobDionaLArm
+    RArm: MobDionaRArm
+    LHand: MobDionaLHand
+    RHand: MobDionaRHand
+    LLeg: MobDionaLLeg
+    RLeg: MobDionaRLeg
+    LFoot: MobDionaLFoot
+    RFoot: MobDionaRFoot
+
+- type: markingPoints
+  id: MobProtoDionaMarkingLimits
+  onlyWhitelisted: true
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtoDionaMediumArmor, ProtoDionaVisor, ProtoDionaLights, ProtoDionaLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: false
+    HeadTop:
+      points: 2
+      required: false
+    Head:
+      points: 2
+      required: false
+    Chest:
+      points: 2
+      required: false
+    Legs:
+      points: 2
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
+      required: false
+    Arms:
+      points: 2
+      required: false
+    Overlay:
+      points: 2
+      required: false

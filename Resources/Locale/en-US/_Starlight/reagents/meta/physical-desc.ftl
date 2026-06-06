@@ -13,3 +13,5 @@ reagent-physical-desc-otherworldly = otherworldly
 reagent-physical-desc-elf-diethylamine = rejuvenating
 reagent-physical-desc-elf-tranexamic-acid = clotting
 reagent-physical-desc-elf-space-cleaner = sparkling
+
+reagent-physical-desc-highlander = immortal

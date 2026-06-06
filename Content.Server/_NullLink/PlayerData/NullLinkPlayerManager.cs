@@ -109,6 +109,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
                     serverGrain.PlayerConnected(e.Session.UserId)
                         .FireAndForget(err=> _sawmill.Error($"PlayerConnected dispatch failed: {err}"));
                 SendPlayerRoles(e.Session, state.Roles);
+                CheckDiscordLink(e.Session);
                 break;
             case SessionStatus.InGame:
                 break;
@@ -118,6 +119,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
                         .FireAndForget(err => _sawmill.Error($"PlayerDisconnected dispatch failed: {err}"));
                 _playerById.Remove(e.Session.UserId, out _);
                 _mentors.Remove(e.Session.UserId, out _);
+                _discordPromptOpen.Remove(e.Session);
                 break;
             default:
                 break;

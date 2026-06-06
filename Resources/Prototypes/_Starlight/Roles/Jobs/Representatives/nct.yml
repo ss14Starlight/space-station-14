@@ -32,7 +32,6 @@
     - Cargo
     - Medical
     - IAA
-    - Debrief
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]

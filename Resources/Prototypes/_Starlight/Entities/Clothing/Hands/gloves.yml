@@ -46,6 +46,24 @@
     fiberMaterial: fibers-red-and-black-woven
 
 - type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesFingerlessBudget
+  name: fingerless budget insulated gloves
+  description: You're not sure what's more insulting, the fact that these are fingerless, or the fact that they're not even real insuls.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/fingerlessinsuls.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/fingerlessinsuls.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative-frayed
+    fiberColor: fibers-yellow
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 0
+
+- type: entity
   parent: ClothingHandsMittensBase # That's why these exist in real life.
   id: ClothingHandsCatPaws
   name: cat paw mittens
