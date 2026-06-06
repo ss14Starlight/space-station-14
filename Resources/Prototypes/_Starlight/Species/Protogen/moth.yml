@@ -20,6 +20,7 @@
 - type: speciesBaseSprites
   id: MobProtoMothSprites
   sprites:
+    Hair: MobHumanoidAnyMarking
     Eyes: MobProtogenEyes
     Head: MobMothHead
     Snout: MobHumanoidAnyMarking
