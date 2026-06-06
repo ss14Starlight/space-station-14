@@ -13,7 +13,12 @@
     solutions:
       injector:
         maxVol: 35
+  - type: ExaminableSolution
+    solution: injector
+    exactVolume: true
   - type: RefillableSolution
+    solution: injector
+  - type: SolutionItemStatus
     solution: injector
   - type: DrawableSolution
     solution: injector
