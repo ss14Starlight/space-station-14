@@ -48,13 +48,7 @@
     - state: menderBrute
       map: ["enum.SolutionContainerLayers.Base"]
     - state: fillIndicator6
-      color: "#FFFFFF"
       map: [ "enum.SolutionContainerLayers.Fill" ]
-      visible: true
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 30
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -80,10 +74,9 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 30
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 30
+          Quantity: 35
 
 - type: entity
   id: AutoMenderBurn
@@ -125,7 +118,6 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 35
         reagents:
         - ReagentId: Dermaline
           Quantity: 35
