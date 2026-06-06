@@ -24,7 +24,6 @@
   - GenpopEnter
   - GenpopLeave
   - Command
-  - Debrief
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

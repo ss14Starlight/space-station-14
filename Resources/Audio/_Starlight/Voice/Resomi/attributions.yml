@@ -18,7 +18,7 @@
   license: "CC0-1.0"
   source: https://freesound.org/s/85403/
 
-- files: [resomi_laugh1.ogg, resomi_laugh2.ogg, resomi_laugh3.ogg]
+- files: [resomi_laugh1.ogg, resomi_laugh2.ogg, resomi_laugh3.ogg, resomi_cough.ogg, resomi_gasp.ogg]
   copyright: "galah0X.wav by ImmergoMedia, Taken from https://freesound.org/"
   license: "CC0-1.0"
   source: https://freesound.org/people/ImmergoMedia/
@@ -32,3 +32,13 @@
   license: "CC0-1.0"
   copyright: "'Red-shouldered hawk' mixed and edited with other Resomi SFX from freesound.org"
   source: "https://freesound.org/people/Vrymaa/sounds/770032/"
+
+- files: ["resomi_yawn.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "'reinsamba_Nightingale_song_happydub1-rwrk' by 'suonho'. Mixed and edited with other Resomi SFX."
+  source: "https://freesound.org/people/suonho/sounds/59344/"
+
+- files: ["resomi_sigh.ogg"]
+  license: "CC-BY-4.0"
+  copyright: "'reinsamba_Nightingale_song_dublostinspace1-rwrk' by 'suonho'. Mixed and edited with other Resomi SFX."
+  source: "https://freesound.org/people/suonho/sounds/59337/"

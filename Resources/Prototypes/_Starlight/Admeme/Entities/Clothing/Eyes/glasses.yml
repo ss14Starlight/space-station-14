@@ -15,9 +15,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - Hybrid # Protogens
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid # Protogens
   - type: Tag
     tags:
     - HudMedical
@@ -41,9 +43,11 @@
     damageContainers:
     - Biological
     - IPC
+    - Hybrid # Protogens
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid # Protogens
   - type: Tag
     tags:
     - HudMedical

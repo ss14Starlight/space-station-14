@@ -46,8 +46,8 @@
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 30 # Starlight. You should stop seeing 6 lings all the time now.
+      max: 5 # Starlight, same reasoning as the roundstart changeling change, for alpha.
+      playerRatio: 32 # Starlight. You should stop seeing 6 lings all the time now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -60,6 +60,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 75
       # Starlight-end
 
 - type: entity
@@ -83,8 +85,8 @@
     selectionTime: IntraPlayerSpawn # Starlight. Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
-      max: 12 # Starlight. Full gamemode Vamps scale higher to account for scaling.
-      playerRatio: 18 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
+      max: 10 # Starlight. Full gamemode Vamps scale higher to account for scaling.
+      playerRatio: 20 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None

@@ -1,0 +1,89 @@
+- type: species
+  id: ProtoLagomorph
+  name: subspecies-name-protolagomorph
+  roundStart: true
+  prototype: MobProtoLagomorph
+  sprites: MobProtoLagomorphSprites
+  defaultSkinTone: "#ffda93"
+  markingLimits: MobProtoLagomorphMarkingLimits
+  dollPrototype: AppearanceProtoLagomorph
+  skinColoration: Hues
+  customName: true
+  roundstartCyberwareCapacity: 6
+  subspeciesOf: Protogen # This is alternative version of other species. It will only be displayed in subspecies list
+  subspeciesName: subspecies-name-protolagomorph
+  loadout: ProtogenLoadout
+  minAge: 22
+  youngAge: 25
+  oldAge: 70
+  maxAge: 80
+  minWidth: 0.8
+  defaultWidth: 1
+  maxWidth: 1.2
+  minHeight: 0.8
+  defaultHeight: 1
+  maxHeight: 1.2
+  standardSize: 150
+  standardWeight: 40
+  standardDensity: 17
+
+- type: speciesBaseSprites
+  id: MobProtoLagomorphSprites
+  sprites:
+    Hair: MobHumanoidAnyMarking
+    Head: MobLagomorphHead
+    Eyes: MobProtogenEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
+    Snout: MobHumanoidAnyMarking
+    Chest: MobLagomorphTorso
+    HeadTop: MobHumanoidAnyMarking
+    HeadSide: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking
+    LArm: MobLagomorphLArm
+    RArm: MobLagomorphRArm
+    LHand: MobLagomorphLHand
+    RHand: MobLagomorphRHand
+    LLeg: MobLagomorphLLeg
+    RLeg: MobLagomorphRLeg
+    LFoot: MobLagomorphLFoot
+    RFoot: MobLagomorphRFoot
+
+- type: markingPoints
+  id: MobProtoLagomorphMarkingLimits
+  points:
+    Special:
+      points: 4
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor, ProtogenVisor, ProtogenLights, ProtogenLEDFace ]
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail:
+      points: 1
+      required: true
+      defaultMarkings: [ LagomorphTailFluffy ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ LagomorphEarsTall ]
+    Head:
+      points: 3
+      required: false
+    HeadSide:
+      points: 2
+      required: false
+    Chest:
+      points: 4
+      required: false
+    Legs:
+      points: 4
+      required: false
+    Arms:
+      points: 4
+      required: false
+
