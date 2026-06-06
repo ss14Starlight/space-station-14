@@ -817,6 +817,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             cosmicGamerule.TotalCult--;
             cosmicGamerule.Cultists.Remove(uid);
             AdjustCultObjectiveConversion(-1);
+            UpdateCultData(cosmicGamerule.MonumentInGame);
             return;
         }
 
