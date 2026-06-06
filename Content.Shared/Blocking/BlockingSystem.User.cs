@@ -111,7 +111,17 @@ public sealed partial class BlockingSystem
         }
         else //if the shield has a battery slot, then we consume charge not durability
         {
-            var damageEnergy = blockFraction * (float) args.OriginalDamage.GetTotal() * blocking.DamageEnergyDraw;
+            var damageMod = new DamageModifierSet();
+                //blockFraction * (float) args.OriginalDamage.GetTotal() * blocking.DamageEnergyDraw;
+            foreach (var key in dmgComp.Damage.DamageDict.Keys)
+            {
+                damageMod.Coefficients.TryAdd(key, blockFraction);
+            }
+
+            var damage = new DamageSpecifier();
+            damage = DamageSpecifier.ApplyModifierSet(args.Damage, damageMod);
+            var damageEnergy = (float) damage.GetTotal() * blocking.DamageEnergyDraw;
+
             var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
             if (availableEnergy <= 0)
             {

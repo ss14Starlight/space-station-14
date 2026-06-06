@@ -116,7 +116,7 @@ public sealed class ReflectSystem : EntitySystem
         var availableEnergy = 0;
         if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
         {
-            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.DamageEnergyDraw);
+            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.ReflectEnergyDraw);
             if (availableEnergy <= 0)
                 return false;
         }
@@ -141,7 +141,7 @@ public sealed class ReflectSystem : EntitySystem
         }
 
         if (availableEnergy > 0)
-            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.DamageEnergyDraw, user: user))
+            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
                 return false; // if no battery or no charge, doesn't work and reflect fails
 
         if (reflector.Comp.OverrideAngle is not null)
@@ -223,7 +223,7 @@ public sealed class ReflectSystem : EntitySystem
         var availableEnergy = 0;
         if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
         {
-            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.DamageEnergyDraw);
+            availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.ReflectEnergyDraw);
             if (availableEnergy <= 0)
             {
                 newDirection = null;
@@ -239,7 +239,7 @@ public sealed class ReflectSystem : EntitySystem
 
 
         if (availableEnergy > 0)
-            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.DamageEnergyDraw, user: user))
+            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
             {
                 newDirection = null;
                 return false; // if no battery or no charge, doesn't work and reflect fails

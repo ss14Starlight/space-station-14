@@ -66,7 +66,7 @@ public sealed partial class ReflectComponent : Component
     /// If the shield requires power to function, how much power to consume for a reflection
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float DamageEnergyDraw = 10f;
+    public float ReflectEnergyDraw = 80f;
 
     /// <summary>
     /// The sound to play when reflecting.
