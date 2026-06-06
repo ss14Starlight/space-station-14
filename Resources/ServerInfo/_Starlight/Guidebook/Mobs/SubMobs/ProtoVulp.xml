@@ -1,0 +1,19 @@
+<Document>
+  # Proto-Vulpkanin
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoVulp" Caption=""/>
+  </Box>
+
+  Proto-Vulpkanins played a large role in the current naming scheme of all Protogens, and it wasn't really even intetional on their part. Once contact was established between Humanity and Vulpkanins, ideas of
+  transhumanism naturally flowed between the two species and culminated into the first inter-species transhumanist group, which would then quickly take on other members as more species were discovered.
+    <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoVulp" Caption=""/>
+    <GuideEntityEmbed Entity="AppearanceProtogen" Caption=""/>
+  </Box>
+  A connection was quickly made between their apperance and a fictional human species- Protogen, and it didn't take long for the name to catch on after that.
+
+  ## Resistances
+  - Receive [color=#ffa500]25% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]55% less cold damage[/color].
+</Document>

@@ -1,0 +1,46 @@
+- type: roleLoadout
+  id: ProtogenLoadout
+  groups:
+  - ProtogenCybernetics
+
+- type: loadoutGroup
+  id: ProtogenCybernetics
+  name: loadout-group-protogen-cybernetics
+  minLimit: 1
+  loadouts:
+  - ProtogenArmorLightBasic
+  - ProtogenArmorLightSpeed
+  - ProtogenArmorMediumBasic
+  - ProtogenArmorMediumMagic
+  - ProtogenArmorHeavyBasic
+  - ProtogenArmorHeavySpace
+
+- type: loadout
+  id: ProtogenArmorLightBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenLightBasicUnremovable
+
+- type: loadout
+  id: ProtogenArmorLightSpeed
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenLightSpeedUnremovable
+
+- type: loadout
+  id: ProtogenArmorMediumBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenMediumBasicUnremovable
+
+- type: loadout
+  id: ProtogenArmorMediumMagic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenMediumMagicUnremovable
+
+- type: loadout
+  id: ProtogenArmorHeavyBasic
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenHeavyBasicUnremovable
+
+- type: loadout
+  id: ProtogenArmorHeavySpace
+  equipment:
+    outerClothing2: ClothingOuterArmorProtogenHeavySpaceUnremovable
