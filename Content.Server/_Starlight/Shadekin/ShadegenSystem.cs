@@ -1,6 +1,7 @@
 using Content.Server.Light.EntitySystems;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Shadekin;
+using Content.Shared.Item.ItemToggle;
 using Content.Shared.Light.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
@@ -13,6 +14,7 @@ public sealed partial class ShadegenSystem : EntitySystem
     [Dependency] private readonly PoweredLightSystem _light = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly HandheldLightSystem _handheldLight = default!;
+    [Dependency] private readonly ItemToggleSystem _toggle = default!;
     private readonly HashSet<EntityUid> _updateQueue = new();
 
     public override void Initialize()
@@ -51,7 +53,7 @@ public sealed partial class ShadegenSystem : EntitySystem
                 EnsureComp<ShadegenAffectedComponent>(light.Owner);
                 _updateQueue.Add(light.Owner);
 
-                if (TryComp<HandheldLightComponent>(light.Owner, out var handheldcomp) && handheldcomp.Activated)
+                if (TryComp<HandheldLightComponent>(light.Owner, out var handheldcomp) && _toggle.IsActivated(light.Owner))
                     _handheldLight.TurnOff((light.Owner, handheldcomp), makeNoise: false);
 
                 if (component.DestroyLights && TryComp<PoweredLightComponent>(light.Owner, out var poweredcomp) && poweredcomp.On)

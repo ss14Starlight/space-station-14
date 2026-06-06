@@ -396,8 +396,104 @@
 
 - type: entity
   name: greenlight shield
-  parent: [Lantern, BaseCentcommContraband ] #Yes I am using a flashlight as a base, shockingly easiest way to get things working
+  parent: [BaseItem, BaseCentcommContraband ] #Yes I am using a flashlight as a base, shockingly easiest way to get things working
   id: GreenLightShield
+  description: Exotic energy shield, when folded, can even fit in your pocket.
+  components:
+    # upstream stuff
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Weapons/ebladeon.ogg
+      soundDeactivate:
+        path: /Audio/Weapons/ebladeoff.ogg
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Weapons/ebladehum.ogg
+    - type: ItemToggleSize
+      activatedSize: Huge
+    - type: ComponentToggler
+      components:
+        - type: DisarmMalus
+          malus: 0.6
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
+      layers:
+        - state: geshield-icon
+        - state: geshield-on
+          color: "#439909"
+          visible: false
+          shader: unshaded
+          map: [ "shield" ]
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
+      heldPrefix: eshield
+    - type: UseDelay
+      delay: 0.5
+    - type: ToggleableVisuals
+      spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: ginhand-left-shield
+            shader: unshaded
+        right:
+          - state: ginhand-right-shield
+            shader: unshaded
+    - type: ItemTogglePointLight
+    - type: Reflect
+      reflectProb: 0.95
+      reflects:
+        - Energy
+    - type: Appearance
+    # end of upstream stuff
+    - type: PointLight
+      netsync: false
+      enabled: false
+      radius: 2
+      energy: 3
+      color: green
+      castShadows: false #SL lighting optimization
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellMedium
+          #Starlight Start
+          blacklist:
+            tags:
+              - MechReactor
+            components:
+              - BatterySelfRecharger
+          #Starlight End
+    - type: ToggleCellDraw
+    - type: PowerCellDraw
+      drawRate: 5  # watts while active
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.9
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 1.2
+          Slash: 0.85
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 40
+    - type: Damageable
+      damageContainer: Shield
+
+- type: entity
+  name: greenlight shield mk1
+  parent: [Lantern, BaseCentcommContraband ] #Yes I am using a flashlight as a base, shockingly easiest way to get things working
+  id: GreenLightShieldmk1
   description: Exotic energy shield, when folded, can even fit in your pocket.
   components:
     - type: HandheldLight
@@ -498,51 +594,3 @@
     - type: Damageable
       damageContainer: Shield
     - type: ItemToggle
-
-- type: entity
-  name: aatest
-  parent: [BaseItem, BaseCentcommContraband ]
-  id: GreenEnergyShield
-  description: Exotic energy shield, when folded, can even fit in your pocket.
-  components:
-    - type: HandheldLight
-      addPrefix: false
-      wattage: 2
-      turnOnSound: !type:SoundPathSpecifier
-        path: /Audio/Weapons/ebladeon.ogg
-      turnOffSound: !type:SoundPathSpecifier
-        path: /Audio/Weapons/ebladeoff.ogg
-    - type: UseDelay
-      delay: 2
-    - type: ItemSlots
-      slots:
-        cell_slot:
-          name: power-cell-slot-component-slot-name-default
-          startingItem: PowerCellMedium
-          #Starlight Start
-          blacklist:
-            tags:
-              - MechReactor
-            components:
-              - BatterySelfRecharger
-          #Starlight End
-    - type: PointLight
-      enabled: false
-      radius: 2
-      energy: 2.5
-      color: "#439909"
-      netsync: false
-    - type: ItemTogglePointLight
-    - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
-      layers:
-        - state: geshield-icon
-        - state: geshield-on
-          color: "#FFFFFF"
-          visible: false
-          shader: unshaded
-          map: [ "shield" ]
-    - type: ItemToggle
-    - type: ItemToggleActiveSound
-      activeSound: !type:SoundPathSpecifier
-        path: /Audio/Weapons/ebladehum.ogg
