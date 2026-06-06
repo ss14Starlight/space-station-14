@@ -180,7 +180,7 @@
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
-    shoes: 
+    shoes:
     - CombatKnife
 
 - type: chameleonOutfit
@@ -265,7 +265,7 @@
     - RadiationBlockingProjector
     - HolofanProjector
     - Flare
-    shoes: 
+    shoes:
     - CombatKnife
 
 - type: startingGear
@@ -364,7 +364,7 @@
     - MedkitCombatFilled
     - CrowbarRed
     - EmergencyMedipen
-    shoes: 
+    shoes:
     - CombatKnife
 
 - type: startingGear
@@ -547,7 +547,7 @@
     - WeaponPistolSP8AR
     - MagazinePistol40SP
     - CombatMedipen
-    shoes: 
+    shoes:
     - RescueKnife
 
 - type: startingGear
@@ -651,7 +651,7 @@
     - MoproachCube
     - MoproachCube
     - MoproachCube
-    shoes: 
+    shoes:
     - KnifePlastic
 
 - type: chameleonOutfit
