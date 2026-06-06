@@ -38,17 +38,16 @@
     outerClothing: ClothingOuterSoftsuitCBURN #Starlight
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
-    pocket2: WeaponLaserGun
+    pocket2: WeaponPDW9
     belt: ClothingBeltMilitaryWebbingERT
     head: ClothingHeadSoftsuitCBURN # Starlight
-    suitstorage: WeaponRifleM18
+    suitstorage: WeaponRiflePrometheus
   storage:
     back:
     - JugDexPlusSaline
     - JugPunctTranex
+    - JugLacer
     - BeakerSmallDiph
-    - BeakerSmallLace
-    - BeakerSmallLace
     - HoloprojectorField
     - HoloprojectorSecurity
     - MagazineRifleIncendiary
@@ -60,7 +59,7 @@
     - InflatableWallStack
     - GrenadeIncendiary
     - ChemistryBottleAmbuzol
-    - SyringeCryostasis
+    - Syringe
     belt:
     - CombatMedipen
     - CombatMedipen

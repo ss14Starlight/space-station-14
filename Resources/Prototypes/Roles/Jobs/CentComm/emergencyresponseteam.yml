@@ -146,7 +146,6 @@
     head: ClothingHeadHatFez
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
 
 - type: startingGear
   id: ERTChaplainGearEVA
@@ -162,10 +161,10 @@
     ears: ClothingHeadsetCentCom #Starlight
     belt: ChainsawSword #Starlight
     neck: ClothingNeckStoleChaplain #Starlight
-    pocket2: WeaponDisabler #Starlight
+    pocket2: WeaponPDW9
+    suitstorage: PaladinShieldGreat
   storage:
     back:
-    # Starlight - Start
     - JugWater
     - JugBlood
     - Bible
@@ -174,12 +173,15 @@
     - Lantern
     - BodyBagFolded
     - BodyBagFolded
-    - FlippoEngravedLighter
+    - ToxicGasGrenade
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
-    # Starlight - End
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
+    shoes: 
+    - CombatKnife
 
 - type: chameleonOutfit
   id: ERTChaplainChameleonOutfit
@@ -238,7 +240,7 @@
     id: ERTEngineerPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    pocket2: WeaponPDW9
     suitstorage: PortableRecharger
   storage:
     back:
@@ -247,12 +249,11 @@
     - CableApcStack
     - CableMVStack
     - CableHVStack
+    - MetalFoamGrenade
+    - AirGrenade
     - RCDAmmo
     - RCDAmmo
-    - RCDAmmo
-    - SheetPlasteel
-    - SheetSteel
-    - SheetSteel
+    - MatBagFilled
     belt:
     - HoloprojectorEngineering
     - SpaceMedipen
@@ -264,6 +265,8 @@
     - RadiationBlockingProjector
     - HolofanProjector
     - Flare
+    shoes: 
+    - CombatKnife
 
 - type: startingGear
   parent: ERTEngineerGearEVA
@@ -275,22 +278,10 @@
     - RPD # Starlight: RPD
     - WelderIndustrialAdvanced
     - WeaponLaserCarbine
+    - MetalFoamGrenade
     - RCDAmmo
     - RCDAmmo
-    - RCDAmmo
-    - SheetPlasteel
-    - SheetSteel
-    - SheetSteel
-    belt:
-    - HolofanProjector
-    - CombatMedipen
-    - JawsOfLife
-    - PowerDrill
-    - Multitool
-    - GasAnalyzer
-    - RCD
-    - RadiationBlockingProjector
-    - WeaponPistolM1911 # Starlight
+    - MatBagFilled
 
 - type: chameleonOutfit
   id: ERTEngineerChameleonOutfit
@@ -440,7 +431,7 @@
     - PillDesoxyephedrine
     - PillDesoxyephedrine
     - ChemistryBottleDesoxyephedrine
-    - SyringeCryostasis
+    - Syringe
     - AntiPoisonMedipen
     - AntiPoisonMedipen
 
