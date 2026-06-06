@@ -161,6 +161,14 @@
     allowedDepartments: [ Security, Engineering ]
 
 - type: entity
+  id: BaseEngineeringScienceContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedDepartments: [ Engineering, Science ]
+
+- type: entity
   id: BaseSiliconScienceContraband
   parent: BaseRestrictedContraband
   abstract: true
