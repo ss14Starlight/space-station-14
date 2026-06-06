@@ -38,24 +38,40 @@
     outerClothing: ClothingOuterSoftsuitCBURN #Starlight
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
-    pocket1: RadioHandheld
     pocket2: WeaponLaserGun
-    belt: ClothingBeltBandolier
+    belt: ClothingBeltMilitaryWebbingERT
     head: ClothingHeadSoftsuitCBURN # Starlight
+    suitstorage: WeaponRifleM18
   storage:
     back:
-#    - WeaponShotgunDoubleBarreled Starlight: Replaced with starlight weaponry
-#    - BoxShotgunIncendiary
-    # Starlight-start: Starlight incendiary weaponry
-    - WeaponIK60
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    # Starlight-end
-    - GrenadeFlashBang
+    - JugDexPlusSaline
+    - JugPunctTranex
+    - BeakerSmallDiph
+    - BeakerSmallLace
+    - BeakerSmallLace
+    - HoloprojectorField
+    - HoloprojectorSecurity
+    - MagazineRifleIncendiary
+    - MagazineRifleIncendiary
+    - MagazineRifleIncendiary
+    - MagazineRifleIncendiary
+    - PowerCellHigh
+    - InflatableDoorStack
+    - InflatableWallStack
+    - GrenadeIncendiary
+    - ChemistryBottleAmbuzol
+    - SyringeCryostasis
+    belt:
+    - CombatMedipen
+    - CombatMedipen
+    - JawsOfLife
+    - DefibrillatorCompact
+    - MedkitCombatFilled
     - PillAmbuzolPlus
-    - PillAmbuzol
+    - SyringeCryostasis
+    - MagazinePistol40HP
+    - WeaponPistolStechkin
+    - AntiPoisonMedipen
 
 - type: chameleonOutfit
   id: CBURNChameleonOutfit

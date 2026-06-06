@@ -405,9 +405,9 @@
     - GrenadeBlast
     - GrenadeBlast
     - GrenadeBlast
-    - GrenadeBlast
-    - GrenadeBlast
-    - GrenadeBlast
+    - GrenadeFrag
+    - GrenadeFrag
+    - GrenadeFrag
     - MagazinePistolSP
     - ClusterGrenade
     - GrenadeEMP
@@ -513,7 +513,7 @@
   equipment:
     shoes: ClothingShoesBootsJackFilled
     head: ClothingHeadHelmetERTMedic
-    outerClothing: ClothingOuterArmorBasic
+    outerClothing: ClothingOuterArmorPlate
 
 - type: startingGear
   id: ERTMedicalGearEVA
@@ -531,18 +531,21 @@
     pocket2: WeaponPDW9
   storage:
     back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
     - Hypospray
-    - BeakerSmallBruiz
-    - BeakerSmallLace
-    - JugPunctTranex
-    - JugPyraDerma
-    - JugDexPlusSaline # End of first line
-    - JugTrico
     - BeakerSmallArith
     - BeakerSmallDiph
-    - BeakerSmallSigy
-    - ClothingEyesGlassesChemical
-    - ChemistryBottleOmnizine
+    - ChemistryBottlePuncturase
+    - ChemistryBottleAmoxla
+    - ChemistryBottleBruizine
+    - ChemistryBottleDexalinPlus
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - TelescopicShield
+    - EmergencyRollerBedSpawnFolded
+    - BodyBagLockableFolded
+    - BodyBagLockableFolded
     belt:
     - CombatMedipen
     - CombatMedipen
@@ -560,19 +563,25 @@
   parent: ERTMedicalGearEVA
   id: ERTMedicalGearArmed
   equipment:
-    suitstorage: WeaponRifleLecter
+    suitstorage: WeaponIK60
   storage:
     back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
     - Hypospray
-    - JugPunctTranex
-    - JugPyraDerma
-    - JugDexPlusSaline
-    - JugTrico # End of first line
     - BeakerSmallArith
-    - DefibrillatorCompact
-    - MedkitCombatFilled
-    - ClothingEyesGlassesChemical
-    - ChemistryBottleOmnizine
+    - BeakerSmallDiph
+    - ChemistryBottlePuncturase
+    - ChemistryBottleAmoxla
+    - ChemistryBottleBruizine
+    - ChemistryBottleDexalinPlus
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - TelescopicShield
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - BodyBagLockableFolded
 
 - type: chameleonOutfit
   id: ERTMedicalChameleonOutfit
@@ -636,12 +645,8 @@
     - TrashBag
     - SoapNT
     - AdvMopItem # End of first line
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
+    - MagazineGrenadeCleanade
+    - MagazineGrenadeCleanade
     belt:
     - WeaponPistolMk58Nonlethal
     - MagazinePistolRubber
