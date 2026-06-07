@@ -1,0 +1,27 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      Title="{Loc 'fax-machine-ui-window'}"
+                      MinSize="320 120">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+
+        <!-- Name -->
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Text="{Loc 'fax-machine-ui-name'}"
+                   MinWidth="80"
+                   VerticalAlignment="Center" />
+            <LineEdit Name="NameEdit"
+                      HorizontalExpand="True"
+                      PlaceHolder="{Loc 'fax-machine-ui-name-placeholder'}" />
+        </BoxContainer>
+
+        <!-- Category -->
+        <BoxContainer Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Text="{Loc 'fax-machine-ui-category'}"
+                   MinWidth="80"
+                   VerticalAlignment="Center" />
+            <OptionButton Name="GroupSelector"
+                          HorizontalExpand="True" />
+        </BoxContainer>
+
+    </BoxContainer>
+</controls:FancyWindow>

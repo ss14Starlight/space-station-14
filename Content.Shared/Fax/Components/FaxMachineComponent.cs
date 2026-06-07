@@ -6,6 +6,10 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
+#region Starlight
+using Content.Shared._Starlight.Fax;
+#endregion
+
 namespace Content.Shared.Fax.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
@@ -76,7 +80,7 @@ public sealed partial class FaxMachineComponent : Component
     /// Known faxes in network by address with fax names
     /// </summary>
     [ViewVariables]
-    public Dictionary<string, string> KnownFaxes { get; } = new();
+    public Dictionary<string, KnownFax> KnownFaxes { get; } = new(); // Starlight: KnownFax object
 
     /// <summary>
     /// Print queue of the incoming message
@@ -136,6 +140,16 @@ public sealed partial class FaxMachineComponent : Component
     /// </summary>
     [DataField]
     public EntProtoId PrintOfficePaperId = "PaperOffice";
+
+    #region Starlight
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<FaxGroupingPrototype>? Group { get; set; }
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Order { get; set; } = int.MaxValue; // By default, sorted at the bottom of the list.
+    #endregion
 }
 
 [DataDefinition]

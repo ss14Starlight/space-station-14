@@ -76,45 +76,51 @@
 
 # Special
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineCentralCommand # Starlight
   id: FaxMachineCentcom
-  name: CentComm long range fax machine
-  suffix: CentCom
+  #name: long range fax machine # Starlight: Normal name
+  suffix: CentComm # Starlight: Why have they not updated this name?!
   components:
-  - type: Sprite
-    layers:
-      - state: icon
-        map: [ "base" ]
-        color: "#bfe3ff"
+  #  - type: Sprite
+  #    layers:
+  #      - state: icon
+  #        map: [ "base" ]
+  #        color: "#bfe3ff"
   - type: FaxMachine
+    group: FaxGroupingCentralCommand # Starlight
+    order: 100 # Starlight
     name: "Central Command"
     notifyAdmins: true
 
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineSyndicate # Starlight
   id: FaxMachineSyndie
-  name: syndicate long range fax machine
-  suffix: Syndicate
+  #name: syndicate long range fax machine # Starlight: Normal name
+  suffix: "Syndicate: ERR*?*%!" # Starlight
   components:
-  - type: Sprite
-    layers:
-      - state: icon
-        map: [ "base" ]
-        color: "#a3a3a3"
+  #- type: Sprite
+  #  layers:
+  #    - state: icon
+  #      map: [ "base" ]
+  #      color: "#82120a"
   - type: FaxMachine
     name: "ERR*?*%!"
+    group: FaxGroupingSyndicate # Starlight
+    order: 200 # Starlight
     responsePings: false
     notifyAdmins: true
   - type: Emagged
     emagType: Interaction
 
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineCommand # Starlight
   id: FaxMachineCaptain
-  name: captain long range fax machine
-  suffix: NukeCodes
+  #name: captain long range fax machine # Starlight: Normal name
+  suffix: "CMD: Captain, NukeCodes" # Starlight
   components:
     - type: FaxMachine
+      group: FaxGroupingCommand # Starlight
+      order: 200 # Starlight
       name: "Captain's Office"
       receiveNukeCodes: true
     - type: StealTarget

@@ -31,7 +31,7 @@ public sealed partial class FaxWindow : DefaultWindow
         SendButton.OnPressed += _ => SendButtonPressed?.Invoke();
         RefreshButton.OnPressed += _ => RefreshButtonPressed?.Invoke();
         PeerSelector.OnItemSelected += args =>
-            PeerSelected?.Invoke((string) args.Button.GetItemMetadata(args.Id)!);
+            PeerSelected?.Invoke(((KnownFax) args.Button.GetItemMetadata(args.Id)!).Address!);
     }
 
     public void UpdateState(FaxUiState state)
@@ -74,7 +74,15 @@ public sealed partial class FaxWindow : DefaultWindow
         {
             PeerSelector.Clear();
 
-            foreach (var (address, name) in state.AvailablePeers)
+            #region Starlight
+            var peers = state.AvailablePeers
+                .GroupBy(x => x.Value.GroupOrder)
+                .OrderBy(x => x.Key ?? int.MaxValue)
+                .SelectMany(group => group
+                    .OrderBy(peer => peer.Value.Order));
+            #endregion
+
+            foreach (var (address, name) in peers) // Starlight: Use ordered peers
             {
                 var id = AddPeerSelect(name, address);
                 if (address == state.DestinationAddress)
@@ -83,10 +91,10 @@ public sealed partial class FaxWindow : DefaultWindow
         }
     }
 
-    private int AddPeerSelect(string name, string address)
+    private int AddPeerSelect(KnownFax knownFax, string address)
     {
-        PeerSelector.AddItem(name);
-        PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, address);
+        PeerSelector.AddFaxPeer(knownFax);
+        // PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, address);
         return PeerSelector.ItemCount - 1;
     }
 

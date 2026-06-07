@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -5,6 +6,7 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
+using Content.Shared._Starlight.Fax;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
@@ -32,6 +34,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #region Starlight
+using Content.Shared._Starlight.Fax.UI;
 using Content.Shared._Starlight.Time;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Cargo.Components;
@@ -62,6 +65,7 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly EmagSystem _emag = default!;
 
     // Starlight start
+    [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedTimeSystem _time = default!;
     // Starlight end
@@ -230,33 +234,9 @@ public sealed class FaxSystem : EntitySystem
             !_toolSystem.HasQuality(args.Used, ScrewingQuality)) // Screwing because Pulsing already used by device linking
             return;
 
-        _quickDialog.OpenDialog(actor.PlayerSession,
-            Loc.GetString("fax-machine-dialog-rename"),
-            Loc.GetString("fax-machine-dialog-field-name"),
-            (string newName) =>
-        {
-            if (component.FaxName == newName)
-                return;
-
-            if (newName.Length > 20)
-            {
-                _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-long"), uid);
-                return;
-            }
-
-            if (component.KnownFaxes.ContainsValue(newName) && !_emag.CheckFlag(uid, EmagType.Interaction)) // Allow existing names if emagged for fun
-            {
-                _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-exist"), uid);
-                return;
-            }
-
-            _adminLogger.Add(LogType.Action,
-                LogImpact.Low,
-                $"{ToPrettyString(args.User):user} renamed {ToPrettyString(uid):tool} from \"{component.FaxName}\" to \"{newName}\"");
-            component.FaxName = newName;
-            _popupSystem.PopupEntity(Loc.GetString("fax-machine-popup-name-set"), uid);
-            UpdateUserInterface(uid, component);
-        });
+        // Starlight: open configuration window instead of quick-rename dialog
+        UpdateMachineEditUserInterface(uid, component);
+        _userInterface.OpenUi(uid, FaxMachineEditUiKey.Key, actor.PlayerSession);
 
         args.Handled = true;
 
@@ -291,16 +271,26 @@ public sealed class FaxSystem : EntitySystem
                     var payload = new NetworkPayload()
                     {
                         { DeviceNetworkConstants.Command, FaxConstants.FaxPongCommand },
+                        { FaxConstants.FaxGroupIdData, component.Group }, // Starlight
+                        { FaxConstants.FaxOrderData, component.Order }, // Starlight
                         { FaxConstants.FaxNameData, component.FaxName }
                     };
                     _deviceNetworkSystem.QueuePacket(uid, args.SenderAddress, payload);
 
                     break;
                 case FaxConstants.FaxPongCommand:
-                    if (!args.Data.TryGetValue(FaxConstants.FaxNameData, out string? faxName))
+                    if (!args.Data.TryGetValue(FaxConstants.FaxNameData, out string? faxName) ||
+                        !args.Data.TryGetValue(FaxConstants.FaxOrderData, out int faxOrder))
                         return;
 
-                    component.KnownFaxes[args.SenderAddress] = faxName;
+                    var knownFax =  new KnownFax(args.SenderAddress, faxName, faxOrder); // Starlight
+                    if (args.Data.TryGetValue(FaxConstants.FaxGroupIdData, out ProtoId<FaxGroupingPrototype>? groupingProtoId) &&
+                        _proto.TryIndex(groupingProtoId, out var groupingProto))
+                    {
+                        knownFax.GroupColor = groupingProto.Color;
+                        knownFax.GroupOrder = groupingProto.Order;
+                    }
+                    component.KnownFaxes[args.SenderAddress] = knownFax;
 
                     UpdateUserInterface(uid, component);
 
@@ -559,7 +549,7 @@ public sealed class FaxSystem : EntitySystem
         if (component.DestinationFaxAddress == null)
             return;
 
-        if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var faxName))
+        if (!component.KnownFaxes.TryGetValue(component.DestinationFaxAddress, out var knownFax)) // Starlight
             return;
 
         if (!TryComp(sendEntity, out MetaDataComponent? metadata) ||
@@ -618,7 +608,7 @@ public sealed class FaxSystem : EntitySystem
             LogImpact.Low,
             $"{ToPrettyString(args.Actor):actor} " +
             $"sent fax from \"{component.FaxName}\" {ToPrettyString(uid):tool} " +
-            $"to \"{faxName}\" ({component.DestinationFaxAddress}) " +
+            $"to \"{knownFax.Name}\" ({component.DestinationFaxAddress}) " + // Starlight
             $"of {ToPrettyString(sendEntity):subject}: {paper.Content}");
 
         component.SendTimeoutRemaining += component.SendTimeout;
@@ -639,7 +629,7 @@ public sealed class FaxSystem : EntitySystem
 
         var faxName = Loc.GetString("fax-machine-popup-source-unknown");
         if (fromAddress != null && component.KnownFaxes.TryGetValue(fromAddress, out var fax)) // If message received from unknown fax address
-            faxName = fax;
+            faxName = fax.Name; // Starlight
         if (!string.IsNullOrEmpty(printout.MetaSender)) // Starlight: Prefer MetaSender as it's more up to date
             faxName = printout.MetaSender; // Starlight
 
@@ -789,6 +779,19 @@ public sealed class FaxSystem : EntitySystem
         """;
         return string.Format(MetaFormat, payload.MetaSentAt, FormattedMessage.EscapeText(payload.MetaSender ?? ""),
             currentTime, FormattedMessage.EscapeText(comp.FaxName), content);
+    }
+
+    private void UpdateMachineEditUserInterface(EntityUid uid, FaxMachineComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        var groupings = _proto.EnumeratePrototypes<FaxGroupingPrototype>()
+            .OrderBy(g => g.Order)
+            .ToList();
+
+        var state = new FaxMachineEditState(component.FaxName, groupings);
+        _userInterface.SetUiState(uid, FaxMachineEditUiKey.Key, state);
     }
 
     #endregion
