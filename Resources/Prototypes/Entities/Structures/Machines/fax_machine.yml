@@ -34,6 +34,8 @@
     interfaces:
       enum.FaxUiKey.Key:
         type: FaxBoundUi
+      enum.FaxMachineEditUiKey.Key: # Starlight
+        type: FaxMachineEditBoundUserInterface # Starlight
   - type: StationAiWhitelist
   - type: ApcPowerReceiver
     powerLoad: 250
