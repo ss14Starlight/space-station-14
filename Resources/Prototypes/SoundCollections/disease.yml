@@ -67,3 +67,13 @@
   id: Vomit
   files:
   - /Audio/Effects/Fluids/splat.ogg
+
+- type: soundCollection
+  id: VulpkaninSneeze
+  files:
+  - /Audio/Voice/Vulpkanin/vulp_sneeze.ogg
+
+- type: soundCollection
+  id: DionaSneeze
+  files:
+  - /Audio/Voice/Diona/diona_sneeze.ogg

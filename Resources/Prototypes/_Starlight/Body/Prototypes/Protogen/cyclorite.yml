@@ -21,7 +21,7 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
+        heart: OrganProtoCycloriteHeart # Starlight
         lungs: OrganProtoCycloriteLungs # Starlight
         stomach: OrganProtogenStomach
         liver: OrganProtogenLiver

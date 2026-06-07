@@ -14,6 +14,11 @@
       - GalacticCommon
       - Machine
       - Scratch
+    - type: Vocal
+      sounds:
+        Male: ProtoAvaliMSounds
+        Female: ProtoAvaliFSounds
+        Unsexed: ProtoAvaliMSounds
     - type: Tag
       tags:
         - CanPilot
