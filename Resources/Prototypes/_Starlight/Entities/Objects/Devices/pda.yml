@@ -583,7 +583,7 @@
   parent: BasePDA
   suffix: DO NOT MAP
   id: CentCommGreenShieldPDA
-  name: green shield PDA
+  name: greenshield PDA
   description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone that thinks they are way too important.
   components:
     - type: Sprite
