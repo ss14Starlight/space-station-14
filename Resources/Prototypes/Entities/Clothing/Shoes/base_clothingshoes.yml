@@ -48,6 +48,8 @@
   components:
   - type: Matchbox
   - type: Storage
+    grid:
+    - 0,0,1,1
   - type: ItemSlots
     slots:
       item:
