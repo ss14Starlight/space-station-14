@@ -53,6 +53,7 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+      item: !type:ContainerSlot
   - type: ItemSlots
     slots:
       item:
