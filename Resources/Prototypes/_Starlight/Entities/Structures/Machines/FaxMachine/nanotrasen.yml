@@ -1,0 +1,89 @@
+# Group
+- type: faxGroup
+  id: FaxGroupNanoTrasen
+  name: fax-group-nanotrasen
+  color: "#2253b5"
+  order: 3000
+
+# Base fax
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineNT
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#2253b5"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNTNanoTrasenRepresentative
+  suffix: "NT: NTR"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "NTR Office"
+      order: 100
+
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNanoTrasenBSONTR
+  suffix: "NT: BSO+NTR"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "BSO & NTR's Office"
+      order: 100
+
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNanoTrasenMagistrate
+  suffix: "NT: Magistrate"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "Magistrate's Office"
+      order: 200
+
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNanoTrasenMagiIAA
+  suffix: "NT: Magi+IAA"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "Magi & IAA's Office"
+      order: 300
+
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNanoTrasenIAA
+  suffix: "NT: IAA"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "IAA's Office"
+      order: 300
+
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNanoTrasenBSO
+  suffix: "NT: BSO"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "BSO's Office"
+      order: 600
+
+- type: entity
+  parent: FaxMachineNT
+  id: FaxMachineNanoTrasenNCT
+  suffix: "NT: NCT"
+  components:
+    - type: FaxMachine
+      group: FaxGroupNanoTrasen
+      name: "NCT's Office"
+      order: 700

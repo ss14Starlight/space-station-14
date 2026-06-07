@@ -235,8 +235,8 @@ public sealed class FaxSystem : EntitySystem
             return;
 
         // Starlight: open configuration window instead of quick-rename dialog
-        UpdateMachineEditUserInterface(uid, component);
-        _userInterface.OpenUi(uid, FaxMachineEditUiKey.Key, actor.PlayerSession);
+        UpdateMachineConfigureUserInterface(uid, component);
+        _userInterface.OpenUi(uid, FaxMachineConfigureUiKey.Key, actor.PlayerSession);
 
         args.Handled = true;
 
@@ -284,7 +284,7 @@ public sealed class FaxSystem : EntitySystem
                         return;
 
                     var knownFax =  new KnownFax(args.SenderAddress, faxName, faxOrder); // Starlight
-                    if (args.Data.TryGetValue(FaxConstants.FaxGroupIdData, out ProtoId<FaxGroupingPrototype>? groupingProtoId) &&
+                    if (args.Data.TryGetValue(FaxConstants.FaxGroupIdData, out ProtoId<FaxGroupPrototype>? groupingProtoId) &&
                         _proto.TryIndex(groupingProtoId, out var groupingProto))
                     {
                         knownFax.GroupColor = groupingProto.Color;
@@ -781,17 +781,17 @@ public sealed class FaxSystem : EntitySystem
             currentTime, FormattedMessage.EscapeText(comp.FaxName), content);
     }
 
-    private void UpdateMachineEditUserInterface(EntityUid uid, FaxMachineComponent? component = null)
+    private void UpdateMachineConfigureUserInterface(EntityUid uid, FaxMachineComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        var groupings = _proto.EnumeratePrototypes<FaxGroupingPrototype>()
+        var groupings = _proto.EnumeratePrototypes<FaxGroupPrototype>()
             .OrderBy(g => g.Order)
             .ToList();
 
-        var state = new FaxMachineEditState(component.FaxName, groupings);
-        _userInterface.SetUiState(uid, FaxMachineEditUiKey.Key, state);
+        var state = new FaxMachineConfigureState(component.FaxName, component.Group, component.Order);
+        _userInterface.SetUiState(uid, FaxMachineConfigureUiKey.Key, state);
     }
 
     #endregion

@@ -1,0 +1,29 @@
+# Group
+- type: faxGroup
+  id: FaxGroupMedTak
+  name: fax-group-medtak
+  order: 1500 # All events: 1500, after CentComm (1000), before Syndicate (1800).
+  color: "#880606"
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineMedTak
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#880606"
+
+# Faxes
+- type: entity
+  parent: FaxMachineMedTak
+  id: FaxMachineMedTakFrontDesk
+  suffix: "MedTak: Front desk"
+  components:
+    - type: FaxMachine
+      group: FaxGroupMedTak
+      name: "MedTak Front Desk"
+      order: 100

@@ -1,0 +1,72 @@
+# Group
+- type: faxGroup
+  id: FaxGroupCargo
+  name: fax-group-cargo
+  color: "#b48b57"
+  order: 4000
+
+# Fax machines
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineCargo
+  suffix: "SUP: Cargo"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#b48b57"
+    - type: FaxMachine
+      group: FaxGroupCargo
+      name: "Cargo"
+      order: 100
+
+- type: entity
+  parent: FaxMachineCargo
+  id: FaxMachineCargoQM
+  suffix: "SUP: QM"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCargo
+      name: "QM's Office"
+      order: 200
+
+- type: entity
+  parent: FaxMachineCargo
+  id: FaxMachineCargoSalvageMining
+  suffix: "SUP: Salvage+Mining"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCargo
+      name: "Salvage & Mining"
+      order: 300
+
+- type: entity
+  parent: FaxMachineCargo
+  id: FaxMachineCargoSalvage
+  suffix: "SUP: Salvage"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCargo
+      name: "Salvage"
+      order: 300
+
+- type: entity
+  parent: FaxMachineCargo
+  id: FaxMachineCargoMining
+  suffix: "SUP: Mining"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCargo
+      name: "Mining"
+      order: 400
+
+- type: entity
+  parent: FaxMachineCargo
+  id: FaxMachineCargoMail
+  suffix: "SUP: Mail Room"
+  components:
+    - type: FaxMachine
+      group: FaxGroupCargo
+      name: "Mail Room"
+      order: 500

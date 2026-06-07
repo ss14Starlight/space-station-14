@@ -1,0 +1,32 @@
+# Group
+- type: faxGroup
+  id: FaxGroupScience
+  name: fax-group-science
+  order: 7000
+  color: "#cd7ccd"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineScience
+  suffix: "SCI: Science"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#cd7ccd"
+    - type: FaxMachine
+      group: FaxGroupScience
+      name: "Science"
+      order: 100
+
+- type: entity
+  parent: FaxMachineScience
+  id: FaxMachineScienceRD
+  suffix: "SCI: RD"
+  components:
+    - type: FaxMachine
+      group: FaxGroupScience
+      name: "RD's Office"
+      order: 200

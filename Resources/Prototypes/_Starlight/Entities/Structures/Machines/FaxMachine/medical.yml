@@ -1,0 +1,52 @@
+# Group
+- type: faxGroup
+  id: FaxGroupMedical
+  name: fax-group-medical
+  order: 6000
+  color: "#57b8f0"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineMedical
+  suffix: "MED: Medical"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#57b8f0"
+    - type: FaxMachine
+      group: FaxGroupMedical
+      name: "Medical"
+      order: 100
+
+- type: entity
+  parent: FaxMachineMedical
+  id: FaxMachineMedicalCMO
+  suffix: "MED: CMO"
+  components:
+    - type: FaxMachine
+      group: FaxGroupMedical
+      name: "CMO's Office"
+      order: 200
+
+- type: entity
+  parent: FaxMachineMedical
+  id: FaxMachineMedicalChemistry
+  suffix: "MED: Chemistry"
+  components:
+    - type: FaxMachine
+      group: FaxGroupMedical
+      name: "Chemistry"
+      order: 300
+
+- type: entity
+  parent: FaxMachineMedical
+  id: FaxMachineMedicalPsychology
+  suffix: "MED: Psychology"
+  components:
+    - type: FaxMachine
+      group: FaxGroupMedical
+      name: "Psychology"
+      order: 400

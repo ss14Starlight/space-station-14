@@ -3,7 +3,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Fax;
 
 [Serializable, NetSerializable]
-public enum FaxMachineEditUiKey : byte
+public enum FaxMachineConfigureUiKey : byte
 {
     Key
 }

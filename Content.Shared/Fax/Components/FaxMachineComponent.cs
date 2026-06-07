@@ -144,7 +144,7 @@ public sealed partial class FaxMachineComponent : Component
     #region Starlight
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<FaxGroupingPrototype>? Group { get; set; }
+    public ProtoId<FaxGroupPrototype>? Group { get; set; }
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]

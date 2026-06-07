@@ -1,0 +1,52 @@
+# Group
+- type: faxGroup
+  id: FaxGroupEngineering
+  name: fax-group-engineering
+  color: "#ff733c"
+  order: 5000
+
+# Fax machines
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineEngineering
+  suffix: "ENG: Engineering"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#ff733c"
+    - type: FaxMachine
+      group: FaxGroupEngineering
+      name: "Engineering"
+      order: 100
+
+- type: entity
+  parent: FaxMachineEngineering
+  id: FaxMachineEngineeringCE
+  suffix: "ENG: CE"
+  components:
+    - type: FaxMachine
+      group: FaxGroupEngineering
+      name: "CE's Office"
+      order: 200
+
+- type: entity
+  parent: FaxMachineEngineering
+  id: FaxMachineEngineeringAtmos
+  suffix: "ENG: Atmos"
+  components:
+    - type: FaxMachine
+      group: FaxGroupEngineering
+      name: "Atmospherics"
+      order: 300
+
+- type: entity
+  parent: FaxMachineEngineering
+  id: FaxMachineEngineeringNuclearReactor
+  suffix: "ENG: Nuclear Reactor"
+  components:
+    - type: FaxMachine
+      group: FaxGroupEngineering
+      name: "Nuclear Reactor"
+      order: 400

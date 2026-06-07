@@ -34,8 +34,8 @@
     interfaces:
       enum.FaxUiKey.Key:
         type: FaxBoundUi
-      enum.FaxMachineEditUiKey.Key: # Starlight
-        type: FaxMachineEditBoundUserInterface # Starlight
+      enum.FaxMachineConfigureUiKey.Key: # Starlight
+        type: FaxMachineConfigureBoundUserInterface # Starlight
   - type: StationAiWhitelist
   - type: ApcPowerReceiver
     powerLoad: 250
@@ -89,7 +89,7 @@
   #        map: [ "base" ]
   #        color: "#bfe3ff"
   - type: FaxMachine
-    group: FaxGroupingCentralCommand # Starlight
+    group: FaxGroupCentralCommand # Starlight
     order: 100 # Starlight
     name: "Central Command"
     notifyAdmins: true
@@ -107,7 +107,7 @@
   #      color: "#82120a"
   - type: FaxMachine
     name: "ERR*?*%!"
-    group: FaxGroupingSyndicate # Starlight
+    group: FaxGroupSyndicate # Starlight
     order: 200 # Starlight
     responsePings: false
     notifyAdmins: true
@@ -121,7 +121,7 @@
   suffix: "CMD: Captain, NukeCodes" # Starlight
   components:
     - type: FaxMachine
-      group: FaxGroupingCommand # Starlight
+      group: FaxGroupCommand # Starlight
       order: 200 # Starlight
       name: "Captain's Office"
       receiveNukeCodes: true

@@ -1,0 +1,12 @@
+# Fax machines
+- type: entity
+  parent: FaxMachineSyndicate
+  id: FaxMachineSyndicateHighCommand
+  suffix: "Syndicate High Command, Event"
+  components:
+    - type: FaxMachine
+      group: FaxGroupSyndicate
+      name: "Syndicate High Command"
+      responsePings: false
+      notifyAdmins: true
+      order: 300

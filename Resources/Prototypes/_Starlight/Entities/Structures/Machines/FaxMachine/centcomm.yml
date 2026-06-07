@@ -1,0 +1,23 @@
+# Group
+- type: faxGroup
+  id: FaxGroupCentralCommand
+  name: fax-group-centcomm
+  order: 1000
+  color: "#00b700"
+  selectableDefault: false
+  selectableEmagged: true
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineCentralCommand
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#00b700"
+
+# Fax machines
+## Primary CC fax machine is from upstream, so it's missing here, it has order: 100.
