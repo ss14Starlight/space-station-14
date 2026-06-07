@@ -58,6 +58,9 @@ public sealed partial class ReflectComponent : Component
     public Angle Spread = Angle.FromDegrees(45);
 
     // 🌟Starlight🌟
+    /// <summary>
+    /// Overrides the reflection angle when set.
+    /// </summary>
     [DataField("overrideAngle"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public Angle? OverrideAngle = null;
 

@@ -33,17 +33,24 @@ public sealed partial class BlockingSystem
     }
 
  #region Starlight
-    //If power cell is empty,the shield should be disabled
+    /// <summary>
+    /// If power cell is empty,the shield should be disabled
+    /// </summary>
     private void OnPowerCellEmpty(EntityUid uid, BlockingComponent component, PowerCellSlotEmptyEvent args)
     {
         TryDeactivate(uid);
     }
-    //If power cell is swapped,the shield should be disabled
+    /// <summary>
+    /// If power cell is swapped,the shield should be disabled
+    /// </summary>
     private void OnPowerCellChanged(EntityUid uid, BlockingComponent component, PowerCellChangedEvent args)
     {
         if (args.Ejected)
             TryDeactivate(uid);
     }
+    /// <summary>
+    /// If an event triggers that wishes to turn off the shield, this helper function does so
+    /// </summary>
     private bool TryDeactivate(EntityUid uid)
     {
         if (!HasComp<BlockingComponent>(uid))
@@ -78,8 +85,9 @@ public sealed partial class BlockingSystem
 
         UserStopBlocking(uid, component);
     }
-
-    //Starlight stop user from blocking when the shield is toggled off
+    /// <summary>
+    /// Starlight stop user from blocking when the shield is toggled off
+    /// </summary>
     private void OnBlockerToggled(EntityUid uid, BlockingComponent component, ItemToggledEvent args)
     {
         if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent) && TryComp<TransformComponent>(uid, out var transform))

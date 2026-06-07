@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "off-icon"
+    },
+    {
+      "name": "glShieldOff-inhand-right",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    },
+    {
+      "name": "glShieldOff-inhand-left",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    },
+    {
+      "name": "on-icon"
+    },
+    {
+      "name": "glShieldOn-inhand-right",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    },
+    {
+      "name": "glShieldOn-inhand-left",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    }
+  ]
+}

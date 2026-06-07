@@ -22,6 +22,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Blocking;
 
+/// <summary>
+/// Handles blocking logic for items with <see cref="BlockingComponent"/>.
+/// </summary>
 public sealed partial class BlockingSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
@@ -184,7 +187,7 @@ public sealed partial class BlockingSystem : EntitySystem
             var mobQuery = GetEntityQuery<MobStateComponent>();
             foreach (var uid in intersecting)
             {
-                if (uid != user && mobQuery.HasComponent(uid) && !HasComp<PAIComponent>(uid)) //Starlight edit, pai's being in a player inventory otherwise blocks shield deployment, not a very robust solution (mouse in pocket) but not sure how else to do it.
+                if (uid != user && mobQuery.HasComponent(uid) && (MetaData(uid).Flags & MetaDataFlags.InContainer) == 0) //Starlight edit, if the entity is in a container (like a pAI) ignore it
                 {
                     TooCloseError(user);
                     return false;

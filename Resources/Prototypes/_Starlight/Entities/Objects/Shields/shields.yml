@@ -415,28 +415,28 @@
         - type: DisarmMalus
           malus: 0.6
     - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/glShield.rsi
       layers:
-        - state: geshield-icon
-        - state: geshield-on
+        - state: off-icon
+        - state: on-icon
           color: "#FFFFFF"
           visible: false
           shader: unshaded
           map: [ "shield" ]
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Weapons/Melee/ge_shield.rsi
-      heldPrefix: geshield
+      sprite: _Starlight/Objects/Weapons/Melee/glShield.rsi
+      heldPrefix: glShieldOff
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
-          - state: ginhand-left-shield
+          - state: glShieldOn-inhand-left
             shader: unshaded
         right:
-          - state: ginhand-right-shield
+          - state: glShieldOn-inhand-right
             shader: unshaded
     - type: ItemTogglePointLight
     - type: Reflect
