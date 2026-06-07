@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
   changes:
-  - message: Xenoborgs, the full gamemode (not available to Beta, as they get SubXenoborgs) now scales 1:15, with a max of 8 starting Xenoborgs.
-    type: Tweak
-  id: 405245
-  time: '2026-05-22T12:31:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4494
-- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
-  changes:
-  - message: XenoborgsLP is now referred to as SubXenoborgs to be consistent with the other subgamemodes.
-    type: Tweak
-  id: 405246
-  time: '2026-05-22T12:31:48.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4494
-- author: wonderfulnewworld, ScarKy0, Samuka-C, august-sun
-  changes:
   - message: SubXenoborgs now only shows up 5% of the time, the same as the other "rare" subgamemode antags.
     type: Tweak
   id: 405247
@@ -2799,4 +2785,18 @@ Entries:
   id: 405644
   time: '2026-06-05T08:27:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4657
+- author: Mack
+  changes:
+  - message: Fixed issue with secure terminal requests charging money when it isn't approved.
+    type: Fix
+  id: 405645
+  time: '2026-06-07T17:30:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4666
+- author: Mack
+  changes:
+  - message: a recalled ERT/Armory will refund 80% of the cost.
+    type: Tweak
+  id: 405646
+  time: '2026-06-07T17:30:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4666
 Order: -1
