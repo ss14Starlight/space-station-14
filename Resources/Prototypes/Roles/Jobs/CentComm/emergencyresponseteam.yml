@@ -36,9 +36,12 @@
   parent: ERTLeaderGearEVA
   id: ERTLeaderGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterArmorBasic
+  storage:
+    shoes:
+    - CombatKnife
 
 - type: startingGear
   id: ERTLeaderGearEVA
@@ -142,10 +145,13 @@
   parent: ERTChaplainGearEVA
   id: ERTChaplainGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHatFez
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterArmorBasic
+  storage:
+    shoes:
+    - CombatKnife
 
 - type: startingGear
   id: ERTChaplainGearEVA
@@ -223,9 +229,12 @@
   parent: ERTEngineerGearEVA
   id: ERTEngineerGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTEngineer
     outerClothing: ClothingOuterArmorBasic
+  storage:
+    shoes:
+    - CombatKnife
 
 - type: startingGear
   id: ERTEngineerGearEVA
@@ -321,9 +330,12 @@
   parent: ERTSecurityGearEVA
   id: ERTSecurityGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTSecurity
     outerClothing: ClothingOuterVestWebEliteCentcomm
+  storage:
+    shoes:
+    - CombatKnife
 
 - type: startingGear
   id: ERTSecurityGearEVA
@@ -502,9 +514,12 @@
   parent: ERTMedicalGearEVA
   id: ERTMedicalGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTMedic
     outerClothing: ClothingOuterArmorPlate
+  storage:
+    shoes:
+    - RescueKnife
 
 - type: startingGear
   id: ERTMedicalGearEVA
