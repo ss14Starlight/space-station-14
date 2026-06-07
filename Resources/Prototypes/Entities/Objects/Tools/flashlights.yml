@@ -82,12 +82,7 @@
   # Starlight-start: Vending Machines Prices
   - type: ItemPrice
     fallbackPrice: 12
-  - type: ItemToggle
-  - type: UseDelay
-    delay: 0.5
   # Starlight-end
-
-
 - type: entity
   name: seclite
   parent: [FlashlightLantern, BaseSecurityContraband]

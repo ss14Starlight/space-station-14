@@ -73,7 +73,6 @@
     - type: Tag
       tags:
       - Flashlight
-    - type: ItemToggle
 
 - type: entity
   parent: Lantern
