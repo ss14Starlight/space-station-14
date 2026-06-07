@@ -111,8 +111,9 @@ public abstract partial class SharedBatterySystem : EntitySystem
     private void OnRefreshChargeRate(Entity<BatterySelfRechargerComponent> ent, ref RefreshChargeRateEvent args)
     {
         //Starlight start
-        if (_timing.CurTime < ent.Comp.NextAutoRecharge && ent.Comp.AutoRechargePauseTime > TimeSpan.Zero || //if anything but the timer caused this to get called, then that means it was just discharging, and we can reset the timer.
-            args.NewChargeRate < 0f) //If there is any power draw still, then we reset the timer
+        if (ent.Comp.AutoRechargePauseTime > TimeSpan.Zero &&
+            (_timing.CurTime < ent.Comp.NextAutoRecharge ||
+             args.NewChargeRate < 0f)) // reset pause only for pause-enabled batteries
         {
             ent.Comp.NextAutoRecharge = _timing.CurTime + ent.Comp.AutoRechargePauseTime;
             return;
