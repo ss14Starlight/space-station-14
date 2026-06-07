@@ -1,23 +1,23 @@
 # Group
 - type: faxGroup
-  id: FaxGroupMedTak
-  name: fax-group-medtak
-  color: "#880606"
+  id: FaxGroupNTSF
+  name: fax-group-ntsf
+  color: "#2253b5"
   order: 1500 # All events: 1500
   selectable: false
 
 # Single fax -- can be edited for mapping/event purposes.
 - type: entity
   parent: FaxMachineBase
-  id: FaxMachineMedTak
-  suffix: "MedTak, DO NOT MAP"
+  id: FaxMachineNTSF
+  suffix: "NTSF, DO NOT MAP"
   components:
     - type: Sprite
       layers:
         - state: icon
           map: [ "base" ]
-          color: "#880606"
+          color: "#2253b5"
     - type: FaxMachine
-      group: FaxGroupMedTak
-      name: "MedTak"
+      group: FaxGroupNTSF
+      name: "NTSF"
       order: 500

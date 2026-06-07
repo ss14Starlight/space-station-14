@@ -5,14 +5,13 @@
   order: 1800
   color: "#82120a"
   selectable: false
-  selectableDefault: false
   selectableEmagged: true
 
 # Base
 - type: entity
   abstract: true
   parent: FaxMachineBase
-  id: FaxMachineSyndicate
+  id: FaxMachineSyndicateBase
   components:
     - type: Sprite
       layers:

@@ -11,7 +11,7 @@
 - type: entity
   abstract: true
   parent: FaxMachineBase
-  id: FaxMachineWizard
+  id: FaxMachineWizardBase
   suffix: "Wizard"
   components:
     - type: Sprite
@@ -22,11 +22,11 @@
 
 # Fax machines
 - type: entity
-  parent: FaxMachineWizard
+  parent: FaxMachineWizardBase
   id: FaxMachineWizardYeOleWizardFaxer
   suffix: "Wizard: Ye Ol'e Wizard Faxer"
   components:
     - type: FaxMachine
       group: FaxGroupWizard
-      name: "Ye Ol'e Wizard Faxer"
+      name: "Ye Ol'e Wizard Faxer" # This is the one on the wizard shuttle.
       order: 100

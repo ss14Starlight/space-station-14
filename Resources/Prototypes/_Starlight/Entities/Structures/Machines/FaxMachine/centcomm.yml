@@ -4,7 +4,7 @@
   name: fax-group-centcomm
   order: 1000
   color: "#00b700"
-  selectableDefault: false
+  selectable: false
   selectableEmagged: true
 
 # Base

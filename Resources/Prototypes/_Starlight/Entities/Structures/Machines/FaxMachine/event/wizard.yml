@@ -1,0 +1,11 @@
+# Group already exists, see ../wizard.yml
+
+- type: entity
+  parent: FaxMachineWizardBase
+  id: FaxMachineWizardWindsOfMagic
+  suffix: "Wizard, DO NOT MAP"
+  components:
+    - type: FaxMachine
+      group: FaxGroupWizard
+      name: "Wizard"
+      order: 500

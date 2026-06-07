@@ -19,7 +19,7 @@ public sealed partial class FaxGroupPrototype : IPrototype
     /// Whether this fax group is selectable on any normal fax.
     /// </summary>
     [DataField]
-    public bool SelectableDefault { get; private set; } = true;
+    public bool Selectable { get; private set; } = true;
 
     /// <summary>
     /// Whether this fax group is selectable on emagged faxes. (Only relevant when SelectableDefault is false)

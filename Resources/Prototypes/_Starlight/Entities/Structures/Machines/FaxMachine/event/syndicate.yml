@@ -1,12 +1,12 @@
+# Group already exists in ../syndicate.yml
+
 # Fax machines
 - type: entity
-  parent: FaxMachineSyndicate
-  id: FaxMachineSyndicateHighCommand
-  suffix: "Syndicate High Command, Event"
+  parent: FaxMachineSyndicateBase
+  id: FaxMachineSyndicate
+  suffix: "Syndicate, DO NOT MAP"
   components:
     - type: FaxMachine
       group: FaxGroupSyndicate
-      name: "Syndicate High Command"
-      responsePings: false
-      notifyAdmins: true
-      order: 300
+      name: "Syndicate"
+      order: 500

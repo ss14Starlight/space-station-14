@@ -13,7 +13,8 @@ using Content.Shared._Starlight.Fax;
 namespace Content.Shared.Fax.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class FaxMachineComponent : Component
+public sealed partial class
+    FaxMachineComponent : Component
 {
     /// <summary>
     /// Name with which the fax will be visible to others on the network

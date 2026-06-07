@@ -1,23 +1,23 @@
 # Group
 - type: faxGroup
-  id: FaxGroupMedTak
-  name: fax-group-medtak
-  color: "#880606"
+  id: FaxGroupUSSP
+  name: fax-group-ussp
+  color: "#ed7300"
   order: 1500 # All events: 1500
   selectable: false
 
 # Single fax -- can be edited for mapping/event purposes.
 - type: entity
   parent: FaxMachineBase
-  id: FaxMachineMedTak
-  suffix: "MedTak, DO NOT MAP"
+  id: FaxMachineUSSP
+  suffix: "USSP, DO NOT MAP"
   components:
     - type: Sprite
       layers:
         - state: icon
           map: [ "base" ]
-          color: "#880606"
+          color: "#ed7300"
     - type: FaxMachine
-      group: FaxGroupMedTak
-      name: "MedTak"
+      group: FaxGroupUSSP
+      name: "USSP"
       order: 500
