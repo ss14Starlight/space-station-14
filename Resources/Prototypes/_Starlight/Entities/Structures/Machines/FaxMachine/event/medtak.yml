@@ -10,7 +10,7 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineMedTak
-  suffix: "MedTak, DO NOT MAP"
+  suffix: "MedTak: DO NOT MAP"
   components:
     - type: Sprite
       layers:

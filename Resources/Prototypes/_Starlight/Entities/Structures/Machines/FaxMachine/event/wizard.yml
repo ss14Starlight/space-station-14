@@ -3,7 +3,7 @@
 - type: entity
   parent: FaxMachineWizardBase
   id: FaxMachineWizardWindsOfMagic
-  suffix: "Wizard, DO NOT MAP"
+  suffix: "Wizard: DO NOT MAP"
   components:
     - type: FaxMachine
       group: FaxGroupWizard

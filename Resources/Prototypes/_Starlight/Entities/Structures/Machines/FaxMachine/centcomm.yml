@@ -11,7 +11,7 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineCentralCommand
-  suffix: "CC, DO NOT MAP"
+  suffix: "CC: DO NOT MAP"
   components:
     - type: Sprite
       layers:
@@ -21,7 +21,7 @@
     - type: FaxMachine
       group: FaxGroupCentralCommand
       intrinsicGroup: FaxGroupCentralCommand
-      name: "CC: CentComm" # Intentionally different from the "normal" version's "Central Command".
+      name: "CentComm" # Intentionally different from the "normal" version's "Central Command".
       order: 500
 
 # Fax machines

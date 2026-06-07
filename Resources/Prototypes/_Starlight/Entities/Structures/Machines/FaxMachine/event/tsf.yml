@@ -10,7 +10,7 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineTSF
-  suffix: "TSF, DO NOT MAP"
+  suffix: "TSF: DO NOT MAP"
   components:
     - type: Sprite
       layers:
