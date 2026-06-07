@@ -177,3 +177,15 @@
   solids:
     FoodDonutPlain: 1
     FoodMeatCutlet: 1
+
+- type: microwaveMealRecipe
+  id: RecipeVanillaIcecream
+  name: vanilla icecream
+  result: DrinkGlass
+  time: 10
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream : 25
+    Cream: 5
+

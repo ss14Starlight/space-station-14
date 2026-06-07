@@ -1,0 +1,15 @@
+- type: entity
+  parent: DrinkGlass
+  id: VanillaIceCreamGlass
+  suffix: vanilla icecream
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: VanillaIceCream
+          Quantity: 30
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/vanilla_bowl.rsi
+    state: icon

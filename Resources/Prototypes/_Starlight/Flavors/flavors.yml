@@ -57,3 +57,8 @@
   id: perfid
   flavorType: Base
   description: flavor-base-perfid
+
+- type: flavor
+  id: vanillaicecream
+  flavorType: Complex
+  description: flavor-complex-vanilla-icecream

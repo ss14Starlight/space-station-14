@@ -1,0 +1,21 @@
+- type: reagent
+  id: VanillaIceCream
+  name: reagent-vanilla-icecream
+  parent: BaseDrink
+  desc: reagent-desc-vanilla-icecream
+  physicalDesc: reagent-physical-vanilla-icecream
+  flavor: vanillaicecream
+  color: "#f8fce1"
+  metamorphicSprite:
+    sprite: _Starlight/Objects/Consumable/Icecream/vanilla_bowl.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+      - !type:SatiateHunger
+        factor: 2

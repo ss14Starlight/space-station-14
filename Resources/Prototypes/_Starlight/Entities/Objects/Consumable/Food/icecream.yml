@@ -1,0 +1,45 @@
+
+- type: entity
+  abstract: true
+  parent: FoodMealBase
+  id: FoodIceCreamBase
+  components:
+  - type: Appearance
+  - type: Sprite
+    layers:
+    - state: icon_empty
+      map: [ "enum.SolutionContainerLayers.Base" ]
+    - state: fill-1
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+      visible: false
+  - type: SolutionContainerVisuals
+    changeColor: false
+    solutionName: food
+    maxFillLevels: 5
+    fillBaseName: fill-
+
+- type: entity
+  name: vanilla icecream
+  parent: FoodIceCreamBase
+  id: FoodVanillaIcecream
+  description: A bowl of vanilla ice cream every spacer knows.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - vanillaicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/vanilla_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/vanilla_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
