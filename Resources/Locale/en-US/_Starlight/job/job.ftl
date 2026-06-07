@@ -41,9 +41,9 @@ job-rules-corporate-aligned = You are {role-type-corporate-aligned-name}.
                               You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'.
                               Remember, you do NOT serve the crew.
 
-role-type-CC-aligned-name = Corporate Aligned
-role-type-CC-aligned-color = #00b600
-role-type-CC-aligned-alternate-color = #1b67a5
+role-type-CC-aligned-name = Central Command Aligned
+role-type-CC-aligned-color = `#00b600`
+role-type-CC-aligned-alternate-color = `#1b67a5`
 job-rules-CC-aligned = You are {role-type-CC-aligned-name}.
                               You are to serve the interests of Central Command, even if they differ from NanoTrasen or the stations'.
                               Remember, you do NOT serve the crew.
