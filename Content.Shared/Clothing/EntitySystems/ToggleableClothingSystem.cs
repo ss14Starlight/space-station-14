@@ -232,7 +232,7 @@ public sealed class ToggleableClothingSystem : EntitySystem
         {
             _containerSystem.Insert(toggleComp.ClothingUid.Value, toggleComp.Container);
             // Starlight-start: deactivate lights after unequip to avoid power drain.
-            toggleComp.IsLightToggled = TryComp<HandheldLightComponent>(toggleComp.ClothingUid.Value, out var light) && _toggle.IsActivated(light.Owner);
+            toggleComp.IsLightToggled = TryComp<HandheldLightComponent>(toggleComp.ClothingUid.Value, out var light) && light.Activated;
             if (toggleComp.IsLightToggled)
                 _lightSystem.SetActivated(toggleComp.ClothingUid.Value, false, light, false);
             // Starlight-end

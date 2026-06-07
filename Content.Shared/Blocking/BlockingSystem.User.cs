@@ -1,9 +1,8 @@
-using System.ComponentModel;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Item.ItemToggle; //Starlight
-using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Item.ItemToggle.Components; //Starlight
 using Content.Shared.PowerCell; //Starlight
 using Content.Shared.PowerCell.Components; //Starlight
 using Robust.Shared.Audio.Systems;

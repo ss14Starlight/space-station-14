@@ -4,7 +4,6 @@ using Content.Shared.Examine;
 using Content.Shared.Power.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Timing;
-using Content.Shared.PowerCell.Components;
 
 namespace Content.Shared.Power.EntitySystems;
 

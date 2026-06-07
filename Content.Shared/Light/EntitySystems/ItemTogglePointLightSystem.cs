@@ -20,7 +20,7 @@ public sealed class ItemTogglePointLightSystem : EntitySystem
     }
 
     private void OnLightToggled(Entity<ItemTogglePointLightComponent> ent, ref ItemToggledEvent args)
-     {
+    {
         if (!_light.TryGetLight(ent.Owner, out var light))
             return;
 

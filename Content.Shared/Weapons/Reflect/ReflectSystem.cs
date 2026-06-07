@@ -113,6 +113,7 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
+        // 🌟Starlight🌟 start
         var availableEnergy = 0;
         if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
         {
@@ -121,7 +122,6 @@ public sealed class ReflectSystem : EntitySystem
                 return false;
         }
 
-        // 🌟Starlight🌟 start
         var reflectionChance = reflector.Comp.ReflectProb;
 
         // Check for enhanced reflection against specific projectile types

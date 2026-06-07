@@ -2,8 +2,6 @@ using Content.Server.Actions;
 using Content.Server.Popups;
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
-using Content.Shared.Item.ItemToggle;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Content.Shared.Power.EntitySystems;
@@ -30,7 +28,6 @@ namespace Content.Server.Light.EntitySystems
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedPointLightSystem _lights = default!;
-        [Dependency] private readonly ItemToggleSystem _toggle = default!;
 
         // TODO: Ideally you'd be able to subscribe to power stuff to get events at certain percentages.. or something?
         // But for now this will be better anyway.
@@ -51,7 +48,6 @@ namespace Content.Server.Light.EntitySystems
 
             SubscribeLocalEvent<HandheldLightComponent, GetItemActionsEvent>(OnGetActions);
             SubscribeLocalEvent<HandheldLightComponent, ToggleActionEvent>(OnToggleAction);
-            SubscribeLocalEvent<HandheldLightComponent, ItemToggledEvent>(OnToggleItem);
 
             SubscribeLocalEvent<HandheldLightComponent, EntInsertedIntoContainerMessage>(OnEntInserted);
             SubscribeLocalEvent<HandheldLightComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
@@ -73,34 +69,23 @@ namespace Content.Server.Light.EntitySystems
         {
             args.AddAction(ref component.ToggleActionEntity, component.ToggleAction);
         }
+
         private void OnToggleAction(Entity<HandheldLightComponent> ent, ref ToggleActionEvent args)
         {
-            _toggle.Toggle(ent.Owner);
             if (args.Handled)
                 return;
-            TurnOn(args.Performer, ent);
+
+            if (ent.Comp.Activated)
+                TurnOff(ent);
+            else
+                TurnOn(args.Performer, ent);
+
             args.Handled = true;
         }
 
-        private void OnToggleItem(Entity<HandheldLightComponent> ent, ref ItemToggledEvent args)
-        {
-            if (!TryComp<ItemToggleComponent>(ent.Owner, out var itemToggleComponent))
-                return;
-
-            if (!_toggle.IsActivated(ent.Owner))
-                TurnOff(ent);
-            else
-            {
-                var user = args.User; //user is null if it was an OnToggleAction... damn it
-                if (user is not null)
-                    TurnOn(user.Value, ent);
-            }
-        }
-
-
         private void OnGetState(Entity<HandheldLightComponent> ent, ref ComponentGetState args)
         {
-            args.State = new HandheldLightComponent.HandheldLightComponentState(_toggle.IsActivated(ent.Owner), GetLevel(ent));
+            args.State = new HandheldLightComponent.HandheldLightComponentState(ent.Comp.Activated, GetLevel(ent));
         }
 
         public override void OnMapInit(Entity<HandheldLightComponent> ent, ref MapInitEvent args) //starlight map init
@@ -153,7 +138,7 @@ namespace Content.Server.Light.EntitySystems
         /// <returns>True if the light's status was toggled, false otherwise.</returns>
         public bool ToggleStatus(EntityUid user, Entity<HandheldLightComponent> ent)
         {
-            return _toggle.IsActivated(ent.Owner) ? TurnOff(ent) : TurnOn(user, ent);
+            return ent.Comp.Activated ? TurnOff(ent) : TurnOn(user, ent);
         }
 
         public override void Shutdown()
@@ -190,7 +175,7 @@ namespace Content.Server.Light.EntitySystems
 
         public override bool TurnOff(Entity<HandheldLightComponent> ent, bool makeNoise = true)
         {
-            if (_toggle.IsActivated(ent.Owner) || !_lights.TryGetLight(ent, out var pointLightComponent))
+            if (!ent.Comp.Activated || !_lights.TryGetLight(ent, out var pointLightComponent))
             {
                 return false;
             }
@@ -205,7 +190,7 @@ namespace Content.Server.Light.EntitySystems
         public override bool TurnOn(EntityUid user, Entity<HandheldLightComponent> uid)
         {
             var component = uid.Comp;
-            if (!_toggle.IsActivated(uid.Owner) || !_lights.TryGetLight(uid, out var pointLightComponent))
+            if (component.Activated || !_lights.TryGetLight(uid, out var pointLightComponent))
             {
                 return false;
             }
@@ -259,7 +244,7 @@ namespace Content.Server.Light.EntitySystems
                 _appearance.SetData(uid, HandheldLightVisuals.Power, HandheldLightPowerStates.Dying, appearanceComponent);
             }
 
-            if (_toggle.IsActivated(uid.Owner) && !_battery.TryUseCharge(battery.Value.AsNullable(), component.Wattage * frameTime))
+            if (component.Activated && !_battery.TryUseCharge(battery.Value.AsNullable(), component.Wattage * frameTime))
                 TurnOff(uid, false);
 
             UpdateLevel(uid);
