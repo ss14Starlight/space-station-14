@@ -57,7 +57,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 400
+            damage: 600
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -83,7 +83,7 @@
   suffix: Constructed
   components:
     - type: WiresPanelSecurity
-      wiresAccessible: True
+      securityLevel: camera_reinforced
     - type: DeviceNetwork
       deviceNetId: Wired
       transmitFrequencyId: SurveillanceCamera

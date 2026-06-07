@@ -49,6 +49,7 @@
     # to immediately deconstruct
     - node: camera
       entity: SurveillanceCameraConstructed
+      doNotReplaceInheritingEntities: true
       # SL edit start
       actions:
         - !type:SetWiresPanelSecurity
@@ -68,7 +69,7 @@
             - tool: Welding
               doAfter: 2
         # SL edit start
-        - to: medSecurityUnfinished
+        - to: medSecurityUnfinished #
           conditions:
             - !type:WirePanel { }
           steps:
@@ -102,6 +103,7 @@
 
     - node: camera_reinforced
       entity: SurveillanceCameraReinforcedConstructed
+      doNotReplaceInheritingEntities: true
       actions:
         - !type:SetWiresPanelSecurity
           wiresAccessible: true
@@ -124,9 +126,17 @@
 
         - to: medSecurityUnfinished
           conditions:
-            - !type:WirePanel { }
+            - !type:WirePanel {}
           steps:
             - material: Steel
+              amount: 2
+              doAfter: 2
+
+        - to: highSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: Plasteel
               amount: 2
               doAfter: 2
 
@@ -138,7 +148,7 @@
       edges:
         - to: medSecurity
           conditions:
-            - !type:WirePanel { }
+            - !type:WirePanel {}
           steps:
             - tool: Welding
               doAfter: 3
@@ -149,7 +159,7 @@
               prototype: SheetSteel1
               amount: 2
           conditions:
-            - !type:WirePanel { }
+            - !type:WirePanel {}
             - !type:HasTag
               tag: Camera
           steps:
@@ -162,7 +172,7 @@
               prototype: SheetSteel1
               amount: 2
           conditions:
-            - !type:WirePanel { }
+            - !type:WirePanel {}
             - !type:HasTag
               tag: CameraReinforced
           steps:
@@ -182,4 +192,128 @@
             - tool: Welding
               doAfter: 10
 
+    ## High security level: a layer of plasteel plating protects the internal wiring
+    - node: highSecurityUnfinished
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level3
+          wiresAccessible: false
+      edges:
+        - to: camera
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+            - !type:HasTag
+              tag: Camera
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+        - to: camera_reinforced
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+            - !type:HasTag
+              tag: CameraReinforced
+          steps:
+            - tool: Prying
+              doAfter: 4
+        - to: highSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+          - tool: Welding
+            doAfter: 5
+
+    - node: highSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level4
+          wiresAccessible: false
+      edges:
+        - to: highSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 15
+
+        - to: maxSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: MetalRod
+              amount: 2
+              doAfter: 1
+
+    ## Max security level: an electric grill is added
+    - node: maxSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level5
+          wiresAccessible: false
+      edges:
+        - to: highSecurity
+          completed:
+            - !type:AttemptElectrocute
+            - !type:GivePrototype
+              prototype: PartRodMetal1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Cutting
+              doAfter: 0.5
+
+        - to: superMaxSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - material: Plasteel
+              amount: 2
+              doAfter: 2
+
+    ## Super max security level: an additional layer of plasteel is added
+    - node: superMaxSecurityUnfinished
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level6
+          wiresAccessible: false
+      edges:
+        - to: maxSecurity
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 2
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Prying
+              doAfter: 4
+
+        - to: superMaxSecurity
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 5
+
+    - node: superMaxSecurity
+      actions:
+        - !type:SetWiresPanelSecurity
+          examine: wires-panel-component-on-examine-security-level7
+          wiresAccessible: false
+      edges:
+        - to: superMaxSecurityUnfinished
+          conditions:
+            - !type:WirePanel {}
+          steps:
+            - tool: Welding
+              doAfter: 15
             # SL edit end
