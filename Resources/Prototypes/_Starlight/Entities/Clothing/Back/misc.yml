@@ -45,6 +45,8 @@
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/Back/thermalcloak.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Back/thermalcloak.rsi
     - type: Storage
       grid:
         - 0,0,2,5
