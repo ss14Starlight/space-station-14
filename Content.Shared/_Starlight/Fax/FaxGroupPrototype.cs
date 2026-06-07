@@ -9,11 +9,23 @@ public sealed partial class FaxGroupPrototype : IPrototype
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [DataField(required: true)] public int Order { get; private set; } = int.MaxValue;
+    /// <summary>
+    /// The order of this group. Lower values mean higher up in the list.
+    /// </summary>
+    [DataField(required: true)]
+    public int Order { get; private set; } = int.MaxValue;
 
-    [DataField(required: true)] public string Name { get; private set; } = string.Empty;
+    /// <summary>
+    /// The group name (gets localized).
+    /// </summary>
+    [DataField(required: true)]
+    public string Name { get; private set; } = string.Empty;
 
-    [DataField(required: true)] public Color Color { get; private set; } = Color.White;
+    /// <summary>
+    /// The color of this group.
+    /// </summary>
+    [DataField(required: true)]
+    public Color Color { get; private set; } = Color.White;
 
     /// <summary>
     /// Whether this fax group is selectable on any normal fax.
@@ -25,6 +37,6 @@ public sealed partial class FaxGroupPrototype : IPrototype
     /// Whether this fax group is selectable on emagged faxes. (Only relevant when SelectableDefault is false)
     /// </summary>
     [DataField]
-    public bool SelectableEmagged { get; private set; } = false;
+    public bool SelectableEmagged { get; private set; }
 
 }

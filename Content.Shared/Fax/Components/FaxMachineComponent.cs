@@ -143,14 +143,24 @@ public sealed partial class
     public EntProtoId PrintOfficePaperId = "PaperOffice";
 
     #region Starlight
+    /// <summary>
+    /// The current group the fax machine appears in. Affects the color and ordering in the fax machine UI.
+    /// </summary>
     [DataField("group")]
     [ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<FaxGroupPrototype>? CurrentGroup { get; set; }
 
+    /// <summary>
+    /// An intrinsic group this fax machine belongs to, if any. If this is set, the fax machine can always be configured
+    /// to be part of that group, even if the group itself is not normally accessible.
+    /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public ProtoId<FaxGroupPrototype>? IntrinsicGroup { get; set; }
 
+    /// <summary>
+    /// The order of this fax machine within its group. Lower values mean higher up in the list.
+    /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public int Order { get; set; }
