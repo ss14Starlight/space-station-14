@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/07/2026 01:59:50
+  time: 06/07/2026 02:10:30
   entityCount: 32966
 maps:
 - 1
@@ -15399,7 +15399,7 @@ entities:
       pos: 20.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -88885.92
+      secondsUntilStateChange: -89522.09
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -15531,7 +15531,7 @@ entities:
       pos: -48.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11236.687
+      secondsUntilStateChange: -11872.861
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15542,7 +15542,7 @@ entities:
       pos: -51.5,52.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12600.868
+      secondsUntilStateChange: -13237.043
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16694,7 +16694,7 @@ entities:
       pos: 26.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -96053.05
+      secondsUntilStateChange: -96689.22
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -17003,7 +17003,7 @@ entities:
       pos: 5.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -12385.107
+      secondsUntilStateChange: -13021.282
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -18168,7 +18168,7 @@ entities:
       pos: -48.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11291.72
+      secondsUntilStateChange: -11927.895
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -24329,13 +24329,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 76.5,-31.5
-      parent: 2
-- proto: BorgModuleAdvancedPlumbing
-  entities:
-  - uid: 1609
-    components:
-    - type: Transform
-      pos: -27.489017,-33.444885
       parent: 2
 - proto: BorgModuleAnomaly
   entities:
@@ -99886,6 +99879,8 @@ entities:
     - type: Transform
       pos: 58.5,40.5
       parent: 2
+    - type: FaxMachine
+      name: Library
 - proto: FaxMachineCaptain
   entities:
   - uid: 15790
@@ -151597,6 +151592,11 @@ entities:
       parent: 2
 - proto: LootSpawnerIndustrial
   entities:
+  - uid: 1609
+    components:
+    - type: Transform
+      pos: -26.5,-33.5
+      parent: 2
   - uid: 22927
     components:
     - type: Transform
@@ -151688,6 +151688,13 @@ entities:
     components:
     - type: Transform
       pos: -51.5,40.5
+      parent: 2
+- proto: LootSpawnerMaterials
+  entities:
+  - uid: 26292
+    components:
+    - type: Transform
+      pos: -27.5,-33.5
       parent: 2
 - proto: LootSpawnerMaterialsSupplementary
   entities:
@@ -171342,11 +171349,6 @@ entities:
     components:
     - type: Transform
       pos: 11.752702,-2.573286
-      parent: 2
-  - uid: 26292
-    components:
-    - type: Transform
-      pos: -26.489017,-33.42926
       parent: 2
 - proto: SheetSteel10
   entities:
