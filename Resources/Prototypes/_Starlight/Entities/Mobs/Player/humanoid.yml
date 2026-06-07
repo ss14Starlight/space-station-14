@@ -589,7 +589,7 @@
       job: CentralCommandGreenShield
     - type: Loadout
       prototypes: [GSOGear]
-      roleLoadout: [RoleSurvivalStandard]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
