@@ -7,6 +7,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.PAI; //Starlight
@@ -165,6 +166,15 @@ public sealed partial class BlockingSystem : EntitySystem
             CantBlockError(user);
             return false;
         }
+
+        //Starlight
+        // Don't allow someone to block if their shield isn't activated
+        if (TryComp<ItemToggleComponent>(item, out var itemToggle))
+            if (!itemToggle.Activated)
+            {
+                CantBlockError(user);
+                return false;
+            }
 
         //Don't allow someone to block if someone else is on the same tile
         var playerTileRef = _turf.GetTileRef(xform.Coordinates);

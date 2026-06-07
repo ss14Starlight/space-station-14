@@ -27,6 +27,7 @@ public sealed partial class BlockingSystem
         SubscribeLocalEvent<BlockingUserComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<BlockingUserComponent, EntityTerminatingEvent>(OnEntityTerminating);
 
+        SubscribeLocalEvent<BlockingComponent, ItemToggledEvent>(OnBlockerToggled); //Starlight;
         SubscribeLocalEvent<BlockingComponent, PowerCellSlotEmptyEvent>(OnPowerCellEmpty); //Starlight;
         SubscribeLocalEvent<BlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged); //Starlight;
     }
@@ -78,6 +79,13 @@ public sealed partial class BlockingSystem
         UserStopBlocking(uid, component);
     }
 
+    //Starlight stop user from blocking when the shield is toggled off
+    private void OnBlockerToggled(EntityUid uid, BlockingComponent component, ItemToggledEvent args)
+    {
+        if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent) && TryComp<TransformComponent>(uid, out var transform))
+            UserStopBlocking(transform.ParentUid, blockingUserComponent);
+    }
+
     private void OnUserDamageModified(EntityUid uid, BlockingUserComponent component, DamageModifyEvent args)
     {
         if (component.BlockingItem is not { } item || !TryComp<BlockingComponent>(item, out var blocking))
@@ -117,7 +125,6 @@ public sealed partial class BlockingSystem
             var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
             if (availableEnergy <= 0)
             {
-                //TryDeactivate(component.BlockingItem.Value);
                 return; //If the power cell is empty, no damage will be blocked
             }
 

@@ -153,8 +153,10 @@
 
 - type: entity
   parent: [ IDCardStandard, BaseCommandContraband ]
+  suffix: DO NOT MAP
   id: CCGreenShieldIDCard
-  name: CentComm Greenshield Officer ID card
+  name: greenshield ID card
+  description: Why are you looking at this instead of wathcing the person you're in charge of protecting?
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi

@@ -398,7 +398,7 @@
   name: greenlight shield
   parent: [BaseItem, BaseCentcommContraband ] #Yes I am using a flashlight as a base, shockingly easiest way to get things working
   id: GreenLightShield
-  description: Exotic energy shield, when folded, can even fit in your pocket.
+  description: Reverse engineered and enhanced, this hard light shield provides excellent protection and a small RTG for recharge. The capacitors can only charge while the shield is collapsed though and needs a cool down time.
   components:
     - type: ItemToggle
       soundActivate:
@@ -443,7 +443,7 @@
       reflectProb: 0.50
       reflects:
         - Energy
-      ReflectEnergyDraw: 80
+      ReflectEnergyDraw: 80 # final stat TBD
     - type: Appearance
     - type: PointLight
       netsync: false
@@ -463,7 +463,7 @@
     - type: ToggleCellDraw
     - type: PowerCellDraw
       drawRate: 5  # watts while active
-    - type: Blocking
+    - type: Blocking # Stats TBD
       passiveBlockModifier:
         coefficients:
           Blunt: 1.0
@@ -479,6 +479,6 @@
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 10
+      damageEnergyDraw: 10 #Final stat STB
     - type: Damageable
       damageContainer: Shield

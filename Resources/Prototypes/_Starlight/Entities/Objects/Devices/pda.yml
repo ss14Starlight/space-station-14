@@ -581,8 +581,10 @@
 
 - type: entity
   parent: BasePDA
+  suffix: DO NOT MAP
   id: CentCommGreenShieldPDA
-  name: Green Shield Officer's PDA
+  name: green shield PDA
+  description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone that thinks they are way too important.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Devices/pda.rsi

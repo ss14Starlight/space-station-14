@@ -251,3 +251,24 @@
         - id: MedkitCombatFilled
         - id: CombatMedipen
         - id: Binoculars
+
+#Green Shield Officer
+- type: entity
+  id: ClothingBeltGreenshieldFilled
+  parent: ClothingBeltGreenshield
+  suffix: Filled, DO NOT MAP
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: Truncheon
+            - id: Handcuffs
+            - id: PinpointerUniversal
+            - id: CombatMedipen
+            - id: CombatMedipen
+            - id: MedkitCombatFilled
+            - id: CombatMedipen
+            - id: CombatMedipen
+            - id: FlashlightSeclite
+            - id: BodyBagCCFolded
