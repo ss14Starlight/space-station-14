@@ -81,7 +81,7 @@
   parent: FaxMachineCentralCommand # Starlight
   id: FaxMachineCentcom
   #name: long range fax machine # Starlight: Normal name
-  suffix: CentComm # Starlight: Why have they not updated this name?!
+  suffix: "CC: CentComm" # Starlight: Why have they not updated this name?!
   components:
   #  - type: Sprite
   #    layers:
@@ -90,6 +90,7 @@
   #        color: "#bfe3ff"
   - type: FaxMachine
     group: FaxGroupCentralCommand # Starlight
+    intrinsicGroup: FaxGroupCentralCommand # Starlight
     order: 100 # Starlight
     name: "Central Command"
     notifyAdmins: true

@@ -19,5 +19,6 @@
           color: "#ed7300"
     - type: FaxMachine
       group: FaxGroupUSSP
+      intrinsicGroup: FaxGroupUSSP
       name: "USSP"
       order: 500

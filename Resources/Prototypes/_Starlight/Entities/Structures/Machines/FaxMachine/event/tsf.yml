@@ -19,5 +19,6 @@
           color: "#22a7ff"
     - type: FaxMachine
       group: FaxGroupTSF
+      intrinsicGroup: FaxGroupTSF
       name: "Trans-Solar Federation"
       order: 500

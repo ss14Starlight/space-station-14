@@ -13,6 +13,7 @@ using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DeviceNetwork.Events;
+using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
@@ -94,6 +95,7 @@ public sealed class FaxSystem : EntitySystem
 
         // UI
         SubscribeLocalEvent<FaxMachineComponent, AfterActivatableUIOpenEvent>(OnToggleInterface);
+        SubscribeLocalEvent<FaxMachineComponent, FaxMachineConfigureMessage>(OnConfigure); // Starlight
         SubscribeLocalEvent<FaxMachineComponent, FaxFileMessage>(OnFileButtonPressed);
         SubscribeLocalEvent<FaxMachineComponent, FaxCopyMessage>(OnCopyButtonPressed);
         SubscribeLocalEvent<FaxMachineComponent, FaxSendMessage>(OnSendButtonPressed);
@@ -271,7 +273,7 @@ public sealed class FaxSystem : EntitySystem
                     var payload = new NetworkPayload()
                     {
                         { DeviceNetworkConstants.Command, FaxConstants.FaxPongCommand },
-                        { FaxConstants.FaxGroupIdData, component.Group }, // Starlight
+                        { FaxConstants.FaxGroupIdData, component.CurrentGroup }, // Starlight
                         { FaxConstants.FaxOrderData, component.Order }, // Starlight
                         { FaxConstants.FaxNameData, component.FaxName }
                     };
@@ -786,12 +788,18 @@ public sealed class FaxSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var groupings = _proto.EnumeratePrototypes<FaxGroupPrototype>()
-            .OrderBy(g => g.Order)
-            .ToList();
-
-        var state = new FaxMachineConfigureState(component.FaxName, component.Group, component.Order);
+        var state = new FaxMachineConfigureState(component.FaxName, component.CurrentGroup, component.IntrinsicGroup, component.Order, HasComp<EmaggedComponent>(uid));
         _userInterface.SetUiState(uid, FaxMachineConfigureUiKey.Key, state);
+    }
+
+    private void OnConfigure(EntityUid uid, FaxMachineComponent component, FaxMachineConfigureMessage args)
+    {
+        component.FaxName = args.Name;
+        component.CurrentGroup = args.Grouping;
+        component.Order = args.Order;
+
+        UpdateUserInterface(uid, component);
+        UpdateMachineConfigureUserInterface(uid, component);
     }
 
     #endregion

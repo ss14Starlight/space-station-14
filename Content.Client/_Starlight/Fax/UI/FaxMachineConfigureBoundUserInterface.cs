@@ -19,6 +19,22 @@ public sealed partial class FaxMachineConfigureBoundUserInterface : BoundUserInt
         base.Open();
 
         _window = this.CreateWindow<FaxMachineConfigureWindow>();
+        _window.OnSubmit += OnSubmitPressed;
+    }
+
+    private void OnSubmitPressed()
+    {
+        if (_window is null)
+            return;
+
+        var name = _window.CurrentName;
+        var grouping = _window.CurrentGroup is { } id
+            ? new ProtoId<FaxGroupPrototype>(id)
+            : (ProtoId<FaxGroupPrototype>?) null;
+        var order = _window.CurrentOrder;
+
+        SendMessage(new FaxMachineConfigureMessage(name, grouping, order));
+        _window?.Close();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -29,9 +45,9 @@ public sealed partial class FaxMachineConfigureBoundUserInterface : BoundUserInt
             return;
 
         _window?.SetName(faxState.Name);
-        _window?.SetGroupings(_prototypeManager.EnumeratePrototypes<FaxGroupPrototype>());
-
-        if (faxState.Grouping is not null)
-            _window?.SetSelectedGrouping(faxState.Grouping);
+        _window?.SetGroupings(
+            _prototypeManager.EnumeratePrototypes<FaxGroupPrototype>(),
+            faxState.CurrentGroup, faxState.IntrinsicGroup, faxState.Emagged);
+        _window?.SetOrder(faxState.Order);
     }
 }

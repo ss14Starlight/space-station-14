@@ -143,13 +143,17 @@ public sealed partial class
     public EntProtoId PrintOfficePaperId = "PaperOffice";
 
     #region Starlight
-    [DataField]
+    [DataField("group")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public ProtoId<FaxGroupPrototype>? Group { get; set; }
+    public ProtoId<FaxGroupPrototype>? CurrentGroup { get; set; }
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int Order { get; set; } = int.MaxValue; // By default, sorted at the bottom of the list.
+    public ProtoId<FaxGroupPrototype>? IntrinsicGroup { get; set; }
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Order { get; set; }
     #endregion
 }
 

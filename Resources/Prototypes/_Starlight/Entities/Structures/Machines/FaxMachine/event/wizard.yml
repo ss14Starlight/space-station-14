@@ -7,5 +7,6 @@
   components:
     - type: FaxMachine
       group: FaxGroupWizard
+      intrinsicGroup: FaxGroupWizard
       name: "Wizard"
       order: 500

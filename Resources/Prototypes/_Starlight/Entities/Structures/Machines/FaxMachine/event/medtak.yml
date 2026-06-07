@@ -2,7 +2,7 @@
 - type: faxGroup
   id: FaxGroupMedTak
   name: fax-group-medtak
-  color: "#880606"
+  color: "#ffffff"
   order: 1500 # All events: 1500
   selectable: false
 
@@ -16,8 +16,9 @@
       layers:
         - state: icon
           map: [ "base" ]
-          color: "#880606"
+          color: "#ffffff"
     - type: FaxMachine
       group: FaxGroupMedTak
+      intrinsicGroup: FaxGroupMedTak
       name: "MedTak"
       order: 500

@@ -19,5 +19,6 @@
           color: "#896e14"
     - type: FaxMachine
       group: FaxGroupBlackstar
+      intrinsicGroup: FaxGroupBlackstar
       name: "Blackstar"
       order: 500

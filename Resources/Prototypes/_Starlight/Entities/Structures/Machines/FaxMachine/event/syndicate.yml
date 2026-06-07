@@ -8,5 +8,6 @@
   components:
     - type: FaxMachine
       group: FaxGroupSyndicate
+      intrinsicGroup: FaxGroupSyndicate
       name: "Syndicate"
       order: 500

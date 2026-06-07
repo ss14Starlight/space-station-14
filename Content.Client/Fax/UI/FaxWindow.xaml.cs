@@ -88,6 +88,7 @@ public sealed partial class FaxWindow : DefaultWindow
                 if (address == state.DestinationAddress)
                     PeerSelector.Select(id);
             }
+            PeerSelector.UpdateCollapsedColor(PeerSelector.SelectedId);
         }
     }
 

@@ -19,5 +19,6 @@
           color: "#2253b5"
     - type: FaxMachine
       group: FaxGroupNTSF
+      intrinsicGroup: FaxGroupNTSF
       name: "NTSF"
       order: 500

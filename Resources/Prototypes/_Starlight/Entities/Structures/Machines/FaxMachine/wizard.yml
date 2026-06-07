@@ -4,8 +4,7 @@
   name: fax-group-wizard
   order: 1900
   color: "#ff00ff"
-  selectableDefault: false
-  selectableEmagged: false
+  selectable: false
 
 # Base
 - type: entity
