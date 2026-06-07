@@ -16,6 +16,6 @@ ghost-role-information-ntnc-consortium-officer-name = NanoTrasen Navy Corps Mari
 ghost-role-information-ntnc-consortium-officer-description = You are charged directly from the NanoTrasen Navy Corps to protect and serve the Central Command officials at all costs, nothing else subverts that.
 
 ghost-role-information-green-shield-officer-name = Greenshield Officer
-ghost-role-information-green-shield-officer-description = You are charged directly from the highest levels of CentComm to Protect CentComm VIPs and maintain the peace at Central Command outposts.
+ghost-role-information-green-shield-officer-description = You are charged directly from the highest levels of CentComm to protect CentComm VIPs and maintain the peace at Central Command outposts.
 
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]
