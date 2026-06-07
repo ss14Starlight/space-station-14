@@ -394,7 +394,7 @@
     - GrenadeFrag
     - GrenadeFrag
     - MagazinePistolSP
-    - ClusterGrenade
+    - EmpGrenade
     - GrenadeEMP
     - GrenadeEMP
     - GrenadeEMP
@@ -402,7 +402,7 @@
     - GrenadeFlash
     - GrenadeFlash
     - MagazinePistolSP
-    - ClusterGrenade
+    - GrenadeShrapnel
 
 - type: startingGear
   parent: ERTSecurityGearEVA
