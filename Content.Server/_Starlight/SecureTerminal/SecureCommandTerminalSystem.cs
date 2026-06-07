@@ -524,6 +524,9 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             }
         }
 
+        // Gonna keep the code here, becuase I put in the time to write it and get it working,
+        // but if an armory is called it is probably going to arrive.
+        // And it can be recalled once on station so it dosen't make much sense for it to be refunded.
         // Refund if armory is recalled
         var refundTarget = hasActivatingArmory && proposal != null
             ? proposal.Requester
@@ -534,8 +537,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         stationComp.DeployedArmoryRequesters.Remove(msg.RequestId);
         stationComp.UsedOnce.Add(msg.RequestId);
 
-        // Recall refunds 80% of the fee, becuase they had to prepare it and send it and stuff.
-        RefundFee(refundTarget, proto, 0.8f);
+        RefundFee(refundTarget, proto, 0f);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} recalled armory via secure terminal: {msg.RequestId}");
