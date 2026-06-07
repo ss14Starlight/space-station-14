@@ -104,17 +104,17 @@
 - type: Tag
   id: CartridgePistolDP
 
-- type: Tag # used for camera construction graphs
-  id: Camera
-
-- type: Tag # used for camera construction graphs
-  id: CameraReinforced
-
 - type: Tag
   id: CartridgePistolImprovised
 
 - type: Tag
   id: CantBecomeRevolutionary
+
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
 
 - type: Tag
   id: CentcommVibroblade
