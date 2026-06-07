@@ -83,6 +83,7 @@
   - type: ItemPrice
     fallbackPrice: 12
   # Starlight-end
+
 - type: entity
   name: seclite
   parent: [FlashlightLantern, BaseSecurityContraband]
