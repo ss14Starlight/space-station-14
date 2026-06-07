@@ -635,6 +635,33 @@
           - BodyPart
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: surgery-module }
+
+- type: entity
+  id: BorgModuleParamedic
+  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  name: paramedic cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: medical
+    - state: icon-paramed
+  - type: ItemBorgModule
+    hands:
+    - item: Scalpel
+    - hand:
+        emptyLabel: borg-slot-organs-empty
+        emptyRepresentative: BorgModuleOrganPlaceholder
+        whitelist:
+          components:
+          - Foldable
+    - hand:
+        emptyLabel: borg-slot-Rollerbed-empty
+        emptyRepresentative: RollerBed
+        whitelist:
+          components:
+          - Foldable
+  - type: BorgModuleIcon
+    icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paramed-module }
     
 # region Xenoborg
 - type: entity

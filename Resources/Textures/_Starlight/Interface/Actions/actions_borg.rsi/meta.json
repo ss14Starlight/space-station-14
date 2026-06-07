@@ -43,6 +43,9 @@
     },
     {
       "name": "knife-module"
+    },
+    {
+      "name": "paramed-module"
     }
   ]
 }
