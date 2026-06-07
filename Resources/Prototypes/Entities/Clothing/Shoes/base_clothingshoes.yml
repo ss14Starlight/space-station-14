@@ -47,6 +47,9 @@
   id: ClothingShoesMilitaryBase
   components:
   - type: Matchbox
+  - type: Storage
+    grid:
+    - 0,0,2,2
   - type: ItemSlots
     slots:
       item:
@@ -62,6 +65,9 @@
   id: ClothingShoesBootsSecFilled
   suffix: Filled
   components:
+  - type: Storage
+    grid:
+    - 0,0,2,2
   - type: ContainerFill
     containers:
       item:
