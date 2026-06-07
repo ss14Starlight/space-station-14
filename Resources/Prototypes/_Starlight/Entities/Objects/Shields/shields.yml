@@ -458,12 +458,8 @@
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
-          startingItem: PowerCellMedium
-          blacklist:
-            tags:
-              - MechReactor
-            components:
-              - BatterySelfRecharger
+          startingItem: PowerCellSmallNuclear
+          locked: true
     - type: ToggleCellDraw
     - type: PowerCellDraw
       drawRate: 5  # watts while active

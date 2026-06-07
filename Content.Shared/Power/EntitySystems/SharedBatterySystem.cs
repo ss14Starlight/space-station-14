@@ -4,6 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.Power.Components;
 using Content.Shared.Rejuvenate;
 using Robust.Shared.Timing;
+using Content.Shared.PowerCell.Components;
 
 namespace Content.Shared.Power.EntitySystems;
 
@@ -103,12 +104,19 @@ public abstract partial class SharedBatterySystem : EntitySystem
         args.CurrentCharge += GetCharge(ent.AsNullable());
         args.MaxCharge += ent.Comp.MaxCharge;
     }
-
+    /// <summary>
+    /// When a power cell that has a non-zero AutoRechargePause; ensure that the pause is reset whenever this is called unless the pause is over, and it is not discharging.
+    /// </summary>
+    /// <param name="ent"></param>
+    /// <param name="args"></param>
     private void OnRefreshChargeRate(Entity<BatterySelfRechargerComponent> ent, ref RefreshChargeRateEvent args)
     {
-        if (_timing.CurTime < ent.Comp.NextAutoRecharge)
-            return; // Still on cooldown
-
+        if (_timing.CurTime < ent.Comp.NextAutoRecharge && ent.Comp.AutoRechargePauseTime > TimeSpan.Zero || //if anything but the timer caused this to get called, then that means it was just discharging, and we can reset the timer.
+            args.NewChargeRate < 0f) //If there is any power draw still, then we reset the timer
+        {
+            ent.Comp.NextAutoRecharge = _timing.CurTime + ent.Comp.AutoRechargePauseTime;
+            return;
+        }
         args.NewChargeRate += ent.Comp.AutoRechargeRate;
     }
 
