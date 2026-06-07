@@ -149,9 +149,6 @@
     head: ClothingHeadHatFez
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterArmorBasic
-  storage:
-    shoes:
-    - CombatKnife
 
 - type: startingGear
   id: ERTChaplainGearEVA
@@ -186,8 +183,6 @@
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
-    shoes:
-    - CombatKnife
 
 - type: chameleonOutfit
   id: ERTChaplainChameleonOutfit
