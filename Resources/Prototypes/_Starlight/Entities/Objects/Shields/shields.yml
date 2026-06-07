@@ -443,7 +443,7 @@
       reflectProb: 0.50
       reflects:
         - Energy
-      ReflectEnergyDraw: 80 # final stat TBD
+      reflectEnergyDraw: 80 # final stat TBD
     - type: Appearance
     - type: PointLight
       netsync: false
