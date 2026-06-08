@@ -3,7 +3,7 @@
   id: UndergarmentTopBinderAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -16,7 +16,7 @@
   id: UndergarmentTopBraAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -30,7 +30,7 @@
   id: UndergarmentTopSportsbraAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -43,7 +43,7 @@
   id: UndergarmentTopTanktopAvali
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -56,7 +56,7 @@
   id: UndergarmentTopTanktopResomi
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -70,7 +70,7 @@
   id: UndergarmentBottomBriefsAvali
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -83,7 +83,7 @@
   id: UndergarmentBottomSatinAvali
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -96,7 +96,7 @@
   id: UndergarmentBottomBoxersAvali
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Avali]
+  speciesRestriction: [Avali, ProtoAvali]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -109,7 +109,7 @@
   id: UndergarmentBottomBoxersResomi
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   coloring:
     default:
       type: !type:SimpleColoring
@@ -122,7 +122,7 @@
   id: UndergarmentBottomThongResomi
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [Resomi]
+  speciesRestriction: [Resomi, ProtoResomi]
   coloring:
     default:
       type: !type:SimpleColoring

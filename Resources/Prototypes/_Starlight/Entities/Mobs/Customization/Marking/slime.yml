@@ -4,7 +4,7 @@
   id: bubble
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
     state: bubble
@@ -13,7 +13,7 @@
   id: fishbowl
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
     state: fishbowl1
@@ -24,7 +24,7 @@
   id: SlimeBonechest
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -38,7 +38,7 @@
   id: SlimeCore
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   followSkinColor: false
   coloring:
     default:
@@ -52,7 +52,7 @@
   id: SlimeLungs
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/chest.rsi
@@ -64,7 +64,7 @@
   id: FadingStars
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
     state: fadingstars1
@@ -77,7 +77,7 @@
   id: fizz
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
     state: fizz
@@ -86,7 +86,7 @@
   id: SlimeBonehead
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -100,7 +100,7 @@
   id: SlimeNose
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -111,7 +111,7 @@
   id: SlimeMouth
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
@@ -121,7 +121,7 @@
   id: SlimeBrain
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/SlimePerson/head.rsi
@@ -135,7 +135,7 @@
   id: SlimeEyesDefault
   bodyPart: Eyes
   markingCategory: Eyes
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   forcedColoring: true
   coloring:
     default:
@@ -149,7 +149,7 @@
   id: SlimeEyesDroopy
   bodyPart: Eyes
   markingCategory: Eyes
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -163,7 +163,7 @@
   id: SlimeEyesCyclops
   bodyPart: Eyes
   markingCategory: Eyes
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -179,7 +179,7 @@
   id: SlimeBonearmright
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -195,7 +195,7 @@
   id: SlimeBonearmleft
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -211,7 +211,7 @@
   id: SlimeBonelegright
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -227,7 +227,7 @@
   id: SlimeBonelegleft
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -247,7 +247,7 @@
   id: SlimeBonefootleft
   bodyPart: LFoot
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -263,7 +263,7 @@
   id: SlimeBonefootright
   bodyPart: RFoot
   markingCategory: Legs
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -279,7 +279,7 @@
   id: SlimeBonehandleft
   bodyPart: LHand
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
@@ -295,7 +295,7 @@
   id: SlimeBonehandright
   bodyPart: RHand
   markingCategory: Arms
-  speciesRestriction: [ SlimePerson ]
+  speciesRestriction: [ SlimePerson , ProtoSlimePerson, Protogen] #FH
   coloring:
     default:
       type:
