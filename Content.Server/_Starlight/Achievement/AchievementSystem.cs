@@ -62,7 +62,6 @@ using Content.Shared.Station.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Store.Events;
 using Content.Shared.Tag;
-using Content.Shared.VentCrawl.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
@@ -71,6 +70,7 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.VentCrawl.Components;
 
 namespace Content.Server._Starlight.Achievement;
 
