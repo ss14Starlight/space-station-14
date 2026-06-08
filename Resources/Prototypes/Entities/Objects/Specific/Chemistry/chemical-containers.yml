@@ -58,6 +58,20 @@
 
 - type: entity
   parent: Jug
+  id: JugLacer
+  suffix: lacer
+  components:
+  - type: Label
+    currentLabel: reagent-name-lacerinol
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 200
+
+- type: entity
+  parent: Jug
   id: JugDexPlusSaline
   suffix: dex+ & saline
   components:

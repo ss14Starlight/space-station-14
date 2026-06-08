@@ -204,6 +204,17 @@
     accentVColor: "#949137"
   - type: Icon
     state: pda-interntech
+    # Starlight BEGIN
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
+      - NanoChatCartridge
+    # Starlight END
 
 - type: entity
   parent: BaseMedicalPDA
