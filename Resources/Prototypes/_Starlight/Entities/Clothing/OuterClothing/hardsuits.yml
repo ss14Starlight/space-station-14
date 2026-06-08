@@ -1303,3 +1303,8 @@
     - type: Storage
       grid:
         - 0,0,2,1
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
+        cell_slot: !type:ContainerSlot
+        storagebase: !type:Container
