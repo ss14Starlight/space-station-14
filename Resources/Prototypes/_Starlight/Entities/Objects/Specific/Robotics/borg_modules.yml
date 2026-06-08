@@ -656,7 +656,7 @@
           - Medipen
     - hand:
         emptyLabel: borg-slot-Rollerbed-empty
-        emptyRepresentative: EmergencyRollerBedSpawnFolded
+        emptyRepresentative: RollerbedCyborgDisplay
         whitelist:
           components:
           - Foldable

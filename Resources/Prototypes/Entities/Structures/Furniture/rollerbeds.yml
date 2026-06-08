@@ -158,3 +158,10 @@
   - type: Tag
     tags:
     - FoldedBed
+
+- type: entity
+  id: RollerbedCyborgDisplay
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/rollerbed.rsi
+    state: emergency_rollerbed_folded
