@@ -1,0 +1,147 @@
+# station maps (keep alphabetical)
+
+- files: ["bagel.yml"]
+  authors: Emisse, Starlight Team
+
+- files: ["barratry.yml"]
+  authors: Emogarbage, Scribbles0, Starlight Team
+
+- files: ["box.yml"]
+  authors: ACJM, Emisse, Starlight Team
+
+- files: ["cluster.yml"]
+  authors: Scribbles0, CawsForConcern (remake), Starlight Team
+
+- files: ["cog.yml"]
+  authors: Spacemann, Starlight Team
+
+- files: ["cork.yml"]
+  authors: PubliclyExecutedPig, cujo, Starlight Team
+
+- files: ["elkridge.yml"]
+  authors: Deerstop, Starlight Team
+
+- files: ["fland.yml"]
+  authors: Emisse, Starlight Team
+
+- files: ["hotel.yml"]
+  authors: PubliclyExecutedPig, CawsForConcern, Starlight Team
+
+- files: ["kiloton.yml"]
+  authors: conflee, Starlight Team
+
+- files: ["lagan.yml"]
+  authors: PubliclyExecutedPig, Starlight Team
+
+- files: ["leth.yml"]
+  authors: trep_maul, Starlight Team
+
+- files: ["lobster.yml"]
+  authors: PubliclyExecutedPig, Starlight Team
+
+- files: ["manor.yml"]
+  authors: PubliclyExecutedPig, vonte (expansions), Starlight Team
+
+- files: ["ming.yml"]
+  authors: PubliclyExecutedPig, Starlight Team
+
+- files: ["oasis.yml"]
+  authors: CptJeanLuc, cvlancer (expansions), Starlight Team
+
+- files: ["orwell.yml"]
+  authors: PubliclyExecutedPig, Starlight Team
+
+- files: ["packed.yml"]
+  authors: Timrod,  Makeshiftt (port), Starlight Team
+
+- files: ["plasma.yml"]
+  authors: Compilatron, Makeshiftt (port), Starlight Team
+
+- files: ["prism.yml"]
+  authors: MaxAlpine, Starlight Team
+
+- files: ["reach.yml"]
+  authors: trep_maul (remake), Starlight Team
+
+- files: ["saltern.yml"]
+  authors: deltanedas, Emisse, PJB, Starlight Team
+
+- files: ["sepultum.yml"]
+  authors: PubliclyExecutedPig, Starlight Team
+
+- files: ["serpentcrest.yml"]
+  authors: TytosB, Starlight Team
+
+- files: ["silica.yml"]
+  authors: CawsForConcern, Starlight Team
+
+- files: ["spacemall.yml"]
+  authors: conflee, Starlight Team
+
+- files: ["starboard.yml"]
+  authors: choccy4, Starlight Team
+
+# centcomms
+
+- files: ["CC_Outpost_G24.yml"]
+  authors: trep_maul
+
+- files: ["CC_Outpost_GNT9.yml"]
+  authors: trep_maul
+
+- files: ["CC_Outpost_SC17.yml"]
+  authors: teapoterror
+
+# shuttles
+
+- files: ["blackhorse.yml"]
+  authors: teapoterror
+
+- files: ["omen.yml"]
+  authors: teapoterror
+
+- files: ["widow.yml"]
+  authors: teapoterror
+
+- files: ["pioneer.yml"]
+  authors: Starlight Team
+
+- files: ["breaker.yml"]
+  authors: Starlight Team
+
+- files: ["KillerTamashi-SecShuttle.yml"]
+  authors: KillerTheFlareon
+
+# nuclear op maps
+
+- files: ["nukieplanet.yml"]
+  authors: choccy4
+
+- files: ["nukiewestern.yml"]
+  authors: teapoterror
+
+- files: ["geigerComplex.yml"]
+  authors: teapoterror
+
+# escape pods
+
+- files: ["escape_pod_cheap.yml"]
+  authors: Penguinwizzard
+
+- files: ["escape_pod_library.yml"]
+  authors: Penguinwizzard
+
+- files: ["escape_pod_lounge.yml"]
+  authors: Penguinwizzard
+
+- files: ["escape_pod_pet.yml"]
+  authors: Penguinwizzard
+
+- files: ["escape_pod_toilet.yml"]
+  authors: Penguinwizzard
+
+- files: ["escape_pod_verysmall.yml"]
+  authors: Penguinwizzard
+
+- files: ["escape_pod_lifeboat.yml"]
+  authors: CawsForConcern

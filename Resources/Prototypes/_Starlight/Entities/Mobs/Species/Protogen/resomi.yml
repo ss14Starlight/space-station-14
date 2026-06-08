@@ -296,6 +296,11 @@
   - type: NightVision
   - type: FlashModifier
     modifier: 2
+  - type: Vocal
+    sounds:
+      Male: ProtoResomiMSounds
+      Female: ProtoResomiFSounds
+      Unsexed: ProtoResomiMSounds
 
 - type: entity
   parent: BaseSpeciesDummy

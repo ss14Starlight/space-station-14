@@ -75,7 +75,7 @@
   coefficients: # Swaps heat with cold
     Shock: 1.25
     Cold: 1.15 # Starlight, they can actually lose a little.
-    Heat: 0.5
+    Heat: 0.85 # Starlight, 50% was a bit too much.
     Slash: 0.9 # Something they should have with "tougher skin" according to the notes in the other modifer file
     Blunt: 1.1
 
