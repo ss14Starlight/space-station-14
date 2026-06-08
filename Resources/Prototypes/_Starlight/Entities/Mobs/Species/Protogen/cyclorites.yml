@@ -85,6 +85,11 @@
   - type: CombatMode
     canDisarm: true
     disarmFailChance: 0.5 # 50 stamina damage with 50% chance
+  - type: Vocal
+    sounds:
+      Male: ProtoCycloriteMSounds
+      Female: ProtoCycloriteFSounds
+      Unsexed: ProtoCycloriteMSounds
   - type: Inventory
     speciesId: cyclorite
     templateId: protocyclorite
