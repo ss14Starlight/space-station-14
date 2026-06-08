@@ -26,7 +26,7 @@
   suffix: DO NOT MAP
   id: ClothingShoesBootsMagGreenshield
   name: greenshield magboots
-  description: Upgraded magnetic boots utilized by NanoTrasen's Emergency Response Teams, they have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas. # SL
+  description: Upgraded magnetic boots that you swiped from the ERT lockers.
   components:
     - type: Sprite
       sprite: Clothing/Shoes/Boots/magboots-ert.rsi

@@ -396,9 +396,9 @@
 
 - type: entity
   name: greenlight shield
-  parent: [BaseItem, BaseCentcommContraband ] #Yes I am using a flashlight as a base, shockingly easiest way to get things working
+  parent: [BaseItem, BaseCentcommContraband ]
   id: GreenLightShield
-  description: Reverse engineered and enhanced, this hard light shield provides excellent protection and a small RTG for recharge. The capacitors can only charge while the shield is collapsed though and needs a cool down time.
+  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
   components:
     - type: ItemToggle
       soundActivate:
@@ -415,7 +415,7 @@
         - type: DisarmMalus
           malus: 0.6
     - type: Sprite
-      sprite: _Starlight/Objects/Weapons/Melee/glShield.rsi
+      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
       layers:
         - state: off-icon
         - state: on-icon
@@ -425,18 +425,18 @@
           map: [ "shield" ]
     - type: Item
       size: Small
-      sprite: _Starlight/Objects/Weapons/Melee/glShield.rsi
-      heldPrefix: glShieldOff
+      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
+      heldPrefix: greenlight_shield-off
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
-          - state: glShieldOn-inhand-left
+          - state: greenlight_shield-on-inhand-left
             shader: unshaded
         right:
-          - state: glShieldOn-inhand-right
+          - state: greenlight_shield-on-inhand-right
             shader: unshaded
     - type: ItemTogglePointLight
     - type: Reflect
@@ -462,7 +462,7 @@
           locked: true
     - type: ToggleCellDraw
     - type: PowerCellDraw
-      drawRate: 5  # watts while active
+      drawRate: 2  # watts while active # final stat TBD
     - type: Blocking # Stats TBD
       passiveBlockModifier:
         coefficients:

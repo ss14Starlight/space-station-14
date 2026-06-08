@@ -584,7 +584,7 @@
   suffix: DO NOT MAP
   id: CentCommGreenShieldPDA
   name: greenshield PDA
-  description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone that thinks they are way too important.
+  description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone who thinks they are way too important.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Devices/pda.rsi

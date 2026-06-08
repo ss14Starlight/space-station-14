@@ -564,7 +564,7 @@
 ## Greenshield Officer
 
 - type: entity
-  name: CentComm Greenshield
+  name: Greenshield Officer
   suffix: Basic
   id: RandomHumanoidCCGreenshieldSpawnerBasic
   components:
@@ -582,8 +582,8 @@
     - type: GhostRole
       name: ghost-role-information-green-shield-officer-name
       description: ghost-role-information-green-shield-officer-description
-      rules: ghost-role-information-CC-aligned-rules
-      important: true # SL
+      rules: ghost-role-information-cc-aligned-rules
+      important: true
       raffle:
         settings: default
       job: CentralCommandGreenShield

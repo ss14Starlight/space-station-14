@@ -1,17 +1,6 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Item.ItemToggle; //Starlight
-using Content.Shared.Item.ItemToggle.Components;
-using Content.Shared.Power.EntitySystems; //Starlight
-using Content.Shared.PowerCell; //Starlight
-using Content.Shared.PowerCell.Components; //Starlight
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
-
-using Content.Shared.Damage;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
@@ -20,6 +9,7 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
+using Content.Shared.Power.EntitySystems;
 #endregion
 
 namespace Content.Shared.Blocking;
@@ -67,7 +57,7 @@ public sealed partial class BlockingSystem
         if (!HasComp<BlockingComponent>(uid))
             return;
         if (!TryComp<ItemToggleComponent>(uid, out var itemToggle) || !itemToggle.Activated)
-        
+            return;
         _itemToggle.TryDeactivate(uid, predicted: false);
     }
     #endregion

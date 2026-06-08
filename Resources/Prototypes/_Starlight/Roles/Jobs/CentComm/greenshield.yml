@@ -12,7 +12,7 @@
   setPreference: false
   startingGear: GSOGear
   icon: JobIconNTNCBlueShield # The icon works fine, no need to change it imo
-  rules: job-rules-CC-aligned
+  rules: job-rules-cc-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
   bypassEorPacification: true

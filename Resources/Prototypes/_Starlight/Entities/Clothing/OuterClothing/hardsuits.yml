@@ -1273,7 +1273,7 @@
   suffix: DO NOT MAP
   id: ClothingOuterHardsuitGreenshield
   name: greenshield hardsuit
-  description: A protective hardsuit worn by the leader of an emergency response team.
+  description: A protective hardsuit worn by Greenshields. It even has pockets!
   components:
     - type: Sprite
       sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
@@ -1291,11 +1291,10 @@
           Radiation: 0.01
           Caustic: 0.4
     - type: ToggleableClothing
-      clothingPrototype: ClothingHeadHelmetHardsuitERTLeader
+      clothingPrototype: ClothingHeadHelmetHardsuitGreenshield
     - type: Tag
       tags:
         - Hardsuit
-        - WhitelistChameleon
         - CorgiWearable
     - type: ClothingSpeedModifier
       walkModifier: 1 #Got to be able to keep up with the nice walk of the officials

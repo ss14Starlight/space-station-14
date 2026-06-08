@@ -29,7 +29,7 @@ ghost-role-information-space-courier-trunk-name = Space Courier Trunk pAI
 ghost-role-information-space-courier-trunk-description = You are the personal AI included inside of a space courier's trunk.
 ghost-role-information-space-courier-trunk-rules = Ensure your owner makes all of their deliveries! Give yourself a name, too.
 
-ghost-role-information-CC-aligned-rules = You are [color={role-type-CC-aligned-alternate-color}][bold]{role-type-CC-aligned-name}[/bold][/color].
+ghost-role-information-cc-aligned-rules = You are [color={role-type-cc-aligned-alternate-color}][bold]{role-type-cc-aligned-name}[/bold][/color].
                                              You are to serve the interests of Central Command, even if they differ from NanoTrasen or the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
                                              You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
                                              You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.

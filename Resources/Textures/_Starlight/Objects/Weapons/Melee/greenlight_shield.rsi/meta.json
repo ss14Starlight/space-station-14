@@ -8,28 +8,30 @@
   },
   "states": [
     {
-      "name": "off-icon"
+      "name": "off-icon",
+      "copyright": "Created by hanz5579 on the Starlight Discord"
     },
     {
-      "name": "glShieldOff-inhand-right",
+      "name": "greenlight_shield-off-inhand-right",
       "copyright": "Created by hanz5579 on the Starlight Discord",
       "directions": 4
     },
     {
-      "name": "glShieldOff-inhand-left",
+      "name": "greenlight_shield-off-inhand-left",
       "copyright": "Created by hanz5579 on the Starlight Discord",
       "directions": 4
     },
     {
-      "name": "on-icon"
+      "name": "on-icon",
+      "copyright": "Created by hanz5579 on the Starlight Discord"
     },
     {
-      "name": "glShieldOn-inhand-right",
+      "name": "greenlight_shield-on-inhand-right",
       "copyright": "Created by hanz5579 on the Starlight Discord",
       "directions": 4
     },
     {
-      "name": "glShieldOn-inhand-left",
+      "name": "greenlight_shield-on-inhand-left",
       "copyright": "Created by hanz5579 on the Starlight Discord",
       "directions": 4
     }
