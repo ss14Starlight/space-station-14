@@ -20,7 +20,7 @@
       - left leg
       organs:
         heart: OrganSlimeHeart
-        core: SentientSlimeCore
+        core: SentientProtoSlimeCore # So they can eat ramchips.
         lungs: OrganSlimeLungs
         cavity: null
         brain_implant: null # 🌟Starlight🌟
