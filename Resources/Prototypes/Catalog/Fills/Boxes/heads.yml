@@ -83,7 +83,7 @@
 - type: entity
   parent: BoxStamps
   id: BoxWardenStamps
-  name: wardens's stamp box
+  name: warden's stamp box
   components:
   - type: EntityTableContainerFill
     containers:
