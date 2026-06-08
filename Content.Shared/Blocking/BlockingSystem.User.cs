@@ -2,7 +2,8 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Item.ItemToggle; //Starlight
-using Content.Shared.Item.ItemToggle.Components; //Starlight
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Power.EntitySystems; //Starlight
 using Content.Shared.PowerCell; //Starlight
 using Content.Shared.PowerCell.Components; //Starlight
 using Robust.Shared.Audio.Systems;
@@ -27,7 +28,7 @@ public sealed partial class BlockingSystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!; //Starlight
+    [Dependency] private readonly SharedBatterySystem _powerCell = default!; //Starlight
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!; //Starlight
 
     private void InitializeUser()
@@ -131,7 +132,7 @@ public sealed partial class BlockingSystem
             var damage = DamageSpecifier.ApplyModifierSet(args.Damage, damageMod);
             var damageEnergy = (float) damage.GetTotal() * blocking.DamageEnergyDraw * blockFraction;
 
-            var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
+            var availableEnergy = _powerCell.GetCharge(item);
             if (availableEnergy <= 0)
                 return; // If the power cell is empty, no damage will be blocked
 
@@ -142,7 +143,7 @@ public sealed partial class BlockingSystem
                 blockFraction *= energyUsed / damageEnergy; //reduce block fraction if there wasn't enough energy to actually block the damage fully
             }
 
-            if (!_powerCell.TryUseCharge(item, energyUsed, user: uid))
+            if (!_powerCell.TryUseCharge(item, energyUsed))
                 return; // if no battery or no charge, doesn't work and all damage is applied
         }
         #endregion
