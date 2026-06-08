@@ -63,10 +63,10 @@
 
 - type: entity
   parent: FaxMachineSecurity
-  id: FaxMachineSecurityBrig
-  suffix: "SEC: Brig"
+  id: FaxMachineSecurityPrison
+  suffix: "SEC: Prison"
   components:
     - type: FaxMachine
       group: FaxGroupSecurity
-      name: "Brig"
+      name: "Prison"
       order: 600
