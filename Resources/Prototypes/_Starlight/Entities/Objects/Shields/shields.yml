@@ -482,3 +482,5 @@
       damageEnergyDraw: 10 #Final stat STB
     - type: Damageable
       damageContainer: Shield
+    - type: ContainerContainer
+      cell_slot: !type:ContainerSlot
