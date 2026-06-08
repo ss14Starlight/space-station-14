@@ -16,3 +16,5 @@ borg-slot-organs-empty = Organs and Implants
 borg-slot-knives-empty = Knives
 borg-slot-pkaupgrade-empty = PKA Upgrades
 borg-slot-goliath-empty = Goliath Plates
+borg-slot-Rollerbed-empty = Rollerbed Storage
+borg-slot-Medipens-empty = Auto Injector Slot

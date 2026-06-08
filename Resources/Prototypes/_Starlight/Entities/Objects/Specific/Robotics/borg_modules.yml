@@ -649,14 +649,14 @@
     hands:
     - item: Scalpel
     - hand:
-        emptyLabel: borg-slot-organs-empty
-        emptyRepresentative: BorgModuleOrganPlaceholder
+        emptyLabel: borg-slot-Medipens-empty
+        emptyRepresentative: EmergencyMedipen
         whitelist:
-          components:
-          - Foldable
+          tags:
+          - Medipen
     - hand:
         emptyLabel: borg-slot-Rollerbed-empty
-        emptyRepresentative: RollerBed
+        emptyRepresentative: RollerBedSpawnFolded
         whitelist:
           components:
           - Foldable
