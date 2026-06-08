@@ -82,7 +82,7 @@
 
 - type: entity
   parent: BoxStamps
-  id: BoxWardenStamps
+  id: BoxWardenStamps # Starlight
   name: warden's stamp box
   components:
   - type: EntityTableContainerFill
