@@ -1,5 +1,4 @@
 using Content.Client._Starlight.UserInterface.Controls;
-using Content.Client.UserInterface.Controls;
 using Content.Shared.Fax;
 
 namespace Content.Client.Fax.UI;
@@ -10,6 +9,6 @@ public sealed class FaxPeerOptionButton : ColoredOptionButton
     {
         AddItem(knownFax.Name);
         SetItemMetadata(ItemCount - 1, knownFax);
-        SetItemColor(knownFax.GroupColor);
+        SetItemColor(knownFax.GroupColor ?? Color.Gray);
     }
 }
