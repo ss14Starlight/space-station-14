@@ -143,13 +143,23 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
             if (toExpire != null)
                 foreach (var requestId in toExpire)
+                {
+                    // Expired proposals are always still Pending, so refund the held fee.
+                    if (stationComp.ActiveProposals.TryGetValue(requestId, out var expiredProposal))
+                        RefundFee(expiredProposal);
                     stationComp.ActiveProposals.Remove(requestId);
+                }
 
             if (toFire != null)
                 foreach (var requestId in toFire)
                 {
                     if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(requestId, out var proto))
                     {
+                        // grab the requester before the proposal is removed incase of recall
+                        var requester = stationComp.ActiveProposals.TryGetValue(requestId, out var firingProposal)
+                            ? firingProposal.Requester
+                            : EntityUid.Invalid;
+
                         ExecuteAction(stationUid, proto);
                         stationComp.ActiveProposals.Remove(requestId);
                         if (proto.ActionType == SecureTerminalActionType.Armory)
@@ -157,6 +167,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
                             // Track as deployed so it can still be recalled
                             var authorizedAt = now - TimeSpan.FromSeconds(proto.ActivationDelaySecs);
                             stationComp.DeployedArmories[requestId] = authorizedAt;
+                            stationComp.DeployedArmoryRequesters[requestId] = requester;
                         }
                         else if (proto.OneTimeUse)
                             stationComp.UsedOnce.Add(requestId);
@@ -301,21 +312,21 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             return;
         }
 
-        // We check and charge the fee now, deny on sufficient funds.
+        // We charge charge the requester when requested so we don't have to deal with them not having the funds when approved.
         if (proto.Fee > 0)
+        {
             if (_playerResources.TryGetResource(actor, "credits", out var balance) && balance < proto.Fee)
             {
                 _popup.PopupCursor($"Insufficient funds. Required: {proto.Fee}\u20a1", actor, PopupType.Medium);
                 return;
             }
-            else
-            {
-                _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
-                _popup.PopupCursor($"Debited {proto.Fee}\u20a1. Balance: {balance -= proto.Fee}\u20a1", actor, PopupType.Medium);
-            }
+
+            _playerResources.TryUpdateResource(actor, "credits", -proto.Fee);
+            _popup.PopupCursor($"Held {proto.Fee}\u20a1 pending authorization.", actor, PopupType.Medium);
+        }
 
         // Create the proposal
-        var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId };
+        var proposal = new SecureTerminalProposalData { RequestId = msg.RequestId, Requester = actor };
         stationComp.ActiveProposals[msg.RequestId] = proposal;
 
         if (reason is not null)
@@ -413,7 +424,7 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         if (stationUid == null) return;
         if (!TryComp<SecureCommandTerminalStationComponent>(stationUid.Value, out var stationComp)) return;
 
-        if (!stationComp.ActiveProposals.ContainsKey(msg.RequestId))
+        if (!stationComp.ActiveProposals.TryGetValue(msg.RequestId, out var deniedProposal))
         {
             _popup.PopupCursor(Loc.GetString("secure-terminal-no-active-proposal"), actor, PopupType.Medium);
             return;
@@ -428,6 +439,9 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
         }
 
         stationComp.ActiveProposals.Remove(msg.RequestId);
+
+        // Refund the held fee if denied
+        RefundFee(deniedProposal);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} denied secure terminal proposal: {msg.RequestId}");
@@ -510,9 +524,20 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
             }
         }
 
+        // Gonna keep the code here, becuase I put in the time to write it and get it working,
+        // but if an armory is called it is probably going to arrive.
+        // And it can be recalled once on station so it dosen't make much sense for it to be refunded.
+        // Refund if armory is recalled
+        var refundTarget = hasActivatingArmory && proposal != null
+            ? proposal.Requester
+            : stationComp.DeployedArmoryRequesters.GetValueOrDefault(msg.RequestId, EntityUid.Invalid);
+
         stationComp.ActiveProposals.Remove(msg.RequestId);
         stationComp.DeployedArmories.Remove(msg.RequestId);
+        stationComp.DeployedArmoryRequesters.Remove(msg.RequestId);
         stationComp.UsedOnce.Add(msg.RequestId);
+
+        RefundFee(refundTarget, proto, 0f);
 
         _adminLog.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(actor):player} recalled armory via secure terminal: {msg.RequestId}");
@@ -628,6 +653,25 @@ public sealed class SecureCommandTerminalSystem : EntitySystem
 
         // Apply salary penalty to station
         stationComp.SalaryPenalty = Math.Min(0.8f, stationComp.SalaryPenalty + proto.SalaryPenalty);
+    }
+
+    /// <summary>
+    /// Refund the fee that was held at request time due to it being denied, cancelled, etc.
+    /// </summary>
+    private void RefundFee(SecureTerminalProposalData proposal, float fraction = 1f)
+    {
+        if (_protos.TryIndex<SecureCommandTerminalRequestPrototype>(proposal.RequestId, out var proto))
+            RefundFee(proposal.Requester, proto, fraction);
+    }
+
+    private void RefundFee(EntityUid requester, SecureCommandTerminalRequestPrototype proto, float fraction = 1f)
+    {
+        if (proto.Fee <= 0 || !requester.IsValid())
+            return;
+
+        var amount = (int)(proto.Fee * fraction);
+        if (amount > 0)
+            _playerResources.TryUpdateResource(requester, "credits", amount);
     }
 
     /// <summary>Execute the prototype's configured action against the station.</summary>
