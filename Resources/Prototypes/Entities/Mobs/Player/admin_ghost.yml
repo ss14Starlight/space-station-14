@@ -124,12 +124,14 @@
       - Inorganic
       - Silicon
       - IPC
+      - Hybrid
   - type: ShowHealthIcons
     damageContainers:
       - Biological
       - Inorganic
       - Silicon
       - IPC
+      - Hybrid
   - type: ShowHungerIcons
   - type: ShowThirstIcons # Starlight END
   - type: ShowContrabandDetails
