@@ -13,7 +13,7 @@
         map: ["enum.CrewMonitorLayers.Frame"]
       - state: powered
         map: [ "enum.CrewMonitorLayers.Powered" ]
-        visible: true
+        visible: true 
       - state: alert
         map: ["enum.CrewMonitorLayers.Alert"]
         visible: false
@@ -49,3 +49,47 @@
     price: 200
   - type: StealTarget
     stealGroup: CrewMonitorCollection
+
+- type: entity
+  name: emergency cyborg crew monitor
+  id: EmergencyCyborgCrewMonitor
+  suffix: cyborg
+  description: A hand-held crew monitor displaying the status of suit sensors of injured crew, It has been wired and attached to a cyborg's System. 
+  components:
+  - type: Item
+    heldPrefix: scanner
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Medical/handheld_para_crewmonitor.rsi
+    layers:
+      - state: frame
+        map: ["enum.CrewMonitorLayers.Frame"]
+      - state: powered
+        map: [ "enum.CrewMonitorLayers.Powered" ]
+        visible: true 
+      - state: alert
+        map: ["enum.CrewMonitorLayers.Alert"]
+        visible: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CrewMonitorVisuals.Alert:
+        enum.CrewMonitorLayers.Alert:
+          True: { visible: true, shader: unshaded }
+          False: { visible: false }
+  - type: ActivatableUI
+    key: enum.CrewMonitoringUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CrewMonitoringUIKey.Key:
+        type: CrewMonitoringBoundUserInterface
+  - type: CrewMonitoringConsole
+  - type: CrewMonitoringFilter
+    onlyShowWoundedOrDead: true
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: StaticPrice
+    price: 200

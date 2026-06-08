@@ -647,7 +647,7 @@
     - state: icon-paramed
   - type: ItemBorgModule
     hands:
-    - item: Scalpel
+    - item: EmergencyCyborgCrewMonitor
     - hand:
         emptyLabel: borg-slot-Medipens-empty
         emptyRepresentative: EmergencyMedipen
@@ -656,7 +656,7 @@
           - Medipen
     - hand:
         emptyLabel: borg-slot-Rollerbed-empty
-        emptyRepresentative: RollerBedSpawnFolded
+        emptyRepresentative: EmergencyRollerBedSpawnFolded
         whitelist:
           components:
           - Foldable
