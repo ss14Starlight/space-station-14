@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: starlight
   forkVersion: e35a7a164197783730f289228ad1882ce0ea76db
-  time: 06/06/2026 23:26:56
-  entityCount: 31116
+  time: 06/08/2026 17:56:14
+  entityCount: 31128
 maps:
 - 1
 grids:
@@ -311,7 +311,7 @@ entities:
           version: 7
         -2,1:
           ind: -2,1
-          tiles: AAAAAAAAAAAAAAAAAAAfAAAAAAAAHwAAAAAAAAAAAAAAAAAfAAAAAAAAHwAAAAAAAB8AAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAATAAAAAAAABgAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAAEwAAAAAAAAYAAAAAAAAHAAAAAAAAAAAAAAAAAAEAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAABAAAAAAAACQAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAcAAAAAAAABAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAAAQAAAAAAAAAAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAAAAAAAAAAAQAAAAAAAAsAAAAAAAAAAAAAAAAAAQAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAEAAAAAAAAJAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAACQAAAAAAAAEAAAAAAAALAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAEAAAAAAAABAAAAAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGQAAAAAAABkAAAAAAAAZAAAAAAAAAAAAAAAAAAcAAAAAAAAHAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAALQAAAAAAAC0AAAAAAAAAAAAAAAAAAAAAAAAAABkAAAAAAAAZAAAAAAAAGQAAAAAAAAAAAAAAAAAHAAAAAAAABwAAAAAAABMAAAAAAAAHAAAAAAAABwAAAAAAAAcAAAAAAAAHAAAAAAAABwAAAAAAAAkAAAAAAAAtAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAGQAAAAAAABkAAAAAAAAAAAAAAAAABwAAAAAAAAcAAAAAAAAAAAAAAAAACwAAAAAAAAsAAAAAAAALAAAAAAAABwAAAAAAAAcAAAAAAAAJAAAAAAAALQAAAAAAAAAAAAAAAAAAAAAAAAAAGQAAAAAAABkAAAAAAAAZAAAAAAAAAAAAAAAAAAcAAAAAAAAHAAAAAAAAAAAAAAAAAAsAAAAAAAALAAAAAAAACwAAAAAAAAEAAAAAAAABAAAAAAAACQAAAAAAAC0AAAAAAAAAAAAAAAAAAAAAAAAAABkAAAAAAAAZAAAAAAAAGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAACwAAAAAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAC0AAAAAAAAtAAAAAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEcAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAABUAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAVAAAAAAAABgAAAAAAAA==
+          tiles: AAAAAAAAAAAAAAAAAAAfAAAAAAAAHwAAAAAAAAAAAAAAAAAfAAAAAAAAHwAAAAAAAAAAAAAAAAAfAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAATAAAAAAAABgAAAAAAAAEAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAAEwAAAAAAAAYAAAAAAAAHAAAAAAAAAAAAAAAAAAEAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAABAAAAAAAACQAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAAAAAAAAAAAAAAAAAAABwAAAAAAAAcAAAAAAAABAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAAAQAAAAAAAAAAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAAAAAAAAAAAQAAAAAAAAsAAAAAAAAAAAAAAAAAAQAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAEAAAAAAAAJAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAACQAAAAAAAAEAAAAAAAALAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAEAAAAAAAABAAAAAAAACwAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAEAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGQAAAAAAABkAAAAAAAAZAAAAAAAAAAAAAAAAAAcAAAAAAAAHAAAAAAAAAAAAAAAAAAEAAAAAAAABAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAALQAAAAAAAC0AAAAAAAAAAAAAAAAAAAAAAAAAABkAAAAAAAAZAAAAAAAAGQAAAAAAAAAAAAAAAAAHAAAAAAAABwAAAAAAABMAAAAAAAAHAAAAAAAABwAAAAAAAAcAAAAAAAAHAAAAAAAABwAAAAAAAAkAAAAAAAAtAAAAAAAAAAAAAAAAAAAAAAAAAAAZAAAAAAAAGQAAAAAAABkAAAAAAAAAAAAAAAAABwAAAAAAAAcAAAAAAAAAAAAAAAAACwAAAAAAAAsAAAAAAAALAAAAAAAABwAAAAAAAAcAAAAAAAAJAAAAAAAALQAAAAAAAAAAAAAAAAAAAAAAAAAAGQAAAAAAABkAAAAAAAAZAAAAAAAAAAAAAAAAAAcAAAAAAAAHAAAAAAAAAAAAAAAAAAsAAAAAAAALAAAAAAAACwAAAAAAAAEAAAAAAAABAAAAAAAACQAAAAAAAC0AAAAAAAAAAAAAAAAAAAAAAAAAABkAAAAAAAAZAAAAAAAAGQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAALAAAAAAAACwAAAAAAAAsAAAAAAAAAAAAAAAAAAAAAAAAAAC0AAAAAAAAtAAAAAAAACQAAAAAAAAAAAAAAAAAAAAAAAAAAHwAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEcAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAABUAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAGAAAAAAAABgAAAAAAAAYAAAAAAAAVAAAAAAAABgAAAAAAAA==
           version: 7
         -2,2:
           ind: -2,2
@@ -5052,6 +5052,7 @@ entities:
             5541: -13,5
             5908: -25,85
             5909: -26,86
+            6381: -23,17
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -5344,6 +5345,7 @@ entities:
             6369: -26,12
             6370: -27,12
             6371: -28,12
+            6380: -24,17
         - node:
             cleanable: True
             color: '#FFFFFFFF'
@@ -11349,7 +11351,7 @@ entities:
       pos: -13.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -459802.3
+      secondsUntilStateChange: -461397.16
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11374,7 +11376,7 @@ entities:
       pos: 29.5,19.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -455273
+      secondsUntilStateChange: -456867.84
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11600,7 +11602,7 @@ entities:
       pos: 39.5,29.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -410985
+      secondsUntilStateChange: -412579.84
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12051,7 +12053,7 @@ entities:
       pos: 12.5,81.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -375013.7
+      secondsUntilStateChange: -376608.53
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12874,7 +12876,7 @@ entities:
       pos: -17.5,32.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -146128.86
+      secondsUntilStateChange: -147723.67
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13038,7 +13040,7 @@ entities:
       pos: 53.5,55.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -355540.1
+      secondsUntilStateChange: -357134.94
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13242,7 +13244,7 @@ entities:
       pos: -17.5,73.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128067.6
+      secondsUntilStateChange: -129662.43
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13752,7 +13754,7 @@ entities:
       pos: 40.5,6.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -171954.33
+      secondsUntilStateChange: -173549.14
       state: Opening
     - type: AccessReader
       accessListsOriginal: []
@@ -13893,7 +13895,7 @@ entities:
       pos: 46.5,38.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -148540.47
+      secondsUntilStateChange: -150135.28
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14203,7 +14205,7 @@ entities:
       pos: 72.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -451915.94
+      secondsUntilStateChange: -453510.78
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14289,8 +14291,6 @@ entities:
       pos: -24.5,41.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -15202,10 +15202,9 @@ entities:
       pos: 10.5,-22.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 35
+      - 14771
   - uid: 680
     components:
     - type: Transform
@@ -15601,8 +15600,6 @@ entities:
       pos: -30.5,41.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -15632,8 +15629,6 @@ entities:
       pos: -23.5,81.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 30461
       - 15622
@@ -15644,8 +15639,6 @@ entities:
       pos: -28.5,75.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 30461
       - 15622
@@ -65938,6 +65931,11 @@ entities:
     - type: Transform
       pos: 7.5,30.5
       parent: 2
+  - uid: 29952
+    components:
+    - type: Transform
+      pos: -27.5,16.5
+      parent: 2
   - uid: 29958
     components:
     - type: Transform
@@ -66158,6 +66156,11 @@ entities:
     - type: Transform
       pos: -27.5,9.5
       parent: 2
+  - uid: 30408
+    components:
+    - type: Transform
+      pos: -26.5,14.5
+      parent: 2
   - uid: 30409
     components:
     - type: Transform
@@ -66178,6 +66181,16 @@ entities:
     - type: Transform
       pos: -36.5,14.5
       parent: 2
+  - uid: 30441
+    components:
+    - type: Transform
+      pos: -23.5,15.5
+      parent: 2
+  - uid: 30442
+    components:
+    - type: Transform
+      pos: -22.5,15.5
+      parent: 2
   - uid: 30548
     components:
     - type: Transform
@@ -66192,6 +66205,11 @@ entities:
     components:
     - type: Transform
       pos: 7.5,29.5
+      parent: 2
+  - uid: 30600
+    components:
+    - type: Transform
+      pos: -21.5,15.5
       parent: 2
   - uid: 30621
     components:
@@ -66278,6 +66296,16 @@ entities:
     - type: Transform
       pos: 14.5,36.5
       parent: 2
+  - uid: 30704
+    components:
+    - type: Transform
+      pos: -21.5,14.5
+      parent: 2
+  - uid: 30730
+    components:
+    - type: Transform
+      pos: -21.5,13.5
+      parent: 2
   - uid: 30740
     components:
     - type: Transform
@@ -66287,6 +66315,11 @@ entities:
     components:
     - type: Transform
       pos: -8.5,35.5
+      parent: 2
+  - uid: 30752
+    components:
+    - type: Transform
+      pos: -21.5,12.5
       parent: 2
   - uid: 30925
     components:
@@ -93755,6 +93788,7 @@ entities:
       - 15042
       - 15043
       - 30769
+      - 679
     - type: Fixtures
       fixtures: {}
   - uid: 14772
@@ -95477,8 +95511,6 @@ entities:
       pos: 0.5,-22.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 873
@@ -95489,8 +95521,6 @@ entities:
       pos: 3.5,-24.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 873
@@ -95694,8 +95724,6 @@ entities:
       pos: 3.5,-20.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 35
@@ -97557,8 +97585,6 @@ entities:
       pos: 9.5,-20.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 112
@@ -97571,8 +97597,6 @@ entities:
       pos: 10.5,-20.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 112
@@ -97585,8 +97609,6 @@ entities:
       pos: 11.5,-20.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 112
@@ -97745,8 +97767,6 @@ entities:
       pos: 10.5,-30.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 35
@@ -97757,8 +97777,6 @@ entities:
       pos: 11.5,-30.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 35
@@ -97769,8 +97787,6 @@ entities:
       pos: 9.5,-30.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14771
       - 35
@@ -97955,8 +97971,6 @@ entities:
       pos: -26.5,42.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -97967,8 +97981,6 @@ entities:
       pos: -26.5,39.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -97979,8 +97991,6 @@ entities:
       pos: -26.5,40.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -97991,8 +98001,6 @@ entities:
       pos: -26.5,43.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -98646,8 +98654,6 @@ entities:
       pos: -34.5,42.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -98657,8 +98663,6 @@ entities:
       pos: -34.5,43.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18544
       - 18418
@@ -99884,8 +99888,6 @@ entities:
       pos: -29.5,37.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14781
       - 59
@@ -99895,8 +99897,6 @@ entities:
       pos: -30.5,37.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14781
       - 59
@@ -99917,8 +99917,6 @@ entities:
       pos: -31.5,37.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 14781
       - 59
@@ -127904,9 +127902,6 @@ entities:
     - type: Transform
       pos: -29.5,83.5
       parent: 2
-    - type: DeviceNetwork
-      configurators:
-      - invalid
     - type: DeviceLinkSource
       linkedPorts:
         30217:
@@ -128484,8 +128479,6 @@ entities:
     - type: AtmosPipeColor
       color: '#0055CCFF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18418
   - uid: 18752
@@ -128537,8 +128530,6 @@ entities:
       pos: 32.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 20
       - 14756
@@ -130815,8 +130806,6 @@ entities:
       pos: 33.5,12.5
       parent: 2
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 20
       - 14756
@@ -131205,8 +131194,6 @@ entities:
     - type: AtmosPipeColor
       color: '#990000FF'
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
       - 18418
   - uid: 20584
@@ -158566,12 +158553,40 @@ entities:
     - type: Transform
       pos: -2.4672644,34.593864
       parent: 2
-- proto: RipleyMKIIChassis
+- proto: RipleyLArm
+  entities:
+  - uid: 30753
+    components:
+    - type: Transform
+      pos: 40.64113,38.48869
+      parent: 2
+- proto: RipleyLLeg
+  entities:
+  - uid: 30829
+    components:
+    - type: Transform
+      pos: 40.307793,38.73869
+      parent: 2
+- proto: RipleyMKIIHarness
   entities:
   - uid: 29501
     components:
     - type: Transform
-      pos: 41.47786,42.477406
+      pos: 41.5,42.5
+      parent: 2
+- proto: RipleyRArm
+  entities:
+  - uid: 30836
+    components:
+    - type: Transform
+      pos: 43.22446,38.50952
+      parent: 2
+- proto: RipleyRLeg
+  entities:
+  - uid: 31112
+    components:
+    - type: Transform
+      pos: 43.54738,38.686604
       parent: 2
 - proto: RMCPlatformCornerSmallWood
   entities:
@@ -194346,6 +194361,19 @@ entities:
       rot: 3.141592653589793 rad
       pos: 41.5,8.5
       parent: 2
+  - uid: 29558
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.5,5.5
+      parent: 2
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        29575:
+        - - DoorStatus
+          - DoorBolt
   - uid: 30445
     components:
     - type: Transform
@@ -194363,6 +194391,8 @@ entities:
     - type: Transform
       pos: 34.5,-1.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 29546
     components:
     - type: Transform
@@ -194459,19 +194489,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 58.5,57.5
       parent: 2
-  - uid: 29558
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 33.5,5.5
-      parent: 2
-    - type: DeviceLinkSink
-      invokeCounter: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        29575:
-        - - DoorStatus
-          - DoorBolt
 - proto: WindoorSecureArmoryLocked
   entities:
   - uid: 29559
@@ -194633,6 +194650,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 34.5,-1.5
       parent: 2
+    - type: AccessReader
+      accessListsOriginal: []
   - uid: 29575
     components:
     - type: Transform
