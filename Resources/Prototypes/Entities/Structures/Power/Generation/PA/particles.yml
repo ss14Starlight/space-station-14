@@ -85,5 +85,5 @@
   - type: TimedDespawn
     lifetime: 0.6
   - type: SinguloFood
-    energy: -30 # Starlight: Stronger
+    energy: -80 # Starlight: Stronger
     energyFactor: 0.97
