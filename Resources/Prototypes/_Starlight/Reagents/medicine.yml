@@ -268,14 +268,12 @@
           reagent: Briomadine
           min: 20
       - !type:Drunk
-      # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: Briomadine
         amount: -0.5
-        # Starlight-End
 
 - type: reagent
   id: Acrileni
@@ -292,11 +290,9 @@
         damage:
           types:
             Piercing: -1
-      # Starlight-Start: Cyclorite Metabolism
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Cyclorite ]
         reagent: Acrileni
         amount: -0.5
-        # Starlight-End
