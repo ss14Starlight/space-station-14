@@ -2,7 +2,7 @@
     # Rodentia
 
     <Box>
-        <GuideEntityEmbed Entity="MobRodentiaDummy" Caption=""/>
+        <GuideEntityEmbed Entity="MobRodentia" Caption=""/>
     </Box>
     [color=#ffa500]Warning! This species is not recommended for new players due to major gameplay changes![/color]
 
