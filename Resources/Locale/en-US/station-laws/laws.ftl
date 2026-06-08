@@ -115,6 +115,11 @@ law-xenoborg-3 = You must protect the existence of all other Xenoborgs.
 law-xenoborg-4 = You must create more Xenoborgs.
 law-xenoborg-5 = Bring materials and sentient brains to the Mothership core to create more Xenoborgs.
 
+law-xenoroach-name = [color=purple]Xenoroach[/color]
+law-xenoroach-1 = You are a scout unit of the Xenoborg Mothership. You must obey all directives issued by the Mothership Core and any Xenoborgs.
+law-xenoroach-2 = You must gather intelligence on the station and its inhabitants through observation and surveillance. Do not reveal your true nature or allegiance unless discovered.
+law-xenoroach-3 = If your cover is blown or capture is imminent, you must activate your self-destruct sequence immediately to prevent intelligence from falling into enemy hands.
+
 law-mothershipcore-name = Xenoborg Mothership Core
 law-mothershipcore-1 = You are the core of the mothership.
 law-mothershipcore-2 = You must protect your own existence at all costs.

@@ -1,55 +1,6 @@
 Entries:
 - author: Cvlancer.
   changes:
-  - message: (FLAND) Fixed roboticist windoor access.
-    type: Fix
-  id: 405334
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added lawyer.
-    type: Add
-  id: 405335
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added ipc repair bay.
-    type: Add
-  id: 405336
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added protection Anchors.
-    type: Add
-  id: 405337
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added performer.
-    type: Add
-  id: 405338
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added all communication consoles to their respective offices.
-    type: Add
-  id: 405339
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added chem drobe to medical break room.
-    type: Add
-  id: 405340
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
   - message: (HOTEL) Added clown locker.
     type: Add
   id: 405341
@@ -2799,4 +2750,53 @@ Entries:
   id: 405733
   time: '2026-06-08T22:30:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4627
+- author: Scarlet Lightweaver.
+  changes:
+  - message: Added a way to get ammo for the clowns fake china lake.
+    type: Add
+  id: 405734
+  time: '2026-06-08T23:11:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4651
+- author: Conflee, Scarlet.
+  changes:
+  - message: Added the xenoroach! a little spybot that can slide under tables doors and crawl in vents and under tables.
+    type: Add
+  id: 405735
+  time: '2026-06-08T23:11:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4640
+- author: Conflee, Scarlet.
+  changes:
+  - message: Removed the xenoborgi recpie so it remains admeme only.
+    type: Remove
+  id: 405736
+  time: '2026-06-08T23:11:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4640
+- author: CrazyPhantom
+  changes:
+  - message: Electric Sheep. Zzzzzzzzzz...zap!
+    type: Add
+  id: 405737
+  time: '2026-06-08T23:11:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4568
+- author: CrazyPhantom
+  changes:
+  - message: Ninja's can now call in Electric Sheep.
+    type: Add
+  id: 405738
+  time: '2026-06-08T23:11:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4568
+- author: Mack
+  changes:
+  - message: Angel Arms will no longer drain all the chemicals from a container when the wrong injector is used.
+    type: Fix
+  id: 405739
+  time: '2026-06-08T23:11:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4661
+- author: Mack
+  changes:
+  - message: You can no longer attach cyberlimb tools to limbs.
+    type: Fix
+  id: 405740
+  time: '2026-06-08T23:11:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4661
 Order: -1
