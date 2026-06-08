@@ -35,7 +35,7 @@
       guides:
         - Brighteye
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   parent: [ ClothingBackpack, BaseCentcommContraband ]
   suffix: DO NOT MAP

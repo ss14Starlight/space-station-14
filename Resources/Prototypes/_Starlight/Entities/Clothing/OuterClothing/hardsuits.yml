@@ -1267,7 +1267,7 @@
         - CorgiWearable
         - Hardsuit
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander, AllowSuitStorageClothing, ClothingOuterStorageBase ]
   suffix: DO NOT MAP

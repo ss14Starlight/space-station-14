@@ -156,7 +156,7 @@
   suffix: DO NOT MAP
   id: CCGreenShieldIDCard
   name: greenshield ID card
-  description: Why are you looking at this instead of watching the person you're in charge of protecting?
+  description: Why are you looking at this instead of the person you're supposed to protect?
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/id_cards.rsi

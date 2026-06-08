@@ -10,7 +10,9 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle.Components; //Starlight
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
-using Content.Shared.PAI; //Starlight
+using Content.Shared.Interaction.Events;
+using Content.Shared.Maps;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Toggleable;
@@ -19,6 +21,11 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
+
+#region Starlight
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.PAI;
+#endregion
 
 namespace Content.Shared.Blocking;
 
@@ -170,14 +177,14 @@ public sealed partial class BlockingSystem : EntitySystem
             return false;
         }
 
-        //Starlight
+        #region Starlight
         // Don't allow someone to block if their shield isn't activated
-        if (TryComp<ItemToggleComponent>(item, out var itemToggle))
-            if (!itemToggle.Activated)
-            {
-                CantBlockError(user);
-                return false;
-            }
+        if (TryComp<ItemToggleComponent>(item, out var itemToggle) && !itemToggle.Activated)
+        {
+            CantBlockError(user);
+            return false;
+        }
+        #endregion
 
         //Don't allow someone to block if someone else is on the same tile
         var playerTileRef = _turf.GetTileRef(xform.Coordinates);

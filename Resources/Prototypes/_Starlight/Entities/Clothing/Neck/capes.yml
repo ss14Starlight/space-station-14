@@ -388,7 +388,7 @@
   - type: UseDelay
     delay: 10.0
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   parent: [ ClothingNeckBase ]
   suffix: DO NOT MAP

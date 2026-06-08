@@ -8,6 +8,19 @@ using Content.Shared.PowerCell.Components; //Starlight
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 
+using Content.Shared.Damage;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
+
+#region Starlight
+using Content.Shared.Item.ItemToggle;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.PowerCell;
+using Content.Shared.PowerCell.Components;
+#endregion
+
 namespace Content.Shared.Blocking;
 
 public sealed partial class BlockingSystem
@@ -36,10 +49,7 @@ public sealed partial class BlockingSystem
     /// <summary>
     /// If power cell is empty,the shield should be disabled
     /// </summary>
-    private void OnPowerCellEmpty(EntityUid uid, BlockingComponent component, PowerCellSlotEmptyEvent args)
-    {
-        TryDeactivate(uid);
-    }
+    private void OnPowerCellEmpty(EntityUid uid, BlockingComponent component, PowerCellSlotEmptyEvent args) => TryDeactivate(uid);
     /// <summary>
     /// If power cell is swapped,the shield should be disabled
     /// </summary>
@@ -51,20 +61,13 @@ public sealed partial class BlockingSystem
     /// <summary>
     /// If an event triggers that wishes to turn off the shield, this helper function does so
     /// </summary>
-    private bool TryDeactivate(EntityUid uid)
+    private void TryDeactivate(EntityUid uid)
     {
         if (!HasComp<BlockingComponent>(uid))
-            return false;
-        if (TryComp<ItemToggleComponent>(uid, out var itemToggle))
-        {
-            if (!itemToggle.Activated)
-                return false;
-        }
-        else
-        {
-            return false;
-        }
-        return _itemToggle.TryDeactivate(uid, predicted: false);
+            return;
+        if (!TryComp<ItemToggleComponent>(uid, out var itemToggle) || !itemToggle.Activated)
+        
+        _itemToggle.TryDeactivate(uid, predicted: false);
     }
     #endregion
 
@@ -104,11 +107,9 @@ public sealed partial class BlockingSystem
 
         #region Starlight
         // A shield that needs to be toggled to function should only absorb damage if it is toggled
-        if (TryComp<ItemToggleComponent>(item, out var itemToggle))
-            if (!itemToggle.Activated)
-                return;
+        if (TryComp<ItemToggleComponent>(item, out var itemToggle) && !itemToggle.Activated)
+            return;
 
-        //Starlight End
         #endregion
 
         // A shield should only block damage it can itself absorb. To determine that we need the Damageable component on it.
@@ -132,9 +133,7 @@ public sealed partial class BlockingSystem
 
             var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
             if (availableEnergy <= 0)
-            {
-                return; //If the power cell is empty, no damage will be blocked
-            }
+                return; // If the power cell is empty, no damage will be blocked
 
             var energyUsed = damageEnergy;
             if (damageEnergy > availableEnergy)
@@ -146,7 +145,6 @@ public sealed partial class BlockingSystem
             if (!_powerCell.TryUseCharge(item, energyUsed, user: uid))
                 return; // if no battery or no charge, doesn't work and all damage is applied
         }
-        //Starlight End
         #endregion
 
         var modify = new DamageModifierSet();

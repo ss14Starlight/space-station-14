@@ -110,7 +110,7 @@ public abstract partial class SharedBatterySystem : EntitySystem
     /// <param name="args"></param>
     private void OnRefreshChargeRate(Entity<BatterySelfRechargerComponent> ent, ref RefreshChargeRateEvent args)
     {
-        //Starlight start
+        #region Starlight
         if (ent.Comp.AutoRechargePauseTime > TimeSpan.Zero &&
             (_timing.CurTime < ent.Comp.NextAutoRecharge ||
              args.NewChargeRate < 0f)) // reset pause only for pause-enabled batteries
@@ -118,7 +118,7 @@ public abstract partial class SharedBatterySystem : EntitySystem
             ent.Comp.NextAutoRecharge = _timing.CurTime + ent.Comp.AutoRechargePauseTime;
             return;
         }
-        //Starlight end
+        #endregion
         args.NewChargeRate += ent.Comp.AutoRechargeRate;
     }
 

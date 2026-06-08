@@ -230,7 +230,7 @@
     sprite: _Starlight/Clothing/Mask/sec.rsi
 # Fashion-O-Mat-End
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   parent: ClothingMaskGasERT
   id: ClothingMaskGasGSO

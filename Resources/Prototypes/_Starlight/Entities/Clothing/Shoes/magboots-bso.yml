@@ -20,7 +20,7 @@
   - type: StealTarget
     stealGroup: BSOMagboots
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   parent: [BaseCentcommContraband, ClothingShoesBootsMagSyndie]
   suffix: DO NOT MAP

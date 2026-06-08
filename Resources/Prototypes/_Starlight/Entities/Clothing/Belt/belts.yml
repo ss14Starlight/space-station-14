@@ -387,7 +387,7 @@
     sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
   - type: Appearance
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   parent: [BaseCentcommContraband, ClothingBeltBlueShieldMedicalBelt]
   suffix: DO NOT MAP

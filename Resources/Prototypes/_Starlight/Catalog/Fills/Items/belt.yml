@@ -252,7 +252,7 @@
         - id: CombatMedipen
         - id: Binoculars
 
-#Green Shield Officer
+# Greenshield Officer
 - type: entity
   id: ClothingBeltGreenshieldFilled
   parent: ClothingBeltGreenshield
