@@ -81,6 +81,19 @@
         - id: SecurityCommsComputerCircuitboard # Starlight
 
 - type: entity
+  parent: BoxStamps
+  id: BoxWardenStamps
+  name: wardens's stamp box
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: RubberStampWarden
+
+- type: entity
   parent: ToteBase
   id: BoxQMCircuitboards
   name: cargo circuit tote

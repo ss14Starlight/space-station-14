@@ -39,10 +39,8 @@
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
     - id: ClothingOuterWinterWarden
-    - id: RubberStampWarden
     - id: DoorRemoteArmory
-    - id: RubberStampApproved
-    - id: RubberStampDenied
+    - id: BoxWardenStamps
     - id: HoloprojectorSecurity
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
