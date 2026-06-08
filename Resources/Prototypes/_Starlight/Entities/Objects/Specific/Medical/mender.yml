@@ -8,7 +8,7 @@
   - type: Sprite
     sprite: _Starlight/Objects/Specific/Medical/mender.rsi
   - type: Item
-    heldPrefix: mender
+    sprite: _Starlight/Objects/Specific/Medical/mender.rsi
   - type: SolutionContainerManager
     solutions:
       injector:
@@ -49,6 +49,8 @@
       map: ["enum.SolutionContainerLayers.Base"]
     - state: fillIndicator6
       map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Item
+    heldPrefix: menderBrute
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -90,6 +92,8 @@
       map: ["enum.SolutionContainerLayers.Base"]
     - state: fillIndicator6
       map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Item
+    heldPrefix: menderBurn
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
