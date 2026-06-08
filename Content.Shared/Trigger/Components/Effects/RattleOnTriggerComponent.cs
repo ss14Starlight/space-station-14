@@ -15,9 +15,13 @@ public sealed partial class RattleOnTriggerComponent : BaseXOnTriggerComponent
 {
     /// <summary>
     /// The radio channel the message will be sent to.
+    /// Starlight: Converted into a list.
     /// </summary>
-    [DataField]
-    public List<ProtoId<RadioChannelPrototype>> RadioChannel; //Starlight: List (Syndicate Removed as default)
+    [DataField("radioChannel", required: false)]
+    public List<ProtoId<RadioChannelPrototype>> RadioChannel = new()
+    {
+        "Syndicate"
+    };
 
     /// <summary>
     /// The message to be send depending on the target's current mob state.
