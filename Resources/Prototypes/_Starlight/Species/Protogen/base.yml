@@ -17,7 +17,7 @@
 - type: speciesBaseSprites
   id: MobProtogenSprites
   sprites:
-#   Hair: MobHumanoidAnyMarking not used in this series, but serves as template for others.
+    Hair: MobHumanoidAnyMarking
     Head: MobProtogenHead
     Eyes: MobProtogenEyes
     Snout: MobHumanoidAnyMarking
