@@ -212,3 +212,19 @@
   components:
     - type: HumanoidAppearance
       species: Rodentia
+      hideLayersOnEquip:
+      - Hair
+      - HeadTop
+      - HeadSide
+      - Snout
+      markingsDisplacement:
+        Hair:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+              state: hair
+        FacialHair:
+          sizeMaps:
+            32:
+              sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+              state: facialhair
