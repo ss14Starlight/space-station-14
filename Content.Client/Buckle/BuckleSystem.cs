@@ -124,7 +124,7 @@ internal sealed class BuckleSystem : SharedBuckleSystem
             return;
 
         if (!TryComp<StrapComponent>(args.Strap, out var strapComp)) //Starlight
-            return; 
+            return;
 
         // Starlight-start
 

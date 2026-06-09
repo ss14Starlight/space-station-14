@@ -252,7 +252,7 @@
 ## hos
 
 # - type: entity # Starlight Start
-#  parent: BaseTraitorStealObjective 
+#  parent: BaseTraitorStealObjective
 #  id: EnergyMagnumStealObjective # Removed in favor of combined shotgun-magnum objective
 #  components:
 #  - type: Objective

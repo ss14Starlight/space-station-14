@@ -82,3 +82,18 @@
 #      components:
     #- type: MagnetPickup #disabled for now, needs a new component or heavy edits to the existing one
     #  slotFlags: None
+
+# Golden mail trolley
+- type: entity
+  parent: MailTrolley
+  id: GoldenMailTrolley
+  name: golden mail trolley
+  description: A brilliantly shining gold-and-silver mail cart for the most elite of mail technicians.
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: _Starlight/Objects/Specific/Cargo/golden_mail_cart.rsi
+      layers:
+      - state: cart
+      - map: [ "enum.StorageContainerVisualLayers.Fill" ]
+        visible: false

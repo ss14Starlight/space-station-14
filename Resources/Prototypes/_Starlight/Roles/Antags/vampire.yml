@@ -7,4 +7,15 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 24h # Mostly just to ensure you know basic controls. Didn't want to make them too high since they're a thing unique to us in their functionality right now, so they've got an appeal to them.
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
   playTimeTracker: AntagVampire
+
+- type: antag
+  id: Thrall
+  name: roles-antag-thrall-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-thrall-objective

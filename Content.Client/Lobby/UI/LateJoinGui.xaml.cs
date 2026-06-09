@@ -49,7 +49,7 @@ namespace Content.Client.Lobby.UI
         private readonly List<ScrollContainer> _jobLists = new();
 
         private int? _selectedSlot;
-        
+
         public BoxContainer CharList => CharacterList;
 
         public LateJoinGui()
@@ -299,27 +299,15 @@ namespace Content.Client.Lobby.UI
                         // just send a -1 if there is no selected slot... catch it later
                         jobButton.OnPressed += _ => SelectedId.Invoke((id, _selectedSlot ?? -1, jobButton.JobId));
 
-                        if (!_jobRequirements.IsAllowed(prototype, humanoid, out var reason))
-                        {
-                            jobButton.Disabled = true;
+                        // Starlight BEGIN
+                        var allowed = _jobRequirements.IsAllowed(prototype, humanoid, out var reason);
+                        jobButton.Disabled = !allowed;
 
-                            if (!reason.IsEmpty)
-                            {
-                                var tooltip = new Tooltip();
-                                tooltip.SetMessage(reason);
-                                jobButton.TooltipSupplier = _ => tooltip;
-                            }
+                        var tooltip = new Tooltip();
+                        tooltip.SetMessage(!reason.IsEmpty ? reason : FormattedMessage.FromMarkupPermissive(Loc.GetString("job-no-requirements")));
+                        jobButton.TooltipSupplier = _ => tooltip;
 
-                            jobSelector.AddChild(new TextureRect
-                            {
-                                TextureScale = new Vector2(0.4f, 0.4f),
-                                Stretch = TextureRect.StretchMode.KeepCentered,
-                                Texture = _sprites.Frame0(new SpriteSpecifier.Texture(new ("/Textures/Interface/Nano/lock.svg.192dpi.png"))),
-                                HorizontalExpand = true,
-                                HorizontalAlignment = HAlignment.Right,
-                            });
-                        }
-                        else if (value == 0)
+                        if (allowed && value == 0) // Starlight END
                         {
                             jobButton.Disabled = true;
                         }

@@ -107,7 +107,7 @@ public sealed class GasTurbineSystem : EntitySystem
 
         SubscribeLocalEvent<GasTurbineComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<GasTurbineComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
-        
+
         SubscribeLocalEvent<GasTurbineComponent, InteractUsingEvent>(RepairTurbine);
         SubscribeLocalEvent<GasTurbineComponent, RepairDoAfterEvent>(OnRepairTurbineFinished);
     }
@@ -258,12 +258,12 @@ public sealed class GasTurbineSystem : EntitySystem
             var NewRPM = DeltaE - EnergyGenerated > 0
                 ? comp.RPM + (float)Math.Sqrt(2 * (Math.Max(DeltaE - EnergyGenerated, 0) / comp.TurbineMass))
                 : comp.RPM - (float)Math.Sqrt(2 * (Math.Max(EnergyGenerated - DeltaE, 0) / comp.TurbineMass));
-            
+
             var NextGen = comp.StatorLoad * (Math.Max(NewRPM, 0) / 60);
             var NextRPM = DeltaE - NextGen > 0
                 ? comp.RPM + (float)Math.Sqrt(2 * (Math.Max(DeltaE - NextGen, 0) / comp.TurbineMass))
                 : comp.RPM - (float)Math.Sqrt(2 * (Math.Max(NextGen - DeltaE, 0) / comp.TurbineMass));
-            
+
             if (NewRPM < 0 || NextRPM < 0)
             {
                 // Stator load is too high
@@ -347,14 +347,14 @@ public sealed class GasTurbineSystem : EntitySystem
     }
 
     private static bool AdjustStatorLoad(GasTurbineComponent turbine, float change)
-    { 
+    {
         var newSet = Math.Max(turbine.StatorLoad + change, 1000f);
         if (turbine.StatorLoad != newSet)
         {
             turbine.StatorLoad = newSet;
             return true;
         }
-        return false; 
+        return false;
     }
 
     private void TearApart(EntityUid uid, GasTurbineComponent comp)
@@ -437,7 +437,7 @@ public sealed class GasTurbineSystem : EntitySystem
             else
                 value.SetFlowRate = turbine.FlowRate;
         }
-            
+
         UpdateUI(uid, turbine);
 
         return;
@@ -450,7 +450,7 @@ public sealed class GasTurbineSystem : EntitySystem
                 turbine.FlowRate = newSet;
                 return true;
             }
-            return false; 
+            return false;
         }
     }
 
@@ -482,7 +482,7 @@ public sealed class GasTurbineSystem : EntitySystem
                 turbine.StatorLoad = newSet;
                 return true;
             }
-            return false; 
+            return false;
         }
     }
 
@@ -526,7 +526,7 @@ public sealed class GasTurbineSystem : EntitySystem
     {
         var state = SignalState.Momentary;
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
-        
+
         if (args.Port == comp.StatorLoadIncreasePort)
             comp.IncreasePortState = state;
         else if (args.Port == comp.StatorLoadDecreasePort)
@@ -658,7 +658,7 @@ public sealed class GasTurbineSystem : EntitySystem
     {
         if (args.Cancelled)
             return;
-            
+
         if (comp.RPM < 1)
             return;
 
@@ -715,7 +715,7 @@ public sealed class GasTurbineSystem : EntitySystem
         }
     }
 
-    
+
     private void OnExamined(Entity<GasTurbineComponent> ent, ref ExaminedEvent args)
     {
         var comp = ent.Comp;

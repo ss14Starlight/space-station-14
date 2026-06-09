@@ -1,0 +1,5 @@
+- type: antag
+  id: RRMindRoleDeserter
+  name: rr-war-deserter
+  antagonist: true
+  objective: never-shown

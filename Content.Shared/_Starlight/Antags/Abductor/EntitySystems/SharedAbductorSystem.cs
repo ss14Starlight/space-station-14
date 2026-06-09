@@ -16,13 +16,13 @@ public abstract class SharedAbductorSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
-    
+
     public override void Initialize()
     {
         SubscribeLocalEvent<AbductorExperimentatorComponent, EntInsertedIntoContainerMessage>(OnInsertedContainer);
         SubscribeLocalEvent<AbductorExperimentatorComponent, EntRemovedFromContainerMessage>(OnRemovedContainer);
         SubscribeLocalEvent<AbductorComponent, AccessReadEvent>(OnAccessRead);
-        
+
         base.Initialize();
     }
 
@@ -68,7 +68,7 @@ public abstract class SharedAbductorSystem : EntitySystem
         _appearance.SetData(ent, AbductorExperimentatorVisuals.Full, args.Container.ContainedEntities.Count > 0);
         Dirty(ent);
     }
-    
+
     protected virtual void UpdateGui(NetEntity? target, Entity<AbductorConsoleComponent> computer)
     {
 

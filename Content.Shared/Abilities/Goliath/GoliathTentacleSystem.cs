@@ -51,6 +51,9 @@ public sealed class GoliathTentacleSystem : DelayableEntitySystem
             return;
         void action(EntityCoordinates pos)
         {
+            if (TerminatingOrDeleted(grid) || TerminatingOrDeleted(pos.EntityId))
+                return;
+
             if (!_map.TryGetTileRef(grid, gridComp, pos, out var tileRef) ||
                 _turf.IsSpace(tileRef) ||
                 _turf.IsTileBlocked(tileRef, CollisionGroup.Impassable))

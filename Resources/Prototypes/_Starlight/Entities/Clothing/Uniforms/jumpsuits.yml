@@ -22,35 +22,24 @@
 - type: entity
   parent: ClothingUniformJumpsuitAtmos
   id: ClothingUniformJumpsuitAtmosSyndie
-  name: Contortionist's Jumpsuit
+  name: contortionist's jumpsuit
   components:
   - type: VentCrawlClothing
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSuit
-  name: Magistrate's Jumpsuit
+  name: magistrate's jumpsuit
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate.rsi
-
-- type: entity
-  parent: [ ClothingUniformBase, BaseCommandContraband ]
-  id: MagistrateUniformSuitLongcoat
-  name: Magistrate's Longcoat
-  description: It's a nice long jacket attached to your uniform, but it has no real insulation so a real jacket beats it. Atleast it looks cool, though.
-  components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/magistrate_overcoat.rsi
 
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrep
-  name: nt representive suit
+  name: nt representative suit
   description: That suit that is better not to see.
   components:
   - type: Sprite
@@ -61,7 +50,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepFormal
-  name: nt representive formal suit
+  name: nt representative formal suit
   description: That suit that is better not to see.
   components:
   - type: Sprite
@@ -72,7 +61,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepTurtleNeck
-  name: nt representive's turtleneck jumpsuit
+  name: nt representative's turtleneck jumpsuit
   description: For a more casual look while on the job.
   components:
   - type: Sprite
@@ -83,7 +72,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNtrepNoble
-  name: nt representive's noble jumpsuit
+  name: nt representative's noble jumpsuit
   description: A more classical and elegant style of clothing, designed to emulate the fashion of old earth nobility.
   components:
   - type: Sprite
@@ -94,7 +83,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: ClothingUniformJumpsuitBlueShield
-  name: blue shield suit
+  name: blueshield suit
   description: The suit of a glorified bodyguard.
   components:
   - type: Sprite
@@ -105,7 +94,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: ClothingUniformJumpsuitEliteBlueShield
-  name: elite blue shield suit
+  name: elite blueshield suit
   description: The suit of an elite BSO. To reach such a level, you must have protected Command from [REDACTED].
   components:
   - type: Sprite
@@ -148,6 +137,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mining.rsi
 
+
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
   id: ClothingUniformJumpsuitSeniorChemist
@@ -170,6 +160,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
@@ -181,6 +176,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/corpsman_response.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ClothingUniformBase, ClothingUniformFoldableBase]
@@ -193,6 +193,9 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suitoflife.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.95
 
@@ -286,15 +289,59 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/clown_distinguished.rsi
 
 - type: entity
-  parent: [ClothingUniformBase, BaseCentcommContraband]
-  id: ClothingUniformNTNCFatigues
-  name: NTNC Fatigues
-  description: NT-NC Fatigues. Very airy.
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerService
+  name: green lawyer suit
+  description: A flashy green suit worn by lawyers and show-offs.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/ntcc_fatigues.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/service_lawyer.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/ntcc_fatigues.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/service_lawyer.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerGray
+  name: gray lawyer suit
+  description: A plain gray suit worn by lawyers and show-offs.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyergray.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyergray.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerPink
+  name: pink lawyer suit
+  description: A bright pink suit worn by lawyers that you should call.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerpink.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerpink.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerBlackTwo
+  name: show lawyer suit
+  description: A stylish black piece worn by lawyers and show people.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerblacktwo.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerblacktwo.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitLawyerBad
+  name: bad lawyer's suit
+  description: A bold suit. Perfect for finding your one way, going wherever you want to go.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerbad.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/lawyerbad.rsi
 
 # Fashion-O-Mat, not obtainable any other way, unless mapped
 
@@ -333,25 +380,25 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMimeSexyWhite
-  name: sexy mime costume with white pants
-  description: A sexy mime costume with white pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and flirtation.
+  id: ClothingUniformJumpsuitMimeSuaveWhite
+  name: suave mime costume with white pants
+  description: A suave mime costume with white pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and confidence.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime.rsi
 
 - type: entity
   parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitMimeSexyBlack
-  name: sexy mime costume with black pants
-  description: A sexy mime costume with black pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and flirtation.
+  id: ClothingUniformJumpsuitMimeSuaveBlack
+  name: suave mime costume with black pants
+  description: A suave mime costume with black pants combines playful charm and allure. The outfit typically features a fitted top, suspenders, and white trousers, with bold black-and-white details. It's perfect for an entertaining yet chic look, exuding both mystery and confidence.
   components:
   - type: Sprite
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime-black.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime-black.rsi
   - type: Clothing
-    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/sexy-mime-black.rsi
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/suave-mime-black.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -374,6 +421,28 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/cargoformal.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/cargoformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitMail
+  name: mail technician jumpsuit
+  description: A stylish cargo yellow and mail bag-blue uniform custom made for mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/mailtech.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorMail
+  name: senior mail technician jumpsuit
+  description: A more vibrant mail technician outfit made in the color of cargo's formal uniforms. Perfect for deliver the mail in style, and looking good while doing it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_mail.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -446,7 +515,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitCentcomAdmiral
   name: admiral's uniform
-  description: A uniform worn by those with the rank Admiral in the Nanotrasen Navy.
+  description: A uniform worn by those with the rank Admiral in the NanoTrasen Navy.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_admiral.rsi
@@ -511,13 +580,35 @@
 - type: entity
   parent: [ClothingUniformBase, BaseBlueShieldContraband]
   id: ClothingUniformJumpsuitFormalBlueShield
-  name: formal blue shield officer suit
+  name: formal blueshield officer suit
   description: A textile jumpsuit, reinforced with thick leather in some areas.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/formal_blueshield.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/formal_blueshield.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSpaceCourier
+  name: space courier underclothes
+  description: Luxurious underclothes, styled after a legendary space courier. Fly, my space courier!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpsuit/space_courier.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformTimelessSuit
+  name: timeless suit
+  description: A luxury suit with a timeless design.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Uniforms/Jumpsuit/timeless_suit.rsi
 
 # Fashion-O-Mat END
 
@@ -582,7 +673,7 @@
   id: ClothingAltUniformJumpsuitCentcomOfficial
   name: CentComm officer's jumpsuit
   description: It's a jumpsuit worn by CentComm officers.
-  components: 
+  components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/centcom_official.rsi
   - type: Clothing
@@ -603,7 +694,7 @@
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitRisk
   name: station daredevil's  jumpsuit
-  description: A jumpsuit with red lines along the sides. 
+  description: A jumpsuit with red lines along the sides.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/riskjumpsuit.rsi
@@ -620,7 +711,7 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_paramedic.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/senior_paramedic.rsi
-    
+
 - type: entity
   parent: [ ClothingUniformBase , BaseSalvageContraband ]
   id: ClothingUniformJumpsuitSalvageMercWhite
@@ -686,11 +777,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/tsfelite.rsi
-    
+
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: ClothingUniformJumpsuitNCT
-  name: NT career trainer's uniform
+  name: nt career trainer's uniform
   description: A neatly pressed olive green shirt paired with black jeans, worn by those dedicated to shaping the future of the workforce.
   components:
   - type: Sprite

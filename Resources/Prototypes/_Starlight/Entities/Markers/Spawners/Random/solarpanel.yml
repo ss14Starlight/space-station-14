@@ -1,0 +1,37 @@
+- type: entity
+  parent: MarkerBase
+  id: RandomSolarSpawnerGlass
+  name: Random Glass Solar Panel Spawner
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Power/Generation/solar_panel.rsi
+          state: solar_panel_glass_broken
+    - type: EntityTableSpawner
+      offset: 0.0
+      table: !type:NestedSelector
+        tableId: GlassSolarPanelTable
+  placement:
+    mode: AlignTileAny
+
+- type: entityTable
+  id: GlassSolarPanelTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector
+      weight: 65
+      children:
+      - id: SolarPanel
+    - !type:GroupSelector
+      weight: 20
+      children:
+      - id: SolarPanelBroken
+    - !type:GroupSelector
+      weight: 10
+      children:
+      - id: SolarAssembly
+    - !type:GroupSelector
+      weight: 5
+      children: []
+

@@ -1,6 +1,6 @@
 - type: language
   id: Universal
-  chatPrefix: uni
+  chatPrefix: u
   obfuscation:
     !type:ReplacementObfuscation
     replacement:
@@ -11,7 +11,7 @@
 - type: language
   id: Machine
   icon: LanguageIconMachine
-  chatPrefix: eal
+  chatPrefix: m
   speech:
     color: "#6174ff"
     fontId: Octatrax
@@ -43,10 +43,11 @@
   id: Sign
   iconUnderstood: false
   iconNotUnderstood: false
-  chatPrefix: sgn
+  chatPrefix: s
   speech:
     allowRadio: false
     requireSpeech: false
+    requireSound: false
     requireHands: true
     color: "#dddddd"
     messageWrapOverrides:

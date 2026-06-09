@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.EntityTable;
 
 public sealed partial class GamemodeConditionSystem : EntitySystem
 {
-    
+
     [Dependency] private readonly INetManager _netMan = default!;
     public override void Initialize()
     {

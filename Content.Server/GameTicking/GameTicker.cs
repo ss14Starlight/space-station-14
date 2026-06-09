@@ -1,3 +1,4 @@
+using System.Diagnostics; // Starlight
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -7,8 +8,10 @@ using Content.Server.Chat.Systems;
 using Content.Server.Database;
 using Content.Server.Ghost;
 using Content.Server.Maps;
+using Content.Server.Nuke; // Starlight
 using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Preferences.Managers;
+using Content.Server.RoundEnd; // Starlight
 using Content.Server.ServerUpdates;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
@@ -67,6 +70,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly SharedRoleSystem _roles = default!;
         [Dependency] private readonly ServerDbEntryManager _dbEntryManager = default!;
+        [Dependency] private readonly RoundEndSystem _roundEndSystem = default!; // Starlight
         [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
         [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
 
@@ -76,6 +80,8 @@ namespace Content.Server.GameTicking
         [ViewVariables] public MapId DefaultMap { get; private set; }
 
         private ISawmill _sawmill = default!;
+
+        private const string NukeopsRuleId = "Nukeops"; // Starlight
 
         private bool _randomizeCharacters;
 
@@ -97,6 +103,7 @@ namespace Content.Server.GameTicking
             InitializePlayer();
             InitializeLobbyBackground();
             InitializeGamePreset();
+            SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded); // Starlight
             DebugTools.Assert(_prototypeManager.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
@@ -137,5 +144,21 @@ namespace Content.Server.GameTicking
             UpdateRoundFlow(frameTime);
             UpdateGameRules();
         }
+        #region Starlight
+        /// <summary>
+        /// Ends round if a nuke with the component to end the round goes off.
+        /// TODO: make this instead check for if the preset overrides nuke explosion ending the round behavior somehow
+        /// </summary>
+        /// <param name="ev"></param>
+        private void OnNukeExploded(NukeExplodedEvent ev)
+        {
+            if (!ev.EndRound || IsGameRuleActive(NukeopsRuleId)) // nukeops rule system handles nuke ops specific nuke round end logic
+            {
+                return;
+            }
+
+            _roundEndSystem.EndRound();
+        }
+        #endregion
     }
 }

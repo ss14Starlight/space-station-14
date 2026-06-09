@@ -1,4 +1,4 @@
-﻿name: CRLF Check
+﻿name: EditorConfig Check
 
 on:
   pull_request:
@@ -6,10 +6,10 @@ on:
 
 jobs:
   build:
-    name: CRLF Check
+    name: EditorConfig Check
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4.2.2
-    - name: Check for CRLF
+    - name: Check for CRLF, trailing whitespace, and missing final newlines
       run: Tools/check_crlf.py

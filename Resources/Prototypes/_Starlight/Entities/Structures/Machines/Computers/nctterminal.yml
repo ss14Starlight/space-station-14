@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseComputer
+  parent: BaseStructureComputer
   id: nctterminal
   name: NCT Dispatch
   description: Contact NCT Dispatch for assistance.
@@ -11,27 +11,52 @@
     - type: Speech
     - type: NCTTerminal
     - type: WallMount
-      arc: 360
+    - type: Physics
+      canCollide: false
     - type: Sprite
       sprite: _Starlight/Structures/Machines/nctterminal.rsi
       layers:
-        - map: ["computerLayerBody"]
-          state: base
-        - map: ["computerLayerScreen"]
+        -  state: base
+        - map: ["enum.PowerDeviceVisualLayers.Powered"]
           state: screen
+          shader: unshaded
+    - type: Appearance
     - type: GenericVisualizer
       visuals:
-        enum.ComputerVisuals.Powered:
-          computerLayerScreen:
-            True: { visible: true, shader: unshaded }
+        enum.PowerDeviceVisuals.Powered:
+          enum.PowerDeviceVisualLayers.Powered:
+            True: { visible: true }
             False: { visible: false }
+    - type: LitOnPowered
     - type: PointLight
-      enabled: true
-      radius: 1.5
-      energy: 1.6
       color: "#57A3F7"
+      radius: 2.5
+      energy: 1.5
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      autoRot: true
+      castShadows: false
     - type: Rotatable
       rotateWhileAnchored: false
+    - type: EmitSoundOnUIOpen
+      sound:
+        collection: Keyboard
+        params:
+          volume: -1
+          variation: 0.10
+          pitch: 1.10 # low pitch keyboard sounds feel kinda weird
+      blacklist:
+        tags:
+          - NoConsoleSound
     - type: Anchorable
       flags:
         - Anchorable
+    - type: Electrified
+      enabled: false
+      usesApcPower: true
+    - type: ExtensionCableReceiver
+    - type: ActivatableUIRequiresPower
+    - type: ApcPowerReceiver
+      powerLoad: 100
+    - type: LightningTarget
+      priority: 1

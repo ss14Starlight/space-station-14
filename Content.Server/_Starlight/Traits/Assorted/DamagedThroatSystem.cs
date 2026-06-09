@@ -3,8 +3,6 @@ using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
-using Robust.Shared.GameObjects;
-using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -31,8 +29,8 @@ public sealed class DamagedThroatSystem : EntitySystem
         if (args.IsWhisper)
             return;
 
-        // Don't damage if using excluded language (e.g., sign language)
-        if (args.Language != null && component.ExcludedLanguages.Contains(args.Language.ID))
+        // Don't damage if using excluded languages (languages that don't require verbal speech)
+        if (args.Language.Speech.RequireSpeech == false)
             return;
 
         // Don't damage if on cooldown

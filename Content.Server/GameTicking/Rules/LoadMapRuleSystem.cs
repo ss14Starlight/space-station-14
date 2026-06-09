@@ -12,6 +12,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Configuration;
+using Content.Shared.Starlight.CCVar;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -23,6 +25,7 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly GridPreloaderSystem _gridPreloader = default!;
     #region Starlight
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IMapManager _maps = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly EntityManager _entMan = default!;
@@ -40,6 +43,9 @@ public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
         }
 
         // Starlight start
+        if (_cfg.GetCVar(StarlightCCVars.DisableLoadMapRule))
+            return;
+
         if (comp.MapTag.HasValue && LoadMapTag(uid, comp, rule, args, comp.MapTag.Value))
             return;
         // Starlight end

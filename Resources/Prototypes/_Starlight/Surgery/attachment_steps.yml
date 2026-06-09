@@ -4,7 +4,7 @@
   name: attach a limb
   components:
   - type: SurgeryStep
-    duration: 4 
+    duration: 4
     tools:
     - type: MetaData
   - type: Sprite
@@ -18,7 +18,7 @@
   name: attach a limb
   components:
   - type: SurgeryStep
-    duration: 4 
+    duration: 4
     tools:
     - type: LeftArm
   - type: Sprite
@@ -32,7 +32,7 @@
   name: attach a limb
   components:
   - type: SurgeryStep
-    duration: 4 
+    duration: 4
     tools:
     - type: RightArm
   - type: Sprite

@@ -1,5 +1,6 @@
 using Content.Client.Pinpointer.UI;
 using Robust.Client.Graphics;
+using Robust.Client.UserInterface; // Starlight
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
 using Robust.Shared.Map; // Starlight
@@ -11,10 +12,13 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 {
     public NetEntity? Focus;
     public Dictionary<NetEntity, string> LocalizedNames = new();
+    public bool ShowFocusedEntityPanel = true; // Starlight
+    public bool AllowManualRecentering = true; // Starlight
     public event Action<EntityCoordinates>? MapClicked; // Starlight
 
     private Label _trackedEntityLabel;
     private PanelContainer _trackedEntityPanel;
+    private Button? _recenterButton; // Starlight
     private readonly SharedTransformSystem _transformSystem; //FarHorizons
 
     public CrewMonitoringNavMapControl() : base()
@@ -47,12 +51,31 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
         _trackedEntityPanel.AddChild(_trackedEntityLabel);
         this.AddChild(_trackedEntityPanel);
         _transformSystem = EntManager.System<SharedTransformSystem>();//FarHorizons
+        _recenterButton = TryGetRecenterButton();
         MapClickedAction += coords => MapClicked?.Invoke(coords); // Starlight
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
         base.FrameUpdate(args);
+
+        if (!AllowManualRecentering)
+        {
+            Recentering = false;
+
+            if (_recenterButton != null)
+            {
+                _recenterButton.Visible = false;
+                _recenterButton.Disabled = true;
+            }
+        }
+
+        if (!ShowFocusedEntityPanel)
+        {
+            _trackedEntityLabel.Text = string.Empty;
+            _trackedEntityPanel.Visible = false;
+            return;
+        }
 
         if (Focus == null)
         {
@@ -82,5 +105,35 @@ public sealed partial class CrewMonitoringNavMapControl : NavMapControl
 
         _trackedEntityLabel.Text = string.Empty;
         _trackedEntityPanel.Visible = false;
+    }
+
+    private Button? TryGetRecenterButton()
+    {
+        if (TryGetFirstChild(this) is not BoxContainer topContainer)
+            return null;
+
+        if (TryGetFirstChild(topContainer) is not PanelContainer topPanel)
+            return null;
+
+        if (TryGetFirstChild(topPanel) is not BoxContainer header)
+            return null;
+
+        foreach (var child in header.Children)
+        {
+            if (child is Button button)
+                return button;
+        }
+
+        return null;
+    }
+
+    private static Control? TryGetFirstChild(Control control)
+    {
+        foreach (var child in control.Children)
+        {
+            return child;
+        }
+
+        return null;
     }
 }

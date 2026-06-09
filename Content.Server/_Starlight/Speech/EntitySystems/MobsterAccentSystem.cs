@@ -72,8 +72,8 @@ public sealed partial class MobsterAccentSystem : EntitySystem
 
             if (!firstWordAllCaps)
             {
-                message.Text = message.Text[0].ToString().ToLower() + message.Text.Remove(0, 1);
-                message.Tts = (message.Tts ?? message.Text)[0].ToString().ToLower() + (message.Tts ?? message.Text).Remove(0, 1);
+                message.Text = message.Text[0].ToString().ToLower() + message.Text[1..];
+                message.Tts = (message.Tts ?? message.Text)[0].ToString().ToLower() + (message.Tts ?? message.Text)[1..];
             }
             else
             {
@@ -84,8 +84,8 @@ public sealed partial class MobsterAccentSystem : EntitySystem
             message.Tts = prefix + " " + (message.Tts ?? message.Text);
         }
 
-        message.Text = message.Text[0].ToString().ToUpper() + message.Text.Remove(0, 1);
-        message.Tts = (message.Tts ?? message.Text)[0].ToString().ToUpper() + (message.Tts ?? message.Text).Remove(0, 1);
+        message.Text = message.Text[0].ToString().ToUpper() + message.Text[1..];
+        message.Tts = (message.Tts ?? message.Text)[0].ToString().ToUpper() + (message.Tts ?? message.Text)[1..];
 
         // Suffixes
         if (_random.Prob(0.4f))
@@ -105,6 +105,6 @@ public sealed partial class MobsterAccentSystem : EntitySystem
         return message;
     }
 
-    private void OnAccentGet(EntityUid uid, MobsterAccentComponent component, AccentGetEvent args) 
+    private void OnAccentGet(EntityUid uid, MobsterAccentComponent component, AccentGetEvent args)
         => args.Message = Accentuate(args.Message, component);
 }

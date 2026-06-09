@@ -16,12 +16,15 @@ public sealed partial class EncryptionKeyComponent : Component, ISupportsCustomC
     [DataField, AutoNetworkedField] // Starlight edit
     public HashSet<ProtoId<RadioChannelPrototype>> Channels = new();
 
+    [DataField, AutoNetworkedField]
+    public HashSet<ProtoId<RadioChannelPrototype>> MutedChannels = new();
+
     /// <summary>
     ///     This is the channel that will be used when using the default/department prefix (<see cref="SharedChatSystem.DefaultChannelKey"/>).
     /// </summary>
     [DataField, AutoNetworkedField] // Starlight edit
     public string? DefaultChannel; // Starlight edit | Use string to support custom channels
-    
+
     //Starlight begin
     /// <summary>
     /// Set of custom channel data
@@ -30,7 +33,7 @@ public sealed partial class EncryptionKeyComponent : Component, ISupportsCustomC
 
     [DataField, ViewVariables(VVAccess.ReadOnly)] public Vector2i ExpectedSpriteSize = new(32, 32);
 
-    // These really have no purpose being data fields, its just it won't serialize otherwise. 
+    // These really have no purpose being data fields, its just it won't serialize otherwise.
     [DataField, AutoNetworkedField] public string? CustomBaseRsi;
     [DataField, AutoNetworkedField] public string? CustomIconRsi;
     [DataField, AutoNetworkedField] public string? CustomBaseState;

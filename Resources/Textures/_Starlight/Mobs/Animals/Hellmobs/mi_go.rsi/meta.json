@@ -9,12 +9,12 @@
   "states": [
     {
         "name": "migo_base",
-        "copyright": "Paradise Station RU",  
+        "copyright": "Paradise Station RU",
         "directions": 4
     },
     {
         "name": "migo_move",
-        "copyright": "Paradise Station RU",  
+        "copyright": "Paradise Station RU",
         "delays":[
             [0.1,0.1,0.1],
             [0.1,0.1,0.1],

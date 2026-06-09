@@ -327,6 +327,11 @@
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
+  - type: Armor # Starlight start, so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90 # Starlight end
 
 - type: entity
   parent: ClothingUniformBase
@@ -453,7 +458,7 @@
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtWarden
   name: warden's uniform
-  description: A formal security suit for officers complete with Nanotrasen belt buckle.
+  description: A formal security suit for officers complete with NanoTrasen belt buckle. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/warden.rsi
@@ -689,8 +694,11 @@
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
-    - type: ZombificationResistance # Starlight
-      zombificationResistanceCoefficient: 0.95 # Starlight
+    - type: Armor # Starlight start, so zombification resistance shows up
+      modifiers:
+        coefficients: { }
+    - type: ZombificationResistance
+      zombificationResistanceCoefficient: 0.95 # Starlight end
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -740,7 +748,7 @@
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtSecGrey
   name: grey security jumpskirt
-  description: A tactical relic of years past before Nanotrasen decided it was cheaper to dye the suits red instead of washing out the blood.
+  description: A tactical relic of years past before NanoTrasen decided it was cheaper to dye the suits red instead of washing out the blood. # SL
   components:
   - type: Sprite
     sprite: Clothing/Uniforms/Jumpskirt/security_grey.rsi

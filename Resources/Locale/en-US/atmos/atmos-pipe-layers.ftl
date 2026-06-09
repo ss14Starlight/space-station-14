@@ -1,4 +1,4 @@
-atmos-pipe-layers-component-layer-primary = primary 
+atmos-pipe-layers-component-layer-primary = primary
 atmos-pipe-layers-component-layer-secondary = secondary
 atmos-pipe-layers-component-layer-tertiary = tertiary
 

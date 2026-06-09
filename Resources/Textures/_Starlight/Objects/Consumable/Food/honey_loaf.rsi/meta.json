@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edit by Conflee, originals Taken from Goonstation at commit https://github.com/goonstation/goonstation/blob/HEAD/icons/obj/foodNdrink/food_bread.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "honey_loaf"
+    }
+  ]
+}

@@ -27,7 +27,7 @@
     maxAngle: 35
     angleIncrease: 2
     angleDecay: 10
-    fireRate: 6  
+    fireRate: 6
   - type: Appearance
   - type: RestrictByEquippedTag
     requiredTag: "RequiredForLmgTag"
@@ -79,9 +79,9 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/m41_cock.ogg
-    soundBoltClosed: 
+    soundBoltClosed:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
-    soundBoltOpened: 
+    soundBoltOpened:
       path: /Audio/Weapons/Guns/Cock/shotgun_open.ogg
   - type: Appearance
   - type: ItemSlots

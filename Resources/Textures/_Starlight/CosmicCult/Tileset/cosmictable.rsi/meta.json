@@ -1,0 +1,64 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "states": [
+        {
+            "name": "full",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "delays": [[1]]
+        },
+        {
+            "name": "state_0",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_1",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_2",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_3",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_4",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_5",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_6",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        },
+        {
+            "name": "state_7",
+            "copyright": "Taken from https://github.com/discordia-space/CEV-Eris/blob/0b3ab17dbad632ddf738b63900ef8df1926bba47/icons/obj/tables.dmi",
+            "directions": 4,
+            "delays": [[1.0], [1.0], [1.0], [1.0]]
+        }
+    ]
+}

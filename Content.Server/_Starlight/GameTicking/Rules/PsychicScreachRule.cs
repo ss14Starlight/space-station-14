@@ -1,9 +1,13 @@
+using Content.Server._FarHorizons.Silicons.Glitching;
+using Content.Server._Starlight.Bluespace;
 using Content.Server._Starlight.GameTicking.Rules.Components;
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Light.EntitySystems;
+using Content.Server.Power.Components;
 using Content.Server.StationEvents.Components;
 using Content.Server.Stunnable;
+using Content.Shared._FarHorizons.Silicons.Glitching;
 using Content.Shared.Administration.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.GameTicking.Components;
@@ -34,6 +38,7 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedBatterySystem _batterySystem = default!;
+    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
 
     protected override void Started(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
@@ -69,8 +74,9 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                 _light.TryDestroyBulb(ent, light);
             else
             {
-                _light.ToggleBlinkingLight(ent, light, true);
-                Timer.Spawn(TimeSpan.FromSeconds(10), () => _light.ToggleBlinkingLight(ent, light, false));
+                var blinking = EnsureComp<BlinkingPoweredLightComponent>(ent);
+                blinking.StopBlinkingTime = Timing.CurTime + TimeSpan.FromSeconds(10);
+                Dirty(ent, blinking);
             }
         }
 
@@ -84,21 +90,24 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
             if (mob.CurrentState == MobState.Dead)
                 continue;
 
-            if (HasComp<BloodstreamComponent>(ent))
+            // Nullspace is Shunt for every mob.
+            var ev = new NullSpaceShuntEvent();
+            RaiseLocalEvent(ent, ref ev);
+
+            if (HasComp<BorgChassisComponent>(ent) || HasComp<GlitchOnEMPComponent>(ent) || HasComp<GlitchOnIonStormComponent>(ent))
+            {
+                _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-borg"), ent, ent, PopupType.LargeCaution);
+                _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(5));
+                _glitching.ApplyGlitch(ent, TimeSpan.FromSeconds(35), TimeSpan.FromSeconds(5));
+                _stunSystem.TryAddStunDuration(ent, TimeSpan.FromSeconds(5));
+            }
+            else if (HasComp<BloodstreamComponent>(ent))
             {
                 _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-nosebleed"), ent, ent, PopupType.LargeCaution);
                 _bloodstreamSystem.TryModifyBleedAmount(ent, 1f);
                 _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectSeeingRainbow", TimeSpan.FromSeconds(30));
                 _vomitSystem.Vomit(ent);
                 _stunSystem.TryKnockdown(ent, TimeSpan.FromSeconds(1));
-            }
-
-            // TODO: Check IPC and apply debuff on them too!
-            if (HasComp<BorgChassisComponent>(ent))
-            {
-                _popup.PopupEntity(Loc.GetString("station-event-psychicscreach-borg"), ent, ent, PopupType.LargeCaution);
-                _statusEffect.TryAddStatusEffectDuration(ent, "StatusEffectTemporaryBlindness", TimeSpan.FromSeconds(5));
-                _stunSystem.TryAddStunDuration(ent, TimeSpan.FromSeconds(5));
             }
         }
 
@@ -116,8 +125,21 @@ public sealed class PsychicScreachRule : StationEventSystem<PsychicScreachRuleCo
                     continue;
 
                 var battery = EnsureComp<BatteryComponent>(ent);
-                _batterySystem.SetCharge((ent, battery), 0);
+
+                var todrain = battery.LastCharge;
+
+                if (HasComp<BatteryInterfaceComponent>(ent)) // Only SMES/SubStation has BatteryInterface.
+                    todrain /= 3;
+                else
+                    todrain = 0;
+
+                _batterySystem.SetCharge((ent, battery), todrain);
             }
         });
+    }
+
+    protected override void Ended(EntityUid uid, PsychicScreachRuleComponent comp, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        // Yeah this is there just to avoid double announcement.
     }
 }

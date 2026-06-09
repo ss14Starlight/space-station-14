@@ -41,6 +41,15 @@ station-ai-icon-tiger = Tiger
 station-ai-icon-vox = Vox
 station-ai-icon-liz = Lizard
 station-ai-icon-sparkles = Sparkles
+station-ai-icon-ahasuerus = Ahasuerus
+station-ai-icon-alterego = Alter Ego
+station-ai-icon-child = Child
+station-ai-icon-godfrey = Godfrey
+station-ai-icon-honeycomb = Honeycomb
+station-ai-icon-hourglass = Hourglass
+station-ai-icon-rat = Rat
+station-ai-icon-royal = Royal
+station-ai-icon-sillycon = Sillycon
 ## holos
 station-ai-hologram-alien = Alien
 station-ai-hologram-bees = Bees
@@ -53,7 +62,15 @@ station-ai-hologram-narsie = Risen
 station-ai-hologram-ratvar = Clockwork
 station-ai-hologram-semi = SEMI
 station-ai-hologram-cloudkat = Cloudkat
+station-ai-hologram-boy = Boy
+station-ai-hologram-girl = Girl
+station-ai-hologram-mono = Mono Face
+station-ai-hologram-punkfemale = Punk Female
+station-ai-hologram-punkmale = Punk Male
+station-ai-hologram-purrfus = Purrfus
+station-ai-hologram-rat = Rat
 
+## warps
 station-ai-warp-window-title = Warp
 station-ai-warp-search-placeholder = Search crew or locations...
 station-ai-warp-loading = Loading warp destinations...

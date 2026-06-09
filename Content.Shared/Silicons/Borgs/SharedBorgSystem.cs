@@ -1,7 +1,6 @@
 using Content.Shared.Access.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
-using Content.Shared.Body.Events;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.Gibbing;
@@ -196,18 +195,18 @@ public abstract partial class SharedBorgSystem : EntitySystem
                     borgShunt.Return = shunt.Return;
                     borgShunt.ReturnAction = _actions.AddAction(chassis, shuntable.UnshuntAction);
                 }
-        
+
                 //Get borging consent
                 if(!brain.BorgConsent)
                     RaiseLocalEvent(args.Entity, new AskBorgingChoiceEvent());
                 else
                     TransferMindToChassis(args.Entity, mindId, mind);
-                    
+
                 //regardless of outcome here, the player will either be
-                //choosing to play borg or be ghosted, and we do not want 
-                //to ask whoever chooses to take over the gost role again 
+                //choosing to play borg or be ghosted, and we do not want
+                //to ask whoever chooses to take over the gost role again
                 //if they get a chassis transfer.
-                brain.BorgConsent = true; 
+                brain.BorgConsent = true;
         }
         //#endregion Starlight
     }
@@ -216,6 +215,8 @@ public abstract partial class SharedBorgSystem : EntitySystem
     {
         if (_timing.ApplyingState)
             return; // The changes are already networked with the same game state
+
+        ValidateWhitelists(chassis, args.Entity);
 
         if (args.Container != chassis.Comp.BrainContainer)
             return;
@@ -253,7 +254,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
 
         TryActivate(chassis);
 
-        _access.SetAccessEnabled(chassis.Owner, true); // Needs a player so that scientists can't drag around an empty borg for free AA.
         _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, true);
     }
 
@@ -267,7 +267,6 @@ public abstract partial class SharedBorgSystem : EntitySystem
         if (TryComp<HandheldLightComponent>(chassis.Owner, out var light))
             _handheldLight.TurnOff((chassis.Owner, light), makeNoise: false); // Already plays a sound when toggling the borg off.
 
-        _access.SetAccessEnabled(chassis.Owner, false); // Needs a player so that scientists can't drag around an empty borg for free AA.
         _appearance.SetData(chassis.Owner, BorgVisuals.HasPlayer, false);
     }
 
@@ -434,18 +433,18 @@ public abstract partial class SharedBorgSystem : EntitySystem
             _throwing.TryThrow(brain, _random.NextVector2() * 5, 5f);
             return;
         }
-        
+
         //Starlight Start
         if(!brain.Comp.BorgConsent)
             RaiseLocalEvent(brain.Owner, new AskBorgingChoiceEvent());
         else
             TransferMindToChassis(brain.Owner, mindId, mind);
-            
+
         //regardless of outcome here, the player will either be
-        //choosing to play borg or be ghosted, and we do not want 
-        //to ask whoever chooses to take over the gost role again 
+        //choosing to play borg or be ghosted, and we do not want
+        //to ask whoever chooses to take over the gost role again
         //if they get a chassis transfer.
-        brain.Comp.BorgConsent = true; 
+        brain.Comp.BorgConsent = true;
     }
 
     public void TransferMindToChassis(EntityUid uid, EntityUid mindId, MindComponent mind)

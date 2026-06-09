@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
@@ -14,6 +15,7 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IResourceManager _res = default!;
+    [Dependency] private readonly AutoDiscordLogSystem _autoLog = default!; //Starlight
 
     public override string Command => "announce";
     public override string Description => Loc.GetString("cmd-announce-desc");
@@ -60,6 +62,8 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
 
         _chat.DispatchGlobalAnnouncement(message, sender, true, sound, color);
         shell.WriteLine(Loc.GetString("shell-command-success"));
+        var admin = shell.Player?.Name ?? "Unknown"; //Starlight
+        _autoLog.LogToDiscord(Loc.GetString("autolog-announce", ("sender", sender), ("message", message), ("admin", admin)), admin); //Starlight
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)

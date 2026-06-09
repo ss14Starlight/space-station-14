@@ -30,7 +30,7 @@
       soundDeactivate:
         path: /Audio/Machines/button.ogg
     - type: ContainerContainer
-      containers: 
+      containers:
         cell_slot: !type:ContainerSlot
     - type: PowerCellSlot
       cellSlotId: cell_slot

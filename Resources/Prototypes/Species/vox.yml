@@ -5,8 +5,8 @@
   prototype: MobVox
   sprites: MobVoxSprites
   markingLimits: MobVoxMarkingLimits
-  dollPrototype: MobVoxDummy
-  skinColoration: Hues # Starlight - Allows for more vibrant feathering colors
+  dollPrototype: AppearanceVox
+  skinColoration: Hues # Starlight Edit: VoxFeathers -> Hues
   defaultSkinTone: "#6c741d"
   maleFirstNames: NamesVox
   femaleFirstNames: NamesVox

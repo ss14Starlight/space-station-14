@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
 using Content.Server.Popups;
@@ -20,6 +21,7 @@ public sealed class MsgCommand : ToolshedCommand
     private PrayerSystem? _prayer;
     private PopupSystem? _popup;
     private TipsSystem? _tips;
+    private AutoDiscordLogSystem _autoLog = default!; //Starlight
 
     [CommandImplementation("subtle")]
     public IEnumerable<EntityUid> Subtle(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> targets, string popup, string message)
@@ -49,7 +51,7 @@ public sealed class MsgCommand : ToolshedCommand
             yield return ent;
         }
     }
-    
+
     [CommandImplementation("chat")]
     public IEnumerable<ICommonSession> Chat([PipedArgument] IEnumerable<ICommonSession> targets, string message)
     {
@@ -79,6 +81,7 @@ public sealed class MsgCommand : ToolshedCommand
     public IEnumerable<EntityUid> Tippy([PipedArgument] IEnumerable<EntityUid> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
     {
         _tips ??= GetSys<TipsSystem>();
+        _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
 
         foreach (var ent in targets)
         {
@@ -89,12 +92,14 @@ public sealed class MsgCommand : ToolshedCommand
 
             yield return ent;
         }
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
     }
-    
+
     [CommandImplementation("tippy")]
     public IEnumerable<ICommonSession> Tippy([PipedArgument] IEnumerable<ICommonSession> targets, string message, EntProtoId prototype, float speakTime, float slideTime, float waddleInterval)
     {
         _tips ??= GetSys<TipsSystem>();
+        _autoLog ??= GetSys<AutoDiscordLogSystem>(); //Starlight
 
         foreach (var session in targets)
         {
@@ -102,5 +107,6 @@ public sealed class MsgCommand : ToolshedCommand
 
             yield return session;
         }
+        _autoLog.LogToDiscord(Loc.GetString("autolog-tippy", ("message", message), ("prototype", prototype))); //Starlight
     }
 }

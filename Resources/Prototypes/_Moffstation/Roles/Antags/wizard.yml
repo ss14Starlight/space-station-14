@@ -1,0 +1,81 @@
+# Wizard role preference
+- type: antag
+  id: WizardDuelist
+  name: roles-solo-antagonist-wizard-duelist-name # Starlight solo antag
+  antagonist: true
+  setPreference: true
+  objective: roles-solo-antagonist-wizard-duelist-objective # Starlight solo antag
+  requirements: # Starlight start
+  - !type:OverallPlaytimeRequirement
+    time: 48h # You've got the potential to mass grief.
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 6h # Starlight end
+  guides: [ WizardDuel ]
+
+# Wizard duelist starting gear
+- type: startingGear
+  id: WizardDuelistBaseGear
+  equipment:
+    shoes: ClothingShoesWizard
+    id: WizardPDA
+    back: ClothingBackpackWizard # Starlight, Wizard backpack!
+    ears: ClothingHeadsetAltWizard
+    belt: ClothingBeltWand
+    pocket1: WizardTeleportScroll
+    pocket2: WizardsGrimoire # Starlight, basic grimoire
+  inhand: # Starlight start
+    - WizardPersonalAI
+  storage:
+    back:
+    - EncryptionKeyWinds # Starlight end, reward for killing a wizard, or something they can use to "assign" an apprentice. Non-duelists don't get this, it spawns on their shuttle instead. (It's not mapped in wizard's court to stop 1 wizard from taking all 6 of them.)
+
+- type: startingGear
+  parent: WizardDuelistBaseGear
+  id: WizardDuelistRedGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorRed
+    head: ClothingHeadHatRedwizard
+    outerClothing: ClothingOuterWizardRed
+
+- type: startingGear
+  parent: WizardDuelistBaseGear
+  id: WizardDuelistBlueGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorDarkBlue
+    head: ClothingHeadHatWizard
+    outerClothing: ClothingOuterWizard
+
+- type: startingGear
+  parent: WizardDuelistBaseGear
+  id: WizardDuelistPurpleGear # Starlight Violet -> Purple
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorPurple
+    head: ClothingHeadHatPurplewizard # Starlight Violet -> Purple
+    outerClothing: ClothingOuterWizardPurple # Starlight Violet -> Purple
+
+# Starlight start
+- type: startingGear
+  parent: WizardDuelistBaseGear
+  id: WizardDuelistYellowGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellow
+    head: ClothingHeadHatYellowwizard
+    outerClothing: ClothingOuterWizardYellow
+
+- type: startingGear
+  parent: WizardDuelistBaseGear
+  id: WizardDuelistGreenGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGreen
+    head: ClothingHeadHatGreenwizard
+    outerClothing: ClothingOuterWizardGreen
+
+- type: startingGear
+  parent: WizardDuelistBaseGear
+  id: WizardDuelistOrangeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    head: ClothingHeadHatOrangewizard
+    outerClothing: ClothingOuterWizardOrange
+# Starlight end

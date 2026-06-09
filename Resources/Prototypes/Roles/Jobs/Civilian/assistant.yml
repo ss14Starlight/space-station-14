@@ -15,7 +15,7 @@
   hidden: true
   name: job-name-assistant
   description: job-description-assistant
-  playTimeTracker: JobAssistant 
+  playTimeTracker: JobAssistant
   startingGear: AssistantGear
   icon: "JobIconAssistant"
   supervisors: job-supervisors-everyone

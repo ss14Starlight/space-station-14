@@ -1,4 +1,4 @@
-- type: entity
+﻿- type: entity
   parent: BasePDA
   id: RoboticistPDA
   name: roboticist PDA
@@ -21,6 +21,8 @@
       path: "/Audio/Items/Medical/healthscanner.ogg"
     damageContainers:
     - Silicon
+    - IPC
+    - Hybrid
 
 - type: entity
   parent: BaseMedicalPDA
@@ -434,7 +436,7 @@
   parent: BasePDA
   id: MailPDA
   name: mail PDA
-  description: watch out for papercuts.
+  description: Watch out for papercuts.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Devices/pda.rsi
@@ -454,6 +456,28 @@
 
 - type: entity
   parent: BasePDA
+  id: SeniorMailPDA
+  name: senior mail PDA
+  description: Nothing stops the mail.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: MailTechIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-seniormailtech
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#6ec8fa"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-seniormailtech
+
+- type: entity
+  parent: BasePDA
   id: PerformerPDA
   name: performer PDA
   description: Why isn't it purple, pink, black, or white?
@@ -470,6 +494,38 @@
     accentVColor: "#00cc35"
   - type: Icon
     state: pda-internservice
+
+# Pun Pun
+- type: entity
+  parent: BasePDA
+  id: PunPunPDA
+  name: pun pun's PDA
+  description: Smells like bananas.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PunPunIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-punpun
+  - type: PdaBorderColor
+    borderColor: "#333333"
+    accentVColor: "#ffdc54"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-punpun
+
+- type: entity
+  parent: BotanistPDA
+  id: KikiPDA
+  name: kiki's PDA
+  description: Has an earthy scent.
+  components:
+  - type: Pda
+    id: KikiIDCard
 
 - type: entity
   parent: BasePDA
@@ -565,6 +621,17 @@
     - DoorBumpOpener
 
 - type: entity
+  parent: ClearPDA
+  id: XenoborgiClearPDA
+  suffix: Xenoborgi
+  components:
+    - type: Pda
+      id: XenoborgiIDCard
+    - type: Tag #  Ignore Chameleon tags
+      tags:
+        - DoorBumpOpener
+
+- type: entity
   parent: ParamedicPDA
   id: SeniorParamedicPDA
   name: senior paramedic PDA
@@ -638,11 +705,11 @@
 
 - type: entity
   parent: BasePDA
-  id: NanotrasenCareerTrainerPDA
-  name: Nanotrasen Career Trainer PDA
+  id: NanoTrasenCareerTrainerPDA
+  name: NanoTrasen career trainer PDA
   components:
   - type: Pda
-    id: NanotrasenCareerTrainerIDCard
+    id: NanoTrasenCareerTrainerIDCard
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -733,3 +800,71 @@
   components:
   - type: Pda
     id: TSFIdCardSpecOps
+
+- type: entity
+  parent: BasePDA
+  id: BlackstarPDA
+  name: Blackstar PDA
+  description: Why isn't it black?
+  components:
+    - type: Pda
+      id: BlackstarIDCard
+    - type: PdaBorderColor
+      borderColor: "#717059"
+
+# MedTak
+- type: entity
+  parent: [ ParamedicPDA, BaseMedTakContraband ]
+  id: MedTakMedicPDA
+  name: MedTak medic PDA
+  description: Is it blood or red paint?
+  components:
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-medtak
+  - type: Pda
+    id: MedTakMedicIDCard
+  - type: PdaBorderColor
+    accentVColor: "#d7d7d0"
+    borderColor: "#600000"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-medtak
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakPilotPDA
+  name: MedTak pilot PDA
+  description: It's red paint.
+  components:
+  - type: Pda
+    id: MedTakPilotIDCard
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakSecurityPDA
+  name: MedTak security PDA
+  description: It's blood.
+  components:
+  - type: Pda
+    id: MedTakSecurityIDCard
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakTeamLeadPDA
+  name: MedTak team leader PDA
+  description: It's blood.
+  components:
+  - type: Pda
+    id: MedTakTeamLeadIDCard
+
+- type: entity
+  parent: MedTakMedicPDA
+  id: MedTakDispatcherPDA
+  name: MedTak dispatcher PDA
+  description: It's red paint.
+  components:
+  - type: Pda
+    id: MedTakDispatcherIDCard

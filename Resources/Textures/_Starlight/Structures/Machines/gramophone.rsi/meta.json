@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites taken from MonkeStation at https://github.com/Monkestation/Monkestation2.0/blob/HEAD/monkestation/code/modules/get_off_my_lawn/icons/modern_structures.dmi ",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "off"
+    },
+	{
+      "name": "on"
+    },
+	{
+      "name": "select"
+    }
+  ]
+}

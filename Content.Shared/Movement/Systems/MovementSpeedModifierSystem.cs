@@ -116,10 +116,10 @@ namespace Content.Shared.Movement.Systems
 
             if (_timing.ApplyingState)
                 return;
-            
+
             var ev = new RefreshMovementSpeedModifiersEvent();
             RaiseLocalEvent(uid, ev);
-            
+
             if (MathHelper.CloseTo(ev.WalkSpeedModifier, move.WalkSpeedModifier) &&
                 MathHelper.CloseTo(ev.SprintSpeedModifier, move.SprintSpeedModifier))
                 return;

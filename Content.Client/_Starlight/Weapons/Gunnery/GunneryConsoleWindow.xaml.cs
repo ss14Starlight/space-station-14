@@ -1,6 +1,5 @@
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Weapons.Gunnery;
-using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
@@ -23,10 +22,11 @@ public sealed class GunneryConsoleWindow : FancyWindow
     private readonly ItemList _cannonList;
     private readonly Label _statusLabel;
     private readonly Label _guidanceLabel;
+    private readonly Label _noServerLabel;
 
     // ── Cannon list state ──────────────────────────────────────────────────
 
-    private List<CannonBlipData> _cannons = new();
+    private List<CannonBlipData> _cannons = [];
 
     public GunneryConsoleWindow()
     {
@@ -36,6 +36,7 @@ public sealed class GunneryConsoleWindow : FancyWindow
         _cannonList    = FindControl<ItemList>("CannonList");
         _statusLabel   = FindControl<Label>("StatusLabel");
         _guidanceLabel = FindControl<Label>("GuidanceLabel");
+        _noServerLabel = FindControl<Label>("NoServerLabel");
 
         // Wire radar-control callbacks to window-level callbacks.
         _radarControl.OnFireRequested  = (cannon, target) => OnFireRequested?.Invoke(cannon, target);
@@ -57,6 +58,18 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
     public void UpdateState(GunneryConsoleBoundUserInterfaceState state)
     {
+        _noServerLabel.Visible = false;
+        _radarControl.Visible = true;
+        if (!state.HasServer)
+        {
+            _noServerLabel.Visible = true;
+            _radarControl.Visible = false;
+            _cannonList.Clear();
+            _radarControl.SelectedCannons.Clear();
+            UpdateStatus();
+            return;
+        }
+
         _radarControl.UpdateState(state);
         _cannons = state.Cannons;
 

@@ -146,6 +146,10 @@ public sealed partial class TemperatureSystem
             return;
         }
 
+        // Far Horizons - disable alerts
+        if (thresholds.DisableAlerts)
+            return;
+
         if (_thermalRegulatorQuery.TryComp(entity, out var regulator) &&
             regulator.NormalBodyTemperature > thresholds.ColdDamageThreshold &&
             regulator.NormalBodyTemperature < thresholds.HeatDamageThreshold)

@@ -1,0 +1,21 @@
+- type: parallax
+  id: AuroraCaelus
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/aurora.png"
+      slowness: 1
+      scale: "1.6, 1.6"
+      tiled: true
+# TODO: Give this an RGB Shader or Pulsing Color Shader.
+
+- type: parallax
+  id: SpaceWhale
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/_Starlight/Parallaxes/Spacewhale.png"
+      slowness: 0.995
+      scale: "1, 1"
+      tiled: false
+

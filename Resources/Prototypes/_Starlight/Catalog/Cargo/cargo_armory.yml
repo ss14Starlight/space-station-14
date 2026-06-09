@@ -7,7 +7,7 @@
   cost: 3600
   category: cargoproduct-category-name-armory
   group: market
-  
+
 - type: cargoProduct
   id: ArmoryLr30Magazines
   icon:
@@ -17,7 +17,7 @@
   cost: 1200
   category: cargoproduct-category-name-armory
   group: market
-  
+
 - type: cargoProduct
   id: ArmoryCombatShotgun
   icon:
@@ -27,13 +27,23 @@
   cost: 6000
   category: cargoproduct-category-name-armory
   group: market
-  
+
 - type: cargoProduct
   id: ArmoryAdvancedRestraints
   icon:
     sprite: Clothing/OuterClothing/Misc/straight_jacket.rsi
     state: icon
   product: CrateArmoryAdvancedRestraints
+  cost: 1000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryCommandTrackingImplants
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateCommandTrackingImplants
   cost: 1000
   category: cargoproduct-category-name-armory
   group: market

@@ -31,7 +31,7 @@ public sealed partial class StoreMenu : DefaultWindow
     public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> Balance = new();
     public string CurrentCategory = string.Empty;
     public bool GridMode { get; set; } = false; // Starlight
-    private bool? _clientGridOverride = null; 
+    private bool? _clientGridOverride = null;
     private const int NamePreviewMax = 40;
     private const int DescriptionPreviewMax = 180; // Starlight end
     private List<ListingDataWithCostModifiers> _cachedListings = new();
@@ -84,7 +84,7 @@ public sealed partial class StoreMenu : DefaultWindow
         UpdateListing();
     }
 
-    public void UpdateListing() 
+    public void UpdateListing()
     {
         var sorted = _cachedListings.OrderBy(l => l.Priority)
                                     .ThenBy(l => l.Cost.Values.Sum());
@@ -162,7 +162,7 @@ public sealed partial class StoreMenu : DefaultWindow
                 AddListingGui(item);
             }
         }
-    } 
+    }
 
     private void ToggleViewMode() // Starlight
     {

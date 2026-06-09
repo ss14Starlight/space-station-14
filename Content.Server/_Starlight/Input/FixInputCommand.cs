@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Shared._Starlight.Input;
 using Content.Shared.Administration;
@@ -22,7 +21,7 @@ public sealed class FixInputCommand : ToolshedCommand
         _net.SendSystemNetworkMessage(new FixInputEvent(), ctx.Session!.Channel);
         ctx.WriteLine($"Refreshed {ctx.Session.Name}'s input context.");
     }
-    
+
     [CommandImplementation]
     public EntityUid FixInput(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
@@ -37,7 +36,7 @@ public sealed class FixInputCommand : ToolshedCommand
             ctx.WriteLine("There is no session associated with this entity.");
             return uid;
         }
-        
+
         _net.SendSystemNetworkMessage(new FixInputEvent(), session.Channel);
         ctx.WriteLine($"Refreshed {session.Name}'s input context.");
         return uid;

@@ -65,7 +65,7 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Changeling
-    
+
 - type: factionIcon
   id: VampireFaction
   isShaded: true

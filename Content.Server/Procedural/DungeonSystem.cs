@@ -22,6 +22,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Starlight.Salvage.VGRoid; // Starlight
 
 namespace Content.Server.Procedural;
 
@@ -40,6 +41,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly SharedMapSystem _maps = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private VGRoidSpawnValidationSystem _vgroidValidation = default!; // Starlight
 
     private readonly List<(Vector2i, Tile)> _tiles = new();
 
@@ -214,6 +216,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             _tile,
             _turf,
             _transform,
+            _vgroidValidation, // Starlight
             gen,
             grid,
             gridUid,
@@ -247,6 +250,7 @@ public sealed partial class DungeonSystem : SharedDungeonSystem
             _tile,
             _turf,
             _transform,
+            _vgroidValidation, // Starlight
             gen,
             grid,
             gridUid,

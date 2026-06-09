@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "sprited by Davyei (github) for moffstation",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "Davyei",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING",
+      "directions": 4,
+	  "copyright": "Davyei",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "equipped-INNERCLOTHING-monkey",
+      "directions": 4,
+	  "copyright": "Davyei",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "Davyei",
+	  "license": "CC-BY-SA-4.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "Davyei",
+	  "license": "CC-BY-SA-4.0"
+    }
+  ]
+}

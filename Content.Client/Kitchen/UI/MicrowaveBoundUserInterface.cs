@@ -14,13 +14,13 @@ namespace Content.Client.Kitchen.UI
     {
         // Starlight-start
         private IEntityManager _entManager;
-        
+
         private IGameTiming _timing = default!;
-        
+
         [ViewVariables]
         private EntityUid? _owner;
         // Starlight-end
-        
+
         [ViewVariables]
         private MicrowaveMenu? _menu;
 
@@ -43,11 +43,11 @@ namespace Content.Client.Kitchen.UI
         {
             base.Open();
             _menu = this.CreateWindow<MicrowaveMenu>();
-            
+
             // Starlight-start
             if (!_entManager.TryGetComponent<CookingDeviceComponent>(_owner, out var cookingDevice))
                 return;
-            
+
             if (_owner != null && cookingDevice.Safe)
                 _menu.AddCookingButtons();
             else
@@ -55,12 +55,12 @@ namespace Content.Client.Kitchen.UI
                 _menu.CookTimeInfoLabel.Text = "";
                 _menu.InstantCookButton.Visible = false;
             }
-            
+
             _menu.StopButton.OnPressed += _ => SendPredictedMessage(new MicrowaveStopCookMessage());
             _menu.StopButton.Visible = false;
-            
+
             // Starlight-end
-            
+
             _menu.StartButton.OnPressed += _ => SendPredictedMessage(new MicrowaveStartCookMessage());
             _menu.EjectButton.OnPressed += _ => SendPredictedMessage(new MicrowaveEjectMessage());
             _menu.IngredientsList.OnItemSelected += args =>
@@ -89,7 +89,7 @@ namespace Content.Client.Kitchen.UI
                 {
                     // args.Button is a normal button aka instant cook button
                     SendPredictedMessage(new MicrowaveSelectCookTimeMessage((int) selectedCookTime, 0));
-                    
+
                     // Starlight-start
                     if (cookingDevice.Safe)
                         _menu.CookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-cook-time-label", ("time", Loc.GetString("microwave-menu-instant-button")));
@@ -118,7 +118,7 @@ namespace Content.Client.Kitchen.UI
             var cookTime = cState.ActiveButtonIndex == 0
                 ? Loc.GetString("microwave-menu-instant-button")
                 : cState.CurrentCookTime.ToString();
-            
+
             // Starlight-start
             if (cState.IsMicrowaveSafe)
                 _menu.CookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-cook-time-label", ("time", cookTime));
@@ -133,21 +133,21 @@ namespace Content.Client.Kitchen.UI
             _menu.StopButton.Visible = cState.IsMicrowaveBusy; // Starlight-edit
             _menu.StopButton.Disabled = !cState.IsMicrowaveBusy; // Starlight-edit
             _menu.EjectButton.Disabled = cState.IsMicrowaveBusy || cState.ContainedSolids.Length == 0;
-            
+
             // Starlight-start
-            
+
             if (cState.IsMicrowaveSafe)
                 _menu.AddCookingButtons();
             else
                 _menu.ClearCookingButtons();
-            
+
             _menu.StartedCooktime = cState.StartedCookTime;
-            
+
             if (cState.StartedCookTime != TimeSpan.Zero)
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (_timing.CurTime - cState.StartedCookTime).ToString(@"mm\:ss")));
             else
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", cState.StartedCookTime.ToString(@"mm\:ss")));
-            
+
             // Starlight-end
 
 
@@ -161,15 +161,15 @@ namespace Content.Client.Kitchen.UI
                 var currentlySelectedTimeButton = (Button) _menu.CookTimeButtonVbox.GetChild(cState.ActiveButtonIndex - 1);
                 currentlySelectedTimeButton.Pressed = true;
             }
-            
+
             // Starlight-start
             foreach (Button children in _menu.CookTimeButtonVbox.Children)
             {
                 children.Disabled = cState.IsMicrowaveBusy;
             }
-            
+
             _menu.InstantCookButton.Disabled = cState.IsMicrowaveBusy;
-            
+
             // Starlight-end
 
             //Set the "micowave light" ui color to indicate if the microwave is busy or not

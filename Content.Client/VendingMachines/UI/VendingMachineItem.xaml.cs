@@ -9,7 +9,7 @@ namespace Content.Client.VendingMachines.UI;
 [GenerateTypedNameReferences]
 public sealed partial class VendingMachineItem : BoxContainer
 {
-    public VendingMachineItem(EntProtoId entProto, string name, uint amount = 0, int price = 0, bool showPrice = false) // 🌟Starlight🌟 
+    public VendingMachineItem(EntProtoId entProto, string name, uint amount = 0, int price = 0, bool showPrice = false) // 🌟Starlight🌟
     {
         RobustXamlLoader.Load(this);
 
@@ -20,13 +20,13 @@ public sealed partial class VendingMachineItem : BoxContainer
         SetAmount(amount);
         SetPrice(price, showPrice);
     }
-    // 🌟Starlight🌟 start 
+    // 🌟Starlight🌟 start
     public void SetName(string name)
     {
         NameLabel.Text = name;
     }
 
-    public void SetAmount(uint amount) 
+    public void SetAmount(uint amount)
     {
         AmountLabel.Text = $"[{amount}]";
         AmountLabel.FontColorOverride = StyleNano.GoodGreenFore;
@@ -42,7 +42,7 @@ public sealed partial class VendingMachineItem : BoxContainer
 
         PriceLabel.Visible = true;
         PriceLabel.Text = $" {price} \u20a1";
-        PriceLabel.FontColorOverride = StyleNano.NanoGold; 
+        PriceLabel.FontColorOverride = StyleNano.NanoGold;
         // 🌟Starlight🌟 end
     }
 }

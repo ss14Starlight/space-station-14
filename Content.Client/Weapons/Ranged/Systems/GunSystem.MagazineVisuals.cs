@@ -9,13 +9,13 @@ namespace Content.Client.Weapons.Ranged.Systems;
 public sealed partial class GunSystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    
+
     private void InitializeMagazineVisuals()
     {
         SubscribeLocalEvent<MagazineVisualsComponent, ComponentInit>(OnMagazineVisualsInit);
         SubscribeLocalEvent<MagazineVisualsComponent, AppearanceChangeEvent>(OnMagazineVisualsChange);
     }
-    
+
     public void SetMagState(EntityUid uid, string? magState, bool force = false, MagazineVisualsComponent? component = null)
     {
         if (!Resolve(uid, ref component, false))
@@ -25,7 +25,7 @@ public sealed partial class GunSystem
             return;
 
         component.MagState = magState;
-        
+
         if (TryComp<AppearanceComponent>(uid, out var appearance))
             _appearance.QueueUpdate(uid, appearance);
     }
@@ -89,7 +89,7 @@ public sealed partial class GunSystem
                 {
                     _sprite.LayerSetVisible((ent, sprite), GunVisualLayers.MagUnshaded, false);
                 }
-                
+
                 if (_sprite.LayerMapTryGet((ent, sprite), GunVisualLayers.Tip, out _, false)) //🌟Starlight🌟
                 {
                     _sprite.LayerSetVisible((ent, sprite), GunVisualLayers.Tip, false);

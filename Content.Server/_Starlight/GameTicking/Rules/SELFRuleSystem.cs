@@ -1,12 +1,8 @@
-using Content.Shared.Hands.EntitySystems;
 using Content.Server.Antag;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
-using Content.Shared.Humanoid;
-using Content.Shared.Roles.Components;
-using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared._Starlight.Roles.Components;
+using Content.Shared._Starlight.Antags.SELF;
 using SELFRuleComponent = Content.Server._Starlight.GameTicking.Rules.Components.SELFRuleComponent;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
@@ -14,7 +10,6 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -29,25 +24,28 @@ public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
     private void AfterAntagSelected(Entity<SELFRuleComponent> mindId, ref AfterAntagEntitySelectedEvent args)
     {
         var ent = args.EntityUid;
-        
+
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
+
+        // Mark the player entity as a SELF agent for whitelists/blacklists
+        EnsureComp<SELFAgentComponent>(ent);
     }
 
     // Character screen briefing
     private void OnGetBriefing(Entity<SELFAgentRoleComponent> role, ref GetBriefingEvent args)
     {
         var ent = args.Mind.Comp.OwnedEntity;
-        
+
         if (ent == null)
             return;
-        
+
         args.Append(MakeBriefing(ent.Value));
     }
 
-    private string MakeBriefing(EntityUid ent)
+    private string MakeBriefing(EntityUid _)
     {
         var briefing = Loc.GetString("self-role-greeting-human");
-        
+
             briefing += "\n \n" + Loc.GetString("self-role-greeting-equipment") + "\n";
 
         return briefing;

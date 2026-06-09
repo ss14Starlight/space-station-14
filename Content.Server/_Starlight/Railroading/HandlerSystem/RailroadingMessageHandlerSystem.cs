@@ -1,11 +1,7 @@
 ﻿using Content.Server.Chat.Managers;
-using Content.Server.Fax;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Chat;
-using Content.Shared.DeviceNetwork;
-using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.Fax.Components;
 using Robust.Server.Player;
 using Robust.Shared.Random;
 
@@ -23,7 +19,7 @@ public sealed partial class RailroadingMessageHandlerSystem : EntitySystem
         SubscribeLocalEvent<RailroadMessageOnChosenComponent, RailroadingCardChosenEvent>(OnChosen);
     }
 
-    private void OnChosen(Entity<RailroadMessageOnChosenComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnChosen(Entity<RailroadMessageOnChosenComponent> ent, ref RailroadingCardChosenEvent args)
     {
         if (!_players.TryGetSessionByEntity(args.Subject, out var player))
             return;

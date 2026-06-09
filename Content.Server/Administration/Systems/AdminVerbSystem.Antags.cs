@@ -1,19 +1,25 @@
+using Content.Server._Starlight.Administration.Systems;
+using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.Antag;
+using Content.Server.Clothing.Systems;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Speech.Components; // Starlight
+using Content.Server._Starlight.GameTicking.Rules.Components; // Starlight
 using Content.Server.Zombies;
+using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Administration;
-using Content.Server.Clothing.Systems;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Components;
 using Content.Shared.Verbs;
+using Robust.Shared.Audio; // Starlight
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Roles.Components;
-using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Shared._Starlight.Shadekin;
 using Content.Server.Speech.Components; // Starlight
 using Robust.Shared.Audio; // Starlight
@@ -26,6 +32,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly ZombieSystem _zombie = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
     [Dependency] private readonly OutfitSystem _outfit = default!;
+    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; //Starlight
 
     private static readonly EntProtoId DefaultTraitorRule = "Traitor";
     private static readonly EntProtoId DefaultInitialInfectedRule = "Zombie";
@@ -38,6 +45,7 @@ public sealed partial class AdminVerbSystem
     private static readonly EntProtoId DefaultNinjaRule = "NinjaSpawn";
     private static readonly ProtoId<StartingGearPrototype> PirateGearId = "PirateGear";
     private static readonly EntProtoId DefaultVampireRule = "Vampire"; //Starlight
+    private static readonly EntProtoId DefaultDevilRule = "Devil"; // starlight
     private static readonly EntProtoId DefaultBrighteyeRule = "Brighteye"; //Starlight
 	private static readonly EntProtoId DefaultSELFRule = "SiliconLiberation"; //Starlight
 
@@ -66,6 +74,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<TraitorRuleComponent>(targetPlayer, DefaultTraitorRule);
+                _autolog.LogToDiscord(string.Join(": ", traitorName, Loc.GetString("admin-verb-make-traitor")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", traitorName, Loc.GetString("admin-verb-make-traitor")),
@@ -81,6 +90,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<ZombieRuleComponent>(targetPlayer, DefaultInitialInfectedRule);
+                _autolog.LogToDiscord(string.Join(": ", initialInfectedName, Loc.GetString("admin-verb-make-initial-infected")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", initialInfectedName, Loc.GetString("admin-verb-make-initial-infected")),
@@ -96,6 +106,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _zombie.ZombifyEntity(args.Target);
+                _autolog.LogToDiscord(string.Join(": ", zombieName, Loc.GetString("admin-verb-make-zombie")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", zombieName, Loc.GetString("admin-verb-make-zombie")),
@@ -111,6 +122,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<NukeopsRuleComponent>(targetPlayer, DefaultNukeOpRule);
+                _autolog.LogToDiscord(string.Join(": ", nukeOpName, Loc.GetString("admin-verb-make-nuclear-operative")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", nukeOpName, Loc.GetString("admin-verb-make-nuclear-operative")),
@@ -127,6 +139,7 @@ public sealed partial class AdminVerbSystem
             {
                 // pirates just get an outfit because they don't really have logic associated with them
                 _outfit.SetOutfit(args.Target, PirateGearId);
+                _autolog.LogToDiscord(string.Join(": ", pirateName, Loc.GetString("admin-verb-make-pirate")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", pirateName, Loc.GetString("admin-verb-make-pirate")),
@@ -142,6 +155,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<RevolutionaryRuleComponent>(targetPlayer, DefaultRevsRule);
+                _autolog.LogToDiscord(string.Join(": ", headRevName, Loc.GetString("admin-verb-make-head-rev")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", headRevName, Loc.GetString("admin-verb-make-head-rev")),
@@ -157,6 +171,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<ThiefRuleComponent>(targetPlayer, DefaultThiefRule);
+                _autolog.LogToDiscord(string.Join(": ", thiefName, Loc.GetString("admin-verb-make-thief")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", thiefName, Loc.GetString("admin-verb-make-thief")),
@@ -172,6 +187,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, DefaultChangelingRule);
+                _autolog.LogToDiscord(string.Join(": ", changelingName, Loc.GetString("admin-verb-make-changeling-wip")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", changelingName, Loc.GetString("admin-verb-make-changeling-wip")), //SL edit: -wip as we have lings allready
@@ -194,6 +210,7 @@ public sealed partial class AdminVerbSystem
                 paradoxCloneRuleComp.OriginalBody = args.Target; // override the target player
 
                 _gameTicker.StartGameRule(ruleEnt);
+                _autolog.LogToDiscord(string.Join(": ", paradoxCloneName, Loc.GetString("admin-verb-make-paradox-clone")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", paradoxCloneName, Loc.GetString("admin-verb-make-paradox-clone")),
@@ -209,6 +226,7 @@ public sealed partial class AdminVerbSystem
             {
                 // Wizard has no rule components as of writing, but I gotta put something here to satisfy the machine so just make it wizard mind rule :)
                 _antag.ForceMakeAntag<WizardRoleComponent>(targetPlayer, DefaultWizardRule);
+                _autolog.LogToDiscord(string.Join(": ", wizardName, Loc.GetString("admin-verb-make-wizard")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", wizardName, Loc.GetString("admin-verb-make-wizard")),
@@ -224,6 +242,7 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<NinjaRoleComponent>(targetPlayer, DefaultNinjaRule);
+                _autolog.LogToDiscord(string.Join(": ", ninjaName, Loc.GetString("admin-verb-make-space-ninja")), player.Name); //Starlight
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", ninjaName, Loc.GetString("admin-verb-make-space-ninja")),
@@ -232,7 +251,7 @@ public sealed partial class AdminVerbSystem
 
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
-
+        /// Starlight START
         Verb ling = new()
         {
             Text = Loc.GetString("admin-verb-text-make-changeling"),
@@ -241,12 +260,13 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<SLChangelingRuleComponent>(targetPlayer, "SLChangeling");
+                _autolog.LogToDiscord(Loc.GetString("admin-verb-make-changeling"), player.Name);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-changeling"),
         };
         args.Verbs.Add(ling);
-/// Starlight START
+
         Verb vampire = new()
         {
             Text = Loc.GetString("admin-verb-text-make-vampire"),
@@ -255,12 +275,13 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
+                _autolog.LogToDiscord(Loc.GetString("admin-verb-make-vampire"), player.Name);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-vampire"),
         };
         args.Verbs.Add(vampire);
-		
+
 		var selfagentName = Loc.GetString("admin-verb-text-make-selfagent");
         Verb selfagent = new()
         {
@@ -270,11 +291,27 @@ public sealed partial class AdminVerbSystem
             Act = () =>
             {
                 _antag.ForceMakeAntag<SELFRuleComponent>(targetPlayer, DefaultSELFRule);
+                _autolog.LogToDiscord(string.Join(": ", selfagentName, Loc.GetString("admin-verb-make-selfagent")), player.Name);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", selfagentName, Loc.GetString("admin-verb-make-selfagent")),
         };
         args.Verbs.Add(selfagent);
+
+        Verb devil = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-devil"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Effects/fire.rsi"), "fire"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<DevilRuleComponent>(targetPlayer, DefaultDevilRule);
+                _autolog.LogToDiscord(string.Join(": ", Loc.GetString("admin-verb-text-make-devil"), Loc.GetString("admin-verb-make-devil")), player.Name);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-devil")
+        };
+        args.Verbs.Add(devil);
 
         if (HasComp<ShadekinComponent>(args.Target))
         {
@@ -287,6 +324,7 @@ public sealed partial class AdminVerbSystem
                 {
                     _gameTicker.StartGameRule("TheDarkMap"); // The Dark should always be spawned for any brighteye.
                     _antag.ForceMakeAntag<BrighteyeRuleComponent>(targetPlayer, DefaultBrighteyeRule);
+                    _autolog.LogToDiscord(Loc.GetString("admin-verb-make-brighteye"), player.Name);
                 },
                 Impact = LogImpact.High,
                 Message = Loc.GetString("admin-verb-make-brighteye"),
@@ -317,11 +355,12 @@ public sealed partial class AdminVerbSystem
                     Loc.GetString("pirate-crew-briefing"),
                     null,
                     new SoundPathSpecifier("/Audio/Ambience/Antag/pirate_start.ogg"));
+                _autolog.LogToDiscord(string.Join(": ", pirateSLName, Loc.GetString("admin-verb-make-pirate-sl")), player.Name);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", pirateSLName, Loc.GetString("admin-verb-make-pirate-sl")),
         };
         args.Verbs.Add(pirateSL);
-/// Starlight END
+        // STARLIGHT END
     }
 }

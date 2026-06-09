@@ -135,7 +135,7 @@ public sealed partial class LockComponent : Component
     // Starlight Start
     [DataField]
     public bool PopupMessage = true;
-    
+
     [DataField]
     public bool PowerNeeded = false;
 

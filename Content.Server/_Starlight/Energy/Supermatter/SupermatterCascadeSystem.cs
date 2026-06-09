@@ -15,7 +15,7 @@ public sealed class SupermatterCascadeSystem : EntitySystem
     [Dependency] private readonly TurfSystem _turf = default!;
 
     private readonly LinkedList<Branch> _branches = [];
-    private LinkedListNode<Branch>? node;
+    private LinkedListNode<Branch>? _node;
     private readonly string[] _prototypes = ["Cascad1", "Cascad2", "Cascad3", "Cascad4", "Cascad5", "Cascad6"];
     public override void Initialize()
     {
@@ -23,16 +23,16 @@ public sealed class SupermatterCascadeSystem : EntitySystem
 
     public override void Update(float frameTime)
     {
-        node ??= _branches.First;
-        if (node == null) return;
-        var branch = node.Value;
-        var nextNode = node.Next;
+        _node ??= _branches.First;
+        if (_node == null) return;
+        var branch = _node.Value;
+        var nextNode = _node.Next;
 
         branch.Lifetime--;
         if (branch.Lifetime <= 0)
         {
-            _branches.Remove(node);
-            node = nextNode;
+            _branches.Remove(_node);
+            _node = nextNode;
             return;
         }
 
@@ -64,8 +64,8 @@ public sealed class SupermatterCascadeSystem : EntitySystem
             _branches.AddLast(leftBranch);
             _branches.AddLast(rightBranch);
 
-            _branches.Remove(node);
-            node = nextNode;
+            _branches.Remove(_node);
+            _node = nextNode;
             return;
         }
 
@@ -75,15 +75,15 @@ public sealed class SupermatterCascadeSystem : EntitySystem
             || !_map.TryGetTileRef(grid, gridComp, branch.Coordinates, out var tileRef)
             || _turf.IsSpace(tileRef))
         {
-            _branches.Remove(node);
-            node = nextNode;
+            _branches.Remove(_node);
+            _node = nextNode;
             return;
         }
         branch.Coordinates = branch.Coordinates.SnapToGrid(gridComp);
 
         SpawnAttachedTo(_random.Pick(_prototypes), branch.Coordinates);
 
-        node = nextNode;
+        _node = nextNode;
     }
 
     public void StartCascade(EntityCoordinates coordinates)

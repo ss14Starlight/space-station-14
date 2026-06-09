@@ -72,5 +72,6 @@
     enabled: false
     radius: 3
     color: red
+    castShadows: false #SL lighting optimization
   - type: StaticPrice
     price: 200

@@ -13,6 +13,7 @@
     - BorgModuleScience #until sciborgs are added
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleInflatable
   - BorgModuleArtifact
@@ -44,6 +45,7 @@
     - BorgModuleEngineering
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleConstruction
   - BorgModuleRCD
@@ -59,6 +61,9 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - IPC
+    - Hybrid
+  - type: ShowAccessReaderSettings
   # Starlight end
 
   # Visual
@@ -93,6 +98,7 @@
     - BorgModuleMining #STARLIGHT
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleMining
   - BorgModuleTraversal
@@ -135,6 +141,7 @@
     - BorgModuleJanitor
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleCleaning
   - BorgModuleCustodial
@@ -168,6 +175,7 @@
     - BorgModuleMedical
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleChemical
   - BorgModuleTopicals
@@ -182,9 +190,11 @@
   - type: ShowHealthBars
     damageContainers:
     - Biological
+    - Hybrid # Starlight, Protogens
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+    - Hybrid # Starlight, Protogens
 
   # Visual
   inventoryTemplateId: borgDutch
@@ -222,16 +232,17 @@
     - BorgModuleService
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool # Starlight
   - BorgModuleMusique
-  # Starlight start 
+  # Starlight start
   - BorgModuleBartending
   - BorgModuleCooking
   - BorgModuleBotany
   - BorgModuleBooks
   # Starlight end
   - BorgModuleClowning
-  
+
   radioChannels:
   - Science
   - Service

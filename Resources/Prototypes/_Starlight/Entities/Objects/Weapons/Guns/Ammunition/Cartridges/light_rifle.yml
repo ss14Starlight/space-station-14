@@ -16,7 +16,7 @@
 - type: entity
   id: CartridgeLightRifleImprovised
   name: improvised cartridge (.30 rifle)
-  description: A handmade rifle bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective. 
+  description: A handmade rifle bullet, uses phosphorus as a propellent instead of gunpowder which makes it much less effective.
   parent: [BaseCartridgeLightRifleSP, BaseMinorContraband]
   components:
   - type: CartridgeAmmo

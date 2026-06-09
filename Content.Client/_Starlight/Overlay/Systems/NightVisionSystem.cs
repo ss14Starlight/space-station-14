@@ -1,13 +1,9 @@
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
-using Content.Shared.Flash.Components;
 using Robust.Shared.Prototypes;
-using Content.Shared.Inventory.Events;
 using Content.Shared.Starlight.Overlay;
 
 namespace Content.Client._Starlight.Overlay;
@@ -23,6 +19,7 @@ public sealed class NightVisionSystem : EntitySystem
     private NightVisionOverlay _overlay = default!;
     [ViewVariables]
     private EntityUid? _effect = null;
+    private const string ModernNightVisionShaderPrototype = "ModernNightVisionShader";
 
     public override void Initialize()
     {
@@ -36,7 +33,7 @@ public sealed class NightVisionSystem : EntitySystem
 
         SubscribeLocalEvent<NightVisionComponent, FlashImmunityCheckEvent>(OnFlashImmunityChanged);
 
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>("ModernNightVisionShader"));
+        _overlay = new(_prototypeManager.Index<ShaderPrototype>(ModernNightVisionShaderPrototype));
     }
 
     private void OnFlashImmunityChanged(Entity<NightVisionComponent> ent, ref FlashImmunityCheckEvent args)
@@ -52,24 +49,16 @@ public sealed class NightVisionSystem : EntitySystem
     }
 
     private void OnPlayerAttached(Entity<NightVisionComponent> ent, ref LocalPlayerAttachedEvent args)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     private void OnPlayerDetached(Entity<NightVisionComponent> ent, ref LocalPlayerDetachedEvent args)
-    {
-        AttemptRemoveVision(ent.Owner, true);
-    }
+        => AttemptRemoveVision(ent.Owner, true);
 
     private void OnVisionInit(Entity<NightVisionComponent> ent, ref ComponentInit args)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     private void OnVisionShutdown(Entity<NightVisionComponent> ent, ref ComponentShutdown args)
-    {
-        AttemptRemoveVision(ent.Owner);
-    }
+        => AttemptRemoveVision(ent.Owner);
 
     private void AttemptAddVision(EntityUid uid)
     {

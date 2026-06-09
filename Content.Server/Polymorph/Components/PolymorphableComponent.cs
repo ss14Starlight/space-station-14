@@ -25,13 +25,13 @@ public sealed partial class PolymorphableComponent : Component
     /// </summary>
     [DataField]
     public List<ProtoId<PolymorphPrototype>>? InnatePolymorphs;
-    
+
     //Starlight begin
     /// <summary>
     /// Allows creating new polymorphs on the fly without a prototype.
     /// </summary>
     [DataField] public List<PolymorphConfiguration>? InnatePolymorphConfigs;
-    
+
     /// <summary>
     /// Config-only actions that lack a prototype.
     /// </summary>

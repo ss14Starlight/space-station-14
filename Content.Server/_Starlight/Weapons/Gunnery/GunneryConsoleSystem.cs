@@ -1,7 +1,10 @@
+using System.Linq;
 using System.Numerics;
+using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.UserInterface;
 using Content.Shared._Starlight.Weapons.Gunnery;
+using Content.Shared.Physics;
+using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Weapons.Ranged.Components;
@@ -9,6 +12,8 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Weapons.Gunnery;
@@ -21,14 +26,24 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// </summary>
 public sealed class GunneryConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem   _ui        = default!;
-    [Dependency] private readonly ShuttleConsoleSystem  _console   = default!;
-    [Dependency] private readonly SharedGunSystem       _gun       = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
+    [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming           _timing    = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
-    private const float UpdateInterval = 0.25f;
-    private float _updateTimer;
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(250);
+
+    /// <summary>
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
+    /// </summary>
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
@@ -52,12 +67,6 @@ public sealed class GunneryConsoleSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        _updateTimer += frameTime;
-        if (_updateTimer < UpdateInterval)
-            return;
-
-        _updateTimer = 0f;
-
         var query = AllEntityQuery<GunneryConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
             UpdateState(uid, comp);
@@ -66,9 +75,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
     // ── Event handlers ─────────────────────────────────────────────────────
 
     private void OnStartup(EntityUid uid, GunneryConsoleComponent comp, ComponentStartup args)
-    {
-        UpdateState(uid, comp);
-    }
+        => UpdateState(uid, comp);
 
     /// <summary>
     /// When a new guided projectile spawns, claim it for the console that most
@@ -85,12 +92,47 @@ public sealed class GunneryConsoleSystem : EntitySystem
                 continue;
 
             // Claim this projectile and immediately enable tracking toward the fire target.
-            guided.Controller      = consoleUid;
-            guided.SteeringTarget  = consoleComp.LastFireTargetPos;
-            guided.Active          = true;
+            guided.Controller = consoleUid;
+            guided.SteeringTarget = consoleComp.LastFireTargetPos;
+            guided.Active = true;
             consoleComp.TrackedGuidedProjectile = uid;
             break;
         }
+    }
+
+    private bool CannonBlocked(EntityUid cannon, float maxRange, Vector2 cannonPos, Vector2 targetPos)
+    {
+        // Direction should point from the cannon toward the target.
+        var direction = targetPos - cannonPos;
+        var gridUid = Transform(cannon).GridUid;
+
+        if (direction.Length() <= 0 || gridUid is null)
+            return false;
+
+        var ray = new CollisionRay(cannonPos, direction.Normalized(), collisionMask: (int)(CollisionGroup.Opaque | CollisionGroup.Impassable));
+        var rayDistance = Math.Min(direction.Length(), maxRange);
+
+        bool IgnoreList(EntityUid entity, EntityUid source)
+        {
+            if (entity == source)
+                return true;
+
+            if (Transform(entity).GridUid != gridUid)
+                return true;
+
+            return false;
+        }
+
+        var raycastResults = _physics.IntersectRayWithPredicate(
+            Transform(cannon).MapID,
+            ray,
+            cannon,
+            IgnoreList,
+            rayDistance,
+            returnOnFirstHit: true
+        ).ToList();
+
+        return raycastResults.Count != 0;
     }
 
     private void OnFireMessage(EntityUid uid, GunneryConsoleComponent comp, GunneryConsoleFireMessage msg)
@@ -112,10 +154,13 @@ public sealed class GunneryConsoleSystem : EntitySystem
             _transform.SetWorldRotation(cannon, aimAngle);
         }
 
+        if (TryComp<RadarConsoleComponent>(uid, out var radar) && CannonBlocked(cannon, radar.MaxRange, cannonMapPos.Position, targetMapPos.Position))
+            return;
+
         // Record fire time and target before shooting so OnGuidedProjectileStartup can claim
         // the spawned entity and activate tracking toward the clicked position.
-        comp.LastFireTime       = _timing.CurTime;
-        comp.LastFireTargetPos  = targetMapPos.Position;
+        comp.LastFireTime = _timing.CurTime;
+        comp.LastFireTargetPos = targetMapPos.Position;
 
         // Pass cannon as the "user" so AttemptShoot uses the cannon's world position as the
         // projectile spawn origin instead of the player's position.
@@ -140,8 +185,8 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
         var targetMapCoords = _transform.ToMapCoordinates(GetCoordinates(msg.Target));
         guided.SteeringTarget = targetMapCoords.Position;
-        guided.Active         = true;
-        guided.Controller     = uid;
+        guided.Active = true;
+        guided.Controller = uid;
     }
 
     // ── State building ─────────────────────────────────────────────────────
@@ -151,29 +196,67 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (!_ui.HasUi(uid, GunneryConsoleUiKey.Key))
             return;
 
-        var xform             = Transform(uid);
+        var shouldIdleUpdate = comp.LastInterfaceUpdateTime + _idleUpdateInterval  < _timing.CurTime;
+        var shouldActiveUpdate = comp.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _ui.IsUiOpen(uid, GunneryConsoleUiKey.Key);
+        if (!shouldIdleUpdate && !shouldActiveUpdate)
+            return;
+        comp.LastInterfaceUpdateTime = _timing.CurTime;
+
+        var xform = Transform(uid);
+
+        // Check for Server.
+        var gridId = xform.GridUid;
+        var consoleMapCoords = _transform.GetMapCoordinates(uid);
+        var serverfound = false;
+
+        if (gridId != null && HasComp<MapGridComponent>(gridId.Value))
+        {
+            var gunQuery = AllEntityQuery<GunneryServerComponent, TransformComponent>();
+            while (gunQuery.MoveNext(out var serverUid, out _, out var serverXform))
+            {
+                if (serverXform.GridUid != gridId)
+                    continue;
+
+                var gunMapCoords = _transform.GetMapCoordinates(serverUid, serverXform);
+                if (gunMapCoords.MapId != consoleMapCoords.MapId)
+                    continue;
+
+                if (_power.IsPowered(serverUid))
+                {
+                    serverfound = true;
+                    break;
+                }
+            }
+        }
+
+        if (!serverfound)
+        {
+            _ui.SetUiState(uid, GunneryConsoleUiKey.Key,
+                new GunneryConsoleBoundUserInterfaceState(_console.GetNavState(uid), _console.GetDockingPortStates(), new List<CannonBlipData>(), null, false));
+
+            return;
+        }
+
         EntityCoordinates? coordinates = null;
-        Angle?             angle       = null;
+        Angle? angle = null;
 
         if (xform.ParentUid == xform.GridUid)
         {
             coordinates = xform.Coordinates;
-            angle       = xform.LocalRotation;
+            angle = xform.LocalRotation;
         }
 
-        var docks    = _console.GetAllDocks();
+        var dockingPortStates = _console.GetDockingPortStates();
         NavInterfaceState navState;
 
         if (coordinates != null && angle != null)
-            navState = _console.GetNavState(uid, docks, coordinates.Value, angle.Value);
+            navState = _console.GetNavState(uid, coordinates.Value, angle.Value);
         else
-            navState = _console.GetNavState(uid, docks);
-
-        navState.MaxRange = comp.MaxRange;
+            navState = _console.GetNavState(uid);
 
         // Populate standard radar blips (rockets, shells, etc.)
-        var consoleMapCoords = _transform.GetMapCoordinates(uid);
-        var maxRangeSq       = comp.MaxRange * comp.MaxRange;
+        var maxRangeSq = navState.MaxRange * navState.MaxRange;
 
         var blipQuery = AllEntityQuery<RadarBlipComponent, TransformComponent>();
         while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
@@ -194,9 +277,26 @@ public sealed class GunneryConsoleSystem : EntitySystem
                 blip.Shape));
         }
 
+        var laserQuery = AllEntityQuery<RadarLaserTrackerComponent, TransformComponent>();
+        while (laserQuery.MoveNext(out var laserUid, out var tracker, out var laserXform))
+        {
+            if (laserXform.MapID != consoleMapCoords.MapId)
+                continue;
+            foreach (var (origin, dir, _) in tracker.Traces)
+            {
+                // Only show traces from guns within radar range.
+                if ((origin.Position - consoleMapCoords.Position).LengthSquared() > maxRangeSq)
+                    continue;
+                navState.Lasers.Add(new RadarLaserData(
+                    GetNetCoordinates(laserXform.Coordinates),
+                    dir,
+                    tracker.MaxRange,
+                    tracker.LaserColor));
+            }
+        }
+
         // Build cannon blip list: all GunneryTrackable guns on the same grid.
         var cannons = new List<CannonBlipData>();
-        var gridId  = xform.GridUid;
 
         if (gridId != null && HasComp<MapGridComponent>(gridId.Value))
         {
@@ -228,10 +328,10 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
         var trackedNet = comp.TrackedGuidedProjectile.HasValue
             ? GetNetEntity(comp.TrackedGuidedProjectile.Value)
-            : (NetEntity?) null;
+            : (NetEntity?)null;
 
         _ui.SetUiState(uid, GunneryConsoleUiKey.Key,
-            new GunneryConsoleBoundUserInterfaceState(navState, cannons, trackedNet));
+            new GunneryConsoleBoundUserInterfaceState(navState, dockingPortStates, cannons, trackedNet));
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────

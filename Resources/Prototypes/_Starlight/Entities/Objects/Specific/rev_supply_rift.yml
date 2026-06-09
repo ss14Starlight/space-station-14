@@ -31,6 +31,7 @@
     radius: 10.0
     energy: 5.0
     netsync: false
+    castShadows: false #SL lighting optimization
   - type: NavMapBeacon
     color: "#ff0000"
     text: supply rift

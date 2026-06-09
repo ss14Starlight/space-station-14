@@ -20,11 +20,14 @@
       enum.EdgeConnectionVisuals.ConnectionMask:
         console:
           None: { state: television}
+  - type: EdgeConnection
+    connectionKey: other
   # Starlight End
   - type: PointLight
-    radius: 1.5
-    energy: 3.0
+    radius: 2.0 #SL Edit
+    energy: 1.5 #SL Edit
     color: "#b89f25"
+    castShadows: false #SL lighting optimization
   - type: Fixtures
     fixtures:
       fix1:

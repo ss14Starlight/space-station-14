@@ -98,7 +98,7 @@ public abstract partial class SharedNullSpaceSystem : EntitySystem
     {
         if (HasComp<NullSpaceBlockerComponent>(args.OtherEntity))
             return;
-            
+
         args.Cancelled = true;
     }
 

@@ -78,8 +78,8 @@
   - type: DeleteOnTrigger
   - type: StaticPrice
     price: 0
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.6
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg

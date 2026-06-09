@@ -7,9 +7,11 @@
     color: "#c64c05"
     messageWrapOverrides:
       Speak: chat-sign-language-message-wrap
-      Whisper: chat-sign-language-whisper-wrap
+      Whisper: chat-chittin-whisper-wrap
     speechVerbOverrides:
-    - chat-speech-verb-chittin-1
+      - chat-speech-verb-chittin-1
+      - chat-speech-verb-chittin-2
+      - chat-speech-verb-chittin-3
   obfuscation:
     !type:ReplacementObfuscation
     replacement:

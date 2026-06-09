@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 64
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "states": [
+        {
+            "name": "base-disabled",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "base-enabled",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15]]
+        },
+        {
+            "name": "overlay",
+            "copyright": "A custom item by AftrLite (Github).",
+            "delays": [[0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075, 0.075]]
+        }
+    ]
+}

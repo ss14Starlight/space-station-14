@@ -1,6 +1,7 @@
 // Starlight
 
 using System.Linq;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Part;
 using Content.Shared.Starlight;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,7 @@ namespace Content.Shared.Humanoid
         public CyberneticImplantType Type;
         public List<string> AttachedParts;
 
-        // Search for all entity prototypes that have 
+        // Search for all entity prototypes that have
         public static List<CyberneticImplant> GetAllCybernetics(IPrototypeManager _prototypeManager){
             return _prototypeManager.EnumeratePrototypes<EntityPrototype>()
                 .Where(p => !p.Abstract)
@@ -35,10 +36,10 @@ namespace Content.Shared.Humanoid
                                 ID = p.ID,
                                 Name = p.Name,
                                 Cost = implantComp.Cost,
-                                Type = p.Parents.Contains("PartCyber") ? CyberneticImplantType.Limb 
-                                        : p.Parents.Contains("OrganCyber") ? CyberneticImplantType.Organ 
+                                Type = p.Parents.Contains("PartCyber") ? CyberneticImplantType.Limb
+                                        : p.Parents.Contains("OrganCyber") ? CyberneticImplantType.Organ
                                             : CyberneticImplantType.Undefined,
-                                AttachedParts = p.Components.TryGetValue("WithAttachedBodyParts", out var parts) && parts.Component is WithAttachedBodyPartsComponent partComp ? 
+                                AttachedParts = p.Components.TryGetValue("WithAttachedBodyParts", out var parts) && parts.Component is WithAttachedBodyPartsComponent partComp ?
                                                     partComp.Parts.Values.Select(p => (string)p).Distinct().ToList() : []
                                 };
                     } else {

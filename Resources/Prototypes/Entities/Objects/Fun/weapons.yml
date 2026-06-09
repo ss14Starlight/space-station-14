@@ -23,6 +23,18 @@
   - type: Item
     size: Normal
     sprite: Objects/Fun/Foam/foam_crossbow.rsi
+    # starlight start
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 1
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: WeakHit
+  - type: AltFireMelee
+    # starlight end
   - type: Gun
     fireRate: 0.5
     selectedMode: SemiAuto
@@ -49,6 +61,12 @@
   description: A premium foam rifle of the highest quality. Its plastic feels rugged, and its mechanisms sturdy.
   components:
   # Starlight start
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 1
+    soundHit:
+      collection: WeakHit
   - type: KnockbackByUserTag
     doestContain:
       Resomi:
@@ -114,6 +132,18 @@
     - Sidearm
     - ToySidearm
   - type: AmmoCounter
+    # starlight start
+  - type: MeleeWeapon
+    wideAnimationRotation: 0
+    damage:
+      types:
+        Blunt: 1
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      collection: WeakHit
+  - type: AltFireMelee
+    # starlight end
   - type: Gun
     selectedMode: SemiAuto
     availableModes:

@@ -32,6 +32,8 @@ using Content.Shared.Atmos.Components;
 using System.Linq;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
+using Content.Server._Starlight.NPC.Queries.Considerations;
+using Content.Shared.Projectiles;
 
 namespace Content.Server.NPC.Systems;
 
@@ -382,6 +384,15 @@ public sealed class NPCUtilitySystem : EntitySystem
                         return 0f;
 
                     return temperature.CurrentTemperature <= con.MinTemp ? 1f : 0f;
+                }
+            // Starlight
+            case PDTargetIFFCon con:
+                {
+                    if (TryComp<ProjectileComponent>(targetUid, out var projectile) && projectile.Shooter is not null)
+                        if (Transform(owner).GridUid == Transform(projectile.Shooter.Value).GridUid)
+                            return 0f;
+
+                    return 1f;
                 }
             default:
                 throw new NotImplementedException();

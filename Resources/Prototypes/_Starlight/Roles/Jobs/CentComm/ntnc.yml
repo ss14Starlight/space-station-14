@@ -6,15 +6,15 @@
     shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterHardsuitNTNCConsortium
     id: NTNCCSPDA
-    eyes: ClothingEyesGlassesBlueShield
-    ears: ClothingHeadsetAltCentComNTNC
+    eyes: ClothingEyesGlassesNTNC
+    ears: ClothingHeadsetAltNTNC
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltNTNCRigFilled
     gloves: ClothingHandsGlovesCombat
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm
 
 - type: startingGear
@@ -26,15 +26,15 @@
     head: ClothingHeadHatBeretCommand
     outerClothing: ClothingOuterHardsuitNTNCConsortium
     id: NTNCCSPDA
-    eyes: ClothingEyesGlassesBlueShield
-    ears: ClothingHeadsetAltCentComNTNC
+    eyes: ClothingEyesGlassesNTNC
+    ears: ClothingHeadsetAltNTNC
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltNTNCRigFilled
     gloves: ClothingHandsGlovesCombat
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm
 
 - type: startingGear
@@ -46,15 +46,15 @@
     head: ClothingHeadHelmetHardsuitNTNCConsortium
     outerClothing: ClothingOuterVestNTNC
     id: NTNCCSPDA
-    eyes: ClothingEyesGlassesBlueShield
-    ears: ClothingHeadsetAltCentComNTNC
+    eyes: ClothingEyesGlassesNTNC
+    ears: ClothingHeadsetAltNTNC
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltNTNCRigFilled
     gloves: ClothingHandsGlovesCombat
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm
 
 - type: startingGear
@@ -65,13 +65,13 @@
     shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterHardsuitNTNCConsortiumMedic
     id: NTNCCSPDA
-    eyes: ClothingEyesGlassesBlueShield
-    ears: ClothingHeadsetAltCentComNTNC
+    eyes: ClothingEyesGlassesNTNC
+    ears: ClothingHeadsetAltNTNC
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltNTNCRigFilledMed
     gloves: ClothingHandsGlovesCombat
     suitstorage: WeaponSubMachineGunWt550
     pocket1: MindShieldImplanter
     pocket2: DeathRattleImplanterCentcomm
-  inhand: 
+  inhand:
   - RadioImplanterCentcomm

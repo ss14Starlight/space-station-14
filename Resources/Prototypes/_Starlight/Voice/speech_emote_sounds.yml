@@ -255,17 +255,17 @@
     Hew:
       collection: Hew
     Gasp:
-      collection: FemaleGasp
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
     Sigh:
-      collection: FemaleSigh
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
     Crying:
       collection: ResomiCry
     Cough:
-      collection: FemaleCoughs
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
     Yawn:
-      collection: FemaleYawn
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg
     Hisses:
       collection: FelionoidHisses
     Purr:
@@ -581,3 +581,56 @@
       collection: Hew
     Honk:
       collection: BikeHorn
+
+# cat + moth sounds because *yes*
+- type: emoteSounds
+  id: UnisexCatMoth
+  params:
+    variation: 0.125
+  sounds:
+    Buzz:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+    Scream:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+    Laugh:
+      path: /Audio/Voice/Moth/moth_laugh.ogg
+    Chitter:
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+    Squeak:
+      path: /Audio/Voice/Moth/moth_squeak.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Honk:
+      collection: BikeHorn
+    Crying:
+      /Audio/_Starlight/Voice/Moth/moth_cry.ogg
+    Cough:
+      /Audio/_Starlight/Voice/Moth/moth_cough.ogg
+    Yawn:
+      /Audio/_Starlight/Voice/Moth/moth_yawn.ogg
+    Sigh:
+      /Audio/_Starlight/Voice/Moth/moth_sigh.ogg
+    Gasp:
+      path: /Audio/_Starlight/Voice/Moth/moth_gasp.ogg
+    Sneeze:
+      collection: FemaleSneezes
+    Snore:
+      collection: Snores
+    Whistle:
+      collection: Whistles
+    Mew:
+      collection: FelionoidMews
+    Hisses:
+      collection: FelionoidHisses
+    Meow:
+      collection: FelionoidMeows
+    Purr:
+      collection: FelionoidPurrs
+    Growl:
+      collection: FelionoidGrowls
+    Trill:
+      collection: FelionoidTrills
+    DefaultDeathgasp:
+      collection: MothDeathGasp

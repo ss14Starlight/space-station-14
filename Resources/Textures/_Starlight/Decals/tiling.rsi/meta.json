@@ -53,16 +53,52 @@
       "name": "corner_4_white"
     },
     {
-      "name": "diagonal_overlay"
+      "name": "diagonal_overlay_1"
     },
     {
-      "name": "diagonal_overlay_corner"
+      "name": "diagonal_overlay_2"
     },
     {
-      "name": "diagonal_steel"
+      "name": "diagonal_overlay_3"
     },
     {
-      "name": "diagonal_steel_corner"
+      "name": "diagonal_overlay_4"
+    },
+    {
+      "name": "diagonal_overlay_corner_1"
+    },
+    {
+      "name": "diagonal_overlay_corner_2"
+    },
+    {
+      "name": "diagonal_overlay_corner_3"
+    },
+    {
+      "name": "diagonal_overlay_corner_4"
+    },
+    {
+      "name": "diagonal_steel_1"
+    },
+    {
+      "name": "diagonal_steel_2"
+    },
+    {
+      "name": "diagonal_steel_3"
+    },
+    {
+      "name": "diagonal_steel_4"
+    },
+    {
+      "name": "diagonal_steel_corner_1"
+    },
+    {
+      "name": "diagonal_steel_corner_2"
+    },
+    {
+      "name": "diagonal_steel_corner_3"
+    },
+    {
+      "name": "diagonal_steel_corner_4"
     },
     {
       "name": "half_e_dark"

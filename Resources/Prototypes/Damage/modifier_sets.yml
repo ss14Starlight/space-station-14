@@ -253,7 +253,7 @@
     Blunt: 5
 
 - type: damageModifierSet
-  id: CluwneBeast # Needssome resistances so it doesn't die instantly. 
+  id: CluwneBeast # Needssome resistances so it doesn't die instantly.
   coefficients:
     Blunt: 0.8
     Slash: 0.9
@@ -265,7 +265,7 @@
     Shock: 0.8
     Cellular: 0.2
     Bloodloss: 0.4
-    
+
 # hurt a lot by blunt, immune to a good amount of other stuff because they're a cookie
 - type: damageModifierSet
   id: Gingerbread
@@ -356,7 +356,7 @@
   id: ManifestedSpirit
   coefficients:
     Holy: 2
-    
+
 # Mech armor
 - type: damageModifierSet
   id: ThinArmor

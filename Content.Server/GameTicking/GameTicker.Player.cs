@@ -237,7 +237,7 @@ namespace Content.Server.GameTicking
     {
         public readonly ICommonSession PlayerSession;
 
-        public PlayerConnectEvent(ICommonSession playerSession) 
+        public PlayerConnectEvent(ICommonSession playerSession)
             => PlayerSession = playerSession;
     }
 }

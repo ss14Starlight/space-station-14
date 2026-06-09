@@ -1,6 +1,6 @@
 - type: entity
   id: DisposalRouterFlippedCommand
-  parent: DisposalRouterFlipped   
+  parent: DisposalRouterFlipped
   suffix: Flipped, Command
   components:
   - type: DisposalRouter

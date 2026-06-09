@@ -2,7 +2,7 @@
   abstract: true
   parent: BaseItem
   id: IngotBase
-  description: A heavy metal ingot stamped with the Nanotrasen logo.
+  description: A heavy metal ingot stamped with the NanoTrasen logo. # SL
   components:
   - type: Sprite
     sprite: Objects/Materials/ingots.rsi
@@ -11,6 +11,12 @@
     size: Normal
   - type: StaticPrice
     price: 0
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
+  # Starlight end
   - type: Tag
     tags:
     - Ingot

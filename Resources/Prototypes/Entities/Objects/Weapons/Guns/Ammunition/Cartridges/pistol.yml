@@ -47,7 +47,7 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#000000"
-        
+
 - type: entity
   id: CartridgePistolFMJ
   name: cartridge (.35 auto FMJ)
@@ -62,7 +62,7 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#B68F0E"
-        
+
 - type: entity
   id: CartridgePistolAP
   name: cartridge (.35 auto AP)

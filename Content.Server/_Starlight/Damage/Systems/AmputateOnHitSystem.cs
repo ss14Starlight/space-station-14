@@ -1,14 +1,12 @@
 using System.Linq;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Medical.Limbs;
 using Content.Server.Administration.Systems;
-using Content.Server.Body.Systems;
 using Content.Shared._Starlight.Damage.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
-using Content.Shared.Throwing;
 using Content.Shared.Timing;
-using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
 
@@ -22,9 +20,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
-    {
-        SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
-    }
+        => SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
 
     private void OnMeleeHit(Entity<AmputateOnHitComponent> weapon, ref MeleeHitEvent args)
     {
@@ -35,7 +31,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
         {
             foreach (var target in args.HitEntities)
             {
-                if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target, out var body))
+                if (_entitySystem.TryEntity<TransformComponent, HumanoidAppearanceComponent, BodyComponent>(target, out var body, log: false))
                 {
                     var part = _random.Pick(weapon.Comp.Parts);
                     {

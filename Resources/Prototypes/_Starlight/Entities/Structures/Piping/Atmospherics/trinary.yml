@@ -7,11 +7,18 @@
     - type: Sprite
       sprite: _Starlight/Structures/Piping/Atmospherics/inlinegasfilter.rsi
       layers:
-        - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        - sprite: _Carpmosia/Structures/Piping/Atmospherics/pipe.rsi
           state: pipeTrinaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
         - state: gasFilter
           map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
+    - type: AtmosPipeLayers
+      alternativePrototypes:
+        Primary: GasFilterInline
+        Secondary: GasFilterInlineAlt1
+        Tertiary: GasFilterInlineAlt2
+        Quaternary: GasFilterInlineAlt3
+        Quinary: GasFilterInlineAlt4
     - type: GasFilter
       inlet: pipe
       outlet: pipe

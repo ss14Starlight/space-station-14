@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Delivery;
 using Content.Shared.Objectives;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Railroading;
 
@@ -50,6 +49,6 @@ public sealed partial class RailroadingDeliveryOpenTaskSystem : EntitySystem
         args.IsCompleted = ent.Comp.AmountOpened >= ent.Comp.Amount;
     }
 
-    private void OnTaskPicked(Entity<RailroadDeliveryOpenTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnTaskPicked(Entity<RailroadDeliveryOpenTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadDeliveryOpenWatcherComponent>(args.Subject.Owner);
 }

@@ -20,7 +20,7 @@ public sealed class SLSolutionRegenerationSystem : EntitySystem
         //make sure the entity isnt terminating
         if (TerminatingOrDeleted(ent))
             return;
-            
+
         // No component additions during client state application
         if (_timing.ApplyingState)
             return;

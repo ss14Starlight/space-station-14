@@ -34,11 +34,11 @@ public sealed partial class StampWidget : PanelContainer
             {
                 var resCache = IoCManager.Resolve<IResourceCache>();
                 var fontResource = resCache.GetResource<FontResource>(value.Font);
-                StampedByLabel.FontOverride = new VectorFont(fontResource, 45); 
+                StampedByLabel.FontOverride = new VectorFont(fontResource, 45);
             }
             else
             {
-                StampedByLabel.FontOverride = null; 
+                StampedByLabel.FontOverride = null;
             }
             //🌟Starlight Edit end🌟
 

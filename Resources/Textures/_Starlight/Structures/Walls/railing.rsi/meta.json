@@ -1,0 +1,91 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Wood and Yellow by Conflee for Starlight, Steel from tgstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/railings.dmi",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+  "states": [
+    {
+      "name": "side",
+      "directions": 4
+    },
+    {
+      "name": "corner",
+      "directions": 4
+    },
+    {
+        "name": "corner_small",
+        "directions": 4
+    },
+    {
+        "name": "round",
+        "directions": 4
+    },
+	{
+        "name": "side_end",
+        "directions": 4
+    },
+	{
+        "name": "side_end_alt",
+        "directions": 4
+    },
+	{
+      "name": "yellow_side",
+      "directions": 4
+    },
+    {
+      "name": "yellow_corner",
+      "directions": 4
+    },
+    {
+        "name": "yellow_corner_small",
+        "directions": 4
+    },
+    {
+        "name": "yellow_round",
+        "directions": 4
+    },
+	{
+        "name": "yellow_side_end",
+        "directions": 4
+    },
+	{
+        "name": "yellow_side_end_alt",
+        "directions": 4
+    },
+	{
+      "name": "wood_side",
+      "directions": 4
+    },
+    {
+      "name": "wood_corner",
+      "directions": 4
+    },
+    {
+        "name": "wood_corner_small",
+        "directions": 4
+    },
+    {
+        "name": "wood_round",
+        "directions": 4
+    },
+	{
+        "name": "wood_side_end",
+        "directions": 4
+    },
+	{
+        "name": "wood_side_end_alt",
+        "directions": 4
+    },
+	{
+      "name": "boxing_side",
+      "directions": 4
+    },
+    {
+      "name": "boxing_corner",
+      "directions": 4
+    }
+  ]
+}

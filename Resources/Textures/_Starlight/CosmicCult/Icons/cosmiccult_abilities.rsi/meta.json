@@ -1,0 +1,95 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "default",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "siphon",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "monument",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "monument-relocate",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "lapse",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "glare",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "blank",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "astral",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "return",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "nova",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "entropic",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "ingress",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "metabolism",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "step",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "stride",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "sunder",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "slumber",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "corruption",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "rogueinfect",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "roguenova",
+            "copyright": "Sprites by AftrLite(Github)."
+        },
+        {
+            "name": "rogueshunt",
+            "copyright": "Sprites by AftrLite(Github)."
+        }
+    ]
+}

@@ -1,0 +1,163 @@
+- type: constructionGraph
+  id: ChairSL
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: chairOfficeSleek
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: chairComfyWhite
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: chairComfyBlue
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: chairComfyRed
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: chairComfyGreen
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: chairComfyBrown
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+        - to: chairRegal
+          steps:
+            - material: WoodPlank
+              amount: 4
+              doAfter: 2
+            - material: FloorCarpetWhite
+              amount: 1
+              doAfter: 1
+        - to: chairThrone
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+            - material: Gold
+              amount: 4
+              doAfter: 2
+            - material: FloorCarpetRed
+              amount: 1
+              doAfter: 1
+
+
+    - node: chairOfficeSleek
+      entity: ChairOfficeSleek
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairComfyWhite
+      entity: ComfyChairWhite
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairComfyBlue
+      entity: ComfyChairBlue
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairComfyRed
+      entity: ComfyChairRed
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairComfyGreen
+      entity: ComfyChairGreen
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairComfyBrown
+      entity: ComfyChairBrown
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+          steps:
+            - tool: Screwing
+              doAfter: 1
+
+    - node: chairRegal
+      entity: ChairRegal
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 4
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemWhite
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: chairThrone
+      entity: ChairThrone
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:SpawnPrototype
+              prototype: IngotGold1
+              amount: 4
+            - !type:SpawnPrototype
+              prototype: FloorCarpetItemRed
+              amount: 1
+          steps:
+            - tool: Screwing
+              doAfter: 4

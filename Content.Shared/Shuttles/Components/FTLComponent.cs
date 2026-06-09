@@ -44,6 +44,14 @@ public sealed partial class FTLComponent : Component
     [DataField, AutoNetworkedField]
     public Angle TargetAngle;
 
+    // Starlight Start
+    /// <summary>
+    /// Map the shuttle started FTL from.
+    /// </summary>
+    [DataField]
+    public EntityUid? SourceMapUid;
+    // Starlight End
+
     /// <summary>
     /// If we're docking after FTL what is the prioritised dock tag (if applicable).
     /// </summary>

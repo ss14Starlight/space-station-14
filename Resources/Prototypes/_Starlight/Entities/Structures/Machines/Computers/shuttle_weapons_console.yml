@@ -18,10 +18,6 @@
       state: generic_keys
   - type: Computer
     board: ShuttleWeaponsConsoleCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#da2a2a"
   - type: RadarConsole
     maxRange: 512
   - type: DeviceLinkSource
@@ -62,3 +58,9 @@
         acts: [ "Destruction" ]
   - type: StaticPrice
     price: 750
+  # Starlight Start - Immersive Lighting PR
+  - type: PointLight
+    radius: 2.5
+    energy: 1.3
+    color: "#d6cec3"
+  # Starlight End

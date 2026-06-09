@@ -61,7 +61,7 @@ public sealed partial class ATMSystem : SharedATMSystem
     {
         if (TryComp<StackComponent>(ent.Owner, out var stack)
             && args.Target.HasValue
-            && TryComp<ATMComponent>(args.Target, out var atm) 
+            && TryComp<ATMComponent>(args.Target, out var atm)
             && _playerResources.TryGetResource(args.User, "credits", out var balance))
         {
             args.Handled = true; // If we don't do this - debug assert and crash at the dev build.
@@ -102,7 +102,7 @@ public sealed partial class ATMSystem : SharedATMSystem
         }
 
         var matches = new List<ICommonSession>();
-        
+
         foreach (var reg in _playerRolesManager.Players)
         {
             if (_mind.TryGetMind(reg.Session.UserId, out _, out var mind)

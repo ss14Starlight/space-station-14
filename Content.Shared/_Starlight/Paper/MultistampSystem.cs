@@ -44,14 +44,14 @@ public abstract partial class SharedMultistampSystem : EntitySystem
             return;
 
         if (component.Stamps[component.CurrentEntry] == args.Entity)
-        { 
+        {
             component.Stamps.Remove(args.Entity);
             component.CurrentEntry = !(component.Stamps.Count > component.CurrentEntry) ? component.CurrentEntry : 0;
             Dirty(uid, component);
             SetMultistamp(uid, component, playSound: false);
         }
         else
-        { 
+        {
             component.Stamps.Remove(args.Entity);
             component.CurrentEntry = component.Stamps.Count > 0 ? component.CurrentEntry - 1 : 0;
             CycleMultistamp(uid, component, playSound: false);
@@ -108,7 +108,7 @@ public abstract partial class SharedMultistampSystem : EntitySystem
 
         if (playSound && stamps.ChangeSound != null)
             _audioSystem.PlayPredicted(stamps.ChangeSound, uid, user);
-        
+
         Dirty(uid, stamps);
     }
 }

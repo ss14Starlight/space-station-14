@@ -30,6 +30,8 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - IPC # SL
+    - Hybrid # Starlight
   - type: ShowAccessReaderSettings
 
 - type: entity
@@ -192,6 +194,8 @@
     damageContainers:
     - Biological
     - Inorganic
+    - IPC # SL
+    - Hybrid # Starlight
   - type: ShowSyndicateIcons
 
 - type: entity
@@ -208,6 +212,8 @@
     damageContainers:
     - Biological
     - Inorganic
+    - IPC # SL
+    - Hybrid # Starlight
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons

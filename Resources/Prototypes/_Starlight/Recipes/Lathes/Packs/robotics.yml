@@ -2,7 +2,7 @@
   id: StarlightMechParts
   recipes:
 # Ripley MKII
-  
+
     - RipleyMKIIHarness
     - RipleyUpgradeKit
 
@@ -17,9 +17,9 @@
     - ClarkeLArm
     - ClarkeRArm
     - ClarkeTreads
-  
+
 # Durand
-  
+
     - DurandHarness
     - DurandArmor
     - DurandHead
@@ -27,9 +27,9 @@
     - DurandLLeg
     - DurandRArm
     - DurandRLeg
-  
+
 # Gygax
-  
+
     - GygaxHarness
     - GygaxArmor
     - GygaxHead
@@ -37,13 +37,13 @@
     - GygaxLLeg
     - GygaxRArm
     - GygaxRLeg
-  
+
 - type: latheRecipePack
   id: StarlightMechBoards
   recipes:
     - ClarkeCentralElectronics
     - ClarkePeripheralsElectronics
-  
+
 - type: latheRecipePack
   id: StarlightMechEquipment
   recipes:
@@ -52,7 +52,10 @@
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
-  
+    - MechEquipmentHonkerPieCannon
+    - MechEquipmentHonkerAirHorn
+    - MechEquipmentBorgBeacon
+
 - type: latheRecipePack
   id: StarlightMechReactors
   recipes:
@@ -88,6 +91,7 @@
     - BorgModuleSyndicateRescue
     - BorgModuleSyndicateChameleonProjector
     - BorgModuleSyndicateAdvancedTool
+    - BorgModuleSyndicatePaperwork
 
 - type: latheRecipePack
   id: StarlightSyndicateModulesSecfab
@@ -100,6 +104,7 @@
     - BorgModuleSyndicateRescue
     - BorgModuleSyndicateChameleonProjector
     - BorgModuleSyndicateAdvancedTool
+    - BorgModuleSyndicatePaperwork
 
 # Lawboards
 - type: latheRecipePack
@@ -179,6 +184,7 @@
     - VendingMachineMediDrobeCircuitboard
     - VendingMachineChemDrobeCircuitboard
     - VendingMachineCuraDrobeCircuitboard
+    - VendingMachineLegalDrobeCircuitboard
     - VendingMachineAtmosDrobeCircuitboard
     - VendingMachineEngiDrobeCircuitboard
     - VendingMachineChefDrobeCircuitboard
@@ -196,7 +202,6 @@
     - VendingMachineChemicalsCircuitboard
     - VendingMachineDonkCircuitboard
     - VendingMachineIceCreamCircuitboard
-
 
 # Contraband Vendor Boards (Emag only)
 - type: latheRecipePack

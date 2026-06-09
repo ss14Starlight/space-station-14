@@ -56,6 +56,7 @@ Examples:
 - You can, after being revived, comment on the fact that you have stab wounds if you were killed with a bladed weapon, or that your clothes look burned.
 - You can not, after being revived, comment that you have bullet wounds of a specific caliber which must mean a specific gun was used to kill you. You can't tell that by looking at a wound.
 
+All silicon memories are cached to an on-chassis storage medium that's wirelessly backed up every 5 minutes.  PosiBrains and MMIs that have been removed from their chassis may not recall the last five minutes unless placed back into the chassis they previously inhabited.  Destruction of the chassis results in a total loss of those memories.  Further, corruption of a chassis (such as by Syndicate/SELF emag) discontinues the backups, making all memories after the event completely inaccessible unless placed back into the corrupted chassis.
 
 ## Corporate Secrets
 [color=#9819ff]Corporate Secrets[/color] are only known by high value members of the corporation. These are; All of Command, the Station AI, NanoTrasen Representative, Blue Shield Officer, Magistrate, and all Central Command roles such as ERT, OPs, CBURN, etc. Corporate Secrets should be kept secret until it is necessary to reveal them, revealing them frivolously is frowned upon by Central Command. This information is considered sensitive and libel to cause mass panic if learned by the Crew.
@@ -77,6 +78,8 @@ Romerol is a highly violent contagion that pilots the dead to facilitate its own
 [bold][color=#9819ff]Paradox Clones || [/color][/bold]
 Cracks in reality sometimes result in intrusions from other parallel worlds. This phenominon is exclusive to sectors near the Null Scar, and is a matter of great interest to NanoTrasen. Should a duplicate be discovered it should be observed and studied, and only terminated if it proves to be hostile.
 
+[bold][color=#9819ff]Cults || [/color][/bold]
+Although the concept and existence of 'cults' is known to the Crew, as they have existed since the dawn of time, the specifics of any cult with real power, such as the Cosmic Cult, are kept secret. Often intentionally by the cults themselves. Chaplains hold the most knowledge of the Crew about these sects, having long studied the religions and faiths of the universe.
 
 [bold][color=#9819ff]Nuclear Operatives || [/color][/bold]
 The Syndicate is a shell of its former self, due to their involvement in and defeat during the Pod Wars. They have grown increasingly more irrational and hostile since their resurgence however, and the rumors you have heard about Nuclear attacks are true. You must protect the Warhead onboard your station, and the Authentication Disk to activate it, at all costs. A confirmed attack from Nuclear Operatives is grounds to suspend Corporate Law and Standard Operating Procedure. Contact Central Command immediately to establish Martial Law.
@@ -134,7 +137,7 @@ The fact that Vampires are real is unknown to the general public. While not inhe
 [bold][color=#f00000]Wizards || [/color][/bold]
 The Wizard Federation is very outspoken about their so-called 'magic', but most consider them to be nutjobs roleplaying in space. Whether that they do is actually 'magic' or not, they are a danger and Security has been briefed on them. Security knows they may have access to strange abilities, but they do not know the extent of the Wizard's capabilities.
 
-[bold][color=#f00000]Xenoborgs || [/color][/bold] 
+[bold][color=#f00000]Xenoborgs || [/color][/bold]
 Xenoborgs are rogue Silicons that have started assimilating organics to grow their number. They are known to harvest the brains of unfortunate crew members, whose bodies they destroy before they turn them into more xenoborgs. Preventing crew from being abducted is imperative to prevent a critical mass of hostile borgs.
 
 

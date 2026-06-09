@@ -79,7 +79,7 @@
   name: dawnbreaker
   parent: [ BaseSword, BaseMajorContraband, Welder ]
   id: SwordFlaming
-  description: How do you perfect upon perfection? Why, use fire of course! Be the shining light through maints and fight valiantly! 
+  description: How do you perfect upon perfection? Why, use fire of course! Be the shining light through maints and fight valiantly!
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Melee/dawnbreaker.rsi
@@ -169,8 +169,8 @@
     slots:
     - suitStorage
   - type: DisarmMalus
-  - type: Scalpel
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.6
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/scalpel1.ogg
@@ -194,3 +194,30 @@
       soundHit:
         path: /Audio/Weapons/bladeslice.ogg
     - type: Item
+
+# TODO: Make this part of Chaplain Nullrod when its coded...
+- type: entity
+  name: sacred chainsaw sword
+  parent: BaseSword
+  id: ChainsawSword
+  description: Suffer not a heretic to live.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/chainsaw_sword.rsi
+    - type: MeleeWeapon
+      attackRate: 1
+      damage:
+        types:
+          Structural: 5
+          Slash: 15
+          Holy: 20
+      soundHit:
+        path: /Audio/Weapons/chainsaw.ogg
+    - type: Item
+    - type: DisarmMalus
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Melee/chainsaw_sword.rsi
+      slots:
+      - belt
+    - type: Contraband
+      allowedJobs: [ Chaplain ]

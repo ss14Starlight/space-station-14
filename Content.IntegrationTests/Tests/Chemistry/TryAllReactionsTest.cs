@@ -108,7 +108,10 @@ namespace Content.IntegrationTests.Tests.Chemistry
                         .ToDictionary(x => x, _ => false);
                     foreach (var (reagent, quantity) in solution.Contents)
                     {
-                        Assert.That(foundProductsMap.TryFirstOrNull(x => x.Key.Key == reagent.Prototype && x.Key.Value == quantity, out var foundProduct));
+                        // Starlight BEGIN: I only added the assertion message.
+                        Assert.That(foundProductsMap.TryFirstOrNull(x => x.Key.Key == reagent.Prototype && x.Key.Value == quantity, out var foundProduct),
+                            $"Reaction {reactionPrototype.ID} ended with reagents {string.Join(",", solution.Contents)} but expected {string.Join(",",reactionPrototype.Products)}");
+                        // Starlight END
                         foundProductsMap[foundProduct.Value.Key] = true;
                     }
 

@@ -3,5 +3,5 @@
 [RegisterComponent]
 public sealed partial class UncryoableComponent : Component
 {
-    
+
 }

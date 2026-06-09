@@ -2,7 +2,7 @@
   id: EndOfQHighpop3
   actions:
     - !type:ActionWhitelistCheck
-      whitelist: 
+      whitelist:
         components:
           - MindShield
     - !type:ActionAddComponent
@@ -47,7 +47,7 @@
   id: EndOfQHighpop6
   actions:
   - !type:ActionWhitelistCheck
-    whitelist: 
+    whitelist:
       components:
         - MindShield
   - !type:ActionGrantAction
@@ -71,7 +71,7 @@
   id: EndOfQHighpopFinale
   actions:
   - !type:ActionWhitelistCheck
-    whitelist: 
+    whitelist:
       components:
         - MindShield
   - !type:ActionAddGamerules

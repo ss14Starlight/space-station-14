@@ -28,7 +28,7 @@ public sealed class PatchSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
@@ -36,7 +36,7 @@ public sealed class PatchSystem : EntitySystem
         SubscribeLocalEvent<PatchComponent, AfterInteractEvent>(OnPatchAfterInteract);
         SubscribeLocalEvent<DamageableComponent, PatchDoAfterEvent>(OnDoAfter);
     }
-    
+
     private void OnPatchUse(Entity<PatchComponent> ent, ref UseInHandEvent args)
     {
         if (args.Handled)
@@ -45,7 +45,7 @@ public sealed class PatchSystem : EntitySystem
         if (TryApply(ent, ent.Comp, args.User, args.User))
             args.Handled = true;
     }
-    
+
     private void OnPatchAfterInteract(Entity<PatchComponent> ent, ref AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach || args.Target == null)
@@ -54,7 +54,7 @@ public sealed class PatchSystem : EntitySystem
         if (TryApply(ent, ent.Comp, args.User, args.Target.Value))
             args.Handled = true;
     }
-    
+
     private bool TryApply(EntityUid patch, PatchComponent patchComponent, EntityUid user, EntityUid target)
     {
         if (!TryComp<DamageableComponent>(target, out var targetDamage))
@@ -86,31 +86,31 @@ public sealed class PatchSystem : EntitySystem
         _doAfter.TryStartDoAfter(doAfterEventArgs);
         return true;
     }
-    
+
     private void OnDoAfter(Entity<DamageableComponent> entity, ref PatchDoAfterEvent args)
     {
         if (!TryComp(args.Used, out PatchComponent? patchComponent))
             return;
-        
+
         var patch = args.Used.Value;
 
         if (args.Handled || args.Cancelled)
             return;
-        
+
         var patchUser = EnsureComp<PatchUserComponent>(entity);
         patchUser.NextUpdateTime = _gameTiming.CurTime + patchUser.Delay;
-        
+
         Entity<SolutionComponent>? solutionEntity = null;
         if (_solutionContainerSystem.ResolveSolution(patch, patchComponent.SolutionContainer, ref solutionEntity, out var solution))
         {
             foreach(var reagent in solution.Contents)
                 patchUser.ReagentsToInsert.Add(reagent); // Move reagents from entity container to user component.
         }
-        
+
         if (!_netManager.IsClient)
             QueueDel(patch); // Remove entity after moving reagents to PatchUser.
     }
-    
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -120,15 +120,15 @@ public sealed class PatchSystem : EntitySystem
         {
             if (_gameTiming.CurTime < patchUser.NextUpdateTime)
                 continue;
-            
+
             if (patchUser.ReagentsToInsert.Count == 0)
             {
                 RemComp<PatchUserComponent>(uid);
                 continue;
             }
-            
+
             patchUser.NextUpdateTime += patchUser.Delay;
-            
+
             if (_solutionContainerSystem.TryGetInjectableSolution(uid, out var injectableSolution, out _) && injectableSolution != null)
             {
                 for (int i = patchUser.ReagentsToInsert.Count - 1; i >= 0; i--)
@@ -150,7 +150,7 @@ public sealed class PatchSystem : EntitySystem
                     _solutionContainerSystem.Inject(uid, injectableSolution.Value, solutionToInject);
                 }
             }
-                
+
         }
     }
 }

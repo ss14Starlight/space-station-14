@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text;
 using Content.Client.Materials;
+using Content.Client.UserInterface.Controls;
 using Content.Shared.Lathe;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Research.Prototypes;
@@ -16,7 +17,7 @@ using Robust.Shared.Utility;
 namespace Content.Client.Lathe.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class LatheMenu : DefaultWindow
+public sealed partial class LatheMenu : FancyWindow
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -75,6 +76,7 @@ public sealed partial class LatheMenu : DefaultWindow
     public void SetEntity(EntityUid uid)
     {
         Entity = uid;
+        this.SetInfoFromEntity(_entityManager, Entity);
 
         if (_entityManager.TryGetComponent<LatheComponent>(Entity, out var latheComponent))
         {

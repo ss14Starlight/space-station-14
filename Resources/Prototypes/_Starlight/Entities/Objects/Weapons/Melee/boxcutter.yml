@@ -1,6 +1,6 @@
 - type: entity
   name: boxcutter
-  parent: [CombatKnife, BaseSecurityCargoContraband]
+  parent: [BaseSecurityCargoContraband, CombatKnife]
   id: WeaponMeleeBoxcutter
   description: Always accidentally cuts whatever is inside the box.
   components:

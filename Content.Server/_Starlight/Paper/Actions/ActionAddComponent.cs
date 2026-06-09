@@ -9,9 +9,9 @@ public sealed partial class ActionAddComponent : OnSignAction
     /// </summary>
     [DataField]
     public ComponentRegistry Components = [];
-    
+
     private IEntityManager _entityManager = default!;
-    
+
     public override bool Action(EntityUid paper, ActionsOnSignComponent component, EntityUid target)
     {
         _entityManager.AddComponents(target, Components);
@@ -19,7 +19,5 @@ public sealed partial class ActionAddComponent : OnSignAction
     }
 
     public override void ResolveIoC()
-    {
-        _entityManager = IoCManager.Resolve<IEntityManager>();
-    }
+        => _entityManager = IoCManager.Resolve<IEntityManager>();
 }

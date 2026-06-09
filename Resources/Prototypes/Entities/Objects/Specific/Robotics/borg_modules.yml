@@ -457,6 +457,23 @@
 
 # generic modules
 - type: entity
+  id: BorgModulePrying
+  parent: [ BaseBorgModule ]
+  name: prying module
+  description: A universal cyborg module which allows the unit to pry open doors.
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-tools
+  - type: ComponentBorgModule
+    components:
+    - type: Prying
+      speedModifier: 1.5
+      useSound:
+        path: /Audio/Items/jaws_pry.ogg
+
+- type: entity
   id: BorgModuleCable
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
   name: cable cyborg module
@@ -1676,6 +1693,22 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-door-remote-module }
 
 - type: entity
+  parent: [ BaseXenoborgModuleEngiWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklist
+  id: XenoborgModuleTileGun
+  name: tile gun xenoborg module
+  description: Module with a tile gun. wait, a what?
+  components:
+  - type: Sprite
+    layers:
+    - state: xenoborg_engi
+    - state: icon-xenoborg-tile
+  - type: ItemBorgModule
+    hands:
+    - item: WeaponTileGun
+  - type: BorgModuleIcon
+    icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-tile-module }
+
+- type: entity
   parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
   id: XenoborgModuleJammer
   name: jammer xenoborg module
@@ -1692,7 +1725,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-jammer-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleLaser
   name: laser xenoborg module
   description: Module with a laser gun.
@@ -1704,11 +1737,12 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserGunXenoborg
+    - item: XenoShiv # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleHeavy, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleHeavyWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleHeavyLaser
   name: laser cannon xenoborg module
   description: Module with a laser cannon.
@@ -1720,6 +1754,7 @@
   - type: ItemBorgModule
     hands:
     - item: WeaponLaserCannonXenoborg
+    - item: XenoKnife # Starlight
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-laser2-module }
 
@@ -1745,7 +1780,24 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-space-movement-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleScout, BaseXenoborgContraband ]
+  id: XenoborgModuleJump
+  name: xenoborg jump module
+  description: Module that allows a xenoborg to jump forward.
+  components:
+  - type: ComponentBorgModule
+    components:
+    - type: JumpAbility
+      action: ActionJumpBoost
+      jumpDistance: 4
+      jumpSound: /Audio/Effects/stealthoff.ogg
+  - type: Sprite
+    layers:
+    - state: xenoborg_scout
+    - state: icon-xenoborg-jump
+
+- type: entity
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleSword
   name: knife xenoborg module
   description: Module with a kukri knife.
@@ -1762,7 +1814,7 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleScout, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleScoutWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleEnergySword
   name: energy dagger xenoborg module
   description: Module with an energy dagger.
@@ -1779,10 +1831,10 @@
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-sword2-module }
 
 - type: entity
-  parent: [ BaseXenoborgModuleStealth, BaseProviderBorgModule, BaseXenoborgContraband ]
+  parent: [ BaseXenoborgModuleStealthWeapon, BaseProviderBorgModule, BaseXenoborgContraband ] # Starlight, module blacklisting
   id: XenoborgModuleHypo
-  name: nocturine hypo xenoborg module
-  description: Module with a self-refilling nocturine hypo.
+  name: hypo xenoborg module # Starlight
+  description: Module with self-refilling hypos. # Starlight
   components:
   - type: Sprite
     layers:
@@ -1791,6 +1843,7 @@
   - type: ItemBorgModule
     hands:
     - item: NocturineHypo
+    - item: LicoxideHypo # Starlight. It's not that good. They can have it.
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: xenoborg-hypo-module }
 

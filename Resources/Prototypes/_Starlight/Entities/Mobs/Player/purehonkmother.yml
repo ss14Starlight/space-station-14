@@ -45,7 +45,9 @@
         - Command
         - CentCom
         - Engineering
+        - Law
         - Medical
+        - NanoTrasen
         - Science
         - Security
         - Service
@@ -82,7 +84,7 @@
       innatePolymorphs:
         - CorruptHonkmotherMorph
 
-- type: polymorph          
+- type: polymorph
   id: CorruptHonkmotherMorph
   configuration:
     entity: CorruptHonkmotherTransform

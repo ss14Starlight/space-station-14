@@ -34,6 +34,14 @@
         left hand: LeftHandCyber
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightArmCyber
@@ -55,6 +63,14 @@
         right hand: RightHandCyber
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftHandCyber
@@ -73,6 +89,14 @@
       state: "l_hand"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: RightHandCyber
@@ -91,6 +115,14 @@
       state: "r_hand"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: LeftLegCyber
@@ -115,6 +147,16 @@
         left foot: LeftFootCyber
     - type: RoundstartImplantable
       cost: 2
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightLegCyber
@@ -139,6 +181,16 @@
         right foot: RightFootCyber
     - type: RoundstartImplantable
       cost: 2
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        knockdownAmount: 1.0
+        slowdownAmount: 1.0
+        walkSpeedModifier: 0.6
+        sprintSpeedModifier: 0.6
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftFootCyber
@@ -157,6 +209,16 @@
       state: "l_foot"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
 
 - type: entity
   id: RightFootCyber
@@ -175,6 +237,16 @@
       state: "r_foot"
     - type: RoundstartImplantable
       cost: 1
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 0.5
+        knockdownAmount: 0.5
+        slowdownAmount: 0.5
+        walkSpeedModifier: 0.8
+        sprintSpeedModifier: 0.8
+        damageAmount:
+          types:
+            Shock: 5
 
 # Speed legs
 - type: entity
@@ -201,7 +273,7 @@
       parts:
         left foot: LeftFootCyber
     - type: MovementBodyPartHinderedByShoes
-      hinderModifier: 0.1667 
+      hinderModifier: 0.1667
 
 - type: entity
   id: RightLegCyberSpeed
@@ -228,7 +300,7 @@
         right foot: RightFootCyber
     - type: MovementBodyPartHinderedByShoes
       hinderModifier: 0.1667
-      
+
 #reaper
 - type: entity
   id: LeftArmCyberReaper
@@ -282,11 +354,19 @@
         - SawCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
           - CyberHandItem
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightArmCyberReaper
@@ -307,6 +387,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberReaper
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightHandCyberReaper
@@ -340,7 +428,7 @@
         - SawCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
@@ -366,6 +454,14 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyberMechwright
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: LeftHandCyberMechwright
@@ -396,7 +492,7 @@
         - WelderCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
@@ -421,6 +517,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberMechwright
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightHandCyberMechwright
@@ -451,7 +555,7 @@
         - WelderCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
@@ -506,7 +610,7 @@
         - RCDCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
@@ -560,7 +664,7 @@
         - RCDCyber
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
@@ -585,6 +689,14 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyberBulwark
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: LeftHandCyberBulwark
@@ -635,6 +747,14 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberBulwark
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: RightHandCyberBulwark
@@ -661,7 +781,7 @@
         - CyberEnergyChainsword
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
-      sound: 
+      sound:
         path: /Audio/_Starlight/Medical/Cyber/deploy.ogg
       handWhitelist:
         tags:
@@ -686,6 +806,14 @@
     - type: WithAttachedBodyParts
       parts:
         left hand: LeftHandCyberMantisBlade
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 15
 
 - type: entity
   id: LeftHandCyberMantisBlade
@@ -735,7 +863,15 @@
     - type: WithAttachedBodyParts
       parts:
         right hand: RightHandCyberMantisBlade
-        
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 15
+
 - type: entity
   id: RightHandCyberMantisBlade
   name: "right mantis blade hand"
@@ -789,6 +925,14 @@
     - type: Construction
       graph: RipperLeftGraph
       node: left
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_left hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: LeftHandCyberRipper
@@ -823,7 +967,7 @@
         - BoneGelRipper
     - type: LimbItemDeployer
       action: ActionToggleCyberHandLeft
-      sound: 
+      sound:
         path: /Audio/Effects/metal_scrape1.ogg
       handWhitelist:
         tags:
@@ -851,6 +995,14 @@
     - type: Construction
       graph: RipperRightGraph
       node: right
+    - type: HumanoidEMPCompositeElement
+      effect:
+        stunAmount: 1.0
+        dropItemsFrom:
+        - body_part_slot_right hand
+        damageAmount:
+          types:
+            Shock: 10
 
 - type: entity
   id: RightHandCyberRipper
@@ -884,7 +1036,7 @@
         - BoneGelRipper
     - type: LimbItemDeployer
       action: ActionToggleCyberHandRight
-      sound: 
+      sound:
         path: /Audio/Effects/metal_scrape1.ogg
       handWhitelist:
         tags:
@@ -1992,7 +2144,7 @@
       grid:
       - 0,0,1,2
       maxItemSize: Large
-      blacklist: 
+      blacklist:
         components:
           - BodyPart
           - Organ
@@ -2034,7 +2186,7 @@
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
         params:
-          volume: 0.1    
+          volume: 0.1
     - type: LimbWithAction
       action: ActionOpenStorageRightLeg
     - type: StorageOrgan
@@ -2047,7 +2199,7 @@
       grid:
       - 0,0,1,2
       maxItemSize: Large
-      blacklist: 
+      blacklist:
         components:
           - BodyPart
           - Organ

@@ -148,7 +148,7 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
                 OnTimerFinish(uid, component);
             }
         }
-        
+
         // Starlight
         if (args.AppearanceData.TryGetValue(TextScreenVisuals.AlertLevel, out var alertLevel))
         {
@@ -156,7 +156,7 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
             {
                 if (!sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out var layerId) || !sprite.TryGetLayer(layerId, out var layer))
                     return;
-                
+
                 layer.SetRsi(null);
                 layer.SetState(alertLevel.ToString());
             }
@@ -302,7 +302,7 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
         foreach (var (key, state) in layerStates.Where(pairs => pairs.Value != null))
             _sprite.LayerSetRsiState((uid, sprite), key, state);
     }
-    
+
     /// <summary>
     ///     Simply changes screens, like: Shuttle ETA/ETD -> TEXT -> ALERT LEVEL
     /// </summary>
@@ -310,11 +310,11 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
     {
         if (!Resolve(uid, ref sprite))
             return;
-        
+
         int layerId = 0;
-        
+
         screen.CurrentScreen = GetNextScreen(screen.CurrentScreen);
-        
+
         switch (screen.CurrentScreen)
         {
             case ScreenType.ShuttleTime:
@@ -323,22 +323,22 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
                     ScreenRoll(uid, screen, visuals, sprite);
                     break;
                 }
-                
+
                 if (sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out layerId) && sprite.TryGetLayer(layerId, out var layer))
                     layer.Visible = false;
-                
+
                 foreach (var key in visuals.LayerStatesToDraw.Keys)
                     sprite.LayerSetVisible(key, true);
-                
+
                 foreach (var key in timer.LayerStatesToDraw.Keys)
                     sprite.LayerSetVisible(key, true);
-                
+
                 if (timer.Target < _gameTiming.CurTime)
                 {
                     OnTimerFinish(uid, visuals);
                     break;
                 }
-                
+
                 BuildTimerLayers(uid, timer, visuals);
                 DrawLayers(uid, timer.LayerStatesToDraw, sprite);
                 break;
@@ -348,34 +348,34 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
                     ScreenRoll(uid, screen, visuals, sprite);
                     break;
                 }
-                
+
                 if (sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out layerId) && sprite.TryGetLayer(layerId, out layer))
                     layer.Visible = false;
-                
+
                 if (TryComp<ScreenTimerComponent>(uid, out timer))
                     foreach (var key in timer.LayerStatesToDraw.Keys)
                         sprite.LayerSetVisible(key, false);
-                
+
                 foreach (var key in visuals.LayerStatesToDraw.Keys)
                     sprite.LayerSetVisible(key, true);
-                
+
                 BuildTextLayers(uid, visuals, sprite);
                 DrawLayers(uid, visuals.LayerStatesToDraw, sprite);
                 break;
             case ScreenType.AlertLevel:
                 if (sprite.LayerMapTryGet(TextScreenVisuals.AlertLevel, out layerId) && sprite.TryGetLayer(layerId, out layer))
                     layer.Visible = true;
-                
+
                 if (TryComp<ScreenTimerComponent>(uid, out timer))
                     foreach (var key in timer.LayerStatesToDraw.Keys)
                         sprite.LayerSetVisible(key, false);
-            
+
                 foreach (var key in visuals.LayerStatesToDraw.Keys)
                     sprite.LayerSetVisible(key, false);
                 break;
         }
     }
-    
+
     public static ScreenType GetNextScreen(ScreenType current)
     {
         var values = Enum.GetValues<ScreenType>().Cast<ScreenType>().OrderBy(e => (byte)e).ToArray();
@@ -392,15 +392,15 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
         {
             if (_gameTiming.CurTime - screen.NextUpdateTime > TimeSpan.FromSeconds(5))
                 screen.NextUpdateTime = _gameTiming.CurTime;
-            
+
             if (_gameTiming.CurTime < screen.NextUpdateTime)
                 continue;
 
             screen.NextUpdateTime += screen.Delay;
-            
+
             ScreenRoll(uid, screen, visuals);
         }
-        
+
         var timerUpdate = EntityQueryEnumerator<ScreenVisualsComponent, ScreenTimerComponent>();
         while (timerUpdate.MoveNext(out var uid, out var visuals, out var timer))
         {
@@ -409,7 +409,7 @@ public sealed class ScreenSystem : VisualizerSystem<ScreenVisualsComponent>
                 OnTimerFinish(uid, visuals);
                 continue;
             }
-                
+
             BuildTimerLayers(uid, timer, visuals);
             DrawLayers(uid, timer.LayerStatesToDraw);
         }

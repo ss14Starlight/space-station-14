@@ -171,7 +171,10 @@ public sealed partial class JobPriorityEditor : BoxContainer
                 };
                 var jobIcon = _prototypeManager.Index(job.Icon);
                 icon.Texture = jobIcon.Icon.Frame0();
-                selector.Setup(selectorPriorities, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                var description = job.LocalizedDescription != null // Starlight BEGIN
+                    ? FormattedMessage.FromUnformatted(job.LocalizedDescription)
+                    : FormattedMessage.Empty;
+                selector.Setup(selectorPriorities, job.LocalizedName, 200, description, icon, job.Guides); // Starlight END
 
                 // This shouldn't depend on any character specific properties, so pass null
                 if (!_requirements.IsAllowed(job, null, out var reason))

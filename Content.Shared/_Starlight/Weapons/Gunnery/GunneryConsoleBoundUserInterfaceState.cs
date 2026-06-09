@@ -12,8 +12,11 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 [Serializable, NetSerializable]
 public sealed class GunneryConsoleBoundUserInterfaceState : BoundUserInterfaceState
 {
-    /// <summary>Standard radar state (grids, docks, blips, laser traces).</summary>
+    /// <summary>Standard radar state (grids, blips, laser traces).</summary>
     public readonly NavInterfaceState NavState;
+
+    /// <summary>Docking port states.</summary>
+    public readonly DockingPortStates DockPortStates;
 
     /// <summary>
     /// Positions and identities of all shuttle-mounted cannons on this grid
@@ -27,14 +30,20 @@ public sealed class GunneryConsoleBoundUserInterfaceState : BoundUserInterfaceSt
     /// </summary>
     public readonly NetEntity? TrackedGuidedProjectile;
 
+    public readonly bool HasServer = true;
+
     public GunneryConsoleBoundUserInterfaceState(
         NavInterfaceState navState,
+        DockingPortStates dockingPortStates,
         List<CannonBlipData> cannons,
-        NetEntity? trackedGuidedProjectile)
+        NetEntity? trackedGuidedProjectile,
+        bool hasServer = true)
     {
         NavState       = navState;
+        DockPortStates = dockingPortStates;
         Cannons        = cannons;
         TrackedGuidedProjectile = trackedGuidedProjectile;
+        HasServer      = hasServer;
     }
 }
 

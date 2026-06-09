@@ -7,12 +7,13 @@
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 5h # Starlight start. You should learn how to drive the shuttle, or at least sell stuff at ATS.
-    - !type:OverallPlaytimeRequirement 
+    - !type:OverallPlaytimeRequirement
       time: 8h
   icon: "JobIconSalvageSpecialist" # Starlight - New distinct icon, Starlight end
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
   canBeAntag: false
+  displayWeight: 4 # Starlight
   access:
   - Cargo
   - Salvage
@@ -20,6 +21,7 @@
   - External
   extendedAccess:
   - Mining # Starlight
+  - Mail # Starlight
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

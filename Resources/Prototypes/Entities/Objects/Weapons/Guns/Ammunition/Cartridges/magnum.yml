@@ -2,7 +2,7 @@
   abstract: true
   parent: [ BaseCartridge, BaseSecuritySalvageContraband ] # Starlight-edit - Security -> SecuritySalvage
   id: BaseCartridgeMagnum
-  name: cartridge (.45 magnum) 
+  name: cartridge (.45 magnum)
   components:
   - type: Tag
     tags:

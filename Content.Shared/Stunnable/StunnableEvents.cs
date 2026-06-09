@@ -30,7 +30,7 @@ public record struct StunEndAttemptEvent(bool Cancelled);
 [ByRefEvent]
 public record struct KnockDownAttemptEvent(bool AutoStand, bool Drop, TimeSpan? Time, bool Voluntary = false) : IInventoryRelayEvent
 {
-// Starlight edit end 
+// Starlight edit end
     public SlotFlags TargetSlots { get; } = ~SlotFlags.POCKET; // Starlight-edit
 
     public bool Cancelled;

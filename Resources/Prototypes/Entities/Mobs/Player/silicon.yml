@@ -18,6 +18,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: ActiveRadio
     channels:
     - Binary
@@ -30,6 +31,7 @@
     - Service
     - Supply
     - Law
+    - NanoTrasen # Starlight
   - type: IgnoreUIRange
   - type: StationAiHeld
   - type: StationAiOverlay
@@ -536,6 +538,7 @@
     layer: 32768
   - type: Sprite
     sprite: Mobs/Silicon/station_ai.rsi
+    drawdepth: CyberspaceObjects # Starlight
     layers:
     - state: ai_camera
 
@@ -635,6 +638,7 @@
       name: ghost-role-information-syndicate-cyborg-assault-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -687,6 +691,7 @@
       name: ghost-role-information-syndicate-cyborg-saboteur-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
       job: Borg
@@ -739,6 +744,7 @@
       name: ghost-role-information-syndicate-cyborg-medical-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -770,6 +776,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleConstruction
@@ -813,6 +820,7 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        - BorgModulePrying
         - BorgModuleTool
         - BorgModuleFireExtinguisher
   - type: ItemSlots
@@ -853,6 +861,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleCleaning
@@ -895,6 +904,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleChemical
@@ -938,6 +948,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool #No fire extinguisher, traversal is better
       - BorgModuleMining
       - BorgModuleTraversal

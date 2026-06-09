@@ -2,7 +2,7 @@
   parent: BaseAction
   id: ActionRetractableItemArmBlade
   name: Arm Blade
-  description: Shed your flesh and reform it into a fleshy blade.
+  description: Shed your flesh and reform it into a fleshy blade. Costs 20 chemicals to summon, and 20 chemicals to retract. # Starlight
   components:
   - type: Action
     useDelay: 2
@@ -21,7 +21,7 @@
       collection: gib # Placeholder
   #Starlight edit: changeling action costs
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 20 # Starlight, it takes energy to recall too... come on.
     requireAbsorbed: 2
 
 - type: entity
@@ -35,7 +35,13 @@
     priority: 1
   - type: TargetAction
   - type: EntityTargetAction
+    blacklist: # FH
+      tags:
+      - IPC
+      components:
+      - Absorbed
     event: !type:ChangelingDevourActionEvent
+  - type: EorgPreventAction
 
 - type: entity
   id: ActionChangelingTransform

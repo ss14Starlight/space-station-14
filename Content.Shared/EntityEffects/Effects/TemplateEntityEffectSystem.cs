@@ -17,5 +17,5 @@ public sealed partial class TemplateEntityEffectSystem : EntityEffectSystem<Meta
 /// <inheritdoc cref="EntityEffect"/>
 public sealed partial class Template : EntityEffectBase<Template>
 {
-    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys) => null;
+    public override string? EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys, ILocalizationManager loc) => null; // Starlight
 }

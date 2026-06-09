@@ -11,6 +11,7 @@
   startingGear: SalvageLeadGear
   supervisors: job-supervisors-qm
   canBeAntag: false
+  displayWeight: 5
   access:
   - Cargo
   - Salvage
@@ -19,6 +20,7 @@
   - External
   extendedAccess:
   - Mining
+  - Mail
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

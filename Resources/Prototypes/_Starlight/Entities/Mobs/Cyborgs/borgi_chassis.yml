@@ -142,7 +142,7 @@
       prototypes: [SyndicateBorgiGearNoUplink]
 
 - type: entity
-  parent: [ BaseXenoborgChassis, BaseXenoborgTransponder, BaseBorgiChassis ]
+  parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassis, BaseXenoborgTransponder, BaseBorgiChassis ]
   id: XenoBorgiChassis
   name: XenoBorgi
   description:  A man-machine hybrid that aims to replicate itself. They love extracting brains to insert into fresh Xenoborg chassis to grow their army. This one seems to be an borgi type, as it has inferior flesh in exchange for hands to support the other Xenoborgs.
@@ -256,7 +256,7 @@
         suitstorage:
           - OxygenTankFilled
         id:
-          - BorgiClearPDA
+          - XenoborgiClearPDA
         back:
           - ClothingBagPet
     - type: ItemSlots
@@ -278,6 +278,7 @@
       name: XenoBorgi
       description: Your job is to assist the mothership with their duties with your pair of hands. You of inferior flesh have a job to do.
       rules: Check your laws upon being fitted to your chassis. You are a team antagonist, and your goal is to kill everyone you can on the station, bring them back to your ship, gib them, and borg them. Exercise prudence about your targetting as you are made of flesh, and therefore feeble.
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -304,3 +305,163 @@
           - BorgiClearPDA
         back:
           - ClothingBagPet
+
+- type: entity
+  parent: XenoBorgiChassis
+  id: XenoBorgi # Doesn't spawn with an MMI in hand
+  suffix: Roundstart, No MMI
+  components:
+    - type: ContainerFill
+      containers:
+        borg_module:
+          - XenoborgModuleBasic
+          - XenoborgModuleTool
+          - BorgModuleSyndicateWeapon
+          - BorgModuleTopicals
+        ears:
+          - ClothingHeadsetAssistant
+        head:
+          - ClothingHeadHelmetEVALarge
+        outerClothing:
+          - ClothingOuterHardsuitEVA
+        mask:
+          - ClothingMaskBreath
+        suitstorage:
+          - OxygenTankFilled
+        id:
+          - XenoborgiClearPDA
+        back:
+          - ClothingBagPet
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHyper
+          blacklist:
+            tags:
+            - MechReactor
+
+- type: entity
+  parent: [ BaseXenoBorgiLanguages, BaseXenoborgChassisDerelict, BaseXenoborgTransponder, DerelictBorgiChassis ]
+  id: XenoBorgiDerelictBase
+  name: derelict xenoborgi
+  description:  even after all these years. still loves the color blue.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Pets/corgi.rsi
+      layers:
+      # Additional layers required for borg states
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: corgi
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi # Would do a custom dog handcuff sprite but unfortunately handcuffs have their overlay baked-in to the cuff itself so this is mostly filler
+        state: body-overlay-2
+        visible: false
+      - map: ["enum.BorgVisualLayers.Body"]
+        state: corgi
+        visible: false
+      - state: corgitag
+        map: ["enum.BorgVisualLayers.Light"]
+        shader: unshaded
+        visible: false
+      - state: corgitag
+        map: ["enum.BorgVisualLayers.LightStatus"]
+        shader: unshaded
+        visible: false
+    - type: BorgChassis
+      jobIconOverride: JobIconXenoborg # Starlight
+      jobTitleOverride: chat-radio-xenoborg # Starlight
+      hasMindState: corgitag
+      noMindState: corgitag
+      maxModules: 8
+      moduleWhitelist:
+        tags:
+        - BorgModuleSyndicate
+        - BorgModuleGeneric
+        - BorgModuleMedical
+        - XenoborgModuleGeneric
+    - type: SiliconLawProvider
+      laws: ShadowFactoryBorgiLawset
+      subverted: true
+    - type: RandomMetadata
+      nameSegments:
+      - NamesShadowBorgi
+    - type: ContainerFill
+      containers:
+        borg_module:
+        - DerelictXenoborgModuleBasic
+        - XenoborgModuleTool
+        - BorgModuleSyndicateWeapon
+        - BorgModuleTopicals
+    - type: Barotrauma # borgis largely do not have access to hardsuits so nerf the space damage they take
+      maxDamage: 1
+      damage:
+        types:
+          Blunt: 0.01
+    - type: TemperatureDamage
+      coldDamage:
+        types:
+          Cold: 0.01
+    - type: Inventory
+      speciesId: dog
+      templateId: SmartCorgi
+      displacements:
+        belt:
+          sizeMaps:
+            32:
+              sprite: Mobs/Pets/displacements.rsi
+              state: corgi_belt_displacement
+        ears:
+          sizeMaps:
+            32:
+              sprite: Mobs/Pets/displacements.rsi
+              state: corgi_belt_displacement
+        head:
+          sizeMaps:
+            32:
+              sprite: Mobs/Pets/displacements.rsi
+              state: corgi_head_displacement
+    - type: LockingWhitelist
+      blacklist: #N/A you are the 2nd in command. if the mothership put you in this spot you are TRUSTED
+    - type: BorgTransponder
+      name: xenoborgi
+      sprite:
+        sprite: Mobs/Pets/corgi.rsi
+        state: corgi
+
+- type: entity
+  parent: XenoBorgiDerelictBase
+  id: XenoBorgiDerelict
+  suffix: Cell
+  components:
+    - type: ContainerFill
+      containers:
+        borg_module:
+          - DerelictXenoborgModuleBasic
+          - XenoborgModuleTool
+          - BorgModuleSyndicateWeapon
+          - BorgModuleTopicals
+        ears:
+          - ClothingHeadsetAssistant
+        head:
+          - ClothingHeadHelmetEVALarge
+        outerClothing:
+          - ClothingOuterHardsuitEVA
+        mask:
+          - ClothingMaskBreath
+        suitstorage:
+          - OxygenTankFilled
+        id:
+          - XenoborgiClearPDA
+        back:
+          - ClothingBagPet
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellHyper
+          blacklist:
+            tags:
+            - MechReactor

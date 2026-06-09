@@ -1,7 +1,7 @@
 uniform sampler2D SCREEN_TEXTURE;
 
-uniform highp float NightVisionBoost;     
-uniform highp float NightVisionThreshold; 
+uniform highp float NightVisionBoost;
+uniform highp float NightVisionThreshold;
 uniform highp float BlueTintIntensity;
 
 const highp vec3 blueTintColor = vec3(0.35, 0.7, 1.0);

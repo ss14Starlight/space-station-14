@@ -238,7 +238,7 @@ public sealed class ThirstSystem : EntitySystem
             UpdateEffects(uid, thirst);
         }
     }
-    
+
     //Starlight begin
     public void AddThirstDrain(EntityUid uid, float mod, TimeSpan? endTime, ThirstComponent? comp = null)
     {

@@ -12,7 +12,7 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
 {
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
 
-    private static readonly ProtoId<StatusEffectPrototype> RatvarianKey = "RatvarianLanguage";
+    private static readonly ProtoId<StatusEffectPrototype> _ratvarianKey = "RatvarianLanguage";
 
     // This is the word of Ratvar and those who speak it shall abide by His rules:
     /*
@@ -27,7 +27,6 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
      * Any Ratvarian proper noun is not translated: Ratvar, Nezbere, Sevtug, Nzcrentr and Inath-neq
         * This only applies if they're being used as a proper noun: armorer/Nezbere
      */
-
 
     [GeneratedRegex(@"ti\B", RegexOptions.IgnoreCase | RegexOptions.Compiled, "en-US")]
     private static partial Regex TIPattern();
@@ -57,10 +56,10 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
         if (!Resolve(uid, ref status, false))
             return;
 
-        _statusEffects.TryAddStatusEffect<RatvarianLanguageComponent>(uid, RatvarianKey, time, refresh, status);
+        _statusEffects.TryAddStatusEffect<RatvarianLanguageComponent>(uid, _ratvarianKey, time, refresh, status);
     }
 
-    private void OnAccent(EntityUid uid, RatvarianLanguageComponent component, AccentGetEvent args) 
+    private void OnAccent(EntityUid uid, RatvarianLanguageComponent component, AccentGetEvent args)
         => args.Message.Text = Translate(args.Message.Text);
 
     private static string Translate(string message)
@@ -121,5 +120,4 @@ public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSys
         }
         return finalMessage.ToString().Trim();
     }
-
 }

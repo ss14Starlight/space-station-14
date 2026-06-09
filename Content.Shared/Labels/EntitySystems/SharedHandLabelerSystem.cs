@@ -95,7 +95,7 @@ public abstract class SharedHandLabelerSystem : EntitySystem
     {
         // Starlight BEGIN
         // Split out to reduce boolean vomit.
-        if (args.Target is not { Valid: true } target|| !args.CanAccess) 
+        if (args.Target is not { Valid: true } target|| !args.CanAccess)
             return;
         if (_whitelistSystem.IsWhitelistPass(ent.Comp.Blacklist, target)) // If it hits the blacklist, abort
             return;
@@ -137,7 +137,7 @@ public abstract class SharedHandLabelerSystem : EntitySystem
     {
         // Starlight BEGIN
         // Split out to reduce boolean vomit.
-        if (args.Target is not { Valid: true } target|| !args.CanReach) 
+        if (args.Target is not { Valid: true } target|| !args.CanReach)
             return;
         if (_whitelistSystem.IsWhitelistPass(ent.Comp.Blacklist, target)) // If it hits the blacklist, abort
             return;

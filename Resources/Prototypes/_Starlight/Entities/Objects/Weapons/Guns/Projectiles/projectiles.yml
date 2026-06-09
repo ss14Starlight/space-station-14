@@ -200,7 +200,7 @@
   - type: Reflective
     reflective:
     - Energy
-    
+
 - type: entity
   parent: [ BulletGrenadeCleanade, BaseSyndicateContraband ]
   id: BulletGrenadeCleanadeSyndicate

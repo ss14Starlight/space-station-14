@@ -3,19 +3,15 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Content.Shared.Access;
-// Starlight Start
-using System.Linq;
-using Robust.Client.UserInterface;
-// Starlight End
 
 namespace Content.Client._Starlight.Access.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class AccessGroupControl : GridContainer // Starlight edit
+public sealed partial class AccessGroupControl : GridContainer
 {
     [Dependency] private readonly ILogManager _logManager = default!;
 
-    private ISawmill _sawmill = default!; // Starlight edit
+    private readonly ISawmill _sawmill = default!;
 
     public readonly Dictionary<ProtoId<AccessGroupPrototype>, Button> ButtonsList = new();
 
@@ -26,7 +22,6 @@ public sealed partial class AccessGroupControl : GridContainer // Starlight edit
 
         _sawmill = _logManager.GetSawmill("accessgroupcontrol");
     }
-    // Starlight edit Start
     public void Populate(List<ProtoId<AccessGroupPrototype>> accessGroups, ProtoId<AccessGroupPrototype> selectedGroup, IPrototypeManager prototypeManager)
     {
         RemoveAllChildren();
@@ -40,20 +35,17 @@ public sealed partial class AccessGroupControl : GridContainer // Starlight edit
             if (!prototypeManager.TryIndex(groupId, out var groupPrototype))
             {
                 _sawmill.Error($"Unable to find access group for {groupId}");
-                // Starlight edit End
                 continue;
             }
 
             var newButton = new Button
             {
-            // Starlight edit Start
                 Text = groupPrototype.GetAccessGroupName(),
                 ToggleMode = true,
                 Pressed = groupId == selectedGroup,
             };
             AddChild(newButton);
             ButtonsList.Add(groupId, newButton);
-            // Starlight edit End
         }
     }
 }

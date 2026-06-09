@@ -1,0 +1,6 @@
+- type: entity
+  parent: MobStatusEffectDebuff
+  id: StatusEffectIPCFanDisabled
+  name: blinded
+  components:
+    - type: IPCFanStopStatusEffect

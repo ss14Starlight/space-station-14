@@ -2,7 +2,6 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Events;
 using Content.Shared.CCVar;
-using Content.Shared.Random.Helpers; // Starlight
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Station.Components;
 using Robust.Shared.Collections;
@@ -10,8 +9,11 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Server._Starlight.Station; // Starlight
-using System.Linq; // Starlight
+#region Starlight
+using Content.Server._Starlight.Station;
+using Content.Shared.Random.Helpers;
+using Content.Server._Starlight.Salvage.VGRoid;
+#endregion
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -107,29 +109,69 @@ public sealed partial class ShuttleSystem
         }
 
         var targetPhysics = _physicsQuery.Comp(targetGrid);
-        var spawnCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter);
+        // var spawnCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter); // Starlight Edit: Removed
+        // Starlight Start
+        var targetCenterCoords = new EntityCoordinates(targetGrid, targetPhysics.LocalCenter);
+        var spawnCoords = targetCenterCoords;
+        var distancePadding = MathF.Max(targetGrid.Comp.LocalAABB.Width, targetGrid.Comp.LocalAABB.Height);
+        // Starlight End
 
         if (group.MinimumDistance > 0f)
         {
-            var distancePadding = MathF.Max(targetGrid.Comp.LocalAABB.Width, targetGrid.Comp.LocalAABB.Height);
+            // var distancePadding = MathF.Max(targetGrid.Comp.LocalAABB.Width, targetGrid.Comp.LocalAABB.Height); // Starlight Edit: Removed
             spawnCoords = spawnCoords.Offset(_random.NextVector2(distancePadding + group.MinimumDistance, distancePadding + group.MaximumDistance));
         }
 
+        // Starlight Start
+        var spawnMapCoords = _transform.ToMapCoordinates(spawnCoords);
+        var targetCenterMapCoords = _transform.ToMapCoordinates(targetCenterCoords);
+
+        if (group.DirectDungeonSpawn)
+        {
+            var seed = _random.Next();
+            var spawnedGrid = _mapManager.CreateGridEntity(targetCenterMapCoords.MapId);
+
+            _transform.SetMapCoordinates(spawnedGrid, spawnMapCoords);
+            _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, seed);
+
+            spawned = spawnedGrid.Owner;
+            return true;
+        }
+        // Starlight End
+
         _mapSystem.CreateMap(out var mapId);
 
-        var spawnedGrid = _mapManager.CreateGridEntity(mapId);
+        var tempSpawnedGrid = _mapManager.CreateGridEntity(mapId); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
 
-        _transform.SetMapCoordinates(spawnedGrid, new MapCoordinates(Vector2.Zero, mapId));
-        _dungeon.GenerateDungeon(dungeonProto, spawnedGrid.Owner, spawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords);
+        _transform.SetMapCoordinates(tempSpawnedGrid, new MapCoordinates(Vector2.Zero, mapId)); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
+        _dungeon.GenerateDungeon(dungeonProto, tempSpawnedGrid.Owner, tempSpawnedGrid.Comp, Vector2i.Zero, _random.Next(), spawnCoords); // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
 
-        spawned = spawnedGrid.Owner;
+        spawned = tempSpawnedGrid.Owner; // Starlight Edit: ``spawnedGrid`` -> ``tempSpawnedGrid``
         return true;
     }
+
+    #region Starlight
+    private void ApplySpawnMarkerConfig(EntityUid spawned, IGridSpawnGroup group)
+    {
+        if (group is not DungeonSpawnGroup dungeon ||
+            !TryComp(spawned, out VGRoidSpawnMarkerComponent? marker))
+        {
+            return;
+        }
+
+        // Keep the validator's expected range sourced from the same data that controls placement.
+        marker.MinimumEdgeDistance = dungeon.MinimumDistance;
+        marker.MaximumEdgeDistance = dungeon.MaximumDistance;
+
+        marker.GenerationComplete = !dungeon.DirectDungeonSpawn;
+        marker.PlacementComplete = !dungeon.DirectDungeonSpawn;
+    }
+    #endregion
 
     private bool TryGridSpawn(EntityUid targetGrid, EntityUid stationUid, MapId mapId, GridSpawnGroup group, out EntityUid spawned)
     {
         spawned = EntityUid.Invalid;
-        
+
         if (group.Paths.Count == 0)
         {
             Log.Error($"Found no paths for GridSpawn");
@@ -194,7 +236,7 @@ public sealed partial class ShuttleSystem
                     break; // can break, we already found the grid that created this station
                 }
             // Starlight end
-            
+
             for (var i = 0; i < count; i++)
             {
                 EntityUid spawned;
@@ -245,6 +287,7 @@ public sealed partial class ShuttleSystem
                 }
 
                 EntityManager.AddComponents(spawned, group.Value.AddComponents); // SL edit
+                ApplySpawnMarkerConfig(spawned, group.Value); // Starlight
             }
         }
 

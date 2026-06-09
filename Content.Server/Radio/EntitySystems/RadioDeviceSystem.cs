@@ -175,7 +175,7 @@ public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
         if (_protoMan.TryIndex<RadioChannelPrototype>(component.BroadcastChannel, out var channel) &&
             _recentlySent.Add((args.Message, args.Source, channel.ID)))
             _radio.SendRadioMessage(args.Source, args.Message, channel, uid);
-        else if (_chat.TryGetCustomChannel(uid, component.BroadcastChannel, out var customChannel) && 
+        else if (_chat.TryGetCustomChannel(uid, component.BroadcastChannel, out var customChannel) &&
                  _recentlySent.Add((args.Message, args.Source, customChannel.Id)))
             _radio.SendCustomRadioMessage(args.Source, args.Message, customChannel, uid);
         //Starlight end

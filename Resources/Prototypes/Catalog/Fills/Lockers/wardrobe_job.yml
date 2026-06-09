@@ -72,6 +72,7 @@
       - id: Joint
       - id: Blunt
       - id: PackPaperRolling
+      - id: OminousPill # Starlight
       - id: Cigarette
         amount: !type:RangeNumberSelector
           range: 1, 4

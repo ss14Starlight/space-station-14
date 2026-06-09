@@ -107,6 +107,18 @@
     - type: StealTarget
       stealGroup: CorporateSecretsSteal
 
+- type: entity
+  id: ClassifiedCorporateDocumentCultCosmic
+  name: classified corporate documents
+  suffix: Do Not Map
+  description: A set of highly classified documents containing Corporate Secrets.
+  parent: [ ImportantDocumentGeneric, BaseGrandTheftContraband ]
+  components:
+    - type: TextFilePaperContent
+      fileName: classified_corporate_document_cosmic_cult.txt
+    - type: StealTarget
+      stealGroup: CorporateSecretsSteal
+
 ### Classified Criminal Documents
 
 - type: entity

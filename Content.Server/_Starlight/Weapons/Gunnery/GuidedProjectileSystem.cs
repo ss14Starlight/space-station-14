@@ -54,13 +54,13 @@ public sealed class GuidedProjectileSystem : EntitySystem
             {
                 // Rotate currentDir toward desiredDir by maxTurn.
                 // Cross product sign determines rotation direction.
-                var cross      = currentDir.X * desiredDir.Y - currentDir.Y * desiredDir.X;
+                var cross      = (currentDir.X * desiredDir.Y) - (currentDir.Y * desiredDir.X);
                 var rotAngle   = cross >= 0f ? maxTurn : -maxTurn;
                 var cos        = MathF.Cos(rotAngle);
                 var sin        = MathF.Sin(rotAngle);
                 newDir = new Vector2(
-                    cos * currentDir.X - sin * currentDir.Y,
-                    sin * currentDir.X + cos * currentDir.Y);
+                    (cos * currentDir.X) - (sin * currentDir.Y),
+                    (sin * currentDir.X) + (cos * currentDir.Y));
             }
 
             _physics.SetLinearVelocity(uid, newDir * currentSpeed, body: physics);

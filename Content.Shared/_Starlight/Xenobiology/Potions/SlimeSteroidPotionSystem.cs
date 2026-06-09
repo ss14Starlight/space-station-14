@@ -7,13 +7,13 @@ public sealed class SlimeSteroidPotionSystem : EntitySystem
 {
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
-    
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<SlimeSteroidPotionComponent, AfterInteractEvent>(OnAfterInteract);
     }
-    
+
     private void OnAfterInteract(Entity<SlimeSteroidPotionComponent> ent, ref AfterInteractEvent args)
     {
         if (!args.Target.HasValue || !args.CanReach) return;

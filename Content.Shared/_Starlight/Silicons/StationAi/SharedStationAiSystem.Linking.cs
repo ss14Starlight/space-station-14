@@ -12,7 +12,7 @@ public abstract partial class SharedStationAiSystem
         SubscribeLocalEvent<StationAiCoreComponent, NewLinkEvent>(OnNewLink);
         SubscribeLocalEvent<StationAiCoreComponent, PortDisconnectedEvent>(OnPortDisconnected);
     }
-    
+
     private void OnNewLink(Entity<StationAiCoreComponent> ent, ref NewLinkEvent args)
     {
         if (!TryComp<SiliconLawUpdaterComponent>(args.Sink, out var lawUpdater))
@@ -27,7 +27,7 @@ public abstract partial class SharedStationAiSystem
         Dirty(args.Sink, lawUpdater);
         Dirty(ent);
     }
-    
+
     private void OnPortDisconnected(Entity<StationAiCoreComponent> ent, ref PortDisconnectedEvent args)
     {
         var lawConsoleEntityUid = ent.Comp.LawConsole;

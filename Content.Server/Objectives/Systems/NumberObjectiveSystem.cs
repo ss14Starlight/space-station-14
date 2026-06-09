@@ -68,7 +68,7 @@ public sealed class NumberObjectiveSystem : EntitySystem
     {
         if (!Resolve(uid, ref comp))
             return;
-            
+
         comp.Description = description;
         _metaData.SetEntityDescription(uid, Loc.GetString(comp.Description, ("count", comp.Target)));
     }

@@ -1,0 +1,15 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'ui-stack-split-title'}"
+               Resizable="False">
+
+    <BoxContainer Orientation="Vertical" SeparationOverride="4" MinSize="240 80">
+        <BoxContainer Orientation="Horizontal">
+            <LineEdit Name="AmountLineEdit" Access="Public" HorizontalExpand="True" PlaceHolder="{Loc 'ui-stack-split-title'}"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="MinimumAmount" Access="Public" HorizontalExpand="True" />
+            <Label Name="MaximumAmount" Access="Public" />
+        </BoxContainer>
+        <Button Name="ApplyButton" Access="Public" Text="{Loc 'ui-stack-split-apply'}"/>
+    </BoxContainer>
+</DefaultWindow>

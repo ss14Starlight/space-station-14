@@ -18,3 +18,4 @@ borg-slot-pkaupgrade-empty = PKA Upgrades
 borg-slot-goliath-empty = Goliath Plates
 borg-slot-Rollerbed-empty = Rollerbed Storage
 borg-slot-Medipens-empty = Auto Injector Slot
+borg-slot-rollerbeds-empty = Body Bags and RollerBeds

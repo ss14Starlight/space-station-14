@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 using Component = Robust.Shared.GameObjects.Component;
-using Content.Shared.Whitelist; // Starlight
+using Content.Shared.Whitelist;
 
 namespace Content.Server._Starlight.Paper;
 
@@ -42,7 +42,7 @@ public sealed partial class AntagOnSignComponent : Component
     /// </summary>
     [DataField]
     public bool KeepFaxable = false;
-    
+
     //Starlight begin
     /// <summary>
     /// blacklist to prevent the signee from becoming antag

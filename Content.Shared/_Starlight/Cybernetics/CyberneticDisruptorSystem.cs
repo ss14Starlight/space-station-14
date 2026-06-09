@@ -23,7 +23,7 @@ public sealed class CyberneticDisruptorSystem : EntitySystem
     {
         if (!args.CanReach || args.Target is not { } target)
             return;
-        
+
         if (!TryComp(target, out HumanoidAppearanceComponent? _))
             return;
 
@@ -39,7 +39,7 @@ public sealed class CyberneticDisruptorSystem : EntitySystem
     }
 
     private void OnDoafter(EntityUid uid, CyberneticDisruptorComponent comp, CyberneticDisruptorDoafterEvent args)
-    { 
+    {
         if (args.Target is not { } target)
             return;
 

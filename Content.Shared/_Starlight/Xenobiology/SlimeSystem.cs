@@ -31,7 +31,7 @@ public sealed class SlimeSystem : EntitySystem
         public Entity<SlimeComponent?> Slime = slime;
         public int SplitAmount = splitAmount;
     }
-    
+
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
@@ -43,7 +43,7 @@ public sealed class SlimeSystem : EntitySystem
         }
         SlimeSplitRecords.Clear();
     }
-    
+
     /// <summary>
     /// Attempts to eat a target.
     /// </summary>
@@ -53,10 +53,10 @@ public sealed class SlimeSystem : EntitySystem
     public bool TryEat(Entity<SlimeComponent?> slime, EntityUid target)
     {
         if (!Resolve(slime, ref slime.Comp, false)) return false;
-        
+
         if (!_interaction.InRangeUnobstructed(slime.Owner, target, range: 0.75f)) return false;
         if (!TryComp<DamageableComponent>(target, out var damage)) return false;
-        
+
         if (!_damageableSystem.TryChangeDamage(target, slime.Comp.DamageOnEat, out var returnDamage, ignoreResistances: true)) return false;
         _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Effects/bite.ogg"), slime.Owner, null, AudioParams.Default.WithVariation(0.05F));
 
@@ -71,7 +71,7 @@ public sealed class SlimeSystem : EntitySystem
         {
             _hungerSystem.ModifyHunger(slime, slime.Comp.NutritionOnHit.Float());
         }
-        
+
         return true;
     }
 

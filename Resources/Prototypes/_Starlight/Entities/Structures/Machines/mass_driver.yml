@@ -46,7 +46,7 @@
       - state: panel_open
         map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: GenericVisualizer
-    visuals: 
+    visuals:
       enum.MassDriverVisuals.Launching:
         mainLayer:
           True: { state: launching }
@@ -71,7 +71,7 @@
     range: 10
     enabled: False
     volume: 0
-    sound: 
+    sound:
       path: /Audio/_Starlight/Effects/mass_driver_launching.ogg
   - type: Rotatable
   - type: Destructible

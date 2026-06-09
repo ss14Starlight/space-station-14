@@ -16,8 +16,8 @@ public sealed partial class RadarConsoleWindow : FancyWindow,
         RobustXamlLoader.Load(this);
     }
 
-    public void UpdateState(NavInterfaceState scc)
+    public void UpdateState(NavInterfaceState scc, DockingPortStates dockingPortStates)  // Starlight: +dockingPortStates
     {
-        RadarScreen.UpdateState(scc);
+        RadarScreen.UpdateState(scc, dockingPortStates);  // Starlight: +dockingPortStates
     }
 }

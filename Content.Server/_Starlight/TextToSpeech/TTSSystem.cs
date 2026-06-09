@@ -51,7 +51,6 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<TextToSpeechComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RadioSpokeEvent>(OnRadioReceiveEvent);
-        SubscribeLocalEvent<CollectiveMindSpokeEvent>(OnCollectiveMindReceiveEvent);
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke);
     }
 
@@ -93,11 +92,17 @@ public sealed partial class TTSSystem : EntitySystem
         {
             var text = CleanText(args.Message.Tts);
             _chime.TryGetSenderHeadsetChime(args.Source, out var chime);
-            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
+            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients)
+                .RemoveWhere(x => x.AttachedEntity.HasValue
+                    && x.AttachedEntity != args.Source
+                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID, false));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
+            var languageradio = args.Channel == args.Language.Speech.RadioChannel;
+            var type = languageradio ? TTSType.Mind : TTSType.Radio;
+            var effect = languageradio ? TTSEffect.Underwater : TTSEffect.Radio;
 
-            await GenerateAndStream(TTSType.Radio, voice, text, filter, TTSEffect.Walkie, chime, null, channel);
+            await GenerateAndStream(type, voice, text, filter, effect, chime, null, channel);
         }
         catch (TaskCanceledException ex)
         {
@@ -106,31 +111,6 @@ public sealed partial class TTSSystem : EntitySystem
         catch (Exception ex)
         {
             _sawmill.Error($"TTS Radio error: {ex.Message}");
-        }
-    }
-
-    private async void OnCollectiveMindReceiveEvent(CollectiveMindSpokeEvent args)
-    {
-        if (!_isEnabled
-            || args.Message.Length > MaxChars)
-            return;
-
-        await Task.Yield();
-        try
-        {
-            var text = CleanText(args.Message);
-            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
-            var voice = GetOrAssignVoice(args.Source);
-
-            await GenerateAndStream(TTSType.Mind, voice, text, filter, TTSEffect.Underwater);
-        }
-        catch (TaskCanceledException ex)
-        {
-            _sawmill.Info($"TTS Mind was cancelled: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            _sawmill.Error($"TTS Mind error: {ex.Message}");
         }
     }
 
@@ -166,7 +146,8 @@ public sealed partial class TTSSystem : EntitySystem
         args.Message.Tts ??= args.Message.Text;
         if (!_isEnabled
             || args.Message.Tts.Length > MaxChars
-            || !args.Language.SpeechOverride.RequireSpeech)
+            || (!args.Language.Speech.RequireSpeech && !args.Language.Speech.RequireSound)
+            )
             return;
 
         await Task.Yield();

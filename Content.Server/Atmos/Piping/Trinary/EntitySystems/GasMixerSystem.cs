@@ -38,6 +38,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasMixerComponent, AtmosDeviceUpdateEvent>(OnMixerUpdated);
             SubscribeLocalEvent<GasMixerComponent, ActivateInWorldEvent>(OnMixerActivate);
             SubscribeLocalEvent<GasMixerComponent, GasAnalyzerScanEvent>(OnMixerAnalyzed);
+            SubscribeLocalEvent<GasMixerComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
             // Bound UI subscriptions
             SubscribeLocalEvent<GasMixerComponent, GasMixerChangeOutputPressureMessage>(OnOutputPressureChangeMessage);
             SubscribeLocalEvent<GasMixerComponent, GasMixerChangeNodePercentageMessage>(OnChangeNodePercentageMessage);
@@ -129,9 +130,21 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _ambientSoundSystem.SetAmbience(uid, true);
         }
 
+        // Starlight Start
+        private void OnAnchorChanged(EntityUid uid, GasMixerComponent mixer, ref AnchorStateChangedEvent args)
+        {
+            if (!args.Anchored)
+            {
+                mixer.Enabled = false;
+                DirtyUI(uid, mixer);
+                UpdateAppearance(uid, mixer);
+            }
+        }
+        // Starlight End
+
         private void OnMixerLeaveAtmosphere(EntityUid uid, GasMixerComponent mixer, ref AtmosDeviceDisabledEvent args)
         {
-            mixer.Enabled = false;
+            // mixer.Enabled = false; // Starlight Edit: Moved to OnAnchorChanged
 
             DirtyUI(uid, mixer);
             UpdateAppearance(uid, mixer);

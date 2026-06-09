@@ -11,8 +11,10 @@ using Content.Shared.Administration;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.NPC;
+using Content.Shared.Starlight.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
@@ -41,6 +43,9 @@ namespace Content.Server.NPC.Pathfinding
          */
 
         [Dependency] private readonly IAdminManager _adminManager = default!;
+        // Starlight start
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        // Starlight end
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IParallelManager _parallel = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -104,6 +109,12 @@ namespace Content.Server.NPC.Pathfinding
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+            // Starlight start
+            if (_cfg.GetCVar(StarlightCCVars.DisablePathfinding))
+                return;
+            // Starlight end
+
             var options = new ParallelOptions()
             {
                 MaxDegreeOfParallelism = _parallel.ParallelProcessCount,
@@ -480,6 +491,11 @@ namespace Content.Server.NPC.Pathfinding
         {
             // We could maybe try an initial quick run to avoid forcing time-slicing over ticks.
             // For now it seems okay and it shouldn't block on 1 NPC anyway.
+
+            // Starlight start
+            if (_cfg.GetCVar(StarlightCCVars.DisablePathfinding))
+                return new PathResultEvent(PathResult.NoPath, new List<PathPoly>());
+            // Starlight end
 
             if (safe)
             {

@@ -15,12 +15,12 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
 
     [DataField("pulseTimeout")]
     private int _pulseTimeout = 30;
-    
+
     [DataField("electrify")]
     private bool _electrify = false; // Starlight-edit
-    
+
     private ElectrocutionSystem _electrocution = default!; // Starlight-edit
-    
+
     public override StatusLightState? GetLightState(Wire wire, AccessReaderComponent comp)
     {
         return comp.Enabled ? StatusLightState.On : StatusLightState.Off;
@@ -32,7 +32,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
     {
         if (!TrySetElectrocution(user, wire)) // Starlight-edit
             return false;
-        
+
         WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
         EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), false);
 
@@ -43,7 +43,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
     {
         if (!TrySetElectrocution(user, wire)) // Starlight-edit
             return false;
-        
+
         EntityManager.System<AccessReaderSystem>().SetActive((wire.Owner, comp), true);
 
         return true;
@@ -63,7 +63,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
             WiresSystem.TryCancelWireAction(wire.Owner, PulseTimeoutKey.Key);
         }
     }
-    
+
     // Starlight-start: access wire electrify
     public override void Initialize()
     {
@@ -71,7 +71,7 @@ public sealed partial class AccessWireAction : ComponentWireAction<AccessReaderC
 
         _electrocution = EntityManager.System<ElectrocutionSystem>();
     }
-    
+
     /// <returns>false if failed, true otherwise, or if the entity cannot be electrified</returns>
     private bool TrySetElectrocution(EntityUid user, Wire wire, bool timed = false)
     {

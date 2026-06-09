@@ -80,5 +80,5 @@ sovietuniform-name = Soviet Uniform
 sovietuniform-desc = Ploughshares to Swords, Assistant to Commisar.
 zapo-name = Zaporozhian sich bundle
 zapo-desc = Cossacks- have gone to space, and have earned respect within the union.
-vodkizine-name = Vodkizine bottle
+vodkizine-name = vodkizine bottle
 vodkizine-desc = The best cure for and cause of a hangover.

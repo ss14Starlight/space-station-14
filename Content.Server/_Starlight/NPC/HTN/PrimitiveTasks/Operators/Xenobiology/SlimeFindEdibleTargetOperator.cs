@@ -3,9 +3,7 @@ using System.Threading.Tasks;
 using Content.Server._Starlight.Xenobiology;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.PrimitiveTasks;
-using Content.Server.NPC.Pathfinding;
 using Content.Shared._Starlight.Xenobiology;
-using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 
@@ -18,19 +16,19 @@ public sealed partial class SlimeFindEdibleTargetOperator : HTNOperator
      * With this, slimes should bunch up around nearby edible targets, and not aimlessly and separately search for targets.
      * This doesn't require pathfinding, so slimes can theoretically smell targets through walls.
      */
-    
+
     [Dependency] private readonly IEntityManager _entManager = default!;
 
     private SlimeBrainSystem _slimeBrainSystem = default!;
     private EntityLookupSystem _lookup = default!;
     private TagSystem _tagSystem = default!;
-    
+
     /// <summary>
     /// The tag an entity must have in order to be considered safe to eat (not desperate).
     /// </summary>
     [DataField(required: true)]
     public ProtoId<TagPrototype> TargetFoodTag = default!;
-    
+
     public override void Initialize(IEntitySystemManager sysManager)
     {
         base.Initialize(sysManager);
@@ -38,7 +36,7 @@ public sealed partial class SlimeFindEdibleTargetOperator : HTNOperator
         _lookup = sysManager.GetEntitySystem<EntityLookupSystem>();
         _tagSystem = sysManager.GetEntitySystem<TagSystem>();
     }
-    
+
     public override async Task<(bool Valid, Dictionary<string, object>? Effects)> Plan(NPCBlackboard blackboard,
         CancellationToken cancelToken)
     {

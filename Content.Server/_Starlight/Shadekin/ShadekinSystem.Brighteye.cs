@@ -41,6 +41,8 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         RemCompDeferred<MindShieldComponent>(uid);
 
+        _language.AddLanguage(uid, "Empathy");
+
         _alerts.ShowAlert(uid, component.BrighteyeAlert);
         _alerts.ShowAlert(uid, component.PortalAlert);
 
@@ -63,6 +65,7 @@ public sealed partial class ShadekinSystem : EntitySystem
 
                 if (core.Comp1.OrganOwner != uid)
                 {
+                    component.LesserKin = true;
                     component.MaxEnergy = 100;
                     component.PhaseCost = 100;
 
@@ -122,6 +125,8 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void OnShutdown(EntityUid uid, BrighteyeComponent component, ComponentShutdown args)
     {
+        _language.RemoveLanguage(uid, "Empathy", removeUnderstood: false);
+
         _alerts.ClearAlert(uid, component.BrighteyeAlert);
         _alerts.ClearAlert(uid, component.PortalAlert);
         _alerts.ClearAlert(uid, component.RejuvenationAlert);

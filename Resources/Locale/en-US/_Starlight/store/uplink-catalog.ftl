@@ -14,6 +14,15 @@ uplink-stechkin-desc = A small, easily concealable 10mm handgun. Has a threaded 
 uplink-stechkin-bundle-name = Solid Operative Bundle
 uplink-stechkin-bundle-desc = A mysterious cardboard box containing a slew of equipment for only the most solid of operatives.
 
+uplink-pistol-high-capacity-magazine-name = Extended Pistol Magazine (.35 auto)
+uplink-pistol-high-capacity-magazine-desc = Pistol magazine with 16 cartridges. Compatible with the Viper.
+
+uplink-pistol-hp-magazine-name = Pistol Magazine (.35 auto HP)
+uplink-pistol-hp-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Viper.
+
+uplink-pistol-fmj-magazine-name = Pistol Magazine (.35 auto FMJ)
+uplink-pistol-fmj-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Viper.
+
 uplink-pistol-magnum-magazine-name = Pistol Magazine (.45 magnum)
 uplink-pistol-magnum-magazine-desc = Pistol magazine with 10 cartridges. Compatible with the Desert Eagle.
 
@@ -87,7 +96,7 @@ uplink-hydra-name = Hydra
 uplink-hydra-desc = A modified Hydra capable of taking both cleanades and standard grenades. Excellent for when you need to clean up the security department. Comes pre-filled with special syndicate cleanades.
 
 uplink-pizza-bomb-name = Nefarious Pizza bomb
-uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened. 
+uplink-pizza-bomb-desc = Originally developed by covertly by DONK Co to disuade the heretics who prefer their pizza not in pocket form. This pizza box is wired, and explodes within moments of being opened.
 
 uplink-shuttle-board-name = Syndicate Shuttle Console Board
 uplink-shuttle-board-desc = A computer printed circuit board for a syndicate shuttle console.
@@ -104,8 +113,26 @@ uplink-breaching-hammer-desc = A heavy-duty powered breaching tool disguised as 
 uplink-explosive-collar-name = Explosive Collar
 uplink-explosive-collar-desc = The legally distinct reverse beartrap from a certin movie franchise.
 
-uplink-syndie-elegant-raid-name = Syndicate Elegant Raid Suit
-uplink-syndie-elegant-raid-desc = Even contract, nuclear killers have the right to remain fabulous.
+uplink-satchel-syndicate-name = Syndicate Satchel
+uplink-satchel-syndicate-desc = Ask not what the syndicate satchel can do for you, but rather, what can't it do.
 
-uplink-clothing-murder-socks-name = MURDER socks !!11!!!1
-uplink-clothing-murder-socks-desc = lets KILL people sisters!1!!! comes with noslip.
+uplink-duffel-syndicate-name = Syndicate Duffel Bag
+uplink-duffel-syndicate-desc = A large duffel bag for holding various traitor goods.
+
+uplink-trunk-syndicate-name = Syndicate Trunk
+uplink-trunk-syndicate-desc = Huge, metal, reflective, and stylish. All the other syndicates will want to get their hands on this trunk.
+
+uplink-syndiedrobe-name = SyndieDrobe flatpack
+uplink-syndiedrobe-desc = Looks like Syndieland's back in business.
+
+uplink-noslip-clown-shoes-name = No-Slip Clown Shoes
+uplink-noslip-clown-shoes-desc = For the clowns who want that extra edge against security.
+
+uplink-banana-esword-name = Banana Energy Sword
+uplink-banana-esword-desc = A bananium-modified energy sword that slips whoever it slices. Does minimal damage.
+
+uplink-mimana-stealthy-name = Stealthy Mimana
+uplink-mimana-stealthy-desc = A mutated mimana that seems to fade into the background. Don't lose it!
+
+uplink-hushpup-ammo-name = Buckshot box (12 gauge)
+uplink-hushpup-ammo-desc = A box of 16 buckshot shotgun shells. Compatible with the Hushpup.

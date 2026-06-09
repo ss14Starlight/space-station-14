@@ -4,24 +4,19 @@ using Content.Server.Polymorph.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Systems;
 using Content.Shared.Chemistry.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Maps;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
 public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
 {
-    private static readonly ProtoId<ReagentPrototype> _bloodReagentId = "Blood";
     private const int MaxPoolsProcessedPerUpdate = 64;
 
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly PuddleSystem _puddle = default!;
 
     public override void Update(float frameTime)
@@ -54,7 +49,7 @@ public sealed class SanguinePoolSystem : SharedSanguinePoolSystem
             var tileCoords = _map.GridTileToLocal(gridUid, gridComp, tile);
             if (_puddle.TryGetPuddle(_map.GetTileRef((gridUid, gridComp), tileCoords), out var puddle))
             {
-                var solution = new Solution { Contents = [new ReagentQuantity(_bloodReagentId, 30)] };
+                var solution = new Solution { Contents = [new ReagentQuantity(comp.TrailReagent, comp.TrailReagentQuantity)] };
                 _puddle.TryAddSolution(puddle, solution);
                 continue;
             }

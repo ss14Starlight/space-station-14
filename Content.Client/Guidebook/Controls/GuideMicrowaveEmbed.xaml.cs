@@ -179,7 +179,7 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
 
         CookTimeLabel.SetMessage(msg);
     }
-    
+
     private void GenerateDeviceType(FoodRecipePrototype recipe)
     {
         var msg = new FormattedMessage();

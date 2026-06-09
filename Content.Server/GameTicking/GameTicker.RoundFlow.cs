@@ -43,7 +43,7 @@ namespace Content.Server.GameTicking
 
         private static readonly Gauge RoundLengthMetric = Metrics.CreateGauge(
             "ss14_round_length",
-            "Round length in seconds.");     
+            "Round length in seconds.");
 #if EXCEPTION_TOLERANCE
         [ViewVariables]
         private int _roundStartFailCount = 0;
@@ -731,7 +731,7 @@ namespace Content.Server.GameTicking
             _mapManager.Restart();
 
             _banManager.Restart();
-            
+
             _bugManager.Restart(); // Starlight
 
             _gameMapManager.ClearSelectedMap();

@@ -1,0 +1,14 @@
+- type: entity
+  parent: EffectFlashBluespace
+  id: EffectFlashRedspace
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    radius: 9
+    energy: 10
+    color: "#960202"
+  - type: TimedDespawn
+    lifetime: 1.75
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/_Starlight/Effects/redspace_thunderclap.ogg

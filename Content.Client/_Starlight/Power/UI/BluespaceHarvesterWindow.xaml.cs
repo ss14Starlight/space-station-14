@@ -16,7 +16,7 @@ public sealed partial class BluespaceHarvesterWindow : DefaultWindow
 
     private readonly Dictionary<string, (PanelContainer panel, Label name, Button button, Label cost)> _poolRows = new();
 
-    // Flag to suppress OnValueChanged when changing slider value 
+    // Flag to suppress OnValueChanged when changing slider value
     private bool _suppressSlider;
     private int _predictedDesiredLevel = -1;
 
@@ -54,7 +54,7 @@ public sealed partial class BluespaceHarvesterWindow : DefaultWindow
 
         _predictedDesiredLevel = clamped;
 
-        // Update Slider value without triggering OnValueChanged    
+        // Update Slider value without triggering OnValueChanged
         _suppressSlider = true;
         DesiredLevelSlider.Value = clamped;
         _suppressSlider = false;
@@ -126,7 +126,7 @@ public sealed partial class BluespaceHarvesterWindow : DefaultWindow
             }
         }
 
-        var index = 0; // just funny "Zebra" background effect 
+        var index = 0; // just funny "Zebra" background effect
         foreach (var pool in state.Pools)
         {
             var canAfford = state.AvailablePoints >= pool.Cost;

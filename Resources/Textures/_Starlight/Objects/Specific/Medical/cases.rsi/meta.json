@@ -1,0 +1,78 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by SevenShades, recolored into medical by wonderfulnewworld (GitHub)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bottle1",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle2",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle3",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle4",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle5",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle6",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle7",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottle8",
+	  "copyright": "SevenShades",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "bottlecase",
+	  "copyright": "SevenShades, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "injectorpack",
+	  "copyright": "SevenShades, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "surgerykit",
+	  "copyright": "SevenShades, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4,
+	  "copyright": "SevenShades, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4,
+	  "copyright": "SevenShades, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

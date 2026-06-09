@@ -7,7 +7,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Inventory.Events;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
@@ -71,8 +71,8 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnVestInteract(Entity<AbductorVestComponent> ent, ref AfterInteractEvent args)
     {
-        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target) 
-            || !args.Target.HasValue 
+        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)
+            || !args.Target.HasValue
             || !TryComp<AbductorConsoleComponent>(args.Target, out var console))
             return;
 

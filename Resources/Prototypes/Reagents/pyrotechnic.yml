@@ -34,7 +34,7 @@
       effects:
       - !type:DissolvableReaction
         multiplier: 1
-        damage: 
+        damage:
           types:
             Structural: 3
   metabolisms:

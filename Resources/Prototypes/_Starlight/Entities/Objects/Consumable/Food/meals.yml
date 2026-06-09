@@ -31,7 +31,7 @@
     - type: Tag
       tags:
         - Meat
-        
+
 - type: entity
   name: Kentucky fried felionoid
   parent: [ FoodMealBase, BaseMajorContraband ]
@@ -186,7 +186,7 @@
   parent: [FoodNoodlesBase, BaseMajorContraband]
   id: FoodCookedShadekinCore
   name: core spaghetti
-  description: An edible representation of your victory 
+  description: An edible representation of your victory
   components:
   - type: Item
     storedOffset: 0,-4

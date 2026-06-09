@@ -8,6 +8,10 @@ namespace Content.Shared.Strip;
 public sealed partial class ThievingSystem : EntitySystem
 {
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+    //Starlight start
+    private readonly TimeSpan MaxStripReduction = TimeSpan.FromSeconds(-2); // Since we kept thieving gloves, we need to prevent insta-thieving.
+    private readonly TimeSpan AdminStripReduction = TimeSpan.FromSeconds(-1000); // Admins still need to be able to instant strip. Their time is 9999, but I've kept this at 1000 incase an admin somehow gets steal time reduced to 9998.
+    //Starlight end
 
     public override void Initialize()
     {
@@ -28,6 +32,12 @@ public sealed partial class ThievingSystem : EntitySystem
         {
             args.Additive -= component.StripTimeReduction;
         }
+        // Starlight start
+        if (args.Additive < MaxStripReduction && args.Additive > AdminStripReduction)
+        {
+            args.Additive = MaxStripReduction; //We kept thieving gloves, but them combining to 3 makes it so you can instant-steal stuff, so this fixes that, without making everything take longer to steal.
+        }
+        // Starlight end
     }
 
     private void OnCompInit(Entity<ThievingComponent> entity, ref ComponentInit args)

@@ -11,7 +11,5 @@ public sealed class RestrictByEquippedTagSystem : SharedRestrictByEquippedTagSys
     [Dependency] private readonly PopupSystem _popup = default!;
 
     protected override void PopupClient(string message, EntityUid user)
-    {
-        _popup.PopupEntity(message, user, user);
-    }
-} 
+        => _popup.PopupEntity(message, user, user);
+}

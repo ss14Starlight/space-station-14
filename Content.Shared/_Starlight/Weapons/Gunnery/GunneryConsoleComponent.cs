@@ -9,20 +9,18 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 /// shuttle-mounted cannons and guide EMP rockets.
 /// </summary>
 [RegisterComponent]
+[AutoGenerateComponentPause] // Starlight
 public sealed partial class GunneryConsoleComponent : Component
 {
-    /// <summary>
-    /// Maximum targeting range in world units (metres).
-    /// Default 512 covers most engagement distances for shuttle combat.
-    /// </summary>
-    [DataField]
-    public float MaxRange = 512f;
-
     // ── Server-only runtime state ──────────────────────────────────────────
     // These are never serialized; they are set each frame by GunneryConsoleSystem.
 
     /// <summary>Server: EntityUid of the guided projectile currently being steered by this console, if any.</summary>
     public EntityUid? TrackedGuidedProjectile;
+
+    /// <summary>Server: When this console last updated its UI.</summary>
+    [AutoPausedField]
+    public TimeSpan LastInterfaceUpdateTime;
 
     /// <summary>Server: game time at which the last fire command was sent (used to associate spawned guided projectiles).</summary>
     public TimeSpan LastFireTime;

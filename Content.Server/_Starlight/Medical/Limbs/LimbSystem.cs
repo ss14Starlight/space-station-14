@@ -1,4 +1,4 @@
-using Content.Server.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Humanoid;
 using Content.Shared._Starlight.Medical.Body;
@@ -24,9 +24,7 @@ public sealed partial class LimbSystem : SharedLimbSystem
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()
-    {
-        base.Initialize();
-    }
+        => base.Initialize();
 
     public bool AttachLimb(Entity<HumanoidAppearanceComponent> body, string slot, Entity<BodyPartComponent> part, Entity<BodyPartComponent> limb)
     {

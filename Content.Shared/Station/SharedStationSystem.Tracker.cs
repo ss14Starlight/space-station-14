@@ -83,6 +83,10 @@ public abstract partial class SharedStationSystem
             return;
 
         ent.Comp.Station = station;
+        // Starlight
+        if (station is not null)
+            ent.Comp.LastStation = station;
+        // Starlight
         Dirty(ent);
     }
 }

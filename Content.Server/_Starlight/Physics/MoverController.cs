@@ -1,13 +1,11 @@
-using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.Movement;
 using Content.Shared._Starlight.Sound;
-using Content.Shared.Friction;
 using Content.Shared.Maps;
-using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -19,34 +17,72 @@ using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Threading;
+using Robust.Shared.Timing;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
+using Stopwatch = System.Diagnostics.Stopwatch;
 
 namespace Content.Server._Starlight.Physics;
 
 public sealed class SLMoverController : SharedMoverController
 {
-    private static readonly Gauge ActiveMoverGauge = Metrics.CreateGauge(
+    private static readonly Gauge _activeMoverGauge = Metrics.CreateGauge(
         "physics_active_mover_count",
-        "Active amount of InputMovers being processed by MoverController");
+        "InputMovers processed in parallel by MoverController");
 
-    private static readonly Gauge ActivePrioritizedMoverGauge = Metrics.CreateGauge(
-    "physics_active_prioritized_mover_count"    ,
-    "Active amount of prioritized InputMovers being processed by MoverController");
+    private static readonly Gauge _activePrioritizedMoverGauge = Metrics.CreateGauge(
+        "physics_active_prioritized_mover_count",
+        "Prioritized (relay-source) InputMovers processed serially by MoverController");
+
+    private static readonly Gauge _movedMoverGauge = Metrics.CreateGauge(
+        "physics_moved_mover_count",
+        "InputMovers whose velocity actually changed this tick");
+
+    // per-phase wall time of UpdateBeforeSolve. histogram so we get percentiles over a scrape window
+    // instead of the old log line. children are cached below so the hot path skips the label lookup.
+    private static readonly Histogram _moverUpdateDuration = Metrics.CreateHistogram(
+        "physics_mover_update_duration_seconds",
+        "Time spent per phase of MoverController.UpdateBeforeSolve",
+        new HistogramConfiguration
+        {
+            LabelNames = ["phase"],
+            Buckets = Histogram.ExponentialBuckets(0.00005, 2, 10), // 50us .. ~25ms
+        });
+
+    private readonly IHistogram _durBuild = _moverUpdateDuration.WithLabels("build");
+    private readonly IHistogram _durPrio = _moverUpdateDuration.WithLabels("prio_serial");
+    private readonly IHistogram _durParallel = _moverUpdateDuration.WithLabels("parallel");
+    private readonly IHistogram _durScatter = _moverUpdateDuration.WithLabels("scatter");
+    private readonly IHistogram _durDirtySound = _moverUpdateDuration.WithLabels("dirty_sound");
+    private readonly IHistogram _durShuttle = _moverUpdateDuration.WithLabels("shuttle");
+    private readonly IHistogram _durTotal = _moverUpdateDuration.WithLabels("total");
 
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IParallelManager _parallel = default!; 
-    [Dependency] private readonly IPlayerManager _players = default!; 
-    [Dependency] private readonly SharedAudioSystem _audio = default!; 
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    private HandleMobMovementJob _handleMobMovementJob; 
+    private HandleMobMovementJob _handleMobMovementJob;
 
-    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
+    // this runs once per substep (2 by default). input doesn't change mid-tick and only the last
+    // substep gets networked, so just solve once and coast the rest.
+    private bool _substepGating;
+    private GameTick _lastUpdateTick;
+    // who was active on the first substep. UpdateAfterSolve nukes the used-set every substep so we
+    // re-stamp it on coasted ones, otherwise friction/conveyor start grabbing our movers.
+    private readonly List<EntityUid> _usedMovers = new();
+
+    // Worker threads must not touch shared dirty/PVS state. Dirty calls raised during the parallel
+    // mover pass are deferred here and flushed on the main thread.
+    private volatile bool _inParallelMove;
+    private readonly ConcurrentQueue<(EntityUid Uid, InputMoverComponent Mover)> _deferredDirty = new();
+
+    private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, TransformComponent)>)> _shuttlePilots = new();
 
     public override void Initialize()
     {
@@ -56,7 +92,9 @@ public sealed class SLMoverController : SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<InputMoverComponent, PlayerDetachedEvent>(OnPlayerDetached);
 
-        _handleMobMovementJob = new HandleMobMovementJob(this); 
+        Subs.CVar(_cfg, StarlightCCVars.PhysicsMoverSubstepGating, value => _substepGating = value, true);
+
+        _handleMobMovementJob = new HandleMobMovementJob(this);
     }
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref PlayerAttachedEvent args)
@@ -72,18 +110,22 @@ public sealed class SLMoverController : SharedMoverController
     }
 
     private void OnPlayerAttached(Entity<InputMoverComponent> entity, ref PlayerAttachedEvent args)
-    {
-        SetMoveInput(entity, MoveButtons.None);
-    }
+        => SetMoveInput(entity, MoveButtons.None);
 
     private void OnPlayerDetached(Entity<InputMoverComponent> entity, ref PlayerDetachedEvent args)
-    {
-        SetMoveInput(entity, MoveButtons.None);
-    }
+        => SetMoveInput(entity, MoveButtons.None);
 
     protected override bool CanSound()
+        => true;
+
+    protected override void DirtyMover(EntityUid uid, InputMoverComponent mover)
     {
-        return true;
+        // Dirty -> EntityDirtied -> PVS is not thread-safe and contends across cores. While movers are
+        // processed in parallel we queue the dirty and apply it on the main thread after the job ends.
+        if (_inParallelMove)
+            _deferredDirty.Enqueue((uid, mover));
+        else
+            base.DirtyMover(uid, mover);
     }
 
     private readonly HashSet<EntityUid> _moverAdded = new();
@@ -104,7 +146,11 @@ public sealed class SLMoverController : SharedMoverController
         if (!_moverAdded.Add(source.Owner))
             return;
 
-        if(prioritized)
+        // A relay source mutates *another* entity's mover component (its relay target), so it can't be
+        // run concurrently with that target. Everything else — including ordinary players — is pure
+        // value computation in the parallel pass (writes are applied on the main thread during scatter),
+        // so it no longer needs to be spun serially.
+        if (prioritized || RelayQuery.HasComp(source.Owner))
             _prioritizedMovers.Add(source);
         else
             _movers.Add(source);
@@ -114,61 +160,147 @@ public sealed class SLMoverController : SharedMoverController
     {
         base.UpdateBeforeSolve(prediction, frameTime);
 
+        // already did this tick -> coast. velocity's still on the bodies, just put the used-set back.
+        // shuttles can't coast (they integrate force every substep) so keep running those.
+        if (_substepGating)
+        {
+            if (Timing.CurTick == _lastUpdateTick)
+            {
+                for (var i = 0; i < _usedMovers.Count; i++)
+                    UsedMobMovement[_usedMovers[i]] = true;
+
+                HandleShuttleMovement(frameTime);
+                return;
+            }
+            _lastUpdateTick = Timing.CurTick;
+        }
+
+        // solve once but physics still integrates every substep, so feed it the whole tick. a substep
+        // slice would run accel at half rate and the client (which sees full ticks) starts rubber-banding.
+        var moverFrameTime = _substepGating ? (float)Timing.TickPeriod.TotalSeconds : frameTime;
+
+        var perfStart = Stopwatch.GetTimestamp();
+
+        _usedMovers.Clear();
         _moverAdded.Clear();
         _prioritizedMovers.Clear();
         _movers.Clear();
 
+        // Players used to be forced onto the serial path; they now flow through InsertMover like any
+        // other mover and only end up prioritized if they're a relay source.
         foreach ( var session in _players.Sessions)
             if(session.AttachedEntity.HasValue
                 && TryComp<InputMoverComponent>(session.AttachedEntity.Value, out var mover))
-                InsertMover((session.AttachedEntity.Value, mover), true);
+                InsertMover((session.AttachedEntity.Value, mover));
 
         var inputQueryEnumerator = EntityQueryEnumerator<InputMoverComponent>();
         while (inputQueryEnumerator.MoveNext(out var uid, out var mover))
             InsertMover((uid, mover));
 
-        foreach (var mover in _prioritizedMovers)
-            HandleMobMovement(mover, frameTime);
+        var perfBuilt = Stopwatch.GetTimestamp();
 
-        _handleMobMovementJob.FrameTime = frameTime;
+        foreach (var mover in _prioritizedMovers)
+        {
+            HandleMobMovement(mover, moverFrameTime);
+            // base already wrote UsedMobMovement, grab the active ones so we can replay them while coasting.
+            if (_substepGating && UsedMobMovement.TryGetValue(mover.Owner, out var prioUsed) && prioUsed)
+                _usedMovers.Add(mover.Owner);
+        }
+
+        var perfPrio = Stopwatch.GetTimestamp();
+
+        _handleMobMovementJob.FrameTime = moverFrameTime;
         _handleMobMovementJob.Prepare(_movers);
 
-        _parallel.ProcessNow(_handleMobMovementJob, _movers.Count);
+        _inParallelMove = true;
+        try
+        {
+            _parallel.ProcessNow(_handleMobMovementJob, _movers.Count);
+        }
+        finally
+        {
+            _inParallelMove = false;
+        }
+
+        var perfParallel = Stopwatch.GetTimestamp();
 
         var velocities = _handleMobMovementJob.Velocities;
         var rotations = _handleMobMovementJob.Rotations;
+        var used = _handleMobMovementJob.Used;
+        var bodies = _handleMobMovementJob.Bodies;
+        var xforms = _handleMobMovementJob.Xforms;
+        var movedCount = 0;
         for (var i = 0; i < velocities.Length; i++)
         {
             ref readonly var velocity = ref velocities[i];
             ref readonly var rotation = ref rotations[i];
             var (uid, mover) = _movers[i];
+
+            // workers only read this, write it back here on the main thread.
+            UsedMobMovement[uid] = used[i];
+            if (_substepGating && used[i])
+                _usedMovers.Add(uid);
+
             if (velocity.HasValue)
             {
-                PhysicsSystem.SetLinearVelocity(uid, velocity.Value);
-                PhysicsSystem.SetAngularVelocity(uid, 0);
+                movedCount++;
+                // hand it the body the worker already resolved so it doesn't do the dict lookup again (x2).
+                var body = bodies[i];
+                PhysicsSystem.SetLinearVelocity(uid, velocity.Value, body: body);
+                // nothing spins normally, don't bother with the angular write unless there's spin to kill.
+                if (body!.AngularVelocity != 0f)
+                    PhysicsSystem.SetAngularVelocity(uid, 0, body: body);
             }
-            if(rotation.HasValue)
-                _transform.SetLocalRotation(uid, rotation.Value);
+            if (rotation.HasValue)
+                _transform.SetLocalRotation(uid, rotation.Value, xforms[i]);
 
         }
+
+        var perfScatter = Stopwatch.GetTimestamp();
+
+        // Flush the dirties deferred from the worker threads.
+        while (_deferredDirty.TryDequeue(out var deferred))
+            Dirty(deferred.Uid, deferred.Mover);
+
         foreach (ref readonly var sound in _handleMobMovementJob.Sounds)
             if (sound.HasValue)
                 _audio.PlayPredicted(sound.Value.SoundSpecifier, sound.Value.Source, sound.Value.User, sound.Value.AudioParams);
 
-        ActiveMoverGauge.Set(_movers.Count);
-        ActivePrioritizedMoverGauge.Set(_prioritizedMovers.Count);
+        var perfDirtySounds = Stopwatch.GetTimestamp();
 
         HandleShuttleMovement(frameTime);
+
+        var perfEnd = Stopwatch.GetTimestamp();
+
+        _activeMoverGauge.Set(_movers.Count);
+        _activePrioritizedMoverGauge.Set(_prioritizedMovers.Count);
+        _movedMoverGauge.Set(movedCount);
+
+        static double Sec(long a, long b) => Stopwatch.GetElapsedTime(a, b).TotalSeconds;
+        _durBuild.Observe(Sec(perfStart, perfBuilt));
+        _durPrio.Observe(Sec(perfBuilt, perfPrio));
+        _durParallel.Observe(Sec(perfPrio, perfParallel));
+        _durScatter.Observe(Sec(perfParallel, perfScatter));
+        _durDirtySound.Observe(Sec(perfScatter, perfDirtySounds));
+        _durShuttle.Observe(Sec(perfDirtySounds, perfEnd));
+        _durTotal.Observe(Sec(perfStart, perfEnd));
     }
 
     public Vector2? HandleAIMobMovement(
         Entity<InputMoverComponent> entity,
         float frameTime,
         out SoundEvent? soundEvent,
-        out Angle? rotation)
+        out Angle? rotation,
+        out bool used,
+        out PhysicsComponent? resolvedBody,
+        out TransformComponent? resolvedXform)
     {
         soundEvent = null;
         rotation = null;
+        used = false;
+        // give these back so the scatter loop reuses them instead of re-querying.
+        resolvedBody = null;
+        resolvedXform = null;
         var uid = entity.Owner;
         var mover = entity.Comp;
 
@@ -186,9 +318,8 @@ public sealed class SLMoverController : SharedMoverController
         // If we can't move then just use tile-friction / no movement handling.
         if (!mover.CanMove
             || !PhysicsQuery.TryComp(uid, out var physicsComponent)
-            || PullableQuery.TryGetComponent(uid, out var pullable) && pullable.BeingPulled)
+            || (PullableQuery.TryGetComponent(uid, out var pullable) && pullable.BeingPulled))
         {
-            UsedMobMovement[uid] = false;
             return null;
         }
 
@@ -200,15 +331,36 @@ public sealed class SLMoverController : SharedMoverController
         {
             if (!weightless)
             {
-                UsedMobMovement[uid] = false;
                 return null;
             }
             inAirHelpless = true;
         }
 
-        UsedMobMovement[uid] = true;
+        used = true;
 
         var moveSpeedComponent = ModifierQuery.CompOrNull(uid);
+
+        // Idle fast-path. The overwhelming majority of movers stand still on any given tick, and the
+        // controller runs at physics rate (2x networking), so the heavy work below is mostly wasted.
+        // When there is no movement input AND the body has already settled (linear speed under the
+        // friction floor, no residual spin) the full pass is provably a no-op: Friction() early-returns
+        // below MinimumFrictionSpeed, Accelerate() early-returns with a zero wish dir, and the
+        // rotation/footstep blocks only run for a non-zero wish dir. So we skip IsWeightless, the
+        // weightless event, tile lookups and sound resolution entirely and leave velocity untouched.
+        var (idleWalk, idleSprint) = GetVelocityInput(mover);
+        if (idleWalk == Vector2.Zero
+            && idleSprint == Vector2.Zero
+            && physicsComponent.AngularVelocity == 0f)
+        {
+            var minFrictionSpeed = moveSpeedComponent?.MinimumFrictionSpeed ?? MovementSpeedModifierComponent.DefaultMinimumFrictionSpeed;
+            if (physicsComponent.LinearVelocity.LengthSquared() < minFrictionSpeed * minFrictionSpeed)
+            {
+                // WishDir is already zero for a settled mover; this is a no-op in the common case and
+                // only clears a stale value (deferred-dirtied on the main thread) on the stopping tick.
+                SetWishDir((uid, mover), Vector2.Zero);
+                return null;
+            }
+        }
 
         float friction;
         float accel;
@@ -232,6 +384,11 @@ public sealed class SLMoverController : SharedMoverController
             RaiseLocalEvent(uid, ref ev, true);
 
             touching = ev.CanMove || xform.GridUid != null || MapGridQuery.HasComp(xform.GridUid);
+
+            // If we're not on a grid, and not able to move in space, check if we're close enough to a
+            // grid to push off it. Now safe in parallel since IsAroundCollider no longer shares a buffer.
+            if (!touching && MobMoverQuery.TryComp(uid, out var weightlessMobMover))
+                touching |= IsAroundCollider(_lookup, (uid, physicsComponent, weightlessMobMover, xform));
 
             // If we're touching then use the weightless values
             if (touching)
@@ -282,10 +439,21 @@ public sealed class SLMoverController : SharedMoverController
             friction = Math.Min(friction, accel);
         friction = Math.Max(friction, _minDamping);
         var minimumFrictionSpeed = moveSpeedComponent?.MinimumFrictionSpeed ?? MovementSpeedModifierComponent.DefaultMinimumFrictionSpeed;
-        Friction(minimumFrictionSpeed, frameTime, friction, ref velocity);
 
-        if (!weightless || touching)
-            Accelerate(ref velocity, in wishDir, accel, frameTime);
+        var solve = new MoverSolver.MoverParams
+        {
+            Velocity = velocity,
+            AngularVelocity = physicsComponent.AngularVelocity,
+            WishDir = wishDir,
+            FrictionInput = friction,
+            FrictionNoInput = friction,
+            Accel = accel,
+            MinimumFrictionSpeed = minimumFrictionSpeed,
+            MinDamping = _minDamping,
+            Weightless = weightless,
+            Touching = touching,
+        };
+        MoverSolver.TrySolve(in solve, frameTime, out velocity);
 
         SetWishDir((uid, mover), wishDir);
 
@@ -333,6 +501,10 @@ public sealed class SLMoverController : SharedMoverController
                 soundEvent = new SoundEvent(sound, uid, uid, audioParams);
             }
         }
+
+        // stash what we resolved, scatter loop picks it up.
+        resolvedBody = physicsComponent;
+        resolvedXform = xform;
         return velocity;
     }
 
@@ -488,12 +660,12 @@ public sealed class SLMoverController : SharedMoverController
 
     private void HandleShuttleMovement(float frameTime)
     {
-        var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, InputMoverComponent Mover, TransformComponent ConsoleXform)>)>();
+        var newPilots = new Dictionary<EntityUid, (ShuttleComponent Shuttle, List<(EntityUid PilotUid, PilotComponent Pilot, TransformComponent ConsoleXform)>)>();
 
         // We just mark off their movement and the shuttle itself does its own movement
-        var activePilotQuery = EntityQueryEnumerator<PilotComponent, InputMoverComponent>();
+        var activePilotQuery = EntityQueryEnumerator<PilotComponent>();
         var shuttleQuery = GetEntityQuery<ShuttleComponent>();
-        while (activePilotQuery.MoveNext(out var uid, out var pilot, out var mover))
+        while (activePilotQuery.MoveNext(out var uid, out var pilot))
         {
             var consoleEnt = pilot.Console;
 
@@ -514,11 +686,11 @@ public sealed class SLMoverController : SharedMoverController
 
             if (!newPilots.TryGetValue(gridId!.Value, out var pilots))
             {
-                pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>());
+                pilots = (shuttleComponent, new List<(EntityUid, PilotComponent, TransformComponent)>());
                 newPilots[gridId.Value] = pilots;
             }
 
-            pilots.Item2.Add((uid, pilot, mover, xform));
+            pilots.Item2.Add((uid, pilot, xform));
         }
 
         // Reset inputs for non-piloted shuttles.
@@ -550,7 +722,7 @@ public sealed class SLMoverController : SharedMoverController
             var brakeCount = 0;
             var angularCount = 0;
 
-            foreach (var (pilotUid, pilot, _, consoleXform) in pilots)
+            foreach (var (pilotUid, pilot, consoleXform) in pilots)
             {
                 var (strafe, rotation, brakes) = GetPilotVelocityInput(pilot);
 
@@ -585,7 +757,7 @@ public sealed class SLMoverController : SharedMoverController
                 if (body.LinearVelocity.Length() > 0f)
                 {
                     // Minimum brake velocity for a direction to show its thrust appearance.
-                    const float appearanceThreshold = 0.1f;
+                    const float AppearanceThreshold = 0.1f;
 
                     // Get velocity relative to the shuttle so we know which thrusters to fire
                     var shuttleVelocity = (-shuttleNorthAngle).RotateVec(body.LinearVelocity);
@@ -595,7 +767,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.West);
 
-                        if (shuttleVelocity.X < -appearanceThreshold)
+                        if (shuttleVelocity.X < -AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.East);
 
                         var index = (int) Math.Log2((int) DirectionFlag.East);
@@ -605,7 +777,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.East);
 
-                        if (shuttleVelocity.X > appearanceThreshold)
+                        if (shuttleVelocity.X > AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.West);
 
                         var index = (int) Math.Log2((int) DirectionFlag.West);
@@ -616,7 +788,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.South);
 
-                        if (shuttleVelocity.Y < -appearanceThreshold)
+                        if (shuttleVelocity.Y < -AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.North);
 
                         var index = (int) Math.Log2((int) DirectionFlag.North);
@@ -626,7 +798,7 @@ public sealed class SLMoverController : SharedMoverController
                     {
                         _thruster.DisableLinearThrustDirection(shuttle, DirectionFlag.North);
 
-                        if (shuttleVelocity.Y > appearanceThreshold)
+                        if (shuttleVelocity.Y > AppearanceThreshold)
                             _thruster.EnableLinearThrustDirection(shuttle, DirectionFlag.South);
 
                         var index = (int) Math.Log2((int) DirectionFlag.South);
@@ -794,15 +966,11 @@ public sealed class SLMoverController : SharedMoverController
     // See PR #24008
     [MethodImpl(MethodImplOptions.NoInlining)]
     public static float Vector2Dot(Vector2 value1, Vector2 value2)
-    {
-        return Vector2.Dot(value1, value2);
-    }
+        => Vector2.Dot(value1, value2);
 
     private bool CanPilot(EntityUid shuttleUid)
-    {
-        return TryComp<FTLComponent>(shuttleUid, out var ftl)
-        && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0
+    => (TryComp<FTLComponent>(shuttleUid, out var ftl)
+        && (ftl.State & (FTLState.Starting | FTLState.Travelling | FTLState.Arriving)) != 0x0)
             || HasComp<PreventPilotComponent>(shuttleUid);
-    }
 
 }

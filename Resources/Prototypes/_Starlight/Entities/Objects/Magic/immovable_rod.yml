@@ -1,0 +1,17 @@
+#Custom Immovable Rods
+
+- type: entity
+  parent: ImmovableRodKeepTilesStill
+  id: ImmovableRodSlug
+  suffix: Slug
+  description: Its coming right for us!
+  components:
+  - type: ImmovableRod
+    randomizeVelocity: false
+    minSpeed: 1
+    maxSpeed: 1
+  - type: TimedDespawn
+    lifetime: 420.0
+  - type: MobState
+    allowedStates:
+    - Alive

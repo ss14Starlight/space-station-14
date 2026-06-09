@@ -185,10 +185,10 @@
   - MenacingShuttleUplinkPirate
 
 - type: listing
-  id: ShuttleGunNTSFCyerxa120mmSet
-  name: NTSF-CYERXA Dual 120mm Cannons
+  id: ShuttleGunCyerxa120mmSet
+  name: CYERXA Dual 120mm Cannons
   description: A devastating dual 120mm cannon system for heavy shuttle combat. Fires 2 rounds per activation. Requires magazines.
-  productEntity: ShuttleGunNTSFCyerxa120mm
+  productEntity: ShuttleGunCyerxa120mm
   cost:
     BuildToken: 15
   categories:

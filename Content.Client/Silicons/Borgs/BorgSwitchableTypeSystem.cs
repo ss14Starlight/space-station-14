@@ -46,7 +46,7 @@ public sealed class BorgSwitchableTypeSystem : SharedBorgSwitchableTypeSystem
         if (!TryComp<BorgSwitchableSubtypeComponent>(entity, out var subtype) ||
             subtype.BorgSubtype != null)
             return;
-            
+
         if (TryComp(entity, out SpriteComponent? sprite))
         {
             if (_resourceCache.TryGetResource<RSIResource>(

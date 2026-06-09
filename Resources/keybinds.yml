@@ -658,4 +658,4 @@ binds:
 - function: Jump
   type: State
   key: Space
-  priority: -1 
+  priority: -1

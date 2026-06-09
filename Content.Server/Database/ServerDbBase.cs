@@ -77,8 +77,8 @@ namespace Content.Server.Database
                 return null;
 
             // 🌟Starlight🌟 start : hotfix
-            var maxSlot = prefs.Profiles.Count > 0 
-                ? prefs.Profiles.Max(p => p.Slot) + 1 
+            var maxSlot = prefs.Profiles.Count > 0
+                ? prefs.Profiles.Max(p => p.Slot) + 1
                 : 0;
             // 🌟Starlight🌟 end
 
@@ -330,6 +330,13 @@ namespace Content.Server.Database
                 }
             }
             //end starlight
+            //start Far Horizons
+            RoleLoadout? speciesLoadout = null;
+            if (loadouts.Remove(HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey, out var value))
+            {
+                speciesLoadout = value;
+            }
+            //end Far Horizons
             // Cosmatic Drift Record System-start: Build a humanoid profile so CD record data can be attached before returning
             var humanoid = new HumanoidCharacterProfile(
                 profile.CharacterName,
@@ -368,7 +375,8 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 profile.StarLightProfile?.CyberneticIds ?? [], // Starlight
-                profile.Enabled
+                profile.Enabled,
+                speciesLoadout // Far Horizons
             );
             // Cosmatic Drift Record System: Rehydrate saved CD records into the mutable profile copy
             if (profile.CDProfile?.CharacterRecords != null)
@@ -458,7 +466,13 @@ namespace Content.Server.Database
 
             profile.Loadouts.Clear();
 
-            foreach (var (role, loadouts) in humanoid.Loadouts)
+            // Far Horizons start
+            Dictionary<string, RoleLoadout> extraLoadouts = new(humanoid.Loadouts);
+            if (humanoid.SpeciesLoadout != null)
+                extraLoadouts[HumanoidCharacterProfile.SpeciesLoadoutDatabaseKey] = humanoid.SpeciesLoadout;
+            // Far Horizons end
+
+            foreach (var (role, loadouts) in extraLoadouts) // Far Horizons species loadout
             {
                 var dz = new ProfileRoleLoadout()
                 {
@@ -560,7 +574,7 @@ namespace Content.Server.Database
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
             bool includeUnbanned);
 
-        public abstract Task AddServerBanAsync(ServerBanDef serverBan);
+        public abstract Task<int> AddServerBanAsync(ServerBanDef serverBan);
         public abstract Task AddServerUnbanAsync(ServerUnbanDef serverUnban);
 
         public async Task EditServerBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
@@ -830,10 +844,12 @@ namespace Content.Server.Database
 
             foreach (var ban in bans)
             {
+                if (ban.Id == null || ban.Network)
+                    continue;
                 db.DbContext.ServerBanHit.Add(new ServerBanHit
                 {
                     ConnectionId = connection,
-                    BanId = ban.Id!.Value
+                    BanId = ban.Id.Value
                 });
             }
 

@@ -56,3 +56,27 @@
   copyright: "TG Station"
   source: "https://github.com/tgstation/tgstation"
 
+- files: ["metal_engie_monke.png, metal_sec_monke.png, metal_dark_monke.png, metal_med_monke.png, metal_sci_monke.png, metal_service_monke.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Monke Station"
+  source: "https://github.com/Monkestation/Monkestation2.0"
+
+- files: ["3x3black.png, 3x3brown.png, 3x3steel.png, 3x3white.png, old_concrete_bricks.png, old_concrete_tile.png, ornate.png, steel_grate.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Sojourn"
+  source: "https://github.com/sojourn-13/sojourn-station"
+
+- files: ["techfloor_greeb.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "TG Station"
+  source: "https://github.com/tgstation/tgstation"
+
+- files: ["rough_metal.png, rusty_metal.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Starlight"
+  source: "https://github.com/ss14Starlight/space-station-14"
+
+- files: ["dev_atmospherics.png, dev_bar.png, dev_cargo.png, dev_command.png, dev_door.png, dev_engineering.png, dev_floor.png, dev_maintenance.png, dev_medical.png, dev_salvage.png, dev_science.png, dev_security.png, dev_service.png"]
+  license: "CC0-1.0"
+  copyright: "CawsForConcern"
+  source: "https://github.com/CawsForConcern"

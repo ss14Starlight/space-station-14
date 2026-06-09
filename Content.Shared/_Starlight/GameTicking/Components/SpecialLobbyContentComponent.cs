@@ -2,7 +2,7 @@ using Content.Shared.GameTicking.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.GameTicking.Components;
+namespace Content.Shared._Starlight.GameTicking.Components;
 
 /// <summary>
 /// Component that defines special lobby content (music and background) to be used when this game rule ends.

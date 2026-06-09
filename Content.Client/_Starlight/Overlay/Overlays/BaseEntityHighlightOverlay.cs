@@ -1,11 +1,6 @@
 using Robust.Client.Graphics;
-using Robust.Client.Player;
-using Robust.Shared.Enums;
-using Robust.Shared.Prototypes;
-using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Content.Shared.Body.Components;
-using Microsoft.CodeAnalysis;
 
 namespace Content.Client._Starlight.Overlay;
 

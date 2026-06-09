@@ -39,7 +39,7 @@ public sealed class SlimeProcessorSystem : EntitySystem
     {
         if (!args.CanInteract || !args.CanAccess)
             return;
-        
+
         var itemVerb = new InteractionVerb();
         itemVerb.Text = Loc.GetString("comp-slime-processor-verb-activate");
         if (CanActivate(ent))
@@ -91,7 +91,7 @@ public sealed class SlimeProcessorSystem : EntitySystem
             collectingSlimeProcessorComponent.SlimeAcquireMoment = gameTiming.CurTime + ent.Comp.SlimeAcquireCooldown;
         }
     }
-    
+
     public static void EnableProcessing(Entity<SlimeProcessorComponent> ent, EntityManager entityManager, IGameTiming gameTiming)
     {
         if (!entityManager.HasComponent<ActiveSlimeProcessorComponent>(ent.Owner))
@@ -109,7 +109,7 @@ public sealed class ActiveSlimeProcessorSystem : EntitySystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IRobustRandom _robustRandom = default!;
-    
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -137,7 +137,7 @@ public sealed class ActiveSlimeProcessorSystem : EntitySystem
                 }
                 PredictedQueueDel(entity);
             }
-            
+
             RemCompDeferred<JitteringComponent>(uid);
             RemCompDeferred<ActiveSlimeProcessorComponent>(uid);
             SlimeProcessorSystem.EnableCollecting((uid, slimeProcessorComponent), _entityManager, _gameTiming);
@@ -151,7 +151,7 @@ public sealed class CollectingSlimeProcessorSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);

@@ -54,20 +54,20 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
-# NanoTrasen Representives
+# NanoTrasen Representatives
 #BSO
 - type: entity
   id: LockerBlueshield
   parent: LockerBaseSecure
-  name: blue shield locker
+  name: blueshield officer's locker
   components:
   - type: Appearance
   - type: Sprite
     sprite: _Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
-    stateBaseClosed: bssecure
-    stateDoorOpen: bssecure_open
-    stateDoorClosed: bssecure_door
+    stateBaseClosed: bso
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: bso_door
   - type: AccessReader
     access: [["BlueShield"]]
   - type: WiresPanelSecurity
@@ -84,14 +84,13 @@
     sprite: _Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: magi
-    stateDoorOpen: magi_open
+    stateDoorOpen: nanotrasen-black_open
     stateDoorClosed: magi_door
   - type: AccessReader
     access: [["Magistrate"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
-#Law
 #IAA
 - type: entity
   id: LockerIAA
@@ -103,10 +102,28 @@
     sprite: _Starlight/Structures/Storage/closet.rsi
   - type: EntityStorageVisuals
     stateBaseClosed: iaa
-    stateDoorOpen: iaa_open
+    stateDoorOpen: nanotrasen-black_open
     stateDoorClosed: iaa_door
   - type: AccessReader
     access: [["IAA"]]
+  - type: WiresPanelSecurity
+    securityLevel: medSecurity
+
+#NCT
+- type: entity
+  id: LockerNCT
+  parent: LockerBaseSecure
+  name: NanoTrasen career trainer's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Starlight/Structures/Storage/closet.rsi
+  - type: EntityStorageVisuals
+    stateBaseClosed: nct
+    stateDoorOpen: nanotrasen-black_open
+    stateDoorClosed: nct_door
+  - type: AccessReader
+    access: [["Command"]]
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
@@ -173,6 +190,38 @@
     stateDoorClosed: miner_door
   - type: AccessReader
     access: [["Mining"]]
+
+# Cargo Technician
+- type: entity
+  id: LockerCargo
+  name: cargo technician's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: cargo
+      stateDoorOpen: cargo_open
+      stateDoorClosed: cargo_door
+    - type: AccessReader
+      access: [["Cargo"]]
+
+# Mail Technician
+- type: entity
+  id: LockerMail
+  name: mail technician's locker
+  parent: LockerBaseSecure
+  components:
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Structures/Storage/closet.rsi
+    - type: EntityStorageVisuals
+      stateBaseClosed: mail
+      stateDoorOpen: mail_open
+      stateDoorClosed: mail_door
+    - type: AccessReader
+      access: [["Mail"]]
 
 # Janitor locker
 - type: entity

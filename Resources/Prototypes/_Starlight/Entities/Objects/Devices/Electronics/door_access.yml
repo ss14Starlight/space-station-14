@@ -43,6 +43,7 @@
   - type: AccessReader
     access: [["Paramedic"]]
 
+# Mining
 - type: entity
   parent: DoorElectronics
   id: DoorElectronicsMining
@@ -51,6 +52,7 @@
     - type: AccessReader
       access: [["Mining"]]
 
+#Salvage-Mining
 - type: entity # Combination door for salvage and mining access
   parent: DoorElectronics
   id: DoorElectronicsSalvageMining
@@ -58,6 +60,43 @@
   components:
     - type: AccessReader
       access: [["Salvage"], ["Mining"]]
+
+#Mail Technician
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMail
+  suffix: Mail, Locked
+  components:
+    - type: AccessReader
+      access: [["Mail"]]
+
+# Legal
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsLegal
+  suffix: Legal, Locked
+  components:
+  - type: AccessReader
+    access: [["Lawyer"]]
+
+# Courtroom
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCourtroom
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: AccessReader
+    access: [["Security"], ["IAA"], ["Lawyer"]]
+
+
+# Attorney
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsAttorney
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: AccessReader
+    access: [["IAA"], ["Lawyer"]]
 
 #Brigmedic
 - type: entity
@@ -85,3 +124,39 @@
   components:
     - type: AccessReader
       access: [["Solgov"]]
+
+#Communist
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsCommunist
+  suffix: Communist, Locked
+  components:
+    - type: AccessReader
+      access: [["Communist"]]
+
+# Wizard
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsWizard
+  suffix: Wizard, Locked
+  components:
+    - type: AccessReader
+      access: [["Wizard"]]
+
+#Blackstar
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsBlackstar
+  suffix: Blackstar, Locked
+  components:
+    - type: AccessReader
+      access: [["Blackstar"]]
+
+#MedTak
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMedTak
+  suffix: MedTak, Locked
+  components:
+    - type: AccessReader
+      access: [["MedTak"]]

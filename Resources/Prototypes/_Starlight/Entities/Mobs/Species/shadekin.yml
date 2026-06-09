@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McShadow
-  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies]
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
   id: BaseMobShadekin
   abstract: true
   components:
@@ -12,10 +12,9 @@
       understands:
         - GalacticCommon
         - Marish
+        - Empathy
     - type: Inventory
       speciesId: shadekin
-    - type: CollectiveMind
-      blockWhenUnconscious: true
     - type: Shadekin
       thresholds:
         0.8: Low
@@ -57,6 +56,7 @@
       groups:
         Flammable: [Touch]
         Extinguish: [Touch]
+        Acidic: [ Touch, Ingestion ]
       reactions:
         - reagents: [Water, SpaceCleaner]
           methods: [Touch]
@@ -160,13 +160,3 @@
           amount: 5
     - type: FireVisuals
       alternateState: Standing
-
-- type: entity
-  save: false
-  parent: BaseSpeciesDummy
-  id: MobShadekinDummy
-  categories: [HideSpawnMenu]
-  description: A dummy shadekin meant to be used in character setup.
-  components:
-    - type: HumanoidAppearance
-      species: Shadekin

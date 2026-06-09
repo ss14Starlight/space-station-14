@@ -64,7 +64,7 @@ namespace Content.Server.Stunnable.Systems
             if (!_tagSystem.HasTag(target, "Shield"))
                 return;
 
-            // Check if user is NOT in combat mode 
+            // Check if user is NOT in combat mode
             if (_combatMode.IsInCombatMode(args.User))
                 return;
 

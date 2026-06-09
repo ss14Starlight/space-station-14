@@ -89,6 +89,18 @@
         Radiation: 0.60
 
 - type: entity
+  parent: ClothingMaskBreathMedicalSecurity
+  id: ClothingMaskBreathMedicalSecurityBudget
+  name: budget military-style medical mask
+  description: A low-cost medical mask with a small layer of protection against damage and viruses. It's less effective than the standard issue medical mask, but it's better than nothing.
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.95
+
+- type: entity
   parent: ClothingMaskGas
   id: ClothingKitsuneMask
   name: kitsune mask

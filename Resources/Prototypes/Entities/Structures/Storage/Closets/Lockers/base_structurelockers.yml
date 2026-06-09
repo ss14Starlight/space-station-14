@@ -74,7 +74,7 @@
     group: Locker
   # Starlight-start: Wires panel
   - type: Tag
-    tags: 
+    tags:
       - Locker
   - type: PoweredLocker
   - type: StationAiWhitelist
@@ -131,7 +131,7 @@
             max: 2
 # Starlight-start: Base Locker
   - type: Tag
-    tags: 
+    tags:
       - SecuredLocker
   - type: Appearance
   - type: EntityStorageVisuals

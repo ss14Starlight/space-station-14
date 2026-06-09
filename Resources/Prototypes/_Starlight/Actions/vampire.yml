@@ -25,26 +25,54 @@
   parent: BaseAction
   id: ActionVampireGlare
   name: Glare(Free)
-  description: Paralyze and mute nearby targets, dealing stamina damage over time.
+  description: Stare down nearby targets, dealing stamina damage. Targets in front are paralyzed, muted, and take extra stamina damage over time.
   components:
     - type: Action
-      useDelay: 90
+      useDelay: 60
       itemIconStyle: NoItem
       priority: 2
       icon:
         sprite: _Starlight/Vampire/actions_vampire.rsi
         state: glare
     - type: InstantAction
-      event: !type:VampireGlareActionEvent {}
+      event: !type:VampireGlareActionEvent
+        dotTickCount: 10
+        dotTickInterval: 1
     - type: VampireAction
       bloodToUnlock: 0
       bloodCost: 0
+- type: entity
+  parent: BaseAction
+  id: ActionVampireSleep
+  name: Sleep (15)
+  description: Put target to sleep for 10 seconds
+  components:
+    - type: Action
+      useDelay: 120
+      itemIconStyle: NoItem
+      priority: 25
+      icon:
+        sprite: _Starlight/Vampire/actions_vampire.rsi
+        state: sleep_icon
+    - type: TargetAction
+      range: 2
+      checkCanAccess: false
+      interactOnMiss: false
+    - type: EntityTargetAction
+      canTargetSelf: false
+      whitelist:
+        components:
+          - HumanoidAppearance
+      event: !type:VampireSleepActionEvent
+    - type: VampireAction
+      bloodToUnlock: 0
+      bloodCost: 15
 
 - type: entity
   parent: BaseAction
   id: ActionVampireRejuvenateI
   name: Rejuvenate(Free)
-  description: Instantly remove stuns and recover 100 stamina damage.
+  description: Instantly remove stuns and knockdown, and reset your stamina damage.
   components:
     - type: Action
       useDelay: 35
@@ -65,7 +93,7 @@
   parent: BaseAction
   id: ActionVampireRejuvenateII
   name: Rejuvenate(Free)
-  description: Instantly remove stuns and recover 100 stamina, plus purge harmful reagents (10u) and heal 20 brute, 20 burn, 20 toxin, and 30 oxy loss.
+  description: Remove stuns and knockdown, reset stamina, purge up to 10u of poisons, then heal 20 brute, 20 burn, 20 poison, and 25 asphyxiation over time.
   components:
     - type: Action
       useDelay: 30
@@ -77,7 +105,18 @@
         sprite: _Starlight/Vampire/actions_vampire.rsi
         state: rejuvinate
     - type: InstantAction
-      event: !type:VampireRejuvenateIIActionEvent {}
+      event: !type:VampireRejuvenateIIActionEvent
+        reagentPurgeAmount: 10
+        purgedMetabolismGroups:
+        - Poison
+        healTicks: 5
+        healTickInterval: 3.5
+        healGroups:
+          Brute: 4
+          Burn: 4
+        healTypes:
+          Poison: 4
+          Asphyxiation: 5
     - type: VampireAction
       bloodToUnlock: 200
       bloodCost: 0
@@ -107,7 +146,7 @@
   parent: BaseAction
   id: ActionVampireHemomancerClaws
   name: Vampiric Claws
-  description: Create undroppable claws of blood. Each hit grants +5 blood. Has 15 swings. Use in hand to dispel.
+  description: Create undroppable blood claws. Successful blood-draining hits grant 5 blood, the claws dissipate after 15 draining hits or when used in hand.
   components:
     - type: Action
       useDelay: 30
@@ -170,7 +209,7 @@
   parent: BaseAction
   id: ActionVampireBloodBarrier
   name: Blood Barrier
-  description: Creates 3 blood barriers at the target location. Vampires can pass through them.
+  description: Creates up to 3 blood barriers in a line at the target location. You can pass through your own barriers.
   components:
     - type: Action
       useDelay: 60
@@ -214,7 +253,7 @@
   parent: BaseAction
   id: ActionVampireBloodEruption
   name: Blood Eruption(100)
-  description: Cause any blood within 4 tiles of you to erupt, dealing 50 brute damage to anyone standing on it.
+  description: Erupt blood puddles within 10 tiles of you, dealing 50 blunt damage to targets on those puddles.
   components:
     - type: Action
       useDelay: 90
@@ -224,17 +263,22 @@
         sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_spikes
     - type: InstantAction
-      event: !type:VampireBloodEruptionActionEvent {}
+      event: !type:VampireBloodEruptionActionEvent
+        range: 10
+        damage: 50
+        targetRange: 2
+        puddleReagent: Blood
     - type: VampireAction
       bloodToUnlock: 800
       bloodCost: 100
       requiredClass: Hemomancer
+    - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction
   id: ActionVampireBloodBringersRite
   name: Blood Bringers Rite(Toggle)
-  description: When toggled, everyone around you begins to bleed profusely. You will drain their blood and rejuvenate yourself with it.
+  description: Requires full power. Toggle a 4-tile aura that costs 10 blood every 2 seconds, drains nearby victims, damages them, and heals you.
   components:
     - type: Action
       useDelay: 1 # Toggle
@@ -244,18 +288,28 @@
         sprite: _Starlight/Vampire/Haemomancer.rsi
         state: blood_rite
     - type: InstantAction
-      event: !type:VampireBloodBringersRiteActionEvent {}
+      event: !type:VampireBloodBringersRiteActionEvent
+        range: 4
+        damage: 5
+        healBrute: 8
+        healBurn: 2
+        healStamina: 15
+        toggleInterval: 2
+        cost: 10
+        maxTicks: 150
+        beamPrototype: VampireDrainBeamVisual
     - type: VampireAction
       bloodToUnlock: 1000
       bloodCost: 0
       requiredClass: Hemomancer
+      requiresFullPower: true
 
 # Umbrae
 - type: entity
   parent: BaseAction
   id: ActionVampireCloakOfDarkness
   name: Cloak of Darkness(Toggle)
-  description: Toggle invisibility and speed boost that scales with darkness. More effective in dark areas, less effective in bright light.
+  description: Toggle stealth that is strongest in darkness and weakest in bright light. Nearby mobs reveal you.
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -293,12 +347,13 @@
       bloodToUnlock: 200
       bloodCost: 20
       requiredClass: Umbrae
+    - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction
   id: ActionVampireShadowAnchor
   name: Shadow Anchor (20)
-  description: First use, place a shadow anchor beacon (lasts 2 min). Second use while it exists instantly return to it and consume the beacon.
+  description: First use channels for 5 seconds to place a shadow anchor at your feet. Use again to return to it, or return automatically after 2 minutes.
   components:
     - type: Action
       useDelay: 60 # 1min
@@ -336,12 +391,18 @@
         components:
           - MobState
       event: !type:VampireShadowBoxingActionEvent
+        duration: 10
+        interval: 0.9
+        brutePerTick: 6
+        range: 4
+        punchEffectPrototype: WeaponArcPunch
         hitSound: !type:SoundCollectionSpecifier
           collection: Knuckles
     - type: VampireAction
       bloodToUnlock: 800
       bloodCost: 50
       requiredClass: Umbrae
+    - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction
@@ -371,7 +432,7 @@
   parent: BaseAction
   id: ActionVampireExtinguish
   name: Extinguish Lights (0)
-  description: Destroy all light sources within 3 tiles, gaining 5 blood per light.
+  description: Destroy powered lights within 4 tiles.
   components:
     - type: Action
       useDelay: 20
@@ -401,11 +462,18 @@
         sprite: _Starlight/Vampire/umbrae.rsi
         state: eternal_darkness
     - type: InstantAction
-      event: !type:VampireEternalDarknessActionEvent {}
+      event: !type:VampireEternalDarknessActionEvent
+        maxTicks: 360
+        bloodPerTick: 5
+        freezeRadius: 6
+        targetFreezeTemp: 233.15
+        tempDropInterval: 2
+        tempDropPerInterval: 60
     - type: VampireAction
       bloodToUnlock: 1000
       bloodCost: 0
       requiredClass: Umbrae
+      requiresFullPower: true
 
 # Dantalion
 
@@ -436,6 +504,7 @@
       bloodToUnlock: 150
       bloodCost: 150
       requiredClass: Dantalion
+    - type: EorgPreventAction
 
 - type: entity
   parent: BaseAction
@@ -444,7 +513,7 @@
   description: Flood a victim's mind with bliss, pacifying them for 40 seconds.
   components:
     - type: Action
-      useDelay: 30 
+      useDelay: 30
       itemIconStyle: NoItem
       priority: 26
       icon:
@@ -460,6 +529,7 @@
         components:
           - MobState
       event: !type:VampirePacifyActionEvent
+        pacifyDuration: 40
     - type: VampireAction
       bloodToUnlock: 250
       bloodCost: 30
@@ -469,7 +539,7 @@
   parent: BaseAction
   id: ActionVampireSubspaceSwap
   name: Subspace Swap(30)
-  description: Select a target within 7 tiles to swap positions, slowing them for 4 seconds.
+  description: Swap positions with a living target within 7 tiles, slowing them for 4 seconds and afflicting them with hysteria for 15 seconds.
   components:
     - type: Action
       useDelay: 30
@@ -488,6 +558,16 @@
         components:
           - MobState
       event: !type:VampireSubspaceSwapActionEvent
+        slowDuration: 4
+        slowMultiplier: 0.4
+        hysteriaDuration: 15
+        hysteriaDisguiseSprites:
+        - path: /_Starlight/Vampire/Effects.rsi
+          state: schizo
+          size: 1.5, 1.5
+        - path: /Mobs/Animals/bear.rsi
+          state: bear
+          size: 1.65, 1.65
     - type: VampireAction
       bloodToUnlock: 250
       bloodCost: 30
@@ -497,7 +577,7 @@
   parent: BaseAction
   id: ActionVampireDecoy
   name: Decoy(30)
-  description: Leave behind a fragile duplicate that blinds attackers when harmed while you vanish into invisibility.
+  description: Leave behind a fragile duplicate for 6 seconds and become invisible for 6 seconds. The decoy flashes attackers when harmed.
   components:
     - type: Action
       useDelay: 40
@@ -508,6 +588,8 @@
         state: decoy
     - type: InstantAction
       event: !type:VampireDecoyActionEvent
+        decoyDuration: 6
+        invisibilityDuration: 6
     - type: VampireAction
       bloodToUnlock: 400
       bloodCost: 30
@@ -537,7 +619,7 @@
   parent: BaseAction
   id: ActionVampireBloodBond
   name: Blood Bond(Toggle)
-  description: Toggle a blood tether to nearby thralls, redistributing damage between you at the cost of 2.5 blood per second.
+  description: Toggle blood tethers to visible thralls within 3 tiles, splitting incoming damage across the linked group at the cost of 2.5 blood per second.
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -548,6 +630,10 @@
         state: blood_bond
     - type: InstantAction
       event: !type:VampireBloodBondActionEvent
+        range: 3
+        bloodCostPerTick: 5
+        tickInterval: 2
+        beamPrototype: VampireBloodBondBeamVisual
     - type: VampireAction
       bloodToUnlock: 800
       bloodCost: 0
@@ -557,7 +643,7 @@
   parent: BaseAction
   id: ActionVampireMassHysteria
   name: Mass Hysteria(70)
-  description: Flood every nearby mind (except thralls) with terror, flashing them and cursing them with hallucinations for 30 seconds.
+  description: Requires full power. Flood nearby non-thrall humanoids within 8 tiles with terror, flashing them for 3 seconds and causing hysteria for 30 seconds.
   components:
     - type: Action
       useDelay: 180 # 3min
@@ -568,10 +654,21 @@
         state: hysteria
     - type: InstantAction
       event: !type:VampireMassHysteriaActionEvent
+        range: 8
+        flashDuration: 3
+        hysteriaDuration: 30
+        hysteriaDisguiseSprites:
+        - path: /_Starlight/Vampire/Effects.rsi
+          state: schizo
+          size: 1.5, 1.5
+        - path: /Mobs/Animals/bear.rsi
+          state: bear
+          size: 1.65, 1.65
     - type: VampireAction
       bloodToUnlock: 1000
       bloodCost: 70
       requiredClass: Dantalion
+      requiresFullPower: true
 
 #Gargantua
 
@@ -590,6 +687,20 @@
         state: blood_swell
     - type: InstantAction
       event: !type:VampireBloodSwellActionEvent
+        duration: 30
+        enhancedThreshold: 400
+        meleeBonusDamage: 14
+        incomingDamageMultiplier: 0.5
+        staminaDamageMultiplier: 0.5
+        statusEffectDurationMultiplier: 0.5
+        reducedDamageTypes:
+        - Blunt
+        - Slash
+        - Piercing
+        - Heat
+        - Cold
+        - Shock
+        - Caustic
     - type: VampireAction
       bloodToUnlock: 150
       bloodCost: 30
@@ -599,7 +710,7 @@
   parent: BaseAction
   id: ActionVampireBloodRush
   name: Blood Rush(30)
-  description: For 10 seconds - double your movement speed.
+  description: For 10 seconds, increase your movement speed by 50%.
   components:
     - type: Action
       useDelay: 30
@@ -610,6 +721,8 @@
         state: blood_rush
     - type: InstantAction
       event: !type:VampireBloodRushActionEvent
+        duration: 10
+        speedMultiplier: 1.5
     - type: VampireAction
       bloodToUnlock: 250
       bloodCost: 30
@@ -619,7 +732,7 @@
   parent: BaseAction
   id: ActionVampireSeismicStomp
   name: Seismic Stomp(30)
-  description: Slam the ground, knocking down and throwing all creatures within 3 tiles away from you. Destroys floor tiles.
+  description: Slam the ground, knocking down and throwing all creatures within 3 tiles away from you.
   components:
     - type: Action
       useDelay: 60
@@ -639,7 +752,7 @@
   parent: BaseAction
   id: ActionVampireOverwhelmingForce
   name: Overwhelming Force(Toggle)
-  description: Toggle - automatically pry open unpowered doors. While active, you cannot be pushed or pulled. Costs 5 blood per door.
+  description: Toggle - automatically pry open powered doors. While active, you cannot be shoved, body-pushed or pulled. Costs 15 blood per door.
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -659,7 +772,7 @@
   parent: BaseAction
   id: ActionVampireDemonicGrasp
   name: Demonic Grasp(20)
-  description: Launch a demonic hand up to 15 tiles. Immobilizes the target for 5 seconds. In combat mode, also pulls them to you.
+  description: Launch a demonic hand up to 15 tiles. Immobilizes the target for 10 seconds. In combat mode, also pulls them to you.
   components:
     - type: Action
       useDelay: 30
@@ -673,6 +786,12 @@
       range: 15
     - type: WorldTargetAction
       event: !type:VampireDemonicGraspActionEvent
+        range: 15
+        immobilizeDuration: 10
+        projectileSpeed: 15
+        tileInterval: 0.05
+        effectPrototype: VampireDemonicGraspEffect
+        immobilizedEffectPrototype: VampireImmobilizedEffect
     - type: VampireAction
       bloodToUnlock: 800
       bloodCost: 20
@@ -682,7 +801,7 @@
   parent: BaseAction
   id: ActionVampireCharge
   name: Charge(30)
-  description: Charge in the target direction until hitting an obstacle or void. Creatures take 60 brute and are thrown 5 tiles. Structures take 150 damage. Walls are destroyed.
+  description: Requires full power. Charge in the target direction until hitting an obstacle or void. Creatures take 60 brute and are thrown 5 tiles; structures take 150 damage and walls are destroyed.
   components:
     - type: Action
       useDelay: 30
@@ -700,3 +819,4 @@
       bloodToUnlock: 1000
       bloodCost: 30
       requiredClass: Gargantua
+      requiresFullPower: true

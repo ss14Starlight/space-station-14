@@ -20,8 +20,6 @@ public sealed class NavInterfaceState
     /// </summary>
     public Angle? Angle;
 
-    public Dictionary<NetEntity, List<DockingPortState>> Docks;
-
     public bool RotateWithEntity = true;
 
     /// <summary>
@@ -40,13 +38,12 @@ public sealed class NavInterfaceState
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
-        Angle? angle,
-        Dictionary<NetEntity, List<DockingPortState>> docks)
+        Angle? angle) // Starlight: -docks
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
         Angle = angle;
-        Docks = docks;
+        // Starlight: -docks
     }
 }
 

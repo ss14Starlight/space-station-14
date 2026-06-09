@@ -181,7 +181,7 @@ public sealed partial class RevenantSystem : EntitySystem
             }
             else
             {
-                _visibility.AddLayer((uid, vis), (int) VisibilityFlags.Ghost, false);
+                _visibility.AddLayer((uid, vis), (int) VisibilityFlags.NullSpace, false);
                 _visibility.RemoveLayer((uid, vis), (int) VisibilityFlags.Normal, false);
             }
             _visibility.RefreshVisibility(uid, vis);

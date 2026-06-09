@@ -92,13 +92,18 @@
     temperature: 700
   # 🌟Starlight-start🌟
   - type: SurgeryTool
+  - type: Scalpel
     successRate: 0.6
     startSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
     endSound:
       path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   - type: Cautery
-  - type: Scalpel
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery1.ogg
+    endSound:
+      path: /Audio/_Starlight/Medical/Surgery/cautery2.ogg
   # 🌟Starlight-end🌟
 
 - type: entity

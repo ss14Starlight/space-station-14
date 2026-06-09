@@ -49,16 +49,16 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
-            SecurityOfficer: [ 8, 10 ]
-            Detective: [ 1, 1 ]
+            SecurityOfficer: [ 6, 8 ]
             SecurityCadet: [ 4, 5 ]
             Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 4, 5 ]
-            MiningSpecialist: [ 3, 4 ]
-            CargoTechnician: [ 6, 7 ]
             SalvageLead: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 3, 3 ]
+            CargoTechnician: [ 6, 7 ]
             MailTech: [ 1, 2 ]
             #civilian
             Assistant: [ -1, -1 ]
@@ -73,7 +73,7 @@
             #law
             Magistrate: [ 1, 1 ]
             IAA: [ 1, 1 ]
-            #Representives
+            #Representatives
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

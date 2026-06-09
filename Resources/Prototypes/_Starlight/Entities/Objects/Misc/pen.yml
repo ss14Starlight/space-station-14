@@ -1,8 +1,8 @@
 - type: entity
-  name: nanotrasen representative's pen
+  name: NanoTrasen representative's pen
   parent: [PenEmbeddable, BaseCommandContraband]
   id: PenNTR
-  description: The NT representative's own unique pen, just not as sharp.
+  description: The NT Representative's own unique pen, just not as sharp.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Misc/pens.rsi
@@ -12,3 +12,18 @@
       tags:
         - Write
         - Pen
+
+- type: entity
+  id: PenQuillBurnt
+  parent: [PenEmbeddable, BaseMajorContraband]
+  name: burnt quill
+  description: This quill seems to have a lot of weight to it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/pens.rsi
+      layers:
+      - state: pen_devil
+    - type: Tag
+      tags:
+      - Write
+      - Pen

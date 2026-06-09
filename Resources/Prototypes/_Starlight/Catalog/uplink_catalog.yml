@@ -158,7 +158,7 @@
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 3
-  cost: 
+  cost:
     Telecrystal: 6
   categories:
     - UplinkWeaponry
@@ -185,6 +185,26 @@
     Telecrystal: 1
   categories:
     - UplinkWeaponry
+
+- type: listing
+  id: UplinkBananaEsword
+  name: uplink-banana-esword-name
+  description: uplink-banana-esword-desc
+  productEntity: EnergySwordBanana
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Performer
+        - HeadOfPersonnel
+        - Captain
 
 # Ammo
 
@@ -265,7 +285,7 @@
   name: uplink-grenade-launcher-frag-ammo-name
   description: uplink-grenade-launcher-frag-ammo-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon }
-  productEntity: MagazineGrenadeFrag 
+  productEntity: MagazineGrenadeFrag
   cost:
     Telecrystal: 3
   categories:
@@ -276,9 +296,21 @@
   name: uplink-grenade-launcher-blast-ammo-name
   description: uplink-grenade-launcher-blast-ammo-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon }
-  productEntity: MagazineGrenadeBlast 
+  productEntity: MagazineGrenadeBlast
   cost:
     Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+# For the Hushpup
+- type: listing
+  id: UplinkHushpupAmmo
+  name: uplink-hushpup-ammo-name
+  description: uplink-hushpup-ammo-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: lethal }
+  productEntity: BoxLethalshot
+  cost:
+    Telecrystal: 3
   categories:
   - UplinkAmmo
 
@@ -502,28 +534,82 @@
     - UplinkWearables
 
 - type: listing
-  id: UplinkClothingOuterArmorElegantRaid
-  name: uplink-syndie-elegant-raid-name
-  description: uplink-syndie-elegant-raid-desc
-  icon: { sprite: /Textures/_Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi, state: icon }
-  productEntity: ClothingBackpackSyndicateElegantRaidBundle
+  id: UplinkSatchelSyndicate
+  name: uplink-satchel-syndicate-name
+  description: uplink-satchel-syndicate-desc
+  productEntity: ClothingBackpackSatchelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
-    Telecrystal: 10
+    Telecrystal: 3
   categories:
-    - UplinkPointless
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
+    - UplinkWearables
 
 - type: listing
-  id: UplinkClothingMurderShocks
-  name: uplink-clothing-murder-socks-name
-  description: uplink-clothing-murder-socks-desc
-  productEntity: ClothingUnderSocksMurder
-  cost:
+  id: UplinkDuffelSyndicate
+  name: uplink-duffel-syndicate-name
+  description: uplink-duffel-syndicate-desc
+  productEntity: ClothingBackpackDuffelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
     Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkTrunkSyndicate
+  name: uplink-trunk-syndicate-name
+  description: uplink-trunk-syndicate-desc
+  productEntity: ClothingBackpackTrunkSyndicate
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - MailTech
+        - Quartermaster
+        - Captain
+
+- type: listing
+  id: UplinkNoslipClownShoes
+  name: uplink-noslip-clown-shoes-name
+  description: uplink-noslip-clown-shoes-desc
+  productEntity: ClownShoesNoSlip
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
+# Pointless
+- type: listing
+  id: UplinkSyndieDrobe
+  name: uplink-syndiedrobe-name
+  description: uplink-syndiedrobe-desc
+  productEntity: SyndieDrobeFlatpack
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
   categories:
     - UplinkPointless
 
@@ -643,9 +729,9 @@
   productEntity: ClothingHandsChameleonThief
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 7
   cost:
-    Telecrystal: 5
+    Telecrystal: 10
   categories:
     - UplinkWearables
 
@@ -680,6 +766,24 @@
     Telecrystal: 3 #SL / Rebalanced pricing: Armor Vest 3, Web Vest 4, Elite Web vest 5
   categories:
     - UplinkWearables
+
+- type: listing
+  id: UplinkSyndicateDisruptor
+  name: uplink-disruptor-name
+  description: uplink-disruptor-desc
+  productEntity: SyndicateDisruptor
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
 
 # Devices
 
@@ -828,6 +932,24 @@
         - HeadOfPersonnel
         - Captain
 
+- type: listing
+  id: UplinkMimanaStealthy
+  name: uplink-mimana-stealthy-name
+  description: uplink-mimana-stealthy-desc
+  productEntity: TrashMimanaPeelStealthy
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkJob
+  conditions:
+    - !type:BuyerJobCondition
+      whitelist:
+        - Clown
+        - Mime
+        - Performer
+        - HeadOfPersonnel
+        - Captain
+
 #Explosives
 - type: listing
   id: UplinkPizzaBomb
@@ -909,10 +1031,10 @@
   id: UplinkDarkGygaxLoneOps
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
-    Telecrystal: 40
+    Telecrystal: 30
   categories:
     - UplinkAllies
   conditions:
@@ -925,10 +1047,10 @@
   id: UplinkMaulerLoneOps
   name: uplink-mech-teleporter-heavy-name
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
   productEntity: CrateCybersunMaulerBundle
   cost:
-    Telecrystal: 65 # Butcher Renault and its all yours.
+    Telecrystal: 45
   categories:
     - UplinkAllies
   conditions:

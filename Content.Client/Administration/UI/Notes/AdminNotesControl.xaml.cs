@@ -18,9 +18,9 @@ public sealed partial class AdminNotesControl : Control
     [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?>? NoteChanged;
+    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?, string?>? NoteChanged; // Starlight-edit
     public event Action<NoteType, string, NoteSeverity?, bool, DateTime?>? NewNoteEntered;
-    public event Action<int, NoteType>? NoteDeleted;
+    public event Action<int, NoteType, string?>? NoteDeleted; // Starlight-edit: ID, Type, Project
 
     private AdminNotesLinePopup? _popup;
     private readonly SpriteSystem _sprites;
@@ -43,6 +43,7 @@ public sealed partial class AdminNotesControl : Control
     }
 
     private Dictionary<(int noteId, NoteType noteType), AdminNotesLine> Inputs { get; } = new();
+    private Dictionary<(int noteId, NoteType noteType, string, string), AdminNotesLine> NetworkInputs { get; } = new(); // Starlight-edit: network notes
     private bool CanCreate { get; set; }
     private bool CanDelete { get; set; }
     private bool CanEdit { get; set; }
@@ -55,12 +56,12 @@ public sealed partial class AdminNotesControl : Control
 
     private void OnNewNoteButtonPressed(BaseButton.ButtonEventArgs obj)
     {
-        var noteEdit = new NoteEdit(null, PlayerName, CanCreate, CanEdit);
+        var noteEdit = new NoteEdit(null, PlayerName, CanCreate, CanEdit, null); // Starlight-edit
         noteEdit.SubmitPressed += OnNoteSubmitted;
         noteEdit.OpenCentered();
     }
 
-    private void OnNoteSubmitted(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime)
+    private void OnNoteSubmitted(int id, NoteType type, string message, NoteSeverity? severity, bool secret, DateTime? expiryTime, string? project) // Starlight-edit
     {
         if (id == 0)
         {
@@ -68,25 +69,25 @@ public sealed partial class AdminNotesControl : Control
             return;
         }
 
-        NoteChanged?.Invoke(id, type, message, severity, secret, expiryTime);
+        NoteChanged?.Invoke(id, type, message, severity, secret, expiryTime, project); // Starlight-edit
     }
 
     private bool NoteClicked(AdminNotesLine line)
     {
         _popup = new AdminNotesLinePopup(line.Note, PlayerName, CanDelete, CanEdit);
-        _popup.OnEditPressed += (noteId, noteType) =>
+        _popup.OnEditPressed += (noteId, noteType, project) => // Starlight-edit
         {
             if (!Inputs.TryGetValue((noteId, noteType), out var input))
             {
                 return;
             }
 
-            var noteEdit = new NoteEdit(input.Note, PlayerName, CanCreate, CanEdit);
+            var noteEdit = new NoteEdit(input.Note, PlayerName, CanCreate, CanEdit, project); // Starlight-edit
             noteEdit.SubmitPressed += OnNoteSubmitted;
             noteEdit.OpenCentered();
         };
 
-        _popup.OnDeletePressed += (noteId, noteType) => NoteDeleted?.Invoke(noteId, noteType);
+        _popup.OnDeletePressed += (noteId, noteType, project) => NoteDeleted?.Invoke(noteId, noteType, project); // Starlight-edit
         _popup.OnPopupHide += OnPopupHide;
 
         var box = UIBox2.FromDimensions(UserInterfaceManager.MousePositionScaled.Position, Vector2.One);
@@ -187,6 +188,53 @@ public sealed partial class AdminNotesControl : Control
             ShowMoreButton.Visible = showMoreButtonVisible;
         }
     }
+
+    #region Starlight
+
+    public void SetNotes(Dictionary<(int, NoteType, string, string), SharedAdminNote> notes)
+    {
+        foreach (var (key, input) in NetworkInputs)
+        {
+            if (!notes.ContainsKey(key))
+            {
+                // Yes this is slower than just updating, but new notes get added at the bottom. The user won't notice.
+                Notes.RemoveAllChildren();
+                NetworkInputs.Clear();
+                break;
+            }
+            Notes.RemoveChild(input);
+            NetworkInputs.Remove(key);
+        }
+
+        var showMoreButtonVisible = false;
+        foreach (var note in notes.Values.OrderByDescending(note => note.CreatedAt))
+        {
+            if (NetworkInputs.TryGetValue((note.Id, note.NoteType, note.ServerName ?? "", note.ProjectName ?? ""), out var input))
+            {
+                input.UpdateNote(note);
+                continue;
+            }
+
+            input = new AdminNotesLine(_sprites, note);
+            input.OnClicked += NoteClicked;
+            input.OnMouseEntered += NoteMouseEntered;
+            input.OnMouseExited += NoteMouseExited;
+
+            UpdateNoteLineAlpha(input);
+
+            if (input.Modulate.A == 0)
+            {
+                input.Visible = false;
+                showMoreButtonVisible = true;
+            }
+
+            Notes.AddChild(input);
+            NetworkInputs[(note.Id, note.NoteType, note.ServerName ?? "", note.ProjectName ?? "")] = input;
+            ShowMoreButton.Visible = showMoreButtonVisible;
+        }
+    }
+
+    #endregion
 
     private void OnShowMoreButtonPressed(BaseButton.ButtonEventArgs obj)
     {

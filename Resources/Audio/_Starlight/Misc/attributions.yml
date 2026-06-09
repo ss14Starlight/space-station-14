@@ -2,7 +2,7 @@
   license: "CC-BY-4.0"
   copyright: 'Darkrell, JustAdler'
   source: "https://github.com/ss14Starlight/space-station-14"
-  
+
 - files: ["orange.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Made by Conflee"
@@ -17,3 +17,8 @@
   license: "CC-BY-SA-3.0"
   copyright: "Made by AftrLife (https://github.com/AftrLite) for DeltaV renamed into omega_alt for STARLIGHT"
   source: "https://github.com/DeltaV-Station/Delta-v/pull/3288"
+
+- files: ["devil_greeting.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Modified track by Arkanic, original backround audio pulled from section of Occams Lazer - Sphere of the Fixed Stars, which is a no copyright piece (https://x.com/occams_laser_/status/1270681584811851782)"
+  source: "https://github.com/ss14Starlight/space-station-14"

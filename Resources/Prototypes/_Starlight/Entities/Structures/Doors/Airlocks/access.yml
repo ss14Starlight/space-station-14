@@ -271,7 +271,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSalvage ]
-  
+
 # Retro Mining
 - type: entity
   parent: AirlockRetroMining
@@ -309,6 +309,112 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsSalvageMining ]
+
+# Mail/Cargo Shared
+- type: entity
+  parent: AirlockMail
+  id: AirlockMailLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMail ]
+
+- type: entity
+  parent: AirlockMailGlass
+  id: AirlockMailGlassLocked
+  suffix: Mail, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMail ]
+
+- type: entity
+  parent: AirlockMailLocked
+  id: AirlockMaintMailLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+# Service
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockLegalLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockLegalGlassLocked
+  suffix: Legal, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsLegal ]
+
+- type: entity
+  parent: AirlockLegalLocked # Starlight
+  id: AirlockMaintLegalLocked # Starlight
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+# Courtroom
+- type: entity
+  parent: AirlockSecurityLocked
+  id: AirlockCourtroomLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: AirlockCourtroomGlassLocked
+  suffix: Security/Internal Affairs/Legal (Courtroom), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCourtroom ]
+
+- type: entity
+  parent: AirlockCourtroomLocked
+  id: AirlockMaintCourtroomLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+
+# Attorney
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockAttorneyLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockServiceGlassLocked
+  id: AirlockAttorneyGlassLocked
+  suffix: Internal Affairs/Legal (Attorney), Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAttorney ]
+
+- type: entity
+  parent: AirlockAttorneyLocked
+  id: AirlockMaintAttorneyLocked
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
 
 # Xenoborg
 - type: entity
@@ -508,3 +614,377 @@
   - type: ContainerFill
     containers:
       board: [DoorElectronicsSolgov]
+
+# Communist
+- type: entity
+  parent: Airlock
+  id: AirlockCommunistLocked
+  suffix: Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockCommunistGlassLocked
+  suffix: Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockCommunistLocked
+  id: AirlockMaintCommunistLocked
+  suffix: Communist, Locked
+  components:
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchCommunistLocked
+  suffix: Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceCommunistLocked
+  suffix: Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockExternal
+  id: AirlockExternalCommunistLocked
+  suffix: External, Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassCommunistLocked
+  suffix: Glass, External, Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttleCommunistLocked
+  suffix: Docking, Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleCommunistLocked
+  suffix: Glass, Docking, Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+    - type: Wires
+      layoutId: AirlockCommunist
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecCommunistLocked
+  suffix: Communist, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsCommunist ]
+
+# Wizard
+- type: entity
+  parent: Airlock
+  id: AirlockWizardLocked
+  suffix: Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockWizardGlassLocked
+  suffix: Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockWizardLocked
+  id: AirlockMaintWizardLocked
+  suffix: Wizard, Locked
+  components:
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchWizardLocked
+  suffix: Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceWizardLocked
+  suffix: Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockExternal
+  id: AirlockExternalWizardLocked
+  suffix: External, Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassWizardLocked
+  suffix: Glass, External, Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttleWizardLocked
+  suffix: Docking, Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleWizardLocked
+  suffix: Glass, Docking, Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+    - type: Wires
+      layoutId: AirlockWizard
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecWizardLocked
+  suffix: Wizard, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsWizard ]
+
+# Blackstar
+- type: entity
+  parent: Airlock
+  id: AirlockBlackstarLocked
+  suffix: Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockGlass
+  id: AirlockBlackstarGlassLocked
+  suffix: Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockBlackstarLocked
+  id: AirlockMaintBlackstarLocked
+  suffix: Blackstar, Locked
+  components:
+    - type: Sprite
+      sprite: Structures/Doors/Airlocks/Standard/maint.rsi
+
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchBlackstarLocked
+  suffix: Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceBlackstarLocked
+  suffix: Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockExternal
+  id: AirlockExternalBlackstarLocked
+  suffix: External, Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockExternalGlass
+  id: AirlockExternalGlassBlackstarLocked
+  suffix: Glass, External, Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockShuttle
+  id: AirlockShuttleBlackstarLocked
+  suffix: Docking, Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleBlackstarLocked
+  suffix: Glass, Docking, Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+    - type: Wires
+      layoutId: AirlockBlackstar
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecBlackstarLocked
+  suffix: Blackstar, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsBlackstar ]
+
+# MedTak
+- type: entity
+  parent: AirlockGlass
+  id: AirlockMedTakBasicGlassLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+- type: entity
+  parent: AirlockBrigmed
+  id: AirlockMedTakLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+- type: entity
+  parent: AirlockBrigmedGlass
+  id: AirlockMedTakGlassLocked
+  suffix: MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockGlassShuttleMedTakLocked
+  suffix: Glass, Docking, MedTak, Locked
+  components:
+    - type: ContainerFill
+      containers:
+        board: [ DoorElectronicsMedTak ]
+    - type: Wires
+      layoutId: AirlockMedTak
+
+
+# Escape Pods (gridfills)
+- type: entity
+  parent: AirlockExternalGlassShuttleEscape
+  id: AirlockExternalGlassShuttleEscapeLifeboat
+  suffix: External, Escape 5x6, Glass, Docking
+  components:
+  - type: RandomGridFill
+    pathWeights:
+      "/Maps/_Starlight/Shuttles/EscapePods/escape_pod_lifeboat.yml": 40

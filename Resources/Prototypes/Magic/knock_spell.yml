@@ -18,3 +18,4 @@
     sentence: action-speech-spell-knock
     tts: action-speech-spell-knock-tts
     modifier: Spell
+  - type: EorgPreventAction # Starlight

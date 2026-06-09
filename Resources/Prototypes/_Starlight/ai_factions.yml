@@ -156,14 +156,6 @@
   - Pirate # starlight
 
 - type: npcFaction
-  id: PointDefenseTarget
-
-- type: npcFaction
-  id: PointDefenseWeapon
-  hostile:
-  - PointDefenseTarget
-
-- type: npcFaction
   id: Pirate
   hostile:
   - NanoTrasen

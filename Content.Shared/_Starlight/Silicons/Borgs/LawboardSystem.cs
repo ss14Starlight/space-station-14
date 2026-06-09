@@ -27,8 +27,8 @@ public sealed class LawboardSystem : EntitySystem
         if (!_prototype.TryIndex<SiliconLawsetPrototype>(component.Laws, out var lawsetProto))
             return;
 
-        var lawsetName = lawsetProto.Name != null 
-            ? _loc.GetString(lawsetProto.Name) 
+        var lawsetName = lawsetProto.Name != null
+            ? _loc.GetString(lawsetProto.Name)
             : "Unknown";
         var description = $"[color=cyan]An electronics board containing the [color=yellow]{lawsetName}[/color] lawset.[/color]\n[color=orange]Uploaded Laws:[/color]";
 

@@ -335,6 +335,21 @@
   name: guide-entry-sl-security-sop-specialsituations
   text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations.xml"
   priority: 11
+  children:
+  - security-sop-enemy-of-corporation
+  - security-sop-hostage-situations
+
+- type: guideEntry
+  id: security-sop-enemy-of-corporation
+  name: guide-entry-sl-security-sop-enemy-of-corporation
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/EnemyOfCorporation.xml"
+  priority: 1
+
+- type: guideEntry
+  id: security-sop-hostage-situations
+  name: guide-entry-sl-security-sop-hostage-situations
+  text: "/ServerInfo/Guidebook/StarlightSOP/SecuritySOP/SpecialSituations/HostageSituations.xml"
+  priority: 2
 
 - type: guideEntry
   id: legal-sop-intro
@@ -388,6 +403,8 @@
   name: guide-entry-sl-nano-trasen-employee-sop-nt-rep
   text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-nt-rep.xml"
   priority: 1
+  children:
+      - CombinationLocks
 
 - type: guideEntry
   id: nano-trasen-employee-sop-bso
@@ -768,6 +785,7 @@
   priority: 2
   children:
     - service-sop-headofpersonnel
+    - service-sop-lawyer
 
 
 - type: guideEntry
@@ -775,3 +793,9 @@
   name: guide-entry-sl-service-sop-headofpersonnel
   text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/HeadOfPersonnel.xml"
   priority: 1
+
+- type: guideEntry
+  id: service-sop-lawyer
+  name: guide-entry-sl-service-sop-lawyer
+  text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Lawyer.xml"
+  priority: 2

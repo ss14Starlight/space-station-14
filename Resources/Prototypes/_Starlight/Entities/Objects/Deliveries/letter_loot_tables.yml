@@ -18,8 +18,10 @@
   table: !type:GroupSelector
     children:
       - id: MailSyndicateSpamLetter
-        weight: .25
+        weight: .21
       - id: MailSpamDontYouWantMore
-        weight: .40
+        weight: .33
       - id: MailSovietSpamLetter25
-        weight: .35
+        weight: .30
+      - id: MailSELFSpamLetter
+        weight: .16

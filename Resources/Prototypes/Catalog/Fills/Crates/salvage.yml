@@ -127,7 +127,7 @@
   parent: CrateGenericSteel
   id: CrateDoubleEmergencyTank
   name: double emergency tank crate
-  description: Contains 2 double emergency oxygen tanks and 2 double emergency nitrogen tanks
+  description:  Contains 2 double emergency oxygen tanks, 2 double emergency nitrogen tanks, and 2 emergency cooling units
   components:
   - type: EntityTableContainerFill
     containers:
@@ -136,6 +136,8 @@
         - id: DoubleEmergencyOxygenTankFilled
           amount: 2
         - id: DoubleEmergencyNitrogenTankFilled
+          amount: 2
+        - id: EmergencyCoolingUnit # Starlight
           amount: 2
 
 - type: entity

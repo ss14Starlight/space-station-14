@@ -146,6 +146,8 @@
       whitelist:
         components:
         - SecretStash
+    # Far Horizons
+    - type: IPCBrain # I planned to reuse BorgBrain for this, but you can't listen to events on the same event on same complonent from multiple systems. Then I also considerend AI shunt and thought
     # Starlight Start
     - type: Blindable
     - type: ParentCanBlockVision

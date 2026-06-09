@@ -42,7 +42,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
     /// Key is the listing ID, value is the current stock.
     /// </summary>
     private static readonly Dictionary<string, int> _stockCounts = new();
-    
+
     /// <summary>
     /// Dictionary to track the maximum stock limit of each listing.
     /// Key is the listing ID, value is the maximum stock limit.
@@ -54,7 +54,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
     /// Key is the listing ID, value is the name of the last purchaser.
     /// </summary>
     private static readonly Dictionary<string, string> _lastPurchasers = new();
-    
+
     /// <summary>
     /// Dictionary to track whether a listing is out of stock.
     /// Key is the listing ID, value is whether the listing is out of stock.
@@ -84,10 +84,10 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
 
         // Check if we've reached the stock limit
         var hasStock = _stockCounts[listingId] > 0;
-        
+
         // Update the out of stock status
         _outOfStock[listingId] = !hasStock;
-        
+
         // If out of stock, mark the listing as unavailable but still return true
         // so it shows up in the listing but is greyed out
         if (!hasStock)
@@ -95,7 +95,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
             args.Listing.Unavailable = true;
             return false;
         }
-        
+
         // Always return true if we have stock
         return true;
     }
@@ -114,26 +114,26 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
 
         // Store the stock count and limit in the listing's metadata
         var metadata = listing.GetOrCreateMetadata();
-        
+
         metadata["stock"] = currentStock;
         metadata["maxStock"] = maxStock;
-        
+
         // Store the out of stock status in the metadata
         var outOfStock = currentStock <= 0;
         metadata["outOfStock"] = outOfStock;
-        
+
         // Update the CurrentStock property
         CurrentStock = currentStock;
-        
+
         // Update the LastPurchaser property
         LastPurchaser = lastPurchaser;
-        
+
         // Directly update the name with the stock count
         if (listing.Name != null && listing.Name.Contains("-name"))
         {
             // Get the base name without the stock count
             var baseName = Loc.GetString(listing.Name);
-            
+
             // Format the name with the stock count in X/Y format
             if (outOfStock)
             {
@@ -144,13 +144,13 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
                 listing.Name = $"{baseName} ({currentStock}/{maxStock})";
             }
         }
-        
+
         // Directly update the description with the last purchaser
         if (listing.Description != null && listing.Description.Contains("-desc"))
         {
             // Get the base description without the last purchaser
             var baseDesc = Loc.GetString(listing.Description);
-            
+
             // Format the description with the last purchaser
             if (!string.IsNullOrEmpty(lastPurchaser))
             {
@@ -177,7 +177,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
 
         // Update the last purchaser
         _lastPurchasers[listingId] = purchaserName;
-        
+
         // Update the out of stock status
         _outOfStock[listingId] = _stockCounts[listingId] <= 0;
     }
@@ -189,7 +189,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
     {
         return _stockCounts.ContainsKey(listingId) ? _stockCounts[listingId] : defaultStockLimit;
     }
-    
+
     /// <summary>
     /// Gets the maximum stock limit for a listing.
     /// </summary>
@@ -205,7 +205,7 @@ public sealed partial class StockLimitedListingCondition : ListingCondition
     {
         return _lastPurchasers.ContainsKey(listingId) ? _lastPurchasers[listingId] : null;
     }
-    
+
     /// <summary>
     /// Checks if a listing is out of stock.
     /// </summary>

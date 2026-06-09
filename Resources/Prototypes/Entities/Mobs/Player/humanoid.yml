@@ -2,6 +2,25 @@
 
 - type: randomHumanoidSettings
   id: EventHumanoid
+  speciesBlacklist: # Starlight start
+    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
+    - ProtoDiona
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+    - ProtoAvali
+    - ProtoFelionoid
+    - ProtoKin
+    - ProtoThaven
+    - ProtoCyclorite
+    - ProtoDwarf
+    - ProtoMoth
+    - ProtoSlimePerson
+    - ProtoLagomorph
+    - ProtoElf
+    - Protogen
+    - ProtoHuman # Starlight end
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -53,6 +72,7 @@
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       mindRoles:
@@ -90,6 +110,7 @@
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       job: ERTLeader
@@ -548,6 +569,7 @@
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: short
       job: CBURN
@@ -577,6 +599,7 @@
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
       rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
       raffle:
         settings: default
       job: CentralCommandOfficial

@@ -51,7 +51,7 @@ public sealed class BluespaceCrystalSystem : EntitySystem
         var EffectLocation = _transform.GetMapCoordinates(uid);
 
         Spawn(BluespaceCrystalEffect, EffectLocation);
-        
+
         if (component.Teleport && target is not null && HasComp<MobStateComponent>(target)) // TODO: Do something else? This is there so we dont TELEPORT WALLS/DOORS...
         {
             var newCoords = EffectLocation; // This is a comment... (newCoords is fetch later.)

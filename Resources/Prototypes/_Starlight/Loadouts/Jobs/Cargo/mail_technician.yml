@@ -1,0 +1,133 @@
+# Senior Time
+- type: loadoutEffectGroup
+  id: SeniorMailTechnician
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMailTech
+      time: 216000 # 60 hrs
+
+# Star Time
+- type: loadoutEffectGroup
+  id: StarOfMail
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMailTech
+      time: 360000 # 100 hrs
+
+# Jumpsuits
+- type: loadout
+  id: MailTechnicianJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMail
+
+- type: loadout
+  id: MailTechnicianJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtMail
+
+- type: loadout
+  id: MailTechnicianJumpsuitSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorMail
+
+- type: loadout
+  id: MailTechnicianJumpskirtSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorMail
+
+# Head
+- type: loadout
+  id: MailTechnicianHeadVisor
+  equipment:
+    head: ClothingHeadHatMailsoftVisor
+
+- type: loadout
+  id: MailTechnicianHeadVisorSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    head: ClothingHeadHatMailsoftVisorSenior
+
+# Trunks
+- type: loadout
+  id: MailTechnicianTrunk
+  equipment:
+    back: ClothingBackpackTrunkMail
+
+- type: loadout
+  id: MailTechnicianTrunkSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    back: ClothingBackpackTrunkMailSenior
+
+# Shoes
+# Don't make these easier to get.
+- type: loadout
+  id: MailTechnicianBoots
+  equipment:
+    shoes: ClothingShoesBootsMail
+
+- type: loadout
+  id: MailTechnicianBootsSenior
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    shoes: ClothingShoesBootsSeniorMail
+
+# PDAs!
+- type: loadout
+  id: MailPDA
+  equipment:
+    id: MailPDA
+
+- type: loadout
+  id: SeniorMailPDA
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    id: SeniorMailPDA
+
+# Mail Bags
+- type: loadout
+  id: MailBag
+  equipment:
+    belt: MailBag
+
+- type: loadout
+  id: SeniorMailBag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorMailTechnician
+  equipment:
+    belt: SeniorMailBag
+
+# Mail Trolley
+- type: loadout
+  id: MailTrolleyFlatpack
+  storage:
+    back:
+    - MailTrolleyFlatpack
+
+- type: loadout
+  id: GoldenMailTrolleyFlatpack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: StarOfMail
+  storage:
+    back:
+    - GoldenMailTrolleyFlatpack

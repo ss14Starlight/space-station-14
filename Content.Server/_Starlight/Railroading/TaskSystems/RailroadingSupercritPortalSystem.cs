@@ -1,7 +1,6 @@
 using Content.Server._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Objectives;
 
 namespace Content.Server._Starlight.Railroading;
@@ -49,6 +48,6 @@ public sealed partial class RailroadingSupercritPortalSystem : EntitySystem
         args.IsCompleted = ent.Comp.IsCompleted;
     }
 
-    private void OnTaskPicked(Entity<RailroadSupercritPortalTaskComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnTaskPicked(Entity<RailroadSupercritPortalTaskComponent> ent, ref RailroadingCardChosenEvent args)
         => EnsureComp<RailroadSupercritPortalWatcherComponent>(args.Subject.Owner);
 }

@@ -28,13 +28,14 @@ public sealed partial class NoteEdit : FancyWindow
         Centuries
     }
 
-    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?>? SubmitPressed;
+    public event Action<int, NoteType, string, NoteSeverity?, bool, DateTime?, string?>? SubmitPressed; // Starlight-edit
 
-    public NoteEdit(SharedAdminNote? note, string playerName, bool canCreate, bool canEdit)
+    public NoteEdit(SharedAdminNote? note, string playerName, bool canCreate, bool canEdit, string? project) // Starlight-edit
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
         PlayerName = playerName;
+        Project = project; // Starlight-edit
         Title = Loc.GetString("admin-note-editor-title-new", ("player", PlayerName));
         IsCreating = note is null;
         CanCreate = canCreate;
@@ -129,6 +130,7 @@ public sealed partial class NoteEdit : FancyWindow
     private NoteSeverity? _noteSeverity = null;
 
     private string PlayerName { get; }
+    private string? Project { get; } // Starlight-edit
     private int NoteId { get; }
     private bool IsSecret { get; set; }
     private NoteType NoteType { get; set; }
@@ -239,7 +241,7 @@ public sealed partial class NoteEdit : FancyWindow
 
         ResetSubmitButton();
 
-        SubmitPressed?.Invoke(NoteId, NoteType, Rope.Collapse(NoteTextEdit.TextRope), NoteSeverity, IsSecret, ExpiryTime);
+        SubmitPressed?.Invoke(NoteId, NoteType, Rope.Collapse(NoteTextEdit.TextRope), NoteSeverity, IsSecret, ExpiryTime, Project); // Starlight-edit
 
         if (Parent is null)
         {

@@ -1,7 +1,8 @@
+using Content.Client._Starlight.Time; // Starlight
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Time;
+using Content.Shared._Starlight.Time; // Starlight-edit
 using Content.Shared.CartridgeLoader;
 using Content.Client.Message;
 using Robust.Client.UserInterface;
@@ -180,8 +181,8 @@ namespace Content.Client.PDA
                 ("station", _stationName)));
 
 
-            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-            var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+            var stationTime = _entitySystem.GetEntitySystem<SharedTimeSystem>().GetStationTime();
+            var stationDate = _entitySystem.GetEntitySystem<SharedTimeSystem>().GetDate();
             var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
@@ -384,8 +385,8 @@ namespace Content.Client.PDA
         {
             base.Draw(handle);
 
-            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-            var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+            var stationTime = _entitySystem.GetEntitySystem<SharedTimeSystem>().GetStationTime();
+            var stationDate = _entitySystem.GetEntitySystem<SharedTimeSystem>().GetDate();
             var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",

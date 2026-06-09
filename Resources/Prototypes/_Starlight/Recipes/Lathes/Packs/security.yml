@@ -281,7 +281,7 @@
   id: StarlightSecurityMechsSystems
   recipes:
   - MechEquipmentSecGrabber
-  
+
 - type: latheRecipePack
   id: StarlightSecurityMechs
   recipes:

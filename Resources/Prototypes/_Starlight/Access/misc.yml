@@ -1,3 +1,53 @@
+- type: accessGroup
+  id: CyborgAllAccess # Identical to AllAccess, minus Debrief. Parity ensured by CyborgAllAccessParityTest.
+  tags:
+    - EmergencyShuttleRepealAll
+    - Captain
+    - HeadOfPersonnel
+    - ChiefEngineer
+    - ChiefMedicalOfficer
+    - HeadOfSecurity
+    - ResearchDirector
+    - Command
+    - Cryogenics
+    - Security
+    - Detective
+    - Armory
+    - Brig
+    - Lawyer
+    - Engineering
+    - Medical
+    - Quartermaster
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+    - GenpopEnter
+    - GenpopLeave
+    - Cadet
+    - Magistrate
+    - Ntrep
+    - IAA
+    - Brigmedic
+    - BlueShield
+    - Robotics
+    - Surgery
+    - Paramedic
+    - Mining
+    - SalvageLead
+    - Mail
+    - Pirate
+
 - type: accessLevel
   id: Debug1
   name: id-card-access-level-debug1
@@ -23,8 +73,12 @@
   name: id-card-access-level-freelance
 
 - type: accessLevel
-  id: Commie
-  name: id-card-access-level-commie
+  id: Communist
+  name: id-card-access-level-communist
+
+- type: accessLevel
+  id: Blackstar
+  name: id-card-access-level-blackstar
 
 - type: accessGroup
   id: Misc
@@ -35,9 +89,11 @@
   - Debug4
   - Debug5
   - Freelance
-  - Commie
+  - Communist
   - Wizard
   - Pirate
+  - Blackstar
+  - MedTak
 
 - type: accessGroup
   id: Syndicate
@@ -53,3 +109,7 @@
   id: Pirate
   tags:
   - Pirate
+
+- type: accessLevel
+  id: MedTak
+  name: id-card-access-level-medtak

@@ -110,7 +110,7 @@
       - DamagedShadekinCore
   - type: StaticPrice
     price: 200
-    
+
 
 - type: entity
   id: OrganShadekinCoreUndamaged

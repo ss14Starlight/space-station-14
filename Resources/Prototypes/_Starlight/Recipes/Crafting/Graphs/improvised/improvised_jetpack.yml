@@ -1,0 +1,34 @@
+- type: constructionGraph
+  id: JetpackImprovisedGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: jetpack
+      steps:
+      - tag: FireExtinguisher
+        icon:
+          sprite: Objects/Misc/fire_extinguisher.rsi
+          state: fire_extinguisher_closed
+        name: construction-graph-tag-fireextinguisher
+        doAfter: 5
+      - material: Cable
+        amount: 4
+        doAfter: 2
+      - material: Plasteel
+        amount: 2
+        doAfter: 5
+      - tag: GasTank
+        icon:
+          sprite: Objects/Tanks/oxygen.rsi
+          state: icon
+        name: construction-graph-tag-airtank
+        doAfter: 10
+      - tag: GasTank
+        icon:
+          sprite: Objects/Tanks/oxygen.rsi
+          state: icon
+        name: construction-graph-tag-airtank
+        doAfter: 10
+  - node: jetpack
+    entity: JetpackImprovised

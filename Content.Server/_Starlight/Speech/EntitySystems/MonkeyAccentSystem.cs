@@ -55,6 +55,6 @@ public sealed class MonkeyAccentSystem : EntitySystem
         return accentedMessage.ToString();
     }
 
-    private void OnAccent(EntityUid uid, MonkeyAccentComponent component, AccentGetEvent args) 
+    private void OnAccent(EntityUid uid, MonkeyAccentComponent component, AccentGetEvent args)
         => args.Message.Text = args.Message.Tts = Accentuate(args.Message.Text);
 }

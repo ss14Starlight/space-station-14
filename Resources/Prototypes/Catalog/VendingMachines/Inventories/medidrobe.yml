@@ -1,33 +1,58 @@
 - type: vendingMachineInventory
   id: MediDrobeInventory
   startingInventory:
-    ClothingBackpackDuffelMedical: 4
-    ClothingBackpackMedical: 4
-    ClothingBackpackSatchelMedical: 4
-    ClothingUniformJumpsuitMedicalDoctor: 4
-    ClothingUniformJumpskirtMedicalDoctor: 4
-    ClothingBeltMedical: 4
-    ClothingHeadHatBeretMedic: 4
-    ClothingHeadNurseHat: 4
-    ClothingOuterCoatLab: 4
-    ClothingShoesColorWhite: 4
-    ClothingHandsGlovesLatex: 4
-    ClothingHandsGlovesNitrile: 2
-    ClothingHeadsetMedical: 4
+    # Essential Medical Clothing
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
+    ClothingBeltMedical: 4 # Starlight
+    ClothingBeltMedicalEMT: 2 # Starlight
+    # Optional Clothing
+    ClothingHeadHatBeretMedic: 2
+    ClothingHeadNurseHat: 2
+    ClothingHeadHatParamedicsoft: 1
+    ClothingHeadHatSurgcapGreen: 2
+    ClothingHeadHatSurgcapBlue: 2
+    ClothingHeadHatSurgcapPurple: 2
+    ClothingHeadHatSurgcapBlack: 2 # DeltaV
+    ClothingHeadHatSurgcapCyan: 2 # DeltaV
+    ClothingHeadHatSurgcapPink: 2 # DeltaV
+    ClothingHeadHatSurgcapRainbow: 2 # DeltaV
+    ClothingHeadHatSurgcapWhite: 2 # DeltaV
+    ClothingMaskSterile: 2
+    ClothingHeadsetMedical: 2
+    ClothingBackpackMedical: 2
+    ClothingBackpackDuffelMedical: 2
+    ClothingBackpackSatchelMedical: 2
+    ClothingUniformJumpsuitMedicalDoctor: 2
+    ClothingUniformJumpskirtMedicalDoctor: 2
+    UniformScrubsColorGreen: 2
+    UniformScrubsColorBlue: 2
+    UniformScrubsColorPurple: 2
+    UniformScrubsColorBlack: 2 # DeltaV
+    UniformScrubsColorCyan: 2 # DeltaV
+    UniformScrubsColorPink: 2 # DeltaV
+    UniformScrubsColorRainbow: 2 # DeltaV
+    UniformScrubsColorWhite: 2 # DeltaV
+    ClothingUniformJumpsuitParamedic: 1
+    ClothingUniformJumpskirtParamedic: 1
+    ClothingOuterCoatLab: 2
+    ClothingOuterCoatLabLong: 2 # DeltaV
     ClothingOuterWinterMed: 2
     ClothingOuterWindbreakerMedical: 2 #Starlight
-    ClothingOuterHospitalGown: 5
-    UniformScrubsColorGreen: 4
-    UniformScrubsColorBlue: 4
-    UniformScrubsColorPurple: 4
-    ClothingHeadHatSurgcapGreen: 4 
-    ClothingHeadHatSurgcapBlue: 4
-    ClothingHeadHatSurgcapPurple: 4
+    ClothingOuterCoatParamedicWB: 1
+    ClothingOuterCoatParamedicJacket: 1 # DeltaV
+    ClothingOuterWinterPara: 1
+    ClothingHandsGlovesLatex: 2
+    ClothingHandsGlovesNitrile: 2
+    ClothingShoesColorBlue: 2
+    ClothingShoesColorWhite: 2
     ClothingShoesBootsWinterMed: 2
   contrabandInventory:
     ClothingUniformJumpskirtOfLife: 1
     ClothingUniformJumpsuitOfLife: 1 # Starlight
     ClothingHeadNurseHatOfLife: 1 # Starlight
+    ClothingHeadHatSurgcapCybersun: 1 # DeltaV
+    UniformScrubsColorCybersun: 1 # DeltaV
     ToyFigurineMedicalDoctor: 1
     ToyFigurineParamedic: 1
     ToyFigurineChiefMedicalOfficer: 1

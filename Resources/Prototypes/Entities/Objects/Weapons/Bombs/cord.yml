@@ -6,7 +6,13 @@
   suffix: Full
   description: Explosive cord for removing whatever is in your way.
   components:
+  # Starlight start
+  - type: UserInterface
+    interfaces:
+      enum.StackCustomSplitUiKey.Key:
+        type: StackCustomSplitBoundUserInterface
   - type: Stack
+  # Starlight end
     stackType: CableDet
     baseLayer: base
     layerStates:

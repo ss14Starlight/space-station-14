@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Made by SevenShades, derived from wood TG tiles",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "diagonal_wood_1"
+    },
+    {
+      "name": "diagonal_wood_2"
+    },
+    {
+      "name": "diagonal_wood_3"
+    },
+    {
+      "name": "diagonal_wood_4"
+    },
+    {
+      "name": "diagonal_wood_corner_1"
+    },
+    {
+      "name": "diagonal_wood_corner_2"
+    },
+    {
+      "name": "diagonal_wood_corner_3"
+    },
+    {
+      "name": "diagonal_wood_corner_4"
+    }
+  ]
+}

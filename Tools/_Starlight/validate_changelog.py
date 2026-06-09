@@ -77,7 +77,7 @@ for idx, line in enumerate(lines, start=1):
     if re.match(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix):', line):
         if not re.match(r'^[ \t]*[^a-zA-Z0-9]?[ \t]*(add|remove|tweak|fix): .+', line):
             bad_format_lines.append(idx)
-        elif not stripped.endswith('.'):
+        elif not (stripped.endswith('.') or stripped.endswith('?') or stripped.endswith('!')):
             no_dot_lines.append(idx)
 
 

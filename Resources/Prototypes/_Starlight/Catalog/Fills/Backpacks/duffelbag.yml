@@ -15,7 +15,7 @@
         - id: ScalpelAbductor
         - id: BoneGelAbductor
         - id: BoneSetterAbductor
-      
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledMinotaurShotgun
@@ -29,7 +29,7 @@
         - id: WeaponShotgunMinotaur
         - id: MagazineShotgun
           amount: 5
-      
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledDeagle
@@ -58,7 +58,7 @@
         - id: LeftArmCyberMantisBlade
         - id: RightHandCyber
         - id: LeftHandCyber
-    
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledBullpup
@@ -86,7 +86,7 @@
         - id: WeaponSubMachineGunUzi
         - id: MagazinePistolSubMachineGunUzi
           amount: 3
-      
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledInfiltration
@@ -102,6 +102,7 @@
         - id: ClothingHandsGlovesCombat
         - id: DoubleEmergencyOxygenTankFilled
         - id: DoubleEmergencyNitrogenTankFilled
+        - id: EmergencyCoolingUnit
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

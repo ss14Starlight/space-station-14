@@ -2,8 +2,8 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Decals;
 using Content.Server.Weapons.Hitscan.Components;
+using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
 using Content.Shared.Decals;
 using Content.Shared.Weapons.Hitscan.Events;
 using Robust.Shared.Prototypes;
@@ -44,7 +44,7 @@ public sealed class HitscanCreateBloodSpraySystem : EntitySystem
         var data = args.Data;
 
         var gunShooingXform = Transform(args.Data.Gun);
-        
+
         // Copied from HitscanBasicRaycastSystem
         var shotAngle = data.ShotDirection.ToAngle();
         if (TryComp(gunShooingXform.GridUid, out TransformComponent? gridXform))
@@ -56,7 +56,7 @@ public sealed class HitscanCreateBloodSpraySystem : EntitySystem
         {
             return; // TODO: Add logic that actually works for off grid shots.
         }
-        
+
         var distance = Math.Abs((Transform(args.Data.HitEntity.Value).Coordinates.Position - Transform(args.Data.Gun).Coordinates.Position).Length());
         var hitEntityCords = Transform(args.Data.HitEntity.Value).Coordinates;
         var color = _bloodstream.GetBloodColor(args.Data.HitEntity.Value);

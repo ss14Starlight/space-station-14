@@ -107,7 +107,7 @@
       attackRate: 0.50 # Large and heavy but god help you if someone hits you with this thing.
       damage:
         types:
-          Blunt: 20    
+          Blunt: 20
     - type: ClothingSpeedModifier
       walkModifier: 0.7
       sprintModifier: 0.5
@@ -172,7 +172,7 @@
     - type: MeleeWeapon
       damage:
         types:
-          Blunt: 12 
+          Blunt: 12
     - type: Damageable
       damageContainer: Shield
     - type: Destructible
@@ -308,3 +308,88 @@
                 SheetSteel:
                   min: 2
                   max: 10
+
+- type: entity
+  name: energy shield
+  parent: [BaseItem, BaseXenoborgContraband]
+  id: EnergyShieldUnbreakable
+  suffix: Unbreakable, Less Reflect, Weaker
+  description: Exotic energy shield, when folded, can even fit in your pocket.
+  components:
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Weapons/ebladeon.ogg
+      soundDeactivate:
+        path: /Audio/Weapons/ebladeoff.ogg
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Weapons/ebladehum.ogg
+    - type: ItemToggleSize
+      activatedSize: Huge
+    - type: ComponentToggler
+      components:
+      - type: DisarmMalus
+        malus: 0.6
+    - type: Sprite
+      sprite: Objects/Weapons/Melee/e_shield.rsi
+      layers:
+        - state: eshield-icon
+        - state: eshield-on
+          color: "#FFFFFF"
+          visible: false
+          shader: unshaded
+          map: [ "shield" ]
+    - type: Item
+      size: Small
+      sprite: Objects/Weapons/Melee/e_shield.rsi
+      heldPrefix: eshield
+    - type: UseDelay
+      delay: 0.5
+    - type: ToggleableVisuals
+      spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: inhand-left-shield
+            shader: unshaded
+        right:
+          - state: inhand-right-shield
+            shader: unshaded
+    - type: PointLight
+      netsync: false
+      enabled: false
+      radius: 2
+      energy: 2
+      color: blue
+      castShadows: false #SL lighting optimization
+    - type: ItemTogglePointLight
+    - type: Reflect
+      reflectProb: 0.30
+      reflects:
+        - Energy
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.25
+          Slash: 0.15
+          Piercing: 0.10
+          Heat: 0.15
+      activeBlockModifier: # You shouldn't be able to wield it, but if for some reason you end up doing it, no more immortality.
+        coefficients:
+          Blunt: 0.4
+          Slash: 0.35
+          Piercing: 0.25
+          Heat: 0.35
+      passiveBlockFraction: 0.2
+      activeBlockFraction: 0.3
+    - type: Appearance
+    - type: Damageable
+      damageContainer: Shield
+    - type: ExaminableDamage
+      messages: EnergyShieldMessages
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 7
+          Heat: 7
+    - type: StaticPrice
+      price: 350

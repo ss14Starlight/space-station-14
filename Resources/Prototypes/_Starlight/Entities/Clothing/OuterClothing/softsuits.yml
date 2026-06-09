@@ -65,7 +65,7 @@
         Heat: 0.5
         Caustic: 0
     staminaModifier: 0.3
-  - type: StaminaResistance 
+  - type: StaminaResistance
     damageCoefficient: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.5

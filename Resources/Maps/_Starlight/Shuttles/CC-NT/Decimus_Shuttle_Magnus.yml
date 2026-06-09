@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/02/2026 20:50:09
-  entityCount: 741
+  time: 05/22/2026 05:32:21
+  entityCount: 744
 maps: []
 grids:
 - 1
@@ -1657,6 +1657,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 298
     components:
     - type: Transform
@@ -1664,6 +1665,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: ClothingBeltNTNCRig
   entities:
   - uid: 331
@@ -1761,6 +1763,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 337
     components:
     - type: Transform
@@ -1768,6 +1771,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 338
     components:
     - type: Transform
@@ -1775,6 +1779,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 339
     components:
     - type: Transform
@@ -1782,6 +1787,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 340
     components:
     - type: Transform
@@ -1789,6 +1795,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 341
     components:
     - type: Transform
@@ -1796,6 +1803,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 342
     components:
     - type: Transform
@@ -1803,6 +1811,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 343
     components:
     - type: Transform
@@ -1810,6 +1819,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 344
     components:
     - type: Transform
@@ -1817,6 +1827,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 345
     components:
     - type: Transform
@@ -1824,6 +1835,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 346
     components:
     - type: Transform
@@ -1831,6 +1843,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 347
     components:
     - type: Transform
@@ -1838,6 +1851,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
 - proto: ComputerIFF
   entities:
   - uid: 364
@@ -2049,36 +2063,36 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 321
           - 317
-          - 319
-          - 315
-          - 298
-          - 326
-          - 325
-          - 324
-          - 306
-          - 300
-          - 301
-          - 302
-          - 312
-          - 308
-          - 309
-          - 310
-          - 313
-          - 314
-          - 329
-          - 330
-          - 327
-          - 328
-          - 305
-          - 311
-          - 307
-          - 303
-          - 304
-          - 299
-          - 297
           - 323
+          - 297
+          - 299
+          - 304
+          - 303
+          - 307
+          - 311
+          - 305
+          - 328
+          - 327
+          - 330
+          - 329
+          - 314
+          - 313
+          - 310
+          - 309
+          - 308
+          - 312
+          - 302
+          - 301
+          - 300
+          - 306
+          - 324
+          - 325
+          - 326
+          - 298
+          - 315
+          - 319
+          - 321
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2112,34 +2126,36 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 358
+          - 743
+          - 742
           - 355
-          - 362
-          - 349
-          - 351
-          - 348
-          - 344
-          - 354
-          - 343
-          - 359
-          - 342
-          - 341
-          - 345
-          - 340
-          - 360
-          - 339
-          - 338
-          - 353
-          - 337
-          - 336
-          - 347
-          - 346
-          - 361
-          - 363
-          - 352
-          - 350
-          - 356
           - 357
+          - 356
+          - 350
+          - 352
+          - 363
+          - 361
+          - 346
+          - 347
+          - 336
+          - 337
+          - 353
+          - 338
+          - 339
+          - 360
+          - 340
+          - 345
+          - 341
+          - 342
+          - 359
+          - 343
+          - 354
+          - 344
+          - 348
+          - 351
+          - 349
+          - 362
+          - 358
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2220,11 +2236,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 533
           - 534
-          - 535
-          - 536
           - 537
+          - 536
+          - 535
+          - 533
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2254,11 +2270,11 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 539
           - 540
-          - 541
-          - 542
           - 543
+          - 542
+          - 541
+          - 539
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -2272,6 +2288,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 349
     components:
     - type: Transform
@@ -2279,6 +2296,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 350
     components:
     - type: Transform
@@ -2286,6 +2304,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 351
     components:
     - type: Transform
@@ -2293,6 +2312,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
 - proto: DefibrillatorCabinetOpen
   entities:
   - uid: 383
@@ -2334,6 +2354,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 300
     components:
     - type: Transform
@@ -2341,6 +2362,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 301
     components:
     - type: Transform
@@ -2348,6 +2370,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 302
     components:
     - type: Transform
@@ -2355,6 +2378,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 303
     components:
     - type: Transform
@@ -2362,6 +2386,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 304
     components:
     - type: Transform
@@ -2369,6 +2394,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 305
     components:
     - type: Transform
@@ -2376,6 +2402,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 306
     components:
     - type: Transform
@@ -2383,6 +2410,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: DoubleEmergencyOxygenTankFilled
   entities:
   - uid: 307
@@ -2392,6 +2420,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 308
     components:
     - type: Transform
@@ -2399,6 +2428,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 309
     components:
     - type: Transform
@@ -2406,6 +2436,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 310
     components:
     - type: Transform
@@ -2413,6 +2444,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 311
     components:
     - type: Transform
@@ -2420,6 +2452,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 312
     components:
     - type: Transform
@@ -2427,6 +2460,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 313
     components:
     - type: Transform
@@ -2434,6 +2468,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 314
     components:
     - type: Transform
@@ -2441,6 +2476,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: EmpImplanter
   entities:
   - uid: 367
@@ -2536,6 +2572,16 @@ entities:
       parent: 418
     - type: Physics
       canCollide: False
+- proto: FuelDispenser
+  entities:
+  - uid: 744
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -2.5,-5.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: GasMinerNitrogen
   entities:
   - uid: 420
@@ -3107,6 +3153,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 317
     components:
     - type: Transform
@@ -3120,6 +3167,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: HoloprojectorField
   entities:
   - uid: 319
@@ -3135,6 +3183,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 321
     components:
     - type: Transform
@@ -3148,6 +3197,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: JetpackBlackFilled
   entities:
   - uid: 11
@@ -3910,6 +3960,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 353
     components:
     - type: Transform
@@ -3917,6 +3968,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 354
     components:
     - type: Transform
@@ -3924,6 +3976,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 355
     components:
     - type: Transform
@@ -3931,6 +3984,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 356
     components:
     - type: Transform
@@ -3938,6 +3992,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 357
     components:
     - type: Transform
@@ -3945,6 +4000,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 358
     components:
     - type: Transform
@@ -3952,6 +4008,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 359
     components:
     - type: Transform
@@ -3959,6 +4016,25 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 742
+    components:
+    - type: Transform
+      parent: 335
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 335
+  - uid: 743
+    components:
+    - type: Transform
+      parent: 335
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+      storage: 335
 - proto: MicroManipulatorStockPart
   entities:
   - uid: 189
@@ -4038,10 +4114,6 @@ entities:
     - type: Transform
       pos: -0.7342167,-3.2392855
       parent: 1
-    - type: SpecialRespawn
-      stationMap:
-      - invalid
-      - 1
 - proto: OperatingTable
   entities:
   - uid: 523
@@ -4073,11 +4145,11 @@ entities:
         [head=1][color=#ad0101]────────────────────[/color]
 
 
-        SQUAD DECIMUS. 
+        SQUAD DECIMUS.
 
         YOUR TASK IS SIMPLE.
 
-        RECOVER NT PERSONNEL. 
+        RECOVER NT PERSONNEL.
 
         ANNIHILATE THE REST.
 - proto: PlasticFlapsAirtightOpaque
@@ -4108,6 +4180,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 324
     components:
     - type: Transform
@@ -4115,6 +4188,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 325
     components:
     - type: Transform
@@ -4122,6 +4196,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 326
     components:
     - type: Transform
@@ -4129,6 +4204,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: PowerCellMicroreactor
   entities:
   - uid: 199
@@ -4254,6 +4330,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 328
     components:
     - type: Transform
@@ -4261,6 +4338,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 329
     components:
     - type: Transform
@@ -4268,6 +4346,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
   - uid: 330
     components:
     - type: Transform
@@ -4275,6 +4354,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 296
 - proto: ReinforcedUraniumWindow
   entities:
   - uid: 548
@@ -4391,36 +4471,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ballistic_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: Physics
-      bodyType: Static
   - uid: 558
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,3.5
       parent: 1
-    - type: ContainerContainer
-      containers:
-        ballistic_chamber: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-    - type: Physics
-      bodyType: Static
 - proto: ShuttleWindowDirectional
   entities:
   - uid: 559
@@ -4508,6 +4564,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 361
     components:
     - type: Transform
@@ -4515,6 +4572,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 362
     components:
     - type: Transform
@@ -4522,6 +4580,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
   - uid: 363
     components:
     - type: Transform
@@ -4529,6 +4588,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+      storage: 335
 - proto: StorageImplanter
   entities:
   - uid: 379
@@ -5992,7 +6052,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponPistolSP8T
+- proto: WeaponPistolBlueguard
   entities:
   - uid: 409
     components:

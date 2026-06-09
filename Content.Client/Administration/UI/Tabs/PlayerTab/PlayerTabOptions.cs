@@ -22,3 +22,20 @@ public enum AdminPlayerTabSymbolOption
     Basic,
     Specific
 }
+
+#region Starlight
+public enum AdminPlayerTabJobOption
+{
+    Off,
+    Job,
+    JobAndMindShield
+}
+
+public enum AdminPlayerTabHealthOption
+{
+    Off,
+    Icons,
+    Bars,
+    IconsAndBars
+}
+#endregion

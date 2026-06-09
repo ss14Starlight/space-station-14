@@ -2,8 +2,6 @@
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Starlight.Economy;
-using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 
@@ -21,7 +19,7 @@ public sealed partial class RailroadingAnnounceHandlerSystem : EntitySystem
         SubscribeLocalEvent<RailroadAnnounceOnChosenComponent, RailroadingCardChosenEvent>(OnChosen);
     }
 
-    private void OnChosen(Entity<RailroadAnnounceOnChosenComponent> ent, ref RailroadingCardChosenEvent args) 
+    private void OnChosen(Entity<RailroadAnnounceOnChosenComponent> ent, ref RailroadingCardChosenEvent args)
         => _chatSystem.DispatchFilteredAnnouncement
         (
             Filter.Empty().AddWhere(_gameTicker.UserHasJoinedGame),

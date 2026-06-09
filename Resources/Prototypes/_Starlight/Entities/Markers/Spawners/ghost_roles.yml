@@ -26,6 +26,7 @@
   suffix: brighteye
   components:
   - type: GhostRole
+    important: true
     name: roles-antag-brighteye-name
     description: roles-antag-brighteye-description
     mindRoles:
@@ -46,6 +47,7 @@
   name: exterminator spawn point
   components:
   - type: GhostRole
+    important: true
     name: ghost-role-information-terminator-name
     description: ghost-role-information-terminator-description
     rules: ghost-role-information-terminator-rules
@@ -58,7 +60,7 @@
     - state: green
     - sprite: Mobs/Species/Terminator/parts.rsi
       state: full
- 
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -70,7 +72,7 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
-      
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -82,7 +84,7 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -94,7 +96,7 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: SpawnPointGhostDerelictCyborg
@@ -118,3 +120,56 @@
       rules: ghost-role-information-silicon-rules
       raffle:
         settings: default
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: SpawnPointGhostDerelictBorgi
+  id: SpawnPointGhostXenoBorgiDerelict
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-borgi-xenoborg-name
+      description: ghostrole-information-derelict-borgi-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointGhostTerrorPrincess
+  components:
+  - type: GhostRole
+    name: ghost-role-information-terror-princess-name
+    description: ghost-role-information-terror-princess-description
+    rules: ghost-role-information-rules-team-antagonist
+    important: true
+    mindRoles:
+    - MindRoleTerrorPrincess
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
+      state: 1-alive
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: MarkerBase
+  id: SpawnPointXenoroach
+  name: xenoroach spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-xenoroach-name
+    description: ghost-role-information-xenoroach-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleXenoborg
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobXenoroach
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Silicon/Chassis/xenoroach.rsi
+      state: xenoroach

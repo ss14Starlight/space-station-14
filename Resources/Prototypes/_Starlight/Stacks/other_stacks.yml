@@ -18,7 +18,7 @@
   icon: { sprite: _Starlight/Objects/Materials/paper_roll.rsi, state: icon_100 }
   spawn: LabellerRefillPaper
   maxCount: 100
-  
+
 - type: stack
   id: RawBluespaceCrystal
   name: stack-bluespacecrystal
@@ -31,4 +31,11 @@
   name: stack-bluespacecrystal
   icon: { sprite: _Starlight/Objects/Materials/materials.rsi, state: refined_bluespace_crystal }
   spawn: BluespaceCrystal1
+  maxCount: 10
+
+- type: stack
+  id: EmptyOilPack
+  name: stack-empty-oilpack
+  icon: { sprite: "_FarHorizons/Objects/Specific/Medical/medical.rsi", state: oilpack-empty }
+  spawn: EmptyOilPack
   maxCount: 10

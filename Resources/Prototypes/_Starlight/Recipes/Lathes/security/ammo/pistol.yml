@@ -63,14 +63,14 @@
   result: MagazinePistolSP
   materials:
     Steel: 145
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistolHP
   result: MagazinePistolHP
   materials:
     Steel: 145
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistolFMJ
@@ -101,7 +101,7 @@
     Steel: 25
     Plastic: 65
     Uranium: 120
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistolAP
@@ -153,7 +153,7 @@
   result: MagazinePistol40SP
   materials:
     Steel: 167
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistol40HP
@@ -167,7 +167,7 @@
   result: MagazinePistol40FMJ
   materials:
     Steel: 167
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazinePistol40AP
@@ -188,42 +188,42 @@
   materials:
     Steel: 350
     Plastic: 300
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolSP
   result: MagazineBoxPistolSP
   materials:
     Steel: 600
-        
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolHP
   result: MagazineBoxPistolHP
   materials:
     Steel: 600
-        
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolFMJ
   result: MagazineBoxPistolFMJ
   materials:
     Steel: 600
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolPractice
   result: MagazineBoxPistolPractice
   materials:
     Steel: 300
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolIncendiary
   result: MagazineBoxPistolIncendiary
   materials:
     Plastic: 600
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolUranium
@@ -231,7 +231,7 @@
   materials:
     Plastic: 300
     Uranium: 600
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistolAP
@@ -249,7 +249,7 @@
   result: MagazineBoxPistol40SP
   materials:
     Steel: 334
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistol40HP
@@ -263,7 +263,7 @@
   result: MagazineBoxPistol40FMJ
   materials:
     Steel: 334
-    
+
 - type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineBoxPistol40AP

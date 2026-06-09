@@ -96,18 +96,18 @@ public sealed class OptionsVisualizerSystem : EntitySystem
                 || _sprite.LayerExists((uid, sprite), @enum))
                     layerIndex = _sprite.LayerMapReserve((uid, sprite), @enum);
             }
-            else 
+            else
             {
                 if(layerKeyRaw == "base"
                 || _sprite.LayerExists((uid, sprite), layerKeyRaw))
                     layerIndex = _sprite.LayerMapReserve((uid, sprite), layerKeyRaw);
             }
 
-            if(layerKeyRaw == "base" 
+            if(layerKeyRaw == "base"
             || layerIndex >= 0)
             //Starlight End
                 _sprite.LayerSetData((uid, sprite), layerIndex, matchedDatum.Data);
-        }     
+        }
     }
 }
 

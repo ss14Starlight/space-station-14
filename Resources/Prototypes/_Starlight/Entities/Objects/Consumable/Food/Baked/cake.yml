@@ -21,7 +21,7 @@
           maxVol: 30
           reagents:
             - ReagentId: Nutriment
-              Quantity: 30                 
+              Quantity: 30
     - type: Tag
       tags:
         - Cake
@@ -51,7 +51,7 @@
             - ReagentId: Nutriment
               Quantity: 15
             - ReagentId: Fiber
-              Quantity: 15                 
+              Quantity: 15
     - type: Tag
       tags:
         - Cake
@@ -117,4 +117,3 @@
       tags:
         - Cake
         - Slice
-        

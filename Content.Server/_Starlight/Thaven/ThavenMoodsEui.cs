@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Shared.Administration;
@@ -14,9 +13,9 @@ public sealed class ThavenMoodsEui : BaseEui
     private readonly EntityManager _entMan;
     private readonly IAdminManager _adminManager;
 
-    private List<ThavenMood> _moods = new();
-    private List<ThavenMood> _sharedMoods = new();
-    private ISawmill _sawmill = default!;
+    private List<ThavenMood> _moods = [];
+    private List<ThavenMood> _sharedMoods = [];
+    private readonly ISawmill _sawmill = default!;
     private EntityUid _target;
 
     public ThavenMoodsEui(ThavenMoodsSystem thavenMoodsSystem, EntityManager entityManager, IAdminManager manager)
@@ -28,9 +27,7 @@ public sealed class ThavenMoodsEui : BaseEui
     }
 
     public override EuiStateBase GetNewState()
-    {
-        return new ThavenMoodsEuiState(_moods, _entMan.GetNetEntity(_target));
-    }
+        => new ThavenMoodsEuiState(_moods, _entMan.GetNetEntity(_target));
 
     public void UpdateMoods(Entity<ThavenMoodsComponent> ent)
     {
@@ -39,7 +36,7 @@ public sealed class ThavenMoodsEui : BaseEui
 
         _target = ent;
         _moods = ent.Comp.Moods;
-        _sharedMoods = _moodsSystem.SharedMoods.ToList();
+        _sharedMoods = [.. _moodsSystem.SharedMoods];
         StateDirty();
     }
 

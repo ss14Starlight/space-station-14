@@ -21,24 +21,24 @@ public abstract class SharedThermalVisionSystem : EntitySystem
         SubscribeLocalEvent<ThermalVisionComponent, ComponentShutdown>(OnVisionShutdown);
         SubscribeLocalEvent<ThermalVisionComponent, ToggleThermalVisionEvent>(OnToggleThermalVision);
     }
-    
+
     private void OnVisionInit(Entity<ThermalVisionComponent> ent, ref MapInitEvent args)
     {
         _actionsSystem.AddAction(ent.Owner, ref ent.Comp.ActionEntity, Action);
     }
 
-    private void OnVisionShutdown(Entity<ThermalVisionComponent> ent, ref ComponentShutdown args) 
+    private void OnVisionShutdown(Entity<ThermalVisionComponent> ent, ref ComponentShutdown args)
     {
         _actionsSystem.RemoveAction(ent.Comp.ActionEntity);
         //force turn off
-        ToggleOff(ent); 
+        ToggleOff(ent);
     }
 
     private void OnToggleThermalVision(Entity<ThermalVisionComponent> ent, ref ToggleThermalVisionEvent args)
     {
         if(args.Handled || IsPredict()) return;
         args.Handled = true;
-        
+
         ent.Comp.Active = !ent.Comp.Active;
 
         if(ent.Comp.Active)
@@ -48,7 +48,7 @@ public abstract class SharedThermalVisionSystem : EntitySystem
     }
     protected virtual void ToggleOn(Entity<ThermalVisionComponent> ent)
     {
-        
+
     }
     protected virtual void ToggleOff(Entity<ThermalVisionComponent> ent)
     {

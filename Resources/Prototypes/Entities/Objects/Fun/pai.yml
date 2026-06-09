@@ -58,6 +58,7 @@
   - type: Examiner
   - type: IntrinsicRadioReceiver
   - type: IntrinsicRadioTransmitter #Starlight pAI comms rework, see PR #3299
+    channels: [] # Starlight
   - type: ActiveRadio
   - type: ContainerContainer #Starlight pAI comms rework, see PR #3299
     containers:
@@ -70,6 +71,7 @@
     actions:
     - ActionPAIOpenShop
     - ActionPAIPDA #Starlight pAI can open PDAs, see PR #3272
+    - ActionPAIConsole #Starlight pAI can open consoles
   - type: Store
     name: store-preset-name-pai #Starlight name change for data purity
     categories:
@@ -114,8 +116,10 @@
     tags:
     - SiliconEmotes
   # Starlight Start
+    - CanPilot
   - type: Blindable
   - type: ParentCanBlockVision
+  - type: ContentEye
   # Starlight End
 
 - type: entity

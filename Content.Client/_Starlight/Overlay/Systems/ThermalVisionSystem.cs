@@ -1,5 +1,3 @@
-using Content.Client.Eye.Blinding;
-using Content.Client.GameTicking.Managers;
 using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
@@ -7,11 +5,7 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Flash.Components;
 using Content.Shared.Starlight.Overlay;
-using Content.Shared.Mech.Components;
-using Content.Shared.Mech;
 
 namespace Content.Client._Starlight.Overlay;
 
@@ -24,9 +18,13 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
 
-
     private ThermalVisionEntityHighlightOverlay _throughWallsOverlay = default!;
     private ThermalVisionOverlay _overlay = default!;
+    private ThermalVisionOverlay _altOverlay = default!;
+
+    private const string ThermalVisionShader = "ThermalVisionScreenShader";
+    private const string BrightnessShader = "BrightnessShader";
+    private const string AlternativeThermalVisionShader = "ThermalVisionScreenShaderHalfAlpha";
 
     [ViewVariables]
     private EntityUid? _effect = null;
@@ -44,41 +42,30 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
 
         SubscribeLocalEvent<ThermalVisionComponent, FlashImmunityCheckEvent>(OnFlashImmunityChanged);
 
-        _throughWallsOverlay = new(_prototypeManager.Index<ShaderPrototype>("BrightnessShader"));
-        _overlay = new(_prototypeManager.Index<ShaderPrototype>("ThermalVisionScreenShader"));
+        _throughWallsOverlay = new(_prototypeManager.Index<ShaderPrototype>(BrightnessShader));
+        _overlay = new(_prototypeManager.Index<ShaderPrototype>(ThermalVisionShader));
+        _altOverlay = new(_prototypeManager.Index<ShaderPrototype>(AlternativeThermalVisionShader));
     }
 
     private void OnFlashImmunityChanged(Entity<ThermalVisionComponent> ent, ref FlashImmunityCheckEvent args)
     {
         if (args.IsImmune)
-        {
             AttemptRemoveVision(ent.Owner);
-        }
         else
-        {
             AttemptAddVision(ent.Owner);
-        }
     }
 
     private void OnPlayerAttached(Entity<ThermalVisionComponent> ent, ref LocalPlayerAttachedEvent args)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     private void OnPlayerDetached(Entity<ThermalVisionComponent> ent, ref LocalPlayerDetachedEvent args)
-    {
-        AttemptRemoveVision(ent.Owner, true);
-    }
+        => AttemptRemoveVision(ent.Owner, true);
 
     protected override void ToggleOn(Entity<ThermalVisionComponent> ent)
-    {
-        AttemptAddVision(ent.Owner);
-    }
+        => AttemptAddVision(ent.Owner);
 
     protected override void ToggleOff(Entity<ThermalVisionComponent> ent)
-    {
-        AttemptRemoveVision(ent.Owner);
-    }
+        => AttemptRemoveVision(ent.Owner);
 
     private void AttemptAddVision(EntityUid uid)
     {
@@ -91,9 +78,12 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
         if (!TryComp<ThermalVisionComponent>(uid, out var thermalVision) || !thermalVision.Active) return;
 
         if (_effect != null) return;
-        
+
         _overlayMan.AddOverlay(_throughWallsOverlay);
-        _overlayMan.AddOverlay(_overlay);
+        if (thermalVision.UseAlternativeShader)
+            _overlayMan.AddOverlay(_altOverlay);
+        else
+            _overlayMan.AddOverlay(_overlay);
         _effect = SpawnAttachedTo(thermalVision.EffectPrototype, Transform(uid).Coordinates);
         _xformSys.SetParent(_effect.Value, uid);
     }
@@ -110,6 +100,7 @@ public sealed class ThermalVisionSystem : SharedThermalVisionSystem
 
         _overlayMan.RemoveOverlay(_throughWallsOverlay);
         _overlayMan.RemoveOverlay(_overlay);
+        _overlayMan.RemoveOverlay(_altOverlay);
         Del(_effect);
         _effect = null;
     }

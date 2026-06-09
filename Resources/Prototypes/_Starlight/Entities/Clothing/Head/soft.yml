@@ -24,3 +24,57 @@
     - ClothMade
     - Recyclable
     - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatMailsoftVisor
+  name: mail visor
+  description: A lightweight sun visor for every aspiring mail technician.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Soft/mailvisor.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Soft/mailvisor.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMailsoftVisor]
+  id: ClothingHeadHatMailsoftVisorFlipped
+  name: mail visor
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatMailsoftVisorSenior
+  name: senior mail visor
+  description: A lightweight sun visor for the most devoted of mail technicians.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Head/Soft/mailvisorsenior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Head/Soft/mailvisorsenior.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatMailsoftVisorSenior]
+  id: ClothingHeadHatMailsoftVisorSeniorFlipped
+  name: senior mail visor
+  components:
+  - type: Tag
+    tags:
+    - ClothMade
+    - Recyclable
+    - HamsterWearable

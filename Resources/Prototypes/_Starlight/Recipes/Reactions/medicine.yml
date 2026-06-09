@@ -38,3 +38,16 @@
       amount: 1
   products:
     Chronexaline: 3
+
+- type: reaction
+  id: Infernaline
+  minTemp: 600
+  reactants:
+    DevilJuice:
+      amount: 1
+    Hyronalin:
+      amount: 1
+    Cryoxadone:
+      amount: 1
+  products:
+    Infernaline: 2

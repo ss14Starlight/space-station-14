@@ -20,6 +20,7 @@
   groups:
   - MagistrateJumpsuit
   - MagistrateEyewear
+  - MagistrateNeck
   - MagistrateHands
   - MagistrateHead
   - MagistrateOuterclothing
@@ -57,6 +58,7 @@
   id: JobNanoTrasenRepresentative
   groups:
   - NanoTrasenRepresentativeHead
+  - NanoTrasenRepresentativeNeck
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeEyewear
   - CommonBackpack
@@ -71,14 +73,15 @@
 - type: roleLoadout
   id: JobIAA
   groups:
-  - LawyerNeck
-  - LawyerJumpsuit
+  - IAANeck
+  - IAAJumpsuit
   - CommonBackpack
-  - LawyerShoes
+  - IAAShoes
   - Trinkets
   - Scarves
   - Pins
   - LuxuryPens
+  - LawyerJobTrinkets
   - Survival
   - GroupSpeciesBreathTool
 
@@ -99,7 +102,7 @@
   - Scarves
   - Pins
   - Pens
-  - SurvivalSecurity
+  - SurvivalExtended # Starlight
   - GroupSpeciesBreathToolSecurity
 
 - type: roleLoadout
@@ -123,11 +126,14 @@
   id: JobMailTech
   groups:
   - GroupTankHarness
-  - CargoTechnicianHead
-  - CargoTechnicianJumpsuit
-  - CargoTechnicianBackpack
-  - CargoTechnicianOuterClothing
-  - CargoTechnicianShoes
+  - MailTechnicianHead
+  - MailTechnicianJumpsuit
+  - MailTechnicianBackpack
+  - MailTechnicianOuterClothing
+  - MailTechnicianShoes
+  - MailTechnicianPDA
+  - MailTechnicianBag
+  - MailTechnicianTrolley
   - Glasses
   - Survival
   - Trinkets
@@ -153,7 +159,7 @@
   - SecurityShoes
   - SecurityNonLethalWeapon
   - SecuritySidearm
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
@@ -165,6 +171,7 @@
   id: JobDutyOfficer
   groups:
   - DutyOfficerHead
+  - SecurityMask # Starlight
   - DutyOfficerJumpsuit
   - SecurityBackpack
   - SecurityEyewear
@@ -174,7 +181,7 @@
   - SecurityShoes
   - SecurityGloves
   - SecurityNonLethalWeapon
-  - SurvivalSecurity
+  - SurvivalExtended
   - Trinkets
   - Scarves
   - Pins
@@ -279,5 +286,16 @@
   - NanotrasenCareerTrainerShoes
   - CommonBackpack
   - Trinkets
+  - Scarves
+  - Pins
+  - Pens
   - Survival
   - GroupSpeciesBreathTool
+
+# Wizard duelist from Moff Station. Placed here instead of in Moff's files since they're not a free agent here.
+- type: roleLoadout
+  id: RoleSurvivalWizardDuelist
+  groups:
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness

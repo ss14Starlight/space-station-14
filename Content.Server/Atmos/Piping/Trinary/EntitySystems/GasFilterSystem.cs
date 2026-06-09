@@ -39,6 +39,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
             SubscribeLocalEvent<GasFilterComponent, AtmosDeviceDisabledEvent>(OnFilterLeaveAtmosphere);
             SubscribeLocalEvent<GasFilterComponent, ActivateInWorldEvent>(OnFilterActivate);
             SubscribeLocalEvent<GasFilterComponent, GasAnalyzerScanEvent>(OnFilterAnalyzed);
+            SubscribeLocalEvent<GasFilterComponent, AnchorStateChangedEvent>(OnAnchorChanged); // Starlight
             // Bound UI subscriptions
             SubscribeLocalEvent<GasFilterComponent, GasFilterChangeRateMessage>(OnTransferRateChangeMessage);
             SubscribeLocalEvent<GasFilterComponent, GasFilterSelectGasMessage>(OnSelectGasMessage);
@@ -61,7 +62,7 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                 _ambientSoundSystem.SetAmbience(uid, false);
                 return;
             }
-            
+
             //starlight edit - Moved logic to a new method
             var transferVol = GetTransferRate(filter, args, inletNode.Air, outletNode); //starlight edit
 
@@ -79,28 +80,28 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
                 wantsToFilter.SetMoles(filter.FilteredGas.Value, removed.GetMoles(filter.FilteredGas.Value));
                 removed.SetMoles(filter.FilteredGas.Value, 0f);
-                
+
                 // starlight edit start - fix subtick
                 var filterVolume = GetTransferRate(filter, args, wantsToFilter, filterNode);
-                
+
                 // Remove the filtered volume that actually can fit in the filter
                 var actuallyFiltered = wantsToFilter.RemoveVolume(filterVolume);
-                
+
                 // The remaining gas in wantsToFilter should be returned to inlet
                 var returned = wantsToFilter;
-                
+
                 // Put gases in their respective nodes
                 _atmosphereSystem.Merge(filterNode.Air, actuallyFiltered);
                 _atmosphereSystem.Merge(inletNode.Air, returned);
                 // starlight edit end - fix subtick
-                
+
                 _ambientSoundSystem.SetAmbience(uid, wantsToFilter.TotalMoles > 0f); // starlight edit - fix subtick
             }
 
             _atmosphereSystem.Merge(outletNode.Air, removed);
         }
 
-        
+
         //starlight fix subtick
         /// <summary>
         /// Calculates how many moles of gas to transfer from the inlet to the outlet.
@@ -139,11 +140,22 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 
             return actualTransferVolume;
         }
-        //starlight end
+
+        private void OnAnchorChanged(EntityUid uid, GasFilterComponent filter, ref AnchorStateChangedEvent args)
+        {
+            if (!args.Anchored)
+            {
+                filter.Enabled = false;
+                UpdateAppearance(uid, filter);
+                _ambientSoundSystem.SetAmbience(uid, false);
+                DirtyUI(uid, filter);
+            }
+        }
+        // Starlight End
 
         private void OnFilterLeaveAtmosphere(EntityUid uid, GasFilterComponent filter, ref AtmosDeviceDisabledEvent args)
         {
-            filter.Enabled = false;
+            // filter.Enabled = false; // Starlight Edit: Moved to OnAnchorChanged
 
             UpdateAppearance(uid, filter);
             _ambientSoundSystem.SetAmbience(uid, false);

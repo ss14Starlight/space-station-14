@@ -1,0 +1,8 @@
+- type: damageContainer
+  id: IPC
+  supportedGroups:
+    - Brute
+    - Burn
+  supportedTypes:
+    - Bloodloss
+    - Radiation

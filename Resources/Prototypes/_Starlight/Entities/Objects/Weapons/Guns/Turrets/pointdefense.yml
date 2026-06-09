@@ -24,9 +24,6 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { state: on }
           False: { state: off }
-  - type: NpcFactionMember
-    factions:
-    - PointDefenseWeapon
   - type: BatteryAmmoProvider
     proto: PointDefenseBeam
     fireCost: 500
@@ -81,7 +78,7 @@
   - type: NPCPointDefense
   - type: HTN
     rootTask:
-      task: EnergyTurretCompound
+      task: PDTurretCompound
     blackboard:
       RotateSpeed: !type:Single
         5
@@ -91,3 +88,48 @@
         25
       AggroVisionRadius: !type:Single
         25
+  - type: RadarLaserTracker
+    laserColor: "#FFFF00"
+    traceDuration: 0.75
+    maxRange: 25
+
+- type: entity
+  parent: WeaponTurretPointDefense
+  id: WeaponTurretMilitaryPointDefense
+  description: A Military-Kuiper pattern defense battery. Capable of destroying most threats in a single salvo.
+  name: military point defense battery
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Turrets/pointdefense.rsi
+    drawdepth: HighFloorObjects
+    granularLayersRendering: true
+    layers:
+    - state: support
+      renderingStrategy: NoRotation
+    - state: military
+      map: [ "base" ]
+    - map: ["enum.PowerDeviceVisualLayers.Powered"]
+      state: military_off
+      shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { state: military_on }
+          False: { state: military_off }
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 0
+    netsync: false
+  - type: HTN
+    rootTask:
+      task: PDTurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        15
+      RangedRange: !type:Single
+        30
+      VisionRadius: !type:Single
+        30
+      AggroVisionRadius: !type:Single
+        30

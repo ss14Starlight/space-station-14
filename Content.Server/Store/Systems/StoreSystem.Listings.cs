@@ -37,7 +37,7 @@ public sealed partial class StoreSystem
         }
 
         component.FullListingsCatalog = newState;
-        
+
         // STARLIGHT: Check if a rift has been destroyed and update the listing accordingly
         // This ensures the rift listing remains unavailable even after reopening the uplink
         _revSupplyRift.CheckRiftDestroyedAndUpdateListing(component);
@@ -128,7 +128,7 @@ public sealed partial class StoreSystem
                 var args = new ListingConditionArgs(GetBuyerMind(buyer), storeEntity, listing, EntityManager);
                 bool hasStockLimitedCondition = false;
                 bool allConditionsMet = true;
-                
+
                 // First pass: check if this listing has a StockLimitedListingCondition
                 foreach (var condition in listing.Conditions)
                 {
@@ -138,7 +138,7 @@ public sealed partial class StoreSystem
                         break;
                     }
                 }
-                
+
                 // Second pass: check all conditions
                 foreach (var condition in listing.Conditions)
                 {
@@ -158,7 +158,7 @@ public sealed partial class StoreSystem
                         }
                     }
                 }
-                
+
                 // Skip this listing if conditions aren't met and it's not a stock-limited item
                 if (!allConditionsMet && !hasStockLimitedCondition)
                 {
@@ -167,7 +167,7 @@ public sealed partial class StoreSystem
             }
 
             yield return listing;
-            
+
             NextListing:
             continue;
             // Starlight End

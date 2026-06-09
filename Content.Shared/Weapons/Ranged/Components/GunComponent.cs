@@ -66,7 +66,7 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan LastFire = TimeSpan.Zero;
-    
+
     [DataField]
     public bool Pump = false;
 

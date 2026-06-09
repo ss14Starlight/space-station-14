@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by Conflee (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "3x3black_east"
+    },
+    {
+      "name": "3x3black_inner_ne"
+    },
+    {
+      "name": "3x3black_inner_nw"
+    },
+    {
+      "name": "3x3black_inner_se"
+    },
+    {
+      "name": "3x3black_inner_sw"
+    },
+    {
+      "name": "3x3black_ne"
+    },
+    {
+      "name": "3x3black_nw"
+    },
+    {
+      "name": "3x3black_se"
+    },
+    {
+      "name": "3x3black_south"
+    },
+    {
+      "name": "3x3black_sw"
+    },
+    {
+      "name": "3x3black_north"
+    },
+    {
+      "name": "3x3black_west"
+    },
+	{
+      "name": "3x3brown_east"
+    },
+    {
+      "name": "3x3brown_inner_ne"
+    },
+    {
+      "name": "3x3brown_inner_nw"
+    },
+    {
+      "name": "3x3brown_inner_se"
+    },
+    {
+      "name": "3x3brown_inner_sw"
+    },
+    {
+      "name": "3x3brown_ne"
+    },
+    {
+      "name": "3x3brown_nw"
+    },
+    {
+      "name": "3x3brown_se"
+    },
+    {
+      "name": "3x3brown_south"
+    },
+    {
+      "name": "3x3brown_sw"
+    },
+    {
+      "name": "3x3brown_north"
+    },
+    {
+      "name": "3x3brown_west"
+    },
+	{
+      "name": "3x3steel_east"
+    },
+    {
+      "name": "3x3steel_inner_ne"
+    },
+    {
+      "name": "3x3steel_inner_nw"
+    },
+    {
+      "name": "3x3steel_inner_se"
+    },
+    {
+      "name": "3x3steel_inner_sw"
+    },
+    {
+      "name": "3x3steel_ne"
+    },
+    {
+      "name": "3x3steel_nw"
+    },
+    {
+      "name": "3x3steel_se"
+    },
+    {
+      "name": "3x3steel_south"
+    },
+    {
+      "name": "3x3steel_sw"
+    },
+    {
+      "name": "3x3steel_north"
+    },
+    {
+      "name": "3x3steel_west"
+    },
+	{
+      "name": "3x3white_east"
+    },
+    {
+      "name": "3x3white_inner_ne"
+    },
+    {
+      "name": "3x3white_inner_nw"
+    },
+    {
+      "name": "3x3white_inner_se"
+    },
+    {
+      "name": "3x3white_inner_sw"
+    },
+    {
+      "name": "3x3white_ne"
+    },
+    {
+      "name": "3x3white_nw"
+    },
+    {
+      "name": "3x3white_se"
+    },
+    {
+      "name": "3x3white_south"
+    },
+    {
+      "name": "3x3white_sw"
+    },
+    {
+      "name": "3x3white_north"
+    },
+    {
+      "name": "3x3white_west"
+    }
+  ]
+}

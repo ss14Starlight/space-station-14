@@ -1,7 +1,6 @@
 - type: loadoutGroup
   id: Insuls
   name: loadout-group-insuls-normal
-  minLimit: 0
   defaultSelected: 1
   loadouts:
   - InsulsRegular
@@ -12,7 +11,6 @@
 - type: loadoutGroup
   id: InsulsCombat
   name: loadout-group-insuls-combat
-  minLimit: 0
   defaultSelected: 1
   loadouts:
   - InsulsCombatNoLock
@@ -23,7 +21,6 @@
 - type: loadoutGroup
   id: InsulsCaptain
   name: loadout-group-insuls-captain
-  minLimit: 0
   defaultSelected: 1
   loadouts:
   - InsulsCaptain
@@ -239,6 +236,29 @@
   - RoboticistDuffel
   - LeatherSatchel
 
+# IAA
+- type: loadoutGroup
+  id: IAAJumpsuit
+  name: loadout-group-iaa-jumpsuit
+  loadouts:
+  - LawyerJumpsuit
+  - LawyerJumpskirt
+  - LawyerJumpsuitBlue
+  - LawyerJumpskirtBlue
+  - LawyerJumpsuitPurple
+  - LawyerJumpskirtPurple
+  - LawyerJumpsuitRed
+  - LawyerJumpskirtRed
+  - LawyerJumpsuitGood
+  - LawyerJumpskirtGood
+
+- type: loadoutGroup
+  id: IAANeck
+  name: loadout-group-iaa-neck
+  minLimit: 0
+  loadouts:
+  - LawyerNeck
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeHead
   name: loadout-group-nanotrasenrepresentative-head
@@ -246,6 +266,13 @@
   - NanoTrasenRepresentativeTophat
   - NanoTrasenRepresentativeEliteTophat
   - NanoTrasenRepresentativeCap
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeNeck
+  name: loadout-group-nanotrasenrepresentative-neck
+  minLimit: 0
+  loadouts:
+    - NanoTrasenRepresentativeCloak
 
 - type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
@@ -274,7 +301,6 @@
   loadouts:
   - MagistrateJumpsuit
   - MagistrateJumpskirt
-  - MagistrateJumpsuitLongCoat
 
 - type: loadoutGroup
   id: MagistrateOuterclothing
@@ -283,10 +309,11 @@
   minLimit: 0
   loadouts:
   - MagistrateRobes
+  - MagistrateLongcoat
 
 - type: loadoutGroup
   id: MagistrateHead
-  name: loadout-group-magistrate-headwear
+  name: loadout-group-magistrate-head
   defaultSelected: 1
   minLimit: 0
   loadouts:
@@ -300,8 +327,15 @@
   - MagistrateSkillGlasses
 
 - type: loadoutGroup
+  id: MagistrateNeck
+  name: loadout-group-magistrate-neck
+  minLimit: 0
+  loadouts:
+    - MagistrateMantle
+
+- type: loadoutGroup
   id: MagistrateHands
-  name: loadout-group-magistrate-hands
+  name: loadout-group-magistrate-gloves
   defaultSelected: 1
   minLimit: 0
   maxLimit: 1
@@ -399,8 +433,10 @@
   name: loadout-group-security-sidearm
   loadouts:
   - SecurityMk58
-  - SecurityPistolDP
   - SecurityPistolEnforcer
+  - SecurityRevolverDispatcher
+  - SecurityPistolDP
+  - SecurityMk58Gold
 
 # Assorted Boots
 - type: loadoutGroup
@@ -488,14 +524,25 @@
 
 - type: loadoutGroup
   id: LawyerShoes
-  name: loadout-group-iia-shoes
+  name: loadout-group-lawyer-shoes
   minLimit: 0
   defaultSelected: 1
   loadouts:
-  - BlackShoes
   - LaceupShoes
   - Heels
   - LeatherShoes
+  - BlackShoes
+
+- type: loadoutGroup
+  id: IAAShoes
+  name: loadout-group-iaa-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - LaceupShoes
+  - Heels
+  - LeatherShoes
+  - BlackShoes
 
 - type: loadoutGroup
   id: BlueShieldShoes
@@ -506,6 +553,99 @@
   - JackBoots
   - CombatBoots
   - HighHeelBootsFilled
+
+# Cargo
+# Cargo Technician
+- type: loadoutGroup
+  id: CargoTechnicianAppraisalTool
+  name: loadout-group-cargo-technician-appraisal-tool
+  loadouts:
+  - AppraisalTool
+  - GoldenAppraisalTool
+
+# Mail Technician
+- type: loadoutGroup
+  id: MailTechnicianHead
+  name: loadout-group-mail-technician-head
+  minLimit: 0
+  loadouts:
+  - MailTechnicianHeadVisor
+  - MailTechnicianHeadVisorSenior
+  - CargoTechnicianBeret
+  - CargoTechnicianBeretFormal
+
+- type: loadoutGroup
+  id: MailTechnicianJumpsuit
+  name: loadout-group-mail-technician-jumpsuit
+  loadouts:
+  - MailTechnicianJumpsuit
+  - MailTechnicianJumpskirt
+  - MailTechnicianJumpsuitSenior
+  - MailTechnicianJumpskirtSenior
+  - CargoTechnicianJumpsuitAlt # afterlight start
+  - CargoTechnicianJumpsuitFormal
+  - CargoTechnicianJumpskirtFormal # afterlight end
+
+- type: loadoutGroup
+  id: MailTechnicianBackpack
+  name: loadout-group-mail-technician-backpack
+  loadouts:
+  - CargoTechnicianBackpack
+  - CargoTechnicianSatchel
+  - CargoTechnicianDuffel
+  - MailTechnicianTrunk
+  - SeniorCourierBackpack
+  - SeniorCourierSatchel
+  - SeniorCourierDuffel
+  - MailTechnicianTrunkSenior
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: MailTechnicianOuterClothing
+  name: loadout-group-mail-technician-outerclothing
+  minLimit: 0
+  loadouts:
+  - CargoTechnicianWintercoat
+  - SeniorCourierWintercoat
+  - WindbreakerCargo
+
+- type: loadoutGroup
+  id: MailTechnicianShoes
+  name: loadout-group-mail-technician-shoes
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - MailTechnicianBoots
+  - MailTechnicianBootsSenior
+  - RollerSkatesLoadout
+  - BlackShoes
+  - YellowShoes
+  - CargoWinterBoots
+  - SeniorCourierWinterBoots
+  - LeatherShoes
+  - WorkBoots
+  - Heels
+
+- type: loadoutGroup
+  id: MailTechnicianPDA
+  name: loadout-group-mail-technician-id
+  loadouts:
+  - MailPDA
+  - SeniorMailPDA
+
+- type: loadoutGroup
+  id: MailTechnicianBag
+  name: loadout-group-mail-technician-bag
+  loadouts:
+  - MailBag
+  - SeniorMailBag
+
+- type: loadoutGroup
+  id: MailTechnicianTrolley
+  name: loadout-group-mail-technician-trolley
+  loadouts:
+  - MailTrolleyFlatpack
+  - GoldenMailTrolleyFlatpack
 
 # Salvage Lead
 - type: loadoutGroup
@@ -620,6 +760,16 @@
   - LizardPlushieClown
   - LizardPlushieMime
 
+# Musician
+- type: loadoutGroup
+  id: MusicianHead
+  name: loadout-group-musician-head
+  minLimit: 0
+  loadouts:
+  - MusicianHeadphonesGeneric
+  - MusicianHeadphonesReporter
+  - MusicianHeadphonesHighEnd
+
 # Boxer
 - type: loadoutGroup
   id: BoxerJumpsuit
@@ -643,6 +793,16 @@
   minLimit: 0
   loadouts:
   - LizardPlushieBoxer
+
+# Reporter
+- type: loadoutGroup
+  id: ReporterHead
+  name: loadout-group-reporter-head
+  minLimit: 0
+  loadouts:
+  - ReporterHeadphonesJob
+  - ReporterHeadphonesGeneric
+  - ReporterHeadphonesHighEnd
 
 # Zookeeper
 - type: loadoutGroup
@@ -735,12 +895,20 @@
 
 # HoS/Ward Masks
 - type: loadoutGroup
-  id: SecurityMask
-  name: loadout-group-security-mask
-  minLimit: 0
+  id: EliteSecurityMask
+  name: loadout-group-security-mask-elite
   loadouts:
     - MaskGasSecurity
     - BreathMaskMedicalSecurity
+    - MaskGasCorpsman
+
+# General Security Masks
+- type: loadoutGroup
+  id: SecurityMask
+  name: loadout-group-security-mask
+  loadouts:
+    - MaskGasSecurity
+    - BreathMaskMedicalSecurityBudget
     - MaskGasCorpsman
 
 # Brigmedic
@@ -782,6 +950,7 @@
   name: loadout-group-dutyofficer-head
   loadouts:
   - DutyOfficerHead
+  - DutyOfficerHeadOrange # DeltaV
   - DutyOfficerBeret
   - DutyOfficerHelmetRiot
 
@@ -793,6 +962,8 @@
   - DutyOfficerJumpskirt
   - DutyOfficerJumpsuitBlue
   - DutyOfficerJumpskirtBlue
+  - DutyOfficerJumpsuitOrange # DeltaV
+  - DutyOfficerJumpskirtOrange # DeltaV
 
 - type: loadoutGroup
   id: DutyOfficerBelt
@@ -808,12 +979,12 @@
   defaultSelected: 1
   loadouts:
   - DutyOfficerArmorRiot
+  - DutyOfficerWintercoat
   - ArmorVest
   - ArmorVestSlim
   - ArmorVestPlate
   - ArmorVestStab
   - ArmorVestHeatAbsorb
-  - SecurityOfficerWintercoat
   - SecurityBomber
   - WindbreakerSecurity
 
@@ -906,4 +1077,11 @@
   loadouts:
   - SecGloves
   - SecGlovesFingerless
-  
+  - SecMittens
+
+- type: loadoutGroup
+  id: ParamedicPDA
+  name: loadout-group-paramedic-id
+  loadouts:
+  - ParamedicPDA
+  - SeniorParamedicPDA

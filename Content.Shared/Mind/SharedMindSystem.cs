@@ -408,13 +408,13 @@ public abstract partial class SharedMindSystem : EntitySystem
 
         if (delete)
             Del(objective);
-        
+
         return true;
     }
     #endregion
 
-    
-    
+
+
 
     public bool TryGetObjectiveComp<T>(EntityUid uid, [NotNullWhen(true)] out T? objective) where T : IComponent
     {

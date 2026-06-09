@@ -14,7 +14,7 @@ namespace Content.Shared.Kitchen.Components // Starlight-edit: moved from server
     {
         [DataField("cookTimeMultiplier"), ViewVariables(VVAccess.ReadWrite)]
         public float CookTimeMultiplier = 1;
-        
+
         [DataField("safe"), ViewVariables(VVAccess.ReadWrite)]
         public bool Safe = true; // Starlight-edit
 
@@ -68,7 +68,7 @@ namespace Content.Shared.Kitchen.Components // Starlight-edit: moved from server
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public TimeSpan CurrentCookTimeEnd = TimeSpan.Zero;
-        
+
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public TimeSpan StartedCookTime = TimeSpan.Zero; // Starlight-edit
 
@@ -120,7 +120,7 @@ namespace Content.Shared.Kitchen.Components // Starlight-edit: moved from server
         /// </summary>
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public bool CanMicrowaveIdsSafely = true;
-        
+
         [DataField, ViewVariables(VVAccess.ReadWrite)]
         public string SpoiledItemId = "Ash"; // Starlight-edit
     }

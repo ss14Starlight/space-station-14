@@ -171,11 +171,11 @@ public abstract class SharedContentEyeSystem : EntitySystem
 
         var ev = new GetEyeRotationEvent();
         RaiseLocalEvent(eye, ref ev);
-        
+
         _eye.SetRotation(eye, baseAngle + ev.Rotation, eye);
     }
     //Starlight end
-    
+
     public void UpdatePvsScale(EntityUid uid, ContentEyeComponent? contentEye = null, EyeComponent? eye = null)
     {
         if (!Resolve(uid, ref contentEye) || !Resolve(uid, ref eye))

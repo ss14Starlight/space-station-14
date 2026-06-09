@@ -9,3 +9,7 @@
 - type: contrabandSeverity
   id: TSF
   examineText: contraband-examine-text-tsf
+
+- type: contrabandSeverity
+  id: MedTak
+  examineText: contraband-examine-text-medtak

@@ -1,12 +1,8 @@
 using System.Linq;
 using Content.Server._Starlight.Railroading;
-using Content.Server.Administration.Logs;
 using Content.Server.EUI;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
-using Content.Shared.Ghost.Roles;
-using Content.Shared.Starlight.GhostTheme;
-using Content.Shared.Starlight.NewLife;
 
 namespace Content.Server.Ghost.Roles.UI;
 
@@ -39,7 +35,5 @@ public sealed class CardSelectionEui : BaseEui
     }
 
     public override void Closed()
-    {
-        base.Closed();
-    }
+        => base.Closed();
 }

@@ -17,7 +17,6 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
-using Content.Shared.CollectiveMind;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
@@ -51,6 +50,7 @@ using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared.Popups;
 using Content.Shared._Starlight.Radio;
+using Content.Server.Radio.EntitySystems;
 // Starlight End
 
 namespace Content.Server.Chat.Systems;
@@ -77,7 +77,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedCollectiveMindSystem _collectiveMind = default!; // Starlight
     [Dependency] private readonly LanguageSystem _language = default!; // Starlight
     [Dependency] private readonly SharedPopupSystem _popups = default!; // Starlight
 
@@ -175,16 +174,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         LanguagePrototype? languageOverride = null // Starlight
         )
     {
-        if (HasComp<GhostComponent>(source))
+        if (TryComp<GhostComponent>(source, out var ghost) && !ghost.BypassGhostChat) // Starlight-edit: ghost admemes
         {
             // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
             TrySendInGameOOCMessage(source, message.Text, InGameOOCChatType.Dead, range == ChatTransmitRange.HideChat, shell, player); // Starlight
             return;
         }
-
-        //I despise this being here but there doesnt seem to be a cleaner way to watch for tags or complete component removals
-        if (TryComp<CollectiveMindComponent>(source, out var collective))
-            _collectiveMind.UpdateCollectiveMind(source, collective);
 
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
@@ -222,7 +217,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // Starlight begin
         LanguagePrototype language;
-        
+
         if (message.Text.StartsWith(SharedLanguageSystem.ChatPrefixChar))
             language = _language.GetLanguageFromPrefix(source, ref message.Text, out _, true);
         else language = languageOverride ?? _language.GetLanguage(source);
@@ -235,6 +230,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             || (CultureInfo.CurrentCulture.IsNeutralCulture && CultureInfo.CurrentCulture.Name == "en");
 
         message.Text = SanitizeInGameICMessage(source, message.Text, out var emoteStr, shouldCapitalize, shouldPunctuate, shouldCapitalizeTheWordI); //Starlight
+        message.OriginalText = message.Text; // starlight
 
         // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message.Text && emoteStr != null) // Starlight
@@ -246,30 +242,31 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (string.IsNullOrEmpty(message.Text)) //Starlight
             return;
 
-        // Starlight
-        if (language.SpeechOverride.ChatTypeOverride is { } chatTypeOverride)
+        // Starlight being
+        if (language.Speech.ChatTypeOverride is { } chatTypeOverride)
             desiredType = chatTypeOverride;
 
         // This message may have a radio prefix, and should then be whispered to the resolved radio channel
         if (checkRadioPrefix)
         {
-            //Starlight begin
             if (TryProcessRadioMessage(source, message.Text, out var modMessage, out var channel, out var customChannel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
+                if (language.Speech.RadioChannel is not null)
+                    _language.SendEntityRadioLanguage(source, modMessage, language.Speech.RadioChannel.Value, language);
+
+                if (!language.Speech.BlockSpeech)
+                    SendEntityWhisper(source, modMessage, range, channel, nameOverride, language, hideLog, ignoreActionBlocker, customChannel);
+
                 return;
             }
-            //Starlight end
         }
 
-        if (desiredType == InGameICChatType.CollectiveMind)
-        {
-            if (TryProccessCollectiveMindMessage(source, message.Text, out var modMessage, out var channel)) // Starlight
-            {
-                SendCollectiveMindChat(source, modMessage, channel);
-                return;
-            }
-        }
+        if (language.Speech.RadioChannel is not null)
+            _language.SendEntityRadioLanguage(source, message.Text, language.Speech.RadioChannel.Value, language);
+
+        if (language.Speech.BlockSpeech)
+            return;
+        // Starlight end
 
         // Otherwise, send whatever type.
         switch (desiredType)
@@ -511,97 +508,6 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Private API
 
-    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
-    {
-        if (_mobStateSystem.IsDead(source) || collectiveMind == null || message == "" || !TryComp<CollectiveMindComponent>(source, out var sourceCollectiveMindComp) || !sourceCollectiveMindComp.Minds.ContainsKey(collectiveMind))
-            return;
-
-        if (collectiveMind.CanSpeak && !_collectiveMind.CheckCanSpeak(source, collectiveMind))
-            return;
-
-        //raise the message event for modifications
-        var evMsg = new CollectiveMindMessageAttemptEvent(source, message);
-        RaiseLocalEvent(source, evMsg, false);
-        if (evMsg.Cancelled)
-            return;
-        message = evMsg.Message;
-
-        var clients = Filter.Empty();
-        var receivers = new List<EntityUid>();
-        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
-        while (mindQuery.MoveNext(out var uid, out var collectMindComp, out var actorComp))
-        {
-            if (_mobStateSystem.IsDead(uid))
-                continue;
-
-            if (collectMindComp.Minds.ContainsKey(collectiveMind))
-            {
-                clients.AddPlayer(actorComp.PlayerSession);
-                receivers.Add(uid);
-            }
-        }
-
-        //add ghosts that have ghost hearing on
-        var ghostQuery = EntityQueryEnumerator<GhostHearingComponent, ActorComponent>();
-        while (ghostQuery.MoveNext(out var uid, out var ghostComp, out var actorComp))
-        {
-            clients.AddPlayer(actorComp.PlayerSession);
-            receivers.Add(uid);
-        }
-
-        var Number = $"{sourceCollectiveMindComp.Minds[collectiveMind].MindId}";
-
-        var admins = _adminManager.ActiveAdmins
-            .Select(p => p.Channel);
-        string messageWrap;
-        string adminMessageWrap;
-
-
-        messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
-            ("message", FormattedMessage.EscapeText(message)),
-            ("channel", collectiveMind.LocalizedName),
-            ("number", Number));
-
-        adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
-            ("source", source),
-            ("message", FormattedMessage.EscapeText(message)),
-            ("channel", collectiveMind.LocalizedName),
-            ("number", Number));
-
-        if (collectiveMind.ShowNames)
-            messageWrap = adminMessageWrap;
-
-        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {FormattedMessage.EscapeText(message)}");
-
-        _chatManager.ChatMessageToManyFiltered(clients,
-            ChatChannel.CollectiveMind,
-            FormattedMessage.EscapeText(message),
-            messageWrap,
-            source,
-            false,
-            true,
-            collectiveMind.Color);
-
-        // FOR ADMINS
-        _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
-            FormattedMessage.EscapeText(message),
-            adminMessageWrap,
-            source,
-            false,
-            true,
-            admins,
-            collectiveMind.Color);
-
-        //raise event so TTS and other related things work
-        var ev = new CollectiveMindSpokeEvent
-        {
-            Source = source,
-            Message = message,
-            Receivers = receivers.ToArray()
-        };
-        RaiseLocalEvent(source, ev, true);
-    }
-
     private void SendEntitySpeak(
         EntityUid source,
         SpeechMessage message, // Starlight
@@ -732,7 +638,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             // How the entity perceives the message depends on whether it can understand its language
             var perceivedMessage = canUnderstandLanguage ? message.Text : languageObfuscatedMessage; // Starlight
             var obfuscated = canUnderstandLanguage != true;
-            
+
             var whisperClearRange = WhisperClearRange;
             var whisperMuffledRange = WhisperMuffledRange;
             if (TryComp<ChatListenerRangeComponent>(listener, out var rangeComp))
@@ -952,7 +858,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Starlight - Start
         var ignoreLanguage = channel.IsExemptFromLanguages();
         var language = languageOverride ?? _language.GetLanguage(source);
-        if (!ignoreLanguage && language.SpeechOverride.RequireHands && !_actionBlocker.CanInteract(source, null))
+        if (!ignoreLanguage && language.Speech.RequireHands && !_actionBlocker.CanInteract(source, null))
         {
             _popups.PopupEntity(Loc.GetString("chat-manager-language-requires-hands"), source, PopupType.Medium);
             return;
@@ -1038,7 +944,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     public SpeechMessage TransformSpeech(EntityUid sender, SpeechMessage message, LanguagePrototype language) // Starlight
     {
-        if (!language.SpeechOverride.RequireSpeech) // Starlight
+        if (!language.Speech.RequireSpeech) // Starlight
             return message; // Do not apply speech accents if there's no speech involved.
 
         var ev = new TransformSpeechEvent(sender, message);
@@ -1096,7 +1002,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         if (obfuscated == true
             && language is not null
-            && language.SpeechOverride.ObfuscationFont == true)
+            && language.Speech.ObfuscationFont == true)
             return WrapMessage("chat-manager-entity-say-wrap-message", InGameICChatType.Speak, source, name, message, language, obfuscated);
 
         var wrapId = GetSpeechVerb(source, message).Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message";
@@ -1117,23 +1023,23 @@ public sealed partial class ChatSystem : SharedChatSystem
     public string WrapMessage(LocId wrapId, InGameICChatType chatType, EntityUid source, string entityName, string message, LanguagePrototype? language, bool? obfuscated = false)
     {
         language ??= _language.GetLanguage(source);
-        if (language.SpeechOverride.MessageWrapOverrides.TryGetValue(chatType, out var wrapOverride))
+        if (language.Speech.MessageWrapOverrides.TryGetValue(chatType, out var wrapOverride))
             wrapId = wrapOverride;
 
         var speech = GetSpeechVerb(source, message);
-        var verbId = language.SpeechOverride.SpeechVerbOverrides is { } verbsOverride
+        var verbId = language.Speech.SpeechVerbOverrides is { } verbsOverride
             ? _random.Pick(verbsOverride).ToString()
             : _random.Pick(speech.SpeechVerbStrings);
         var color = DefaultSpeakColor;
-        if (language.SpeechOverride.Color is { } colorOverride)
+        if (language.Speech.Color is { } colorOverride)
             color = Color.InterpolateBetween(color, colorOverride, colorOverride.A);
 
         var namestring = entityName;
         if (_language.GetLanguageIcon(language, obfuscated ?? false))
             namestring = $"[icon src=\"{language.Icon}\" tooltip=\"{language.Name}\"] {entityName}";
 
-        var fonttype = language.SpeechOverride.FontId ?? speech.FontId;
-        if ((language.SpeechOverride.ObfuscationFont ?? false) && (!obfuscated ?? false))
+        var fonttype = language.Speech.FontId ?? speech.FontId;
+        if ((language.Speech.ObfuscationFont ?? false) && (!obfuscated ?? false))
             fonttype = speech.FontId;
 
         return Loc.GetString(wrapId,
@@ -1141,7 +1047,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             ("entityName", namestring),
             ("verb", Loc.GetString(verbId)),
             ("fontType", fonttype),
-            ("fontSize", language.SpeechOverride.FontSize ?? speech.FontSize),
+            ("fontSize", language.Speech.FontSize ?? speech.FontSize),
             ("message", message));
     }
     // Starlight - End
@@ -1172,7 +1078,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 continue;
 
             var observer = ghostHearing.HasComponent(playerEntity);
-            
+
             //Starlight begin | Check what's larger, the passed voice range or, if it exists, the voice range on ChatListenerRangeComponent
             var distanceToCheck = voiceGetRange;
             if(TryComp<ChatListenerRangeComponent>(playerEntity, out var rangeComp))

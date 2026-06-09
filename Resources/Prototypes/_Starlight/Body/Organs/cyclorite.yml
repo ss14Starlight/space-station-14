@@ -35,7 +35,7 @@
   components:
   - type: Sprite
     state: brain
-  
+
 - type: entity
   id: OrganCycloriteEye
   parent: [BaseCycloriteOrgan, BaseOrganEyes]
@@ -46,8 +46,8 @@
     layers:
       - state: eyeball
   - type: FunctionalOrgan
-    comps: 
-    - type: CycloriteVision
+    comps:
+    # - type: CycloriteVision
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes

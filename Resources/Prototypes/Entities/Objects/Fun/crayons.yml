@@ -356,7 +356,7 @@
     - Write
     - Crayon
     - Recyclable
-    - Trash  
+    - Trash
   - type: SolutionContainerManager
     solutions:
       food:

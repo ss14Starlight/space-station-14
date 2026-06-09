@@ -39,7 +39,7 @@ public sealed class MechEquipmentSystem : EntitySystem
 
         if (args.User == mechComp.PilotSlot.ContainedEntity)
             return;
-        
+
         if (!mechComp.MaintenanceMode)
         {
             _popup.PopupEntity("You need to turn on maintenance mode first!", args.User, PopupType.MediumCaution);

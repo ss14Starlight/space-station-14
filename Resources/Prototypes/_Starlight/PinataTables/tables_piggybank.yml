@@ -1,0 +1,20 @@
+- type: entityTable
+  id: PiggyBankTable
+  table: !type:GroupSelector
+    children:
+    - id: TreasureCoinIron
+    - id: TreasureCoinIron
+    - id: TreasureCoinIron
+    - id: TreasureCoinIron
+    - id: TreasureCoinIron
+    - id: TreasureCoinSilver
+    - id: TreasureCoinSilver
+    - id: TreasureCoinSilver
+    - id: TreasureCoinSilver
+    - id: TreasureCoinGold
+    - id: TreasureCoinGold
+    - id: TreasureCoinGold
+    - id: TreasureCoinAdamantine
+    - id: TreasureCoinAdamantine
+    - id: TreasureCoinDiamond
+

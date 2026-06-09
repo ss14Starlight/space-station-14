@@ -1,0 +1,43 @@
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
+  id: ClothingUniformJumpskirtNTNCOfficer
+  name: NanoTrasen navy officer's jumpskirt
+  description: Standard issue NanoTrasen Navy Marine jumpskirt. This one's for an officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseNanoTrasenContraband ]
+  id: ClothingUniformJumpskirtNTNCEnsign
+  name: NanoTrasen navy ensign's jumpskirt
+  description: Standard issue NanoTrasen Navy Marine jumpskirt. This one's for an ensign.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/ntnc_officer.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseMedTakContraband ]
+  id: ClothingUniformMedTakJumpskirt
+  name: MedTak jumpskirt
+  description: Standard issue MedTak uniform.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/medtak_uniform.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/medtak_uniform.rsi
+
+- type: entity
+  parent: [ ClothingUniformSkirtBase, BaseMedTakContraband ]
+  id: ClothingUniformMedTakJumpskirtFormal
+  name: MedTak formal jumpskirt
+  description: A formal MedTak uniform.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/medtak_formal.rsi
+  - type: Clothing
+    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpskirt/medtak_formal.rsi

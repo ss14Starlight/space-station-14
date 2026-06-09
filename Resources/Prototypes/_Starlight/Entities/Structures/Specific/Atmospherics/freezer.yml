@@ -1,72 +1,22 @@
 - type: entity
-  parent: [GasPipeLayerAlt1, GasVentPumpFreezer]
+  parent: [AirSensorFreezerBase, GasVentPumpFreezer, GasVentPumpAlt1]
   id: GasVentPumpFreezerAlt1
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventpumpfreezerAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasVentPumpFreezer]
+  parent: [AirSensorFreezerBase, GasVentPumpFreezer, GasVentPumpAlt2]
   id: GasVentPumpFreezerAlt2
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventpumpfreezerAlt2
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasVentScrubberFreezer]
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezer, GasVentScrubberAlt1]
   id: GasVentScrubberFreezerAlt1
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    drawdepth: FloorObjects
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: scrub_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventscrubberfreezerAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasVentScrubberFreezer]
+  parent: [AirSensorFreezerBase, GasVentScrubberFreezer, GasVentScrubberAlt2]
   id: GasVentScrubberFreezerAlt2
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/scrubber.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeUnaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: scrub_off
-        map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: ventscrubberfreezerAlt2
 
 - type: entity
   parent: [AirSensorFreezerBase, GasDualPortVentPump]
@@ -78,37 +28,25 @@
       Primary: GasDualPortVentPumpFreezer
       Secondary: GasDualPortVentPumpFreezerAlt1
       Tertiary: GasDualPortVentPumpFreezerAlt2
+      Quaternary: GasDualPortVentPumpFreezerAlt3
+      Quinary: GasDualPortVentPumpFreezerAlt4
 
 - type: entity
-  parent: [GasPipeLayerAlt1, GasDualPortVentPumpFreezer]
+  parent: [GasDualPortVentPumpAlt1, GasDualPortVentPumpFreezer]
   id: GasDualPortVentPumpFreezerAlt1
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt1.rsi
-        state: pipeBinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: dualportventpumpFreezerAlt1
 
 - type: entity
-  parent: [GasPipeLayerAlt2, GasDualPortVentPumpFreezer]
+  parent: [GasDualPortVentPumpAlt2, GasDualPortVentPumpFreezer]
   id: GasDualPortVentPumpFreezerAlt2
   categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: Structures/Piping/Atmospherics/vent.rsi
-    layers:
-      - sprite: Structures/Piping/Atmospherics/pipe_alt2.rsi
-        state: pipeBinaryConnectors
-        map: [ "enum.PipeVisualLayers.Pipe" ]
-      - state: vent_off
-        map: [ "enum.SubfloorLayers.FirstLayer", "enabled" ]
-  - type: Construction
-    graph: GasUnaryStarlight
-    node: dualportventpumpFreezerAlt2
+
+- type: entity
+  parent: [GasDualPortVentPumpAlt3, GasDualPortVentPumpFreezer]
+  id: GasDualPortVentPumpFreezerAlt3
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  parent: [GasDualPortVentPumpAlt4, GasDualPortVentPumpFreezer]
+  id: GasDualPortVentPumpFreezerAlt4
+  categories: [ HideSpawnMenu ]

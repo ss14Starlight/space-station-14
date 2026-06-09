@@ -1,0 +1,9 @@
+﻿- type: entity
+  parent: [ PinpointerMothership ]
+  id: PinpointerDerelictXenoborg
+  name: ??$%%#? pinpointer
+  description: A handheld tracking device that leads to the direction of the %()@#^!!???
+  components:
+    - type: Pinpointer
+      component: ResearchServer
+      targetName: The Station.

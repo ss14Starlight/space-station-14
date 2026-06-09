@@ -119,7 +119,7 @@ namespace Content.Client.RoundEnd
                 roundEndSummaryContainer.AddChild(roundEndLabel);
 
                 // Add dynamic search functionality
-                searchInput.OnTextChanged += (args) => 
+                searchInput.OnTextChanged += (args) =>
                 {
                     var isSearchDone = UpdateRoundEndTextForSearch(roundEndLabel, roundEnd, args.Text);
                     // the return value is only interesting for us to know if the two labels should be visible or not
@@ -160,14 +160,14 @@ namespace Content.Client.RoundEnd
             // in the round end summary it's better to give context to the search term
             // so we split by double newlines to provide the whole paragraph of text
             var blocks = fullText.Split(new[] { "\n\n" }, StringSplitOptions.RemoveEmptyEntries);
-            
+
             // Filter blocks that contain the search term
-            var matchingBlocks = blocks.Where(block => 
+            var matchingBlocks = blocks.Where(block =>
                 block.ToLowerInvariant().Contains(searchTerm.ToLowerInvariant()));
 
             // Join matching blocks back together
             var filteredText = string.Join("\n\n", matchingBlocks);
-            
+
             if (string.IsNullOrEmpty(filteredText))
             {
                 // If no matches found, don't show anything
@@ -305,7 +305,7 @@ namespace Content.Client.RoundEnd
 
         private void OnSearchTextChanged(LineEdit.LineEditEventArgs searchTerm, BoxContainer playerInfoContainer, RoundEndMessageEvent.RoundEndPlayerInfo[] playersInfo)
         {
-            // Empty the result box when we star typing            
+            // Empty the result box when we star typing
             playerInfoContainer.RemoveAllChildren();
 
             string newText = searchTerm.Text;
@@ -327,7 +327,7 @@ namespace Content.Client.RoundEnd
             // Populate the player list with filtered results
             populatePlayManifestList(playerInfoContainer, filteredPlayersInfo);
         }
-        
+
         // Starlight-end
     }
 

@@ -1,0 +1,27 @@
+﻿- type: reaction
+  id: ResomiBloodBreakdown
+  source: true
+  requiredMixerCategories:
+    - Centrifuge
+  reactants:
+    ResomiBlood:
+      amount: 30
+  products:
+    Water: 17
+    CarbonDioxide: 4.5
+    Nitrogen: 2.5
+    Protein: 6
+
+- type: reaction
+  id: AvaliBloodBreakdown
+  source: true
+  requiredMixerCategories:
+    - Centrifuge
+  reactants:
+    AvaliBlood:
+      amount: 30
+  products:
+    Water: 17
+    CarbonDioxide: 4.5
+    Nitrogen: 2.5
+    Protein: 6

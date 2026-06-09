@@ -1,0 +1,35 @@
+- type: entity
+  id: MailCompanion
+  parent: BaseHandheldComputer
+  name: MailCompanion™ v11.037
+  description: A handheld tracker tuned for station deliveries. Scan a letter or package to locate its intended recipient for a short time.
+  components:
+  # Sprite credit: Mail Companion sprites by @wonderfulnewworld. Thanks for the sprite work.
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Cargo/mail_companion.rsi
+    layers:
+    - state: icon
+      map: [ "enum.MailCompanionVisualLayers.Base" ]
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Cargo/mail_companion.rsi
+    heldPrefix: scanner
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MailCompanionVisuals.State:
+        enum.MailCompanionVisualLayers.Base:
+          Idle: { state: icon }
+          Active: { state: scanner }
+  - type: ActivatableUI
+    key: enum.MailCompanionUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MailCompanionUiKey.Key:
+        type: MailCompanionBoundUserInterface
+  - type: MailCompanion
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: CrewMonitor
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork

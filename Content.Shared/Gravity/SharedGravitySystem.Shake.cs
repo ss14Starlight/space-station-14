@@ -10,7 +10,7 @@ public abstract partial class SharedGravitySystem
 {
     [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
     [Dependency] private readonly SharedGameTicker _ticker = default!; // Starlight
-    
+
     protected const float GravityKick = 100.0f;
     protected const float ShakeCooldown = 0.2f;
 
@@ -45,7 +45,7 @@ public abstract partial class SharedGravitySystem
 
         if (!Resolve(uid, ref gravity, false))
             return;
-        
+
         //Starlight begin
         // I hate this stupid fucking shake at roundstart. Unfortunately, this is the definitively laziest way to do it.
         // TODO: find a less lazy way to do this. Tried checking MapComponent.MapInitialized since ComponentInit fires before that but it did not work.
@@ -63,7 +63,7 @@ public abstract partial class SharedGravitySystem
         var filter = Filter.BroadcastGrid(uid);
         _shake.Screenshake(filter, shakeParams, null);
         //Starlight end
-        
+
         if (!TryComp<GravityShakeComponent>(uid, out var shake))
         {
             shake = AddComp<GravityShakeComponent>(uid);

@@ -112,7 +112,7 @@ public sealed class JammerSystem : SharedJammerSystem
             args.Cancelled = true;
         }
     }
-    
+
     //Starlight begin
     private void OnCustomRadioSendAttempt(ref CustomRadioSendAttemptEvent args)
     {

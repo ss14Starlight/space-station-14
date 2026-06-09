@@ -12,7 +12,7 @@ namespace Content.Server._Starlight.NPC.Commands;
 public sealed class NpcCommand : ToolshedCommand
 {
     private HTNSystem? _htn;
-    
+
     [CommandImplementation("sethtn")]
     public EntityUid SetHTN([PipedArgument] EntityUid uid, ProtoId<HTNCompoundPrototype> htnCompound)
     {

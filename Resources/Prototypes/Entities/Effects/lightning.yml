@@ -37,7 +37,7 @@
   components:
     - type: Lightning
       canArc: true
-      
+
 - type: entity
   name: lightning
   id: VampireLightning

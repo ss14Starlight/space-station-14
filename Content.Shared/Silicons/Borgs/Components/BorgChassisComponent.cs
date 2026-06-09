@@ -21,6 +21,7 @@ public sealed partial class BorgChassisComponent : Component
     /// <summary>
     /// Is this borg currently activated?
     /// If activated the borg
+    /// - has door access, // Starlight
     /// - can use modules and
     /// - has full movement speed.
     /// To be activated the borg
@@ -106,7 +107,7 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [ViewVariables]
     public int ModuleCount => ModuleContainer.ContainedEntities.Count;
-    
+
     #endregion
 
     /// <summary>
@@ -147,7 +148,7 @@ public sealed partial class BorgChassisComponent : Component
     /// </summary>
     [DataField]
     public bool CanOpenSelfUi;
-    
+
     // Starlight begin
     [DataField] public ProtoId<JobIconPrototype> JobIconOverride = "JobIconBorg";
     [DataField] private string? _jobTitle;

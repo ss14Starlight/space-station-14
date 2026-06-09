@@ -587,3 +587,336 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodRed
   heatCapacity: 10000
+
+# Metal
+
+- type: tile
+  id: FloorMetalDark
+  name: tiles-metal-dark-floor
+  sprite: /Textures/_Starlight/Tiles/metal_dark_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalDark
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalBrown
+  name: tiles-metal-brown-floor
+  sprite: /Textures/_Starlight/Tiles/metal_engie_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalBrown
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalBlue
+  name: tiles-metal-blue-floor
+  sprite: /Textures/_Starlight/Tiles/metal_med_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalBlue
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalPurple
+  name: tiles-metal-pruple-floor
+  sprite: /Textures/_Starlight/Tiles/metal_sci_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalPurple
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalRed
+  name: tiles-metal-red-floor
+  sprite: /Textures/_Starlight/Tiles/metal_sec_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalRed
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorMetalGreen
+  name: tiles-metal-green-floor
+  sprite: /Textures/_Starlight/Tiles/metal_service_monke.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemMetalGreen
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorAstroAsteroidTile
+  name: tiles-astro-asteroid-tile
+  parent: FloorAsteroidTile
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemSteel
+  weather: false
+
+- type: tile
+  id: FloorAstroDirt
+  parent: FloorDirt
+  name: tiles-astro-dirt-floor
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemAstroDirt
+  weather: false
+
+- type: tile
+  id: Floor3x3Black
+  name: tiles-3x3-black-floor
+  sprite: /Textures/_Starlight/Tiles/3x3black.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3Black
+  heatCapacity: 10000
+
+- type: tile
+  id: Floor3x3Brown
+  name: tiles-3x3-brown-floor
+  sprite: /Textures/_Starlight/Tiles/3x3brown.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3Brown
+  heatCapacity: 10000
+
+- type: tile
+  id: Floor3x3Steel
+  name: tiles-3x3-steel-floor
+  sprite: /Textures/_Starlight/Tiles/3x3steel.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3Steel
+  heatCapacity: 10000
+
+- type: tile
+  id: Floor3x3White
+  name: tiles-3x3-white-floor
+  sprite: /Textures/_Starlight/Tiles/3x3white.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItem3x3White
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorOldConcreteBricks
+  name: tiles-old-concrete-bricks-floor
+  sprite: /Textures/_Starlight/Tiles/old_concrete_bricks.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemOldConcreteBricks
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorOldConcreteTile
+  name: tiles-old-concrete-tile-floor
+  sprite: /Textures/_Starlight/Tiles/old_concrete_tile.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemOldConcreteTile
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorOrnate
+  name: tiles-ornate-floor
+  sprite: /Textures/_Starlight/Tiles/ornate.png
+  variants: 4
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemOrnate
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorRoughMetal
+  name: tiles-rough-metal-floor
+  sprite: /Textures/_Starlight/Tiles/rough_metal.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemRoughMetal
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorRustyMetal
+  name: tiles-rusty-metal-floor
+  sprite: /Textures/_Starlight/Tiles/rusty_metal.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemRustyMetal
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorSteelGrate
+  name: tiles-steel-grate-floor
+  sprite: /Textures/_Starlight/Tiles/steel_grate.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepCatwalk
+  itemDrop: FloorTileItemSteelGrate
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorTechGreeb
+  name: tiles-tech-greeb-floor
+  sprite: /Textures/_Starlight/Tiles/techfloor_greeb.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemTechGreeb
+  heatCapacity: 10000
+
+# Developer tiles for mapping
+- type: tile
+  id: FloorDevFloor
+  name: tiles-floor-dev-floor
+  sprite: /Textures/_Starlight/Tiles/dev_floor.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: NothingEntity
+  heatCapacity: 10000
+
+- type: tile
+  id: FloorDevDoor
+  parent: FloorDevFloor
+  name: tiles-floor-dev-door
+  sprite: /Textures/_Starlight/Tiles/dev_door.png
+
+- type: tile
+  id: FloorDevAtmospherics
+  parent: FloorDevFloor
+  name: tiles-floor-dev-atmospherics
+  sprite: /Textures/_Starlight/Tiles/dev_atmospherics.png
+
+- type: tile
+  id: FloorDevBar
+  parent: FloorDevFloor
+  name: tiles-floor-dev-bar
+  sprite: /Textures/_Starlight/Tiles/dev_bar.png
+
+- type: tile
+  id: FloorDevCargo
+  parent: FloorDevFloor
+  name: tiles-floor-dev-cargo
+  sprite: /Textures/_Starlight/Tiles/dev_cargo.png
+
+- type: tile
+  id: FloorDevCommand
+  parent: FloorDevFloor
+  name: tiles-floor-dev-command
+  sprite: /Textures/_Starlight/Tiles/dev_command.png
+
+- type: tile
+  id: FloorDevEngineering
+  parent: FloorDevFloor
+  name: tiles-floor-dev-engineering
+  sprite: /Textures/_Starlight/Tiles/dev_engineering.png
+
+- type: tile
+  id: FloorDevMaintenance
+  parent: FloorDevFloor
+  name: tiles-floor-dev-maintenance
+  sprite: /Textures/_Starlight/Tiles/dev_maintenance.png
+  footstepSounds:
+    collection: FootstepCatwalk
+  barestepSounds:
+    collection: FootstepCatwalk
+
+- type: tile
+  id: FloorDevMedical
+  parent: FloorDevFloor
+  name: tiles-floor-dev-medical
+  sprite: /Textures/_Starlight/Tiles/dev_medical.png
+
+- type: tile
+  id: FloorDevSalvage
+  parent: FloorDevFloor
+  name: tiles-floor-dev-salvage
+  sprite: /Textures/_Starlight/Tiles/dev_salvage.png
+
+- type: tile
+  id: FloorDevScience
+  parent: FloorDevFloor
+  name: tiles-floor-dev-science
+  sprite: /Textures/_Starlight/Tiles/dev_science.png
+
+- type: tile
+  id: FloorDevSecurity
+  parent: FloorDevFloor
+  name: tiles-floor-dev-security
+  sprite: /Textures/_Starlight/Tiles/dev_security.png
+
+- type: tile
+  id: FloorDevService
+  parent: FloorDevFloor
+  name: tiles-floor-dev-service
+  sprite: /Textures/_Starlight/Tiles/dev_service.png

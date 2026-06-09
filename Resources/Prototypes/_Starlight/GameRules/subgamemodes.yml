@@ -19,6 +19,7 @@
       - MindRoleSELFAgent
       briefing:
         sound: "/Audio/_Starlight/Ambience/Antag/self_greeting.ogg"
+      allowNonHumans: true
   - type: DynamicRuleCost
     cost: 70
 
@@ -28,26 +29,21 @@
   id: ThiefLess
   components:
   - type: ThiefRule
-  - type: AntagObjectives
-    objectives:
-    - EscapeThiefShuttleObjective
+# - type: AntagObjectives
+#   objectives: # We won't be using this, we'll be taking it from GroupOuter instead so we can roll for Master Thief
+#   - EscapeThiefShuttleObjective # Keeping this here in case someone wonders why it's gone in the future, though.
   - type: AntagRandomObjectives
     sets:
-    - groups: ThiefBigObjectiveGroups
-      prob: 0.7
-      maxPicks: 1
-    - groups: ThiefObjectiveGroups
+    - groups: ThiefObjectiveGroupOuter # Replaced with outer group, so we can *finally* roll the escape objective more reliably.
       maxPicks: 10
-    - groups: ThiefObjectiveGroupEscape
-      prob: 0.33 # It gives you a lot more freedom, but also lets you be way more intrusive, so low chance.
-      maxPicks: 1
+    maxDifficulty: 3
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
       max: 3 # Starlight. Prevents excess thieves from spawning on Revs.
-      playerRatio: 21 # Starlight. Accounts for the thieves in the population. (63 pop = 60 crew 3 thieves.)
+      playerRatio: 26 # Starlight. Scales at same ratio as normal thieves now.
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -76,7 +72,7 @@
     definitions:
     - prefRoles: [ Vampire ]
       max: 6 # Starlight. Accounting for scaling. Not as many as the full gamemode.
-      playerRatio: 26 # Starlight. Scales the same as the other common sub-antags.
+      playerRatio: 28 # Starlight. Scales similar to the other common sub-antags.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None
@@ -85,7 +81,10 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 60
     # Starlight-end
+
 
 #Subgamemode Lings for Vamptraitorlings.
 - type: entity
@@ -98,7 +97,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 4 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 31 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
+      playerRatio: 35 # Starlight, to make sure Beta doesn't get more than 2 changelings as a submode on VTL. Same justification as Thieves. Should be harder to get 4 lings on VTL now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -111,6 +110,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 70
 
 - type: entity
   parent: Traitor
@@ -135,5 +136,79 @@
         components:
         - AntagImmune
       lateJoinAdditional: false
+      allowNonHumans: true
       mindRoles:
       - MindRoleTraitor
+
+- type: entity
+  parent: BaseGameRule
+  id: Devil
+  components:
+  - type: DevilRule
+  - type: AntagObjectives
+    objectives:
+    - SurviveDevilObjective
+    - DamnSoulsDevilObjective
+  - type: AntagSelection
+    agentName: devil-round-end-agent-name
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - prefRoles: [ Devil ]
+      max: 1
+      playerRatio: 20
+      lateJoinAdditional: false
+      allowNonHumans: true
+      multiAntagSetting: NotExclusive
+      mindRoles:
+      - MindRoleDevil
+      briefing:
+        sound: "/Audio/_Starlight/Misc/devil_greeting.ogg"
+      components:
+      - type: ActiveListener
+      - type: Unholy
+      - type: Clumsy
+        clumsyDefaultCheck: 1
+        clumsyGuns: true
+        clumsySound: "/Audio/Weapons/Guns/Gunshots/bang.ogg"
+        clumsyDefib: false
+        clumsyHypo: false
+        clumsyVaulting: false
+      tags:
+        - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 100
+
+- type: entity
+  parent: Xenoborgs
+  id: SubXenoborgs
+  components:
+  - type: AntagMultipleRoleSpawner
+    antagRoleToPrototypes:
+      MothershipCore: [ MothershipCore ]
+      Xenoborg: [ XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth ]
+    pickAndTake: true
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ MothershipCore ]
+      fallbackRoles: [ Xenoborg ]
+      spawnerPrototype: SpawnPointGhostRoleMothershipCore
+      # Starlight Start
+      roleLoadout:
+      - AntagMothership
+      # Starlight End
+      mindRoles:
+      - MindRoleMothershipCore
+    - prefRoles: [ Xenoborg ]
+      fallbackRoles: [ MothershipCore ]
+      spawnerPrototype: SpawnPointGhostRoleXenoborg
+      # Starlight Start
+      roleLoadout:
+      - AntagXenoborg
+      # Starlight End
+      mindRoles:
+      - MindRoleXenoborg
+      min: 4
+      max: 4
+  - type: DynamicRuleCost
+    cost: 150

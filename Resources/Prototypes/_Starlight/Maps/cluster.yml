@@ -27,6 +27,7 @@
             Janitor: [ 1, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
             ServiceWorker: [ 2, 2 ]
             #engineering (6)
             ChiefEngineer: [ 1, 1 ]
@@ -50,28 +51,29 @@
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 3, 3 ]
-            Detective: [ 1, 1 ]
             SecurityCadet: [ 2, 2 ]
             Brigmedic: [ 1, 1 ]
+            Detective: [ 1, 1 ]
             #supply (8)
             Quartermaster: [ 1, 1 ]
+            SalvageLead: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
+            MiningSpecialist: [ 2, 2 ]
             CargoTechnician: [ 2, 2 ]
             MailTech: [ 1, 1 ]
-            MiningSpecialist: [ 1, 2 ]
-            SalvageLead: [ 1, 1 ]
             #civilian (3+)
             Assistant: [ -1, -1 ]
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
+            Performer: [ 2, 2 ]
             #silicon (3)
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
             #law (3)
             Magistrate: [ 1, 1 ]
             IAA: [ 2, 2 ]
-            #Representives (2)
+            #Representatives (2)
             BlueShield: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             NanotrasenCareerTrainer: [ 1, 2 ]

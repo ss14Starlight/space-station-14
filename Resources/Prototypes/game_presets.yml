@@ -34,7 +34,7 @@
   alias:
   - all
   name: all-at-once-title
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 50 # Starlight
   description: all-at-once-description
   showInVote: false
   rules:
@@ -42,7 +42,7 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - WizardDuel # Starlight
     - Xenoborgs
     - KesslerSyndromeScheduler
     - RampingStationEventScheduler
@@ -50,12 +50,12 @@
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
     - BasicRoundstartVariation # Starlight, ShitStation
-    - DerelictGenericCyborgSpawn # Starlight, ShitStation
-    - IonStorm # Starlight, ShitStation
+    - ShitStationEventScheduler # Starlight, ShitStation
     - Vampire #Starlight
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    # - CosmicCult #Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -67,16 +67,18 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 50 # Starlight
   rules:
     - Nukeops
     - Traitor
     - Revolutionary
     - Zombie
-    - Wizard
+    - SubWizard # Starlight. Well, you did say *Aller* at once.
+    - WizardDuel # Starlight. Well, you did say *Aller* at once.
     - Xenoborgs
     - BasicStationEventScheduler
     - BasicStationEventScheduler # Starlight, ShitStation
+    - ShitStationEventScheduler # Starlight, ShitStation
     - KesslerSyndromeScheduler
     - MeteorSwarmMildScheduler
     - MeteorSwarmScheduler
@@ -88,18 +90,15 @@
     - BasicRoundstartVariation # Starlight, ShitStation
     - BasicRoundstartVariation # Starlight, ShitStation
     - BasicRoundstartVariation # Starlight, ShitStation
-    - DerelictGenericCyborgSpawn # Starlight, ShitStation
-    - DerelictGenericCyborgSpawn # Starlight, ShitStation
-    - IonStorm # Starlight, ShitStation
-    - IonStorm # Starlight, ShitStation
-    - CockroachMigration # Starlight, ShitStation
-    - MouseMigration # Starlight, ShitStation
     - SLChangeling # Starlight
+    - Vampire #Starlight
     - SiliconLiberation #Starlight
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
+    - LoneOpsSpawn # Starlight
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
+    # - CosmicCult # Starlight
 
 - type: gamePreset
   id: Extended
@@ -137,6 +136,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
+  minPlayers: 5 # 🌟Starlight🌟
   rules:
   - DynamicRule
   - DummyNonAntag
@@ -176,7 +176,7 @@
     - tator
   name: traitor-title
   description: traitor-description
-  minPlayers: 4
+  minPlayers: 0 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   # - DummyNonAntagChance 🌟Starlight🌟
@@ -246,6 +246,7 @@
   - wizard
   name: wizard-title
   description: wizard-description
+  minPlayers: 40 # 🌟Starlight🌟
   showInVote: false
   rules:
   - Wizard
@@ -262,6 +263,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
+  minPlayers: 20 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs
@@ -309,94 +311,3 @@
   - KesslerSyndromeScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
-  
-- type: gamePreset
-  id: Vampire
-  alias:
-  - vamp
-  - vamps
-  - vampire
-  - vampires
-  name: vampire-gamemode-title
-  description: vampire-gamemode-description
-  showInVote: True # 🌟Starlight🌟 they have been reworked
-  minPlayers: 50 # 🌟Starlight🌟
-  rules:
-  - Vampire
-  - SubGamemodesRuleNoVampires
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Changeling
-  alias:
-    - ling
-    - lings
-    - changeling
-  name: changeling-gamemode-title
-  description: changeling-gamemode-description
-  showInVote: false
-  rules:
-    - SLChangeling #Starlight
-    - SLChangelingLess # Starlight. This is their mode after all, and this is how it was prior.
-    - SubGamemodesRuleNoChangelings # Starlight
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-
-- type: gamePreset
-  id: Traitorling
-  alias:
-    - lingtraitor
-    - traitorling
-  name: traitorling-title
-  description: traitorling-description
-  showInVote: true #Starlight
-  minPlayers: 50 #Starlight
-  rules:
-    - SLChangeling #Starlight
-    - Traitor
-    - SubGamemodesRuleNoChangelings #Starlight
-    - BasicStationEventScheduler
-    - BasicRoundstartVariation
-
-#Starlight EventLight Gamemode for Event Usage 
-- type: gamePreset
-  id: EventLight
-  alias:
-    - eventlight
-    - eventlite
-    - eventdiet
-  name: eventlight-title
-  description: eventlight-description
-  showInVote: false
-  rules:
-    - SpaceTrafficControlEventScheduler
-    - ThiefGamerule
-    - BasicRoundstartVariation
-
-- type: gamePreset
-  id: ShitStation
-  alias:
-    - shitstation
-    - trashstation
-  name: shitstation-title
-  description: shitstation-description
-  showInVote: true
-  minPlayers: 60
-  rules:
-    - DerelictGenericCyborgSpawn
-    - DerelictGenericCyborgSpawn # Starlight. To account for the ultrapop.
-    - BasicStationEventScheduler
-    - BasicStationEventScheduler # Starlight. More events without ramping events. What could go wrong?
-    - MeteorSwarmMildScheduler
-    - SubGamemodesRule
-    - IonStorm
-    - IonStorm # Starlight. They're mostly harmless, and fun to work around.
-    - CockroachMigration
-    - MouseMigration
-    - BasicRoundstartVariation
-    - BasicRoundstartVariation
-    - BasicRoundstartVariation
-    - BasicRoundstartVariation # Starlight. Dirtier.
-    - BasicRoundstartVariation # Starlight. This is Janitor Kessler.

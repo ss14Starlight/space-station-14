@@ -12,6 +12,8 @@
   - FloorTileItemDarkPavement
   - FloorTileItemDarkPavementVertical
   - FloorTileItemDarkOffset
+  - FloorTileItemDarkBitile # SL
+  - FloorTileItem3x3Black # SL
 
 - type: latheRecipePack
   id: FloorSteelTilesStatic
@@ -27,6 +29,25 @@
   - FloorTileItemSteelPavementVertical
   - FloorTileItemSteelCheckerDark
   - FloorTileItemSteelCheckerLight
+  # Starlight Start
+  - FloorTileItemSteelBitile
+  - FloorTileItemMetalDark
+  - FloorTileItemMetalBrown
+  - FloorTileItemMetalBlue
+  - FloorTileItemMetalPurple
+  - FloorTileItemMetalRed
+  - FloorTileItemMetalGreen
+  - FloorTileItemCarpetDeco
+  - FloorTileItemHierophant
+  - FloorTileItemSepia
+  - FloorTileItem3x3Brown
+  - FloorTileItem3x3Steel
+  - FloorTileItemOrnate
+  - FloorTileItemRoughMetal
+  - FloorTileItemRustyMetal
+  - FloorTileItemSteelGrate
+  - FloorTileItemTechGreeb
+  # Starlight End
 
 - type: latheRecipePack
   id: FloorWhiteTilesStatic
@@ -40,6 +61,8 @@
   - FloorTileItemWhiteMono
   - FloorTileItemWhitePavement
   - FloorTileItemWhitePavementVertical
+  - FloorTileItemWhiteBitile #SL
+  - FloorTileItem3x3White #SL
 
 - type: latheRecipePack
   id: FloorMaintsTilesStatic
@@ -55,6 +78,23 @@
   - FloorTileItemWood
   - FloorTileItemWoodLarge
   - FloorTileItemWoodPattern
+  # Starlight Start
+  - FloorTileItemWoodParquet
+  - FloorTileItemWoodBlack
+  - FloorTileItemWoodLight
+  - FloorTileItemWoodRed
+  - FloorTileItemWoodLargeBlack
+  - FloorTileItemWoodLargeLight
+  - FloorTileItemWoodLargeRed
+  - FloorTileItemWoodParquetBlack
+  - FloorTileItemWoodParquetLight
+  - FloorTileItemWoodParquetRed
+  - FloorTileItemWoodChess
+  - FloorTileItemWoodChessBlack
+  - FloorTileItemWoodChessLight
+  - FloorTileItemWoodChessRed
+  - FloorTileItemAstroDirt
+  # Starlight End
 
 - type: latheRecipePack
   id: FloorConcreteTilesStatic
@@ -71,6 +111,8 @@
   - FloorTileItemIronsandConcrete
   - FloorTileItemIronsandConcreteMono
   - FloorTileItemIronsandConcreteSmooth
+  - FloorTileItemOldConcreteBricks #SL
+  - FloorTileItemOldConcreteTile #SL
 
 - type: latheRecipePack
   id: CircuitFloorsStatic

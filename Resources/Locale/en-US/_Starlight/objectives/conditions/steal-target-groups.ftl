@@ -12,17 +12,17 @@ steal-target-groups-jetpack-ce = chief engineer's void jetpack
 steal-target-groups-clothing-outer-hardsuit-hos = head of security's hardsuit
 steal-target-groups-clothing-outer-hardsuit-warden = warden's hardsuit
 steal-target-groups-clothing-outer-hardsuit-brigmedic = brigmedic's hardsuit
-steal-target-groups-clothing-outer-hardsuit-qm = QM's luxury maxim hardsuit
+steal-target-groups-clothing-outer-hardsuit-qm = quartermaster's luxury maxim hardsuit
 steal-target-groups-clothing-outer-hardsuit-salvlead = spationaut lead hardsuit
 steal-target-groups-clothing-outer-hardsuit-captain = captain's armored spacesuit
 steal-target-groups-clothing-outer-hardsuit-ntr = nanotrasen representative's hardsuit
-steal-target-groups-clothing-outer-hardsuit-bso = blue shield officer's hardsuit
-steal-target-groups-clothing-shoes-boots-mag-bso = blue shield officer's magboots
+steal-target-groups-clothing-outer-hardsuit-bso = blueshield officer's hardsuit
+steal-target-groups-clothing-shoes-boots-mag-bso = blueshield officer's magboots
 steal-target-groups-encryption-key-hybrid = salvage, med-sec, med-sci, or station master encryption key
-steal-target-groups-hopboard = bureaucratic digiboard
+steal-target-groups-hopboard = bureaucratic digi-board
 steal-target-groups-hos-weapon = head of security's Proto-5x or WT550r
 steal-target-groups-security-rare-guns = warden's energy shotgun or the detective's energy magnum
-steal-target-groups-bso-weapon = blue shield officer's X-01 multiphase energy gun or sp8t
+steal-target-groups-bso-weapon = blueshield officer's X-01 multiphase energy gun or blueguard service pistol
 
 # Thief single items
 steal-target-groups-strange-brigmed-bedsheet = strange brigmedic's bedsheet
@@ -45,7 +45,8 @@ steal-target-groups-id-card-computer-circuitboard = ID card computer board
 steal-target-groups-clothing-headset-alt-command = command over-ear headset
 steal-target-groups-ptech-circuitboard = PTech circuitboard
 
-steal-target-groups-spyglass = Captain's Spyglass
+steal-target-groups-spyglass = captain's Spyglass
+steal-target-groups-captain-tablet = captain's management tablet
 
 # Thief Collection
 steal-target-groups-handheld-monitors = handheld monitor
@@ -54,7 +55,7 @@ steal-target-groups-rcd-rpd = RCDs and RPD
 steal-target-groups-misc-sunglasses = beer goggles, musician shades, security glasses, corpsman glasses, or detective's noir-tech glass
 steal-target-groups-rare-sunglasses = administration, skill, blueshield, or brigmedic sunglass
 steal-target-groups-assistant-headsets = assistant headset
-steal-target-groups-medical-belts = medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical trauma rig, blueshield medical belt, or blueshield webbing
+steal-target-groups-medical-belts = filled medical belt, EMT belt, corpsman duty belt, tactical trauma belt, tactical trauma rig, blueshield medical belt, or blueshield webbing
 
 # docs
 steal-target-groups-corporate-documents = classified corporate secrets documents

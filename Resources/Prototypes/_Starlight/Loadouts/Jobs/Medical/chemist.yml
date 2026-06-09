@@ -80,7 +80,7 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorChemist
-  
+
 
 - type: loadout
   id: SeniorChemistSatchel
@@ -206,7 +206,7 @@
   storage:
     back:
     - LightBeaker
-    
+
 - type: loadout
   id: SilverBeakerChemist
   effects:

@@ -17,3 +17,26 @@
   - type: Tag
     tags:
     - BrassInstrument
+
+- type: entity
+  parent: BaseHandheldInstrument
+  id: NT4PlayerInstrument
+  name: nt4 player
+  description: The 4th iteration of NanoTrasen's portable music player. One day, everyone will have one of these in their pockets.
+  components:
+  - type: Instrument
+    allowPercussion: false
+    handheld: false
+    program: 2
+    bank: 100
+  - type: Sprite
+    sprite: _Starlight/Objects/Fun/Instruments/nt4player.rsi
+    layers:
+    - state: icon-base
+    - state: icon-screen
+      shader: unshaded
+  - type: Item
+    size: Small
+    storedRotation: -90
+  - type: ActivatableUI
+    inHandsOnly: false

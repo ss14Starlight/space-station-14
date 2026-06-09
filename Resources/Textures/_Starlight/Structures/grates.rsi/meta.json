@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Edited by Conflee. grate_aurora from Aurora Station, grate_engie_monke and grate_sec_monke from Monke Station",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "grate_aurora"
+    },
+	{
+      "name": "grate_sec_monke"
+    },
+	{
+      "name": "grate_engie_monke"
+    }
+  ]
+}

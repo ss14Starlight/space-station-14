@@ -4,7 +4,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Starlight.Restrict;
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem)), AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedAbductorSystem), typeof(SharedRestrictSystem)), AutoGenerateComponentState]
 public sealed partial class RestrictByUserTagComponent : Component
 {
     [DataField, AutoNetworkedField]

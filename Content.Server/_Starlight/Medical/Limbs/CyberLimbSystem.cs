@@ -3,7 +3,6 @@ using Content.Server.Administration.Systems;
 using Content.Server.Hands.Systems;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
-using Robust.Server.GameObjects;
 
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class CyberLimbSystem : EntitySystem

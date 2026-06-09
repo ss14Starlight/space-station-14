@@ -123,7 +123,7 @@
         ///     Lets you set the color of your OOC name.
         /// </summary>
         NameColor = 1 << 21,
-        
+
         /// <summary>
         ///     Dangerous permissions like loading prototypes.
         /// </summary>

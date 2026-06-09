@@ -10,22 +10,22 @@ namespace Content.Shared.Starlight.Utility;
 [DataDefinition]
 public sealed partial class ExtendedSpriteSpecifier
 {
-    
+
     /// <summary>
     /// Basic SpriteSpecifier
     /// </summary>
     [DataField("sprite")]
     public SpriteSpecifier Sprite { get; internal set; }
-    
+
     /// <summary>
     /// Sprite Color(Additional)
     /// </summary>
     [DataField("color")]
     public Color SpriteColor = Color.White;
-    
+
     [DataField("scale")]
     public Vector2 SpriteScale = new(1, 1);
-    
+
     [DataField("noRot")]
     public bool SpriteRotation = true;
 

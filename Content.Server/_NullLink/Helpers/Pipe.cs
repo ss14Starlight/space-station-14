@@ -10,7 +10,7 @@ public static class Pipe
 {
     /// <summary>
     ///     Off-loads the supplied asynchronous work to the ThreadPool immediately,
-    ///     so the caller returns to the main thread without awaiting.  
+    ///     so the caller returns to the main thread without awaiting.
     ///     All exceptions are caught and routed to <paramref name="onError"/> (if given)
     ///     and to <see cref="Debug.WriteLine"/>.
     /// </summary>
@@ -19,7 +19,7 @@ public static class Pipe
     [DebuggerHidden]
     public static void RunInBackground(
         Func<Task> work,
-        Action<Exception>? onError = null) 
+        Action<Exception>? onError = null)
         => ThreadPool.UnsafeQueueUserWorkItem(
             static async state =>
             {

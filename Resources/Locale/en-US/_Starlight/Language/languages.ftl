@@ -57,6 +57,9 @@ language-Sylvan-description = Plants speaks this language.
 language-Chittin-name = Chittin
 language-Chittin-description = The noise made by rubbing its antennae together is actually a complex form of communication.
 chat-speech-verb-chittin-1 = rubs their antennae together
+chat-speech-verb-chittin-2 = rustles with their antennae
+chat-speech-verb-chittin-3 = shakes their antennae together
+chat-chittin-whisper-wrap = [italic][BubbleHeader][Name]{$entityName}[/Name][/BubbleHeader] [BubbleContent]subtly rustles "[font="{$fontType}" size={$fontSize}][color={$color}]{$message}[/color][/font]"[/italic][/BubbleContent]
 
 language-VoxPidgin-name = Vox-Pidgin
 language-VoxPidgin-description = The common tongue of the various Vox ships making up the Shoal. It sounds like chaotic shrieking to everyone else.
@@ -114,3 +117,27 @@ language-Aielic-description = Supposedly the original language of the aielithii,
 
 language-Lagomorphian-name = Laguine
 language-Lagomorphian-description = A very lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.
+
+language-Cosmic-name = Astral Murmur
+language-Cosmic-description = THE CURTAINS MUST FALL
+
+language-Abductor-name = Abductor
+language-Abductor-description = ...
+
+language-Nexus-name = Nexus
+language-Nexus-description = A neural connection that allows them to communicate with others of their species over a technological network.
+
+language-Changeling-name = Hivemind
+language-Changeling-description = ...
+
+language-Dantalion-name = Thrall
+language-Dantalion-description = ...
+
+language-Empathy-name = Empathy
+language-Empathy-description = ...
+
+language-Carpmind-name = Hivemind
+language-Carpmind-description = Various fishy minds.
+
+language-Xenomind-name = Hivemind
+language-Xenomind-description = Various minds of xenos and terrors.

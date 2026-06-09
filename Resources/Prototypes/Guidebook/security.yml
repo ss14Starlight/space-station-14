@@ -29,7 +29,7 @@
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SpaceLaw.xml"
   children:
   - SpaceLawCrimeList
-  - ChangelingClause #Starlight
+  - SupernaturalEntities #Starlight
 
 # Starlight Start
 - type: guideEntry
@@ -38,7 +38,7 @@
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SLCrimeList.xml"
 
 - type: guideEntry
-  id: ChangelingClause
-  name: guide-entry-rules-changeling-clause
-  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/ChangelingClause.xml"
+  id: SupernaturalEntities
+  name: guide-entry-rules-supernatural-entities
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SupernaturalEntities.xml"
 #Starlight End

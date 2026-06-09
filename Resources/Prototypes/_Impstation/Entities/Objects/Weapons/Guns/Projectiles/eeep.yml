@@ -1,0 +1,13 @@
+- type: entity
+  name: eeep lightning
+  id: EeepGunBullet
+  parent: TeslaGunBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 3
+        Structural: 10
+        Piercing: 5
+

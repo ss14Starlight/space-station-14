@@ -454,9 +454,9 @@ public sealed class WiresSystem : SharedWiresSystem
                     component.ViewWires = true;
                 else
                     component.ViewWires = false;
-                
+
                 UpdateUserInterface(uid);
-                
+
                 _uiSystem.OpenUi(uid, WiresUiKey.Key, actor.PlayerSession);
                 args.Handled = true;
             }

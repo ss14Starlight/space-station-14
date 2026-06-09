@@ -1,8 +1,5 @@
-using Content.Client.Administration.Systems;
 using Content.Client.UserInterface.Systems.Bwoink;
-using Content.Shared.Input;
 using Robust.Client.UserInterface.Controllers;
-using Robust.Shared.Input.Binding;
 using Content.Client._Starlight.MHelp.UI;
 using Content.Client.Stylesheets;
 
@@ -70,11 +67,9 @@ public sealed class StaffHelpUIController : UIController
 
     private void SetAHelpButtonPressed(bool pressed)
     {
-        if (_aHelp.GameAHelpButton != null)
-            _aHelp.GameAHelpButton.Pressed = pressed;
+        _aHelp.GameAHelpButton?.Pressed = pressed;
 
-        if (_aHelp.LobbyAHelpButton != null)
-            _aHelp.LobbyAHelpButton.Pressed = pressed;
+        _aHelp.LobbyAHelpButton?.Pressed = pressed;
 
         UIManager.ClickSound();
         RefreshAhelpButton();

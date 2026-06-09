@@ -1,4 +1,6 @@
 # Borgs
+
+# region syndicate
 - type: entity
   id: PlayerBorgSyndicateStealthBattery
   parent: BorgChassisSyndicateStealth
@@ -34,6 +36,7 @@
       name: ghost-role-information-syndicate-cyborg-name
       description: ghost-role-information-syndicate-cyborg-description
       rules: ghost-role-information-silicon-rules
+      important: true # SL
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -55,7 +58,7 @@
     mindRole: "MindRoleSiliconBrain"
     silent: true
 
-# Derelict
+# region derelict
 
 - type: entity
   parent: PurrfusBorgChassisDerelict
@@ -67,6 +70,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModulePaperwork
       - BorgModuleFireExtinguisher
@@ -96,7 +100,7 @@
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
-  
+
 - type: entity
   parent: XenoborgHeavyDerelict
   id: PlayerXenoBorgHeavyDerelict
@@ -119,8 +123,8 @@
           blacklist:
             tags:
             - MechReactor
-          
-- type: entity 
+
+- type: entity
   parent: PlayerXenoBorgHeavyDerelict
   id: PlayerXenoBorgHeavyDerelictGhostRole
   suffix: Ghost role
@@ -134,7 +138,7 @@
         reregister: false
         job: Borg
       - type: GhostTakeoverAvailable
-          
+
 - type: entity
   parent: XenoborgEngiDerelict
   id: PlayerXenoBorgEngiDerelict
@@ -256,6 +260,23 @@
     - type: GhostTakeoverAvailable
 
 - type: entity
+  parent: XenoBorgiDerelict
+  id: PlayerXenoBorgiDerelictGhostRole
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-borgi-xenoborg-name
+      description: ghostrole-information-derelict-borgi-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+      reregister: false
+      job: Borg
+    - type: GhostTakeoverAvailable
+
+# region TSF
+
+- type: entity
   id: PlayerBorgChassisTSFBattery
   parent: BorgChassisTSF
   suffix: Battery, Module
@@ -266,6 +287,7 @@
         - PositronicBrain
   - type: DefaultBorgModules
     modules:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleTSF
@@ -288,8 +310,98 @@
     name: ghost-role-information-tsf-borg-name
     description: ghost-role-information-tsf-borg-desc
     rules: ghost-role-information-silicon-rules
+    important: true # SL
     raffle:
       settings: default
     reregister: false
     job: Borg
   - type: GhostTakeoverAvailable
+
+# AI
+
+- type: entity
+  id: TSFAiHeld
+  parent: AiHeld
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+    - TSF
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+    - TSF
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+  - type: ShowMindShieldIcons
+
+- type: entity
+  id: TSFtationAi
+  parent: PlayerStationAiEmpty
+  name: Solgov AI core
+  suffix: Solgov
+  components:
+  - type: ContainerComp
+    proto: TSFAiHeld
+    container: station_ai_mind_slot
+
+# region NTNC
+- type: entity
+  id: PlayerBorgHAWBattery
+  parent: NTNCBorgChassisHAW
+  suffix: Battery, module
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModulePrying
+        - BorgModuleAdvancedTool
+        - CentcommAccessBreakerModule
+        - CentcommLaserModule
+        - CentcommBulwarkModule
+        - CentcommModuleSpaceMovement
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+# region MedTak
+
+- type: entity
+  id: PlayerBorgChassisMedTakBattery
+  parent: BorgChassisMedTak
+  suffix: Battery, Modules
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModulePrying
+      - BorgModuleTool
+      - BorgModuleMedTakMedical
+      - BorgModuleMedTakRifle
+      - BorgModuleFireExtinguisher
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        blacklist:
+          tags:
+          - MechReactor

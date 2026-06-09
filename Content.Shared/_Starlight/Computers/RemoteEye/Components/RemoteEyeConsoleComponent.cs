@@ -19,7 +19,7 @@ public sealed partial class RemoteEyeConsoleComponent : Component
     public EntProtoId RemoteEntityProto;
 
     [DataField]
-    public EntityUid? RemoteEntity; 
+    public EntityUid? RemoteEntity;
 
     [DataField(readOnly: true)]
     public EntityWhitelist? Whitelist;

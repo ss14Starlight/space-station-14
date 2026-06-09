@@ -1,7 +1,7 @@
 - type: entity
   id: CrateLawboards
   parent: CrateRDSecure
-  name: AI Lawboard Crate
+  name: AI lawboard crate
   description: A crate filled with various AI lawboards.
   components:
   - type: EntityTableContainerFill
@@ -28,7 +28,7 @@
 - type: entity
   id: CrateStarterXenobiology
   parent: CrateScienceSecure
-  name: Xenobiology Starter Crate
+  name: xenobiology starter crate
   description: Contains a gray slime extract and a box of monkey cubes to get you started on your xenobiology adventures. Or because you really messed up. Oh, and a camera tagger. Don't let any spies get their hands on that thing.
   components:
     - type: EntityTableContainerFill

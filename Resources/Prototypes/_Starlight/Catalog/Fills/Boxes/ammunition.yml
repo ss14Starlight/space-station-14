@@ -10,7 +10,7 @@
         children:
         - id: MagazineCaselessRifleRubber
           amount: 4
-        
+
 - type: entity
   name: box of .30 rifle (rubber) magazines
   parent: BoxMagazine
@@ -23,7 +23,7 @@
         children:
         - id: MagazineLightRifleRubber
           amount: 4
-       
+
 - type: entity
   name: box of Vector (rubber) magazines
   parent: BoxMagazine
@@ -36,7 +36,7 @@
         children:
         - id: MagazineMagnumSubMachineGunRubber
           amount: 3
-        
+
 - type: entity
   name: box of pistol .35 auto (rubber) magazines
   parent: BoxMagazine
@@ -49,7 +49,7 @@
         children:
         - id: MagazinePistolRubber
           amount: 4
-        
+
 - type: entity
   name: box of machine pistol .35 auto (rubber) magazines
   parent: BoxMagazine
@@ -62,7 +62,7 @@
         children:
         - id: MagazinePistolHighCapacityRubber
           amount: 4
-        
+
 
 - type: entity
   name: box of SMG .35 auto (rubber) magazines
@@ -76,7 +76,7 @@
         children:
         - id: MagazinePistolSubMachineGunRubber
           amount: 3
-        
+
 - type: entity
   name: box of .20 rifle (rubber) magazines
   parent: BoxMagazine

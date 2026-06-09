@@ -9,7 +9,7 @@
 - type: loadout
   id: CapTurtleneckJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtCapTurtleneck 
+    jumpsuit: ClothingUniformJumpskirtCapTurtleneck
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorCommand

@@ -3,7 +3,6 @@
   parent: BaseMobAbductor
   id: MobAbductor
   components:
-  - type: UniversalLanguageSpeaker
   - type: Abductor
   - type: Tag
     tags:
@@ -11,7 +10,8 @@
       - AbductorScientist
       - CanPilot
       - CantBecomeRevolutionary
-      
+      - NotLabelable
+
 - type: entity
   name: abductor scientist
   parent: MobAbductor
@@ -24,6 +24,7 @@
     name: abductors-ghost-role-name
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     raffle:
       settings: default
     mindRoles:
@@ -35,7 +36,7 @@
   - type: Loadout
     prototypes:
       - AbductorScientistGear
-      
+
 - type: entity
   name: abductor agent
   parent: MobAbductor
@@ -48,6 +49,7 @@
     name: abductora-ghost-role-name
     description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     raffle:
       settings: default
     mindRoles:
@@ -59,7 +61,7 @@
   - type: Loadout
     prototypes:
       - AbductorAgentGear
-  
+
 - type: startingGear
   id: AbductorScientistGear
   equipment:
@@ -68,7 +70,7 @@
     gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesBootsCombat
     pocket1: AbductorGizmo
-    
+
 - type: startingGear
   id: AbductorAgentGear
   equipment:
@@ -83,7 +85,7 @@
     outerClothing: ClothingOuterArmorAbductor
   inhand:
   - Wonderprod
-        
+
 - type: entity
   name: abductor agent spawner
   id: SpawnPointAbductorAgent
@@ -96,7 +98,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
@@ -106,6 +108,7 @@
     name: abductora-ghost-role-name
     description: abductora-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     mindRoles:
     - MindRoleLoneAbductor
   - type: Sprite
@@ -114,7 +117,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
-        
+
 - type: entity
   name: abductor scientist spawner
   id: SpawnPointAbductorScientist
@@ -127,7 +130,7 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
-        
+
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
   parent: BaseAntagSpawner
@@ -137,6 +140,7 @@
     name: abductors-ghost-role-name
     description: abductors-ghost-role-desc
     rules: abductors-ghost-role-rules
+    important: true # SL
     mindRoles:
     - MindRoleLoneAbductor
   - type: Sprite

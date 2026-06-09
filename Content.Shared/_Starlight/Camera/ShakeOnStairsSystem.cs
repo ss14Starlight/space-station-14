@@ -15,7 +15,7 @@ public sealed class ShakeOnStairsSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TagSystem _tag = default!;
-    
+
     private readonly Dictionary<EntityUid, MapCoordinates> _lastShakeCoords = [];
     private static readonly ProtoId<TagPrototype> StairTag = new("Stairs");
     private static readonly string ShakeKey = "stairShake";
@@ -28,7 +28,7 @@ public sealed class ShakeOnStairsSystem : EntitySystem
         SubscribeLocalEvent<EntityTerminatingEvent>(OnTerminating);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnCleanup);
     }
-    
+
     private void OnMoveEvent(ref MoveEvent ev)
     {
         // This is probably extremely inefficient, but I can't think of a better way to do this.

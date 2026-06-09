@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared._Starlight.NameConfusion; // Starlight
 
 namespace Content.Shared.IdentityManagement;
 
@@ -29,6 +30,11 @@ public static class Identity
             return meta.EntityName; // Identity component and such will not yet have initialized and may throw NREs
 
         var uidName = meta.EntityName;
+
+        // Starlight begin: NameConfusion overrides even this.
+        if (ent.TryGetComponent<NameConfusionComponent>(uid, out var confusion) && confusion.CurrentName is not null)
+            return confusion.CurrentName;
+        // Starlight end
 
         if (!ent.TryGetComponent<IdentityComponent>(uid, out var identity))
             return uidName;

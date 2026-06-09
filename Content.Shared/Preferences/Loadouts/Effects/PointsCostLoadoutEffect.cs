@@ -15,9 +15,9 @@ public sealed partial class PointsCostLoadoutEffect : LoadoutEffect
         RoleLoadout loadout,
         ICommonSession? session,
         IDependencyCollection collection,
-        [NotNullWhen(false)] out FormattedMessage? reason)
+        out FormattedMessage reason) // Starlight: Always return reason
     {
-        reason = null;
+        reason = FormattedMessage.Empty; // Starlight. Keeping changes in this file minimal as its entirely unused.
         var protoManager = collection.Resolve<IPrototypeManager>();
 
         if (!protoManager.TryIndex(loadout.Role, out var roleProto) || roleProto.Points == null)

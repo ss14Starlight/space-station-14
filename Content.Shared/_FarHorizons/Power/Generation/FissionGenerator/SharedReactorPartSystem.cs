@@ -22,7 +22,7 @@ public abstract class SharedReactorPartSystem : EntitySystem
     /// <summary>
     /// Ratio of product to reactant for reactions
     /// </summary>
-    public float ReactionRatio => ReactionProduct / ReactionReactant;
+    public float ReactionRatio => ReactionReactant != 0 ? (ReactionProduct / ReactionReactant) : 0;
 
     public override void Initialize()
     {

@@ -77,7 +77,7 @@ public sealed class DoorElectronicsSystem : EntitySystem
     {
         UpdateUserInterface(uid, component);
     }
-    
+
     // Starlight begin
     private void OnGotEmagged(EntityUid uid, DoorElectronicsComponent comp, ref GotEmaggedEvent args)
     {

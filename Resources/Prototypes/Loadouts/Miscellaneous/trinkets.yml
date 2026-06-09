@@ -13,13 +13,13 @@
   id: FlowerWreath
   equipment:
     neck: ClothingHeadHatFlowerWreath # Starlight: Roundstart equipped
-  groupBy: "flowers" # Starlight 
+  groupBy: "flowers" # Starlight
 
 - type: loadout
   id: Hairflower
   equipment:
-    head: ClothingHeadHatHairflower # Starlight: Roundstart equipped
-  groupBy: "flowers" # Starlight 
+    head: ClothingHeadHatHairFlowerWhite  # Moffstation - Color changing hairflower + Starlight: Roundstart equipped
+  groupBy: "flowers" # Starlight
 
 # Headphones
 - type: loadout
@@ -27,6 +27,7 @@
   storage:
     back:
     - ClothingMultipleHeadphones
+  groupBy: "Headphones" # Starlight
 
 # Toys
 - type: loadout
@@ -322,6 +323,8 @@
     - TowelColorWhite
   groupBy: "towels"
 
+#Starlight Start - Towel Restoration
+
 - type: loadout
   id: TowelColorGray
   effects:
@@ -429,11 +432,8 @@
 - type: loadout
   id: TowelColorLightBlue
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Medical
-      time: 100h
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
   storage:
     back:
     - TowelColorLightBlue
@@ -470,10 +470,8 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-     # !type:RoleTimeRequirement # Starlight start: switch to law dept
-     # role: JobLawyer
-      !type:DepartmentTimeRequirement
-      department: Law # Starlight end
+      !type:DepartmentTimeRequirement # Starlight
+      department: Law # Starlight
       time: 100h
   storage:
     back:
@@ -516,3 +514,4 @@
     back:
     - TowelColorGold
   groupBy: "towels"
+# Starlight End

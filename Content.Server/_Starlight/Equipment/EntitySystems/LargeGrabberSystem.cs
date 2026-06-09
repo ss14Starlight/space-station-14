@@ -5,8 +5,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Wall;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -67,9 +65,7 @@ public sealed class LargeGrabberSystem : EntitySystem
     }
 
     private void OnStartup(EntityUid uid, LargeGrabberComponent component, ComponentStartup args)
-    {
-        component.ItemContainer = _container.EnsureContainer<Container>(uid, "item-container");
-    }
+        => component.ItemContainer = _container.EnsureContainer<Container>(uid, "item-container");
 
     private void OnInteract(EntityUid uid, LargeGrabberComponent component, AfterInteractEvent args)
     {
@@ -121,7 +117,7 @@ public sealed class LargeGrabberSystem : EntitySystem
     }
 
     private void OnRemovedFromContainer(EntityUid uid, LargeGrabberComponent component, EntGotRemovedFromContainerMessage args)
-    { 
+    {
         if (!component.DropOnContainerChange)
             return;
 

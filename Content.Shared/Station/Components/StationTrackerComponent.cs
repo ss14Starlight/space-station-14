@@ -15,4 +15,11 @@ public sealed partial class StationTrackerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? Station;
+
+    // Starlight
+    /// <summary>
+    /// The last successfully resolved station. Preserved when Station is set to null.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public EntityUid? LastStation;
 }

@@ -38,6 +38,7 @@
     - id: GameRulePotatoSwarm
     - id: GameRuleFunSwarm
     - id: ImmovableRodSpawn
+    - id: ImmovableRodSlugSpawn # Starlight
     - !type:NestedSelector # Starlight-edit: Kessler Wrecks
         tableId: WreckSwarmEventsTable # Starlight-edit: Kessler Wrecks
 
@@ -219,7 +220,7 @@
   - type: ImmovableRodRule
     rodPrototypes:
     - id: ImmovableRodKeepTilesStill
-      prob: 0.94
+      prob: 0.89
       orGroup: rodProto
     - id: ImmovableRodMop
       prob: 0.0075

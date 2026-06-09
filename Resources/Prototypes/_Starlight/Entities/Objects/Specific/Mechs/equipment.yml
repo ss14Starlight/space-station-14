@@ -1,8 +1,8 @@
 - type: entity
   id: MechEquipmentBorgPilot
   parent: [ BaseMechEquipment ]
-  name: exosuit AI control beacon
-  description: A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit.
+  name: exosuit silicon control beacon
+  description: A device used to transmit exosuit data. Also allows active cyborg units to take control of said exosuit.
   components:
   - type: MechEquipment
     equipmentType: Passive
@@ -42,14 +42,22 @@
     containers:
       item-container: !type:Container
   - type: ChildBlockVision
-  - type: Tag
-    tags:
-    - PaddyMech
-
-
   - type: Retractor
-  - type: SurgeryTool
-    successRate: 0.5 # they are very much too large
     speed: 1.5
     startSound:
       path: /Audio/Mecha/sound_mecha_hydraulic.ogg
+  - type: SurgeryTool
+
+- type: entity
+  id: MechEquipmentCamera
+  parent: [ BaseMechEquipment, CombatMechEquipment ]
+  name: mech night vision camera
+  description: night vision camera, allows you to switch the visor to night vision for increased visibility in poorly lit areas.
+  components:
+  - type: MechEquipment
+    equipmentType: Passive
+  - type: Sprite
+    state: mecha_camera
+  - type: MechEquipmentAction
+    actionId: ActionMechToggleNightVision
+  - type: MechNightVision

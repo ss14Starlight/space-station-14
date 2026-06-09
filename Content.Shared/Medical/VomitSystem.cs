@@ -1,3 +1,4 @@
+using Content.Shared.Body;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
 using Content.Shared.Chemistry.Components;
@@ -15,6 +16,9 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Medical.Body.Systems;
+#endregion
 
 namespace Content.Shared.Medical;
 
@@ -28,7 +32,7 @@ public sealed class VomitSystem : EntitySystem
     [Dependency] private readonly ThirstSystem _thirst = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private readonly SharedBodySystem _body = default!; // Starlight
     [Dependency] private readonly SharedForensicsSystem _forensics = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPuddleSystem _puddle = default!;
@@ -38,7 +42,7 @@ public sealed class VomitSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution);
+        SubscribeLocalEvent<BodyComponent, TryVomitEvent>(TryBodyVomitSolution); // Starlight Edit: StomachComponent -> BodyComponent, Removed BodyRelayedEvent, TryVomitSolution -> TryBodyVomitSolution
     }
 
     private const float ChemMultiplier = 0.1f;
@@ -50,8 +54,10 @@ public sealed class VomitSystem : EntitySystem
     private readonly SoundSpecifier _vomitSound = new SoundCollectionSpecifier(VomitCollection,
         AudioParams.Default.WithVariation(0.2f).WithVolume(-4f));
 
+    // Starlight edit Start: Reverted NuBody
     private void TryBodyVomitSolution(Entity<BodyComponent> ent, ref TryVomitEvent args)
     {
+        // Starlight start
         if (args.Handled)
             return;
 
@@ -68,6 +74,7 @@ public sealed class VomitSystem : EntitySystem
         }
 
         args.Handled = true;
+    // Starlight edit End: Reverted NuBody
     }
 
     /// <summary>

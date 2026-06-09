@@ -1,0 +1,83 @@
+- type: entity
+  id: GrateBase
+  parent: BaseStructure
+  name: grate
+  description: "Very industrial."
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: FloorTiles
+  - type: Tag
+    tags:
+    - ForceFixRotations
+    - Catwalk
+  - type: Physics
+    canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 5
+        layer:
+        - DoorPassable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal: # takes two to construct, so drop less than that
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TrayScanReveal
+
+- type: entity
+  id: GrateGray
+  parent: GrateBase
+  suffix: Gray
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/grates.rsi
+    state: grate_aurora
+  - type: Icon
+    sprite: _Starlight/Structures/grates.rsi
+    state: grate_aurora
+
+- type: entity
+  id: GrateEngie
+  parent: GrateBase
+  suffix: Brown
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/grates.rsi
+    state: grate_engie_monke
+  - type: Icon
+    sprite: _Starlight/Structures/grates.rsi
+    state: grate_engie_monke
+
+- type: entity
+  id: GrateSec
+  parent: GrateBase
+  suffix: Red
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/grates.rsi
+    state: grate_sec_monke
+  - type: Icon
+    sprite: _Starlight/Structures/grates.rsi
+    state: grate_sec_monke

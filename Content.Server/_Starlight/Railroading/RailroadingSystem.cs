@@ -1,15 +1,17 @@
 ﻿using Content.Server._Starlight.Objectives.Events;
+using Content.Server._Starlight.Achievement;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
-using Content.Server.Database.Migrations.Postgres;
 using Content.Server.EUI;
 using Content.Server.Ghost.Roles.UI;
+using Content.Server.Revolutionary.Components;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Database;
 using Content.Shared.Examine;
+using Content.Shared.Roles.Components;
 using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -19,6 +21,9 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingSystem : SharedRailroadingSystem
 {
+    private const string CriminalCardPrototypeId = "RRCardCriminal";
+
+    [Dependency] private readonly AchievementSystem _achievements = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IAdminManager _admins = default!;
@@ -56,7 +61,6 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
         if (ent.Comp.Completed is { Count: > 0 })
             foreach (var item in ent.Comp.Completed)
                 RaiseLocalEvent(item, ref collect);
-
 
         args.Groups["Cards"] = collect.Objectives;
     }
@@ -104,7 +108,10 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
             Color = entity.Comp1.Color,
             IconColor = entity.Comp1.IconColor,
             Description = Loc.GetString(entity.Comp1.Description),
-            Image = entity.Comp1.Image
+            Image = entity.Comp1.Image,
+
+            CreditReward = !TryComp<RailroadDonationRewardComponent>(entity, out var creditReward) ? null : creditReward.Amount,
+            HasSecretAccess = HasComp<RailroadSecretVendingAccessComponent>(entity)
         };
 
     private void ShowCardsUi(Entity<RailroadableComponent> ent, ref OpenCardsAlertEvent args)
@@ -171,6 +178,15 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
                 var cardPerformer = EnsureComp<RailroadCardPerformerComponent>(card);
                 cardPerformer.Performer = subject;
 
+                if (TryComp<MetaDataComponent>(card.Owner, out var meta)
+                    && meta.EntityPrototype?.ID == CriminalCardPrototypeId)
+                {
+                    var achievementId = HasComp<CommandStaffComponent>(subject.Owner)
+                        ? "wavering_loyalty"
+                        : "on_the_run";
+                    _achievements.QueueUnlockAchievement(subject.Owner, achievementId);
+                }
+
                 var @event = new RailroadingCardChosenEvent(subject);
                 RaiseLocalEvent(card, ref @event);
             }
@@ -189,7 +205,7 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
 
         foreach (var card in subject.Comp.IssuedCards)
             if (_entitySystem.TryEntity<RailroadRuleComponent>(card.Comp2.RuleOwner, out var rule))
-                rule.Comp.Pool.Add(card);
+                _railroadRule.AddCardToPool(rule, card);
 
         subject.Comp.IssuedCards = null;
         subject.Comp.Restricted = true;

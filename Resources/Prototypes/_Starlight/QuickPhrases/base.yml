@@ -1,0 +1,11 @@
+- type: quickPhrase
+  id: BaseCentralcommandPhrase
+  group: CentralCommand
+  styleClass: CentralCommandButton #Coloring seems missing for all buttons, someone else needs to add them.
+  abstract: true
+
+- type: quickPhrase
+  id: BaseNanotrasenPhrase
+  group: Nanotrasen
+  styleClass: NanotrasenButton #Coloring seems missing for all buttons, someone else needs to add them.
+  abstract: true

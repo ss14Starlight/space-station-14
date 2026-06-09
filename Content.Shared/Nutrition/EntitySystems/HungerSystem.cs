@@ -269,7 +269,7 @@ public sealed class HungerSystem : EntitySystem
             if (_timing.CurTime < hunger.NextThresholdUpdateTime)
                 continue;
             hunger.NextThresholdUpdateTime = _timing.CurTime + hunger.ThresholdUpdateRate;
-            
+
             //Starlight begin
             if (hunger.HungerDrains.Count > 0)
             {
@@ -284,7 +284,7 @@ public sealed class HungerSystem : EntitySystem
             DoContinuousHungerEffects(uid, hunger);
         }
     }
-    
+
     //Starlight begin
     public void AddHungerDrain(EntityUid uid, float mod, TimeSpan? endTime, HungerComponent? comp = null)
     {

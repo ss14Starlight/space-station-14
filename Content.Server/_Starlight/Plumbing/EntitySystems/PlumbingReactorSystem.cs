@@ -3,17 +3,14 @@ using Content.Server._Starlight.Plumbing.Nodes;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
-using Content.Server.UserInterface;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos;
-using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
-using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
@@ -265,7 +262,7 @@ public sealed class PlumbingReactorSystem : EntitySystem
 
     private void OnSetTemperature(Entity<PlumbingReactorComponent> ent, ref PlumbingReactorSetTemperatureMessage args)
     {
-        // Clamp to reasonable values 
+        // Clamp to reasonable values
         ent.Comp.TargetTemperature = Math.Clamp(args.Temperature, MinTemperature, MaxTemperature);
         DirtyField(ent, ent.Comp, nameof(PlumbingReactorComponent.TargetTemperature));
         ClickSound(ent.Owner);
@@ -273,9 +270,7 @@ public sealed class PlumbingReactorSystem : EntitySystem
     }
 
     private void OnUIOpened(Entity<PlumbingReactorComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateUI(ent);
-    }
+        => UpdateUI(ent);
 
     private void UpdateUI(Entity<PlumbingReactorComponent> ent)
     {

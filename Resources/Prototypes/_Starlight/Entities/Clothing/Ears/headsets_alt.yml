@@ -1,7 +1,7 @@
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
   id: ClothingHeadsetAltCentCom
-  name: centcom over-ear headset
+  name: CentComm over-ear headset
   components:
   - type: ContainerFill
     containers:
@@ -17,16 +17,17 @@
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
 
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCommandContraband]
-  id: ClothingHeadsetAltCentComNTNC
-  name: centcom over-ear headset
+  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  id: ClothingHeadsetAltAdminCentCom
+  suffix: Admin only
+  name: Administrative CentComm over-ear headset
   components:
   - type: ContainerFill
     containers:
       key_slots:
-      - EncryptionKeyCommand
-      - EncryptionKeyCommon
-      - EncryptionKeySecurity
+      - EncryptionKeyCentCom
+      - EncryptionKeyNanoTrasen
+      - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/centcom.rsi
   - type: Clothing
@@ -34,6 +35,65 @@
   - type: RadioChime
     sound:
       path: /Audio/_Starlight/Effects/Radio/cc.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
+  id: ClothingHeadsetAltNanoTrasen
+  name: NanoTrasen over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNanoTrasenUnremovable
+      - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/cc.ogg
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
+  id: ClothingHeadsetAltRepresentative
+  name: NanoTrasen representative over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNanoTrasenUnremovable
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/captain.ogg
+  - type: StealTarget # Starlight
+    stealGroup: ClothingHeadsetAltCommand # Starlight
+
+- type: entity
+  parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
+  id: ClothingHeadsetAltNCTrainer
+  name: NanoTrasen career trainer over-ear headset
+  description: This is used by your well-taught corporate training team.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyNanoTrasenUnremovable
+      - EncryptionKeyCommand
+      - EncryptionKeyNCTrainer
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/captain.ogg
 
 - type: entity
   parent: ClothingHeadsetAlt
@@ -49,7 +109,7 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Ears/Headsets/abductor.rsi
 
-    
+
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCommandContraband]
   id: ClothingHeadsetHoP
@@ -74,6 +134,7 @@
   - type: ContainerFill
     containers:
       key_slots:
+      - EncryptionKeyNanoTrasenUnremovable
       - EncryptionKeyStationMaster
   - type: Sprite
     sprite: Clothing/Ears/Headsets/command.rsi
@@ -144,6 +205,25 @@
       path: /Audio/_Starlight/Effects/Radio/deathsquad.ogg
 
 - type: entity
+  parent: [ ClothingHeadsetAltNanoTrasen, BaseNanoTrasenContraband ]
+  id: ClothingHeadsetAltNTSF
+  name: NTSF over-ear headset
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCentCom
+      - EncryptionKeyNanoTrasenUnremovable
+      - EncryptionKeyStationMaster
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: RadioChime
+    sound:
+      path: /Audio/_Starlight/Effects/Radio/deathsquad.ogg
+
+- type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltGlobal
   name: global headset
@@ -196,8 +276,8 @@
 - type: entity
   parent: ClothingHeadsetAlt
   id: ClothingHeadsetAltBlackstar
-  name: blackstar mercenary headset
-  description: A headset used by elite blackstar mercenaries.
+  name: Blackstar mercenary headset
+  description: A headset used by elite Blackstar mercenaries.
   components:
     - type: Headset
     - type: ContainerFill
@@ -221,3 +301,20 @@
       sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Ears/Headsets/admeme.rsi
+
+- type: entity
+  parent: [ ClothingHeadsetAlt, BaseMedTakContraband ]
+  id: ClothingHeadsetAltMedTak
+  name: MedTak operator headset
+  description: A headset used by MedTak operators.
+  components:
+    - type: Headset
+    - type: ContainerFill
+      containers:
+        key_slots:
+          - EncryptionKeyMedTak
+          - EncryptionKeyCommon
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/Ears/Headsets/medtak.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/Ears/Headsets/medtak.rsi

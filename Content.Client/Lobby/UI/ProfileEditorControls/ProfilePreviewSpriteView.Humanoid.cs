@@ -33,6 +33,13 @@ public sealed partial class ProfilePreviewSpriteView
         // Starlight
         var layers = GetCyberneticsLayers(humanoid);
         EntMan.System<HumanoidAppearanceSystem>().AddCustomBaseLayers(PreviewDummy, layers);
+
+        // Far Horizons
+        if (_prototypeManager.Index(humanoid.Species).Loadout != null)
+        {
+            var loadout = humanoid.GetSpeciesLoadoutOrDefault(_playerManager.LocalSession, _prototypeManager);
+            GiveDummyLoadout(PreviewDummy, loadout);
+        }
     }
 
     /// <summary>

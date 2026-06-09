@@ -43,7 +43,7 @@ namespace Content.Shared.Access.Systems
         {
             if (!component.Enabled)
                 return;
-            
+
             // Starlight begin
             if (!component.WorksWhileHeld)
                 foreach (var container in _container.GetContainingContainers((uid, Transform(uid))))

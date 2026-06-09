@@ -33,13 +33,13 @@
           spawns:
             - TrashBananaPeel
             - FloorBananiumEntity
-        - settings: 
+        - settings:
             spawnOnPulse: true
             minAmount: 1
             maxAmount: 3
             maxRange: 4
           spawns:
-            - MobMonkey 
+            - MobMonkey
         - settings:
             spawnOnSuperCritical: true
             minAmount: 5
@@ -302,9 +302,8 @@
     - type: TimedSpawner
       prototypes:
         - ShadekinTrap
-      intervalSeconds: 1.9
-    - type: TimedDespawn
-      lifetime: 2
+      intervalSeconds: 2
+      despawnWhenDone: true
     - type: Tag
       tags:
         - HideContextMenu

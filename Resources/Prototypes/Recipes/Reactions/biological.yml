@@ -104,8 +104,7 @@
     CycloriteBlood:
       amount: 20
   products:
-    Nitrogen: 3
-    Hydrogen: 3
-    Oxygen: 9
+    Nitrogen: 4
+    Oxygen: 11
     CarbonDioxide: 1
     Protein: 4

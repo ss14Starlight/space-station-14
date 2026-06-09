@@ -5,13 +5,9 @@ using Content.Shared.Interaction;
 using Content.Shared._Starlight.Lock;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.GameObjects;
-using Content.Shared.Tools.Components;
-using System.Linq;
 using Content.Shared.Electrocution;
 using Content.Shared.Examine;
 using Robust.Shared.Utility;
-using Content.Shared.Atmos.Piping.Components;
 
 namespace Content.Server._Starlight.Lock;
 
@@ -62,8 +58,6 @@ public sealed class DigitalLockSystem : EntitySystem
             _ambient.SetAmbience(uid, true);
             args.Handled = _electrocution.TryDoElectrocution(args.User, uid, 5, TimeSpan.FromSeconds(2), true) || _tool.UseTool(args.Used, args.User, uid, 4f * codeLength, component.ResetQuality, new DigitalLockResetDoAfterEvent());
         }
-
-        args.Handled = false;
     }
 
     /// <summary>

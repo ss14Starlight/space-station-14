@@ -264,7 +264,7 @@
   - type: Flatpack
     allowUnpackOnTables: true
     entity: KitchenMicrowave
-    
+
 - type: entity
   parent: BaseFlatpack
   id: SyndicateMicrowaveFlatpack

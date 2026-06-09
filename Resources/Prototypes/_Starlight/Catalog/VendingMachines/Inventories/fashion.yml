@@ -2,7 +2,7 @@
   abstract: true
   id: FashionBase
   conditions:
-    - !type:ListingLimitedStockCondition 
+    - !type:ListingLimitedStockCondition
       stock: 1
 
 - type: listing
@@ -52,6 +52,28 @@
 - type: listing
   id: ClothingUniformJulianneVA11HALLA
   productEntity: ClothingUniformJulianneVA11HALLA
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformJumpskirtBartenderBlackAlt
+  productEntity: ClothingUniformJumpskirtBartenderBlackAlt
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: ClothingUniformTimelessSkirt
+  productEntity: ClothingUniformTimelessSkirt
   cost:
     NTCredit: 990
   categories:
@@ -204,6 +226,17 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformJumpskirtPunkSkirt
+  productEntity: ClothingUniformJumpskirtPunkSkirt
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSkirt
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingUniformJumpsuitSuitCheckered
   productEntity: ClothingUniformJumpsuitSuitCheckered
   cost:
@@ -226,6 +259,18 @@
       stock: 1
 
 - type: listing
+  id: ClothingUniformTimelessSuit
+  productEntity: ClothingUniformTimelessSuit
+  cost:
+    NTCredit: 990
+  categories:
+    - SLFashionSuit
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+
+- type: listing
   id: ClothingUniformJumpsuitSuitWaiter
   productEntity: ClothingUniformJumpsuitSuitWaiter
   cost:
@@ -237,8 +282,8 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpsuitMimeSexyWhite
-  productEntity: ClothingUniformJumpsuitMimeSexyWhite
+  id: ClothingUniformJumpsuitMimeSuaveWhite
+  productEntity: ClothingUniformJumpsuitMimeSuaveWhite
   cost:
     NTCredit: 400
   categories:
@@ -248,8 +293,8 @@
       stock: 1
 
 - type: listing
-  id: ClothingUniformJumpsuitMimeSexyBlack
-  productEntity: ClothingUniformJumpsuitMimeSexyBlack
+  id: ClothingUniformJumpsuitMimeSuaveBlack
+  productEntity: ClothingUniformJumpsuitMimeSuaveBlack
   cost:
     NTCredit: 400
   categories:
@@ -380,6 +425,17 @@
       stock: 1
 
 - type: listing
+  id: ClothingNeckCloakBoatCC
+  productEntity: ClothingNeckCloakBoatCC
+  cost:
+    NTCredit: 2000
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
   id: ClothingNeckCloakCentcomAdmiral
   productEntity: ClothingNeckCloakCentcomAdmiral
   cost:
@@ -424,10 +480,10 @@
       stock: 1
 
 - type: listing
-  id: PlushieBBC
-  productEntity: PlushieBBC
+  id: PlushieDarkForest
+  productEntity: PlushieDarkForest
   cost:
-    NTCredit: 4500
+    NTCredit: 2500
   categories:
     - SLFashionOther
   conditions:
@@ -476,6 +532,18 @@
   productEntity: BoxRegalia
   cost:
     NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: BoxCourierPAI
+  icon: { sprite: _Starlight/Interface/fashion.rsi, state: courier }
+  productEntity: BoxCourierPAI
+  cost:
+    NTCredit: 1500
   categories:
     - SLFashionOther
   conditions:
@@ -560,6 +628,28 @@
       stock: 1
 
 - type: listing
+  id: ClothingHandsTacticalMaidGlovesDelicate
+  productEntity: ClothingHandsTacticalMaidGlovesDelicate
+  cost:
+    NTCredit: 400
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: NT4PlayerInstrument
+  productEntity: NT4PlayerInstrument
+  cost:
+    NTCredit: 1500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
+
+- type: listing
   id: ClothingHeadHatTophatBig
   productEntity: ClothingHeadHatTophatBig
   cost:
@@ -602,3 +692,25 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: ClothingBackpackBunnyGangBundle
+  productEntity: ClothingBackpackBunnyGangBundle
+  cost:
+    NTCredit: 500
+  categories:
+    - SLFashionOther
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: ClothingHeadHatBunny
+  productEntity: ClothingHeadHatBunny
+  cost:
+    NTCredit: 50
+  categories:
+    - SLFashionHead
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2

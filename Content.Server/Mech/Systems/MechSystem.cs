@@ -1,5 +1,4 @@
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Body.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Mech.Components;
 using Content.Shared.ActionBlocker;
@@ -48,7 +47,8 @@ using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
-using Content.Shared.Movement.Systems; //Starlight
+using Content.Shared.Movement.Systems;
+using Content.Server._Starlight.Medical.Body.Systems; //Starlight
 #endregion Starlight
 
 namespace Content.Server.Mech.Systems;
@@ -78,6 +78,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly IGameTiming Timing = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly GasTankSystem _gasTank = default!;
+    [Dependency] private readonly SharedWiresSystem _wires = default!;
 #endregion Starlight
 
 
@@ -89,8 +90,6 @@ public sealed partial class MechSystem : SharedMechSystem
         base.Initialize();
 
         SubscribeLocalEvent<MechComponent, ToggleActionEvent>(OnToggleLightEvent); // Starlight
-        SubscribeLocalEvent<MechComponent, MechToggleSirensEvent>(OnMechToggleSirens); // Starlight
-        SubscribeLocalEvent<MechComponent, MechToggleThrustersEvent>(OnMechToggleThrusters); // Starlight
         SubscribeLocalEvent<MechComponent, InteractUsingEvent>(OnInteractUsing);
         SubscribeLocalEvent<MechComponent, EntInsertedIntoContainerMessage>(OnInsertEquipment); // Starlight
         SubscribeLocalEvent<MechComponent, EntRemovedFromContainerMessage>(OnItemRemoved); // Starlight-edit: Correct equipment update
@@ -130,16 +129,18 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             if (Timing.CurTime < mechComp.NextUpdateTime)
                 continue;
-            mechComp.NextUpdateTime += mechComp.Delay;
+
+            var deltaTime = Timing.CurTime - (mechComp.NextUpdateTime - mechComp.Delay);
+            mechComp.NextUpdateTime += mechComp.Delay - (Timing.CurTime - mechComp.NextUpdateTime);
 
             if (mechComp.BatterySlot.ContainedEntity != null &&
                 TryComp<BatteryComponent>(mechComp.BatterySlot.ContainedEntity.Value, out var battery))
             {
-                // Try to draw charge if this mech has thrusters and they're enabled
-                if (TryComp<MechThrustersComponent>(uid, out var thrusters) && thrusters.ThrustersEnabled)
-                {
-                    TryChangeEnergy(uid, thrusters.DrawRate);
-                }
+                var passiveDrawEv = new GetPassiveChargeDrawRate(uid);
+                RaiseLocalEvent(uid, passiveDrawEv);
+
+                if (!MathHelper.CloseTo(passiveDrawEv.CumulativeDrawRate, 0f))
+                    TryChangeEnergy(uid, passiveDrawEv.CumulativeDrawRate * deltaTime.TotalSeconds);
 
                 var currentCharge = _battery.GetCharge((mechComp.BatterySlot.ContainedEntity.Value, battery));
                 if( mechComp.PlayPowerUpSound && (int)(currentCharge / battery.MaxCharge * 100) > 0 )
@@ -193,50 +194,6 @@ public sealed partial class MechSystem : SharedMechSystem
         ToggleLight(uid, component);
     }
 
-    private void OnMechToggleSirens(EntityUid uid, MechComponent component, MechToggleSirensEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        args.Handled = true;
-
-        component.Siren = !component.Siren;
-
-        Dirty(uid, component);
-
-        _actions.SetToggled(component.MechToggleSirenActionEntity, component.Siren);
-
-        UpdateAppearance(uid, component);
-    }
-
-    private void OnMechToggleThrusters(EntityUid uid, MechComponent component, MechToggleThrustersEvent args)
-    {
-        if (args.Handled)
-            return;
-
-        if (!TryComp<MechThrustersComponent>(uid, out var mechThrusters))
-            return;
-
-        args.Handled = true;
-
-        mechThrusters.ThrustersEnabled = !mechThrusters.ThrustersEnabled;
-
-        _actions.SetToggled(component.MechToggleThrustersActionEntity, mechThrusters.ThrustersEnabled);
-
-        if (mechThrusters.ThrustersEnabled)
-        {
-            AddComp<CanMoveInAirComponent>(uid);
-            AddComp<MovementAlwaysTouchingComponent>(uid);
-        }
-        else
-        {
-            RemComp<CanMoveInAirComponent>(uid);
-            RemComp<MovementAlwaysTouchingComponent>(uid);
-        }
-
-        Dirty(uid, mechThrusters);
-    }
-
     // Starlight-start: Correct UI/Charge update
 
     private void OnChargeChanged(EntityUid uid, MechComponent component, ref ChargeChangedEvent args)
@@ -245,8 +202,6 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             if(component.Light)
                 ToggleLight(uid, component);
-            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
-                OnMechToggleThrusters(uid, component, new MechToggleThrustersEvent());
             if(!component.PlayPowerUpSound)
                 _audioSystem.PlayPredicted(component.PowerDownSound, uid, uid);
             component.PlayPowerUpSound = true;
@@ -270,10 +225,8 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if ((int)(args.CurrentCharge / args.MaxCharge * 100) == 0) //We run this off of the mech's % power readout, rather than absolute values
         {
-            if(mechComp.Light)
+            if (mechComp.Light)
                 ToggleLight(mech, mechComp);
-            if (TryComp(uid, out MechThrustersComponent? mechThrusters) && mechThrusters.ThrustersEnabled)
-                OnMechToggleThrusters(uid, mechComp, new MechToggleThrustersEvent());
             if(!mechComp.PlayPowerUpSound)
                 _audioSystem.PlayPredicted(mechComp.PowerDownSound, uid, uid);
             mechComp.PlayPowerUpSound = true;
@@ -418,6 +371,8 @@ public sealed partial class MechSystem : SharedMechSystem
             var mechBattery = EnsureComp<MechBatteryComponent>(component.BatterySlot.ContainedEntity.Value);
             mechBattery.Mech = uid;
         }
+
+        component.NextUpdateTime = Timing.CurTime + component.Delay;
         // Starlight-end
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
@@ -433,7 +388,7 @@ public sealed partial class MechSystem : SharedMechSystem
 
         if (!component.MaintenanceMode)
         {
-            _popup.PopupEntity("You need to turn on maintenance mode first!", uid, PopupType.MediumCaution);
+            _popup.PopupEntity(Loc.GetString("mech-requires-maintenance-mode"), uid, PopupType.MediumCaution);
             return;
         }
 
@@ -443,14 +398,37 @@ public sealed partial class MechSystem : SharedMechSystem
         RemoveEquipment(uid, equip, component);
     }
 
+    #region Starlight
     private void OnMaintenanceMessage(EntityUid uid, MechComponent component, MechMaintenanceUiMessage args)
     {
-        component.MaintenanceMode = args.Toggle;
+        TryToggleMaintenanceMode(uid, component, args.Toggle);
 
         Dirty(uid, component); // Starlight-edit: Update Maintenance State
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
     }
+
+    private void TryToggleMaintenanceMode(EntityUid uid, MechComponent component, bool toggle)
+    {
+        if (TryComp<WiresPanelComponent>(uid, out var panelComp))
+        {
+            _wires.TogglePanel(uid, panelComp, toggle, uid);
+        }
+
+        if (component.MaintenanceMode != toggle)
+        {
+            var popupString = toggle ? "mech-maintenance-enabled" : "mech-maintenance-disabled";
+            _popup.PopupPredicted(Loc.GetString(popupString), uid, uid);
+
+            var panelSound = toggle ? component.MaintenanceOnSound : component.MaintenanceOffSound;
+            _audioSystem.PlayPredicted(panelSound, uid, uid);
+        }
+
+        component.MaintenanceMode = toggle;
+
+        UpdateUserInterface(uid, component);
+    }
+    #endregion
 
     private void OnOpenUi(EntityUid uid, MechComponent component, MechOpenUiEvent args)
     {
@@ -469,12 +447,17 @@ public sealed partial class MechSystem : SharedMechSystem
         if (!args.CanAccess || !args.CanInteract)
             return;
 
-        var openUiVerb = new AlternativeVerb
+        // Starlight begin - restrict UI verb to pilot, if pilot present
+        if (IsEmpty(component) || args.User == component.PilotSlot.ContainedEntity)
         {
-            Act = () => ToggleMechUi(uid, component, args.User),
-            Text = Loc.GetString("mech-ui-open-verb")
-        };
-        args.Verbs.Add(openUiVerb);
+            var openUiVerb = new AlternativeVerb
+            {
+                Act = () => ToggleMechUi(uid, component, args.User),
+                Text = Loc.GetString("mech-ui-open-verb")
+            };
+            args.Verbs.Add(openUiVerb);
+        }
+        // Starlight end
 
         if (component.Broken)
             return;
@@ -539,6 +522,7 @@ public sealed partial class MechSystem : SharedMechSystem
                 _hands.DoDrop((args.Args.User, handsComponent), hand);
 
         TryInsert(uid, args.Args.User, component);
+        _ui.CloseUis(uid); // Starlight - close any UIs upon mech entry
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block
 
         _factionSystem.Up(args.Args.User, uid);
@@ -689,7 +673,7 @@ public sealed partial class MechSystem : SharedMechSystem
         _container.Insert(toInsert, component.BatterySlot);
         component.Energy = _battery.GetCharge(toInsert);
         component.MaxEnergy = battery.MaxCharge;
-        
+
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid); //Starlight - mech reactors with speed mods
 
         UpdateCanMove(uid, component); // Starlight-edit: fix movement block

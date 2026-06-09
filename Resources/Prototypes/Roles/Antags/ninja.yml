@@ -38,6 +38,7 @@
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
+    - WeaponNinjaChainSickle  # MoffStation -> Jetpack kept, so ninja gets both.
   storage:
     back: # belt holds katana so satchel has the tools for sabotaging things
     - Crowbar

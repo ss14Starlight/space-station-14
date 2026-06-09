@@ -112,7 +112,7 @@ public sealed class NuclearReactorSystem : EntitySystem
             }
         }
     }
-    
+
     // If there was a particle system, I would use it, for now I'm just stealing the jetpack's system like I'm not supposed to
     private void UpdateParticles(EntityUid uid, NuclearReactorComponent comp)
     {

@@ -1,5 +1,4 @@
 using Content.Shared._Starlight.Antags.Vampires.Components;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ensnaring;
 using Content.Shared.Ensnaring.Components;

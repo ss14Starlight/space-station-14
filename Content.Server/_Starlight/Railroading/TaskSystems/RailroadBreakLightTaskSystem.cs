@@ -1,12 +1,7 @@
 using Content.Server._Starlight.Objectives.Events;
-using Content.Server._Starlight.Shadekin;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Abilities.Goliath;
-using Content.Shared.Damage.Systems;
-using Content.Shared.Light.Components;
 using Content.Shared.Objectives;
-using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Railroading;
@@ -21,7 +16,7 @@ public sealed partial class RailroadBreakLightTaskSystem : EntitySystem
         SubscribeLocalEvent<RailroadBreakLightTaskComponent, RailroadingCardChosenEvent>(OnTaskPicked);
         SubscribeLocalEvent<RailroadBreakLightTaskComponent, RailroadingCardCompletionQueryEvent>(OnTaskCompletionQuery);
         SubscribeLocalEvent<RailroadBreakLightTaskComponent, CollectObjectiveInfoEvent>(OnCollectObjectiveInfo);
-        
+
         SubscribeLocalEvent<RailroadBreakLightWatcherComponent, OnLightBreakEvent>(OnLightBreakEvent);
     }
 

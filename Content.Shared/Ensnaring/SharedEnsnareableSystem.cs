@@ -206,6 +206,11 @@ public abstract class SharedEnsnareableSystem : EntitySystem
 
     private void OnComponentRemove(EntityUid uid, EnsnaringComponent component, ComponentRemove args)
     {
+        // Starlight start - skip cleanup if the ensnared entity is being deleted
+        if (component.Ensnared != null && TerminatingOrDeleted(component.Ensnared.Value))
+            return;
+        // Starlight end
+
         if (!TryComp<EnsnareableComponent>(component.Ensnared, out var ensnared))
             return;
 

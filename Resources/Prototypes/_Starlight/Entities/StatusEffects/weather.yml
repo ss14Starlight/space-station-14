@@ -1,0 +1,84 @@
+- type: entity
+  parent: WeatherBase
+  id: WeatherRadStorm
+  name: radstorm
+  components:
+    - type: WeatherStatusEffect
+      sprite:
+        sprite: /Textures/Effects/weather.rsi
+        state: ashfall_heavy
+      color: green
+      sound:
+        path: /Audio/_Starlight/Effects/Weather/blobalarm.ogg
+        params:
+          loop: true
+          volume: -10
+    - type: WeatherEffects
+    - type: WeatherEntityEffect
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Radiation: 2
+
+- type: entity
+  parent: WeatherBase
+  id: WeatherSolarFlare
+  name: solar flare
+  components:
+    - type: WeatherStatusEffect
+      sprite:
+        sprite: /Textures/Effects/weather.rsi
+        state: ashfall_light
+      color: yellow
+      sound:
+        path: /Audio/_Starlight/Effects/Weather/blobalarm.ogg
+        params:
+          loop: true
+          volume: -10
+    - type: WeatherEffects
+    - type: WeatherEntityEffect
+      effects:
+      - !type:Flash
+      - !type:Flammable
+        multiplier: 3.75
+        multiplierOnExisting: 0.75
+      - !type:Ignite
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Heat: 1
+
+- type: entity
+  parent: WeatherBase
+  id: WeatherAuroraCaelus
+  name: aurora caelus
+  components:
+    - type: WeatherStatusEffect
+      sprite:
+        sprite: /Textures/_Starlight/Effects/weather.rsi
+        state: starry_night
+      sound:
+        path: /Audio/_Starlight/Effects/Weather/aurora_caelus.ogg
+        params:
+          volume: 0
+    - type: ParallaxStatusEffect
+      parallax: AuroraCaelus
+
+- type: entity
+  parent: WeatherBase
+  id: WeatherSpaceWhale
+  name: space whale
+  components:
+    - type: ParallaxStatusEffect
+      parallax: SpaceWhale
+
+- type: entity
+  parent: WeatherBase
+  id: WeatherCosmic
+  name: cosmic
+  components:
+    - type: ParallaxStatusEffect
+      parallax: CosmicFinaleParallax

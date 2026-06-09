@@ -65,3 +65,12 @@
     guides:
     - MedicalDoctor
   - type: PowerSwitch
+# SL Start: Lighting Update
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#3cb1b5"
+    radius: 2
+    energy: 0.8
+    castShadows: false
+# SL End

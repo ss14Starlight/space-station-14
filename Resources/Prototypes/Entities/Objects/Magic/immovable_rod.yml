@@ -122,7 +122,7 @@
   - type: ImmovableRod
     randomizeVelocity: false
     minSpeed: 35
-    maxSpeed: 35 
+    maxSpeed: 35
 
 - type: entity
   parent: ImmovableRodKeepTilesStill

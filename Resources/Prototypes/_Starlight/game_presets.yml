@@ -1,3 +1,107 @@
+#EventLight Gamemode for Event Usage
+- type: gamePreset
+  id: EventLight
+  alias:
+    - eventlight
+    - eventlite
+    - eventdiet
+  name: eventlight-title
+  description: eventlight-description
+  showInVote: false
+  rules:
+    - SpaceTrafficControlEventScheduler
+    - ThiefGamerule
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: SubXenoborgs
+  alias:
+    - subxenoborgs
+    - xenoborgsminorantag
+    - originalxenoborgs
+    - xenoborgslp
+  name: xenoborgs-title
+  description: xenoborgs-description
+  minPlayers: 20
+  showInVote: true
+  rules:
+  - SubXenoborgs
+  - SubGamemodesRuleNoXenoborg # No two motherships. Allows wizards to spawn on Xenoborgs. Space is dangerous, yo.
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: ShitStation
+  alias:
+    - shitstation
+    - trashstation
+  name: shitstation-title
+  description: shitstation-description
+  showInVote: true
+  minPlayers: 0
+  rules:
+    - ShitStationEventScheduler # It's all trash/shit/ion/derelict/minor critter event spawns. Should make the station feel sufficiently shitty.
+    - BasicStationEventScheduler
+    - BasicStationEventScheduler # More events without ramping events. What could go wrong?
+    - MeteorSwarmMildScheduler
+    - SubGamemodesRule
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Vampire
+  alias:
+  - vamp
+  - vamps
+  - vampire
+  - vampires
+  name: vampire-gamemode-title
+  description: vampire-gamemode-description
+  showInVote: True
+  minPlayers: 50
+  rules:
+  - Vampire
+  - SubGamemodesRuleNoVampires
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Changeling
+  alias:
+    - ling
+    - lings
+    - changeling
+  name: changeling-gamemode-title
+  description: changeling-gamemode-description
+  showInVote: false
+  rules:
+    - SLChangeling
+    - SLChangelingLess
+    - SubGamemodesRuleNoChangelings
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Traitorling
+  alias:
+    - lingtraitor
+    - traitorling
+  name: traitorling-title
+  description: traitorling-description
+  showInVote: true
+  minPlayers: 50
+  rules:
+    - SLChangeling
+    - Traitor
+    - SubGamemodesRuleNoChangelings
+    - BasicStationEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Vamptraitorling
@@ -28,24 +132,83 @@
   - allnt
   - allexceptroundenders
   name: all-at-once-except-zombieteors-title
-  minPlayers: 15 # Starlight, for Delta
+  minPlayers: 60
   description: all-at-once-except-zombieteors-description
   showInVote: false
   rules:
     - Nukeops
     - Traitor
     - Revolutionary
-    - Wizard
+    - WizardDuel
     - Xenoborgs
     - RampingStationEventScheduler
-    - SLChangeling #Starlight
+    - SLChangeling
     - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
-    - BasicRoundstartVariation # Starlight, ShitStation
-    - DerelictGenericCyborgSpawn # Starlight, ShitStation
-    - IonStorm # Starlight, ShitStation
-    - Vampire #Starlight
-    - SiliconLiberation #Starlight
-    - Brighteye #Starlight
-    - ThiefGamerule # Starlight, Event Light
+    - BasicRoundstartVariation
+    - ShitStationEventScheduler
+    - Vampire
+    - SiliconLiberation
+    - Brighteye
+    - ThiefGamerule
+    # - CosmicCult
 
+- type: gamePreset
+  id: AlmostAllerAtOnce
+  alias:
+  - almostallall
+  - allernt
+  - almostbadidea
+  - smallerpunishment
+  name: aller-at-once-except-zombieteors-title
+  description: aller-at-once-except-zombieteors-description
+  showInVote: false #Please god dont do this
+  minPlayers: 60
+  rules:
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - SubWizard # Well, you did say *Aller* at once.
+    - WizardDuel # Well, you did say *Aller* at once.
+    - Xenoborgs
+    - BasicStationEventScheduler
+    - BasicStationEventScheduler
+    - ShitStationEventScheduler
+    - MeteorSwarmScheduler # Meteor mild isn't included in almost aller because in theory the idea is to have a round last more than 10 minutes.
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - BasicRoundstartVariation
+    - SLChangeling
+    - Vampire
+    - SiliconLiberation
+    - Brighteye
+    - ThiefGamerule
+    - LoneOpsSpawn
+    - RailroadingTerminator
+    - RailroadingMinor
+    # - CosmicCult
+
+- type: gamePreset
+  id: TerrorSpiders
+  alias:
+  - spiders
+  - terror
+  - terrors
+  - spider
+  name: terrorspiders-gamemode-title
+  description: terrorspiders-gamemode-description
+  showInVote: True
+  minPlayers: 50
+  rules:
+  - TerrorSpidersSpawn
+  - SubGamemodesRuleNoChangelings
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+  - RailroadingMinor # 🌟Starlight🌟

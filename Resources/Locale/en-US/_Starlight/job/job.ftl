@@ -1,8 +1,8 @@
 job-name-magistrate = Magistrate
 job-name-ntrep = NanoTrasen Representative
 job-name-iaa = Internal Affairs Agent
-job-name-blueshield = Blue Shield Officer
-job-name-ntncblueshield = Nanotrasen Navy Corps Marine
+job-name-blueshield = Blueshield Officer
+job-name-ntncblueshield = NanoTrasen Navy Corps Marine
 job-name-miningspec = Mining Specialist
 job-name-surgeon = Surgeon
 job-name-mailtech = Mail Technician
@@ -10,7 +10,7 @@ job-name-centcomm = CentComm Official
 job-name-centcommoperator = CentComm Operator
 job-name-nanotrasen-special-forces = NTSF Operative
 job-name-decimus = Decimus Operative
-job-name-nct = Nanotrasen Career Trainer
+job-name-nct = NanoTrasen Career Trainer
 job-name-ert = Emergency Response Team
 
 job-name-performer = Performer
@@ -21,6 +21,15 @@ job-title-borgi = Borgi
 
 job-title-tsf-Phantom = Phantom Marine
 job-title-tsf-MARSOC = MARSOC Marine
+
+job-name-blackstar = Blackstar Mercenary
+
+job-name-medtak-dispatcher = MedTak Dispatcher
+job-name-medtak-leader = MedTak Team Leader
+job-name-medtak-medic = MedTak Medic
+job-name-medtak-pilot = MedTak Pilot
+job-name-medtak-security = MedTak Security
+job-name-medtak-borg = MedTak Silicon
 
 job-greet-information-rules = {$jobRules}
 

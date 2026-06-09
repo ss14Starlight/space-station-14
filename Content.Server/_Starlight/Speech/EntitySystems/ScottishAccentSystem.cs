@@ -36,10 +36,10 @@ public sealed partial class ScottishAccentSystem : EntitySystem
         if (char.IsUpper(original[0]))
         {
             if (original.Length > 1 && char.IsUpper(original[1]))
-                return replacement.ToUpperInvariant(); 
+                return replacement.ToUpperInvariant();
             return char.ToUpperInvariant(replacement[0]) + replacement[1..];
         }
 
-        return replacement; 
+        return replacement;
     }
 }

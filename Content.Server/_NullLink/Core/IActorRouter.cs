@@ -6,6 +6,8 @@ using Starlight.NullLink;
 namespace Content.Server._NullLink.Core;
 public interface IActorRouter
 {
+    string? Project { get; }
+    string? Server { get; }
     Task Connection { get; }
     bool Enabled { get; }
 

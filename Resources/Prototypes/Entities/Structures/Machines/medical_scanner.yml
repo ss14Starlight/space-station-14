@@ -79,3 +79,13 @@
   - type: GuideHelp
     guides:
     - Cloning
+# SL Start: Lighting Update
+  - type: LitOnPowered
+  - type: PointLight
+    autoRot: true
+    color: "#4db38a"
+    radius: 2
+    energy: 0.8
+    enabled: false
+    castShadows: false
+# SL End

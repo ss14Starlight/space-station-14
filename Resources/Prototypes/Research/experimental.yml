@@ -79,6 +79,18 @@
   recipeUnlocks:
   - WeaponGauntletGorilla
 
+- type: technology
+  id: MechBorgUplink
+  name: research-technology-mech-borg-uplink
+  icon:
+    sprite: _Starlight/Objects/Specific/Mechs/equipment.rsi
+    state: exosuit_beacon
+  discipline: Experimental
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MechEquipmentBorgBeacon
+
 # Tier 2
 
 - type: technology

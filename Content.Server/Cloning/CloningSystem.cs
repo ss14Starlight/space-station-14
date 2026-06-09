@@ -280,7 +280,7 @@ public sealed partial class CloningSystem : SharedCloningSystem
         }
 
     }
-    
+
     /// <summary>
     ///    Scans all permanent status effects applied to the original entity and transfers them to the clone.
     /// </summary>
@@ -332,8 +332,8 @@ public sealed partial class CloningSystem : SharedCloningSystem
         {
             var originalOrgan = originalOrgans.Where(o => MetaData(o.Id).EntityPrototype?.ID == MetaData(organ.Id).EntityPrototype?.ID).FirstOrNull();
             if (originalOrgan != null && (
-            TryComp(organ.Id, out BrainImplantComponent? _) 
-            || TryComp(organ.Id, out HandImplantComponent? _) 
+            TryComp(organ.Id, out BrainImplantComponent? _)
+            || TryComp(organ.Id, out HandImplantComponent? _)
             || TryComp(organ.Id, out EyeImplantComponent? _)))
             {
                 CloneComponents(originalOrgan.Value.Id, organ.Id, settings);

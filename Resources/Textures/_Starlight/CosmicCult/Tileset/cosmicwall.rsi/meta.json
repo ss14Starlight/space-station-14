@@ -1,0 +1,71 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State Based Copyright",
+    "states": [
+        {
+            "name": "cult0",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult1",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult2",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult3",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult4",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult5",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult6",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "cult7",
+            "copyright": "A custom item by AftrLite (Github).",
+            "directions": 4
+        },
+        {
+            "name": "trim_south",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "trim_north",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "trim_east",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "trim_west",
+            "copyright": "A custom item by AftrLite (Github)."
+        },
+        {
+            "name": "full",
+            "copyright": "A custom item by AftrLite (Github)."
+        }
+    ]
+}

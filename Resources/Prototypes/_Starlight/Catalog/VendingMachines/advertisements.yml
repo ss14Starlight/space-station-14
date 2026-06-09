@@ -9,3 +9,15 @@
   values:
     prefix: advertisement-icecream-
     count: 12
+
+- type: localizedDataset
+  id: LegalDrobeAds
+  values:
+    prefix: advertisement-legaldrobe-
+    count: 9
+
+- type: localizedDataset
+  id: InterdyneAds
+  values:
+    prefix: advertisement-interdyne-
+    count: 9

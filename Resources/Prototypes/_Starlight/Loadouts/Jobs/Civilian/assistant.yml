@@ -79,7 +79,7 @@
     proto: MasterGrey
   equipment:
     head: ClothingHeadHatBizarreSoft
-    
+
 - type: loadout
   id: BrimHat
   effects:
@@ -468,6 +468,14 @@
   equipment:
     gloves: ClothingHandsGlovesColorGray
 
+- type: loadout
+  id: AssistantMittens
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: HonoredAssistant
+  equipment:
+    gloves: ClothingHandsMittensColorYellow # Starlight, replace with fingerless budget insuls
+
 # Outerclothing
 - type: loadout
   id: GreyHoodieA
@@ -484,7 +492,7 @@
     proto: HonoredAssistant
   equipment:
     outerClothing: ClothingOuterCoatGreytiderTrenchcoat
-  
+
 - type: loadout
   id: SpaceAssholeCoat
   effects:

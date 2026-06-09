@@ -1,0 +1,17 @@
+<Project>
+  <!--
+    Serilog.Sinks.Http 7.2.0 (pulled transitively via Serilog.Sinks.Loki in Robust.Server)
+    hard-pins Microsoft.Extensions.Configuration to 3.1.9. Orleans 10.0.1 (Content.Server)
+    requires 10.0.0 — ConfigurationSection.TryGetValue was added there.
+
+    RobustToolbox has no Directory.Build.targets, so MSBuild traverses up and finds this file
+    for all Robust.* projects too. Adding explicit references here pins the minimum version to
+    10.0.0 in Robust.Server's dependency graph without touching the submodule.
+  -->
+  <ItemGroup Condition="'$(MSBuildProjectName)' == 'Robust.Server'">
+    <PackageVersion Include="Microsoft.Extensions.Configuration" Version="10.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" />
+  </ItemGroup>
+</Project>

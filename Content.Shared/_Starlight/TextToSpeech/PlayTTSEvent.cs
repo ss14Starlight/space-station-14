@@ -14,7 +14,7 @@ public sealed class TTSHeaderEvent : EntityEventArgs
     public Guid Id { get; set; }
     public TTSType Type { get; set; }
     public SoundSpecifier? Chime { get; set; }
-    public NetEntity? SourceUid { get; set; }                               
+    public NetEntity? SourceUid { get; set; }
     public float VolumeModifier { get; set; } = 1;
 }
 

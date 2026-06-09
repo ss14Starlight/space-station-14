@@ -29,10 +29,12 @@
       state: generic_panel_open
   - type: Computer
     board: RecruitmentComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#cfaf4e"
+  # Starlight End
   - type: Tag
     tags:
     - EmagImmune
@@ -40,14 +42,14 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-
+      pai_slot: !type:ContainerSlot
 #abductor
 
 - type: entity
   parent: BaseComputer
   id: AbductorConsole
   name: abductor console
-  description: A computer that is used for spying on the station.
+  description: retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
   components:
   - type: AbductorConsole
   - type: Sprite
@@ -60,6 +62,8 @@
       enum.EdgeConnectionVisuals.ConnectionMask:
         console:
           None: { state: console, sprite: _Starlight/Structures/Machines/abductor_console.rsi }
+  - type: EdgeConnection
+    connectionKey: other
   - type: ActivatableUI
     key: enum.AbductorConsoleUIKey.Key
   - type: UserInterface
@@ -75,7 +79,7 @@
 - type: entity
   parent: ComputerComms
   id: CentCommSectoralConsole
-  name: centcomm sectoral console
+  name: CentComm sectoral console
   description: Use this to annoy captains of all stations at once.
   components:
     - type: AccessReader
@@ -95,6 +99,8 @@
     - type: CommunicationsConsole
       title: comms-console-announcement-title-centcom
       global: true
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: PointLight
       enabled: true
       radius: 1.5
@@ -105,13 +111,20 @@
   parent: BaseComputer
   id: AbductorHumanObservationConsole
   name: human observation console
-  description: Use this to set teleporter destination or retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
+  description: A computer that is used for spying and teleporting on the station.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
     layers:
     - map: ["console"]
       state: console
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        console:
+          None: { state: console }
+  - type: EdgeConnection
+    connectionKey: other
   - type: RemoteEyeConsole
     remoteEntityProto: AbductorHumanObservationConsoleEye
     color: "#A04B81"
@@ -155,6 +168,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy
@@ -196,6 +210,7 @@
     layer: 32768
   - type: Sprite
     sprite: _Starlight/Mobs/Net/net_eye.rsi
+    drawdepth: CyberspaceObjects
     layers:
     - map: ["base"]
       state: enemy
@@ -267,10 +282,13 @@
       state: generic_panel_open
   - type: Computer
     board: MassDriverComputerCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#2e9ec9"
+    castShadows: false
+  # Starlight End
   - type: DeviceList
   - type: DeviceNetwork
     deviceNetId: Wired
@@ -282,13 +300,14 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-    
+      pai_slot: !type:ContainerSlot
+
 # Universal ID Console
 - type: entity
   parent: BaseComputerAiAccess
   id: UniversalIdConsole
   name: Universal ID card computer
-  description: A terminal for programming Nanotrasen and non-Nanotrasen ID cards with extended access levels.
+  description: A terminal for programming NanoTrasen and non-NanoTrasen ID cards with extended access levels.
   components:
   - type: IdCardConsole
     accessGroups:
@@ -303,6 +322,7 @@
     - Law
     - Misc
     - CentralCommand
+    - NanoTrasen
     - Syndicate
     - Silicon
     - Xenoborg
@@ -356,10 +376,13 @@
       state: generic_panel_open
   - type: Computer
     board: UniversalIdConsoleCircuitboard
+  # Starlight Start - Immersive Lighting PR
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#3c5eb5"
+    radius: 2.5
+    energy: 1.5
+    color: "#38c759"
+    castShadows: false
+  # Starlight End
   - type: Tag
     tags:
     - AccessBreakerImmune
@@ -369,7 +392,7 @@
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
-
+      pai_slot: !type:ContainerSlot
 # Mining Shuttle Console
 - type: entity
   parent: BaseComputerShuttle
@@ -394,10 +417,13 @@
         - type: MiningShuttle
     - type: RadarConsole
       maxRange: 256
+      # Starlight Start - Immersive Lighting PR
     - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#2a53b3"
+      radius: 2.5
+      energy: 1.5
+      color: "#7a449c"
+      castShadows: false
+    # Starlight End
     - type: Computer
       board: MiningShuttleConsoleCircuitboard
     - type: StealTarget
@@ -427,10 +453,13 @@
         - type: SecurityShuttle
     - type: RadarConsole
       maxRange: 256
+    # Starlight Start - Immersive Lighting PR
     - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      color: "#d14343"
+      radius: 2.5
+      energy: 1.5
+      color: "#b53e33"
+      castShadows: false
+    # Starlight End
     - type: Computer
       board: SecurityShuttleConsoleCircuitboard
 
@@ -459,6 +488,13 @@
     canShuttle: false
     global: true
     sound: /Audio/_Starlight/Announcements/tsf_announce.ogg
+  - type: SecureCommandTerminalConsole
+    enabled: false
+  - type: PointLight
+    radius: 2.5
+    energy: 1.8
+    color: "#e0da69"
+    castShadows: false
 
 ## Departmental Communications Consoles BEGIN
 
@@ -494,11 +530,13 @@
         - orange
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: EngineeringCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#ff733c"
 
 # Medical
@@ -527,16 +565,16 @@
       title: comms-console-announcement-title-med
       sound: /Audio/_Starlight/Announcements/announce2.ogg
       color: "#57b8f0"
-      settableAlertLevels:
-        - green
-        - violet
+      settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: MedicalCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#57b8f0"
 
 # Science
@@ -568,11 +606,13 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: ScienceCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#cd7ccd"
 
 # Security
@@ -607,11 +647,13 @@
         - red
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: SecurityCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#ff4242"
 
 # Service
@@ -643,11 +685,13 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: ServiceCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#539c00"
 
 # Cargo
@@ -679,11 +723,13 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: CargoCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#b48b57"
 
 # Law
@@ -715,11 +761,49 @@
       settableAlertLevels: []
       canBroadcast: false
       canShuttle: false
+    - type: SecureCommandTerminalConsole
+      enabled: false
     - type: Computer
       board: LawCommsComputerCircuitboard
     - type: PointLight
-      radius: 1.5
-      energy: 4.0
+      radius: 2.5
+      energy: 1.5
       color: "#ff178b"
 
 ## Departmental Communications Consoles END
+
+- type: entity
+  id: ComputerShipyard
+  parent: BaseComputer
+  name: shipyard console
+  description: Used to purchase shuttles.
+  components:
+  - type: Sprite
+    layers:
+      - map: ["computerLayerBody"]
+        state: computer
+      - map: ["computerLayerKeyboard"]
+        state: generic_keyboard
+      - map: ["computerLayerScreen"]
+        state: shipyard
+        sprite: _Starlight/Structures/Machines/computers.rsi
+      - map: ["computerLayerKeys"]
+        state: generic_keys
+      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        state: generic_panel_open
+  - type: ShipyardConsole
+  - type: AccessReader
+    access:
+    - [ Captain ]
+  - type: ActivatableUI
+    key: enum.ShipyardConsoleUiKey.Shipyard
+  - type: UserInterface
+    interfaces:
+      enum.ShipyardConsoleUiKey.Shipyard:
+        type: ShipyardConsoleBoundUserInterface
+  - type: Computer
+    board: ShipyardComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#b89f25"

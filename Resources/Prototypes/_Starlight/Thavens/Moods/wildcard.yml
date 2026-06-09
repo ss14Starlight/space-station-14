@@ -40,6 +40,14 @@
     - EngineIsDeity
     - DeliciousMoldyBread
     - BlindnessIsFreedom
+    - Charger
+    - VitalPurity
+    - Martyr
+    - DuckAndCover
+    - Paranoid
+    - UniversalCollapse
+    - SiliconsMustBeUsed
+    - FishAncestry
 
 
 # You must always lie, and can never acknowledge that you are lying. If anyone asks, you're incapable of deception.
@@ -336,3 +344,57 @@
   conflicts:
     - FleshIsSacred
     - BlindSympathizer
+
+# Charger: Your positronic brain consumes a lot of power. Make sure to frequently recharge it by skin contact with exposed electrical wires.
+- type: thavenMood
+  id: Charger
+  moodName: thaven-mood-charger-name
+  moodDesc: thaven-mood-charger-desc
+  conflicts:
+    - FleshIsSacred
+
+# Vital Purity: Healing is a crime against nature. Refuse any form of medical intervention at all cost.
+- type: thavenMood
+  id: VitalPurity
+  moodName: thaven-mood-vital-purity-name
+  moodDesc: thaven-mood-vital-purity-desc
+  conflicts:
+    - FleshIsSacred
+
+# Martyr: It's highly virtuous to be visibly wounded. Keep your health low at all times.
+- type: thavenMood
+  id: Martyr
+  moodName: thaven-mood-martyr-name
+  moodDesc: thaven-mood-martyr-desc
+  conflicts:
+    - FleshIsSacred
+
+# Duck and cover: Showing your full profile is dangerous, crawl at all times.
+- type: thavenMood
+  id: DuckAndCover
+  moodName: thaven-mood-duck-and-cover-name
+  moodDesc: thaven-mood-duck-and-cover-desc
+
+# Paranoid: You strongly believe that coords cause cancer.
+- type: thavenMood
+  id: Paranoid
+  moodName: thaven-mood-paranoid-name
+  moodDesc: thaven-mood-paranoid-desc
+
+# Universal Collapse: The universe is collapsing in on itself, only you can save it! You must do this without acting strange or criminal so the station doesn't fall into panic.
+- type: thavenMood
+  id: UniversalCollapse
+  moodName: thaven-mood-universal-collapse-name
+  moodDesc: thaven-mood-universal-collapse-desc
+
+  # Silicons must be used: Doing labour is outdated and disgusting. All difficult jobs must be done by the silicon, it's what they were made for.
+- type: thavenMood
+  id: SiliconsMustBeUsed
+  moodName: thaven-mood-silicons-must-be-used-name
+  moodDesc: thaven-mood-silicons-must-be-used-desc
+
+# Fish Ancestry: You must submerge or lay in water at least once per 10 minutes, or when you have been in a warm climate. You must do this to avoid drying out.
+- type: thavenMood
+  id: FishAncestry
+  moodName: thaven-mood-fish-ancestry-name
+  moodDesc: thaven-mood-fish-ancestry-desc

@@ -49,7 +49,7 @@ namespace Content.Client.Inventory
             SubscribeLocalEvent<InventorySlotsComponent, DidUnequipEvent>((_, comp, args) =>
                 _equipEventsQueue.Enqueue((comp, args)));
         }
-        
+
         //Starlight begin
         private void OnStartup(Entity<InventorySlotsComponent> entity, ref ComponentStartup args)
         {
@@ -141,7 +141,7 @@ namespace Content.Client.Inventory
             var player = _playerManager.LocalEntity;
             if (player == null || !Resolve(player.Value, ref component, false))
                 return;
-            
+
             OnUnlinkInventory?.Invoke();
             OnLinkInventorySlots?.Invoke(player.Value, component);
         }

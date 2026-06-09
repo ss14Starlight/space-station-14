@@ -169,7 +169,8 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             Gender = gender,
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
-            DNA = dna
+            DNA = dna,
+            Entity = GetNetEntity(idUid) // Starlight
         };
 
         var key = AddRecordEntry(station, record);

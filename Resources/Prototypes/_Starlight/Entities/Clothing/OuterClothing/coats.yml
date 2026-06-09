@@ -1,8 +1,18 @@
 - type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: ClothingOuterColdBase
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.9
+
+- type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseBlueShieldContraband]
   id: ClothingOuterCoatBlueShield
-  name: blue shield overcoat
-  description: A coat worn by Blue Shield Officers who don't mind a little cold. Heavily reinforced, for when diplomacy won't cut it.
+  name: blueshield overcoat
+  description: A coat worn by Blueshield Officers who don't mind a lighter wear. Heavily reinforced, for when diplomacy won't cut it.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/blueshield_coat.rsi
@@ -17,15 +27,65 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.7
+        Cold: 0.7 # BlueShield is expensive armor.
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Item
 
 - type: entity
-  parent: [ ClothingOuterStorageFoldableBase, BaseCommandContraband ]
+  parent: [ ClothingOuterStorageBase, BaseNanoTrasenContraband ]
+  id: ClothingOuterCoatMagi
+  name: magistrate longcoat
+  description: New and improved, this jacket actually keeps you warm! Brought to you by the NanoTrasen Fashion Board.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/magi_overcoat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/magi_overcoat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+  - type: Pierceable
+    level: Metal
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.35
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+        Cold: 0.85
+
+- type: entity
+  parent: [ClothingOuterBase, BaseNanoTrasenContraband]
+  id: ClothingOuterRobesMagistrate
+  name: magistrate robes
+  description: This robe commands authority. Much more dense than the commoner variants.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/magistrate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/magistrate.rsi
+  - type: Pierceable
+    level: Metal
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.35
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+        Cold: 0.85
+
+- type: entity
+  parent: [ ClothingOuterStorageFoldableBase, BaseNanoTrasenContraband ]
   id: ClothingOuterCoatNtrep
-  name: nt representive jacket
-  description: A fancy black jacket, standart issue to Nanotrasen Representives.
+  name: nt representative jacket
+  description: A fancy black jacket, standard issue to NanoTrasen Representatives.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/OuterClothing/Coats/ntrep.rsi
@@ -33,17 +93,21 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/ntrep.rsi
   - type: Pierceable
     level: Metal
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.35
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+        Cold: 0.85
 
 - type: entity
-  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseCommandContraband ]
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep, BaseNanoTrasenContraband ]
   id: ClothingOuterCoatNtrepOpen
-  name: nt representive jacket
+  name: nt representative jacket
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -60,6 +124,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Cold: 0.9
         Caustic: 0.75
 
 - type: entity
@@ -89,6 +154,7 @@
         Slash: 0.85
         Piercing: 0.65
         Heat: 0.85
+        Cold: 0.90 # It's a jacket
         Caustic: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.95
@@ -122,6 +188,7 @@
         Slash: 0.65
         Piercing: 0.75
         Heat: 0.85
+        Cold: 0.90 # It's technically a coat
         Caustic: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.65
@@ -150,6 +217,7 @@
         Slash: 0.65
         Piercing: 0.75
         Heat: 0.85
+        Cold: 0.90 # It's technically a coat
         Caustic: 0.75
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.65
@@ -158,6 +226,34 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabCorpsman]
   id: ClothingOuterCoatLabCorpsmanOpened
   name: corpsman's nostalgic overcoat
+
+# Fashion-O-Mat
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatSpaceCourier
+  name: space courier heavy coat
+  description: A luxurious coat, made to honor a legendary space courier. Fly, space courier!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/space_courier_coat.rsi
+  - type: TemperatureProtection # Technically winter coat-type outfit
+    heatingCoefficient: 1.15
+    coolingCoefficient: 0.05
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.90
+        Heat: 0.85
+        Cold: 0.8 # Space is in the name
+    priceMultiplier: 0
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.50
+# Fashion-O-Mat END
+
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -187,6 +283,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+        Cold: 0.9
         Caustic: 0.9
 
 #USSP
@@ -212,9 +309,10 @@
         Slash: 0.90
         Piercing: 0.75
         Heat: 0.80
+        Cold: 0.8 # Great coat
 
 - type: entity
-  parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing]
   id: ClothingOuterCoatGreytiderTrenchcoat
   name: greytider trenchcoat
   description: Ah, your trusty coat. There's a few tears here and there, giving it a more timely look. Or at least, that's what you told yourself when you found out gettin' it repaired would set you back 200 spesos.
@@ -248,6 +346,7 @@
         Slash: 0.75
         Piercing: 0.95
         Heat: 0.65
+        Cold: 0.80 # Sec can get a little more
   - type: ExplosionResistance
     damageCoefficient: 0.85
 
@@ -272,8 +371,9 @@
       coefficients:
         Blunt: 0.65
         Slash: 0.80
-        Piercing: 0.70 
+        Piercing: 0.70
         Heat: 0.90
+        Cold: 0.90
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.75
 
@@ -284,7 +384,7 @@
 
 # Cargo Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerCargo
   name: cargo windbreaker
   description: A simple windbreaker with a fur collar.
@@ -303,7 +403,7 @@
 
 # Engineering Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerEngineering
   name: engineering windbreaker
   description: A reflective windbreaker for engineers.
@@ -330,7 +430,7 @@
 
 # Medical Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerMedical
   name: medical windbreaker
   description: A light windbreaker to see when you accidentally cut an artery.
@@ -349,7 +449,7 @@
 
 #Science Windbreaker
 - type: entity
-  parent: [ClothingOuterStorageFoldableBase, AllowSuitStorageClothing]
+  parent: [ClothingOuterStorageFoldableBase, ClothingOuterColdBase, AllowSuitStorageClothing]
   id: ClothingOuterWindbreakerScience
   name: science windbreaker
   description: a labcoat style windbreaker with a pocket for all of your pens.
@@ -369,7 +469,7 @@
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCentcommContraband]
   id: ClothingOuterCoatWardenCentcomm
-  name: Central Command Armored Winter Coat
+  name: central command armored winter coat
   description: A extremely durable, stylish winter coat made for central command Operators to survive even in the coldest of winter
   components:
   - type: Sprite
@@ -385,6 +485,7 @@
         Slash: 0.4
         Piercing: 0.4
         Heat: 0.5
+        Cold: 0.55 # CentComm
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Item
@@ -392,7 +493,7 @@
 - type: entity
   parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing, BaseCommandContraband ]
   id: ClothingOuterCoatNCT
-  name: NT career trainer's jacket
+  name: nt career trainer's jacket
   description: A sharp black coat with beige trim around the cuffs and collar, offering a mix of professionalism and approachability.
   components:
   - type: Sprite
@@ -407,6 +508,7 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+        Cold: 0.8 # It's a pretty dense coat, all things considered
 
 - type: entity
   parent: [ClothingOuterStorageBase, AllowSuitStorageClothing]
@@ -418,3 +520,25 @@
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/OverClothes/ratvar_robes.rsi
+
+- type: entity
+  parent: [ ClothingOuterStorageBase, ClothingOuterColdBase, AllowSuitStorageClothing]
+  id: ClothingOuterCoatPirateDark
+  name: dark pirate garb
+  description: Yarr, but dark.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/dark_pirate.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageBase, ClothingOuterColdBase]
+  id: ClothingOuterCoatField
+  name: field jacket
+  description: A thick, well-worn field jacket.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi

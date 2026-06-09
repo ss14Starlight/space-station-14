@@ -13,7 +13,7 @@ namespace Content.Server._Starlight.Administration.Systems.Commands;
 public sealed class MobThresholdCommand : ToolshedCommand
 {
     private MobThresholdSystem? _threshold;
-    
+
     [CommandImplementation("initialize")]
     public EntityUid Initialize([PipedArgument] EntityUid uid, FixedPoint2 damage, MobState state)
     {

@@ -50,6 +50,7 @@ public abstract partial class SharedBorgSystem
     /// <summary>
     /// Activates or deactivates a borg.
     /// If active the borg
+    /// - has door access, // Starlight
     /// - can use modules and
     /// - has full movement speed.
     /// </summary>
@@ -65,7 +66,7 @@ public abstract partial class SharedBorgSystem
             InstallAllModules(chassis.AsNullable());
         else
             DisableAllModules(chassis.AsNullable());
-
+        _access.SetAccessEnabled(chassis.Owner, active); // Needs a player so that scientists can't drag around an empty borg for free AA. // Starlight
         _powerCell.SetDrawEnabled(chassis.Owner, active);
         _movementSpeedModifier.RefreshMovementSpeedModifiers(chassis);
 
@@ -234,6 +235,17 @@ public abstract partial class SharedBorgSystem
                     return false;
                 }
             }
+        }
+
+        var attemptEv = new BorgModuleInsertAttemptEvent(module.Owner, chassis.Owner);
+        RaiseLocalEvent(chassis, ref attemptEv);
+        RaiseLocalEvent(module, ref attemptEv);
+
+        if (attemptEv.Cancelled)
+        {
+            var reason = attemptEv.Reason ?? Loc.GetString("borg-module-incompatible"); // Starlight
+            _popup.PopupClient(reason, chassis.Owner, user); // Starlight
+            return false;
         }
 
         return true;

@@ -15,13 +15,14 @@
   rules: job-rules-corporate-aligned
   supervisors: job-supervisors-none
   canBeAntag: false
+  bypassEorPacification: true
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
   special:
   - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+    implants: [ MindShieldImplant, DeathRattleImplantNanoTrasen ]
 
 - type: startingGear
   id: DecimusGear
@@ -30,7 +31,7 @@
     back: ClothingBackpackDeathSquad
     mask: ClothingMaskGasDeathSquad
     eyes: ClothingEyesGlassesBlueShield
-    ears: ClothingHeadsetAltCentComDS
+    ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitDecimus
     shoes: ClothingShoesBootsMagAdv

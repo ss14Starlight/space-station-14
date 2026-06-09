@@ -3,27 +3,24 @@
   id: Thief
   components:
   - type: ThiefRule
-  - type: AntagObjectives
-    objectives:
-    - EscapeThiefShuttleObjective
+#  - type: AntagObjectives # Starlight start
+#    objectives: # We won't be using this, we'll be taking it from GroupOuter instead so we can roll for Master Thief
+#    - EscapeThiefShuttleObjective # Starlight end
   - type: AntagRandomObjectives
     sets:
-    - groups: ThiefBigObjectiveGroups
-      prob: 0.7
-      maxPicks: 1
-    - groups: ThiefObjectiveGroups
+#    - groups: ThiefBigObjectiveGroups # Starlight start
+#      prob: 0.7
+#      maxPicks: 1
+    - groups: ThiefObjectiveGroupOuter # Replaced with outer group, so we can *finally* roll the escape objective more reliably.
       maxPicks: 10
-    - groups: ThiefObjectiveGroupEscape # Starlight
-      prob: 0.33 # Starlight. It gives you a lot more freedom, but also lets you be way more intrusive,  so low chance.
-      maxPicks: 1 # Starlight
-    maxDifficulty: 3 # Starlight. Ultrapop + ton of new targets means some objectives become really easy in the chaos.
+    maxDifficulty: 3 # Starlight end. Ultrapop + ton of new targets means some objectives become really easy in the chaos.
   - type: AntagSelection
     agentName: thief-round-end-agent-name
     selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
       max: 6 # Starlight
-      playerRatio: 21 # Starlight. Tweaks thief scaling a little, so that Beta can still have 3 but Alpha requires 126 instead of 120 for 6 thieves. (To account for the 6 thieves.) Also needed since it's a Ninja requirement now.
+      playerRatio: 26 # Starlight. Beta has low sec, so we're going to allow the scaling to take a thief from them anyways, to scale Alpha better.
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
@@ -49,8 +46,8 @@
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 6 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 26 # Starlight. Same justification as Thieves.
+      max: 5 # Starlight, same reasoning as the roundstart changeling change, for alpha.
+      playerRatio: 32 # Starlight. You should stop seeing 6 lings all the time now.
       lateJoinAdditional: true
       allowNonHumans: false
       multiAntagSetting: None
@@ -63,6 +60,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 75
       # Starlight-end
 
 - type: entity
@@ -70,13 +69,24 @@
   id: Vampire
   components:
   - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireKillRandomPersonObjective
+    - VampireDrainObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroupsStateOnly
+      maxPicks: 1
+    - groups: VampireObjectiveGroupsStealOnly
+      maxPicks: 1
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: vampire-roundend-name
     selectionTime: IntraPlayerSpawn # Starlight. Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
-      max: 12 # Starlight. Full gamemode Vamps scale higher to account for scaling.
-      playerRatio: 16 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
+      max: 10 # Starlight. Full gamemode Vamps scale higher to account for scaling.
+      playerRatio: 20 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
       lateJoinAdditional: true
       allowNonHumans: True
       multiAntagSetting: None
@@ -97,7 +107,7 @@
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ Wizard ]
-      max: 3 # Starlight. Less egregious than the full wizard mode.
+      max: 4 # Starlight. Less egregious than the full wizard mode. Increased mildly since main wizard gamemode is gone now.
       playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
@@ -123,6 +133,8 @@
       # Starlight-start
       tags:
         - CantBecomeRevolutionary
+        - Wizard
+      allowNonHumans: true
       # Starlight-end
 
 - type: entity
@@ -138,7 +150,7 @@
   - type: AntagMultipleRoleSpawner
     antagRoleToPrototypes:
       MothershipCore: [ MothershipCore ]
-      Xenoborg: [ XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth ]
+      Xenoborg: [ XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth, XenoborgEngi, XenoborgHeavy, XenoborgScout, XenoborgStealth ] # Starlight. Yes, it  has to be written like this. No, I don't like it either.
     pickAndTake: true
   - type: AntagSelection
     selectionTime: PrePlayerSpawn
@@ -162,6 +174,7 @@
       mindRoles:
       - MindRoleXenoborg
       min: 4
-      max: 4
+      max: 8 # Starlight
+      playerRatio: 15 # Starlight. 1 for every 15 players. Only counts readied up, so 8 at 100+ readied, meaning like 150+ pop.
   - type: DynamicRuleCost
     cost: 200

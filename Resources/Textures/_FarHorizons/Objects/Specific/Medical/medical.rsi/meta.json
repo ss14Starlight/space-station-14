@@ -1,0 +1,25 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+    "copyright": "Recolored bloodpack for Oilpack by Killer Tamashi (Discord)",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "oilpack"
+		},
+		{
+			"name": "oilpack-empty"
+		},
+		{
+			"name": "oilpack-inhand-right",
+			"directions": 4
+		},
+		{
+			"name": "oilpack-inhand-left",
+			"directions": 4
+		}
+	]
+}

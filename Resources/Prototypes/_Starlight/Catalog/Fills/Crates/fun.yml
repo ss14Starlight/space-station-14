@@ -47,7 +47,7 @@
           children:
             - id: TwinPointerKit
               amount: 1
-              
+
 - type: entity
   id: CrateFunMegaShark
   parent: CrateGenericSteel
@@ -59,3 +59,16 @@
       entity_storage: !type:AllSelector
         children:
         - id: PlushieLargeSoftShark
+
+- type: entity
+  id: CrateSaltLamp
+  parent: CrateGenericSteel
+  name: salt lamp plushie crate
+  description: Contains one small salt lamp plushie and one large salt lamp plushie. Perfect for adding a cozy ambiance to any room.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlushieSaltLampLarge
+        - id: PlushieSaltLampSmall

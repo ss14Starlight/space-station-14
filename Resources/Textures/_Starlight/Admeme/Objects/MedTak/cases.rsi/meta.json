@@ -1,0 +1,52 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by SevenShades",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bottle1"
+    },
+    {
+      "name": "bottle2"
+    },
+    {
+      "name": "bottle3"
+    },
+    {
+      "name": "bottle4"
+    },
+    {
+      "name": "bottle5"
+    },
+    {
+      "name": "bottle6"
+    },
+    {
+      "name": "bottle7"
+    },
+    {
+      "name": "bottle8"
+    },
+    {
+      "name": "bottlecase"
+    },
+    {
+      "name": "injectorpack"
+    },
+    {
+      "name": "surgerykit"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    }
+  ]
+}

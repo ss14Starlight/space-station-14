@@ -29,7 +29,7 @@
 - type: storeCategory
   id: SLClown
   name: store-category-service-clown
-  
+
 - type: storeCategory
   id: SLSecurity
   name: store-category-security-main
@@ -40,7 +40,7 @@
 
 - type: storeCategory
   id: SLFashionSkirt
-  name: Luxury dresses 
+  name: Luxury dresses
 
 - type: storeCategory
   id: SLFashionSuit
@@ -100,17 +100,17 @@
 - type: storeCategory
   id: UplinkCybernetics
   name: store-category-cybernetics
-  
+
 # salvage
 
 - type: storeCategory
   id: SalvageEquipment
   name: Equipment
-  
+
 - type: storeCategory
   id: SalvageWeapons
   name: Weapons
-  
+
 - type: storeCategory
   id: SalvageConsumeables
   name: Consumeables
@@ -172,3 +172,8 @@
 - type: storeCategory
   id: Languages
   name: store-category-languages
+
+# Secret
+- type: storeCategory
+  id: SLSecret
+  name: store-category-secret

@@ -6,16 +6,16 @@
   sprites: MobAvaliSprites
   defaultSkinTone: "#D2B48C"
   markingLimits: MobAvaliMarkingLimits
-  dollPrototype: MobAvaliDummy
+  dollPrototype: AppearanceAvali
   skinColoration: Hues
   maleFirstNames: names_avali_first
   femaleFirstNames: names_avali_first
   lastNames: names_avali_packs
   naming: FirstLast
-  minAge: 23
-  youngAge: 103
-  oldAge: 257
-  maxAge: 430
+  minAge: 20
+  youngAge: 100
+  oldAge: 250
+  maxAge: 350
   minHeight: 0.8
   defaultHeight: 0.91
   maxHeight: 1

@@ -138,3 +138,25 @@
       moles:
         Oxygen: 1.025689525 # oxygen
         Nitrogen: 1.025689525 # nitrogen
+
+# NTNC borg
+- type: entity
+  parent: [ JetpackBlack, BaseCentcommContraband ]
+  id: JetpackCyborgCentcomm
+  name: CentComm jetpack
+  suffix: Cyborg, Infinite
+  description: Specialised jetpack for cyborgs which harvests moles on the go.
+  components:
+  - type: Jump
+    action: JumpJetNoMoles
+  - type: GasTank
+    outputPressure: 21.3
+    air:
+      volume: 5
+      temperature: 293.15
+  - type: Jetpack
+    moleUsage: 0
+  - type: MovementSpeedModifier
+    weightlessAcceleration: 1.3
+    weightlessFriction: 0.3
+    weightlessModifier: 1

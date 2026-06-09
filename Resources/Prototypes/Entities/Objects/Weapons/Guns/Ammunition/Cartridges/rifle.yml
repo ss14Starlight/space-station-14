@@ -63,7 +63,7 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#B68F0E"
-        
+
 - type: entity
   id: CartridgeRifleAP
   name: cartridge (.20 rifle AP)

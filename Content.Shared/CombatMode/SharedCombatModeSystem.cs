@@ -92,7 +92,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
             {
                 EnsureComp<NoRotateOnMoveComponent>(mechPilot.Mech);
             }
-            
+
             EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
@@ -102,7 +102,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
             {
                 RemComp<NoRotateOnMoveComponent>(mechPilot.Mech);
             }
-            
+
             RemComp<MouseRotatorComponent>(uid);
             RemComp<NoRotateOnMoveComponent>(uid);
         }

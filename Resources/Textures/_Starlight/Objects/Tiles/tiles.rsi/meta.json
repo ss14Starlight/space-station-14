@@ -50,6 +50,60 @@
         {
             "name": "darkwood-inhand-left",
             "directions": 4
+        },
+        {
+            "name": "tile_metal_dark"
+        },
+        {
+            "name": "tile_metal_engie"
+        },
+        {
+            "name": "tile_metal_med"
+        },
+        {
+            "name": "tile_metal_sci"
+        },
+        {
+            "name": "tile_metal_sec"
+        },
+        {
+            "name": "tile_metal_service"
+        },
+        {
+            "name": "tile_astro_dirt"
+        },
+        {
+            "name": "3x3black"
+        },
+        {
+            "name": "3x3brown"
+        },
+        {
+            "name": "3x3steel"
+        },
+        {
+            "name": "3x3white"
+        },
+        {
+            "name": "old_concrete_tiles"
+        },
+        {
+            "name": "old_concrete_bricks"
+        },
+        {
+            "name": "ornate"
+        },
+        {
+            "name": "rough_metal"
+        },
+        {
+            "name": "rusty_metal"
+        },
+        {
+            "name": "steel_grate"
+        },
+        {
+            "name": "techfloor_greeb"
         }
     ]
 }

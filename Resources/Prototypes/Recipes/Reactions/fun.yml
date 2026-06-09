@@ -155,8 +155,10 @@
     Ethanol:
       amount: 5
   effects:
-    - !type:SpawnEntity
-      entity: ShardCrystalRandom
+    - !type:SpawnEntityFromTable # Starlight BEGIN
+      number: 1
+      entityTable: !type:NestedSelector
+        tableId: CrystalShardTable # Starlight END
 
 - type: reaction
   id: Gunpowder

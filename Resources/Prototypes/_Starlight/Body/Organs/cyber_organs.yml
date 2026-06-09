@@ -12,10 +12,15 @@
       reagents:
       - ReagentId: Iron
         Quantity: 30
+  - type: HumanoidEMPCompositeElement
+    effect:
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: CyberEyeNightVision
-  name: NightVision cyber eyes
+  name: nightvision cyber eyes
   description: Enables you to see in the dark.
   parent: [OrganCyber, BaseOrganEyes]
   components:
@@ -23,17 +28,25 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_night
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NightVision
   - type: OrganVisualization
     layer: Eyes
     prototypes:
       Default: CyberEyesNightVision
       Resomi: ResomiCyberEyesNightVision
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: CyberEyeThermal
-  name: ThermalVision cyber eyes
+  name: thermalvision cyber eyes
   description: Enables you to see in the dark and detect warm objects through walls.
   parent: [OrganCyber, BaseOrganEyes]
   components:
@@ -41,13 +54,21 @@
     sprite: _Starlight/Objects/Specific/Medical/implants.rsi
     state: eyes_thermal
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: ThermalVision
   - type: OrganVisualization
     layer: Eyes
     prototypes:
       Default: CyberEyesThermalVision
       Resomi: ResomiCyberEyesThermalVision
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: BudgetCyberEyes
@@ -61,7 +82,7 @@
       - state: eyeball-l
       - state: eyeball-r
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: NoirOverlay
   - type: OrganVisualization
     layer: Eyes
@@ -78,6 +99,14 @@
       Vox: MobVoxEyes
       Cyclorite: MobCycloriteEyes
       Abductor: MobAbductorEyes
+  - type: HumanoidEMPCompositeElement
+    effect:
+      glitchDuration: 10.0
+      additionalEffects:
+        StatusEffectTemporaryBlindness: 2.0
+      damageAmount:
+        types:
+          Shock: 5
 
 - type: entity
   id: BudgetCyberTongue
@@ -89,7 +118,7 @@
     sprite: _Starlight/Objects/Specific/Medical/budget_cyber_organs.rsi
     state: tongue
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: UnableToTaste
 
 - type: entity
@@ -145,7 +174,7 @@
       - state: kidney-l
       - state: kidney-r
   - type: FunctionalOrgan
-    comps: 
+    comps:
     - type: ThirstRateMultiplier
       multiplier: 1.25
 

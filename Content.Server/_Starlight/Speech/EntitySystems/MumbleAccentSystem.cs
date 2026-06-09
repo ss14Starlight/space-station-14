@@ -38,6 +38,6 @@ public sealed class MumbleAccentSystem : EntitySystem
         }
     }
 
-    private void OnAccentGet(Entity<MumbleAccentComponent> ent, ref AccentGetEvent args) 
+    private void OnAccentGet(Entity<MumbleAccentComponent> ent, ref AccentGetEvent args)
         => args.Message = _replacement.ApplyReplacements(args.Message, "mumble");
 }

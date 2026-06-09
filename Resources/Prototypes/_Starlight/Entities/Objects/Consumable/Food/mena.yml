@@ -149,6 +149,10 @@
           Quantity: 4
         - ReagentId: Allicin
           Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+    - Chicken
 
 # Falafel Sandwich
 - type: entity
@@ -223,6 +227,9 @@
           Quantity: 8
         - ReagentId: Protein
           Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
 
 # Doner Kebab
 - type: entity
@@ -258,6 +265,9 @@
           Quantity: 2
         - ReagentId: Hummus
           Quantity: 10
+  - type: Tag
+    tags:
+    - Meat
 
 # Turkish Delight
 - type: entity

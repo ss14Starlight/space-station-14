@@ -11,5 +11,5 @@
     lightSoftness: 1
     BurningTemperature: 700
     PowerUse: 25
-    nightShiftCompatible: false
+    dimmable: false
   - type: DarkLight

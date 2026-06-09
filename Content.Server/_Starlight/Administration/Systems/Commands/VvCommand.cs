@@ -22,7 +22,7 @@ public sealed class VvCommand : ToolshedCommand
             ctx.Session!.Channel);
         return uid;
     }
-    
+
     [CommandImplementation("open")]
     public void Vv(IInvocationContext ctx, [PipedArgument] string path)
     {
@@ -30,9 +30,9 @@ public sealed class VvCommand : ToolshedCommand
         _net.SendSystemNetworkMessage(new OpenViewVariablesEvent($"/{path}"),
             ctx.Session!.Channel);
     }
-    
+
     [CommandImplementation("write")]
-    public EntityUid Write(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path, string value)
+    public EntityUid Write(IInvocationContext _, [PipedArgument] EntityUid uid, string path, string value)
     {
         if (path.StartsWith('/')) path = path[1..];
         _vvm.WritePath($"/entity/{uid}/{path}", value);
@@ -49,7 +49,7 @@ public sealed class VvCommand : ToolshedCommand
             ctx.WriteLine("Could not find path.");
             return uid;
         }
-        
+
         var val = ctx.ReadVar(value.VarName);
         var targetType = resPath.Get()?.GetType();
 
@@ -58,7 +58,7 @@ public sealed class VvCommand : ToolshedCommand
             ctx.WriteLine("Path leads to a null type.");
             return uid;
         }
-        
+
         if (targetType != val?.GetType())
             if (!targetType.IsNullable() && val is null)
             {
@@ -86,14 +86,14 @@ public sealed class VvCommand : ToolshedCommand
     }
 
     [CommandImplementation("rsaveraw")]
-    public object? RSaveRaw(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path)
+    public object? RSaveRaw(IInvocationContext _, [PipedArgument] EntityUid uid, string path)
     {
         if (path.StartsWith('/')) path = path[1..];
         var val = _vvm.ReadPath($"/entity/{uid}/{path}");
         return val;
     }
 
-    private string? GetViewVariable(IInvocationContext ctx, EntityUid uid, string path)
+    private string? GetViewVariable(IInvocationContext _, EntityUid uid, string path)
     {
         if (path.StartsWith('/')) path = path[1..];
         var val = _vvm.ReadPathSerialized($"/entity/{uid}/{path}");
@@ -109,7 +109,7 @@ public sealed class VvCommand : ToolshedCommand
     {
         foreach(var s in path) Vv(ctx, s);
     }
-    
+
     [CommandImplementation("write")]
     public IEnumerable<EntityUid> Write(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path, string value)
         => uid.Select(x => Write(ctx, x, path, value));
@@ -121,7 +121,7 @@ public sealed class VvCommand : ToolshedCommand
     [CommandImplementation("rsave")]
     public IEnumerable<string> RSave(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path)
         => uid.Select(x=>RSave(ctx, x, path));
-    
+
     [CommandImplementation("rsaveraw")]
     public IEnumerable<object?> RSaveRaw(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string path)
         => uid.Select(x=>RSaveRaw(ctx, x, path));
