@@ -9,7 +9,6 @@ using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
-using Content.Shared.Power.EntitySystems;
 #endregion
 
 namespace Content.Shared.Blocking;
@@ -18,7 +17,7 @@ public sealed partial class BlockingSystem
 {
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBatterySystem _powerCell = default!; //Starlight
+    [Dependency] private readonly PowerCellSystem _powerCell = default!; //Starlight
     [Dependency] private readonly ItemToggleSystem _itemToggle = default!; //Starlight
 
     private void InitializeUser()
@@ -36,7 +35,7 @@ public sealed partial class BlockingSystem
         SubscribeLocalEvent<BlockingComponent, PowerCellChangedEvent>(OnPowerCellChanged); //Starlight;
     }
 
- #region Starlight
+    #region Starlight
     /// <summary>
     /// If power cell is empty,the shield should be disabled
     /// </summary>
@@ -112,7 +111,7 @@ public sealed partial class BlockingSystem
 
         #region Starlight
         // A shield that uses power to function needs to use that power
-        if (!HasComp<PowerCellSlotComponent>(item))
+        if (!TryComp<PowerCellSlotComponent>(item, out var powerCellComp))
         {
             _damageable.TryChangeDamage((item, dmgComp), blockFraction * args.OriginalDamage); //Original Wizden code, this should be applicable in the majority of cases
         }
@@ -122,7 +121,7 @@ public sealed partial class BlockingSystem
             var damage = DamageSpecifier.ApplyModifierSet(args.Damage, damageMod);
             var damageEnergy = (float) damage.GetTotal() * blocking.DamageEnergyDraw * blockFraction;
 
-            var availableEnergy = _powerCell.GetCharge(item);
+            var availableEnergy = _powerCell.GetRemainingUses(item, 1f);
             if (availableEnergy <= 0)
                 return; // If the power cell is empty, no damage will be blocked
 

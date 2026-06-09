@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._Starlight.Weapon;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -11,7 +10,6 @@ using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Melee; //STARLIGHT
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
@@ -19,8 +17,13 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Examine;
 using Content.Shared.Localizations;
-using Content.Shared.PowerCell; //Starlight
-using Content.Shared.PowerCell.Components; //Starlight
+
+#region Starlight
+using Content.Shared._Starlight.Weapon;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.PowerCell;
+using Content.Shared.PowerCell.Components;
+#endregion
 
 namespace Content.Shared.Weapons.Reflect;
 
@@ -113,7 +116,7 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
-        // 🌟Starlight🌟 start
+        #region 🌟Starlight🌟
         var availableEnergy = 0;
         if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
         {
@@ -140,9 +143,8 @@ public sealed class ReflectSystem : EntitySystem
             return false;
         }
 
-        if (availableEnergy > 0)
-            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
-                return false; // if no battery or no charge, doesn't work and reflect fails
+        if (availableEnergy > 0 && !_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
+            return false; // if no battery or no charge, doesn't work and reflect fails
 
         if (reflector.Comp.OverrideAngle is not null)
         {
@@ -174,7 +176,7 @@ public sealed class ReflectSystem : EntitySystem
             var newRot = rotation.RotateVec(locRot.ToVec());
             _transform.SetLocalRotation(projectile, newRot.ToAngle());
         }
-        // 🌟Starlight🌟 end
+        #endregion
 
         PlayAudioAndPopup(reflector.Comp, user);
 
@@ -204,10 +206,11 @@ public sealed class ReflectSystem : EntitySystem
         string? hitscanId,
         [NotNullWhen(true)] out Vector2? newDirection)
     {
+        newDirection = null;
         if ((reflector.Comp.Reflects & hitscanReflectType) == 0x0 ||
             !_toggle.IsActivated(reflector.Owner))
         {
-            newDirection = null;
+            //newDirection = null;
             return false;
         }
 
@@ -226,24 +229,23 @@ public sealed class ReflectSystem : EntitySystem
             availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.ReflectEnergyDraw);
             if (availableEnergy <= 0)
             {
-                newDirection = null;
+                //newDirection = null;
                 return false;
             }
         }
 
         if (!_random.Prob(reflectionChance))
         {
-            newDirection = null;
+            //newDirection = null;
             return false;
         }
 
 
-        if (availableEnergy > 0)
-            if (!_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
-            {
-                newDirection = null;
-                return false; // if no battery or no charge, doesn't work and reflect fails
-            }
+        if (availableEnergy > 0 && !_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
+        {
+            //newDirection = null;
+            return false; // if no battery or no charge, doesn't work and reflect fails
+        }
 
         PlayAudioAndPopup(reflector.Comp, user);
 

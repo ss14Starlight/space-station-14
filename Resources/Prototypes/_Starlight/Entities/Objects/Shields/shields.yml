@@ -483,4 +483,5 @@
     - type: Damageable
       damageContainer: Shield
     - type: ContainerContainer
-      cell_slot: !type:ContainerSlot
+      containers:
+        cell_slot: !type:ContainerSlot

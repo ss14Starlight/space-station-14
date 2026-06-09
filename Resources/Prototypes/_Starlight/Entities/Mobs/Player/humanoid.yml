@@ -585,7 +585,9 @@
       rules: ghost-role-information-cc-aligned-rules
       important: true
       raffle:
-        settings: default
+        settings: short
+      mindRoles:
+        - MindRoleGhostCentCommAligned
       job: CentralCommandGreenShield
     - type: Loadout
       prototypes: [GSOGear]
