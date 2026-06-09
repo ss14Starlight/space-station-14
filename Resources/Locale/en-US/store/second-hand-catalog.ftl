@@ -48,7 +48,7 @@ uplink-second-hand-magazine-viper-worn-desc = A .35 auto Viper magazine with a d
 uplink-second-hand-magazine-smg-worn-name = Worn SMG Magazine (.35 auto)
 uplink-second-hand-magazine-smg-worn-desc = A .35 auto SMG magazine with a cracked housing and sticky follower. The previous owner raided a comedy store — mix of standard, incendiary, uranium, practice, and foam darts inside. Check before you commit. Free.
 
-uplink-second-hand-magazine-caseless-worn-name = Worn Caseless Rifle Magazine (.20 caseless)
+uplink-second-hand-magazine-caseless-worn-name = Worn Caseless Rifle Magazine (.25 caseless)
 uplink-second-hand-magazine-caseless-worn-desc = A .25 caseless magazine with corroded internals. Loaded with a questionable mix of standard, practice, and the occasional foam dart-tipped caseless round. Free.
 
 uplink-second-hand-magazine-shotgun-worn-name = Worn Shotgun Drum (12ga pellet)
