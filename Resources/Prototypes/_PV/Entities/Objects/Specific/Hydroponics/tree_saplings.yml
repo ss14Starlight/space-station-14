@@ -1,0 +1,44 @@
+- type: entity
+  parent: BaseItem
+  id: BaseTerraformerSapling
+  abstract: true
+  name: sapling
+  description: A young tree sapling. It can be loaded into a terraformer to grow a tree nearby after a short delay.
+  components:
+  - type: Sprite
+    state: produce
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: BaseTerraformerSapling
+  id: OakSapling
+  name: oak sapling
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Specific/Hydroponics/Oak.rsi
+  - type: TerraformerSapling
+    treePrototype: FloraTreeOakPV
+    spawnDelay: 8
+
+- type: entity
+  parent: BaseTerraformerSapling
+  id: BirchSapling
+  name: birch sapling
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Specific/Hydroponics/Birch.rsi
+  - type: TerraformerSapling
+    treePrototype: FloraTreeBirchPV
+    spawnDelay: 8
+
+- type: entity
+  parent: BaseTerraformerSapling
+  id: SpruceSapling
+  name: spruce sapling
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Specific/Hydroponics/Spruce.rsi
+  - type: TerraformerSapling
+    treePrototype: FloraTreeSprucePV
+    spawnDelay: 8
