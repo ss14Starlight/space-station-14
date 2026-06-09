@@ -1,18 +1,17 @@
 using Content.Shared._Starlight.Fax;
 using Content.Shared._Starlight.Fax.UI;
+using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.Fax.UI;
 
-public sealed partial class FaxMachineConfigureBoundUserInterface : BoundUserInterface
+[UsedImplicitly]
+public sealed partial class FaxMachineConfigureBoundUserInterface(EntityUid owner, Enum uiKey)
+    : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables] private FaxMachineConfigureWindow? _window;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
-
-    public FaxMachineConfigureBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     protected override void Open()
     {
@@ -44,10 +43,10 @@ public sealed partial class FaxMachineConfigureBoundUserInterface : BoundUserInt
         if (state is not FaxMachineConfigureState faxState)
             return;
 
-        _window?.SetName(faxState.Name);
+        _window?.CurrentName = faxState.Name;
+        _window?.CurrentOrder = faxState.Order;
         _window?.SetGroupings(
             _prototypeManager.EnumeratePrototypes<FaxGroupPrototype>(),
             faxState.CurrentGroup, faxState.IntrinsicGroup, faxState.Emagged);
-        _window?.SetOrder(faxState.Order);
     }
 }

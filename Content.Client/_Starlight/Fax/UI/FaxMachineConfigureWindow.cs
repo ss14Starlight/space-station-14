@@ -14,34 +14,35 @@ public sealed partial class FaxMachineConfigureWindow : FancyWindow
 
     private const int NoneItemId = -1;
 
-    public string CurrentName => NameEdit.Text;
+    public string CurrentName
+    {
+        get => NameEdit.Text;
+        set => NameEdit.Text = value;
+    }
+
+    public int CurrentOrder
+    {
+        get => OrderSpinBox.Value;
+        set => OrderSpinBox.Value = value;
+    }
+
     public string? CurrentGroup => GroupSelector.SelectedMetadata as string;
-    public int CurrentOrder => OrderSpinBox.Value;
 
     public FaxMachineConfigureWindow()
     {
         RobustXamlLoader.Load(this);
-
-        // GroupSelector.OnItemSelected += args =>
-        // {
-        //     GroupSelector.SelectId(args.Id);
-        // };
         SubmitButton.OnPressed += _ => OnSubmit?.Invoke();
     }
 
-    public void SetName(string name)
-    {
-        NameEdit.Text = name;
-    }
-
-    public void SetGroupings(IEnumerable<FaxGroupPrototype> groups, ProtoId<FaxGroupPrototype>? selectedGroup, ProtoId<FaxGroupPrototype>? intrinsicGroup, bool emagged)
+    public void SetGroupings(IEnumerable<FaxGroupPrototype> groups, ProtoId<FaxGroupPrototype>? selectedGroup,
+        ProtoId<FaxGroupPrototype>? intrinsicGroup, bool emagged)
     {
         GroupSelector.Clear();
         GroupSelector.AddItem(Loc.GetString("fax-machine-configure-ui-group-none"), NoneItemId);
 
         foreach (var group in groups.OrderBy(g => g.Order))
         {
-            // To select a group, one of these conditions must be met:
+            // To be able to select a group, one of these conditions must be met:
             // - The group is Selectable by default;
             // - The group is SelectableEmagged, and the machine is emagged;
             // - The group is currently selected;
@@ -60,8 +61,4 @@ public sealed partial class FaxMachineConfigureWindow : FancyWindow
         GroupSelector.SelectId(selectedGroup is null ? NoneItemId : selectedGroup.GetHashCode());
     }
 
-    public void SetOrder(int order)
-    {
-        OrderSpinBox.Value = order;
-    }
 }
