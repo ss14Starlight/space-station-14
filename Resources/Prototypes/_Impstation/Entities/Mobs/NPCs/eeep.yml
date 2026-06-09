@@ -1,0 +1,268 @@
+- type: entity
+  parent: [ SimpleSpaceMobBase, FlyingMobBase ]
+  id: MobEeepBase
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ThermalVision
+  - type: NoSlip
+  - type: GhostTakeoverAvailable
+  - type: Examiner
+  - type: Speech
+    speechSounds: Pop
+    speechVerb: Slime
+  - type: ReplacementAccent
+    accent: eeep
+  - type: MobMover
+  - type: InputMover
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 5
+    baseWeightlessModifier: 1.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 100
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: Butcherable
+    spawned:
+      - id: EeepSpark
+        amount: 1
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+    - ForcedSleep
+    - TemporaryBlindness
+    - RadiationProtection
+    - Pacified
+  - type: InteractionPopup
+    successChance: 0.3
+    interactSuccessString: petting-success-eeeplet
+    interactSuccessSound:
+      path: /Audio/Effects/pop.ogg
+    interactSuccessSpawn: EffectHearts
+    interactFailureString: petting-failure-eeeplet
+    interactFailureSound:
+      path: /Audio/Effects/PowerSink/electric.ogg
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: Prying
+    pryPowered: true
+    force: true
+    speedModifier: 4
+    useSound:
+      path: /Audio/Effects/tesla_consume.ogg
+  - type: AmbientSound
+    volume: -6
+    range: 5
+    sound:
+      path: /Audio/Effects/tesla.ogg
+  - type: PointLight
+    radius: 2
+    energy: 3
+    color: "#afa2ff"
+    castShadows: true
+  - type: BatteryDrainer
+    fullDrain: true
+    drainTime: 10
+    sparkSound:
+     path: /Audio/Effects/PowerSink/charge_fire.ogg
+    minimumDrain: 1000
+  - type: BatteryAlert
+    batteryAlert: AiBattery
+  - type: Alerts
+  - type: ComplexInteraction
+  - type: ExaminableBattery
+  - type: PassiveDamage # passive regen.
+    allowedStates:
+    - Alive
+    - Critical
+    damage:
+      groups:
+        Airloss: -1
+        Brute: -1
+        Burn: -1
+        Toxin: -1
+
+- type: entity
+  parent: [ MobEeepBase ]
+  id: MobEeeplet
+  suffix: "baby"
+  name: eeeplet
+  description: Electric sheep dream of teslas.
+  components:
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-eeeplet-name
+    description: ghost-role-information-eeeplet-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: default
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 200
+  - type: Sprite
+    sprite: _Impstation/Mobs/Aliens/eeeplet.rsi
+    noRot: true
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: eeeplet
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: eeeplet_glow
+      shader: unshaded
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: eeeplet
+      Dead:
+        Base: eeeplet_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MeleeWeapon
+    attackRate: 1
+    soundHit:
+        path: /Audio/Effects/Lightning/lightningshock.ogg
+    angle: 60
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Shock: 5
+        Brute: 2
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: SolutionContainerManager
+    solutions:
+      chloralhydrate:
+        reagents:
+        - ReagentId: ChloralHydrate
+          Quantity: 500
+  - type: MeleeChemicalInjector
+    solution: chloralhydrate
+    transferAmount: 5
+  - type: Battery
+    maxCharge: 30000
+    startingCharge: 0
+  - type: PolymorphOnTrigger
+    polymorph: EeepGrow
+  - type: TriggerOnBatteryFull
+
+- type: entity
+  id: EeepSpark
+  parent: TeslaMiniEnergyBall
+  categories: [ HideSpawnMenu ]
+  name: eeep spark
+  description: You monster.
+  components:
+  - type: TimedDespawn
+    lifetime: 10
+  - type: Sprite
+    drawdepth: Effects
+    sprite: Structures/Power/Generation/Tesla/energy_miniball.rsi
+    layers:
+    - state: tesla_projectile
+
+- type: entity
+  parent: [ MobEeepBase ]
+  id: MobEeep
+  suffix: "adult"
+  name: eeep
+  description: Uh oh.
+  components:
+  - type: GhostRole
+    allowMovement: true
+    name: ghost-role-information-eeep-name
+    description: ghost-role-information-eeep-desc
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: ChloralHydrate
+        Quantity: 200
+  - type: Electrified
+    requirePower: false
+    shockDamage: 4
+  - type: Sprite
+    sprite: _Impstation/Mobs/Aliens/eeep.rsi
+    noRot: true
+    scale: 0.9, 0.9
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: empty
+    - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+      state: eeep
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: eeep
+      Critical:
+        Base: eeep_crit
+      Dead:
+        Base: eeep_dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Critical
+      450: Dead
+  - type: AmbientSound
+    volume: -3
+    range: 4
+    sound:
+      path: /Audio/Effects/tesla.ogg
+  - type: PointLight
+    radius: 3
+    energy: 5
+    color: "#afa2ff"
+    castShadows: true
+  - type: Gun
+    fireRate: 0.5
+    projectileSpeed: 8
+    soundGunshot:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.2
+  - type: BatteryAmmoProvider
+    proto: EeepGunBullet
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: LightningArcShooter
+    arcDepth: 2
+    maxLightningArc: 3
+    shootMinInterval: 10
+    shootMaxInterval: 15
+    shootRange: 5
+    lightningPrototype: Lightning
+  - type: AnnounceOnSpawn
+    message: eeep-spawn
+    sender: eeep-spawn-sender
+    sound:
+     path: /Audio/Effects/PowerSink/charge_fire.ogg
+    color: yellow
+  - type: TriggerOnActivateImplant
+  - type: EmpOnTrigger
+    range: 10
+    energyConsumption: 50000
+    disableDuration: 20
+  - type: Perishable
+    rotAfter: 2000
