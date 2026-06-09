@@ -2,6 +2,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Fax;
 
+/// <summary>
+/// Represents a logical group that fax machines can be part of. Each group can have a name, color, and order that are
+/// used to visually categorize fax machines and make the ordering predictable.
+/// </summary>
 [Prototype]
 public sealed partial class FaxGroupPrototype : IPrototype
 {
