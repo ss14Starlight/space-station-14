@@ -1,5 +1,43 @@
 - type: entity
+  abstract: true
   parent: BaseStructure
+  id: BaseTreePV
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    drawdepth: Overdoors
+    offset: 0,0.5
+  - type: Occluder
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 5
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseTreePV
   id: FloraTreeOakPV
   name: oak tree
   description: A sturdy oak tree grown from a sapling by a terraformer.
@@ -7,21 +45,9 @@
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_oak_tree.rsi
     state: tree01
-    offset: 0,0.5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 190
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
 
 - type: entity
-  parent: BaseStructure
+  parent: BaseTreePV
   id: FloraTreeBirchPV
   name: birch tree
   description: A pale birch tree grown from a sapling by a terraformer.
@@ -29,21 +55,9 @@
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_birch_tree.rsi
     state: tree01
-    offset: 0,0.5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 190
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
 
 - type: entity
-  parent: BaseStructure
+  parent: BaseTreePV
   id: FloraTreeSprucePV
   name: spruce tree
   description: A tall spruce tree grown from a sapling by a terraformer.
@@ -51,15 +65,3 @@
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_spruce_tree.rsi
     state: tree01
-    offset: 0,0.5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 190
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
