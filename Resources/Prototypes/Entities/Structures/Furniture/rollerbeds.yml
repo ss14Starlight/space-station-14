@@ -90,9 +90,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-    - FoldedBed
 
 - type: entity
   id: CheapRollerBed
@@ -122,9 +119,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-    - FoldedBed
 
 - type: entity
   id: EmergencyRollerBed
@@ -155,9 +149,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-    - FoldedBed
 
 - type: entity
   id: RollerbedCyborgDisplay
