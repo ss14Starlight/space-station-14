@@ -119,6 +119,11 @@
   id: BorgModuleAdvancedPlumbing
   result: BorgModuleAdvancedPlumbing
 
+- type: latheRecipe
+  parent: BaseBorgModuleRecipe
+  id: BorgModuleParamedic
+  result: BorgModuleParamedic
+
 # Custom advanced modules
 - type: latheRecipe
   parent: BaseGoldBorgModuleRecipe
