@@ -212,7 +212,7 @@
   id: ProtoResomiFSounds
   sounds:
     Scream:
-      collection: ProtoAvaliScreams # Starlight
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
     Laugh:
       collection: ProtoResomiLaugh
     Whistle:
