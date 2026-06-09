@@ -656,12 +656,20 @@
           - Medipen
     - hand:
         emptyLabel: borg-slot-Rollerbed-empty
-        emptyRepresentative: RollerbedCyborgDisplay
+        emptyRepresentative: BorgModuleRollerbedPlaceholder
         whitelist:
           components:
           - Foldable
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paramed-module }
+
+- type: entity
+  id: BorgModuleRollerbedPlaceholder
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/rollerbed.rsi
+    state: emergency_rollerbed_folded
+
     
 # region Xenoborg
 - type: entity
