@@ -76,8 +76,8 @@
     - ChemistryBottleToxin
     - WeaponPistolViper
     - Syringe
-    - Syringe
-    
+    - JetInjector # Starlight
+
 - type: startingGear
   id: SyndicateReinforcementSpy
   equipment:
@@ -89,12 +89,15 @@
     pocket2: VoiceMaskImplanter
   inhand:
     - ClothingBackpackChameleonFillAgent
+    - ChameleonControllerImplanter # Starlight, since it was removed from the backpack
+
 - type: startingGear
   id: SyndicateReinforcementThief
   parent: SyndicateOperativeClothing
   equipment:
+    gloves: ThievingGlovesReinforcement # Starlight
     pocket1: WeaponPistolViper
-    pocket2: MagazinePistolHighCapacity
+    pocket2: MagazinePistolHighCapacitySP # Starlight
   inhand:
     - ToolboxSyndicateFilled
   storage:
