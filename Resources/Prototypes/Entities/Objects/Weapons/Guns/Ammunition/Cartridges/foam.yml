@@ -37,7 +37,7 @@
         color: "#f7931e"
 
 - type: entity
-  parent: BaseCartridgeLightRifle
+  parent: BaseCartridgeLightRifleSP # Starlight
   id: CartridgeLightRifleFoam
   categories: [ HideSpawnMenu ]
   name: cartridge (.30 light rifle foam)

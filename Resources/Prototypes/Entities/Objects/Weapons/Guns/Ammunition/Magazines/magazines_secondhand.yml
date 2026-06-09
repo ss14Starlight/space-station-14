@@ -3,7 +3,7 @@
 # (excluding armor-piercing), in shuffled order. Free in the uplink.
 
 - type: entity
-  parent: MagazinePistolHighCapacity
+  parent: MagazinePistolHighCapacitySP # Starlight
   id: MagazinePistolHighCapacityWorn
   suffix: Second Hand
   components:
@@ -23,7 +23,7 @@
         weight: 2
 
 - type: entity
-  parent: MagazinePistolSubMachineGun
+  parent: MagazinePistolSubMachineGunSP # Starlight
   id: MagazinePistolSubMachineGunWorn
   suffix: Second Hand
   components:
@@ -101,7 +101,7 @@
         weight: 2
 
 - type: entity
-  parent: MagazineRifle
+  parent: MagazineRifleSP # Starlight
   id: MagazineRifleWorn
   suffix: Second Hand
   components:
@@ -121,7 +121,7 @@
         weight: 2
 
 - type: entity
-  parent: MagazineBoxLightRifle
+  parent: MagazineBoxLightRifleSP # Starlight
   id: MagazineBoxLightRifleWorn
   suffix: Second Hand
   components:
