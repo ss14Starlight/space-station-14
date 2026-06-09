@@ -14,7 +14,7 @@ reagent-name-infernaline = infernaline
 reagent-desc-infernaline = An unstable chemical that defies logic, very effective at treating genetic damage, but capable of causing tears in the flesh in higher than minimal amounts.
 
 reagent-name-briomadine = briomadine
-reagent-desc-briomadine = An advanced semi-natural medicine used to treat serious brute damage. 
+reagent-desc-briomadine = An advanced semi-natural medicine used to treat serious brute damage.
 
 reagent-name-acrileni = acrileni
-reagent-desc-acrileni = A weak natural medicine able to treat light peircing damage. 
+reagent-desc-acrileni = A weak natural medicine able to treat light peircing damage.
