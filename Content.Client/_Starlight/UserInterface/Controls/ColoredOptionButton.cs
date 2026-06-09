@@ -1,3 +1,4 @@
+using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 
 namespace Content.Client._Starlight.UserInterface.Controls;
@@ -12,12 +13,29 @@ public partial class ColoredOptionButton : OptionButton
     // ButtonOverride is called synchronously during AddItem, so _lastButton is
     // always the button for the item that was just added when SetItemColor runs.
     private Button? _lastButton;
+
+    private Color? _faceColor;
+    private const float HoverLighten = 0.2f;
+    private const float PressedDarken = 0.15f;
+    private const float DisabledDarken = 0.25f;
+
     private readonly Dictionary<int, Color> _itemColors = new();
 
-    public ColoredOptionButton()
+    public ColoredOptionButton() => OnItemSelected += args => ApplyFaceColor(args.Id);
+
+    protected override void DrawModeChanged()
     {
-        // Handle user-driven selection changes (clicking an item in the popup).
-        OnItemSelected += args => ApplyFaceColor(args.Id);
+        base.DrawModeChanged();
+
+        ModulateSelfOverride = _faceColor is { } color
+            ? DrawMode switch
+            {
+                DrawModeEnum.Hover    => Lighten(color, HoverLighten),
+                DrawModeEnum.Pressed  => Darken(color, PressedDarken),
+                DrawModeEnum.Disabled => Darken(color, DisabledDarken),
+                _                     => color
+            }
+            : null;
     }
 
     /// <summary>
@@ -49,7 +67,7 @@ public partial class ColoredOptionButton : OptionButton
         {
             _itemColors.Remove(id);
             if (SelectedId == id)
-                ModulateSelfOverride = null;
+                ApplyFaceColor(id);
             return;
         }
 
@@ -97,37 +115,63 @@ public partial class ColoredOptionButton : OptionButton
     /// Applies the color corresponding to the given item ID to the face.
     /// </summary>
     /// <param name="id"></param>
-    private void ApplyFaceColor(int id) =>
-        ModulateSelfOverride = _itemColors.TryGetValue(id, out var color) ? color : null;
+    private void ApplyFaceColor(int id)
+    {
+        _faceColor = _itemColors.TryGetValue(id, out var color) ? color : null;
+        DrawModeChanged();
+    }
 
     /// <summary>
-    /// Basically a build-a-button. Takes a Button control and base color, computes derivative colors for hover and pressed states,
-    /// and applies them to the button.
+    /// Basically a build-a-button. Takes a Button control and base color, computes derivative colors for states,
+    /// and applies them to the button when necessary via color modulation. This is necessary because we cannot subclass
+    /// the Button control used by the OptionButton.
     /// </summary>
     /// <param name="normal">The normal color</param>
     /// <param name="button">The Button control</param>
     private static void ApplyColor(Color normal, Button button)
     {
-        var hover = Lighten(normal, 0.20f);
-        var pressed = Darken(normal, 0.15f);
+        var hover = Lighten(normal, HoverLighten);
+        var pressed = Darken(normal, PressedDarken);
+        var disabled = Darken(normal, DisabledDarken);
 
         button.ModulateSelfOverride = normal;
 
+        var isHovered = false;
+        var isPressed = false;
+
         button.OnMouseEntered += _ =>
         {
-            if (!button.Disabled)
-                button.ModulateSelfOverride = hover;
+            isHovered = true;
+            PsuedoDrawModeChanged();
         };
         button.OnMouseExited += _ =>
         {
-            if (!button.Disabled)
-                button.ModulateSelfOverride = normal;
+            isHovered = false;
+            PsuedoDrawModeChanged();
         };
-        button.OnPressed += _ =>
+        button.OnButtonDown += _ =>
         {
-            if (!button.Disabled)
-                button.ModulateSelfOverride = pressed;
+            isPressed = true;
+            PsuedoDrawModeChanged();
         };
+        button.OnButtonUp += _ =>
+        {
+            isPressed = false;
+            PsuedoDrawModeChanged();
+        };
+        return;
+
+        void PsuedoDrawModeChanged()
+        {
+            if (button.Disabled)
+                button.ModulateSelfOverride = disabled;
+            else if (isPressed)
+                button.ModulateSelfOverride = pressed;
+            else if (isHovered)
+                button.ModulateSelfOverride = hover;
+            else
+                button.ModulateSelfOverride = normal;
+        }
     }
 
     /// <summary>
