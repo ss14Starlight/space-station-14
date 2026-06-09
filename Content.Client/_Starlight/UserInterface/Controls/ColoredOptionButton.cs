@@ -176,7 +176,7 @@ public partial class ColoredOptionButton : OptionButton
 
     /// <summary>
     /// Converts a full, probably high-contrast color to a muted, darker version that fits the UI
-    /// and doesn't make the white text unreadable.
+    /// and doesn't make the white button text unreadable.
     /// </summary>
     /// <param name="color">The color</param>
     /// <returns>The UI-ready color</returns>
