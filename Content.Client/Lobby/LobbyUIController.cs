@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Numerics; //🌟Starlight🌟
 using Content.Client.Guidebook;
 using Content.Client.Humanoid;
 using Content.Client.Inventory;
@@ -14,13 +15,14 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar; // Starlight-edit
+using Content.Shared.Starlight.CCVar; //🌟Starlight🌟
 using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Client.UserInterface.CustomControls; //🌟Starlight🌟
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -48,6 +50,13 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     private HumanoidProfileEditor? _profileEditor;
     private JobPriorityEditor? _jobPriorityEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
+
+    /// begin starlight
+    /// <summary>
+    /// character editor window, see OpenCharacterSetupWindow()
+    /// </summary>
+    private DefaultWindow? _characterSetupWindow;
+    //end starlight
 
     /// <summary>
     /// Event invoked when any character or job selection or job priority is changed.
@@ -255,8 +264,62 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
         }
+
+        // make sure the window is closed.
+        _characterSetupWindow?.Close(); // starlight
+
         RefreshLobbyPreview();
     }
+    ///begin starlight
+    /// <summary>
+    /// Opens the character editor in its own window, we reuse the one from the lobby for the sake of simplicity.
+    /// </summary>
+    public void OpenCharacterSetupWindow()
+    {
+        // don't open it more than once.
+        if (_characterSetupWindow is { IsOpen: true })
+        {
+            _characterSetupWindow.MoveToFront();
+            return;
+        }
+
+        var (characterGui, _) = EnsureGui();
+
+        // reload these, the lobby button does this so we do it aswell
+        characterGui.ReloadCharacterPickers();
+        _profileEditor?.ResetToDefault();
+        _jobPriorityEditor?.LoadJobPriorities();
+
+        // detach the gui from it's parent (Most of the time the lobby)
+        characterGui.Orphan();
+
+        var window = new CharacterSetupWindow
+        {
+            Title = Loc.GetString("ghost-gui-character-editor-button"),
+        };
+        window.MinSize = window.SetSize = new Vector2(1400, 700); // Might need adjusting but felt good to me
+
+        window.Contents.AddChild(characterGui);
+
+        // when the window closes, detach the gui from it so the gui isn't cleaned up with the window.
+        window.OnClose += () =>
+        {
+            characterGui.Orphan();
+            _characterSetupWindow = null;
+        };
+
+        _characterSetupWindow = window;
+        window.OpenCentered();
+    }
+
+    private sealed class CharacterSetupWindow : DefaultWindow
+    {
+        public CharacterSetupWindow()
+        {
+            CloseButton.Visible = false;
+        }
+    }
+    // end starlight
 
     private void OpenSavePanel(Action saveAction)
     {
@@ -290,6 +353,18 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             _characterSetup.Visible = true;
             _profileEditor.Visible = true;
+            // begin starlight
+            // we borrow the gui from the lobby, so we need to make sure we return it aswell.
+            if (_stateManager.CurrentState is LobbyState lobbyState
+                && lobbyState.Lobby?.CharacterSetupState is { } container
+                && _characterSetup.Parent != container)
+            {
+                // if the ghost window is open return it.
+                _characterSetupWindow?.Close();
+                _characterSetup.Orphan();
+                container.AddChild(_characterSetup);
+            }
+            // end starlight
             return (_characterSetup, _profileEditor);
         }
 
