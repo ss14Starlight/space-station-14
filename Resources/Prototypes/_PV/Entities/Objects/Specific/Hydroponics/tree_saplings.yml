@@ -18,7 +18,9 @@
   - type: Sprite
     sprite: _PV/Objects/Specific/Hydroponics/Oak.rsi
   - type: TerraformerSapling
-    treePrototype: FloraTreeOakPV
+    treePrototypes:
+    - FloraTreeOakPVTree01
+    - FloraTreeOakPVTree02
     spawnDelay: 8
 
 - type: entity
@@ -29,7 +31,9 @@
   - type: Sprite
     sprite: _PV/Objects/Specific/Hydroponics/Birch.rsi
   - type: TerraformerSapling
-    treePrototype: FloraTreeBirchPV
+    treePrototypes:
+    - FloraTreeBirchPVTree01
+    - FloraTreeBirchPVTree02
     spawnDelay: 8
 
 - type: entity
@@ -40,5 +44,7 @@
   - type: Sprite
     sprite: _PV/Objects/Specific/Hydroponics/Spruce.rsi
   - type: TerraformerSapling
-    treePrototype: FloraTreeSprucePV
+    treePrototypes:
+    - FloraTreeSprucePVTree01
+    - FloraTreeSprucePVTree02
     spawnDelay: 8
