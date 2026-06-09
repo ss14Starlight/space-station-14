@@ -749,7 +749,7 @@
 
 - type: entity
   id: ChemistryBottlePulpedBananaPeel
-  suffix: pulped banana peel          #starlight
+  suffix: pulped banana peel #starlight
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
