@@ -713,11 +713,23 @@
 
 - type: entity
   id: BorgModuleConstructionMaterialPlaceholder
+  categories: [ HideSpawnMenu ] # Starlight
   parent: BaseItem
   components:
   - type: Sprite
     sprite: Objects/Materials/Sheets/other.rsi
     state: generic_materials
+
+#region Starlight
+- type: entity
+  id: BorgModuleRCDAmmoPlaceholder
+  categories: [ HideSpawnMenu ]
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/rcd.rsi
+    state: ammo
+#endregion Starlight
 
 - type: entity
   id: BorgModuleConstruction
@@ -813,8 +825,16 @@
     - state: icon-rcd
   - type: ItemBorgModule
     hands:
-    - item: RCDRecharging
-    - item: RPDRecharging # Starlight: RPD
+    #region Starlight
+    - item: RCD
+    - hand:
+        emptyRepresentative: RCDAmmo
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          components:
+          - RCDAmmo
+    - item: RPDRecharging
+    #endregion Starlight
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
     - item: GasAnalyzer
