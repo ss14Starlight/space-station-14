@@ -96,7 +96,7 @@ public sealed partial class FaxWindow : DefaultWindow
         }
     }
 
-    private int AddPeerSelect(KnownFax knownFax) // Starlight: name, addr => KnownFax
+    private int AddPeerSelect(KnownFax knownFax) // Starlight: (name, addr) => KnownFax
     {
         PeerSelector.AddFaxPeer(knownFax); // Starlight: Smart add method
         return PeerSelector.ItemCount - 1;
