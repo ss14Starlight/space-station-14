@@ -36,10 +36,9 @@
   parent: ERTLeaderGearEVA
   id: ERTLeaderGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTLeader
     outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
 
 - type: startingGear
   id: ERTLeaderGearEVA
@@ -49,62 +48,58 @@
     shoes: ClothingShoesBootsMagERT
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesCentComm
-    neck: Whistle
+    neck: CommanderWhistle
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    pocket2: WeaponPDW9
     suitstorage: WeaponDisablerSMG
   storage:
     back:
     - Binoculars
     - HoloprojectorField
+    - HoloprojectorSecurity
+    - PowerCellHigh
+    - PowerCellHigh
+    - TelescopicShield
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - BoxFolderCentComThreePapers
+    - PowerDrill
+    - DefibrillatorCompact
+    belt:
+    - WeaponPistolM1911 # Starlight
+    - MagazineMagnum
+    - Truncheon
+    - Handcuffs
+    - Crowbar
+    - HoloprojectorField
     - PhoneInstrument
     - PinpointerNuclear
-    - PowerCellHigh
-    - PowerCellHigh
-    - MedkitCombatFilled # End of first line
-    - MedkitCombatFilled
-    - TelescopicShield
-    belt:
-    - Stunbaton
-    - Handcuffs
-    - Handcuffs
-    - CrowbarRed
-    - WeaponPistolM1911 # Starlight - swapped from an N1984 to a M1911
-    - MagazineMagnum
     - EmergencyMedipen
+    - CombatMedipen
+    - CrisisButton
 
 - type: startingGear
   parent: ERTLeaderGearEVA
   id: ERTLeaderGearArmed
   equipment:
-    pocket2: WeaponDisabler
-    suitstorage: WeaponRifleLecterXL8
+    suitstorage: WeaponRifleM52
   storage:
     back:
-    - HoloprojectorField
-    - PhoneInstrument
-    - PinpointerNuclear
-    - MagazineRifleSP
-    - MagazineRifleSP
-    - MagazineRifleIncendiary
-    - MagazineRifleUranium
-    - MedkitCombatFilled # End of first line
+    - MedkitCombatFilled
+    - MagazineRifleM52FMJ
+    - MagazineRifleM52FMJ
+    - MagazineRifleM52Incendiary
+    - MagazineRifleM52HP
     - GrenadeShrapnel
     - EmpGrenade
-    - DoubleEmergencyOxygenTankFilled # Starlight-edit
-    - DoubleEmergencyNitrogenTankFilled # Starlight-edit
-    belt:
-    - Truncheon
-    - Handcuffs
-    - Handcuffs
-    - CrowbarRed
-    - WeaponPistolM1911 # Starlight - swapped from an N1984 to a M1911
-#    - MagazineMagnum Starlight-edit
-    - EmergencyMedipen
+    - MedkitCombatFilled
+    - Binoculars
+    - TelescopicShield
+    - SmokeGrenade
 
 - type: chameleonOutfit
   id: ERTLeaderChameleonOutfit
@@ -147,11 +142,10 @@
   parent: ERTChaplainGearEVA
   id: ERTChaplainGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHatFez
     neck: ClothingNeckStoleChaplain
     outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
 
 - type: startingGear
   id: ERTChaplainGearEVA
@@ -167,10 +161,10 @@
     ears: ClothingHeadsetCentCom #Starlight
     belt: ChainsawSword #Starlight
     neck: ClothingNeckStoleChaplain #Starlight
-    pocket2: WeaponDisabler #Starlight
+    pocket2: WeaponPDW9
+    suitstorage: PaladinShieldGreat
   storage:
     back:
-    # Starlight - Start
     - JugWater
     - JugBlood
     - Bible
@@ -179,12 +173,13 @@
     - Lantern
     - BodyBagFolded
     - BodyBagFolded
-    - FlippoEngravedLighter
+    - ToxicGasGrenade
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
-    # Starlight - End
+    - FoodBakedBunHotX
+    - FoodBakedBunHotX
 
 - type: chameleonOutfit
   id: ERTChaplainChameleonOutfit
@@ -226,10 +221,9 @@
   parent: ERTEngineerGearEVA
   id: ERTEngineerGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTEngineer
     outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
 
 - type: startingGear
   id: ERTEngineerGearEVA
@@ -244,51 +238,46 @@
     id: ERTEngineerPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    pocket2: WeaponPDW9
+    suitstorage: PortableRecharger
   storage:
     back:
-    - RCD
-    - GasAnalyzer
-    - trayScanner
-    - HolofanProjector
-    - PartRodMetal
-    - SheetPlasteel # End of first line
-    - MiningDrillDiamond
-    - RCDAmmo
-    - RCDAmmo
-    - RCDAmmo
-    - RCDAmmo
+    - RPD # Starlight: RPD
+    - WelderIndustrialAdvanced
+    - CableApcStack
+    - CableMVStack
+    - CableHVStack
     - MetalFoamGrenade
     - AirGrenade
+    - RCDAmmo
+    - RCDAmmo
+    - MatBagFilled
     belt:
+    - HoloprojectorEngineering
+    - SpaceMedipen
     - JawsOfLife
     - PowerDrill
-    - WelderIndustrialAdvanced
     - Multitool
-    - WeaponPistolMk58
-    - MagazinePistolSP
-    - EmergencyMedipen
+    - GasAnalyzer
+    - RCD
+    - RadiationBlockingProjector
+    - HolofanProjector
+    - Flare
 
 - type: startingGear
   parent: ERTEngineerGearEVA
   id: ERTEngineerGearArmed
   equipment:
-    suitstorage: WeaponShotgunEnforcer
+    suitstorage: PortableRecharger
   storage:
     back:
-    - RCD
     - RPD # Starlight: RPD
-    - GasAnalyzer
-    - HolofanProjector
-    - MiningDrillDiamond
-    - BoxLethalshot
-    - BoxShotgunSlug # End of first line
+    - WelderIndustrialAdvanced
+    - WeaponLaserCarbine
+    - MetalFoamGrenade
     - RCDAmmo
     - RCDAmmo
-    - RCDAmmo
-    - RCDAmmo
-    - CableDetStack
-    - BoxDetonator
+    - MatBagFilled
 
 - type: chameleonOutfit
   id: ERTEngineerChameleonOutfit
@@ -328,10 +317,9 @@
   parent: ERTSecurityGearEVA
   id: ERTSecurityGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTSecurity
-    outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
+    outerClothing: ClothingOuterVestWebEliteCentcomm
 
 - type: startingGear
   id: ERTSecurityGearEVA
@@ -347,82 +335,66 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    pocket2: WeaponPDW9
     suitstorage: WeaponDisablerSMG
   storage:
     back:
-    - BoxZiptie
-    - Flash
-    - GrenadeFlashBang
+    - WeaponPistolMk58Nonlethal
+    - MagazinePistolRubber
     - TearGasGrenade
     - GrenadeStinger
-    - MedkitCombatFilled # End of first line
+    - Flash
+    - Bola
+    - Zipties
+    - Truncheon
     - TelescopicShield
-    - HoloprojectorSecurity
+    - PowerCellHigh
     - PowerCellHigh
     belt:
+    - WeaponPistolEnforcer
+    - MagazinePistolSP
     - Stunbaton
     - Handcuffs
     - Handcuffs
+    - HoloprojectorSecurity
+    - MedkitCombatFilled
     - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
     - EmergencyMedipen
 
 - type: startingGear
+  parent: ERTSecurityGearEVA
   id: ERTSecurityGearArmedRifle
   equipment:
-    jumpsuit: ClothingUniformJumpsuitERTSecurity
-    back: ClothingBackpackERTSecurity # SL
-    shoes: ClothingShoesBootsMagERT
-    mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesCentComm
-    gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitERTSecurity
-    id: ERTSecurityPDA
-    ears: ClothingHeadsetCentCom #Starlight
-    belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
     suitstorage: WeaponRiflePeacemaker # Starlight-edit: Changed from: WeaponRifleLecter
   storage:
-    # SL - Start
     back:
-    - BoxZiptie
-    - Flash
-    - GrenadeFlashBang
-    - TearGasGrenade
-    - GrenadeStinger
-    - MedkitCombatFilled # End of first line
-    - TelescopicShield
-    - HoloprojectorSecurity
-    - PowerCellHigh
-    # SL - End
-    belt:
-    - CrowbarRed
-    - Zipties
-    - MedkitCombatFilled
-    - MagazineRifleSP
+    - MedicatedSuture
+    - GrenadeShrapnel
+    - GrenadeIncendiary
+    - EmpGrenade
+    - MagazineRifleFMJ
+    - MagazineRifleFMJ
     - MagazineRifleSP
     - MagazineRifleIncendiary
-    - MagazineRifleUranium
-    - Zipties
+    - MedicatedSuture
+    - TelescopicShield
+    - HoloprojectorSecurity
 
 - type: startingGear
   parent: ERTSecurityGearEVA
   id: ERTSecurityGearArmedGrenade
   equipment:
-    pocket2: WeaponDisabler
     suitstorage: WeaponLauncherHydraLethal
   storage:
     back:
     - GrenadeBlast
     - GrenadeBlast
     - GrenadeBlast
-    - GrenadeBlast
-    - GrenadeBlast
-    - GrenadeBlast
+    - GrenadeFrag
+    - GrenadeFrag
+    - GrenadeFrag
     - MagazinePistolSP
-    - MedkitCombatFilled # End of first line
+    - EmpGrenade
     - GrenadeEMP
     - GrenadeEMP
     - GrenadeEMP
@@ -430,71 +402,55 @@
     - GrenadeFlash
     - GrenadeFlash
     - MagazinePistolSP
-    belt:
-    - Truncheon
-    - Handcuffs
-    - Handcuffs
-    - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
-    - EmergencyMedipen
+    - GrenadeShrapnel
 
 - type: startingGear
   parent: ERTSecurityGearEVA
   id: ERTSecurityGearArmedVanguard
   equipment:
-    pocket2: WeaponDisabler
-    suitstorage: WeaponSubMachineGunWt550
+    suitstorage: WeaponSubMachineGunWt550r
   storage:
     back:
-    - ExGrenade
-    - SmokeGrenade
-    - EmpGrenade
-    - HoloprojectorSecurity
+    - ClothingShoesBootsJump
     - TelescopicShield
     - TelescopicShield
-    - TelescopicShield
-    - MedkitCombatFilled # End of first line
+    - HoloprojectorField
+    - PowerCellHyper
+    - MedkitCombatFilled
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
     - MagazinePistolSubMachineGunTopMounted
-    belt:
-    - Truncheon
-    - Handcuffs
-    - Handcuffs
-    - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
-    - EmergencyMedipen
+    - MagazinePistolSubMachineGunTopMounted
+    - PillDesoxyephedrine
+    - PillDesoxyephedrine
+    - ChemistryBottleDesoxyephedrine
+    - Syringe
+    - AntiPoisonMedipen
+    - AntiPoisonMedipen
 
 - type: startingGear
   parent: ERTSecurityGearEVA
   id: ERTSecurityGearArmedShotgun
   equipment:
-    pocket2: WeaponDisabler
-    suitstorage: WeaponShotgunEnforcer
+    suitstorage: WeaponShotgunCombat
   inhand:
     - HammerBreachingNT
   storage:
     back:
-    - SmokeGrenade
     - BoxLethalshot
-    - BoxShotgunSlug
-    - BoxShotgunIncendiary
-    - MedkitCombatFilled # End of first line
-    - SmokeGrenade
-    - ExGrenade
-    - CableDetStack
     - BoxDetonator
-    belt:
-    - Truncheon
-    - Handcuffs
-    - Handcuffs
-    - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
-    - EmergencyMedipen
+    - RemoteSignallerAdvanced
+    - CableDetStack
+    - CableDetStack
+    - CableDetStack
+    - CableDetStack
+    - BoxShotgunSlug
+    - MagazineShotgunBreach
+    - MagazineShotgunBreach
+    - MagazineShotgunBreach
+    - MagazineShotgunBreach
+    - MagazineShotgunBreach
 
 - type: chameleonOutfit
   id: ERTSecurityChameleonOutfit
@@ -540,10 +496,9 @@
   parent: ERTMedicalGearEVA
   id: ERTMedicalGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     head: ClothingHeadHelmetERTMedic
-    outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
+    outerClothing: ClothingOuterArmorPlate
 
 - type: startingGear
   id: ERTMedicalGearEVA
@@ -558,56 +513,58 @@
     id: ERTMedicPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    pocket2: WeaponPDW9
   storage:
     back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
     - Hypospray
-    - BeakerSmallBruiz
-    - BeakerSmallLace
-    - JugPunctTranex
-    - JugPyraDerma
-    - JugDexPlusSaline # End of first line
-    - JugTrico
     - BeakerSmallArith
     - BeakerSmallDiph
-    - BeakerSmallSigy
-    - ClothingEyesGlassesChemical
-    - ChemistryBottleOmnizine
+    - ChemistryBottlePuncturase
+    - ChemistryBottleAmoxla
+    - ChemistryBottleBruizine
+    - ChemistryBottleDexalinPlus
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - TelescopicShield
+    - EmergencyRollerBedSpawnFolded
+    - BodyBagLockableFolded
+    - BodyBagLockableFolded
     belt:
+    - CombatMedipen
+    - CombatMedipen
     - DefibrillatorCompact
     - MedkitCombatFilled
-    - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
-    - EmergencyMedipen
+    - MedkitCombatFilled
+    - BodyBagLockableFolded
+    - WeaponPistolSP8AR
+    - MagazinePistol40SP
+    - CombatMedipen
 
 - type: startingGear
   parent: ERTMedicalGearEVA
   id: ERTMedicalGearArmed
   equipment:
-    suitstorage: WeaponRifleLecter
-    pocket2: WeaponDisabler
+    suitstorage: WeaponIK60
   storage:
     back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
     - Hypospray
-    - JugPunctTranex
-    - JugPyraDerma
-    - JugDexPlusSaline
-    - JugTrico # End of first line
     - BeakerSmallArith
-    - DefibrillatorCompact
-    - MedkitCombatFilled
-    - ClothingEyesGlassesChemical
-    - ChemistryBottleOmnizine
-    belt:
-    - Truncheon
-    - Zipties
-    - CrowbarRed
-    - MagazineRifleSP
-    - MagazineRifleSP
-    - MagazineRifleIncendiary
-    - MagazineRifleUranium # End of first line
-    - Zipties
+    - BeakerSmallDiph
+    - ChemistryBottlePuncturase
+    - ChemistryBottleAmoxla
+    - ChemistryBottleBruizine
+    - ChemistryBottleDexalinPlus
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - TelescopicShield
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - BodyBagLockableFolded
 
 - type: chameleonOutfit
   id: ERTMedicalChameleonOutfit
@@ -650,7 +607,6 @@
     shoes: ClothingShoesGaloshes
     head: ClothingHeadHelmetERTJanitor
     outerClothing: ClothingOuterArmorBasic
-    pocket2: FlashlightSeclite
 
 - type: startingGear
   id: ERTJanitorGearEVA
@@ -665,30 +621,28 @@
     id: ERTJanitorPDA
     ears: ClothingHeadsetCentCom #Starlight
     belt: ClothingBeltMilitaryWebbingERT
-    pocket2: CombatKnife
+    pocket2: WeaponPDW9
     suitstorage: WeaponLauncherHydra
   storage:
     back:
     - TrashBag
     - SoapNT
+    - AdvMopItem # End of first line
+    - MagazineGrenadeCleanade
+    - MagazineGrenadeCleanade
+    belt:
+    - WeaponPistolMk58Nonlethal
+    - MagazinePistolRubber
+    - MegaSprayBottleSpaceCleaner
+    - WireBrush
+    - LightReplacer
+    - Holoprojector
     - Plunger
     - Screwdriver
-    - AdvMopItem # End of first line
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    - GrenadeCleanade
-    belt:
-    - MegaSprayBottleSpaceCleaner
-    - Holoprojector
-    - LightReplacer
-    - WireBrush
-    - CrowbarRed
-    - WeaponPistolMk58
-    - MagazinePistolSP
-    - EmergencyMedipen
+    - SprayBottleWater
+    - MoproachCube
+    - MoproachCube
+    - MoproachCube
 
 - type: chameleonOutfit
   id: ERTJanitorChameleonOutfit

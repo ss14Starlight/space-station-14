@@ -2,7 +2,7 @@
   id: ThavenHair80s
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: 80s
@@ -10,7 +10,7 @@
   id: ThavenHairA
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: a
@@ -18,7 +18,7 @@
   id: ThavenHairB
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: b
@@ -26,7 +26,7 @@
   id: ThavenHairBald
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bald
@@ -34,7 +34,7 @@
   id: ThavenHairBaldface
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: baldface
@@ -42,7 +42,7 @@
   id: ThavenHairBedHair
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bedhead
@@ -50,7 +50,7 @@
   id: ThavenHairBedHair2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bedhead2
@@ -58,7 +58,7 @@
   id: ThavenHairBedHair3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bedhead3
@@ -66,7 +66,7 @@
   id: ThavenHairBeehive
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: beehive
@@ -74,7 +74,7 @@
   id: ThavenHairBeehive2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: beehive2
@@ -82,7 +82,7 @@
   id: ThavenHairBigflattop
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bigflattop
@@ -90,7 +90,7 @@
   id: ThavenHairBigpompadour
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bigpompadour
@@ -98,7 +98,7 @@
   id: ThavenHairBob
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob
@@ -106,7 +106,7 @@
   id: ThavenHairBob2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob2
@@ -114,7 +114,7 @@
   id: ThavenHairBob4
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob4
@@ -122,7 +122,7 @@
   id: ThavenHairBob5
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bob5
@@ -130,7 +130,7 @@
   id: ThavenHairBobcurl
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bobcurl
@@ -138,7 +138,7 @@
   id: ThavenHairBobcut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bobcut
@@ -146,7 +146,7 @@
   id: ThavenHairBowlcut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bowlcut
@@ -154,7 +154,7 @@
   id: ThavenHairBowlcut2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bowlcut2
@@ -162,7 +162,7 @@
   id: ThavenHairBraid
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braid
@@ -170,7 +170,7 @@
   id: ThavenHairBraid2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braid2
@@ -178,7 +178,7 @@
   id: ThavenHairBraided
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braided
@@ -186,7 +186,7 @@
   id: ThavenHairBraidfront
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braidfront
@@ -194,7 +194,7 @@
   id: ThavenHairBraidtail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: braidtail
@@ -202,7 +202,7 @@
   id: ThavenHairBun
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bun
@@ -210,7 +210,7 @@
   id: ThavenHairBun3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bun3
@@ -218,7 +218,7 @@
   id: ThavenHairBunhead2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: bunhead2
@@ -226,7 +226,7 @@
   id: ThavenHairBusiness
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business
@@ -234,7 +234,7 @@
   id: ThavenHairBusiness2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business2
@@ -242,7 +242,7 @@
   id: ThavenHairBusiness3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business3
@@ -250,7 +250,7 @@
   id: ThavenHairBusiness4
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: business4
@@ -258,7 +258,7 @@
   id: ThavenHairBuzzcut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: buzzcut
@@ -266,7 +266,7 @@
   id: ThavenHairC
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: c
@@ -274,7 +274,7 @@
   id: ThavenHairCia
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cia
@@ -282,7 +282,7 @@
   id: ThavenHairClassicafro
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicafro
@@ -290,7 +290,7 @@
   id: ThavenHairClassiccia
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiccia
@@ -298,7 +298,7 @@
   id: ThavenHairClassicciabusiness
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicciabusiness
@@ -306,7 +306,7 @@
   id: ThavenHairClassiccornrows
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiccornrows
@@ -314,7 +314,7 @@
   id: ThavenHairClassicFloorlengthBedHair
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicfloorlength_bedhead
@@ -323,7 +323,7 @@
   id: ThavenHairClassiclong2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiclong2
@@ -331,7 +331,7 @@
   id: ThavenHairClassiclong3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classiclong3
@@ -339,7 +339,7 @@
   id: ThavenHairClassicmodern
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicmodern
@@ -347,7 +347,7 @@
   id: ThavenHairClassicmulder
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicmulder
@@ -355,7 +355,7 @@
   id: ThavenHairClassicwisp
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: classicwisp
@@ -363,7 +363,7 @@
   id: ThavenHairCoffeehouse
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: coffeehouse
@@ -371,7 +371,7 @@
   id: ThavenHairCombover
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: combover
@@ -379,7 +379,7 @@
   id: ThavenHairCornrowbraid
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrowbraid
@@ -387,7 +387,7 @@
   id: ThavenHairCornrowbun
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrowbun
@@ -395,7 +395,7 @@
   id: ThavenHairCornrows
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrows
@@ -403,7 +403,7 @@
   id: ThavenHairCornrows2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrows2
@@ -411,7 +411,7 @@
   id: ThavenHairCornrowtail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: cornrowtail
@@ -419,7 +419,7 @@
   id: ThavenHairCountry
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: country
@@ -427,7 +427,7 @@
   id: ThavenHairCrewcut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: crewcut
@@ -435,7 +435,7 @@
   id: ThavenHairCrewcut2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: crewcut2
@@ -443,7 +443,7 @@
   id: ThavenHairCurls
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: curls
@@ -451,7 +451,7 @@
   id: ThavenHairD
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: d
@@ -459,7 +459,7 @@
   id: ThavenHairDandypompadour
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: dandypompadour
@@ -467,7 +467,7 @@
   id: ThavenHairDevilock
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: devilock
@@ -475,7 +475,7 @@
   id: ThavenHairDoublebun
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: doublebun
@@ -483,7 +483,7 @@
   id: ThavenHairDoublebunLong
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: doublebun_long
@@ -491,7 +491,7 @@
   id: ThavenHairDreads
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: dreads
@@ -499,7 +499,7 @@
   id: ThavenHairDrillhair
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: drillhair
@@ -507,7 +507,7 @@
   id: ThavenHairDrillhairextended
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: drillhairextended
@@ -515,7 +515,7 @@
   id: ThavenHairDrillruru
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: drillruru
@@ -523,7 +523,7 @@
   id: ThavenHairE
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: e
@@ -531,7 +531,7 @@
   id: ThavenHairEmo2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: emo2
@@ -539,7 +539,7 @@
   id: ThavenHairEmofringe
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: emofringe
@@ -547,7 +547,7 @@
   id: ThavenHairF
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: f
@@ -555,7 +555,7 @@
   id: ThavenHairFather
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: father
@@ -563,7 +563,7 @@
   id: ThavenHairFeather
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: feather
@@ -571,7 +571,7 @@
   id: ThavenHairFlair
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: flair
@@ -579,7 +579,7 @@
   id: ThavenHairFloorlengthBedHair
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: floorlength_bedhead
@@ -587,7 +587,7 @@
   id: ThavenHairFringetail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: fringetail
@@ -595,7 +595,7 @@
   id: ThavenHairGelled
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: gelled
@@ -603,7 +603,7 @@
   id: ThavenHairGentle
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: gentle
@@ -611,7 +611,7 @@
   id: ThavenHairHalfbang
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: halfbang
@@ -619,7 +619,7 @@
   id: ThavenHairHalfbang2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: halfbang2
@@ -627,7 +627,7 @@
   id: ThavenHairHalfshaved
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: halfshaved
@@ -635,7 +635,7 @@
   id: ThavenHairHbraid
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: hbraid
@@ -643,7 +643,7 @@
   id: ThavenHairHedgehog
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: hedgehog
@@ -651,7 +651,7 @@
   id: ThavenHairHighfade
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: highfade
@@ -659,7 +659,7 @@
   id: ThavenHairHighponytail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: highponytail
@@ -667,7 +667,7 @@
   id: ThavenHairHimecut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: himecut
@@ -675,7 +675,7 @@
   id: ThavenHairHimecut2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: himecut2
@@ -683,7 +683,7 @@
   id: ThavenHairHimeup
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: himeup
@@ -691,7 +691,7 @@
   id: ThavenHairHitop
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: hitop
@@ -699,7 +699,7 @@
   id: ThavenHairJade
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: jade
@@ -707,7 +707,7 @@
   id: ThavenHairJensen
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: jensen
@@ -715,7 +715,7 @@
   id: ThavenHairJoestar
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: joestar
@@ -723,7 +723,7 @@
   id: ThavenHairKagami
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: kagami
@@ -731,7 +731,7 @@
   id: ThavenHairKeanu
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: keanu
@@ -739,7 +739,7 @@
   id: ThavenHairKusanagi
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: kusanagi
@@ -747,7 +747,7 @@
   id: ThavenHairLargebun
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: largebun
@@ -755,7 +755,7 @@
   id: ThavenHairLbangs
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: lbangs
@@ -763,7 +763,7 @@
   id: ThavenHairLong
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long
@@ -771,7 +771,7 @@
   id: ThavenHairLong2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long2
@@ -779,7 +779,7 @@
   id: ThavenHairLong3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long3
@@ -787,7 +787,7 @@
   id: ThavenHairLongBedHair
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long_bedhead
@@ -795,7 +795,7 @@
   id: ThavenHairLongBedHair2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: long_bedhead2
@@ -803,7 +803,7 @@
   id: ThavenHairLongbundled
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longbundled
@@ -811,7 +811,7 @@
   id: ThavenHairLongeremo
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longeremo
@@ -819,7 +819,7 @@
   id: ThavenHairLongest
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longest
@@ -827,7 +827,7 @@
   id: ThavenHairLongest2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longest2
@@ -835,7 +835,7 @@
   id: ThavenHairLongfringe
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longfringe
@@ -843,7 +843,7 @@
   id: ThavenHairLongovereye
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longovereye
@@ -851,7 +851,7 @@
   id: ThavenHairLongsidepart
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longsidepart
@@ -859,7 +859,7 @@
   id: ThavenHairLongstraightponytail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: longstraightponytail
@@ -867,7 +867,7 @@
   id: ThavenHairLowfade
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: lowfade
@@ -875,7 +875,7 @@
   id: ThavenHairManbun
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: manbun
@@ -883,7 +883,7 @@
   id: ThavenHairMedfade
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: medfade
@@ -891,7 +891,7 @@
   id: ThavenHairMediumsidepart
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: mediumsidepart
@@ -899,7 +899,7 @@
   id: ThavenHairMegaeyebrows
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: megaeyebrows
@@ -907,7 +907,7 @@
   id: ThavenHairMessy
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: messy
@@ -915,7 +915,7 @@
   id: ThavenHairModern
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: modern
@@ -923,7 +923,7 @@
   id: ThavenHairMulder
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: mulder
@@ -931,7 +931,7 @@
   id: ThavenHairNitori
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: nitori
@@ -939,7 +939,7 @@
   id: ThavenHairNofade
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: nofade
@@ -947,7 +947,7 @@
   id: ThavenHairOdango
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: odango
@@ -955,7 +955,7 @@
   id: ThavenHairOmbre
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ombre
@@ -963,7 +963,7 @@
   id: ThavenHairOneshoulder
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: oneshoulder
@@ -971,7 +971,7 @@
   id: ThavenHairOxton
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: oxton
@@ -979,7 +979,7 @@
   id: ThavenHairPart
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: part
@@ -987,7 +987,7 @@
   id: ThavenHairParted
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: parted
@@ -995,7 +995,7 @@
   id: ThavenHairPigtails
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pigtails
@@ -1003,7 +1003,7 @@
   id: ThavenHairPigtails2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pigtails2
@@ -1011,7 +1011,7 @@
   id: ThavenHairPixie
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pixie
@@ -1019,7 +1019,7 @@
   id: ThavenHairPompadour
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: pompadour
@@ -1027,7 +1027,7 @@
   id: ThavenHairPonytail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail
@@ -1035,7 +1035,7 @@
   id: ThavenHairPonytail2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail2
@@ -1043,7 +1043,7 @@
   id: ThavenHairPonytail3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail3
@@ -1051,7 +1051,7 @@
   id: ThavenHairPonytail4
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail4
@@ -1059,7 +1059,7 @@
   id: ThavenHairPonytail5
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail5
@@ -1067,7 +1067,7 @@
   id: ThavenHairPonytail6
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail6
@@ -1075,7 +1075,7 @@
   id: ThavenHairPonytail7
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ponytail7
@@ -1083,7 +1083,7 @@
   id: ThavenHairPoofy
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: poofy
@@ -1091,7 +1091,7 @@
   id: ThavenHairProtagonist
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: protagonist
@@ -1099,7 +1099,7 @@
   id: ThavenHairQuiff
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: quiff
@@ -1107,7 +1107,7 @@
   id: ThavenHairReversemohawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: reversemohawk
@@ -1115,7 +1115,7 @@
   id: ThavenHairRonin
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: ronin
@@ -1123,7 +1123,7 @@
   id: ThavenHairRosa
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: rosa
@@ -1131,7 +1131,7 @@
   id: ThavenHairSargeant
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sargeant
@@ -1139,7 +1139,7 @@
   id: ThavenHairShaved
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shaved
@@ -1147,7 +1147,7 @@
   id: ThavenHairShavedmohawk
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shavedmohawk
@@ -1155,7 +1155,7 @@
   id: ThavenHairShavedpart
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shavedpart
@@ -1163,7 +1163,7 @@
   id: ThavenHairShortbangs
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shortbangs
@@ -1171,7 +1171,7 @@
   id: ThavenHairShortbraid
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shortbraid
@@ -1179,7 +1179,7 @@
   id: ThavenHairShorthair2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthair2
@@ -1187,7 +1187,7 @@
   id: ThavenHairShorthair3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthair3
@@ -1195,7 +1195,7 @@
   id: ThavenHairShorthair9
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthair9
@@ -1203,7 +1203,7 @@
   id: ThavenHairShorthime
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shorthime
@@ -1211,7 +1211,7 @@
   id: ThavenHairShortovereye
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shortovereye
@@ -1219,7 +1219,7 @@
   id: ThavenHairShoulderlengthovereye
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: shoulderlengthovereye
@@ -1227,7 +1227,7 @@
   id: ThavenHairSidecut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidecut
@@ -1235,7 +1235,7 @@
   id: ThavenHairSidetail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail
@@ -1243,7 +1243,7 @@
   id: ThavenHairSidetail2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail2
@@ -1251,7 +1251,7 @@
   id: ThavenHairSidetail3
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail3
@@ -1259,7 +1259,7 @@
   id: ThavenHairSidetail4
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: sidetail4
@@ -1267,7 +1267,7 @@
   id: ThavenHairSkinhead
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: skinhead
@@ -1275,7 +1275,7 @@
   id: ThavenHairSpiky
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: spiky
@@ -1283,7 +1283,7 @@
   id: ThavenHairSpikyponytail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: spikyponytail
@@ -1291,7 +1291,7 @@
   id: ThavenHairSpookylong
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: spookylong
@@ -1299,7 +1299,7 @@
   id: ThavenHairStail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: stail
@@ -1307,7 +1307,7 @@
   id: ThavenHairSwept
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: swept
@@ -1315,7 +1315,7 @@
   id: ThavenHairSwept2
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: swept2
@@ -1323,7 +1323,7 @@
   id: ThavenHairTailed
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: tailed
@@ -1331,7 +1331,7 @@
   id: ThavenHairThinning
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: thinning
@@ -1339,7 +1339,7 @@
   id: ThavenHairThinningfront
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: thinningfront
@@ -1347,7 +1347,7 @@
   id: ThavenHairThinningrear
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: thinningrear
@@ -1355,7 +1355,7 @@
   id: ThavenHairTightbun
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: tightbun
@@ -1363,7 +1363,7 @@
   id: ThavenHairTopknot
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: topknot
@@ -1371,7 +1371,7 @@
   id: ThavenHairTressshoulder
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: tressshoulder
@@ -1379,7 +1379,7 @@
   id: ThavenHairTrimflat
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: trimflat
@@ -1387,7 +1387,7 @@
   id: ThavenHairTrimmed
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: trimmed
@@ -1395,7 +1395,7 @@
   id: ThavenHairTwintail
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: twintail
@@ -1403,7 +1403,7 @@
   id: ThavenHairTwostrands
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: twostrands
@@ -1411,7 +1411,7 @@
   id: ThavenHairUndercut
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: undercut
@@ -1419,7 +1419,7 @@
   id: ThavenHairUndercutleft
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: undercutleft
@@ -1427,7 +1427,7 @@
   id: ThavenHairUndercutright
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: undercutright
@@ -1435,7 +1435,7 @@
   id: ThavenHairUneven
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: uneven
@@ -1443,7 +1443,7 @@
   id: ThavenHairUnkept
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: unkept
@@ -1451,7 +1451,7 @@
   id: ThavenHairVeryshortovereyealternate
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: veryshortovereyealternate
@@ -1459,7 +1459,7 @@
   id: ThavenHairVlong
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: vlong
@@ -1467,7 +1467,7 @@
   id: ThavenHairVlongfringe
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: vlongfringe
@@ -1475,7 +1475,7 @@
   id: ThavenHairVolaju
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: volaju
@@ -1483,7 +1483,7 @@
   id: ThavenHairWisp
   bodyPart: Hair
   markingCategory: Hair
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/thaven_hair.rsi
     state: wisp
@@ -1494,7 +1494,7 @@
   id: BodyhairThaven
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: hair
@@ -1503,7 +1503,7 @@
   id: Gills
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: gills
@@ -1512,7 +1512,7 @@
   id: ThavenAbs
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
@@ -1522,7 +1522,7 @@
   id: ThavenBiteMark
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: bitemark
@@ -1531,7 +1531,7 @@
   id: ThavenBodyStripes
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: stripes
@@ -1540,7 +1540,7 @@
   id: ThavenChestScales
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: scales
@@ -1549,7 +1549,7 @@
   id: ThavenChestTattoo1
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1563,7 +1563,7 @@
   id: ThavenSpinechill
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1577,7 +1577,7 @@
   id: ThavenSpines
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: spines
@@ -1586,7 +1586,7 @@
   id: ThavenTattooWave
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tattoowave
@@ -1595,7 +1595,7 @@
   id: ThavenTattooVines
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tattoovines
@@ -1604,7 +1604,7 @@
   id: ThavenTiger
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/chest.rsi
     state: tiger1
@@ -1618,7 +1618,7 @@
   id: ThavenHeadCap
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: cap1
@@ -1629,7 +1629,7 @@
   id: ThavenHeadScales
   bodyPart: Head
   markingCategory: HeadTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: scales
@@ -1638,7 +1638,7 @@
   id: ThavenHeadStripes
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/head.rsi
     state: stripes
@@ -1647,7 +1647,7 @@
   id: ThavenShadow
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   coloring:
     default:
@@ -1666,7 +1666,7 @@
   id: SharkminnowEyeliner
   bodyPart: Eyes
   markingCategory: HeadTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/eyes.rsi
     state: sharkminnoweyeliner
@@ -1675,7 +1675,7 @@
   id: ThavenEyesSharkminnow
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1689,7 +1689,7 @@
   id: ThavenEyesSharkminnowGlowing
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1703,7 +1703,7 @@
   id: ThavenLEyeGlow
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1717,7 +1717,7 @@
   id: ThavenREyeGlow
   bodyPart: Eyes
   markingCategory: Head
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1733,7 +1733,7 @@
   id: ThavenRArmScales
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
     state: scales
@@ -1742,7 +1742,7 @@
   id: ThavenRArmTattoo1
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1756,7 +1756,7 @@
   id: ThavenTigerRArm
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/rarm.rsi
     state: tiger
@@ -1767,7 +1767,7 @@
   id: ThavenLArmScales
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
     state: scales
@@ -1776,7 +1776,7 @@
   id: ThavenLArmTattoo1
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1790,7 +1790,7 @@
   id: ThavenTigerLArm
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/larm.rsi
     state: tiger
@@ -1801,7 +1801,7 @@
   id: ThavenRLegScales
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/rleg.rsi
     state: scales
@@ -1812,7 +1812,7 @@
   id: ThavenLLegScales
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/lleg.rsi
     state: scales
@@ -1823,7 +1823,7 @@
   id: UnderwearBriefsT
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1837,7 +1837,7 @@
   id: UnderwearDefaultT
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1851,7 +1851,7 @@
   id: UnderwearLowridersT
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1865,7 +1865,7 @@
   id: UnderwearSatinT
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1879,7 +1879,7 @@
   id: UnderwearTangaT
   bodyPart: UndergarmentBottom
   markingCategory: UndergarmentBottom
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1895,7 +1895,7 @@
   id: UndergarmentTopBinderT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type: null
@@ -1908,7 +1908,7 @@
   id: UndershirtBraClassicT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1922,7 +1922,7 @@
   id: UndershirtBraSportsT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1936,7 +1936,7 @@
   id: UndershirtBraStraplessT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1950,7 +1950,7 @@
   id: UndershirtDefaultT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1964,7 +1964,7 @@
   id: UndershirtGrossSleevelessT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1978,7 +1978,7 @@
   id: UndershirtNanotrasenT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -1992,7 +1992,7 @@
   id: UndershirtRolledT
   bodyPart: UndergarmentTop
   markingCategory: UndergarmentTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -2008,7 +2008,7 @@
   id: ThavenEars1
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -2019,7 +2019,7 @@
   id: ThavenEars2
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -2030,7 +2030,7 @@
   id: ThavenEars3
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -2041,7 +2041,7 @@
   id: ThavenEars4
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -2052,7 +2052,7 @@
   id: ThavenEarsBigFins
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: bigfins
@@ -2063,7 +2063,7 @@
   id: ThavenEarsTwinFins
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -2074,7 +2074,7 @@
   id: ThavenFishEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   forcedColoring: true
   followSkinColor: true
   sprites:
@@ -2085,7 +2085,7 @@
   id: ThavenNoEars
   bodyPart: HeadSide
   markingCategory: HeadSide
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/headside.rsi
     state: noears
@@ -2096,7 +2096,7 @@
   id: ThavenHibiscus
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -2112,7 +2112,7 @@
   id: ThavenPiercings
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -2126,7 +2126,7 @@
   id: ThavenPiercings2
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -2142,7 +2142,7 @@
   id: ThavenBasicTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: basic_front
@@ -2153,7 +2153,7 @@
   id: ThavenBigTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: big1_behind
@@ -2168,7 +2168,7 @@
   id: ThavenTadpoleTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
     state: tadpole1_behind
@@ -2183,7 +2183,7 @@
   id: ThavenTailEel
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
@@ -2199,7 +2199,7 @@
   id: ThavenTailEelOverlay
   bodyPart: Tail
   markingCategory: Overlay
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   coloring:
     default:
       type:
@@ -2219,7 +2219,7 @@
   id: ThavenTailNurse
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
@@ -2235,7 +2235,7 @@
   id: ThavenTailStub
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/taillayers.rsi
@@ -2251,7 +2251,7 @@
   id: ThavenTailThresher
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [ Thaven ]
+  speciesRestriction: [ Thaven, ProtoThaven , Protogen] #FH
   followSkinColor: true
   sprites:
   - sprite: _Starlight/Mobs/Customization/thaven/tail.rsi

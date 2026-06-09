@@ -110,6 +110,12 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
+
 - type: Tag
   id: CentcommVibroblade
 
@@ -219,13 +225,16 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
 
 - type: Tag
-  id: EmergencyWelder
+  id: Elf
 
 - type: Tag
-  id: ExternalAirlock
+  id: EmergencyWelder
 
 - type: Tag
   id: Felionoid
@@ -341,6 +350,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -494,6 +506,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -527,6 +545,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore

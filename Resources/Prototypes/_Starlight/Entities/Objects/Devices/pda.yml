@@ -22,6 +22,7 @@
     damageContainers:
     - Silicon
     - IPC
+    - Hybrid
 
 - type: entity
   parent: BaseMedicalPDA
@@ -516,6 +517,15 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-punpun
+
+- type: entity
+  parent: BotanistPDA
+  id: KikiPDA
+  name: kiki's PDA
+  description: Has an earthy scent.
+  components:
+  - type: Pda
+    id: KikiIDCard
 
 - type: entity
   parent: BasePDA
