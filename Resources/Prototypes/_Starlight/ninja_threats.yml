@@ -32,3 +32,8 @@
   id: Xenoborgs
   announcement: terror-borgs
   rule: SubXenoborgs
+
+- type: ninjaHackingThreat
+  id: Eeeplet
+  announcement: terror-eeep
+  rule: EeepEvent

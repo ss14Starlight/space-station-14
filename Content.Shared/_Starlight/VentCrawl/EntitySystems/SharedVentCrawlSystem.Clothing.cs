@@ -1,22 +1,29 @@
 using Content.Shared.Clothing;
-using Content.Shared.VentCrawl.Components;
-using Content.Shared.VentCrawl;
+using Content.Shared._Starlight.VentCrawl.Components;
 
-namespace Content.Shared.VentCrawl.EntitySystems;
+namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 
-public sealed class VentCrawlClothingSystem : EntitySystem
+public sealed partial class SharedVentCrawlSystem
 {
-    public override void Initialize()
+    public void InitializeClothing()
     {
-        base.Initialize();
-
         SubscribeLocalEvent<VentCrawlClothingComponent, ClothingGotEquippedEvent>(OnClothingEquip);
         SubscribeLocalEvent<VentCrawlClothingComponent, ClothingGotUnequippedEvent>(OnClothingUnequip);
     }
 
     private void OnClothingEquip(Entity<VentCrawlClothingComponent> ent, ref ClothingGotEquippedEvent args)
-        => AddComp<VentCrawlerComponent>(args.Wearer);
+    {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
+        EnsureComp<VentCrawlerComponent>(args.Wearer);
+    }
 
     private void OnClothingUnequip(Entity<VentCrawlClothingComponent> ent, ref ClothingGotUnequippedEvent args)
-        => RemComp<VentCrawlerComponent>(args.Wearer);
+    {
+        if (!_gameTiming.IsFirstTimePredicted)
+            return;
+
+        RemComp<VentCrawlerComponent>(args.Wearer);
+    }
 }
