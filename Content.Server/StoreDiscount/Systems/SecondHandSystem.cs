@@ -1,7 +1,7 @@
 using System.Linq;
-using Content.Server.FeedbackSystem;
+//using Content.Server.FeedbackSystem; // Starlight
 using Content.Server.Store.Systems;
-using Content.Shared.FeedbackSystem;
+//using Content.Shared.FeedbackSystem; // Starlight
 using Content.Shared.GameTicking;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -18,14 +18,14 @@ namespace Content.Server.StoreDiscount.Systems;
 public sealed class SecondHandSystem : EntitySystem
 {
     private static readonly ProtoId<StoreCategoryPrototype> SecondHandStoreCategoryKey = "SecondHandItems";
-    private static readonly ProtoId<FeedbackPopupPrototype> SecondHandFeedbackPopupId = "SecondHandFeedback";
+    //private static readonly ProtoId<FeedbackPopupPrototype> SecondHandFeedbackPopupId = "SecondHandFeedback"; // Starlight
     // Number of second-hand items shown per uplink per round.
     private const int MinSecondHandItems = 8;
     private const int MaxSecondHandItems = 14;
 
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ServerFeedbackManager _feedbackManager = default!;
+    //[Dependency] private readonly ServerFeedbackManager _feedbackManager = default!; // Starlight
 
     public override void Initialize()
     {
@@ -33,7 +33,7 @@ public sealed class SecondHandSystem : EntitySystem
 
         SubscribeLocalEvent<StoreInitializedEvent>(OnStoreInitialized);
         SubscribeLocalEvent<StoreBuyFinishedEvent>(OnBuyFinished);
-        SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd);
+        //SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd); // Starlight
     }
 
     /// <summary>
@@ -57,13 +57,16 @@ public sealed class SecondHandSystem : EntitySystem
         purchasedItem.Categories.Remove(SecondHandStoreCategoryKey);
     }
 
+    #region Starlight
+    // We don't use the feedback system.
     /// <summary>
     /// Sends a feedback popup to all players at round end if the second-hand feature was active this round.
     /// </summary>
-    private void OnRoundEnd(RoundEndMessageEvent args)
-    {
-        _feedbackManager.SendToAllSessions([SecondHandFeedbackPopupId]);
-    }
+    //private void OnRoundEnd(RoundEndMessageEvent args)
+    //{
+    //    _feedbackManager.SendToAllSessions([SecondHandFeedbackPopupId]);
+    //}
+    #endregion
 
     /// <summary>
     /// Populates the Second Hand tab when the store is initialized, if second-hand items are enabled for this uplink.
