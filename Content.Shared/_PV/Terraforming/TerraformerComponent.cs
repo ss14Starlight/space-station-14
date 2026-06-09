@@ -122,11 +122,14 @@ public sealed partial class TerraformerComponent : Component
     /// </summary>
     public List<EntityUid> SpawnedBarriers = new();
 
+    /// <summary>
+    /// Legacy automatic tree spawning. Disabled by default; saplings inserted into the terraformer are the intended tree source.
+    /// </summary>
     [DataField]
-    public bool SpawnTrees = true;
+    public bool SpawnTrees = false;
 
     /// <summary>
-    /// Maximum amount of trees this Terraformer may spawn over its lifetime.
+    /// Maximum amount of trees this Terraformer may spawn over its lifetime if legacy automatic spawning is explicitly enabled.
     /// </summary>
     [DataField]
     public int MaxSpawnedTrees = 4;
@@ -144,7 +147,7 @@ public sealed partial class TerraformerComponent : Component
     public float TreeSpawnChance = 0.25f;
 
     /// <summary>
-    /// Normal tree prototype. FloraTree randomly chooses one of the normal tree sprites.
+    /// Legacy automatic tree prototype. Sapling tree spawning uses TerraformerSaplingComponent instead.
     /// </summary>
     [DataField]
     public string TreePrototype = "FloraTree";
