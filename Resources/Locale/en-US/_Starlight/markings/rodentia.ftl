@@ -83,14 +83,14 @@ marking-RodentiaCheeksRoundCounter = Round Cheeks (Two-tone)
 marking-RodentiaCheeksRoundCounter-cheeks = Cheek
 marking-RodentiaCheeksRoundCounter-cheeks_overlay = Countershade
 
-marking-RodentiaCheeksFluff = luffy Cheeks
+marking-RodentiaCheeksFluff = Fluffy Cheeks
 marking-RodentiaCheeksFluff-fluff = Cheek fluff
 
-marking-RodentiaCheeksFluffCounter = CFluffy Cheeks (Two-tone)
+marking-RodentiaCheeksFluffCounter = Fluffy Cheeks (Two-tone)
 marking-RodentiaCheeksFluffCounter-fluff = Cheek fluff
 marking-RodentiaCheeksFluffCounter-fluff_overlay = Countershade
 
-marking-RodentiaCheeksFluffAlt = lufft Cheeks, Alt
+marking-RodentiaCheeksFluffAlt = Fluffy Cheeks, Alt
 marking-RodentiaCheeksFluffAlt-fluff_alt = Cheek fluff
 
 marking-RodentiaCheeksFluffAltCounter = Fluffy Cheeks, Alt (Two-tone)

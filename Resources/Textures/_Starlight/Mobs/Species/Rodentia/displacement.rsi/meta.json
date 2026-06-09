@@ -1,6 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
+  "copyright": "Per state",
   "size": {
     "x": 32,
     "y": 32
@@ -71,6 +72,11 @@
     },
     {
       "name": "hair",
+      "directions": 4,
+      "copyright": "by Huaqas (GitHub)"
+    },
+    {
+      "name": "facialhair",
       "directions": 4,
       "copyright": "by Huaqas (GitHub)"
     }

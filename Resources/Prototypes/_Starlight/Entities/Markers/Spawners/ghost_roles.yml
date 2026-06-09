@@ -150,3 +150,26 @@
     - state: green
     - sprite: _Starlight/Mobs/Animals/Spiders/terror_princess.rsi
       state: 1-alive
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: MarkerBase
+  id: SpawnPointXenoroach
+  name: xenoroach spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-xenoroach-name
+    description: ghost-role-information-xenoroach-description
+    rules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleXenoborg
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobXenoroach
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Starlight/Mobs/Silicon/Chassis/xenoroach.rsi
+      state: xenoroach

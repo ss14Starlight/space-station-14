@@ -34,7 +34,11 @@ public sealed partial class MouthStorageSystem : SharedMouthStorageSystem
         component.Mouth.OccludesLight = false;
 
         var mouth = Spawn(component.MouthProto, new EntityCoordinates(uid, 0, 0));
-        _containerSystem.Insert(mouth, component.Mouth);
+        if (!_containerSystem.Insert(mouth, component.Mouth))
+        {
+            QueueDel(mouth);
+            return;
+        }
         component.MouthId = mouth;
 
         if (!string.IsNullOrWhiteSpace(component.OpenStorageAction) && component.Action == null)
