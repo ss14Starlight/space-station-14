@@ -160,8 +160,7 @@
           amount: 2
         - id: ClothingOuterWinterWarden
           amount: 2
-        - id: RubberStampWarden
-          amount: 2
+        - id: BoxWardenStamps
         - id: DoorRemoteArmory
           amount: 2
         - id: HoloprojectorSecurity

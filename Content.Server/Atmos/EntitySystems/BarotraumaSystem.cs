@@ -141,10 +141,10 @@ namespace Content.Server.Atmos.EntitySystems
                 {
                     var found = false;
 
-                    var groupHPModifier = 0f;
-                    var groupHPMultiplier = 1f;
-                    var groupLPModifier = 0f;
-                    var groupLPMultiplier = 1f;
+                    var groupHPModifier = float.MinValue;
+                    var groupHPMultiplier = float.MinValue;
+                    var groupLPModifier = float.MaxValue;
+                    var groupLPMultiplier = float.MaxValue;
 
                     foreach (var slot in group)
                     {
