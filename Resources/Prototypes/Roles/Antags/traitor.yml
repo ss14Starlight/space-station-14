@@ -93,9 +93,12 @@
 
 - type: startingGear
   id: SyndicateReinforcementThief
-  parent: SyndicateOperativeClothing
+#  parent: SyndicateOperativeClothing # Starlight, don't inherit, since we want to give them their own gloves
   equipment:
-    gloves: ThievingGlovesReinforcement # Starlight
+    jumpsuit: ClothingUniformJumpsuitOperative # Starlight start
+    back: ClothingBackpackSyndicate
+    shoes: ClothingShoesBootsSyndieFilled
+    gloves: ThievingGlovesReinforcement # Starlight end
     pocket1: WeaponPistolViper
     pocket2: MagazinePistolHighCapacitySP # Starlight
   inhand:
