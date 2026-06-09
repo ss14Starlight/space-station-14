@@ -48,7 +48,7 @@
             Warden: [ 1, 1 ]
             DutyOfficer: [ 1, 1 ]
             SecurityOfficer: [ 2, 3 ]
-            SecurityCadet: [ 1, 1 ]
+            SecurityCadet: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]

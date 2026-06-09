@@ -1,0 +1,213 @@
+- type: entity
+  name: xenoroach
+  parent: MobSiliconBase
+  id: MobXenoroach
+  description: A tiny biomechanical spy-bot produced by the Xenoborg Mothership. It lacks the processing power for complex tasks, but its small frame lets it slip through vents and under doors with ease.
+  save: false
+  components:
+  # Xenoborg faction marker - passes SpawnPointXenoborg whitelist
+  - type: Xenoborg
+  # Sprite - using xenoroach RSI
+  - type: Sprite
+    drawdepth: SmallMobs
+    sprite: _Starlight/Mobs/Silicon/Chassis/xenoroach.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: xenoroach
+    # Required by BorgSystem.UpdateBorgAppearance — fully transparent so it never alters appearance
+    - state: xenoroach
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+      color: "#FFFFFF00"
+  # Small mob physics - passes under doors and hides under tables
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 120
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  # Health - 40 HP silicon bot
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      40: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: false
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Electronic
+  # Death: melt into acid. Xenoroaches are biological-silicon hybrids; on destruction
+  # the chassis dissolves into acid just like a living xenomorph would.
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 40
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          XenoborgAcidifier:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  # Movement - roach speed plus weightless movement for space
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+    weightlessAcceleration: 1.5
+    weightlessFriction: 1
+    baseWeightlessModifier: 1
+  - type: MovementAlwaysTouching
+  # Vent crawling
+  - type: VentCrawler
+  # Faction
+  - type: NpcFactionMember
+    factions:
+    - Xenoborg
+  # Access
+  - type: Access
+    tags:
+    - Xenoborg
+  - type: AccessReader
+    access: [["Xenoborg"]]
+  # Radio - transmit on Xenoborg channel, listen to Mothership/Xenoborg/Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Xenoborg
+  - type: ActiveRadio
+    channels:
+    - Mothership
+    - Xenoborg
+    - Binary
+  - type: LanguageSpeaker
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+    understands:
+    - GalacticCommon
+    - SolCommon
+    - Machine
+    - Canilunzt
+    - Sign
+    - Bubblish
+    - Chittin
+    - Draconic
+    - Marish
+    - Moffic
+    - Nekomimetic
+    - Sylvan
+    - Terrum
+    - VoxPidgin
+    - Scratch
+    - Thaveyan
+    - Dog
+    - Darktongue
+    - Classical
+    - Grumbakul
+    - Aielic
+    - Lagomorphian
+  # Surveillance - Mothership Core can watch through it
+  - type: SurveillanceCamera
+    networkSet: true
+    nameSet: true
+    id: Xenoborg
+    useEntityNameAsCameraId: true
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: Xenoborg
+    transmitFrequencyId: Mothership
+    savableAddress: false
+  # Intrinsic Mothership Core direction tracker — HUD screen arrow, no physical item.
+  # Change component/targetName at runtime via VV (ReadWrite) to retarget.
+  - type: IntrinsicPinpointer
+    component: MothershipCore
+    targetName: the Mothership
+  # Self-destruct implant — gives the player an action to manually dissolve the chassis.
+  # Death by damage is handled by the Destructible component above.
+  - type: AutoImplant
+    implants:
+    - XenoroachSelfDestructImplant
+  # Speech
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Xenoborg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconXenoborg
+    wilhelmProbability: 0
+  - type: RandomMetadata
+    nameSegments:
+    - NamesXenoborg
+  - type: TypingIndicator
+    proto: xenoborg
+  - type: NameIdentifier
+    group: Xenoborg
+  - type: BorgChassis
+    jobIconOverride: JobIconXenoborg
+    jobTitleOverride: chat-radio-xenoborg
+    hasMindState: xenoroach
+    noMindState: xenoroach
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: SiliconLawProvider
+    laws: XenoroachLawset
+  # Ghost role - no brain required
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: ghost-role-information-xenoroach-name
+    description: ghost-role-information-xenoroach-description
+    rules: ghost-role-information-silicon-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  # Melee - barely any damage, like a cockroach bite
+  - type: CombatMode
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    angle: 0
+    animation: WeaponArcBite
+    damage:
+      types:
+        Blunt: 0.5
+  # Visuals
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: xenoroach
+      Dead:
+        Base: xenoroach_dead
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+  # Tags
+  - type: Tag
+    tags:
+    - XenoborgGhostrole
+    - SiliconEmotes
+    - Unimplantable
+    - DoorBumpOpener

@@ -17,6 +17,7 @@
 - type: speciesBaseSprites
   id: MobProtoHumanSprites
   sprites:
+    Hair: MobHumanoidAnyMarking
     Eyes: MobProtogenEyes
     Head: MobHumanHead
     Snout: MobHumanoidAnyMarking

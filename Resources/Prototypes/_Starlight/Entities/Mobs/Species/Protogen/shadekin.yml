@@ -34,6 +34,9 @@
       species: ProtoKin
       hideLayersOnEquip:
       - Hair
+    - type: Inventory
+      speciesId: protokin #to be replaced with proto[species] when new sprites are made
+      templateId: protogen
     - type: Icon
       sprite: _FarHorizons/Mobs/Species/Proto-Kin/parts.rsi
       state: full
@@ -78,9 +81,9 @@
       allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
     - type: Vocal
       sounds:
-        Male: MaleProtogen
-        Female: FemaleProtogen
-        Unsexed: MaleProtogen
+        Male: ProtoShadekinMSounds
+        Female: ProtoShadekinFSounds
+        Unsexed: ProtoShadekinMSounds
     - type: MeleeWeapon
       soundHit:
         collection: AlienClaw
@@ -157,6 +160,11 @@
                   max: 1
             - !type:BurnBodyBehavior {}
     - type: Barotrauma
+      protectionSlots:
+      - head
+      alternativeProtectionSlots:
+      - - outerClothing
+        - outerClothing2
       damage:
         types:
           Blunt: 0.85 #per second, scales with pressure and other constants.

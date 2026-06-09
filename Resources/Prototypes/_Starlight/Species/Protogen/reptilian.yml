@@ -22,6 +22,7 @@
   sprites:
     Eyes: MobProtogenEyes
     Head: MobReptilianHead
+    Hair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking

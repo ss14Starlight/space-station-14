@@ -1,10 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.NPC.Components;
+using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.VentCrawl;
 
 namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Melee;
 

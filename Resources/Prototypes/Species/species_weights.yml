@@ -3,36 +3,19 @@
   id: SpeciesWeights
   weights:
     Human: 10
-    ProtoHuman: 3
     Reptilian: 5
-    ProtoReptilian: 2
     Moth: 5
-    ProtoMoth: 2
     Vulpkanin: 5
-    ProtoVulp: 2
     SlimePerson: 4
-    ProtoSlimePerson: 2
     IPC: 3
-    Protogen: 3
     Elf: 3
-    ProtoElf: 1
     Lagomorph: 4
-    ProtoLagomorph: 2
     Avali: 3
-    ProtoAvali: 1
     Resomi: 3
-    ProtoResomi: 1
     Felionoid: 3
-    ProtoFelionoid: 1
     Thaven: 2
-    ProtoThaven: 1
     Dwarf: 2
-    ProtoDwarf: 1
     Diona: 2
-    ProtoDiona: 1
     Cyclorite: 2
-    ProtoCyclorite: 1
     Shadekin: 2
-    ProtoKin: 1
     Vox: 1
-    ProtoVox: 1
