@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer.
   changes:
-  - message: (HOTEL) Added clown locker.
-    type: Add
-  id: 405341
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
-  - message: (HOTEL) Added mime locker.
-    type: Add
-  id: 405342
-  time: '2026-05-24T09:52:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4503
-- author: Cvlancer.
-  changes:
   - message: (HOTEL) Added law drobe.
     type: Add
   id: 405343
@@ -2799,4 +2785,18 @@ Entries:
   id: 405740
   time: '2026-06-08T23:11:31.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4661
+- author: Way, Kirb
+  changes:
+  - message: Reinforced cameras.
+    type: Add
+  id: 405741
+  time: '2026-06-08T23:48:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4685
+- author: Way, Kirb
+  changes:
+  - message: camera wire panels can now be secured like doors/lockers.
+    type: Add
+  id: 405742
+  time: '2026-06-08T23:48:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4685
 Order: -1
