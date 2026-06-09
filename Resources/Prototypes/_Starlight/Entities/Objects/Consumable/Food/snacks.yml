@@ -107,3 +107,7 @@
   - type: Tag
     tags:
     - FoodSnack
+  - type: Clothing
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    equippedPrefix: white_lollipop
+    slots: [ mask ]

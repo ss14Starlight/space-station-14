@@ -39,6 +39,14 @@
     {
       "name": "white_lollipop-inhand-left_fill_2",
       "directions": 4
+    },
+    {
+      "name": "white_lollipop-equipped-MASK",
+      "directions": 4
+    },
+    {
+      "name": "white_lollipop-equipped-MASK-vox",
+      "directions": 4
     }
   ]
 }
