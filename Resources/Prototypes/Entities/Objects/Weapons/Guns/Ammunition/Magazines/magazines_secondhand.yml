@@ -11,7 +11,7 @@
     minFillFraction: 0.7
     maxFillFraction: 1.0
     entries:
-      - proto: CartridgePistol
+      - proto: CartridgePistolSP # Starlight
         weight: 5
       - proto: CartridgePistolIncendiary
         weight: 2
@@ -31,7 +31,7 @@
     minFillFraction: 0.65
     maxFillFraction: 1.0
     entries:
-      - proto: CartridgePistol
+      - proto: CartridgePistolSP # Starlight
         weight: 5
       - proto: CartridgePistolIncendiary
         weight: 2
@@ -109,7 +109,7 @@
     minFillFraction: 0.6
     maxFillFraction: 1.0
     entries:
-      - proto: CartridgeRifle
+      - proto: CartridgeRifleSP # Starlight
         weight: 5
       - proto: CartridgeRifleIncendiary
         weight: 2
@@ -129,7 +129,7 @@
     minFillFraction: 0.5
     maxFillFraction: 1.0
     entries:
-      - proto: CartridgeLightRifle
+      - proto: CartridgeLightRifleSP # Starlight
         weight: 5
       - proto: CartridgeLightRifleIncendiary
         weight: 2
