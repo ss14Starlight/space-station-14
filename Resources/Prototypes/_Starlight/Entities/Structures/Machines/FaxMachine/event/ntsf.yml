@@ -20,5 +20,6 @@
     - type: FaxMachine
       group: FaxGroupNTSF
       intrinsicGroup: FaxGroupNTSF
+      intrinsicLocked: true # No impersonating unless emagged
       name: "NTSF"
       order: 500

@@ -21,7 +21,7 @@ public partial class ColoredOptionButton : OptionButton
 
     private readonly Dictionary<int, Color> _itemColors = new();
 
-    public ColoredOptionButton() => OnItemSelected += args => ApplyFaceColor(args.Id);
+    public ColoredOptionButton() => OnItemSelected += args => SelectId(args.Id);
 
     protected override void DrawModeChanged()
     {
@@ -108,6 +108,7 @@ public partial class ColoredOptionButton : OptionButton
     {
         base.Clear();
         _itemColors.Clear();
+        _faceColor = null;
         ModulateSelfOverride = null;
     }
 
@@ -184,7 +185,7 @@ public partial class ColoredOptionButton : OptionButton
     {
         var hsv = Color.ToHsv(color);
         hsv.Y *= Math.Min(hsv.Y, .6f); // Limit saturation to 60%.
-        hsv.Z *= Math.Min(hsv.Z, .5f); // Limit brightness to 50%.
+        hsv.Z *= Math.Max(Math.Min(hsv.Z, .5f), .25f); // Clamp brightness between 20% and 50%.
         return Color.FromHsv(hsv);
     }
 

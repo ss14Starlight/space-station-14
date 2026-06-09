@@ -47,6 +47,6 @@ public sealed partial class FaxMachineConfigureBoundUserInterface(EntityUid owne
         _window?.CurrentOrder = faxState.Order;
         _window?.SetGroupings(
             _prototypeManager.EnumeratePrototypes<FaxGroupPrototype>(),
-            faxState.CurrentGroup, faxState.IntrinsicGroup, faxState.Emagged);
+            faxState.CurrentGroup, faxState.IntrinsicGroup, faxState.IntrinsicLocked, faxState.Emagged);
     }
 }

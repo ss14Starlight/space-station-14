@@ -2,11 +2,12 @@
 
 - type: entity
   parent: FaxMachineWizardBase
-  id: FaxMachineWizardWindsOfMagic
+  id: FaxMachineWizard
   suffix: "Wizard: DO NOT MAP"
   components:
     - type: FaxMachine
       group: FaxGroupWizard
       intrinsicGroup: FaxGroupWizard
+      intrinsicLocked: true # No impersonating unless emagged
       name: "Wizard"
       order: 500

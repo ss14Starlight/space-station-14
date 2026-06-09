@@ -158,6 +158,13 @@ public sealed partial class FaxMachineComponent : Component
     public ProtoId<FaxGroupPrototype>? IntrinsicGroup { get; set; }
 
     /// <summary>
+    /// Whether this fax machine is locked to its intrinsic group when configuring it. Emagging unlocks this.
+    /// </summary>
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IntrinsicLocked { get; set; }
+
+    /// <summary>
     /// The order of this fax machine within its group. Lower values mean higher up in the list.
     /// </summary>
     [DataField]

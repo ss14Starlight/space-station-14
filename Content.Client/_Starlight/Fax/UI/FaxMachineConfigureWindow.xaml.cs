@@ -34,14 +34,22 @@ public sealed partial class FaxMachineConfigureWindow : FancyWindow
         SubmitButton.OnPressed += _ => OnSubmit?.Invoke();
     }
 
-    public void SetGroupings(IEnumerable<FaxGroupPrototype> groups, ProtoId<FaxGroupPrototype>? selectedGroup,
-        ProtoId<FaxGroupPrototype>? intrinsicGroup, bool emagged)
+    public void SetGroupings(
+        IEnumerable<FaxGroupPrototype> groups,
+        ProtoId<FaxGroupPrototype>? selectedGroup,
+        ProtoId<FaxGroupPrototype>? intrinsicGroup,
+        bool intrinsicLocked,
+        bool emagged)
     {
         GroupSelector.Clear();
         GroupSelector.AddItem(Loc.GetString("fax-machine-configure-ui-group-none"), NoneItemId);
 
         foreach (var group in groups.OrderBy(g => g.Order))
         {
+            // If this machine is locked to its intrinsic group and not emagged, only the intrinsic group is shown.
+            if (intrinsicLocked && !emagged && group.ID != intrinsicGroup?.Id)
+                continue;
+
             // To be able to select a group, one of these conditions must be met:
             // - The group is Selectable by default;
             // - The group is SelectableEmagged, and the machine is emagged;
@@ -58,7 +66,7 @@ public sealed partial class FaxMachineConfigureWindow : FancyWindow
             GroupSelector.SetItemColor(group.Color);
         }
 
-        GroupSelector.SelectId(selectedGroup is null ? NoneItemId : selectedGroup.GetHashCode());
+        GroupSelector.SelectId(selectedGroup is null ? NoneItemId : selectedGroup.Value.Id.GetHashCode());
     }
 
 }

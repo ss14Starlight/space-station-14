@@ -20,5 +20,6 @@
     - type: FaxMachine
       group: FaxGroupBlackstar
       intrinsicGroup: FaxGroupBlackstar
+      intrinsicLocked: true # No impersonating unless emagged
       name: "Blackstar"
       order: 500

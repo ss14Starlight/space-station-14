@@ -796,7 +796,9 @@ public sealed class FaxSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var state = new FaxMachineConfigureState(component.FaxName, component.CurrentGroup, component.IntrinsicGroup, component.Order, HasComp<EmaggedComponent>(uid));
+        var state = new FaxMachineConfigureState(component.FaxName, component.CurrentGroup,
+            component.IntrinsicGroup, component.IntrinsicLocked,
+            component.Order, HasComp<EmaggedComponent>(uid));
         _userInterface.SetUiState(uid, FaxMachineConfigureUiKey.Key, state);
     }
 

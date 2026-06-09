@@ -9,20 +9,17 @@
 
 # Base
 - type: entity
+  abstract: true
   parent: FaxMachineBase
-  id: FaxMachineCentralCommand
-  suffix: "CC: DO NOT MAP"
+  id: FaxMachineCentralCommandBase
   components:
     - type: Sprite
       layers:
         - state: icon
           map: [ "base" ]
           color: "#00b700"
-    - type: FaxMachine
-      group: FaxGroupCentralCommand
-      intrinsicGroup: FaxGroupCentralCommand
-      name: "CentComm" # Intentionally different from the "normal" version's "Central Command".
-      order: 500
 
 # Fax machines
-## Primary CC fax machine is from upstream, so it's missing here, it has order: 100.
+
+## Primary CC fax machine is from upstream, so it's missing here, it has order=100.
+## Event CC fax machine is in ./events/centcomm.yml, order=500.

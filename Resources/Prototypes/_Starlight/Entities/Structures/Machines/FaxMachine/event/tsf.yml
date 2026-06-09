@@ -20,5 +20,6 @@
     - type: FaxMachine
       group: FaxGroupTSF
       intrinsicGroup: FaxGroupTSF
+      intrinsicLocked: true # No impersonating unless emagged
       name: "Trans-Solar Federation"
       order: 500

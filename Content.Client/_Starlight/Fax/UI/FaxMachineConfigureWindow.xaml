@@ -1,6 +1,6 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                      xmlns:controls1="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
+                      xmlns:sl-controls="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
                       Title="{Loc 'fax-machine-configure-ui-window'}"
                       MinSize="320 185">
     <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
@@ -11,6 +11,7 @@
                    MinWidth="80"
                    VerticalAlignment="Center" />
             <LineEdit Name="NameEdit"
+                      ToolTip="{Loc 'fax-machine-configure-ui-name-tooltip'}"
                       HorizontalExpand="True"
                       PlaceHolder="{Loc 'fax-machine-configure-ui-name-placeholder'}" />
         </BoxContainer>
@@ -20,8 +21,10 @@
             <Label Text="{Loc 'fax-machine-configure-ui-group'}"
                    MinWidth="80"
                    VerticalAlignment="Center" />
-            <controls1:ColoredOptionButton Name="GroupSelector"
-                                         HorizontalExpand="True" />
+            <sl-controls:ColoredOptionButton
+                Name="GroupSelector"
+                ToolTip="{Loc 'fax-machine-configure-ui-group-tooltip'}"
+                HorizontalExpand="True" />
         </BoxContainer>
 
         <!-- Order -->
@@ -30,10 +33,11 @@
                    MinWidth="80"
                    VerticalAlignment="Center" />
             <SpinBox Name="OrderSpinBox"
+                     ToolTip="{Loc 'fax-machine-configure-ui-order-tooltip'}"
                      HorizontalExpand="True" />
         </BoxContainer>
 
-        <PanelContainer StyleClasses="LowDivider" Margin="0 4 0 4"/>
+        <PanelContainer StyleClasses="LowDivider" Margin="0 4 0 4" />
 
         <Button Name="SubmitButton"
                 Text="{Loc 'fax-machine-configure-ui-submit'}"

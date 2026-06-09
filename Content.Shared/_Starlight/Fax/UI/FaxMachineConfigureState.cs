@@ -8,6 +8,7 @@ public sealed class FaxMachineConfigureState(
     string name,
     ProtoId<FaxGroupPrototype>? currentGroup,
     ProtoId<FaxGroupPrototype>? intrinsicGroup,
+    bool intrinsicLocked,
     int order,
     bool emagged)
     : BoundUserInterfaceState
@@ -15,6 +16,7 @@ public sealed class FaxMachineConfigureState(
     public string Name = name;
     public ProtoId<FaxGroupPrototype>? CurrentGroup = currentGroup;
     public ProtoId<FaxGroupPrototype>? IntrinsicGroup = intrinsicGroup;
+    public bool IntrinsicLocked = intrinsicLocked;
     public int Order = order;
     public bool Emagged = emagged;
 }

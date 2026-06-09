@@ -1,0 +1,46 @@
+
+# Group
+- type: faxGroup
+  id: FaxGroupITG
+  name: fax-group-itg
+  order: 10000 # Bott
+  color: "#5f5f5f" # Color picked from the concrete floor on the ATS. Change as you see fit if we ever pick a thematic color for the Interstellar Trade Guild.
+  selectable: false
+  selectableEmagged: true
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineITGBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#5f5f5f"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineITGBase
+  id: FaxMachineITGSalvageLead
+  suffix: "ATS: Salvage Lead"
+  components:
+    - type: FaxMachine
+      group: FaxGroupITG
+      intrinsicGroup: FaxGroupITG
+      intrinsicLocked: true
+      name: "ATS: Salvage Lead"
+      order: 200
+
+- type: entity
+  parent: FaxMachineITGBase
+  id: FaxMachineITGSalvage
+  suffix: "ATS: Salvage"
+  components:
+    - type: FaxMachine
+      group: FaxGroupITG
+      intrinsicGroup: FaxGroupITG
+      intrinsicLocked: true
+      name: "ATS: Salvage"
+      order: 300

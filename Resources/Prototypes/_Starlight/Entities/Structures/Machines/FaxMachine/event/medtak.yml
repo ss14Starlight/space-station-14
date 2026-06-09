@@ -20,5 +20,6 @@
     - type: FaxMachine
       group: FaxGroupMedTak
       intrinsicGroup: FaxGroupMedTak
+      intrinsicLocked: true # No impersonating unless emagged
       name: "MedTak"
       order: 500

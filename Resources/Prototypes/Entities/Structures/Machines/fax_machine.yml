@@ -78,7 +78,7 @@
 
 # Special
 - type: entity
-  parent: FaxMachineCentralCommand # Starlight
+  parent: FaxMachineCentralCommandBase # Starlight
   id: FaxMachineCentcom
   #name: long range fax machine # Starlight: Normal name
   suffix: "CC: Central Command" # Starlight: Why have they not updated this name?!

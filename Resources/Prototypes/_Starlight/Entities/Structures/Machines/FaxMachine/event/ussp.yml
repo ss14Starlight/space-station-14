@@ -20,5 +20,6 @@
     - type: FaxMachine
       group: FaxGroupUSSP
       intrinsicGroup: FaxGroupUSSP
+      intrinsicLocked: true # No impersonating unless emagged
       name: "USSP"
       order: 500
