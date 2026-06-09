@@ -82,8 +82,6 @@
   components:
   - type: Instrument
     program: 115
-  - type: ActivatableUI
-    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/woodblock.rsi
 
@@ -95,8 +93,6 @@
   components:
   - type: Instrument
     program: 119
-  - type: ActivatableUI
-    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/reversecymbal.rsi
 
@@ -124,7 +120,6 @@
     sprite: Objects/Fun/Instruments/h_synthesizer.rsi
   - type: ActivatableUI
     inHandsOnly: false
-    requireActiveHand: false
 
 - type: entity
   parent: SuperSynthesizerInstrument

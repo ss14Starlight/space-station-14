@@ -14,8 +14,6 @@
   components:
   - type: Instrument
     program: 62
-  - type: ActivatableUI
-    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Electro": {62: 0} #i needed generic sounding synth presets, sue me
@@ -32,8 +30,6 @@
   components:
   - type: Instrument
     program: 21
-  - type: ActivatableUI
-    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Standard": {21: 0}
@@ -49,8 +45,6 @@
   components:
   - type: Instrument
     program: 108
-  - type: ActivatableUI
-    requireActiveHand: false
   - type: Sprite
     sprite: Objects/Fun/Instruments/kalimba.rsi
   - type: Item

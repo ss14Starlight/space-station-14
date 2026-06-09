@@ -6,8 +6,6 @@
   - type: Tag
     tags:
     - WoodwindInstrument
-  - type: ActivatableUI
-    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -17,8 +15,6 @@
   components:
   - type: Instrument
     program: 66
-  - type: ActivatableUI
-    requireActiveHand: false
   - type: SwappableInstrument
     instrumentList:
       "Soprano": {64: 0}
@@ -65,8 +61,6 @@
     program: 71
   - type: Sprite
     sprite: Objects/Fun/Instruments/clarinet.rsi
-  - type: ActivatableUI
-    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -78,8 +72,6 @@
     program: 73
   - type: Sprite
     sprite: Objects/Fun/Instruments/flute.rsi
-  - type: ActivatableUI
-    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -91,8 +83,6 @@
     program: 74
   - type: Sprite
     sprite: Objects/Fun/Instruments/recorder.rsi
-  - type: ActivatableUI
-    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -104,8 +94,6 @@
     program: 75
   - type: Sprite
     sprite: Objects/Fun/Instruments/panflute.rsi
-  - type: ActivatableUI
-    requireActiveHand: false
 
 #if you change this to some cringe-ass zelda reference so help me god i will shoot you dead.
 - type: entity
@@ -120,8 +108,6 @@
     sprite: Objects/Fun/Instruments/ocarina.rsi
   - type: Item
     size: Small
-  - type: ActivatableUI
-    requireActiveHand: false
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -135,5 +121,3 @@
     sprite: Objects/Fun/Instruments/bagpipes.rsi
   - type: Item
     size: Large
-  - type: ActivatableUI
-    requireActiveHand: false
