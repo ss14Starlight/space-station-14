@@ -818,7 +818,7 @@
     - item: RCD
     - hand:
         emptyRepresentative: RCDAmmo
-        emptyLabel: borg-slot-construction-empty
+        emptyLabel: borg-slot-rcd-ammo-empty
         whitelist:
           components:
           - RCDAmmo
