@@ -22,7 +22,7 @@ public sealed partial class GunSpreadDefectComponent : DefectComponent
     [DataField] public Angle? MaxAngleMin;
     [DataField] public Angle? MaxAngleMax;
 
-    // Deltas computed at MapInit (sampled target - base angle) 
+    // Deltas computed at MapInit (sampled target - base angle)
     // Added to args.MinAngle/MaxAngle in GunRefreshModifiersEvent.
     [DataField] public Angle MinAngleDelta;
     [DataField] public Angle MaxAngleDelta;
