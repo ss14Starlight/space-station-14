@@ -37,31 +37,73 @@
         - WallLayer
 
 - type: entity
+  abstract: true
   parent: BaseTreePV
-  id: FloraTreeOakPV
+  id: BaseFloraTreeOakPV
   name: oak tree
   description: A sturdy oak tree grown from a sapling by a terraformer.
   components:
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_oak_tree.rsi
+
+- type: entity
+  parent: BaseFloraTreeOakPV
+  id: FloraTreeOakPVTree01
+  components:
+  - type: Sprite
     state: tree01
 
 - type: entity
+  parent: BaseFloraTreeOakPV
+  id: FloraTreeOakPVTree02
+  components:
+  - type: Sprite
+    state: tree02
+
+- type: entity
+  abstract: true
   parent: BaseTreePV
-  id: FloraTreeBirchPV
+  id: BaseFloraTreeBirchPV
   name: birch tree
   description: A pale birch tree grown from a sapling by a terraformer.
   components:
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_birch_tree.rsi
+
+- type: entity
+  parent: BaseFloraTreeBirchPV
+  id: FloraTreeBirchPVTree01
+  components:
+  - type: Sprite
     state: tree01
 
 - type: entity
+  parent: BaseFloraTreeBirchPV
+  id: FloraTreeBirchPVTree02
+  components:
+  - type: Sprite
+    state: tree02
+
+- type: entity
+  abstract: true
   parent: BaseTreePV
-  id: FloraTreeSprucePV
+  id: BaseFloraTreeSprucePV
   name: spruce tree
   description: A tall spruce tree grown from a sapling by a terraformer.
   components:
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_spruce_tree.rsi
+
+- type: entity
+  parent: BaseFloraTreeSprucePV
+  id: FloraTreeSprucePVTree01
+  components:
+  - type: Sprite
     state: tree01
+
+- type: entity
+  parent: BaseFloraTreeSprucePV
+  id: FloraTreeSprucePVTree02
+  components:
+  - type: Sprite
+    state: tree02
