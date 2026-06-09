@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseStructure
+  id: FloraTreeOakPV
+  name: oak tree
+  description: A sturdy oak tree grown from a sapling by a terraformer.
+  components:
+  - type: Sprite
+    sprite: _PV/Structures/Flora/Trees/flora_oak_tree.rsi
+    state: tree01
+    offset: 0,0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseStructure
+  id: FloraTreeBirchPV
+  name: birch tree
+  description: A pale birch tree grown from a sapling by a terraformer.
+  components:
+  - type: Sprite
+    sprite: _PV/Structures/Flora/Trees/flora_birch_tree.rsi
+    state: tree01
+    offset: 0,0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: BaseStructure
+  id: FloraTreeSprucePV
+  name: spruce tree
+  description: A tall spruce tree grown from a sapling by a terraformer.
+  components:
+  - type: Sprite
+    sprite: _PV/Structures/Flora/Trees/flora_spruce_tree.rsi
+    state: tree01
+    offset: 0,0.5
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
