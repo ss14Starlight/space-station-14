@@ -1,5 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Ghost;
+using Content.Client.Lobby; //🌟Starlight🌟
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
@@ -126,6 +127,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
         Gui.NewLifePressed += NewLifePressed; //🌟Starlight🌟
+        Gui.CharacterEditorPressed += CharacterEditorPressed; //🌟Starlight🌟
         Gui.GhostThemePressed += GhostThemePressed; //🌟Starlight🌟
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
         Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
@@ -142,6 +144,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
         Gui.NewLifePressed -= NewLifePressed; //🌟Starlight🌟
+        Gui.CharacterEditorPressed -= CharacterEditorPressed; //🌟Starlight🌟
         Gui.GhostThemePressed -= GhostThemePressed; //🌟Starlight🌟
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
@@ -166,12 +169,11 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     }
 
     private void NewLifePressed() //🌟Starlight🌟
-    {
-        _system?.OpenNewLife();
-    }
+        =>  _system?.OpenNewLife();
+
+    private void CharacterEditorPressed() //🌟Starlight🌟
+        => UIManager.GetUIController<LobbyUIController>().OpenCharacterSetupWindow();
 
     private void GhostThemePressed() //🌟Starlight🌟
-    {
-        _system?.OpenGhostTheme();
-    }
+        => _system?.OpenGhostTheme();
 }
