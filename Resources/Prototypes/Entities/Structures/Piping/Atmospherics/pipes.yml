@@ -139,7 +139,6 @@
     storedSprite:
       sprite: Structures/Piping/Atmospherics/pipe.rsi
       state: storageHalf
-  - type: ChildBlockVision # Starlight-edit
   - type: GuideHelp
     guides:
     - Pipes
@@ -161,10 +160,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: Sprite
     layers:
@@ -216,10 +211,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlBend
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: Sprite
     layers:
@@ -311,10 +302,6 @@
       - 0
       - 90
       - -90
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -360,10 +347,6 @@
       - 90
       - -90
       - 180
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: Item
     heldPrefix: Fourway
@@ -522,8 +505,4 @@
   - type: VentCrawlManifold
     layerCount: 5
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight-end

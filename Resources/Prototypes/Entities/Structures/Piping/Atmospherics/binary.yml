@@ -101,10 +101,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -186,10 +182,6 @@
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -259,10 +251,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -313,10 +301,6 @@
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -386,10 +370,6 @@
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlTransit
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -470,10 +450,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -534,10 +510,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-    - type: ChildBlockVision
     # Starlight end
     - type: GuideHelp
       guides:
@@ -617,6 +589,7 @@
       navMapBlip: GasVentOpening
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlTransit
     # Starlight end
     - type: GuideHelp
@@ -704,12 +677,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -768,10 +735,6 @@
   # Starlight start
   - type: VentCrawlTube
   - type: VentCrawlTransit
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-  - type: ChildBlockVision
   # Starlight end
   - type: GuideHelp
     guides:
@@ -808,7 +771,4 @@
     # Starlight start
     - type: VentCrawlTube
     - type: VentCrawlBend
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end

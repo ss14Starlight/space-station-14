@@ -66,7 +66,7 @@
   id: ProtogenVisor
   bodyPart: LFoot
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
+  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
     state: visor
@@ -75,7 +75,7 @@
   id: ProtogenVisorRound
   bodyPart: LFoot
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
+  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
     state: rounded
@@ -84,7 +84,7 @@
   id: ProtogenLEDFace
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: face
@@ -93,7 +93,7 @@
   id: ProtogenLEDFaceNoseless
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
+  speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: noseless
@@ -102,7 +102,7 @@
   id: ProtogenLEDFaceRound
   bodyPart: RHand
   markingCategory: Special
-  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
+  speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
     state: rounded
@@ -424,7 +424,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/proto-resomi/body_armor.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/body_armor.rsi # Starlight, new body sprite
     state: medium
 
 - type: marking
@@ -433,7 +433,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/proto-resomi/visor_shapes.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/visor_shapes.rsi # Starlight, new body sprite
     state: visor
 
 - type: marking
@@ -442,7 +442,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/proto-resomi/led_shapes_face.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_face.rsi # Starlight, new body sprite
     state: face
 
 - type: marking
@@ -451,7 +451,7 @@
   markingCategory: Special
   speciesRestriction: [ProtoResomi]
   sprites:
-  - sprite: _Starlight/Mobs/Customization/proto-resomi/led_shapes_body.rsi # Starlight, new body sprite
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_body.rsi # Starlight, new body sprite
     state: body
 
 #region REPTILIAN ####
@@ -723,3 +723,24 @@
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
     state: face
+
+# Starlight start
+#region LAGOMORPH
+- type: marking
+  id: ProtoLagomorphVisor
+  bodyPart: LFoot
+  markingCategory: Special
+  speciesRestriction: [Protogen, ProtoLagomorph]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/visor_shapes.rsi
+    state: visor
+
+- type: marking
+  id: ProtoLagomorphLEDFace
+  bodyPart: RHand
+  markingCategory: Special
+  speciesRestriction: [Protogen, ProtoLagomorph]
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/led_shapes_face.rsi
+    state: face
+# Starlight end
