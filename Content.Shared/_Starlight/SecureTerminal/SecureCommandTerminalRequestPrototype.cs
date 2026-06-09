@@ -50,8 +50,7 @@ public sealed partial class SecureCommandTerminalRequestPrototype : IPrototype
     public int ActivationDelaySecs = 600;
 
     /// <summary>
-    /// Credits charged from EACH authorizer when the countdown begins.
-    /// They pay whether they originally requested OR co-signed.
+    /// Credits charged from the requester once it is fully approved and the countdown begins.
     /// </summary>
     [DataField]
     public int Fee = 5000;

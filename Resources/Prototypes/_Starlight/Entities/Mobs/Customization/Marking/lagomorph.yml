@@ -595,8 +595,8 @@
 
 - type: marking
   id: LagomorphBinderTop
-  bodyPart: Chest
-  markingCategory: Special
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
@@ -604,8 +604,8 @@
 
 - type: marking
   id: LagomorphBraTop
-  bodyPart: Chest
-  markingCategory: Special
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
@@ -613,8 +613,8 @@
 
 - type: marking
   id: LagomorphTankTop
-  bodyPart: Chest
-  markingCategory: Special
+  bodyPart: UndergarmentTop
+  markingCategory: UndergarmentTop
   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
@@ -622,8 +622,8 @@
 
 - type: marking
   id: LagomorphBoxers
-  bodyPart: Chest
-  markingCategory: Special
+  bodyPart: UndergarmentBottom
+  markingCategory: UndergarmentBottom
   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi
@@ -631,8 +631,8 @@
 
 - type: marking
   id: LagomorphPanties
-  bodyPart: Chest
-  markingCategory: Special
+  bodyPart: UndergarmentBottom
+  markingCategory: UndergarmentBottom
   speciesRestriction: [Lagomorph, ProtoLagomorph, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/lagomorph.rsi

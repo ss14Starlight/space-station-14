@@ -36,7 +36,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.VentCrawl;
 
 #region Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
@@ -44,6 +43,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Camera;
+using Content.Shared._Starlight.VentCrawl.Components;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;

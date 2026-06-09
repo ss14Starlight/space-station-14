@@ -2,38 +2,23 @@ using System.Linq;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Tools.Components;
-using Content.Shared.VentCrawl.Components;
-using Content.Shared.VentCrawl.EntitySystems;
-using Content.Shared.VentCrawl.Tube.Components;
+using Content.Shared._Starlight.VentCrawl.Components;
 using Content.Shared.Verbs;
-using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Network;
 
-namespace Content.Shared.VentCrawl;
+namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 
-public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
+public sealed partial class SharedVentCrawlSystem
 {
-    [Dependency] private SharedVentCrawlableSystem _ventCrawableSystem = default!;
-    [Dependency] private SharedMapSystem _mapSystem = default!;
-    [Dependency] private SharedContainerSystem _containerSystem = default!;
-    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedMoverController _mover = default!;
-    [Dependency] private INetManager _net = default!;
-
-    public override void Initialize()
+    public void InitializeTubes()
     {
-        base.Initialize();
-
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentRemove>(OnComponentRemove);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<VentCrawlTubeComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<VentCrawlTubeComponent, AnchorStateChangedEvent>(OnAnchorChange);
         SubscribeLocalEvent<VentCrawlTubeComponent, BreakageEventArgs>(OnBreak);
+        SubscribeLocalEvent<VentCrawlTubeComponent, EntityTerminatingEvent>(OnTerminating);
 
         SubscribeLocalEvent<VentCrawlEntryComponent, GetVerbsEvent<AlternativeVerb>>(AddClimbedVerb);
         SubscribeLocalEvent<VentCrawlerComponent, EnterVentDoAfterEvent>(OnDoAfterEnterTube);
@@ -46,10 +31,6 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     }
 
     #region Subscribes
-
-    public Container GetOrEnsureContainer(EntityUid uid, VentCrawlTubeComponent tube)
-        => _containerSystem.EnsureContainer<Container>(uid, tube.ContainerId);
-
     private void OnComponentRemove(EntityUid uid, VentCrawlTubeComponent tube, ComponentRemove args)
         => DisconnectTube(tube);
 
@@ -64,6 +45,9 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
 
     private void OnAnchorChange(EntityUid uid, VentCrawlTubeComponent component, ref AnchorStateChangedEvent args)
         => UpdateAnchored(component, args.Anchored);
+
+    private void OnTerminating(EntityUid uid, VentCrawlTubeComponent component, ref EntityTerminatingEvent args)
+        => DisconnectTube(component);
 
     private void AddClimbedVerb(EntityUid uid, VentCrawlEntryComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -89,7 +73,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
             return;
 
         if (_net.IsServer)
-            TryInsert(args.Args.Target.Value, args.Args.Used.Value);
+            TryInsert(args.Args.Target.Value, args.Args.Used.Value, null, component);
 
         args.Handled = true;
     }
@@ -123,7 +107,12 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     }
 
     private void OnGetManifoldConnectableDirections(EntityUid uid, VentCrawlManifoldComponent component, ref GetVentCrawlsConnectableDirectionsEvent args)
-        => args.Connectable = new[] { Direction.North, Direction.South, Direction.East, Direction.West };
+    {
+        var rotation = Transform(uid).LocalRotation;
+        var opposite = new Angle(rotation.Theta + Math.PI);
+
+        args.Connectable = new[] { rotation.GetDir(), opposite.GetDir() };
+    }
 
     #endregion
 
@@ -172,20 +161,19 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
 
         tube.Connected = false;
 
-        foreach (var entity in GetOrEnsureContainer(tube.Owner, tube).ContainedEntities.ToArray())
-            _ventCrawableSystem.ExitVentCrawl(entity);
+        foreach (var holder in tube.ContainedHolders)
+            ExitVentCrawl(holder);
     }
 
     public EntityUid? GetManifoldExit(
         EntityUid manifoldUid,
-        int currentLayer,
+        AtmosPipeLayer currentLayer,
         Direction direction)
     {
         var xform = Transform(manifoldUid);
         if (xform.GridUid == null || !TryComp<MapGridComponent>(xform.GridUid, out var grid))
             return null;
 
-        var targetLayer = TransformFromManifoldLayer(currentLayer);
         var position = xform.Coordinates;
 
         foreach (var entity in _mapSystem.GetInDir(xform.GridUid.Value, grid, position, direction))
@@ -196,7 +184,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
             if (!tube.Connected)
                 continue;
 
-            if (!SameLayer(targetLayer, entity))
+            if (!SameLayer(currentLayer, entity))
                 continue;
 
             if (!CanConnect(entity, tube, direction.GetOpposite()))
@@ -231,10 +219,10 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
             if (!HasComp<VentCrawlManifoldComponent>(entity) && !SameLayer(target, entity))
                 continue;
 
-            if (!CanConnect(target, targetTube, nextDirection))
+            if (!IsMutuallyConnected(target, targetTube, entity, tube, nextDirection))
                 continue;
 
-            if (!CanConnect(entity, tube, oppositeDirection))
+            if (!IsSameAxis(target, entity, nextDirection))
                 continue;
 
             return entity;
@@ -242,19 +230,6 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
 
         return null;
     }
-
-    public static AtmosPipeLayer TransformFromManifoldLayer(int layer) => layer switch
-    {
-        2 => AtmosPipeLayer.Primary,
-
-        1 => AtmosPipeLayer.Secondary,
-        3 => AtmosPipeLayer.Tertiary,
-
-        0 => AtmosPipeLayer.Quaternary,
-        4 => AtmosPipeLayer.Quinary,
-
-        _ => AtmosPipeLayer.Primary
-    };
 
     private bool SameLayer(EntityUid a, EntityUid b)
     {
@@ -271,7 +246,7 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
     {
         var hasB = TryComp(b, out AtmosPipeLayersComponent? lb);
 
-        return !hasB ? false : a == lb!.CurrentPipeLayer;
+        return hasB && a == lb!.CurrentPipeLayer;
     }
 
     private bool CanConnect(EntityUid tubeId, VentCrawlTubeComponent tube, Direction direction)
@@ -284,33 +259,69 @@ public sealed partial class SharedVentCrawlTubeSystem : EntitySystem
         return ev.Connectable.Contains(direction);
     }
 
-    public bool TryInsert(EntityUid uid, EntityUid entity, VentCrawlEntryComponent? entry = null)
+    private bool IsMutuallyConnected(
+        EntityUid fromUid,
+        VentCrawlTubeComponent fromTube,
+        EntityUid toUid,
+        VentCrawlTubeComponent toTube,
+        Direction moveDir)
     {
-        if (!Resolve(uid, ref entry))
+        var opposite = moveDir.GetOpposite();
+
+        if (!CanConnect(fromUid, fromTube, moveDir))
             return false;
 
-        if (!TryComp<VentCrawlerComponent>(entity, out var ventCrawlerComponent))
+        if (!CanConnect(toUid, toTube, opposite))
             return false;
 
-        var tubeCoords = Transform(uid).Coordinates;
+        return true;
+    }
+
+    private bool SupportsDirection(EntityUid uid, Direction dir)
+    {
+        var ev = new GetVentCrawlsConnectableDirectionsEvent();
+        RaiseLocalEvent(uid, ref ev);
+
+        return ev.Connectable.Contains(dir);
+    }
+
+    private bool IsSameAxis(EntityUid from, EntityUid to, Direction moveDir)
+    {
+        var opposite = moveDir.GetOpposite();
+
+        return SupportsDirection(from, moveDir)
+               && SupportsDirection(to, opposite);
+    }
+
+    public bool TryInsert(EntityUid entry, EntityUid target, VentCrawlEntryComponent? entryComp = null, VentCrawlerComponent? ventCrawler = null)
+    {
+        if (!Resolve(entry, ref entryComp))
+            return false;
+
+        if (!Resolve(target, ref ventCrawler))
+            return false;
+
+        var tubeCoords = Transform(entry).Coordinates;
         var holder = PredictedSpawnAttachedTo(VentCrawlEntryComponent.HolderPrototypeId, tubeCoords);
         var holderComponent = Comp<VentCrawlHolderComponent>(holder);
 
-        if (!_ventCrawableSystem.TryInsert(holder, entity))
+        if (!TryInsert(holder, target))
         {
             Del(holder);
             return false;
         }
 
-        _mover.SetRelay(entity, holder);
-        ventCrawlerComponent.InTube = true;
-        Dirty(entity, ventCrawlerComponent);
+        _mover.SetRelay(target, holder);
+        ventCrawler.InTube = true;
+        Dirty(target, ventCrawler);
+        holderComponent.ContainedEntity = target;
+        DirtyField(holder, holderComponent, nameof(VentCrawlHolderComponent.ContainedEntity));
 
-        var result = _ventCrawableSystem.EnterTube(holder, uid, holderComponent);
+        var result = EnterTube(holder, entry, holderComponent);
 
         if (!result)
         {
-            _ventCrawableSystem.ExitVentCrawl(holder, holderComponent);
+            ExitVentCrawl(holder, holderComponent);
             return false;
         }
 

@@ -25,3 +25,32 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: EffectFlashBluespace
+
+- type: entity
+  id: SuitStorageSecDouble
+  parent: SuitStorageSec
+  name: double suit storage unit
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: FillSuitStorageSecurityDouble
+
+- type: entityTable
+  id: FillSuitStorageSecurityDouble
+  table: !type:AllSelector
+    children:
+    - id: OxygenTankFilled
+      amount: 2
+    - id: NitrogenTankFilled
+      amount: 2
+    - id: CoolingUnit
+      amount: 2
+    - id: ClothingOuterHardsuitSecurity
+      amount: 2
+    - id: ClothingMaskBreath
+      amount: 2
+    - id: ClothingShoesBootsMagSec
+      amount: 2
+    - id: JetpackSecurityFilled # because mapping them manually sucks
+      amount: 2
