@@ -13,7 +13,7 @@
         map: ["enum.CrewMonitorLayers.Frame"]
       - state: powered
         map: [ "enum.CrewMonitorLayers.Powered" ]
-        visible: true 
+        visible: true
       - state: alert
         map: ["enum.CrewMonitorLayers.Alert"]
         visible: false
@@ -65,7 +65,7 @@
         map: ["enum.CrewMonitorLayers.Frame"]
       - state: powered
         map: [ "enum.CrewMonitorLayers.Powered" ]
-        visible: true 
+        visible: true
       - state: alert
         map: ["enum.CrewMonitorLayers.Alert"]
         visible: false
