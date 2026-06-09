@@ -1,0 +1,56 @@
+- type: seed
+  id: oakTree
+  name: oak tree
+  noun: seeds-noun-seeds
+  displayName: oak tree
+  plantRsi: _PV/Objects/Specific/Hydroponics/Oak.rsi
+  packetPrototype: OakTreeSeeds
+  productPrototypes:
+  - OakSapling
+  lifespan: 60
+  maturation: 8
+  production: 6
+  yield: 1
+  potency: 5
+  growthStages: 6
+  idealLight: 8
+  waterConsumption: 0.60
+  nutrientConsumption: 0.40
+
+- type: seed
+  id: birchTree
+  name: birch tree
+  noun: seeds-noun-seeds
+  displayName: birch tree
+  plantRsi: _PV/Objects/Specific/Hydroponics/Birch.rsi
+  packetPrototype: BirchTreeSeeds
+  productPrototypes:
+  - BirchSapling
+  lifespan: 60
+  maturation: 8
+  production: 6
+  yield: 1
+  potency: 5
+  growthStages: 6
+  idealLight: 8
+  waterConsumption: 0.60
+  nutrientConsumption: 0.40
+
+- type: seed
+  id: spruceTree
+  name: spruce tree
+  noun: seeds-noun-seeds
+  displayName: spruce tree
+  plantRsi: _PV/Objects/Specific/Hydroponics/Spruce.rsi
+  packetPrototype: SpruceTreeSeeds
+  productPrototypes:
+  - SpruceSapling
+  lifespan: 60
+  maturation: 8
+  production: 6
+  yield: 1
+  potency: 5
+  growthStages: 6
+  idealLight: 8
+  waterConsumption: 0.60
+  nutrientConsumption: 0.40
