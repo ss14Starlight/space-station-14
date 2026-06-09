@@ -1,40 +1,12 @@
 - type: entity
   abstract: true
-  parent: BaseStructure
+  parent: BaseTree
   id: BaseTreePV
   components:
-  - type: Clickable
-  - type: InteractionOutline
   - type: Sprite
+    noRot: true
     drawdepth: Overdoors
-    offset: 0,0.5
-  - type: Occluder
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Wood
-  - type: Destructible
-    thresholds:
-    - trigger: !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Log:
-            min: 2
-            max: 5
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.35
-        density: 190
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
+    offset: 0,0.9
 
 - type: entity
   abstract: true
@@ -93,6 +65,7 @@
   components:
   - type: Sprite
     sprite: _PV/Structures/Flora/Trees/flora_spruce_tree.rsi
+    offset: 0,1.15
 
 - type: entity
   parent: BaseFloraTreeSprucePV
