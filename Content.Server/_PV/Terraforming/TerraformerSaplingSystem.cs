@@ -36,7 +36,10 @@ public sealed class TerraformerSaplingSystem : EntitySystem
         if (!TryComp<TerraformerSaplingComponent>(args.Used, out var sapling))
             return;
 
-        var treePrototype = sapling.TreePrototype;
+        var treePrototype = sapling.TreePrototypes.Count > 0
+            ? _random.Pick(sapling.TreePrototypes)
+            : sapling.TreePrototype;
+
         var spawnDelay = sapling.SpawnDelay;
 
         QueueDel(args.Used);
