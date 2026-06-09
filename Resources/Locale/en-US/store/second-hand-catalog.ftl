@@ -57,7 +57,7 @@ uplink-second-hand-magazine-shotgun-worn-desc = A 12-gauge pellet drum with a sp
 uplink-second-hand-magazine-shotgun-slug-worn-name = Worn Shotgun Drum (12ga slug)
 uplink-second-hand-magazine-shotgun-slug-worn-desc = A 12-gauge slug drum with a partially seized feed mechanism. Someone topped it off with whatever fit — slugs, pellets, incendiary, and beanbag rounds mixed in. Free.
 
-uplink-second-hand-magazine-rifle-worn-name = Worn Rifle Magazine (.30 rifle)
+uplink-second-hand-magazine-rifle-worn-name = Worn Rifle Magazine (.20 rifle)
 uplink-second-hand-magazine-rifle-worn-desc = A .20 rifle magazine with a cracked polymer shell. Loaded with a scavenged mix of standard, incendiary, uranium, practice rounds, and the occasional foam dart. Free.
 
 uplink-second-hand-magazine-box-light-rifle-worn-name = Worn Light Rifle Box (.30 LR)
