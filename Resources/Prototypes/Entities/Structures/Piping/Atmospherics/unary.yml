@@ -32,10 +32,8 @@
       time: 3
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -107,10 +105,8 @@
     - type: Weldable
       time: 3
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: SubFloorHide
       visibleLayers:
@@ -157,10 +153,8 @@
       time: 3
     # Starlight start
     - type: VentCrawlTube
+      blocksVision: false
     - type: VentCrawlEntry
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: ApcPowerReceiver
     - type: ExtensionCableReceiver
@@ -274,14 +268,10 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
       - AirInjector
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -346,10 +336,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-    - type: ChildBlockVision
     # Starlight end
 
 - type: entity
@@ -392,12 +378,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-        machine_board: !type:Container
-        machine_parts: !type:Container
-    - type: ChildBlockVision
     # Starlight end
 
 - type: entity
@@ -449,12 +429,6 @@
     - type: VentCrawlJunction
       degrees:
         - 0
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
-        machine_board: !type:Container
-        machine_parts: !type:Container
-    - type: ChildBlockVision
     # Starlight end
 
 - type: entity
@@ -600,10 +574,4 @@
   - type: VentCrawlJunction
     degrees:
       - 0
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container
-  - type: ChildBlockVision
   # Starlight end
