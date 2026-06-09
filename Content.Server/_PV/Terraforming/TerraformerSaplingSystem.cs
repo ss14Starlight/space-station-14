@@ -20,12 +20,17 @@ public sealed class TerraformerSaplingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TerraformerComponent, InteractUsingEvent>(OnInteractUsing);
+        // The main TerraformerSystem already subscribes to TerraformerComponent + InteractUsingEvent.
+        // Subscribe through TransformComponent instead and filter for terraformers to avoid duplicate subscriptions.
+        SubscribeLocalEvent<TransformComponent, InteractUsingEvent>(OnInteractUsing);
     }
 
-    private void OnInteractUsing(EntityUid uid, TerraformerComponent comp, InteractUsingEvent args)
+    private void OnInteractUsing(EntityUid uid, TransformComponent xformComp, InteractUsingEvent args)
     {
         if (args.Handled)
+            return;
+
+        if (!TryComp<TerraformerComponent>(uid, out _))
             return;
 
         if (!TryComp<TerraformerSaplingComponent>(args.Used, out var sapling))
