@@ -130,11 +130,17 @@ public partial class ColoredOptionButton : OptionButton
         };
     }
 
+    /// <summary>
+    /// Converts a full, probably high-contrast color to a muted, darker version that fits the UI
+    /// and doesn't make the white text unreadable.
+    /// </summary>
+    /// <param name="color">The color</param>
+    /// <returns>The UI-ready color</returns>
     private static Color MakeButtonColor(Color color)
     {
         var hsv = Color.ToHsv(color);
-        hsv.Y *= Math.Min(hsv.Y, .6f);
-        hsv.Z *= Math.Min(hsv.Z, .5f);
+        hsv.Y *= Math.Min(hsv.Y, .6f); // Limit saturation to 60%.
+        hsv.Z *= Math.Min(hsv.Z, .5f); // Limit brightness to 50%.
         return Color.FromHsv(hsv);
     }
 

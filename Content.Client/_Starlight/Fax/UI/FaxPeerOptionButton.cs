@@ -1,7 +1,7 @@
 using Content.Client._Starlight.UserInterface.Controls;
 using Content.Shared.Fax;
 
-namespace Content.Client.Fax.UI;
+namespace Content.Client._Starlight.Fax.UI;
 
 public sealed class FaxPeerOptionButton : ColoredOptionButton
 {

@@ -78,7 +78,7 @@ public sealed partial class FaxWindow : DefaultWindow
             /*
              * - Subdivides peers into their assigned Groups;
              * - Groups are ordered by Group.Order, machines without group are sorted to the bottom;
-             * - Peers within a group are ordered by their individual Order.
+             * - Peers ordered within groups by their individual Order.
              */
             var peers = state.AvailablePeers
                 .GroupBy(x => x.Value.GroupOrder)
@@ -87,9 +87,9 @@ public sealed partial class FaxWindow : DefaultWindow
                     .OrderBy(peer => peer.Value.Order));
             #endregion
 
-            foreach (var (address, name) in peers) // Starlight: Use ordered peers
+            foreach (var (address, knownFax) in peers) // Starlight: name => KnownFax, loop ordered peers.
             {
-                var id = AddPeerSelect(name);
+                var id = AddPeerSelect(knownFax); // Starlight: (name, addr) => KnownFax
                 if (address == state.DestinationAddress)
                     PeerSelector.Select(id);
             }

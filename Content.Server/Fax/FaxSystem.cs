@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -6,14 +5,12 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Tools;
-using Content.Shared._Starlight.Fax;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.DeviceNetwork.Events;
-using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Fax;
 using Content.Shared.Fax.Components;
@@ -35,10 +32,12 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 #region Starlight
+using Content.Shared._Starlight.Fax;
 using Content.Shared._Starlight.Fax.UI;
 using Content.Shared._Starlight.Time;
 using Content.Shared._Starlight.Utility;
 using Content.Shared.Cargo.Components;
+using Content.Shared.Emag.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Inventory;
 using Robust.Shared.Utility;
@@ -65,11 +64,11 @@ public sealed class FaxSystem : EntitySystem
     [Dependency] private readonly FaxecuteSystem _faxecute = default!;
     [Dependency] private readonly EmagSystem _emag = default!;
 
-    // Starlight start
+    #region Starlight
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedTimeSystem _time = default!;
-    // Starlight end
+    #endregion
 
     private static readonly ProtoId<ToolQualityPrototype> ScrewingQuality = "Screwing";
 
@@ -236,9 +235,12 @@ public sealed class FaxSystem : EntitySystem
             !_toolSystem.HasQuality(args.Used, ScrewingQuality)) // Screwing because Pulsing already used by device linking
             return;
 
-        // Starlight: open configuration window instead of quick-rename dialog
+        #region Starlight
+        // Instead of upstreams basic dialog, we have our own custom UI for configuring fax machines.
+        // All that remains to do here is to just open it!
         UpdateMachineConfigureUserInterface(uid, component);
         _userInterface.OpenUi(uid, FaxMachineConfigureUiKey.Key, actor.PlayerSession);
+        #endregion
 
         args.Handled = true;
 
@@ -281,11 +283,16 @@ public sealed class FaxSystem : EntitySystem
 
                     break;
                 case FaxConstants.FaxPongCommand:
-                    if (!args.Data.TryGetValue(FaxConstants.FaxNameData, out string? faxName) ||
-                        !args.Data.TryGetValue(FaxConstants.FaxOrderData, out int faxOrder))
+                    if (!args.Data.TryGetValue(FaxConstants.FaxNameData, out string? faxName))
                         return;
 
-                    var knownFax =  new KnownFax(args.SenderAddress, faxName, faxOrder); // Starlight
+                    #region Starlight
+                    if (!args.Data.TryGetValue(FaxConstants.FaxOrderData, out int faxOrder))
+                        return;
+
+                    // Load the fax machine's own configuration, plus the current fax machine's group prototype,
+                    // into a KnownFax object for use in the UI.
+                    var knownFax =  new KnownFax(args.SenderAddress, faxName, faxOrder);
                     if (args.Data.TryGetValue(FaxConstants.FaxGroupIdData, out ProtoId<FaxGroupPrototype>? groupingProtoId) &&
                         _proto.TryIndex(groupingProtoId, out var groupingProto))
                     {
@@ -293,6 +300,7 @@ public sealed class FaxSystem : EntitySystem
                         knownFax.GroupOrder = groupingProto.Order;
                     }
                     component.KnownFaxes[args.SenderAddress] = knownFax;
+                    #endregion
 
                     UpdateUserInterface(uid, component);
 

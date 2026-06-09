@@ -81,7 +81,7 @@ public sealed partial class
     /// Known faxes in network by address with fax names
     /// </summary>
     [ViewVariables]
-    public Dictionary<string, KnownFax> KnownFaxes { get; } = new(); // Starlight: KnownFax object
+    public Dictionary<string, KnownFax> KnownFaxes { get; } = new(); // Starlight: string => KnownFax
 
     /// <summary>
     /// Print queue of the incoming message
