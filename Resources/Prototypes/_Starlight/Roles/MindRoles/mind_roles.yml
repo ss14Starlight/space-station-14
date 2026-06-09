@@ -7,18 +7,6 @@
       roleType: CorporateAligned
 
 - type: entity
-  parent: BaseMindRoleAntag
-  id: MindRoleNukeops
-  name: Nukeops Operative Role
-  components:
-    - type: MindRole
-      roleType: TeamAntagonist
-      subtype: role-subtype-nukie
-      exclusiveAntag: true
-      antagPrototype: Nukeops
-    - type: NukeopsRole
-
-- type: entity
   parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostCentCommAligned
   name: Ghost Role (CentComm Aligned)
