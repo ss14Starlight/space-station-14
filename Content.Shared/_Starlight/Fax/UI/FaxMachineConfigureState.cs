@@ -4,19 +4,17 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Starlight.Fax.UI;
 
 [NetSerializable, Serializable]
-public sealed class FaxMachineConfigureState : BoundUserInterfaceState
+public sealed class FaxMachineConfigureState(
+    string name,
+    ProtoId<FaxGroupPrototype>? currentGroup,
+    ProtoId<FaxGroupPrototype>? intrinsicGroup,
+    int order,
+    bool emagged)
+    : BoundUserInterfaceState
 {
-    public string Name;
-    public ProtoId<FaxGroupPrototype>? CurrentGroup;
-    public ProtoId<FaxGroupPrototype>? IntrinsicGroup;
-    public int Order;
-    public bool Emagged;
-
-    public FaxMachineConfigureState(string name, ProtoId<FaxGroupPrototype>? currentGroup, ProtoId<FaxGroupPrototype>? intrinsicGroup, int order, bool emagged)
-    {
-        Name = name;
-        CurrentGroup = currentGroup;
-        Order = order;
-        Emagged = emagged;
-    }
+    public string Name = name;
+    public ProtoId<FaxGroupPrototype>? CurrentGroup = currentGroup;
+    public ProtoId<FaxGroupPrototype>? IntrinsicGroup = intrinsicGroup;
+    public int Order = order;
+    public bool Emagged = emagged;
 }
