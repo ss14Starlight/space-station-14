@@ -1,4 +1,5 @@
-ghost-gui-new-life-button = New life
+ghost-gui-new-life-button = New Life
+ghost-gui-character-editor-button = Character Editor
 ghost-new-life-window-title = New life ({$remainingLives} out of {$maxLives} spawns remaining)
 ghost-new-life-window-title-cooldown = New life (On Cooldown! {$time} remaining)
 ghost-new-life-unavailable = lost
