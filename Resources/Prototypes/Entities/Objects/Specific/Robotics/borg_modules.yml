@@ -720,17 +720,6 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: generic_materials
 
-#region Starlight
-- type: entity
-  id: BorgModuleRCDAmmoPlaceholder
-  categories: [ HideSpawnMenu ]
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/rcd.rsi
-    state: ammo
-#endregion Starlight
-
 - type: entity
   id: BorgModuleConstruction
   parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
