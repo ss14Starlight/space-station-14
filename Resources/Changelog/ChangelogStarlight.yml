@@ -1,25 +1,4 @@
 Entries:
-- author: CiciSpace
-  changes:
-  - message: Resomi emote sounds for cough, gasp, sigh, and yawn
-    type: Add
-  id: 405484
-  time: '2026-05-31T18:02:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4591
-- author: Rinary
-  changes:
-  - message: Changed win conditions for terror spiders to score system instead of died crew percentage. This means that spiders win only if there's enough died crew AND alive spiders.
-    type: Tweak
-  id: 405485
-  time: '2026-05-31T19:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4613
-- author: Rinary
-  changes:
-  - message: Changed win conditions for terror spiders, now they instantly lose if princesses are died.
-    type: Tweak
-  id: 405486
-  time: '2026-05-31T19:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4613
 - author: Rinary
   changes:
   - message: Changed win conditions for terror spiders, now they have minor lose and minor win if crew is evacuated before spiders died or win.
@@ -2799,4 +2778,25 @@ Entries:
   id: 405883
   time: '2026-06-10T09:54:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4697
+- author: STARLIGHT TEAM
+  changes:
+  - message: (CC_SC17) Completely removed the old atmospherics piping and such.
+    type: Remove
+  id: 405884
+  time: '2026-06-10T10:15:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4687
+- author: STARLIGHT TEAM
+  changes:
+  - message: (CC_SC17) Completely new atmospherics piping and layout.
+    type: Add
+  id: 405885
+  time: '2026-06-10T10:15:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4687
+- author: STARLIGHT TEAM
+  changes:
+  - message: (CC_SC17) Security front entrance now stops those tiders from breakin in.
+    type: Tweak
+  id: 405886
+  time: '2026-06-10T10:15:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4687
 Order: -1
