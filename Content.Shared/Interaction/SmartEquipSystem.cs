@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
@@ -191,6 +192,18 @@ public sealed class SmartEquipSystem : EntitySystem
                 if (!_inventory.CanUnequip(uid, equipmentSlot, out var suitStorageReason))
                 {
                     _popup.PopupClient(Loc.GetString(suitStorageReason), uid, uid);
+                    return;
+                }
+
+                _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
+                _hands.TryPickup(uid, slotItem, handsComp: hands);
+                return;
+            }
+            if (handItem == null && HasComp<AlwaysEquipComponent>(slotItem))
+            {
+                if (!_inventory.CanUnequip(uid, equipmentSlot, out var alwaysEquipReason))
+                {
+                    _popup.PopupClient(Loc.GetString(alwaysEquipReason), uid, uid);
                     return;
                 }
 
