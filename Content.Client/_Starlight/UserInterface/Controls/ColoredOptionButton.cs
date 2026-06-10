@@ -42,9 +42,8 @@ public partial class ColoredOptionButton : OptionButton
     /// Our parent class provides *very* little in the way of hooks and customization. By using this handler we can
     /// capture the Button control that the last
     /// <see cref="OptionButton.AddItem(Robust.Client.Graphics.Texture,string,int?)"/> call created. Then using
-    /// <see cref="SetItemColor"/>
+    /// <see cref="SetItemColor"/> lets you customize the color of the last added item.
     /// </summary>
-    /// <param name="button"></param>
     public override void ButtonOverride(Button button)
     {
         base.ButtonOverride(button);
