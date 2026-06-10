@@ -34,8 +34,12 @@
       - left hand
     right hand:
       part: RightHandDiona
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandDiona
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegDiona
       connections:

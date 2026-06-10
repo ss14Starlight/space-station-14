@@ -1143,6 +1143,9 @@
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid # Protogens
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false
@@ -1182,6 +1185,9 @@
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowHealthBars
+    damageContainers:
+    - Biological
+    - Hybrid # Protogens
   - type: ShowHealthIcons
   - type: FlashImmunity
     blocksSpecialVision: false

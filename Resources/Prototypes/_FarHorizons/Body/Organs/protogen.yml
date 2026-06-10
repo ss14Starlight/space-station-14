@@ -468,4 +468,42 @@
   - type: Lung
     alert: LowNitrogen
 
+# Lagomorphs
+- type: entity
+  id: OrganProtoLagomorphStomach
+  parent: OrganProtogenStomach
+  name: lagomorph biological reactor
+  components:
+  - type: Metabolizer
+    updateInterval: 0.75
+    maxReagents: 3
+    metabolizerTypes: [ Animal ]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: OrganProtoLagomorphHeart
+  parent: OrganProtogenHeart
+  name: lagomorph cybernetic heart
+  components:
+  - type: Metabolizer
+    updateInterval: 0.75
+    maxReagents: 2
+    metabolizerTypes: [Protogen]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+# Shadekin
+- type: entity
+  id: OrganProtokinEyes
+  parent: OrganProtogenEyes
+  name: shadekin cybernetic eyes
+  components:
+  - type: FunctionalOrgan
+    comps:
+    - type: NightVision
+
 # Starlight end
