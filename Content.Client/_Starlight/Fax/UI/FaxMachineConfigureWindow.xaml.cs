@@ -50,7 +50,7 @@ public sealed partial class FaxMachineConfigureWindow : FancyWindow
             if (intrinsicLocked && !emagged && group.ID != intrinsicGroup?.Id)
                 continue;
 
-            // To be able to select a group, one of these conditions must be met:
+            // Otherwise, to be able to select a group, one of these conditions must be met:
             // - The group is Selectable by default;
             // - The group is SelectableEmagged, and the machine is emagged;
             // - The group is currently selected;
