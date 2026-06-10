@@ -574,6 +574,17 @@
     - type: RandomHumanoidSpawner
       settings: CCGreenshieldBasic
 
+- type: entity
+  name: Greenshield Officer
+  suffix: EVA
+  id: RandomHumanoidCCGreenshieldSpawnerEVA
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: obs
+    - type: RandomHumanoidSpawner
+      settings: CCGreenshieldEVA
+
 - type: randomHumanoidSettings
   id: CCGreenshieldBasic
   speciesBlacklist:
@@ -611,9 +622,17 @@
       job: CentralCommandGreenShield
     - type: Loadout
       prototypes: [GSOGear]
-      roleLoadout: [RoleSurvivalMilitaryDouble]
+      roleLoadout: [RoleSurvivalSecurity]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
+- type: randomHumanoidSettings
+  id: CCGreenshieldEVA
+  parent: CCGreenshieldBasic
+  components:
+    - type: Loadout
+      prototypes: [GSOGearHardsuit]
+      roleLoadout: [RoleSurvivalSecurity]
