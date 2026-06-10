@@ -1,18 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Changed win conditions for terror spiders, now they have minor lose and minor win if crew is evacuated before spiders died or win.
-    type: Tweak
-  id: 405487
-  time: '2026-05-31T19:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4613
-- author: Rinary
-  changes:
-  - message: Fixed terror spiders ammonia immune, now they shouldn't die from it.
-    type: Fix
-  id: 405488
-  time: '2026-05-31T19:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4613
 - author: Conflee
   changes:
   - message: Added the 'Beep 100' Memorial Poster. It spawns sometimes from the Contraband Poster Spawner, so look out for it in maints. RIP Beep 100.
@@ -2799,4 +2785,18 @@ Entries:
   id: 405886
   time: '2026-06-10T10:15:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4687
+- author: Caws
+  changes:
+  - message: The siren for Code Violet is now a little quieter.
+    type: Tweak
+  id: 405887
+  time: '2026-06-10T18:15:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4722
+- author: Caws
+  changes:
+  - message: The siren for Code Violet now fades out instead of just cutting off at the end.
+    type: Fix
+  id: 405888
+  time: '2026-06-10T18:15:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4722
 Order: -1
