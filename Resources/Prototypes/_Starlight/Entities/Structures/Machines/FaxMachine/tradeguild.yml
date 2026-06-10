@@ -3,7 +3,7 @@
 - type: faxGroup
   id: FaxGroupITG
   name: fax-group-itg
-  order: 10000 # Bott
+  order: 10000 # Bottom of the list.
   color: "#5f5f5f" # Color picked from the concrete floor on the ATS. Change as you see fit if we ever pick a thematic color for the Interstellar Trade Guild.
   selectable: false
   selectableEmagged: true
@@ -24,23 +24,23 @@
 - type: entity
   parent: FaxMachineITGBase
   id: FaxMachineITGSalvageLead
-  suffix: "ATS: Salvage Lead"
+  suffix: "ITG: Salvage Lead ATS"
   components:
     - type: FaxMachine
       group: FaxGroupITG
       intrinsicGroup: FaxGroupITG
       intrinsicLocked: true
-      name: "ATS: Salvage Lead"
-      order: 200
+      name: "Salvage Lead ATS"
+      order: 700
 
 - type: entity
   parent: FaxMachineITGBase
   id: FaxMachineITGSalvage
-  suffix: "ATS: Salvage"
+  suffix: "ITG: Salvage ATS"
   components:
     - type: FaxMachine
       group: FaxGroupITG
       intrinsicGroup: FaxGroupITG
       intrinsicLocked: true
-      name: "ATS: Salvage"
-      order: 300
+      name: "Salvage ATS"
+      order: 800
