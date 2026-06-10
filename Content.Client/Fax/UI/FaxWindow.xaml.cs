@@ -101,7 +101,7 @@ public sealed partial class FaxWindow : DefaultWindow
         #region Starlight
         PeerSelector.AddItem(knownFax.Name);
         PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, knownFax);
-        PeerSelector.SetItemColor(knownFax.GroupColor ?? Color.Gray);
+        PeerSelector.SetItemColor(knownFax.GroupColor ?? Color.DarkGray);
         #endregion
         return PeerSelector.ItemCount - 1;
     }
