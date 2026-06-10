@@ -3,7 +3,7 @@
   id: FaxGroupEngineering
   name: fax-group-engineering
   color: "#ff733c"
-  order: 5000
+  order: 6000
 
 # Fax machines
 - type: entity

@@ -3,7 +3,7 @@
   id: FaxGroupCargo
   name: fax-group-cargo
   color: "#b48b57"
-  order: 4000
+  order: 5000
 
 # Fax machines
 - type: entity

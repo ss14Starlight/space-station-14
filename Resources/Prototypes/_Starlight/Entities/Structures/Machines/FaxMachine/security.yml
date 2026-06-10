@@ -2,7 +2,7 @@
 - type: faxGroup
   id: FaxGroupSecurity
   name: fax-group-security
-  order: 8000
+  order: 4000
   color: "#ff4242"
 
 # Fax machines

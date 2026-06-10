@@ -2,7 +2,7 @@
 - type: faxGroup
   id: FaxGroupScience
   name: fax-group-science
-  order: 7000
+  order: 8000
   color: "#cd7ccd"
 
 # Fax machines

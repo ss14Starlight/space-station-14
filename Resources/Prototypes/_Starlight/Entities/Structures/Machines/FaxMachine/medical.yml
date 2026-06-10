@@ -2,7 +2,7 @@
 - type: faxGroup
   id: FaxGroupMedical
   name: fax-group-medical
-  order: 6000
+  order: 7000
   color: "#57b8f0"
 
 # Fax machines
