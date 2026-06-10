@@ -98,7 +98,11 @@ public sealed partial class FaxWindow : DefaultWindow
 
     private int AddPeerSelect(KnownFax knownFax) // Starlight: (name, addr) => KnownFax
     {
-        PeerSelector.AddFaxPeer(knownFax); // Starlight: Smart add method
+        #region Starlight
+        PeerSelector.AddItem(knownFax.Name);
+        PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, knownFax);
+        PeerSelector.SetItemColor(knownFax.GroupColor ?? Color.Gray);
+        #endregion
         return PeerSelector.ItemCount - 1;
     }
 

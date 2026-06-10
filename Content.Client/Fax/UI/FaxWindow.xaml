@@ -1,6 +1,6 @@
 <DefaultWindow
     xmlns="https://spacestation14.io"
-    xmlns:starlight-Fax="clr-namespace:Content.Client._Starlight.Fax.UI"
+    xmlns:starlight="clr-namespace:Content.Client._Starlight.UserInterface.Controls"
     Title="{Loc 'fax-machine-ui-window'}"
     MinSize="380 220">
     <BoxContainer Orientation="Vertical"
@@ -46,7 +46,7 @@
                     <BoxContainer Orientation="Horizontal">
                         <!-- To Value -->
                         <!-- Starlight BEGIN -->
-                        <starlight-Fax:FaxPeerOptionButton Name="PeerSelector"
+                        <starlight:ColoredOptionButton Name="PeerSelector"
                             StyleClasses="OpenRight" />
                         <!-- Starlight END -->
 
