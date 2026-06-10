@@ -5,7 +5,8 @@
 - type: entity
   parent: FaxMachineITGBase
   id: FaxMachineITG
-  suffix: "ITG: DO NOT MAP"
+  suffix: "ITG"
+  categories: [ DoNotMap ]
   components:
     - type: FaxMachine
       group: FaxGroupITG

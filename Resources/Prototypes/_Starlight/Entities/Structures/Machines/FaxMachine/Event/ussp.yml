@@ -10,7 +10,8 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineUSSP
-  suffix: "USSP: DO NOT MAP"
+  suffix: "USSP"
+  categories: [ DoNotMap ]
   components:
     - type: Sprite
       layers:

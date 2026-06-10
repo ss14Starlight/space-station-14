@@ -10,7 +10,8 @@
 - type: entity
   parent: FaxMachineBase
   id: FaxMachineBlackstar
-  suffix: "Blackstar: DO NOT MAP"
+  suffix: "Blackstar"
+  categories: [ DoNotMap ]
   components:
     - type: Sprite
       layers:

@@ -4,7 +4,8 @@
 - type: entity
   parent: FaxMachineSyndicateBase
   id: FaxMachineSyndicate
-  suffix: "Syndicate: DO NOT MAP"
+  suffix: "Syndicate"
+  categories: [ DoNotMap ]
   components:
     - type: FaxMachine
       group: FaxGroupSyndicate

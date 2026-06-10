@@ -3,7 +3,8 @@
 - type: entity
   parent: FaxMachineCentralCommandBase
   id: FaxMachineCentralCommand
-  suffix: "CC: DO NOT MAP"
+  suffix: "CC"
+  categories: [ DoNotMap ]
   components:
     - type: Sprite
       layers:
