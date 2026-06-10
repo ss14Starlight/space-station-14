@@ -5,9 +5,21 @@
   order: 8000
   color: "#cd7ccd"
 
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineScienceBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#cd7ccd"
+
 # Fax machines
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineScienceBase
   id: FaxMachineScience
   suffix: "SCI: Science"
   components:
@@ -22,7 +34,7 @@
       order: 100
 
 - type: entity
-  parent: FaxMachineScience
+  parent: FaxMachineScienceBase
   id: FaxMachineScienceRD
   suffix: "SCI: RD"
   components:

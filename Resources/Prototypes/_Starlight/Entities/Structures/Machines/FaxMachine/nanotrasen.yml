@@ -9,7 +9,7 @@
 - type: entity
   abstract: true
   parent: FaxMachineBase
-  id: FaxMachineNT
+  id: FaxMachineNTBase
   components:
     - type: Sprite
       layers:
@@ -19,7 +19,7 @@
 
 # Fax machines
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTRep
   suffix: "NT: NTR"
   components:
@@ -29,7 +29,7 @@
       order: 100
 
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTRepBSO
   suffix: "NT: NTR & BSO"
   components:
@@ -39,7 +39,7 @@
       order: 100
 
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTMagi
   suffix: "NT: Magi"
   components:
@@ -49,7 +49,7 @@
       order: 200
 
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTMagiInternalAffairs
   suffix: "NT: Magi & IAA"
   components:
@@ -59,7 +59,7 @@
       order: 300
 
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTInternalAffairs
   suffix: "NT: IAA"
   components:
@@ -69,7 +69,7 @@
       order: 300
 
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTBlueshield
   suffix: "NT: BSO"
   components:
@@ -79,7 +79,7 @@
       order: 600
 
 - type: entity
-  parent: FaxMachineNT
+  parent: FaxMachineNTBase
   id: FaxMachineNTCareerTrainer
   suffix: "NT: Career Trainer"
   components:

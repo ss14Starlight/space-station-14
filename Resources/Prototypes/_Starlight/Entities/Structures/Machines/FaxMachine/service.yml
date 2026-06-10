@@ -5,9 +5,21 @@
   order: 9000
   color: "#539c00"
 
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineServiceBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#539c00"
+
 # Fax machines
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineServiceBase
   id: FaxMachineService
   suffix: "SRV: Service"
   components:
@@ -22,7 +34,7 @@
       order: 100
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceHoP
   suffix: "SRV: HoP"
   components:
@@ -32,7 +44,7 @@
       order: 200
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceReporter
   suffix: "SRV: Reporter"
   components:
@@ -42,7 +54,7 @@
       order: 300
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceLibrary
   suffix: "SRV: Library"
   components:
@@ -52,7 +64,7 @@
       order: 400
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceBar
   suffix: "SRV: Bar"
   components:
@@ -62,7 +74,7 @@
       order: 500
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceShrine
   suffix: "SRV: Shrine"
   components:
@@ -72,7 +84,7 @@
       order: 600
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceChaplain
   suffix: "SRV: Chaplain"
   components:
@@ -82,7 +94,7 @@
       order: 610
 
 - type: entity
-  parent: FaxMachineService
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceTheater
   suffix: "SRV: Theater"
   components:

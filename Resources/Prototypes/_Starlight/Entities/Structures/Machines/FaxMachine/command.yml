@@ -5,11 +5,11 @@
   order: 2000
   color: "#fcdf03"
 
-# Base fax
+# Base
 - type: entity
-  abstract: true # "Command" as a general fax isn't really used ever
+  abstract: true
   parent: FaxMachineBase
-  id: FaxMachineCommand
+  id: FaxMachineCommandBase
   components:
     - type: Sprite
       layers:
@@ -19,7 +19,7 @@
 
 # Fax machines
 - type: entity
-  parent: FaxMachineCommand
+  parent: FaxMachineCommandBase
   id: FaxMachineCommandBridge
   suffix: "CMD: Bridge"
   components:
@@ -32,7 +32,7 @@
 
 # Fax machines
 - type: entity
-  parent: FaxMachineCommand
+  parent: FaxMachineCommandBase
   id: FaxMachineCommandConference
   suffix: "CMD: Conference"
   components:
@@ -43,7 +43,7 @@
 
 # Fax machines
 - type: entity
-  parent: FaxMachineCommand
+  parent: FaxMachineCommandBase
   id: FaxMachineCommandAICore
   suffix: "CMD: AI Core"
   components:

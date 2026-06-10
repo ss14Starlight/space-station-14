@@ -5,24 +5,31 @@
   order: 7000
   color: "#57b8f0"
 
-# Fax machines
+# Base
 - type: entity
+  abstract: true
   parent: FaxMachineBase
-  id: FaxMachineMedical
-  suffix: "MED: Medical"
+  id: FaxMachineMedicalBase
   components:
     - type: Sprite
       layers:
         - state: icon
           map: [ "base" ]
           color: "#57b8f0"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineMedicalBase
+  id: FaxMachineMedical
+  suffix: "MED: Medical"
+  components:
     - type: FaxMachine
       group: FaxGroupMedical
       name: "Medical"
       order: 100
 
 - type: entity
-  parent: FaxMachineMedical
+  parent: FaxMachineMedicalBase
   id: FaxMachineMedicalCMO
   suffix: "MED: CMO"
   components:
@@ -32,7 +39,7 @@
       order: 200
 
 - type: entity
-  parent: FaxMachineMedical
+  parent: FaxMachineMedicalBase
   id: FaxMachineMedicalChemistry
   suffix: "MED: Chemistry"
   components:
@@ -42,7 +49,7 @@
       order: 300
 
 - type: entity
-  parent: FaxMachineMedical
+  parent: FaxMachineMedicalBase
   id: FaxMachineMedicalPsychology
   suffix: "MED: Psychology"
   components:
