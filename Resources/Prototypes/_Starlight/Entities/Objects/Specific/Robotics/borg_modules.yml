@@ -824,7 +824,7 @@
   - type: Sprite
     sprite: _Starlight/Structures/Furniture/rollerbed.rsi
     state: emergency_rollerbed_folded
- 
+
 # region Xenoborg
 - type: entity
   parent: [ BaseXenoborgModuleGeneric, BaseProviderBorgModule, BaseXenoborgContraband ]
