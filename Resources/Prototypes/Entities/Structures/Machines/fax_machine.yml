@@ -83,11 +83,7 @@
   #name: long range fax machine # Starlight: Inherit name
   suffix: "CC: Central Command" # Starlight
   components:
-  #  - type: Sprite
-  #    layers:
-  #      - state: icon
-  #        map: [ "base" ]
-  #        color: "#bfe3ff"
+  # Starlight: No Sprite override
   - type: FaxMachine
     group: FaxGroupCentralCommand # Starlight
     intrinsicGroup: FaxGroupCentralCommand # Starlight
@@ -101,11 +97,7 @@
   #name: syndicate long range fax machine # Starlight: Inherit name
   suffix: "Syndicate: ERR*?*%!" # Starlight
   components:
-  #- type: Sprite
-  #  layers:
-  #    - state: icon
-  #      map: [ "base" ]
-  #      color: "#82120a"
+  # Starlight: No Sprite override
   - type: FaxMachine
     name: "ERR*?*%!"
     group: FaxGroupSyndicate # Starlight
