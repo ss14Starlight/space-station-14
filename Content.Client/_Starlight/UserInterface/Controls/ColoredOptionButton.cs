@@ -183,8 +183,8 @@ public partial class ColoredOptionButton : OptionButton
     private static Color MakeButtonColor(Color color)
     {
         var hsv = Color.ToHsv(color);
-        hsv.Y *= Math.Min(hsv.Y, .6f); // Limit saturation to 60%.
-        hsv.Z *= Math.Max(Math.Min(hsv.Z, .5f), .25f); // Clamp brightness between 20% and 50%.
+        hsv.Y *= .6f; // Scale saturation from [0,1] to [0,0.6]
+        hsv.Z = Math.Clamp(hsv.Z * .6f, 0.1f, 0.5f); // Reduce brightness by 40%, clamp between 10% and 50%.
         return Color.FromHsv(hsv);
     }
 
