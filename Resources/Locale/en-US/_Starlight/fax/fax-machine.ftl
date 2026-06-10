@@ -10,6 +10,9 @@ fax-machine-configure-ui-order = Order:
 fax-machine-configure-ui-order-tooltip = The ordinal for this fax machine. Lower numbers are displayed first. Standard fax machine ordinals are assigned in increments of 100, so using values between 100's is recommended.
 fax-machine-configure-ui-submit = Apply
 
+# Popups
+fax-machine-configure-ui-saved = Successfully reconfigured fax machine!
+
 # Normally-present-but-otherwise-event fax groups
 fax-group-centcomm = Central Command
 fax-group-syndicate = Syndicate

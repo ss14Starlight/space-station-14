@@ -808,6 +808,7 @@ public sealed class FaxSystem : EntitySystem
         component.CurrentGroup = args.Grouping;
         component.Order = args.Order;
 
+        _popupSystem.PopupEntity(Loc.GetString("fax-machine-configure-ui-saved"), uid, args.Actor);
         UpdateUserInterface(uid, component);
         UpdateMachineConfigureUserInterface(uid, component);
     }
