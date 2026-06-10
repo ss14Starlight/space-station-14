@@ -178,9 +178,50 @@ namespace Content.Server.Connection
 
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
-            // Starlight: resolve real client IP via conntrack-agent (SNAT bypass)
-            var addr = await _conntrack.ResolveRealIp(e.IP) ?? e.IP.Address;
+            // starlight start
+            var rateExempt = HasTemporaryBypass(e.UserId);
 
+            if (!rateExempt && GlobalRateLimitDeny() is { } globalReason)
+            {
+                e.Deny(new NetDenyReason(globalReason, new Dictionary<string, object>()));
+                return;
+            }
+
+            var (ctStatus, ctIp) = await _conntrack.ResolveRealIp(e.IP);
+            IPAddress addr;
+            switch (ctStatus)
+            {
+                case ConntrackStatus.Resolved:
+                    addr = ctIp!;
+                    break;
+                case ConntrackStatus.NotApplicable:
+                    addr = e.IP.Address;
+                    break;
+                default:
+                    var lastKnown = (await _db.GetPlayerRecordByUserId(e.UserId))?.LastSeenAddress;
+                    if (lastKnown != null && !_conntrack.IsSnatAddress(lastKnown))
+                    {
+                        addr = lastKnown;
+                        _sawmill.Warning("Conntrack failed for {User}; using last known real IP {Address}", e.UserId, addr);
+                    }
+                    else
+                    {
+                        _sawmill.Warning("Conntrack failed for {User} with no known real IP; asking to reconnect later", e.UserId);
+                        e.Deny(new NetDenyReason(
+                            Loc.GetString("conntrack-resolve-failed-retry"),
+                            new Dictionary<string, object> { ["delay"] = _cfg.GetCVar(CCVars.GameServerFullReconnectDelay) }));
+                        return;
+                    }
+                    break;
+            }
+
+            if (!rateExempt && PerIpRateLimitDeny(addr) is { } ipReason)
+            {
+                e.Deny(new NetDenyReason(ipReason, new Dictionary<string, object>()));
+                return;
+            }
+
+            // starlight end
             var deny = await ShouldDeny(e, addr); // Starlight
             var userId = e.UserId;
 
