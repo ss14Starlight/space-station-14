@@ -362,7 +362,7 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
-    
+
 - type: listing
   id: VendorPlushieExperiment
   productEntity: PlushieExperiment
