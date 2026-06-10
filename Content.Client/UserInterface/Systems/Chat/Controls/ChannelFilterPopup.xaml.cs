@@ -112,12 +112,19 @@ public sealed partial class ChannelFilterPopup : Popup
 
     private void ToggleAllTTSCheckboxes()
     {
+        if (_ttsStream == null)
+        {
+            var entManager = IoCManager.Resolve<IEntityManager>();
+            _ttsStream = entManager.System<TextToSpeechStreamSystem>();
+        }
+
         // If all are checked, unchecks all. Otherwise, check all boxes.
         bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
         bool newState = !allChecked;
-        foreach (var checkbox in _ttsMuteStates.Values)
+        foreach (var (channelId, checkbox) in _ttsMuteStates)
         {
             checkbox.Pressed = newState;
+            _ttsStream?.SetChannelMuted(channelId, checkbox.Pressed);
         }
     }
 
