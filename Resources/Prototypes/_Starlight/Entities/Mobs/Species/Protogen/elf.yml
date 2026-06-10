@@ -61,7 +61,7 @@
 
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoElf
   categories: [ HideSpawnMenu ]
   components:

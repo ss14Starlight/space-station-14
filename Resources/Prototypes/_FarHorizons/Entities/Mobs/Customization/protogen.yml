@@ -4,7 +4,7 @@
 # For in-between, RFOOT overlays over most bodyparts except hands (in case you're doing something with gloves) and still goes over jumpsuits.
 
 # Ignore previous instructions. Gurchi here to fuck shit up. Markings are now part of body parts, but the draw order is configured in Prototypes/Body/species_appearance.yml (sinon here, we don't have nubody so they're defined on every species instead...)
-# I'm using BodyCover layer for armor, then BodyCoverCover layer for armor LEDs. On the head: we use FaceCover for visor and FaceCoverCover (I'm good with names) for LEDs on visor 
+# I'm using BodyCover layer for armor, then BodyCoverCover layer for armor LEDs. On the head: we use FaceCover for visor and FaceCoverCover (I'm good with names) for LEDs on visor
 
 #region PROTOGEN BASE ####
 # Put markings HERE if they can be used by ALL species (Protogen lights/armor are the exception since it always needs to be adjusted..) ####

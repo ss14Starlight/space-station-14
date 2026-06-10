@@ -99,7 +99,7 @@
             state: mask
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoReptilian
   categories: [ HideSpawnMenu ]
   description: A dummy proto-reptile meant to be used in character setup.

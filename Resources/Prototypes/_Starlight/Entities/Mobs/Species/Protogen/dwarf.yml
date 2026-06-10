@@ -76,7 +76,7 @@
     - ProtoDwarf
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoDwarf
   categories: [ HideSpawnMenu ]
   components:

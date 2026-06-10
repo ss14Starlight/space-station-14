@@ -141,7 +141,7 @@
   - type: Rootable
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoDiona
   categories: [ HideSpawnMenu ]
   components:

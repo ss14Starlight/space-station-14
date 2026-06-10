@@ -76,6 +76,9 @@
       points: 1
       required: true
       defaultMarkings: [ ProtogenEars ]
+    Head:
+      points: 2
+      required: false
     Chest:
       points: 4
       required: false
@@ -174,7 +177,7 @@
 - type: humanoidBaseSprite
   id: MobProtogenRArm
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
+    sprite: _Starlight/Mobs/Species/Protogen/parts.rsi # Starlight modified
     state: r_arm
 
 - type: humanoidBaseSprite

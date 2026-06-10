@@ -103,7 +103,7 @@
     spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid, Starlight end
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoVulp
   categories: [ HideSpawnMenu ]
   components:

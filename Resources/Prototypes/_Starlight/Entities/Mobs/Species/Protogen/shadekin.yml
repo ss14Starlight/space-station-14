@@ -223,7 +223,7 @@
 
 - type: entity
   save: false
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoKin
   categories: [HideSpawnMenu]
   description: A dummy protokin meant to be used in character setup.
