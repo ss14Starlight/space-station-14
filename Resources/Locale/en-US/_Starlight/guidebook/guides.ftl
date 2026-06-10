@@ -125,9 +125,8 @@ guide-entry-sl-cargo-sop-handlingorders = Handling Orders
 guide-entry-sl-cargo-sop-preapprovedmaterials = Pre-Approved Materials
 guide-entry-sl-cargo-sop-handlingorders-engineering = Engineering Orders
 guide-entry-sl-cargo-sop-handlingorders-security = Security Orders
-guide-entry-sl-cargo-sop-handlingorders-science = Science Orders
 guide-entry-sl-cargo-sop-handlingorders-medical = Medical Orders
-guide-entry-sl-cargo-sop-handlingorders-service = Service Orders
+
 
 guide-entry-sl-science-sop-intro = Science
 
@@ -136,7 +135,7 @@ guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
 guide-entry-sl-nano-trasen-employee-sop-safety-protocol = Safety Protocol
 guide-entry-sl-nano-trasen-employee-sop-staff-intro = Staff Procedures
 guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
-guide-entry-sl-nano-trasen-employee-sop-bso = BlueShield Officer
+guide-entry-sl-nano-trasen-employee-sop-bso = TSFO
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
 guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer
