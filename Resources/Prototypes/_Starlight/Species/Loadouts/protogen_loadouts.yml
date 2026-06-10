@@ -21,7 +21,7 @@
   equipment:
     outerClothing2: ClothingOuterArmorProtogenLightBasicUnremovable
   effects:
-  - !type:SpeciesLoadoutEffect 
+  - !type:SpeciesLoadoutEffect
     species:
     - Protogen
     - ProtoElf
@@ -47,7 +47,7 @@
   equipment:
     outerClothing2: ClothingOuterArmorProtogenLightSpeedUnremovable
   effects:
-  - !type:SpeciesLoadoutEffect 
+  - !type:SpeciesLoadoutEffect
     species:
     - Protogen
     - ProtoElf
@@ -73,7 +73,7 @@
   equipment:
     outerClothing2: ClothingOuterArmorProtogenMediumBasicUnremovable
   effects:
-  - !type:SpeciesLoadoutEffect 
+  - !type:SpeciesLoadoutEffect
     species:
     - Protogen
     - ProtoElf
@@ -99,7 +99,7 @@
   equipment:
     outerClothing2: ClothingOuterArmorProtogenMediumMagicUnremovable
   effects:
-  - !type:SpeciesLoadoutEffect 
+  - !type:SpeciesLoadoutEffect
     species:
     - Protogen
     - ProtoElf
@@ -125,7 +125,7 @@
   equipment:
     outerClothing2: ClothingOuterArmorProtogenHeavyBasicUnremovable
   effects:
-  - !type:SpeciesLoadoutEffect 
+  - !type:SpeciesLoadoutEffect
     species:
     - Protogen
     - ProtoElf
@@ -151,7 +151,7 @@
   equipment:
     outerClothing2: ClothingOuterArmorProtogenHeavySpaceUnremovable
   effects:
-  - !type:SpeciesLoadoutEffect 
+  - !type:SpeciesLoadoutEffect
     species:
     - Protogen
     - ProtoElf
