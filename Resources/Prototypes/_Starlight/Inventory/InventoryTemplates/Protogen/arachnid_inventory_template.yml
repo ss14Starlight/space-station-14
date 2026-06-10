@@ -156,7 +156,9 @@
     stripTime: 3
     uiWindowPos: 2,0
     strippingWindowPos: 2,5
-    dependsOn: outerClothing
+    dependsOnAny:
+    - outerClothing
+    - outerClothing2
     dependsOnComponents:
     - type: AllowSuitStorage
     displayName: Suit Storage

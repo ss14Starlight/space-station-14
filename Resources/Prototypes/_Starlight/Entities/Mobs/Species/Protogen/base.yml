@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge]
   id: BaseMobProtogen
   name: Urist McToaster
   abstract: true
@@ -17,10 +17,14 @@
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
@@ -161,6 +165,11 @@
             sprite: _FarHorizons/Mobs/Species/Protogen/displacement.rsi
             state: jumpsuit-female
   - type: Barotrauma
+    protectionSlots:
+    - head
+    alternativeProtectionSlots:
+    - - outerClothing
+      - outerClothing2
     damage:
       types:
         Blunt: 0.9 #per second, halved compared to normal. / Starlight, changed back to base 0.9.
@@ -172,14 +181,71 @@
     allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
   - type: Vocal
     sounds:
-      Male: MaleProtogen
-      Female: FemaleProtogen
-      Unsexed: MaleProtogen
+      Male: ProtoHumanMSounds
+      Female: ProtoHumanFSounds
+      Unsexed: ProtoHumanMSounds
   - type: UniversalHealModifier
     modifier: 0.5
 
 - type: entity
-  parent: BaseSpeciesDummy
+  id: BaseProtogenAppearance
+  abstract: true
+  categories: [ HideSpawnMenu]
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: [ "outerClothing2" ] # FH
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+
+
+- type: entity
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtogen
   categories: [ HideSpawnMenu ]
   components:

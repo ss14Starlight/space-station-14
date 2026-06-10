@@ -60,6 +60,7 @@
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight
     - id: TerrorSpidersSpawn # Starlight
+    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -278,7 +279,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalSpaceNinja
+      - AntagSpaceNinja # Starlight
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -377,7 +378,7 @@
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -635,7 +636,7 @@
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeops # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata

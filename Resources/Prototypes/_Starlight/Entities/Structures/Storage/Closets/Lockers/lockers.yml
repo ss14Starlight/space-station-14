@@ -24,22 +24,6 @@
   - type: AccessReader
     access: [["Security"], ["Cadet"]]
 
-# Warden
-- type: entity
-  id: LockerWardenLarge
-  parent: LockerLargeBaseSecure
-  name: large warden's locker
-  components:
-  - type: Appearance
-  - type: EntityStorageVisuals
-    stateBaseClosed: warden
-    stateDoorOpen: sec_open
-    stateDoorClosed: warden_door
-  - type: AccessReader
-    access: [["Armory"]]
-  - type: WiresPanelSecurity
-    securityLevel: medSecurity
-
 # Brigmedic
 - type: entity
   id: LockerBrigmedicLarge

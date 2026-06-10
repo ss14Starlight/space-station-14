@@ -1,7 +1,7 @@
 # Moved here due to the significant changes we're making.
 #### Proto-Armor ####
 - type: entity
-  parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing]
+  parent: ClothingOuterBaseMedium
   id: ClothingOuterArmorProtogenBase
   abstract: true
   components:
@@ -85,7 +85,8 @@
     modifiers:
       coefficients:
         Slash: 0.90 # Slash can be higher, it's fine.
-        Blunt: 0.95 # We're not getting Pierce armor.
+        Blunt: 0.95 # We're not getting more Pierce armor.
+        Piercing: 0.95 # If you want 5% for 5%...
   - type: ClothingSpeedModifier # Starlight start
     walkModifier: 1
     sprintModifier: 0.95 # Not really a good tradeoff, but it's still not weightless...
@@ -156,7 +157,7 @@
     damageCoefficient: 0.75
 
 - type: entity
-  parent: ClothingOuterArmorProtogenBase
+  parent: [ClothingOuterArmorProtogenBase, AllowSuitStorageClothing]
   id: ClothingOuterArmorProtogenHeavySpace
   name: Nyx-Class heavy protogen frame
   description: Comes in-built with heavy insulation for spacefaring. A bit weighty. Removal of this would require killing you.
@@ -198,4 +199,21 @@
   id: ClothingOuterArmorProtogenHeavySpaceUnremovable
   suffix: Unremovable
   components:
+  - type: Unremoveable
+
+# Changeling Disguise
+- type: entity
+  parent: ClothingOuterArmorProtogenBase
+  id: ChangelingClothingProtogenArmor
+  name: Basic-Class light protogen frame
+  description: Comes in-built with light armor plating to shield the cybernetics within. Removal of this would require killing you.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
+    state: light
+  - type: Armor
+    modifiers: {}
+  - type: ExplosionResistance
+    damageCoefficient: 1.0
   - type: Unremoveable

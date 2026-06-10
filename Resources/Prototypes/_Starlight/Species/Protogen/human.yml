@@ -17,6 +17,7 @@
 - type: speciesBaseSprites
   id: MobProtoHumanSprites
   sprites:
+    Hair: MobHumanoidAnyMarking
     Eyes: MobProtogenEyes
     Head: MobHumanHead
     Snout: MobHumanoidAnyMarking
@@ -34,14 +35,30 @@
     RLeg: MobHumanRLeg
     LFoot: MobHumanLFoot
     RFoot: MobHumanRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoHumanMarkingLimits
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor, ProtogenVisorRound, ProtogenLights, ProtogenLEDFaceRound ]
+      defaultMarkings: [ ProtogenVisorRound ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenLEDFaceRound ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenLights ]
     Hair:
       points: 1
       required: false

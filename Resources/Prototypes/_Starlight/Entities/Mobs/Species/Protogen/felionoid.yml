@@ -69,6 +69,11 @@
       - !type:Emote
         emote: Hisses
         showInChat: false
+  - type: Vocal
+    sounds:
+      Male: ProtoFelionoidMSounds
+      Female: ProtoFelionoidFSounds
+      Unsexed: ProtoFelionoidMSounds
   - type: Tag
     tags:
     - CanPilot
@@ -133,7 +138,7 @@
             state: shoes
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoFelionoid
   categories: [ HideSpawnMenu ]
   components:

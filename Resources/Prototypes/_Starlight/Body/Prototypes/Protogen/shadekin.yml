@@ -9,9 +9,10 @@
       - torso
       organs:
         brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
+        eyes: OrganProtokinEyes
         tongue: OrganProtogenTongueForked
         eye_implant: null
+        brain_implant: null
     torso:
       part: TorsoShadekin
       connections:
@@ -20,8 +21,8 @@
       - right leg
       - left leg
       organs:
-        core: OrganShadekinCore
         heart: OrganProtogenHeart
+        core: OrganShadekinCore
         stomach: OrganProtogenStomach
         liver: OrganProtogenLiver
         kidneys: OrganProtogenKidneys
@@ -36,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandShadekin
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandShadekin
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegShadekin
       connections:

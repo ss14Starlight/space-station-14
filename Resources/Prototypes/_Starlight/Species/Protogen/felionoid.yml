@@ -32,6 +32,7 @@
     Snout: MobHumanoidAnyMarking
     UndergarmentTop: MobHumanoidAnyMarking
     UndergarmentBottom: MobHumanoidAnyMarking
+    Hair: MobHumanoidAnyMarking
     Chest: MobFelionoidTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -44,15 +45,31 @@
     RLeg: MobFelionoidRLeg
     LFoot: MobFelionoidLFoot
     RFoot: MobFelionoidRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoFelionoidMarkingLimits
   onlyWhitelisted: true
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtoFelionoidMediumArmor, ProtoFelionoidVisor, ProtoFelionoidLights, ProtoFelionoidLEDFace ]
+      defaultMarkings: [ ProtoFelionoidVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoFelionoidLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoFelionoidMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoFelionoidLights ]
     Hair:
       points: 1
       required: false

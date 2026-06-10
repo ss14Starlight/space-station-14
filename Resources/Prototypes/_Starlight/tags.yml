@@ -110,6 +110,12 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
+
 - type: Tag
   id: CentcommVibroblade
 
@@ -219,6 +225,9 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
 
 - type: Tag
@@ -226,9 +235,6 @@
 
 - type: Tag
   id: EmergencyWelder
-
-- type: Tag
-  id: ExternalAirlock
 
 - type: Tag
   id: Felionoid
