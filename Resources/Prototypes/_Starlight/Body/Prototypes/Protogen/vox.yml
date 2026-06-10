@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandProtoVox
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandProtoVox
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegVox
       connections:

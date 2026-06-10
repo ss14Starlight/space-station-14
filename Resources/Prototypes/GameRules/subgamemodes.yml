@@ -111,7 +111,7 @@
       playerRatio: 55 # Starlight, ensures Beta only has 1 wizard. Also less egregious.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise

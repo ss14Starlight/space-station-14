@@ -192,7 +192,7 @@
       spawnerPrototype: SpawnPointNukeopsCommander
       startingGear: SyndicateCommanderGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeopsCommander # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -214,7 +214,7 @@
       spawnerPrototype: SpawnPointNukeopsMedic
       startingGear: SyndicateOperativeMedicFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeopsMedic # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -238,7 +238,7 @@
       playerRatio: 16
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeops # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata
@@ -445,7 +445,7 @@
       playerRatio: 40 # Starlight, ensures Beta only has 1 wizard.
       spawnerPrototype: SpawnPointGhostWizard
       roleLoadout:
-       - RoleSurvivalExtended
+       - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise

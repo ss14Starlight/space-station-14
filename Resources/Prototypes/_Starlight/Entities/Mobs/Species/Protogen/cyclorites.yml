@@ -146,7 +146,7 @@
             state: outer
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoCyclorite
   categories: [ HideSpawnMenu ]
   components:
