@@ -199,7 +199,7 @@ public sealed class SmartEquipSystem : EntitySystem
                 _hands.TryPickup(uid, slotItem, handsComp: hands);
                 return;
             }
-            if (handItem == null && HasComp<AlwaysEquipComponent>(slotItem))
+            if (handItem == null && HasComp<AlwaysEquipComponent>(slotItem)) //Any item with this comp will just be moved directly to hand. Useful for pistols and the like.
             {
                 if (!_inventory.CanUnequip(uid, equipmentSlot, out var alwaysEquipReason))
                 {
