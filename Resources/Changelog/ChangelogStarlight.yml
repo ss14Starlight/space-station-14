@@ -1,18 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Assistants can now spawn with the correct gray winter coat. (The one with a hood option.).
-    type: Tweak
-  id: 405494
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: Scarlet Lightweaver
-  changes:
-  - message: Removed the magical crayon for now due to the ongoning lag issues.
-    type: Remove
-  id: 405495
-  time: '2026-06-01T09:56:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4609
 - author: silkielol, deltaVelocity
   changes:
   - message: '"Maints Discovery", a new piece of menu art featuring a thief and his stash.'
@@ -2799,4 +2785,18 @@ Entries:
   id: 405893
   time: '2026-06-10T18:45:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
+    type: Add
+  id: 405894
+  time: '2026-06-10T19:13:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4711
+- author: Caws
+  changes:
+  - message: Removed the experimental RCD (recharging RCD) from engineering cyborgs due to budget cuts. Central Command apologies for the inconvenience.
+    type: Remove
+  id: 405895
+  time: '2026-06-10T19:13:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4711
 Order: -1
