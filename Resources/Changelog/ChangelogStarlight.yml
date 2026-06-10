@@ -1,13 +1,6 @@
 Entries:
 - author: AllisonKaur and Rhetorica
   changes:
-  - message: Irish Bool now grants 90% stamina damage reduction in addition to its previous stun-reducing and knockdown-reducing effects. You will need at least 3 batongs to take down an Irish Bool Dwarf, who will be able to just walk away after a second or two anyway.
-    type: Tweak
-  id: 405479
-  time: '2026-05-31T17:35:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4595
-- author: AllisonKaur and Rhetorica
-  changes:
   - message: Irish Bool now shows an alert icon at the side of the screen while its effects are active.
     type: Add
   id: 405480
@@ -2799,4 +2792,11 @@ Entries:
   id: 405878
   time: '2026-06-10T08:28:53.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: Cvlancer
+  changes:
+  - message: Fixed the east side security substation not receiving power by removing a cable terminal.
+    type: Fix
+  id: 405879
+  time: '2026-06-10T08:28:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4713
 Order: -1
