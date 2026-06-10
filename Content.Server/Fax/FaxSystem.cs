@@ -292,7 +292,7 @@ public sealed class FaxSystem : EntitySystem
 
                     // Load the fax machine's own configuration, plus the current fax machine's group prototype,
                     // into a KnownFax object for use in the UI.
-                    var knownFax =  new KnownFax(args.SenderAddress, faxName, faxOrder);
+                    var knownFax = new KnownFax(args.SenderAddress, faxName, faxOrder);
                     if (args.Data.TryGetValue(FaxConstants.FaxGroupIdData, out ProtoId<FaxGroupPrototype>? groupingProtoId) &&
                         _proto.TryIndex(groupingProtoId, out var groupingProto))
                     {
