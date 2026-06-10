@@ -1,39 +1,4 @@
 Entries:
-- author: Conflee
-  changes:
-  - message: Added the 'Beep 100' Memorial Poster. It spawns sometimes from the Contraband Poster Spawner, so look out for it in maints. RIP Beep 100.
-    type: Add
-  id: 405489
-  time: '2026-06-01T03:43:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4614
-- author: Arkanic
-  changes:
-  - message: Fix low fps when changing character size in the profile editor.
-    type: Fix
-  id: 405490
-  time: '2026-06-01T08:21:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4615
-- author: STARLIGHT TEAM
-  changes:
-  - message: The WinterDrobe now has access to the other generic colored winter coats instead of just the gray one.
-    type: Add
-  id: 405491
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added fingerless budget insulated gloves. Assistants can now spawn with them instead of the normal fingerless insuls.
-    type: Add
-  id: 405492
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: STARLIGHT TEAM
-  changes:
-  - message: Assistants can now spawn with the yellow mittens.
-    type: Add
-  id: 405493
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
 - author: STARLIGHT TEAM
   changes:
   - message: Assistants can now spawn with the correct gray winter coat. (The one with a hood option.).
@@ -2799,4 +2764,39 @@ Entries:
   id: 405888
   time: '2026-06-10T18:15:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4722
+- author: Caws
+  changes:
+  - message: Mimes can no longer use AAC tablets while their vow of silence is active.
+    type: Tweak
+  id: 405889
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence by writing.
+    type: Tweak
+  id: 405890
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence using sign language nor hiveminds (e.g. the Nexus).
+    type: Tweak
+  id: 405891
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence by using NanoChat.
+    type: Tweak
+  id: 405892
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence by using NanoTasks (they may only print NanoTasks if the description is blank).
+    type: Tweak
+  id: 405893
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
 Order: -1
