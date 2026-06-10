@@ -4,6 +4,7 @@
   antagonist: true
   setPreference: true # Starlight - allow setting pref for ninja
   objective: roles-antag-space-ninja-objective
+  roleLoadout: [ AntagSpaceNinja ] # Starlight
   guides: [ SpaceNinja ]
   # Starlight start
   previewStartingGear: SpaceNinjaGear

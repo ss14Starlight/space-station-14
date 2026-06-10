@@ -157,6 +157,9 @@
       hasMindState: borg_e
       noMindState: borg
     - type: ShowHealthBars
+      damageContainers: # Starlight start
+      - Biological
+      - Hybrid # Starlight end, Protogens
     - type: InteractionPopup
       interactSuccessString: petting-success-syndicate-cyborg
       interactFailureString: petting-failure-syndicate-cyborg

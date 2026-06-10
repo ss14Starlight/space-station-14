@@ -85,7 +85,8 @@
     modifiers:
       coefficients:
         Slash: 0.90 # Slash can be higher, it's fine.
-        Blunt: 0.95 # We're not getting Pierce armor.
+        Blunt: 0.95 # We're not getting more Pierce armor.
+        Piercing: 0.95 # If you want 5% for 5%...
   - type: ClothingSpeedModifier # Starlight start
     walkModifier: 1
     sprintModifier: 0.95 # Not really a good tradeoff, but it's still not weightless...

@@ -44,15 +44,31 @@
     RLeg: MobCycloriteRLeg
     LFoot: MobCycloriteLFoot
     RFoot: MobCycloriteRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoCycloriteMarkingLimits
   onlyWhitelisted: true
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtoCycloriteMediumArmor, ProtoCycloriteVisor, ProtoCycloriteLights, ProtoCycloriteLEDFace ]
+      defaultMarkings: [ ProtoCycloriteVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoCycloriteLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoCycloriteMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoCycloriteLights ]
     Hair:
       points: 1
       required: false

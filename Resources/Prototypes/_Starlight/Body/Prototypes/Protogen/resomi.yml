@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandResomi
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandResomi
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegResomi
       connections:
