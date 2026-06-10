@@ -131,10 +131,20 @@ namespace Content.Client.Access.UI
 
         private void SetAllAccess(bool enabled)
         {
-            _pendingPressedAccessLevels.Clear(); // Starlight-edit
-            foreach (var button in _accessButtons.ButtonsList.Values)
-                if (!button.Disabled && button.Pressed != enabled)
-                    button.Pressed = enabled;
+            // Starlight-edit: Start - setting Pressed programmatically does not raise
+            // OnPressed, so the pending submission set must be updated here too (#3813).
+            foreach (var (id, button) in _accessButtons.ButtonsList)
+            {
+                if (button.Disabled)
+                    continue;
+
+                button.Pressed = enabled;
+                if (enabled)
+                    _pendingPressedAccessLevels.Add(id);
+                else
+                    _pendingPressedAccessLevels.Remove(id);
+            }
+            // Starlight-edit: End
         }
 
         private void SelectJobPreset(OptionButton.ItemSelectedEventArgs args)

@@ -258,39 +258,21 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 allGroupTags.UnionWith(groupPrototype.Tags);
         }
 
-        if (!newAccessList.TrueForAll(x => allGroupTags.Contains(x)))
-        // Starlight-edit: End
-        {
-            _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
-            return;
-        }
-
-        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>(); // Starlight - keep oldTags as a hashset instead of a list
-        // Starlight-edit: Start
+        var oldTags = _access.TryGetTags(targetId)?.ToHashSet() ?? new HashSet<ProtoId<AccessLevelPrototype>>();
         var privilegedPerms = _accessReader.FindAccessTags(privilegedId!.Value).ToHashSet();
-        // For each group, update the tags for that group with the ones from newAccessList
-        var finalTags = oldTags.Except(allGroupTags).ToHashSet(); // preserve tags not in any group
-        foreach (var group in component.AccessGroups.ToList())
-        {
-            if (!_prototype.TryIndex<AccessGroupPrototype>(group, out var groupPrototype))
-                continue;
-            var groupTags = groupPrototype.Tags.ToHashSet();
-            var newGroupTags = newAccessList.Intersect(groupTags).ToHashSet();
-            finalTags.UnionWith(newGroupTags);
-        }
+
+        var (finalTags, disallowed, attemptedUnknown) =
+            ComputeAccessChange(oldTags, newAccessList, allGroupTags, privilegedPerms);
+
+        if (attemptedUnknown)
+            _sawmill.Warning($"User {ToPrettyString(uid)} tried to write unknown access tag.");
+
+        if (disallowed.Count > 0)
+            _sawmill.Warning($"User {ToPrettyString(uid)} tried to modify permissions they could not give/take: [{string.Join(", ", disallowed)}]");
 
         if (oldTags.SetEquals(finalTags))
             return;
 
-        var difference = finalTags.Union(oldTags).Except(finalTags.Intersect(oldTags)).ToHashSet();
-        // Starlight-edit: End
-        if (!difference.IsSubsetOf(privilegedPerms))
-        {
-            _sawmill.Warning($"User {ToPrettyString(uid)} tried to modify permissions they could not give/take!");
-            return;
-        }
-
-        // Starlight-edit: Start
         var addedTags = finalTags.Except(oldTags).Select(tag => "+" + tag).ToList();
         var removedTags = oldTags.Except(finalTags).Select(tag => "-" + tag).ToList();
         _access.TrySetTags(targetId, finalTags);
@@ -300,6 +282,53 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         _adminLogger.Add(LogType.Action,
             $"{player} has modified {targetId} with the following accesses: [{string.Join(", ", addedTags.Union(removedTags))}] [{string.Join(", ", newAccessList)}]");
     }
+
+    // Starlight-start: #3813
+    /// <summary>
+    /// Decides the access tags a target ID ends up with after a console write.
+    /// The client UI submits the target's full access list with the user's changes applied,
+    /// so this must not reject the whole submission outright:
+    /// tags outside the console's access groups are preserved on the target and can be
+    /// neither added nor removed here (the UI echoes existing ones back on submit), and
+    /// changes to tags the privileged ID does not itself hold are reverted while all
+    /// permitted changes still apply.
+    /// </summary>
+    /// <returns>The resulting tag set, the reverted (disallowed) changes, and whether the
+    /// submission tried to add a tag this console cannot grant.</returns>
+    public static (HashSet<ProtoId<AccessLevelPrototype>> FinalTags,
+        List<ProtoId<AccessLevelPrototype>> Disallowed,
+        bool AttemptedUnknown)
+        ComputeAccessChange(
+            HashSet<ProtoId<AccessLevelPrototype>> oldTags,
+            List<ProtoId<AccessLevelPrototype>> newAccessList,
+            HashSet<ProtoId<AccessLevelPrototype>> consoleGroupTags,
+            HashSet<ProtoId<AccessLevelPrototype>> privilegedPerms)
+    {
+        var attemptedUnknown = newAccessList.Exists(x => !consoleGroupTags.Contains(x) && !oldTags.Contains(x));
+
+        // Preserve tags outside the console's groups, replace the rest with the submission.
+        var finalTags = oldTags.Where(x => !consoleGroupTags.Contains(x)).ToHashSet();
+        finalTags.UnionWith(newAccessList.Where(consoleGroupTags.Contains));
+
+        var changed = new HashSet<ProtoId<AccessLevelPrototype>>(finalTags);
+        changed.SymmetricExceptWith(oldTags);
+
+        var disallowed = new List<ProtoId<AccessLevelPrototype>>();
+        foreach (var tag in changed)
+        {
+            if (privilegedPerms.Contains(tag))
+                continue;
+
+            disallowed.Add(tag);
+            if (oldTags.Contains(tag))
+                finalTags.Add(tag);
+            else
+                finalTags.Remove(tag);
+        }
+
+        return (finalTags, disallowed, attemptedUnknown);
+    }
+    // Starlight-end
 
     /// <summary>
     /// Returns true if there is an ID in <see cref="IdCardConsoleComponent.PrivilegedIdSlot"/> and said ID satisfies the requirements of <see cref="AccessReaderComponent"/>.
