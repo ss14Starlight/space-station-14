@@ -1,137 +1,4 @@
 Entries:
-- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
-  changes:
-  - message: Corrected the flavor of the Pan-Galactic Gargle Blaster to be faithfully worded to the source material.
-    type: Fix
-  id: 405460
-  time: '2026-05-28T02:56:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4389
-- author: StrangerOfParadiseOG
-  changes:
-  - message: added a silly weak pistol whipping to cap guns and foam crossbows.
-    type: Add
-  id: 405461
-  time: '2026-05-28T12:37:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4569
-- author: StrangerOfParadiseOG
-  changes:
-  - message: lowered the foam rifle melee damage to one.
-    type: Tweak
-  id: 405462
-  time: '2026-05-28T12:37:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4569
-- author: StrangerOfParadiseOG
-  changes:
-  - message: fixed drip update outfits not showing as their respective contraband types.
-    type: Fix
-  id: 405463
-  time: '2026-05-28T12:37:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4569
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Added distribution and waste sensors to the appropriate pipe networks.
-    type: Fix
-  id: 405464
-  time: '2026-05-28T12:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4573
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) Waste actually has an outlet into space now.
-    type: Fix
-  id: 405465
-  time: '2026-05-28T12:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4573
-- author: Caws
-  changes:
-  - message: (CentComm GNT9) CentComm checkpoint's north door is no longer Command access, fixed to be CentComm access.
-    type: Fix
-  id: 405466
-  time: '2026-05-28T12:37:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4573
-- author: redmushie
-  changes:
-  - message: IAA and NTCT debrief access.
-    type: Remove
-  id: 405467
-  time: '2026-05-28T19:30:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4574
-- author: redmushie
-  changes:
-  - message: Debrief turnstiles' access denied sound now has a much shorter range.
-    type: Tweak
-  id: 405468
-  time: '2026-05-29T09:25:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4571
-- author: Ohelig
-  changes:
-  - message: Added some more spam mail.
-    type: Add
-  id: 405469
-  time: '2026-05-29T20:23:10.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4572
-- author: DONKCO. Scarlet.
-  changes:
-  - message: Added the funniest thing for clowns!.
-    type: Add
-  id: 405470
-  time: '2026-05-29T20:23:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4570
-- author: STARLIGHT TEAM
-  changes:
-  - message: Adjusted antag scaling **temporarily** to be **lower on average**. Odds of several things rolling in gamemodes was reduced to make it less likely we roll every type of antag always every round. Dynamic rule cost was added to some rules to reduce the likelihood of antag types stacking as well.
-    type: Tweak
-  id: 405471
-  time: '2026-05-29T21:07:27.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4588
-- author: Caws
-  changes:
-  - message: The in-game guidebook SOP for NanoTrasen Personnel has been updated to match the wiki.
-    type: Tweak
-  id: 405472
-  time: '2026-05-29T21:07:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4583
-- author: Caws
-  changes:
-  - message: NanoTrasen Career trainers can now select scarves, LGBT pins, and PDA pens in the loadout menu.
-    type: Fix
-  id: 405473
-  time: '2026-05-29T21:07:32.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4582
-- author: Sparlight
-  changes:
-  - message: The Ian Toy has remembered how to make dog noises.
-    type: Fix
-  id: 405474
-  time: '2026-05-29T21:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4577
-- author: Rinary
-  changes:
-  - message: Fixed playtime bypass via NullLink playtime. Now you can freely connect to Beta if you have enough time on another servers or projects connected to null link.
-    type: Fix
-  id: 405475
-  time: '2026-05-29T22:16:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4590
-- author: STARLIGHT TEAM
-  changes:
-  - message: Physics optimization.
-    type: Tweak
-  id: 405476
-  time: '2026-05-30T09:41:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4597
-- author: STARLIGHT TEAM
-  changes:
-  - message: Multiple improvements to the in game hub.
-    type: Tweak
-  id: 405477
-  time: '2026-05-31T17:12:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4606
-- author: STARLIGHT TEAM
-  changes:
-  - message: With cryo, items are preserved. When latejoining after cryo, all items except the ID card and PDA are now issued.
-    type: Tweak
-  id: 405478
-  time: '2026-05-31T17:12:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4602
 - author: AllisonKaur and Rhetorica
   changes:
   - message: Irish Bool now grants 90% stamina damage reduction in addition to its previous stun-reducing and knockdown-reducing effects. You will need at least 3 batongs to take down an Irish Bool Dwarf, who will be able to just walk away after a second or two anyway.
@@ -2799,4 +2666,137 @@ Entries:
   id: 405859
   time: '2026-06-09T14:53:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4695
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: You can now select your Protogen frame for Nukeops, NukeopsCommander, NukeopsMedic, SpaceNinja, Wizard, and WizardDuelist.
+    type: Add
+  id: 405860
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Protogen Markings are now split up into their own categories, and now actually work on all species thanks to being split across new body layers.
+    type: Add
+  id: 405861
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Protogen Frame selection is a bit more clear in the menu now.
+    type: Tweak
+  id: 405862
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Basic-Class Medium Protogen Armor now has 5% Pierce Resist.
+    type: Tweak
+  id: 405863
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Proto-Moth Cold Resist +5%, Heat Vulnerability +5%.
+    type: Tweak
+  id: 405864
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Proto-Diona Slash Resist +15%, Heat Vulnerability +15%, Shock Vulnerability +20%.
+    type: Tweak
+  id: 405865
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Computer Boards are less nutritious, eat real food sometimes!
+    type: Tweak
+  id: 405866
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Updated ProtoKin's guidebook entry to specify they don't passively heal burn anymore. (This is due to their 50% healing reduction).
+    type: Tweak
+  id: 405867
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Dwarves and Skeletons can open airlocks and pilot stuff again.
+    type: Fix
+  id: 405868
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Medical Huds (all types) can now correctly see Protogen health.
+    type: Fix
+  id: 405869
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Proto-Lagomorph metabolism now matches normal Lagomorph metabolism.
+    type: Fix
+  id: 405870
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Proto-Reptilians no longer freeze to death after leaving cryo healing pods.
+    type: Fix
+  id: 405871
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Protogen tails now correctly make the thump sound.
+    type: Fix
+  id: 405872
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Proto-Resomi use the base Resomi Gasp, Deathgasp, Sigh, Cough, and Yawn.
+    type: Fix
+  id: 405873
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: All Protogen can now get hand implants.
+    type: Fix
+  id: 405874
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: True Protogen can be picked up.
+    type: Fix
+  id: 405875
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: ProtoKin can hear Empathy now.
+    type: Fix
+  id: 405876
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: Proto-Vulps no longer starve 10x faster than they're supposed to.
+    type: Fix
+  id: 405877
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
+- author: wonderfulnewworld, Princess Gurchi
+  changes:
+  - message: The Duty Officer's Winter Coat now has a suit storage slot.
+    type: Fix
+  id: 405878
+  time: '2026-06-10T08:28:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4714
 Order: -1
