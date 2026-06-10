@@ -813,8 +813,8 @@
         emptyLabel: borg-slot-Rollerbed-empty
         emptyRepresentative: BorgModuleRollerbedPlaceholder
         whitelist:
-          components:
-          - Foldable
+          tags:
+          - RollerBed
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: paramed-module }
 

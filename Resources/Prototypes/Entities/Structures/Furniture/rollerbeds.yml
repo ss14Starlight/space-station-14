@@ -80,7 +80,7 @@
             True: {visible: false}
     - type: StaticPrice
       price: 120
-    - type: Tag # Starlight edit: add tag
+    - type: Tag # Starlight
       tags:
       - RollerBed
 
@@ -93,9 +93,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-    - FoldedBed
 
 - type: entity
   id: CheapRollerBed
@@ -125,9 +122,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-    - FoldedBed
 
 - type: entity
   id: EmergencyRollerBed
