@@ -6,18 +6,29 @@ namespace Content.Client._Starlight.UserInterface.Controls;
 /// <summary>
 /// An <see cref="OptionButton"/> that supports per-item background tinting,
 /// including the collapsed button face when an item is selected.
-/// Call <see cref="SetItemColor"/> immediately after <see cref="OptionButton.AddItem"/> to tint the last-added item.
+/// Call <see cref="SetItemColor"/> immediately after <see cref="OptionButton.AddItem(string,int?)"/> to tint the last-added item.
 /// </summary>
-public partial class ColoredOptionButton : OptionButton
+public sealed class ColoredOptionButton : OptionButton
 {
-    // ButtonOverride is called synchronously during AddItem, so _lastButton is
-    // always the button for the item that was just added when SetItemColor runs.
-    private Button? _lastButton;
-
-    private Color? _faceColor;
     private const float HoverLighten = 0.2f;
     private const float PressedDarken = 0.15f;
     private const float DisabledDarken = 0.25f;
+
+    private const float ScaleSaturation = 0.6f;
+    private const float ScaleBrightness = 0.6f;
+
+    private const float ClampBrightnessMin = 0.1f;
+    private const float ClampBrightnessMax = 0.5f;
+
+    /// <summary>
+    /// The Button component belonging to the last item added.
+    /// </summary>
+    private Button? _lastButton;
+
+    /// <summary>
+    /// The color of the button face, reflecting the currently selected item.
+    /// </summary>
+    private Color? _faceColor;
 
     private readonly Dictionary<int, Color> _itemColors = new();
 
@@ -183,8 +194,8 @@ public partial class ColoredOptionButton : OptionButton
     private static Color MakeButtonColor(Color color)
     {
         var hsv = Color.ToHsv(color);
-        hsv.Y *= .6f; // Scale saturation from [0,1] to [0,0.6]
-        hsv.Z = Math.Clamp(hsv.Z * .6f, 0.1f, 0.5f); // Reduce brightness by 40%, clamp between 10% and 50%.
+        hsv.Y *= ScaleSaturation;
+        hsv.Z = Math.Clamp(hsv.Z * ScaleBrightness, ClampBrightnessMin, ClampBrightnessMax);
         return Color.FromHsv(hsv);
     }
 
