@@ -166,10 +166,12 @@ public sealed partial class FaxMachineComponent : Component
 
     /// <summary>
     /// The order of this fax machine within its group. Lower values mean higher up in the list.
+    /// A non-zero means other uncategorized fax machines can have it adjusted to show up before others.
     /// </summary>
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int Order { get; set; }
+    public int Order { get; set; } = 1_000;
+
     #endregion
 }
 
