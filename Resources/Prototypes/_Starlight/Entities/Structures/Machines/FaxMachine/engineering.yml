@@ -28,7 +28,7 @@
   components:
     - type: FaxMachine
       group: FaxGroupEngineering
-      name: "CE's Office"
+      name: "Chief Engineer"
       order: 200
 
 - type: entity

@@ -28,7 +28,7 @@
   components:
     - type: FaxMachine
       group: FaxGroupSecurity
-      name: "HoS's Office"
+      name: "Head of Security"
       order: 200
 
 - type: entity
@@ -38,7 +38,7 @@
   components:
     - type: FaxMachine
       group: FaxGroupSecurity
-      name: "Warden's Office"
+      name: "Warden"
       order: 300
 
 - type: entity

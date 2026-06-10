@@ -28,7 +28,7 @@
   components:
     - type: FaxMachine
       group: FaxGroupService
-      name: "HoP's Office"
+      name: "Head of Personnel"
       order: 200
 
 - type: entity

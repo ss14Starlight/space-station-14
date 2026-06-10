@@ -28,5 +28,5 @@
   components:
     - type: FaxMachine
       group: FaxGroupScience
-      name: "RD's Office"
+      name: "Research Director"
       order: 200

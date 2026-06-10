@@ -28,7 +28,7 @@
   components:
     - type: FaxMachine
       group: FaxGroupCargo
-      name: "QM's Office"
+      name: "Quartermaster"
       order: 200
 
 - type: entity

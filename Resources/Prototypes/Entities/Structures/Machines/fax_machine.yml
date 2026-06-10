@@ -124,7 +124,7 @@
     - type: FaxMachine
       group: FaxGroupCommand # Starlight
       order: 200 # Starlight
-      name: "Captain's Office"
+      name: "Captain"
       receiveNukeCodes: true
     - type: StealTarget
       stealGroup: FaxMachineCaptain

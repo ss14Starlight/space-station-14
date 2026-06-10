@@ -20,70 +20,70 @@
 # Fax machines
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNTNanoTrasenRepresentative
+  id: FaxMachineNTRep
   suffix: "NT: NTR"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "NTR Office"
+      name: "NT Representative"
       order: 100
 
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNanoTrasenBSONTR
-  suffix: "NT: BSO+NTR"
+  id: FaxMachineNTRepBSO
+  suffix: "NT: NTR & BSO"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "BSO & NTR's Office"
+      name: "NT Rep & BSO"
       order: 100
 
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNanoTrasenMagistrate
-  suffix: "NT: Magistrate"
+  id: FaxMachineNTMagi
+  suffix: "NT: Magi"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "Magistrate's Office"
+      name: "Magistrate"
       order: 200
 
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNanoTrasenMagiIAA
-  suffix: "NT: Magi+IAA"
+  id: FaxMachineNTMagiInternalAffairs
+  suffix: "NT: Magi & IAA"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "Magi & IAA's Office"
+      name: "Magi & Internal Affairs"
       order: 300
 
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNanoTrasenIAA
+  id: FaxMachineNTInternalAffairs
   suffix: "NT: IAA"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "IAA's Office"
+      name: "Internal Affairs"
       order: 300
 
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNanoTrasenBSO
+  id: FaxMachineNTBlueshield
   suffix: "NT: BSO"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "BSO's Office"
+      name: "Blueshield Officer"
       order: 600
 
 - type: entity
   parent: FaxMachineNT
-  id: FaxMachineNanoTrasenNCT
-  suffix: "NT: NCT"
+  id: FaxMachineNTCareerTrainer
+  suffix: "NT: Career Trainer"
   components:
     - type: FaxMachine
       group: FaxGroupNanoTrasen
-      name: "NCT's Office"
+      name: "NT Career Trainer"
       order: 700

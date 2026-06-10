@@ -28,7 +28,7 @@
   components:
     - type: FaxMachine
       group: FaxGroupMedical
-      name: "CMO's Office"
+      name: "Chief Medical Officer"
       order: 200
 
 - type: entity
