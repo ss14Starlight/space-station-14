@@ -73,7 +73,7 @@
 - type: quickPhrase
   id: SpeciesProtoslimepersonPhrase
   parent: SpeciesProtogenPhrase
-  text: subspecies-name-protoslime
+  text: subspecies-name-protoslimeperson
 
 - type: quickPhrase
   id: SpeciesProtovulpPhrase
