@@ -235,7 +235,7 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
             return;
 
         #region Starlight
-        // Nanochat is not pantomiming! Mimes have to break their vow of silence to speak in any form
+        // NanoChat is not pantomiming! Mimes have to break their vow of silence to speak in any form
         if(TryComp<MimePowersComponent>(msg.Actor, out var mime) && !mime.VowBroken)
         {
             _popupSystem.PopupEntity(Loc.GetString("mime-cant-speak"), msg.Actor, msg.Actor);
