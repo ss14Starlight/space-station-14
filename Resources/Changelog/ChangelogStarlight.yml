@@ -1,11 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: Added "engineering caution holo-projector", a tool that projects non-solid barriers for marking hazards.
-    type: Add
-  id: 405483
-  time: '2026-05-31T18:02:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4593
 - author: CiciSpace
   changes:
   - message: Resomi emote sounds for cough, gasp, sigh, and yawn
@@ -2799,4 +2792,11 @@ Entries:
   id: 405882
   time: '2026-06-10T09:32:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4707
+- author: TaserTheFox
+  changes:
+  - message: Some reagent bottles now have the correct labels.
+    type: Fix
+  id: 405883
+  time: '2026-06-10T09:54:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4697
 Order: -1
