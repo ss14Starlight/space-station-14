@@ -93,38 +93,33 @@ public sealed partial class ChannelFilterPopup : Popup
             };
 
             var channelId = channel.ID;
-            checkbox.OnToggled += args => SetChanelMuted(args, channelId);
+            checkbox.OnToggled += args => SetChannelMuted(args, channelId);
 
             _ttsMuteStates[channel.ID] = checkbox;
             TTSChannelsVBox.AddChild(checkbox);
         }
     }
 
-    private void SetChanelMuted(ButtonToggledEventArgs args, string channelId)
+    private void SetChannelMuted(ButtonToggledEventArgs args, ProtoId<RadioChannelPrototype> channelId)
     {
-        if (_ttsStream == null)
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            _ttsStream = entManager.System<TextToSpeechStreamSystem>();
-        }
-        _ttsStream?.SetChannelMuted(channelId, args.Pressed);
+        ApplyChannelMuted(channelId, args.Pressed);
+    }
+
+    private void ApplyChannelMuted(ProtoId<RadioChannelPrototype> channelId, bool muted)
+    {
+        _ttsStream ??= IoCManager.Resolve<IEntityManager>().System<TextToSpeechStreamSystem>();
+        _ttsStream.SetChannelMuted(channelId, muted);
     }
 
     private void ToggleAllTTSCheckboxes()
     {
-        if (_ttsStream == null)
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
-            _ttsStream = entManager.System<TextToSpeechStreamSystem>();
-        }
-
-        // If all are checked, unchecks all. Otherwise, check all boxes.
         bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
         bool newState = !allChecked;
+
         foreach (var (channelId, checkbox) in _ttsMuteStates)
         {
             checkbox.Pressed = newState;
-            _ttsStream?.SetChannelMuted(channelId, checkbox.Pressed);
+            ApplyChannelMuted(channelId, newState);
         }
     }
 
