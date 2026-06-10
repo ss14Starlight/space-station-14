@@ -1,13 +1,6 @@
 Entries:
 - author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
   changes:
-  - message: Resolved a few stray typos in adjacent drink descriptions.
-    type: Fix
-  id: 405459
-  time: '2026-05-28T02:56:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4389
-- author: AllisonKaur and Rhetorica and Fasuh and TheGrinningStoryTeller
-  changes:
   - message: Corrected the flavor of the Pan-Galactic Gargle Blaster to be faithfully worded to the source material.
     type: Fix
   id: 405460
@@ -2799,4 +2792,11 @@ Entries:
   id: 405858
   time: '2026-06-09T07:33:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4690
+- author: Huaqas
+  changes:
+  - message: Resomi's original scream sound effect has returned. Chirpers rejoice.
+    type: Tweak
+  id: 405859
+  time: '2026-06-09T14:53:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4695
 Order: -1
