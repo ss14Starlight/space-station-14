@@ -29,9 +29,9 @@
   description: Upgraded magnetic boots that you swiped from the ERT lockers.
   components:
     - type: Sprite
-      sprite: Clothing/Shoes/Boots/magboots-ert.rsi
+      sprite: _Starlight/Clothing/Shoes/Boots/magboots-greenshield.rsi
     - type: Clothing
-      sprite: Clothing/Shoes/Boots/magboots-ert.rsi
+      sprite: _Starlight/Clothing/Shoes/Boots/magboots-greenshield.rsi
     - type: ClothingSpeedModifier
       walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
       sprintModifier: 0.9

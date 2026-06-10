@@ -414,6 +414,11 @@
       components:
         - type: DisarmMalus
           malus: 0.6
+    - type: Clothing
+      quickEquip: false
+      slots:
+      - Belt
+      - suitStorage
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
       layers:
@@ -460,6 +465,7 @@
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellSmallNuclear
           locked: true
+    - type: AlwaysEquip
     - type: ToggleCellDraw
     - type: PowerCellDraw
       drawRate: 2  # watts while active # final stat TBD
