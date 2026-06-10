@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseMobSpeciesOrganic
+  parent: [BaseMobSpeciesOrganic, BaseSpeciesPickupableLarge]
   id: BaseMobProtogen
   name: Urist McToaster
   abstract: true
@@ -17,10 +17,14 @@
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
     - map: [ "enum.HumanoidVisualLayers.RArm" ]
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]

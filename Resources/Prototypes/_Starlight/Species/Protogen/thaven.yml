@@ -42,14 +42,30 @@
     RLeg: MobThavenRLeg
     LFoot: MobThavenLFoot
     RFoot: MobThavenRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoThavenMarkingLimits
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtoThavenMediumArmor, ProtoThavenVisor, ProtoThavenLights, ProtoThavenLEDFace ]
+      defaultMarkings: [ ProtoThavenVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoThavenLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoThavenMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoThavenLights ]
     Hair:
       points: 1
       required: false

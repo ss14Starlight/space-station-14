@@ -106,6 +106,9 @@
     - type: EyeProtection
       protectionTime: 5
     - type: ShowHealthBars
+      damageContainers:
+        - Biological
+        - Hybrid # Protogens
     - type: SolutionScanner
     - type: Construction
       graph: GlassesSecHUD
