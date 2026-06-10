@@ -13,7 +13,7 @@
         map: ["enum.CrewMonitorLayers.Frame"]
       - state: powered
         map: [ "enum.CrewMonitorLayers.Powered" ]
-        visible: true 
+        visible: true
       - state: alert
         map: ["enum.CrewMonitorLayers.Alert"]
         visible: false
@@ -56,7 +56,7 @@
   name: emergency cyborg crew monitor
   id: EmergencyCyborgCrewMonitor
   suffix: cyborg
-  description: A hand-held crew monitor displaying the status of suit sensors of injured crew, It has been wired and attached to a cyborg's System. 
+  description: A hand-held crew monitor displaying the status of suit sensors of injured crew, It has been wired and attached to a cyborg's System.
   components:
   - type: Item
     heldPrefix: scanner
@@ -67,7 +67,7 @@
         map: ["enum.CrewMonitorLayers.Frame"]
       - state: powered
         map: [ "enum.CrewMonitorLayers.Powered" ]
-        visible: true 
+        visible: true
       - state: alert
         map: ["enum.CrewMonitorLayers.Alert"]
         visible: false
