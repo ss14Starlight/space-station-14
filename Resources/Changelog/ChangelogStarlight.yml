@@ -1,11 +1,4 @@
 Entries:
-- author: silkielol, deltaVelocity
-  changes:
-  - message: '"Maints Discovery", a new piece of menu art featuring a thief and his stash.'
-    type: Add
-  id: 405496
-  time: '2026-06-01T09:56:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4599
 - author: redmushie
   changes:
   - message: AGhost also sees IPC and Cyborg health bars.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405895
   time: '2026-06-10T19:13:23.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4711
+- author: Musiklie
+  changes:
+  - message: added Avali hearts and lungs to the Med dispenser.
+    type: Add
+  id: 405896
+  time: '2026-06-10T19:31:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4667
 Order: -1
