@@ -11,7 +11,7 @@
     isSpecialDigestibleExclusive: false
   - type: Metabolizer
     maxReagents: 6
-    metabolizerTypes: [ Plant, Protogen ]
+    metabolizerTypes: [ Plant, Protogen ] # Can't do animal since they would get poisoned by theobromine.
     removeEmpty: true
     groups:
       - id: Food
@@ -20,9 +20,6 @@
       - id: Poison
       - id: Narcotic
       - id: Alcohol
-  - type: Item
-    size: Small
-    heldPrefix: stomach
 
 - type: entity
   id: OrganProtoDionaStomachNymph
@@ -43,7 +40,5 @@
   description: Contains the stomach of a formerly fully-formed Proto-Diona. It doesn't taste any better for it.
   components:
   - type: IsDeadIC
-  # Starlight - start
   - type: Body
     prototype: AnimalProtoNymphStomach
-  # Starlight - end
