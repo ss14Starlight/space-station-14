@@ -1,0 +1,54 @@
+- type: entity
+  id: BannerTSF
+  parent: BannerBase
+  name: TSF banner
+  description: A banner displaying the Trans-Solar Federation colors.
+  components:
+  - type: Sprite
+    sprite: _PV/Structures/Decoration/tsf_banners_flags.rsi
+    state: tsf-banner
+
+- type: entity
+  id: FlagTSF
+  parent: BannerBase
+  name: TSF flag
+  description: A wall-mounted Trans-Solar Federation flag.
+  components:
+  - type: Sprite
+    sprite: _PV/Structures/Wallmounts/Flags/tsf_wall_flags.rsi
+    state: tsf-nt-source-flag
+
+- type: entity
+  id: PosterTSF
+  parent: BaseStructureDynamic
+  name: TSF poster
+  description: A Trans-Solar Federation poster.
+  components:
+  - type: Sprite
+    sprite: _PV/Structures/Wallmounts/Posters/tsf_nt_fancy_poster.rsi
+    state: tsf-poster-source
+    noRot: true
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.05,0.45,0.05"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
