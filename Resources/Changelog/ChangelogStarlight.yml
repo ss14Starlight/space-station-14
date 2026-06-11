@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Removed a spare empty telecommunications server inside science server room.
-    type: Remove
-  id: 405514
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (MANOR) Removed substations at Solar's as they were causing issues with double substations.
     type: Remove
   id: 405515
@@ -2799,4 +2792,11 @@ Entries:
   id: 405913
   time: '2026-06-11T17:04:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4724
+- author: Johnny
+  changes:
+  - message: Observers cant be used by aghosts as a mass scanner.
+    type: Fix
+  id: 405914
+  time: '2026-06-11T17:04:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4729
 Order: -1
