@@ -12,7 +12,7 @@
 
   They take [color=#1e90ff]30% less Blunt damage and 20% less Slash damage[/color];
   but [color=#ffa500]50% more Heat damage, 20% more Shock damage, and they can easily
-  catch on fire when receiving enough Heat damage from *any* source.[/color]
+  catch on fire when receiving enough Heat damage from *any* source, up to 5 fire stacks.[/color] <!-- Starlight, fire stack cap for this effect.-->
 
   ## Make Like A Tree And Leave
   <Box>
