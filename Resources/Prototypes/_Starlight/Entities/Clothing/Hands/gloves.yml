@@ -197,4 +197,4 @@
   - type: Unremoveable # Don't just take the free gloves from them, actually use them.
   - type: Insulated
   - type: Fiber
-    fiberMaterial: fibers-insulative
+    fiberMaterial: fibers-grey
