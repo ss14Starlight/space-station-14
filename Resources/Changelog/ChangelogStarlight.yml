@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Added sink and drain to command bar in manor.
-    type: Add
-  id: 405511
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added card pack to maints bar.
-    type: Add
-  id: 405512
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added a ton of televisions all around station.
-    type: Add
-  id: 405513
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (MANOR) Removed a spare empty telecommunications server inside science server room.
     type: Remove
   id: 405514
@@ -2799,4 +2778,25 @@ Entries:
   id: 405910
   time: '2026-06-11T16:03:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: Pon
+  changes:
+  - message: Changed the fixtures size of the Kitchen Knife.
+    type: Tweak
+  id: 405911
+  time: '2026-06-11T17:04:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4724
+- author: Pon
+  changes:
+  - message: Changed the fixtures size of the Butcher's Cleaver.
+    type: Tweak
+  id: 405912
+  time: '2026-06-11T17:04:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4724
+- author: Pon
+  changes:
+  - message: Changed the fixtures size of the Throwing Knife.
+    type: Tweak
+  id: 405913
+  time: '2026-06-11T17:04:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4724
 Order: -1
