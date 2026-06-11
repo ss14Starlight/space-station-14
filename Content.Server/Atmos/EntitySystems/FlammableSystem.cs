@@ -370,7 +370,7 @@ namespace Content.Server.Atmos.EntitySystems
 
                 #region Starlight
                 // Don't light on fire if you already have too many fire stacks
-                if ((flammable.FireStacks + component.FireStacks) >= component.MaxFireStacks)
+                if ((flammable.FireStacks + component.FireStacks) > component.MaxFireStacks)
                     return;
                 #endregion
 
