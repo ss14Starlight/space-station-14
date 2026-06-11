@@ -158,14 +158,14 @@
                                 <Control HorizontalExpand="True" />
                                 <Button Name="SiliconVoiceButton" Text="{Loc 'humanoid-profile-editor-silicon-voice-select'}" />
                             </BoxContainer>
-                            <!--  Starlight End  -->
+                            <!--Far Horizons species loadouts-->
+                            <BoxContainer HorizontalExpand="True" Name="CSpeciesLoadout">
+                                <Label Text="{Loc 'humanoid-profile-editor-species-loadout'}" />
+                                <Control HorizontalExpand="True"/>
+                                <Button Name="SpeciesLoadout" Text="{Loc 'humanoid-profile-editor-species-loadout-select'}" />
+                            </BoxContainer>
                         </BoxContainer>
-                        <!--Far Horizons species loadouts-->
-                                <BoxContainer HorizontalExpand="True" Name="CSpeciesLoadout">
-                                    <Label Text="{Loc 'humanoid-profile-editor-species-loadout'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <Button Name="SpeciesLoadout" Text="{Loc 'loadout-window'}" HorizontalAlignment="Right" />
-                                </BoxContainer>
+                        <!--  Starlight End  -->
                         <!--  STARLIGHT - Species Size  -->
                         <BoxContainer
                             Margin="10"

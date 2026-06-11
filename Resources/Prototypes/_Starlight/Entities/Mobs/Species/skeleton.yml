@@ -32,6 +32,8 @@
     tags:
     - Unimplantable # _Starlight
     - NotLabelable # Starlight
+    - CanPilot
+    - DoorBumpOpener
   - type: MobState
   - type: MobThresholds
     thresholds:

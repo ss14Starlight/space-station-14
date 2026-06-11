@@ -63,9 +63,20 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NotLabelable
+    - SiliconEmotesFH
+    - Protogen
+    - Dwarf
+    - ProtoDwarf
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoDwarf
   categories: [ HideSpawnMenu ]
   components:

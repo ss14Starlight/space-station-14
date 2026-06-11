@@ -49,3 +49,20 @@
         enum.ToggleableVisuals.Layer:
           True: { state: "magnet" }
           False: { state: "icon" }
+
+- type: entity
+  parent: MatBag
+  id: MatBagFilled
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: SheetPlasteel
+        - id: SheetPlasteel
+        - id: SheetPlasteel
+        - id: SheetGlass
+        - id: SheetSteel
+        - id: SheetSteel
+
