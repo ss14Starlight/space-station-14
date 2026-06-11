@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "Unknown / provided by Project Verdant user upload",
+  "copyright": "Compatibility copy of Project Verdant AEGIS helmet sprites; source PNGs supplied by Timothy Stilt.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon-flash"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-light",
+      "directions": 4
+    }
+  ]
+}
