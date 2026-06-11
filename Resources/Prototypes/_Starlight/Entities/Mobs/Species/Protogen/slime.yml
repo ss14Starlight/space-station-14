@@ -134,7 +134,7 @@
   - type: Wagging
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoSlimePerson
   categories: [ HideSpawnMenu ]
   components:

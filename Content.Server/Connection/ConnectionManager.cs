@@ -179,7 +179,7 @@ namespace Content.Server.Connection
         private async Task NetMgrOnConnecting(NetConnectingArgs e)
         {
             // starlight start
-            var rateExempt = HasTemporaryBypass(e.UserId);
+            var rateExempt = HasTemporaryBypass(e.UserId) || IPAddress.IsLoopback(e.IP.Address);
 
             if (!rateExempt && GlobalRateLimitDeny() is { } globalReason)
             {
@@ -215,7 +215,7 @@ namespace Content.Server.Connection
                     break;
             }
 
-            if (!rateExempt && PerIpRateLimitDeny(addr) is { } ipReason)
+            if (!rateExempt && !_conntrack.IsSnatAddress(addr) && PerIpRateLimitDeny(addr) is { } ipReason)
             {
                 e.Deny(new NetDenyReason(ipReason, new Dictionary<string, object>()));
                 return;

@@ -576,16 +576,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         HumanoidCharacterProfile? profile = null;
 
-        if (TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
-        {
-            profile = _appearance.GetBaseProfile((player, humanoid));
-        }
-
-        if (profile == null && _pref.TryGetCachedPreferences(session.UserId, out var pref))
+        if (_pref.TryGetCachedPreferences(session.UserId, out var pref))
         {
             profile = pref.Characters.Values
                 .OfType<HumanoidCharacterProfile>()
                 .FirstOrDefault(p => p.Enabled);
+        }
+
+        if (profile == null && TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
+        {
+            profile = _appearance.GetBaseProfile((player, humanoid));
         }
 
         if (profile == null)
