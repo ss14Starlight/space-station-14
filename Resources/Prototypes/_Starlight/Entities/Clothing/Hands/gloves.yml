@@ -188,9 +188,10 @@
 - type: entity
   parent: ClothingHandsGlovesColorBlack
   id: ThievingGlovesReinforcement
-  suffix: Thieving, Reinforcement
+  suffix: Thieving, Reinforcement, Unremovable
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: Thieving # They don't have any steal time reduction
     stealthy: true
+  - type: Unremoveable # Don't just take the free gloves from them, actually use them.
