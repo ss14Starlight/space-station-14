@@ -713,6 +713,7 @@
 
 - type: entity
   id: BorgModuleConstructionMaterialPlaceholder
+  categories: [ HideSpawnMenu ] # Starlight
   parent: BaseItem
   components:
   - type: Sprite
@@ -813,8 +814,16 @@
     - state: icon-rcd
   - type: ItemBorgModule
     hands:
-    - item: RCDRecharging
-    - item: RPDRecharging # Starlight: RPD
+    #region Starlight
+    - item: RCD
+    - hand:
+        emptyRepresentative: RCDAmmo
+        emptyLabel: borg-slot-rcd-ammo-empty
+        whitelist:
+          components:
+          - RCDAmmo
+    - item: RPDRecharging
+    #endregion Starlight
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
     - item: GasAnalyzer
