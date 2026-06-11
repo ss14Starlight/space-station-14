@@ -27,6 +27,7 @@
   - type: Clothing
     quickEquip: false
     slots:
+    - suitStorage
     - Belt
   - type: Gun
     soundGunshot:
@@ -346,6 +347,7 @@
   - type: Clothing
     quickEquip: false
     slots:
+    - suitStorage
     - Back
   - type: Gun
     fireRate: 0.6

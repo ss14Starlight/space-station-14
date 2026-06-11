@@ -1522,6 +1522,11 @@
       effects:
       - !type:SatiateThirst
         factor: 3
+      - !type:SatiateHunger # Starlight start, diona stuff
+        factor: 2 # It's as infinite as normal water, so it doesn't really matter that it's the same.
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
     Medicine:  # Starlight
       effects:
       - !type:HealthChange

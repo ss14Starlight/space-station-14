@@ -292,6 +292,53 @@
   - Survival
   - GroupSpeciesBreathTool
 
+# Antag loadouts (Only has species stuff right now)
+- type: roleLoadout
+  id: AntagNukeops
+  groups:
+  - ProtogenCybernetics
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: AntagNukeopsCommander
+  groups:
+  - ProtogenCybernetics
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: AntagNukeopsMedic
+  groups:
+  - ProtogenCybernetics
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
+
+- type: roleLoadout
+  id: AntagSpaceNinja
+  groups:
+  - ProtogenCybernetics
+  - GroupEVATank
+
+- type: roleLoadout
+  id: AntagWizard
+  groups:
+  - ProtogenCybernetics
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
+- type: roleLoadout
+  id: AntagWizardDuelist
+  groups:
+  - ProtogenCybernetics
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - GroupTankHarness
+
 # Wizard duelist from Moff Station. Placed here instead of in Moff's files since they're not a free agent here.
 - type: roleLoadout
   id: RoleSurvivalWizardDuelist

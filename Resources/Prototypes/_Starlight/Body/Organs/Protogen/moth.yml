@@ -1,0 +1,27 @@
+- type: entity
+  id: OrganProtoMothStomach
+  parent: [OrganAnimalStomach, BaseOrganStomach]
+  name: moth biological reactor
+  description: Some call it over-engineered, but it's vital to the function of a protogen. Turns organic matter into organic and electrical energy to power the protogen's cybernetics and flesh. #  Starlight, quotation marks removed
+  components:
+  - type: Sprite
+    sprite: _FarHorizons/Mobs/Species/Protogen/organs.rsi
+    state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - ClothMade
+      - RamChip
+    isSpecialDigestibleExclusive: false
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5

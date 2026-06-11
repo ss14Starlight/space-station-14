@@ -204,6 +204,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - Hybrid
   # Tags
   - type: Tag
     tags:
