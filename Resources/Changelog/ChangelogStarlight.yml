@@ -1,41 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Removed substations at Solar's as they were causing issues with double substations.
-    type: Remove
-  id: 405515
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed a generator and plasma near the south security substation for being too robust.
-    type: Remove
-  id: 405516
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed gas turbine in engie as it was kinda doing nothing. (Someone is planning to do something with this space soon).
-    type: Remove
-  id: 405517
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed some of engies steel and glass.
-    type: Remove
-  id: 405518
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Changed morgue from detective access to shrine access.
-    type: Tweak
-  id: 405519
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (MANOR) Fixed security being linked to 7 substations. (Dear god).
     type: Fix
   id: 405520
@@ -2799,4 +2764,39 @@ Entries:
   id: 405914
   time: '2026-06-11T17:04:03.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4729
+- author: Johnny
+  changes:
+  - message: (Reach) Mega chad mega thrusters.
+    type: Add
+  id: 405915
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Theres an actual armoury and nuke now.
+    type: Add
+  id: 405916
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Itty bitty STUPID thrusters.
+    type: Remove
+  id: 405917
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Piping reworked to use pipe layering system.
+    type: Tweak
+  id: 405918
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Departments have been moved around to make it less cramped.
+    type: Tweak
+  id: 405919
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
 Order: -1
