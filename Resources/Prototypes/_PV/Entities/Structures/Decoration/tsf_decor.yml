@@ -10,13 +10,34 @@
 
 - type: entity
   id: FlagTSF
-  parent: BannerBase
+  parent: BaseStructure
   name: TSF flag
   description: A wall-mounted Trans-Solar Federation flag.
+  placement:
+    mode: SnapgridCenter
   components:
+  - type: WallMount
   - type: Sprite
     sprite: _PV/Structures/Wallmounts/Flags/tsf_wall_flags.rsi
     state: tsf-nt-source-flag
+    drawdepth: WallMountedItems
+    noRot: true
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Fixtures
+    fixtures: {}
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   id: PosterTSF
