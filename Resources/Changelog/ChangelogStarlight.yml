@@ -1,74 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Changed win conditions for terror spiders, now they have minor lose and minor win if crew is evacuated before spiders died or win.
-    type: Tweak
-  id: 405487
-  time: '2026-05-31T19:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4613
-- author: Rinary
-  changes:
-  - message: Fixed terror spiders ammonia immune, now they shouldn't die from it.
-    type: Fix
-  id: 405488
-  time: '2026-05-31T19:30:25.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4613
-- author: Conflee
-  changes:
-  - message: Added the 'Beep 100' Memorial Poster. It spawns sometimes from the Contraband Poster Spawner, so look out for it in maints. RIP Beep 100.
-    type: Add
-  id: 405489
-  time: '2026-06-01T03:43:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4614
-- author: Arkanic
-  changes:
-  - message: Fix low fps when changing character size in the profile editor.
-    type: Fix
-  id: 405490
-  time: '2026-06-01T08:21:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4615
-- author: STARLIGHT TEAM
-  changes:
-  - message: The WinterDrobe now has access to the other generic colored winter coats instead of just the gray one.
-    type: Add
-  id: 405491
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: STARLIGHT TEAM
-  changes:
-  - message: Added fingerless budget insulated gloves. Assistants can now spawn with them instead of the normal fingerless insuls.
-    type: Add
-  id: 405492
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: STARLIGHT TEAM
-  changes:
-  - message: Assistants can now spawn with the yellow mittens.
-    type: Add
-  id: 405493
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: STARLIGHT TEAM
-  changes:
-  - message: Assistants can now spawn with the correct gray winter coat. (The one with a hood option.).
-    type: Tweak
-  id: 405494
-  time: '2026-06-01T09:05:17.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4618
-- author: Scarlet Lightweaver
-  changes:
-  - message: Removed the magical crayon for now due to the ongoning lag issues.
-    type: Remove
-  id: 405495
-  time: '2026-06-01T09:56:39.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4609
-- author: silkielol, deltaVelocity
-  changes:
-  - message: '"Maints Discovery", a new piece of menu art featuring a thief and his stash.'
-    type: Add
-  id: 405496
-  time: '2026-06-01T09:56:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4599
 - author: redmushie
   changes:
   - message: AGhost also sees IPC and Cyborg health bars.
@@ -2799,4 +2729,74 @@ Entries:
   id: 405886
   time: '2026-06-10T10:15:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4687
+- author: Caws
+  changes:
+  - message: The siren for Code Violet is now a little quieter.
+    type: Tweak
+  id: 405887
+  time: '2026-06-10T18:15:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4722
+- author: Caws
+  changes:
+  - message: The siren for Code Violet now fades out instead of just cutting off at the end.
+    type: Fix
+  id: 405888
+  time: '2026-06-10T18:15:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4722
+- author: Caws
+  changes:
+  - message: Mimes can no longer use AAC tablets while their vow of silence is active.
+    type: Tweak
+  id: 405889
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence by writing.
+    type: Tweak
+  id: 405890
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence using sign language nor hiveminds (e.g. the Nexus).
+    type: Tweak
+  id: 405891
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence by using NanoChat.
+    type: Tweak
+  id: 405892
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Mimes can no longer bypass their vow of silence by using NanoTasks (they may only print NanoTasks if the description is blank).
+    type: Tweak
+  id: 405893
+  time: '2026-06-10T18:45:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4718
+- author: Caws
+  changes:
+  - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
+    type: Add
+  id: 405894
+  time: '2026-06-10T19:13:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4711
+- author: Caws
+  changes:
+  - message: Removed the experimental RCD (recharging RCD) from engineering cyborgs due to budget cuts. Central Command apologies for the inconvenience.
+    type: Remove
+  id: 405895
+  time: '2026-06-10T19:13:23.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4711
+- author: Musiklie
+  changes:
+  - message: added Avali hearts and lungs to the Med dispenser.
+    type: Add
+  id: 405896
+  time: '2026-06-10T19:31:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4667
 Order: -1
