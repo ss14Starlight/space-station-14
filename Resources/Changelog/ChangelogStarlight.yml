@@ -1,53 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: AGhost also sees IPC and Cyborg health bars.
-    type: Fix
-  id: 405497
-  time: '2026-06-01T09:56:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4611
-- author: Hanz
-  changes:
-  - message: Added various vulpkanin Skunk, Possum, and Raccoon markings.
-    type: Add
-  id: 405498
-  time: '2026-06-01T11:39:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4581
-- author: Hanz
-  changes:
-  - message: Added various scar markings for humans.
-    type: Add
-  id: 405499
-  time: '2026-06-01T11:39:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4581
-- author: Hanz
-  changes:
-  - message: Added vulpkanin sprites for BSO gasmask and hardsuit.
-    type: Add
-  id: 405500
-  time: '2026-06-01T11:39:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4581
-- author: DevCS-CP
-  changes:
-  - message: Updated dragon devour to apply caustic damage if entity devoured is not dead.
-    type: Tweak
-  id: 405501
-  time: '2026-06-01T11:39:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4565
-- author: DevCS-CP
-  changes:
-  - message: Command tracking implant that rattles on both Security and Command.
-    type: Add
-  id: 405502
-  time: '2026-06-01T11:39:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4579
-- author: DevCS-CP
-  changes:
-  - message: BSO now gets Command tracking implants instead of security ones.
-    type: Tweak
-  id: 405503
-  time: '2026-06-01T11:39:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4579
 - author: wonderfulnewworld
   changes:
   - message: Pun Pun now spawns with a PDA.
@@ -2799,4 +2750,53 @@ Entries:
   id: 405896
   time: '2026-06-10T19:31:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4667
+- author: wonderfulnewworld
+  changes:
+  - message: Added a line to Protogens' guidebooks specifying that they are a challenge/not new player species, like IPCs.
+    type: Add
+  id: 405897
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Computer boards restore a little more hunger. (I got the number wrong last time and accidentally made them near-worthless.).
+    type: Tweak
+  id: 405898
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Resomi are no longer poisoned by Amoxla.
+    type: Fix
+  id: 405899
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Diona can now eat computer boards.
+    type: Fix
+  id: 405900
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Laspi can now eat foods other than computer boards.
+    type: Fix
+  id: 405901
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Dwarves, Proto-Resomi, Proto-Laspi, Proto-Vox, and Proto-Diona are no longer poisoned by computer boards/battery acid.
+    type: Fix
+  id: 405902
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Dwarves and Proto-Laspi can now process raw meat like other Protogen.
+    type: Fix
+  id: 405903
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
 Order: -1
