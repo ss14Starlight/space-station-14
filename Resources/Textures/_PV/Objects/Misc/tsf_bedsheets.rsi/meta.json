@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Derived from upstream NT/CentCom bedsheet assets; copied into _PV as TSF placeholders for respriting.",
+  "copyright": "Derived from upstream NT/CentCom bedsheet assets; copied into _PV as TSF placeholder for respriting.",
   "size": {
     "x": 32,
     "y": 32
@@ -9,9 +9,6 @@
   "states": [
     {
       "name": "tsf-bedsheet"
-    },
-    {
-      "name": "tsf-command-bedsheet"
     }
   ]
 }
