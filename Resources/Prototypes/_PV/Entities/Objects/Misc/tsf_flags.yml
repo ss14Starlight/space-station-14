@@ -1,0 +1,11 @@
+- type: entity
+  parent: BaseItem
+  id: TSFHandyFlag
+  name: TSF handheld flag
+  description: A small handheld flag bearing Trans-Solar Federation colors.
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Misc/Handy_Flags/tsf_handy_flag.rsi
+    state: icon
+  - type: Item
+    sprite: _PV/Objects/Misc/Handy_Flags/tsf_handy_flag.rsi
