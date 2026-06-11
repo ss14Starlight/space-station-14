@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Derived from upstream Nanotrasen/banner assets; copied into _PV as TSF placeholders for respriting.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tsf-banner"
+    },
+    {
+      "name": "tsf-flag-blue"
+    },
+    {
+      "name": "tsf-flag-red"
+    },
+    {
+      "name": "tsf-flag-yellow"
+    },
+    {
+      "name": "tsf-flag-green"
+    }
+  ]
+}
