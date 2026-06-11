@@ -52,10 +52,10 @@
     coldDamageThreshold: 285
     coldDamage:
       types:
-        Cold : 1.5 #per second, scales with temperature & other constants
-    heatDamage: # Swaps heat for cold, lizards thrive in hot temps
+        Cold : 0.1
+    heatDamage:
       types:
-        Heat : 0.1 #per second, scales with temperature & other constants
+        Heat : 1.5
   - type: TemperatureSpeed
     thresholds:
       301: 0.9
@@ -99,7 +99,7 @@
             state: mask
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoReptilian
   categories: [ HideSpawnMenu ]
   description: A dummy proto-reptile meant to be used in character setup.
