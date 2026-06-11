@@ -2,7 +2,6 @@
   id: OrganProtoResomiHeart
   parent: OrganProtogenHeart
   name: resomi cybernetic heart
-  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     maxReagents: 2
