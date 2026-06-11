@@ -1,4 +1,3 @@
-
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitAegis
@@ -7,31 +6,38 @@
   description: The sealed helmet of the Aegis C-04 system. Its reinforced visor and integrated Eclipse hardware are built for hostile environments, hostile pressure, and hostile operators.
   components:
   - type: Sprite
-    sprite: _Mono/Clothing/Head/Hardsuits/aegis_helm.rsi
-    state: icon
-
+    sprite: _PV/Clothing/Head/Hardsuits/aegis_helmet.rsi
+    layers:
+    - state: icon
+    - state: icon-flash
+      visible: false
+      shader: unshaded
+      map: [ "light" ]
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+    spriteLayer: light
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET-unshaded
+        shader: unshaded
   - type: Clothing
-    sprite: _Mono/Clothing/Head/Hardsuits/aegis_helm.rsi
+    sprite: _PV/Clothing/Head/Hardsuits/aegis_helmet.rsi
     clothingVisuals:
       head:
       - state: equipped-HELMET
-
   - type: PointLight
     color: "#ff0000"
     radius: 7
     energy: 3
-
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
-
   - type: TemperatureProtection
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
-
   - type: Pierceable
     level: Rock
-
   - type: Armor
     modifiers:
       coefficients:
@@ -39,11 +45,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-
   - type: HideLayerClothing
     layers:
       Hair: HEAD
-
   - type: Tag
     tags:
     - WhitelistChameleon
