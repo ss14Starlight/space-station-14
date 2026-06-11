@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LOBSTER) Added a tv camera to kitchen.
-    type: Add
-  id: 405530
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (LOBSTER) Added a tv camera to courtroom.
     type: Add
   id: 405531
@@ -2799,4 +2792,11 @@ Entries:
   id: 405929
   time: '2026-06-11T20:35:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: pmjanus
+  changes:
+  - message: The Corporate Frontier, Fringe, Hunted, Paradox Clone, and USSP backgrounds now apply correctly instead of silently doing nothing.
+    type: Fix
+  id: 405930
+  time: '2026-06-11T21:20:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4723
 Order: -1
