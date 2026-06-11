@@ -4,7 +4,7 @@
   name: dwarf heart
   components:
   - type: Metabolizer
-    metabolizerTypes: [Dwarf]
+    metabolizerTypes: [Dwarf, Protogen]
 
 - type: entity
   id: OrganDwarfLiver
@@ -35,4 +35,4 @@
   - type: Metabolizer
     # mm very yummy
     maxReagents: 5
-    metabolizerTypes: [Dwarf]
+    metabolizerTypes: [Dwarf, Animal]
