@@ -1,0 +1,15 @@
+- type: entity
+  id: BedsheetTSF
+  parent: BedsheetBase
+  name: TSF bedsheet
+  description: A soft bedsheet bearing Trans-Solar Federation colors.
+  components:
+  - type: Sprite
+    sprite: _PV/Objects/Misc/tsf_bedsheets.rsi
+    state: tsf-bedsheet
+  - type: Clothing
+    sprite: _PV/Clothing/Neck/Bedsheets/tsf.rsi
+  - type: Tag
+    tags:
+    - Bedsheet
+    - CorgiWearable

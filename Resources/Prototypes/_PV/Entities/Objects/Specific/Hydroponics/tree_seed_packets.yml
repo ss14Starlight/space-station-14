@@ -1,0 +1,29 @@
+- type: entity
+  parent: SeedBase
+  name: packet of oak tree seeds
+  id: OakTreeSeeds
+  components:
+  - type: Seed
+    seedId: oakTree
+  - type: Sprite
+    sprite: _PV/Objects/Specific/Hydroponics/Oak.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of birch tree seeds
+  id: BirchTreeSeeds
+  components:
+  - type: Seed
+    seedId: birchTree
+  - type: Sprite
+    sprite: _PV/Objects/Specific/Hydroponics/Birch.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of spruce tree seeds
+  id: SpruceTreeSeeds
+  components:
+  - type: Seed
+    seedId: spruceTree
+  - type: Sprite
+    sprite: _PV/Objects/Specific/Hydroponics/Spruce.rsi

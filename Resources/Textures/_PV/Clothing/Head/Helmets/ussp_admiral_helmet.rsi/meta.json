@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "license": "Unknown / provided by Project Verdant user upload",
+  "copyright": "Source PNGs supplied by Timothy Stilt for Project Verdant; verify final attribution before merge.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon-flash"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-cyclorite",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-avali",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-felionoid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-vulpkanin",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded-vox",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded-resomi",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded-cyclorite",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded-avali",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded-felionoid",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded-vulpkanin",
+      "directions": 4
+    }
+  ]
+}

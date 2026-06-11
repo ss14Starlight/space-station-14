@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Copied from upstream NT wall flag asset as TSF placeholder for respriting.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tsf-nt-source-flag"
+    }
+  ]
+}

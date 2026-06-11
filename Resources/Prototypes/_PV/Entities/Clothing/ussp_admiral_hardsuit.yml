@@ -1,0 +1,117 @@
+# USSP Admiral Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseSovietContraband]
+  id: ClothingOuterHardsuitUSSPAdmiral
+  name: USSP admiral hardsuit
+  description: A decorated USSP command hardsuit issued to high-ranking officers. Heavy, imposing, and ready for void operations.
+  components:
+  - type: Sprite
+    sprite: _PV/Clothing/OuterClothing/Hardsuits/ussp_admiral.rsi
+  - type: Clothing
+    sprite: _PV/Clothing/OuterClothing/Hardsuits/ussp_admiral.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.2
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.30
+  - type: BreathMask
+    allowedSlots: [MASK, HEAD, OUTERCLOTHING]
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.30
+        Slash: 0.30
+        Piercing: 0.30
+        Heat: 0.30
+        Radiation: 0.10
+        Caustic: 0.30
+    staminaModifier: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: HeldSpeedModifier
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepHeavy
+      params:
+        volume: -6
+        variation: 0.09
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitUSSPAdmiral
+  - type: Tag
+    tags:
+    - MonkeyWearable
+    - WhitelistChameleon
+    - FootstepSound
+    - IPCExternalCooling # Far Horizons
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: [ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseSovietContraband]
+  id: ClothingHeadHelmetHardsuitUSSPAdmiral
+  categories: [HideSpawnMenu]
+  name: USSP admiral hardsuit helmet
+  description: An ornate command helmet for the USSP admiral hardsuit.
+  components:
+  - type: Sprite
+    sprite: _PV/Clothing/Head/Helmets/ussp_admiral_helmet.rsi
+  - type: Clothing
+    sprite: _PV/Clothing/Head/Helmets/ussp_admiral_helmet.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+      head-vox:
+      - state: equipped-HELMET-vox
+      head-resomi:
+      - state: equipped-HELMET-resomi
+      head-felionoid:
+      - state: equipped-HELMET-felionoid
+      head-cyclorite:
+      - state: equipped-HELMET-cyclorite
+      head-vulpkanin:
+      - state: equipped-HELMET-vulpkanin
+      head-avali:
+      - state: equipped-HELMET-avali
+  - type: ToggleableVisuals
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET-unshaded
+        shader: unshaded
+      head-vox:
+      - state: equipped-HELMET-unshaded-vox
+        shader: unshaded
+      head-resomi:
+      - state: equipped-HELMET-unshaded-resomi
+        shader: unshaded
+      head-felionoid:
+      - state: equipped-HELMET-unshaded-felionoid
+        shader: unshaded
+      head-cyclorite:
+      - state: equipped-HELMET-unshaded-cyclorite
+        shader: unshaded
+      head-vulpkanin:
+      - state: equipped-HELMET-unshaded-vulpkanin
+        shader: unshaded
+      head-avali:
+      - state: equipped-HELMET-unshaded-avali
+        shader: unshaded
+  - type: PointLight
+    color: green
+    radius: 6
+    energy: 5
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: Tag
+    tags:
+    - WhitelistChameleon

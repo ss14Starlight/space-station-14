@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "license": "Unknown / provided by Project Verdant user upload",
+  "copyright": "Source PNGs supplied by Timothy Stilt for Project Verdant AEGIS hardsuit helmet replacement; verify final attribution before merge.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon"
+    },
+    {
+      "name": "icon-flash"
+    },
+    {
+      "name": "equipped-HELMET",
+      "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-unshaded",
+      "directions": 4
+    },
+    {
+      "name": "off-equipped-HELMET",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET",
+      "directions": 4
+    },
+    {
+      "name": "on-equipped-HELMET-unshaded",
+      "directions": 4
+    }
+  ]
+}

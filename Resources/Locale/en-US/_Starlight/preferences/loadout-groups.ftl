@@ -26,14 +26,14 @@ loadout-group-nanotrasenrepresentative-shoes = NanoTrasen representative shoes
 loadout-group-captain-shoes = Captain shoes
 loadout-group-hop-shoes = Head of Personnel shoes
 
-loadout-group-blueshield-head = Blueshield head
-loadout-group-blueshield-backpack = Blueshield backpack
-loadout-group-blueshield-jumpsuit = Blueshield jumpsuit
-loadout-group-blueshield-eyewear = Blueshield eyewear
-loadout-group-blueshield-outerclothing = Blueshield Outer Clothing
-loadout-group-blueshield-belt = Blueshield Belt
-loadout-group-blueshield-neck = Blueshield Neck
-loadout-group-blueshield-id = Blueshield ID
+loadout-group-blueshield-head = TSFO head
+loadout-group-blueshield-backpack = TSFO backpack
+loadout-group-blueshield-jumpsuit = TSFO jumpsuit
+loadout-group-blueshield-eyewear = TSFO eyewear
+loadout-group-blueshield-outerclothing = TSFO Outer Clothing
+loadout-group-blueshield-belt = TSFO Belt
+loadout-group-blueshield-neck = TSFO Neck
+loadout-group-blueshield-id = TSFO ID
 
 # Security
 loadout-group-security-tie = Security tie

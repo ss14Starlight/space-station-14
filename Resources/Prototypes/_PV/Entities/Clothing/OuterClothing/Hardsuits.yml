@@ -1,5 +1,3 @@
-
-
 - type: entity
   parent: [BaseCentcommContraband, ClothingOuterHardsuitBase]
   id: AegisHardsuit
@@ -7,10 +5,9 @@
   description: A heavily modified Eclipse hardsuit designed to keep its wearer alive when everything else fails. Built to protect agents and operators alike, the Aegis C-04 pairs Decimus-grade armor with an integrated power-cell shield projector for hostile environments and hostile people.
   components:
   - type: Sprite
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/aegis_hardsuit.rsi
+    sprite: _PV/Clothing/OuterClothing/Hardsuits/aegis.rsi
   - type: Clothing
-    sprite: _Mono/Clothing/OuterClothing/Hardsuits/aegis_hardsuit.rsi
-
+    sprite: _PV/Clothing/OuterClothing/Hardsuits/aegis.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -35,7 +32,6 @@
         Radiation: 0.10
         Caustic: 0.10
     staminaModifier: 0.0
-
   - type: ClothingSpeedModifier
     walkModifier: 1.0
     sprintModifier: 1.0
@@ -47,16 +43,12 @@
         volume: -7
         pitch: 0.7
         variation: 0.025
-
-
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
       toggleable-clothing: !type:ContainerSlot
-
   - type: PowerCellSlot
     cellSlotId: cell_slot
-
   - type: ItemSlots
     slots:
       cell_slot:
@@ -65,22 +57,17 @@
         whitelist:
           tags:
           - PowerCell
-
   - type: EnergyDomeGenerator
     damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallPink
-
   - type: PowerCellDraw
     enabled: false
     drawRate: 6
     useCharge: 0
-
   - type: UseDelay
     delay: 10.0
-
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitAegis
-
   - type: Tag
     tags:
     - Hardsuit

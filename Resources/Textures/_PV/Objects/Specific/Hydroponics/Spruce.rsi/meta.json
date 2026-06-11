@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "Unknown / supplied by Project Verdant user upload",
+  "copyright": "Provided by Timothy Stilt for Project Verdant; verify final attribution before merge.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "seed"
+    },
+    {
+      "name": "produce"
+    },
+    {
+      "name": "stage-1"
+    },
+    {
+      "name": "stage-2"
+    },
+    {
+      "name": "stage-3"
+    },
+    {
+      "name": "stage-4"
+    },
+    {
+      "name": "stage-5"
+    },
+    {
+      "name": "stage-6"
+    },
+    {
+      "name": "harvest"
+    },
+    {
+      "name": "dead"
+    }
+  ]
+}
