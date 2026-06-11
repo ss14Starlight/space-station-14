@@ -192,7 +192,8 @@
   components:
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
-  - type: Thieving # They don't have any steal time reduction
+  - type: Thieving
+    stripTimeReduction: 0 # They don't have any steal time reduction
     stealthy: true
   - type: Unremoveable # Don't just take the free gloves from them, actually use them.
   - type: Insulated
