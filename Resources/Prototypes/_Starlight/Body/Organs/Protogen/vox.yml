@@ -5,7 +5,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
-    metabolizerTypes: [Vox]
+    metabolizerTypes: [Vox] # They don't need animal since Vox inherits the same properties anyways.
   - type: Stomach
     specialDigestible:
       tags:
