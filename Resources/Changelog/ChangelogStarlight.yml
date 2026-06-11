@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Fixed security being linked to 7 substations. (Dear god).
-    type: Fix
-  id: 405520
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (MANOR) Fixed a dispochute in command bar going nowhere.
     type: Fix
   id: 405521
@@ -2799,4 +2792,11 @@ Entries:
   id: 405919
   time: '2026-06-11T17:30:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: salarua
+  changes:
+  - message: 'AAC tablet software has been updated: There are now buttons for aielith, IPC, and protogen in the Species tab.'
+    type: Add
+  id: 405920
+  time: '2026-06-11T20:35:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4726
 Order: -1
