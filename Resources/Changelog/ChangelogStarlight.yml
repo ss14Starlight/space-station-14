@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Pun Pun now spawns with a PDA.
-    type: Add
-  id: 405504
-  time: '2026-06-01T12:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4617
-- author: wonderfulnewworld
-  changes:
   - message: Rarely, advanced Monkeys and Kobolds will spawn in place of Monkeys and Kobolds. They have 2 hands, a pocket, a belt slot, a glove slot, and cannot vent crawl. Pun Pun, however, is always advanced. Syndicate monkeys and kobolds will never be advanced.
     type: Add
   id: 405505
@@ -2799,4 +2792,11 @@ Entries:
   id: 405903
   time: '2026-06-11T16:03:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: Pon
+  changes:
+  - message: Changed BaseToySword Blunt damage from 0.3 to 0.1.
+    type: Tweak
+  id: 405904
+  time: '2026-06-11T16:03:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4731
 Order: -1
