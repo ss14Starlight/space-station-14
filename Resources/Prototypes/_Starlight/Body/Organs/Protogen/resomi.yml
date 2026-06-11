@@ -1,0 +1,13 @@
+- type: entity
+  id: OrganProtoResomiHeart
+  parent: OrganProtogenHeart
+  name: resomi cybernetic heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [ Resomi, Protogen ]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic

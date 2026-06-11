@@ -1,165 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: AGhost also sees IPC and Cyborg health bars.
-    type: Fix
-  id: 405497
-  time: '2026-06-01T09:56:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4611
-- author: Hanz
-  changes:
-  - message: Added various vulpkanin Skunk, Possum, and Raccoon markings.
-    type: Add
-  id: 405498
-  time: '2026-06-01T11:39:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4581
-- author: Hanz
-  changes:
-  - message: Added various scar markings for humans.
-    type: Add
-  id: 405499
-  time: '2026-06-01T11:39:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4581
-- author: Hanz
-  changes:
-  - message: Added vulpkanin sprites for BSO gasmask and hardsuit.
-    type: Add
-  id: 405500
-  time: '2026-06-01T11:39:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4581
-- author: DevCS-CP
-  changes:
-  - message: Updated dragon devour to apply caustic damage if entity devoured is not dead.
-    type: Tweak
-  id: 405501
-  time: '2026-06-01T11:39:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4565
-- author: DevCS-CP
-  changes:
-  - message: Command tracking implant that rattles on both Security and Command.
-    type: Add
-  id: 405502
-  time: '2026-06-01T11:39:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4579
-- author: DevCS-CP
-  changes:
-  - message: BSO now gets Command tracking implants instead of security ones.
-    type: Tweak
-  id: 405503
-  time: '2026-06-01T11:39:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4579
-- author: wonderfulnewworld
-  changes:
-  - message: Pun Pun now spawns with a PDA.
-    type: Add
-  id: 405504
-  time: '2026-06-01T12:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4617
-- author: wonderfulnewworld
-  changes:
-  - message: Rarely, advanced Monkeys and Kobolds will spawn in place of Monkeys and Kobolds. They have 2 hands, a pocket, a belt slot, a glove slot, and cannot vent crawl. Pun Pun, however, is always advanced. Syndicate monkeys and kobolds will never be advanced.
-    type: Add
-  id: 405505
-  time: '2026-06-01T12:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4617
-- author: wonderfulnewworld
-  changes:
-  - message: Added Advanced Monkey, Kobold, and Advanced Kobold spawners.
-    type: Add
-  id: 405506
-  time: '2026-06-01T12:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4617
-- author: wonderfulnewworld
-  changes:
-  - message: Removed Pun Pun ability to vent crawl.
-    type: Remove
-  id: 405507
-  time: '2026-06-01T12:22:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4617
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added ipc repair bay.
-    type: Add
-  id: 405508
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added lawyer and lawyer office.
-    type: Add
-  id: 405509
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added two more late join spawns near arrivals.
-    type: Add
-  id: 405510
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added sink and drain to command bar in manor.
-    type: Add
-  id: 405511
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added card pack to maints bar.
-    type: Add
-  id: 405512
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Added a ton of televisions all around station.
-    type: Add
-  id: 405513
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed a spare empty telecommunications server inside science server room.
-    type: Remove
-  id: 405514
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed substations at Solar's as they were causing issues with double substations.
-    type: Remove
-  id: 405515
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed a generator and plasma near the south security substation for being too robust.
-    type: Remove
-  id: 405516
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed gas turbine in engie as it was kinda doing nothing. (Someone is planning to do something with this space soon).
-    type: Remove
-  id: 405517
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Removed some of engies steel and glass.
-    type: Remove
-  id: 405518
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MANOR) Changed morgue from detective access to shrine access.
-    type: Tweak
-  id: 405519
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
 - author: Cvlancer
   changes:
   - message: (MANOR) Fixed security being linked to 7 substations. (Dear god).
@@ -2799,4 +2638,165 @@ Entries:
   id: 405896
   time: '2026-06-10T19:31:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4667
+- author: wonderfulnewworld
+  changes:
+  - message: Added a line to Protogens' guidebooks specifying that they are a challenge/not new player species, like IPCs.
+    type: Add
+  id: 405897
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Computer boards restore a little more hunger. (I got the number wrong last time and accidentally made them near-worthless.).
+    type: Tweak
+  id: 405898
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Resomi are no longer poisoned by Amoxla.
+    type: Fix
+  id: 405899
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Diona can now eat computer boards.
+    type: Fix
+  id: 405900
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Laspi can now eat foods other than computer boards.
+    type: Fix
+  id: 405901
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Dwarves, Proto-Resomi, Proto-Laspi, Proto-Vox, and Proto-Diona are no longer poisoned by computer boards/battery acid.
+    type: Fix
+  id: 405902
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Dwarves and Proto-Laspi can now process raw meat like other Protogen.
+    type: Fix
+  id: 405903
+  time: '2026-06-11T16:03:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4736
+- author: Pon
+  changes:
+  - message: Changed BaseToySword Blunt damage from 0.3 to 0.1.
+    type: Tweak
+  id: 405904
+  time: '2026-06-11T16:03:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4731
+- author: wonderfulnewworld
+  changes:
+  - message: Diona/Proto-Diona now restore a little bit of hunger when drinking things with the word "water" in the name. It varies by type, but they're all less than x1.
+    type: Add
+  id: 405905
+  time: '2026-06-11T16:03:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: wonderfulnewworld
+  changes:
+  - message: Diona/Proto-Diona now crit at 125 Health, and die at 250 Health. A bit less than Cyclorites.
+    type: Tweak
+  id: 405906
+  time: '2026-06-11T16:03:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: wonderfulnewworld
+  changes:
+  - message: Diona now gain Fire Stacks at 20 Heat, and can only gain 5 Fire Stacks from this effect at once.
+    type: Tweak
+  id: 405907
+  time: '2026-06-11T16:03:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Diona now gain Fire Stacks at 30 Heat, and can only gain 3 Fire Stacks from this effect at once.
+    type: Tweak
+  id: 405908
+  time: '2026-06-11T16:03:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: wonderfulnewworld
+  changes:
+  - message: Diona now move 5% faster while rooted. (-15% as opposed to -20%). Proto-Diona keep the original -20%.
+    type: Tweak
+  id: 405909
+  time: '2026-06-11T16:03:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: wonderfulnewworld
+  changes:
+  - message: The plant anomaly creatures are no longer hostile to Diona/Proto-Diona.
+    type: Tweak
+  id: 405910
+  time: '2026-06-11T16:03:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4735
+- author: Pon
+  changes:
+  - message: Changed the fixtures size of the Kitchen Knife.
+    type: Tweak
+  id: 405911
+  time: '2026-06-11T17:04:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4724
+- author: Pon
+  changes:
+  - message: Changed the fixtures size of the Butcher's Cleaver.
+    type: Tweak
+  id: 405912
+  time: '2026-06-11T17:04:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4724
+- author: Pon
+  changes:
+  - message: Changed the fixtures size of the Throwing Knife.
+    type: Tweak
+  id: 405913
+  time: '2026-06-11T17:04:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4724
+- author: Johnny
+  changes:
+  - message: Observers cant be used by aghosts as a mass scanner.
+    type: Fix
+  id: 405914
+  time: '2026-06-11T17:04:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4729
+- author: Johnny
+  changes:
+  - message: (Reach) Mega chad mega thrusters.
+    type: Add
+  id: 405915
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Theres an actual armoury and nuke now.
+    type: Add
+  id: 405916
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Itty bitty STUPID thrusters.
+    type: Remove
+  id: 405917
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Piping reworked to use pipe layering system.
+    type: Tweak
+  id: 405918
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
+- author: Johnny
+  changes:
+  - message: (Reach) Departments have been moved around to make it less cramped.
+    type: Tweak
+  id: 405919
+  time: '2026-06-11T17:30:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4702
 Order: -1

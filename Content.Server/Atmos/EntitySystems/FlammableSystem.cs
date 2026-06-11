@@ -368,6 +368,12 @@ namespace Content.Server.Atmos.EntitySystems
                 if (value <= component.Threshold)
                     return;
 
+                #region Starlight
+                // Don't light on fire if you already have too many fire stacks
+                if ((flammable.FireStacks + component.FireStacks) > component.MaxFireStacks)
+                    return;
+                #endregion
+
                 // Ignite that sucker
                 flammable.FireStacks += component.FireStacks;
                 Ignite(uid, uid, flammable);
