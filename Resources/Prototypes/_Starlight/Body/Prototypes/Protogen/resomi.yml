@@ -21,7 +21,7 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
+        heart: OrganProtoResomiHeart
         lungs: OrganProtogenLungs
         stomach: OrganProtogenStomach
         liver: OrganProtogenLiver

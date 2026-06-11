@@ -19,7 +19,7 @@
       - right leg
       - left leg
       organs:
-        heart: OrganSlimeHeart
+        heart: OrganProtoSlimeHeart
         core: SentientProtoSlimeCore # So they can eat ramchips.
         lungs: OrganSlimeLungs
         cavity: null
