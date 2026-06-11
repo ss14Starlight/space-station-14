@@ -1,69 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (MANOR) Fixed a dispochute in command bar going nowhere.
-    type: Fix
-  id: 405521
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added lawyer.
-    type: Add
-  id: 405522
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added paddy to sec to sec armory.
-    type: Add
-  id: 405523
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added implant crate to sec armory.
-    type: Add
-  id: 405524
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added ipc repair bay.
-    type: Add
-  id: 405525
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Added solitary.
-    type: Add
-  id: 405526
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: SEPULTUM) Changed Moved rd server to the rd's office.
-    type: Tweak
-  id: 405527
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (SEPULTUM) Fixed a dispo pipe inside bridge.
-    type: Fix
-  id: 405528
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (LOBSTER) Added Cybersun news and reporter.
-    type: Add
-  id: 405529
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (LOBSTER) Added a tv camera to kitchen.
     type: Add
   id: 405530
@@ -2799,4 +2736,67 @@ Entries:
   id: 405920
   time: '2026-06-11T20:35:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4726
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: DAGD Traitors now get 15 more TC and get access to the entire Nuclear Operative/Lone Op uplink, minus Zombies and some duplicate redundancies.
+    type: Add
+  id: 405921
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: Added a Syndicate Footsoldier ID. It's functionally the same as a syndicate ID, but you actually have a job icon. (Not an Agent ID.).
+    type: Add
+  id: 405922
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: Added a DAGD uplink, for admins to spawn without needing to have the objective.
+    type: Add
+  id: 405923
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: Added DAGD Bundle variants of the Nukie Borgi/Cyborg Allies that come with 3 Syndicate IDs, so they can actually count as syndicate to them. (1 Operative [Agent] and 2 Footsoldier [Not Agent]).
+    type: Add
+  id: 405924
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: (Dev stuff) SharedEmitSoundSystem and EmitSoundOnTrigger now support global audio.
+    type: Add
+  id: 405925
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: (Dev stuff) RattleOnTriggerSystem now supports making announcements on trigger. (Including audio, color, etc).
+    type: Add
+  id: 405926
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: (Dev stuff) Shops now support destockTime, allowing items to NOT be purchasable after a certain amount of time passes.
+    type: Add
+  id: 405927
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: Traitor Borgis now come with 3 Syndicate IDs. (1 Operative [Agent] and 2 Footsoldier [Not Agent]).
+    type: Tweak
+  id: 405928
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
+- author: wonderfulnewworld, A-Loose-Goose
+  changes:
+  - message: Fixed a lot of typos in the Syndicate Uplink. (Cybersan, missing periods, .50 shotgun ammo).
+    type: Fix
+  id: 405929
+  time: '2026-06-11T20:35:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4501
 Order: -1
