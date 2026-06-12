@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Added correct signage at iaa/magi office.
-    type: Add
-  id: 405541
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Changed internal affairs beacon to the IAA variant.
     type: Tweak
   id: 405542
@@ -2799,4 +2792,11 @@ Entries:
   id: 405940
   time: '2026-06-12T08:05:46.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4742
+- author: redmushie
+  changes:
+  - message: Fax machine groups, colors and ordering! Faxes can now be sorted into departmental and faction groups, and are sorted for easier finding. (Pending mapping changes for a fuller rollout).
+    type: Add
+  id: 405941
+  time: '2026-06-12T10:37:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4706
 Order: -1
