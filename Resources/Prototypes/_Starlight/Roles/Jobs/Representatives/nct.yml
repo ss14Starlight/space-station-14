@@ -51,7 +51,9 @@
     belt: BoxFolderNanoTrasenClipboard
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterCoatNCT
-    suitstorage: Flash
+  storage:
+    back:
+    - Flash
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit
