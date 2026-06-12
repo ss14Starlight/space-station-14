@@ -53,7 +53,7 @@ public sealed class StationCrewStatisticsRoundTest
 ";
 
     /// <summary>
-    /// TEST A — real spawn path regression guard.
+    /// Real spawn path regression guard.
     /// Verifies that after a real round start the station's GeneralStationRecord.Entity
     /// points at the player's MOB entity, not at the ID card or PDA in the "id" inventory slot.
     /// Also verifies that ending the round with the player standing on-station yields

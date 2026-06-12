@@ -120,14 +120,14 @@ public sealed class StationCrewStatisticsTest
     }
 
     /// <summary>
-    /// TEST B — respawn reuse: when CreateGeneralRecord is called twice with the same name
+    /// Respawn reuse: when CreateGeneralRecord is called twice with the same name
     /// the record's Entity field must be updated to the new mob, not left pointing at the old one.
-    /// Bug shape: respawned players were counted dead/lost because the record kept the old body.
+    /// Otherwise respawned players are counted dead/lost because the record kept the old body.
     /// This test fails if the "Starlight - Start: track the new body on respawn" block in
     /// StationRecordsSystem.CreateGeneralRecord is removed.
     /// </summary>
     [Test]
-    public async Task RespawnReusePoinststRecordAtNewMob()
+    public async Task RespawnRepointsRecordAtNewMob()
     {
         await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
@@ -187,7 +187,7 @@ public sealed class StationCrewStatisticsTest
     }
 
     /// <summary>
-    /// TEST C — borg and StationAi classification.
+    /// Borg and StationAi classification.
     /// Borgs on the station grid → Borgs++; borgs off it → StolenBorgs++.
     /// StationAi records contribute to none of the counters (skipped by job.ID check).
     /// This test fails if the "if (job.ID == StationAi) continue" or "isBorg = job.ID == Borg"
@@ -260,7 +260,7 @@ public sealed class StationCrewStatisticsTest
     }
 
     /// <summary>
-    /// TEST D — crew retention task end-to-end ordering.
+    /// Crew retention task end-to-end ordering.
     /// Sets up 3 crew records (1 on-station, 1 evacuated, 1 deleted) plus a performer entity
     /// carrying RailroadCrewRetentionTaskComponent and RailroadCardPerformerComponent.
     /// After a single PostRound event, the task's Progress must be 0.5 (1 evacuated / 2 alive).
