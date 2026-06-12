@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Changed internal affairs beacon to the IAA variant.
-    type: Tweak
-  id: 405542
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Changed plasma stack from 30 to 10 near security substation.
-    type: Tweak
-  id: 405543
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Fixed the ai turrets in armory.
     type: Fix
   id: 405544
@@ -2799,4 +2785,18 @@ Entries:
   id: 405941
   time: '2026-06-12T10:37:57.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4706
+- author: RenMeow1
+  changes:
+  - message: Replaced all protogen sub species audio clips.
+    type: Add
+  id: 405942
+  time: '2026-06-12T10:37:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4715
+- author: RenMeow1
+  changes:
+  - message: Updated attributions files with updated details as the file were recreated and not the original protogen sub species audio clips.
+    type: Tweak
+  id: 405943
+  time: '2026-06-12T10:37:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4715
 Order: -1
