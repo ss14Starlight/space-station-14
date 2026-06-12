@@ -94,6 +94,8 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/barge.yml"),
         new("/Maps/_Starlight/Shuttles/prospector.yml"),
         new("/Maps/_Starlight/Shuttles/emergency_lox.yml")
+        new("/Maps/_Starlight/Shuttles/emergency_Ingeniator.yml")
+        new("/Maps/_Starlight/Shuttles/Ingeniator.yml")
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]
