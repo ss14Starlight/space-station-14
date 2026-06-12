@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LOBSTER) Added new televisions around station.
-    type: Add
-  id: 405532
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (LOBSTER) Fixed dispo pipe near detective.
-    type: Fix
-  id: 405533
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (FLAND) Added two mailtech lockers.
-    type: Add
-  id: 405534
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (FLAND) Added another detective cabinet to detective.
-    type: Add
-  id: 405535
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (FLAND) Changed mail access doors from cargo to mail.
     type: Tweak
   id: 405536
@@ -2799,4 +2771,32 @@ Entries:
   id: 405931
   time: '2026-06-12T06:33:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4746
+- author: Caws
+  changes:
+  - message: Vox Roboticists now start with a tank harness.
+    type: Fix
+  id: 405932
+  time: '2026-06-12T06:33:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4750
+- author: Caws
+  changes:
+  - message: Vox IAAs now start with a tank harness.
+    type: Fix
+  id: 405933
+  time: '2026-06-12T06:33:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4750
+- author: Caws
+  changes:
+  - message: Vox Zookeepers now start with a tank harness.
+    type: Fix
+  id: 405934
+  time: '2026-06-12T06:33:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4750
+- author: Caws
+  changes:
+  - message: Vox Boxers now start with a tank harness.
+    type: Fix
+  id: 405935
+  time: '2026-06-12T06:33:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4750
 Order: -1
