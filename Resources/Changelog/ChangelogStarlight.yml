@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (FLAND) Changed mail access doors from cargo to mail.
-    type: Tweak
-  id: 405536
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (FLAND) Fixed fixed the gas tank dispenser near engi not being the engi variant.
     type: Fix
   id: 405537
@@ -2799,4 +2792,11 @@ Entries:
   id: 405935
   time: '2026-06-12T06:33:13.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4750
+- author: Caws
+  changes:
+  - message: (Bagel) The missing NanoMed Security has been re-added to Brigmedic.
+    type: Fix
+  id: 405936
+  time: '2026-06-12T08:02:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4743
 Order: -1
