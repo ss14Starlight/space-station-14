@@ -597,7 +597,12 @@ namespace Content.Server.Ghost
                     }
 
                     // Starlight - Start
+
+                    // Do asphyxiation damage by default
                     var damageType = _prototypeManager.Index(AsphyxiationDamageType);
+
+                    // If the species cannot take asphyxiation damage, check the damage type provided by their DeathgaspComponent
+                    // e.g. IPCs take shock damage when they deathgasp instead of asphyxiation damage
                     if (TryComp<DeathgaspComponent>(playerEntity, out var deathgasp))
                         damageType = _prototypeManager.Index(deathgasp.DamageType);
 

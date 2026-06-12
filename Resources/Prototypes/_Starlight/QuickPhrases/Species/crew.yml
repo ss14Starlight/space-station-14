@@ -22,3 +22,105 @@
   id: SpeciesCycloritePhrase
   parent: BaseCrewSpeciesPhrase
   text: species-name-cyclorite
+
+- type: quickPhrase
+  id: SpeciesElfPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-elf
+
+- type: quickPhrase
+  id: SpeciesIPCPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-ipc
+
+# Protogens and protogen subspecies
+
+- type: quickPhrase
+  id: SpeciesProtogenPhrase
+  parent: BaseCrewSpeciesPhrase
+  text: species-name-protogen
+
+- type: quickPhrase
+  id: SpeciesTrueProtogenPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-trueprotogen
+
+- type: quickPhrase
+  id: SpeciesProtohumanPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protohuman
+
+- type: quickPhrase
+  id: SpeciesProtodionaPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protodiona
+
+- type: quickPhrase
+  id: SpeciesProtoarachnidPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protoarachnid
+
+- type: quickPhrase
+  id: SpeciesProtomothPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protomoth
+
+- type: quickPhrase
+  id: SpeciesProtoreptilianPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protoreptilian
+
+- type: quickPhrase
+  id: SpeciesProtoslimepersonPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protoslimeperson
+
+- type: quickPhrase
+  id: SpeciesProtovulpPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protovulp
+
+- type: quickPhrase
+  id: SpeciesProtoresomiPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protoresomi
+
+- type: quickPhrase
+  id: SpeciesProtoavaliPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protoavali
+
+- type: quickPhrase
+  id: SpeciesProtovoxPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protovox
+
+- type: quickPhrase
+  id: SpeciesProtolagomorphPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protolagomorph
+
+- type: quickPhrase
+  id: SpeciesProtofelionoidPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protofelionoid
+
+- type: quickPhrase
+  id: SpeciesProtokinPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protokin
+
+- type: quickPhrase
+  id: SpeciesProtothavenPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protothaven
+
+- type: quickPhrase
+  id: SpeciesProtocycloritePhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protocyclorite
+
+- type: quickPhrase
+  id: SpeciesProtoelfPhrase
+  parent: SpeciesProtogenPhrase
+  text: subspecies-name-protoelf
