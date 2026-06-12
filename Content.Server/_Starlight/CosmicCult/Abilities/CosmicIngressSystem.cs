@@ -20,8 +20,6 @@ public sealed partial class CosmicIngressSystem : EntitySystem
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private PopupSystem _popup = default!;
-    private readonly SoundSpecifier _ingressSFX = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/ability_ingress.ogg");
-    private readonly EntProtoId _genericVFX = "CosmicGenericVFX";
 
     public override void Initialize()
     {
@@ -65,8 +63,8 @@ public sealed partial class CosmicIngressSystem : EntitySystem
         args.Handled = true;
 
         _door.StartOpening(target);
-        _audio.PlayPvs(_ingressSFX, uid);
-        Spawn(_genericVFX, Transform(target).Coordinates);
+        _audio.PlayPvs(args.IngressSFX, uid);
+        Spawn(args.GenericVFX, Transform(target).Coordinates);
     }
 
     private void OnColossusIngress(Entity<CosmicColossusComponent> ent, ref EventCosmicColossusIngress args)

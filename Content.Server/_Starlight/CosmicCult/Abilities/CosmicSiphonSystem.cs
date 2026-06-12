@@ -89,6 +89,5 @@ public sealed partial class CosmicSiphonSystem : EntitySystem
         _cultRule.IncrementCultObjectiveEntropy(uid);
         EnsureComp<CosmicDebuffQueueComponent>(target, out var cosmicDebuffQueue);
         cosmicDebuffQueue.DebuffQuant++;
-        Dirty(target, cosmicDebuffQueue);
     }
 }
