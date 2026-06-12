@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (FLAND) Fixed fixed the gas tank dispenser near engi not being the engi variant.
-    type: Fix
-  id: 405537
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (FLAND) Fixed operating table not being linked to its computer right next to it.
     type: Fix
   id: 405538
@@ -2799,4 +2792,11 @@ Entries:
   id: 405936
   time: '2026-06-12T08:02:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4743
+- author: Pon
+  changes:
+  - message: Fixed being unable to store the IK-60 once equipped.
+    type: Fix
+  id: 405937
+  time: '2026-06-12T08:03:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4744
 Order: -1
