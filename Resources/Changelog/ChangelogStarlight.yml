@@ -1,11 +1,4 @@
 Entries:
-- author: STARLIGHT TEAM
-  changes:
-  - message: Hotfix for UI that went insane.
-    type: Fix
-  id: 405558
-  time: '2026-06-01T23:30:43.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4629
 - author: Way
   changes:
   - message: Forgot to make the engineering holoprojector obtainable.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405957
   time: '2026-06-12T12:31:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4738
+- author: R3v3l4t1on
+  changes:
+  - message: The mothership is now able to use their intrinsic xenoborgs control console to blow up xenoborg(i)s.
+    type: Tweak
+  id: 405958
+  time: '2026-06-12T12:52:42.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4509
 Order: -1
