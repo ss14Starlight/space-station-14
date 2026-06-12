@@ -46,7 +46,8 @@ public sealed class StationCrewStatisticsTest
 
         // Station map — the crew member lives here.
         var stationMap = await pair.CreateTestMap();
-        // Off-station map — used to place an evacuated crew member.
+        // Off-station map — holds a station member grid that left, like the
+        // emergency shuttle at CentComm.
         var offMap = await pair.CreateTestMap();
 
         var stationSystem = server.System<StationSystem>();
@@ -62,12 +63,15 @@ public sealed class StationCrewStatisticsTest
         await server.WaitPost(() =>
         {
             station = stationSystem.InitializeNewStation(mapProto.Stations["Station"], null, "Crew Stats Test Station");
-            stationSystem.AddGridToStation(station, stationMap.Grid.Owner);
+            stationSystem.AddMainGridToStation(station, stationMap.Grid.Owner);
+            // A plain member grid that ended up on another map, like a departed shuttle.
+            // Crew on it must count as evacuated: the comparison uses the main grids.
+            stationSystem.AddGridToStation(station, offMap.Grid.Owner);
 
-            // Case 1: crew member whose mob is on the station grid the whole round.
+            // Case 1: crew member whose mob is on the main station grid the whole round.
             crewMobOnStation = entMan.SpawnEntity("MobHuman", stationMap.GridCoords);
 
-            // Case 2: crew member whose mob is on a different map (evacuated).
+            // Case 2: crew member whose mob left on the member grid (evacuated).
             crewMobEvacuated = entMan.SpawnEntity("MobHuman", offMap.GridCoords);
 
             // Case 3: crew member whose tracked entity will be deleted (lost).
