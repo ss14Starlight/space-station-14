@@ -16,12 +16,6 @@ reagent-desc-hemocyanin-blood = Contains copper as opposed to iron which gives i
 reagent-name-ammonia-blood = anaerobic blood
 reagent-desc-ammonia-blood = Nothing else in the entire galaxy smells quite so appalling.
 
-reagent-name-mortucussus = mortucussus
-reagent-desc-mortucussus = Would not advise eating. Can be used to create an inoculation for ambuzol.
-
-reagent-name-putrid-blood = putrid blood
-reagent-desc-putrid-blood = Would not advise eating. Smells like it contains trace amounts of mortucussus.
-
 reagent-name-ichor = ichor
 reagent-desc-ichor = An extremely potent regenerative chemical, perfected by space fauna evolution. Produced in the dragon's digestive system, it is seen as an exotic commodity due to the gargantuan effort of hunting for it.
 
