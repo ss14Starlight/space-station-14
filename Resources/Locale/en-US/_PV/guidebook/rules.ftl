@@ -1,0 +1,13 @@
+guide-entry-pv-rules = Server Rules: Project Verdant
+guide-entry-pv-rule-0 = Rule 0 — Staff discretion and common sense
+guide-entry-pv-rule-1 = Rule 1 — Don’t be a dick
+guide-entry-pv-rule-2 = Rule 2 — No hate speech, harassment, or slurs
+guide-entry-pv-rule-3 = Rule 3 — No ERP or sexual content
+guide-entry-pv-rule-4 = Rule 4 — Roleplay standards
+guide-entry-pv-rule-5 = Rule 5 — Metagaming and metacomms
+guide-entry-pv-rule-6 = Rule 6 — Escalation and conflict
+guide-entry-pv-rule-7 = Rule 7 — Self-antagging, griefing, and round disruption
+guide-entry-pv-rule-8 = Rule 8 — Job and department expectations
+guide-entry-pv-rule-9 = Rule 9 — Antagonist expectations
+guide-entry-pv-rule-10 = Rule 10 — Exploits, bugs, multikeying, ban evasion, and New Life Rule
+guide-entry-pv-rule-11 = Rule 11 — Ahelp, staff interaction, and appeals
