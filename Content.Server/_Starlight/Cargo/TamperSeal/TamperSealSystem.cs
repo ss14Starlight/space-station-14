@@ -15,12 +15,12 @@ public sealed class TamperSealSystem : SharedTamperSealSystem
     private void OnTamperSealStartup(EntityUid uid, TamperSealComponent component, ComponentStartup args)
     {
         Appearance.SetData(uid, TamperSealVisuals.Opened, false);
-        Appearance.SetData(uid, TamperSealVisuals.Violated, false);
+        Appearance.SetData(uid, TamperSealVisuals.Destroyed, false);
     }
 
     private void OnTamperSealShutdown(EntityUid uid, TamperSealComponent component, ComponentShutdown args)
     {
         Appearance.RemoveData(uid, TamperSealVisuals.Opened);
-        Appearance.RemoveData(uid, TamperSealVisuals.Violated);
+        Appearance.RemoveData(uid, TamperSealVisuals.Destroyed);
     }
 }

@@ -1,5 +1,6 @@
 using Content.Shared.Access;
 using Content.Shared.Tools;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -17,11 +18,11 @@ public sealed partial class TamperSealComponent : Component
     public bool Opened;
 
     /// <summary>
-    /// Whether the tamper seal was violated.
+    /// Whether the tamper seal was destroyed.
     /// </summary>
     [DataField]
     [AutoNetworkedField]
-    public bool Violated;
+    public bool Destroyed;
 
     /// <summary>
     /// The color of the tamper seal.
@@ -37,10 +38,14 @@ public sealed partial class TamperSealComponent : Component
     [AutoNetworkedField]
     public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
 
+    [DataField] public SoundCollectionSpecifier RewardSound = new("CargoPing");
+
+    [DataField] public SoundCollectionSpecifier PunishSound = new("CargoError");
+
     /// <summary>
     /// Tool capability needed to undo the tamper seal.
     /// </summary>
-    [DataField] public ProtoId<ToolQualityPrototype> ViolateTool = "Slicing";
+    [DataField] public ProtoId<ToolQualityPrototype> DestroyTool = "Slicing";
 }
 
 /// <summary>
@@ -50,7 +55,7 @@ public sealed partial class TamperSealComponent : Component
 public enum TamperSealVisuals : byte
 {
     Opened,
-    Violated
+    Destroyed
 }
 
 /// <summary>
@@ -62,5 +67,5 @@ public enum TamperSealLayers : byte
     Base,
     Sealed,
     Opened,
-    Violated,
+    Destroyed,
 }

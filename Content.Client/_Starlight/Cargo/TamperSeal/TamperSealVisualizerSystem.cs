@@ -6,7 +6,7 @@ namespace Content.Client._Starlight.Cargo.TamperSeal;
 /// <summary>
 /// Visualizes a container that is taped shut.
 /// </summary>
-public sealed partial class TamperSealVisualizer : VisualizerSystem<TamperSealComponent>
+public sealed partial class TamperSealVisualizerSystem : VisualizerSystem<TamperSealComponent>
 {
     [Dependency] private AppearanceSystem _appearance = default!;
     [Dependency] private SpriteSystem _sprite = default!;
@@ -18,14 +18,14 @@ public sealed partial class TamperSealVisualizer : VisualizerSystem<TamperSealCo
             return;
 
         _appearance.TryGetData(uid, TamperSealVisuals.Opened, out bool opened);
-        _appearance.TryGetData(uid, TamperSealVisuals.Violated, out bool violated);
+        _appearance.TryGetData(uid, TamperSealVisuals.Destroyed, out bool destroyed);
         var color = component.Color;
 
         var ent = (uid, args.Sprite);
         ShowLayerConditional(ent, TamperSealLayers.Base, color, true);
         ShowLayerConditional(ent, TamperSealLayers.Sealed, color, !opened);
         ShowLayerConditional(ent, TamperSealLayers.Opened, color, opened);
-        ShowLayerConditional(ent, TamperSealLayers.Violated, color, opened && violated);
+        ShowLayerConditional(ent, TamperSealLayers.Destroyed, color, opened && destroyed);
     }
 
     private void ShowLayerConditional(Entity<SpriteComponent?> sprite, Enum layerKey, Color color, bool value)
