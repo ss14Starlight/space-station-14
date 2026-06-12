@@ -293,6 +293,25 @@
       - Communist
 
 - type: entity
+  parent: [ SyndicateIDCard, BaseSyndicateContraband ]
+  id: SyndicateFootsoldierIDCard
+  name: syndicate ID card
+  suffix: Footsoldier, Not Agent ID
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobIcon: JobIconSyndicate
+
+- type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]
   id: CommanderIDCard
   name: syndicate commander ID card

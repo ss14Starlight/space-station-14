@@ -117,37 +117,37 @@ marking-RodentiaTailLongCounter = Long Tail (Two-tone)
 marking-RodentiaTailLongCounter-long = Tail
 marking-RodentiaTailLongCounter-long_overlay = Countershade
 
-marking-RodentiaTailLongCounterTip =  Long Tail (Three-tone)
+marking-RodentiaTailLongCounterTip = Long Tail (Three-tone)
 marking-RodentiaTailLongCounterTip-long = Tail
 marking-RodentiaTailLongCounterTip-long_overlay = Countershade
 marking-RodentiaTailLongCounterTip-long_tip = Tip
 
-marking-RodentiaTailMouse =  Mouse Tail
+marking-RodentiaTailMouse = Mouse Tail
 marking-RodentiaTailMouse-mouse = Tail
 
-marking-RodentiaTailRabbit =  Rabbit Tail
+marking-RodentiaTailRabbit = Rabbit Tail
 marking-RodentiaTailRabbit-rabbit = Tail
 
-marking-RodentiaTailRabbitCounter =  Rabbit Tail (Two-tone)
+marking-RodentiaTailRabbitCounter = Rabbit Tail (Two-tone)
 marking-RodentiaTailRabbitCounter-rabbit = Tail
 marking-RodentiaTailRabbitCounter-rabbit_overlay = Countershade
 
-marking-RodentiaTailShort =  Short Tail
+marking-RodentiaTailShort = Short Tail
 marking-RodentiaTailShort-short = Tail
 
-marking-RodentiaTailSquirrel =  Squirrel Tail
+marking-RodentiaTailSquirrel = Squirrel Tail
 marking-RodentiaTailSquirrel-squirrel = Tail
 
-marking-RodentiaTailSquirrelBicolor =  Squirrel Tail (Two-tone)
+marking-RodentiaTailSquirrelBicolor = Squirrel Tail (Two-tone)
 marking-RodentiaTailSquirrelBicolor-squirrel = Tail
 marking-RodentiaTailSquirrelBicolor-squirrel_overlay = Secondary
 
 ## patterns
 
-marking-RodentiaChestCountershade =  Countershade
+marking-RodentiaChestCountershade = Countershade
 marking-RodentiaChestCountershade-countershade = Countershade
 
-marking-RodentiaChestCountershadeF =  Countershade
+marking-RodentiaChestCountershadeF = Countershade
 marking-RodentiaChestCountershadeF-countershade_f = Countershade
 
 marking-RodentiaLegLeftCountershade = Countershade
@@ -158,13 +158,13 @@ marking-RodentiaLegRightCountershade = Countershade
 marking-RodentiaLegRightCountershade-r_leg = Leg
 marking-RodentiaLegRightCountershade-countershade_rleg = Countershade
 
-marking-RodentiaChestFawn =  Fawn
+marking-RodentiaChestFawn = Fawn
 marking-RodentiaChestFawn-fawn = Pattern
 
-marking-RodentiaChestHooded =  Hooded
+marking-RodentiaChestHooded = Hooded
 marking-RodentiaChestHooded-hooded = Pattern
 
-marking-RodentiaChestHoodedF =  Hooded
+marking-RodentiaChestHoodedF = Hooded
 marking-RodentiaChestHoodedF-hooded_f = Pattern
 
 # base parts

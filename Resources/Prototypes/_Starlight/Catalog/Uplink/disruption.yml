@@ -1,0 +1,140 @@
+- type: listing
+  id: SyndimovCircuitBoard
+  name: uplink-syndimov-law-name
+  description: uplink-syndimov-law-desc
+  productEntity: SyndimovCircuitBoard
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 14
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkSyndicateDisruptor
+  name: uplink-disruptor-name
+  description: uplink-disruptor-desc
+  productEntity: SyndicateDisruptor
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkEcronizer
+  name: uplink-ecronizer-name
+  description: uplink-ecronizer-desc
+  productEntity: Ecronizer
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkDisruption
+
+- type: listing
+  id: UplinkLubeGrenade
+  name: uplink-lube-grenade-name
+  description: uplink-lube-grenade-desc
+  productEntity: LubeGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkGlueGrenade
+  name: uplink-glue-grenade-name
+  description: uplink-glue-grenade-desc
+  productEntity: GlueGrenade
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkCleanerKit
+  name: uplink-cleaner-kit-name
+  description: uplink-cleaner-kit-desc
+  productEntity: ToolboxArtisticFilledCleaner
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkDisruption
+  conditions:
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkObserverBundle
+  name: uplink-observer-bundle-name
+  description: uplink-observer-bundle-desc
+  productEntity: ClothingBackpackSyndicateObserverBundle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkDisruption
+
+- type: listing
+  id: SyndicateShuttleBoard
+  name: uplink-shuttle-board-name
+  description: uplink-shuttle-board-desc
+  productEntity: SyndicateShuttleConsoleCircuitboard
+  icon: { sprite: Objects/Misc/module.rsi, state: cpu_syndicate }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkDisruption
+
+- type: listing
+  id: SyndicateShuttleBundle
+  name: uplink-shuttle-bundle-name
+  description: uplink-shuttle-bundle-desc
+  productEntity: CrateNameSyndicateShuttleBundle
+  icon: { sprite: Structures/Shuttles/thruster.rsi, state: base }
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkDisruption

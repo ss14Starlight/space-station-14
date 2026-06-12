@@ -38,8 +38,8 @@
       170: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      51: 0.7  #Basicly 60% and 80%
-      68: 0.5
+      51: 0.7  # 60% - like felionoids
+      68: 0.5  # 80% - like felionoids
   - type: HumanoidAppearance
     species: Rodentia
     hideLayersOnEquip:
