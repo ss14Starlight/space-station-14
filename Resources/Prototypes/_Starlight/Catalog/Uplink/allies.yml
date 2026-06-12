@@ -1,0 +1,138 @@
+- type: listing
+  id: UplinkSyndicateBorgi
+  name: uplink-syndicate-borgi-bundle-name
+  description: uplink-syndicate-borgi-bundle-desc
+  icon: { sprite: Objects/Fun/Balloons/corgi.rsi, state: icon }
+  productEntity: SyndiBorgiKitBasicBundle
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: UplinkSyndicateBorgiKitted
+  name: uplink-syndicate-borgi-kitted-name
+  description: uplink-syndicate-borgi-kitted-desc
+  icon: { sprite: Objects/Fun/Balloons/corgi.rsi, state: icon }
+  productEntity: SyndiBorgiKit1
+  cost:
+    Telecrystal: 40
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkSyndicateBorgiSpeed
+  name: uplink-syndicate-borgi-speed-name
+  description: uplink-syndicate-borgi-speed-desc
+  icon: { sprite: Objects/Fun/Balloons/corgi.rsi, state: icon }
+  productEntity: SyndiBorgiKit2
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgMedical
+  name: uplink-reinforcement-radio-medical-cyborg-name
+  description: uplink-reinforcement-radio-medical-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgMedical
+  icon: {
+      sprite: Objects/Devices/communication.rsi,
+      state: old-radio-borg-assault,
+    } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgSabotur
+  name: uplink-reinforcement-radio-saboteur-cyborg-name
+  description: uplink-reinforcement-radio-saboteur-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
+  icon: {
+      sprite: Objects/Devices/communication.rsi,
+      state: old-radio-borg-assault,
+    } # TODO BETTER ICON
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgStealth
+  name: uplink-reinforcement-radio-stealth-cyborg-name
+  description: uplink-reinforcement-radio-stealth-cyborg-desc
+  productEntity: ReinforcementRadioSyndicateCyborgStealth
+  icon: {
+      sprite: Objects/Devices/communication.rsi,
+      state: old-radio-borg-assault,
+    } # TODO BETTER ICON
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkDarkGygaxLoneOps
+  name: uplink-mech-teleporter-assault-name
+  description: uplink-mech-teleporter-assault-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
+  productEntity: CrateCybersunDarkGygaxBundle
+  cost:
+    Telecrystal: 30
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - LoneOpsUplink
+
+- type: listing
+  id: UplinkMaulerLoneOps
+  name: uplink-mech-teleporter-heavy-name
+  description: uplink-mech-teleporter-heavy-desc
+  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
+  productEntity: CrateCybersunMaulerBundle
+  cost:
+    Telecrystal: 45
+  categories:
+    - UplinkAllies
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - LoneOpsUplink

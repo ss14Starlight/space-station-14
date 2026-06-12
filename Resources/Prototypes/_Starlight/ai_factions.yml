@@ -177,3 +177,6 @@
   - Dragon
   - Gorilla
   - Abductor
+
+- type: npcFaction
+  id: Floral # It's so plant anom creatures don't attack diona.

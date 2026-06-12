@@ -1,0 +1,131 @@
+- type: listing
+  id: UplinkUziBundle
+  name: uplink-uzi-bundle-name
+  description: uplink-uzi-bundle-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/SMGs/uzi.rsi,
+      state: icon,
+    }
+  productEntity: ClothingBackpackDuffelSyndicateFilledUzi
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 11
+  cost:
+    Telecrystal: 15
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: UplinkWeaponShotgunMinotaur
+  name: uplink-minotaur-name
+  description: uplink-minotaur-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledMinotaurShotgun
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Shotguns/minotaur.rsi,
+      state: icon,
+    }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkWeaponRiflePitbull
+  name: uplink-pitbull-bundle-name
+  description: uplink-pitbull-bundle-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Rifles/pitbull.rsi,
+      state: icon,
+    }
+  productEntity: ClothingBackpackDuffelSyndicateFilledBullpup
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 13
+  cost:
+    Telecrystal: 17
+  categories:
+    - UplinkWeaponry
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkWeaponPistolDeagle
+  name: uplink-deagle-name
+  description: uplink-deagle-desc
+  productEntity: WeaponPistolDeagle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeaponry
+
+- type: listing # Starlight
+  id: UplinkWeaponPistolStechkinBundle
+  name: uplink-stechkin-bundle-name
+  description: uplink-stechkin-bundle-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Pistols/stechkin.rsi,
+      state: icon,
+    }
+  productEntity: BigBoxSyndicateBundle
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 6
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: UplinkHomerunBat
+  name: uplink-homerun-bat-name
+  description: uplink-homerun-bat-desc
+  productEntity: HomerunBat
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: UplinkSwitchblade
+  name: uplink-switchblade-name
+  description: uplink-switchblade-desc
+  productEntity: WeaponMeleeSwitchblade
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkWeaponry
+
+- type: listing
+  id: SyndicateFriendshipBundle
+  name: uplink-friendship-bundle-name
+  description: uplink-friendship-bundle-desc
+  productEntity: CrateNameSyndicateFriendshipBundle
+  icon: { sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi, state: exp-320g }
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 11
+  cost:
+    Telecrystal: 15
+  categories:
+    - UplinkWeaponry
