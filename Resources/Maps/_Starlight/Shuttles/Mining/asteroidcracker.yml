@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/09/2026 04:13:11
-  entityCount: 313
+  time: 06/12/2026 22:52:13
+  entityCount: 315
 maps: []
 grids:
 - 1
@@ -30,7 +30,7 @@ entities:
     - type: MetaData
       name: NTMS-62C "Asteroid Cracker"
     - type: Transform
-      pos: 15.923935,5.476861
+      pos: -3.3860645,5.476861
       parent: invalid
     - type: MiningShuttle
     - type: MapGrid
@@ -254,8 +254,11 @@ entities:
   - uid: 9
     components:
     - type: Transform
+      anchored: True
       pos: 1.5,-8.5
       parent: 1
+    - type: Physics
+      bodyType: Static
 - proto: AirlockExternalGlassLocked
   entities:
   - uid: 10
@@ -355,6 +358,12 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 2.5,-2.5
+      parent: 1
+  - uid: 315
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-6.5
       parent: 1
 - proto: CableApcExtension
   entities:
@@ -1084,11 +1093,11 @@ entities:
       fixtures: {}
 - proto: ClosetWallFireFilledRandom
   entities:
-  - uid: 164
+  - uid: 241
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,-6.5
+      rot: 3.141592653589793 rad
+      pos: 7.5,-8.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -1241,7 +1250,7 @@ entities:
       color: '#990000FF'
 - proto: GasPipeSensorDistribution
   entities:
-  - uid: 180
+  - uid: 179
     components:
     - type: Transform
       pos: 0.5,-4.5
@@ -1250,7 +1259,7 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeSensorWasteAlt1
   entities:
-  - uid: 185
+  - uid: 180
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -1260,14 +1269,14 @@ entities:
       color: '#990000FF'
 - proto: GasPipeStraight
   entities:
-  - uid: 179
+  - uid: 181
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
     - type: AtmosPipeColor
       color: '#0055CCFF'
-  - uid: 181
+  - uid: 182
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1277,21 +1286,21 @@ entities:
       color: '#0055CCFF'
 - proto: GasPipeStraightAlt1
   entities:
-  - uid: 182
+  - uid: 183
     components:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 183
+  - uid: 184
     components:
     - type: Transform
       pos: 0.5,-3.5
       parent: 1
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 184
+  - uid: 185
     components:
     - type: Transform
       pos: 0.5,-5.5
@@ -1636,7 +1645,7 @@ entities:
     - type: Transform
       pos: 0.5,-10.5
       parent: 1
-- proto: PoweredlightExterior
+- proto: PoweredlightLED
   entities:
   - uid: 233
     components:
@@ -1687,10 +1696,11 @@ entities:
     - type: Transform
       pos: 2.5,-8.5
       parent: 1
-  - uid: 241
+  - uid: 314
     components:
     - type: Transform
-      pos: 7.5,-8.5
+      rot: 3.141592653589793 rad
+      pos: 8.5,-8.5
       parent: 1
 - proto: RandomSnacks
   entities:
@@ -1794,8 +1804,38 @@ entities:
       rot: 3.141592653589793 rad
       pos: 6.5,-0.5
       parent: 1
-- proto: SignalButton
+- proto: SignalSwitch
   entities:
+  - uid: 164
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 2.5,-6.5
+      parent: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        251:
+        - - On
+          - Open
+        - - Off
+          - Close
+        250:
+        - - On
+          - Open
+        - - Off
+          - Close
+        253:
+        - - On
+          - Open
+        - - Off
+          - Close
+        252:
+        - - On
+          - Open
+        - - Off
+          - Close
+    - type: Fixtures
+      fixtures: {}
   - uid: 258
     components:
     - type: Transform
@@ -1805,29 +1845,25 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         254:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         255:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         256:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
         257:
-        - - Pressed
-          - Toggle
-        251:
-        - - Pressed
-          - Toggle
-        250:
-        - - Pressed
-          - Toggle
-        253:
-        - - Pressed
-          - Toggle
-        252:
-        - - Pressed
-          - Toggle
+        - - On
+          - Open
+        - - Off
+          - Close
     - type: Fixtures
       fixtures: {}
 - proto: SignMining
