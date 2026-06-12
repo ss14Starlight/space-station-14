@@ -21,8 +21,8 @@
       - right leg
       - left leg
       organs:
-        stomach: OrganDionaStomachNymph
-        lungs: OrganDionaLungsNymph
+        stomach: OrganProtoDionaStomachNymph
+        lungs: OrganProtoDionaLungsNymph
         cavity: null
     right arm:
       part: RightArmDiona

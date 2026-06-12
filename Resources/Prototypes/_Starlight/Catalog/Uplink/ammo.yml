@@ -1,0 +1,105 @@
+- type: listing
+  id: UplinkPistolMagnumMagazine
+  name: uplink-pistol-magnum-magazine-name
+  description: uplink-pistol-magnum-magazine-desc
+  icon:
+    {
+      sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi,
+      state: sp,
+    }
+  productEntity: MagazineMagnum
+  cost:
+    Telecrystal: 1
+  categories:
+    - UplinkAmmo
+
+# For the Pitbull
+- type: listing
+  id: UplinkMagazineMagnumRifle
+  name: uplink-rifle-magazine-pitbull-name
+  description: uplink-rifle-magazine-pitbull-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Magnum/magnum_rifle_mag.rsi,
+      state: mag-1,
+    }
+  productEntity: MagazineMagnumRifleSP
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkUziMagazine
+  name: uplink-uzi-magazine-name
+  description: uplink-uzi-magazine-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Objects/Weapons/Guns/Ammunition/Magazine/SMGs/uzi.rsi,
+      state: base,
+    }
+  productEntity: MagazinePistolSubMachineGunUzi
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+
+- type: listing
+  id: UplinkShotgunBreachingMagazine
+  name: uplink-breaching-magazine-name
+  description: uplink-breaching-magazine-desc
+  icon:
+    {
+      sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi,
+      state: breach,
+    }
+  productEntity: MagazineShotgunBreach
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+#For the China-Lake
+- type: listing
+  id: UplinkMagazineGrenadeFrag
+  name: uplink-grenade-launcher-frag-ammo-name
+  description: uplink-grenade-launcher-frag-ammo-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon }
+  productEntity: MagazineGrenadeFrag
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineGrenadeBlast
+  name: uplink-grenade-launcher-blast-ammo-name
+  description: uplink-grenade-launcher-blast-ammo-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Grenade/grenade_cartridge.rsi, state: icon }
+  productEntity: MagazineGrenadeBlast
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+# For the Hushpup
+- type: listing
+  id: UplinkHushpupAmmo
+  name: uplink-hushpup-ammo-name
+  description: uplink-hushpup-ammo-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Boxes/shotgun.rsi, state: lethal }
+  productEntity: BoxLethalshot
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
