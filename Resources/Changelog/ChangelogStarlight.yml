@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (LOBSTER) Added a tv camera to courtroom.
-    type: Add
-  id: 405531
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (LOBSTER) Added new televisions around station.
     type: Add
   id: 405532
@@ -2799,4 +2792,11 @@ Entries:
   id: 405930
   time: '2026-06-11T21:20:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4723
+- author: Caws
+  changes:
+  - message: Shadekin now actually die when using the 'Succumb' or 'Say Last Words' actions while critically injured.
+    type: Fix
+  id: 405931
+  time: '2026-06-12T06:33:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4746
 Order: -1
