@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (FLAND) Fixed operating table not being linked to its computer right next to it.
-    type: Fix
-  id: 405538
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added lawyer.
-    type: Add
-  id: 405539
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added robotics medkit to robotics.
-    type: Add
-  id: 405540
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Added correct signage at iaa/magi office.
     type: Add
   id: 405541
@@ -2799,4 +2778,25 @@ Entries:
   id: 405937
   time: '2026-06-12T08:03:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4744
+- author: Caws
+  changes:
+  - message: The NTR's coat can now accept gas tanks in its suit storage. Vox NTRs rejoice.
+    type: Tweak
+  id: 405938
+  time: '2026-06-12T08:05:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4742
+- author: Caws
+  changes:
+  - message: The Magistrates's coat can now accept gas tanks in its suit storage. Vox Magistrates rejoice.
+    type: Tweak
+  id: 405939
+  time: '2026-06-12T08:05:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4742
+- author: Caws
+  changes:
+  - message: The NanoTrasen Career Trainer previously had a flash spawn in its suit storage, which you could never put back in. This flash now spawns in your backpack instead of your suit storage slot. This also means that Vox shouldn't have their suit storage blocked when they join as a NT Career Trainer.
+    type: Fix
+  id: 405940
+  time: '2026-06-12T08:05:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4742
 Order: -1
