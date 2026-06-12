@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Fixed the ai turrets in armory.
-    type: Fix
-  id: 405544
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (ORWELL) Fixed tiles in maints bar.
     type: Fix
   id: 405545
@@ -2799,4 +2792,11 @@ Entries:
   id: 405943
   time: '2026-06-12T10:37:59.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4715
+- author: wonderfulnewworld, Princess-Cheeseballs
+  changes:
+  - message: Rebalanced the syndicate reinforcement specializations to be more effective at their roles.
+    type: Tweak
+  id: 405944
+  time: '2026-06-12T11:14:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4699
 Order: -1
