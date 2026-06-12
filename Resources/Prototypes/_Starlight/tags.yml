@@ -631,6 +631,9 @@
   id: Table
 
 - type: Tag
+  id: TamperSealable
+
+- type: Tag
   id: TheDark
 
 - type: Tag

@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Cargo.Components;
+using Content.Shared.Access;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -11,13 +12,19 @@ using Content.Shared.Emag.Systems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
+using Content.Shared.Lock;
 using Content.Shared.Paper;
 using Content.Shared.Station.Components;
+using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+
+#region Starlight
+using Content.Shared._Starlight.Cargo.TamperSeal.Components;
+#endregion
 
 namespace Content.Server.Cargo.Systems
 {
@@ -26,6 +33,12 @@ namespace Content.Server.Cargo.Systems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+
+        #region Starlight
+        [Dependency] private TagSystem _tagSystem = default!;
+
+        private static readonly ProtoId<TagPrototype> TamperSealable = new("TamperSealable");
+        #endregion
 
         private void InitializeConsole()
         {
@@ -651,6 +664,18 @@ namespace Content.Server.Cargo.Systems
                     _slots.TryInsert(item, label.LabelSlot, printed, null);
                 }
             }
+
+            #region Starlight
+            // Apply a tamper seal to the entity if it supports it.
+            if (_tagSystem.HasTag(item, TamperSealable))
+            {
+                var accountProto = _protoMan.Index(account);
+                var seal = EnsureComp<TamperSealComponent>(item);
+                seal.Color = accountProto.Color;
+                seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(accountProto.OrderUnsealAccesses);
+                DirtyEntity(item);
+            }
+            #endregion
 
             return true;
 

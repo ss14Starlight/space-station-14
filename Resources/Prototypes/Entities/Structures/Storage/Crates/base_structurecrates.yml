@@ -25,6 +25,12 @@
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       map: ["enum.PaperLabelVisuals.Layer"]
+      # Starlight BEGIN
+    - state: crate_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
   - type: InteractionOutline
   - type: Physics
   - type: Fixtures
@@ -70,9 +76,12 @@
     containers:
       - entity_storage
   - type: RequireProjectileTarget
-  # Starlight-start: Blinding from containers
-  - type: ChildBlockVision
-  # Starlight-end
+  # Starlight BEGIN
+  - type: ChildBlockVision # Blinding from containers
+  - type: Tag
+    tags:
+      - TamperSealable
+  # Starlight END
 
 - type: entity
   parent: CrateGeneric
@@ -128,7 +137,11 @@
       shader: unshaded
       visible: false
       map: ["enum.ElectrifiedLayers.Sparks"]
-    # Starlight End
+    - state: crate_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic

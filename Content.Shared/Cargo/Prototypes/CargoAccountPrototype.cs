@@ -1,3 +1,4 @@
+using Content.Shared.Access;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 
@@ -42,4 +43,12 @@ public sealed partial class CargoAccountPrototype : IPrototype
     /// </summary>
     [DataField]
     public EntProtoId AcquisitionSlip;
+
+    #region Starlight
+    /// <summary>
+    /// The access levels that can unseal orders that are bound to this account.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<AccessLevelPrototype>> OrderUnsealAccesses = new();
+    #endregion
 }

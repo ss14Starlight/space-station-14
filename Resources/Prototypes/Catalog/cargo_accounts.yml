@@ -5,6 +5,7 @@
   color: "#b48b57"
   radioChannel: Supply
   acquisitionSlip: PaperAcquisitionSlipCargo
+  orderUnsealAccesses: ["Command", "Cargo"] # Starlight
 
 - type: cargoAccount
   id: Engineering
@@ -13,6 +14,7 @@
   color: "#ff733c"
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
+  orderUnsealAccesses: ["Command", "Engineering"] # Starlight
 
 - type: cargoAccount
   id: Medical
@@ -21,6 +23,7 @@
   color: "#57b8f0"
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
+  orderUnsealAccesses: ["Command", "Medical"] # Starlight
 
 - type: cargoAccount
   id: Science
@@ -29,6 +32,7 @@
   color: "#cd7ccd"
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
+  orderUnsealAccesses: ["Command", "Science"] # Starlight
 
 - type: cargoAccount
   id: Security
@@ -37,6 +41,7 @@
   color: "#ff4242"
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
+  orderUnsealAccesses: ["Command", "Security"] # Starlight
 
 - type: cargoAccount
   id: Service
@@ -45,3 +50,4 @@
   color: "#539c00"
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
+  orderUnsealAccesses: ["Command", "Service"] # Starlight
