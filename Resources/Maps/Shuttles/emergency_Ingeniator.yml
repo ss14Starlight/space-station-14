@@ -29,7 +29,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: grid
+      name: NTS Ingeniator
     - type: Transform
       rot: -0.00011894003591805813 rad
       pos: 2.0937042,-15.030273
