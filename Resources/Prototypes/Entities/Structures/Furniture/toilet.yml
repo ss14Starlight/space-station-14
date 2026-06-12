@@ -142,6 +142,9 @@
   id: ToiletDirtyWater
   suffix: Dirty Water
   components:
+  - type: Construction
+    graph: Toilet
+    node: toilet
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
@@ -159,6 +162,9 @@
   id: ToiletFilled
   suffix: Empty, Random Cistern Loot
   components:
+  - type: Construction
+    graph: Toilet
+    node: toilet
   - type: EntityTableContainerFill
     containers:
       stash: !type:NestedSelector
