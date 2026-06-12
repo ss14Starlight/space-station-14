@@ -17,18 +17,18 @@ using Content.Server.Popups;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicGlareSystem : EntitySystem
+public sealed partial class CosmicGlareSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly FlashSystem _flash = default!;
-    [Dependency] private readonly PoweredLightSystem _poweredLight = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
-    [Dependency] private readonly SharedInteractionSystem _interact = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private FlashSystem _flash = default!;
+    [Dependency] private PoweredLightSystem _poweredLight = default!;
+    [Dependency] private StunSystem _stun = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private SharedInteractionSystem _interact = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     private readonly HashSet<Entity<PoweredLightComponent>> _lights = [];
 

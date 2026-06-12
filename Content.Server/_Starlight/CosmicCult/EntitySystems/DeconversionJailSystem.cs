@@ -7,7 +7,7 @@ using Content.Shared.Chat;
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 public sealed partial class DeconversionJailSystem : SharedDeconversionJailSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Update(float frameTime)
     {

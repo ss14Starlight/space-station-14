@@ -20,19 +20,19 @@ using Content.Shared.Mobs;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicFragmentationSystem : EntitySystem
+public sealed partial class CosmicFragmentationSystem : EntitySystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly LanguageSystem _languageSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private LanguageSystem _languageSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     private readonly ProtoId<LanguagePrototype> _cultLanguage = "Cosmic";
 
@@ -50,7 +50,7 @@ public sealed class CosmicFragmentationSystem : EntitySystem
         SubscribeLocalEvent<CosmicCultComponent, EventCosmicFragmentationDoAfter>(OnCosmicFragmentationDoAfter);
     }
 
-    private void UnEmpower(Entity<CosmicCultComponent> ent)
+    private static void UnEmpower(Entity<CosmicCultComponent> ent)
     {
         var comp = ent.Comp;
         comp.CosmicEmpowered = false; // empowerment spent! Now we set all the values back to their default.

@@ -7,6 +7,7 @@ using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Server.Singularity.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
+using Robust.Shared.Prototypes;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
@@ -23,16 +24,23 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
-public sealed class CosmicRiftSystem : EntitySystem
+public sealed partial class CosmicRiftSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly EmitterSystem _emitter = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private EmitterSystem _emitter = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+
+    private const float RiftSpawnAreaScale = 0.7f;
+    private const int RiftSpawnAttempts = 25;
+    private const int RiftPurgeDistanceThreshold = 10;
+    private const float RiftInteractDistanceThreshold = 1.5f;
+    private const float RiftInteractMovementThreshold = 0.5f;
+    private static readonly EntProtoId _defaultRiftPrototype = "CosmicMalignRift";
 
     public override void Initialize()
     {
@@ -74,7 +82,7 @@ public sealed class CosmicRiftSystem : EntitySystem
             BreakOnDropItem = false,
             BreakOnDamage = false,
             RequireCanInteract = false,
-            DistanceThreshold = 10
+            DistanceThreshold = RiftPurgeDistanceThreshold
         };
         _popup.PopupEntity(Loc.GetString("cosmiccult-rift-lambda-charging"), apeBullet.Shooter.Value);
         _doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId);
@@ -85,6 +93,9 @@ public sealed class CosmicRiftSystem : EntitySystem
     }
 
     public void SpawnRift(EntityUid grid)
+        => SpawnRift(grid, _defaultRiftPrototype);
+
+    public void SpawnRift(EntityUid grid, EntProtoId riftPrototype)
     {
         if (!TryComp<MapGridComponent>(grid, out var gridComp))
             return;
@@ -92,9 +103,9 @@ public sealed class CosmicRiftSystem : EntitySystem
         var xform = Transform(grid);
 
         var targetCoords = xform.Coordinates;
-        var gridBounds = gridComp.LocalAABB.Scale(0.7f);
+        var gridBounds = gridComp.LocalAABB.Scale(RiftSpawnAreaScale);
 
-        for (var i = 0; i < 25; i++)
+        for (var i = 0; i < RiftSpawnAttempts; i++)
         {
             var randomX = _rand.Next((int) gridBounds.Left, (int) gridBounds.Right);
             var randomY = _rand.Next((int) gridBounds.Bottom, (int) gridBounds.Top);
@@ -134,7 +145,7 @@ public sealed class CosmicRiftSystem : EntitySystem
             break;
         }
 
-        Spawn("CosmicMalignRift", targetCoords);
+        Spawn(riftPrototype, targetCoords);
     }
 
     private void OnInteract(Entity<CosmicMalignRiftComponent> ent, ref InteractHandEvent args)
@@ -172,8 +183,8 @@ public sealed class CosmicRiftSystem : EntitySystem
             args.User,
             ent)
         {
-            DistanceThreshold = 1.5f, Hidden = true, BreakOnDamage = true, BreakOnHandChange = true, BreakOnMove = true,
-            MovementThreshold = 0.5f,
+            DistanceThreshold = RiftInteractDistanceThreshold, Hidden = true, BreakOnDamage = true, BreakOnHandChange = true, BreakOnMove = true,
+            MovementThreshold = RiftInteractMovementThreshold,
         };
         _doAfter.TryStartDoAfter(doargs, out var doAfterId);
         ent.Comp.DoAfterId = doAfterId;

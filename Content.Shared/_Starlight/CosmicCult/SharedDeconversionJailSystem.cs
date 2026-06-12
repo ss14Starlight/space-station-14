@@ -24,19 +24,19 @@ using Robust.Shared.Timing;
 namespace Content.Shared._Starlight.CosmicCult;
 public abstract partial class SharedDeconversionJailSystem : EntitySystem
 {
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly SharedPopupSystem PopUp = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected SharedPopupSystem PopUp = default!;
 
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly SharedAnomalySystem _anomaly = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _ambientAudio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedExplosionSystem _explosion = default!;
-    [Dependency] private readonly SharedEntityStorageSystem _storage = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private SharedAnomalySystem _anomaly = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAmbientSoundSystem _ambientAudio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedExplosionSystem _explosion = default!;
+    [Dependency] private SharedEntityStorageSystem _storage = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -251,16 +251,10 @@ public abstract partial class SharedDeconversionJailSystem : EntitySystem
         }
     }
 
-    public sealed class OubliettePurgeAttemptEvent : HandledEntityEventArgs
+    public sealed class OubliettePurgeAttemptEvent(EntityUid target, Entity<DeconversionOublietteComponent> oubliette) : HandledEntityEventArgs
     {
-        public readonly EntityUid Target;
-        public readonly Entity<DeconversionOublietteComponent> Oubliette;
-
-        public OubliettePurgeAttemptEvent(EntityUid target, Entity<DeconversionOublietteComponent> oubliette)
-        {
-            Target = target;
-            Oubliette = oubliette;
-        }
+        public EntityUid Target = target;
+        public Entity<DeconversionOublietteComponent> Oubliette = oubliette;
     }
 }
 

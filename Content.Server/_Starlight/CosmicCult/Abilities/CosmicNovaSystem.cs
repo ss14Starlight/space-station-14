@@ -17,19 +17,19 @@ using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicNovaSystem : EntitySystem
+public sealed partial class CosmicNovaSystem : EntitySystem
 {
-    [Dependency] private readonly CosmicCultSystem _cult = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly SharedCosmicCultSystem _cosmicCult = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private CosmicCultSystem _cult = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private SharedCosmicCultSystem _cosmicCult = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     private static readonly EntProtoId _projectile = "ProjectileCosmicNova";
 
@@ -75,6 +75,6 @@ public sealed class CosmicNovaSystem : EntitySystem
         if (uid.Comp.DoStun)
             _stun.TryAddParalyzeDuration(args.OtherEntity, TimeSpan.FromSeconds(2f));
         _damageable.TryChangeDamage(args.OtherEntity, uid.Comp.CosmicNovaDamage); // This'll probably trigger two or three times because of how collision works. I'm not being lazy here, it's a feature (kinda /s)
-        _color.RaiseEffect(Color.Red, new List<EntityUid>() { args.OtherEntity }, Filter.Pvs(args.OtherEntity, entityManager: EntityManager));
+        _color.RaiseEffect(Color.Red, [args.OtherEntity], Filter.Pvs(args.OtherEntity, entityManager: EntityManager));
     }
 }

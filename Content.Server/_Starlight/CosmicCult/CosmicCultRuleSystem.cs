@@ -12,6 +12,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Objectives.Components;
 using Content.Server.Popups;
+using Content.Server.Revolutionary;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
@@ -37,6 +38,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
+using Content.Shared.Revolutionary.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
@@ -851,7 +853,10 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);
         if (_playerMan.TryGetSessionById(mind.UserId, out var session))
         {
-            _euiMan.OpenEui(new CosmicDeconvertedEui(), session);
+            if (HasComp<RevolutionaryComponent>(uid) || HasComp<HeadRevolutionaryComponent>(uid))
+                _euiMan.OpenEui(new DeconvertedEui(), session);
+            else
+                _euiMan.OpenEui(new CosmicDeconvertedEui(), session);
         }
         _eye.SetVisibilityMask(uid, 1);
         _alerts.ClearAlert(uid.Owner, uid.Comp.EntropyAlert);

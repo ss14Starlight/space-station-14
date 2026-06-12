@@ -10,10 +10,10 @@ using Content.Shared._Starlight.NullSpace;
 
 namespace Content.Shared._Starlight.CosmicCult;
 
-public abstract class SharedCosmicCultSystem : EntitySystem
+public abstract partial class SharedCosmicCultSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
 
     public override void Initialize()
     {
@@ -26,15 +26,12 @@ public abstract class SharedCosmicCultSystem : EntitySystem
     }
 
     public bool EntityIsCultist(EntityUid user)
-    {
-        if (!_mind.TryGetMind(user, out var mind, out _))
-            return false;
+        => _mind.TryGetMind(user, out var mind, out _)
+            && (HasComp<CosmicCultComponent>(user)
+            || _role.MindHasRole<CosmicCultRoleComponent>(mind));
 
-        return HasComp<CosmicCultComponent>(user) || _role.MindHasRole<CosmicCultRoleComponent>(mind);
-    }
-
-    public bool EntitySeesCult(EntityUid user) =>
-        EntityIsCultist(user) || HasComp<GhostComponent>(user) || HasComp<ShowNullSpaceComponent>(user);
+    public bool EntitySeesCult(EntityUid user)
+        => EntityIsCultist(user) || HasComp<GhostComponent>(user) || HasComp<ShowNullSpaceComponent>(user);
 
     /// <summary>
     /// Determines if a Cosmic Cult Lead component should be sent to the client.

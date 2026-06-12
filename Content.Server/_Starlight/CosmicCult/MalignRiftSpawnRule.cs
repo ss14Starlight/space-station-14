@@ -17,13 +17,15 @@ using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.CosmicCult;
 
-public sealed class MalignRiftSpawnRule : StationEventSystem<MalignRiftSpawnRuleComponent>
+public sealed partial class MalignRiftSpawnRule : StationEventSystem<MalignRiftSpawnRuleComponent>
 {
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly CosmicRiftSystem _malignRift = default!;
+    private const int CrewPerRift = 6;
+
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private CosmicRiftSystem _malignRift = default!;
 
     protected override void Added(EntityUid uid, MalignRiftSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -63,9 +65,9 @@ public sealed class MalignRiftSpawnRule : StationEventSystem<MalignRiftSpawnRule
             _chatSystem.DispatchStationAnnouncement(chosenStation.Value, Loc.GetString("cosmiccult-announce-tier2-progress"), sender, false, null, Color.FromHex("#4cabb3"));
             _audio.PlayGlobal(comp.Tier2Sound, Filter.Broadcast(), false, AudioParams.Default);
 
-            for (var i = 0; i < Convert.ToInt16(totalCrew / 6); i++) // spawn # malign rifts equal to 16.67% of the playercount
+            for (var i = 0; i < Convert.ToInt16(totalCrew / CrewPerRift); i++) // spawn # malign rifts equal to 16.67% of the playercount
             {
-                _malignRift.SpawnRift(grid.Value);
+                _malignRift.SpawnRift(grid.Value, comp.MalignRift);
             }
         }
     }
