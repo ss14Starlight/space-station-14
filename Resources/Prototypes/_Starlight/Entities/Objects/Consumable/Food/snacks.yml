@@ -83,7 +83,6 @@
       visible: false
   - type: Item
     sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
-    heldPrefix: white_lollipop
     size: Small
     storedRotation: -45
     storedOffset: 0,-1
