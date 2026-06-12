@@ -1,7 +1,9 @@
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Roles;
+using Content.Shared.Station.Components;
 using Content.Shared.StationRecords;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Station;
@@ -31,7 +33,21 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
     {
         if (!Resolve(station, ref records, false))
             return;
-        var stationXform = Transform(station);
+
+        // Collect the MapIDs of every grid belonging to this station.
+        // Station data entities live in nullspace, so we must look at their grids, not Transform(station).
+        if (!TryComp<StationDataComponent>(station, out var stationData) || stationData.Grids.Count == 0)
+            return;
+
+        var stationMaps = new HashSet<MapId>();
+        foreach (var gridUid in stationData.Grids)
+        {
+            if (TryComp<TransformComponent>(gridUid, out var gridXform))
+                stationMaps.Add(gridXform.MapID);
+        }
+
+        if (stationMaps.Count == 0)
+            return;
 
         station.Comp.Clear();
 
@@ -60,7 +76,7 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
             }
 
             var xform = Transform(ent.Value);
-            if (xform.MapID != stationXform.MapID)
+            if (!stationMaps.Contains(xform.MapID))
             {
                 if (isBorg)
                     station.Comp.StolenBorgs++;

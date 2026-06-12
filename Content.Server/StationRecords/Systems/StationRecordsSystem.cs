@@ -103,7 +103,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             specie = profile.CustomSpecieName + " (" + profile.Species + ")";
         /// Starlight - End
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records); // Starlight Edited (profile.Species -> specie)
+        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, specie, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records, crewEntity: player); // Starlight Edited (profile.Species -> specie)
     }
 
 
@@ -145,7 +145,8 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         string? mobFingerprint,
         string? dna,
         HumanoidCharacterProfile? profile, // Starlight-edit: optional.
-        StationRecordsComponent records)
+        StationRecordsComponent records,
+        EntityUid? crewEntity = null) // Starlight
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
             throw new ArgumentException($"Invalid job prototype ID: {jobId}");
@@ -154,7 +155,13 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         // this happens when respawning as the same character
         if (GetRecordByName(station, name, records) is {} id)
         {
-            SetIdKey(idUid, new StationRecordKey(id, station));
+            var respawnKey = new StationRecordKey(id, station); // Starlight
+            SetIdKey(idUid, respawnKey);
+            if (crewEntity is not null && TryGetRecord<GeneralStationRecord>(respawnKey, out var existing)) // Starlight
+            { // Starlight
+                existing.Entity = GetNetEntity(crewEntity); // Starlight
+                Synchronize(respawnKey); // Starlight
+            } // Starlight
             return;
         }
 
@@ -170,7 +177,7 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
             DisplayPriority = jobPrototype.RealDisplayWeight,
             Fingerprint = mobFingerprint,
             DNA = dna,
-            Entity = GetNetEntity(idUid) // Starlight
+            Entity = GetNetEntity(crewEntity) // Starlight
         };
 
         var key = AddRecordEntry(station, record);

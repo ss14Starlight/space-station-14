@@ -122,7 +122,7 @@ public sealed partial class CrewManifestCommand : ToolshedCommand
             ? $"{humanoid.CustomSpecieName} ({humanoid.Species})"
             : humanoid?.Species.Id ?? "Unknown";
         _records.CreateGeneralRecord(station, target, name, age, species, gender, jobId ?? "Unknown",
-            fingerprint?.Fingerprint, dna?.DNA, null, records);
+            fingerprint?.Fingerprint, dna?.DNA, null, records, crewEntity: player);
     }
 
     private void RemoveRecord(EntityUid station, EntityUid player)
