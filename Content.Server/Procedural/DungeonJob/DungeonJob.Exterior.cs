@@ -56,6 +56,10 @@ public sealed partial class DungeonJob
             var dungeons = await GetDungeons(dungeonSpawn.Value, config, config.Layers, reservedTiles, nextSeed, new Random(nextSeed));
             return dungeons;
         }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
         catch (Exception e)
         {
             _sawmill.Error(
