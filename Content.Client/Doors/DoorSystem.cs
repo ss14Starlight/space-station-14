@@ -89,8 +89,11 @@ public sealed partial class DoorSystem : SharedDoorSystem
         if (AppearanceSystem.TryGetData<string>(entity, PaintableVisuals.Prototype, out var prototype, args.Component))
             UpdateSpriteLayers((entity.Owner, args.Sprite), prototype);
 
-        if (_animationSystem.HasRunningAnimation(entity, DoorComponent.AnimationKey))
-            _animationSystem.Stop(entity.Owner, DoorComponent.AnimationKey);
+        // ES START
+        // dont stop all animations for no reason
+        //if (_animationSystem.HasRunningAnimation(entity, DoorComponent.AnimationKey))
+        //    _animationSystem.Stop(entity.Owner, DoorComponent.AnimationKey);
+        // ES END
 
         // We are checking beforehand since some doors may not have an emagging visual layer, and we don't want LayerSetVisible to throw an error.
         if (_sprite.TryGetLayer(entity.Owner, DoorVisualLayers.BaseEmagging, out var _, false))
@@ -106,6 +109,18 @@ public sealed partial class DoorSystem : SharedDoorSystem
         switch (state)
         {
             case DoorState.Open:
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
+                    return;
+
+                // Moffstation - Start - Don't stop animations
+                /*
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
+                {
+                    _animationSystem.Stop(entity, null, DoorComponent.CloseKey);
+                    _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.OpenKey);
+                }
+                */ // Moffstation - End
+
                 foreach (var (layer, layerState) in entity.Comp.OpenSpriteStates)
                 {
                     _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);
@@ -113,6 +128,18 @@ public sealed partial class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Closed:
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.CloseKey))
+                    return;
+
+                // Moffstation - Start - Don't stop animations
+                /*
+                if (_animationSystem.HasRunningAnimation(entity, DoorComponent.OpenKey))
+                {
+                    _animationSystem.Stop(entity, null, DoorComponent.OpenKey);
+                    _animationSystem.Play(entity, (Animation)entity.Comp.OpeningAnimation, DoorComponent.OpenKey);
+                }
+                */ // Moffstation - End
+
                 foreach (var (layer, layerState) in entity.Comp.ClosedSpriteStates)
                 {
                     _sprite.LayerSetRsiState((entity.Owner, sprite), layer, layerState);

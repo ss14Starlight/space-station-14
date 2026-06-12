@@ -297,6 +297,8 @@ namespace Content.Server.Construction
                     if(HasComp<UnremoveableComponent>(insert))
                         return HandleResult.False;
 
+                    _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
+
                     // If we're only testing whether this step would be handled by the given event, then we're done.
                     if (validation)
                         return HandleResult.Validated;
@@ -383,6 +385,7 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
 
+                    _interactionSystem.DoContactInteraction(interactUsing.User, uid, interactUsing.Used, false); // Moffstation - Interaction particles
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,
