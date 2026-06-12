@@ -1,0 +1,43 @@
+- type: entity
+  id: SentientProtoSlimeCore
+  parent: SentientSlimeCore
+  name: augmented sentient slime core
+  description: "The source of incredible, unending gooeyness."
+  components:
+    - type: Stomach
+      specialDigestible:
+        tags:
+        - RamChip
+      isSpecialDigestibleExclusive: false
+    - type: Metabolizer
+      maxReagents: 6
+      metabolizerTypes: [ Slime, Animal ]
+      removeEmpty: true
+      groups:
+        - id: Food
+        - id: Drink
+        - id: Alcohol
+          rateModifier: 2.5
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 50.0
+        organ:
+          reagents:
+          - ReagentId: Slime
+            Quantity: 10
+
+- type: entity
+  id: OrganProtoSlimeHeart
+  parent: OrganSlimeHeart
+  name: augmented slime circulator
+  description: "A little circulator what makes the fluid move through the slime body."
+  components:
+  - type: Metabolizer
+    maxReagents: 6
+    metabolizerTypes: [ Slime, Protogen ]
+    removeEmpty: true
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic

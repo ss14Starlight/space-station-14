@@ -1,0 +1,8 @@
+- type: entity
+  id: OrganProtokinEyes
+  parent: OrganProtogenEyes
+  name: shadekin cybernetic eyes
+  components:
+  - type: FunctionalOrgan
+    comps:
+    - type: NightVision

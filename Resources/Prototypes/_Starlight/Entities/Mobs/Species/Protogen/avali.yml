@@ -137,7 +137,7 @@
               state: back
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoAvali
   categories: [ HideSpawnMenu ]
   description: A dummy proto-avali meant to be used in character setup.

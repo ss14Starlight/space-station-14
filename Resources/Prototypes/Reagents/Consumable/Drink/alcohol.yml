@@ -2798,6 +2798,11 @@
           effectProto: StatusEffectDrowsiness
           time: 1
           type: Remove
+        - !type:SatiateHunger # Starlight start
+          factor: 1 # only vaguely related to water
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Plant ] # Starlight end
   fizziness: 0.15
 
 - type: reagent

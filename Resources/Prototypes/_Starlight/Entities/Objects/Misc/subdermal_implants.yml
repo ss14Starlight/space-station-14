@@ -275,3 +275,26 @@
       radioChannel:
       - Security
       - Command
+
+# Xenoroach self-destruct implant
+- type: entity
+  parent: BaseSubdermalImplant
+  id: XenoroachSelfDestructImplant
+  name: xenoroach self-destruct implant
+  description: Dissolves the xenoroach chassis and any held items on manual activation.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateXenoroachSelfDestruct
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: SpawnOnTrigger
+    proto: XenoborgAcidifier
+    predicted: true
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu
