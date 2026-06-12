@@ -835,6 +835,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: medicine
   color: "#86caf7"
+  worksOnTheDead: true
   metabolisms:
     Medicine:
       effects:
@@ -843,6 +844,8 @@
             - !type:ReagentCondition
               reagent: Ambuzol
               min: 10
+        - !type:ReduceRotting
+          seconds: 20
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition
@@ -859,6 +862,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: medicine
   color: "#1274b5"
+  worksOnTheDead: true
   metabolisms:
     Medicine:
       effects:
@@ -868,6 +872,8 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
+        - !type:ReduceRotting
+          seconds: 60
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition

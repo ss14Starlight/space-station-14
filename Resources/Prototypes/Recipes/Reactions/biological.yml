@@ -83,17 +83,15 @@
     Protein: 6
 
 - type: reaction
-  id: ZombieBloodBreakdown
+  id: PutridBloodBreakdown
   source: true
   requiredMixerCategories:
   - Centrifuge
   reactants:
-    ZombieBlood:
-      amount: 4
+    PutridBlood:
+      amount: 1
   products:
-    Mold: 2
-    Protein: 1
-    Toxin: 1
+    Mortucussus: 1
 
 - type: reaction
   id: CycloriteBloodBreakdown
