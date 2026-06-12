@@ -138,7 +138,7 @@
   physicalDesc: reagent-physical-desc-pungent
 
 - type: reagent #starlight start
-  id: PutridBlood
+  id: ZombieBlood
   name: reagent-name-putrid-blood
   group: Biological
   desc: reagent-desc-putrid-blood

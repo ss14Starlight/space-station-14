@@ -88,7 +88,7 @@
   requiredMixerCategories:
   - Centrifuge
   reactants:
-    PutridBlood:
+    ZombieBlood:
       amount: 1
   products:
     Mortucussus: 1
