@@ -146,11 +146,16 @@ cosmiccult-ui-roundstart-text-2 =
     Aid the cult in its goals whilst ensuring its secrecy.
     Listen to your cult steward's directions.
 
-cosmiccult-ui-deconverted-text-1 =
-    You are no longer a Cosmic Cultist.
-cosmiccult-ui-deconverted-text-2 =
-    You have lost all memories pertaining to the Cosmic Cult.
-    If you are converted back, these memories will return.
+cosmiccult-ui-deconverted-text =
+    The cosmic influence that bound you to the cult has been severed.
+
+    You are no longer a Cosmic Cultist. Your mind is your own once more.
+
+    Any further wrongdoings are logged and punishable. So be nice.
+
+cosmiccult-ui-deconverted-rule = Reminder: As per Rule 3 of server rules, [bold][color=#a4885c]De-converted Cosmic Cultists forget what happened while they were enthralled by cosmic influence.[/color][/bold]
+
+cosmiccult-ui-deconverted-ruletext = Your character may learn what happened through further investigation and roleplay, but should not be able to remember being a cultist nor any actions they committed for the cult.
 
 cosmiccult-ui-popup-confirm = Confirm
 
