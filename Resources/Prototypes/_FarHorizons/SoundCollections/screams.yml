@@ -23,6 +23,18 @@
     - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream4.ogg
 
 - type: soundCollection
+  id: ProtoShadekinFScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_f1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_f2.ogg
+    
+- type: soundCollection
+  id: ProtoShadekinMScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_m1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Shadekin/scream_m2.ogg
+
+- type: soundCollection
   id: ProtoHumanMScreams
   files:
     - /Audio/_FarHorizons/Voice/Proto/Human/malescream_1.ogg
