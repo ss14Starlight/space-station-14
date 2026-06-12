@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Icon sprite by itsmaitake. Worn sprite by deltaVelocity for Starlight, modified by itsmaitake.",
+  "copyright": "Icon sprite by ItsMaitake. Worn sprite by deltaVelocity for Starlight, modified by ItsMaitake.",
   "size": {
     "x": 32,
     "y": 32
@@ -9,13 +9,13 @@
   "states": [
     {
       "name": "icon",
-	  "copyright": "itsmaitake",
+	  "copyright": "ItsMaitake",
 	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "equipped-NECK",
       "directions": 4,
-	  "copyright": "deltaVelocity, itsmaitake",
+	  "copyright": "deltaVelocity, ItsMaitake",
 	  "license": "CC-BY-SA-3.0"
     }
   ]
