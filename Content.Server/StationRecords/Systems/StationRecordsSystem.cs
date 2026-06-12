@@ -155,13 +155,15 @@ public sealed partial class StationRecordsSystem : SharedStationRecordsSystem
         // this happens when respawning as the same character
         if (GetRecordByName(station, name, records) is {} id)
         {
-            var respawnKey = new StationRecordKey(id, station); // Starlight
+            // Starlight - Start: track the new body on respawn
+            var respawnKey = new StationRecordKey(id, station);
             SetIdKey(idUid, respawnKey);
-            if (crewEntity is not null && TryGetRecord<GeneralStationRecord>(respawnKey, out var existing)) // Starlight
-            { // Starlight
-                existing.Entity = GetNetEntity(crewEntity); // Starlight
-                Synchronize(respawnKey); // Starlight
-            } // Starlight
+            if (crewEntity is not null && TryGetRecord<GeneralStationRecord>(respawnKey, out var existing))
+            {
+                existing.Entity = GetNetEntity(crewEntity);
+                Synchronize(respawnKey);
+            }
+            // Starlight - End
             return;
         }
 

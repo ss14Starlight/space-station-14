@@ -34,8 +34,7 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
         if (!Resolve(station, ref records, false))
             return;
 
-        // Collect the MapIDs of every grid belonging to this station.
-        // Station data entities live in nullspace, so we must look at their grids, not Transform(station).
+        // The station data entity lives in nullspace, so compare against its grids' maps, not Transform(station).
         if (!TryComp<StationDataComponent>(station, out var stationData) || stationData.Grids.Count == 0)
             return;
 
