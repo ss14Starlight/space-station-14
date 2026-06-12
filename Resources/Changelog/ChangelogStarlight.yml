@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Paramedic Lockers now use Paramedic Access.
-    type: Fix
-  id: 405557
-  time: '2026-06-01T13:36:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4620
 - author: STARLIGHT TEAM
   changes:
   - message: Hotfix for UI that went insane.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405956
   time: '2026-06-12T12:10:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4739
+- author: StrangerOfParadiseOG
+  changes:
+  - message: fixed cold defense values of the long lab coats, ragged duster and paramedic jacket.
+    type: Fix
+  id: 405957
+  time: '2026-06-12T12:31:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4738
 Order: -1
