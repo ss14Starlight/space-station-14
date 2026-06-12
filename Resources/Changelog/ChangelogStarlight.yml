@@ -1,20 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Fixed tiles in maints bar.
-    type: Fix
-  id: 405545
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (MING) Added lawyer and lawyer office.
-    type: Add
-  id: 405546
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (KILOTON) Removed a dispo chute that wasnt connected.
     type: Remove
   id: 405547
@@ -2799,4 +2785,18 @@ Entries:
   id: 405944
   time: '2026-06-12T11:14:41.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4699
+- author: Caws
+  changes:
+  - message: CMO accidentally had the CE's dresser instead of the CMO's dresser, now fixed.
+    type: Fix
+  id: 405945
+  time: '2026-06-12T11:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4748
+- author: Caws
+  changes:
+  - message: Replaced the empty surgery crate in Surgery with the not-empty 'surgical supplies crate'.
+    type: Fix
+  id: 405946
+  time: '2026-06-12T11:38:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4748
 Order: -1
