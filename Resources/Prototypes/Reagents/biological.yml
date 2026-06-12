@@ -137,7 +137,7 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
 
-- type: reagent
+- type: reagent #starlight start
   id: PutridBlood
   name: reagent-name-putrid-blood
   group: Biological
@@ -181,7 +181,7 @@
           types:
             Poison: 4
       - !type:Vomit
-        probability: 0.25
+        probability: 0.25 #starlight end
 
 - type: reagent
   id: Ichor
