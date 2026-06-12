@@ -86,9 +86,8 @@ public sealed partial class CosmicColossusSystem : EntitySystem
         if (station is { } stationUid)
         {
             var stationGrid = _station.GetLargestGrid((stationUid, null));
-            if (stationGrid is null)
-                return;
-            _throw.TryThrow(ent, Transform(stationGrid!.Value).Coordinates, baseThrowSpeed: 30, null, 0, 0, false, false, false, false, false);
+            if (stationGrid is not null)
+                _throw.TryThrow(ent, Transform(stationGrid.Value).Coordinates, baseThrowSpeed: 30, null, 0, 0, false, false, false, false, false);
         }
         if (ent.Comp.Timed)
             _actions.AddAction(ent, ref ent.Comp.EffigyPlaceActionEntity, ent.Comp.EffigyPlaceAction, ent);

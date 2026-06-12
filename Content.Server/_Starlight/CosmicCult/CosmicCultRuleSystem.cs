@@ -476,19 +476,18 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         ent.Comp.RoundEndBehavior = RoundEndBehavior.Nothing; // prevent this being called multiple times.
         ent.Comp.RiftStop = true; // rifts can stop spawning now.
 
-        var monumentMap = Transform(ent.Comp.MonumentInGame).MapUid;
-        if (monumentMap is not null)
+        if (TryComp(ent.Comp.MonumentInGame, out TransformComponent? monumentTransform) && monumentTransform.MapUid is { } monumentMap)
         {
-            _weather.TryRemoveWeather(monumentMap.Value, "WeatherCosmic");
-            RemComp<PreventFTLComponent>(monumentMap.Value);
+            _weather.TryRemoveWeather(monumentMap, "WeatherCosmic");
+            RemComp<PreventFTLComponent>(monumentMap);
         }
 
         var gameruleMonument = ent.Comp.MonumentInGame;
-        if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp))
+        if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp) && TryComp(gameruleMonument, out TransformComponent? gameruleMonumentTransform))
         {
             MonumentSystem.Disable(gameruleMonument);
             finComp.CurrentState = FinaleState.Unavailable;
-            _popup.PopupCoordinates(Loc.GetString("cosmiccult-monument-powerdown"), Transform(gameruleMonument).Coordinates, PopupType.Large);
+            _popup.PopupCoordinates(Loc.GetString("cosmiccult-monument-powerdown"), gameruleMonumentTransform.Coordinates, PopupType.Large);
             _sound.StopStationEventMusic(gameruleMonument, StationEventMusicType.CosmicCult);
             _monument.UpdateMonumentAppearance(gameruleMonument, false);
         }
@@ -676,7 +675,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         associatedComp.CultGamerule = rule;
 
-        _role.MindAddRole(mindId, MindRole, mind, true);
+        if (!_role.MindHasRole<CosmicCultRoleComponent>(mindId))
+            _role.MindAddRole(mindId, MindRole, mind, true);
 
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-roundstart-fluff"), Color.FromHex("#4cabb3"), _briefingSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
@@ -739,7 +739,8 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             !_playerMan.TryGetSessionById(mind.UserId, out var session))
             return;
 
-        _role.MindAddRole(mindId, MindRole, mind, true);
+        if (!_role.MindHasRole<CosmicCultRoleComponent>(mindId))
+            _role.MindAddRole(mindId, MindRole, mind, true);
 
         _antag.SendBriefing(session, Loc.GetString("cosmiccult-role-conversion-fluff"), Color.FromHex("#4cabb3"), _briefingSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);

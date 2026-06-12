@@ -13,7 +13,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Server.Popups;
+using Content.Shared.Mindshield.Components;
 using Content.Shared._Starlight.NullSpace;
+using Content.Server.Bible.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
@@ -70,7 +72,7 @@ public sealed partial class CosmicNovaSystem : EntitySystem
 
     private void OnNovaCollide(Entity<CosmicAstralNovaComponent> uid, ref StartCollideEvent args)
     {
-        if (_cosmicCult.EntityIsCultist(args.OtherEntity) || !HasComp<MobStateComponent>(args.OtherEntity))
+        if (_cosmicCult.EntityIsCultist(args.OtherEntity) || !HasComp<MobStateComponent>(args.OtherEntity) || HasComp<BibleUserComponent>(args.OtherEntity) || HasComp<MindShieldComponent>(args.OtherEntity))
             return;
         if (uid.Comp.DoStun)
             _stun.TryAddParalyzeDuration(args.OtherEntity, TimeSpan.FromSeconds(2f));
