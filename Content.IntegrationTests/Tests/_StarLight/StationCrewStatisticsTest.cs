@@ -20,16 +20,18 @@ namespace Content.IntegrationTests.Tests._Starlight;
 [TestOf(typeof(StationCrewStatisticsSystem))]
 public sealed class StationCrewStatisticsTest
 {
+    private const string StationMapId = "CrewStatsTestMap";
+
     [TestPrototypes]
-    private const string Prototypes = @"
+    private const string Prototypes = $@"
 - type: gameMap
-  id: CrewStatsTestMap
+  id: {StationMapId}
   minPlayers: 0
-  mapName: CrewStatsTestMap
+  mapName: {StationMapId}
   mapPath: /Maps/Test/empty.yml
   stations:
     Station:
-      mapNameTemplate: CrewStatsTestMap
+      mapNameTemplate: {StationMapId}
       stationProto: StandardNanotrasenStationTestOnly
       components:
       - type: StationCrewStatistics
@@ -50,7 +52,7 @@ public sealed class StationCrewStatisticsTest
         var stationSystem = server.System<StationSystem>();
         var recordsSystem = server.System<StationRecordsSystem>();
 
-        var mapProto = server.ProtoMan.Index<GameMapPrototype>("CrewStatsTestMap");
+        var mapProto = server.ProtoMan.Index<GameMapPrototype>(StationMapId);
 
         var station = EntityUid.Invalid;
         var crewMobOnStation = EntityUid.Invalid;

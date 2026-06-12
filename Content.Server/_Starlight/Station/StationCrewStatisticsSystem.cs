@@ -34,12 +34,19 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
         if (!Resolve(station, ref records, false))
             return;
 
+        station.Comp.Clear();
+
         // The station data entity lives in nullspace, so compare against its grids' maps, not Transform(station).
-        if (!TryComp<StationDataComponent>(station, out var stationData) || stationData.Grids.Count == 0)
+        if (!TryComp<StationDataComponent>(station, out var stationData))
             return;
 
+        // Main station grid check. If main grids is (somehow) empty, fallback to any grid in station data.
+        var grids = stationData.MainGrids.Count > 0
+            ? stationData.MainGrids
+            : stationData.Grids;
+
         var stationMaps = new HashSet<MapId>();
-        foreach (var gridUid in stationData.Grids)
+        foreach (var gridUid in grids)
         {
             if (TryComp<TransformComponent>(gridUid, out var gridXform))
                 stationMaps.Add(gridXform.MapID);
@@ -47,8 +54,6 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
 
         if (stationMaps.Count == 0)
             return;
-
-        station.Comp.Clear();
 
         foreach (var (id, record) in _records.GetRecordsOfType<GeneralStationRecord>(station, records))
         {
