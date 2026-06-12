@@ -213,7 +213,7 @@
       amount: 1
     Ammonia:
       amount: 1
-    Mortucussus:
+    Mortucussus: # starlight
       amount: 2
   products:
     Ambuzol: 4

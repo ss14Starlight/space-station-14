@@ -82,7 +82,7 @@
     Chlorine: 2.5
     Protein: 6
 
-- type: reaction
+- type: reaction # starlight start
   id: PutridBloodBreakdown
   source: true
   requiredMixerCategories:
@@ -91,7 +91,7 @@
     ZombieBlood:
       amount: 1
   products:
-    Mortucussus: 1
+    Mortucussus: 1 # starlight end
 
 - type: reaction
   id: CycloriteBloodBreakdown

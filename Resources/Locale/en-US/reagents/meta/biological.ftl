@@ -16,6 +16,9 @@ reagent-desc-hemocyanin-blood = Contains copper as opposed to iron which gives i
 reagent-name-ammonia-blood = anaerobic blood
 reagent-desc-ammonia-blood = Nothing else in the entire galaxy smells quite so appalling.
 
+reagent-name-zombie-blood = zombie blood
+reagent-desc-zombie-blood = Would not advise eating. Can be used to create an inoculation against the infection.
+
 reagent-name-ichor = ichor
 reagent-desc-ichor = An extremely potent regenerative chemical, perfected by space fauna evolution. Produced in the dragon's digestive system, it is seen as an exotic commodity due to the gargantuan effort of hunting for it.
 
