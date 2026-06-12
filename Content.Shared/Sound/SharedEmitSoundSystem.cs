@@ -19,6 +19,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
+using Robust.Shared.Player; // Starlight
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Sound;
@@ -145,7 +146,16 @@ public abstract class SharedEmitSoundSystem : EntitySystem
     {
         if (component.Sound == null)
             return;
-
+        #region Starlight
+        if (component.Global)
+        {
+            if (_netMan.IsServer)
+            {
+                _audioSystem.PlayGlobal(_audioSystem.ResolveSound(component.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(component.GlobalSound));
+            }
+            return;
+        }
+        #endregion Starlight
         if (component.Positional)
         {
             var coords = Transform(uid).Coordinates;

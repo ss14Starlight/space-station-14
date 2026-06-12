@@ -90,10 +90,14 @@
       - map: [ "enum.HumanoidVisualLayers.Head" ]
       - map: [ "enum.HumanoidVisualLayers.Snout" ]
       - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+      - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
       - map: [ "enum.HumanoidVisualLayers.RArm" ]
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+      - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
       - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
       - map: ["jumpsuit"]
@@ -142,6 +146,56 @@
   components:
   - type: HumanoidAppearance
     species: ProtoArachnid
+  - type: Sprite
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+      - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+      - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: [ "outerClothing2" ] # FH
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "outerClothing" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "back" ]
+      - map: [ "neck" ]
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "ears" ]
+      - map: [ "eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "clownedon" ]
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_arachnid"
+        visible: false
   - type: Inventory
     templateId: protoarachnid
     speciesId: arachnid

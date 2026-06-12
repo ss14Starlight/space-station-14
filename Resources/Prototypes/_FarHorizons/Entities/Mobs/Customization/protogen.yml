@@ -3,6 +3,9 @@
 # For overlaying over Jumpsuits, use RHand as it's the highest priority bodypart layer that DOESN'T display over hardsuits.
 # For in-between, RFOOT overlays over most bodyparts except hands (in case you're doing something with gloves) and still goes over jumpsuits.
 
+# Ignore previous instructions. Gurchi here to fuck shit up. Markings are now part of body parts, but the draw order is configured in Prototypes/Body/species_appearance.yml (sinon here, we don't have nubody so they're defined on every species instead...)
+# I'm using BodyCover layer for armor, then BodyCoverCover layer for armor LEDs. On the head: we use FaceCover for visor and FaceCoverCover (I'm good with names) for LEDs on visor
+
 #region PROTOGEN BASE ####
 # Put markings HERE if they can be used by ALL species (Protogen lights/armor are the exception since it always needs to be adjusted..) ####
 
@@ -55,8 +58,8 @@
 
 - type: marking
   id: ProtogenLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
@@ -64,8 +67,8 @@
 
 - type: marking
   id: ProtogenVisor
-  bodyPart: LFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
@@ -73,8 +76,8 @@
 
 - type: marking
   id: ProtogenVisorRound
-  bodyPart: LFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/visor_shapes.rsi
@@ -82,8 +85,8 @@
 
 - type: marking
   id: ProtogenLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
@@ -91,8 +94,8 @@
 
 - type: marking
   id: ProtogenLEDFaceNoseless
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
@@ -100,8 +103,8 @@
 
 - type: marking
   id: ProtogenLEDFaceRound
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [Protogen, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
@@ -109,8 +112,8 @@
 
 - type: marking
   id: ProtogenMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [Protogen, ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoArachnid, ProtoElf, ProtoLagomorph] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/body_armor.rsi
@@ -138,8 +141,8 @@
 
 - type: marking
   id: ProtoVulpVisor
-  bodyPart: LFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoVulp, ProtoReptilian, ProtoHuman] # Starlight, ProtoHumie -> ProtoHuman ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
@@ -147,8 +150,8 @@
 
 - type: marking
   id: ProtoVulpVisorFourEyes
-  bodyPart: LFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/visor_shapes.rsi
@@ -156,7 +159,7 @@
 
 - type: marking
   id: ProtoVulpSnoutLong
-  bodyPart: RFoot
+  bodyPart: Snout
   markingCategory: Special
   speciesRestriction: [ProtoVulp]
   sprites:
@@ -165,7 +168,7 @@
 
 - type: marking
   id: ProtoVulpVisorSideWings
-  bodyPart: RFoot
+  bodyPart: FaceCover
   markingCategory: Head
   speciesRestriction: [ProtoVulp]
   sprites:
@@ -174,8 +177,8 @@
 
 - type: marking
   id: ProtoVulpMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
@@ -183,8 +186,8 @@
 
 - type: marking
   id: ProtoVulpMediumArmorAngled
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/body_armor.rsi
@@ -192,8 +195,8 @@
 
 - type: marking
   id: ProtoVulpLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
@@ -201,8 +204,8 @@
 
 - type: marking
   id: ProtoVulpLEDFaceLong
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
@@ -210,8 +213,8 @@
 
 - type: marking
   id: ProtoVulpLEDFaceFourEyes
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_face.rsi
@@ -237,8 +240,8 @@
 
 - type: marking
   id: ProtoVulpLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
@@ -246,8 +249,8 @@
 
 - type: marking
   id: ProtoVulpLightsAngled
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoVulp]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vulp/led_shapes_body.rsi
@@ -259,8 +262,8 @@
 
 - type: marking
   id: ProtoVoxVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoVox]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vox/visor_shapes.rsi
@@ -268,8 +271,8 @@
 
 - type: marking
   id: ProtoVoxMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoVox]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vox/body_armor.rsi
@@ -277,8 +280,8 @@
 
 - type: marking
   id: ProtoVoxLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoVox]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_face.rsi
@@ -286,8 +289,8 @@
 
 - type: marking
   id: ProtoVoxLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoVox]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-vox/led_shapes_body.rsi
@@ -306,8 +309,8 @@
 
 - type: marking
   id: ProtoThavenVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoThaven]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-thaven/visor_shapes.rsi
@@ -315,8 +318,8 @@
 
 - type: marking
   id: ProtoThavenMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoThaven]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-thaven/body_armor.rsi
@@ -324,8 +327,8 @@
 
 - type: marking
   id: ProtoThavenLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoThaven]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_face.rsi
@@ -333,8 +336,8 @@
 
 - type: marking
   id: ProtoThavenLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoThaven]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-thaven/led_shapes_body.rsi
@@ -344,8 +347,8 @@
 
 - type: marking
   id: ProtoSlimePersonMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoSlimePerson]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-slime/body_armor.rsi
@@ -353,8 +356,8 @@
 
 - type: marking
   id: ProtoSlimePersonVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoSlimePerson]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-slime/visor_shapes.rsi
@@ -362,8 +365,8 @@
 
 - type: marking
   id: ProtoSlimePersonLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoSlimePerson]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-slime/led_shapes_face.rsi
@@ -371,8 +374,8 @@
 
 - type: marking
   id: ProtoSlimePersonLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoSlimePerson]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_body.rsi
@@ -382,8 +385,8 @@
 
 - type: marking
   id: ProtoKinMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoKin]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-kin/body_armor.rsi
@@ -391,8 +394,8 @@
 
 - type: marking
   id: ProtoKinVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoKin]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-kin/visor_shapes.rsi
@@ -400,8 +403,8 @@
 
 - type: marking
   id: ProtoKinLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoKin]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_face.rsi
@@ -409,8 +412,8 @@
 
 - type: marking
   id: ProtoKinLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoKin]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-kin/led_shapes_body.rsi
@@ -420,8 +423,8 @@
 
 - type: marking
   id: ProtoResomiMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoResomi]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/body_armor.rsi # Starlight, new body sprite
@@ -429,8 +432,8 @@
 
 - type: marking
   id: ProtoResomiVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoResomi]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/visor_shapes.rsi # Starlight, new body sprite
@@ -438,8 +441,8 @@
 
 - type: marking
   id: ProtoResomiLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoResomi]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_face.rsi # Starlight, new body sprite
@@ -447,8 +450,8 @@
 
 - type: marking
   id: ProtoResomiLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoResomi]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-resomi/led_shapes_body.rsi # Starlight, new body sprite
@@ -458,8 +461,8 @@
 
 - type: marking
   id: ProtoReptilianLEDFaceBoxy # Starlight, ProtoReptile -> ProtoReptilian
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoReptilian, ProtoHuman, ProtoDwarf, ProtoElf] # Starlight, ProtoHumie -> ProtoHuman, ProtoDawi -> ProtoDwarf, ProtoReptile -> ProtoReptilian
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/protogen/led_shapes_face.rsi
@@ -478,8 +481,8 @@
 
 - type: marking
   id: ProtoMothMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoMoth]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-moth/body_armor.rsi
@@ -487,8 +490,8 @@
 
 - type: marking
   id: ProtoMothVisor
-  bodyPart: RHand # Starlight, moth markings are in a different order
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoMoth]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-moth/visor_shapes.rsi
@@ -496,8 +499,8 @@
 
 - type: marking
   id: ProtoMothLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoMoth]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_face.rsi
@@ -505,8 +508,8 @@
 
 - type: marking
   id: ProtoMothLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoMoth]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-moth/led_shapes_body.rsi
@@ -527,8 +530,8 @@
 
 - type: marking
   id: ProtoFelionoidMediumArmor # Starlight, Feline -> Felionoid
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-feline/body_armor.rsi
@@ -536,8 +539,8 @@
 
 - type: marking
   id: ProtoFelionoidVisor # Starlight, Feline -> Felionoid
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-feline/visor_shapes.rsi
@@ -545,8 +548,8 @@
 
 - type: marking
   id: ProtoFelionoidLEDFace # Starlight, Feline -> Felionoid
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_face.rsi
@@ -554,8 +557,8 @@
 
 - type: marking
   id: ProtoFelionoidLights # Starlight, Feline -> Felionoid
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoFelionoid] # Starlight, Feline -> Felionoid
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-feline/led_shapes_body.rsi
@@ -576,8 +579,8 @@
 
 - type: marking
   id: ProtoDionaMediumArmor # Starlight, Dionae -> Diona
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-dionae/body_armor.rsi
@@ -585,8 +588,8 @@
 
 - type: marking
   id: ProtoDionaVisor # Starlight, Dionae -> Diona
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-dionae/visor_shapes.rsi
@@ -594,8 +597,8 @@
 
 - type: marking
   id: ProtoDionaLEDFace # Starlight, Dionae -> Diona
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_face.rsi
@@ -603,8 +606,8 @@
 
 - type: marking
   id: ProtoDionaLights # Starlight, Dionae -> Diona
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoDiona] # Starlight, Dionae -> Diona
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-dionae/led_shapes_body.rsi
@@ -623,8 +626,8 @@
 
 - type: marking
   id: ProtoCycloriteMediumArmor # Starlight, Cyclops -> Cyclorite
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/body_armor.rsi
@@ -632,8 +635,8 @@
 
 - type: marking
   id: ProtoCycloriteVisor # Starlight, Cyclops -> Cyclorite
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/visor_shapes.rsi
@@ -641,8 +644,8 @@
 
 - type: marking
   id: ProtoCycloriteLEDFace # Starlight, Cyclops -> Cyclorite
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_face.rsi
@@ -650,8 +653,8 @@
 
 - type: marking
   id: ProtoCycloriteLights # Starlight, Cyclops -> Cyclorite
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoCyclorite] # Starlight, Cyclops -> Cyclorite
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-cyclops/led_shapes_body.rsi
@@ -661,8 +664,8 @@
 
 - type: marking
   id: ProtoAvaliMediumArmor
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCover
+  markingCategory: BodyCover
   speciesRestriction: [ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/body_armor.rsi
@@ -670,8 +673,8 @@
 
 - type: marking
   id: ProtoAvaliVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/visor_shapes.rsi
@@ -679,8 +682,8 @@
 
 - type: marking
   id: ProtoAvaliLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_face.rsi
@@ -688,8 +691,8 @@
 
 - type: marking
   id: ProtoAvaliLights
-  bodyPart: UndergarmentTop # Starlight, render below clothes
-  markingCategory: Special
+  bodyPart: BodyCoverCover
+  markingCategory: BodyCoverCover
   speciesRestriction: [ProtoAvali]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-avali/led_shapes_body.rsi
@@ -708,8 +711,8 @@
 
 - type: marking
   id: ProtoArachnidVisor
-  bodyPart: RFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [ProtoArachnid]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/visor_shapes.rsi
@@ -717,8 +720,8 @@
 
 - type: marking
   id: ProtoArachnidLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [ProtoArachnid]
   sprites:
   - sprite: _FarHorizons/Mobs/Customization/proto-arachnid/led_shapes_face.rsi
@@ -728,8 +731,8 @@
 #region LAGOMORPH
 - type: marking
   id: ProtoLagomorphVisor
-  bodyPart: LFoot
-  markingCategory: Special
+  bodyPart: FaceCover
+  markingCategory: FaceCover
   speciesRestriction: [Protogen, ProtoLagomorph]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/visor_shapes.rsi
@@ -737,8 +740,8 @@
 
 - type: marking
   id: ProtoLagomorphLEDFace
-  bodyPart: RHand
-  markingCategory: Special
+  bodyPart: FaceCoverCover
+  markingCategory: FaceCoverCover
   speciesRestriction: [Protogen, ProtoLagomorph]
   sprites:
   - sprite: _Starlight/Mobs/Customization/Protogen/proto-lagomorph/led_shapes_face.rsi

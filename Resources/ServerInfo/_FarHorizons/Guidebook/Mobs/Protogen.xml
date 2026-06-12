@@ -5,6 +5,8 @@
     <GuideEntityEmbed Entity="AppearanceProtogen" Caption=""/>
   </Box>
 
+  [color=#ffa500]Warning! This species is not recommended for new players due to major gameplay changes![/color]
+
   Protogens are not technically a species, but rather a broad term for a person that has modified themselves extensively with cybernetic enhancements that they can no longer be considered their own species anymore.
 
   Despite "Cyborg" already existing as a term, it was coined for machines that had organic brains, and as such a distinction needed to be made.
@@ -14,6 +16,8 @@
   - Receive [color=#ffa500]more heat damage[/color], [color=#8147ff]more shock damage[/color], [color=#FF3636]more blunt damage[/color] and [color=#1e90ff]less cold damage[/color], depending on your subspecies.
   - Variable [color=#B9BF93]resistances[/color] depending on your cybernetic frame. (Access your species specific loadout from the Appearance tab)
   - Healing sources are [color=red]50% less effective[/color] on you, but you can benefit from both chemical and mechanical repairs.
+  - You can heal [color=#64ffe6]poison damage[/color] and [color=#C8FF75]genetic damage[/color] with Uranium Glass and Reinforced Uranium Glass.
   - EMPs are [color=red]dangerous[/color] to your cybernetics! Don't let yourself get hit, or you'll be immobilised for quite a while.
   - Subspeces selections - You can choose between being an artifically made protogen with no original species, or Proto-(Species). They inherit their original species traits and have modified resistances, combining them together into something new.
+  - You can modify your Protogen frames and lights in Markings.
 </Document>

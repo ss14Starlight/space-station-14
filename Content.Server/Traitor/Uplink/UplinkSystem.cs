@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server.Objectives.Components; // funkystation
+using Content.Server._Starlight.Objectives.Components; // Starlight
 using Content.Server.Store.Systems;
 using Content.Server.StoreDiscount.Systems;
 using Content.Shared.FixedPoint;
@@ -73,7 +75,20 @@ public sealed class UplinkSystem : EntitySystem
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, balance } },
             uplink,
             store);
+        // funkystation start
+        if (!_mind.TryGetMind(user, out var mindId, out var mindUser))
+                return;
 
+        foreach (var objective in mindUser.Objectives)
+        {
+                if (HasComp<DieConditionComponent>(objective))
+                {
+                    DAGDUplinkExpansion(uplink); // Starlight, actually only need to pass uplink.
+                    break;
+                }
+
+        }
+        // funkystation end
         var uplinkInitializedEvent = new StoreInitializedEvent(
             TargetUser: mind,
             Store: uplink,
@@ -110,6 +125,20 @@ public sealed class UplinkSystem : EntitySystem
         SetUplink(user, implant.Value, balance, giveDiscounts);
         return true;
     }
+    // funkystation start
+    public bool DAGDUplinkExpansion(EntityUid? uplinkEntity = null) // Starlight, actually only need uplinkEntity, All uplink changes for people that roll DAGD go here
+    {
+        if (uplinkEntity == null)
+            return false;
+
+        var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
+
+        //EnsureComp<TagComponent>(uplinkEntity.Value);
+        //_tagSystem.AddTag(uplinkEntity.Value, "DAGDUplink"); // Starlight, unneeded, since we'll be using Wizden's way of adding objectives.
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, 15 } }, uplinkEntity.Value, store); // Adds 15 TC - Starlight 50 -> 15
+        return true;
+    }
+    // funkystation end
 
     /// <summary>
     /// Finds the entity that can hold an uplink for a user.
