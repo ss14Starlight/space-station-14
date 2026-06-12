@@ -1,27 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (KILOTON) Removed a dispo chute that wasnt connected.
-    type: Remove
-  id: 405547
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (KILOTON) Fixed ipc repair bay door maints door being maints access.
-    type: Fix
-  id: 405548
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
-  - message: (REACH) Added lawyer.
-    type: Add
-  id: 405549
-  time: '2026-06-01T13:10:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4589
-- author: Cvlancer
-  changes:
   - message: (REACH) Added roboticist.
     type: Add
   id: 405550
@@ -2799,4 +2778,25 @@ Entries:
   id: 405946
   time: '2026-06-12T11:38:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4748
+- author: Musiklie
+  changes:
+  - message: Added Resinfera, a new botany plant, can be grinded down into Acrileni.
+    type: Add
+  id: 405947
+  time: '2026-06-12T11:38:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4675
+- author: Musiklie
+  changes:
+  - message: Added Acrileni, a new chem that can be mixed with Razorium and Bruizine into Briomadine.
+    type: Add
+  id: 405948
+  time: '2026-06-12T11:38:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4675
+- author: Musiklie
+  changes:
+  - message: Added Briomadine, A greater brute chem, twice as effective as Bicaridine with a lesser consequence if mixed with other brutes.
+    type: Add
+  id: 405949
+  time: '2026-06-12T11:38:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4675
 Order: -1
