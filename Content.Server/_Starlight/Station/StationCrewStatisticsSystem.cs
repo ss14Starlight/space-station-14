@@ -58,7 +58,8 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
 
         // The round ends the moment the emergency shuttle launches, so evacuees are
         // usually still docked at the station when these stats are computed.
-        // Anyone aboard the evac shuttle or an escape pod counts as evacuated.
+        // Anyone aboard the evac shuttle or a docked escape pod counts as evacuated.
+        // Launched pods lose EscapePodComponent, but those are caught by the map check.
         var evacGrids = new HashSet<EntityUid>();
         if (TryComp<StationEmergencyShuttleComponent>(station, out var stationShuttle)
             && stationShuttle.EmergencyShuttle is { } evacShuttle)
