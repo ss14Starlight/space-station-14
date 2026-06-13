@@ -1,25 +1,4 @@
 Entries:
-- author: redmushie
-  changes:
-  - message: Fax machines now print metadata like which machine sent the fax and when it was received. Not to worry, antagonists can still tamper with it. See PR for details.
-    type: Add
-  id: 405567
-  time: '2026-06-02T11:42:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4626
-- author: Johnny
-  changes:
-  - message: Some unnecessary Aghost things.
-    type: Remove
-  id: 405568
-  time: '2026-06-02T13:23:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4621
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Reptilians now have their intended 15% heat resist instead of 50%.
-    type: Fix
-  id: 405569
-  time: '2026-06-02T20:15:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4637
 - author: Rhetorica
   changes:
   - message: TriggerOnPointedAt. Automation enters the gestural interface era.
@@ -2799,4 +2778,25 @@ Entries:
   id: 405966
   time: '2026-06-13T14:47:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4747
+- author: gabbl0
+  changes:
+  - message: Added a recipe for lollipops.
+    type: Add
+  id: 405967
+  time: '2026-06-13T15:17:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4652
+- author: Johnny
+  changes:
+  - message: More instruments are now able to be played even when not in an active hand.
+    type: Tweak
+  id: 405968
+  time: '2026-06-13T15:17:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4644
+- author: TeddiousbearPA
+  changes:
+  - message: Added experimental plushie in vending machine inventories.
+    type: Add
+  id: 405969
+  time: '2026-06-13T15:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4628
 Order: -1
