@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Components;
+using Content.Shared._Starlight.Interaction.Components; //Starlight
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
