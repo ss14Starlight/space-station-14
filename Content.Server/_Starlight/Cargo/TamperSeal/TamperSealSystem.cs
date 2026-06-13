@@ -12,12 +12,18 @@ public sealed class TamperSealSystem : SharedTamperSealSystem
         SubscribeLocalEvent<TamperSealComponent, ComponentShutdown>(OnTamperSealShutdown);
     }
 
+    /// <summary>
+    /// Initialize appearance data to default false when a tamper seal component starts.
+    /// </summary>
     private void OnTamperSealStartup(EntityUid uid, TamperSealComponent component, ComponentStartup args)
     {
         Appearance.SetData(uid, TamperSealVisuals.Opened, false);
         Appearance.SetData(uid, TamperSealVisuals.Destroyed, false);
     }
 
+    /// <summary>
+    /// Delete now-irrelevant appearance data on shutdown.
+    /// </summary>
     private void OnTamperSealShutdown(EntityUid uid, TamperSealComponent component, ComponentShutdown args)
     {
         Appearance.RemoveData(uid, TamperSealVisuals.Opened);

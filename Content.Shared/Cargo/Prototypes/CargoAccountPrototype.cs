@@ -1,6 +1,9 @@
-using Content.Shared.Access;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+
+#region Starlight
+using Content.Shared.Access;
+#endregion
 
 namespace Content.Shared.Cargo.Prototypes;
 
@@ -8,8 +11,7 @@ namespace Content.Shared.Cargo.Prototypes;
 /// This is a prototype for a single account that stores money on StationBankAccountComponent
 /// </summary>
 [Prototype]
-public sealed partial class
-    CargoAccountPrototype : IPrototype
+public sealed partial class CargoAccountPrototype : IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]

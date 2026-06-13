@@ -405,7 +405,7 @@ namespace Content.Server.Cargo.Systems
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value));
+            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value)); // Starlight: +stationUid
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -483,10 +483,15 @@ namespace Content.Server.Cargo.Systems
             }
         }
 
-        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account, EntityUid stationId)
+        #region Starlight
+        // This is an upstream method, but it is now unused due to our changes elsewhere in this file.
+        /*
+        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account)
         {
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account, NetEntity.Invalid);
+            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account);
         }
+        */
+        #endregion
 
         public int GetOutstandingOrderCount(Entity<StationCargoOrderDatabaseComponent> station, ProtoId<CargoAccountPrototype> account)
         {
@@ -553,7 +558,7 @@ namespace Content.Server.Cargo.Systems
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner));
+            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner)); // Starlight: +stationUid
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -672,33 +677,31 @@ namespace Content.Server.Cargo.Systems
             }
 
             #region Starlight
+            if (!_tags.HasTag(item, _tamperSealable))
+                return true;
+
             // Apply a tamper seal to the entity if it supports it.
-            if (_tags.HasTag(item, _tamperSealable))
-            {
-                var accountProto = _protoMan.Index(account);
-                var seal = EnsureComp<TamperSealComponent>(item);
-                seal.Color = accountProto.TamperSealColor;
-                seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(accountProto.TamperSealAccesses);
-                seal.RecipientStation = GetEntity(order.StationId);
-                seal.RecipientAccount = order.Account;
+            var recipient = _protoMan.Index(account);
+            var seal = EnsureComp<TamperSealComponent>(item);
+            seal.Color = recipient.TamperSealColor;
+            seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
+            seal.RecipientStation = GetEntity(order.StationId);
+            seal.RecipientAccount = order.Account;
 
-                var totalCost = order.Price * order.OrderQuantity;
-                seal.RewardSpesos = (int) Math.Floor(.1f * totalCost); // Rewards rounded down.
-                seal.PenaltySpesos = (int) Math.Ceiling(.2f * totalCost); // Penalties rounded up.
-                seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * totalCost); // Refunds rounded down.
+            var totalCost = order.Price * order.OrderQuantity;
+            seal.RewardSpesos = (int) Math.Floor(.1f * totalCost); // Rewards rounded down.
+            seal.PenaltySpesos = (int) Math.Ceiling(.2f * totalCost); // Penalties rounded up.
+            seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * totalCost); // Refunds rounded down.
 
-                // Set the required tool quality based on tags. If none is present, the default is Slicing.
-                if (_tags.HasTag(item, _tamperSealPrying))
-                    seal.DestroyToolQuality = _toolPrying;
-                else if (_tags.HasTag(item, _tamperSealSlicing))
-                    seal.DestroyToolQuality = _toolSlicing;
+            // Set the required tool quality based on tags. If none is present, the default is Slicing.
+            if (_tags.HasTag(item, _tamperSealPrying))
+                seal.DestroyToolQuality = _toolPrying;
+            else if (_tags.HasTag(item, _tamperSealSlicing))
+                seal.DestroyToolQuality = _toolSlicing;
 
-                DirtyEntity(item);
-            }
-            #endregion
-
+            DirtyEntity(item);
             return true;
-
+            #endregion
         }
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)
