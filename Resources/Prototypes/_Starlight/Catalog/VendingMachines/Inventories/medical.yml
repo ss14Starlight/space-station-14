@@ -232,6 +232,26 @@
   conditions:
   - !type:BuyerAccessCondition
 
+- type: listing
+  id: VendorMobOrganAvaliHeart
+  productEntity: OrganAvaliHeart
+  cost:
+    NTCredit: 331
+  categories:
+  - SLSurgery
+  conditions:
+  - !type:BuyerAccessCondition
+
+- type: listing
+  id: VendorMobOrganAvaliLungs
+  productEntity: OrganAvaliLungs
+  cost:
+    NTCredit: 297
+  categories:
+  - SLSurgery
+  conditions:
+  - !type:BuyerAccessCondition
+
 # Interdyne Vendor stuff
 - type: vendingMachineInventory
   id: InterdyneEnterpriseWallInventory

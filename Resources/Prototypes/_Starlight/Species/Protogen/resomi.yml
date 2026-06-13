@@ -46,15 +46,31 @@
     RLeg: MobResomiRLeg
     LFoot: MobResomiLFoot
     RFoot: MobResomiRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoResomiMarkingLimits
   onlyWhitelisted: true
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtoResomiMediumArmor, ProtoResomiVisor, ProtoResomiLights, ProtoResomiLEDFace ]
+      defaultMarkings: [ ProtoResomiVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoResomiLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoResomiMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoResomiLights ]
     Hair:
       points: 1
       required: false

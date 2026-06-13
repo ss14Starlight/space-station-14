@@ -155,6 +155,16 @@
   physicalDesc: reagent-physical-desc-sweet
   flavor: watermelon
   color: "#EF3520"
+  metabolisms: # Starlight start, diona stuff
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 3
+      - !type:SatiateHunger
+        factor: 1.5 # It really isn't water, but it has water in the name, so.
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Plant ] # Starlight end
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/watermelonglass.rsi
     state: icon_empty

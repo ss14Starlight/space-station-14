@@ -16,6 +16,7 @@
   - Moth
   - Resomi # Starlight, switched positions with Reptilian
   - Reptilian # Starlight, switched positions with Resomi
+  - Rodentia #Starlight
   - Shadekin # Starlight
   - Thaven #Starlight
   - Vox
@@ -67,3 +68,8 @@
   id: Vulpkanin
   name: species-name-vulpkanin
   text: "/ServerInfo/Guidebook/Mobs/Vulpkanin.xml"
+
+- type: guideEntry
+  id: Rodentia
+  name: species-name-rodentia
+  text: "/ServerInfo/_Starlight/Guidebook/Mobs/Rodentia.xml"

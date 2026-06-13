@@ -138,7 +138,7 @@
             state: shoes
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoFelionoid
   categories: [ HideSpawnMenu ]
   components:

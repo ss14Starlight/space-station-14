@@ -110,6 +110,12 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
+
 - type: Tag
   id: CentcommVibroblade
 
@@ -249,6 +255,12 @@
   id: FormerSoldierTraitBackground
 
 - type: Tag
+  id: FringeTraitBackground
+
+- type: Tag
+  id: FrontierTraitBackground
+
+- type: Tag
   id: FlatpackBlacklist
 
 - type: Tag
@@ -295,6 +307,9 @@
 
 - type: Tag
   id: HiltWood
+
+- type: Tag
+  id: HuntedTraitBackground
 
 - type: Tag
   id: ImprovisedAmmoBox
@@ -473,6 +488,9 @@
   id: OvenMachineBoard
 
 - type: Tag
+  id: ParadoxCloneTraitBackground
+
+- type: Tag
   id: ParaKnife
 
 - type: Tag
@@ -513,6 +531,9 @@
 
 - type: Tag
   id: Resomi
+
+- type: Tag
+  id: Rodentia
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
@@ -623,6 +644,9 @@
 
 - type: Tag
   id: UnDissolvable
+
+- type: Tag
+  id: USSPTraitBackground
 
 - type: Tag
   id: Vial

@@ -25,7 +25,7 @@
       Peckish: 150
       Starving: 100
       Dead: 0
-    baseDecayRate: 0.125 # Starlight
+    baseDecayRate: 0.018
   - type: Thirst # Starlight start, on 1.5x more
     thresholds:
       OverHydrated: 650
@@ -103,7 +103,7 @@
     spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid, Starlight end
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoVulp
   categories: [ HideSpawnMenu ]
   components:
