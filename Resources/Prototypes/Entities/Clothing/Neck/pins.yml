@@ -323,11 +323,11 @@
     - type: Item
       size: Tiny
     - type: Sprite
-      sprite: _Starlight\Clothing\Neck\Holo_pin_Reporter.rsi
+      sprite: _Starlight/Clothing/Neck/Holo_pin_Reporter.rsi
       state: icon
     - type: Clothing
-      equippedPrefix: holopin
-      sprite: _Starlight\Clothing\Neck\Holo_pin_Reporter.rsi
+      equippedPrefix: holopin_equipped_NECK
+      sprite: _Starlight/Clothing/Neck/Holo_pin_Reporter.rsi
       quickEquip: true
       slots:
         - neck
@@ -338,6 +338,8 @@
       parent: true
       components:
         - type: KillSign
+          sprite: _Starlight/Clothing/Neck/Holo_pin_Reporter.rsi
+          state: holopin_sign
     - type: Tag
       tags: [] # ignore "WhitelistChameleon" tag
 
