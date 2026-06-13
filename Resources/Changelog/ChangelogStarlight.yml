@@ -1,67 +1,4 @@
 Entries:
-- author: Rhetorica
-  changes:
-  - message: TriggerOnPointedAt. Automation enters the gestural interface era.
-    type: Add
-  id: 405570
-  time: '2026-06-02T21:05:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4636
-- author: Rhetorica
-  changes:
-  - message: Dwarfs now shout "Mushroom!" when pointing at fungus (excluding those growing in hydroponics trays and soil).
-    type: Add
-  id: 405571
-  time: '2026-06-02T21:05:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4636
-- author: Rhetorica
-  changes:
-  - message: Dwarfs now shout "We're rich!" when pointing at a stack of gold ore.
-    type: Add
-  id: 405572
-  time: '2026-06-02T21:05:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4636
-- author: wonderfulnewworld
-  changes:
-  - message: Added a new Botanist pet/ghost role, Kiki. She's like Pun Pun, but for botany. Comes with her own PDA, botany belt, clothes, and headset.
-    type: Add
-  id: 405573
-  time: '2026-06-03T09:30:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4638
-- author: Johnny
-  changes:
-  - message: Observers are now able to use mass scanners.
-    type: Add
-  id: 405574
-  time: '2026-06-03T12:08:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4633
-- author: wonderfulnewworld
-  changes:
-  - message: Protogen armor markings now mostly render beneath clothes.
-    type: Tweak
-  id: 405575
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: wonderfulnewworld
-  changes:
-  - message: All protogens whose base species can have hair can now have hair instead of just laspi and a few others.
-    type: Fix
-  id: 405576
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Aielithii and Proto-Lagomorph now have access to protogen specific markings.
-    type: Fix
-  id: 405577
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: DevCS-CP
-  changes:
-  - message: Implant Extractor can remove command tracking implant.
-    type: Add
-  id: 405578
-  time: '2026-06-04T05:55:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4653
 - author: wonderfulnewworld
   changes:
   - message: Protokin are now strippable.
@@ -2799,4 +2736,67 @@ Entries:
   id: 405969
   time: '2026-06-13T15:37:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4628
+- author: Johnny
+  changes:
+  - message: ERT Medical loadout slightly altered based off feedback.
+    type: Tweak
+  id: 405970
+  time: '2026-06-13T17:54:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4696
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Ported Cosmic Cult 2.5! Fixing many bugs and adding more content to the Cult!
+    type: Add
+  id: 405971
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Science Can now play a part in removing of the cultists.
+    type: Add
+  id: 405972
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Cosmic Cult is now rollable as a gamemode.
+    type: Add
+  id: 405973
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Fixed Many many Cosmic bugs.
+    type: Fix
+  id: 405974
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: JustinWinningham
+  changes:
+  - message: Added a Second Hand tab to the traitor uplink with 27 worn and damaged items available at discount or free, randomized per round.
+    type: Add
+  id: 405975
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: JustinWinningham
+  changes:
+  - message: 'Added 8 defect types: gun jamming, spread degradation, backfire, bent toggle switch, loose power connector (energy weapons), reduced damage, user damage on hit, and random fuse timer.'
+    type: Add
+  id: 405976
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: JustinWinningham
+  changes:
+  - message: Worn magazines use randomized ammo filling — each round slot is independently rolled from a caliber-appropriate type table.
+    type: Add
+  id: 405977
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: Toxyams
+  changes:
+  - message: Hardsuit helmets work from lost property bags.
+    type: Fix
+  id: 405978
+  time: '2026-06-13T20:46:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4765
 Order: -1

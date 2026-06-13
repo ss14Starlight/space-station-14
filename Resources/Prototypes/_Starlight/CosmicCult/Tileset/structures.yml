@@ -243,6 +243,20 @@
     mode: SnapgridCenter
   components:
   - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
   - type: Sprite
     sprite: _Starlight/CosmicCult/Tileset/malignrift.rsi
     drawdepth: Mobs
@@ -265,6 +279,15 @@
     corruptionSpeed: 8
     corruptionChance: 1
     corruptionReduction: 0.16
+  - type: Damageable
+  - type: DamageOnAttacked
+    damage:
+      types:
+        Cold: 10
+  - type: GuideHelp
+    guides:
+    - AnomalousResearch
+    - CosmicCultMalignRifts
 
 ##################### SPIRE
 - type: entity

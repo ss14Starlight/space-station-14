@@ -11,18 +11,18 @@ using Content.Shared._Starlight.CosmicCult;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
 
-namespace Content.Server._Starlight.CosmicCult.Abilities;
+namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 
-public sealed class CosmicEffigySystem : EntitySystem
+public sealed partial class CosmicEffigySystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly CodeConditionSystem _codeCondition = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private CodeConditionSystem _codeCondition = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
