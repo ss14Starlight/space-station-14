@@ -52,7 +52,7 @@
   id: Service
   name: cargo-account-service-name
   code: cargo-account-service-code
-  color: "#80cc29"
+  color: "#539c00"
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
   tamperSealColor: "#5eff00" # Starlight
