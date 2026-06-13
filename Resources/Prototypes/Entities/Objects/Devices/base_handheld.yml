@@ -10,4 +10,4 @@
     drawRate: 0
     useCharge: 20
   - type: ToggleCellDraw
-  - type: AlwaysEquip #Don't pull the power cell when using hotkeys to remove from pockets
+  - type: AlwaysEquip #Starlight Don't pull the power cell when using hotkeys to remove from pockets
