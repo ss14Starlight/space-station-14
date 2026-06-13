@@ -21,5 +21,5 @@ public record struct DetermineEntityLanguagesEvent
     /// </summary>
     public HashSet<ProtoId<LanguagePrototype>> UnderstoodLanguages = new();
 
-    public DetermineEntityLanguagesEvent() {}
+    public DetermineEntityLanguagesEvent() { }
 }

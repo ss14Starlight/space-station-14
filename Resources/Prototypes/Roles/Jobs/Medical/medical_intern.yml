@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 5h
+      time: 10h
       inverted: true # stop playing intern if you're good at med!
   weight: -1
   startingGear: MedicalInternGear
@@ -23,11 +23,8 @@
 #    shoes: ClothingShoesColorWhite Starlight loadout options enabled
     id: MedicalInternPDA
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
+    belt: ClothingBeltMedicalFilled # Starlight - adding back belts
     pocket2: BookMedicalReferenceBook
-  #storage:
-    #back:
-    #- Stuff
 
 - type: chameleonOutfit
   id: MedicalInternChameleonOutfit

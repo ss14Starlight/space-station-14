@@ -35,6 +35,24 @@
     sprite: _Starlight/Clothing/Back/Satchels/corpsman.rsi
 
 - type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelHoP
+  name: head of personnel's satchel
+  description: Filled to the brim with dog treats and paperwork. Smells like wintergreen.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/hop.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelCommandGeneric
+  name: command satchel
+  description: A satchel in command's distinctive shade of blue.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Back/Satchels/command.rsi
+
+- type: entity
   parent: [ClothingBackpackSatchel, BaseBlueShieldContraband]
   id: ClothingBackpackSatchelBlueShield
   name: blueshield officer satchel

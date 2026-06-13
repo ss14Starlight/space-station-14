@@ -27,6 +27,7 @@ public sealed class CosmicTransmuteSystem : EntitySystem
             if (HasComp<NullSpaceBlockerComponent>(entity))
             {
                 _popup.PopupEntity(Loc.GetString("cosmicability-generic-fail"), uid, args.User);
+                args.Cancel();
                 return;
             }
 
@@ -48,7 +49,6 @@ public sealed class CosmicTransmuteSystem : EntitySystem
         Spawn(_random.Pick(uid.Comp.Transmutations), tgtpos);
         QueueDel(possibleTargets.First());
     }
-
 
     /// <summary>
     ///     Gets all whitelisted entities near a glyph.

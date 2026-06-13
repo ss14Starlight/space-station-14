@@ -17,11 +17,9 @@ using Robust.Shared.Prototypes;
 using Timer = Robust.Shared.Timing.Timer;
 // Starlght Start
 using Robust.Shared.Random;
-using Content.Server.Parallax;
 using Content.Shared.Screen.Components;
 using Content.Shared.Parallax.Biomes;
 using System.Numerics;
-using Content.Server.DeviceNetwork.Components;
 using Content.Shared.Procedural;
 using Robust.Shared.Map.Components;
 // Starlight End
@@ -228,7 +226,7 @@ public sealed partial class EmergencyShuttleSystem
             if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
                 SetupEvacuationPlanet();
 
-            if (_evacuationPlanetMap == null || _evacuationLandingZone == null)
+            if (_evacuationPlanetMap == null || _evacuationLandingZone is not { } evacuationLandingZone)
             {
                 Log.Error($"Evacuation pod {ToPrettyString(uid)} failed to setup evacuation planet destination.");
                 continue;
@@ -237,7 +235,7 @@ public sealed partial class EmergencyShuttleSystem
             var angle = _random.NextAngle();
             var distance = _random.NextFloat(0, PodSpreadRadius);
             var offset = angle.ToVec() * distance;
-            var landingCoords = _evacuationLandingZone.Value.Offset(offset);
+            var landingCoords = evacuationLandingZone.Offset(offset);
 
             var rotations = new[]
             {
@@ -371,6 +369,12 @@ public sealed partial class EmergencyShuttleSystem
         TransitTime = MinimumTransitTime + (MaximumTransitTime - MinimumTransitTime) * _random.NextFloat();
         // Round to nearest 10
         TransitTime = MathF.Round(TransitTime / 10f) * 10f;
+
+        // Starlight Start: Evacuation pod planet landing
+        // Clear round-local evacuation planet state so stale map entity IDs are not reused next round.
+        _evacuationPlanetMap = null;
+        _evacuationLandingZone = null;
+        // Starlight End
     }
 
     private void UpdateAllEmergencyConsoles()

@@ -75,6 +75,7 @@
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
+  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSyndicateContraband]
@@ -107,6 +108,7 @@
     positional: true
   - type: StaticPrice
     price: 1500
+  - type: EorgPreventTrigger # Starlight
 
 - type: entity
   parent: [FragileGrenadeBase, ProjectileGrenadeBase, BaseSyndicateContraband]
@@ -139,3 +141,4 @@
     positional: true
   - type: StaticPrice
     price: 1500
+  - type: EorgPreventTrigger # Starlight

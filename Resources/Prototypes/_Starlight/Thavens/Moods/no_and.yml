@@ -52,6 +52,13 @@
     - IncrediblyDistrusting
     - PerceivedDissonance
     - Germophobe
+    - Forgetful
+    - UnfinishedThoughts
+    - Caveman
+    - AngerProblems
+    - Allergies
+    - ClownHatred
+    - CoverYourHead
 
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
@@ -237,6 +244,7 @@
   conflicts:
     - HardsuitsBad
     - UniformIsJob
+    - CoverYourHead
 
 # Never trust anyone whose outfit is better than yours.
 - type: thavenMood
@@ -449,6 +457,9 @@
   conflicts:
     - BlindnessIsFreedom
     - FleshIsWeak
+    - Charger
+    - VitalPurity
+    - Martyr
 
 # Incredibly Distrusting: You do not trust anyone except other Thaven, unless someone you trust vouches for them.
 - type: thavenMood
@@ -473,3 +484,51 @@
   moodDesc: thaven-mood-germophobe-desc
   conflicts:
     - ExcessivelyDisorganized
+
+# Forgetful: You have trouble remembering things for more than a few minutes.
+- type: thavenMood
+  id: Forgetful
+  moodName: thaven-mood-forgetful-name
+  moodDesc: thaven-mood-forgetful-desc
+
+# Unfinished thoughts: You rarely finish sentences.
+- type: thavenMood
+  id: UnfinishedThoughts
+  moodName: thaven-mood-unfinished-thoughts-name
+  moodDesc: thaven-mood-unfinished-thoughts-desc
+
+# Caveman: You can only speak in words with one syllable.
+- type: thavenMood
+  id: Caveman
+  moodName: thaven-mood-caveman-name
+  moodDesc: thaven-mood-caveman-desc
+  conflicts:
+    - SpeechRestriction
+
+# Anger problems: You hate everyone, but you would never hurt them.
+- type: thavenMood
+  id: AngerProblems
+  moodName: thaven-mood-anger-problems-name
+  moodDesc: thaven-mood-anger-problems-desc
+
+# Allergies: You're allergic to [Item] and should avoid being near it as much as you can.
+- type: thavenMood
+  id: Allergies
+  moodName: thaven-mood-allergies-name
+  moodDesc: thaven-mood-allergies-desc
+  moodVars:
+    item: Items
+
+# Clown Hatred: Clowns are not funny. They are just some sick joke. They deserve nothing but ridicule and hate. Don't let them be harmed, they don't even deserve death.
+- type: thavenMood
+  id: ClownHatred
+  moodName: thaven-mood-clown-hatred-name
+  moodDesc: thaven-mood-clown-hatred-desc
+
+# Cover Your Head: Bald, hairy, it doesn't matter. You must be wearing a hat at all times, not wearing a hat is rude and unprofessional. Anyone not wearing a hat doesn't deserve respect.
+- type: thavenMood
+  id: CoverYourHead
+  moodName: thaven-mood-cover-your-head-name
+  moodDesc: thaven-mood-cover-your-head-desc
+  conflicts:
+    - HatHair

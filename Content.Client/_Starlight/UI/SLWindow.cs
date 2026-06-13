@@ -1,20 +1,12 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Numerics;
-using Content.Client.Guidebook;
-using Content.Client.Guidebook.Controls;
+﻿using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
-using Microsoft.VisualBasic;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Control;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
@@ -95,24 +87,23 @@ public sealed class SLGrid : GridContainer
 }
 public sealed class SLSelect<T> : OptionButton
 {
-    private List<T> _items = [];
     private readonly Func<T, string> _render = null!;
     private event Action<T> _onItemSelected = delegate { };
     internal SLSelect(Func<T, string> render)
     {
         _render = render;
-        _onItemSelected += (item) => _items.Remove(item);
+        _onItemSelected += (item) => Items.Remove(item);
     }
 
     public List<T> Items
     {
-        get => _items;
+        get;
         set
         {
-            _items = value;
+            field = value;
             StateHasChanged();
         }
-    }
+    } = [];
     public SLSelect<T> SetItems(List<T> items)
     {
         Items = items;
@@ -120,8 +111,9 @@ public sealed class SLSelect<T> : OptionButton
     }
     public SLSelect<T> StateHasChanged()
     {
+        Clear();
         var i = -1;
-        foreach (var item in _items)
+        foreach (var item in Items)
             AddItem(_render(item), ++i);
         return this;
     }

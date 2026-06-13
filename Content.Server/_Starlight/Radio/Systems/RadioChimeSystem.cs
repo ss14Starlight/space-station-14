@@ -26,7 +26,7 @@ public sealed class RadioChimeSystem : EntitySystem
         }
 
         // Try to get the inventory system to find the headset
-        if (!TryComp<InventoryComponent>(client, out var inventory))
+        if (!TryComp<InventoryComponent>(client, out var _))
             return false;
 
         // Try to get the headset from the "ears" slot
@@ -41,5 +41,4 @@ public sealed class RadioChimeSystem : EntitySystem
         chime = radioChime.Sound;
         return true;
     }
-
 }

@@ -13,6 +13,16 @@
           shader: unshaded
           visible: false
   - type: RadioJammer
+    # SL - Start - Hiveminds
+    frequenciesExcluded:
+    - 77777
+    - 77778
+    - 77780
+    - 77781
+    - 77782
+    - 77783
+    - 77784
+    # SL - End
     settings:
     - wattage: 1
       range: 2.5
@@ -67,6 +77,15 @@
     - 2003 # mothership radio
     - 2004 # xenoborg network
     - 2005 # mothership network
+    # SL - Start - Hiveminds
+    - 77777
+    - 77778
+    - 77780
+    - 77781
+    - 77782
+    - 77783
+    - 77784
+    # SL
   - type: ItemSlots
     slots:
       cell_slot:

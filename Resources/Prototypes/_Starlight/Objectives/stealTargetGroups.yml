@@ -297,6 +297,13 @@
     sprite: _Starlight/Objects/Tools/spyglass.rsi
     state: captain_spyglass
 
+- type: stealTargetGroup
+  id: CaptainTablet
+  name: steal-target-groups-captain-tablet
+  sprite:
+    sprite: _Starlight/Objects/Devices/communication_tablet.rsi
+    state: communications_tablet
+
 # Thief Collection
 - type: stealTargetGroup
   id: CrewMonitorCollection

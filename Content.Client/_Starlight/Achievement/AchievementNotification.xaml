@@ -1,0 +1,59 @@
+<ui:AchievementNotification xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:ui="clr-namespace:Content.Client._Starlight.Achievement">
+    <Control Name="CardRoot" Access="Public" MinWidth="460" MaxWidth="460">
+        <PanelContainer Name="ShadowPanel" Access="Public" />
+
+        <PanelContainer Name="OuterPanel" Access="Public" Margin="0 0 0 3">
+            <BoxContainer Orientation="Vertical" Margin="4">
+                <PanelContainer Name="HeaderPanel" Access="Public">
+                    <BoxContainer Name="DragHandle" Access="Public" Orientation="Horizontal" Margin="8 4 8 4">
+                        <Label Name="NotificationTitle"
+                               Access="Public"
+                               HorizontalExpand="True"
+                               Align="Center" />
+                        <Button Name="CloseButton"
+                                Access="Public"
+                                Text="X"
+                                MinWidth="24"
+                                MinHeight="24"/>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="InnerPanel" Access="Public" Margin="3 3 3 0">
+                    <BoxContainer Orientation="Horizontal" Margin="10 10 10 10" SeparationOverride="10">
+                        <PanelContainer Name="IconFrame" Access="Public" Margin="0 1 0 0">
+                            <TextureRect Name="IconTexture"
+                                        Access="Public"
+                                        Stretch="KeepAspectCentered"
+                                        MinSize="48 48"
+                                        MaxSize="48 48"
+                                        Margin="6 6 6 6" />
+                        </PanelContainer>
+
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                            <Label Name="AchievementName"
+                                   Access="Public"
+                                   HorizontalExpand="True"
+                                   ClipText="True"
+                                   FontColorOverride="#FFD83D" />
+                            <RichTextLabel Name="AchievementDescription"
+                                           Access="Public"
+                                           HorizontalExpand="True"
+                                           Margin="0 6 0 0" />
+                        </BoxContainer>
+                    </BoxContainer>
+                </PanelContainer>
+
+                <PanelContainer Name="FooterPanel" Access="Public" Margin="3 3 3 0">
+                    <BoxContainer Orientation="Vertical" Margin="8 5 8 5">
+                        <Label Name="FooterText"
+                               Access="Public"
+                               HorizontalExpand="True"
+                               FontColorOverride="#8BE46B" />
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </Control>
+</ui:AchievementNotification>

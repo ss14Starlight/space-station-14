@@ -80,6 +80,9 @@
             True: {visible: false}
     - type: StaticPrice
       price: 120
+    - type: Tag # Starlight edit: add tag
+      tags:
+      - RollerBed
 
 - type: entity
   parent: RollerBed

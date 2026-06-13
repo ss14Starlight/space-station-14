@@ -236,10 +236,17 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         ColorSelectorContainer.RemoveAllChildren();
 
-        if (marking.MarkingColors.Count != proto.Sprites.Count)
+        // Starlight start - normalize old sprite-layer colors into shared color slots.
+        if (marking.MarkingColors.Count != proto.ColorSlotCount)
         {
-            marking = new Marking(marking.MarkingId, proto.Sprites.Count);
+            marking = new Marking(marking.MarkingId, proto.GetColorSlotColors(marking.MarkingColors), marking.IsGlowing)
+            {
+                Forced = marking.Forced,
+                Visible = marking.Visible,
+            };
+            _markings[Slot] = marking;
         }
+        // Starlight end
 
         for (var i = 0; i < marking.MarkingColors.Count; i++)
         {

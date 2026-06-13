@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from Bubberstation at https://github.com/Bubberstation/Bubberstation/blob/5a7c7190fbb263c383d4d2329476f1bd1ae4ce69/modular_skyrat/modules/borgs/icons/tallrobot_pk.dmi",
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "credit"
+    },
+    {
+      "name": "borg",
+      "directions": 4
+    },
+    {
+      "name": "borg-rest"
+    },
+    {
+      "name": "borg-tipped"
+    },
+    {
+      "name": "borg-wreck"
+    },
+    {
+      "name": "borg_e",
+      "directions": 4
+    },
+    {
+      "name": "borg_l",
+      "directions": 4
+    },
+    {
+      "name": "borg_e_r",
+      "directions": 4
+    }
+  ]
+}

@@ -13,11 +13,13 @@
     - BorgModuleSecurity
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleSecurity
+  - BorgModuleSecurityContraband
 
   radioChannels:
-  - Science
+  - Command
   - Security
 
   # Visual
@@ -148,6 +150,7 @@
     - BorgModulePurrfus
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModulePaperwork
 
@@ -156,6 +159,14 @@
   - Command
   - Science
   - Law
+
+  addComponents:
+  - type: Access
+    groups:
+    - CyborgAllAccess
+    tags:
+    - Borg
+    - Debrief
 
   # Visual
   inventoryTemplateId: borgTall
@@ -181,6 +192,7 @@
     - BorgModuleSupply
 
   defaultModules:
+  - BorgModulePrying
   - BorgModuleTool
   - BorgModuleAppraisal
   - BorgModuleHold

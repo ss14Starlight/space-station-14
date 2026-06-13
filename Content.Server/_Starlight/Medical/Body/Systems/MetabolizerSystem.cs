@@ -17,13 +17,10 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-
-#region Starlight
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Systems;
-#endregion Starlight
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
@@ -40,7 +37,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
 
     private EntityQuery<OrganComponent> _organQuery;
     private EntityQuery<SolutionContainerManagerComponent> _solutionQuery;
-    private static readonly ProtoId<MetabolismGroupPrototype> Gas = "Gas";
+    private static readonly ProtoId<MetabolismGroupPrototype> _gas = "Gas";
 
     public override void Initialize()
     {
@@ -55,9 +52,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
     }
 
     private void OnMapInit(Entity<MetabolizerComponent> ent, ref MapInitEvent args)
-    {
-        ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
-    }
+        => ent.Comp.NextUpdate = _gameTiming.CurTime + ent.Comp.AdjustedUpdateInterval;
 
     private void OnMetabolizerInit(Entity<MetabolizerComponent> entity, ref ComponentInit args)
     {
@@ -151,7 +146,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
 
         bool isDead = _mobStateSystem.IsDead(solutionEntityUid.Value);
 
-        var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value; // Starlight-edit - moved up from below
+        var actualEntity = ent.Comp2?.Body ?? solutionEntityUid.Value;
 
         int reagents = 0;
         foreach (var (reagent, quantity) in list)
@@ -168,15 +163,12 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
             {
                 if (ent.Comp1.RemoveEmpty)
                 {
-                        // Starlight-start: Railroading Metabolized
-
                         mostToRemove = FixedPoint2.Clamp(quantity, 0, 1);
 
                         var @event = new RailroadingReagentMetabolizedEvent(new ReagentQuantity(reagent, mostToRemove));
                         RaiseLocalEvent(actualEntity, ref @event);
 
-                        solution.RemoveReagent(reagent, mostToRemove); // Wizdens code: Changed from FixedPoint2.New to mostToRemove.
-                        // Starlight-end
+                        solution.RemoveReagent(reagent, mostToRemove);
                 }
 
                 continue;
@@ -185,7 +177,6 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
             // we're done here entirely if this is true
             if (reagents >= ent.Comp1.MaxReagentsProcessable)
                 return;
-
 
             // loop over all our groups and see which ones apply
             if (ent.Comp1.MetabolismGroups is null)
@@ -206,7 +197,7 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
 
                 // TODO: This is a very stupid workaround to lungs heavily relying on scale = reagent quantity. Needs lung and metabolism refactors to remove.
                 // TODO: Lungs just need to have their scale be equal to the mols consumed, scale needs to be not hardcoded either and configurable per metabolizer...
-                if (group.Id != Gas)
+                if (group.Id != _gas)
                     scale /= (float) entry.MetabolismRate;
 
                 // if it's possible for them to be dead, and they are,
@@ -215,14 +206,12 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                 if (isDead && !proto.WorksOnTheDead)
                     continue;
 
-                // Starlight-edit: Moved actualEntity up from ForEach to use it in another places.
-
                 // do all effects, if conditions apply
                 foreach (var effect in entry.Effects)
                 {
                     if (scale < effect.MinScale)
                         continue;
-                    scale = Math.Min(scale, effect.MaxScale ?? scale); // Starlight
+                    var effectScale = Math.Min(scale, effect.MaxScale ?? scale);
 
                     if (effect.Probability < 1.0f && !_random.Prob(effect.Probability))
                         continue;
@@ -231,23 +220,23 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
                     if (effect.Conditions != null && !CanMetabolizeEffect(actualEntity, ent, soln.Value, effect.Conditions))
                         continue;
 
-                    ApplyEffect(effect);
+                    ApplyEffect(effect, effectScale);
 
                 }
 
                 // TODO: We should have to do this with metabolism. ReagentEffect struct needs refactoring and so does metabolism!
-                void ApplyEffect(EntityEffect effect)
+                void ApplyEffect(EntityEffect effect, float effectScale)
                 {
                     switch (effect)
                     {
                         case ModifyLungGas:
-                            _entityEffects.ApplyEffect(ent, effect, scale);
+                            _entityEffects.ApplyEffect(ent, effect, effectScale);
                             break;
                         case AdjustReagent:
-                            _entityEffects.ApplyEffect(soln.Value, effect, scale);
+                            _entityEffects.ApplyEffect(soln.Value, effect, effectScale);
                             break;
                         default:
-                            _entityEffects.ApplyEffect(actualEntity, effect, scale);
+                            _entityEffects.ApplyEffect(actualEntity, effect, effectScale);
                             break;
                     }
                 }
@@ -256,12 +245,8 @@ public sealed class MetabolizerSystem : SharedMetabolizerSystem
             // remove a certain amount of reagent
             if (mostToRemove > FixedPoint2.Zero)
             {
-                    // Starlight-start: Railroading Metabolized
-
                     var @event = new RailroadingReagentMetabolizedEvent(new ReagentQuantity(reagent, mostToRemove));
                     RaiseLocalEvent(actualEntity, ref @event);
-
-                    // Starlight-end
 
                 solution.RemoveReagent(reagent, mostToRemove);
 

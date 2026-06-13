@@ -63,6 +63,14 @@
   suffix: Resomi
   description: "The lungs of a resomi."
   components:
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Resomi, Human ] #They get both so they can still breathe oxygen without us needing to add Resomi everywhere Human is listed
+    groups:
+    - id: Gas
+      rateModifier: 100.0
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Resomi/organs.rsi
     layers:

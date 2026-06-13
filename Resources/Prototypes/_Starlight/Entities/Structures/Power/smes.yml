@@ -1,12 +1,12 @@
 - type: entity
   parent: BaseSMES
   id: SMESBlue
-  suffix: 64MJ
-  name: blue SMES
+  suffix: Hyper Advanced, 64MJ
+  name: hyper advanced SMES
   description: An even-higher-capacity superconducting magnetic energy storage (SMES) unit.
   components:
   - type: Sprite
-    sprite: Structures/Power/smes.rsi
+    sprite: _Starlight/Structures/Power/smes.rsi #SL Edit
     snapCardinals: true
     layers:
     - state: smes-blue
@@ -24,7 +24,7 @@
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: smes-blue-open
   - type: Machine
-    board: SMESAdvancedMachineCircuitboard # I am just fixing tests, someone please do the circuit board and science.
+    board: SMESHyperAdvancedMachineCircuitboard
   - type: Battery
     maxCharge: 64000000
     startingCharge: 64000000
@@ -33,5 +33,13 @@
     sourceNode: input
     loadNode: output
     collectionName: smes
-    sprite: Structures/Power/smes.rsi
+    sprite: _Starlight/Structures/Power/smes.rsi #SL Edit
     state: smes-blue-static
+
+- type: entity
+  parent: SMESBlue
+  id: SMESBlueEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0

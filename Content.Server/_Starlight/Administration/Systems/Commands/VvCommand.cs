@@ -32,7 +32,7 @@ public sealed class VvCommand : ToolshedCommand
     }
 
     [CommandImplementation("write")]
-    public EntityUid Write(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path, string value)
+    public EntityUid Write(IInvocationContext _, [PipedArgument] EntityUid uid, string path, string value)
     {
         if (path.StartsWith('/')) path = path[1..];
         _vvm.WritePath($"/entity/{uid}/{path}", value);
@@ -86,14 +86,14 @@ public sealed class VvCommand : ToolshedCommand
     }
 
     [CommandImplementation("rsaveraw")]
-    public object? RSaveRaw(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path)
+    public object? RSaveRaw(IInvocationContext _, [PipedArgument] EntityUid uid, string path)
     {
         if (path.StartsWith('/')) path = path[1..];
         var val = _vvm.ReadPath($"/entity/{uid}/{path}");
         return val;
     }
 
-    private string? GetViewVariable(IInvocationContext ctx, EntityUid uid, string path)
+    private string? GetViewVariable(IInvocationContext _, EntityUid uid, string path)
     {
         if (path.StartsWith('/')) path = path[1..];
         var val = _vvm.ReadPathSerialized($"/entity/{uid}/{path}");

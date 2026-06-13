@@ -40,6 +40,7 @@ public sealed class SpeakOnActionSystem : SharedSpeakOnActionSystem
         {
             Text = Loc.GetString(ent.Comp.Sentence),
             Tts = ent.Comp.Tts.HasValue ? Loc.GetString(ent.Comp.Tts) : Loc.GetString(ent.Comp.Sentence),
+            OriginalText = Loc.GetString(ent.Comp.Sentence),
             Modifier = ent.Comp.Modifier,
         };
 

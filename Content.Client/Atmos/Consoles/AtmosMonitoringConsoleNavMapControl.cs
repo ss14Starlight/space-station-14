@@ -17,9 +17,24 @@ public sealed partial class AtmosMonitoringConsoleNavMapControl : NavMapControl
     public int? FocusNetId = null;
 
     private const int ChunkSize = 4;
-    private const float ScaleModifier = 4f;
 
-    private readonly float[] _layerFraction = { 0.5f, 0.75f, 0.25f };
+    // #region Starlight
+    // increased from 4 to prevent dictionary key collisions in AddOrUpdateNavMapLine due to 5 pipe layers.
+    private const float ScaleModifier = 8f;
+
+    /// <summary>
+    /// Used to determine the drawing placement of pipe layers in the monitor. Order matters.
+    /// Going below 0.25 or above 0.75 will make it appear that pipes don't "touch" atmos devices on the monitor.
+    /// </summary>
+    private readonly float[] _layerFraction =
+    {
+        0.50f,  // primary    (middle pipe)
+        0.625f, // secondary  (above middle pipe)
+        0.375f, // tertiary   (below middle pipe)
+        0.75f,  // quaternary (top pipe)
+        0.25f,  // quinary    (bottom pipe)
+    };
+    // #endregion Starlight
     private const float LineThickness = 0.05f;
 
     private readonly Color _basePipeNetColor = Color.LightGray;

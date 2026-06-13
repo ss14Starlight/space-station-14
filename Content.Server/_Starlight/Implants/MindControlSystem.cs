@@ -5,7 +5,6 @@ using Content.Server.Objectives;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared.Damage.Components;
@@ -13,23 +12,17 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Mindshield.Components;
 
-
 namespace Content.Server._Starlight.Implants;
-
 public sealed class MindControlSystem : EntitySystem
 {
     private const string FollowOrdersObjectiveId = "MindControlledFollowOrders";
 
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly ObjectivesSystem _objectives = default!;
-    //[Dependency] private readonly TargetObjectiveSystem _targetObjectives = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StatusEffectsSystem _status = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
-
-
 
 public override void Initialize()
     {
@@ -117,7 +110,7 @@ public override void Initialize()
 
     }
 
-    private void AssignTraitorObjectives(EntityUid implanted, MindControlImplantComponent component)
+    private void AssignTraitorObjectives(EntityUid implanted, MindControlImplantComponent _)
     {
         if (!_mind.TryGetMind(implanted, out var mindId, out var mind))
             return;

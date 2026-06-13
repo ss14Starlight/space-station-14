@@ -2,7 +2,6 @@ using Content.Server.Destructible;
 using Content.Server.Polymorph.Components;
 using Content.Server.Popups;
 using Content.Shared.Body;
-using Content.Shared.Body.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Gibbing;
@@ -14,6 +13,9 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.ImmovableRod;
 

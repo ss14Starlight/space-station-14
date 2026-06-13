@@ -14,7 +14,6 @@ public sealed partial class RailroadingCrewRetentionTaskSystem : EntitySystem
 {
     [Dependency] private readonly RailroadingSystem _railroading = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly StationCrewStatisticsSystem _stats = default!;
 
     public override void Initialize()
     {

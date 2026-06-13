@@ -27,6 +27,7 @@
   - type: Clothing
     quickEquip: false
     slots:
+    - suitStorage
     - Belt
   - type: Gun
     soundGunshot:
@@ -346,6 +347,7 @@
   - type: Clothing
     quickEquip: false
     slots:
+    - suitStorage
     - Back
   - type: Gun
     fireRate: 0.6
@@ -455,7 +457,7 @@
   name: m1911
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponM1911
-  description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
+  description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
   - type: Sprite
@@ -552,7 +554,7 @@
   name: PDW-9 taser pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband ]
   id: WeaponPDW9
-  description: A compact pulse core in a classic Nanotrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
+  description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
   - type: Sprite
@@ -1051,3 +1053,23 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 100
     autoRechargePauseTime: 5
+
+# Xenoborgs
+- type: entity
+  parent: [WeaponLaserCannon, BaseXenoborgContraband]
+  id: WeaponLaserCannonXenoborgCold
+  name: xenoborg bitterfrost cannon
+  components:
+  - type: BatteryAmmoProvider
+    proto: FreezeRay
+    fireCost: 125
+  - type: BatterySelfRecharger
+    autoRechargeRate: 30
+  # "remove" wield bonus and penalty so borgs can use it
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: Gun
+    fireRate: 2
+    minAngle: 1
+    maxAngle: 2

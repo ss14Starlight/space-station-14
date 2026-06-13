@@ -159,13 +159,13 @@ namespace Content.Client.Examine
             // since there's probably one open already if it's coming in from the server.
             var entity = GetEntity(ev.EntityUid);
 
-            OpenTooltip(player.Value, entity, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget);
+            OpenTooltip(player.Value, entity, out _, out _, ev.CenterAtCursor, ev.OpenAtOldTooltip, ev.KnowTarget); // Starlight-edit
             UpdateTooltipInfo(player.Value, entity, ev.Message, ev.Verbs, getVerbs: false);
         }
 
         public override void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor)
         {
-            OpenTooltip(player, target, centerAtCursor);
+            OpenTooltip(player, target, out _, out _, centerAtCursor); // Starlight-ediit
             UpdateTooltipInfo(player, target, message, getVerbs: getVerbs);
         }
 
@@ -174,7 +174,7 @@ namespace Content.Client.Examine
         ///     not fill it with information. This is done when the server sends examine info/verbs,
         ///     or immediately if it's entirely clientside.
         /// </summary>
-        public void OpenTooltip(EntityUid player, EntityUid target, bool centeredOnCursor=true, bool openAtOldTooltip=true, bool knowTarget = true)
+        public void OpenTooltip(EntityUid player, EntityUid target, out RichTextLabel? nameLabel, out string? name, bool centeredOnCursor=true, bool openAtOldTooltip=true, bool knowTarget = true) // Starlight-edit: need to get the label oughh
         {
             // Close any examine tooltip that might already be opened
             // Before we do that, save its position. We'll prioritize opening any new popups there if
@@ -239,19 +239,24 @@ namespace Content.Client.Examine
 
             if (knowTarget)
             {
-                var itemName = Identity.Name(target, EntityManager, player); // Starlight: Do not blanket escape.
-                var labelMessage = FormattedMessage.FromMarkupPermissive($"[bold]{itemName}[/bold]")
+                name = Identity.Name(target, EntityManager, player); // Starlight: Do not blanket escape.; name edits
+                var labelMessage = FormattedMessage.FromMarkupPermissive($"[bold]{name}[/bold]") // starlight-edit: name edits
                         .SanitizeWhitelist(FormattedMessageSanitizer.ItemLabelTags); // Starlight: Instead, sanitize to permitted tags.
-                var label = new RichTextLabel();
-                label.SetMessage(labelMessage);
-                hBox.AddChild(label);
+                // Starlight begin
+                nameLabel = new RichTextLabel();
+                nameLabel.SetMessage(labelMessage);
+                // Starlight end
             }
             else
             {
-                var label = new RichTextLabel();
-                label.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]???[/bold]"));
-                hBox.AddChild(label);
+                // Starlight begin
+                name = null;
+                nameLabel = new RichTextLabel();
+                nameLabel.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]???[/bold]"));
+                // Starlight end
             }
+
+            hBox.AddChild(nameLabel); // Starlight
 
             panel.Measure(Vector2Helpers.Infinity);
             var size = Vector2.Max(new Vector2(minWidth, 0), panel.DesiredSize);
@@ -406,12 +411,16 @@ namespace Content.Client.Examine
 
             FormattedMessage message;
 
-            OpenTooltip(playerEnt.Value, entity, centeredOnCursor, false);
+            OpenTooltip(playerEnt.Value, entity, out var label, out var name, centeredOnCursor, false); // Starlight-edit
 
             // Always update tooltip info from client first.
             // If we get it wrong, server will correct us later anyway.
             // This will usually be correct (barring server-only components, which generally only adds, not replaces text)
-            message = GetExamineText(entity, playerEnt);
+            message = GetExamineText(entity, playerEnt, out var ev, name); // Starlight-edit
+            // Starlight begin: after a lot of stupid edits, apply name modifiers to name label.
+            if (ev?.Modifiers > 0) // no modifiers? don't override it. Otherwise, do that.
+                label?.Text = $"[bold]{ev.GetModifiedName()}[/bold]";
+            // Starlight end
             UpdateTooltipInfo(playerEnt.Value, entity, message);
 
             if (!IsClientSide(entity))

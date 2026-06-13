@@ -1,30 +1,22 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Numerics;
 using Content.Client._Starlight.UI;
 using Content.Client.GameTicking.Managers;
-using Content.Client.UserInterface.Controls;
 using Content.Shared._Starlight.Computers.Recruitment;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.StatusIcon;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Localization;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Toolshed.TypeParsers;
-using YamlDotNet.Core.Tokens;
 
 namespace Content.Client._Starlight.Computers.Recruitment;
 
 [UsedImplicitly]
 public sealed class RecruitmentComputerBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly ILocalizationManager Loc = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly IPrototypeManager _protos = default!;
 
     private readonly Dictionary<ProtoId<JobPrototype>, List<RichTextLabel>> _jobs = [];
@@ -84,7 +76,7 @@ public sealed class RecruitmentComputerBui(EntityUid owner, Enum uiKey) : BoundU
     => departments.SelectMany(x => new Control[]
     {
         new SLStripe { EdgeColor = x.Color}
-            .Add(new RichTextLabel {Text = $"[color={x.Color.ToHex()}][font size=14][bold]{Loc.GetString(x.Name)}[/bold][/font][/color]", HorizontalExpand = true}),
+            .Add(new RichTextLabel {Text = $"[color={x.Color.ToHex()}][font size=14][bold]{_loc.GetString(x.Name)}[/bold][/font][/color]", HorizontalExpand = true}),
         new SLStripe { EdgeColor = x.Color},
         new SLStripe { EdgeColor = x.Color},
         new SLStripe { EdgeColor = x.Color},
@@ -92,9 +84,9 @@ public sealed class RecruitmentComputerBui(EntityUid owner, Enum uiKey) : BoundU
     }.Concat(InnerTable(x.Roles.Where(x=> x.Id != "StationAi").Select(r => jobs[r.Id]).OrderByDescending(x => x.Weight))));
 
     private IEnumerable<Control> InnerTable(IEnumerable<JobPrototype> jobs)
-    => jobs.Where(x=>x.Hidden == false).SelectMany(x => new Control[5] // 🌟Starlight🌟
+    => jobs.Where(x=>x.Hidden == false).SelectMany(x => new Control[5]
     {
-        new RichTextLabel { Text = $"[font size=10]{Loc.GetString(x.Name)}[/font]", HorizontalExpand = true},
+        new RichTextLabel { Text = $"[font size=10]{_loc.GetString(x.Name)}[/font]", HorizontalExpand = true},
         new TextureRect {
             TextureScale = new Vector2(2.5f, 2.5f),
             Texture = _protos.TryIndex(x.Icon, out var iconPrototype)

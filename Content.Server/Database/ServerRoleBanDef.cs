@@ -1,6 +1,8 @@
+using System.Linq;
 using System.Net;
 using Content.Shared.Database;
 using Robust.Shared.Network;
+using Starlight.NullLink;
 
 namespace Content.Server.Database;
 
@@ -21,6 +23,10 @@ public sealed class ServerRoleBanDef
     public ServerRoleUnbanDef? Unban { get; }
     public string Role { get; }
 
+    public string? ProjectName { get; }
+
+    public string? ServerName { get; }
+
     public ServerRoleBanDef(
         int? id,
         NetUserId? userId,
@@ -34,7 +40,9 @@ public sealed class ServerRoleBanDef
         NoteSeverity severity,
         NetUserId? banningAdmin,
         ServerRoleUnbanDef? unban,
-        string role)
+        string role,
+        string? projectName = null,
+        string? serverName = null)
     {
         if (userId == null && address == null && hwId ==  null)
         {
@@ -61,5 +69,35 @@ public sealed class ServerRoleBanDef
         BanningAdmin = banningAdmin;
         Unban = unban;
         Role = role;
+        ProjectName = projectName;
+        ServerName = serverName;
     }
 }
+
+#region Starlight
+
+public static class RoleBanDefExtensions
+{
+    public static AdminBan ToNullLink(this ServerRoleBanDef serverRoleBan)
+        => new()
+        {
+            Id = serverRoleBan.Id,
+            UserId = serverRoleBan.UserId,
+            Address = serverRoleBan.Address == null ? null : new() { Address = serverRoleBan.Address.Value.address.ToString(), CidrMask = serverRoleBan.Address.Value.cidrMask },
+            HWId = serverRoleBan.HWId == null ? null : new() { Hwid = serverRoleBan.HWId.Hwid.ToArray(), Type = (int)serverRoleBan.HWId.Type },
+            BanTime = serverRoleBan.BanTime,
+            ExpirationTime = serverRoleBan.ExpirationTime,
+            RoundId = serverRoleBan.RoundId,
+            PlayTimeAtNote = serverRoleBan.PlaytimeAtNote,
+            Reason = serverRoleBan.Reason,
+            Severity = serverRoleBan.Severity.ToString(),
+            BanningAdmin = serverRoleBan.BanningAdmin,
+            Unban = serverRoleBan.Unban == null ? [] : new() { serverRoleBan.Unban.ToNullLink() },
+            Role = serverRoleBan.Role,
+            ExemptFlags = null,
+            ProjectName = serverRoleBan.ProjectName,
+            ServerName = serverRoleBan.ServerName
+        };
+}
+
+#endregion

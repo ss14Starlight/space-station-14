@@ -128,3 +128,75 @@
             groups:
               Brute: -3
               Burn: -1.25
+
+- type: reagent
+  id: Amalgam
+  name: reagent-name-amalgam
+  group: Biological
+  desc: reagent-desc-amalgam
+  physicalDesc: reagent-physical-desc-unidentifiable
+  flavor: acid
+  color: "#FBDEDB"
+  boilingPoint: 212.0
+  meltingPoint: 170.0
+  metabolisms:
+    Narcotic:
+      effects:
+      # Main effects
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 1.25
+        sprintSpeedModifier: 1.25
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStimulantsStamina # Keep going!
+        time: 2
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectStunned
+        time: 1.5
+        type: Remove
+      - !type:ModifyKnockdown
+        time: 2
+        type: Remove
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectForcedSleeping
+        time: 2
+        type: Remove
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
+        time: 2
+      # Side effects
+      - !type:Jitter
+      # OD
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Amalgam
+          min: 30 # Starts hurting if you somehow manage to double-dose.
+        damage:
+          types:
+            Poison: 5
+      # Interactions
+      - !type:ModifyStatusEffect
+        conditions:
+        - !type:ReagentCondition
+          reagent: Haloperidol
+          max: 0.01
+        effectProto: StatusEffectDrowsiness
+        time: 10
+        type: Remove
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: ChloralHydrate
+          min: 1
+        reagent: ChloralHydrate
+        amount: -10
+    Medicine:
+      effects:
+      # It's like hyperzine, but without the healing.
+      - !type:ResetNarcolepsy
+      - !type:SatiateHunger
+        factor: 1
+      - !type:SatiateThirst
+        factor: 1
+

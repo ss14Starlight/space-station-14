@@ -1,0 +1,55 @@
+# Wizard Duelists
+- type: entity
+  parent: MindRoleWizard
+  id: MindRoleWizardDuelistBase
+  name: Wizard Duelist Role
+  components:
+  - type: MindRole
+    roleType: SoloAntagonist # Starlight, no Free Agents
+    antagPrototype: Wizard
+    exclusiveAntag: true
+    subtype: role-subtype-wizard
+
+- type: entity
+  parent: MindRoleWizardDuelistBase
+  id: MindRoleWizardDuelistRed
+  name: Red Wizard Duelist Role
+  components:
+  - type: WizardDuelistRole
+
+- type: entity
+  parent: MindRoleWizardDuelistBase
+  id: MindRoleWizardDuelistBlue
+  name: Blue Wizard Duelist Role
+  components:
+  - type: WizardDuelistRole
+
+- type: entity
+  parent: MindRoleWizardDuelistBase
+  id: MindRoleWizardDuelistPurple # Starlight, violet -> Purple
+  name: Purple Wizard Duelist Role # Starlight, violet -> Purple
+  components:
+  - type: WizardDuelistRole # Starlight, violet -> Purple
+
+# Starlight start
+- type: entity
+  parent: MindRoleWizardDuelistBase
+  id: MindRoleWizardDuelistYellow
+  name: Yellow Wizard Duelist Role
+  components:
+  - type: WizardDuelistRole
+
+- type: entity
+  parent: MindRoleWizardDuelistBase
+  id: MindRoleWizardDuelistGreen
+  name: Green Wizard Duelist Role
+  components:
+  - type: WizardDuelistRole
+
+- type: entity
+  parent: MindRoleWizardDuelistBase
+  id: MindRoleWizardDuelistOrange
+  name: Orange Wizard Duelist Role
+  components:
+  - type: WizardDuelistRole
+# Starlight end

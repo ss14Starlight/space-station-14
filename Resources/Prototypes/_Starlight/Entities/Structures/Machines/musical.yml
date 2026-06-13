@@ -1,0 +1,27 @@
+- type: entity
+  id: Gramophone
+  name: gramophone
+  parent: Jukebox
+  description: A machine capable of playing a wide variety of tunes. Enjoyment not guaranteed.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/gramophone.rsi
+    layers:
+    - state: "off"
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Machine
+    board: GramophoneCircuitBoard
+
+- type: entity
+  id: VinylPlayer
+  name: vinyl player
+  parent: Jukebox
+  description: A machine capable of playing a wide variety of tunes. Enjoyment not guaranteed.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/vinylplayer.rsi
+    layers:
+    - state: "off"
+      map: ["enum.JukeboxVisualLayers.Base"]
+  - type: Machine
+    board: VinylPlayerCircuitBoard

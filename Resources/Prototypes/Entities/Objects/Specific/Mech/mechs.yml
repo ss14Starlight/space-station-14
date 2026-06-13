@@ -8,11 +8,6 @@
     equipmentWhitelist:
       tags:
       - CombatMech
-      - PaddyMech
-# 🌟Starlight-start🌟
-  - type: Prying
-    pryPowered: true
-# 🌟Starlight-end🌟
 
 - type: entity
   id: IndustrialMech
@@ -86,6 +81,7 @@
   - type: MobMover
   - type: Mech
 # 🌟Starlight-start🌟
+    maxIntegrity: 170
     batteryWhitelist:
       tags:
       - MechReactor
@@ -93,12 +89,19 @@
   - type: MechAir
   - type: DoAfter
   - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 10
+    # STARLIGHT BEGIN - Borg-like mech repair
+    damageValue: -30 # 15 seconds to repair durand
+    doAfterDelay: 1
+    fuelCost: 3 # 3x more expensive than cyborg repair costing 70u for durand
+    # STARLIGHT END
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
         type: MechBoundUserInterface
+      # STARLIGHT BEGIN - Equipment radial
+      enum.MechEquipmentSelectUiKey.Key:
+        type: MechEquipmentSelectBoundUserInterface
+      # STARLIGHT END
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.75
@@ -356,10 +359,10 @@
 # Vim!!!!!!!
 
 - type: entity
-  parent: BaseMech
+  parent: [ BaseMech, SmallMech ] # Starlight - give Vim equipment
   id: MechVim
   name: Vim
-  description: A miniature exosuit from Nanotrasen, developed to let the irreplaceable station pets live a little longer.
+  description: A miniature exosuit from NanoTrasen, developed to let the irreplaceable station pets live a little longer. # SL
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -388,7 +391,7 @@
     baseState: base
     openState: base-open
     brokenState: base-broken
-    maxEquipmentAmount: 0
+    maxEquipmentAmount: 1 # Starlight - give Vim equipment
     # keep mouse safe
     mechToPilotDamageMultiplier: 0.0 #Starlight - Mechs are safe
     airtight: true

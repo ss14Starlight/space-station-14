@@ -1,0 +1,7 @@
+- type: entity
+  parent: Holopad
+  id: HolopadServiceLawyer
+  suffix: Lawyer
+  components:
+  - type: Label
+    currentLabel: holopad-service-lawyer

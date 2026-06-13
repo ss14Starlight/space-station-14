@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Content.Client._Starlight;
 using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Hands.Systems;
 using Content.Server.Administration.Systems;
@@ -376,6 +374,9 @@ public sealed class SurgeryBui : BoundUserInterface
                             break;
                         case StepInvalidReason.NotEnoughReagent:
                             stepName.AddMarkupOrThrow(" [color=red](Missing Reagent)[/color]");
+                            break;
+                        case StepInvalidReason.MissingLimb:
+                            stepName.AddMarkupOrThrow(" [color=red](Can't attach as limb)[/color]");
                             break;
                     }
                 }

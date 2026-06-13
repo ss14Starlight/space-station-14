@@ -36,7 +36,7 @@
   - type: Sprite
     drawdepth: Items
     noRot: false
-    sprite: Objects/Specific/Mech/Mechs/Basic/clarke.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/clarke.rsi
 
 - type: entity
   id: BaseClarkePartItem
@@ -71,7 +71,7 @@
         whitelist:
           tags:
           - ClarkeTreads
-    sprite: Objects/Specific/Mech/Mechs/Basic/clarke.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/clarke.rsi
   - type: ContainerContainer
     containers:
       part-container: !type:Container
@@ -171,7 +171,7 @@
   - type: Sprite
     drawdepth: Items
     noRot: false
-    sprite: Objects/Specific/Mech/Mechs/Basic/durand.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/durand.rsi
 
 - type: entity
   id: BaseDurandPartItem
@@ -210,7 +210,7 @@
         whitelist:
           tags:
           - DurandRLeg
-    sprite: Objects/Specific/Mech/Mechs/Basic/durand.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/durand.rsi
   - type: ContainerContainer
     containers:
       part-container: !type:Container
@@ -323,7 +323,7 @@
   - type: Sprite
     drawdepth: Items
     noRot: false
-    sprite: Objects/Specific/Mech/Mechs/Basic/gygax.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/gygax.rsi
 
 - type: entity
   id: BaseGygaxPartItem
@@ -362,7 +362,7 @@
         whitelist:
           tags:
           - GygaxRLeg
-    sprite: Objects/Specific/Mech/Mechs/Basic/gygax.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/gygax.rsi
   - type: ContainerContainer
     containers:
       part-container: !type:Container
@@ -590,7 +590,7 @@
   - type: Sprite
     drawdepth: Items
     noRot: false
-    sprite: Objects/Specific/Mech/Mechs/Basic/ripleymkii.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/ripleymkii.rsi
 
 - type: entity
   parent: BaseRipleyMKIIPart
@@ -617,7 +617,7 @@
         whitelist:
           tags:
           - RipleyRLeg
-    sprite: Objects/Specific/Mech/Mechs/Basic/ripleymkii.rsi
+    sprite: _Starlight/Objects/Specific/Mechs/Mechs/ripleymkii.rsi
   - type: ContainerContainer
     containers:
       part-container: !type:Container

@@ -97,7 +97,7 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
         ent.Comp.Injected = true;
 
-        AddComponents(ent, injectedAnom.Components); // Far Horizons
+        ProcessComponents(ent, injectedAnom.Components, true); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
         _jitter.DoJitter(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration), true);
@@ -134,9 +134,10 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
 
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
-        // Starlight
+        // Starlight Start
         if (!TryComp<BodyComponent>(ent, out var body))
             return;
+        // Starlight End
 
         _gibbing.Gib(ent.Owner);
     }
@@ -214,8 +215,12 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         if (!ent.Comp.Injected)
             return;
 
+        // Starlight Start
+        ent.Comp.Injected = false;
+        Dirty(ent);
+        // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
-            RemoveComponents(ent, injectedAnom.Components); // Far Horizons
+            ProcessComponents(ent, injectedAnom.Components, false); // Starlight
 
         _stun.TryUpdateParalyzeDuration(ent, TimeSpan.FromSeconds(ent.Comp.StunDuration));
 
@@ -239,31 +244,41 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             _adminLog.Add(LogType.Anomaly, LogImpact.Medium,$"{ToPrettyString(ent)} is no longer a host for the anomaly.");
         }
 
-        ent.Comp.Injected = false;
-        RemCompDeferred<AnomalyComponent>(ent);
+        // ent.Comp.Injected = false; // Starlight Edit: Moved
+        // RemCompDeferred<AnomalyComponent>(ent); // Starlight Edit: Removed
     }
 
-    // FH - Start
-    private void AddComponents(EntityUid target, ComponentRegistry components)
+    #region Starlight
+    private void ProcessComponents(
+        EntityUid target,
+        ComponentRegistry components,
+        bool add)
     {
         foreach (var comp in components)
         {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
-                _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
-            else
+            var componentType = comp.Value.Component.GetType();
+            if (add)
+            {
                 EntityManager.AddComponent(target, comp.Value);
-        }
-    }
+                if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
+                    TryComp<ActionGrantComponent>(target, out var oldComp))
+                {
+                    _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
+                }
 
-    private void RemoveComponents(EntityUid target, ComponentRegistry components)
-    {
-        foreach (var comp in components)
-        {
-            if (comp.Key == "ActionGrant" && comp.Value.Component is ActionGrantComponent actionGrantComp && TryComp<ActionGrantComponent>(target, out var oldComp))
-                _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
-            else
-                EntityManager.RemoveComponent(target, comp.Value.Component);
+                continue;
+            }
+
+            if (comp.Value.Component is ActionGrantComponent removeActionGrantComp &&
+                TryComp<ActionGrantComponent>(target, out var removeOldComp))
+            {
+                _actionGrant.RemoveActions((target, removeOldComp), removeActionGrantComp.Actions);
+                continue;
+            }
+
+            if (HasComp(target, componentType))
+                EntityManager.RemoveComponent(target, componentType);
         }
     }
-    // FH - End
+    #endregion
 }

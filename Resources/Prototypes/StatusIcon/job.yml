@@ -287,8 +287,8 @@
   parent: JobIcon
   id: JobIconLawyer
   icon:
-    sprite: *icon-rsi
-    state: Lawyer
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi # Starlight
+    state: LawyerSL # Starlight
   jobName: job-name-lawyer
 
 - type: jobIcon
@@ -553,9 +553,9 @@
   parent: JobIcon
   id: JobIconNanoTrasenRepresentative
   icon:
-    sprite: *icon-rsi
-    state: Nanotrasen
-  jobName: job-name-centcommoff
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi #Starlight
+    state: NanoTrasenRepresentative # Starlight
+  jobName: job-name-ntrep # Starlight, how did this happen???
 
 - type: jobIcon
   parent: JobIcon

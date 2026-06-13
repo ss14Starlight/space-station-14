@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Server.Actions;
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Server.Popups;
 using Content.Shared.Maps;

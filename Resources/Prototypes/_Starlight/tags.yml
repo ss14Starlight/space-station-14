@@ -51,6 +51,9 @@
   id: BorgModuleCentcomm
 
 - type: Tag
+  id: BorgModuleMedTak
+
+- type: Tag
   id: BorgModuleMining
 
 - type: Tag
@@ -58,6 +61,12 @@
 
 - type: Tag
   id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleSecurityStation
+
+- type: Tag
+  id: BorgContrabandBag
 
 - type: Tag
   id: BorgModuleSupply
@@ -101,6 +110,12 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
+
 - type: Tag
   id: CentcommVibroblade
 
@@ -133,6 +148,9 @@
 
 - type: Tag
   id: ClarkeTreads
+
+- type: Tag
+  id: ChonoLoke
 
 - type: Tag
   id: ClownKudzu
@@ -207,7 +225,13 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
+
+- type: Tag
+  id: Elf
 
 - type: Tag
   id: EmergencyWelder
@@ -229,6 +253,12 @@
 
 - type: Tag
   id: FormerSoldierTraitBackground
+
+- type: Tag
+  id: FringeTraitBackground
+
+- type: Tag
+  id: FrontierTraitBackground
 
 - type: Tag
   id: FlatpackBlacklist
@@ -279,6 +309,9 @@
   id: HiltWood
 
 - type: Tag
+  id: HuntedTraitBackground
+
+- type: Tag
   id: ImprovisedAmmoBox
 
 - type: Tag
@@ -326,6 +359,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -425,6 +461,18 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModuleBlacklistXenoborgEngiWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgHeavyWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgScoutWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgStealthWeapon
+
+- type: Tag
   id: Nexus
 
 - type: Tag
@@ -440,7 +488,7 @@
   id: OvenMachineBoard
 
 - type: Tag
-  id: PaddyMech
+  id: ParadoxCloneTraitBackground
 
 - type: Tag
   id: ParaKnife
@@ -470,6 +518,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -490,6 +544,9 @@
     # Tag for reflective vest, used for set bonus detection by ReflectiveSetBonusSystem
 
 - type: Tag
+  id: RollerBed
+
+- type: Tag
   id: Sausage # MetamorphRecipe: FoodSausageBun
 
 - type: Tag
@@ -500,6 +557,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore
@@ -581,6 +641,9 @@
 
 - type: Tag
   id: UnDissolvable
+
+- type: Tag
+  id: USSPTraitBackground
 
 - type: Tag
   id: Vial

@@ -20,13 +20,14 @@
   components:
   - type: Inventory
     speciesId: arachnid
+    templateId: arachnid
 
 - type: entity
   id: BaseInventoryAvali
   abstract: true
   components:
   - type: Inventory
-    speciesId: Avali
+    speciesId: avali
     displacements:
       jumpsuit:
         sizeMaps:
@@ -183,13 +184,6 @@
           32:
             sprite: _Starlight/Mobs/Species/Felionoid/displacement.rsi
             state: shoes
-
-- type: entity
-  id: BaseInventoryLagomorph
-  abstract: true
-  components:
-  - type: Inventory
-    speciesId: lagomorph
 
 - type: entity
   id: BaseInventoryMoth
@@ -558,3 +552,21 @@
           32:
             sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
             state: shoes
+
+- type: entity
+  id: BaseInventoryLagomorph
+  abstract: true
+  components:
+  - type: Inventory
+    speciesId: lagomorph
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
+            state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Lagomorph/displacement.rsi
+            state: jumpsuit

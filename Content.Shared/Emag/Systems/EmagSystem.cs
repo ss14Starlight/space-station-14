@@ -10,6 +10,7 @@ using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Serialization;
+using PreventEorgComponent = Content.Shared._Starlight.EndOfRoundGriefing.Components.PreventEorgComponent;
 
 namespace Content.Shared.Emag.Systems;
 

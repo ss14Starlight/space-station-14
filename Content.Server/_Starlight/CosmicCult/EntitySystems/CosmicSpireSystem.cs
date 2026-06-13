@@ -79,14 +79,12 @@ public sealed class CosmicSpireSystem : EntitySystem
     }
 
     private bool Drain(float timeDelta, Entity<CosmicSpireComponent> ent, GasMixture? tile)
-    {
-        return _scrub.Scrub(timeDelta,
-            ent.Comp.DrainRate * _atmos.PumpSpeedup(),
-            ScrubberPumpDirection.Scrubbing,
-            ent.Comp.DrainGases,
-            tile,
-            ent.Comp.Storage);
-    }
+    => _scrub.Scrub(timeDelta,
+        ent.Comp.DrainRate * _atmos.PumpSpeedup(),
+        ScrubberPumpDirection.Scrubbing,
+        ent.Comp.DrainGases,
+        tile,
+        ent.Comp.Storage);
 
     private void OnSpireAnalyzed(Entity<CosmicSpireComponent> ent, ref GasAnalyzerScanEvent args)
     {
@@ -95,7 +93,5 @@ public sealed class CosmicSpireSystem : EntitySystem
     }
 
     private void UpdateSpireAppearance(EntityUid uid, SpireStatus status)
-    {
-        _appearance.SetData(uid, SpireVisuals.Status, status);
-    }
+        => _appearance.SetData(uid, SpireVisuals.Status, status);
 }

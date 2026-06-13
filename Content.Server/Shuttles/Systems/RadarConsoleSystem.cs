@@ -20,10 +20,23 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
 
-    // _Starlight - periodic blip/laser update
+    #region Starlight
+    // Periodic blip/laser update
     // How often (in seconds) to push fresh blip state to all open radar consoles.
     private const float BlipUpdateInterval = 0.25f;
-    private float _blipUpdateTimer = 0f;
+    private float _blipUpdateTimer;
+
+    /// <summary>
+    /// How often to transmit UI updates when a player is actively looking at a console.
+    /// </summary>
+    private static readonly TimeSpan _activeUpdateInterval = TimeSpan.FromMilliseconds(250);
+
+    /// <summary>
+    /// How often to transmit UI updates when nobody is actively looking at a console. This makes it so that the
+    /// consoles show a slightly outdated state initially when opened, rather than just a blank screen.
+    /// </summary>
+    private static readonly TimeSpan _idleUpdateInterval = TimeSpan.FromSeconds(10);
+    #endregion
 
     public override void Initialize()
     {
@@ -35,12 +48,12 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     {
         base.Update(frameTime);
         _blipUpdateTimer += frameTime;
-        if (_blipUpdateTimer < BlipUpdateInterval)
-            return;
-        _blipUpdateTimer = 0f;
-
-        // _Starlight - prune expired Apollo laser traces before syncing state
-        _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        if (_blipUpdateTimer >= BlipUpdateInterval)
+        {
+            _blipUpdateTimer = 0f;
+            // _Starlight - prune expired Apollo laser traces before syncing state
+            _laserSystem.PruneExpiredTraces((float)_timing.CurTime.TotalSeconds);
+        }
 
         var query = AllEntityQuery<RadarConsoleComponent>();
         while (query.MoveNext(out var uid, out var comp))
@@ -67,18 +80,24 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             angle = Angle.Zero;
         }
 
-        if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key))
+        // Starlight BEGIN
+        var shouldIdleUpdate = component.LastInterfaceUpdateTime + _idleUpdateInterval < _timing.CurTime;
+        var shouldActiveUpdate = component.LastInterfaceUpdateTime + _activeUpdateInterval < _timing.CurTime &&
+                                 _uiSystem.IsUiOpen(uid, RadarConsoleUiKey.Key);
+        if (_uiSystem.HasUi(uid, RadarConsoleUiKey.Key) && (shouldIdleUpdate || shouldActiveUpdate))
         {
+            component.LastInterfaceUpdateTime = _timing.CurTime;
+            // Starlight END
             NavInterfaceState state;
-            var docks = _console.GetAllDocks();
+            var docks = _console.GetDockingPortStates(); // Starlight
 
             if (coordinates != null && angle != null)
             {
-                state = _console.GetNavState(uid, docks, coordinates.Value, angle.Value);
+                state = _console.GetNavState(uid, coordinates.Value, angle.Value); // Starlight: -docks
             }
             else
             {
-                state = _console.GetNavState(uid, docks);
+                state = _console.GetNavState(uid); // Starlight: -docks
             }
 
             state.RotateWithEntity = !component.FollowEntity;
@@ -120,7 +139,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
                 }
             }
 
-            _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
+            _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state, docks)); // Starlight: +docks
         }
     }
 }

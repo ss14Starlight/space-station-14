@@ -30,19 +30,27 @@ public sealed class PlayTimeAddOverallCommand : IConsoleCommand
             return;
         }
 
-        if (!_playerManager.TryGetSessionByUsername(args[0], out var player))
+        // Starlight edit Start
+        var overall = await _playTimeTracking.TryAddTimeToOverallPlaytimeByUserName(
+            args[0],
+            TimeSpan.FromMinutes(minutes));
+
+        if (overall == null)
+        // Starlight edit End
         {
-            shell.WriteError(Loc.GetString("parse-session-fail", ("username", args[0])));
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", args[0]))); // Starlight Edit: Session -> Record
             return;
         }
 
-        _playTimeTracking.AddTimeToOverallPlaytime(player, TimeSpan.FromMinutes(minutes));
-        var overall = _playTimeTracking.GetOverallPlaytime(player);
+        // Starlight edit Start: Removed
+        // _playTimeTracking.AddTimeToOverallPlaytime(player, TimeSpan.FromMinutes(minutes));
+        // var overall = _playTimeTracking.GetOverallPlaytime(player);
+        // Starlight edit End
 
         shell.WriteLine(Loc.GetString(
             "cmd-playtime_addoverall-succeed",
             ("username", args[0]),
-            ("time", overall)));
+            ("time", overall.Value))); // Starlight Edit: Added .Value
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -77,11 +85,13 @@ public sealed class PlayTimeAddRoleCommand : IConsoleCommand
         }
 
         var userName = args[0];
-        if (!_playerManager.TryGetSessionByUsername(userName, out var player))
-        {
-            shell.WriteError(Loc.GetString("parse-session-fail", ("username", userName)));
-            return;
-        }
+        // Starlight edit Start: Removed
+        // if (!_playerManager.TryGetSessionByUsername(userName, out var player))
+        // {
+        //     shell.WriteError(Loc.GetString("parse-session-fail", ("username", userName)));
+        //     return;
+        // }
+        // Starlight edit End
 
         var role = args[1];
 
@@ -91,13 +101,27 @@ public sealed class PlayTimeAddRoleCommand : IConsoleCommand
             shell.WriteError(Loc.GetString("parse-minutes-fail", ("minutes", minutes)));
             return;
         }
+        // Starlight edit Start
+        var time = await _playTimeTracking.TryAddTimeToTrackerByUserName(
+            userName,
+            role,
+            TimeSpan.FromMinutes(minutes));
 
-        _playTimeTracking.AddTimeToTracker(player, role, TimeSpan.FromMinutes(minutes));
-        var time = _playTimeTracking.GetPlayTimeForTracker(player, role);
+        if (time == null)
+        {
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", userName)));
+            return;
+        }
+        // Starlight edit End
+
+        // Starlight edit Start: Removed
+        // _playTimeTracking.AddTimeToTracker(player, role, TimeSpan.FromMinutes(minutes));
+        // var time = _playTimeTracking.GetPlayTimeForTracker(player, role);
+        // Starlight edit End
         shell.WriteLine(Loc.GetString("cmd-playtime_addrole-succeed",
             ("username", userName),
             ("role", role),
-            ("time", time)));
+            ("time", time.Value))); // Starlight Edit: Added .Value
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -142,17 +166,23 @@ public sealed class PlayTimeGetOverallCommand : IConsoleCommand
         }
 
         var userName = args[0];
-        if (!_playerManager.TryGetSessionByUsername(userName, out var player))
+        // Starlight edit Start
+        var value = await _playTimeTracking.TryGetPlayTimeForTrackerByUserName(
+            userName,
+            PlayTimeTrackingShared.TrackerOverall);
+
+        if (value == null)
+        // Starlight edit End
         {
-            shell.WriteError(Loc.GetString("parse-session-fail", ("username", userName)));
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", userName))); // Starlight Edit: Session -> Record
             return;
         }
 
-        var value = _playTimeTracking.GetOverallPlaytime(player);
+        // var value = _playTimeTracking.GetOverallPlaytime(player); // Starlight Edit: Removed
         shell.WriteLine(Loc.GetString(
             "cmd-playtime_getoverall-success",
             ("username", userName),
-            ("time", value)));
+            ("time", value.Value))); // Starlight Edit: Added .Value
     }
 
     public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
@@ -187,15 +217,19 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
         }
 
         var userName = args[0];
-        if (!_playerManager.TryGetSessionByUsername(userName, out var session))
+        // Starlight edit Start
+        var timers = await _playTimeTracking.TryGetPlayTimesByUserName(userName);
+
+        if (timers == null)
+        // Starlight edit End
         {
-            shell.WriteError(Loc.GetString("parse-session-fail", ("username", userName)));
+            shell.WriteError(Loc.GetString("parse-player-record-fail", ("username", userName))); // Starlight Edit: Session -> Record
             return;
         }
 
         if (args.Length == 1)
         {
-            var timers = _playTimeTracking.GetOriginalTrackerTimes(session);
+            // var timers = _playTimeTracking.GetOriginalTrackerTimes(session); // Starlight Edit: Removed
 
             if (timers.Count == 0)
             {
@@ -213,13 +247,13 @@ public sealed class PlayTimeGetRoleCommand : IConsoleCommand
         {
             if (args[1] == "Overall")
             {
-                var timer = _playTimeTracking.GetOverallPlaytime(session);
+                var timer = timers.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall); // Starlight Edit: _playTimeTracking -> GetValueOrDefault
                 shell.WriteLine(Loc.GetString("cmd-playtime_getrole-overall", ("time", timer)));
                 return;
             }
 
-            var time = _playTimeTracking.GetPlayTimeForTracker(session, args[1]);
-            shell.WriteLine(Loc.GetString("cmd-playtime_getrole-succeed", ("username", session.Name),
+            var time = timers.GetValueOrDefault(args[1]); // Starlight Edit: _playTimeTracking -> GetValueOrDefault
+            shell.WriteLine(Loc.GetString("cmd-playtime_getrole-succeed", ("username", userName),  // Starlight Edit: session.Name -> userName
                 ("time", time)));
         }
     }

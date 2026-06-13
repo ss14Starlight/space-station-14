@@ -23,7 +23,7 @@ public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
     }
 
     private void OnFailed(Entity<RailroadSurviveWatcherComponent> ent, ref RailroadingCardFailedEvent args)
-        => RemComp<RailroadAvoidHandcuffsWatcherComponent>(args.Subject.Owner);
+        => RemComp<RailroadSurviveWatcherComponent>(args.Subject.Owner);
 
     private void OnCompleted(Entity<RailroadSurviveTaskComponent> ent, ref RailroadingCardCompletedEvent args)
         => RemComp<RailroadSurviveWatcherComponent>(args.Subject.Owner);
@@ -37,7 +37,7 @@ public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
 
         if (args.NewMobState == MobState.Dead)
         {
-            task.IsCompleted = false;
+            task.IsFailed = true;
             _railroading.CardFailed((ent, railroadable));
         }
     }
@@ -47,14 +47,14 @@ public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
     {
         Title = Loc.GetString(ent.Comp.Message),
         Icon = ent.Comp.Icon,
-        Progress = ent.Comp.IsCompleted ? 1.0f : 0.0f,
+        Progress = ent.Comp.IsFailed? 0.0f : 1.0f,
     });
 
     private void OnTaskCompletionQuery(Entity<RailroadSurviveTaskComponent> ent, ref RailroadingCardCompletionQueryEvent args)
     {
         if (args.IsCompleted == false) return;
 
-        args.IsCompleted = ent.Comp.IsCompleted;
+        args.IsCompleted = !ent.Comp.IsFailed;
     }
 
     private void OnTaskPicked(Entity<RailroadSurviveTaskComponent> ent, ref RailroadingCardChosenEvent args)

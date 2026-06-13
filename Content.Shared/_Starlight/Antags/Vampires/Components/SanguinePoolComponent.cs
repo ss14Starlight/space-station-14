@@ -1,4 +1,6 @@
 using Robust.Shared.Audio;
+using Content.Shared.Chemistry.Reagent;
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -24,6 +26,12 @@ public sealed partial class SanguinePoolComponent : Component
 
     [DataField]
     public SoundSpecifier ExitSound = new SoundPathSpecifier("/Audio/_Starlight/Effects/vampire/exit_blood.ogg");
+
+    [DataField]
+    public ProtoId<ReagentPrototype> TrailReagent = "Blood";
+
+    [DataField]
+    public FixedPoint2 TrailReagentQuantity = FixedPoint2.New(30);
 
     [ViewVariables]
     public (EntityUid Grid, Vector2i Tile)? LastTrail;

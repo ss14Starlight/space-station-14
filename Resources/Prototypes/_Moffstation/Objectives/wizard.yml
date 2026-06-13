@@ -1,0 +1,33 @@
+# Wizard duelists
+- type: entity
+  parent: [ BaseWizardObjective , BaseFreeObjective ]
+  id: WizardDuelistMeetObjective
+  name: Meet your competition
+  description: Set the terms of engagement for your duel.
+  components:
+  - type: Objective
+    icon:
+      sprite: Clothing/Head/Hats/wizardhat.rsi
+      state: icon
+
+- type: entity
+  parent: [ BaseWizardObjective , BaseFreeObjective ]
+  id: WizardDuelistRelocateObjective
+  name: Teleport to the battleground
+  description: Use your scroll to teleport to a nearby station. No fighting on Space Wizards Federation grounds!
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: spell_default
+
+- type: entity
+  parent: [ BaseWizardObjective , BaseFreeObjective ]
+  id: WizardDuelistDemonstrateObjective
+  name: Display your proficiency
+  description: Show them why you're the master of the arcane!
+  components:
+  - type: Objective
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: fireball

@@ -180,7 +180,7 @@
 - type: entity
   id: SpawnPointNCT
   parent: SpawnPointJobBase
-  name: Nanotrasen Career Trainer
+  name: NanoTrasen Career Trainer
   components:
   - type: SpawnPoint
     job_id: NanotrasenCareerTrainer

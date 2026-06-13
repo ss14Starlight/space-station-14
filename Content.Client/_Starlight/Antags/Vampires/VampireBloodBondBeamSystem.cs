@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.Antags.Vampires;
@@ -9,20 +10,21 @@ namespace Content.Client._Starlight.Antags.Vampires;
 /// </summary>
 public sealed class VampireBloodBondBeamSystem : EntitySystem
 {
-    private static readonly Angle _beamAngleOffset = Angle.FromDegrees(180);
-    private const bool SpriteIsVertical = true;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+
+    private EntityQuery<VampireBeamVisualComponent> _beamVisualQuery;
 
     /// <summary>
     /// Tracks client-side beam visual entities
     /// Key = (source, target) pair, Value = visual beam entity
     /// </summary>
-    private readonly Dictionary<(EntityUid, EntityUid), EntityUid> _activeBeamVisuals = new();
+    private readonly Dictionary<(EntityUid, EntityUid), EntityUid> _activeBeamVisuals = [];
 
     public override void Initialize()
     {
         base.Initialize();
+        _beamVisualQuery = GetEntityQuery<VampireBeamVisualComponent>();
         SubscribeNetworkEvent<VampireBloodBondBeamEvent>(OnBloodBondBeamEvent);
     }
 
@@ -49,6 +51,68 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
         {
             _activeBeamVisuals.Remove(key);
         }
+
+        UpdatePredictedBloodBondBeams();
+    }
+
+    private void UpdatePredictedBloodBondBeams()
+    {
+        var dantalions = EntityQueryEnumerator<DantalionComponent>();
+        while (dantalions.MoveNext(out var source, out var dantalion))
+        {
+            if (!dantalion.BloodBondActive)
+            {
+                RemoveSourceBeams(source);
+                continue;
+            }
+
+            var linkedThralls = dantalion.BloodBondLinkedThralls;
+            RemoveUnlinkedSourceBeams(source, linkedThralls);
+
+            foreach (var target in linkedThralls)
+            {
+                if (!Exists(target))
+                    continue;
+
+                CreateBeamVisual(source, target, dantalion.BloodBondBeamPrototype);
+            }
+        }
+    }
+
+    private void RemoveSourceBeams(EntityUid source)
+    {
+        var toRemove = new List<(EntityUid, EntityUid)>();
+        foreach (var ((beamSource, target), beamEntity) in _activeBeamVisuals)
+        {
+            if (beamSource != source)
+                continue;
+
+            if (Exists(beamEntity))
+                QueueDel(beamEntity);
+
+            toRemove.Add((beamSource, target));
+        }
+
+        foreach (var key in toRemove)
+            _activeBeamVisuals.Remove(key);
+    }
+
+    private void RemoveUnlinkedSourceBeams(EntityUid source, List<EntityUid> linkedThralls)
+    {
+        var toRemove = new List<(EntityUid, EntityUid)>();
+        foreach (var ((beamSource, target), beamEntity) in _activeBeamVisuals)
+        {
+            if (beamSource != source || linkedThralls.Contains(target))
+                continue;
+
+            if (Exists(beamEntity))
+                QueueDel(beamEntity);
+
+            toRemove.Add((beamSource, target));
+        }
+
+        foreach (var key in toRemove)
+            _activeBeamVisuals.Remove(key);
     }
 
     private void OnBloodBondBeamEvent(VampireBloodBondBeamEvent ev)
@@ -63,7 +127,7 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
 
         if (ev.Create)
         {
-            CreateBeamVisual(source, target);
+            CreateBeamVisual(source, target, ev.VisualPrototype);
         }
         else
         {
@@ -75,14 +139,19 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
         }
     }
 
-    private void CreateBeamVisual(EntityUid source, EntityUid target)
+    private void CreateBeamVisual(EntityUid source, EntityUid target, string visualPrototype)
     {
         var key = (source, target);
 
         if (_activeBeamVisuals.TryGetValue(key, out var existingBeam))
-            QueueDel(existingBeam);
+        {
+            if (Exists(existingBeam))
+                return;
 
-        var beam = Spawn("VampireBloodBondBeamVisual", Transform(source).Coordinates);
+            QueueDel(existingBeam);
+        }
+
+        var beam = Spawn(visualPrototype, Transform(source).Coordinates);
 
         _activeBeamVisuals[key] = beam;
 
@@ -91,7 +160,8 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
 
     private void UpdateBeamVisual(EntityUid beam, EntityUid source, EntityUid target)
     {
-        if (!TryComp<SpriteComponent>(beam, out var sprite))
+        if (!TryComp<SpriteComponent>(beam, out var sprite)
+            || !_beamVisualQuery.TryComp(beam, out var beamVisual))
             return;
 
         var sourcePos = _transform.GetWorldPosition(source);
@@ -100,10 +170,10 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
         var direction = targetPos - sourcePos;
         var distance = direction.Length();
 
-        if (distance < 0.1f)
+        if (distance < beamVisual.MinDistance)
             return;
 
-        var worldAngle = direction.ToWorldAngle() + _beamAngleOffset;
+        var worldAngle = direction.ToWorldAngle() + beamVisual.AngleOffset;
 
         var midpoint = sourcePos + (direction * 0.5f);
         _transform.SetWorldPosition(beam, midpoint);
@@ -111,9 +181,10 @@ public sealed class VampireBloodBondBeamSystem : EntitySystem
         _transform.SetWorldRotation(beam, worldAngle);
         _sprite.SetRotation((beam, sprite), Angle.Zero);
 
-        var length = MathF.Max(0.05f, distance);
-        var thickness = 0.9f;
-        var scale = SpriteIsVertical ? new Vector2(thickness, length) : new Vector2(length, thickness);
+        var length = MathF.Max(beamVisual.MinLength, distance);
+        var scale = beamVisual.SpriteIsVertical
+            ? new Vector2(beamVisual.Thickness, length)
+            : new Vector2(length, beamVisual.Thickness);
         _sprite.SetScale((beam, sprite), scale);
         _sprite.SetOffset((beam, sprite), Vector2.Zero);
     }

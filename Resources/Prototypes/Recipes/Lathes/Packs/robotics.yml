@@ -12,6 +12,7 @@
   - MechThruster
   - AiInterfaceCube
   - MechReactorStandard
+  - EmptyOilPack
   # Starlight-end
 
 - type: latheRecipePack

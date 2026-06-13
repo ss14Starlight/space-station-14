@@ -71,4 +71,19 @@ public sealed partial class ToggleableClothingComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public string? VerbText;
+
+    #region Starlight
+
+    /// <summary>
+    /// If true, changes power cell draw source from the clothing to component owner entity.
+    /// </summary>
+    [DataField]
+    public bool RedirectDraw = false;
+
+    /// <summary>
+    /// If true, lights will be retoggled after clothing is toggled. This is needed for hardsuit helmets to properly toggle their lights on and off.
+    /// </summary>
+    public bool IsLightToggled = false;
+
+    #endregion
 }

@@ -2,7 +2,6 @@
 using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Cuffs;
-using Content.Shared.Mobs;
 using Content.Shared.Objectives;
 
 namespace Content.Server._Starlight.Railroading;
@@ -36,7 +35,7 @@ public sealed partial class RailroadingAvoidHandcuffsTaskSystem : EntitySystem
             || !TryComp<RailroadAvoidHandcuffsTaskComponent>(railroadable.ActiveCard, out var task))
             return;
 
-        task.IsCompleted = false;
+        task.IsFailed = true;
         _railroading.CardFailed((ent, railroadable));
     }
 
@@ -45,14 +44,14 @@ public sealed partial class RailroadingAvoidHandcuffsTaskSystem : EntitySystem
     {
         Title = Loc.GetString(ent.Comp.Message),
         Icon = ent.Comp.Icon,
-        Progress = ent.Comp.IsCompleted ? 1.0f : 0.0f,
+        Progress = ent.Comp.IsFailed ? 0.0f : 1.0f,
     });
 
     private void OnTaskCompletionQuery(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref RailroadingCardCompletionQueryEvent args)
     {
         if (args.IsCompleted == false) return;
 
-        args.IsCompleted = ent.Comp.IsCompleted;
+        args.IsCompleted = !ent.Comp.IsFailed;
     }
 
     private void OnTaskPicked(Entity<RailroadAvoidHandcuffsTaskComponent> ent, ref RailroadingCardChosenEvent args)

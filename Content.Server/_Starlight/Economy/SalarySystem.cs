@@ -2,41 +2,20 @@
 using Content.Server._NullLink.PlayerData;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
-using Content.Server.Hands.Systems;
 using Content.Server.Mind;
 using Content.Server.Roles;
-using Content.Server.Stack;
-using Content.Server.Starlight;
-using Content.Server.Station.Components;
 using Content.Shared._NullLink;
 using Content.Shared.Chat;
-using Content.Shared.Damage;
-using Content.Shared.Interaction;
-using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Pinpointer;
-using Content.Shared.Roles;
-using Content.Shared.Stacks;
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.UserInterface;
-using NAudio.CoreAudioApi;
-using Robust.Server.GameObjects;
-using Robust.Server.Player;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using Content.Server.Starlight.SecureTerminal;
 
 namespace Content.Shared.Starlight.Economy;
 public sealed partial class SalarySystem : SharedSalarySystem
@@ -128,7 +107,18 @@ public sealed partial class SalarySystem : SharedSalarySystem
             if(bonus.Roles.Any(playerData.Roles.Contains))
                 bonusMultiplier += bonus.Multiplayer;
 
-        return (int)Math.Ceiling(baseSalary * bonusMultiplier);
+        var stationPenalty = GetStationSalaryPenalty();
+        return (int)Math.Ceiling(baseSalary * bonusMultiplier * (1f - stationPenalty));
+    }
+
+    // TODO: Add a way to support multistation? or we do this global? (maybe global as they might be on same map and so benefit)
+    private float GetStationSalaryPenalty()
+    {
+        var maxPenalty = 0f;
+        var query = _entityManager.EntityQueryEnumerator<SecureCommandTerminalStationComponent>();
+        while (query.MoveNext(out _, out var comp))
+            maxPenalty = Math.Max(maxPenalty, comp.SalaryPenalty);
+        return maxPenalty;
     }
 
     internal void Donate(ICommonSession session, int amount)

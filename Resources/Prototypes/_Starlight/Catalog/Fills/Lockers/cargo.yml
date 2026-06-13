@@ -12,6 +12,8 @@
   table: !type:AllSelector
     children:
     - id: OxygenTankFilled
+    - id: NitrogenTankFilled
+    - id: CoolingUnit
     - id: ClothingShoesBootsMag
     - id: ClothingOuterHardsuitSpatioLead
     - id: ClothingMaskGasExplorer

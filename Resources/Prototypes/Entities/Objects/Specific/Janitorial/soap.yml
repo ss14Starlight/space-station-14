@@ -84,7 +84,7 @@
 - type: entity
   parent: BaseSoap
   id: SoapNT
-  description: A Nanotrasen brand bar of soap. Smells of plasma.
+  description: A NanoTrasen brand bar of soap. Smells of plasma. # SL
   components:
   - type: Sprite
     layers:

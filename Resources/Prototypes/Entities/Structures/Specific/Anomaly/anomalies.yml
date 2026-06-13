@@ -411,13 +411,13 @@
         minAmount: 15
         maxAmount: 20
         maxRange: 7.5
-      floor: FloorAsteroidTile
+      floor: FloorAstroAsteroidTile #Starlight
     - settings:
         spawnOnSuperCritical: true
         minAmount: 30
         maxAmount: 50
         maxRange: 12
-      floor: FloorAsteroidTile
+      floor: FloorAstroAsteroidTile #Starlight
 
 - type: entity
   id: AnomalyRockUranium

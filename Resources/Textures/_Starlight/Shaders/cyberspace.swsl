@@ -1,0 +1,137 @@
+// Starlight - cyberspace.swsl
+// Parameterised pin-grid shader for AI navmap.
+// Used for floor, wall, and door layers with different density/height/color.
+
+light_mode unshaded;
+
+uniform highp float spacing;      // distance between dot centers
+uniform highp float dotRad;       // tip dot radius
+uniform highp float maxHeight;    // max pin height
+uniform highp float baseStretch;  // minimum stretch (0 = dots at rest, 1 = always full lines)
+uniform highp vec3 colorLow;      // color at stretch = 0
+uniform highp vec3 colorHigh;     // color at stretch = 1
+
+varying highp vec2 gridPos;
+
+void vertex() { gridPos = aPos; }
+
+highp float ripple(highp vec2 pos, highp vec2 origin, highp float time, highp float speed, highp float duration, highp float width) {
+    highp float radius = time * speed;
+    // Tile the origin every 60 units so ripples are visible everywhere on the station
+    highp vec2 delta = mod(pos - origin + 30.0, 60.0) - 30.0;
+    highp float dist = length(delta);
+    highp float wobble = sin(dot(delta, vec2(5.0, 3.0)) + time * 2.0) * 0.6
+                       + sin(dot(delta, vec2(3.0, -2.0)) - time * 1.3) * 0.4;
+    dist += wobble;
+    highp float fromFront = abs(dist - radius);
+    highp float wave = max(0.0, 1.0 - fromFront / width);
+    wave *= wave;
+    highp float fade = smoothstep(0.0, 0.5, time) * (1.0 - smoothstep(duration * 0.6, duration, time));
+    return wave * fade;
+}
+
+// Evaluate pin for a given cell. Returns vec4(d, tip, stretch, grad).
+highp vec4 evalPin(highp vec2 c, highp vec2 gp, highp float cs, highp float sn, highp float t) {
+    highp vec2 cc = (c + 0.5) * spacing;
+    highp vec2 wc = vec2(cc.x*cs - cc.y*sn, cc.x*sn + cc.y*cs);
+
+    highp float s = 0.0;
+    // Strong ripples — fixed offsets spread across the tiling cell (60×60),
+    // waves arrive from different directions. Small drift on top.
+    s += ripple(wc, vec2(  0.0,   0.0) + vec2(sin(t*0.1)*3.0, cos(t*0.08)*3.0), mod(t,      7.0), 3.0, 6.0, 4.0);
+    s += ripple(wc, vec2( 28.0,   5.0) + vec2(cos(t*0.07)*2.0, sin(t*0.12)*2.0), mod(t-2.5, 8.0), 3.5, 7.0, 3.5);
+    s += ripple(wc, vec2( -5.0,  25.0) + vec2(sin(t*0.09)*2.5, cos(t*0.06)*3.0), mod(t-5.0, 9.0), 2.5, 8.0, 4.5);
+    s += ripple(wc, vec2(-22.0, -15.0) + vec2(cos(t*0.12)*2.0, sin(t*0.1)*2.0), mod(t-1.0, 7.5), 3.0, 6.5, 3.0);
+    s += ripple(wc, vec2( 15.0, -20.0) + vec2(sin(t*0.06)*3.0, cos(t*0.11)*2.5), mod(t-4.0, 8.5), 2.8, 7.5, 5.0);
+    // Weak ripples — same spread, faster repeat, fill gaps
+    s += ripple(wc, vec2( 10.0,  15.0) + vec2(cos(t*0.15)*2.0, sin(t*0.1)*2.0), mod(t-0.5, 4.0), 5.0, 3.5, 2.0) * 0.65;
+    s += ripple(wc, vec2(-18.0,  10.0) + vec2(sin(t*0.12)*1.5, cos(t*0.18)*2.0), mod(t-1.5, 3.5), 5.5, 3.0, 2.5) * 0.65;
+    s += ripple(wc, vec2( 20.0, -8.0)  + vec2(cos(t*0.1)*2.0,  sin(t*0.14)*1.5), mod(t-2.5, 4.5), 6.0, 4.0, 2.0) * 0.65;
+    s += ripple(wc, vec2( -8.0, -22.0) + vec2(sin(t*0.16)*2.0, cos(t*0.09)*2.5), mod(t-0.0, 3.8), 4.5, 3.5, 2.2) * 0.65;
+    s += ripple(wc, vec2( 25.0,  20.0) + vec2(cos(t*0.08)*2.5, sin(t*0.13)*1.5), mod(t-1.0, 3.2), 5.0, 2.8, 1.8) * 0.65;
+    s = min(s, 1.0);
+    highp float dv = fract(sin(dot(c, vec2(127.1, 311.7))) * 43758.5);
+    s *= 0.7 + 0.3 * dv;
+    highp float hs = min(baseStretch + s, 1.0);
+
+    highp float sv = sin(c.x * 1.7 + c.y * 2.3 + t * 2.0) * 0.5
+                   + sin(c.x * 0.5 - c.y * 1.1 + t * 1.3) * 0.4
+                   + sin(c.x * 3.1 + c.y * 0.7 + t * 3.5) * 0.15;
+    highp float hm = clamp(0.5 + sv, 0.05, 1.0);
+
+    highp vec2 lp = gp - cc;
+    highp vec2 wl = vec2(lp.x*cs - lp.y*sn, lp.x*sn + lp.y*cs);
+
+    highp float lineH = maxHeight * hs * hm;
+
+    // Tip
+    highp float tipDist = length(wl - vec2(0.0, lineH)) / dotRad;
+    highp float tip = 1.0 - smoothstep(0.7, 1.0, tipDist);
+
+    // Stem
+    highp float sw = dotRad * 0.5;
+    highp float sx = 1.0 - smoothstep(sw * 0.5, sw, abs(wl.x));
+    highp float sy = step(0.0, wl.y) * (1.0 - step(lineH, wl.y));
+
+    highp float d = max(tip, sx * sy * 0.45);
+    highp float grad = clamp(wl.y / max(lineH, 0.001), 0.0, 1.0);
+
+    return vec4(d, tip, s, grad);
+}
+
+void fragment() {
+    highp float pixelSize = length(fwidth(gridPos));
+    highp float dotsPerPixel = spacing / max(pixelSize, 0.0001);
+    highp float detail = smoothstep(1.5, 4.0, dotsPerPixel);
+
+    if (detail < 0.01) {
+        COLOR = vec4(mix(colorLow, colorHigh, baseStretch * 0.3) * 0.35, 1.0);
+        return;
+    }
+
+    highp float t = TIME;
+    const highp float rotation = 0.5235988;
+    highp vec2 wp = gridPos;
+    highp float cs = cos(rotation);
+    highp float sn = sin(rotation);
+    highp vec2 gp = vec2(wp.x*cs + wp.y*sn, -wp.x*sn + wp.y*cs);
+    gp += vec2(sin(t*0.13)*0.1+sin(t*0.7)*0.04+sin(t*2.1)*0.015,
+               cos(t*0.11)*0.08+cos(t*0.53)*0.03+cos(t*1.7)*0.01);
+
+    highp vec2 cell = floor(gp / spacing);
+
+    // Evaluate pin for current cell
+    highp vec4 best = evalPin(cell, gp, cs, sn, t);
+
+    // Pins grow in direction (sn, cs) in gp-space (~30°).
+    // Check neighbor cells that a pin could originate from.
+    // Only needed when pins can cross cell boundaries.
+    if (maxHeight * 0.72 > spacing * 0.45) {
+        highp vec4 r;
+        r = evalPin(cell + vec2(-1.0, 0.0), gp, cs, sn, t);
+        if (r.x > best.x) best = r;
+        r = evalPin(cell + vec2(0.0, -1.0), gp, cs, sn, t);
+        if (r.x > best.x) best = r;
+        r = evalPin(cell + vec2(-1.0, -1.0), gp, cs, sn, t);
+        if (r.x > best.x) best = r;
+    }
+
+    highp float d = best.x;
+    highp float tip = best.y;
+    highp float stretch = best.z;
+    highp float grad = best.w;
+
+    // Color
+    highp vec3 stemCol = mix(colorLow * 0.25, colorLow, grad);
+    highp vec3 tipCol = mix(colorLow, colorHigh, stretch);
+    highp float tipWeight = tip / max(d, 0.001);
+    highp vec3 pinCol = mix(stemCol, tipCol, tipWeight) * d;
+
+    highp vec3 flatCol = mix(colorLow, colorHigh, min(baseStretch + stretch, 1.0) * 0.3) * 0.35;
+    highp vec3 col = mix(flatCol, pinCol, detail);
+    highp float alpha = mix(1.0, d, detail);
+    if (alpha < 0.01) discard;
+    col *= alpha;
+
+    COLOR = vec4(col, 1.0);
+}

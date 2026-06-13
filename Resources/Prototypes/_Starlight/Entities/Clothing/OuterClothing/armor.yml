@@ -403,19 +403,3 @@
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
-
-- type: entity
-  parent: [ClothingOuterArmorRaid]
-  id: ClothingOuterMaidArmorRaid
-  name: syndicate elegant raid suit
-  description: A flexible and well-armored... dress? made for speed and elegance. it does not protect its wearer from space.
-  components:
-    - type: Sprite
-      sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi
-      layers:
-        - state: icon
-        - state: light-overlay
-          visible: false
-          shader: unshaded
-    - type: Clothing
-      sprite: _Starlight/Clothing/OuterClothing/Armor/elegant-raid-suit.rsi

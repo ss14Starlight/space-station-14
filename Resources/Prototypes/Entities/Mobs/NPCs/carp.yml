@@ -10,9 +10,13 @@
     - type: LanguageKnowledge
       speaks:
       - Carptongue
+      - Carpmind
       understands:
       - Carptongue
+      - Carpmind
       - Thaveyan
+      - GalacticCommon
+
   # Starlight-end
     - type: InputMover
     - type: MobMover
@@ -219,7 +223,7 @@
 
 - type: entity
   name: sharkminnow
-  parent: BaseMobCarp #starlight Nubody will not pass.
+  parent: BaseMobCarp # Starlight Edit: Removed BaseMobBloodsucker
   id: MobShark
   description: A dangerous shark from the blackness of endless space, who loves to drink blood.
   components:

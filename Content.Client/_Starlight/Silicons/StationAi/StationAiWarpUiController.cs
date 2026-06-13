@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using Content.Shared.Silicons.StationAi;
 
 namespace Content.Client._Starlight.Silicons.StationAi;
@@ -30,19 +28,13 @@ public sealed class StationAiWarpUiController
     }
 
     public void SetLoading(bool loading)
-    {
-        _warpWindow?.SetLoading(loading);
-    }
+        => _warpWindow?.SetLoading(loading);
 
     public void SetTargets(IEnumerable<StationAiWarpTarget> targets)
-    {
-        _warpWindow?.SetTargets(targets);
-    }
+        => _warpWindow?.SetTargets(targets);
 
     public void CloseWindow()
-    {
-        _warpWindow?.Close();
-    }
+        => _warpWindow?.Close();
 
     public void ClearWindow()
     {
@@ -70,12 +62,8 @@ public sealed class StationAiWarpUiController
     }
 
     private void HandleTargetSelected(StationAiWarpTarget target)
-    {
-        _targetSelected?.Invoke(target);
-    }
+        => _targetSelected?.Invoke(target);
 
     private void HandleWindowClosed()
-    {
-        _windowClosed?.Invoke();
-    }
+        => _windowClosed?.Invoke();
 }

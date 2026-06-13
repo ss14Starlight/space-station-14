@@ -33,17 +33,17 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
 
     [ViewVariables(VVAccess.ReadOnly)]
     public IReadOnlyList<ThavenMood> SharedMoods => _sharedMoods.AsReadOnly();
-    private readonly List<ThavenMood> _sharedMoods = new();
+    private readonly List<ThavenMood> _sharedMoods = [];
     // cached hashset that never gets modified
-    private readonly HashSet<ThavenMood> _emptyMoods = new HashSet<ThavenMood>();
+    private readonly HashSet<ThavenMood> _emptyMoods = [];
     // cached hashset that gets changed in GetMoodProtoSet
-    private readonly HashSet<ProtoId<ThavenMoodPrototype>> _moodProtos = new HashSet<ProtoId<ThavenMoodPrototype>>();
+    private readonly HashSet<ProtoId<ThavenMoodPrototype>> _moodProtos = [];
 
-    private ProtoId<DatasetPrototype> SharedDataset = "ThavenMoodsShared";
+    private readonly ProtoId<DatasetPrototype> _sharedDataset = "ThavenMoodsShared";
 
-    private EntProtoId ActionViewMoods = "ActionViewMoods";
+    private readonly EntProtoId _actionViewMoods = "ActionViewMoods";
 
-    private ProtoId<WeightedRandomPrototype> RandomThavenMoodDataset = "RandomThavenMoodDataset";
+    private readonly ProtoId<WeightedRandomPrototype> _randomThavenMoodDataset = "RandomThavenMoodDataset";
 
     public override void Initialize()
     {
@@ -71,7 +71,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     {
         if (mood == null)
         {
-            if (!TryPick(SharedDataset, out var moodProto, _sharedMoods))
+            if (!TryPick(_sharedDataset, out var moodProto, _sharedMoods))
                 return false;
 
             mood = RollMood(moodProto);
@@ -90,11 +90,9 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     }
 
     private bool SharedMoodConflicts(ThavenMood mood)
-    {
-        return mood.ProtoId is {} id &&
+        => mood.ProtoId is { } id &&
             (GetConflicts(_sharedMoods).Contains(id) ||
             GetMoodProtoSet(_sharedMoods).Overlaps(mood.Conflicts));
-    }
 
     private void NotifySharedMoodChange()
     {
@@ -109,9 +107,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     }
 
     private void OnBoundUIOpened(Entity<ThavenMoodsComponent> ent, ref BoundUIOpenedEvent args)
-    {
-        UpdateBUIState(ent);
-    }
+        => UpdateBUIState(ent);
 
     private void OnToggleMoodsScreen(Entity<ThavenMoodsComponent> ent, ref ToggleMoodsScreenEvent args)
     {
@@ -250,9 +246,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     /// adds the mood if it does not.
     /// </summary>
     public bool TryAddMood(Entity<ThavenMoodsComponent> ent, ProtoId<ThavenMoodPrototype> moodProto, bool allowConflict = false, bool notify = true)
-    {
-        return TryAddMood(ent, _proto.Index(moodProto), allowConflict, notify);
-    }
+        => TryAddMood(ent, _proto.Index(moodProto), allowConflict, notify);
 
     /// <summary>
     /// Tries to add a random mood using a specific dataset.
@@ -269,11 +263,11 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     }
 
     /// <summary>
-    /// Tries to add a random mood using <see cref="RandomThavenMoodDataset"/>.
+    /// Tries to add a random mood using <see cref="_randomThavenMoodDataset"/>.
     /// </summary>
     public bool TryAddRandomMood(Entity<ThavenMoodsComponent> ent, bool notify = true)
     {
-        var datasetProto = _proto.Index(RandomThavenMoodDataset).Pick();
+        var datasetProto = _proto.Index(_randomThavenMoodDataset).Pick();
         return TryAddRandomMood(ent, datasetProto, notify);
     }
 
@@ -310,10 +304,8 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
     /// Get the conflicts for a thaven's active moods.
     /// </summary>
     public HashSet<ProtoId<ThavenMoodPrototype>> GetConflicts(Entity<ThavenMoodsComponent> ent)
-    {
         // TODO: Should probably cache this when moods get updated
-        return GetConflicts(GetActiveMoods(ent));
-    }
+        => GetConflicts(GetActiveMoods(ent));
 
     /// <summary>
     /// Maps some moods to their ids.
@@ -363,7 +355,7 @@ public sealed partial class ThavenMoodsSystem : SharedThavenMoodSystem
                 TryAddMood(ent, mood, true, false);
         }
 
-        ent.Comp.Action = _actions.AddAction(ent.Owner, ActionViewMoods);
+        ent.Comp.Action = _actions.AddAction(ent.Owner, _actionViewMoods);
     }
 
     private void OnThavenMoodShutdown(Entity<ThavenMoodsComponent> ent, ref ComponentShutdown args)

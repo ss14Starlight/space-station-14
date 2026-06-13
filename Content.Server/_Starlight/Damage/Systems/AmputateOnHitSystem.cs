@@ -6,9 +6,7 @@ using Content.Shared._Starlight.Damage.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Humanoid;
-using Content.Shared.Throwing;
 using Content.Shared.Timing;
-using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Random;
 
@@ -22,9 +20,7 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
-    {
-        SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
-    }
+        => SubscribeLocalEvent<AmputateOnHitComponent, MeleeHitEvent>(OnMeleeHit);
 
     private void OnMeleeHit(Entity<AmputateOnHitComponent> weapon, ref MeleeHitEvent args)
     {

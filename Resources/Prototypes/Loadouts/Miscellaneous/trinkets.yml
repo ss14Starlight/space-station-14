@@ -27,6 +27,7 @@
   storage:
     back:
     - ClothingMultipleHeadphones
+  groupBy: "Headphones" # Starlight
 
 # Toys
 - type: loadout
@@ -156,6 +157,7 @@
   id: ClothingNeckAsexualPin
   equipment: # Starlight: Move to misc slot
     misc: ClothingNeckAsexualPin
+  groupBy: "pin" # Starlight: Group with other pride pins
 
 - type: loadout
   id: ClothingNeckBisexualPin
@@ -322,6 +324,8 @@
     - TowelColorWhite
   groupBy: "towels"
 
+#Starlight Start - Towel Restoration
+
 - type: loadout
   id: TowelColorGray
   effects:
@@ -429,11 +433,8 @@
 - type: loadout
   id: TowelColorLightBlue
   effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Medical
-      time: 100h
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysician
   storage:
     back:
     - TowelColorLightBlue
@@ -470,10 +471,8 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-     # !type:RoleTimeRequirement # Starlight start: switch to law dept
-     # role: JobLawyer
-      !type:DepartmentTimeRequirement
-      department: Law # Starlight end
+      !type:DepartmentTimeRequirement # Starlight
+      department: Law # Starlight
       time: 100h
   storage:
     back:
@@ -516,3 +515,4 @@
     back:
     - TowelColorGold
   groupBy: "towels"
+# Starlight End

@@ -1,3 +1,105 @@
+# Self-recharging PDW-9 taser integrated into security borg
+- type: entity
+  id: WeaponPDW9TaserBorg
+  name: PDW-9 integrated taser
+  parent: WeaponPDW9
+  description: A self-recharging PDW-9 taser integrated directly into a security cyborg's chassis. Lethal mode requires Code Red or higher.
+  components:
+  - type: StationGridMemory
+  - type: Battery
+    maxCharge: 750
+    startingCharge: 750
+  - type: BatterySelfRecharger
+    autoRechargeRate: 20
+  - type: BatteryWeaponFireModes
+    fireModes:
+    - proto: DisablerBolt
+      fireCost: 75
+      magState: disable
+      visualState: disable
+    - proto: RedLaserBeam
+      fireCost: 100
+      magState: kill
+      visualState: kill
+      conditions:
+      - !type:AlertLevelCondition
+        alertLevels:
+        - red
+        - gamma
+        - psi
+        - delta
+  - type: Unremoveable
+
+# Self-recharging stunbaton integrated into security borg
+- type: entity
+  id: BorgStunbatonRechargeable
+  name: integrated stun baton
+  parent: Stunbaton
+  description: A self-recharging stun baton integrated directly into a security cyborg's chassis.
+  components:
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: BatterySelfRecharger
+    autoRechargeRate: 8
+  - type: Unremoveable
+
+# Holographic cuffs integrated into security borg — uses existing holo sprite
+# Note: Unremoveable so they can't be dropped. BorgHandcuffComponent enables respawn-on-use
+#       and return-to-slot on uncuff. mustBeUsedFromHand: false bypasses the CanDrop check.
+- type: entity
+  id: BorgHolocuffs
+  name: holocuffs
+  parent: Handcuffs
+  description: Holographic restraining cuffs emitted directly from a security cyborg's chassis. A fresh pair reappears moments after use, retrieved when the target is freed.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/cyberling.rsi
+    state: holorestrainer_powered
+  - type: Handcuff
+    cuffTime: 3.0
+    uncuffTime: 5
+    breakoutTime: 30
+    cuffedRSI: Objects/Misc/handcuffs.rsi
+    bodyIconState: body-overlay
+    mustBeUsedFromHand: false
+    breakOnCuffingFailed: false
+  - type: BorgHandcuff
+  - type: Unremoveable
+
+# Integrated flash for security borg — auto-recharges like the interrogation lamp, undroppable
+- type: entity
+  id: BorgFlashRechargeable
+  name: integrated flash
+  parent: Flash
+  description: An ultrabright flashbulb integrated directly into a security cyborg's chassis. The internal capacitor recharges automatically.
+  components:
+  - type: LimitedCharges
+    maxCharges: 5
+  - type: AutoRecharge
+    rechargeDuration: 30
+  - type: Unremoveable
+
+# Integrated holobarrier projector for security borg — self-recharging microreactor cell, undroppable
+- type: entity
+  id: BorgHoloprojectorSecurity
+  name: integrated holobarrier projector
+  parent: HoloprojectorSecurity
+  suffix: borg
+  description: A holographic barrier projector integrated directly into a security cyborg's chassis. The sealed microreactor keeps it self-charging.
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        disableEject: true
+        swap: false
+        blacklist:
+          tags:
+          - MechReactor
+  - type: Unremoveable
+
 - type: entity
   name: double stun baton
   parent: [ Stunbaton, BaseSecurityContraband ]

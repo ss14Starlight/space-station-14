@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Body.Systems;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Preferences;
@@ -9,6 +8,9 @@ using Content.Shared.Station;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+#region Starlight
+using Content.Shared.Body.Systems;
+#endregion
 
 namespace Content.Shared.Clothing;
 
@@ -29,7 +31,7 @@ public sealed class LoadoutSystem : EntitySystem
         base.Initialize();
 
         // Wait until the character has all their organs before we give them their loadout
-        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]); // Starlight
+        SubscribeLocalEvent<LoadoutComponent, MapInitEvent>(OnMapInit, after: [typeof(SharedBodySystem)]); // Starlight: Added after: [typeof(SharedBodySystem)]
     }
 
     public static string GetJobPrototype(string? loadout)

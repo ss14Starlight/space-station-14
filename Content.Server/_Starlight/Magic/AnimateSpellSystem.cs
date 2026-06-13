@@ -47,7 +47,7 @@ public sealed class AnimateSpellSystem : EntitySystem
         AnimatedObjectHPComponent? hpConfig = null;
         if (action != null && TryComp<ActionComponent>(action.Value, out var actionComp) && actionComp.Container != null)
         {
-            TryComp<AnimatedObjectHPComponent>(actionComp.Container.Value, out hpConfig);
+            TryComp(actionComp.Container.Value, out hpConfig);
         }
 
         // Use default values if no config found on staff

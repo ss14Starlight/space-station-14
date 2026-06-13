@@ -1,16 +1,11 @@
-using Content.Server._Starlight.CosmicCult.Components;
-using Content.Server.Bible.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
-using Content.Shared.Damage;
-using Content.Shared.DoAfter;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
-using Content.Shared.Timing;
 using Content.Shared.Tools.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
@@ -28,6 +23,10 @@ public sealed class DeconversionSystem : EntitySystem
     [Dependency] private readonly SharedJitteringSystem _jittering = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedToolSystem _tools = default!;
+    private const float MalignSoundVolume = 2f;
+    private const float JitterAmplitude = 5f;
+    private const float JitterFrequency = 20f;
+    private const float CleanseSoundVolume = 4f;
 
     public override void Initialize()
     {
@@ -40,7 +39,7 @@ public sealed class DeconversionSystem : EntitySystem
 
     private void OnCompInit(Entity<CleanseCultComponent> uid, ref ComponentInit args)
     {
-        _jittering.DoJitter(uid.Owner, uid.Comp.CleanseDuration, true, 5, 20);
+        _jittering.DoJitter(uid.Owner, uid.Comp.CleanseDuration, true, JitterAmplitude, JitterFrequency);
         uid.Comp.CleanseTime = _timing.CurTime + uid.Comp.CleanseDuration;
     }
 
@@ -92,7 +91,7 @@ public sealed class DeconversionSystem : EntitySystem
             Spawn(censer.MalignVFX, userPosition);
             EnsureComp<CleanseCultComponent>(target.Value, out var cleanse);
             cleanse.CleanseDuration = TimeSpan.FromSeconds(1);
-            _audio.PlayPvs(censer.MalignSound, targetPosition, AudioParams.Default.WithVolume(2f));
+            _audio.PlayPvs(censer.MalignSound, targetPosition, AudioParams.Default.WithVolume(MalignSoundVolume));
             _popup.PopupEntity(Loc.GetString("cleanse-deconvert-attempt-success-empowered", ("target", Identity.Entity(target.Value, EntityManager))), args.User, args.User);
         }
         else if (TryComp<CosmicCultComponent>(target, out var cultComponent) && !cultComponent.CosmicEmpowered)
@@ -100,7 +99,7 @@ public sealed class DeconversionSystem : EntitySystem
             Spawn(censer.CleanseVFX, targetPosition);
             EnsureComp<CleanseCultComponent>(target.Value, out var cleanse);
             cleanse.CleanseDuration = TimeSpan.FromSeconds(1);
-            _audio.PlayPvs(censer.CleanseSound, targetPosition, AudioParams.Default.WithVolume(4f));
+            _audio.PlayPvs(censer.CleanseSound, targetPosition, AudioParams.Default.WithVolume(CleanseSoundVolume));
             _popup.PopupEntity(Loc.GetString("cleanse-deconvert-attempt-success", ("target", Identity.Entity(target.Value, EntityManager))), args.User, args.User);
         }
         else
@@ -117,7 +116,5 @@ public sealed class DeconversionSystem : EntitySystem
     }
 
     private void DeconvertCultist(EntityUid uid)
-    {
-        RemComp<CosmicCultComponent>(uid);
-    }
+        => RemComp<CosmicCultComponent>(uid);
 }

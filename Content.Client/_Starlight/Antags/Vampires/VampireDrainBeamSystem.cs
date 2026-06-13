@@ -12,28 +12,24 @@ public sealed class VampireDrainBeamSystem : EntitySystem
     private enum BeamKind
     {
         Drain,
-        BloodBond
     }
 
-    private static readonly Angle _beamAngleOffset = Angle.FromDegrees(180); // suck em
-    private const bool SpriteIsVertical = true;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
-    private const string DrainPrototype = "VampireDrainBeamVisual";
-    private const string BloodBondPrototype = "VampireBloodBondBeamVisual";
+    private EntityQuery<VampireBeamVisualComponent> _beamVisualQuery;
 
     /// <summary>
     /// Tracks client-side beam visual entities
     /// Key = (kind, source, target) pair, Value = visual beam entity
     /// </summary>
-    private readonly Dictionary<(BeamKind, EntityUid, EntityUid), EntityUid> _activeBeamVisuals = new();
+    private readonly Dictionary<(BeamKind, EntityUid, EntityUid), EntityUid> _activeBeamVisuals = [];
 
     public override void Initialize()
     {
         base.Initialize();
+        _beamVisualQuery = GetEntityQuery<VampireBeamVisualComponent>();
         SubscribeNetworkEvent<VampireDrainBeamEvent>(OnDrainBeamEvent);
-        SubscribeNetworkEvent<VampireBloodBondBeamEvent>(OnBloodBondBeamEvent);
     }
 
     public override void Update(float frameTime)
@@ -64,10 +60,7 @@ public sealed class VampireDrainBeamSystem : EntitySystem
     }
 
     private void OnDrainBeamEvent(VampireDrainBeamEvent ev)
-        => HandleBeamEvent(ev.Source, ev.Target, ev.Create, BeamKind.Drain, DrainPrototype);
-
-    private void OnBloodBondBeamEvent(VampireBloodBondBeamEvent ev)
-        => HandleBeamEvent(ev.Source, ev.Target, ev.Create, BeamKind.BloodBond, BloodBondPrototype);
+        => HandleBeamEvent(ev.Source, ev.Target, ev.Create, BeamKind.Drain, ev.VisualPrototype);
 
     private void HandleBeamEvent(NetEntity sourceNet, NetEntity targetNet, bool create, BeamKind kind, string prototype)
     {
@@ -111,7 +104,8 @@ public sealed class VampireDrainBeamSystem : EntitySystem
 
     private void UpdateBeamVisual(EntityUid beam, EntityUid source, EntityUid target)
     {
-        if (!TryComp<SpriteComponent>(beam, out var sprite))
+        if (!TryComp<SpriteComponent>(beam, out var sprite)
+            || !_beamVisualQuery.TryComp(beam, out var beamVisual))
             return;
 
         var sourcePos = _transform.GetWorldPosition(source);
@@ -120,10 +114,10 @@ public sealed class VampireDrainBeamSystem : EntitySystem
         var direction = targetPos - sourcePos;
         var distance = direction.Length();
 
-        if (distance < 0.1f)
+        if (distance < beamVisual.MinDistance)
             return;
 
-        var worldAngle = direction.ToWorldAngle() + _beamAngleOffset;
+        var worldAngle = direction.ToWorldAngle() + beamVisual.AngleOffset;
 
         var midpoint = sourcePos + (direction * 0.5f);
         _transform.SetWorldPosition(beam, midpoint);
@@ -132,9 +126,10 @@ public sealed class VampireDrainBeamSystem : EntitySystem
         _sprite.SetRotation((beam, sprite), Angle.Zero);
 
         // Scale beam to match distance. Isvertical ? scale Y : scale X
-        var length = MathF.Max(0.05f, distance);
-        var thickness = 0.9f;
-        var scale = SpriteIsVertical ? new Vector2(thickness, length) : new Vector2(length, thickness);
+        var length = MathF.Max(beamVisual.MinLength, distance);
+        var scale = beamVisual.SpriteIsVertical
+            ? new Vector2(beamVisual.Thickness, length)
+            : new Vector2(length, beamVisual.Thickness);
         _sprite.SetScale((beam, sprite), scale);
         _sprite.SetOffset((beam, sprite), Vector2.Zero);
     }

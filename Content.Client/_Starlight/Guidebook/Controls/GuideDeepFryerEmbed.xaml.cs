@@ -37,24 +37,16 @@ public sealed partial class GuideDeepFryerEmbed : PanelContainer, IDocumentTag, 
     }
 
     public GuideDeepFryerEmbed(string recipe) : this()
-    {
-        GenerateControl(_prototype.Index<DeepFryingRecipePrototype>(recipe));
-    }
+        => GenerateControl(_prototype.Index<DeepFryingRecipePrototype>(recipe));
 
     public GuideDeepFryerEmbed(DeepFryingRecipePrototype recipe) : this()
-    {
-        GenerateControl(recipe);
-    }
+        => GenerateControl(recipe);
 
     public bool CheckMatchesSearch(string query)
-    {
-        return this.ChildrenContainText(query);
-    }
+        => this.ChildrenContainText(query);
 
     public void SetHiddenState(bool state, string query)
-    {
-        Visible = CheckMatchesSearch(query) ? state : !state;
-    }
+        => Visible = CheckMatchesSearch(query) ? state : !state;
 
     public bool TryParseTag(Dictionary<string, string> args, [NotNullWhen(true)] out Control? control)
     {
@@ -109,9 +101,7 @@ public sealed partial class GuideDeepFryerEmbed : PanelContainer, IDocumentTag, 
     }
 
     private void GenerateIngredients(DeepFryingRecipePrototype recipe)
-    {
-        GenerateSolidIngredients(recipe);
-    }
+        => GenerateSolidIngredients(recipe);
 
     private void GenerateCookTime(DeepFryingRecipePrototype recipe)
     {
@@ -122,7 +112,7 @@ public sealed partial class GuideDeepFryerEmbed : PanelContainer, IDocumentTag, 
         CookTimeLabel.SetMessage(msg);
     }
 
-    private void GenerateDeviceType(DeepFryingRecipePrototype recipe)
+    private void GenerateDeviceType(DeepFryingRecipePrototype _)
     {
         var msg = new FormattedMessage();
         msg.AddMarkupOrThrow(Loc.GetString("guidebook-microwave-device-type", ("type", "Deep Fryer")));

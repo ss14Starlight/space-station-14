@@ -65,6 +65,19 @@
     stunSeconds: 0.0
 
 - type: entity
+  id: SkatesRacingCool
+  name: Cooler High Speed Racing Skates
+  parent: ClothingShoesSkatesCool
+  suffix: ADMEME
+  description: SuperGlideTM racing skates with built in collision protection!
+  components:
+  - type: Skates
+    speedDamage: 0.0
+    friction: 0.0
+    frictionNoInput: 0.0
+    stunSeconds: 0.0
+
+- type: entity
   id: CartridgeMinigunThruster
   name: thruster cartridge
   parent: CartridgeMinigun

@@ -1,11 +1,10 @@
 using Content.Server.Popups;
-using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Starlight.Gavel;
+namespace Content.Server._Starlight.Gavel;
 
 public sealed class GavelSystem : EntitySystem
 {
@@ -15,9 +14,7 @@ public sealed class GavelSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 
     public override void Initialize()
-    {
-        SubscribeLocalEvent<GavelHammerComponent, AfterInteractEvent>(OnHit);
-    }
+        => SubscribeLocalEvent<GavelHammerComponent, AfterInteractEvent>(OnHit);
 
     private void OnHit(EntityUid uid, GavelHammerComponent component, AfterInteractEvent args)
     {

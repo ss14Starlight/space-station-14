@@ -48,6 +48,18 @@ public sealed class GlueSystem : EntitySystem
             args.Handled = true;
     }
 
+    // Starlight Start
+    /// <summary>
+    /// Removes the glued condition from the target.
+    /// </summary>
+    public void RemoveGlued(EntityUid uid)
+    {
+        RemComp<UnremoveableComponent>(uid);
+        if (RemComp<GluedComponent>(uid))
+            _nameMod.RefreshNameModifiers(uid);
+    }
+    // Starlight End
+
     private void OnUtilityVerb(Entity<GlueComponent> entity, ref GetVerbsEvent<UtilityVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess || args.Target is not { Valid: true } target ||

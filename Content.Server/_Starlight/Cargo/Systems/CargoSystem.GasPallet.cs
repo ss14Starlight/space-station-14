@@ -44,7 +44,7 @@ public sealed class CargoGasPalletSystem : EntitySystem
         if (inlet.Air.TotalMoles > 0 && inlet.Air.Pressure > 0)
         {
             var pressureDelta = pallet.MaxPressure - outputStartingPressure;
-            var transferMoles = (pressureDelta * pallet.Air.Volume) / (inlet.Air.Temperature * Atmospherics.R);
+            var transferMoles = pressureDelta * pallet.Air.Volume / (inlet.Air.Temperature * Atmospherics.R);
             var removed = inlet.Air.Remove(transferMoles);
             _atmosphereSystem.Merge(pallet.Air, removed);
         }

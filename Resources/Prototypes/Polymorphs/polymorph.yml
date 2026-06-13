@@ -40,8 +40,8 @@
     duration: 120 #STARLIGHT
     inventory: None
     transferName: true
-    transferDamage: true
-    revertOnCrit: false
+    transferDamage: false # Starlight. If you're gonna show up in a nukie game, so be it.
+    revertOnCrit: true # Starlight. If you're gonna show up in a nukie game, so be it.
     revertOnDeath: true
     polymorphSound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
@@ -67,7 +67,7 @@
 - type: polymorph
   id: WizardForcedMonkey
   configuration:
-    entity: MobMonkey
+    entity: MobMonkeyAdvanced # Starlight, it's somewhat more enjoyable to play.
     forced: true
     duration: 120 #STARLIGHT
     inventory: None
@@ -176,7 +176,7 @@
 - type: polymorph
   id: ArtifactMonkey
   configuration:
-    entity: MobMonkey
+    entity: MobMonkeyAdvanced # Starlight, it's somewhat more enjoyable to play.
     forced: true
     transferName: true
     allowRepeatedMorphs: true

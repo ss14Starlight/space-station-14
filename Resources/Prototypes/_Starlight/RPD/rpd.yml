@@ -241,6 +241,19 @@
   fx: EffectRCDConstruct0
 
 - type: rcd
+  id: FilterGasInline
+  category: AtmosphericUtility
+  sprite: /Textures/_Starlight/Interface/Radial/RPD/gas_filter_inline.png
+  mode: ConstructObject
+  prototype: GasFilterInline
+  cost: 3
+  delay: 0
+  collisionMask: Impassable
+  rotation: User
+  hasLayers: true
+  fx: EffectRCDConstruct0
+
+- type: rcd
   id: CanisterPort
   category: AtmosphericUtility
   sprite: /Textures/_Starlight/Interface/Radial/RPD/port.png

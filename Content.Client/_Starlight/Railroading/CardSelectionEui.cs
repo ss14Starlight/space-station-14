@@ -1,29 +1,21 @@
-using System.Linq;
 using System.Numerics;
-using Content.Client._Starlight.NewLife;
 using Content.Client._Starlight.UI;
 using Content.Client.Eui;
-using Content.Client.Lobby;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Eui;
-using Content.Shared.Starlight.NewLife;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared;
-using static Robust.Client.Input.Mouse;
-using static Robust.Client.UserInterface.Controls.LayoutContainer;
 
 namespace Content.Client._Starlight.Railroading;
 
 [UsedImplicitly]
 public sealed class CardSelectionEui : BaseEui
 {
-    private List<IDisposable> _disposables = [];
     private static readonly Vector2 _cardSize = new(264, 370);
     private static readonly Vector2 _cardContentSize = new(254, 200);
     private static readonly Vector2 _cardDescSize = new(255, 160);
-    private SLWindow _window;
+    private readonly SLWindow _window;
 
     public CardSelectionEui()
     {
@@ -123,7 +115,7 @@ public sealed class CardSelectionEui : BaseEui
                         .AddClass("CardBanner")
                         .Modulate(card.Color)
                         .Label(x => x.WithText(card.Icon)
-                                    .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 32)
+                                    .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 32)
                                     .WithMargin(new Thickness(-7, 0, -11, -4))
                                     .WithMouseFilter(Control.MouseFilterMode.Pass)
                                     .WhenMouseEntered(_ => panel.Modulate(Color.ForestGreen))
@@ -141,7 +133,7 @@ public sealed class CardSelectionEui : BaseEui
 
                     if (card.CreditReward is { } creditReward)
                         box.Label(x => x.WithText("")
-                                .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 24)
+                                .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 24)
                                 .WithMouseFilter(Control.MouseFilterMode.Pass)
                                 .WithTooltip(Loc.GetString("rr-credit-reward", ("Min", creditReward.Min), ("Max", creditReward.Max)))
                                 .WhenMouseEntered(_ => x.Modulate(Color.Cyan))
@@ -150,7 +142,7 @@ public sealed class CardSelectionEui : BaseEui
 
                     if (card.HasSecretAccess)
                         box.Label(x => x.WithText("")
-                                .WithFont("/Fonts/_Starlight/GameIcons/game-icons.ttf", 24)
+                                .WithFont("/Fonts/_NullLink/GameIcons/game-icons.ttf", 24)
                                 .WithMouseFilter(Control.MouseFilterMode.Pass)
                                 .WithTooltip(Loc.GetString("rr-secret-access-hint"))
                                 .WhenMouseEntered(_ => x.Modulate(Color.Cyan))

@@ -3,25 +3,83 @@
 
 These procedures apply to all security members, unless otherwise stated in their specific SOP
 
-1. Long guns shall not be taken outside the brig on [color=#00a933]Code Green[/color]. Long guns (including those mounted on mechs) are any firearms that are not pistols or revolvers.
 
-2. A maximum of 1 long gun (with permit) and 1 sidearm (pistol or revolver) may be carried on [color=#2a6099]Code Blue[/color] or above. Only a sidearm and disabler may be carried on [color=#00a933]Code Green[/color].
+### §1. Security's Purpose
 
-3. Long guns will be issued on a permit basis on [color=#2a6099]Code Blue[/color], and are allowed to all security personnel on [color=#ff0000]Code Red[/color]. Disabler SMGs are not considered long guns.
+- 1.\n
+Security's first and foremost objective is the safety of the station and its assets, among which are Crew Assets.
+- 2.\n
+They are secondarily the enforcing arm of the Command Staff and CentComm; dealing with insubordinate crewmembers when requested to do so by said crew's superiors.
+- 3.\n
+Pursuit of this purpose is restricted and controlled by [textlink="Corporate Law" link="SpaceLaw"], which they are also the primary enforcers of on the station.
 
-4. Weapons must remain holstered unless in active pursuit or on [color=#ff0000]Code Red[/color].
+### §2. Uniform Requirements
+- 1.\n
+An official security uniform/jumpsuit is to be visible on members of security at all times.\n\n
+1.1\n
+When necessary for fulfilment of a specific task, issued armour may cover the uniform, such as a hardsuit for spacewalks.\n\n
+1.2\n
+Exceptions may be given by the Head of Security for the purposes of undercover investigation.
+- 2.\n
+The Head of Security is allowed, at any time, to demand that security members remove personal accessories or non-regulation articles of clothing, if they believe this compromises the professional image of their department.
+- 3.\n
+Members of Security should have their suit coordinates enabled at all times.
 
-5. Security personnel are required to state the reason for an arrest before any action may be taken against a suspect. This does not apply on [color=#ff0000]Code Red[/color], or if a suspect flees when approached.
+### §3. Weaponry and Combat Equipment
+- 1.\n
+Security are to carry, at most, what is stipulated in their Standard Code Green Equipment, unless stated otherwise in another procedure.
+- 2.\n
+They are not to openly carry said equipment, unless said equipment is in active use.
 
-6. Security personnel must attempt to bring suspects to the brig uncuffed. This does not apply on [color=#ff0000]Code Red[/color], or if a suspect has already fled or become uncooperative.
+### §4 Use of Force
+- 1.\n
+The reason for an arrest is to be explained to the arrestee before any amount of force is applied.\n\n
+1.1\n
+This does not apply for suspects known to be armed and dangerous.\n\n
+1.2\n
+This does not apply to suspects who attempt to flee before this explanation may be delivered.
+- 2.\n
+Undue harm to station's Crew Assets is to be avoided during enforcement, to avoid compromising the station's mission.\n\n
+2.1\n
+Suspects must therefore be given the opportunity to walk on their own to Security for handling, without restraints or application of force.\n\n
+2.2\n
+In the case of failure of the above, disabling weaponry and restraints may be applied to subdue the Crewmember without overly damaging their capacity to work.\n\n
+2.3\n
+These stipulations do not apply for suspects known to be armed and dangerous.
+- 3.\n
+Forceful entry into other departments is forbidden outside of active pursuit of a fleeing suspect.\n\n
+3.1\n
+If necessary, Security may file a Search Warrant on the department in question.
 
-7. Security personnel may not request entry to a department, unless in pursuit of a suspect, or on [color=#2a6099]Code Blue[/color] or [color=#ff0000]Code Red[/color].
+### §5 Search and Seizure
+- 1.\n
+Security may not disturb crewmembers or departments with searches or raids without cause. Valid causes include:\n\n
+1.1\n
+Seeing the crewmember use and then hide contraband on their person immediately in front of you.\n\n
+1.2\n
+An approved and properly filed search warrant.\n\n
+1.3\n
+States of Emergency, [color=#2a6099]Code Blue[/color] or above.\n
+- 2.\n
+Crewmembers refusing a lawful search, as described in §5.1, may be detained and the search forced on them.
+- 3.\n
+Contraband found during a search, or in general, is to be brought to the armoury and locked away as evidence.\n\n
+3.1\n
+Suspects sentenced for any violent crime may have any implements of violence, even if necessary for their job, confiscated as well.\n\n
+3.2\n
+Suspects sentenced for any kind of unlawful entry or tampering may have the tools needed for such crimes, even if necessary for their job, confiscated as well.
 
-8. Searches may be conducted randomly on [color=#2a6099]Code Blue[/color] and [color=#ff0000]Code Red[/color], and on [color=#00a933]Code Green[/color] with an applicable warrant. Crew refusing searches on [color=#2a6099]Code Blue[/color] or [color=#ff0000]Code Red[/color] may be detained.
-
-9. All security personnel must wear at least one piece of an official security uniform at all times. An official security uniform is defined as: The security jumpsuit/skirt, the senior security jumpsuit/skirt, the security winter coat, the trooper uniform, the blue jumpsuit/skirt and tie, or job specific variants of these for the Warden, Head of Security or Brigmedic.
-
-10. Security personnel should refrain from wearing hardsuits or magboots unless an imminent threat or massive station damage is present.
-
-11. Security personnel may forcefully relocate crew members to their departments on [color=#ff0000]Code Red[/color], [color=#8d1d75]Code Violet[/color], [color=#acb20c]Code Yellow[/color] or [color=#ec9ba4]Code Gamma[/color].
+### §6 States of Emergency
+- 1.\n
+Any Standard Operating Procedure listed here is to be ignored if the procedures relevant to the active Alert Code override them.
+- 2.\n
+Security Codes that share the same shade, inherit procedures from their "lower" levels unless overwritten by the "higher" alert. These are:\n\n
+2.1\n
+[color=#ff0000]Red[/color] → [color=#ec9ba4]Gamma[/color] → [color=#8d281e]Delta[/color]\n
+2.2\n
+[color=#acb20c]Yellow[/color] → [color=#ff8119]Orange[/color]
+- 3.\n
+During Codes [color=#ff0000]Red[/color] and [color=#8d1d75]Violet[/color], Security may ignore §2, §3 and §4 and equip and conduct themselves as is necessary or as their department head demands.
+- 4.\n
+During Codes [color=#acb20c]Yellow[/color], [color=#ff0000]Red[/color] or [color=#8d1d75]Violet[/color], Security may forcefully relocate crew to allow for the safe handling of the relevant threat.
 </Document>

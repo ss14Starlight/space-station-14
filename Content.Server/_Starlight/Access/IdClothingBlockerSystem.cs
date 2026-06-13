@@ -93,24 +93,16 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     // We assume access might have changed when a hand or inventory is equipped or unequipped
     private void OnAnyHandEquipped(EntityUid wearer, HandsComponent component, DidEquipHandEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void OnAnyHandUnequipped(EntityUid wearer, HandsComponent component, DidUnequipHandEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void OnAnyInventoryEquipped(EntityUid wearer, InventoryComponent component, DidEquipEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void OnAnyInventoryUnequipped(EntityUid wearer, InventoryComponent component, DidUnequipEvent args)
-    {
-        UpdateClothingBlockingState(wearer);
-    }
+        => UpdateClothingBlockingState(wearer);
 
     private void UpdateClothingBlockingState(EntityUid wearer)
     {

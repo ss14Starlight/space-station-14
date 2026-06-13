@@ -98,7 +98,7 @@ public sealed partial class GhostComponent : Component
     /// <summary>
     /// Permits this ghost to speak in local chat instead of forwarding local messages to dead ooc.
     /// </summary>
-    [DataField] public bool BypassGhostChat;
+    [DataField, AutoNetworkedField] public bool BypassGhostChat;
 
     /// <summary>
     /// Ensures this ghost always remains visible, this means both to alive players, and preventing clientside toggling.

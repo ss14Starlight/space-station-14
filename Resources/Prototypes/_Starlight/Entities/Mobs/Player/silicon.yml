@@ -70,6 +70,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModulePaperwork
       - BorgModuleFireExtinguisher
@@ -258,6 +259,21 @@
       job: Borg
     - type: GhostTakeoverAvailable
 
+- type: entity
+  parent: XenoBorgiDerelict
+  id: PlayerXenoBorgiDerelictGhostRole
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghostrole-information-derelict-borgi-xenoborg-name
+      description: ghostrole-information-derelict-borgi-xenoborg-description
+      rules: ghost-role-information-silicon-rules
+      raffle:
+        settings: default
+      reregister: false
+      job: Borg
+    - type: GhostTakeoverAvailable
+
 # region TSF
 
 - type: entity
@@ -271,6 +287,7 @@
         - PositronicBrain
   - type: DefaultBorgModules
     modules:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleTSF
@@ -350,6 +367,7 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        - BorgModulePrying
         - BorgModuleAdvancedTool
         - CentcommAccessBreakerModule
         - CentcommLaserModule
@@ -360,3 +378,30 @@
       cell_slot:
         name: power-cell-slot-component-slot-name-default
         startingItem: PowerCellMicroreactor
+
+# region MedTak
+
+- type: entity
+  id: PlayerBorgChassisMedTakBattery
+  parent: BorgChassisMedTak
+  suffix: Battery, Modules
+  components:
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+  - type: DefaultBorgModules
+    modules:
+      - BorgModulePrying
+      - BorgModuleTool
+      - BorgModuleMedTakMedical
+      - BorgModuleMedTakRifle
+      - BorgModuleFireExtinguisher
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        blacklist:
+          tags:
+          - MechReactor

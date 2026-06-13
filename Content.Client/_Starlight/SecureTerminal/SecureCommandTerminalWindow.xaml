@@ -1,0 +1,87 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    x:Class="Content.Client.Starlight.SecureTerminal.SecureCommandTerminalWindow"
+    Title="{Loc 'secure-terminal-window-title'}"
+    MinSize="800 520"
+    SetSize="840 560">
+
+    <BoxContainer Orientation="Horizontal" Margin="6">
+
+        <!-- Left panel – Request list -->
+        <BoxContainer Orientation="Vertical" MinWidth="300" Margin="0 0 6 0">
+            <Label Text="{Loc 'secure-terminal-requests-header'}"
+                   StyleClasses="LabelBig"
+                   Margin="0 0 0 4"/>
+            <PanelContainer VerticalExpand="True"
+                            StyleClasses="PanelDark">
+                <ScrollContainer VerticalExpand="True">
+                    <BoxContainer Name="RequestListContainer"
+                                  Orientation="Vertical"
+                                  Margin="4"/>
+                </ScrollContainer>
+            </PanelContainer>
+        </BoxContainer>
+
+        <!-- Right panel – Info + Authorization -->
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+
+            <!-- Information section -->
+            <BoxContainer Orientation="Vertical" Margin="0 0 0 6">
+                <Label Text="{Loc 'secure-terminal-information-header'}"
+                       StyleClasses="LabelBig"
+                       Margin="0 0 0 4"/>
+                <PanelContainer StyleClasses="PanelDark">
+                    <BoxContainer Orientation="Vertical" Margin="6">
+                        <RichTextLabel Name="InfoLabel"
+                                       MinHeight="60"
+                                       Margin="0 0 0 6"/>
+                        <Button Name="RequestButton"
+                                Text="{Loc 'secure-terminal-request-button'}"
+                                Disabled="True"
+                                Margin="0 0 0 2"/>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+            <!-- Authorization section -->
+            <BoxContainer Orientation="Vertical" VerticalExpand="True">
+                <Label Text="{Loc 'secure-terminal-authorization-header'}"
+                       StyleClasses="LabelBig"
+                       Margin="0 0 0 4"/>
+                <PanelContainer VerticalExpand="True" StyleClasses="PanelDark">
+                    <BoxContainer Orientation="Vertical" Margin="6" VerticalExpand="True">
+                        <RichTextLabel Name="AuthDescLabel"
+                                       Margin="0 0 0 4"/>
+                        <ScrollContainer VerticalExpand="True">
+                            <BoxContainer Name="AuthorizerListContainer"
+                                          Orientation="Vertical"/>
+                        </ScrollContainer>
+                        <BoxContainer Orientation="Horizontal" Margin="0 6 0 0">
+                            <Button Name="AuthorizeButton"
+                                    Text="{Loc 'secure-terminal-authorize-button'}"
+                                    HorizontalExpand="True"
+                                    Disabled="True"
+                                    Margin="0 0 4 0"/>
+                            <Button Name="DenyButton"
+                                    Text="{Loc 'secure-terminal-deny-button'}"
+                                    HorizontalExpand="True"
+                                    Disabled="True"/>
+                        </BoxContainer>
+                        <Button Name="RecallButton"
+                                Text="{Loc 'secure-terminal-recall-button'}"
+                                HorizontalExpand="True"
+                                Disabled="True"
+                                Visible="False"
+                                Margin="0 2 0 0"/>
+                        <BoxContainer Name="ChildActionsContainer"
+                                      Orientation="Vertical"
+                                      Margin="0 2 0 0"/>
+                        <RichTextLabel Name="CountdownLabel" Margin="0 4 0 0"/>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

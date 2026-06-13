@@ -14,6 +14,7 @@ public sealed class BanListEui : BaseEui
     [Dependency] private readonly IAdminManager _admins = default!;
     [Dependency] private readonly IPlayerLocator _playerLocator = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;  // NullLink-edit: move to general method at Manager
 
     public BanListEui()
     {
@@ -54,7 +55,7 @@ public sealed class BanListEui : BaseEui
 
     private async Task LoadBans(NetUserId userId)
     {
-        foreach (var ban in await _db.GetServerBansAsync(null, userId, null, null))
+        foreach (var ban in await _banManager.GetServerBansAsync(null, userId, null, null)) // NullLink-edit: move to general method at Manager
         {
             SharedServerUnban? unban = null;
             if (ban.Unban is { } unbanDef)
@@ -95,7 +96,7 @@ public sealed class BanListEui : BaseEui
 
     private async Task LoadRoleBans(NetUserId userId)
     {
-        foreach (var ban in await _db.GetServerRoleBansAsync(null, userId, null, null))
+        foreach (var ban in await _banManager.GetServerRoleBansAsync(null, userId, null, null)) // NullLink-edit: move to general method at Manager
         {
             SharedServerUnban? unban = null;
             if (ban.Unban is { } unbanDef)

@@ -1,14 +1,13 @@
 - type: species
   id: IPC
   name: species-name-ipc
-  roundStart: false
+  roundStart: true
   prototype: MobIPC
   sprites: MobIPCSprites
   defaultSkinTone: "#ffda93"
   markingLimits: MobIPCMarkingLimits
   dollPrototype: AppearanceIPC
   skinColoration: Hues
-  eyeColoration: FullWhite
   customName: true
   roundstartCyberwareCapacity: 6
   sexes:

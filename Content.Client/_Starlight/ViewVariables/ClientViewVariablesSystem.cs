@@ -1,7 +1,5 @@
 using Content.Shared._Starlight.ViewVariables;
 using Robust.Client.Console;
-using Robust.Client.ViewVariables;
-using Robust.Shared.Console;
 
 namespace Content.Client._Starlight.ViewVariables;
 

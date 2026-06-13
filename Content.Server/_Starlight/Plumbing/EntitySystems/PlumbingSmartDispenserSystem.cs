@@ -11,8 +11,6 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
-using Content.Shared.UserInterface;
-using Robust.Shared.Containers;
 using JetBrains.Annotations;
 using Content.Server.Hands.Systems;
 using Robust.Server.GameObjects;
@@ -91,9 +89,7 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
     }
 
     private void OnDeviceUpdate(Entity<PlumbingSmartDispenserComponent> ent, ref PlumbingDeviceUpdateEvent args)
-    {
-        UpdateUiState(ent);
-    }
+        => UpdateUiState(ent);
 
     /// <summary>
     /// Caps or denies pulls for reagents that are at or near the per-reagent limit.
@@ -203,9 +199,7 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
             return;
         }
 
-        Entity<SolutionComponent>? targetEnt = null;
-
-        if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out targetEnt, out _)
+        if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out _)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out _)
             && (!TryComp<InjectorComponent>(targetContainer, out var injector)
                 || !TryComp<SolutionContainerManagerComponent>(targetContainer, out var manager)
@@ -226,14 +220,10 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
     }
 
     private void OnTerminating(Entity<PlumbingSmartDispenserComponent> ent, ref EntityTerminatingEvent args)
-    {
-        RemoveActorStatesForDispenser(ent.Owner);
-    }
+        => RemoveActorStatesForDispenser(ent.Owner);
 
     private void OnPlayerDetached(PlayerDetachedEvent args)
-    {
-        RemoveActorStatesForActor(args.Entity);
-    }
+        => RemoveActorStatesForActor(args.Entity);
 
     /// <summary>
     /// Attempts to match a label string to a reagent prototype ID.
@@ -359,7 +349,7 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
         if (tokenIdx < token.Length)
             return int.MinValue;
 
-        return -(prefixLen * 100000) + (lastMatchPos - firstMatchPos) * 1000 + name.Length;
+        return -(prefixLen * 100000) + ((lastMatchPos - firstMatchPos) * 1000) + name.Length;
     }
 
     /// <summary>
@@ -464,10 +454,7 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
         if (sourceReagent is not { } sourceReagentValue)
             return false;
 
-        Entity<SolutionComponent>? targetEnt = null;
-        Solution? targetSolution = null;
-
-        if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out targetEnt, out targetSolution)
+        if (!_solutionSystem.TryGetFitsInDispenser(targetContainer, out var targetEnt, out var targetSolution)
             && !_solutionSystem.TryGetRefillableSolution(targetContainer, out targetEnt, out targetSolution)
             && (!TryComp<InjectorComponent>(targetContainer, out var injector)
                 || !TryComp<SolutionContainerManagerComponent>(targetContainer, out var manager)
@@ -526,9 +513,7 @@ public sealed class PlumbingSmartDispenserSystem : EntitySystem
         if (container is not { Valid: true })
             return null;
 
-        Solution? solution = null;
-
-        if (!_solutionSystem.TryGetFitsInDispenser(container.Value, out _, out solution)
+        if (!_solutionSystem.TryGetFitsInDispenser(container.Value, out _, out var solution)
             && !_solutionSystem.TryGetRefillableSolution(container.Value, out _, out solution)
             && (!TryComp<InjectorComponent>(container.Value, out var injector)
                 || !TryComp<SolutionContainerManagerComponent>(container.Value, out var manager)

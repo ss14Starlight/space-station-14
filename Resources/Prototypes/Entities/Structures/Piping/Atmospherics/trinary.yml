@@ -26,7 +26,6 @@
           !type:PipeNode
           nodeGroupID: Pipe
           pipeDirection: South
-    - type: ChildBlockVision # Starlight-edit
 
 - type: entity
   parent: GasTrinaryBase
@@ -92,9 +91,6 @@
         - 0
         - -90
         - 180
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -162,9 +158,6 @@
       - 0
       - -90
       - 180
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
   # Starlight end
 
 - type: entity
@@ -231,9 +224,6 @@
         - 0
         - -90
         - 180
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:
@@ -297,9 +287,6 @@
       - 0
       - -90
       - 180
-  - type: ContainerContainer
-    containers:
-      VentCrawlTube: !type:Container
   # Starlight end
 
 - type: entity
@@ -377,9 +364,6 @@
         - 0
         - -90
         - 180
-    - type: ContainerContainer
-      containers:
-        VentCrawlTube: !type:Container
     # Starlight end
     - type: GuideHelp
       guides:

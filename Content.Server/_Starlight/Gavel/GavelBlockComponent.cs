@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server.Starlight.Gavel;
+namespace Content.Server._Starlight.Gavel;
 
 [RegisterComponent]
 public sealed partial class GavelBlockComponent : Component

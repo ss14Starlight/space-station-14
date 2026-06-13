@@ -1,7 +1,7 @@
 # Base
 
 - type: entity
-  parent: Paper
+  parent: PaperNTCC
   id: PrintedDocument
   abstract: true
   description: Bureaucratic unit. A document printed on a printer.

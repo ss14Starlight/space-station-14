@@ -17,7 +17,7 @@
 - type: entity
   id: BaseMagazineMagnumSubMachineGun
   name: SMG magazine (.45 magnum)
-  parent: BaseItem
+  parent: [BaseItem, BaseSecuritySalvageContraband]
   abstract: true
   components:
   - type: Tag
