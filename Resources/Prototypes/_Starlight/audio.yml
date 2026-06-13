@@ -82,17 +82,12 @@
 # Tamper seal BEGIN
 
 - type: soundCollection
-  id: CargoTamperSealOpen
-  files:
-    - /Audio/Effects/Cargo/ping.ogg
-
-- type: soundCollection
-  id: CargoTamperSealDestroyBegin
+  id: CargoTamperSealUndoBegin
   files:
     - /Audio/Items/Handcuffs/rope_takeoff.ogg
 
 - type: soundCollection
-  id: CargoTamperSealDestroyEnd
+  id: CargoTamperSealUndoEnd
   files:
     - /Audio/Items/Handcuffs/rope_breakout.ogg
 

@@ -4,13 +4,16 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Localizations;
 using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal;
@@ -24,18 +27,43 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedCargoSystem _cargo = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TamperSealComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt, after: [typeof(LockSystem)]);
+        SubscribeLocalEvent<TamperSealComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt,
+            before: [typeof(LockSystem)]);
+        SubscribeLocalEvent<TamperSealComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
+
+        SubscribeLocalEvent<TamperSealComponent, ActivateInWorldEvent>(OnActivateInWorld, before: [typeof(LockSystem)]);
         SubscribeLocalEvent<TamperSealComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
+        SubscribeLocalEvent<TamperSealComponent, TamperSealUnsealedDoAfterEvent>(OnUnsealDoAfter);
         SubscribeLocalEvent<TamperSealComponent, TamperSealDestroyedDoAfterEvent>(OnDestroyDoAfter);
         SubscribeLocalEvent<TamperSealComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
+
+        SubscribeLocalEvent<TamperSealComponent, ExaminedEvent>(OnExamined);
     }
 
     #region Events
+
+    private void OnLockToggleAttempt(EntityUid uid, TamperSealComponent seal, ref LockToggleAttemptEvent args)
+    {
+        if (seal.Opened || args.Cancelled)
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnActivateInWorld(EntityUid uid, TamperSealComponent seal, ref ActivateInWorldEvent args)
+    {
+        if (seal.Opened || args.Handled)
+            return;
+
+        TryUnseal(uid, args.User, seal);
+        args.Handled = true;
+    }
 
     private void OnAfterInteractUsing(EntityUid uid, TamperSealComponent component, ref AfterInteractUsingEvent args)
     {
@@ -48,25 +76,9 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void OnDestroyDoAfter(EntityUid _, TamperSealComponent seal, ref TamperSealDestroyedDoAfterEvent args)
-    {
-        if (args.Cancelled || args.Handled || seal.Opened)
-            return;
-
-        if (args.Target == null)
-            return;
-
-        DoDestroy(args.Target.Value, args.User, seal);
-        args.Handled = true;
-    }
-
     private void OnStorageOpenAttempt(EntityUid uid, TamperSealComponent seal, ref StorageOpenAttemptEvent args)
     {
-        if (args.Cancelled)
-            return;
-        if (seal.Opened)
-            return;
-        if (args.Silent)
+        if (args.Cancelled || args.Silent || seal.Opened)
             return;
 
         TryUnseal(uid, args.User, seal);
@@ -78,36 +90,80 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
 
     private void OnGetAltVerbs(EntityUid uid, TamperSealComponent seal, ref GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!args.CanAccess || !args.CanInteract)
-            return;
-        if (seal.Opened)
+        if (!args.CanAccess || !args.CanInteract || seal.Opened)
             return;
 
         var user = args.User;
         var item = args.Using;
-        var hasCorrectTool = item != null && _tool.HasQuality(item.Value, seal.DestroyTool);
+        var hasCorrectTool = item != null && _tool.HasQuality(item.Value, seal.DestroyToolQuality);
 
         var verb = new AlternativeVerb()
         {
             Text = Loc.GetString("tamper-seal-verb-destroy"),
             IconEntity = hasCorrectTool ? GetNetEntity(item) : null,
-            Disabled = !hasCorrectTool,
-            Message = hasCorrectTool ? null : Loc.GetString("tamper-seal-verb-destroy-disabled"),
+            Message = Loc.GetString(hasCorrectTool
+                ? "tamper-seal-verb-destroy-tool-description"
+                : "tamper-seal-verb-destroy-hands-description"),
             Act = () =>
             {
-                if (item != null)
-                    TryDestroy(uid, item.Value, user, seal);
+                TryDestroy(uid, item, user, seal);
             },
-            Priority = -10
+            Priority = 50
         };
         args.Verbs.Add(verb);
+    }
+
+    private void OnExamined(EntityUid uid, TamperSealComponent seal, ExaminedEvent args)
+    {
+        if (seal.Opened)
+            return;
+
+        // When there are no access levels specified, it's basically AA, so we have a different locale string for that.
+        if (seal.Accesses.Count == 0)
+        {
+            args.PushMarkup(Loc.GetString("tamper-seal-examine-public-access-description"));
+            return;
+        }
+
+        var names = seal.Accesses
+            .Select(id => _proto.TryIndex(id, out var proto)
+                ? proto.GetAccessLevelName()
+                : Loc.GetString("access-reader-unknown-id"))
+            .Select(name => Loc.GetString("access-reader-access-label", ("access", name)))
+            .ToList();
+
+        var formatted = ContentLocalizationManager.FormatListToOr(names);
+        args.PushMarkup(Loc.GetString("tamper-seal-examine-private-access-description",
+            ("access", formatted)), 100);
+    }
+
+    #endregion
+
+    #region Do-afters
+
+    private void OnUnsealDoAfter(EntityUid uid, TamperSealComponent seal, TamperSealUnsealedDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || seal.Opened || args.Target == null)
+            return;
+
+        DoUnseal(args.Target.Value, args.User, seal);
+        args.Handled = true;
+    }
+
+    private void OnDestroyDoAfter(EntityUid _, TamperSealComponent seal, ref TamperSealDestroyedDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Handled || seal.Opened || args.Target == null)
+            return;
+
+        DoDestroy(args.Target.Value, args.User, seal);
+        args.Handled = true;
     }
 
     #endregion
 
     #region API
 
-    public bool TryUnseal(EntityUid uid, EntityUid actor, TamperSealComponent? seal = null)
+    private bool TryUnseal(EntityUid uid, EntityUid user, TamperSealComponent? seal = null)
     {
         if (!Resolve(uid, ref seal))
             return false;
@@ -117,28 +173,49 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return true;
 
         // No access => Disallow
-        if (!CanUnseal(uid, actor, seal))
+        if (!CanUnseal(uid, user, seal))
         {
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-no-access"), uid, actor);
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-no-access"), uid, user);
             return false;
         }
 
-        DoUnseal(uid, actor, seal);
-        return true;
+        _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-begin"), uid, user);
+        _audio.PlayPredicted(seal.UnsealBeginSound, uid, user);
+
+        // Start the do-after to unseal. It's short but not instant so that you can cancel if you do it accidentally.
+        var args =
+            new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(seal.UnsealTime),
+                new TamperSealUnsealedDoAfterEvent(), uid,
+                target: uid)
+            {
+                BreakOnDamage = true,
+                BreakOnMove = true,
+                BreakOnWeightlessMove = false,
+                NeedHand = true,
+                AttemptFrequency = AttemptFrequency.EveryTick,
+            };
+
+        return _doAfter.TryStartDoAfter(args);
     }
 
-    public bool TryDestroy(EntityUid uid, EntityUid tool, EntityUid user, TamperSealComponent? seal = null)
+    private bool TryDestroy(EntityUid uid, EntityUid? tool, EntityUid user, TamperSealComponent? seal = null)
     {
         if (!Resolve(uid, ref seal)) return false;
-        if (!_tool.HasQuality(tool, seal.DestroyTool)) return false;
+        var hasTool = tool.HasValue && _tool.HasQuality(tool.Value, seal.DestroyToolQuality);
+        var toolKind = seal.DestroyToolQuality.Id.ToLowerInvariant(); // Slicing or prying.
 
-        // Show a popup.
-        _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-begin"), uid, user, PopupType.LargeCaution);
+        // Show a popup and play sound.
+        _popup.PopupPredicted(
+            Loc.GetString($"tamper-seal-popup-destroy-{(hasTool ? toolKind : "hands")}-begin"),
+            uid, user, PopupType.LargeCaution);
         _audio.PlayPredicted(seal.DestroyBeginSound, uid, user);
 
-        // I tried using ToolSystem.UseTool, but that causes mispredicts, linked to the AttemptFrequency.
+        // I tried using ToolSystem.UseTool, but that causes mispredicts due to setting a different AttemptFrequency.
+        // Doing it manually like this with AttemptFrequency.EveryTick works perfectly.
         var args =
-            new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(2.5f), new TamperSealDestroyedDoAfterEvent(), uid,
+            new DoAfterArgs(EntityManager, user,
+                TimeSpan.FromSeconds(hasTool ? seal.DestroyWithToolTime : seal.DestroyWithHandsTime),
+                new TamperSealDestroyedDoAfterEvent(), uid,
                 target: uid, used: tool)
             {
                 BreakOnDamage = true,
@@ -174,7 +251,8 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return;
 
         seal.Opened = true;
-        _audio.PlayPredicted(seal.OpenSound, uid, actor);
+
+        _audio.PlayPredicted(seal.UnsealEndSound, uid, actor);
         Appearance.SetData(uid, TamperSealVisuals.Opened, seal.Opened);
         Dirty(uid, seal);
 
@@ -184,7 +262,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // Reward cargo, and popup unsealing success + reward amount.
         // Note that there is no failure path here; we report it as if it succeeded, whether it did or not.
         _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, seal.RewardSpesos);
-        _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unlocked", ("reward", seal.RewardSpesos)), uid, actor);
+        _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end", ("reward", seal.RewardSpesos)), uid, actor);
 
         // TODO: admin log
     }
@@ -215,11 +293,13 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             ("refund", seal.PenaltyRefundSpesos)), uid, actor);
 
         // TODO: admin log
-
     }
 
     #endregion
 }
+
+[Serializable, NetSerializable]
+public sealed partial class TamperSealUnsealedDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class TamperSealDestroyedDoAfterEvent : SimpleDoAfterEvent;

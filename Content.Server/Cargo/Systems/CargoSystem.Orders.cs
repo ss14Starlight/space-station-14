@@ -24,6 +24,7 @@ using Robust.Shared.Utility;
 
 #region Starlight
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
+using Content.Shared.Tools;
 #endregion
 
 namespace Content.Server.Cargo.Systems
@@ -35,9 +36,14 @@ namespace Content.Server.Cargo.Systems
         [Dependency] private readonly IGameTiming _timing = default!;
 
         #region Starlight
-        [Dependency] private TagSystem _tagSystem = default!;
+        [Dependency] private TagSystem _tags = default!;
 
-        private static readonly ProtoId<TagPrototype> TamperSealable = new("TamperSealable");
+        private static readonly ProtoId<TagPrototype> _tamperSealable = "TamperSealable";
+        private static readonly ProtoId<TagPrototype> _tamperSealSlicing = "TamperSealSlicing";
+        private static readonly ProtoId<TagPrototype> _tamperSealPrying = "TamperSealPrying";
+
+        private static readonly ProtoId<ToolQualityPrototype> _toolSlicing = "Slicing";
+        private static readonly ProtoId<ToolQualityPrototype> _toolPrying = "Prying";
         #endregion
 
         private void InitializeConsole()
@@ -667,7 +673,7 @@ namespace Content.Server.Cargo.Systems
 
             #region Starlight
             // Apply a tamper seal to the entity if it supports it.
-            if (_tagSystem.HasTag(item, TamperSealable))
+            if (_tags.HasTag(item, _tamperSealable))
             {
                 var accountProto = _protoMan.Index(account);
                 var seal = EnsureComp<TamperSealComponent>(item);
@@ -680,6 +686,12 @@ namespace Content.Server.Cargo.Systems
                 seal.RewardSpesos = (int) Math.Floor(.1f * totalCost); // Rewards rounded down.
                 seal.PenaltySpesos = (int) Math.Ceiling(.2f * totalCost); // Penalties rounded up.
                 seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * totalCost); // Refunds rounded down.
+
+                // Set the required tool quality based on tags. If none is present, the default is Slicing.
+                if (_tags.HasTag(item, _tamperSealPrying))
+                    seal.DestroyToolQuality = _toolPrying;
+                else if (_tags.HasTag(item, _tamperSealSlicing))
+                    seal.DestroyToolQuality = _toolSlicing;
 
                 DirtyEntity(item);
             }

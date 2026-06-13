@@ -25,7 +25,12 @@ public sealed partial class TamperSealComponent : Component
     [AutoNetworkedField]
     public bool Opened;
 
-    [DataField] public SoundCollectionSpecifier OpenSound = new("CargoTamperSealOpen");
+    [DataField] public SoundCollectionSpecifier UnsealBeginSound = new("CargoTamperSealUndoBegin"); // Same as destroy
+    [DataField] public SoundCollectionSpecifier UnsealEndSound = new("CargoTamperSealUndoEnd"); // Same as destroy
+
+    [DataField]
+    [AutoNetworkedField]
+    public float UnsealTime = .75f;
 
     /// <summary>
     /// Whether the tamper seal was destroyed.
@@ -37,10 +42,13 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// Tool capability needed to undo the tamper seal.
     /// </summary>
-    [DataField] public ProtoId<ToolQualityPrototype> DestroyTool = "Slicing";
+    [DataField, AutoNetworkedField] public ProtoId<ToolQualityPrototype> DestroyToolQuality = "Slicing";
 
-    [DataField] public SoundCollectionSpecifier DestroyBeginSound = new("CargoTamperSealDestroyBegin");
-    [DataField] public SoundCollectionSpecifier DestroyEndSound = new("CargoTamperSealDestroyEnd");
+    [DataField, AutoNetworkedField] public float DestroyWithToolTime = .8f;
+    [DataField, AutoNetworkedField] public float DestroyWithHandsTime = 5.0f;
+
+    [DataField] public SoundCollectionSpecifier DestroyBeginSound = new("CargoTamperSealUndoBegin");
+    [DataField] public SoundCollectionSpecifier DestroyEndSound = new("CargoTamperSealUndoEnd");
 
     /// <summary>
     /// The access levels that can unlock this tamper seal legally.

@@ -359,8 +359,8 @@
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
       # Starlight BEGIN
-    - state: livestock_sealed # Tamper seal
-      sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+    - state: livestock_ribbon_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
       visible: false
       map: [ "enum.TamperSealLayers.Sealed" ]
       # Starlight END
@@ -411,6 +411,7 @@
   - type: Tag
     tags:
       - TamperSealable
+      - TamperSealSlicing
     # Starlight END
 
 - type: entity

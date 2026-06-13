@@ -8,10 +8,10 @@
   },
   "states": [
     {
-      "name": "crate_sealed"
+      "name": "crate_ribbon_sealed"
     },
     {
-      "name": "livestock_sealed"
+      "name": "livestock_ribbon_sealed"
     }
   ]
 }

@@ -23,8 +23,8 @@
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
       # Starlight BEGIN
-    - state: crate_sealed # Tamper seal
-      sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+    - state: crate_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
       visible: false
       map: [ "enum.TamperSealLayers.Sealed" ]
       # Starlight END
@@ -81,6 +81,18 @@
   - type: Tag
     tags:
       - TamperSealable
+      - TamperSealSlicing
+  - type: PaperLabel # Overrides parent
+    labelSlot:
+      priority: 100 # <-- Only change relative to BasePaperLabelable.
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+          - Paper
+      blacklist:
+        tags:
+          - Book
   # Starlight END
 
 - type: entity
@@ -137,8 +149,8 @@
       shader: unshaded
       visible: false
       map: ["enum.ElectrifiedLayers.Sparks"]
-    - state: crate_sealed # Tamper seal
-      sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+    - state: crate_ribbon_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
       visible: false
       map: [ "enum.TamperSealLayers.Sealed" ]
       # Starlight END

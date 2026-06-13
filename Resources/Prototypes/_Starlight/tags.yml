@@ -634,6 +634,12 @@
   id: TamperSealable
 
 - type: Tag
+  id: TamperSealPrying
+
+- type: Tag
+  id: TamperSealSlicing
+
+- type: Tag
   id: TheDark
 
 - type: Tag

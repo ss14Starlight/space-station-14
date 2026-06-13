@@ -14,11 +14,6 @@
       noRot: true
       layers:
         - state: grey
-          # Starlight BEGIN
-        - state: tamper_seal_sealed
-          visible: false
-          map: [ "enum.TamperSealLayers.Sealed" ]
-          # Starlight END
         - state: paper
           visible: false
           map: [ "enum.PaperLabelVisuals.Layer" ]
@@ -50,15 +45,17 @@
         enum.StorageVisuals.Open:
           enum.PaperLabelVisuals.Layer:
             True: { visible: false }
-#        # Starlight BEGIN
+        # Starlight BEGIN
         enum.TamperSealVisuals.Opened:
-#          enum.TamperSealLayers.Base:
-#            False: { visible: true, state: tamper_seal_base }
-#            True: { visible: false }
           enum.TamperSealLayers.Sealed:
-            False: { visible: true, state: tamper_seal_cap, color: "#ffffff" }
+            False: {
+              sprite: _Starlight/Structures/Storage/tamper_seal64.rsi,
+              visible: true,
+              state: canister_cap_sealed,
+              color: "#ffffff"
+            }
             True: { visible: false }
-#        # Starlight END
+        # Starlight END
         enum.PaperLabelVisuals.LabelType:
           enum.PaperLabelVisuals.Layer:
             Paper: { state: paper }
@@ -146,9 +143,23 @@
       - GasCanisters
     - type: Paintable
       group: Canisters
+    # Starlight BEGIN
     - type: Tag
       tags:
         - TamperSealable
+        - TamperSealPrying
+    - type: PaperLabel # Overrides parent
+      labelSlot:
+        priority: 100 # <-- Only change relative to BasePaperLabelable.
+        insertVerbText: comp-paper-label-insert
+        ejectVerbText: comp-paper-label-eject
+        whitelist:
+          components:
+            - Paper
+        blacklist:
+          tags:
+            - Book
+    # Starlight END
 
 - type: entity
   parent: GasCanister
@@ -158,12 +169,6 @@
     - type: Sprite
       layers:
         - state: storage # Starlight Edit: yellow -> storage
-#        # Starlight BEGIN
-#        - state: canister_sealed # Tamper seal
-#          sprite: _Starlight/Structures/Storage/canister_tamper_seal.rsi
-#          visible: false
-#          map: [ "enum.TamperSealLayers.Sealed" ]
-#        # Starlight END
     - type: GasCanister
       gasMixture:
         volume: 1500

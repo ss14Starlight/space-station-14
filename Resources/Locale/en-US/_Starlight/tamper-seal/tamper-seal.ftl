@@ -1,7 +1,15 @@
-tamper-seal-popup-unlocked = The tamper seal opens cleanly. Cargo is awarded {$reward} spesos.
-tamper-seal-popup-no-access = You should probably not open it, as it's not meant for you.
-tamper-seal-popup-destroy-begin = You begin cutting the tamper seal..
+tamper-seal-popup-unseal-begin = You open the tamper seal..
+tamper-seal-popup-unseal-end = The tamper seal opens cleanly. Cargo is awarded {$reward} spesos.
+tamper-seal-popup-unseal-no-access = You should probably not open it, as it's not meant for you.
+
+tamper-seal-popup-destroy-hands-begin = You begin painfully ripping apart the tamper seal..
+tamper-seal-popup-destroy-slicing-begin = You cut the tamper seal..
+tamper-seal-popup-destroy-prying-begin = You pry off the tamper seal..
 tamper-seal-popup-destroy-end = Seal broken! Cargo is penalized {$penalty} spesos!
 
 tamper-seal-verb-destroy = Destroy seal
-tamper-seal-verb-destroy-disabled = You need something sharp to destroy the seal.
+tamper-seal-verb-destroy-hands-description = Rip off the tamper seal with your hands. A sharp tool will make this go faster.
+tamper-seal-verb-destroy-tool-description = Use your cutting tool to break the seal.
+
+tamper-seal-examine-public-access-description = There is an intact [color=green]tamper seal[/color] present.
+tamper-seal-examine-private-access-description = There is an intact [color=green]tamper seal[/color] present, restricted to [color=yellow]{$access}[/color].
