@@ -30,9 +30,7 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The access levels that can unlock this tamper seal legally.
     /// </summary>
-    [DataField]
-    [AutoNetworkedField]
-    public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
+    [DataField, AutoNetworkedField] public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
 
     #endregion
     #region Unsealing
@@ -73,11 +71,11 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The sound to play when the Destroy do-after begins.
     /// </summary>
-    [DataField] public SoundCollectionSpecifier DestroyBeginSound = new("CargoTamperSealUndoBegin");
+    [DataField, AutoNetworkedField] public SoundCollectionSpecifier DestroyBeginSound = new("CargoTamperSealUndoBegin");
     /// <summary>
     /// The sound to play when the Destroy do-after ends.
     /// </summary>
-    [DataField] public SoundCollectionSpecifier DestroyEndSound = new("CargoTamperSealUndoEnd");
+    [DataField, AutoNetworkedField] public SoundCollectionSpecifier DestroyEndSound = new("CargoTamperSealUndoEnd");
 
     #endregion
     #region Rewards and Penalties
@@ -85,22 +83,22 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The entity ID of the station that all referenced CargoAccount instances belong to.
     /// </summary>
-    [DataField] [AutoNetworkedField] public EntityUid RecipientStation = EntityUid.Invalid;
+    [DataField, AutoNetworkedField] public EntityUid RecipientStation = EntityUid.Invalid;
 
     /// <summary>
     /// The ID of the account responsible for a successful delivery.
     /// </summary>
-    [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> DelivererAccount = "Cargo";
+    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> DelivererAccount = "Cargo";
 
     /// <summary>
     /// The ID of the account that placed the order, and that should be reimbursed on a failed delivery.
     /// </summary>
-    [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount = "Cargo";
+    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount = "Cargo";
 
     /// <summary>
     /// The reward to be given to <see cref="DelivererAccount"/> on a successful delivery.
     /// </summary>
-    [DataField] [AutoNetworkedField] public int RewardSpesos;
+    [DataField, AutoNetworkedField] public int RewardSpesos;
 
     /// <summary>
     /// How much the <see cref="DelivererAccount"/> is penalized on failed delivery.
@@ -110,7 +108,7 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// How much the <see cref="RecipientAccount"/> is refunded on failed delivery.
     /// </summary>
-    [DataField] [AutoNetworkedField] public int PenaltyRefundSpesos;
+    [DataField, AutoNetworkedField] public int PenaltyRefundSpesos;
 
     #endregion
 
