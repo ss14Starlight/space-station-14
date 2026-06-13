@@ -131,7 +131,7 @@
       state: arc_cosmic
   - type: EffectVisuals
   - type: PointLight
-    color: "#42a4ae"
+    color: "#9f5ee9"
     radius: 1.5
     energy: 6
     castShadows: false
@@ -149,3 +149,64 @@
   - type: Tag
     tags:
       - HideContextMenu
+
+- type: entity
+  parent: BaseBullet
+  id: CosmicLambdaParticle
+  name: Nullspace stabilizer particles
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: CosmicLambdaParticle
+  - type: PointLight
+    enabled: true
+    color: "#a142ae"
+    radius: 2.0
+    energy: 7.0
+  - type: Sprite
+    sprite: _Starlight/CosmicCult/Effects/lambda_projectilevfx.rsi
+    layers:
+      - state: razor
+        shader: unshaded
+  - type: Ammo
+    muzzleFlash: null
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        mask:
+        - Opaque
+  - type: Projectile
+    damage:
+      types:
+        Cold: 5
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Reflective
+    reflective:
+    - Energy
+
+- type: entity
+  id: CosmicLambdaBeam
+  parent: BasicHitscan
+  name: Nullspace Stabilizer Beam
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HitscanBasicDamage
+    damage:
+      types:
+        Heat: 30
+        Structural: 10
+  - type: HitscanBasicVisuals
+    muzzleFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: muzzle_beam_heavy2
+    travelFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: beam_heavy2
+    impactFlash:
+      sprite: _Starlight/CosmicCult/Effects/lambda_beamvfx.rsi
+      state: impact_beam_heavy2

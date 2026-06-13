@@ -24,6 +24,8 @@
       Skating:
         knockback: 1.0
         staminaMultiplier: 100
+      Rodentia:
+        knockback: 1.5
       Resomi:
         knockback: 1.5
       Avali:

@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McDuskin #pronounced Dusk-Kin
-  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge] #These fucks have no lungs, can't just inherent from protogen..
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
   id: BaseMobProtoKin
   abstract: true
   components:
@@ -14,6 +14,7 @@
       - GalacticCommon
       - Machine
       - Marish
+      - Empathy
     - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
       doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
       allowSelfRepair: true
@@ -222,7 +223,7 @@
 
 - type: entity
   save: false
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoKin
   categories: [HideSpawnMenu]
   description: A dummy protokin meant to be used in character setup.

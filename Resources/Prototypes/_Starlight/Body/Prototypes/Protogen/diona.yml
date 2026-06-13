@@ -21,8 +21,8 @@
       - right leg
       - left leg
       organs:
-        stomach: OrganDionaStomachNymph
-        lungs: OrganDionaLungsNymph
+        stomach: OrganProtoDionaStomachNymph
+        lungs: OrganProtoDionaLungsNymph
         cavity: null
     right arm:
       part: RightArmDiona
@@ -34,8 +34,12 @@
       - left hand
     right hand:
       part: RightHandDiona
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandDiona
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegDiona
       connections:
