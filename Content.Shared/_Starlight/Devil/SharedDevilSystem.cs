@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Xml;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
@@ -9,6 +8,7 @@ using Content.Shared.Silicons.Borgs.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using static Content.Shared.Paper.PaperComponent;
 
 namespace Content.Shared._Starlight.Devil;
@@ -21,10 +21,13 @@ public abstract partial class SharedDevilSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly MetaDataSystem _metadata = default!;
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<InfernalContractComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<InfernalContractComponent, ExaminedEvent>(OnExamineEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
@@ -85,7 +88,6 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var rawDamnations = rawSacrifices.Concat(rawBenefits);
 
         // we now have our string arrays of the wanted effects. Now we need to check them against existing ones.
-        // todo check for duplicates
         if (!TryComp<DevilComponent>(contractComp.Author, out var devilComp)) return null;
         var availableDamnations = devilComp.AvailableDamnations.Select(d =>
         {
@@ -97,9 +99,14 @@ public abstract partial class SharedDevilSystem : EntitySystem
             var index = availableDamnations.IndexOf(damnation.ToLower());
             if (index != -1)
                 data.Damnations.Add(devilComp.AvailableDamnations[index]);
-            else
-                data.InvalidDamnations.Add(damnation.ToLower());
+            else if (!damnation.Equals(contractComp.BlankClauseText))
+            {
+                // prevent tag injection
+                var sanitized = FormattedMessage.EscapeText(damnation);
+                data.InvalidDamnations.Add(sanitized.ToLower());
+            }
         }
+
         data.Damnations = data.Damnations.Distinct().ToList();
 
         foreach (var damnation in data.Damnations)
@@ -118,9 +125,13 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         args.PushMarkup(Loc.GetString($"infernal-contract-examined-{contractValidity}"));
 
-        var contractData = GetContractContent(uid);
-        if (contractData != null)
-            args.PushMarkup(Loc.GetString("infernal-contract-examine-cost", ("value", contractData.Value.Cost)));
+        if(GetContractContent(uid) is not InfernalContractData contractData) return;
+
+        args.PushMarkup(Loc.GetString("infernal-contract-examined-cost", ("value", contractData.Cost)));
+
+        if(contractData.InvalidDamnations.Count > 0)
+            args.PushMarkup(Loc.GetString("infernal-contract-examined-misspelling",
+                ("items", string.Join(", ", contractData.InvalidDamnations))));
     }
 
     private void OnPaperWriteAttempt(EntityUid uid, InfernalContractComponent contractComp, ref PaperWriteAttemptEvent args)
@@ -173,15 +184,24 @@ public abstract partial class SharedDevilSystem : EntitySystem
         if(GetContractContent(ent.Owner) is not InfernalContractData data)
             return;
 
-        var mispeltDamnations = data.InvalidDamnations
-                .Select(x => x.Trim())
-                .Where(x => !x.Contains("[form]"))
-                .ToArray(); // yes i will clean this up
-
-        if(mispeltDamnations.Length > 0)
-            _popup.PopupEntity(Loc.GetString("infernal-contract-popup-invalid-damnations",
-                ("items", string.Join(", ", mispeltDamnations))), ent.Owner, PopupType.SmallCaution);
+        // if the contract has misspellings, we give it the "blank" (dull) sprite, to provide some visual
+        // indication that something is slightly off
+        if(data.InvalidDamnations.Count > 0)
+        {
+            _appearance.SetData(ent.Owner, PaperVisuals.Status, PaperStatus.Blank);
+            _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.MispelledContractName));
+        }
+        else
+        {
+            _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.CorrectContractName));
+        }
     }
+
+    /// <summary>
+    /// for consistency's sake, set name to correct upon spawn - incase someone wants to change this for some reason
+    /// </summary>
+    private void OnInit(Entity<InfernalContractComponent> ent, ref ComponentInit args) => _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.CorrectContractName));
+
     #endregion
 
     #region damnation

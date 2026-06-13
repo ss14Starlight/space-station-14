@@ -27,6 +27,9 @@
             ]
         },
         {
+            "name": "paper_invalid"
+        },
+        {
             "name": "paper_stamp-generic",
             "delays": [
                 [
