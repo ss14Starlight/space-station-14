@@ -22,7 +22,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistRed
       roleLoadout:
-      - RoleSurvivalWizardDuelist
+      - AntagWizardDuelist # Starlight
       briefing:
         text: wizard-duelist-red-role-greeting
         color: Turquoise
@@ -50,7 +50,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistBlue
       roleLoadout:
-      - RoleSurvivalWizardDuelist
+      - AntagWizardDuelist # Starlight
       briefing:
         text: wizard-duelist-blue-role-greeting
         color: Turquoise
@@ -79,7 +79,7 @@
       playerRatio: 90 # Starlight, only spawn above 90pop
       spawnerPrototype: SpawnPointGhostWizardDuelistPurple # Starlight, violet -> Purple
       roleLoadout:
-      - RoleSurvivalWizardDuelist
+      - AntagWizardDuelist # Starlight
       briefing:
         text: wizard-duelist-purple-role-greeting # Starlight, violet -> Purple
         color: Turquoise
@@ -106,7 +106,7 @@
       max: 1
       spawnerPrototype: SpawnPointGhostWizardDuelistYellow
       roleLoadout:
-      - RoleSurvivalWizardDuelist
+      - AntagWizardDuelist # Starlight
       briefing:
         text: wizard-duelist-yellow-role-greeting
         color: Turquoise
@@ -133,7 +133,7 @@
       playerRatio: 70 # Only spawn above 70pop
       spawnerPrototype: SpawnPointGhostWizardDuelistGreen
       roleLoadout:
-      - RoleSurvivalWizardDuelist
+      - AntagWizardDuelist # Starlight
       briefing:
         text: wizard-duelist-green-role-greeting
         color: Turquoise
@@ -160,7 +160,7 @@
       playerRatio: 110 # Only spawn above 110pop, the rarest wizard
       spawnerPrototype: SpawnPointGhostWizardDuelistOrange
       roleLoadout:
-      - RoleSurvivalWizardDuelist
+      - AntagWizardDuelist # Starlight
       briefing:
         text: wizard-duelist-orange-role-greeting
         color: Turquoise

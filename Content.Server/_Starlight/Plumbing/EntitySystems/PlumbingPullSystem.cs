@@ -489,5 +489,4 @@ public sealed class PlumbingPullSystem : EntitySystem
             ? solutionEnt
             : null;
     }
-
 }

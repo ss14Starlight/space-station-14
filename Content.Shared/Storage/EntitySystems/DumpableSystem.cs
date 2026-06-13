@@ -153,4 +153,9 @@ public sealed class DumpableSystem : EntitySystem
             _audio.PlayPredicted(component.DumpSound, uid, args.User);
         }
     }
+
+    public void DumpContents(EntityUid uid, DumpableComponent component)
+    {
+
+    }
 }

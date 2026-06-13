@@ -2,6 +2,18 @@
   copyright: "based on freesound.org sample 'another magic wand spell tinkle.flac' by Timbre; edited by Rhetorica for Starlight"
   license: "CC-BY-NC-4.0"
   source: "https://freesound.org/people/Uzbazur/sounds/221872/"
+- files: [dwarf-buff-generic.ogg, dwarf-buff-cognac.ogg, dwarf-buff-gin.ogg, dwarf-buff-moscowmule.ogg, dwarf-buff-rum.ogg, dwarf-buff-tequila.ogg, dwarf-buff-vermouth.ogg]
+  copyright: "Generated and/or mixed by AllisonKaur for Starlight"
+  license: "CC-BY-4.0"
+  source: "https://github.com/ss14Starlight/space-station-14/"
+- files: [dwarf-buff-highlander.ogg]
+  copyright: "As a work of the U.S. federal government, the image or file is in the public domain in the United States. Edited by AllisonKaur for Starlight."
+  license: "CC0-1.0"
+  source: "https://commons.wikimedia.org/wiki/File:Scotland_the_Brave_-_United_States_Air_Force_Pipe_Band.oga"
+- files: [dwarf-buff-whiskey.ogg]
+  copyright: "Michael 'nifty koala' Phillips for Fistful of Frags 2014; edited by Rhetorica for Starlight"
+  license: "CC-BY-NC-4.0"
+  source: "https://bitbucket.org/o0elise0o/fistfulofsound/src/master/www/sounds/desp/whiskey_passwhiskey1.mp3"
 - files: [ember.ogg]
   copyright: "based on existing SS14 resources (match_strike, cig_light, snap3); edited by Rhetorica for Starlight"
   license: "CC-BY-4.0"

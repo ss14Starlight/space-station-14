@@ -112,3 +112,96 @@
       - MobCosmicLodestarHostile
   - type: WarpPoint
     follow: true
+
+- type: entity
+  parent: BaseAnomalyInjector
+  id: CosmicAnomalyTrap
+  suffix: Malign
+  components:
+  - type: Sprite
+    layers:
+    - sprite: _Starlight/CosmicCult/Effects/malign_anom_infection.rsi
+      state: vfx
+    - sprite: Mobs/Species/Human/parts.rsi
+      state: full
+  - type: InnerBodyAnomalyInjector
+    injectionComponents:
+      - type: Anomaly
+        deleteEntity: false
+        minPointsPerSecond: 65
+        maxPointsPerSecond: 150
+        pulseSound:
+          path: /Audio/_Starlight/CosmicCult/effigy_pulse.ogg
+        supercriticalSound:
+          path: /Audio/_Starlight/CosmicCult/effigy_supercritical.ogg
+        nextPulseTime: 1
+        minPulseLength: 60
+        maxPulseLength: 80
+        minContituty: 0.4
+        maxContituty: 0.8
+        growthThreshold: 0.35
+      - type: InnerBodyAnomaly
+        injectionProto: CosmicAnomalyInjection
+        startMessage: entropy-effect-numb
+        fallbackSprite:
+          sprite: _Starlight/CosmicCult/Effects/malign_anom_infection.rsi
+          state: vfx
+
+- type: entity
+  id: CosmicAnomalyInjection
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PointLight
+    color: "#42a4ae"
+    radius: 2
+    energy: 4
+    castShadows: true
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      interpolate: Linear
+      minDuration: 2.25
+      maxDuration: 2.25
+      startValue: 1
+      endValue: 3
+      property: Energy
+      enabled: true
+      isLooped: true
+      reverseWhenFinished: true
+  - type: EntitySpawnAnomaly
+    entries:
+    - settings:
+        spawnOnPulse: true
+        minAmount: 2
+        maxAmount: 5
+        minRange: 3
+        maxRange: 4.5
+      spawns:
+      - MobCosmicCustodianHostile
+      - MobCosmicOracleHostile
+      - MobCosmicLodestarHostile
+    - settings:
+        spawnOnSuperCritical: true
+        minAmount: 4
+        maxAmount: 7
+        maxRange: 8
+      spawns:
+      - MobCosmicCustodianHostile
+      - MobCosmicOracleHostile
+      - MobCosmicLodestarHostile
+      - CosmicMalignRift
+    - settings:
+        spawnOnShutdown: true
+        minAmount: 1
+        maxAmount: 2
+        maxRange: 1
+      spawns:
+      - MobCosmicLodestarHostile
+  - type: CosmicCorrupting
+    mobile: true
+    autoDisable: false
+    corruptionReduction: 0
+    corruptionSpeed: 24
+  - type: ActionGrant
+    actions:
+    - ActionCosmicAnomalyIngress

@@ -38,7 +38,7 @@ public sealed class TerrorEggSystem : AccUpdateEntitySystem
             _damageable.TryChangeDamage(egg.Value.Owner, _damage, false);
             if (egg.Value.Comp.Counter >= 300)
             {
-                var entity = EntityManager.SpawnEntity(_random.Pick(_terrorSpiders), Transform(egg.Value.Owner).Coordinates);
+                PredictedSpawnAtPosition(_random.Pick(_terrorSpiders), Transform(egg.Value.Owner).Coordinates);
                 RemComp<EggHolderComponent>(egg.Value.Owner);
             }
         }

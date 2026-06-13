@@ -6,7 +6,6 @@ using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Pathfinding;
 using Content.Shared._Starlight.Xenobiology;
 using Content.Shared.Interaction;
-using Content.Shared.Tag;
 
 namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators.Xenobiology;
 

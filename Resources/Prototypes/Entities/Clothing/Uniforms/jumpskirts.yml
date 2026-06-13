@@ -327,6 +327,11 @@
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/brigmedic.rsi
+  - type: Armor # Starlight start, so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90 # Starlight end
 
 - type: entity
   parent: ClothingUniformBase
@@ -689,8 +694,11 @@
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
     - type: Clothing
       sprite: Clothing/Uniforms/Jumpskirt/skirtoflife.rsi
-    - type: ZombificationResistance # Starlight
-      zombificationResistanceCoefficient: 0.95 # Starlight
+    - type: Armor # Starlight start, so zombification resistance shows up
+      modifiers:
+        coefficients: { }
+    - type: ZombificationResistance
+      zombificationResistanceCoefficient: 0.95 # Starlight end
 
 - type: entity
   parent: ClothingUniformSkirtBase

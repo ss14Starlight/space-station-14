@@ -95,7 +95,7 @@
   parent: [ ClothingHeadset, BaseCentcommContraband ]
   id: ClothingHeadsetCentCom
   name: CentComm headset
-  description: A headset used by the upper echelons of NanoTrasen. # SL
+  description: A headset used by the upper echelons of Central Command. # SL
   components:
   - type: ContainerFill
     containers:
@@ -257,7 +257,7 @@
       path: /Audio/_Starlight/Effects/Radio/rd.ogg
 
 - type: entity
-  parent: [ClothingHeadset, BaseSecurityInternalAffairsContraband] # Starlight
+  parent: [ClothingHeadset, BaseSecurityContraband]
   id: ClothingHeadsetSecurity
   name: security headset
   description: This is used by your elite security force.

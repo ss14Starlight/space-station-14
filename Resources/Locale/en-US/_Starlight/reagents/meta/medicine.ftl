@@ -9,3 +9,12 @@ reagent-desc-chronexaline = A mixture of unstable radiation chemicals and its ba
 
 reagent-name-barozine-plus = barozine plus
 reagent-desc-barozine-plus = An advanced form of Barozine only found in Space Medipens. Heals less, but an overdose is less painful.
+
+reagent-name-infernaline = infernaline
+reagent-desc-infernaline = An unstable chemical that defies logic, very effective at treating genetic damage, but capable of causing tears in the flesh in higher than minimal amounts.
+
+reagent-name-briomadine = briomadine
+reagent-desc-briomadine = An advanced semi-natural medicine used to treat serious brute damage.
+
+reagent-name-acrileni = acrileni
+reagent-desc-acrileni = A weak natural medicine able to treat light peircing damage.

@@ -157,6 +157,7 @@
   id: ClothingNeckAsexualPin
   equipment: # Starlight: Move to misc slot
     misc: ClothingNeckAsexualPin
+  groupBy: "pin" # Starlight: Group with other pride pins
 
 - type: loadout
   id: ClothingNeckBisexualPin
@@ -470,10 +471,8 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-     # !type:RoleTimeRequirement # Starlight start: switch to law dept
-     # role: JobLawyer
-      !type:DepartmentTimeRequirement
-      department: Law # Starlight end
+      !type:DepartmentTimeRequirement # Starlight
+      department: Law # Starlight
       time: 100h
   storage:
     back:

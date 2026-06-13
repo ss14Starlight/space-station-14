@@ -1,0 +1,112 @@
+# Blackstar ID Cards
+- type: entity
+  parent: IDCardStandard
+  id: BlackstarIDCard
+  name: Blackstar ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: mercenary
+        - sprite: _Starlight/Interface/Misc/job_icons.rsi
+          offset: -0.09375, 0.0625
+          state: Blackstar
+    - type: IdCard
+      jobTitle: job-name-blackstar
+      jobIcon: JobIconBlackstar
+    - type: Access
+      tags:
+        - Blackstar
+
+- type: entity
+  parent: IDCardStandard
+  id: BlackstarLegionCommanderIDCard
+  name: Legion Commander ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: gold
+        - sprite: _Starlight/Interface/Misc/job_icons.rsi
+          offset: -0.09375, 0.0625
+          state: Blackstar
+    - type: IdCard
+      jobTitle: job-name-blackstar-legion-commander
+      jobIcon: JobIconBlackstarLegionCommander
+    - type: Access
+      tags:
+        - Blackstar
+
+- type: entity
+  parent: IDCardStandard
+  id: BlackstarHighLegateIDCard
+  name: High Legate ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - sprite: _Starlight/Interface/Misc/job_icons.rsi
+          offset: -0.09375, 0.0625
+          state: Blackstar
+    - type: IdCard
+      jobTitle: job-name-blackstar-high-legate
+      jobIcon: JobIconBlackstarHighLegate
+    - type: Access
+      tags:
+        - Blackstar
+
+- type: entity
+  parent: IDCardStandard
+  id: BlackstarLegateIDCard
+  name: Legate ID card
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: silver
+        - sprite: _Starlight/Interface/Misc/job_icons.rsi
+          offset: -0.09375, 0.0625
+          state: Blackstar
+    - type: IdCard
+      jobTitle: job-name-blackstar-legate
+      jobIcon: JobIconBlackstarLegate
+    - type: Access
+      tags:
+        - Blackstar
+
+- type: entity
+  parent: BlackstarIDCard
+  id: BlackstarDreadwalkerIDCard
+  name: Dreadwalker ID card
+  components:
+    - type: IdCard
+      jobTitle: job-name-blackstar-dreadwalker
+      jobIcon: JobIconBlackstarDreadwalker
+
+- type: entity
+  parent: BlackstarIDCard
+  id: BlackstarLegionnaireIDCard
+  name: Legionnaire ID card
+  components:
+    - type: IdCard
+      jobTitle: job-name-blackstar-legionnaire
+      jobIcon: JobIconBlackstarLegionnaire
+
+- type: entity
+  parent: BlackstarIDCard
+  id: BlackstarBlackguardIDCard
+  name: Blackguard ID card
+  components:
+    - type: IdCard
+      jobTitle: job-name-blackstar-blackguard
+      jobIcon: JobIconBlackstarBlackguard
+
+- type: entity
+  parent: BlackstarIDCard
+  id: BlackstarInitiateIDCard
+  name: Initiate ID card
+  components:
+    - type: IdCard
+      jobTitle: job-name-blackstar-initiate
+      jobIcon: JobIconBlackstarInitiate

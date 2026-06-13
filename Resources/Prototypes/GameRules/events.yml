@@ -35,6 +35,7 @@
     - id: NightShift
     - id: SyndicateDeadDrop
     # Starlight End
+    - id: MalignRiftSpawn # Funky
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -60,6 +61,7 @@
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight
     - id: TerrorSpidersSpawn # Starlight
+    - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
 
@@ -240,8 +242,7 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostDragon
       min: 1
-      max: 3 # Starlight, for alpha.
-      playerRatio: 95 # Starlight. Realistically, Alpha shouldn't ever see more than 2, but future proofing's future proofing...
+      max: 1
       pickPlayer: false
       mindRoles:
       - MindRoleDragon
@@ -279,7 +280,7 @@
       pickPlayer: false
       startingGear: SpaceNinjaGear
       roleLoadout:
-      - RoleSurvivalSpaceNinja
+      - AntagSpaceNinja # Starlight
       briefing:
         text: ninja-role-greeting
         color: Green
@@ -312,7 +313,7 @@
   id: ParadoxCloneSpawn
   components:
   - type: StationEvent
-    weight: 5
+    weight: 4 # Starlight
     duration: null
     earliestStart: 20
     reoccurrenceDelay: 20
@@ -331,8 +332,7 @@
     definitions:
     - spawnerPrototype: SpawnPointGhostParadoxClone
       min: 1
-      max: 4 # Starlight. Future proofing.
-      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
+      max: 1
       pickPlayer: false
       startingGear: ParadoxCloneGear
       roleLoadout:
@@ -379,7 +379,7 @@
       pickPlayer: false
       startingGear: WizardBlueGear
       roleLoadout:
-      - RoleSurvivalExtended
+      - AntagWizard # Starlight
       briefing:
         text: wizard-role-greeting
         color: Turquoise
@@ -632,13 +632,12 @@
     definitions:
     - spawnerPrototype: SpawnPointLoneNukeOperative
       min: 1
-      max: 3 # Starlight, for Alpha.
-      playerRatio: 75 # Starlight. 1 vs 150 is essentially impossible. 2 vs 150 might stand a chance. 3 vs 225 is funny.
+      max: 1
       prefRoles: [ Nukeops ]
       pickPlayer: false
       startingGear: SyndicateLoneOperativeGearFull
       roleLoadout:
-      - RoleSurvivalNukie
+      - AntagNukeops # Starlight
       components:
       - type: NukeOperative
       - type: RandomMetadata

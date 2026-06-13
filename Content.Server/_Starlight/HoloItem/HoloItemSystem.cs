@@ -68,7 +68,6 @@ public sealed class HoloItemSystem : EntitySystem
         args.Handled = true;
     }
 
-    //We do it exactly like SharedCollectiveMindSystem
     private List<ComponentRegistration> StringsToRegs(List<string> input)
     {
         var list = new List<ComponentRegistration>();

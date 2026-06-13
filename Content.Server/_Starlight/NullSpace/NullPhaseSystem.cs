@@ -30,8 +30,8 @@ public sealed class NullSpacePhaseSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
     private readonly EntProtoId _shadekinShadow = "ShadekinShadow";
-    private readonly EntProtoId ShadekinPhaseInEffect = "ShadekinPhaseInEffect";
-    private readonly EntProtoId ShadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
+    private readonly EntProtoId _shadekinPhaseInEffect = "ShadekinPhaseInEffect";
+    private readonly EntProtoId _shadekinPhaseOutEffect = "ShadekinPhaseOutEffect";
 
     public override void Initialize()
     {
@@ -44,14 +44,10 @@ public sealed class NullSpacePhaseSystem : EntitySystem
     }
 
     private void OnInit(EntityUid uid, NullPhaseComponent component, MapInitEvent args)
-    {
-        Toggle(uid, component, true);
-    }
+        => Toggle(uid, component, true);
 
     public void OnShutdown(EntityUid uid, NullPhaseComponent component, ComponentShutdown args)
-    {
-        Toggle(uid, component, false);
-    }
+        => Toggle(uid, component, false);
 
     private void OnEquipped(EntityUid uid, NullPhaseComponent component, GotEquippedEvent args)
     {
@@ -162,7 +158,7 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                         _ghost.DoGhostBooEvent(light);
                 }
 
-                var effect = SpawnAtPosition(ShadekinPhaseInEffect, Transform(uid).Coordinates);
+                var effect = SpawnAtPosition(_shadekinPhaseInEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else
@@ -184,7 +180,7 @@ public sealed class NullSpacePhaseSystem : EntitySystem
                         _ghost.DoGhostBooEvent(light);
                 }
 
-                var effect = SpawnAtPosition(ShadekinPhaseOutEffect, Transform(uid).Coordinates);
+                var effect = SpawnAtPosition(_shadekinPhaseOutEffect, Transform(uid).Coordinates);
                 Transform(effect).LocalRotation = Transform(uid).LocalRotation;
             }
             else
