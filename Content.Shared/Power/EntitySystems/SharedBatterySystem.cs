@@ -106,8 +106,6 @@ public abstract partial class SharedBatterySystem : EntitySystem
     /// <summary>
     /// When a power cell that has a non-zero AutoRechargePause; ensure that the pause is reset whenever this is called unless the pause is over, and it is not discharging.
     /// </summary>
-    /// <param name="ent"></param>
-    /// <param name="args"></param>
     private void OnRefreshChargeRate(Entity<BatterySelfRechargerComponent> ent, ref RefreshChargeRateEvent args)
     {
         #region Starlight
