@@ -1,4 +1,5 @@
 using Content.Server.GameTicking;
+using Content.Server.Shuttles.Components;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Roles;
 using Content.Shared.Station.Components;
@@ -55,6 +56,18 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
         if (stationMaps.Count == 0)
             return;
 
+        // The round ends the moment the emergency shuttle launches, so evacuees are
+        // usually still docked at the station when these stats are computed.
+        // Anyone aboard the evac shuttle or an escape pod counts as evacuated.
+        var evacGrids = new HashSet<EntityUid>();
+        if (TryComp<StationEmergencyShuttleComponent>(station, out var stationShuttle)
+            && stationShuttle.EmergencyShuttle is { } evacShuttle)
+            evacGrids.Add(evacShuttle);
+
+        var podQuery = EntityQueryEnumerator<EscapePodComponent>();
+        while (podQuery.MoveNext(out var podUid, out _))
+            evacGrids.Add(podUid);
+
         foreach (var (id, record) in _records.GetRecordsOfType<GeneralStationRecord>(station, records))
         {
             if (!_proto.TryIndex<JobPrototype>(record.JobPrototype, out var job))
@@ -80,7 +93,8 @@ public sealed partial class StationCrewStatisticsSystem : EntitySystem
             }
 
             var xform = Transform(ent.Value);
-            if (!stationMaps.Contains(xform.MapID))
+            var onEvacGrid = xform.GridUid is { } entGrid && evacGrids.Contains(entGrid);
+            if (onEvacGrid || !stationMaps.Contains(xform.MapID))
             {
                 if (isBorg)
                     station.Comp.StolenBorgs++;
