@@ -257,6 +257,8 @@
   id: InterdyneEnterpriseWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2
+    ClothingBeltMedicalEMT: 1
     Gauze: 3
     SyndicateBrutePack: 3
     SyndicateOintment: 3
@@ -277,10 +279,10 @@
   id: InterdyneCommercialWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
-    AloeCream: 2
+    AloeCream: 3
     Gauze: 3
     SyndicateBrutePack: 3
-    SyndicateOintment: 2
+    SyndicateOintment: 3
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 3
@@ -297,6 +299,8 @@
   id: InterdyneEnterpriseInventory
   startingInventory:
     HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
     Gauze: 5
     SyndicateBrutePack: 5
     SyndicateOintment: 5
@@ -358,17 +362,23 @@
   id: DeForestInterstellarWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
+    ClothingBeltMedical: 2
+    ClothingBeltMedicalEMT: 1
     Gauze: 3
-    SyndicateBrutePack: 3
-    SyndicateOintment: 3
+    DeforestBrutePack: 2
+    DeforestOintment: 2
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 3
+    JetInjector: 1
+    BruteAutoInjector: 1
+    BurnAutoInjector: 1
+    EmergencyMedipen: 1
     PillCanisterTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
     PowerCellSmall: 2
-    OminousPill: 1
+    WeirdPill: 1
   emaggedInventory:
     StrangePill: 1
     PillLead5: 1
@@ -378,38 +388,43 @@
   id: DeForestPlanetaryWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
-    AloeCream: 2
+    AloeCream: 3
     Gauze: 3
-    SyndicateBrutePack: 3
-    SyndicateOintment: 2
+    DeforestBrutePack: 2
+    DeforestOintment: 2
     Bloodpack: 3
-    ChemistryBottleEpinephrine: 3
+    ChemistryBottleInaprovaline: 3
     Syringe: 3
     PillCanisterTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
-    OminousPill: 1
+    BruteAutoInjector: 1
+    BurnAutoInjector: 1
+    WeirdPill: 1
     PowerCellSmall: 2
   emaggedInventory:
     StrangePill: 1
     PillDesoxyephedrine5: 1
+    AirlossAutoInjector: 1
 
 - type: vendingMachineInventory
   id: DeForestInterstellarInventory
   startingInventory:
     HandheldHealthAnalyzer: 3
+    ClothingBeltMedical: 3
+    ClothingBeltMedicalEMT: 2
     Gauze: 5
-    SyndicateBrutePack: 5
-    SyndicateOintment: 5
+    DeforestBrutePack: 4
+    DeforestOintment: 4
     Bloodpack: 5
     Tourniquet: 2
     ChemistryBottleEpinephrine: 3
     ChemistryBottleBicaridine: 1
     Syringe: 5
     JetInjector: 3
-    AntiPoisonMedipen: 1
-    BruteAutoInjector: 1
-    BurnAutoInjector: 1
+    AntiPoisonMedipen: 2
+    BruteAutoInjector: 3
+    BurnAutoInjector: 3
     BoxBottle: 3
     PillCanisterTricordrazine: 3
     PillCanisterIron: 1
@@ -418,20 +433,20 @@
     SyringeIpecac: 1
     ClothingEyesHudMedical: 2
     ClothingEyesEyepatchHudMedical: 2
-    ClothingEyeGlassesMedicalPrescription: 2 #Starlight
-    AutoMenderBruteFilled: 1
-    AutoMenderBurnFilled: 1
-    SpaceMedipen: 1 #Starlight
+    ClothingEyeGlassesMedicalPrescription: 2
+    SpaceMedipen: 1
   contrabandInventory:
-    RadAutoInjector: 1
-    AirlossAutoInjector: 1
+    RadAutoInjector: 2
+    AirlossAutoInjector: 2
     PillCanisterRandom: 3
     PillSpaceDrugs: 3
-    StrangePill: 2
+    WeirdPill: 2
     FoodCabbage: 1
   emaggedInventory:
-    OminousPill: 2
+    StrangePill: 2
     StimpackMini: 1
+    PunctAutoInjector: 1
+    PyraAutoInjector: 1
 
 - type: vendingMachineInventory
   id: DeForestPlanetaryInventory
@@ -439,11 +454,11 @@
     HandheldHealthAnalyzer: 3
     AloeCream: 3
     Gauze: 5
-    SyndicateBrutePack: 5
-    SyndicateOintment: 4
+    DeforestBrutePack: 4
+    DeforestOintment: 4
     Bloodpack: 5
     Tourniquet: 1
-    ChemistryBottleEpinephrine: 3
+    ChemistryBottleInaprovaline: 3
     Syringe: 5
     BoxBottle: 3
     PillCanisterTricordrazine: 2
@@ -453,11 +468,15 @@
   contrabandInventory:
     PillCanisterRandom: 1
     PillSpaceDrugs: 3
-    OminousPill: 1
-    FoodOrange: 1
+    WeirdPill: 1
+    AntiPoisonMedipen: 1
+    BruteAutoInjector: 2
+    BurnAutoInjector: 1
+    FoodCabbage: 1
   emaggedInventory:
     StrangePill: 1
     PillDesoxyephedrine5: 1
+    AirlossAutoInjector: 1
 
 
 #NanoMed Security
