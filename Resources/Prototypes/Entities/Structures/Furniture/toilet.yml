@@ -89,6 +89,7 @@
         maxVol: 100
       tank:
         maxVol: 500
+    # Starlight removed SolutionRegeneration for BaseToiletRegen
   - type: DrainableSolution
     solution: tank
   - type: ReagentTank
@@ -114,18 +115,6 @@
 
 - type: entity
   parent: BaseToilet
-  id: BaseToiletRegen
-  suffix: Empty
-  components:
-    - type: SolutionRegeneration
-      solution: tank
-      generated:
-        reagents:
-          - ReagentId: Water
-            Quantity: 1
-
-- type: entity
-  parent: BaseToilet
   id: ToiletEmpty
   name: toilet
   description: The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean.
@@ -138,7 +127,7 @@
 # so theres not actually any way to replenish the gastrotoxin / gold in these.
 # I wouldn't add it to the solutionregeneration comp because that doesn't make a lot of sense imo.
 - type: entity
-  parent: BaseToiletRegen
+  parent: BaseToiletRegen # Starlight
   id: ToiletDirtyWater
   suffix: Dirty Water
   components:
@@ -158,7 +147,7 @@
           Quantity: 20
 
 - type: entity
-  parent: BaseToiletRegen
+  parent: BaseToiletRegen # Starlight
   id: ToiletFilled
   suffix: Empty, Random Cistern Loot
   components:
@@ -185,7 +174,7 @@
           range: 0, 1
 
 - type: entity
-  parent: BaseToiletRegen
+  parent: BaseToiletRegen # Starlight
   id: ToiletGoldenEmpty
   name: golden toilet
   description: The HT-451G is the gold version of the device. It says on the side that it is made of the purest Mercurian gold and a real leather seat.
