@@ -36,4 +36,5 @@ public sealed partial class TamperSealVisualizerSystem : VisualizerSystem<Tamper
             _sprite.LayerSetColor(sprite, layer, color);
         }
     }
+
 }

@@ -25,7 +25,7 @@
   color: "#57b8f0"
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
-  tamperSealColor: "#499ccc" # Starlight
+  tamperSealColor: "#00ffff" # Starlight
   tamperSealAccesses: ["Command", "Medical"] # Starlight
 
 - type: cargoAccount
@@ -35,7 +35,7 @@
   color: "#cd7ccd"
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
-  tamperSealColor: "#cd7ccd" # Starlight
+  tamperSealColor: "#ff73ff" # Starlight
   tamperSealAccesses: ["Command", "Science"] # Starlight
 
 - type: cargoAccount
@@ -55,5 +55,5 @@
   color: "#80cc29"
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
-  tamperSealColor: "#5fb300" # Starlight: Color limited to 60% saturation
+  tamperSealColor: "#37ff29" # Starlight: Color limited to 60% saturation
   tamperSealAccesses: ["Command", "Service"] # Starlight

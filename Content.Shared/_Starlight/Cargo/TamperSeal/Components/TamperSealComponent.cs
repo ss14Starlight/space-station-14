@@ -16,7 +16,7 @@ public sealed partial class TamperSealComponent : Component
     /// </summary>
     [DataField]
     [AutoNetworkedField]
-    public Color Color;
+    public Color Color = Color.White; // Better than invisible as default.
 
     /// <summary>
     /// Whether the tamper seal was opened.
@@ -51,9 +51,9 @@ public sealed partial class TamperSealComponent : Component
 
     #region Rewards and Penalties
 
-    [DataField] [AutoNetworkedField] public EntityUid RecipientStation;
+    [DataField] [AutoNetworkedField] public EntityUid RecipientStation = EntityUid.Invalid;
     [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> DelivererAccount = "Cargo";
-    [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount;
+    [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount = "Cargo";
 
     [DataField] [AutoNetworkedField] public int RewardSpesos = 500;
 

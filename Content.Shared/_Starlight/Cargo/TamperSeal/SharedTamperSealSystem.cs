@@ -5,6 +5,7 @@ using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
+using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Systems;
@@ -28,7 +29,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TamperSealComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt);
+        SubscribeLocalEvent<TamperSealComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt, after: [typeof(LockSystem)]);
         SubscribeLocalEvent<TamperSealComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
         SubscribeLocalEvent<TamperSealComponent, TamperSealDestroyedDoAfterEvent>(OnDestroyDoAfter);
         SubscribeLocalEvent<TamperSealComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);

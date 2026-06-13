@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "Sprite by @redmushie on Discord",
+  "size": {
+    "x": 64,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "canister_sealed"
+    }
+  ]
+}

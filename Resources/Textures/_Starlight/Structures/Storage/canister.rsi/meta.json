@@ -272,6 +272,18 @@
     {
       "name": "zauker_broken",
       "copyright": "Created by Conf (Starlight)"
+    },
+    {
+      "name": "tamper_seal_sealed",
+      "copyright": "Created by @redmushroom (Discord) / @redmushie (GitHub)"
+    },
+    {
+      "name": "tamper_seal_base",
+      "copyright": "Created by @redmushroom (Discord) / @redmushie (GitHub)"
+    },
+    {
+      "name": "tamper_seal_cap",
+      "copyright": "Created by @redmushroom (Discord) / @redmushie (GitHub)"
     }
   ]
 }
