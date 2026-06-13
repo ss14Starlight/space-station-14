@@ -100,7 +100,7 @@
   parent: BaseWoodwindInstrument
   id: OcarinaInstrument
   name: ocarina
-  description: Good for playing lullabies. # hehe zelda
+  description: Good for playing lullabies.
   components:
   - type: Instrument
     program: 79
