@@ -22,6 +22,7 @@
   </Box>
   <Box>
   <GuideEntityEmbed Entity="AppearanceReptilian" Caption="Reptilian"/>
+  <GuideEntityEmbed Entity="AppearanceRodentia" Caption="Rodentia"/>
   <GuideEntityEmbed Entity="AppearanceShadekin" Caption="Shadekin"/>
   <GuideEntityEmbed Entity="AppearanceThaven" Caption="Thaven"/>
   <GuideEntityEmbed Entity="AppearanceVox" Caption="Vox"/>

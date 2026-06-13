@@ -225,4 +225,5 @@ public enum SpeciesNaming : byte
     FirstDashFirst,
     TheFirstofLast,
     PrefixSuffix, // Starlight
+    LastFirst,        // Starlight Rodentia
 }
