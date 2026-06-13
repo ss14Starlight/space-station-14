@@ -5,7 +5,8 @@
   color: "#b48b57"
   radioChannel: Supply
   acquisitionSlip: PaperAcquisitionSlipCargo
-  orderUnsealAccesses: ["Command", "Cargo"] # Starlight
+  tamperSealColor: "#b38b56" # Starlight
+  tamperSealAccesses: ["Command", "Cargo"] # Starlight
 
 - type: cargoAccount
   id: Engineering
@@ -14,7 +15,8 @@
   color: "#ff733c"
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
-  orderUnsealAccesses: ["Command", "Engineering"] # Starlight
+  tamperSealColor: "#ffff00" # Starlight
+  tamperSealAccesses: ["Command", "Engineering"] # Starlight
 
 - type: cargoAccount
   id: Medical
@@ -23,7 +25,8 @@
   color: "#57b8f0"
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
-  orderUnsealAccesses: ["Command", "Medical"] # Starlight
+  tamperSealColor: "#499ccc" # Starlight
+  tamperSealAccesses: ["Command", "Medical"] # Starlight
 
 - type: cargoAccount
   id: Science
@@ -32,7 +35,8 @@
   color: "#cd7ccd"
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
-  orderUnsealAccesses: ["Command", "Science"] # Starlight
+  tamperSealColor: "#cd7ccd" # Starlight
+  tamperSealAccesses: ["Command", "Science"] # Starlight
 
 - type: cargoAccount
   id: Security
@@ -41,13 +45,15 @@
   color: "#ff4242"
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
-  orderUnsealAccesses: ["Command", "Security"] # Starlight
+  tamperSealColor: "#cc3535" # Starlight
+  tamperSealAccesses: ["Command", "Security"] # Starlight
 
 - type: cargoAccount
   id: Service
   name: cargo-account-service-name
   code: cargo-account-service-code
-  color: "#539c00"
+  color: "#80cc29"
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
-  orderUnsealAccesses: ["Command", "Service"] # Starlight
+  tamperSealColor: "#5fb300" # Starlight: Color limited to 60% saturation
+  tamperSealAccesses: ["Command", "Service"] # Starlight

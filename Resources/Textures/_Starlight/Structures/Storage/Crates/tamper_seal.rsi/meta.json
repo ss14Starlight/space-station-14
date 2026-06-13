@@ -9,6 +9,12 @@
   "states": [
     {
       "name": "crate_sealed"
+    },
+    {
+      "name": "livestock_sealed"
+    },
+    {
+      "name": "canister_sealed"
     }
   ]
 }

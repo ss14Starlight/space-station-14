@@ -78,3 +78,22 @@
   id: OnGrid
   rules:
     - !type:OnGridRule
+
+# Tamper seal BEGIN
+
+- type: soundCollection
+  id: CargoTamperSealOpen
+  files:
+    - /Audio/Effects/Cargo/ping.ogg
+
+- type: soundCollection
+  id: CargoTamperSealDestroyBegin
+  files:
+    - /Audio/Items/Handcuffs/rope_takeoff.ogg
+
+- type: soundCollection
+  id: CargoTamperSealDestroyEnd
+  files:
+    - /Audio/Items/Handcuffs/rope_breakout.ogg
+
+# Tamper seal END

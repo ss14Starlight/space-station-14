@@ -1,4 +1,5 @@
 using Content.Shared.Access;
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -11,11 +12,20 @@ namespace Content.Shared._Starlight.Cargo.TamperSeal.Components;
 public sealed partial class TamperSealComponent : Component
 {
     /// <summary>
+    /// The color of the tamper seal.
+    /// </summary>
+    [DataField]
+    [AutoNetworkedField]
+    public Color Color;
+
+    /// <summary>
     /// Whether the tamper seal was opened.
     /// </summary>
     [DataField]
     [AutoNetworkedField]
     public bool Opened;
+
+    [DataField] public SoundCollectionSpecifier OpenSound = new("CargoTamperSealOpen");
 
     /// <summary>
     /// Whether the tamper seal was destroyed.
@@ -25,11 +35,12 @@ public sealed partial class TamperSealComponent : Component
     public bool Destroyed;
 
     /// <summary>
-    /// The color of the tamper seal.
+    /// Tool capability needed to undo the tamper seal.
     /// </summary>
-    [DataField]
-    [AutoNetworkedField]
-    public Color Color;
+    [DataField] public ProtoId<ToolQualityPrototype> DestroyTool = "Slicing";
+
+    [DataField] public SoundCollectionSpecifier DestroyBeginSound = new("CargoTamperSealDestroyBegin");
+    [DataField] public SoundCollectionSpecifier DestroyEndSound = new("CargoTamperSealDestroyEnd");
 
     /// <summary>
     /// The access levels that can unlock this tamper seal legally.
@@ -38,14 +49,26 @@ public sealed partial class TamperSealComponent : Component
     [AutoNetworkedField]
     public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
 
-    [DataField] public SoundCollectionSpecifier RewardSound = new("CargoPing");
+    #region Rewards and Penalties
 
-    [DataField] public SoundCollectionSpecifier PunishSound = new("CargoError");
+    [DataField] [AutoNetworkedField] public EntityUid RecipientStation;
+    [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> DelivererAccount = "Cargo";
+    [DataField] [AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount;
+
+    [DataField] [AutoNetworkedField] public int RewardSpesos = 500;
 
     /// <summary>
-    /// Tool capability needed to undo the tamper seal.
+    /// How much the DelivererAccount is penalized on failed delivery.
     /// </summary>
-    [DataField] public ProtoId<ToolQualityPrototype> DestroyTool = "Slicing";
+    [DataField] [AutoNetworkedField] public int PenaltySpesos = 250;
+
+    /// <summary>
+    /// How much the RecipientAccount is refunded on failed delivery.
+    /// </summary>
+    [DataField] [AutoNetworkedField] public int PenaltyRefundSpesos = 500;
+
+    #endregion
+
 }
 
 /// <summary>

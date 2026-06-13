@@ -89,7 +89,7 @@ namespace Content.Server.Cargo.Systems
                 return;
 
             var orderId = GenerateOrderId(orderDatabase);
-            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account);
+            var data = new CargoOrderData(orderId, product.Product, product.Name, product.Cost, slip.OrderQuantity, slip.Requester, slip.Reason, slip.Account, GetNetEntity(stationUid.Value)); // Starlight: +stationUid
 
             if (!TryAddOrder(stationUid.Value, ent.Comp.Account, data, orderDatabase))
             {
@@ -399,7 +399,7 @@ namespace Content.Server.Cargo.Systems
 
             var targetAccount = component.Mode == CargoOrderConsoleMode.SendToPrimary ? bank.PrimaryAccount : component.Account;
 
-            var data = GetOrderData(args, product, GenerateOrderId(orderDatabase), component.Account);
+            var data = new CargoOrderData(GenerateOrderId(orderDatabase), product.Product, product.Name, product.Cost, args.Amount, args.Requester, args.Reason, component.Account, GetNetEntity(stationUid.Value));
 
             if (!TryAddOrder(stationUid.Value, targetAccount, data, orderDatabase))
             {
@@ -477,9 +477,9 @@ namespace Content.Server.Cargo.Systems
             }
         }
 
-        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account)
+        private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id, ProtoId<CargoAccountPrototype> account, EntityUid stationId)
         {
-            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account);
+            return new CargoOrderData(id, cargoProduct.Product, cargoProduct.Name, cargoProduct.Cost, args.Amount, args.Requester, args.Reason, account, NetEntity.Invalid);
         }
 
         public int GetOutstandingOrderCount(Entity<StationCargoOrderDatabaseComponent> station, ProtoId<CargoAccountPrototype> account)
@@ -547,7 +547,7 @@ namespace Content.Server.Cargo.Systems
             DebugTools.Assert(_protoMan.HasIndex<EntityPrototype>(spawnId));
             // Make an order
             var id = GenerateOrderId(component);
-            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account);
+            var order = new CargoOrderData(id, spawnId, name, cost, qty, sender, description, account, GetNetEntity(stationData.Owner));
 
             // Approve it now
             order.SetApproverData(dest, sender);
@@ -671,8 +671,16 @@ namespace Content.Server.Cargo.Systems
             {
                 var accountProto = _protoMan.Index(account);
                 var seal = EnsureComp<TamperSealComponent>(item);
-                seal.Color = accountProto.Color;
-                seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(accountProto.OrderUnsealAccesses);
+                seal.Color = accountProto.TamperSealColor;
+                seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(accountProto.TamperSealAccesses);
+                seal.RecipientStation = GetEntity(order.StationId);
+                seal.RecipientAccount = order.Account;
+
+                var totalCost = order.Price * order.OrderQuantity;
+                seal.RewardSpesos = (int) Math.Floor(.1f * totalCost); // Rewards rounded down.
+                seal.PenaltySpesos = (int) Math.Ceiling(.2f * totalCost); // Penalties rounded up.
+                seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * totalCost); // Refunds rounded down.
+
                 DirtyEntity(item);
             }
             #endregion

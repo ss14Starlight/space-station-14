@@ -358,6 +358,12 @@
     - state: base
     - state: closed
       map: ["enum.StorageVisualLayers.Door"]
+      # Starlight BEGIN
+    - state: livestock_sealed # Tamper seal
+      sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "-0.25,0.625"
@@ -401,6 +407,11 @@
     - entity_storage
   - type: StaticPrice
     price: 125
+    # Starlight BEGIN
+  - type: Tag
+    tags:
+      - TamperSealable
+    # Starlight END
 
 - type: entity
   parent: CrateGeneric

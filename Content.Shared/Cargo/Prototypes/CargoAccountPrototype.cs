@@ -8,7 +8,8 @@ namespace Content.Shared.Cargo.Prototypes;
 /// This is a prototype for a single account that stores money on StationBankAccountComponent
 /// </summary>
 [Prototype]
-public sealed partial class CargoAccountPrototype : IPrototype
+public sealed partial class
+    CargoAccountPrototype : IPrototype
 {
     /// <inheritdoc/>
     [IdDataField]
@@ -45,10 +46,12 @@ public sealed partial class CargoAccountPrototype : IPrototype
     public EntProtoId AcquisitionSlip;
 
     #region Starlight
+    [DataField] public Color TamperSealColor;
+
     /// <summary>
     /// The access levels that can unseal orders that are bound to this account.
     /// </summary>
     [DataField]
-    public HashSet<ProtoId<AccessLevelPrototype>> OrderUnsealAccesses = new();
+    public HashSet<ProtoId<AccessLevelPrototype>> TamperSealAccesses = new();
     #endregion
 }

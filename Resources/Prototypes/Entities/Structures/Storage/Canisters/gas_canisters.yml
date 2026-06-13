@@ -14,6 +14,12 @@
       noRot: true
       layers:
         - state: grey
+        # Starlight BEGIN
+        - state: canister_sealed # Tamper seal
+          sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
+          visible: false
+          map: [ "enum.TamperSealLayers.Sealed" ]
+          # Starlight END
         - state: paper
           visible: false
           map: [ "enum.PaperLabelVisuals.Layer" ]
@@ -45,6 +51,12 @@
         enum.StorageVisuals.Open:
           enum.PaperLabelVisuals.Layer:
             True: { visible: false }
+        # Starlight BEGIN
+        enum.TamperSealVisuals.Opened:
+          enum.TamperSealLayers.Sealed:
+            False: { visible: true }
+            True: { visible: false }
+        # Starlight END
         enum.PaperLabelVisuals.LabelType:
           enum.PaperLabelVisuals.Layer:
             Paper: { state: paper }
@@ -132,6 +144,9 @@
       - GasCanisters
     - type: Paintable
       group: Canisters
+    - type: Tag
+      tags:
+        - TamperSealable
 
 - type: entity
   parent: GasCanister

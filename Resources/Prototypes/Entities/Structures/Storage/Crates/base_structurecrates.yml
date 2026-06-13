@@ -22,15 +22,15 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
-    - state: paper
-      sprite: Structures/Storage/Crates/labels.rsi
-      map: ["enum.PaperLabelVisuals.Layer"]
       # Starlight BEGIN
     - state: crate_sealed # Tamper seal
       sprite: _Starlight/Structures/Storage/Crates/tamper_seal.rsi
       visible: false
       map: [ "enum.TamperSealLayers.Sealed" ]
       # Starlight END
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      map: ["enum.PaperLabelVisuals.Layer"]
   - type: InteractionOutline
   - type: Physics
   - type: Fixtures
