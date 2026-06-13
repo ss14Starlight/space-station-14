@@ -23,7 +23,7 @@ public sealed partial class DevilComponent : Component
     /// <summary>
     /// What damnations can the devil use in their contracts?
     /// </summary>
-    [DataField]
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
     public List<ProtoId<DamnationPrototype>> AvailableDamnations = new()
     {
         "Soul",

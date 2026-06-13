@@ -9,12 +9,17 @@
         <PanelContainer VerticalExpand="True" Margin="10 10 10 10">
             <ScrollContainer HScrollEnabled="False"
                              VerticalExpand="True">
-                <BoxContainer Name="DamnationsDisplayContainer"
-                              Orientation="Vertical"
+                <BoxContainer Orientation="Vertical"
                               VerticalExpand="True"
                               Margin="10 10 10 0">
-                    <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
-                                   Name="DamnationsDisplayText"/>
+                    <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"/>
+                    <Control MinHeight="10"/>
+                    <TabContainer Name="DamnationCategories" VerticalExpand="True">
+                        <BoxContainer Name="DamnationsDisplayContainer"
+                                      Orientation="Vertical"
+                                      VerticalExpand="True">
+                        </BoxContainer>
+                    </TabContainer>
                 </BoxContainer>
             </ScrollContainer>
         </PanelContainer>

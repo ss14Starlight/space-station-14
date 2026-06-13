@@ -19,9 +19,7 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
 
     public void Update(DevilDamnationsBuiState state)
     {
-        DamnationsDisplayText.Orphan();
         DamnationsDisplayContainer.Children.Clear();
-        DamnationsDisplayContainer.Children.Add(DamnationsDisplayText);
 
         List<DamnationPrototype> damnations = new();
         foreach (var damnationId in state.Damnations)

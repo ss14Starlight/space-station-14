@@ -33,6 +33,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
         SubscribeLocalEvent<InfernalContractComponent, PaperInputTextMessage>(OnPaperInputTextMessage, after: [typeof(PaperSystem)]);
 
+        SubscribeLocalEvent<DevilComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
 
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
@@ -324,13 +325,19 @@ public abstract partial class SharedDevilSystem : EntitySystem
     #endregion
 
     #region abilities
-    private void OnOpenDamnationsMenu(EntityUid uid, DevilComponent devilComp, ref OpenDamnationsMenuEvent args)
+    private void OnOpenDamnationsMenu(Entity<DevilComponent> devil, ref OpenDamnationsMenuEvent args)
     {
-        if (!TryComp<UserInterfaceComponent>(uid, out var userInterfaceComp) || !TryComp<ActorComponent>(uid, out var actorComp)) return;
+        if (!TryComp<UserInterfaceComponent>(devil.Owner, out var userInterfaceComp) || !TryComp<ActorComponent>(devil.Owner, out var actorComp)) return;
+        _userInterface.TryToggleUi((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
+    }
 
-        var uiState = new DevilDamnationsBuiState(devilComp.AvailableDamnations);
-        _userInterface.SetUiState((uid, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
-        _userInterface.TryToggleUi((uid, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
+    private void OnMapInit(Entity<DevilComponent> devil, ref MapInitEvent args)
+    {
+        // send UI update once on init, there is no reason (at the moment) to further update it
+        // though functionality should still remain for state update
+        if(!TryComp<UserInterfaceComponent>(devil.Owner, out var userInterfaceComp) || !TryComp<ActorComponent>(devil.Owner, out var actorComp)) return;
+        var uiState = new DevilDamnationsBuiState(devil.Comp.AvailableDamnations);
+        _userInterface.SetUiState((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
     }
     #endregion
 }
