@@ -212,7 +212,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (seal.Opened)
             return;
 
-        // No access => Disallow
+        // If they have no access we just tell them.
         if (!CanUnseal(uid, user, seal))
         {
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-no-access"), uid, user);
