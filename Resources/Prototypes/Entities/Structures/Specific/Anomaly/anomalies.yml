@@ -100,7 +100,7 @@
   - type: ProjectileAnomaly
     projectilePrototype: ProjectileAnomalyFireball
     projectileSpeed: 12 # Starlight start: Changed the danger of the fire anomaly so then it demands more collaboration of crew
-    minProjectiles: 4 
+    minProjectiles: 4
     maxProjectiles: 8
   - type: IgnitionSource
     temperature: 1200 # Starlight end:
