@@ -215,7 +215,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // No access => Disallow
         if (!CanUnseal(uid, user, seal))
         {
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-no-access"), uid, user);
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-no-access"), uid, user);
             _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
                 $"{ToPrettyString(user):player} had no access to unseal the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}. ({string.Join(",", seal.Accesses):accesses})");
             return;
