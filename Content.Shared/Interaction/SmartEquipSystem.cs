@@ -1,5 +1,3 @@
-using Content.Shared._Starlight.Components;
-using Content.Shared._Starlight.Interaction.Components; //Starlight
 using Content.Shared.ActionBlocker;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands.Components;
@@ -14,6 +12,10 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
+
+#region Starlight
+using Content.Shared._Starlight.Interaction.Components;
+#endregion
 
 namespace Content.Shared.Interaction;
 
@@ -200,11 +202,11 @@ public sealed class SmartEquipSystem : EntitySystem
                 _hands.TryPickup(uid, slotItem, handsComp: hands);
                 return;
             }
-            if (handItem == null && HasComp<AlwaysEquipComponent>(slotItem)) //Any item with this comp will just be moved directly to hand. Useful for pistols and the like.
+            if (handItem == null && HasComp<ForceQuickDrawComponent>(slotItem)) //Any item with this comp will just be moved directly to hand. Useful for pistols and the like.
             {
-                if (!_inventory.CanUnequip(uid, equipmentSlot, out var alwaysEquipReason))
+                if (!_inventory.CanUnequip(uid, equipmentSlot, out var ForceQuickDrawReason))
                 {
-                    _popup.PopupClient(Loc.GetString(alwaysEquipReason), uid, uid);
+                    _popup.PopupClient(Loc.GetString(ForceQuickDrawReason), uid, uid);
                     return;
                 }
 

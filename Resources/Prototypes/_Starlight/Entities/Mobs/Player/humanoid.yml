@@ -635,4 +635,3 @@
   components:
     - type: Loadout
       prototypes: [GSOGearHardsuit]
-      roleLoadout: [RoleSurvivalSecurity]

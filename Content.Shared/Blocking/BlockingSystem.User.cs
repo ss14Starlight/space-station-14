@@ -59,6 +59,14 @@ public sealed partial class BlockingSystem
             return;
         _itemToggle.TryDeactivate(uid, predicted: false);
     }
+    /// <summary>
+    /// stop user from blocking when the shield is toggled off
+    /// </summary>
+    private void OnBlockerToggled(EntityUid uid, BlockingComponent component, ItemToggledEvent args)
+    {
+        if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent) && TryComp<TransformComponent>(uid, out var transform))
+            UserStopBlocking(transform.ParentUid, blockingUserComponent);
+    }
     #endregion
 
     private void OnParentChanged(EntityUid uid, BlockingUserComponent component, ref EntParentChangedMessage args)
@@ -77,14 +85,6 @@ public sealed partial class BlockingSystem
             return;
 
         UserStopBlocking(uid, component);
-    }
-    /// <summary>
-    /// Starlight stop user from blocking when the shield is toggled off
-    /// </summary>
-    private void OnBlockerToggled(EntityUid uid, BlockingComponent component, ItemToggledEvent args)
-    {
-        if (!args.Activated && component.IsBlocking && TryComp<BlockingUserComponent>(component.User, out var blockingUserComponent) && TryComp<TransformComponent>(uid, out var transform))
-            UserStopBlocking(transform.ParentUid, blockingUserComponent);
     }
 
     private void OnUserDamageModified(EntityUid uid, BlockingUserComponent component, DamageModifyEvent args)

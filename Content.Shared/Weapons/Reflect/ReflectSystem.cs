@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -17,6 +18,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Examine;
 using Content.Shared.Localizations;
+using Robust.Shared.Timing;
 
 #region Starlight
 using Content.Shared._Starlight.Weapon;
@@ -40,7 +42,11 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!; //Starlight
+
+    #region Starlight
+    [Dependency] private readonly PowerCellSystem _powerCell = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    #endregion
 
     public override void Initialize()
     {
@@ -206,46 +212,31 @@ public sealed class ReflectSystem : EntitySystem
         string? hitscanId,
         [NotNullWhen(true)] out Vector2? newDirection)
     {
-        newDirection = null;
+        newDirection = null; //Starlight
         if ((reflector.Comp.Reflects & hitscanReflectType) == 0x0 ||
             !_toggle.IsActivated(reflector.Owner))
-        {
-            //newDirection = null;
             return false;
-        }
 
         // Get reflection probability - check for enhanced reflection against specific bullet types
         var reflectionChance = reflector.Comp.ReflectProb;
 
         // Check for enhanced reflection against specific bullet types
         if (hitscanId != null && reflector.Comp.EnhancedReflection.TryGetValue(hitscanId, out var enhancedChance))
-        {
             reflectionChance = enhancedChance;
-        }
 
         var availableEnergy = 0;
         if (HasComp<PowerCellSlotComponent>(reflector.Owner)) //if the shield has a battery slot, then we consume charge to perform the reflection
         {
             availableEnergy = _powerCell.GetRemainingUses(reflector.Owner, reflector.Comp.ReflectEnergyDraw);
             if (availableEnergy <= 0)
-            {
-                //newDirection = null;
                 return false;
-            }
         }
 
-        if (!_random.Prob(reflectionChance))
-        {
-            //newDirection = null;
+        if (!_random.ProbPredicted(_timing, reflectionChance))
             return false;
-        }
-
 
         if (availableEnergy > 0 && !_powerCell.TryUseCharge(reflector.Owner, reflector.Comp.ReflectEnergyDraw, user: user))
-        {
-            //newDirection = null;
             return false; // if no battery or no charge, doesn't work and reflect fails
-        }
 
         PlayAudioAndPopup(reflector.Comp, user);
 

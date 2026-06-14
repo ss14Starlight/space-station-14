@@ -305,6 +305,7 @@
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHelmetRaid ]
   id: ClothingHeadHelmetGreenshield
+  categories: [ DoNotMap ]
   name: Greenshield helmet
   description: A special helmet worn by Greenshield Officers.
   components:

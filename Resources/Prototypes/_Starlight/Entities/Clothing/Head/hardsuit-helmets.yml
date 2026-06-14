@@ -1242,6 +1242,7 @@
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndieCommander ] # Starlight
   id: ClothingHeadHelmetHardsuitGreenshield
+  categories: [ DoNotMap ]
   name: Greenshield hardsuit helmet
   description: A special hardsuit helmet worn by Greenshield Officers.
   components:

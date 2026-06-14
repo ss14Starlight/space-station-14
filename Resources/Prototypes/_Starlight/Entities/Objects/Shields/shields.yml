@@ -466,7 +466,7 @@
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellSmallNuclear
           locked: true
-    - type: AlwaysEquip
+    - type: ForceQuickDraw
     - type: ToggleCellDraw
     - type: PowerCellDraw
       drawRate: 2  # watts while active # final stat TBD

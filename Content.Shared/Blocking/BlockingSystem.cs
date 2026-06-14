@@ -24,9 +24,6 @@ using Content.Shared.Item.ItemToggle.Components;
 
 namespace Content.Shared.Blocking;
 
-/// <summary>
-/// Handles blocking logic for items with <see cref="BlockingComponent"/>.
-/// </summary>
 public sealed partial class BlockingSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;

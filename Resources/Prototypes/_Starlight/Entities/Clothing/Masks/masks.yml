@@ -234,6 +234,7 @@
 - type: entity
   parent: ClothingMaskGasERT
   id: ClothingMaskGasGSO
+  categories: [ DoNotMap ]
   name: greenshield gas mask
   description: The gas mask of the elite of the elite, even protects the user from the dangers of welding.
   components:
