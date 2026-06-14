@@ -1766,7 +1766,7 @@
   loadouts:
   - LizardPlushieReporter
   - DigiboardMassMedia # Starlight
-  - HoloReporterPin
+  - HoloReporterPin # Starlight
 
 - type: loadoutGroup
   id: PsychologistJumpsuit

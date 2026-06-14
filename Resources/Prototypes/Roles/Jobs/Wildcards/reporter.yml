@@ -3,9 +3,9 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
-  requirements:
+  requirements: # Starlight BEGIN
     - !type:OverallPlaytimeRequirement
-      time: 4h
+      time: 4h # Starlight END
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop

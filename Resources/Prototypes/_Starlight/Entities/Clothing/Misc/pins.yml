@@ -36,9 +36,9 @@
     radius: 1.4
 
 - type: entity
-  parent: [BaseItem, BaseToggleClothing]
+  parent: [BaseItem, BaseToggleClothing, BaseReporterContraband]
   id: HoloReporterPin
-  name: Reporter Holo-Pin
+  name: reporter Holo-Pin
   description: A way of more clearly saying, DON'T SHOOT!
   components:
     - type: Item
