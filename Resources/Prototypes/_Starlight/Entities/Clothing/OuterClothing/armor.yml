@@ -411,6 +411,10 @@
   name: press Armor
   description: A standard press armor, will help you to cover ongoing fights!
   components:
+    - type: Item
+      size: Large
+      shape:
+      - 0, 0, 1, 1
     - type: Pierceable
       level: Metal
     - type: Sprite
