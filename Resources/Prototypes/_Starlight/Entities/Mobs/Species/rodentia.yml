@@ -137,6 +137,26 @@
     offsetFront: -0.16, -0.12
     offsetBack: -0.16, 0.05
   - type: Rummager
+  - type: HumanoidAppearance
+    species: Rodentia
+    undergarmentTop: UndergarmentTopTanktopRodentia
+    undergarmentBottom: UndergarmentBottomBoxersRodentia
+    hideLayersOnEquip:
+    - Hair
+    - HeadTop
+    - HeadSide
+    - Snout
+    markingsDisplacement:
+      Hair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: hair
+      FacialHair:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: facialhair
   - type: DamageVisuals
     thresholds: [ 10, 30, 50, 70]
     targetLayers:
