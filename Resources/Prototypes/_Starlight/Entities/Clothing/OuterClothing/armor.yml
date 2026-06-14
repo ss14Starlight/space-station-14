@@ -406,7 +406,7 @@
 
 # Reporter armor vest
 - type: entity
-  parent: [ClothingOuterArmorBase, BaseReporterContraband]
+  parent: [BaseReporterContraband, ClothingOuterArmorBase]
   id: ClothingOuterPressArmor
   name: press Armor
   description: A standart press armor, will help you to cover ongoing fights!
@@ -420,9 +420,9 @@
     - type: Armor
       modifiers:
         coefficients:
-          Blunt: 0.35
-          Slash: 0.35
-          Piercing: 0.40
-          Heat: 0.30
+          Blunt: 0.65
+          Slash: 0.65
+          Piercing: 0.60
+          Heat: 0.80
     - type: ExplosionResistance
       damageCoefficient: 0.85
