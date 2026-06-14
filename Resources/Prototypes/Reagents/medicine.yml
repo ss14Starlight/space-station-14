@@ -872,7 +872,8 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
-          damage: # starlight
+        - !type:HealthChange # starlight
+          damage:
             types:
              Cellular: -6
         - !type:ReduceRotting # starlight
