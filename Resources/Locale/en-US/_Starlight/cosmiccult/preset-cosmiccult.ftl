@@ -160,9 +160,6 @@ cosmiccult-ui-deconverted-ruletext = Your character may learn what happened thro
 
 cosmiccult-ui-popup-confirm = Confirm
 
-cosmiccult-censer-unsuitable-reagent = This solution contains unsuitable reagents!
-
-
 ## OBJECTIVES / CHARACTERMENU
 
 objective-issuer-cosmiccult = [bold][color=#cae8e8]The Unknown[/color][/bold]
