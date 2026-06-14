@@ -5,96 +5,105 @@ Crime codes are grouped by severity. Linked crime groups are collections of non-
 
 ## Quick Crime Guide
 
-Code 00
-- Minor: None
-- Moderate: Failure to Comply (1)
-- Major: Breach of Arrest (1)
-- Extreme: Breach of Custody (1)
-- Capital: Refusal of Mental Shielding (1)
+<Table Columns="6">
+  <ColorBox><Box>1-XX - Minor</Box></ColorBox>
+  <ColorBox><Box>2-XX - Moderate</Box></ColorBox>
+  <ColorBox><Box>3-XX - Major</Box></ColorBox>
+  <ColorBox><Box>4-XX - Extreme</Box></ColorBox>
+  <ColorBox><Box>5-XX - Capital</Box></ColorBox>
+  <ColorBox><Box>Code</Box></ColorBox>
 
-Code 01
-- Minor: Possession or Use of Minor Contraband (2)
-- Moderate: Possession or Use of Major Contraband (2)
-- Major: None
-- Extreme: Possession or Use of Significant Syndicate Contraband (2)
-- Capital: None
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Failure to Comply (1)</Box></ColorBox>
+  <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Breach of Arrest (1)</Box></ColorBox>
+  <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Breach of Custody (1)</Box></ColorBox>
+  <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Refusal of Mental Shielding (1)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">00</Box></ColorBox>
 
-Code 02
-- Minor: Petty Theft (3)
-- Moderate: None
-- Major: Grand Theft (3)
-- Extreme: None
-- Capital: None
+  <ColorBox Color="#2f3832"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Possession or Use of Minor Contraband (2)</Box></ColorBox>
+  <ColorBox Color="#2f3832"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Possession or Use of Major Contraband (2)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#2f3832"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Possession or Use of Significant Syndicate Contraband (2)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">01</Box></ColorBox>
 
-Code 03
-- Minor: None
-- Moderate: Tampering with Machinery (4)
-- Major: Armed Robbery (3)
-- Extreme: None
-- Capital: None
+  <ColorBox Color="#2e422e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Petty Theft (3)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#2e422e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Grand Theft (3)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">02</Box></ColorBox>
 
-Code 04
-- Minor: Vandalism (4)
-- Moderate: Damage of Property (4)
-- Major: Destruction of Property (4)
-- Extreme: Mass Destruction (4)
-- Capital: Terrorism (4)
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Tampering with Machinery (4)</Box></ColorBox>
+  <ColorBox Color="#2e422e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Armed Robbery (3)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">03</Box></ColorBox>
 
-Code 05
-- Minor: Trespass (5)
-- Moderate: None
-- Major: Secure Trespass (5)
-- Extreme: None
-- Capital: None
+  <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Vandalism (4)</Box></ColorBox>
+  <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Damage of Property (4)</Box></ColorBox>
+  <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Destruction of Property (4)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Mass Destruction (4)</Box></ColorBox>
+  <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Terrorism (4)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">04</Box></ColorBox>
 
-Code 06
-- Minor: None
-- Moderate: Minor Assault (6)
-- Major: Major Assault (6)
-- Extreme: Attempted Murder (6)
-- Capital: Prevention of Revival (6)
+  <ColorBox Color="#59563a"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Trespass (5)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#59563a"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Secure Trespass (5)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">05</Box></ColorBox>
 
-Code 07
-- Minor: None
-- Moderate: Endangerment (6)
-- Major: Manslaughter (6)
-- Extreme: Murder (6)
-- Capital: Mass Murder (6)
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Minor Assault (6)</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Major Assault (6)</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Attempted Murder (6)</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Prevention of Revival (6)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">06</Box></ColorBox>
 
-Code 08
-- Minor: Disturbance (7)
-- Moderate: Vigilantism (7)
-- Major: Rioting (7)
-- Extreme: Unlawful Detainment
-- Capital: Unlawful Execution (6)
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Endangerment (6)</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Manslaughter (6)</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Murder (6)</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Mass Murder (6)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">07</Box></ColorBox>
 
-Code 09
-- Minor: Impersonation and Fraud
-- Moderate: Bribery
-- Major: Forgery
-- Extreme: None
-- Capital: None
+  <ColorBox Color="#3b4354"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Disturbance (7)</Box></ColorBox>
+  <ColorBox Color="#3b4354"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Vigilantism (7)</Box></ColorBox>
+  <ColorBox Color="#3b4354"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Rioting (7)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Unlawful Detainment</Box></ColorBox>
+  <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Unlawful Execution (6)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">08</Box></ColorBox>
 
-Code 10
-- Minor: None
-- Moderate: Animal Cruelty (9)
-- Major: Perjury, Murder of a Minor Sentient Being (9)
-- Extreme: Cannibalism
-- Capital: None
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Impersonation and Fraud</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Bribery</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Forgery</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">09</Box></ColorBox>
 
-Code 11
-- Minor: None
-- Moderate: None
-- Major: Sedition (8)
-- Extreme: None
-- Capital: None
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#7a4d2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Animal Cruelty (9)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Perjury, Murder of a Minor Sentient Being (9)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Cannibalism</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">10</Box></ColorBox>
 
-Code 12
-- Minor: None
-- Moderate: None
-- Major: Conspiracy (8)
-- Extreme: Treason (8)
-- Capital: Enemy of Corporation (8)
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Sedition (8)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">11</Box></ColorBox>
+
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">None</Box></ColorBox>
+  <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Conspiracy (8)</Box></ColorBox>
+  <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Treason (8)</Box></ColorBox>
+  <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Enemy of Corporation (8)</Box></ColorBox>
+  <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">12</Box></ColorBox>
+</Table>
 
 ## Linked Crimes
 
