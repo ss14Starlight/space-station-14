@@ -1,325 +1,316 @@
 <Document>
-  # Corporate Law: Crime Listing
-
-  Crime codes are grouped by severity. Linked crime groups are collections of non-stackable crimes. If two crimes are linked, charge only the most appropriate one unless the situation clearly involves separate criminal acts.
-
-  ## Quick Crime Guide
-
-  <Table Columns="6">
-    <ColorBox><Box>1-XX - Minor</Box></ColorBox>
-    <ColorBox><Box>2-XX - Moderate</Box></ColorBox>
-    <ColorBox><Box>3-XX - Major</Box></ColorBox>
-    <ColorBox><Box>4-XX - Extreme</Box></ColorBox>
-    <ColorBox><Box>5-XX - Capital</Box></ColorBox>
-    <ColorBox><Box>Code</Box></ColorBox>
-
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Failure to Comply (1)</Box></ColorBox>
-    <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Breach of Arrest (1)</Box></ColorBox>
-    <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Breach of Custody (1)</Box></ColorBox>
-    <ColorBox Color="#593a4e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Refusal of Mental Shielding (1)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">00</Box></ColorBox>
-
-    <ColorBox Color="#2f3832"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Possession or Use of Minor Contraband (2)</Box></ColorBox>
-    <ColorBox Color="#2f3832"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Possession: Major (2)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#2f3832"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Possession: Significant Syndicate (2)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">01</Box></ColorBox>
-
-    <ColorBox Color="#2e422e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Petty Theft (3)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#2e422e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Grand Theft (3)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">02</Box></ColorBox>
-
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Tampering with Machinery (4)</Box></ColorBox>
-    <ColorBox Color="#2e422e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Armed Robbery (3)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">03</Box></ColorBox>
-
-    <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Vandalism (4)</Box></ColorBox>
-    <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Damage of Property (4)</Box></ColorBox>
-    <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Destruction of Property (4)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Mass Destruction (4)</Box></ColorBox>
-    <ColorBox Color="#453a59"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Terrorism (4)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">04</Box></ColorBox>
+# Corporate Law: Crime Listing
+
+Crime codes are grouped by severity. Linked crime groups are collections of non-stackable crimes. If two crimes are linked, charge only the most appropriate one unless the situation clearly involves separate criminal acts.
+
+## Quick Crime Guide
+
+Code 00
+- Minor: None
+- Moderate: Failure to Comply (1)
+- Major: Breach of Arrest (1)
+- Extreme: Breach of Custody (1)
+- Capital: Refusal of Mental Shielding (1)
+
+Code 01
+- Minor: Possession or Use of Minor Contraband (2)
+- Moderate: Possession or Use of Major Contraband (2)
+- Major: None
+- Extreme: Possession or Use of Significant Syndicate Contraband (2)
+- Capital: None
+
+Code 02
+- Minor: Petty Theft (3)
+- Moderate: None
+- Major: Grand Theft (3)
+- Extreme: None
+- Capital: None
+
+Code 03
+- Minor: None
+- Moderate: Tampering with Machinery (4)
+- Major: Armed Robbery (3)
+- Extreme: None
+- Capital: None
 
-    <ColorBox Color="#59563a"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Trespass (5)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#59563a"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Secure Trespass (5)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">05</Box></ColorBox>
+Code 04
+- Minor: Vandalism (4)
+- Moderate: Damage of Property (4)
+- Major: Destruction of Property (4)
+- Extreme: Mass Destruction (4)
+- Capital: Terrorism (4)
 
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Minor Assault (6)</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Major Assault (6)</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Attempted Murder (6)</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Prevention of Revival (6)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">06</Box></ColorBox>
+Code 05
+- Minor: Trespass (5)
+- Moderate: None
+- Major: Secure Trespass (5)
+- Extreme: None
+- Capital: None
 
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Endangerment (6)</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Manslaughter (6)</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Murder (6)</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Mass Murder (6)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">07</Box></ColorBox>
+Code 06
+- Minor: None
+- Moderate: Minor Assault (6)
+- Major: Major Assault (6)
+- Extreme: Attempted Murder (6)
+- Capital: Prevention of Revival (6)
 
-    <ColorBox Color="#3b4354"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Disturbance (7)</Box></ColorBox>
-    <ColorBox Color="#3b4354"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Vigilantism (7)</Box></ColorBox>
-    <ColorBox Color="#3b4354"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Rioting (7)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Unlawful Detainment</Box></ColorBox>
-    <ColorBox Color="#4d2e2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Unlawful Execution (6)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">08</Box></ColorBox>
+Code 07
+- Minor: None
+- Moderate: Endangerment (6)
+- Major: Manslaughter (6)
+- Extreme: Murder (6)
+- Capital: Mass Murder (6)
 
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Impersonation and Fraud</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Bribery</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Forgery</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">09</Box></ColorBox>
+Code 08
+- Minor: Disturbance (7)
+- Moderate: Vigilantism (7)
+- Major: Rioting (7)
+- Extreme: Unlawful Detainment
+- Capital: Unlawful Execution (6)
 
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#7a4d2e"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Animal Cruelty (9)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Perjury<br/>Murder of a Minor Sentient Being (9)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Cannibalism</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">10</Box></ColorBox>
+Code 09
+- Minor: Impersonation and Fraud
+- Moderate: Bribery
+- Major: Forgery
+- Extreme: None
+- Capital: None
 
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Sedition (8)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">11</Box></ColorBox>
+Code 10
+- Minor: None
+- Moderate: Animal Cruelty (9)
+- Major: Perjury, Murder of a Minor Sentient Being (9)
+- Extreme: Cannibalism
+- Capital: None
 
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2"></Box></ColorBox>
-    <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Conspiracy (8)</Box></ColorBox>
-    <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Treason (8)</Box></ColorBox>
-    <ColorBox Color="#475c7d"><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">Enemy of Corporation (8)</Box></ColorBox>
-    <ColorBox><Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">12</Box></ColorBox>
-  </Table>
+Code 11
+- Minor: None
+- Moderate: None
+- Major: Sedition (8)
+- Extreme: None
+- Capital: None
 
-  ## Linked Crimes
+Code 12
+- Minor: None
+- Moderate: None
+- Major: Conspiracy (8)
+- Extreme: Treason (8)
+- Capital: Enemy of Corporation (8)
 
-  Crimes that are linked can not be charged together. For more information, refer to Sentencing.
+## Linked Crimes
 
-  1. Failure to Comply, Breach of Arrest, Breach of Custody, Refusal of Mental Shielding
+Crimes that are linked can not be charged together. For more information, refer to Sentencing.
 
-  2. Possession or Use of Minor Contraband, Major Contraband, or Significant Syndicate Contraband
+1. Failure to Comply, Breach of Arrest, Breach of Custody, Refusal of Mental Shielding
 
-  3. Petty Theft, Grand Theft, and Armed Robbery
+2. Possession or Use of Minor Contraband, Possession or Use of Major Contraband, Possession or Use of Significant Syndicate Contraband
 
-  4. Vandalism, Tampering with Machinery, Damage of Property, Destruction of Property, Mass Destruction, Terrorism
+3. Petty Theft, Grand Theft, Armed Robbery
 
-  5. Trespass, Secure Trespass
+4. Vandalism, Tampering with Machinery, Damage of Property, Destruction of Property, Mass Destruction, Terrorism
 
-  6. Endangerment, Minor Assault, Major Assault, Manslaughter, Attempted Murder, Murder, Prevention of Revival, Mass Murder, Unlawful Execution
+5. Trespass, Secure Trespass
 
-  7. Disturbance, Vigilantism, Rioting
+6. Endangerment, Minor Assault, Major Assault, Manslaughter, Attempted Murder, Murder, Prevention of Revival, Mass Murder, Unlawful Execution
 
-  8. Sedition, Conspiracy, Treason, Enemy of Corporation
+7. Disturbance, Vigilantism, Rioting
 
-  9. Animal Cruelty, Murder of a Minor Sentient Being
+8. Sedition, Conspiracy, Treason, Enemy of Corporation
 
-  ## Minor Crimes
+9. Animal Cruelty, Murder of a Minor Sentient Being
 
-  Those who commit a minor crime should be issued a warning for their first offense, however repeat offenses are cumulative and should result in jail time of up to 5 minutes per minor crime committed.
+## Minor Crimes
 
-  ### Possession or Use of Minor Contraband
+Those who commit a minor crime should be issued a warning for their first offense. Repeat offenses are cumulative and should result in jail time of up to 5 minutes per minor crime committed.
 
-  To make, hold, or use minor contraband without authorization. Authorization may only be granted by the Warden, the Head of Security, or the Captain.
+### Possession or Use of Minor Contraband
 
-  ### Petty Theft
+To make, hold, or use minor contraband without authorization. Authorization may only be granted by the Warden, the Head of Security, or the Captain.
 
-  To take non-vital or inexpensive property of another individual, organization, or common property, without consent. Theft of safety or medical equipment such as breath masks, air tanks, or necessary mobility aids are considered vital, and exceed petty theft.
+### Petty Theft
 
-  ### Vandalism
+To take non-vital or inexpensive property of another individual, organization, or common property without consent. Theft of safety or medical equipment such as breath masks, air tanks, or necessary mobility aids are considered vital and exceed petty theft.
 
-  To intentionally deface or superficially damage public or private property. Examples include graffiti, smashing glasses or windows, excessively littering, and excessively producing spills. Art or construction with an appropriate permit is not vandalism.
+### Vandalism
 
-  ### Trespass
+To intentionally deface or superficially damage public or private property. Examples include graffiti, smashing glasses or windows, excessive littering, and excessive spills. Art or construction with an appropriate permit is not vandalism.
 
-  To enter a non-secured area without permission, such as climbing over counters to enter employee areas like the Bar or Kitchen.
+### Trespass
 
-  ### Disturbance
+To enter a non-secured area without permission, such as climbing over counters to enter employee areas like the Bar or Kitchen.
 
-  To cause a public disturbance. This is the catch-all for excessive obnoxious behavior, and includes public nudity, harassment, inciting crime, repeated and intentional misgendering, and disruption of authorities or communications.
+### Disturbance
 
-  ### Impersonation and Fraud
+To cause a public disturbance. This is the catch-all for excessive obnoxious behavior, and includes public nudity, harassment, inciting crime, repeated and intentional misgendering, and disruption of authorities or communications.
 
-  To pretend to be someone you are not, or attempting to commit fraud in any fashion. Impersonation may be elevated to a Moderate crime if the perpetrator is impersonating a member of Security, or a Major crime if they are impersonating a member of Command or Central Command.
+### Impersonation and Fraud
 
-  ## Moderate Crimes
+To pretend to be someone you are not, or attempt to commit fraud in any fashion. Impersonation may be elevated to a Moderate crime if the perpetrator is impersonating Security, or a Major crime if they are impersonating Command or Central Command.
 
-  Those who commit a moderate crime should receive up to a 5 minute sentence per moderate crime committed.
+## Moderate Crimes
 
-  ### Failure to Comply
+Those who commit a moderate crime should receive up to a 5 minute sentence per moderate crime committed.
 
-  To resist reasonable orders given by an authority. This includes lawful detainment and authorized searches. Officers are required to warn the individual before resorting to arrest.
+### Failure to Comply
 
-  ### Possession/Use of Major Contraband
+To resist reasonable orders given by an authority. This includes lawful detainment and authorized searches. Officers are required to warn the individual before resorting to arrest.
 
-  To make, hold, or use major contraband without authorization. Authorization may only be granted by the Warden, the Head of Security, or the Captain. Any items restricted to a Department or Job are considered major contraband.
+### Possession or Use of Major Contraband
 
-  ### Tampering with Machinery
+To make, hold, or use major contraband without authorization. Authorization may only be granted by the Warden, the Head of Security, or the Captain. Any items restricted to a department or job are considered major contraband.
 
-  To tamper with a machine such as cutting wires or modifying their functions. Includes but is not limited to consoles, airlocks, and Silicons.
+### Tampering with Machinery
 
-  ### Damage of Property
+To tamper with a machine, such as cutting wires or modifying functions. Includes but is not limited to consoles, airlocks, and Silicons.
 
-  To maliciously damage or deface public or private property or equipment. This includes equipment vendors, drink dispensers, computers, and machinery such as lathes.
+### Damage of Property
 
-  ### Endangerment
+To maliciously damage or deface public or private property or equipment. This includes equipment vendors, drink dispensers, computers, and machinery such as lathes.
 
-  To recklessly put yourself or others in danger, either through direct action or failure to act. This includes negligence, accidents, medical malpractice, destruction or impairment of safety features such as firelocks and exterior windows, and reckless piloting of shuttles.
+### Endangerment
 
-  ### Minor Assault
+To recklessly put yourself or others in danger, either through direct action or failure to act. This includes negligence, accidents, medical malpractice, destruction or impairment of safety features such as firelocks and exterior windows, and reckless piloting of shuttles.
 
-  To assault another without a weapon and without causing serious injury. Serious injury is defined as any life altering injury such as loss of limb, damage to the eyes or ears, or any other damages measured by a Health Analyzer to be exceeding 30 total.
+### Minor Assault
 
-  ### Bribery
+To assault another without a weapon and without causing serious injury. Serious injury is defined as any life altering injury such as loss of limb, damage to the eyes or ears, or any other damages measured by a Health Analyzer to be exceeding 30 total.
 
-  To attempt or succeed to bribe officials to be derelict of their duties or commit a crime with any payment including but not limited to services, favors, spesos, credits, materials, or items of any kind. This also applies to anyone caught accepting a bribe, and is cumulative with whatever crime they were bribed to commit.
+### Bribery
 
-  ### Vigilantism
+To attempt or succeed to bribe officials to be derelict of their duties or commit a crime with any payment including but not limited to services, favors, spesos, credits, materials, or items of any kind. This also applies to anyone caught accepting a bribe, and is cumulative with whatever crime they were bribed to commit.
 
-  To attempt to unlawfully enforce Corporate Law without vested authority. See: Enforcement of the Law.
+### Vigilantism
 
-  ### Animal Cruelty
+To attempt to unlawfully enforce Corporate Law without vested authority. See: Enforcement of the Law.
 
-  To inflict unnecessary suffering or harm on a non-sentient being, protected minor sentient being, or protected uplifted creature with malicious or negligent intent. This does not include legitimate and authorized animal testing, butchering of ordinary livestock for meat, vermin control, or defense against hostile creatures.
+### Animal Cruelty
 
-  #### 2-10.1 Kobold and Monkey Cubes
+To inflict unnecessary suffering or harm on a non-sentient being, protected minor sentient being, or protected uplifted creature with malicious or negligent intent. This does not include legitimate and authorized animal testing, butchering of ordinary livestock for meat, vermin control, or defense against hostile creatures.
 
-  Kobolds, monkeys, and similar minor sentient beings are under VTS protection. They are not to be treated as livestock, disposable test subjects, or free meat.
+#### 2-10.1 Kobold and Monkey Cubes
 
-  Uncubing found kobold or monkey cubes may be allowed when reasonable and safe. However, killing, butchering, harvesting, or otherwise processing the resulting creature for meat, materials, or convenience is illegal and should be charged as Animal Cruelty.
+Kobolds, monkeys, and similar minor sentient beings are under VTS protection. They are not to be treated as livestock, disposable test subjects, or free meat.
 
-  The intentional killing of a protected minor sentient being, such as a kobold or monkey, should be charged as Murder of a Minor Sentient Being.
+Uncubing found kobold or monkey cubes may be allowed when reasonable and safe. However, killing, butchering, harvesting, or otherwise processing the resulting creature for meat, materials, or convenience is illegal and should be charged as Animal Cruelty.
 
-  ## Major Crimes
+The intentional killing of a protected minor sentient being, such as a kobold or monkey, should be charged as Murder of a Minor Sentient Being.
 
-  Those who commit a major crime should receive up to 10 minutes of jail time per major crime committed. Major assault and manslaughter are linked crimes and do not stack against a suspect.
+## Major Crimes
 
-  ### Conspiracy
+Those who commit a major crime should receive up to 10 minutes of jail time per major crime committed. Major assault and manslaughter are linked crimes and do not stack against a suspect.
 
-  To conspire or plan to commit a moderate or major crime with reasonable evidence that the suspect was going to go through with the plan. This includes declaring they are going to commit a crime.
+### Conspiracy
 
-  ### Armed Robbery
+To conspire or plan to commit a moderate or major crime with reasonable evidence that the suspect was going to go through with the plan. This includes declaring they are going to commit a crime.
 
-  To steal something with the threat of violence using anything that can be considered a weapon, whether or not the weapon is contraband. This can include knives, toolboxes, crowbars, or any number of other improvised weapons. There must be an active threat of violence, or the implication of violence if the victim does not comply, in order to be considered armed robbery.
+### Armed Robbery
 
-  ### Sedition
+To steal something with the threat of violence using anything that can be considered a weapon, whether or not the weapon is contraband. This can include knives, toolboxes, crowbars, or any number of other improvised weapons. There must be an active threat of violence, or the implication of violence if the victim does not comply, in order to be considered armed robbery.
 
-  To incite rebellion against the authority of the station including but not limited to Command, Security, Central Command, or Nanotrasen.
+### Sedition
 
-  ### Perjury
+To incite rebellion against the authority of the station including but not limited to Command, Security, Central Command, or Nanotrasen.
 
-  To intentionally lie under oath or make a false statement in a written document.
+### Perjury
 
-  ### Forgery
+To intentionally lie under oath or make a false statement in a written document.
 
-  To forge a written document through illicit means, such as rewriting a stamped document, unauthorized use of an official stamp, or any other means.
+### Forgery
 
-  ### Breach of Arrest
+To forge a written document through illicit means, such as rewriting a stamped document, unauthorized use of an official stamp, or any other means.
 
-  To intentionally resist and flee arrest or detainment by authorized staff. This only applies if someone is actively being physically arrested. People uncuffing or assisting others out of an arrest can also be charged with this. Breach of custody is a separate crime.
+### Breach of Arrest
 
-  ### Grand Theft
+To intentionally resist and flee arrest or detainment by authorized staff. This only applies if someone is actively being physically arrested. People uncuffing or assisting others out of an arrest can also be charged with this. Breach of custody is a separate crime.
 
-  To take critical or irreplaceable property of another individual or organization without consent. This includes command items such as door remotes, hardsuits, machine parts, and hijacking a department shuttle.
+### Grand Theft
 
-  ### Destruction of Property
+To take critical or irreplaceable property of another individual or organization without consent. This includes command items such as door remotes, hardsuits, machine parts, and hijacking a department shuttle.
 
-  To destroy the property of another or the station. This includes but is not limited to work consoles, airlocks, and destroying or critically damaging a Cyborg's chassis.
+### Destruction of Property
 
-  ### Secure Trespass
+To destroy the property of another or the station. This includes but is not limited to work consoles, airlocks, and destroying or critically damaging a Cyborg's chassis.
 
-  To enter a secured area without permission. If the area is behind a locked door, it is secure trespass. This includes telecomms, department head offices, command areas, the vault, and the armory.
+### Secure Trespass
 
-  ### Major Assault
+To enter a secured area without permission. If the area is behind a locked door, it is secure trespass. This includes telecomms, department head offices, command areas, the vault, and the armory.
 
-  To assault another with a weapon or unarmed assault resulting in serious injury. Serious injury is defined as any life altering injury such as loss of limb, damage to the eyes or ears, or any other damages measured by a Health Analyzer to be exceeding 30 total.
+### Major Assault
 
-  ### Manslaughter
+To assault another with a weapon or unarmed assault resulting in serious injury. Serious injury is defined as any life altering injury such as loss of limb, damage to the eyes or ears, or any other damages measured by a Health Analyzer to be exceeding 30 total.
 
-  To incidentally kill a sentient humanoid without intent. This includes manslaughter in self-defense and negligent manslaughter.
+### Manslaughter
 
-  ### Rioting
+To incidentally kill a sentient humanoid without intent. This includes manslaughter in self-defense and negligent manslaughter.
 
-  To participate in a large group of personnel creating an unlawful public disturbance. Leaders of a riot may be charged with all the crimes committed under their lead, plus sedition.
+### Rioting
 
-  ### Murder of a Minor Sentient Being
+To participate in a large group of personnel creating an unlawful public disturbance. Leaders of a riot may be charged with all the crimes committed under their lead, plus sedition.
 
-  To intentionally kill a protected minor sentient being, such as a kobold, monkey, or similar cube-spawned minor sentient creature. This is a major crime and should be investigated and treated with the same seriousness as a murder case involving any other protected person.
+### Murder of a Minor Sentient Being
 
-  ## Extreme Crimes
+To intentionally kill a protected minor sentient being, such as a kobold, monkey, or similar cube-spawned minor sentient creature. This is a major crime and should be investigated and treated with the same seriousness as a murder case involving any other protected person.
 
-  Those who commit an extreme crime may receive up to 20 minutes of jail time per extreme crime committed. Particularly violent offenders may be placed in perma. Attempted murder and murder are linked crimes and cannot be stacked together.
+## Extreme Crimes
 
-  ### Breach of Custody
+Those who commit an extreme crime may receive up to 20 minutes of jail time per extreme crime committed. Particularly violent offenders may be placed in perma. Attempted murder and murder are linked crimes and cannot be stacked together.
 
-  To break out of a cell or custody with the intention of escaping. This applies to people breaking others out. Repeat offenses may have this charge increased to permanent confinement and later elevated to an execution with the Captain's authority only if the suspect has repeatedly committed breach of custody. Breach of custody for the preservation of life, not including to escape execution, such as to vacate a location made dangerous due to gunfire, fire, spacing, or lack of oxygen, may be reduced or ignored at the Warden or Head of Security's discretion.
+### Breach of Custody
 
-  ### Possession or Use of Significant Syndicate Contraband
+To break out of a cell or custody with the intention of escaping. This applies to people breaking others out. Repeat offenses may have this charge increased to permanent confinement and later elevated to an execution with the Captain's authority only if the suspect has repeatedly committed breach of custody. Breach of custody for the preservation of life, not including to escape execution, such as to vacate a location made dangerous due to gunfire, fire, spacing, or lack of oxygen, may be reduced or ignored at the Warden or Head of Security's discretion.
 
-  To make, hold, or use Significant Syndicate contraband. Significant Syndicate contraband may only be used in emergencies, and only to prevent death or gross bodily harm. Significant Syndicate contraband is any Syndicate contraband that can be used to hinder the station or aid its enemies in an obvious way. Any Syndicate contraband that does not meet this definition is to be considered minor contraband.
+### Possession or Use of Significant Syndicate Contraband
 
-  ### Mass Destruction
+To make, hold, or use Significant Syndicate contraband. Significant Syndicate contraband may only be used in emergencies, and only to prevent death or gross bodily harm. Significant Syndicate contraband is any Syndicate contraband that can be used to hinder the station or aid its enemies in an obvious way. Any Syndicate contraband that does not meet this definition is to be considered minor contraband.
 
-  To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
+### Mass Destruction
 
-  ### Unlawful Detainment
+To cause massive damage to an area or major station system. This includes major bombings and sabotage of critical station systems like power, medical, chemistry, substations, and atmospherics.
 
-  To unlawfully restrain, transport, control, or confine a sentient humanoid being against that individual's will. This is a catchall to cover any form of kidnapping or forced control.
+### Unlawful Detainment
 
-  ### Attempted Murder
+To unlawfully restrain, transport, control, or confine a sentient humanoid being against that individual's will. This is a catchall to cover any form of kidnapping or forced control.
 
-  To make an attempt to end someone's life, using physical force or otherwise. Proof that action was taken with the intent to kill is necessary, such as a lethal weapon being used.
+### Attempted Murder
 
-  ### Murder
+To make an attempt to end someone's life, using physical force or otherwise. Proof that action was taken with the intent to kill is necessary, such as a lethal weapon being used.
 
-  To kill a sentient humanoid with malicious intent. If the victim must be revived, it is murder and not attempted murder.
+### Murder
 
-  ### Treason
+To kill a sentient humanoid with malicious intent. If the victim must be revived, it is murder and not attempted murder.
 
-  To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the station and NanoTrasen.
+### Treason
 
-  ### Cannibalism
+To willfully betray allegiances to NanoTrasen. This includes collaborating with terrorists, and especially applies to members of Command attempting to illegally forsake their duties to the detriment of the station and NanoTrasen.
 
-  To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is considered cannibalism unless the source is consensual under the Religious Freedom act. Paperwork with the Chaplain and Captain's stamp is required for this exception. Discarded blood, such as blood that a janitor would mop, is considered consensually given and does not require paperwork to be consumed.
+### Cannibalism
 
-  ## Capital Crimes
+To consume any part of a sentient humanoid. Consumption of vital components should be treated more harshly. This can be charged on top of other charges such as Murder or Assault if the suspect committed these crimes to obtain the parts consumed. Consumption of blood is considered cannibalism unless the source is consensual under the Religious Freedom act. Paperwork with the Chaplain and Captain's stamp is required for this exception. Discarded blood, such as blood that a janitor would mop, is considered consensually given and does not require paperwork to be consumed.
 
-  Those who commit a capital crime should be detained in perma with confirmation from the Captain. If a capital criminal escapes they are to be executed and transported to CC in a body bag at the end of shift. Emergency executions may be enacted by Captain or the Head of Security with at least 3 other Command as witnesses, but must be reported directly to Central Command afterwards for review.
+## Capital Crimes
 
-  ### Refusal of Mental Shielding
+Those who commit a capital crime should be detained in perma with confirmation from the Captain. If a capital criminal escapes they are to be executed and transported to CC in a body bag at the end of shift. Emergency executions may be enacted by Captain or the Head of Security with at least 3 other Command as witnesses, but must be reported directly to Central Command afterwards for review.
 
-  To refuse to comply with a reasonable Mind Shielding procedure. Applies if the suspect is excessively uncooperative or the implant fails to function due to the mental state of the prisoner being too far gone. [bold]If the implant fails, execution is heavily recommended and may be approved by the Captain or Central Command. See Implantation for more.[/bold]
+### Refusal of Mental Shielding
 
-  ### Terrorism
+To refuse to comply with a reasonable Mind Shielding procedure. Applies if the suspect is excessively uncooperative or the implant fails to function due to the mental state of the prisoner being too far gone. [bold]If the implant fails, execution is heavily recommended and may be approved by the Captain or Central Command. See Implantation for more.[/bold]
 
-  To engage in malicious destructive actions which threaten to destroy or successfully destroy a vessel, habitat, or station. This includes extreme sabotage of station systems or setting off the self-destruction systems.
+### Terrorism
 
-  ### Unlawful Execution
+To engage in malicious destructive actions which threaten to destroy or successfully destroy a vessel, habitat, or station. This includes extreme sabotage of station systems or setting off the self-destruction systems.
 
-  To unlawfully execute an individual without authorization or outside of Standard Operating Procedure. This law is distinct from murder, and applies primarily to Security, Command, and Central Command forces such as Emergency Response Teams.
+### Unlawful Execution
 
-  ### Prevention of Revival
+To unlawfully execute an individual without authorization or outside of Standard Operating Procedure. This law is distinct from murder, and applies primarily to Security, Command, and Central Command forces such as Emergency Response Teams.
 
-  To render a body un-resurrectable. This includes gibbing, throwing a body into space, intentionally hiding a body, unlawfully incinerating a body, or any other ways of preventing a body with a soul from being resurrected.
+### Prevention of Revival
 
-  ### Mass Murder
+To render a body un-resurrectable. This includes gibbing, throwing a body into space, intentionally hiding a body, unlawfully incinerating a body, or any other ways of preventing a body with a soul from being resurrected.
 
-  To kill three or more sentient humanoids with malicious intent. Only applies when there have been multiple killings with intention.
+### Mass Murder
 
-  ### Enemy of Corporation
+To kill three or more sentient humanoids with malicious intent. Only applies when there have been multiple killings with intention.
 
-  To act as or knowingly aid a known enemy of the station and NT-CC. Only applies beyond a shadow of doubt.
+### Enemy of Corporation
+
+To act as or knowingly aid a known enemy of the station and NT-CC. Only applies beyond a shadow of doubt.
 </Document>
