@@ -461,10 +461,9 @@
   - type: Sprite
     state: stamp-syndicate
 
-    # Civillian Stamp
-
+# Civilian stamps
 - type: entity
-  name: Reporter rubber stamp
+  name: reporter rubber stamp
   parent: RubberStampBase
   id: RubberStampReporter
   description: A rubber stamp for stamping important documents. Write all the articles!
