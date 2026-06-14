@@ -20,7 +20,9 @@
     },
     {
       "name": "holopin-equipped-NECK",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Vincolan",
+      "license": "CC0-1.0"
     }
   ]
 }
