@@ -43,6 +43,7 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
         _configManager.OnValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<ShipyardConsoleComponent, ComponentShutdown>(OnShipyardShutdown);
     }
 
     private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args)
@@ -51,6 +52,24 @@ public sealed partial class ShipyardSystem : SharedShipyardSystem
             return;
 
         SetupShipyard();
+    }
+    private void OnShipyardShutdown(EntityUid uid, ShipyardConsoleComponent component, ComponentShutdown args)
+    {
+        // Only clean when the last console is removed
+        var query = EntityQueryEnumerator<ShipyardConsoleComponent>();
+
+        while (query.MoveNext(out var otherUid, out _))
+        {
+            if (otherUid == uid)
+                continue;
+
+            if (TerminatingOrDeleted(otherUid))
+                continue;
+
+            return;
+        }
+
+        CleanupShipyard();
     }
 
     public override void Shutdown()
