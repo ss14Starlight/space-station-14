@@ -39,8 +39,6 @@ public sealed partial class CosmicRiftSystem : EntitySystem
     private const float RiftSpawnAreaScale = 0.7f;
     private const int RiftSpawnAttempts = 25;
     private const int RiftPurgeDistanceThreshold = 10;
-    private const float RiftInteractDistanceThreshold = 1.5f;
-    private const float RiftInteractMovementThreshold = 0.5f;
     private static readonly EntProtoId _defaultRiftPrototype = "CosmicMalignRift";
 
     public override void Initialize()
@@ -185,8 +183,8 @@ public sealed partial class CosmicRiftSystem : EntitySystem
             args.User,
             ent)
         {
-            DistanceThreshold = RiftInteractDistanceThreshold, Hidden = true, BreakOnDamage = true, BreakOnHandChange = true, BreakOnMove = true,
-            MovementThreshold = RiftInteractMovementThreshold,
+            DistanceThreshold = ent.Comp.DistanceThreshold, Hidden = true, BreakOnDamage = true, BreakOnHandChange = true, BreakOnMove = true,
+            MovementThreshold = ent.Comp.MovementThreshold,
         };
         _doAfter.TryStartDoAfter(doargs, out var doAfterId);
         ent.Comp.DoAfterId = doAfterId;
@@ -226,8 +224,8 @@ public sealed partial class CosmicRiftSystem : EntitySystem
             BreakOnDropItem = true,
             BreakOnDamage = true,
             RequireCanInteract = true,
-            DistanceThreshold = RiftInteractDistanceThreshold,
-            MovementThreshold = RiftInteractMovementThreshold,
+            DistanceThreshold = ent.Comp.DistanceThreshold,
+            MovementThreshold = ent.Comp.MovementThreshold,
         };
 
         _popup.PopupEntity(Loc.GetString("cosmiccult-rift-bible-charging"), args.User, args.User);
