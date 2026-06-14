@@ -21,6 +21,6 @@ public sealed class SharedCosmicCenserSystem : EntitySystem
         var solution = args.SolutionEntity.Comp.Solution;
 
         if (solution.Contents.Any(sol => sol.Reagent.Prototype != ent.Comp.RefillReagent))
-            args.Cancel("This solution contains unsuitable reagents!");
+            args.Cancel(Loc.GetString("cosmiccult-censer-unsuitable-reagent"));
     }
 }
