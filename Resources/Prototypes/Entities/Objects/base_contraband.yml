@@ -210,14 +210,6 @@
   - type: Contraband
     allowedJobs: [ Janitor ]
 
-- type: entity
-  id: BaseReporterContraband
-  parent: BaseRestrictedContraband
-  abstract: true
-  components:
-    - type: Contraband
-      allowedJobs: [ Reporter ]
-
 # for ~objective items
 - type: entity
   id: BaseGrandTheftContraband

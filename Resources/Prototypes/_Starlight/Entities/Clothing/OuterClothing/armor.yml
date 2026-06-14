@@ -404,11 +404,11 @@
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
 
-# Reporter unlockable PRESS vest // 'ported' and edited from wizden
+# Reporter armor vest
 - type: entity
   parent: [ClothingOuterArmorBase, BaseReporterContraband]
   id: ClothingOuterPressArmor
-  name: press suit
+  name: press Armor
   description: A standart press armor, will help you to cover ongoing fights!
   components:
     - type: Pierceable
