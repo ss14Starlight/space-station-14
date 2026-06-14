@@ -149,6 +149,9 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
                         ? originalMask & ~StandingStateSystem.StandingCollisionLayer
                         : originalMask | StandingStateSystem.StandingCollisionLayer;
 
+                    if (fixture.CollisionMask == targetMask)
+                        continue;
+
                     _physics.SetCollisionMask(uid, key, fixture, targetMask, fixtureComponent);
                 }
             }
