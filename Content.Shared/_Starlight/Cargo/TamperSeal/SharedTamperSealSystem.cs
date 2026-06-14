@@ -362,3 +362,9 @@ public sealed partial class TamperSealUnsealedDoAfterEvent : SimpleDoAfterEvent;
 
 [Serializable, NetSerializable]
 public sealed partial class TamperSealDestroyedDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class TamperSealUnsealedEvent : EntityEventArgs;
+
+[Serializable, NetSerializable]
+public sealed partial class TamperSealDestroyedEvent : EntityEventArgs;
