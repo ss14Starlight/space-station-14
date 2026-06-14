@@ -409,7 +409,7 @@
   parent: [BaseReporterContraband, ClothingOuterArmorBase]
   id: ClothingOuterPressArmor
   name: press Armor
-  description: A standart press armor, will help you to cover ongoing fights!
+  description: A standard press armor, will help you to cover ongoing fights!
   components:
     - type: Pierceable
       level: Metal
