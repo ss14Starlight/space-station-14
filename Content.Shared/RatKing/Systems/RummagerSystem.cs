@@ -1,5 +1,6 @@
 using Content.Shared.DoAfter;
 using Content.Shared.EntityTable;
+using Content.Shared.Popups; // Starlight
 using Content.Shared.RatKing.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
@@ -16,6 +17,7 @@ public sealed class RummagerSystem : EntitySystem
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly IGameTiming _timing = default!; // Starlight
+    [Dependency] private readonly SharedPopupSystem _popup = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -33,7 +35,7 @@ public sealed class RummagerSystem : EntitySystem
             ent.Comp.Looted = false;
         // Starlight end
 
-        if (!HasComp<RummagerComponent>(args.User) || ent.Comp.Looted)
+        if (!HasComp<RummagerComponent>(args.User))
             return;
 
         var user = args.User;
@@ -44,6 +46,12 @@ public sealed class RummagerSystem : EntitySystem
             Priority = 0,
             Act = () =>
             {
+                if (ent.Comp.Looted)
+                {
+                    _popup.PopupClient(Loc.GetString("rummage-already-looted"), user, user, PopupType.SmallCaution);
+                    return;
+                }
+
                 _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
                     user,
                     ent.Comp.RummageDuration,
@@ -64,6 +72,17 @@ public sealed class RummagerSystem : EntitySystem
     {
         if (args.Cancelled || ent.Comp.Looted)
             return;
+
+        // Starlight begin
+        // if (args.Cancelled)
+        //     return;
+        //
+        // if (ent.Comp.Looted)
+        // {
+        //     _popup.PopupClient(Loc.GetString("rummage-already-looted"), ent, ent, PopupType.SmallCaution);
+        //     return;
+        // }
+        // // Starlight end
 
         ent.Comp.Looted = true;
         ent.Comp.NextRummageTime = _timing.CurTime + ent.Comp.LootResetDelay; // Starlight
