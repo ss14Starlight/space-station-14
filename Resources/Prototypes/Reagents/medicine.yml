@@ -264,6 +264,7 @@
   physicalDesc: reagent-physical-desc-bubbling
   flavor: medicine
   color: "#32cd32"
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -835,6 +836,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: medicine
   color: "#86caf7"
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -843,6 +845,8 @@
             - !type:ReagentCondition
               reagent: Ambuzol
               min: 10
+        - !type:ReduceRotting # starlight
+          seconds: 20
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition
@@ -859,6 +863,7 @@
   physicalDesc: reagent-physical-desc-crisp
   flavor: medicine
   color: "#1274b5"
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -868,6 +873,8 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
+        - !type:ReduceRotting # starlight
+          seconds: 60
         - !type:AdjustReagent
           conditions:
           - !type:MetabolizerTypeCondition
@@ -1698,7 +1705,7 @@
   physicalDesc: reagent-physical-desc-sickly
   flavor: acid
   color: "#b5e36d"
-  worksOnTheDead: true
+  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
