@@ -230,7 +230,7 @@ public sealed partial class CosmicRiftSystem : EntitySystem
             MovementThreshold = RiftInteractMovementThreshold,
         };
 
-        _popup.PopupEntity(Loc.GetString("cosmiccult-rift-lambda-charging"), args.User, args.User);
+        _popup.PopupEntity(Loc.GetString("cosmiccult-rift-bible-charging"), args.User, args.User);
 
         _doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId);
         ent.Comp.DoAfterId = doAfterId;
