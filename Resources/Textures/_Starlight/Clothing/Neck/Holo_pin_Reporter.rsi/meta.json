@@ -14,7 +14,9 @@
     },
     {
       "name": "holopin-sign",
-      "delays": [[ 0.8, 0.8, 0.8, 0.8 ]]
+      "delays": [[ 0.8, 0.8, 0.8, 0.8 ]],
+      "copyright": "Vincolan",
+      "license": "CC0-1.0"
     },
     {
       "name": "holopin-equipped-NECK",
