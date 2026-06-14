@@ -105,7 +105,8 @@ public enum CookingDeviceType
 {
     Microwave,
     Oven,
-    Stove
+    Stove,
+    IcecreamMaker
 }
 
 // Starlight-end: Moved from SharedMicrowave

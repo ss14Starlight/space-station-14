@@ -181,8 +181,9 @@
 - type: microwaveMealRecipe
   id: RecipeVanillaIcecream
   name: vanilla icecream
-  result: DrinkGlass
-  time: 10
+  result: FoodVanillaIcecream
+  deviceType: IcecreamMaker
+  time: 5
   solids:
     DrinkGlass : 1
   reagents:

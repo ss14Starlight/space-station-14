@@ -6,6 +6,9 @@
   components:
   - type: CookingDevice
     capacity: 10
+    deviceType: IcecreamMaker
+    foodDoneSound: "/Audio/Machines/vending_jingle.ogg"
+    loopingSound: "/Audio/Machines/machine_vend_hot_drink.ogg"
   - type: Appearance
   - type: WiresVisuals
   - type: GenericVisualizer
@@ -33,7 +36,7 @@
   - type: UserInterface
     interfaces:
       enum.MicrowaveUiKey.Key:
-        type: MicrowaveBoundUserInterface
+        type: IcecreamMakerBoundUserInterface
   - type: Physics
   - type: Fixtures
     fixtures:
