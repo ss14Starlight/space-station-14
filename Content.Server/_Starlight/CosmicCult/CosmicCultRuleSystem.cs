@@ -12,6 +12,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Objectives.Components;
 using Content.Server.Popups;
+using Content.Server.Revolutionary;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
@@ -25,7 +26,6 @@ using Content.Shared._Starlight.CosmicCult.Roles;
 using Content.Shared.Alert;
 using Content.Shared.Audio;
 using Content.Shared.Coordinates;
-using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
@@ -38,6 +38,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Components;
+using Content.Shared.Revolutionary.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
@@ -54,7 +55,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Collections.Immutable;
 using System.Linq;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Gibbing;
 using Content.Shared.Light.Components;
 using Content.Server._Starlight.Language;
@@ -62,48 +62,49 @@ using Content.Shared._Starlight.Language;
 using Content.Server.Weather;
 using Content.Shared.Shuttles.Components;
 using Content.Shared._Starlight.Shadekin;
+using Content.Shared.Radio.Components;
+using Content.Shared.Mind.Components;
 
 namespace Content.Server._Starlight.CosmicCult;
 
 /// <summary>
 /// Where all the main stuff for Cosmic Cultists happens.
 /// </summary>
-public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponent>
+public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponent>
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergency = default!;
-    [Dependency] private readonly EuiManager _euiMan = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly IVoteManager _votes = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly MonumentSystem _monument = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
-    [Dependency] private readonly ServerGlobalSoundSystem _sound = default!;
-    [Dependency] private readonly GibbingSystem _gibbing = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly VisibilitySystem _visibility = default!;
-    [Dependency] private readonly LanguageSystem _languageSystem = default!;
-    [Dependency] private readonly WeatherSystem _weather = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private EmergencyShuttleSystem _emergency = default!;
+    [Dependency] private EuiManager _euiMan = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPlayerManager _playerMan = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private IVoteManager _votes = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private MonumentSystem _monument = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RoundEndSystem _roundEnd = default!;
+    [Dependency] private ServerGlobalSoundSystem _sound = default!;
+    [Dependency] private GibbingSystem _gibbing = default!;
+    [Dependency] private SharedEyeSystem _eye = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private VisibilitySystem _visibility = default!;
+    [Dependency] private LanguageSystem _languageSystem = default!;
+    [Dependency] private WeatherSystem _weather = default!;
 
     private ISawmill _sawmill = default!;
     private TimeSpan _t3RevealDelay = default!;
@@ -139,6 +140,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         SubscribeLocalEvent<CosmicCultComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<CosmicGodComponent, ComponentInit>(OnGodSpawn);
         SubscribeLocalEvent<CosmicCultComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<CosmicCultLeadComponent, MindRemovedMessage>(HandleMindRemoved);
 
         Subs.CVar(_config,
             StarlightCCVars.CosmicCultT2RevealDelaySeconds,
@@ -201,7 +203,9 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
                 EnsureComp<CosmicStarMarkComponent>(cultist);
             }
 
+            var sender = Loc.GetString("cosmiccult-announcement-sender");
             var mapData = _map.GetMap(_transform.GetMapId(component.MonumentInGame.Owner.ToCoordinates()));
+            _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier3-progress"), sender, false, null, Color.FromHex("#4cabb3"));
             _chatSystem.DispatchStationAnnouncement(component.MonumentInGame, Loc.GetString("cosmiccult-announce-tier3-warning"), null, false, null, Color.FromHex("#cae8e8"));
             _audio.PlayGlobal(_tier3Sound, Filter.Broadcast(), false, AudioParams.Default);
 
@@ -226,16 +230,16 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             }
 
             var collideQuery = EntityQueryEnumerator<MonumentCollisionComponent>();
-            while (collideQuery.MoveNext(out var collideEnt, out _)) // Starlight Edit: var collideComp -> _
+            while (collideQuery.MoveNext(out var collideEnt, out _))
             {
-                RemComp<MonumentCollisionComponent>(collideEnt); // Starlight Edit: Changed to RemComp
+                RemComp<MonumentCollisionComponent>(collideEnt);
             }
 
             if (TryComp<VisibilityComponent>(component.MonumentInGame, out var visComp))
                 _visibility.SetLayer((component.MonumentInGame, visComp), 1);
 
             component.MonumentSlowZone = Spawn("MonumentSlowZone", Transform(component.MonumentInGame).Coordinates); // spawn The Monument's slowing fixture entity that supresses non-cult / non-mindshielded / non-chaplain crew.
-            _monument.SetCanTierUp(component.MonumentInGame, true);
+            MonumentSystem.SetCanTierUp(component.MonumentInGame, true);
             UpdateCultData(component.MonumentInGame); //instantly go up a tier if they manage it.
             _ui.SetUiState(component.MonumentInGame.Owner, MonumentKey.Key, new MonumentBuiState(component.MonumentInGame.Comp)); //not sure if this is needed but I'll be safe
         }
@@ -252,9 +256,19 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             _audio.PlayGlobal(_tier2Sound, Filter.Broadcast(), false, AudioParams.Default);
 
             for (var i = 0; i < Convert.ToInt16(component.TotalCrew / 6); i++) // spawn # malign rifts equal to 16.67% of the playercount
+            {
                 SpawnRift();
+            }
 
-            _monument.SetCanTierUp(component.MonumentInGame, true);
+            var lights = EntityQueryEnumerator<PoweredLightComponent>();
+            while (lights.MoveNext(out var light, out _))
+            {
+                if (!_rand.Prob(0.50f))
+                    continue;
+                _ghost.DoGhostBooEvent(light);
+            }
+
+            MonumentSystem.SetCanTierUp(component.MonumentInGame, true);
             UpdateCultData(component.MonumentInGame); //instantly go up a tier if they manage it
             _ui.SetUiState(component.MonumentInGame.Owner, MonumentKey.Key, new MonumentBuiState(component.MonumentInGame.Comp)); //not sure if this is needed but I'll be safe
         }
@@ -267,9 +281,16 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         var cultQuery = EntityQueryEnumerator<CosmicCultComponent, MetaDataComponent>();
         while (cultQuery.MoveNext(out var cult, out _, out var metadata))
         {
+            if (!_mind.TryGetMind(cult, out var mindId, out var mind) ||
+                !_playerMan.TryGetSessionById(mind.UserId, out _))
+                continue;
+
             var playerInfo = metadata.EntityName;
             cultists.Add((playerInfo, cult));
         }
+
+        if (cultists.Count == 0)
+            return;
 
         var options = new VoteOptions
         {
@@ -302,7 +323,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             _antag.SendBriefing(picked, Loc.GetString("cosmiccult-vote-steward-briefing"), Color.FromHex("#4cabb3"), _monumentAlert);
         };
     }
-
     private void SpawnRift()
     {
         if (TryFindRandomTile(out var _, out var _, out var _, out var coords))
@@ -456,19 +476,18 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         ent.Comp.RoundEndBehavior = RoundEndBehavior.Nothing; // prevent this being called multiple times.
         ent.Comp.RiftStop = true; // rifts can stop spawning now.
 
-        var monumentMap = Transform(ent.Comp.MonumentInGame).MapUid;
-        if (monumentMap is not null)
+        if (TryComp(ent.Comp.MonumentInGame, out TransformComponent? monumentTransform) && monumentTransform.MapUid is { } monumentMap)
         {
-            _weather.TryRemoveWeather(monumentMap.Value, "WeatherCosmic");
-            RemComp<PreventFTLComponent>(monumentMap.Value);
+            _weather.TryRemoveWeather(monumentMap, "WeatherCosmic");
+            RemComp<PreventFTLComponent>(monumentMap);
         }
 
         var gameruleMonument = ent.Comp.MonumentInGame;
-        if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp))
+        if (TryComp<CosmicFinaleComponent>(gameruleMonument, out var finComp) && TryComp(gameruleMonument, out TransformComponent? gameruleMonumentTransform))
         {
-            _monument.Disable(gameruleMonument);
+            MonumentSystem.Disable(gameruleMonument);
             finComp.CurrentState = FinaleState.Unavailable;
-            _popup.PopupCoordinates(Loc.GetString("cosmiccult-monument-powerdown"), Transform(gameruleMonument).Coordinates, PopupType.Large);
+            _popup.PopupCoordinates(Loc.GetString("cosmiccult-monument-powerdown"), gameruleMonumentTransform.Coordinates, PopupType.Large);
             _sound.StopStationEventMusic(gameruleMonument, StationEventMusicType.CosmicCult);
             _monument.UpdateMonumentAppearance(gameruleMonument, false);
         }
@@ -574,10 +593,10 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             }
         }
         else if (finaleComp.CurrentState != FinaleState.Unavailable)
-            _monument.SetTargetProgess(uid, uid.Comp.CurrentProgress);
+            MonumentSystem.SetTargetProgess(uid, uid.Comp.CurrentProgress);
         else if (uid.Comp.CurrentProgress >= uid.Comp.TargetProgress && cult.Comp.CurrentTier == 2 && uid.Comp.CanTierUp)
         {
-            _monument.SetCanTierUp(uid, false);
+            MonumentSystem.SetCanTierUp(uid, false);
 
             var cultistQuery = EntityQueryEnumerator<CosmicCultComponent>();
             while (cultistQuery.MoveNext(out var cultist, out var cultistComp))
@@ -593,7 +612,7 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         }
         else if (uid.Comp.CurrentProgress >= uid.Comp.TargetProgress && cult.Comp.CurrentTier == 1 && uid.Comp.CanTierUp)
         {
-            _monument.SetCanTierUp(uid, false);
+            MonumentSystem.SetCanTierUp(uid, false);
 
             var cultistQuery = EntityQueryEnumerator<CosmicCultComponent>();
             while (cultistQuery.MoveNext(out var cultist, out var cultistComp))
@@ -614,6 +633,37 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         _ui.SetUiState(uid.Owner, MonumentKey.Key, new MonumentBuiState(uid.Comp));
     }
 
+    /// <summary>
+    /// if the steward cryos or ghosts (not dies),
+    /// then call a revote to elect a new one
+    /// </summary>
+    /// <remarks>generally only so that stewards can be revoted without admin intervention.
+    /// if it causes issues, this is easy to remove</remarks>
+    private void HandleMindRemoved(Entity<CosmicCultLeadComponent> ent, ref MindRemovedMessage args)
+    {
+        if (HasComp<CosmicBlankComponent>(ent)) // Their mind got artificially removed, don't start a revote.
+            return;
+
+        var sender = Loc.GetString("cosmiccult-announcement-sender");
+        var cultistsList = new List<EntityUid>();
+        var query = EntityQueryEnumerator<CosmicCultComponent>();
+
+        while (query.MoveNext(out var cultist, out _))
+        {
+            if (TryComp<CosmicCultLeadComponent>(cultist, out _))
+                continue;
+            cultistsList.Add(cultist);
+        }
+
+        // remove the comp. If they died and ghosted and come back to their body they will no longer be the leader.
+        RemCompDeferred<CosmicCultLeadComponent>(ent);
+
+        var allCultists = Filter.Empty().FromEntities(cultistsList.ToArray<EntityUid>());
+        _chatSystem.DispatchFilteredAnnouncement(allCultists, Loc.GetString("cosmiccult-leader-abandonment-message"), sender: sender, playSound: false, colorOverride: Color.FromHex("#4eb1b1"));
+
+        Timer.Spawn(_voteDelay, StewardVote);
+    }
+
     #region De- & Conversion
     public void TryStartCult(EntityUid uid, Entity<CosmicCultRuleComponent> rule)
     {
@@ -625,7 +675,8 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
 
         associatedComp.CultGamerule = rule;
 
-        _role.MindAddRole(mindId, MindRole, mind, true);
+        if (!_role.MindHasRole<CosmicCultRoleComponent>(mindId))
+            _role.MindAddRole(mindId, MindRole, mind, true);
 
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-roundstart-fluff"), Color.FromHex("#4cabb3"), _briefingSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
@@ -638,8 +689,6 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         }
 
         rule.Comp.TotalCult++;
-
-        cultComp.StoredDamageContainer = Comp<DamageableComponent>(uid).DamageContainerID!.Value; // nullable?
 
         Dirty(uid, cultComp);
 
@@ -690,19 +739,19 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             !_playerMan.TryGetSessionById(mind.UserId, out var session))
             return;
 
-        _role.MindAddRole(mindId, MindRole, mind, true);
+        if (!_role.MindHasRole<CosmicCultRoleComponent>(mindId))
+            _role.MindAddRole(mindId, MindRole, mind, true);
 
         _antag.SendBriefing(session, Loc.GetString("cosmiccult-role-conversion-fluff"), Color.FromHex("#4cabb3"), _briefingSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-short-briefing"), Color.FromHex("#cae8e8"), null);
 
         var cultComp = EnsureComp<CosmicCultComponent>(uid);
         cultComp.EntropyBudget = 10; // pity balance
-        cultComp.StoredDamageContainer = Comp<DamageableComponent>(uid).DamageContainerID!.Value;
+        EnsureComp<IntrinsicRadioReceiverComponent>(uid);
         TransferCultAssociation(converter, uid);
 
         if (cult.Comp.CurrentTier == 3)
         {
-            _damage.SetDamageContainerID(uid, "BiologicalMetaphysical");
             cultComp.EntropyBudget = 48; // pity balance
             cultComp.Respiration = false;
 
@@ -762,10 +811,19 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
     {
         if (AssociatedGamerule(uid) is not { } cult)
             return;
+
         var cosmicGamerule = cult.Comp;
 
-        if (TerminatingOrDeleted(uid.Owner)) //Starlight-edit: dev-crash
-            return; //Starlight-edit: dev-crash
+        var isDeleting = TerminatingOrDeleted(uid.Owner);
+        if (isDeleting)
+        {
+            cosmicGamerule.TotalCult--;
+            cosmicGamerule.Cultists.Remove(uid);
+            AdjustCultObjectiveConversion(-1);
+            UpdateCultData(cosmicGamerule.MonumentInGame);
+            return;
+        }
+
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 
@@ -777,16 +835,12 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
         RemComp<TemperatureImmunityComponent>(uid);
         RemComp<CosmicStarMarkComponent>(uid);
         RemComp<CosmicCultExamineComponent>(uid);
-        _damage.SetDamageContainerID(uid.Owner, uid.Comp.StoredDamageContainer);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-deconverted-fluff"), Color.FromHex("#4cabb3"), _deconvertSound);
         _antag.SendBriefing(uid, Loc.GetString("cosmiccult-role-deconverted-briefing"), Color.FromHex("#cae8e8"), null);
 
         if (!_mind.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        // Starlight Edit
-        // _mind.ClearObjectives((mindId, mind)); // Starlight edit: Removed in favour of only removing Cult Obejctives. With Helper function also removed.
-        // Starlight Start
         if (_mind.TryFindObjective((mindId, mind), "CosmicFinalityObjective", out var finalityObjective) && finalityObjective != null)
             _mind.TryRemoveObjective(mindId, mind, finalityObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicMonumentObjective", out var monumentObjective) && monumentObjective != null)
@@ -795,13 +849,15 @@ public sealed class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRuleComponen
             _mind.TryRemoveObjective(mindId, mind, conversionObjective.Value);
         if (_mind.TryFindObjective((mindId, mind), "CosmicEntropyObjective", out var entropyObjective) && entropyObjective != null)
             _mind.TryRemoveObjective(mindId, mind, entropyObjective.Value);
-        // Starlight End
 
         _role.MindRemoveRole<CosmicCultRoleComponent>(mindId);
         _role.MindRemoveRole<RoleBriefingComponent>(mindId);
         if (_playerMan.TryGetSessionById(mind.UserId, out var session))
         {
-            _euiMan.OpenEui(new CosmicDeconvertedEui(), session);
+            if (HasComp<RevolutionaryComponent>(uid) || HasComp<HeadRevolutionaryComponent>(uid))
+                _euiMan.OpenEui(new DeconvertedEui(), session);
+            else
+                _euiMan.OpenEui(new CosmicDeconvertedEui(), session);
         }
         _eye.SetVisibilityMask(uid, 1);
         _alerts.ClearAlert(uid.Owner, uid.Comp.EntropyAlert);

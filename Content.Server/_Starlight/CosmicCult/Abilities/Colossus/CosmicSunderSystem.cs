@@ -2,13 +2,13 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.CosmicCult.Abilities;
+namespace Content.Server._Starlight.CosmicCult.Abilities.Colossus;
 
-public sealed class CosmicSunderSystem : EntitySystem
+public sealed partial class CosmicSunderSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
