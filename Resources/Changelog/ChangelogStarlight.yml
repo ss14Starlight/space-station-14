@@ -1,25 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Changelings can now make a fake Protogen frame, allowing them to properly disguise as protogen.
-    type: Add
-  id: 405582
-  time: '2026-06-04T06:25:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4645
-- author: wonderfulnewworld
-  changes:
-  - message: Ghost roles that don't use your character will not use Protogen, since they don't spawn with their armor frames.
-    type: Tweak
-  id: 405583
-  time: '2026-06-04T06:25:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4645
-- author: Caws
-  changes:
-  - message: Security Suit Storages now come with jetpacks. Jetpacks have been mostly removed from being a manually mapped addition to maps, generally replaced with extra cell chargers and rechargers.
-    type: Add
-  id: 405584
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
 - author: Caws
   changes:
   - message: (All Maps) Security Officer ratios have been adjusted across all maps to be more consistent to the minimum/maximum players a map supports.
@@ -2799,4 +2778,25 @@ Entries:
   id: 405981
   time: '2026-06-14T07:59:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4776
+- author: Darius
+  changes:
+  - message: Projectile speed from pyroclastic anomaly pulses increased.
+    type: Tweak
+  id: 405982
+  time: '2026-06-14T08:30:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4772
+- author: mikeysaurus, synthmin, johnny, Far Horizons
+  changes:
+  - message: Replaces the salvage shuttle SR-4S1 "Pioneer" with the SR-4S3 "Expeditioneer".
+    type: Add
+  id: 405983
+  time: '2026-06-14T08:30:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4384
+- author: mikeysaurus, synthmin, johnny, Far Horizons
+  changes:
+  - message: Replaces the mining shuttle NTMS-42A "Breaker" with the NTMS-62C "Asteroid Cracker".
+    type: Add
+  id: 405984
+  time: '2026-06-14T08:30:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4384
 Order: -1
