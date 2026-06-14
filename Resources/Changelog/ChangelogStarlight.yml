@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
   changes:
-  - message: Added robotic versions of nearly every emote in game for Protogens to use.
-    type: Add
-  id: 405580
-  time: '2026-06-04T06:25:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4650
-- author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
-  changes:
   - message: Diona, Vox and Vulpkanins now have unique sneeze sounds.
     type: Add
   id: 405581
@@ -2799,4 +2792,11 @@ Entries:
   id: 405979
   time: '2026-06-13T21:40:40.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4768
+- author: Caws
+  changes:
+  - message: A general recall has been issued for all mining windows and retro shuttle windows, as they were found to be shattering at gas pressures far below what was expected of reinforced glass. Newly issued windows should no longer shatter at very low pressure differences - we apologize for the inconvenience.
+    type: Fix
+  id: 405980
+  time: '2026-06-14T05:02:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4766
 Order: -1
