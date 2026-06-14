@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._Starlight.Abstract.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -25,6 +24,7 @@ using Content.Shared._Starlight.Weapon;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
+using Content.Shared._Starlight.Abstract.Extensions;
 #endregion
 
 namespace Content.Shared.Weapons.Reflect;
