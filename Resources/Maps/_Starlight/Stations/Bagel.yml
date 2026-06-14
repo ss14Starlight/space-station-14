@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/12/2026 02:08:07
-  entityCount: 26142
+  time: 06/14/2026 19:18:58
+  entityCount: 26131
 maps:
 - 1
 grids:
@@ -9741,17 +9741,6 @@ entities:
     - type: Transform
       pos: 31.477634,-79.4623
       parent: 2
-- proto: ActionToggleLight
-  entities:
-  - uid: 6
-    mapInit: true
-    paused: true
-    components:
-    - type: Transform
-      parent: 5
-    - type: Action
-      originalIconColor: '#FFFFFFFF'
-      container: 5
 - proto: AirAlarm
   entities:
   - uid: 7
@@ -16550,13 +16539,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: BarSpoon
-  entities:
-  - uid: 867
-    components:
-    - type: Transform
-      pos: 9.20146,-36.4394
-      parent: 2
 - proto: BaseComputer
   entities:
   - uid: 868
@@ -18088,20 +18070,8 @@ entities:
     - type: Transform
       pos: 46.5541,9.572361
       parent: 2
-- proto: BoxFolderWhite
-  entities:
-  - uid: 1134
-    components:
-    - type: Transform
-      pos: 35.716164,-13.572177
-      parent: 2
 - proto: BoxFolderYellow
   entities:
-  - uid: 1135
-    components:
-    - type: Transform
-      pos: 44.362587,13.584317
-      parent: 2
   - uid: 1136
     components:
     - type: Transform
@@ -65376,6 +65346,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 42.5,0.5
       parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 17896
+    components:
+    - type: Transform
+      pos: 4.5,1.5
+      parent: 2
 - proto: ComputerShuttleCargo
   entities:
   - uid: 10172
@@ -72368,13 +72345,6 @@ entities:
     - type: Transform
       pos: -29.5,-20.5
       parent: 2
-- proto: DrinkDoctorsDelightGlass
-  entities:
-  - uid: 11347
-    components:
-    - type: Transform
-      pos: 35.96561,-13.223683
-      parent: 2
 - proto: DrinkFlask
   entities:
   - uid: 11348
@@ -72432,33 +72402,12 @@ entities:
       parent: 2
     - type: Tag
       tags: []
-- proto: DrinkMugDog
-  entities:
-  - uid: 11357
-    components:
-    - type: Transform
-      pos: 4.4922695,21.481522
-      parent: 2
-- proto: DrinkMugMetal
-  entities:
-  - uid: 11358
-    components:
-    - type: Transform
-      pos: 4.6485195,21.700272
-      parent: 2
 - proto: DrinkMugMoebius
   entities:
   - uid: 11359
     components:
     - type: Transform
       pos: -49.44168,-7.4234295
-      parent: 2
-- proto: DrinkMugOne
-  entities:
-  - uid: 11360
-    components:
-    - type: Transform
-      pos: 4.3360195,21.684647
       parent: 2
 - proto: DrinkSakeBottleFull
   entities:
@@ -73457,53 +73406,6 @@ entities:
       parent: 2
 - proto: FaxMachineBase
   entities:
-  - uid: 11506
-    components:
-    - type: Transform
-      pos: -13.5,-28.5
-      parent: 2
-  - uid: 11507
-    components:
-    - type: Transform
-      pos: -48.5,-17.5
-      parent: 2
-    - type: FaxMachine
-      name: IAA Office
-  - uid: 11508
-    components:
-    - type: Transform
-      pos: 5.5,-27.5
-      parent: 2
-    - type: FaxMachine
-      name: HoP Office
-  - uid: 11509
-    components:
-    - type: Transform
-      pos: -40.5,5.5
-      parent: 2
-    - type: FaxMachine
-      name: RD Office
-  - uid: 11510
-    components:
-    - type: Transform
-      pos: -27.5,0.5
-      parent: 2
-    - type: FaxMachine
-      name: Head of Security
-  - uid: 11511
-    components:
-    - type: Transform
-      pos: -34.5,-7.5
-      parent: 2
-    - type: FaxMachine
-      name: Security
-  - uid: 11512
-    components:
-    - type: Transform
-      pos: 49.5,-18.5
-      parent: 2
-    - type: FaxMachine
-      name: Medical
   - uid: 11513
     components:
     - type: Transform
@@ -73511,13 +73413,6 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Science
-  - uid: 11514
-    components:
-    - type: Transform
-      pos: 8.5,21.5
-      parent: 2
-    - type: FaxMachine
-      name: CE's Office
   - uid: 11515
     components:
     - type: Transform
@@ -73525,20 +73420,6 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Reporter's Room
-  - uid: 11516
-    components:
-    - type: Transform
-      pos: -24.5,-30.5
-      parent: 2
-    - type: FaxMachine
-      name: Detective
-  - uid: 11517
-    components:
-    - type: Transform
-      pos: 47.5,12.5
-      parent: 2
-    - type: FaxMachine
-      name: Cargo
   - uid: 11518
     components:
     - type: Transform
@@ -73546,32 +73427,193 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Engineering
-  - uid: 11519
-    components:
-    - type: Transform
-      pos: -9.5,22.5
-      parent: 2
-    - type: FaxMachine
-      name: Library
   - uid: 11520
     components:
     - type: Transform
       pos: -50.5,-21.5
       parent: 2
-  - uid: 11521
+- proto: FaxMachineCaptain
+  entities:
+  - uid: 17892
     components:
     - type: Transform
-      pos: 6.5,-9.5
+      pos: -4.5,-6.5
       parent: 2
-- proto: FaxMachineCaptain
+- proto: FaxMachineCargo
+  entities:
+  - uid: 11511
+    components:
+    - type: Transform
+      pos: 47.5,12.5
+      parent: 2
+- proto: FaxMachineCargoQM
   entities:
   - uid: 11522
     components:
     - type: Transform
+      pos: 44.5,13.5
+      parent: 2
+- proto: FaxMachineCargoSalvageMining
+  entities:
+  - uid: 11529
+    components:
+    - type: Transform
+      pos: 43.5,0.5
+      parent: 2
+- proto: FaxMachineCommandAICore
+  entities:
+  - uid: 17894
+    components:
+    - type: Transform
+      pos: -116.5,28.5
+      parent: 2
+- proto: FaxMachineCommandBridge
+  entities:
+  - uid: 11516
+    components:
+    - type: Transform
       pos: 2.5,3.5
       parent: 2
-    - type: FaxMachine
-      name: Bridge
+- proto: FaxMachineEngineering
+  entities:
+  - uid: 1135
+    components:
+    - type: Transform
+      pos: 4.5,21.5
+      parent: 2
+- proto: FaxMachineEngineeringAtmos
+  entities:
+  - uid: 867
+    components:
+    - type: Transform
+      pos: -19.5,28.5
+      parent: 2
+- proto: FaxMachineEngineeringCE
+  entities:
+  - uid: 11509
+    components:
+    - type: Transform
+      pos: 8.5,21.5
+      parent: 2
+- proto: FaxMachineMedical
+  entities:
+  - uid: 11508
+    components:
+    - type: Transform
+      pos: 49.5,-18.5
+      parent: 2
+- proto: FaxMachineMedicalCMO
+  entities:
+  - uid: 5
+    components:
+    - type: Transform
+      pos: 35.5,-13.5
+      parent: 2
+- proto: FaxMachineNTCareerTrainer
+  entities:
+  - uid: 11347
+    components:
+    - type: Transform
+      pos: -13.5,-28.5
+      parent: 2
+- proto: FaxMachineNTMagiInternalAffairs
+  entities:
+  - uid: 11357
+    components:
+    - type: Transform
+      pos: -48.5,-17.5
+      parent: 2
+- proto: FaxMachineNTRepBSO
+  entities:
+  - uid: 11514
+    components:
+    - type: Transform
+      pos: 6.5,-9.5
+      parent: 2
+- proto: FaxMachineScience
+  entities:
+  - uid: 17897
+    components:
+    - type: Transform
+      pos: -45.5,-7.5
+      parent: 2
+- proto: FaxMachineScienceRD
+  entities:
+  - uid: 11360
+    components:
+    - type: Transform
+      pos: -40.5,5.5
+      parent: 2
+- proto: FaxMachineSecurity
+  entities:
+  - uid: 11507
+    components:
+    - type: Transform
+      pos: -34.5,-7.5
+      parent: 2
+- proto: FaxMachineSecurityDetective
+  entities:
+  - uid: 11510
+    components:
+    - type: Transform
+      pos: -24.5,-30.5
+      parent: 2
+- proto: FaxMachineSecurityHoS
+  entities:
+  - uid: 11506
+    components:
+    - type: Transform
+      pos: -27.5,0.5
+      parent: 2
+- proto: FaxMachineSecurityPrison
+  entities:
+  - uid: 17895
+    components:
+    - type: Transform
+      pos: -9.5,-13.5
+      parent: 2
+- proto: FaxMachineSecurityWarden
+  entities:
+  - uid: 11521
+    components:
+    - type: Transform
+      pos: -29.5,-16.5
+      parent: 2
+- proto: FaxMachineServiceBar
+  entities:
+  - uid: 6
+    components:
+    - type: Transform
+      pos: 9.5,-36.5
+      parent: 2
+- proto: FaxMachineServiceHoP
+  entities:
+  - uid: 11358
+    components:
+    - type: Transform
+      pos: 5.5,-27.5
+      parent: 2
+- proto: FaxMachineServiceLibrary
+  entities:
+  - uid: 11512
+    components:
+    - type: Transform
+      pos: -9.5,22.5
+      parent: 2
+- proto: FaxMachineServiceShrine
+  entities:
+  - uid: 17549
+    components:
+    - type: Transform
+      pos: -22.5,18.5
+      parent: 2
+- proto: FaxMachineServiceTheater
+  entities:
+  - uid: 11519
+    components:
+    - type: Transform
+      pos: 26.5,-11.5
+      parent: 2
 - proto: filingCabinetDrawerRandom
   entities:
   - uid: 11523
@@ -73603,11 +73645,6 @@ entities:
     components:
     - type: Transform
       pos: 3.5,-0.5
-      parent: 2
-  - uid: 11529
-    components:
-    - type: Transform
-      pos: -29.5,-16.5
       parent: 2
   - uid: 11530
     components:
@@ -77451,13 +77488,6 @@ entities:
     components:
     - type: Transform
       pos: 27.351957,-12.1736555
-      parent: 2
-- proto: FoodCakeBirthdaySlice
-  entities:
-  - uid: 12050
-    components:
-    - type: Transform
-      pos: 9.499123,-36.336754
       parent: 2
 - proto: FoodCartCold
   entities:
@@ -115369,27 +115399,6 @@ entities:
       parent: 2
 - proto: Lamp
   entities:
-  - uid: 5
-    components:
-    - type: Transform
-      pos: 35.38804,-13.134677
-      parent: 2
-    - type: HandheldLight
-      toggleActionEntity: 6
-    - type: ContainerContainer
-      containers:
-        cell_slot: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 6
-    - type: Physics
-      canCollide: True
-    - type: ActionsContainer
   - uid: 17542
     components:
     - type: Transform
@@ -115427,13 +115436,6 @@ entities:
     - type: Transform
       pos: -53.539146,19.787207
       parent: 2
-  - uid: 17549
-    components:
-    - type: Transform
-      pos: -4.6236715,-6.065073
-      parent: 2
-    - type: Physics
-      canCollide: True
   - uid: 17550
     components:
     - type: Transform
@@ -117887,66 +117889,6 @@ entities:
     - type: Transform
       pos: -10.910415,-28.30871
       parent: 2
-  - uid: 17890
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17891
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17892
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17893
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17894
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17895
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17896
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17897
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17898
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17899
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17900
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
-  - uid: 17901
-    components:
-    - type: Transform
-      pos: 44.440712,13.631192
-      parent: 2
   - uid: 17902
     components:
     - type: Transform
@@ -118164,13 +118106,6 @@ entities:
     - type: Transform
       pos: 37.5,17.5
       parent: 2
-- proto: PaperCaptainsThoughts
-  entities:
-  - uid: 17944
-    components:
-    - type: Transform
-      pos: -4.121764,-6.3752127
-      parent: 2
 - proto: PaperDoor
   entities:
   - uid: 17945
@@ -118245,6 +118180,16 @@ entities:
       parent: 2
 - proto: PartRodMetal
   entities:
+  - uid: 12050
+    components:
+    - type: Transform
+      pos: 43.250656,-0.09272164
+      parent: 2
+  - uid: 17893
+    components:
+    - type: Transform
+      pos: 43.29753,-0.09272164
+      parent: 2
   - uid: 17954
     components:
     - type: Transform
@@ -118267,17 +118212,6 @@ entities:
           type: StackCustomSplitBoundUserInterface
           requireInputValidation: True
           interactionRange: 2
-  - uid: 17956
-    components:
-    - type: Transform
-      pos: 43.55442,0.5910795
-      parent: 2
-    - type: UserInterface
-      interfaces:
-        enum.StackCustomSplitUiKey.Key:
-          type: StackCustomSplitBoundUserInterface
-          requireInputValidation: True
-          interactionRange: 2
   - uid: 17957
     components:
     - type: Transform
@@ -118293,17 +118227,6 @@ entities:
     components:
     - type: Transform
       pos: -30.398247,32.48968
-      parent: 2
-    - type: UserInterface
-      interfaces:
-        enum.StackCustomSplitUiKey.Key:
-          type: StackCustomSplitBoundUserInterface
-          requireInputValidation: True
-          interactionRange: 2
-  - uid: 17959
-    components:
-    - type: Transform
-      pos: 43.55442,0.5910795
       parent: 2
     - type: UserInterface
       interfaces:
@@ -118417,11 +118340,6 @@ entities:
     components:
     - type: Transform
       pos: 56.622673,-12.218168
-      parent: 2
-  - uid: 17971
-    components:
-    - type: Transform
-      pos: 44.706337,13.771817
       parent: 2
   - uid: 17972
     components:
@@ -125206,11 +125124,6 @@ entities:
     components:
     - type: Transform
       pos: 55.5,-5.5
-      parent: 2
-  - uid: 18991
-    components:
-    - type: Transform
-      pos: -9.5,-13.5
       parent: 2
   - uid: 18992
     components:
@@ -138156,6 +138069,13 @@ entities:
     - type: Transform
       pos: 20.5,-6.5
       parent: 2
+- proto: SpawnMobKoboldKiki
+  entities:
+  - uid: 17890
+    components:
+    - type: Transform
+      pos: 32.5,-36.5
+      parent: 2
 - proto: SpawnMobMcGriff
   entities:
   - uid: 21064
@@ -142051,6 +141971,16 @@ entities:
       tags: []
 - proto: Table
   entities:
+  - uid: 1134
+    components:
+    - type: Transform
+      pos: -19.5,28.5
+      parent: 2
+  - uid: 11517
+    components:
+    - type: Transform
+      pos: -29.5,-16.5
+      parent: 2
   - uid: 21561
     components:
     - type: Transform
@@ -143697,11 +143627,6 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 2
-  - uid: 21884
-    components:
-    - type: Transform
-      pos: 4.5,1.5
-      parent: 2
   - uid: 21885
     components:
     - type: Transform
@@ -144786,6 +144711,11 @@ entities:
       parent: 2
 - proto: ToolboxEmergencyFilled
   entities:
+  - uid: 17891
+    components:
+    - type: Transform
+      pos: -2.5721197,3.7167997
+      parent: 2
   - uid: 22075
     components:
     - type: Transform
@@ -144815,11 +144745,6 @@ entities:
     components:
     - type: Transform
       pos: -45.48183,11.537685
-      parent: 2
-  - uid: 22081
-    components:
-    - type: Transform
-      pos: 4.4779716,1.6538
       parent: 2
   - uid: 22082
     components:
