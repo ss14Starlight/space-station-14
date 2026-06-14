@@ -45,7 +45,7 @@
   color: "#ff4242"
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
-  tamperSealColor: "#cc3535" # Starlight
+  tamperSealColor: "#e63c3c" # Starlight
   tamperSealAccesses: ["Security"] # Starlight
 
 - type: cargoAccount

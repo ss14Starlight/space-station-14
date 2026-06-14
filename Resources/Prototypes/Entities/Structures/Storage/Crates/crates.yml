@@ -45,6 +45,24 @@
     sprite: Structures/Storage/Crates/freezer.rsi
   - type: Sprite
     sprite: Structures/Storage/Crates/freezer.rsi
+    # Starlight BEGIN
+    layers:
+      - state: base
+        map: ["enum.StorageVisualLayers.Base"]
+      - state: closed
+        map: ["enum.StorageVisualLayers.Door"]
+      - state: welded
+        visible: false
+        map: ["enum.WeldableLayers.BaseWelded"]
+      - state: freezer_ribbon_sealed # <-- The only real change relative to CrateGeneric.
+        sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+        visible: false
+        map: [ "enum.TamperSealLayers.Sealed" ]
+      - state: paper
+        sprite: Structures/Storage/Crates/labels.rsi
+        map: ["enum.PaperLabelVisuals.Layer"]
+    # Starlight END
+
   - type: AntiRottingContainer
   - type: ExplosionResistance
     damageCoefficient: 0.50
@@ -683,6 +701,12 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      # Starlight BEGIN
+    - state: pirate_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
     - state: paper
       sprite: Structures/Storage/Crates/labels.rsi
       offset: "0.0,-0.09375"
@@ -712,6 +736,12 @@
     - state: welded
       visible: false
       map: ["enum.WeldableLayers.BaseWelded"]
+      # Starlight BEGIN
+    - state: toybox_ribbon_sealed
+      sprite: _Starlight/Structures/Storage/tamper_seal32.rsi
+      visible: false
+      map: [ "enum.TamperSealLayers.Sealed" ]
+      # Starlight END
     - state: paper
       map: ["enum.PaperLabelVisuals.Layer"]
   - type: Icon
