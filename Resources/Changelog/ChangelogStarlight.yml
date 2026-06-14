@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Protokin are now strippable.
-    type: Fix
-  id: 405579
-  time: '2026-06-04T05:55:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4646
 - author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
   changes:
   - message: Added robotic versions of nearly every emote in game for Protogens to use.
@@ -2799,4 +2792,11 @@ Entries:
   id: 405978
   time: '2026-06-13T20:46:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4765
+- author: Conflee, Trosling
+  changes:
+  - message: Upkeep of the Metashield. Notable changes are; Simplified wording of sections. Ambuzol is no longer Metashielded, but it's use to cure Romerol is still. Right-click inspecting items is no longer Metashielded- use the locking systems Wizden added over an entire year ago if you don't want Security identifying your chameleon backpack or hypopen, it's been in for an entire year.
+    type: Tweak
+  id: 405979
+  time: '2026-06-13T21:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4768
 Order: -1
