@@ -39,7 +39,7 @@
   parent: [BaseItem, BaseToggleClothing]
   id: HoloReporterPin
   name: Reporter Holo-Pin
-  description: A way of more clearly saying, DONT SHOOT!
+  description: A way of more clearly saying, DON'T SHOOT!
   components:
     - type: Item
       size: Tiny
@@ -70,4 +70,4 @@
   parent: BaseToggleAction
   id: ActionHoloPin
   name: Activate Holo-Pin
-  description: "BREAKING NEWS! DONT KILL ME PLEASE!"
+  description: "BREAKING NEWS! DON'T KILL ME PLEASE!"
