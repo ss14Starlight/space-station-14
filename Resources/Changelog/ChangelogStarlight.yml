@@ -1,34 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Protogen armor markings now mostly render beneath clothes.
-    type: Tweak
-  id: 405575
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: wonderfulnewworld
-  changes:
-  - message: All protogens whose base species can have hair can now have hair instead of just laspi and a few others.
-    type: Fix
-  id: 405576
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Aielithii and Proto-Lagomorph now have access to protogen specific markings.
-    type: Fix
-  id: 405577
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: DevCS-CP
-  changes:
-  - message: Implant Extractor can remove command tracking implant.
-    type: Add
-  id: 405578
-  time: '2026-06-04T05:55:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4653
-- author: wonderfulnewworld
-  changes:
   - message: Protokin are now strippable.
     type: Fix
   id: 405579
@@ -2799,4 +2771,32 @@ Entries:
   id: 405974
   time: '2026-06-13T17:54:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: JustinWinningham
+  changes:
+  - message: Added a Second Hand tab to the traitor uplink with 27 worn and damaged items available at discount or free, randomized per round.
+    type: Add
+  id: 405975
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: JustinWinningham
+  changes:
+  - message: 'Added 8 defect types: gun jamming, spread degradation, backfire, bent toggle switch, loose power connector (energy weapons), reduced damage, user damage on hit, and random fuse timer.'
+    type: Add
+  id: 405976
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: JustinWinningham
+  changes:
+  - message: Worn magazines use randomized ammo filling — each round slot is independently rolled from a caliber-appropriate type table.
+    type: Add
+  id: 405977
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: Toxyams
+  changes:
+  - message: Hardsuit helmets work from lost property bags.
+    type: Fix
+  id: 405978
+  time: '2026-06-13T20:46:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4765
 Order: -1
