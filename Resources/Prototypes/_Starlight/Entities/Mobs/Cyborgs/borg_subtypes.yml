@@ -89,7 +89,7 @@
       spriteHasMindState: engi_e
       spriteNoMindState: engi_e_r
       spriteToggleLightState: engi_l
-      inventoryTemplateId: borgMezo   
+      inventoryTemplateId: borg
 # region Generic
 
 - type: entity
@@ -142,7 +142,7 @@
       spriteHasMindState: mezo_e
       spriteNoMindState: mezo_e_r
       spriteToggleLightState: mezo_l
-      inventoryTemplateId: borgMezo
+      inventoryTemplateId: borg
 # region Janitor
 
 - type: entity
@@ -234,7 +234,7 @@
       spriteHasMindState: jani_e
       spriteNoMindState: jani_e_r
       spriteToggleLightState: jani_l
-      inventoryTemplateId: borgMezo
+      inventoryTemplateId: borg
 # region Medical
 
 - type: entity
@@ -339,7 +339,7 @@
       spriteHasMindState: medi_e
       spriteNoMindState: medi_e_r
       spriteToggleLightState: medi_l
-      inventoryTemplateId: borgMezo        
+      inventoryTemplateId: borg        
 # region Mining(Salvage)
 
 - type: entity
@@ -444,7 +444,7 @@
       spriteHasMindState: mining_e
       spriteNoMindState: mining_e_r
       spriteToggleLightState: mining_l
-      inventoryTemplateId: borgMezo     
+      inventoryTemplateId: borg
 # region Service
 
 - type: entity
@@ -555,7 +555,7 @@
       spriteHasMindState: service_e
       spriteNoMindState: service_e_r
       spriteToggleLightState: service_l
-      inventoryTemplateId: borgMezo
+      inventoryTemplateId: borg
 # region Security
 
 - type: entity
@@ -726,7 +726,7 @@
       spriteHasMindState: cargo_e
       spriteNoMindState: cargo_e_r
       spriteToggleLightState: cargo_l
-      inventoryTemplateId: borgMezo      
+      inventoryTemplateId: borg
 # region Purrfus
 
 - type: entity
