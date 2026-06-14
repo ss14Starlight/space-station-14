@@ -8,7 +8,9 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Vincolan",
+      "license": "CC0-1.0"
     },
     {
       "name": "holopin-sign",
