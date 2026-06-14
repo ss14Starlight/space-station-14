@@ -32,6 +32,9 @@ public sealed partial class CosmicCenserComponent : Component
         }
     };
 
+    [DataField]
+    public string RefillReagent = "Holywater";
+
     [DataField] public SoundSpecifier SizzleSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 
     [DataField] public SoundSpecifier CleanseSound = new SoundPathSpecifier("/Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg");

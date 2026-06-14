@@ -21,6 +21,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Random;
+using Content.Server.Bible.Components;
 
 namespace Content.Server._Starlight.CosmicCult.EntitySystems;
 
@@ -53,6 +54,7 @@ public sealed partial class CosmicRiftSystem : EntitySystem
 
         SubscribeLocalEvent<CosmicLambdaParticleSourceComponent, ActivateInWorldEvent>(OnActivated);
         SubscribeLocalEvent<CosmicLambdaParticleSourceComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<CosmicMalignRiftComponent, InteractUsingEvent>(OnInteractUsing);
     }
 
     private void OnActivated(Entity<CosmicLambdaParticleSourceComponent> ent, ref ActivateInWorldEvent args)
@@ -187,6 +189,50 @@ public sealed partial class CosmicRiftSystem : EntitySystem
             MovementThreshold = RiftInteractMovementThreshold,
         };
         _doAfter.TryStartDoAfter(doargs, out var doAfterId);
+        ent.Comp.DoAfterId = doAfterId;
+    }
+
+    private void OnInteractUsing(Entity<CosmicMalignRiftComponent> ent, ref InteractUsingEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!HasComp<BibleComponent>(args.Used))
+            return;
+
+        if (!HasComp<BibleUserComponent>(args.User))
+            return;
+
+        args.Handled = true;
+
+        if (_doAfter.IsRunning(ent.Comp.DoAfterId))
+        {
+            _popup.PopupEntity(Loc.GetString("cosmiccult-rift-inuse"), args.User, args.User);
+            return;
+        }
+
+        var doAfterArgs = new DoAfterArgs(
+            EntityManager,
+            args.User,
+            ent.Comp.PurgeTime,
+            new EventPurgeRiftDoAfter(),
+            ent,
+            ent)
+        {
+            NeedHand = true,
+            BreakOnWeightlessMove = true,
+            BreakOnMove = true,
+            BreakOnHandChange = true,
+            BreakOnDropItem = true,
+            BreakOnDamage = true,
+            RequireCanInteract = true,
+            DistanceThreshold = RiftInteractDistanceThreshold,
+            MovementThreshold = RiftInteractMovementThreshold,
+        };
+
+        _popup.PopupEntity(Loc.GetString("cosmiccult-rift-lambda-charging"), args.User, args.User);
+
+        _doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId);
         ent.Comp.DoAfterId = doAfterId;
     }
 
