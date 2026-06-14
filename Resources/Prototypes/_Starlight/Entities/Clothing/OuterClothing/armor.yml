@@ -409,7 +409,7 @@
   parent: [BaseReporterContraband, ClothingOuterArmorBase]
   id: ClothingOuterPressArmor
   name: press Armor
-  description: A standard press armor, will help you to cover ongoing fights!
+  description: It has 'PRESS' written on it in white. It will help you stay alive while searching for news!
   components:
     - type: Item
       size: Large
