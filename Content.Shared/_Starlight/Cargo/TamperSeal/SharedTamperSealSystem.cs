@@ -253,7 +253,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // Show a popup and play sound.
         _popup.PopupPredicted(
             Loc.GetString($"tamper-seal-popup-destroy-{(hasTool ? toolKind : "hands")}-begin"),
-            uid, user, PopupType.LargeCaution);
+            uid, user, PopupType.Large);
         _audio.PlayPredicted(seal.DestroyBeginSound, uid, user);
 
         // I tried using ToolSystem.UseTool, but that causes mispredicts due to setting a different AttemptFrequency.
@@ -304,16 +304,21 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         Appearance.SetData(uid, TamperSealVisuals.Opened, seal.Opened);
         Dirty(uid, seal);
 
-        if (!TryComp<StationBankAccountComponent>(seal.RecipientStation, out var bank))
-            return;
-
-        // Reward cargo, and popup unsealing success + reward amount.
-        // Note that there is no failure path here; we report it as if it succeeded, whether it did or not.
-        _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, seal.RewardSpesos);
-        _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end", ("reward", seal.RewardSpesos)), uid, user);
-
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(user):player} unsealed the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}.");
+
+        // Reward deliverer, only if deliverer != recipient (otherwise easy infinite money).
+        if (TryComp<StationBankAccountComponent>(seal.RecipientStation, out var bank) &&
+            seal.DelivererAccount != seal.RecipientAccount &&
+            seal.RewardSpesos > 0)
+        {
+            _audio.PlayPredicted(seal.RewardSound, uid, user);
+            _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, seal.RewardSpesos);
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end-reward", ("reward", seal.RewardSpesos)),
+                uid, user);
+        }
+        else
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end"), uid, user);
     }
 
     private void DoDestroy(EntityUid uid, EntityUid user, TamperSealComponent seal)
@@ -328,21 +333,25 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         Appearance.SetData(uid, TamperSealVisuals.Destroyed, seal.Destroyed);
         Dirty(uid, seal);
 
-        if (!TryComp<StationBankAccountComponent>(seal.RecipientStation, out var bank))
-            return;
-
-        // Penalize the deliverer and compensate the recipient.
-        // Note that there is no failure path here; we report it as if it succeeded, whether it did or not.
-        _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, -seal.PenaltySpesos);
-        _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.RecipientAccount, seal.PenaltyRefundSpesos);
-
-        _popup.PopupPredicted(Loc.GetString(
-            "tamper-seal-popup-destroy-end",
-            ("penalty", seal.PenaltySpesos),
-            ("refund", seal.PenaltyRefundSpesos)), uid, user);
-
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(user):player} destroyed the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}.");
+
+        if (seal.DelivererAccount != seal.RecipientAccount &&
+            (seal.PenaltySpesos > 0 || seal.PenaltyRefundSpesos > 0) &&
+            TryComp<StationBankAccountComponent>(seal.RecipientStation, out var bank) &&
+            _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, -seal.PenaltySpesos) &&
+            _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.RecipientAccount, seal.PenaltyRefundSpesos))
+        {
+            // If all money transfers, report to the user that the deliverer was punished.
+            _audio.PlayPredicted(seal.PenaltySound, uid, user);
+            _popup.PopupPredicted(Loc.GetString(
+                "tamper-seal-popup-destroy-end-penalty",
+                ("penalty", seal.PenaltySpesos),
+                ("refund", seal.PenaltyRefundSpesos)), uid, user, PopupType.LargeCaution);
+        }
+        else
+            // Otherwise just report the seal was broken.
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end"), uid, user, PopupType.LargeCaution);
     }
 
     #endregion

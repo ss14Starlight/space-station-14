@@ -43,12 +43,12 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The sound to play when the Unseal do-after begins.
     /// </summary>
-    [DataField, AutoNetworkedField] public SoundCollectionSpecifier UnsealBeginSound = new("CargoTamperSealUndoBegin");
+    [DataField, AutoNetworkedField] public SoundSpecifier UnsealBeginSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_takeoff.ogg");
 
     /// <summary>
     /// The sound to play when the Unseal do-after ends.
     /// </summary>
-    [DataField, AutoNetworkedField] public SoundCollectionSpecifier UnsealEndSound = new("CargoTamperSealUndoEnd"); // Same as destroy
+    [DataField, AutoNetworkedField] public SoundSpecifier UnsealEndSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
 
     #endregion
     #region Destroying
@@ -71,11 +71,11 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The sound to play when the Destroy do-after begins.
     /// </summary>
-    [DataField, AutoNetworkedField] public SoundCollectionSpecifier DestroyBeginSound = new("CargoTamperSealUndoBegin");
+    [DataField, AutoNetworkedField] public SoundSpecifier DestroyBeginSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_takeoff.ogg");
     /// <summary>
     /// The sound to play when the Destroy do-after ends.
     /// </summary>
-    [DataField, AutoNetworkedField] public SoundCollectionSpecifier DestroyEndSound = new("CargoTamperSealUndoEnd");
+    [DataField, AutoNetworkedField] public SoundSpecifier DestroyEndSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
 
     #endregion
     #region Rewards and Penalties
@@ -96,9 +96,19 @@ public sealed partial class TamperSealComponent : Component
     [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount = "Cargo";
 
     /// <summary>
+    /// The sound that plays when a reward is given.
+    /// </summary>
+    [DataField, AutoNetworkedField] public SoundSpecifier RewardSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+
+    /// <summary>
     /// The reward to be given to <see cref="DelivererAccount"/> on a successful delivery.
     /// </summary>
     [DataField, AutoNetworkedField] public int RewardSpesos;
+
+    /// <summary>
+    /// The sound that plays when a penalty is incurred.
+    /// </summary>
+    [DataField, AutoNetworkedField] public SoundSpecifier PenaltySound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
 
     /// <summary>
     /// How much the <see cref="DelivererAccount"/> is penalized on failed delivery.
