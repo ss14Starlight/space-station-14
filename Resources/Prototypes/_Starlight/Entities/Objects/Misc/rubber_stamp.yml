@@ -461,8 +461,7 @@
   - type: Sprite
     state: stamp-syndicate
 
-    # Civillian Stamp
-
+# Civilian stamps
 - type: entity
   name: Reporter rubber stamp
   parent: RubberStampBase
