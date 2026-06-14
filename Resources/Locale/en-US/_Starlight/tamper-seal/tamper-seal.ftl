@@ -1,6 +1,6 @@
 tamper-seal-popup-unseal-begin = You open the tamper seal..
-tamper-seal-popup-unseal-end = The tamper seal opens cleanly.
-tamper-seal-popup-unseal-end-reward = The tamper seal opens cleanly. Cargo is awarded {$reward} spesos.
+tamper-seal-popup-unseal-end = The tamper seal opens.
+tamper-seal-popup-unseal-end-reward = The tamper seal opens. Cargo is awarded {$reward} spesos.
 tamper-seal-popup-unseal-no-access = You should probably not open it, as it's not meant for you.
 
 tamper-seal-popup-destroy-hands-begin = You begin painfully ripping apart the tamper seal..
