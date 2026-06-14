@@ -15,7 +15,6 @@ public sealed class ChildBlockVisionSystem : EntitySystem
     [Dependency] private readonly BlindableSystem _blindable = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
-
     private EntityQuery<TransformComponent> _transformQuery;
     private EntityQuery<ChildBlockVisionComponent> _blockQuery;
     private EntityQuery<MapGridComponent> _mapQuery;
