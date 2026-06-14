@@ -184,9 +184,22 @@
   result: FoodVanillaIcecream
   deviceType: IcecreamMaker
   time: 5
+  group: Icecream
   solids:
     DrinkGlass : 1
   reagents:
     IceCream : 25
     Cream: 5
 
+- type: microwaveMealRecipe
+  id: RecipeChocolatececream
+  name: chocolate icecream
+  result: FoodChocolateIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    CocoaPowder: 10

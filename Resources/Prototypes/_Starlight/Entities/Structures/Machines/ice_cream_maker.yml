@@ -83,3 +83,7 @@
     deleteAfterExplosion: false
   - type: ApcPowerReceiver
     powerLoad: 400
+  - type: GuideHelp
+    guides:
+    - Chef
+    - FoodRecipes

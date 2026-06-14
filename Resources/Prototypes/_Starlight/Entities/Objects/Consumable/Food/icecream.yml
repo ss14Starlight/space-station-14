@@ -43,3 +43,31 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
+
+- type: entity
+  name: chocolate icecream
+  parent: FoodIceCreamBase
+  id: FoodChocolateIcecream
+  description: A bowl of rich chocolate with dark chocolate chips and a cinnamon stick.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - chocolateicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/chocolate_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/chocolate_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Theobromine
+          Quantity: 10

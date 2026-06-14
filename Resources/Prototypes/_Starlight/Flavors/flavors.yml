@@ -62,3 +62,8 @@
   id: vanillaicecream
   flavorType: Complex
   description: flavor-complex-vanilla-icecream
+
+- type: flavor
+  id: chocolateicecream
+  flavorType: Complex
+  descrition: flavor-complex-chocolate-icecream
