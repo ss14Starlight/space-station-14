@@ -5,7 +5,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared._Starlight.CrawlUnder;
+using Content.Shared._Starlight.CrawlUnder; // Starlight
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.EntitySystems;
@@ -469,8 +469,11 @@ public abstract partial class SharedStunSystem
     /// </summary>
     private bool IntersectingStandingColliders(Entity<TransformComponent?> entity)
     {
+        // Starlight begin
+        // Allows getting up from crawling while sneaking underneath the collider
         if (TryComp<CrawlUnderObjectsComponent>(entity, out var crawlUnder) && crawlUnder.Enabled)
             return false;
+        // Starlight end
 
         if (!Resolve(entity, ref entity.Comp))
             return false;
