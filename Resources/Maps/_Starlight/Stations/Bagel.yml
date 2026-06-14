@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/14/2026 19:18:58
-  entityCount: 26131
+  time: 06/14/2026 21:41:02
+  entityCount: 26129
 maps:
 - 1
 grids:
@@ -73338,32 +73338,13 @@ entities:
       parent: 2
 - proto: FaxMachineBase
   entities:
-  - uid: 11513
-    components:
-    - type: Transform
-      pos: -53.5,9.5
-      parent: 2
-    - type: FaxMachine
-      name: Science
-  - uid: 11515
-    components:
-    - type: Transform
-      pos: 36.5,13.5
-      parent: 2
-    - type: FaxMachine
-      name: Reporter's Room
-  - uid: 11518
-    components:
-    - type: Transform
-      pos: 1.5,21.5
-      parent: 2
-    - type: FaxMachine
-      name: Engineering
   - uid: 11520
     components:
     - type: Transform
       pos: -50.5,-21.5
       parent: 2
+    - type: FaxMachine
+      name: Lawyer
 - proto: FaxMachineCaptain
   entities:
   - uid: 17892
@@ -73531,6 +73512,13 @@ entities:
     components:
     - type: Transform
       pos: -9.5,22.5
+      parent: 2
+- proto: FaxMachineServiceReporter
+  entities:
+  - uid: 11513
+    components:
+    - type: Transform
+      pos: 36.5,13.5
       parent: 2
 - proto: FaxMachineServiceShrine
   entities:
