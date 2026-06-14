@@ -255,6 +255,28 @@
 
 - type: entity
   parent: IDCardStandard
+  id: KikiIDCard
+  name: kiki's ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: stripe_top
+      color: *color-service-top
+    - state: stripe_bottom
+      color: *color-service-bottom
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Botanist
+  - type: PresetIdCard
+    job: Botanist
+    name: Kiki
+  - type: Tag # Ignore Chameleon tags
+    tags:
+    - DoorBumpOpener
+
+- type: entity
+  parent: IDCardStandard
   id: SovietIdCard
   name: soviet id card
   components:
@@ -269,6 +291,25 @@
   - type: Access
     tags:
       - Communist
+
+- type: entity
+  parent: [ SyndicateIDCard, BaseSyndicateContraband ]
+  id: SyndicateFootsoldierIDCard
+  name: syndicate ID card
+  suffix: Footsoldier, Not Agent ID
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobIcon: JobIconSyndicate
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]

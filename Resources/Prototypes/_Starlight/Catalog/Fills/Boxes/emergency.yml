@@ -72,3 +72,124 @@
         - id: EmergencyMedipen
         - id: FoodBreadNutriBatard #Never 4 get. the day wizden took mime's baugettes ## Hey actually why can't we just. Give them back lol ### yeah let's do that
         - id: DrinkWaterBottleFull
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalDwarf
+  description: It's a box with basic internals inside. This one is labelled to contain Dwarf rations.
+  suffix: Dwarf
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkAleBottlePlasticFull
+  - type: Sprite
+    layers:
+    - state: dwarfemergencytank
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalEngineeringDwarf
+  name: extended-capacity survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank and Dwarf rations.
+  suffix: Dwarf
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkAleBottlePlasticFull
+  - type: Sprite
+    layers:
+    - state: dwarfextendedtank
+
+- type: entity
+  parent: BoxSurvivalEngineeringDwarf
+  id: BoxSurvivalSecurityDwarf
+  suffix: Security Dwarf
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskGasSecurity
+        - id: ExtendedEmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkAleBottlePlasticFull
+
+- type: entity
+  parent: BoxSurvivalDwarf
+  id: BoxSurvivalMedicalDwarf
+  suffix: Medical Dwarf
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreathMedical
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkAleBottlePlasticFull
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxHugDwarf
+  name: box of hugs
+  description: A special box for sensitive people. This one is labelled to contain Dwarf rations.
+  suffix: Emergency Dwarf
+  components:
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Item
+    heldPrefix: hug
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyFunnyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodSnackNutribrick
+        - id: DrinkAleBottlePlasticFull
+  - type: Tag
+    tags:
+    - BoxCardboard
+    - BoxHug
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxMimeDwarf
+  description: It's a box with basic internals inside. This one is labelled to contain Dwarf rations.
+  suffix: Mime Dwarf
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingMaskBreath
+        - id: EmergencyOxygenTankFilled
+        - id: EmergencyMedipen
+        - id: Flare
+        - id: FoodBreadNutriBatard
+        - id: DrinkAleBottlePlasticFull
+  - type: Sprite
+    layers:
+    - state: dwarfemergencytank

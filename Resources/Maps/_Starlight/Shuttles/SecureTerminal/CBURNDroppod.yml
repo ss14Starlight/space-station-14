@@ -9130,7 +9130,7 @@ entities:
     - type: Transform
       pos: 13.5,-10.5
       parent: 1
-- proto: TurnstileCentComm
+- proto: TurnstileCentCommCommand
   entities:
   - uid: 1213
     components:

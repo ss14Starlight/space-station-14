@@ -626,3 +626,13 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/hereticalexomorph.rsi
     state: hereticalexomorph
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandBeep100
+  name: "Beep 100"
+  description: "A handmade memorial poster for 'Beep 100', the 100th Flashclone of the Resomi named Beep. May 31, 2526. It looks like someone took a bite out of the bottom corner."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/beep100.rsi
+    state: poster

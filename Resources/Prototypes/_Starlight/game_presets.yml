@@ -151,7 +151,7 @@
     - SiliconLiberation
     - Brighteye
     - ThiefGamerule
-    # - CosmicCult
+    - CosmicCult
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -191,7 +191,7 @@
     - LoneOpsSpawn
     - RailroadingTerminator
     - RailroadingMinor
-    # - CosmicCult
+    - CosmicCult
 
 - type: gamePreset
   id: TerrorSpiders

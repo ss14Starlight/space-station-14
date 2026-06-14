@@ -51,11 +51,11 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityOfficer: [ 9, 9 ]
-            Detective: [ 2, 2 ]
-            SecurityCadet: [ 4, 4 ]
-            Brigmedic: [ 1, 1 ]
             DutyOfficer: [ 1, 2 ]
+            SecurityOfficer: [ 10, 12 ]
+            SecurityCadet: [ 5, 6 ]
+            Brigmedic: [ 2, 2 ]
+            Detective: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageLead: [ 1, 1 ]

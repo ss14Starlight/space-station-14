@@ -44,6 +44,11 @@
   description: flavor-base-festive
 
 - type: flavor
+  id: highlander
+  flavorType: Complex
+  description: flavor-complex-highlander
+
+- type: flavor
   id: thelastcall
   flavorType: Complex
   description: flavor-complex-the-last-call

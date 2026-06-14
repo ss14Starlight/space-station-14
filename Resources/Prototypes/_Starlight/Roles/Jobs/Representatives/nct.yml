@@ -32,7 +32,6 @@
     - Cargo
     - Medical
     - IAA
-    - Debrief
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -52,7 +51,9 @@
     belt: BoxFolderNanoTrasenClipboard
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterCoatNCT
-    suitstorage: Flash
+  storage:
+    back:
+    - Flash
 
 - type: chameleonOutfit
   id: NanotrasenCareerTrainerChameleonOutfit

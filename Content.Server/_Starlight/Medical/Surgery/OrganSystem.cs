@@ -17,10 +17,10 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Starlight.Medical.Surgery.Events;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Content.Shared.Tag;
-using Content.Shared.VentCrawl;
 using Robust.Shared.Containers;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.VentCrawl.Components;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem

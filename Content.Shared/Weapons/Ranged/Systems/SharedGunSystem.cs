@@ -36,7 +36,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Content.Shared.VentCrawl;
 
 #region Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
@@ -44,6 +43,7 @@ using Content.Shared.Mech.Components;
 using Content.Shared.Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Camera;
+using Content.Shared._Starlight.VentCrawl.Components;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;
@@ -654,6 +654,18 @@ public abstract partial class SharedGunSystem : EntitySystem
         const float impulseStrength = 25.0f;
         var impulseVector = shotDirection * impulseStrength;
         Physics.ApplyLinearImpulse(user, -impulseVector, body: user.Comp);
+    }
+
+    /// <summary>
+    /// Forces a gun into the specified available fire modes, also correcting SelectedMode if needed.
+    /// Used by defect systems that need to restrict modes without direct component write access.
+    /// </summary>
+    public void SetAvailableModes(Entity<GunComponent> gun, SelectiveFire modes)
+    {
+        gun.Comp.AvailableModes = modes;
+        if ((gun.Comp.SelectedMode & modes) == 0)
+            gun.Comp.SelectedMode = modes;
+        Dirty(gun, gun.Comp);
     }
 
     public void RefreshModifiers(Entity<GunComponent?> gun)

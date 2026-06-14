@@ -306,6 +306,7 @@
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
+    - OublietteCircuitBoard # Starlight
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards

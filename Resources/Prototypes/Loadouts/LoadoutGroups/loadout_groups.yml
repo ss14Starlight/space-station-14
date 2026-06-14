@@ -115,7 +115,7 @@
   - DaBling
   - CrapPlushie ##not a typo
   - LighterGatcha
-  - MagicCrayon
+  #- MagicCrayon starlight edit commented out for now due to lag - 31-05-2026
   - HappyHonk
   - LeftRipperArm
   - RightMechwrightArm
@@ -154,6 +154,7 @@
   - EmergencyNitrogen
   - EmergencyOxygen
   - EmergencyElfOxygen # Starlight
+  - EmergencyDwarfOxygen # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -367,6 +368,7 @@
   minLimit: 0
   loadouts:
   - AssistantGloves
+  - AssistantMittens # Starlight
   - GreyGloves #starlight
 
 - type: loadoutGroup
@@ -771,6 +773,7 @@
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
   - EmergencyElfOxygenClown # Starlight
+  - EmergencyDwarfOxygenClown # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -840,6 +843,7 @@
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
   - EmergencyElfOxygenMime # Starlight
+  - EmergencyDwarfOxygenMime # Starlight
   - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
@@ -1262,6 +1266,7 @@
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
   - EmergencyElfOxygenExtended # Starlight
+  - EmergencyDwarfOxygenExtended # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1737,6 +1742,7 @@
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
   - EmergencyElfOxygenSecurity # Starlight
+  - EmergencyDwarfOxygenSecurity # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1785,6 +1791,7 @@
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
   - EmergencyElfOxygenSyndicate # Starlight
+  - EmergencyDwarfOxygenSyndicate # Starlight
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
@@ -1798,6 +1805,7 @@
   - EmergencyNitrogenMilitaryDouble
   - EmergencyOxygenMilitaryDouble
   - EmergencyElfOxygenMilitaryDouble # Starlight
+  - EmergencyDwarfOxygenMilitaryDouble # Starlight
   - EmergencyIPC # 🌟Starlight🌟
 
 - type: loadoutGroup

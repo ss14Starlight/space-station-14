@@ -39,8 +39,8 @@
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
     - id: ClothingOuterWinterWarden
-    - id: RubberStampWarden
     - id: DoorRemoteArmory
+    - id: BoxWardenStamps #Starlight
     - id: HoloprojectorSecurity
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack

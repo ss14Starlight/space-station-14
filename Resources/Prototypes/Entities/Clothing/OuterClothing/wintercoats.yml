@@ -304,7 +304,7 @@
     clothingPrototype: ClothingHeadHatHoodWinterCMO
 
 - type: entity
-  parent: ClothingOuterWinterCoat
+  parent: [ClothingOuterWinterCoat, AllowSuitStorageClothing]
   id: ClothingOuterWinterClown
   name: clown winter coat
   components:
