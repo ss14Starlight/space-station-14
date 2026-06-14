@@ -152,6 +152,7 @@
     - Brighteye
     - ThiefGamerule
     - CosmicCult
+    - TerrorSpidersSpawn
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -192,6 +193,7 @@
     - RailroadingTerminator
     - RailroadingMinor
     - CosmicCult
+    - TerrorSpidersSpawn
 
 - type: gamePreset
   id: TerrorSpiders

@@ -37,7 +37,7 @@
   parent: BaseStationEvent
   components:
   - type: StationEvent
-    weight: 7
+    weight: 6 # Starlight, maybe make it a little more rare...
     # reoccurrenceDelay: 50
     # minimumPlayers: 25
     duration: 20
