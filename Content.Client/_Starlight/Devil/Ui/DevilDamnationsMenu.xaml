@@ -5,8 +5,9 @@
                       MinSize="200 100"
                       SetSize="500 600">
     <BoxContainer Orientation="Vertical"
-                  VerticalExpand="True">
-        <PanelContainer VerticalExpand="True" Margin="10 10 10 10">
+                  VerticalExpand="True"
+                  Margin="10 10 10 10">
+        <!--<PanelContainer VerticalExpand="True" Margin="10 10 10 10">
             <ScrollContainer HScrollEnabled="False"
                              VerticalExpand="True">
                 <BoxContainer Orientation="Vertical"
@@ -22,6 +23,18 @@
                     </TabContainer>
                 </BoxContainer>
             </ScrollContainer>
-        </PanelContainer>
+        </PanelContainer>-->
+        <TabContainer Name="DamnationCategories" VerticalExpand="True">
+            <BoxContainer Name="DamnationsInfoBox"
+                          Orientation="Vertical"
+                          VerticalExpand="True">
+                <ScrollContainer HScrollEnabled="False"
+                                 VerticalExpand="True"
+                                 Margin="10 10 10 10">
+                    <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
+                                   VerticalAlignment="Top"/>
+                </ScrollContainer>
+            </BoxContainer>
+        </TabContainer>
     </BoxContainer>
 </controls:FancyWindow>

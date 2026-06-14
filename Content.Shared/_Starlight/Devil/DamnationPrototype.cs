@@ -28,6 +28,13 @@ public sealed partial class DamnationPrototype : IPrototype
     public int Cost = 0;
 
     /// <summary>
+    /// What category does the damnation belong to?
+    /// This is used in the UI to split the damnations into their respective tabs.
+    /// </summary>
+    [DataField("category")]
+    public string Category = "curses";
+
+    /// <summary>
     /// List of components to add to the player
     /// </summary>
     [DataField("components")]
