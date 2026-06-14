@@ -16,3 +16,17 @@
   - type: Icon
     sprite: _Starlight/Objects/Consumable/Drinks/thelastcall.rsi
     state: icon
+
+# this drink was missing, so now it is not missing
+- type: entity
+  parent: DrinkGlass
+  id: DrinkWhiteGilgameshGlass
+  suffix: white gilgamesh
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: WhiteGilgamesh
+          Quantity: 30

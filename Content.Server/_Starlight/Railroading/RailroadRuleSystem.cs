@@ -1,19 +1,14 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
-using Content.Server.Mind;
-using Content.Shared._Starlight.Abstract.Conditions;
 using Content.Shared._Starlight.Railroading;
-using Content.Shared.Alert;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Starlight;
-using Content.Shared.Store;
 using Robust.Server.Player;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
@@ -40,9 +35,7 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
     [Dependency] private readonly SharedMindSystem _mind = default!;
 
     public override void Initialize()
-    {
-        base.Initialize();
-    }
+        => base.Initialize();
 
     protected override void Added(EntityUid uid, RailroadRuleComponent comp, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

@@ -1,0 +1,28 @@
+- type: body
+  id: AdvancedPrimate
+  name: "advanced primate"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - righthand
+      - lefthand
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganAnimalHeart
+        kidneys: OrganAnimalKidneys
+        cavity: null
+    lefthand:
+      part: LeftHandAnimal
+    righthand:
+      part: RightHandAnimal
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal

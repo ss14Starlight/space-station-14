@@ -18,5 +18,8 @@ public sealed partial class ThermalVisionComponent : Component
 
     [DataField]
     public EntProtoId EffectPrototype = "EffectThermalVision";
+
+    [DataField, AutoNetworkedField]
+    public bool UseAlternativeShader = false;
 }
 

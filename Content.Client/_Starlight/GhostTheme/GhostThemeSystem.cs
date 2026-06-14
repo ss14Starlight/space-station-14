@@ -46,12 +46,15 @@ public sealed class GhostThemeSystem : EntitySystem
         {
             var trail = EnsureComp<TrailComponent>(ent.Owner);
             trail.TrailColor = ghostThemePrototype.Trail.Color;
+            trail.FadeColor = ghostThemePrototype.Trail.FadeColor;
             trail.MaxPoints = ghostThemePrototype.Trail.MaxPoints;
             trail.LineWidth = ghostThemePrototype.Trail.LineWidth;
             trail.MinDistance = ghostThemePrototype.Trail.MinDistance;
             trail.DecayDelay = ghostThemePrototype.Trail.DecayDelay;
             trail.DecayInterval = ghostThemePrototype.Trail.DecayInterval;
             trail.Shader = ghostThemePrototype.Trail.Shader;
+            trail.Mode = ghostThemePrototype.Trail.Mode;
+            trail.SkipSamples = ghostThemePrototype.Trail.SkipSamples;
         }
         else
         {

@@ -5,7 +5,7 @@
         "x": 32,
         "y": 32
     },
-    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee | SalvageLead by mikeysaurus | Cargo, Mail, Magi, and IAA by wonderfulnewworld",
+    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee | SalvageLead by mikeysaurus | Cargo, Mail, NTR, Magi, BSO, IAA, and NCT by wonderfulnewworld",
     "license": "CC-BY-SA-3.0",
     "states":
     [
@@ -72,6 +72,18 @@
         {
             "name": "janitor_open"
         },
+		{
+            "name": "ntr",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "ntr_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "nanotrasen-black_open",
+			"copyright": "wonderfulnewworld"
+        },
         {
             "name": "magi",
 			"copyright": "wonderfulnewworld"
@@ -81,7 +93,11 @@
 			"copyright": "wonderfulnewworld"
         },
         {
-            "name": "magi_open",
+            "name": "bso",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "bso_door",
 			"copyright": "wonderfulnewworld"
         },
         {
@@ -93,7 +109,11 @@
 			"copyright": "wonderfulnewworld"
         },
         {
-            "name": "iaa_open",
+            "name": "nct",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "nct_door",
 			"copyright": "wonderfulnewworld"
         },
 		{

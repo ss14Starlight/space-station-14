@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.Administration.Logs;
+using Content.Shared._Starlight.Chemistry.Events; // Starlight
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Events;
@@ -517,6 +518,8 @@ public sealed partial class InjectorSystem : EntitySystem
         else
             _solutionContainer.Refill(target, targetSolution, removedSolution);
 
+        RaiseLocalEvent(target, new SuccessfulInjectEvent(user, injector.Owner, target, removedSolution.Clone()), true); // Starlight: Achievements
+
         LocId msgSuccess = target == user ? "injector-component-inject-success-message-self" : "injector-component-inject-success-message";
 
         if (selfEv.OverrideMessage != null)
@@ -558,9 +561,19 @@ public sealed partial class InjectorSystem : EntitySystem
         }
 
         var applicableTargetSolution = targetSolution.Comp.Solution;
-        // If a whitelist exists, remove all non-whitelisted reagents from the target solution temporarily
+        var reagentWhitelist = injector.Comp.ReagentWhitelist;
+
+        // Check for whitelist, if the solution does not contain anything on the whitelist return false before going further.
+        if (reagentWhitelist is not null && !reagentWhitelist.Any(reagent => applicableTargetSolution.ContainsPrototype(reagent)))
+        {
+            var msg = target.Owner == user ? "injector-component-cannot-draw-message-self" : "injector-component-cannot-draw-message";
+            _popup.PopupClient(Loc.GetString(msg, ("target", Identity.Entity(target.Owner, EntityManager))), injector.Owner, user);
+            return false;
+        }
+
+        // remove all non-whitelisted reagents from the target solution temporarily.
         var temporarilyRemovedSolution = new Solution();
-        if (injector.Comp.ReagentWhitelist is { } reagentWhitelist)
+        if (reagentWhitelist is not null)
         {
             temporarilyRemovedSolution = applicableTargetSolution.SplitSolutionWithout(applicableTargetSolution.Volume, reagentWhitelist.ToArray());
         }

@@ -8,7 +8,7 @@ namespace Content.Shared._Starlight.Evolving.Conditions;
 public sealed partial class SpiderWebCondition : EvolvingCondition
 {
     /// <summary>
-    /// Target amount of eggs which we wait to mark condition as passed.
+    /// Target amount of webs which we wait to mark condition as passed.
     /// </summary>
     [DataField]
     public int TargetWebAmount = 24;

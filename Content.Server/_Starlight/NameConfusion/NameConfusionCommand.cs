@@ -227,7 +227,6 @@ public sealed class NameConfusionCommand : ToolshedCommand
         [PipedArgument] IEnumerable<EntityUid> uid, float prob) =>
         uid.Select(x => SetRestoreProbability(ctx, x, prob));
 
-
     private bool EnsureWorkable(IInvocationContext ctx, EntityUid uid, [NotNullWhen(true)] out NameConfusionComponent? comp)
     {
         comp = null;

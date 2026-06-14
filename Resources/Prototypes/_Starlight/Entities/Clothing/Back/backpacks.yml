@@ -62,7 +62,7 @@
       sprite: _Starlight/Clothing/Back/Backpacks/blueshield.rsi
 
 - type: entity
-  parent: [ClothingBackpackERTLeader, BaseCentcommContraband]
+  parent: [ClothingBackpackERTLeader, BaseNanoTrasenContraband]
   id: ClothingBackpackNTNC
   name: NTNC backpack
   description: A spacious backpack with lots of pockets, worn by NTNC Officers

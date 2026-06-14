@@ -131,7 +131,7 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             return;
         }
 
-        var (entity, job, objectives, minds, briefing, entityName) = data;
+        var (entity, job, objectives, briefing, entityName) = data;
 
         //starlight start
         _window.CharacterInfo.CharacterPreview.SetCharacter(entity, job);
@@ -141,7 +141,6 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         UpdateRoleType();
         _window.CharacterInfo.Objectives.RemoveAllChildren();
         _window.CharacterInfo.ObjectivesLabel.Visible = objectives.Any();
-        _window.CharacterInfo.Minds.RemoveAllChildren();
         //starlight end
 
         foreach (var (groupId, conditions) in objectives)
@@ -183,26 +182,6 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             _window.CharacterInfo.Objectives.AddChild(objectiveControl); //starlight
         }
 
-
-        if (minds != null && minds.Count > 0)
-        {
-            var mindsControl = new CharacterMindsControl
-            {
-                Orientation = BoxContainer.LayoutOrientation.Vertical
-            };
-            var mindDescriptionMessage = new FormattedMessage();
-            mindDescriptionMessage.AddText("Available collective minds:");
-            foreach (var mindPrototype in minds)
-            {
-                mindDescriptionMessage.AddText("\n");
-                mindDescriptionMessage.PushColor(mindPrototype.Key.Color);
-                mindDescriptionMessage.AddText($"{mindPrototype.Key.LocalizedName}: +{mindPrototype.Key.KeyCode}");
-                mindDescriptionMessage.AddText($" (Number {mindPrototype.Value.MindId})");
-                mindDescriptionMessage.Pop();
-            }
-            mindsControl.Description.SetMessage(mindDescriptionMessage);
-            _window.CharacterInfo.Objectives.AddChild(mindsControl); //starlight
-        }
         // Starlight Start: Custom objective summary
         if (objectives.Count > 0)
         {

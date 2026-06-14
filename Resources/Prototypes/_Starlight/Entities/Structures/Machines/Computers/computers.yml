@@ -49,7 +49,7 @@
   parent: BaseComputer
   id: AbductorConsole
   name: abductor console
-  description: A computer that is used for spying on the station.
+  description: retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
   components:
   - type: AbductorConsole
   - type: Sprite
@@ -62,6 +62,8 @@
       enum.EdgeConnectionVisuals.ConnectionMask:
         console:
           None: { state: console, sprite: _Starlight/Structures/Machines/abductor_console.rsi }
+  - type: EdgeConnection
+    connectionKey: other
   - type: ActivatableUI
     key: enum.AbductorConsoleUIKey.Key
   - type: UserInterface
@@ -109,13 +111,20 @@
   parent: BaseComputer
   id: AbductorHumanObservationConsole
   name: human observation console
-  description: Use this to set teleporter destination or retrieve people marked by scientist tools. Also used for buying replacement gear and linking the agent's vest.
+  description: A computer that is used for spying and teleporting on the station.
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Machines/abductor_camera_console.rsi
     layers:
     - map: ["console"]
       state: console
+  - type: GenericVisualizer  # Override to prevent edge connection sprites
+    visuals:
+      enum.EdgeConnectionVisuals.ConnectionMask:
+        console:
+          None: { state: console }
+  - type: EdgeConnection
+    connectionKey: other
   - type: RemoteEyeConsole
     remoteEntityProto: AbductorHumanObservationConsoleEye
     color: "#A04B81"
@@ -313,6 +322,7 @@
     - Law
     - Misc
     - CentralCommand
+    - NanoTrasen
     - Syndicate
     - Silicon
     - Xenoborg
@@ -521,7 +531,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: EngineeringCommsComputerCircuitboard
     - type: PointLight
@@ -559,7 +569,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: MedicalCommsComputerCircuitboard
     - type: PointLight
@@ -597,7 +607,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: ScienceCommsComputerCircuitboard
     - type: PointLight
@@ -638,7 +648,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: SecurityCommsComputerCircuitboard
     - type: PointLight
@@ -676,7 +686,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: ServiceCommsComputerCircuitboard
     - type: PointLight
@@ -714,7 +724,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: CargoCommsComputerCircuitboard
     - type: PointLight
@@ -752,7 +762,7 @@
       canBroadcast: false
       canShuttle: false
     - type: SecureCommandTerminalConsole
-      authTerminal: true
+      enabled: false
     - type: Computer
       board: LawCommsComputerCircuitboard
     - type: PointLight

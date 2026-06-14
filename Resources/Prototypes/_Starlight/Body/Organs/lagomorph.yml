@@ -32,7 +32,7 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Metabolizer
-    updateInterval: 0.7
+    updateInterval: 0.75
 
 - type: entity
   id: OrganLagomorphHeart
@@ -47,4 +47,4 @@
     size: Small
     heldPrefix: heart
   - type: Metabolizer
-    updateInterval: 0.7
+    updateInterval: 0.75

@@ -45,7 +45,7 @@
       - Pullable # no dragging things in
   - type: Appearance
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic # Starlight - they really should take structural damage
     damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:

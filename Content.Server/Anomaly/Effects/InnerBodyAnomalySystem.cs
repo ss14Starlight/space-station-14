@@ -215,6 +215,10 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
         if (!ent.Comp.Injected)
             return;
 
+        // Starlight Start
+        ent.Comp.Injected = false;
+        Dirty(ent);
+        // Starlight End
         if (_proto.Resolve(ent.Comp.InjectionProto, out var injectedAnom))
             ProcessComponents(ent, injectedAnom.Components, false); // Starlight
 
@@ -240,8 +244,8 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
             _adminLog.Add(LogType.Anomaly, LogImpact.Medium,$"{ToPrettyString(ent)} is no longer a host for the anomaly.");
         }
 
-        ent.Comp.Injected = false;
-        RemCompDeferred<AnomalyComponent>(ent);
+        // ent.Comp.Injected = false; // Starlight Edit: Moved
+        // RemCompDeferred<AnomalyComponent>(ent); // Starlight Edit: Removed
     }
 
     #region Starlight
@@ -252,22 +256,28 @@ public sealed partial class InnerBodyAnomalySystem : SharedInnerBodyAnomalySyste
     {
         foreach (var comp in components)
         {
+            var componentType = comp.Value.Component.GetType();
             if (add)
-                EntityManager.AddComponent(target, comp.Value);
-
-            if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
-                TryComp<ActionGrantComponent>(target, out var oldComp))
             {
-                if (add)
+                EntityManager.AddComponent(target, comp.Value);
+                if (comp.Value.Component is ActionGrantComponent actionGrantComp &&
+                    TryComp<ActionGrantComponent>(target, out var oldComp))
+                {
                     _actionGrant.AddActions((target, oldComp), actionGrantComp.Actions);
-                else
-                    _actionGrant.RemoveActions((target, oldComp), actionGrantComp.Actions);
+                }
 
                 continue;
             }
 
-            if (!add && HasComp(target, comp.Value.Component.GetType()))
-                EntityManager.RemoveComponent(target, comp.Value.Component);
+            if (comp.Value.Component is ActionGrantComponent removeActionGrantComp &&
+                TryComp<ActionGrantComponent>(target, out var removeOldComp))
+            {
+                _actionGrant.RemoveActions((target, removeOldComp), removeActionGrantComp.Actions);
+                continue;
+            }
+
+            if (HasComp(target, componentType))
+                EntityManager.RemoveComponent(target, componentType);
         }
     }
     #endregion

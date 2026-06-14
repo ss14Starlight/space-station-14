@@ -110,3 +110,19 @@
   id: SecurityGlassesPrescription
   equipment:
     eyes: ClothingEyeGlassesSecurityPrescription
+
+# Gloves
+- type: loadout
+  id: SecGloves
+  equipment:
+    gloves: ClothingHandsGlovesSecurityRed
+
+- type: loadout
+  id: SecGlovesFingerless
+  equipment:
+    gloves: ClothingHandsGlovesSecurityFingerlessRed
+
+- type: loadout
+  id: SecMittens
+  equipment:
+    gloves: ClothingHandsMittensSecurityRed

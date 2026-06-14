@@ -38,20 +38,16 @@ public sealed class ScalingSystem : SharedScalingSystem
     }
 
     private void UpdateUniversalHealthWeight(double universalHealthWeight)
-    {
-        _universalHealthWeight = universalHealthWeight;
-    }
+        => _universalHealthWeight = universalHealthWeight;
 
     private void OnMobStartup(EntityUid mob, AntagMonsterScalingComponent scalingComp, ref MapInitEvent args) =>
         TryScaling(mob, scalingComp);
-
 
     private void OnGhostRoleSpawnerUsed(
         EntityUid mob,
         AntagMonsterScalingComponent scalingComp,
         ref GhostRoleSpawnerUsedEvent args) =>
         TryScaling(args.Spawned, scalingComp);
-
 
     private void TryScaling(EntityUid mob, AntagMonsterScalingComponent scalingComp)
     {

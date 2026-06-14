@@ -26,6 +26,9 @@ using Robust.Shared.Timing;
 #region Starlight
 using Content.Server._Starlight.Lock;
 using Content.Server.GameTicking;
+using Content.Server._NullLink.Helpers;
+using Content.Server._Starlight.Achievement;
+using Robust.Server.Player;
 #endregion Starlight
 
 namespace Content.Server.Nuke;
@@ -54,6 +57,8 @@ public sealed class NukeSystem : EntitySystem
     #region Starlight
     [Dependency] private readonly DigitalLockSystem _digitalLock = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly AchievementSystem _achievements = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     #endregion
 
     /// <summary>
@@ -306,8 +311,22 @@ public sealed class NukeSystem : EntitySystem
         if (args.Handled || args.Cancelled)
             return;
 
+        var wasArmed = component.Status == NukeStatus.ARMED; // Starlight: Achievements
         DisarmBomb(uid, component);
+        // Starlight start: Achievements
+        if (!wasArmed || component.Status != NukeStatus.COOLDOWN)
+        {
+            args.Handled = true;
+            return;
+        }
 
+        if (_playerManager.TryGetSessionByEntity(args.User, out var session))
+        {
+            _achievements.TryUnlockAchievementAsync(session, "finish_the_fight")
+                .AsTask()
+                .FireAndForget();
+        }
+        // Starlight end: Achievements
         var ev = new NukeDisarmSuccessEvent();
         RaiseLocalEvent(ev);
 

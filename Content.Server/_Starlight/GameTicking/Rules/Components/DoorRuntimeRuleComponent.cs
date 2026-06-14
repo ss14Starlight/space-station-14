@@ -7,10 +7,4 @@ namespace Content.Server._Starlight.GameTicking.Rules.Components;
 public sealed partial class DoorRuntimeRuleComponent : Component
 {
     public readonly HashSet<EntityUid> AffectedEntities = new();
-
-    [DataField]
-    public EntityWhitelist? Whitelist;
-
-    [DataField]
-    public EntityWhitelist? Blacklist;
 }

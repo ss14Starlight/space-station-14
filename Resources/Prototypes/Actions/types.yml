@@ -59,6 +59,7 @@
   components:
   - type: Action
     useDelay: 10
+    priority: -99 # Starlight - Make Scream second in Action bar priority.
     icon: Interface/Actions/scream.png
     checkCanInteract: false
   - type: InstantAction
@@ -456,6 +457,17 @@
       state: icon
   - type: InstantAction
     event: !type:GravityJumpEvent {}
+
+- type: entity
+  parent: ActionGravityJump
+  id: ActionJumpBoost
+  name: Jump boost
+  components:
+  - type: Action
+    useDelay: 16
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: xenoborg-jump-module
 
 - type: entity
   parent: BaseAction

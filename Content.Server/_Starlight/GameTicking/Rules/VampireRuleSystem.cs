@@ -9,7 +9,6 @@ using Content.Shared._Starlight.Antags.Vampires.Components;
 using System.Text;
 using Robust.Shared.Audio;
 using Content.Server.GameTicking.Rules;
-using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
@@ -62,22 +61,6 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         EnsureComp<VampireComponent>(target);
 
         rule.VampireMinds.Add(mindId);
-
-        foreach (var objective in rule.BaseObjectives)
-            _mind.TryAddObjective(mindId, mind, objective);
-
-        var rng = new Random();
-        if (rule.EscapeObjectives.Count > 0)
-        {
-            var obj = rng.Pick(rule.EscapeObjectives);
-            _mind.TryAddObjective(mindId, mind, obj);
-        }
-
-        if (rule.StealObjectives.Count > 0)
-        {
-            var obj = rng.Pick(rule.StealObjectives);
-            _mind.TryAddObjective(mindId, mind, obj);
-        }
 
         return true;
     }

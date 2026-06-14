@@ -106,6 +106,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
          * Add custom handling here for forks / version numbers if you care.
          */
 
+        export.Profile.ForcedPrototype = string.Empty;
+
         var profile = export.Profile;
         var collection = IoCManager.Instance;
         profile.EnsureValid(session, collection!);
@@ -595,7 +597,8 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
         markingObject.Forced = forced;
         if (color != null)
         {
-            for (var i = 0; i < prototype.Sprites.Count; i++)
+            // Starlight edit - color only the marking's exposed color slots.
+            for (var i = 0; i < prototype.ColorSlotCount; i++)
             {
                 markingObject.SetColor(i, color.Value);
             }

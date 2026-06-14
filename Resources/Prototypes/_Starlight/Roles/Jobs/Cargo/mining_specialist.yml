@@ -12,6 +12,7 @@
   icon: "JobIconMiningSpecialist"
   startingGear: MiningSpecialistGear
   supervisors: job-supervisors-qm
+  displayWeight: 3
   access:
   - Cargo
   - Mining

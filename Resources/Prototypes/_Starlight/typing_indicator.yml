@@ -10,3 +10,9 @@
   spritePath: /Textures/_Starlight/Effects/speech.rsi
   typingState: lagomorph0
   idleState: lagomorph3
+
+- type: typingIndicator
+  id: rodentia
+  spritePath: /Textures/_Starlight/Effects/speech.rsi
+  typingState: rodentia0
+  idleState: rodentia0

@@ -219,7 +219,7 @@
   id: JobIconNanotrasenCareerTrainer
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
-    state: NanotrasenCareerTrainer
+    state: NanoTrasenCareerTrainer
   jobName: job-name-nct
 
 # Blackstar

@@ -76,3 +76,72 @@
     understands:
     - GalacticCommon
     - Machine
+
+- type: entity
+  id: BaseXenoSiliconLanguages
+  abstract: true
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      understands:
+      - GalacticCommon
+      - SolCommon
+      - Machine
+      - Canilunzt
+      - Sign
+      - Bubblish
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - VoxPidgin
+      - Scratch
+      - Thaveyan
+      - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Lagomorphian
+      - Xeno
+      - Xenomind
+
+- type: entity
+  id: BaseXenoBorgiLanguages
+  abstract: true
+  components:
+    - type: LanguageSpeaker
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      - Dog
+      understands:
+      - GalacticCommon
+      - SolCommon
+      - Machine
+      - Canilunzt
+      - Sign
+      - Bubblish
+      - Chittin
+      - Draconic
+      - Marish
+      - Moffic
+      - Nekomimetic
+      - Sylvan
+      - Terrum
+      - VoxPidgin
+      - Scratch
+      - Thaveyan
+      - Dog
+      - Darktongue
+      - Classical
+      - Grumbakul
+      - Aielic
+      - Lagomorphian
+      - Xeno

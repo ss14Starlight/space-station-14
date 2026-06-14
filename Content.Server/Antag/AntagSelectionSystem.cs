@@ -44,6 +44,7 @@ using Prometheus;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics;
+using Content.Shared.Hands.Components;
 // Starlight End
 
 namespace Content.Server.Antag;
@@ -575,16 +576,16 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         HumanoidCharacterProfile? profile = null;
 
-        if (TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
-        {
-            profile = _appearance.GetBaseProfile((player, humanoid));
-        }
-
-        if (profile == null && _pref.TryGetCachedPreferences(session.UserId, out var pref))
+        if (_pref.TryGetCachedPreferences(session.UserId, out var pref))
         {
             profile = pref.Characters.Values
                 .OfType<HumanoidCharacterProfile>()
                 .FirstOrDefault(p => p.Enabled);
+        }
+
+        if (profile == null && TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
+        {
+            profile = _appearance.GetBaseProfile((player, humanoid));
         }
 
         if (profile == null)
@@ -685,6 +686,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity))
             return false;
+
+        // Starlight-begin
+        // If non-humanoid, check for hands.  We don't want Hamlet as a traitor if he can't really manipulate tools.
+        if (def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<HandsComponent>(entity))
+            return false;
+        // Starlight-end
 
         // Ensure that the profile has the antag preference set, if this is a late join this hasn't been checked!
         var baseProfile = _appearance.GetBaseProfile(entity.Value);
