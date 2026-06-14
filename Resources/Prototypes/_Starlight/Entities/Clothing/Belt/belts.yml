@@ -390,7 +390,7 @@
 # Greenshield Officer
 - type: entity
   parent: [BaseCentcommContraband, ClothingBeltBlueShieldMedicalBelt]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: ClothingBeltGreenshield
   name: greenshield medical belt
   description: A tactical belt that can hold many items to save the lives of CentComm.

@@ -1078,7 +1078,7 @@
 - type: entity
   name: MT-7G Magnum
   parent: [ BaseWeaponBatterySmall, BaseCentcommContraband, BaseGrandTheftContraband ]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: WeaponEnergyMagnumGunGreenshield
   description: This is an expensive, modern recreation of the Mateba revolver with a minor overclock. CED assures a 96% reliability with regular maintenance.
   components:

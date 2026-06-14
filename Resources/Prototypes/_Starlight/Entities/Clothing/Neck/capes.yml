@@ -391,7 +391,7 @@
 # Greenshield Officer
 - type: entity
   parent: [ ClothingNeckBase ]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: ClothingNeckGreenshield
   name: greenshield mantle
   description: Extraordinary decorative drape over the shoulders.

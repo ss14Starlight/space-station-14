@@ -581,7 +581,7 @@
 
 - type: entity
   parent: BasePDA
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: CentCommGreenShieldPDA
   name: greenshield PDA
   description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone who thinks they are way too important.

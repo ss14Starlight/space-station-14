@@ -256,7 +256,8 @@
 - type: entity
   id: ClothingBeltGreenshieldFilled
   parent: ClothingBeltGreenshield
-  suffix: Filled, DO NOT MAP
+  suffix: Filled
+  categories: [ DoNotMap ]
   components:
     - type: EntityTableContainerFill
       containers:

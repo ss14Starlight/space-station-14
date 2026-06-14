@@ -23,7 +23,7 @@
 # Greenshield Officer
 - type: entity
   parent: [BaseCentcommContraband, ClothingShoesBootsMagSyndie]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: ClothingShoesBootsMagGreenshield
   name: greenshield magboots
   description: Upgraded magnetic boots that you swiped from the ERT lockers.

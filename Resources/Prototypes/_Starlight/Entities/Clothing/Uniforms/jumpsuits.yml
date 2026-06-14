@@ -841,7 +841,7 @@
 # Greenshield Officer
 - type: entity
   parent: [ BaseCentcommContraband, ClothingUniformBase ]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: ClothingUniformJumpsuitGreenshield
   name: greenshield uniform
   description: A special suit made for the best of the elites under CentComm.

@@ -407,7 +407,7 @@
 # Greenshield Officer
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterArmorRaid, ClothingOuterStorageBase ]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: ClothingOuterVestGreenshield
   name: greenshield vest
   description: A protective vest worn by Greenshields. It even has pockets and a flashlight!

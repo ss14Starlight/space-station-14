@@ -303,7 +303,7 @@
 
 #Greenshield Officer
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHelmetRaid ] # Starlight
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetRaid ]
   id: ClothingHeadHelmetGreenshield
   name: Greenshield helmet
   description: A special helmet worn by Greenshield Officers.

@@ -1270,7 +1270,7 @@
 # Greenshield Officer
 - type: entity
   parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander, AllowSuitStorageClothing, ClothingOuterStorageBase ]
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   id: ClothingOuterHardsuitGreenshield
   name: greenshield hardsuit
   description: A protective hardsuit worn by Greenshields. It even has pockets!

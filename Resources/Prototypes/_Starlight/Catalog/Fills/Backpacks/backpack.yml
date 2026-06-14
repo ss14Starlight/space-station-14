@@ -40,7 +40,8 @@
 - type: entity
   id: ClothingBackpackGreenshieldFilled
   parent: ClothingBackpackGreenshield
-  suffix: Filled, DO NOT MAP
+  suffix: Filled
+  categories: [ DoNotMap ]
   components:
     - type: EntityTableContainerFill
       containers:
