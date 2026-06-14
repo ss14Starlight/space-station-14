@@ -5,6 +5,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
+using Robust.Shared.Timing; // Starlight
 
 namespace Content.Shared.RatKing.Systems;
 
@@ -14,6 +15,7 @@ public sealed class RummagerSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly IGameTiming _timing = default!; // Starlight
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -26,6 +28,11 @@ public sealed class RummagerSystem : EntitySystem
 
     private void OnGetVerb(Entity<RummageableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
+        // Starlight start
+        if (ent.Comp.Looted && _timing.CurTime >= ent.Comp.NextRummageTime)
+            ent.Comp.Looted = false;
+        // Starlight end
+
         if (!HasComp<RummagerComponent>(args.User) || ent.Comp.Looted)
             return;
 
@@ -59,6 +66,7 @@ public sealed class RummagerSystem : EntitySystem
             return;
 
         ent.Comp.Looted = true;
+        ent.Comp.NextRummageTime = _timing.CurTime + ent.Comp.LootResetDelay; // Starlight
         Dirty(ent, ent.Comp);
         _audio.PlayPredicted(ent.Comp.Sound, ent, args.User);
 

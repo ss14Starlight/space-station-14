@@ -1,6 +1,7 @@
 ﻿using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; // Starlight
 
 namespace Content.Shared.RatKing.Components;
 
@@ -9,7 +10,7 @@ namespace Content.Shared.RatKing.Components;
 /// rummaged through by the rat king to get loot.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState, AutoGenerateComponentPause] // Starlight
 public sealed partial class RummageableComponent : Component
 {
     /// <summary>
@@ -18,6 +19,21 @@ public sealed partial class RummageableComponent : Component
     [DataField("looted"), ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
     public bool Looted;
+
+    // Starlight start
+    /// <summary>
+    /// How long this container stays looted before it can be rummaged again.
+    /// </summary>
+    [DataField("lootResetDelay"), ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan LootResetDelay = TimeSpan.FromMinutes(5);
+
+    /// <summary>
+    /// The time at which <see cref="LootResetDelay"/> ends and rummaging can occur again.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [AutoPausedField]
+    public TimeSpan? NextRummageTime;
+    // Starlight end
 
     /// <summary>
     /// How long it takes to rummage through a rummageable container.
