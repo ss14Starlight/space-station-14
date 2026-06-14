@@ -4,6 +4,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Systems;
 using Content.Shared.Eye.Blinding.Systems;
+using Content.Shared.Humanoid;
 using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
 using Robust.Shared.Map.Components;
 
@@ -37,8 +38,9 @@ public sealed class ChildBlockVisionSystem : EntitySystem
         if (!ent.Comp.Enabled)
             return;
 
-        // blind if body is initialized and has no eyes
-        if (TryComp<BodyComponent>(ent.Owner, out var body))
+        // blind humanoids if body is initialized and has no eyes
+        if (HasComp<HumanoidAppearanceComponent>(ent.Owner) &&
+            TryComp<BodyComponent>(ent.Owner, out var body))
         {
             var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
