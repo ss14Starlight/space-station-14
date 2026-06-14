@@ -69,6 +69,8 @@
       collection: WeakHit
   - type: KnockbackByUserTag
     doestContain:
+      Rodentia:
+        knockback: 0
       Resomi:
         knockback: 0
       Avali:
