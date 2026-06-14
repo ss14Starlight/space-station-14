@@ -1,158 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: Forgot to make the engineering holoprojector obtainable.
-    type: Fix
-  id: 405559
-  time: '2026-06-02T08:35:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4631
-- author: CrazyPhantom
-  changes:
-  - message: Optimized Decals.
-    type: Fix
-  id: 405560
-  time: '2026-06-02T09:23:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4623
-- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
-  changes:
-  - message: Adds Protogens, Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Diona, Proto-Dwarves, Proto-Aielithii, Proto-Felionoids, Proto-Humans, Proto-Lagomorphs, Proto-Moths, Proto-Reptilians, Proto-Resomi, Proto-Laspi, Proto-Thaven, Proto-Voxes, and Proto-Vulps.
-    type: Add
-  id: 405561
-  time: '2026-06-02T10:25:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4600
-- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
-  changes:
-  - message: Added 6 protogen frames.
-    type: Add
-  id: 405562
-  time: '2026-06-02T10:25:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4600
-- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
-  changes:
-  - message: Added the battery acid reagent. Protogen can get it by eating computer parts (ram chips), or chemistry can make it with 1u SulfuricAcid and 3u Water. It deals some damage to non-Protogens.
-    type: Add
-  id: 405563
-  time: '2026-06-02T10:25:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4600
-- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
-  changes:
-  - message: Protogen can now eat computer boards.
-    type: Add
-  id: 405564
-  time: '2026-06-02T10:25:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4600
-- author: wonderfulnewworld, Shades, Killer Tamashi, Princess Gurchi, Fasuh, Huaqas
-  changes:
-  - message: Fixed some of the species appearances in the guidebook showing up as human, and made the species follow guidebook alphabetical order.
-    type: Fix
-  id: 405565
-  time: '2026-06-02T10:25:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4600
-- author: redmushie
-  changes:
-  - message: Dot matrix fonts for paperwork, see PR for details.
-    type: Add
-  id: 405566
-  time: '2026-06-02T11:42:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4626
-- author: redmushie
-  changes:
-  - message: Fax machines now print metadata like which machine sent the fax and when it was received. Not to worry, antagonists can still tamper with it. See PR for details.
-    type: Add
-  id: 405567
-  time: '2026-06-02T11:42:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4626
-- author: Johnny
-  changes:
-  - message: Some unnecessary Aghost things.
-    type: Remove
-  id: 405568
-  time: '2026-06-02T13:23:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4621
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Reptilians now have their intended 15% heat resist instead of 50%.
-    type: Fix
-  id: 405569
-  time: '2026-06-02T20:15:05.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4637
-- author: Rhetorica
-  changes:
-  - message: TriggerOnPointedAt. Automation enters the gestural interface era.
-    type: Add
-  id: 405570
-  time: '2026-06-02T21:05:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4636
-- author: Rhetorica
-  changes:
-  - message: Dwarfs now shout "Mushroom!" when pointing at fungus (excluding those growing in hydroponics trays and soil).
-    type: Add
-  id: 405571
-  time: '2026-06-02T21:05:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4636
-- author: Rhetorica
-  changes:
-  - message: Dwarfs now shout "We're rich!" when pointing at a stack of gold ore.
-    type: Add
-  id: 405572
-  time: '2026-06-02T21:05:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4636
-- author: wonderfulnewworld
-  changes:
-  - message: Added a new Botanist pet/ghost role, Kiki. She's like Pun Pun, but for botany. Comes with her own PDA, botany belt, clothes, and headset.
-    type: Add
-  id: 405573
-  time: '2026-06-03T09:30:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4638
-- author: Johnny
-  changes:
-  - message: Observers are now able to use mass scanners.
-    type: Add
-  id: 405574
-  time: '2026-06-03T12:08:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4633
-- author: wonderfulnewworld
-  changes:
-  - message: Protogen armor markings now mostly render beneath clothes.
-    type: Tweak
-  id: 405575
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: wonderfulnewworld
-  changes:
-  - message: All protogens whose base species can have hair can now have hair instead of just laspi and a few others.
-    type: Fix
-  id: 405576
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Aielithii and Proto-Lagomorph now have access to protogen specific markings.
-    type: Fix
-  id: 405577
-  time: '2026-06-04T05:55:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4642
-- author: DevCS-CP
-  changes:
-  - message: Implant Extractor can remove command tracking implant.
-    type: Add
-  id: 405578
-  time: '2026-06-04T05:55:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4653
-- author: wonderfulnewworld
-  changes:
-  - message: Protokin are now strippable.
-    type: Fix
-  id: 405579
-  time: '2026-06-04T05:55:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4646
-- author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
-  changes:
-  - message: Added robotic versions of nearly every emote in game for Protogens to use.
-    type: Add
-  id: 405580
-  time: '2026-06-04T06:25:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4650
 - author: wonderfulnewworld, princess_gurchi, Minemoder, ScarKy0
   changes:
   - message: Diona, Vox and Vulpkanins now have unique sneeze sounds.
@@ -2799,4 +2645,158 @@ Entries:
   id: 405958
   time: '2026-06-12T12:52:42.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4509
+- author: mikeysaurus, Zeyria, ork, redmushie, Huaqas, DocMoth, portfiend, paige404
+  changes:
+  - message: Added the Rodentia species.
+    type: Add
+  id: 405959
+  time: '2026-06-13T13:51:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/1929
+- author: CrazyPhantom
+  changes:
+  - message: Fixed all VGroid rocks failing to generate if an exterior fails to generate.
+    type: Fix
+  id: 405960
+  time: '2026-06-13T14:20:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4762
+- author: Anathelarctek
+  changes:
+  - message: wurbles of shadekin volume.
+    type: Tweak
+  id: 405961
+  time: '2026-06-13T14:47:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4725
+- author: Johnny
+  changes:
+  - message: Two new chemicals, putrid blood, and mortucussus.
+    type: Add
+  id: 405962
+  time: '2026-06-13T14:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4747
+- author: Johnny
+  changes:
+  - message: The existence of "zombie blood" (renamed to putrid blood).
+    type: Remove
+  id: 405963
+  time: '2026-06-13T14:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4747
+- author: Johnny
+  changes:
+  - message: Ambuzols recipe requires mortucussus.
+    type: Tweak
+  id: 405964
+  time: '2026-06-13T14:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4747
+- author: Johnny
+  changes:
+  - message: Ambuzols both act as a form of opporozine, reducing rot in people that are dead (without the need for temperature).
+    type: Tweak
+  id: 405965
+  time: '2026-06-13T14:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4747
+- author: Johnny
+  changes:
+  - message: Doxarubixadone works on corpses now.
+    type: Tweak
+  id: 405966
+  time: '2026-06-13T14:47:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4747
+- author: gabbl0
+  changes:
+  - message: Added a recipe for lollipops.
+    type: Add
+  id: 405967
+  time: '2026-06-13T15:17:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4652
+- author: Johnny
+  changes:
+  - message: More instruments are now able to be played even when not in an active hand.
+    type: Tweak
+  id: 405968
+  time: '2026-06-13T15:17:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4644
+- author: TeddiousbearPA
+  changes:
+  - message: Added experimental plushie in vending machine inventories.
+    type: Add
+  id: 405969
+  time: '2026-06-13T15:37:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4628
+- author: Johnny
+  changes:
+  - message: ERT Medical loadout slightly altered based off feedback.
+    type: Tweak
+  id: 405970
+  time: '2026-06-13T17:54:15.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4696
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Ported Cosmic Cult 2.5! Fixing many bugs and adding more content to the Cult!
+    type: Add
+  id: 405971
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Science Can now play a part in removing of the cultists.
+    type: Add
+  id: 405972
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Cosmic Cult is now rollable as a gamemode.
+    type: Add
+  id: 405973
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: AftrLite, CrazyPhantom
+  changes:
+  - message: Fixed Many many Cosmic bugs.
+    type: Fix
+  id: 405974
+  time: '2026-06-13T17:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4556
+- author: JustinWinningham
+  changes:
+  - message: Added a Second Hand tab to the traitor uplink with 27 worn and damaged items available at discount or free, randomized per round.
+    type: Add
+  id: 405975
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: JustinWinningham
+  changes:
+  - message: 'Added 8 defect types: gun jamming, spread degradation, backfire, bent toggle switch, loose power connector (energy weapons), reduced damage, user damage on hit, and random fuse timer.'
+    type: Add
+  id: 405976
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: JustinWinningham
+  changes:
+  - message: Worn magazines use randomized ammo filling — each round slot is independently rolled from a caliber-appropriate type table.
+    type: Add
+  id: 405977
+  time: '2026-06-13T20:46:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4693
+- author: Toxyams
+  changes:
+  - message: Hardsuit helmets work from lost property bags.
+    type: Fix
+  id: 405978
+  time: '2026-06-13T20:46:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4765
+- author: Conflee, Trosling
+  changes:
+  - message: Upkeep of the Metashield. Notable changes are; Simplified wording of sections. Ambuzol is no longer Metashielded, but it's use to cure Romerol is still. Right-click inspecting items is no longer Metashielded- use the locking systems Wizden added over an entire year ago if you don't want Security identifying your chameleon backpack or hypopen, it's been in for an entire year.
+    type: Tweak
+  id: 405979
+  time: '2026-06-13T21:40:40.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4768
+- author: Caws
+  changes:
+  - message: A general recall has been issued for all mining windows and retro shuttle windows, as they were found to be shattering at gas pressures far below what was expected of reinforced glass. Newly issued windows should no longer shatter at very low pressure differences - we apologize for the inconvenience.
+    type: Fix
+  id: 405980
+  time: '2026-06-14T05:02:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4766
 Order: -1

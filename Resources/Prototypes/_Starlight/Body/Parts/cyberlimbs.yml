@@ -22,6 +22,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArm
+        Rodentia: RodentiaCyberLArm
         Resomi: ResomiCyberLArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -51,6 +52,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArm
+        Rodentia: RodentiaCyberRArm
         Resomi: ResomiCyberRArm
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -80,6 +82,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHand
+        Rodentia: RodentiaCyberLHand
         Resomi: ResomiCyberLHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -106,6 +109,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHand
+        Rodentia: RodentiaCyberRHand
         Resomi: ResomiCyberRHand
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -132,6 +136,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLLeg
+        Rodentia: RodentiaCyberLLeg
         Resomi: ResomiCyberLLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -166,6 +171,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRLeg
+        Rodentia: RodentiaCyberRLeg
         Resomi: ResomiCyberRLeg
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -200,6 +206,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLFoot
+        Rodentia: RodentiaCyberLFoot
         Resomi: ResomiCyberLFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -228,6 +235,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRFoot
+        Rodentia: RodentiaCyberRFoot
         Resomi: ResomiCyberRFoot
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -258,6 +266,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLLegSpeed
+        Rodentia: RodentiaCyberLLegSpeed
         Resomi: ResomiCyberLLegSpeed
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
@@ -284,6 +293,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRLegSpeed
+        Rodentia: RodentiaCyberRLegSpeed
         Resomi: ResomiCyberRLegSpeed
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/speedlegs.rsi
@@ -311,6 +321,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmSilver
+        Rodentia: RodentiaCyberLArmSilver
         Resomi: ResomiCyberLArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -331,10 +342,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandSilver
+        Rodentia: RodentiaCyberLHandSilver
         Resomi: ResomiCyberLHandSilver
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSilverReaper
+        Rodentia: RodentiaCyberLHandSilverReaper
         Resomi: ResomiCyberLHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -377,6 +390,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmSilver
+        Rodentia: RodentiaCyberRArmSilver
         Resomi: ResomiCyberRArmSilver
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -405,10 +419,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandSilver
+        Rodentia: RodentiaCyberRHandSilver
         Resomi: ResomiCyberRHandSilver
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSilverReaper
+        Rodentia: RodentiaCyberRHandSilverReaper
         Resomi: ResomiCyberRHandSilverReaper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -444,6 +460,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmSteel
+        Rodentia: RodentiaCyberLArmSteel
         Resomi: ResomiCyberLArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -472,10 +489,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandSteel
+        Rodentia: RodentiaCyberLHandSteel
         Resomi: ResomiCyberLHandSteel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSteelMechwright
+        Rodentia: RodentiaCyberLHandSteelMechwright
         Resomi: ResomiCyberLHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -507,6 +526,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmSteel
+        Rodentia: RodentiaCyberRArmSteel
         Resomi: ResomiCyberRArmSteel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -535,10 +555,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandSteel
+        Rodentia: RodentiaCyberRHandSteel
         Resomi: ResomiCyberRHandSteel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSteelMechwright
+        Rodentia: RodentiaCyberRHandSteelMechwright
         Resomi: ResomiCyberRHandSteelMechwright
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -571,6 +593,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmEngineer
+        Rodentia: RodentiaCyberLArmEngineer
         Resomi: ResomiCyberLArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -591,10 +614,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandEngineer
+        Rodentia: RodentiaCyberLHandEngineer
         Resomi: ResomiCyberLHandEngineer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandEngineerTools
+        Rodentia: RodentiaCyberLHandEngineerTools
         Resomi: ResomiCyberLHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -625,6 +650,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmEngineer
+        Rodentia: RodentiaCyberRArmEngineer
         Resomi: ResomiCyberRArmEngineer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -645,10 +671,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandEngineer
+        Rodentia: RodentiaCyberRHandEngineer
         Resomi: ResomiCyberRHandEngineer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandEngineerTools
+        Rodentia: RodentiaCyberRHandEngineerTools
         Resomi: ResomiCyberRHandEngineerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -679,6 +707,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmBulwark
+        Rodentia: RodentiaCyberLArmBulwark
         Resomi: ResomiCyberLArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -706,10 +735,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandBulwark
+        Rodentia: RodentiaCyberLHandBulwark
         Resomi: ResomiCyberLHandBulwark
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandBulwarkToggled
+        Rodentia: RodentiaCyberLHandBulwarkToggled
         Resomi: ResomiCyberLHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -737,6 +768,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmBulwark
+        Rodentia: RodentiaCyberRArmBulwark
         Resomi: ResomiCyberRArmBulwark
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -764,10 +796,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandBulwark
+        Rodentia: RodentiaCyberRHandBulwark
         Resomi: ResomiCyberRHandBulwark
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandBulwarkToggled
+        Rodentia: RodentiaCyberRHandBulwarkToggled
         Resomi: ResomiCyberRHandBulwarkToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -796,6 +830,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmMantisBlade
+        Rodentia: RodentiaCyberLArmMantisBlade
         Resomi: ResomiCyberLArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -823,10 +858,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandMantisBlade
+        Rodentia: RodentiaCyberLHandMantisBlade
         Resomi: ResomiCyberLHandMantisBlade
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandMantisBladeToggled
+        Rodentia: RodentiaCyberLHandMantisBladeToggled
         Resomi: ResomiCyberLHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -853,6 +890,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmMantisBlade
+        Rodentia: RodentiaCyberRArmMantisBlade
         Resomi: ResomiCyberRArmMantisBlade
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -880,10 +918,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandMantisBlade
+        Rodentia: RodentiaCyberRHandMantisBlade
         Resomi: ResomiCyberRHandMantisBlade
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandMantisBladeToggled
+        Rodentia: RodentiaCyberRHandMantisBladeToggled
         Resomi: ResomiCyberRHandMantisBladeToggled
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -912,6 +952,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmRipper
+        Rodentia: RodentiaCyberLArmRipper
         Resomi: ResomiCyberLArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -944,10 +985,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandRipper
+        Rodentia: RodentiaCyberLHandRipper
         Resomi: ResomiCyberLHandRipper
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandRipperRipping
+        Rodentia: RodentiaCyberLHandRipperRipping
         Resomi: ResomiCyberLHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -982,6 +1025,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmRipper
+        Rodentia: RodentiaCyberRArmRipper
         Resomi: ResomiCyberRArmRipper
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1013,10 +1057,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandRipper
+        Rodentia: RodentiaCyberRHandRipper
         Resomi: ResomiCyberRHandRipper
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandRipperRipping
+        Rodentia: RodentiaCyberRHandRipperRipping
         Resomi: ResomiCyberRHandRipperRipping
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1053,6 +1099,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmSpacer
+        Rodentia: RodentiaCyberLArmSpacer
         Resomi: ResomiCyberLArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1073,10 +1120,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandSpacer
+        Rodentia: RodentiaCyberLHandSpacer
         Resomi: ResomiCyberLHandSpacer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandSpacerTools
+        Rodentia: RodentiaCyberLHandSpacerTools
         Resomi: ResomiCyberLHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1106,6 +1155,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmSpacer
+        Rodentia: RodentiaCyberRArmSpacer
         Resomi: ResomiCyberRArmSpacer
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1126,10 +1176,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandSpacer
+        Rodentia: RodentiaCyberRHandSpacer
         Resomi: ResomiCyberRHandSpacer
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandSpacerTools
+        Rodentia: RodentiaCyberRHandSpacerTools
         Resomi: ResomiCyberRHandSpacerTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1160,6 +1212,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmGorilla
+        Rodentia: RodentiaCyberLArmGorilla
         Resomi: ResomiCyberLArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1180,10 +1233,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandGorilla
+        Rodentia: RodentiaCyberLHandGorilla
         Resomi: ResomiCyberLHandGorilla
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandGorillaTools
+        Rodentia: RodentiaCyberLHandGorillaTools
         Resomi: ResomiCyberLHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1213,6 +1268,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmGorilla
+        Rodentia: RodentiaCyberRArmGorilla
         Resomi: ResomiCyberRArmGorilla
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1233,10 +1289,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandGorilla
+        Rodentia: RodentiaCyberRHandGorilla
         Resomi: ResomiCyberRHandGorilla
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandGorillaTools
+        Rodentia: RodentiaCyberRHandGorillaTools
         Resomi: ResomiCyberRHandGorillaTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1267,6 +1325,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmAngel
+        Rodentia: RodentiaCyberLArmAngel
         Resomi: ResomiCyberLArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1287,10 +1346,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandAngel
+        Rodentia: RodentiaCyberLHandAngel
         Resomi: ResomiCyberLHandAngel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandAngelTools
+        Rodentia: RodentiaCyberLHandAngelTools
         Resomi: ResomiCyberLHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1321,6 +1382,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmAngel
+        Rodentia: RodentiaCyberRArmAngel
         Resomi: ResomiCyberRArmAngel
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1341,10 +1403,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandAngel
+        Rodentia: RodentiaCyberRHandAngel
         Resomi: ResomiCyberRHandAngel
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandAngelTools
+        Rodentia: RodentiaCyberRHandAngelTools
         Resomi: ResomiCyberRHandAngelTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1375,6 +1439,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmZeus
+        Rodentia: RodentiaCyberLArmZeus
         Resomi: ResomiCyberLArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1394,10 +1459,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandZeus
+        Rodentia: RodentiaCyberLHandZeus
         Resomi: ResomiCyberLHandZeus
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandZeus
+        Rodentia: RodentiaCyberLHandZeus
         Resomi: ResomiCyberLHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1425,6 +1492,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmZeus
+        Rodentia: RodentiaCyberRArmZeus
         Resomi: ResomiCyberRArmZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1444,10 +1512,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandZeus
+        Rodentia: RodentiaCyberRHandZeus
         Resomi: ResomiCyberRHandZeus
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandZeus
+        Rodentia: RodentiaCyberRHandZeus
         Resomi: ResomiCyberRHandZeus
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1477,6 +1547,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmRiplet
+        Rodentia: RodentiaCyberLArmRiplet
         Resomi: ResomiCyberLArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1497,10 +1568,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandRiplet
+        Rodentia: RodentiaCyberLHandRiplet
         Resomi: ResomiCyberLHandRiplet
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandRipletTools
+        Rodentia: RodentiaCyberLHandRipletTools
         Resomi: ResomiCyberLHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1528,6 +1601,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmRiplet
+        Rodentia: RodentiaCyberRArmRiplet
         Resomi: ResomiCyberRArmRiplet
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1548,10 +1622,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandRiplet
+        Rodentia: RodentiaCyberRHandRiplet
         Resomi: ResomiCyberRHandRiplet
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandRipletTools
+        Rodentia: RodentiaCyberRHandRipletTools
         Resomi: ResomiCyberRHandRipletTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1579,6 +1655,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmPersephone
+        Rodentia: RodentiaCyberLArmPersephone
         Resomi: ResomiCyberLArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1598,10 +1675,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandPersephone
+        Rodentia: RodentiaCyberLHandPersephone
         Resomi: ResomiCyberLHandPersephone
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandPersephoneTools
+        Rodentia: RodentiaCyberLHandPersephoneTools
         Resomi: ResomiCyberLHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1634,6 +1713,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmPersephone
+        Rodentia: RodentiaCyberRArmPersephone
         Resomi: ResomiCyberRArmPersephone
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1653,10 +1733,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandPersephone
+        Rodentia: RodentiaCyberRHandPersephone
         Resomi: ResomiCyberRHandPersephone
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandPersephoneTools
+        Rodentia: RodentiaCyberRHandPersephoneTools
         Resomi: ResomiCyberRHandPersephoneTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1691,6 +1773,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmScribe
+        Rodentia: RodentiaCyberLArmScribe
         Resomi: ResomiCyberLArmScribe
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1711,10 +1794,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandScribe
+        Rodentia: RodentiaCyberLHandScribe
         Resomi: ResomiCyberLHandScribe
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandScribeTools
+        Rodentia: RodentiaCyberLHandScribeTools
         Resomi: ResomiCyberLHandScribeTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1745,6 +1830,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmScribe
+        Rodentia: RodentiaCyberRArmScribe
         Resomi: ResomiCyberRArmScribe
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1765,10 +1851,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandScribe
+        Rodentia: RodentiaCyberRHandScribe
         Resomi: ResomiCyberRHandScribe
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandScribeTools
+        Rodentia: RodentiaCyberRHandScribeTools
         Resomi: ResomiCyberRHandScribeTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1799,6 +1887,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmHerakles
+        Rodentia: RodentiaCyberLArmHerakles
         Resomi: ResomiCyberLArmHerakles
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1818,10 +1907,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandHerakles
+        Rodentia: RodentiaCyberLHandHerakles
         Resomi: ResomiCyberLHandHerakles
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandHeraklesTools
+        Rodentia: RodentiaCyberLHandHeraklesTools
         Resomi: ResomiCyberLHandHeraklesTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1849,6 +1940,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmHerakles
+        Rodentia: RodentiaCyberRArmHerakles
         Resomi: ResomiCyberRArmHerakles
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1868,10 +1960,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandHerakles
+        Rodentia: RodentiaCyberRHandHerakles
         Resomi: ResomiCyberRHandHerakles
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandHeraklesTools
+        Rodentia: RodentiaCyberRHandHeraklesTools
         Resomi: ResomiCyberRHandHeraklesTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1900,6 +1994,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLArmInvestigator
+        Rodentia: RodentiaCyberLArmInvestigator
         Resomi: ResomiCyberLArmInvestigator
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1919,10 +2014,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberLHandInvestigator
+        Rodentia: RodentiaCyberLHandInvestigator
         Resomi: ResomiCyberLHandInvestigator
     - type: BaseLayerIdToggled
       layers:
         Default: CyberLHandInvestigatorTools
+        Rodentia: RodentiaCyberLHandInvestigatorTools
         Resomi: ResomiCyberLHandInvestigatorTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1954,6 +2051,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRArmInvestigator
+        Rodentia: RodentiaCyberRArmInvestigator
         Resomi: ResomiCyberRArmInvestigator
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -1973,10 +2071,12 @@
     - type: BaseLayerId
       layers:
         Default: CyberRHandInvestigator
+        Rodentia: RodentiaCyberRHandInvestigator
         Resomi: ResomiCyberRHandInvestigator
     - type: BaseLayerIdToggled
       layers:
         Default: CyberRHandInvestigatorTools
+        Rodentia: RodentiaCyberRHandInvestigatorTools
         Resomi: ResomiCyberRHandInvestigatorTools
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -2009,6 +2109,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLLegHydraulic
+        Rodentia: RodentiaCyberLLegHydraulic
         Resomi: ResomiCyberLLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -2036,6 +2137,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRLegHydraulic
+        Rodentia: RodentiaCyberRLegHydraulic
         Resomi: ResomiCyberRLegHydraulic
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -2064,6 +2166,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLLegPilebunker
+        Rodentia: RodentiaCyberLLegPilebunker
         Resomi: ResomiCyberLLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -2088,6 +2191,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRLegPilebunker
+        Rodentia: RodentiaCyberRLegPilebunker
         Resomi: ResomiCyberRLegPilebunker
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -2114,6 +2218,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberLLegCargo
+        Rodentia: RodentiaCyberLLegCargo
         Resomi: ResomiCyberLLegCargo
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
@@ -2169,6 +2274,7 @@
     - type: BaseLayerId
       layers:
         Default: CyberRLegCargo
+        Rodentia: RodentiaCyberRLegCargo
         Resomi: ResomiCyberRLegCargo
     - type: Sprite
       sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
