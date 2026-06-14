@@ -129,10 +129,10 @@
     sprite: Objects/Weapons/Guns/Battery/particle_decelerator.rsi
     state: base
   discipline: Experimental
-  tier: 1
-  cost: 5000
+  tier: 1 # starlight, was originally 2
+  cost: 5000 # starlight, was originally 7500
   recipeUnlocks:
-  - WeaponParticleDecelerator
+  - WeaponParticleDecelerator 
   - HoloprojectorField
   radioChannels:
   - Engineering # starlight
