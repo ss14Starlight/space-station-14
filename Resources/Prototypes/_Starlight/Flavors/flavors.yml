@@ -66,4 +66,24 @@
 - type: flavor
   id: chocolateicecream
   flavorType: Complex
-  descrition: flavor-complex-chocolate-icecream
+  description: flavor-complex-chocolate-icecream
+
+- type: flavor
+  id: strawberryicecream
+  flavorType: Complex
+  description: flavor-complex-strawberry-icecream
+
+- type: flavor
+  id: mintchocolateicecream
+  flavorType: Complex
+  description: flavor-complex-mint-icecream
+
+- type: flavor
+  id: coffeeicecream
+  flavorType: Complex
+  description: flavor-complex-coffee-icecream
+
+- type: flavor
+  id: snowcreamicecream
+  flavorType: Complex
+  description: flavor-complex-snowcream-icecream

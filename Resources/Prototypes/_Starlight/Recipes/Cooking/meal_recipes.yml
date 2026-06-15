@@ -192,7 +192,7 @@
     Cream: 5
 
 - type: microwaveMealRecipe
-  id: RecipeChocolatececream
+  id: RecipeChocolateIcecream
   name: chocolate icecream
   result: FoodChocolateIcecream
   deviceType: IcecreamMaker
@@ -203,3 +203,55 @@
   reagents:
     IceCream: 20
     CocoaPowder: 10
+
+- type: microwaveMealRecipe
+  id: RecipeStrawberryIcecream
+  name: strawberry icecream
+  result: FoodStrawberryIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeMintIcecream
+  name: mint chocolate chip icecream
+  result: FoodMintChocolateIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    CocoaPowder: 5
+
+- type: microwaveMealRecipe
+  id: RecipeCoffeeIcecream
+  name: coffee icecream
+  result: FoodCoffeeIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    Coffee: 10
+
+- type: microwaveMealRecipe
+  id: RecipeSnowcreamIcecream
+  name: snowcream icecream
+  result: FoodSnowcreamIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodFrozenSandwich : 1
+  reagents:
+    IceCream: 20

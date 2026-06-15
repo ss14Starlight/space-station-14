@@ -13,3 +13,7 @@ flavor-complex-the-last-call = like death's cold embrace
 flavor-base-perfid = perfid
 flavor-complex-vanilla-icecream = like smooth vanilla icecream
 flavor-complex-chocolate-icecream = like rich chocolate with crunchy chocoloate chips
+flavor-complex-strawberry-icecream = like cream and strawberrys
+flavor-complex-mint-icecream = like crisp mint and crunchy chocolate chips
+flavor-complex-coffee-icecream = like ice cream with a hint of bitter mocha
+flavor-complex-snowcream-icecream = like vanilla icecream with cream filled cookies

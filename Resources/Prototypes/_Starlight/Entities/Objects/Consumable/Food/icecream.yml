@@ -71,3 +71,111 @@
           Quantity: 20
         - ReagentId: Theobromine
           Quantity: 10
+
+- type: entity
+  name: strawberry icecream
+  parent: FoodIceCreamBase
+  id: FoodStrawberryIcecream
+  description: Pink strawberry icecream with real strawberrys!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strawberryicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/strawberry_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/strawberry_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: mint chocolate icecream
+  parent: FoodIceCreamBase
+  id: FoodMintChocolateIcecream
+  description: Crisp mint ice cream with crunchy chocolate chips.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - mintchocolateicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/mint_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/mint_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Theobromine
+          Quantity: 10
+
+- type: entity
+  name: coffee icecream
+  parent: FoodIceCreamBase
+  id: FoodCoffeeIcecream
+  description: Crisp mint ice cream with crunchy chocolate chips.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - coffeeicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/coffee_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/coffee_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Coffee
+          Quantity: 10
+
+- type: entity
+  name: snowcream special icecream
+  parent: FoodIceCreamBase
+  id: FoodSnowcreamIcecream
+  description: Vanilla icecream with wafer cookies in a familiar shape.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - snowcreamicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/snowcream_special.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/snowcream_special.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
