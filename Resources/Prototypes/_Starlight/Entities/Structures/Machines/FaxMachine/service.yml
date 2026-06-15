@@ -55,6 +55,16 @@
 
 - type: entity
   parent: FaxMachineServiceBase
+  id: FaxMachineServiceLawyer
+  suffix: "SRV: Lawyer"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Lawyer"
+      order: 310
+
+- type: entity
+  parent: FaxMachineServiceBase
   id: FaxMachineServiceLibrary
   suffix: "SRV: Library"
   components:

@@ -21,6 +21,11 @@
     {
       "name": "equipped-HELMET-dog",
       "directions": 4
+    },
+    {
+      "name": "equipped-HELMET-rodentia",
+      "directions": 4,
+      "copyright": "Made by Huaqas (GitHub)."
     }
   ]
 }
