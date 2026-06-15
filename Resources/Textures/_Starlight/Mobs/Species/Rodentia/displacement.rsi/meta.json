@@ -13,7 +13,7 @@
     {
       "name": "jumpsuit",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Huaqas (GitHub)"
     },
     {
       "name": "back",
@@ -79,6 +79,11 @@
       "name": "facialhair",
       "directions": 4,
       "copyright": "by Huaqas (GitHub)"
+    },
+    {
+      "name": "misc",
+      "directions": 4,
+      "copyright": "by DocMoth"
     }
   ]
 }

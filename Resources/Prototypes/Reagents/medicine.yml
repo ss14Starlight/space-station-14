@@ -264,7 +264,6 @@
   physicalDesc: reagent-physical-desc-bubbling
   flavor: medicine
   color: "#32cd32"
-  worksOnTheDead: true # starlight
   metabolisms:
     Medicine:
       effects:
@@ -873,6 +872,10 @@
             - !type:ReagentCondition
               reagent: AmbuzolPlus
               min: 5
+        - !type:HealthChange # starlight
+          damage:
+            types:
+             Cellular: -6
         - !type:ReduceRotting # starlight
           seconds: 60
         - !type:AdjustReagent

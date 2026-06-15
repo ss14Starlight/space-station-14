@@ -5,7 +5,7 @@
   components:
     - type: Action
       itemIconStyle: BigAction
-      priority: -10
+      priority: -11
       icon:
         sprite: _Starlight/Actions/rodentia.rsi
         state: cheeks-full
@@ -19,6 +19,7 @@
   components:
     - type: Action
       itemIconStyle: BigAction
+      priority: -12
       useDelay: 3
       icon:
         sprite: _Starlight/Actions/rodentia.rsi
