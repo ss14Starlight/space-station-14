@@ -2,7 +2,7 @@
   id: PTS
   name: Private Transport Shuttle
   description: A private transport vessel for up to 6 passengers.
-  price: 26700
+  price: 21200
   category: Small
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/pts.yml
@@ -24,3 +24,21 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/prospector.yml
+
+- type: vessel
+  id: Munchies
+  name: SRB-Munchies
+  description: A medium sized restaurant ship designed to sell food to people.
+  price: 38250
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Munchies.yml
+
+- type: vessel
+  id: CargoGas
+  name: CS-2P6 "Plasma"
+  description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
+  price: 26410
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/cargo_plasma.yml
