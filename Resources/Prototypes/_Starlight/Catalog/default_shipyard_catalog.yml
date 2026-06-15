@@ -40,7 +40,7 @@
   description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
   price: 26410
   category: Small
-  group: Civilian
+  group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/cargo_plasma.yml
 
 - type: vessel
@@ -49,7 +49,7 @@
   description: A medium sized salvaging ship made for salvaging operations.
   price: 39200
   category: Medium
-  group: Civilian
+  group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/Salvage/pioneer.yml
 
 - type: vessel
@@ -58,5 +58,5 @@
   description: A medium sized mining shuttle made for mining operations.
   price: 32850
   category: Medium
-  group: Civilian
+  group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
