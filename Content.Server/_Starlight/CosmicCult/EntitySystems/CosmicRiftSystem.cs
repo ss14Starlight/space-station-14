@@ -44,7 +44,6 @@ public sealed partial class CosmicRiftSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CosmicMalignRiftComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<CosmicMalignRiftComponent, InteractHandEvent>(OnInteract);
 
         SubscribeLocalEvent<CosmicMalignRiftComponent, EventPurgeRiftDoAfter>(OnPurgeDoAfter);
@@ -66,30 +65,6 @@ public sealed partial class CosmicRiftSystem : EntitySystem
     {
         if (!args.Powered && _doAfter.IsRunning(ent.Comp.DoAfterId))
             _doAfter.Cancel(ent.Comp.DoAfterId);
-    }
-
-    private void OnStartCollide(Entity<CosmicMalignRiftComponent> ent, ref StartCollideEvent args)
-    {
-        if (_doAfter.IsRunning(ent.Comp.DoAfterId) || !HasComp<CosmicLambdaParticleComponent>(args.OtherEntity) || !TryComp<ProjectileComponent>(args.OtherEntity, out var apeBullet) || apeBullet.Shooter is null)
-            return;
-
-        var doAfterArgs = new DoAfterArgs(EntityManager, apeBullet.Shooter.Value, ent.Comp.PurgeTime, new EventPurgeRiftDoAfter(), ent, ent)
-        {
-            NeedHand = false,
-            BreakOnWeightlessMove = true,
-            BreakOnMove = true,
-            BreakOnHandChange = false,
-            BreakOnDropItem = false,
-            BreakOnDamage = false,
-            RequireCanInteract = false,
-            DistanceThreshold = RiftPurgeDistanceThreshold
-        };
-        _popup.PopupEntity(Loc.GetString("cosmiccult-rift-lambda-charging"), apeBullet.Shooter.Value);
-        _doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId);
-        ent.Comp.DoAfterId = doAfterId;
-
-        if (TryComp<CosmicLambdaParticleSourceComponent>(apeBullet.Shooter, out var particleSource))
-            particleSource.DoAfterId = doAfterId;
     }
 
     public void SpawnRift(EntityUid grid)

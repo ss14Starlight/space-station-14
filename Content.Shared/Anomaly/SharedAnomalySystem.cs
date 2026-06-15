@@ -72,6 +72,11 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
+            // Starlight Start
+            if (!component.CanPulse)
+                return;
+            // Starlight End
+
         if (!Timing.IsFirstTimePredicted)
             return;
 
@@ -114,6 +119,11 @@ public abstract class SharedAnomalySystem : EntitySystem
     {
         if (!Resolve(uid, ref component))
             return;
+
+        // Starlight Start
+        if (!component.CanPulse)
+            return;
+        // Starlight End
 
         var variation = Random.NextFloat(-component.PulseVariation, component.PulseVariation) + 1;
         component.NextPulseTime = Timing.CurTime + GetPulseLength(component) * variation;
@@ -362,6 +372,12 @@ public abstract class SharedAnomalySystem : EntitySystem
             }
 
             var secondsUntilNextPulse = (anomaly.NextPulseTime - Timing.CurTime).TotalSeconds;
+            // Starlight Start
+            if (anomaly.CanPulse && secondsUntilNextPulse < 0)
+            {
+                DoAnomalyPulse(ent, anomaly);
+            }
+            // Starlight End
             if (secondsUntilNextPulse < 0)
             {
                 DoAnomalyPulse(ent, anomaly);
