@@ -23,10 +23,8 @@ using Content.Shared.DoAfter;
 using Content.Shared.Projectiles;
 using Content.Shared.Singularity.Components;
 using Content.Server.Singularity.EntitySystems;
-using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared._Starlight.CosmicCult.Components;
-using Content.Shared.Interaction;
 #endregion
 
 namespace Content.Server.Anomaly;
@@ -286,10 +284,8 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             projectile.Shooter is not { } shooter)
             return;
 
-        if (!TryComp<CosmicLambdaParticleSourceComponent>(shooter, out var source))
-            return;
-
-        if (!_powerReceiver.IsPowered(shooter))
+        var source = GetPoweredNullspaceStabilizerSource(shooter);
+        if (source == null)
             return;
 
         if (interaction.Delay <= TimeSpan.Zero)
@@ -416,6 +412,11 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         }
     }
 
+    private CosmicLambdaParticleSourceComponent? GetPoweredNullspaceStabilizerSource(EntityUid uid)
+        => !TryComp<CosmicLambdaParticleSourceComponent>(uid, out var source)
+        ? null : !_powerReceiver.IsPowered(uid)
+        ? null : source;
+
     #endregion
 
     #endregion
@@ -472,16 +473,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-point-output-unknown"));
         else
         {
-            // Starlight edit Start
-            var pointValue = GetAnomalyPointValue(anomaly, anomalyComp);
-
-            var pointText = pointValue < 0
-                ? $"[color=red]{pointValue}[/color]"
-                : pointValue.ToString();
-
-            var text = Loc.GetString("anomaly-scanner-point-output", ("point", pointText));
-            // Starlight edit End
-
+            var text = Loc.GetString("anomaly-scanner-point-output", ("point", GetAnomalyPointValue(anomaly, anomalyComp)));
             if (secret != null && secret.Secret.Contains(AnomalySecretData.OutputPoint))
                 text += " " + Loc.GetString("anomaly-secret-admin");
             msg.AddMarkupOrThrow(text);
