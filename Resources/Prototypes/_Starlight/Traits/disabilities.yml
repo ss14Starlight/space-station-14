@@ -202,6 +202,7 @@
     - !type:SpeciesRequirement
       species:
         - Cyclorite
+        - ProtoCyclorite
         - Resomi
         - ProtoResomi
         - Shadekin
