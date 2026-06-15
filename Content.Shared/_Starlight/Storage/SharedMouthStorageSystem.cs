@@ -76,7 +76,8 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (component.MouthId == null ||
             !TryComp<StorageComponent>(component.MouthId.Value, out var storage) ||
-            storage.Container == null)
+            storage.Container == null ||
+            storage.Container.ContainedEntities.Count == 0)
             return;
 
         var dumpQueue = _container.EmptyContainer(storage.Container, true, Transform(uid).Coordinates);
