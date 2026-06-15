@@ -409,7 +409,7 @@
   parent: [BaseReporterContraband, ClothingOuterArmorBase]
   id: ClothingOuterPressArmor
   name: press Armor
-  description: It has 'PRESS' written on it in white. It will help you stay alive while searching for news!
+  description: It has 'PRESS' written on it in white. It will help you stay alive while sniffing the news!
   components:
     - type: Item
       size: Large
