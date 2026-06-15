@@ -12,6 +12,8 @@
   - type: AntagImmune
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
+  - type: Visibility
+    layer: 32 # nullspace vis layer (1 << 5)
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/CosmicCult/Mobs/colossus.rsi
@@ -194,7 +196,6 @@
     - ActionViewLaws
     - ActionCosmicColossusSunder
     - ActionCosmicColossusIngress
-    - ActionCosmicColossusHibernate
   - type: MeleeWeapon
     altDisarm: false
     animation: WeaponArcCosmic
@@ -282,6 +283,10 @@
       0: Alive
       400: Dead
   - type: CosmicColossus
+  - type: CosmicCorrupting
+    mobile: true
+    autoDisable: false
+    corruptionReduction: 0
 
 - type: speechSounds
   id: ColossusSpeech
@@ -291,6 +296,7 @@
     path: /Audio/_Starlight/CosmicCult/colossus_ask.ogg
   exclaimSound:
     path: /Audio/_Starlight/CosmicCult/colossus_exclaim.ogg
+
 
 - type: entity
   categories: [ HideSpawnMenu ]
