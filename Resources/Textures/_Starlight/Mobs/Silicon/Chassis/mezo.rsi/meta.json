@@ -89,7 +89,6 @@
             "name": "engi_l",
             "directions": 4
         },
-        
 	{
             "name": "mining",
             "directions": 4
@@ -105,8 +104,7 @@
 	{
             "name": "mining_l",
             "directions": 4
-        },
-            
+        }, 
 	{
             "name": "mezo",
             "directions": 4

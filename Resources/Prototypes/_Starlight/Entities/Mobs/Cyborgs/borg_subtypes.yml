@@ -339,7 +339,7 @@
       spriteHasMindState: medi_e
       spriteNoMindState: medi_e_r
       spriteToggleLightState: medi_l
-      inventoryTemplateId: borg        
+      inventoryTemplateId: borg
 # region Mining(Salvage)
 
 - type: entity
