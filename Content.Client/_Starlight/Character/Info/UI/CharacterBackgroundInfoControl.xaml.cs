@@ -27,30 +27,29 @@ public sealed partial class CharacterBackgroundInfoControl : Control
             ClearCharacter();
             return;
         }
-        if (entityManager.TryGetComponent<TagComponent>(target, out var comp))
+        BackgroundLabel.Text = "No background.";
+        Background.Text = null;
+
+        if (!entityManager.TryGetComponent<TagComponent>(target, out var comp))
+            return;
+
+        var backgrounds = new List<string>();
+
+        foreach (var tag in comp.Tags)
         {
-            if (comp == null) return;
+            if (!tag.Id.EndsWith("TraitBackground", StringComparison.Ordinal))
+                continue;
 
-            BackgroundLabel.Text = "No background.";
+            if (!TryGetBackgroundName(tag, out var name))
+                continue;
 
-            var backgrounds = new List<string>();
+            backgrounds.Add(Loc.GetString(name));
+        }
 
-            foreach (var tag in comp.Tags)
-            {
-                if (!tag.Id.EndsWith("TraitBackground", StringComparison.Ordinal))
-                    continue;
-
-                if (!TryGetBackgroundName(tag, out var name))
-                    continue;
-
-                backgrounds.Add(Loc.GetString(name));
-            }
-
-            if (backgrounds.Count > 0)
-            {
-                BackgroundLabel.Text = "Background:";
-                Background.Text = string.Join(", ", backgrounds);
-            }
+        if (backgrounds.Count > 0)
+        {
+            BackgroundLabel.Text = "Background:";
+            Background.Text = string.Join(", ", backgrounds);
         }
     }
 
