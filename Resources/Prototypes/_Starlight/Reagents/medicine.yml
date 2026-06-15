@@ -319,11 +319,13 @@
         conditions:
         - !type:TemperatureCondition
           min: 1000.00
+          max: 3999.99
         amount: -2000000
       - !type:AdjustTemperature
         conditions:
         - !type:TemperatureCondition
           min: 400.00
+          max: 999.99
         amount: -1000000
       - !type:PopupMessage
         type: Local
