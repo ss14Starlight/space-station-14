@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/15/2026 20:42:52
+  time: 06/15/2026 21:39:20
   entityCount: 31545
 maps:
 - 1
@@ -11030,7 +11030,7 @@ entities:
       pos: -57.5,40.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -109357.22
+      secondsUntilStateChange: -109381.95
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11513,7 +11513,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -246196.48
+      secondsUntilStateChange: -246221.22
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -13328,7 +13328,7 @@ entities:
       pos: 18.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -135153.6
+      secondsUntilStateChange: -135178.33
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13339,7 +13339,7 @@ entities:
       pos: 17.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -135148.53
+      secondsUntilStateChange: -135173.27
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
