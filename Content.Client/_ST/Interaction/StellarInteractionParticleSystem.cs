@@ -23,7 +23,11 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 
     private const string AnimateKey = "particle-animation";
 
-    private static readonly EntProtoId InteractionParticleId = "StellarInteractionParticle";
+    private static readonly Dictionary<StellarInteractionParticleType, EntProtoId> InteractionParticleIds = new ()
+    {
+        { StellarInteractionParticleType.Use, "StellarInteractionParticleUse" },
+        { StellarInteractionParticleType.Pull, "StellarInteractionParticlePull" },
+    };
 
     public override void Initialize()
     {
@@ -41,6 +45,11 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
 
         if (!Exists(performer) || !Exists(target))
             return;
+
+        if (ev.Type == StellarInteractionParticleType.Pull)
+        {
+            (performer, target) = (target, performer);
+        }
 
         // Moffstation - start - Add in cooldown
         if (TryComp<InteractionParticleTrackerComponent>(performer, out var tracker))
@@ -61,7 +70,7 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
             return;
 
         var performerTargetDelta = targetXform.LocalPosition - performerXform.LocalPosition;
-        var particle = Spawn(InteractionParticleId, performerXform.Coordinates);
+        var particle = Spawn(InteractionParticleIds[ev.Type], performerXform.Coordinates);
 
         if (used is { } usedEntity && Exists(usedEntity) && TryComp<SpriteComponent>(usedEntity, out var usedSprite))
         {
@@ -72,12 +81,16 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
         }
 
         var spriteColor = Comp<SpriteComponent>(particle).Color;
-        _animation.Play(particle, GetAnimation(performerTargetDelta, spriteColor), AnimateKey);
-        var cooldown = EnsureComp<InteractionParticleTrackerComponent>(performer);
-        cooldown.ExpireTime = _timing.CurTime + ev.Cooldown;
+        var animation = ev.Type switch
+        {
+            StellarInteractionParticleType.Use => GetUseAnimation(performerTargetDelta, spriteColor),
+            StellarInteractionParticleType.Pull => GetPullAnimation(performerTargetDelta, spriteColor),
+            _ => throw new ArgumentOutOfRangeException(nameof(ev), $"Interaction particle event has unknown particle type {ev.Type}"),
+        };
+        _animation.Play(particle, animation, AnimateKey);
     }
 
-    private Animation GetAnimation(Vector2 endOffset, Color color)
+    private Animation GetUseAnimation(Vector2 endOffset, Color color)
     {
         var startRotation = _random.NextAngle(Angle.FromDegrees(-40), Angle.FromDegrees(40));
         var endRotation = Angle.Zero;
@@ -137,6 +150,46 @@ public sealed partial class StellarInteractionParticleSystem : EntitySystem
                         new AnimationTrackProperty.KeyFrame(startColor, 0f),
                         new AnimationTrackProperty.KeyFrame(startColor, (float)rotationLength.TotalSeconds),
                         new AnimationTrackProperty.KeyFrame(endColor, (float)offsetLength.TotalSeconds, Easings.InOutCirc),
+                    },
+                },
+            },
+        };
+    }
+
+    private Animation GetPullAnimation(Vector2 endOffset, Color color)
+    {
+        var rotationLength = TimeSpan.FromMilliseconds(8f * (1000f / 12f));
+
+        var startOffset = new Vector2();
+        var offsetLength = TimeSpan.FromMilliseconds(4f * (1000f / 12f));
+
+        var endColor = color.WithAlpha(0f);
+
+        return new Animation
+        {
+            Length = rotationLength,
+
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty()
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Offset),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(startOffset, 0f),
+                        new AnimationTrackProperty.KeyFrame(endOffset, (float)rotationLength.TotalSeconds, Easings.InOutCirc),
+                    },
+                },
+                new AnimationTrackComponentProperty()
+                {
+                    ComponentType = typeof(SpriteComponent),
+                    Property = nameof(SpriteComponent.Color),
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(color, 0f),
+                        new AnimationTrackProperty.KeyFrame(color, (float)offsetLength.TotalSeconds),
+                        new AnimationTrackProperty.KeyFrame(endColor, (float)rotationLength.TotalSeconds, Easings.InOutCirc),
                     },
                 },
             },
