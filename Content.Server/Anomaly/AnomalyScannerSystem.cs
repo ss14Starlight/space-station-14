@@ -59,8 +59,13 @@ public sealed class AnomalyScannerSystem : SharedAnomalyScannerSystem
             return;
 
         TimeSpan? nextPulse = null;
-        if (TryComp<AnomalyComponent>(component.ScannedAnomaly, out var anomalyComponent))
+        // Starlight edit Start
+        if (TryComp<AnomalyComponent>(component.ScannedAnomaly, out var anomalyComponent) &&
+            anomalyComponent.CanPulse)
+        {
             nextPulse = anomalyComponent.NextPulseTime;
+        }
+        // Starlight edit End
 
         var state = new AnomalyScannerUserInterfaceState(_anomaly.GetScannerMessage(component), nextPulse);
         UI.SetUiState(uid, AnomalyScannerUiKey.Key, state);
