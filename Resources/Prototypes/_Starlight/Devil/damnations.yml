@@ -107,6 +107,18 @@
   components:
   - type: Muted
 
+- type: damnation
+  id: Stink
+  name: have a foul odor
+  category: constitution
+  description: The signator constantly leeches ammonia.
+  cost: -1
+  components:
+  - type: IntermittentGasEmitter
+    gasType: Ammonia
+    emitPeriod: 5
+    moles: 5
+
 # REWARDS
 
 - type: damnation
