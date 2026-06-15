@@ -2,7 +2,6 @@
   id: OrganProtoAvaliStomach
   parent: OrganProtogenStomach
   name: avali biological reactor
-  categories: [ HideSpawnMenu ]
   components:
   - type: Stomach
     specialDigestible:
@@ -23,7 +22,6 @@
   id: OrganProtoAvaliHeart
   parent: OrganProtogenHeart
   name: avali cybernetic heart
-  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     maxReagents: 2
@@ -37,7 +35,6 @@
   id: OrganProtoAvaliLiver
   parent: OrganProtogenLiver
   name: avali cybernetic liver
-  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     updateInterval: 1.5

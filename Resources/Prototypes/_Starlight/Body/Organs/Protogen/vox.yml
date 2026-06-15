@@ -2,7 +2,6 @@
   id: OrganProtoVoxStomach
   parent: OrganProtogenStomach
   name: vox biological reactor
-  categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
     metabolizerTypes: [Vox] # They don't need animal since Vox inherits the same properties anyways.

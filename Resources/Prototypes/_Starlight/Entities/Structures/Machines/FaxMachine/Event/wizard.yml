@@ -1,0 +1,14 @@
+# Group already exists, see ../wizard.yml
+
+- type: entity
+  parent: FaxMachineWizardBase
+  id: FaxMachineWizard
+  suffix: "Wizard"
+  categories: [ DoNotMap ]
+  components:
+    - type: FaxMachine
+      group: FaxGroupWizard
+      intrinsicGroup: FaxGroupWizard
+      intrinsicLocked: true # No impersonating unless emagged
+      name: "Wizard"
+      order: 500

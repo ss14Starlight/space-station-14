@@ -233,9 +233,10 @@
         damage:
           types:
             Cold: 0.5 # liquid nitrogen is cold
-        conditions:
+        conditions: # Starlight start
           - !type:MetabolizerTypeCondition
             type: [ Cyclorite ]
+            inverted: true # Starlight end
     Gas:
       effects:
       - !type:Oxygenate
