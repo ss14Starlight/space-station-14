@@ -12,8 +12,6 @@
   - type: AntagImmune
   - type: StaminaResistance
     damageCoefficient: 0 # No more stunning colossi
-  - type: Visibility
-    layer: 32 # nullspace vis layer (1 << 5)
   - type: Sprite
     drawdepth: Mobs
     sprite: _Starlight/CosmicCult/Mobs/colossus.rsi
