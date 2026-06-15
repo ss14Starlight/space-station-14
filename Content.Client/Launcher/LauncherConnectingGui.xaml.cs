@@ -23,6 +23,7 @@ namespace Content.Client.Launcher
         private readonly LauncherConnecting _state;
         private float _waitTime;
         private string? _discord; //NullLink
+        private string? _helpUrl; // Starlight
 
         // Pressing reconnect will redial instead of simply reconnecting.
         private bool _redial;
@@ -53,6 +54,7 @@ namespace Content.Client.Launcher
 
             CopyButton.OnPressed += CopyButtonPressed;
             CopyButtonDisconnected.OnPressed += CopyButtonDisconnectedPressed;
+            OpenUrlButton.OnPressed += OpenUrlPressed; // Starlight
             ExitButton.OnPressed += _ => _state.Exit();
 
             var addr = state.Address;
@@ -103,6 +105,14 @@ namespace Content.Client.Launcher
             }
         }
 
+        // Starlight start
+        private void OpenUrlPressed(BaseButton.ButtonEventArgs args)
+        {
+            if (_helpUrl is { } url)
+                IoCManager.Resolve<IUriOpener>().OpenUri(url);
+        }
+        // Starlight end
+
         private void ConnectFailReasonChanged(string? reason)
         {
             ConnectFailReason.SetMessage(reason == null
@@ -133,6 +143,11 @@ namespace Content.Client.Launcher
                     LinkDiscordButton.OnPressed += _ => IoCManager.Resolve<IUriOpener>().OpenUri(link);
                 }
                 //NullLink end
+
+                // Starlight start
+                _helpUrl = reason.Message.StringOf("url");
+                OpenUrlButton.Visible = !string.IsNullOrEmpty(_helpUrl);
+                // Starlight end
 
                 if (reason.Message.Int32Of("delay") is { } delay)
                 {
