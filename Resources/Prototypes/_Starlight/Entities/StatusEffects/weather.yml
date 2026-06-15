@@ -46,7 +46,7 @@
           types:
             Heat: 3
       - !type:AdjustTemperature
-        amount: 7500
+        amount: 6500
 
 - type: entity
   parent: WeatherBase
