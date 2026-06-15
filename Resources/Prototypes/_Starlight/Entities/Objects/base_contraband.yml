@@ -151,6 +151,14 @@
     allowedDepartments: [ Security ]
     allowedJobs: [ Zookeeper ]
 
+- type: entity
+  id: BaseReporterContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+    - type: Contraband
+      allowedJobs: [ Reporter ]
+
 # for ~objective items not held by command
 - type: entity
   id: BaseWardenGrandTheftContraband

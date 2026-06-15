@@ -21,4 +21,16 @@
   storage:
     back:
     - DigiboardMassMedia
+
+- type: loadout
+  id: HoloReporterPin
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobReporter
+        time: 36000 # 10 hours of breaking all of the news in half.
+  storage:
+    back:
+      - HoloReporterPin
 # Starlight End
