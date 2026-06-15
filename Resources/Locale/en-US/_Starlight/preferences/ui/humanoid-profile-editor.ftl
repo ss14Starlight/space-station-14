@@ -11,3 +11,5 @@ voice-selector-filter-all = All
 voice-selector-current-voice = Current Voice: {$voice}
 voice-selector-preview = Request Voice Preview
 voice-selector-placeholder = Search Voice Name
+
+humanoid-profile-editor-species-loadout-select = Select Species Loadout

@@ -1,5 +1,7 @@
 using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio; // Starlight
+using Robust.Shared.Player; // Starlight
 using Robust.Shared.Network;
 
 namespace Content.Shared.Trigger.Systems;
@@ -8,6 +10,7 @@ public sealed class EmitSoundOnTriggerSystem : XOnTriggerSystem<EmitSoundOnTrigg
 {
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    private const float GlobalSoundReduction = -5f; // Starlight
 
     protected override void OnTrigger(Entity<EmitSoundOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
@@ -18,6 +21,17 @@ public sealed class EmitSoundOnTriggerSystem : XOnTriggerSystem<EmitSoundOnTrigg
     {
         if (ent.Comp.Sound == null)
             return false;
+
+        #region Starlight
+        if (ent.Comp.Global)
+        {
+            if (_netMan.IsServer)
+            {
+                _audio.PlayGlobal(_audio.ResolveSound(ent.Comp.Sound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(GlobalSoundReduction));
+            }
+            return true;
+        }
+        #endregion Starlight
 
         if (ent.Comp.Positional)
         {

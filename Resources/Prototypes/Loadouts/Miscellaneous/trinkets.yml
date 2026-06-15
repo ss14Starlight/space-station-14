@@ -157,6 +157,7 @@
   id: ClothingNeckAsexualPin
   equipment: # Starlight: Move to misc slot
     misc: ClothingNeckAsexualPin
+  groupBy: "pin" # Starlight: Group with other pride pins
 
 - type: loadout
   id: ClothingNeckBisexualPin

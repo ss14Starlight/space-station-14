@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandMoth
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandMoth
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegMoth
       connections:

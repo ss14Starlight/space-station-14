@@ -106,3 +106,7 @@ ClothingHandsCatPawsWhiteInsulated: null
 ClothingHandsCatPawsBrownInsulated: null
 ClothingHandsCatPawsBlackInsulated: null
 ClothingHandsCatPawsBlackWhiteInsulated: null
+
+#2026-06-09 - Removing the large warden locker
+LockerWardenLarge: LockerWarden
+LockerWardenLargeFilled: LockerWardenFilled
