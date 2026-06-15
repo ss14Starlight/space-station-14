@@ -40,7 +40,7 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
         // all collated, so we can send them off to individual ui instances
         foreach (var category in allDamnations.Keys)
         {
-            var categoryTitle = Loc.GetString("devil-damnations-category-" + category + "-name");
+            var categoryTitle = Loc.GetString("devil-damnations-category-" + category + "-title");
 
             var element = new DevilDamnationsCategory(categoryTitle, allDamnations[category]);
             DamnationCategories.AddChild(element);
