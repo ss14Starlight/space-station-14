@@ -296,3 +296,37 @@
           type: [ Cyclorite ]
         reagent: Acrileni
         amount: -0.5
+
+- type: reagent
+  id: Iceialin
+  name: reagent-name-iceialin
+  group: Medicine
+  desc: reagent-desc-iceialin
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: medicine
+  color: "#7DFAFF"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 2.5
+      effects:
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 4000.00
+        amount: -10000000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 1000.00
+        amount: -2000000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 400.00
+        amount: -1000000
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "leporazine-effect-temperature-adjusting" ]
+        probability: 0.2

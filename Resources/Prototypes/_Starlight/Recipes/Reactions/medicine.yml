@@ -108,3 +108,17 @@
       amount: 1
   products:
     Ipecac: 1
+
+- type: reaction
+  id: Iceialin
+  impact: Medium
+  reactants:
+    Aloxadone:
+      amount: 30
+    Leporazine:
+      amount: 30
+    Arcryox:
+      amount: 30
+  products:
+    Iceialin:
+      amount: 5
