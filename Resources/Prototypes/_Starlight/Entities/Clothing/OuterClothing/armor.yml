@@ -408,8 +408,8 @@
 - type: entity
   parent: [BaseReporterContraband, ClothingOuterArmorBase]
   id: ClothingOuterPressArmor
-  name: press Armor
-  description: It has 'PRESS' written on it in white. It will help you stay alive while sniffing the news!
+  name: press armor
+  description: It has 'PRESS' written on it in white. It will help you stay alive while sniffing out ledes!
   components:
     - type: Item
       size: Large

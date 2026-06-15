@@ -38,8 +38,8 @@
 - type: entity
   parent: [BaseItem, BaseToggleClothing, BaseReporterContraband]
   id: HoloReporterPin
-  name: reporter Holo-Pin
-  description: Its a pin with circuits inside and a microphone shaped button. A way of more clearly saying, DON'T SHOOT!
+  name: reporter holo-pin
+  description: "It's an electronic pin with a microphone-shaped button. A way of more clearly saying, DON'T SHOOT!"
   components:
     - type: Item
       size: Tiny
