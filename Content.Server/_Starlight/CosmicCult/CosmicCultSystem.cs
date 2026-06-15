@@ -64,6 +64,7 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
 
         SubscribeLocalEvent<CosmicCultComponent, ComponentInit>(OnStartCultist);
         SubscribeLocalEvent<CosmicCultLeadComponent, ComponentInit>(OnStartCultLead);
+        SubscribeLocalEvent<CosmicCultLeadComponent, ComponentShutdown>(OnEndCultLead);
         SubscribeLocalEvent<CosmicCultComponent, GetVisMaskEvent>(OnGetVisMask);
 
         SubscribeLocalEvent<CosmicEquipmentComponent, GotEquippedEvent>(OnGotEquipped);
@@ -129,7 +130,19 @@ public sealed partial class CosmicCultSystem : SharedCosmicCultSystem
     /// Add the Monument summon action to the cult lead.
     /// </summary>
     private void OnStartCultLead(Entity<CosmicCultLeadComponent> uid, ref ComponentInit args)
-        => _actions.AddAction(uid, ref uid.Comp.CosmicMonumentPlaceActionEntity, uid.Comp.CosmicMonumentPlaceAction, uid);
+        => _actions.AddAction(uid.Owner, ref uid.Comp.CosmicMonumentPlaceActionEntity, uid.Comp.CosmicMonumentPlaceAction, uid);
+
+    private void OnEndCultLead(Entity<CosmicCultLeadComponent> uid, ref ComponentShutdown args)
+    {
+        if (uid.Comp.CosmicMonumentPlaceActionEntity is { } placeAction && Exists(placeAction))
+            _actions.RemoveAction(placeAction);
+
+        if (uid.Comp.CosmicMonumentMoveActionEntity is { } moveAction && Exists(moveAction))
+            _actions.RemoveAction(moveAction);
+
+        uid.Comp.CosmicMonumentPlaceActionEntity = null;
+        uid.Comp.CosmicMonumentMoveActionEntity = null;
+    }
 
     private void OnGetVisMask(Entity<CosmicCultComponent> uid, ref GetVisMaskEvent args)
         => args.VisibilityMask |= (int)VisibilityFlags.NullSpace;
