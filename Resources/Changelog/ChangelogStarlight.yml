@@ -1,41 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Hotel) +1 suits to Security Armory (6 total).
-    type: Tweak
-  id: 405595
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Kilton) Minor tweaks to Security EVA and Locker room.
-    type: Tweak
-  id: 405596
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Kilton) +1 Detective.
-    type: Tweak
-  id: 405597
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Leth) Minor tweaks to SEC spawnpoints.
-    type: Tweak
-  id: 405598
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Lobster) +4 suits to Security Armory (8 total).
-    type: Tweak
-  id: 405599
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
   - message: (Lobster) +3 deployable barriers to Security Armory.
     type: Tweak
   id: 405600
@@ -2799,4 +2764,39 @@ Entries:
   id: 405994
   time: '2026-06-14T18:42:02.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4782
+- author: wonderfulnewworld
+  changes:
+  - message: Returned Battery Acid nutrition back to its original value.
+    type: Tweak
+  id: 405995
+  time: '2026-06-15T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4790
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Moths can now flap their wings.
+    type: Fix
+  id: 405996
+  time: '2026-06-15T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4790
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Kin now actually die when using the 'Succumb' or 'Say Last Words' actions while critically injured.
+    type: Fix
+  id: 405997
+  time: '2026-06-15T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4790
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Kin clothes now render correctly.
+    type: Fix
+  id: 405998
+  time: '2026-06-15T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4790
+- author: wonderfulnewworld
+  changes:
+  - message: You can now pick up IPCs.
+    type: Fix
+  id: 405999
+  time: '2026-06-15T07:35:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4790
 Order: -1
