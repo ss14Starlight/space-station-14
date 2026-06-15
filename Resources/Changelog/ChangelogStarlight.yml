@@ -1,76 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Lobster) +3 deployable barriers to Security Armory.
-    type: Tweak
-  id: 405600
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Manor) +1 Detective.
-    type: Tweak
-  id: 405601
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Manor) Minor tweaks to Security EVA.
-    type: Tweak
-  id: 405602
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Manor) maxPlayers 180 -> 350.
-    type: Tweak
-  id: 405603
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Manor) Handcuffs removed from Bridge.
-    type: Fix
-  id: 405604
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Ming) +4 suits to Security EVA (12 total).
-    type: Tweak
-  id: 405605
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Ming) +4 deployable barriers to Security.
-    type: Tweak
-  id: 405606
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Ming) +1 Brigmedic.
-    type: Tweak
-  id: 405607
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Ming) +1 Detective, even threw in a rug for free.
-    type: Tweak
-  id: 405608
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Oasis) Shuffled all of the SEC suits into the Armory.
-    type: Tweak
-  id: 405609
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
   - message: (Oasis) Re-organized the crates so they're not as 'in the way' of walking paths to Armory.
     type: Tweak
   id: 405610
@@ -2799,4 +2729,74 @@ Entries:
   id: 405999
   time: '2026-06-15T07:35:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4790
+- author: CrazyPhantom
+  changes:
+  - message: You can no longer put incorrect fluids in the Censer (Its holy water only you buffoons).
+    type: Fix
+  id: 406000
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Added missing CosCult localization's.
+    type: Fix
+  id: 406001
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Herald Re voting is now more robust and covers more situations.
+    type: Tweak
+  id: 406002
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Some overlooked errors in the CosCult guidebook.
+    type: Fix
+  id: 406003
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Reverted accidental removal of Bible's being able to remove rifts.
+    type: Fix
+  id: 406004
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Colossus is no longer invisible to most.
+    type: Fix
+  id: 406005
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Nullspace Stabilizer Particles are now used to remove Shadekin anomalies.
+    type: Tweak
+  id: 406006
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Cosmic Cult rifts are now scannable and can be found with an anomaly locator.
+    type: Tweak
+  id: 406007
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: Increased Do-After for Malign Rifts to 60s.
+    type: Tweak
+  id: 406008
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: CrazyPhantom
+  changes:
+  - message: (NOT DONE IN THIS PR, Just a PSA) Forgot to list it but Cosmic Rifts now spawn naturally. They do not need the cult to spawn.
+    type: Tweak
+  id: 406009
+  time: '2026-06-15T08:55:54.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4784
 Order: -1

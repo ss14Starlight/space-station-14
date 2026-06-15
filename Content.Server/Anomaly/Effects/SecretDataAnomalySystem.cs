@@ -16,6 +16,11 @@ public sealed class SecretDataAnomalySystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, SecretDataAnomalyComponent anomaly, MapInitEvent args)
     {
+        // Starlight Start
+        if (anomaly.RandomStartSecretMin <= 0 && anomaly.RandomStartSecretMax <= 0)
+            return;
+        // Starlight End
+
         RandomizeSecret(uid,_random.Next(anomaly.RandomStartSecretMin, anomaly.RandomStartSecretMax), anomaly);
     }
 
