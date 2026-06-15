@@ -33,6 +33,8 @@
     - type: Genes
       availableTraits:
         - Blank0
+        - Blank1
+        - Blank2
     - type: GeneticSlime
     - type: TemperatureDamage
       coldDamage:
@@ -45,6 +47,26 @@
 - type: passiveTrait
   id: Blank0
   name: Blank Trait 0 (Passive)
+  description: Does nothing.
+  entityEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+  cooldown: 60
+
+- type: passiveTrait
+  id: Blank1
+  name: Blank Trait 1 (Passive)
+  description: Does nothing.
+  entityEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+  cooldown: 60
+
+- type: passiveTrait
+  id: Blank2
+  name: Blank Trait 2 (Passive)
   description: Does nothing.
   entityEffect:
     effect: !type:Blank
