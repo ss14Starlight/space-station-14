@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared._Starlight.Traits;
 using Content.Shared._Starlight.Traits.Effects;
 using Content.Shared.Tag;
@@ -32,6 +33,8 @@ public sealed partial class CharacterBackgroundInfoControl : Control
 
             BackgroundLabel.Text = "No background.";
 
+            var backgrounds = new List<string>();
+
             foreach (var tag in comp.Tags)
             {
                 if (!tag.Id.EndsWith("TraitBackground", StringComparison.Ordinal))
@@ -40,9 +43,13 @@ public sealed partial class CharacterBackgroundInfoControl : Control
                 if (!TryGetBackgroundName(tag, out var name))
                     continue;
 
-                Background.Text = Loc.GetString(name);
+                backgrounds.Add(Loc.GetString(name));
+            }
+
+            if (backgrounds.Count > 0)
+            {
                 BackgroundLabel.Text = "Background:";
-                break;
+                Background.Text = string.Join(", ", backgrounds);
             }
         }
     }
