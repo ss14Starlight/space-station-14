@@ -5,6 +5,7 @@ using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Starlight.Overlay;
+using Content.Shared._Starlight.Vision;
 
 namespace Content.Client._Starlight.Overlay;
 
@@ -33,6 +34,9 @@ public sealed class NightVisionSystem : EntitySystem
 
         SubscribeLocalEvent<NightVisionComponent, FlashImmunityCheckEvent>(OnFlashImmunityChanged);
 
+        SubscribeLocalEvent<NightVisionBlockerComponent, ComponentInit>(OnBlockerChanged);
+        SubscribeLocalEvent<NightVisionBlockerComponent, ComponentRemove>(OnBlockerChanged);
+
         _overlay = new(_prototypeManager.Index<ShaderPrototype>(ModernNightVisionShaderPrototype));
     }
 
@@ -60,9 +64,22 @@ public sealed class NightVisionSystem : EntitySystem
     private void OnVisionShutdown(Entity<NightVisionComponent> ent, ref ComponentShutdown args)
         => AttemptRemoveVision(ent.Owner);
 
+    private void OnBlockerChanged(Entity<NightVisionBlockerComponent> ent, ref ComponentInit args)
+        => AttemptRemoveVision(ent.Owner);
+
+    private void OnBlockerChanged(Entity<NightVisionBlockerComponent> ent, ref ComponentRemove args)
+        => AttemptAddVision(ent.Owner);
+
+    /// <summary>
+    /// Attempt to add the nightvision overlay to the local player.
+    /// </summary>
+    /// <param name="uid">Entity to add nightvision to.</param>
     private void AttemptAddVision(EntityUid uid)
     {
         if (_player.LocalSession?.AttachedEntity != uid) return;
+
+        // if they they're blocked from nightvision (e.g. nightblind disability), don't add!
+        if(HasComp<NightVisionBlockerComponent>(uid)) return;
 
         //if they currently have flash immunity, dont add
         if (_flashImmunity.HasFlashImmunityVisionBlockers(uid)) return;
@@ -82,7 +99,7 @@ public sealed class NightVisionSystem : EntitySystem
     /// <summary>
     /// Attempt to remove the overlay from the local player.
     /// </summary>
-    /// <param name="uid"></param>
+    /// <param name="uid">Entity to remove nightvision from.</param>
     /// <param name="force">Use if you need to forcefully remove the overlay no matter what. Only should be used with events that ONLY the local player can fire, like attach/detach</param>
     private void AttemptRemoveVision(EntityUid uid, bool force = false)
     {
