@@ -138,10 +138,10 @@
   components:
     - type: BorgSubtypeDefinition
       spritePath: _Starlight/Mobs/Silicon/Chassis/mezo.rsi
-      spriteBodyState: mezo
-      spriteHasMindState: mezo_e
-      spriteNoMindState: mezo_e_r
-      spriteToggleLightState: mezo_l
+      spriteBodyState: borg
+      spriteHasMindState: borg_e
+      spriteNoMindState: borg_e_r
+      spriteToggleLightState: borg_l
       inventoryTemplateId: borg
 # region Janitor
 

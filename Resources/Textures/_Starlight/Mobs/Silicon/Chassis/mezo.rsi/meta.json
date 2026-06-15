@@ -5,7 +5,7 @@
         "y": 48
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by MintlyFresh (GitHub).",
+    "copyright": "Created by Mintly-Fresh (GitHub).",
     "states": [
         {
             "name": "service",
@@ -106,19 +106,19 @@
             "directions": 4
         }, 
 	{
-            "name": "mezo",
+            "name": "borg",
             "directions": 4
         },
 	{
-            "name": "mezo_e",
+            "name": "borg_e",
             "directions": 4
         },
 	{
-            "name": "mezo_e_r",
+            "name": "borg_e_r",
             "directions": 4
         },
 	{
-            "name": "mezo_l",
+            "name": "borg_l",
             "directions": 4
         }
     ]
