@@ -1353,7 +1353,6 @@
     - GalacticCommon
     - Ancestor
   # Starlight-end
-  - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
     canDisarm: true
   - type: Inventory
@@ -1494,6 +1493,7 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
+  - type: VentCrawler # Starlight
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
   - type: AlwaysRevolutionaryConvertible
@@ -1541,6 +1541,7 @@
     understands:
     - Ancestor
     - GalacticCommon
+  - type: VentCrawler # Starlight
   # Starlight-End
   - type: NameIdentifier
     group: Monkey
@@ -1574,7 +1575,6 @@
   suffix: syndicate agent
   components:
     # make the player a traitor once its taken
-  - type: VentCrawler
   # Starlight-Start
   - type: LanguageSpeaker
   - type: LanguageKnowledge
@@ -1592,7 +1592,6 @@
   parent: MobBaseSyndicateMonkey
   suffix: NukeOps
   components:
-  - type: VentCrawler
   # Starlight-Start
   - type: LanguageSpeaker
   - type: LanguageKnowledge
@@ -1741,6 +1740,7 @@
   parent: MobBaseKobold
   description: Cousins to the sentient race of lizard people, kobolds blend in with their natural habitat and are as nasty as monkeys; ready to pull out your hair and stab you to death.
   components:
+  - type: VentCrawler # Starlight
   - type: Clumsy
     gunShootFailDamage:
       types:
@@ -1768,6 +1768,7 @@
     - Ancestor
     - Draconic
     - GalacticCommon
+  - type: VentCrawler
   # Starlight-End
   - type: MobThresholds
     thresholds:
@@ -1820,6 +1821,7 @@
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish
   - type: VentCrawler
   - type: Body
     prototype: Mouse
@@ -3666,6 +3668,7 @@
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: GhostRole

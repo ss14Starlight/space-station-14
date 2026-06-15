@@ -119,6 +119,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     public static readonly EntProtoId SpacesuitPrototype = "ChangelingClothingOuterHardsuit";
     public static readonly EntProtoId SpacesuitHelmetPrototype = "ChangelingClothingHeadHelmetHardsuit";
+    public static readonly EntProtoId ProtogenDisguisePrototype = "ChangelingClothingProtogenArmor"; // Starlight
 
     public static readonly EntProtoId SlowdownPrototype = "StatusEffectStaminaLow";
 

@@ -194,6 +194,10 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Cold: 0.85 # Starlight end, I mean, that's literally what they're for...
   - type: HeldSpeedModifier
   - type: Item
     size: Huge

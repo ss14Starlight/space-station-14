@@ -10,8 +10,10 @@
   - type: LanguageKnowledge
     speaks:
     - Xeno
+    - Xenomind
     understands:
     - Xeno
+    - Xenomind
   # Starlight-end
   - type: ThermalVision
   - type: Insulated
@@ -217,9 +219,11 @@
     speaks:
     - GalacticCommon
     - Xeno
+    - Xenomind
     understands:
     - GalacticCommon
     - Xeno
+    - Xenomind
   # Starlight-end
   - type: Sprite
     drawdepth: Mobs

@@ -70,6 +70,7 @@
       borg_brain:
       - PositronicBrain
       borg_module:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModulePaperwork
       - BorgModuleFireExtinguisher
@@ -286,6 +287,7 @@
         - PositronicBrain
   - type: DefaultBorgModules
     modules:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleFireExtinguisher
       - BorgModuleTSF
@@ -365,6 +367,7 @@
       borg_brain:
         - PositronicBrain
       borg_module:
+        - BorgModulePrying
         - BorgModuleAdvancedTool
         - CentcommAccessBreakerModule
         - CentcommLaserModule
@@ -389,6 +392,7 @@
         - PositronicBrain
   - type: DefaultBorgModules
     modules:
+      - BorgModulePrying
       - BorgModuleTool
       - BorgModuleMedTakMedical
       - BorgModuleMedTakRifle

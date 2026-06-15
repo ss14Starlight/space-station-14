@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/20/2026 23:27:12
-  entityCount: 845
+  time: 05/22/2026 05:20:52
+  entityCount: 846
 maps: []
 grids:
 - 1
@@ -416,9 +416,10 @@ entities:
       parent: 1
 - proto: AirlockEngineeringGlassLocked
   entities:
-  - uid: 12
+  - uid: 631
     components:
     - type: Transform
+      rot: 3.141592653589793 rad
       pos: -5.5,-3.5
       parent: 1
 - proto: AirlockExternalGlassShuttleLocked
@@ -2632,6 +2633,14 @@ entities:
       fixtures: {}
 - proto: FuelDispenser
   entities:
+  - uid: 12
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-4.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
   - uid: 380
     components:
     - type: Transform
@@ -3974,7 +3983,7 @@ entities:
       pos: 1.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -11720.131
+      secondsUntilStateChange: -11834.244
       state: Opening
   - uid: 548
     components:
@@ -3989,7 +3998,7 @@ entities:
       pos: 1.5,1.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -4735.5537
+      secondsUntilStateChange: -4849.667
       state: Opening
 - proto: HospitalCurtainsOpen
   entities:
@@ -4895,11 +4904,10 @@ entities:
       fixtures: {}
 - proto: SignEngine
   entities:
-  - uid: 631
+  - uid: 846
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,-4.5
+      pos: -5.5,-4.5
       parent: 1
     - type: Fixtures
       fixtures: {}

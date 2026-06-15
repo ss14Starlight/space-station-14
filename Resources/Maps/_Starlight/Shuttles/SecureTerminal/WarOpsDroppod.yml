@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/20/2026 00:57:35
-  entityCount: 857
+  time: 05/22/2026 05:45:39
+  entityCount: 862
 maps: []
 grids:
 - 1
@@ -1887,11 +1887,6 @@ entities:
       parent: 1
 - proto: CableHV
   entities:
-  - uid: 210
-    components:
-    - type: Transform
-      pos: 6.5,-8.5
-      parent: 1
   - uid: 211
     components:
     - type: Transform
@@ -1921,6 +1916,16 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-5.5
+      parent: 1
+  - uid: 672
+    components:
+    - type: Transform
+      pos: 8.5,-9.5
+      parent: 1
+  - uid: 860
+    components:
+    - type: Transform
+      pos: 7.5,-9.5
       parent: 1
 - proto: CableMV
   entities:
@@ -2699,6 +2704,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -1.5,-0.5
+      parent: 1
+- proto: CrateEngineeringCableBulk
+  entities:
+  - uid: 862
+    components:
+    - type: Transform
+      pos: 6.5,-8.5
       parent: 1
 - proto: CrewMonitoringServer
   entities:
@@ -3923,22 +3935,29 @@ entities:
       pipeLayer: Secondary
     - type: AtmosPipeColor
       color: '#990000FF'
-- proto: GeneratorBasic15kW
+- proto: GeneratorBasic20kW
   entities:
-  - uid: 479
-    components:
-    - type: Transform
-      pos: 6.5,-8.5
-      parent: 1
   - uid: 480
     components:
     - type: Transform
-      pos: 7.5,-8.5
+      pos: 8.5,-8.5
       parent: 1
   - uid: 481
     components:
     - type: Transform
-      pos: 8.5,-8.5
+      pos: 7.5,-8.5
+      parent: 1
+- proto: GeneratorWallmountBasic
+  entities:
+  - uid: 210
+    components:
+    - type: Transform
+      pos: 8.5,-9.5
+      parent: 1
+  - uid: 861
+    components:
+    - type: Transform
+      pos: 7.5,-9.5
       parent: 1
 - proto: GnomePlushie
   entities:
@@ -4393,6 +4412,13 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-4.5
+      parent: 1
+- proto: Intellicard
+  entities:
+  - uid: 858
+    components:
+    - type: Transform
+      pos: -0.78125,1.65625
       parent: 1
 - proto: KitchenReagentGrinder
   entities:
@@ -4885,6 +4911,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-2.5
+      parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 859
+    components:
+    - type: Transform
+      pos: 6.518873,-8.312276
       parent: 1
 - proto: NitrogenTankFilled
   entities:
@@ -5537,9 +5570,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 8.5,0.5
       parent: 1
-- proto: SMESAdvanced
+- proto: SMESBlue
   entities:
-  - uid: 672
+  - uid: 479
     components:
     - type: Transform
       pos: 7.5,-6.5
@@ -5968,16 +6001,13 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Chemistry
-- proto: VendingMachineMedical
+- proto: VendingMachineMedicalSecurity
   entities:
   - uid: 714
     components:
     - type: Transform
       pos: 10.5,-1.5
       parent: 1
-    - type: AccessReader
-      accessListsOriginal:
-      - - Medical
 - proto: VendingMachineWallMedical
   entities:
   - uid: 715

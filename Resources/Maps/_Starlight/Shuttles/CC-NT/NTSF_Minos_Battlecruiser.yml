@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 03/02/2026 20:54:11
-  entityCount: 3270
+  time: 05/22/2026 05:53:32
+  entityCount: 3277
 maps: []
 grids:
 - 1
@@ -2309,6 +2309,20 @@ entities:
     components:
     - type: Transform
       pos: -7.507597,-14.837261
+      parent: 1
+- proto: BorgCharger
+  entities:
+  - uid: 1002
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,1.5
+      parent: 1
+  - uid: 1007
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -5.5,1.5
       parent: 1
 - proto: BoxBeaker
   entities:
@@ -4777,6 +4791,16 @@ entities:
     - type: Transform
       pos: 4.630185,-14.483235
       parent: 1
+  - uid: 2063
+    components:
+    - type: Transform
+      pos: -5.4379854,-13.389163
+      parent: 1
+  - uid: 3274
+    components:
+    - type: Transform
+      pos: -11.193642,9.551112
+      parent: 1
 - proto: CableHV
   entities:
   - uid: 552
@@ -7129,11 +7153,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 14.5,-3.5
       parent: 1
-  - uid: 1002
-    components:
-    - type: Transform
-      pos: -5.5,1.5
-      parent: 1
   - uid: 1003
     components:
     - type: Transform
@@ -7155,11 +7174,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -6.5,-0.5
-      parent: 1
-  - uid: 1007
-    components:
-    - type: Transform
-      pos: 6.5,1.5
       parent: 1
   - uid: 1008
     components:
@@ -8657,6 +8671,32 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -9.5,7.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+- proto: FuelDispenser
+  entities:
+  - uid: 3271
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -14.5,-7.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 3276
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,12.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 3277
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,12.5
       parent: 1
     - type: Fixtures
       fixtures: {}
@@ -14464,17 +14504,17 @@ entities:
   - uid: 2056
     components:
     - type: Transform
-      pos: -10.515101,10.26326
+      pos: -10.511597,10.386284
       parent: 1
   - uid: 2057
     components:
     - type: Transform
-      pos: -10.515101,9.88826
+      pos: -10.511597,10.151909
       parent: 1
   - uid: 2058
     components:
     - type: Transform
-      pos: -10.511996,9.568816
+      pos: -10.511597,9.917534
       parent: 1
 - proto: MedkitBruteFilled
   entities:
@@ -14502,15 +14542,15 @@ entities:
       parent: 1
 - proto: MedkitCombatFilled
   entities:
-  - uid: 2063
-    components:
-    - type: Transform
-      pos: -9.505764,-10.305953
-      parent: 1
   - uid: 2064
     components:
     - type: Transform
-      pos: -10.215346,-10.30108
+      pos: -10.029051,-10.451663
+      parent: 1
+  - uid: 3273
+    components:
+    - type: Transform
+      pos: -9.497801,-10.342288
       parent: 1
 - proto: MedkitFilled
   entities:
@@ -14547,6 +14587,18 @@ entities:
     components:
     - type: Transform
       pos: -13.41172,9.251607
+      parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 3272
+    components:
+    - type: Transform
+      pos: -10.466551,-10.342288
+      parent: 1
+  - uid: 3275
+    components:
+    - type: Transform
+      pos: -10.511597,9.620659
       parent: 1
 - proto: MedkitToxinFilled
   entities:
@@ -16363,6 +16415,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,11.5
       parent: 1
+  - uid: 2349
+    components:
+    - type: Transform
+      pos: 4.5,4.5
+      parent: 1
+  - uid: 2372
+    components:
+    - type: Transform
+      pos: -3.5,4.5
+      parent: 1
 - proto: RailingCorner
   entities:
   - uid: 2346
@@ -16381,12 +16443,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.5,16.5
-      parent: 1
-  - uid: 2349
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,4.5
       parent: 1
   - uid: 2350
     components:
@@ -16421,6 +16477,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.5,4.5
+      parent: 1
+  - uid: 2373
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -3.5,4.5
       parent: 1
 - proto: RailingCornerSmall
   entities:
@@ -16519,18 +16581,6 @@ entities:
     components:
     - type: Transform
       pos: -6.5,30.5
-      parent: 1
-  - uid: 2372
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,3.5
-      parent: 1
-  - uid: 2373
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -3.5,3.5
       parent: 1
   - uid: 2374
     components:
@@ -16844,7 +16894,7 @@ entities:
     - type: Transform
       pos: 11.438696,-16.342693
       parent: 1
-- proto: ShuttleGunNTSFCyerxa120mm
+- proto: ShuttleGunCyerxa120mm
   entities:
   - uid: 2430
     components:
@@ -16852,64 +16902,48 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -13.5,17.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 2431
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 13.5,21.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 2432
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 11.5,29.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 2433
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -10.5,29.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 2434
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.5,25.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 2435
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -12.5,21.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 2436
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 14.5,17.5
       parent: 1
-    - type: Physics
-      bodyType: Static
   - uid: 3270
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -11.5,25.5
       parent: 1
-    - type: Physics
-      bodyType: Static
 - proto: ShuttleGunPerforator
   entities:
   - uid: 2437
@@ -18938,7 +18972,7 @@ entities:
     - type: Transform
       pos: 5.5,-14.5
       parent: 1
-- proto: VendingMachineMedical
+- proto: VendingMachineMedicalSecurity
   entities:
   - uid: 2687
     components:
@@ -21761,7 +21795,7 @@ entities:
     - type: Transform
       pos: 10.494925,-15.442573
       parent: 1
-- proto: WeaponPistolSP8T
+- proto: WeaponPistolBlueguard
   entities:
   - uid: 1882
     components:

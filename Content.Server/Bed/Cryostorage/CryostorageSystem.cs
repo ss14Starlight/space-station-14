@@ -23,6 +23,9 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Revolutionary.Components;
 using Content.Shared.StationRecords;
 using Content.Shared.UserInterface;
+// Starlight start
+using Content.Server._Starlight.Bed.Cryostorage;
+// Starlight end
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -193,6 +196,12 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
                 foreach (var job in jobs)
                 {
                     _stationJobs.TryAdjustJobSlot(uniqueStation, job, 1, clamp: true);
+
+                    // Starlight start
+                    // let our system preserve the cryo'd player's belongings for this slot
+                    var slotReturned = new CryoSlotReturnedEvent(ent.Owner, job);
+                    RaiseLocalEvent(ref slotReturned);
+                    // Starlight end
                 }
 
                 _stationJobs.TryRemovePlayerJobs(uniqueStation, userId.Value, stationJobs);

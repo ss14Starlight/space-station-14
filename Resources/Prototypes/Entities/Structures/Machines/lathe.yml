@@ -306,6 +306,7 @@
     - StarlightLawboards
     - StarlightCircuitImprinterLootable
     - ReactorCircuitboards # FH edit
+    - OublietteCircuitBoard # Starlight
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSecurityBoards
@@ -363,8 +364,10 @@
     - StarlightMechParts
   - type: EmagLatheRecipes
     emagStaticPacks:
-    - StarlightMechWeapon
     - StarlightSyndicateModules
+    emagDynamicPacks:
+    - StarlightMechWeapon
+
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

@@ -32,15 +32,18 @@
     description: rr-criminal-desc
   - type: RailroadFaxOnChosen
     addresses:
-    - Captain's Office
+    - Captain's Office # PR #4706: Remove once fax protos are used everywhere
     - Captain
     - Security
     - Bridge
-    - Conference Room
-    - HoS Office
-    - Warden's Office
+    - Conference
+    - Conference Room  # PR #4706: Remove once fax protos are used everywhere
+    - HoS Office # PR #4706: Remove once fax protos are used everywhere
+    - Head of Security
+    - Warden's Office # PR #4706: Remove once fax protos are used everywhere
     - Warden
-    - Detective's Office
+    - Detective
+    - Detective's Office # PR #4706: Remove once fax protos are used everywhere
     - Magistrate
     - Central Command
     letters:
@@ -53,15 +56,18 @@
           stampedName: rr-nt-isd
   - type: RailroadFaxOnFailed
     addresses:
-    - Captain's Office
+    - Captain's Office # PR #4706: Remove once fax protos are used everywhere
     - Captain
     - Security
     - Bridge
+    - Conference # PR #4706: Remove once fax protos are used everywhere
     - Conference Room
-    - HoS Office
-    - Warden's Office
+    - HoS Office # PR #4706: Remove once fax protos are used everywhere
+    - Head of Security
+    - Warden's Office # PR #4706: Remove once fax protos are used everywhere
     - Warden
-    - Detective's Office
+    - Detective
+    - Detective's Office # PR #4706: Remove once fax protos are used everywhere
     - Magistrate
     - Central Command
     letters:

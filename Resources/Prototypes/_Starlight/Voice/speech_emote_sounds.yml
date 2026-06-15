@@ -241,7 +241,7 @@
     variation: 0.125
   sounds:
     Scream:
-      path: /Audio/_Starlight/Effects/avali_scream.ogg
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
     Laugh:
       collection: ResomiLaugh
     Honk:
@@ -255,17 +255,17 @@
     Hew:
       collection: Hew
     Gasp:
-      collection: FemaleGasp
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
     DefaultDeathgasp:
       path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
     Sigh:
-      collection: FemaleSigh
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
     Crying:
       collection: ResomiCry
     Cough:
-      collection: FemaleCoughs
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
     Yawn:
-      collection: FemaleYawn
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg
     Hisses:
       collection: FelionoidHisses
     Purr:
@@ -634,3 +634,43 @@
       collection: FelionoidTrills
     DefaultDeathgasp:
       collection: MothDeathGasp
+
+- type: emoteSounds
+  id: UnisexRodentia
+  sounds:
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: FemaleSigh
+    Yawn:
+      collection: FemaleYawn
+    Snore:
+      collection: Snores
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Gasp:
+      collection: MaleGasp
+    DefaultDeathgasp:
+      collection: MaleDeathGasp
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+
+- type: emoteSounds
+  parent: UnisexRodentia
+  id: MaleRodentia
+
+- type: emoteSounds
+  parent: UnisexRodentia
+  id: FemaleRodentia

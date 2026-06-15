@@ -78,8 +78,6 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 # region starlight
   - type: Tag
-    tags:
-    - PaddyMech
 # end region
   - type: Battery
     maxCharge: 240
@@ -111,8 +109,6 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
-    tags:
-    - PaddyMech
   # end region
 
 - type: entity
@@ -170,8 +166,6 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
-    tags:
-    - PaddyMech
   # end region
 
 - type: entity
@@ -198,11 +192,6 @@
     fireCost: 40
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
-  # region starlight
-  - type: Tag
-    tags:
-    - PaddyMech
-  # end region
 
 - type: entity
   id: WeaponMechCombatShotgun
@@ -401,15 +390,17 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack
   - type: Gun
-    fireRate: 1.2
-    selectedMode: SemiAuto
+    fireRate: 6
+    shotsPerBurst: 3
+    burstCooldown: 3
+    selectedMode: Burst
     availableModes:
-      - SemiAuto
+      - Burst
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: BulletWeakRocket
-    fireCost: 50
+    fireCost: 80
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
 
@@ -432,7 +423,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: MechAmmoProvider #Starlight - MechAmmoProvider
     proto: GrenadeBlast
-    fireCost: 220
+    fireCost: 315
   - type: Appearance
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   - type: Battery
@@ -465,8 +456,6 @@
   #- type: AmmoCounter #Starlight - Mechs can't see this anyway
   # region starlight
   - type: Tag
-    tags:
-    - PaddyMech
   # end region
 
 - type: entity

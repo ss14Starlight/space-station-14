@@ -31,6 +31,18 @@
       "name": "xenoborg-rcd-module",
       "copyright": "SevenShades"
     },
+	{
+      "name": "xenoborg-laser3-module",
+      "copyright": "Samuka-C, wonderfulnewworld"
+    },
+	{
+      "name": "xenoborg-sword3-module",
+      "copyright": "Samuka-C, wonderfulnewworld"
+    },
+	{
+      "name": "xenoborg-hypo2-module",
+      "copyright": "Samuka-C, wonderfulnewworld"
+    },
     {
       "name": "mail-module",
       "copyright": "SevenShades"

@@ -22,13 +22,17 @@ public sealed class HubSystem : EntitySystem
 
     public Dictionary<string, NullLink.Server>? Servers { get; private set; }
     public Dictionary<string, NullLink.ServerInfo>? ServerInfo { get; private set; }
+    public Dictionary<string, bool> InsufficientPlaytime { get; private set; } = [];
     public bool HubInitialized { get; private set; } = false;
     public string CurrentGameHostName => _cfg.GetCVar(NullLinkCCVars.Title);
+    public string CurrentProject => _cfg.GetCVar(NullLinkCCVars.Project);
+    public string CurrentServer => _cfg.GetCVar(NullLinkCCVars.Server);
 
     public event Action OnInitialized = delegate { };
     public event Action<string, NullLink.Server> OnServerUpdated = delegate { };
     public event Action<string, NullLink.ServerInfo> OnServerInfoUpdated = delegate { };
     public event Action<string> OnServersRemoved = delegate { };
+    public event Action OnRequirementsUpdated = delegate { };
 
     public override void Initialize()
     {
@@ -38,6 +42,7 @@ public sealed class HubSystem : EntitySystem
         SubscribeNetworkEvent<NullLink.AddOrUpdateServer>(OnAddOrUpdateServer);
         SubscribeNetworkEvent<NullLink.AddOrUpdateServerInfo>(OnAddOrUpdateServerInfo);
         SubscribeNetworkEvent<NullLink.RemoveServer>(OnRemoveServer);
+        SubscribeNetworkEvent<NullLink.ServerRequirements>(OnServerRequirements);
 
         _state.OnStateChanged += OnStateChanged;
         _inLobby = _state.CurrentState is LobbyState;
@@ -100,6 +105,11 @@ public sealed class HubSystem : EntitySystem
             serverInfo[ev.Key] = ev.ServerInfo;
             OnServerInfoUpdated.Invoke(ev.Key, ev.ServerInfo);
         }
+    }
+    private void OnServerRequirements(ServerRequirements ev)
+    {
+        InsufficientPlaytime = ev.InsufficientPlaytime;
+        OnRequirementsUpdated.Invoke();
     }
     private void OnRemoveServer(RemoveServer ev)
     {

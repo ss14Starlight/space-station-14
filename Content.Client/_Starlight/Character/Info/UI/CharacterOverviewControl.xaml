@@ -9,7 +9,6 @@
         <ui1:CharacterViewControl Name="CharacterPreview" Access="Public"/>
         <Label Name="ObjectivesLabel" Access="Public" Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center"/>
         <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public"/>
-        <BoxContainer Orientation="Vertical" Name="Minds" Access="Public"/>
         <cc:Placeholder Name="RolePlaceholder" Access="Public" PlaceholderText="{Loc 'character-info-roles-antagonist-text'}"/>
     </BoxContainer>
 </ui:CharacterOverviewControl>

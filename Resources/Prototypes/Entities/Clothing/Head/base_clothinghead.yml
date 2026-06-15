@@ -279,7 +279,8 @@
     zombificationResistanceCoefficient: 0.90
   - type: Armor # so zombification resistance shows up
     modifiers:
-      coefficients: { }
+      coefficients: # Starlight
+        Cold: 0.9 # Starlight, I mean, that's literally what they're for
   - type: GroupExamine
   - type: HideLayerClothing
     slots:

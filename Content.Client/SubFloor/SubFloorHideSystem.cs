@@ -44,7 +44,11 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
             if (_showVentPipe == value) return;
             _showVentPipe = value;
 
-            UpdateAll();
+            var ev = new ShowSubfloorRequestEvent()
+            {
+                Value = value,
+            };
+            RaiseNetworkEvent(ev);
         }
     }
 

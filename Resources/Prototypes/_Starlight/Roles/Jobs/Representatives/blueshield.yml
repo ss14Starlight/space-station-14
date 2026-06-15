@@ -18,8 +18,9 @@
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-centcom
+  supervisors: job-supervisors-nt-personnel
   canBeAntag: false
+  displayWeight: 4
   access:
     - Command
     - Bar

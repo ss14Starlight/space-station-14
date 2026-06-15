@@ -1,7 +1,7 @@
 ﻿{
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Made by TrixxedHeart, ported to Starlight from (https://github.com/moff-station/moff-station-14/pull/1094)",
+    "copyright": "Made by TrixxedHeart, ported to Starlight from (https://github.com/moff-station/moff-station-14/pull/1094) Belt and hand displacements by wonderfulnewworld (GitHub)",
     "size": {
         "x": 32,
         "y": 32
@@ -12,11 +12,39 @@
     "states": [
         {
             "name": "jumpsuit-kobold",
-            "directions": 4
+            "directions": 4,
+			"copyright": "TrixxedHeart",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "belt-kobold",
+            "directions": 4,
+			"copyright": "wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "hand-kobold",
+            "directions": 4,
+			"copyright": "wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
         },
         {
             "name": "jumpsuit-monkey",
-            "directions": 4
+            "directions": 4,
+			"copyright": "TrixxedHeart",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "belt-monkey",
+            "directions": 4,
+			"copyright": "wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
+        },
+		{
+            "name": "hand-monkey",
+            "directions": 4,
+			"copyright": "wonderfulnewworld",
+			"license": "CC-BY-SA-3.0"
         }
     ]
 }

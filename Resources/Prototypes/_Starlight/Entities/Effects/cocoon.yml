@@ -13,10 +13,10 @@
     canCollide: false
   - type: Sprite
     noRot: true
+    drawdepth: BelowMobs
     sprite: /Textures/_Starlight/Effects/cocoon.rsi
     layers:
     - state: large1
-      shader: unshaded
   - type: RandomSprite
     available:
     - 0:

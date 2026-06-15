@@ -95,3 +95,12 @@ ghost-role-information-terror-princess-description = You are a princess of terro
 
 ghost-role-information-smartcorgi-name = Smart Corgi
 ghost-role-information-smartcorgi-description = You are a dog that is more intelligent than its peers, capable of tool manipulation. Truly a miracle product of science. Unfortunately, while you understand people just fine, you only speak Dog.
+
+ghost-role-information-monkey-advanced-name = Advanced Monkey
+ghost-role-information-monkey-advanced-description = Why, I daresay I could go for a banana.
+
+ghost-role-information-kobold-advanced-name = Advanced Kobold
+ghost-role-information-kobold-advanced-description = You have a craving for filet mignon.
+
+ghost-role-information-kiki-name = Kiki
+ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.

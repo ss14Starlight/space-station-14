@@ -51,7 +51,6 @@ public sealed partial class TTSSystem : EntitySystem
 
         SubscribeLocalEvent<TextToSpeechComponent, EntitySpokeEvent>(OnEntitySpoke);
         SubscribeLocalEvent<RadioSpokeEvent>(OnRadioReceiveEvent);
-        SubscribeLocalEvent<CollectiveMindSpokeEvent>(OnCollectiveMindReceiveEvent);
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke);
     }
 
@@ -96,7 +95,7 @@ public sealed partial class TTSSystem : EntitySystem
             var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients)
                 .RemoveWhere(x => x.AttachedEntity.HasValue
                     && x.AttachedEntity != args.Source
-                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID));
+                    && !_language.CanUnderstand(x.AttachedEntity.Value, args.Language.ID, false));
             var voice = GetOrAssignVoice(args.Source);
             var channel = new ProtoId<RadioChannelPrototype>(args.Channel.ID);
             var languageradio = args.Channel == args.Language.Speech.RadioChannel;
@@ -112,31 +111,6 @@ public sealed partial class TTSSystem : EntitySystem
         catch (Exception ex)
         {
             _sawmill.Error($"TTS Radio error: {ex.Message}");
-        }
-    }
-
-    private async void OnCollectiveMindReceiveEvent(CollectiveMindSpokeEvent args)
-    {
-        if (!_isEnabled
-            || args.Message.Length > MaxChars)
-            return;
-
-        await Task.Yield();
-        try
-        {
-            var text = CleanText(args.Message);
-            var filter = Filter.Entities(args.Receivers).RemovePlayers(_ignoredRecipients);
-            var voice = GetOrAssignVoice(args.Source);
-
-            await GenerateAndStream(TTSType.Mind, voice, text, filter, TTSEffect.Underwater);
-        }
-        catch (TaskCanceledException ex)
-        {
-            _sawmill.Info($"TTS Mind was cancelled: {ex.Message}");
-        }
-        catch (Exception ex)
-        {
-            _sawmill.Error($"TTS Mind error: {ex.Message}");
         }
     }
 
