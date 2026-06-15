@@ -60,7 +60,7 @@ guide-entry-sl-non-crew-policies = Non-crew Policies
 guide-entry-sl-docking-and-visitors = Docking and Visitors
 guide-entry-sl-vessels = Vessels
 
-guide-entry-sl-nanotrasen-staff-handling-policies = NanoTrasen Staff Handling Policies
+guide-entry-sl-nanotrasen-staff-handling-policies = Staff Handling Policies
 guide-entry-sl-hiring-transfer-policies = Hiring / Transfer
 guide-entry-sl-firing-demotion-policies = Firing / Demotion
 guide-entry-sl-cause-for-demotion = Causes for Demotion and Dismissal
@@ -83,6 +83,8 @@ guide-entry-sl-security-sop-specialsituations = Special Situations
 guide-entry-rules-changeling-clause = Changeling Clause
 
 guide-entry-sl-legal-sop-intro = Legal
+guide-entry-sl-legal-sop-magistrate = Magistrate
+guide-entry-sl-legal-sop-iaa = Internal Affairs Agent
 
 guide-entry-sl-engineering-sop-intro = Engineering
 guide-entry-sl-engineering-sop-genproc-intro = General Procedures
@@ -130,12 +132,12 @@ guide-entry-sl-cargo-sop-handlingorders-medical = Medical Orders
 
 guide-entry-sl-science-sop-intro = Science
 
-guide-entry-sl-nano-trasen-employee-sop-intro = NanoTrasen Employee
-guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General Procedures
+guide-entry-sl-nano-trasen-employee-sop-intro = NT/TSF Employee
+guide-entry-sl-nano-trasen-employee-sop-genproc-intro = General NT/TSF Employee Procedures
 guide-entry-sl-nano-trasen-employee-sop-safety-protocol = Safety Protocol
-guide-entry-sl-nano-trasen-employee-sop-staff-intro = Staff Procedures
+guide-entry-sl-nano-trasen-employee-sop-staff-intro = NT/TSF Employee Staff Procedures
 guide-entry-sl-nano-trasen-employee-sop-nt-rep = NanoTrasen Representative
-guide-entry-sl-nano-trasen-employee-sop-bso = TSFO
+guide-entry-sl-nano-trasen-employee-sop-bso = TSF Officer
 guide-entry-sl-nano-trasen-employee-sop-magistrate = Magistrate
 guide-entry-sl-nano-trasen-employee-sop-iaa = Internal Affairs Agent
 guide-entry-sl-nano-trasen-employee-sop-nct = NanoTrasen Career Trainer

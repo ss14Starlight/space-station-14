@@ -1,0 +1,64 @@
+<Document>
+# Terraformer
+
+The [color=#c96dbf]Terraformer[/color] is a Science machine used to make hostile or barren surface areas more habitable. With power and biomass, it can improve nearby tiles, add breathable atmosphere, scrub unsafe gases, and award research points as it works.
+
+## Basic Use
+
+1. Build or place a Terraformer in the area you want to improve.
+2. Make sure it has power.
+3. Load it with [color=#57e389]biomass[/color].
+4. Let it run while it converts nearby valid tiles and stabilizes the area.
+
+The Terraformer works in a radius around itself. It does not instantly transform an entire zone; it slowly processes nearby tiles over time.
+
+## Research Points
+
+Every successfully terraformed tile grants research points to Science.
+
+This means Terraformers are useful both for exploration support and for generating additional research progress. If the Terraformer has no valid tiles to convert, it will not generate points from tile conversion.
+
+## Atmosphere
+
+A running Terraformer helps make its area breathable by adding oxygen and nitrogen until the local pressure is closer to standard atmosphere.
+
+It can also scrub selected unwanted gases, such as carbon dioxide, from nearby tiles.
+
+This does not replace normal atmospherics work. If the area is open to space, damaged, or poorly sealed, the Terraformer may struggle to maintain safe conditions.
+
+## Barriers
+
+Terraformers can create and maintain an atmospheric barrier around their working area.
+
+The barrier helps separate the terraformed zone from unsafe surroundings. Multiple Terraformers can work near each other and maintain a shared barrier outline.
+
+If a Terraformer loses power, is disabled, or is removed, nearby Terraformers may need a moment to repair or refresh the barrier network.
+
+## Saplings and Trees
+
+Botany can grow tree saplings for use with Terraformers.
+
+Current saplings include:
+- Oak saplings
+- Birch saplings
+- Spruce saplings
+
+To plant a tree with a Terraformer:
+
+1. Grow the appropriate tree seed in hydroponics.
+2. Harvest the sapling.
+3. Use the sapling on a Terraformer.
+4. The sapling will be loaded into the machine and consumed.
+5. After a short delay, a tree will grow on a valid nearby grass tile.
+
+Trees only grow on valid free tiles. If there is no suitable space nearby, the tree may fail to appear.
+
+## Tips
+
+- Keep the Terraformer powered.
+- Keep it supplied with biomass.
+- Use it in areas that can actually hold atmosphere.
+- Clear clutter and structures from nearby grass tiles if you want trees to grow.
+- Coordinate with Botany for saplings and with Engineering or Atmospherics for safe surface expansion.
+
+</Document>

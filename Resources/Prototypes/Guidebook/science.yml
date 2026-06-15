@@ -4,6 +4,7 @@
   text: "/ServerInfo/Guidebook/Science/Science.xml"
   children:
   - Technologies
+  - Terraformer
   - AnomalousResearch
   - Xenoarchaeology
   - Robotics
@@ -13,6 +14,11 @@
   name: guide-entry-technologies
   text: "/ServerInfo/Guidebook/Science/Technologies.xml"
   filterEnabled: True
+
+- type: guideEntry
+  id: Terraformer
+  name: guide-entry-terraformer
+  text: "/ServerInfo/Guidebook/Science/Terraformer.xml"
 
 - type: guideEntry
   id: AnomalousResearch

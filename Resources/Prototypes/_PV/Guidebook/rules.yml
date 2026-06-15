@@ -1,0 +1,91 @@
+- type: guideEntry
+  id: ProjectVerdantRuleset
+  name: guide-entry-pv-rules
+  ruleEntry: true
+  priority: 10
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdantRules.xml"
+  children:
+  - PVRule0
+  - PVRule1
+  - PVRule2
+  - PVRule3
+  - PVRule4
+  - PVRule5
+  - PVRule6
+  - PVRule7
+  - PVRule8
+  - PVRule9
+  - PVRule10
+  - PVRule11
+
+- type: guideEntry
+  id: PVRule0
+  name: guide-entry-pv-rule-0
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule0.xml"
+
+- type: guideEntry
+  id: PVRule1
+  name: guide-entry-pv-rule-1
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule1.xml"
+
+- type: guideEntry
+  id: PVRule2
+  name: guide-entry-pv-rule-2
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule2.xml"
+
+- type: guideEntry
+  id: PVRule3
+  name: guide-entry-pv-rule-3
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule3.xml"
+
+- type: guideEntry
+  id: PVRule4
+  name: guide-entry-pv-rule-4
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule4.xml"
+
+- type: guideEntry
+  id: PVRule5
+  name: guide-entry-pv-rule-5
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule5.xml"
+
+- type: guideEntry
+  id: PVRule6
+  name: guide-entry-pv-rule-6
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule6.xml"
+
+- type: guideEntry
+  id: PVRule7
+  name: guide-entry-pv-rule-7
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule7.xml"
+
+- type: guideEntry
+  id: PVRule8
+  name: guide-entry-pv-rule-8
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule8.xml"
+
+- type: guideEntry
+  id: PVRule9
+  name: guide-entry-pv-rule-9
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule9.xml"
+
+- type: guideEntry
+  id: PVRule10
+  name: guide-entry-pv-rule-10
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule10.xml"
+
+- type: guideEntry
+  id: PVRule11
+  name: guide-entry-pv-rule-11
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/ProjectVerdant/Rule11.xml"
