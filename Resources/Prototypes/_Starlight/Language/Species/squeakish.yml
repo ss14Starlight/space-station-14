@@ -1,6 +1,7 @@
 - type: language
   id: Squeakish
   icon: LanguageIconSqueakish
+  chatPrefix: rat
   speech:
     color: "#B09286" # MIKEY - needs new color
     fontId: Squeakish # MIKEY - needs custom font
