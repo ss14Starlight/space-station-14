@@ -30,9 +30,14 @@ public sealed class RummagerSystem : EntitySystem
 
     private void OnGetVerb(Entity<RummageableComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
+        Log.Warning("Rummager OnGetVerb hit");
         // Starlight start
         if (ent.Comp.Looted && _timing.CurTime >= ent.Comp.NextRummageTime)
+        {
             ent.Comp.Looted = false;
+            Dirty(ent, ent.Comp);
+            Log.Warning("Container looted expiry met, marking as unlooted.");
+        }
         // Starlight end
 
         if (!HasComp<RummagerComponent>(args.User))
@@ -48,7 +53,8 @@ public sealed class RummagerSystem : EntitySystem
             {
                 if (ent.Comp.Looted)
                 {
-                    _popup.PopupClient(Loc.GetString("rummage-already-looted"), user, user, PopupType.SmallCaution);
+                    Log.Warning("MESSAGE HERE THAT IS ALREADY LOOTED");
+                    _popup.PopupCursor(Loc.GetString("rummage-already-looted"), user, PopupType.SmallCaution);
                     return;
                 }
 
@@ -70,27 +76,29 @@ public sealed class RummagerSystem : EntitySystem
 
     private void OnDoAfterComplete(Entity<RummageableComponent> ent, ref RummageDoAfterEvent args)
     {
+        Log.Warning("Rummager OnDoAfterComplete hit");
         if (args.Cancelled || ent.Comp.Looted)
+        {
+            Log.Warning("DoAfterComplete, aborting");
             return;
+        }
 
-        // Starlight begin
+        // // Starlight begin
         // if (args.Cancelled)
         //     return;
         //
         // if (ent.Comp.Looted)
         // {
-        //     _popup.PopupClient(Loc.GetString("rummage-already-looted"), ent, ent, PopupType.SmallCaution);
+        //     _popup.PopupCursor(Loc.GetString("rummage-already-looted"), args.User, PopupType.SmallCaution);
         //     return;
         // }
         // // Starlight end
 
+        Log.Warning("DoAfterComplete, continuing.");
         ent.Comp.Looted = true;
         ent.Comp.NextRummageTime = _timing.CurTime + ent.Comp.LootResetDelay; // Starlight
         Dirty(ent, ent.Comp);
         _audio.PlayPredicted(ent.Comp.Sound, ent, args.User);
-
-        if (_net.IsClient)
-            return;
 
         var spawns = _entityTable.GetSpawns(ent.Comp.Table);
         var coordinates = Transform(ent).Coordinates;
