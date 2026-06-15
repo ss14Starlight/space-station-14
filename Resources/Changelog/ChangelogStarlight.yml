@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Oasis) Re-organized the crates so they're not as 'in the way' of walking paths to Armory.
-    type: Tweak
-  id: 405610
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Orwell) +6 suits to Security EVA storage (12 total).
-    type: Tweak
-  id: 405611
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
   - message: (Orwell) +1 Brigmedic.
     type: Tweak
   id: 405612
@@ -2799,4 +2785,18 @@ Entries:
   id: 406009
   time: '2026-06-15T08:55:54.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4784
+- author: 0warie
+  changes:
+  - message: Librarians now know Squeakish.
+    type: Fix
+  id: 406010
+  time: '2026-06-15T15:35:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4801
+- author: Caws
+  changes:
+  - message: (Space Mall) Advanced Plumbing cyborg module removed from Chemistry (this is a Science unlockable).
+    type: Remove
+  id: 406011
+  time: '2026-06-15T16:24:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4799
 Order: -1
