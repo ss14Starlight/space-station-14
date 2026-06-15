@@ -146,7 +146,7 @@ namespace Content.Client.Launcher
 
                 // Starlight start
                 _helpUrl = reason.Message.StringOf("url");
-                OpenUrlButton.Visible = _helpUrl != null;
+                OpenUrlButton.Visible = !string.IsNullOrEmpty(_helpUrl);
                 // Starlight end
 
                 if (reason.Message.Int32Of("delay") is { } delay)
