@@ -689,6 +689,7 @@ namespace Content.Server.Cargo.Systems
             seal.RecipientAccount = order.Account;
 
             var totalCost = order.Price * order.OrderQuantity;
+            seal.Value = order.Price; // Value of a single unit.
             seal.RewardSpesos = (int) Math.Floor(.1f * totalCost); // Rewards rounded down.
             seal.PenaltySpesos = (int) Math.Ceiling(.2f * totalCost); // Penalties rounded up.
             seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * totalCost); // Refunds rounded down.

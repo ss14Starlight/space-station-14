@@ -86,6 +86,12 @@ public sealed partial class TamperSealComponent : Component
     [DataField, AutoNetworkedField] public EntityUid RecipientStation = EntityUid.Invalid;
 
     /// <summary>
+    /// The value represented by this tamper seal. Only used for performance tracking.
+    /// Note that this represents the value of a single crate and not an entire order!
+    /// </summary>
+    [DataField, AutoNetworkedField] public int Value;
+
+    /// <summary>
     /// The ID of the account responsible for a successful delivery.
     /// </summary>
     [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> DelivererAccount = "Cargo";
