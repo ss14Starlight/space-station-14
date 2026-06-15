@@ -1,5 +1,5 @@
 - type: entity
-  parent: [MobBloodstream, MobFlammable, BaseMobSpecies]
+  parent: [MobBloodstream, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge] # Starlight
   id: BaseMobIPC
   name: Urist McRobot
   abstract: true
