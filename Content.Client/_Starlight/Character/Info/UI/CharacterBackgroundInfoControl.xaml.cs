@@ -27,7 +27,7 @@ public sealed partial class CharacterBackgroundInfoControl : Control
             ClearCharacter();
             return;
         }
-        BackgroundLabel.Text = "No background.";
+        BackgroundLabel.Text = Loc.GetString("character-info-background-none");
         Background.Text = null;
 
         if (!entityManager.TryGetComponent<TagComponent>(target, out var comp))
@@ -49,7 +49,7 @@ public sealed partial class CharacterBackgroundInfoControl : Control
         if (backgrounds.Count > 0)
         {
             backgrounds.Sort(StringComparer.CurrentCulture);
-            BackgroundLabel.Text = "Background:";
+            BackgroundLabel.Text = Loc.GetString("character-info-background-label");
             Background.Text = string.Join(", ", backgrounds);
         }
     }
