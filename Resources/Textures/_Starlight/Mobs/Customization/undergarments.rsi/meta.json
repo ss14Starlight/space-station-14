@@ -46,6 +46,34 @@
       {
         "name": "tanktop_avali",
         "directions": 4
+      },
+      {
+        "name": "briefs_rodentia",
+        "directions": 4
+      },
+      {
+        "name": "satin_rodentia",
+        "directions": 4
+      },
+      {
+        "name": "boxers_rodentia",
+        "directions": 4
+      },
+      {
+        "name": "classic_rodentia",
+        "directions": 4
+      },
+      {
+        "name": "sports_rodentia",
+        "directions": 4
+      },
+      {
+        "name": "binder_rodentia",
+        "directions": 4
+      },
+      {
+        "name": "tanktop_rodentia",
+        "directions": 4
       }
     ]
   }

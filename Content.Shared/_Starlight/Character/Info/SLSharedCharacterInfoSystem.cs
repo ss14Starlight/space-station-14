@@ -160,7 +160,7 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
                 Disabled = !detailsRange,
                 Message = detailsRange ? null : Loc.GetString("detail-examine-verb-disabled"),
                 Text = Loc.GetString("character-info-inspect-prompt"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"))
+                Icon = new SpriteSpecifier.Texture(new("/Textures/_Starlight/Interface/VerbIcons/examine-character-menu.png"))
             });
         }
 
@@ -221,7 +221,7 @@ public abstract class SLSharedCharacterInfoSystem : EntitySystem
                 Category = VerbCategory.Examine,
                 Disabled = !detailsRange,
                 Message = detailsRange ? null : Loc.GetString("exploitable-examine-verb-disabled"),
-                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/examine.svg.192dpi.png"))
+                Icon = new SpriteSpecifier.Texture(new("/Textures/_Starlight/Interface/VerbIcons/examine-exploitable.png"))
             });
         }
     }

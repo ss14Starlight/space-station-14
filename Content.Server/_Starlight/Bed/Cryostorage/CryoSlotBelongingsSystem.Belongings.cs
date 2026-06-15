@@ -1,4 +1,5 @@
 using Content.Shared.Access.Components;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Database;
 using Content.Shared.PDA;
 using Content.Shared.Storage;
@@ -10,6 +11,7 @@ public sealed partial class CryoSlotBelongingsSystem
     // grab top level worn and held items, nested stuff rides along with its container
     private List<EntityUid> CollectCryoItems(EntityUid body)
     {
+        ReturnAttachedClothingToParents(body);
         var items = new List<EntityUid>();
 
         var enumerator = _inventory.GetSlotEnumerator(body);
@@ -26,6 +28,42 @@ public sealed partial class CryoSlotBelongingsSystem
         }
 
         return items;
+    }
+
+    // make sure things like hardsuit helmets return back to the hardsuit
+    private void ReturnAttachedClothingToParents(EntityUid body)
+    {
+        var attachedItems = new List<EntityUid>();
+        var enumerator = _inventory.GetSlotEnumerator(body);
+
+        while (enumerator.NextItem(out var item, out _))
+        {
+            if (HasComp<AttachedClothingComponent>(item))
+                attachedItems.Add(item);
+        }
+
+        foreach (var item in attachedItems)
+        {
+            if (!TryComp<AttachedClothingComponent>(item, out var attached))
+                continue;
+
+            var parent = attached.AttachedUid;
+
+            // parent is gone
+            if (Deleted(parent) || !IsContainedBy(parent, body))
+                continue;
+            // parent cannot store toggleable comp
+            if (!TryComp<ToggleableClothingComponent>(parent, out var toggleable) || toggleable.Container == null)
+                continue;
+            // item is already inside the parent
+            if (toggleable.Container.ContainedEntity == item)
+                continue;
+            // try unequip it first so container metadata is cleared before it returns to the parent.
+            if (_inventory.TryUnequip(body, toggleable.Slot, force: true))
+                continue;
+
+            _container.Insert(item, toggleable.Container, force: true);
+        }
     }
 
     // pdas and id cards stay on the body, no point handing out someone else's access
