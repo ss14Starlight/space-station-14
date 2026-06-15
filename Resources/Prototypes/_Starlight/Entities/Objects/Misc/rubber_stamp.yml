@@ -470,7 +470,7 @@
   components:
     - type: Stamp
       stampedName: Reporter
-      stampedColor: "#0C1438"
+      stampedColor: "#4B75FF"
       stampState: "paper_stamp-psychologist"
     - type: Sprite
       state: stamp-hop
