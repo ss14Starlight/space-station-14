@@ -17,14 +17,12 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Examine;
 using Content.Shared.Localizations;
-using Robust.Shared.Timing;
 
 #region Starlight
-using Content.Shared._Starlight.Weapon;
-using Content.Shared.Weapons.Melee;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared._Starlight.Abstract.Extensions;
+using Robust.Shared.Timing;
 #endregion
 
 namespace Content.Shared.Weapons.Reflect;
