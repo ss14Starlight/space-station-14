@@ -76,20 +76,25 @@ public sealed class NightVisionSystem : EntitySystem
     /// <param name="uid">Entity to add nightvision to.</param>
     private void AttemptAddVision(EntityUid uid)
     {
-        if (_player.LocalSession?.AttachedEntity != uid) return;
+        if (_player.LocalSession?.AttachedEntity != uid)
+            return;
 
         // if they currently have flash immunity, don't add night vision
-        if (_flashImmunity.HasFlashImmunityVisionBlockers(uid)) return;
+        if (_flashImmunity.HasFlashImmunityVisionBlockers(uid))
+            return;
 
         // only add night vision if it's active
-        if (!TryComp<NightVisionComponent>(uid, out var nightVision) || !nightVision.Active) return;
+        if (!TryComp<NightVisionComponent>(uid, out var nightVision) || !nightVision.Active)
+            return;
 
         // some disabilities (like Nightblind) block night vision
         // some organs, like cyber eyes, can bypass disability - we'll check if the current organ ignores disabilities or not
-        if(HasComp<NightVisionBlockerComponent>(uid) && nightVision.DisabilityBlockable) return;
+        if(HasComp<NightVisionBlockerComponent>(uid) && nightVision.DisabilityBlockable)
+            return;
 
         // only add if effect isnt already used
-        if (_effect != null) return;
+        if (_effect != null)
+            return;
 
         _overlayMan.AddOverlay(_overlay);
 
