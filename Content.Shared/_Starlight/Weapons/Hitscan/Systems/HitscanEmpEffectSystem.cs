@@ -6,10 +6,10 @@ using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanEmpEffectSystem : EntitySystem
+public sealed partial class HitscanEmpEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedEmpSystem _emp = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedEmpSystem _emp = default!;
 
     public override void Initialize()
     {

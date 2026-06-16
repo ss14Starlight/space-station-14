@@ -9,10 +9,10 @@ namespace Content.Shared.Defects.Systems;
 /// Burns the wielder for a small amount of heat damage on every melee swing.
 /// Fires regardless of whether the attack connects - only use on Melee weapons
 /// </summary>
-public sealed class DamageUserDefectSystem : EntitySystem
+public sealed partial class DamageUserDefectSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

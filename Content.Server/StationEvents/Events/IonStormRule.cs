@@ -10,11 +10,11 @@ using Content.Shared._FarHorizons.Silicons.Glitching;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
+public sealed partial class IonStormRule : StationEventSystem<IonStormRuleComponent>
 {
-    [Dependency] private readonly IonStormSystem _ionStorm = default!;
-    [Dependency] private readonly GlitchingSystem _glitching = default!; // Far Horizons
-    [Dependency] private readonly ThavenMoodsSystem _thavenMood = default!; //Starlight
+    [Dependency] private IonStormSystem _ionStorm = default!;
+    [Dependency] private GlitchingSystem _glitching = default!; // Far Horizons
+    [Dependency] private ThavenMoodsSystem _thavenMood = default!; //Starlight
 
     protected override void Started(EntityUid uid, IonStormRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

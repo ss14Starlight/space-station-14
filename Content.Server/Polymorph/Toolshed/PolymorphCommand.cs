@@ -18,11 +18,11 @@ namespace Content.Server.Polymorph.Toolshed;
 ///     Polymorphs the given entity(s) into the target morph.
 /// </summary>
 [ToolshedCommand, AdminCommand(AdminFlags.Fun)]
-public sealed class PolymorphCommand : ToolshedCommand
+public sealed partial class PolymorphCommand : ToolshedCommand
 {
     private PolymorphSystem? _system;
     [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private readonly IComponentFactory _factory = default!; // Starlight
+    [Dependency] private IComponentFactory _factory = default!; // Starlight
 
     [CommandImplementation("proto")] // Starlight-edit
     public EntityUid? Polymorph(

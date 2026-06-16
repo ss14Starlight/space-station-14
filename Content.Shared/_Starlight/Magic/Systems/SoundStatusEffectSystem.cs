@@ -9,10 +9,10 @@ namespace Content.Shared._Starlight.Magic.Systems;
 /// <summary>
 ///     Plays sounds when a <see cref="SoundStatusEffectComponent" /> comes into effect and/or expires.
 /// </summary>
-public sealed class SoundStatusEffectSystem : EntitySystem
+public sealed partial class SoundStatusEffectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
 
     public override void Initialize()
     {

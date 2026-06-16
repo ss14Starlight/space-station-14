@@ -6,7 +6,7 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingTerminatorHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly TerminatorSystem _terminator = default!;
+    [Dependency] private TerminatorSystem _terminator = default!;
 
     public override void Initialize()
     {

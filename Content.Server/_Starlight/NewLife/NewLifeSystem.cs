@@ -14,11 +14,11 @@ using Content.Shared.Starlight.CCVar;
 namespace Content.Server.Ghost.Roles;
 
 [UsedImplicitly]
-public sealed class NewLifeSystem : EntitySystem
+public sealed partial class NewLifeSystem : EntitySystem
 {
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
 
     private readonly Dictionary<ICommonSession, NewLifeEui> _openUis = [];
     private readonly Dictionary<NetUserId, HashSet<int>> _roundCharactersUsed = [];
@@ -131,9 +131,9 @@ public sealed class NewLifeSystem : EntitySystem
 }
 
 [AnyCommand]
-public sealed class NewLife : IConsoleCommand
+public sealed partial class NewLife : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _e = default!;
+    [Dependency] private IEntityManager _e = default!;
 
     public string Command => "newlife";
     public string Description => "Opens the new life request window.";

@@ -74,22 +74,22 @@ using Content.Shared._Starlight.VentCrawl.Components;
 
 namespace Content.Server._Starlight.Achievement;
 
-public sealed class AchievementSystem : EntitySystem
+public sealed partial class AchievementSystem : EntitySystem
 {
-    [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayers = default!;
-    [Dependency] private readonly IAchievementRewardManager _achievementRewards = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private INullLinkPlayerManager _nullLinkPlayers = default!;
+    [Dependency] private IAchievementRewardManager _achievementRewards = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private ObjectivesSystem _objectives = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private static readonly TimeSpan _achievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
     private const int HauntedGhostFollowerThreshold = 20;
