@@ -14,10 +14,10 @@ namespace Content.Server._Starlight.Roles;
 /// This guarantees that RestrictByUserTag checks on wizard items always work correctly,
 /// regardless of the spawn path (roundstart, midround ghost role, admin force-make-antag, etc.).
 /// </summary>
-public sealed class WizardRoleSystem : EntitySystem
+public sealed partial class WizardRoleSystem : EntitySystem
 {
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static readonly ProtoId<TagPrototype> _wizardTag = "Wizard";
 

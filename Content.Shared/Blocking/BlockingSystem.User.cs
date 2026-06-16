@@ -15,10 +15,10 @@ namespace Content.Shared.Blocking;
 
 public sealed partial class BlockingSystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!; //Starlight
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!; //Starlight
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!; //Starlight
+    [Dependency] private ItemToggleSystem _itemToggle = default!; //Starlight
 
     private void InitializeUser()
     {

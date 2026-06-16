@@ -12,7 +12,7 @@ namespace Content.Client._Starlight.Character.Info.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CharacterBackgroundInfoControl : Control
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public CharacterBackgroundInfoControl()
     {

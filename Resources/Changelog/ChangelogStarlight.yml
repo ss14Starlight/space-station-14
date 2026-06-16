@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cog) Added CE suit storage tot ehir room, replaces having their hardsuit in their locker.
-    type: Tweak
-  id: 405658
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
-  - message: (Cog) Replaced the Magistrate locker with the correct variant.
-    type: Fix
-  id: 405659
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
-  - message: (Cog) Librarian's room is now service access.
-    type: Fix
-  id: 405660
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
   - message: (Cog) BSO's room is now NT access.
     type: Fix
   id: 405661
@@ -2799,4 +2778,25 @@ Entries:
   id: 406057
   time: '2026-06-16T15:34:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4751
+- author: Huaqas
+  changes:
+  - message: Displacement maps for Rodentia have been tweaked to hopefully remove all floating pixels.
+    type: Fix
+  id: 406058
+  time: '2026-06-16T16:08:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4821
+- author: Huaqas
+  changes:
+  - message: Belts, PDAs and Suit Storage items should now appear correctly on Rodentia.
+    type: Fix
+  id: 406059
+  time: '2026-06-16T16:08:57.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4821
+- author: Johnny
+  changes:
+  - message: Shoes no longer consume items that you're trying to put into them, they just reject you doing that now.
+    type: Fix
+  id: 406060
+  time: '2026-06-16T17:48:56.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4740
 Order: -1

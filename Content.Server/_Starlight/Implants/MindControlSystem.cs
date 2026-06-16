@@ -13,7 +13,7 @@ using Content.Shared.Emp;
 using Content.Shared.Mindshield.Components;
 
 namespace Content.Server._Starlight.Implants;
-public sealed partial class MindControlSystem : EntitySystem
+public sealed class MindControlSystem : EntitySystem
 {
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
@@ -53,6 +53,7 @@ public override void Initialize()
         }
         component.Master = args.User;
     }
+
     /// <summary>
     /// Event that is called when a mind control implant is used on a player
     /// </summary>
@@ -68,6 +69,7 @@ public override void Initialize()
         AssignTraitorObjectives(args.Implanted);
 
     }
+
     /// <summary>
     /// Event that is called when a mind control implant is extracted from a player
     /// </summary>
@@ -92,6 +94,7 @@ public override void Initialize()
         args.Affected = true;
         args.Disabled = true;
     }
+
     /// <summary>
     /// Attempts to remove the mind control component, objective, and role
     /// </summary>
@@ -113,6 +116,7 @@ public override void Initialize()
         _popup.PopupEntity(Loc.GetString("mind-control-user-freed"), uid, uid, PopupType.Medium);
 
     }
+
     /// <summary>
     /// Attempts to apply the mind controlled comp, objective, and role
     /// </summary>

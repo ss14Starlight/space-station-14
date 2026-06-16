@@ -10,11 +10,11 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 /// Fills a ballistic magazine at MapInit with a weighted-random mix of ammo types
 /// in shuffled order. Used for second-hand worn magazines.
 /// </summary>
-public sealed class MixedAmmoFillSystem : EntitySystem
+public sealed partial class MixedAmmoFillSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {

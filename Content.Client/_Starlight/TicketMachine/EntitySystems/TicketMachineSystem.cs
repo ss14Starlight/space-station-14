@@ -5,10 +5,10 @@ using Robust.Client.GameObjects;
 
 namespace Content.Client._Starlight.TicketMachine.EntitySystems;
 
-public sealed class TicketMachineSystem : SharedTicketMachineSystem
+public sealed partial class TicketMachineSystem : SharedTicketMachineSystem
 {
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

@@ -14,8 +14,8 @@ namespace Content.Client._Starlight.GhostTheme;
 public sealed partial class GhostThemeWindow : DefaultWindow
 {
     private readonly IClientPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
 
     private readonly ClientGameTicker _gameTicker;
     private readonly SpriteSystem _sprites;
