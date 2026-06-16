@@ -486,11 +486,11 @@ public sealed class NewsSystem : SharedNewsSystem
 
         comp.ReactedByArticle.Remove(articleNumber);
 
-        foreach (var (index, reactions) in comp.ReactedByArticle.ToArray())
+        foreach (var (index, reactions) in comp.ReactedByArticle
+                     .Where(entry => entry.Key > articleNumber)
+                     .OrderByDescending(entry => entry.Key)
+                     .ToArray())
         {
-            if (index <= articleNumber)
-                continue;
-
             comp.ReactedByArticle.Remove(index);
             comp.ReactedByArticle[index - 1] = reactions;
         }
