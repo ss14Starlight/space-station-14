@@ -7,3 +7,5 @@
     comps:
     - type: NightVision
       DisabilityBlockable: true
+    - type: FlashModifier
+      modifier: 2

@@ -21,6 +21,8 @@
     comps:
     - type: NightVision
       DisabilityBlockable: true
+    - type: FlashModifier
+      modifier: 2
   - type: OrganVisualization
     layer: Eyes
     prototypes:
