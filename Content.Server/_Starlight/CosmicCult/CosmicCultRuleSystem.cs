@@ -276,21 +276,41 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void StewardVote()
     {
-        var cultists = new List<(string, EntityUid)>();
+        var ruleQuery = QueryActiveRules();
+        var foundRule = false;
 
-        var cultQuery = EntityQueryEnumerator<CosmicCultComponent, MetaDataComponent>();
-        while (cultQuery.MoveNext(out var cult, out _, out var metadata))
+        while (ruleQuery.MoveNext(out var ruleUid, out var activeRuleComp, out var rule, out var gameRule))
         {
-            if (!_mind.TryGetMind(cult, out var mindId, out var mind) ||
-                !_playerMan.TryGetSessionById(mind.UserId, out _))
+            foundRule = true;
+
+            // Once the Monument is placed there are no more votes
+            if (rule.CurrentTier > 0)
+                return;
+
+            break;
+        }
+
+        if (!foundRule)
+            return;
+
+        var cultists = new List<(string, EntityUid)>();
+        var cultQuery = EntityQueryEnumerator<CosmicCultComponent, MetaDataComponent>();
+
+        while (cultQuery.MoveNext(out var cultist, out _, out var metadata))
+        {
+            if (!IsValidStewardCandidate(cultist))
                 continue;
 
-            var playerInfo = metadata.EntityName;
-            cultists.Add((playerInfo, cult));
+            cultists.Add((metadata.EntityName, cultist));
         }
 
         if (cultists.Count == 0)
+        {
+            _sawmill.Info("Steward vote started, but found no valid living non-leader cultist candidates.");
             return;
+        }
+
+        _sawmill.Info("Starting steward vote with {0} valid candidate(s).", cultists.Count);
 
         var options = new VoteOptions
         {
@@ -302,27 +322,41 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
         foreach (var (name, ent) in cultists)
         {
-            options.Options.Add((Loc.GetString(name), ent));
+            options.Options.Add((name, ent));
         }
 
         var vote = _votes.CreateVote(options);
 
-        vote.OnFinished += (_, args) =>
+        vote.OnFinished += (voteHandle, args) =>
         {
-            EntityUid picked;
-            if (args.Winner == null)
+            if (args.Winner == null && !args.Winners.Any())
+                return;
+
+            var picked = args.Winner == null
+                ? (EntityUid) _rand.Pick(args.Winners)
+                : (EntityUid) args.Winner;
+
+            if (!IsValidStewardCandidate(picked))
             {
-                picked = (EntityUid)_rand.Pick(args.Winners);
+                var activeRuleQuery = QueryActiveRules();
+                while (activeRuleQuery.MoveNext(out var activeRuleUid, out var activeRuleComp2, out var activeRule, out var activeGameRule))
+                {
+                    if (activeRule.CurrentTier > 0)
+                        return;
+
+                    activeRule.StewardVoteTimer ??= _timing.CurTime + _voteDelay;
+                    break;
+                }
+
+                return;
             }
-            else
-            {
-                picked = (EntityUid)args.Winner;
-            }
+
             EnsureComp<CosmicCultLeadComponent>(picked);
             _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Cult stewardship vote finished: {Identity.Entity(picked, EntityManager)} is now steward.");
             _antag.SendBriefing(picked, Loc.GetString("cosmiccult-vote-steward-briefing"), Color.FromHex("#4cabb3"), _monumentAlert);
         };
     }
+
     private void SpawnRift()
     {
         if (TryFindRandomTile(out var _, out var _, out var _, out var coords))
@@ -429,11 +463,17 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
 
     private void OnMobStateChanged(Entity<CosmicCultComponent> ent, ref MobStateChangedEvent args)
     {
+        if (HasComp<CosmicCultLeadComponent>(ent) && _mobStateSystem.IsDead(ent))
+        {
+            RemCompDeferred<CosmicCultLeadComponent>(ent);
+            TryQueueStewardRevote(ent, removeStewardComp: false);
+        }
+
         if (CultistsAlive())
             return;
 
         var query = QueryActiveRules();
-        while (query.MoveNext(out var ruleUid, out _, out var ruleComp, out _))
+        while (query.MoveNext(out var ruleUid, out var _, out var ruleComp, out var _))
         {
             ConfirmWinState((ruleUid, ruleComp));
         }
@@ -449,7 +489,7 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         {
             if (cultistLocation.MapUid != null && centcomm.Contains(cultistLocation.MapUid.Value))
             {
-                if (HasComp<CosmicCultLeadComponent>(cultist))
+                if (HasComp<CosmicCultLeadComponent>(cultist) && _mobStateSystem.IsAlive(cultist))
                     leaderAlive = true;
             }
         }
@@ -644,24 +684,9 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         if (HasComp<CosmicBlankComponent>(ent)) // Their mind got artificially removed, don't start a revote.
             return;
 
-        var sender = Loc.GetString("cosmiccult-announcement-sender");
-        var cultistsList = new List<EntityUid>();
-        var query = EntityQueryEnumerator<CosmicCultComponent>();
-
-        while (query.MoveNext(out var cultist, out _))
-        {
-            if (TryComp<CosmicCultLeadComponent>(cultist, out _))
-                continue;
-            cultistsList.Add(cultist);
-        }
-
         // remove the comp. If they died and ghosted and come back to their body they will no longer be the leader.
         RemCompDeferred<CosmicCultLeadComponent>(ent);
-
-        var allCultists = Filter.Empty().FromEntities(cultistsList.ToArray<EntityUid>());
-        _chatSystem.DispatchFilteredAnnouncement(allCultists, Loc.GetString("cosmiccult-leader-abandonment-message"), sender: sender, playSound: false, colorOverride: Color.FromHex("#4eb1b1"));
-
-        Timer.Spawn(_voteDelay, StewardVote);
+        TryQueueStewardRevote(ent, removeStewardComp: false);
     }
 
     #region De- & Conversion
@@ -807,16 +832,95 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
         UpdateCultData(cult.Comp.MonumentInGame);
     }
 
+    private bool IsValidStewardCandidate(EntityUid uid)
+        => HasComp<CosmicCultComponent>(uid)
+            && !HasComp<CosmicCultLeadComponent>(uid)
+            && _mobStateSystem.IsAlive(uid)
+            && _mind.TryGetMind(uid, out _, out var mind) &&
+                _playerMan.TryGetSessionById(mind.UserId, out _);
+
+    private bool TryQueueStewardRevote(
+        EntityUid oldSteward,
+        Entity<CosmicCultRuleComponent>? rule = null,
+        bool removeStewardComp = true)
+    {
+        var cult = rule ?? AssociatedGamerule(oldSteward);
+
+        if (cult is not { } cultRule)
+        {
+            _sawmill.Info("Did not queue steward revote for {0}: no associated cult rule.", ToPrettyString(oldSteward));
+            return false;
+        }
+
+        if (cultRule.Comp.CurrentTier > 0)
+        {
+            _sawmill.Info(
+                "Did not queue steward revote for {0}: monument is already placed, tier {1}.",
+                ToPrettyString(oldSteward),
+                cultRule.Comp.CurrentTier);
+            return false;
+        }
+
+        // Stop duplicate revotes.
+        if (cultRule.Comp.StewardVoteTimer != null)
+        {
+            _sawmill.Info(
+                "Did not queue steward revote for {0}: steward vote timer is already pending for {1}.",
+                ToPrettyString(oldSteward),
+                cultRule.Comp.StewardVoteTimer);
+            return false;
+        }
+
+        if (removeStewardComp && HasComp<CosmicCultLeadComponent>(oldSteward))
+            RemCompDeferred<CosmicCultLeadComponent>(oldSteward);
+
+        var cultistsList = new List<EntityUid>();
+        var query = EntityQueryEnumerator<CosmicCultComponent>();
+
+        while (query.MoveNext(out var cultist, out _))
+        {
+            if (cultist == oldSteward)
+                continue;
+
+            cultistsList.Add(cultist);
+        }
+
+        var sender = Loc.GetString("cosmiccult-announcement-sender");
+        var allCultists = Filter.Empty().FromEntities([.. cultistsList]);
+
+        _sawmill.Info(
+            "Queued steward revote for old steward {0}. Vote starts at {1}, delay {2}, tier {3}, notified cultists {4}.",
+            ToPrettyString(oldSteward),
+            _timing.CurTime + _voteDelay,
+            _voteDelay,
+            cultRule.Comp.CurrentTier,
+            cultistsList.Count);
+
+        _chatSystem.DispatchFilteredAnnouncement(
+            allCultists,
+            Loc.GetString("cosmiccult-leader-abandonment-message"),
+            sender: sender,
+            playSound: false,
+            colorOverride: Color.FromHex("#4eb1b1"));
+
+        cultRule.Comp.StewardVoteTimer = _timing.CurTime + _voteDelay;
+        return true;
+    }
+
     private void OnComponentShutdown(Entity<CosmicCultComponent> uid, ref ComponentShutdown args)
     {
         if (AssociatedGamerule(uid) is not { } cult)
             return;
 
+        var wasSteward = HasComp<CosmicCultLeadComponent>(uid);
         var cosmicGamerule = cult.Comp;
 
         var isDeleting = TerminatingOrDeleted(uid.Owner);
         if (isDeleting)
         {
+            if (wasSteward)
+                TryQueueStewardRevote(uid.Owner, cult, removeStewardComp: false);
+
             cosmicGamerule.TotalCult--;
             cosmicGamerule.Cultists.Remove(uid);
             AdjustCultObjectiveConversion(-1);
@@ -824,11 +928,16 @@ public sealed partial class CosmicCultRuleSystem : GameRuleSystem<CosmicCultRule
             return;
         }
 
+        if (wasSteward)
+        {
+            TryQueueStewardRevote(uid.Owner, cult, removeStewardComp: false);
+            RemComp<CosmicCultLeadComponent>(uid);
+        }
+
         _stun.TryAddStunDuration(uid.Owner, TimeSpan.FromSeconds(2));
         foreach (var actionEnt in uid.Comp.ActionEntities) _actions.RemoveAction(actionEnt);
 
         _languageSystem.RemoveLanguage(uid.Owner, _cultLanguage);
-        RemComp<CosmicCultLeadComponent>(uid);
         RemComp<InfluenceVitalityComponent>(uid);
         RemComp<InfluenceStrideComponent>(uid);
         RemComp<PressureImmunityComponent>(uid);
