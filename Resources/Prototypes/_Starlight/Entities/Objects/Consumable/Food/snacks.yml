@@ -64,3 +64,49 @@
   - type: Tag
     tags:
     - Trash
+
+- type: entity
+  parent: FoodInjectableBase
+  id: FoodLollipopPlain
+  name: lollipop
+  description: A sugary treat on a stick. Make sure to add some flavoring!
+  components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    layers:
+    - state: white_lollipop
+    - state: white_lollipop_fill_1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    size: Small
+    storedRotation: -45
+    storedOffset: 0,-1
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+          - ReagentId: Sugar
+            Quantity: 10
+  - type: RefillableSolution
+    solution: food
+  - type: SolutionContainerVisuals
+    maxFillLevels: 2
+    fillBaseName: white_lollipop_fill_
+    solutionName: food
+    changeColor: true
+    inHandsMaxFillLevels: 2
+    inHandsFillBaseName: _fill_
+  - type: Appearance
+  - type: Tag
+    tags:
+    - FoodSnack
+  - type: Clothing
+    sprite: _Starlight/Objects/Consumable/Food/lollipop.rsi
+    equippedPrefix: white_lollipop
+    slots: [ mask ]

@@ -1,0 +1,84 @@
+- type: listing # Starlight
+  id: UplinkEnergyDomeSyndie
+  name: uplink-energy-dome-name
+  description: uplink-energy-dome-desc
+  productEntity: EnergyDomeGeneratorPersonalSyndie
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkWearables
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+
+- type: listing
+  id: UplinkHardsuitInfiltration
+  name: uplink-hardsuit-infiltration-name
+  description: uplink-hardsuit-infiltration-desc
+  icon:
+    {
+      sprite: /Textures/_Starlight/Clothing/OuterClothing/Hardsuits/infiltrationsyndie.rsi,
+      state: icon,
+    }
+  productEntity: ClothingBackpackDuffelSyndicateFilledInfiltration
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkSatchelSyndicate
+  name: uplink-satchel-syndicate-name
+  description: uplink-satchel-syndicate-desc
+  productEntity: ClothingBackpackSatchelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 3
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkDuffelSyndicate
+  name: uplink-duffel-syndicate-name
+  description: uplink-duffel-syndicate-desc
+  productEntity: ClothingBackpackDuffelSyndicate
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkClothingThievingGloves
+  name: uplink-clothing-chameleon-thieving-gloves-name
+  description: uplink-clothing-chameleon-thieving-gloves-desc
+  productEntity: ClothingHandsChameleonThief
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 7
+  cost:
+    Telecrystal: 10
+  categories:
+    - UplinkWearables
+
+- type: listing
+  id: UplinkClothingOuterArmorBasic
+  name: uplink-clothing-outer-armor-basic-name
+  description: uplink-clothing-outer-armor-basic-desc
+  productEntity: ClothingOuterArmorBasic
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2 #SL / Rebalanced pricing: Armor Vest 2, Web Vest 3, Elite Web vest 4
+  cost:
+    Telecrystal: 3 #SL / Rebalanced pricing: Armor Vest 3, Web Vest 4, Elite Web vest 5
+  categories:
+    - UplinkWearables

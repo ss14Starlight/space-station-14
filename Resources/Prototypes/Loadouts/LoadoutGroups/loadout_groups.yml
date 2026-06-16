@@ -1762,10 +1762,11 @@
   id: ReporterJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
-  maxLimit: 2 # Starlight
+  maxLimit: 3 # Starlight
   loadouts:
   - LizardPlushieReporter
   - DigiboardMassMedia # Starlight
+  - HoloReporterPin # Starlight
 
 - type: loadoutGroup
   id: PsychologistJumpsuit
