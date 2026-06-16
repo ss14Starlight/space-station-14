@@ -1,7 +1,6 @@
 ﻿using Content.Server.Antag;
 using Content.Server.Popups;
 using Content.Shared.Implants;
-using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Shared.Mind;
 using Content.Shared.Popups;
@@ -14,15 +13,14 @@ using Content.Shared.Emp;
 using Content.Shared.Mindshield.Components;
 
 namespace Content.Server._Starlight.Implants;
-public sealed class MindControlSystem : EntitySystem
+public sealed partial class MindControlSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private SharedStaminaSystem _staminaSystem = default!;
+    [Dependency] private RoleSystem _role = default!;
 
 public override void Initialize()
     {
