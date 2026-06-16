@@ -165,7 +165,7 @@
   name: Mind Controlled Role
   components:
   - type: MindRole
-    antagPrototype: MindControlledProto
+    antagPrototype: MindControlled
     roleType: TeamAntagonist
     subtype: role-subtype-mind-controlled
   - type: MindControl

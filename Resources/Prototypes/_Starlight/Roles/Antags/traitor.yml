@@ -1,5 +1,5 @@
 - type: antag
-  id: MindControlledProto
+  id: MindControlled
   name: roles-antag-mind-controlled-name
   antagonist: true
   setPreference: false

@@ -63,12 +63,7 @@ public override void Initialize()
         if (!TryComp<ActorComponent>(args.Implanted, out var actor))
             return;
 
-        var masterName = "Unknown";
-        if (TryGetNetEntity(component.Master, out var entity)
-            && TryGetEntityData(entity.Value, out _, out var meta))
-        {
-            masterName = meta.EntityName;
-        }
+        var masterName = Exists(component.Master) ? Name(component.Master) : "Unknown";
 
         _antag.SendBriefing(actor.PlayerSession, Loc.GetString(component.BriefingText, ("master-name", masterName)), null, component.BriefingSound);
         _status.TryAddStatusEffectDuration(args.Implanted, "StatusEffectForcedSleeping", TimeSpan.FromSeconds(2));
