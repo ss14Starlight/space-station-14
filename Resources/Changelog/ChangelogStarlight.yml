@@ -1,62 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Orwell) +6 suits to Security EVA storage (12 total).
-    type: Tweak
-  id: 405611
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Orwell) +1 Brigmedic.
-    type: Tweak
-  id: 405612
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Orwell) +1 Detective.
-    type: Tweak
-  id: 405613
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Orwell) Handcuffs removed from Bridge.
-    type: Remove
-  id: 405614
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Packed) Minor tweaks to SEC.
-    type: Tweak
-  id: 405615
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Prism) +2 suits to Security Armory (total 6).
-    type: Tweak
-  id: 405616
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Prism) Minor tweaks to Armory layout.
-    type: Tweak
-  id: 405617
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Prism) Lawyers no longer get stuck in the Courtroom where they spawn.
-    type: Fix
-  id: 405618
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
   - message: (Reach) +2 suits to Security.
     type: Tweak
   id: 405619
@@ -2799,4 +2743,60 @@ Entries:
   id: 406010
   time: '2026-06-15T15:35:00.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4801
+- author: Caws
+  changes:
+  - message: (Space Mall) Advanced Plumbing cyborg module removed from Chemistry (this is a Science unlockable).
+    type: Remove
+  id: 406011
+  time: '2026-06-15T16:24:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4799
+- author: Vincolan
+  changes:
+  - message: Added Holopin.
+    type: Add
+  id: 406012
+  time: '2026-06-15T17:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4770
+- author: Vincolan
+  changes:
+  - message: Added Reporter Stamp.
+    type: Add
+  id: 406013
+  time: '2026-06-15T17:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4770
+- author: Vincolan
+  changes:
+  - message: Added Reporter Press vest.
+    type: Add
+  id: 406014
+  time: '2026-06-15T17:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4770
+- author: Vincolan
+  changes:
+  - message: Added Reporter Time requirement of 4 Hours.
+    type: Add
+  id: 406015
+  time: '2026-06-15T17:00:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4770
+- author: Mintly-Fresh
+  changes:
+  - message: Added the Mezo Cyborg Chassis line, with 7 dinosaur-themed chassis types. Dino-lovers rejoice!
+    type: Add
+  id: 406016
+  time: '2026-06-15T17:24:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4792
+- author: 0warie
+  changes:
+  - message: Correctly show "Hunted" background trait in character menu.
+    type: Fix
+  id: 406017
+  time: '2026-06-16T08:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4802
+- author: 0warie
+  changes:
+  - message: Display all background traits in character menu instead of first to resolve.
+    type: Fix
+  id: 406018
+  time: '2026-06-16T08:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4802
 Order: -1
