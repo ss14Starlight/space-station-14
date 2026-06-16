@@ -232,3 +232,67 @@
           reagent: Infernaline
           amount: -0.5
           # Starlight-End
+
+- type: reagent
+  id: Briomadine
+  name: reagent-name-briomadine
+  group: Medicine
+  desc: reagent-desc-briomadine
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#ffd275"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Brute: -3.0
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1.5
+            Poison: 3.0
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 40
+        probability: 0.02
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 20
+      - !type:Drunk
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Briomadine
+        amount: -0.5
+
+- type: reagent
+  id: Acrileni
+  name: reagent-name-acrileni
+  group: Medicine
+  desc: reagent-desc-acrileni
+  physicalDesc: reagent-physical-desc-resinfera
+  flavor: medicine
+  color: "#99ff33"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Piercing: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Acrileni
+        amount: -0.5

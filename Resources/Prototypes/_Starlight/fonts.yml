@@ -46,6 +46,10 @@
   id: Cosmic
   path: /Fonts/_Starlight/Cosmic.otf
 
+- type: font
+  id: Squeakish
+  path: /Fonts/_Starlight/Squeakish.otf
+
 # DotMatrix
 - type: font
   id: DotMatrix

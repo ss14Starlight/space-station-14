@@ -33,6 +33,10 @@
   id: Resomi
   name: metabolizer-type-resomi
 
+- type: metabolizerType #🌟Starlight🌟
+  id: Rodentia
+  name: metabolizer-type-rodentia
+
 - type: metabolizerType
   id: Vox
   name: metabolizer-type-vox

@@ -34,7 +34,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly NullSpacePhaseSystem _phaseSystem = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cosmicCult = default!;
+    [Dependency] private CosmicCultRuleSystem _cosmicCult = default!;
     [Dependency] private readonly VisibilitySystem _visibility = default!;
 
     public override void Initialize()
