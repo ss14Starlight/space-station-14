@@ -69,10 +69,10 @@ public sealed partial class TemperatureSystem
         _thermalRegulatorQuery = GetEntityQuery<ThermalRegulatorComponent>();
     }
 
+    #region Starlight Edit
+    // Collection modified during Enumeration fix
     private void UpdateDamage()
     {
-        #region Starlight Edit
-        // Starlight Edit: Collection modified during Enumeration fix
         _shouldUpdateDamageBuffer.Clear();
         _shouldUpdateDamageBuffer.AddRange(ShouldUpdateDamage);
         ShouldUpdateDamage.Clear();
@@ -91,11 +91,11 @@ public sealed partial class TemperatureSystem
                 continue;
 
             ChangeDamage((entity.Owner, tempDamage), deltaTime);
-        #endregion
         }
 
         // ShouldUpdateDamage.Clear(); // Starlight Edit: Moved up
     }
+    #endregion
 
     private void ChangeDamage(Entity<TemperatureDamageComponent> entity, TimeSpan deltaTime)
     {
