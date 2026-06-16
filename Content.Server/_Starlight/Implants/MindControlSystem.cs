@@ -63,13 +63,14 @@ public override void Initialize()
         if (!TryComp<ActorComponent>(args.Implanted, out var actor))
             return;
 
-        if (!TryGetNetEntity(component.Master, out var entity) && !entity.HasValue)
-            return;
+        var masterName = "Unknown";
+        if (TryGetNetEntity(component.Master, out var entity)
+            && TryGetEntityData(entity.Value, out _, out var meta))
+        {
+            masterName = meta.EntityName;
+        }
 
-        if (!TryGetEntityData(entity.Value, out _, out var meta))
-            return;
-
-        _antag.SendBriefing(actor.PlayerSession, Loc.GetString(component.BriefingText, ("master-name", meta.EntityName)), null, component.BriefingSound);
+        _antag.SendBriefing(actor.PlayerSession, Loc.GetString(component.BriefingText, ("master-name", masterName)), null, component.BriefingSound);
         _status.TryAddStatusEffectDuration(args.Implanted, "StatusEffectForcedSleeping", TimeSpan.FromSeconds(2));
         AssignTraitorObjectives(args.Implanted);
 
