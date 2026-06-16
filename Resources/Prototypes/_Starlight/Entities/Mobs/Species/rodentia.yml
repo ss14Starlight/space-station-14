@@ -132,7 +132,7 @@
     size: Huge
     allowDirectHandPickup: false
     shape:
-      - 0, 0, 5, 3
+      - 0, 0, 3, 1
   - type: VisualPickupable
     offsetFront: -0.16, -0.12
     offsetBack: -0.16, 0.05
