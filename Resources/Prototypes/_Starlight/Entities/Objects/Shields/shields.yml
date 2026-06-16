@@ -393,3 +393,102 @@
           Heat: 7
     - type: StaticPrice
       price: 350
+
+- type: entity
+  name: greenlight shield
+  parent: [BaseItem, BaseCentcommContraband ]
+  id: GreenLightShield
+  categories: [ DoNotMap ]
+  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  components:
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Weapons/ebladeon.ogg
+      soundDeactivate:
+        path: /Audio/Weapons/ebladeoff.ogg
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Weapons/ebladehum.ogg
+    - type: ItemToggleSize
+      activatedSize: Huge
+    - type: ComponentToggler
+      components:
+        - type: DisarmMalus
+          malus: 0.6
+    - type: Clothing
+      quickEquip: false
+      slots:
+      - Belt
+      - suitStorage
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
+      layers:
+        - state: off-icon
+        - state: on-icon
+          color: "#FFFFFF"
+          visible: false
+          shader: unshaded
+          map: [ "shield" ]
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
+      heldPrefix: greenlight_shield-off
+    - type: UseDelay
+      delay: 0.5
+    - type: ToggleableVisuals
+      spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: greenlight_shield-on-inhand-left
+            shader: unshaded
+        right:
+          - state: greenlight_shield-on-inhand-right
+            shader: unshaded
+    - type: ItemTogglePointLight
+    - type: Reflect
+      reflectProb: 0.50
+      reflects:
+        - Energy
+      reflectEnergyDraw: 80 # final stat TBD
+    - type: Appearance
+    - type: PointLight
+      netsync: false
+      enabled: false
+      radius: 2
+      energy: 3
+      color: "#439909"
+      castShadows: false #SL lighting optimization
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellSmallNuclear
+          locked: true
+    - type: ForceQuickDraw
+    - type: ToggleCellDraw
+    - type: PowerCellDraw
+      drawRate: 2  # watts while active # final stat TBD
+    - type: Blocking # Stats TBD
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.9
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 1.2
+          Slash: 0.85
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 10 #Final stat STB
+    - type: Damageable
+      damageContainer: Shield
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
