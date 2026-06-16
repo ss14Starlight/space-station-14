@@ -49,6 +49,7 @@
     comps:
     # - type: CycloriteVision
     - type: NightVision
+      DisabilityBlockable: true
   - type: OrganVisualization
     layer: Eyes
     prototypes:
