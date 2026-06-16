@@ -1,32 +1,4 @@
 Entries:
-- author: Mack
-  changes:
-  - message: Fixed issue with secure terminal requests charging money when it isn't approved.
-    type: Fix
-  id: 405645
-  time: '2026-06-07T17:30:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4666
-- author: Mack
-  changes:
-  - message: a recalled ERT/Armory will refund 80% of the cost.
-    type: Tweak
-  id: 405646
-  time: '2026-06-07T17:30:40.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4666
-- author: Johnny
-  changes:
-  - message: New stamp box holding warden's essential stamps, spawns in their lockers.
-    type: Add
-  id: 405647
-  time: '2026-06-08T16:07:33.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4686
-- author: Rinary
-  changes:
-  - message: Fixed manifold offset in vent crawling.
-    type: Fix
-  id: 405648
-  time: '2026-06-08T17:56:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4575
 - author: Rinary
   changes:
   - message: Predicted vent crawling update, so now it's will be even more smoother.
@@ -2799,4 +2771,32 @@ Entries:
   id: 406044
   time: '2026-06-16T10:27:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: CrazyPhantom
+  changes:
+  - message: The rules tab is now near the top of the guidebook.
+    type: Tweak
+  id: 406045
+  time: '2026-06-16T12:07:12.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4820
+- author: AegisShield
+  changes:
+  - message: Fixed Xenoroaches having flash immunity.
+    type: Fix
+  id: 406046
+  time: '2026-06-16T12:07:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4817
+- author: AegisShield
+  changes:
+  - message: Fixed Xenoroaches having full vision in pipes.
+    type: Fix
+  id: 406047
+  time: '2026-06-16T12:07:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4817
+- author: CrazyPhantom
+  changes:
+  - message: Fixed a server-side bug that Is likely the cause for Xenoborg Lag.
+    type: Fix
+  id: 406048
+  time: '2026-06-16T12:55:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4819
 Order: -1
