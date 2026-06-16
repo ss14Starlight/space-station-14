@@ -14,13 +14,13 @@ namespace Content.Server._Starlight.Power.EntitySystems;
 /// <summary>
 /// Allows cables to connect over docks.
 /// </summary>
-public sealed class CableDockingSystem : EntitySystem
+public sealed partial class CableDockingSystem : EntitySystem
 {
     #region Dependencies
 
-    [Dependency] public readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] public SharedMapSystem _mapSystem = default!;
+    [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
 
     private readonly List<CableNode> _dockACables = [];
     private readonly List<CableNode> _dockBCables = [];

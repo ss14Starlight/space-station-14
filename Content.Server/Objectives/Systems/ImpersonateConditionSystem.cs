@@ -9,11 +9,11 @@ namespace Content.Server.Objectives.Systems;
 /// <summary>
 ///     Handles escaping on the shuttle while being another person detection.
 /// </summary>
-public sealed class ImpersonateConditionSystem : EntitySystem
+public sealed partial class ImpersonateConditionSystem : EntitySystem
 {
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
     {

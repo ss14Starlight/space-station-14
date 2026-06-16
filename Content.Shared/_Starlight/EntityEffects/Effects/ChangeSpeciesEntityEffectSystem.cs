@@ -9,7 +9,7 @@ namespace Content.Shared._Starlight.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class ChangeSpeciesEntityEffectSystem : EntityEffectSystem<HumanoidAppearanceComponent, ChangeSpecies>
 {
-    [Dependency] private readonly SharedHumanoidAppearanceSystem _sharedHumanoidAppearanceSystem = default!;
+    [Dependency] private SharedHumanoidAppearanceSystem _sharedHumanoidAppearanceSystem = default!;
 
     protected override void Effect(Entity<HumanoidAppearanceComponent> entity, ref EntityEffectEvent<ChangeSpecies> args) => _sharedHumanoidAppearanceSystem.SetSpecies(entity.Owner, args.Effect.Species, true, entity.AsNullable());
 }

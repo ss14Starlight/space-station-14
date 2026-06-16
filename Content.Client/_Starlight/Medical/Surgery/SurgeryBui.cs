@@ -18,11 +18,11 @@ namespace Content.Client._Starlight.Medical.Surgery;
 // https://github.com/RMC-14/RMC-14
 
 [UsedImplicitly]
-public sealed class SurgeryBui : BoundUserInterface
+public sealed partial class SurgeryBui : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IGameTiming _game = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IGameTiming _game = default!;
 
     private readonly StarlightEntitySystem _entitySystem;
     private readonly SurgerySystem _system;

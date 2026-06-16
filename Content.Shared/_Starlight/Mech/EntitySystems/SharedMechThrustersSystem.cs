@@ -14,8 +14,8 @@ namespace Content.Shared._Starlight.Mech.EntitySystems;
 /// </summary>
 public sealed partial class SharedMechThrustersSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

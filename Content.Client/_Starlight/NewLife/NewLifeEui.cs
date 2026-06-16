@@ -7,9 +7,9 @@ using JetBrains.Annotations;
 namespace Content.Client._Starlight.NewLife;
 
 [UsedImplicitly]
-public sealed class NewLifeEui : BaseEui
+public sealed partial class NewLifeEui : BaseEui
 {
-    [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
+    [Dependency] private IClientPreferencesManager _preferencesManager = default!;
 
     private readonly NewLifeWindow _window;
 

@@ -24,12 +24,12 @@ namespace Content.Shared._Starlight.Character.Info;
 /// <summary>
 /// Handles reading/writing character info (like custom descriptions, secrets, etc.)
 /// </summary>
-public abstract class SLSharedCharacterInfoSystem : EntitySystem
+public abstract partial class SLSharedCharacterInfoSystem : EntitySystem
 {
-    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
-    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private SharedRoleSystem _roleSystem = default!;
+    [Dependency] private ExamineSystemShared _examineSystem = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
 
     private bool _characterWindowEnabled = false;
     private bool _flavorTextEnabled = false;

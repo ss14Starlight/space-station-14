@@ -7,7 +7,7 @@ namespace Content.Shared.Eye.Blinding.Components;
 
 public sealed partial class ClothesVisionSystem : EntitySystem
 {
-    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
     public override void Initialize()
     {
         base.Initialize();

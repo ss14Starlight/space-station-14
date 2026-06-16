@@ -13,11 +13,11 @@ namespace Content.Server.StationEvents.Events;
 /// <summary>
 /// A gamerule themed around a hostile virus-like program that bolts and electrifes doors on the station.
 /// </summary>
-public sealed class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponent>
+public sealed partial class DoorRuntimeRule : StationEventSystem<DoorRuntimeRuleComponent>
 {
-    [Dependency] private readonly SharedDoorSystem _door = default!;
-    [Dependency] private readonly SharedElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly SharedAirlockSystem _airlock = default!;
+    [Dependency] private SharedDoorSystem _door = default!;
+    [Dependency] private SharedElectrocutionSystem _electrocution = default!;
+    [Dependency] private SharedAirlockSystem _airlock = default!;
     private const float DoorCloseBoltDelay = 0.5f;
 
     /// <summary>

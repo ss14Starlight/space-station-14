@@ -7,10 +7,10 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class WeatherRule : StationEventSystem<WeatherRuleComponent>
+public sealed partial class WeatherRule : StationEventSystem<WeatherRuleComponent>
 {
-    [Dependency] private readonly WeatherSystem _weather = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private WeatherSystem _weather = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Started(EntityUid uid, WeatherRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

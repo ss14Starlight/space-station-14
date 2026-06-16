@@ -8,10 +8,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Station;
 
-public sealed class StationCrewStatisticsSystem : EntitySystem
+public sealed partial class StationCrewStatisticsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationRecordsSystem _records = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private SharedStationRecordsSystem _records = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
         => SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRoundEnd);

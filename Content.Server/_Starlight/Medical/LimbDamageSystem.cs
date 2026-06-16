@@ -24,7 +24,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Medical;
-public sealed class LimbDamageSystem : EntitySystem
+public sealed partial class LimbDamageSystem : EntitySystem
 {
     //[Dependency] private readonly IRobustRandom _rand = default!;
     //[Dependency] private readonly BodySystem _body = default!;

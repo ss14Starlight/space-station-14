@@ -7,10 +7,10 @@ using Content.Shared.Tag;
 
 namespace Content.Shared.Eye;
 
-public abstract class SharedDarkenedVisionSystem : EntitySystem
+public abstract partial class SharedDarkenedVisionSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly BlindableSystem _blinding = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private BlindableSystem _blinding = default!;
 
     public override void Initialize()
     {

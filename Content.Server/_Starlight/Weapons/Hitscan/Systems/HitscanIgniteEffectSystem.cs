@@ -5,11 +5,11 @@ using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Server.Weapons.Hitscan.Systems;
 
-public sealed class HitscanIgniteEffectSystem : EntitySystem
+public sealed partial class HitscanIgniteEffectSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
