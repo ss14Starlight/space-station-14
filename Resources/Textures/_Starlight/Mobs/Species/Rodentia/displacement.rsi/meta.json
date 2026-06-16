@@ -84,6 +84,11 @@
       "name": "misc",
       "directions": 4,
       "copyright": "by DocMoth"
+    },
+    {
+      "name": "suitStorage",
+      "directions": 4,
+      "copyright": "by Huaqas (GitHub)"
     }
   ]
 }
