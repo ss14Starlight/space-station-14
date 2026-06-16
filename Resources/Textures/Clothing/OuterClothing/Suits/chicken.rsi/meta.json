@@ -33,6 +33,11 @@
     {
       "name": "equipped-OUTERCLOTHING-vox",
       "directions": 4
+    },
+    {
+      "name": "equipped-OUTERCLOTHING-rodentia",
+      "directions": 4,
+      "copyright": "Made by Huaqas (GitHub)."
     }
   ]
 }

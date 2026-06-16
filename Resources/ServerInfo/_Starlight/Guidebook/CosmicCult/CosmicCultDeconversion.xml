@@ -1,6 +1,7 @@
 <Document>
   # Deconversion
   <Box>
+    <GuideEntityEmbed Entity="CosmicDeconversionJail" Caption=""/>
     <GuideEntityEmbed Entity="Bible" Caption=""/>
     <GuideEntityEmbed Entity="CosmicCenser" Caption=""/>
   </Box>
