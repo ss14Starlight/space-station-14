@@ -171,6 +171,6 @@
     - AnomalyHost
     - Resomi
     - NotLabelable
-  - type: NightVision
-  - type: FlashModifier
-    modifier: 2
+  # - type: NightVision # handled by eye organs
+  # - type: FlashModifier
+  #  modifier: 2

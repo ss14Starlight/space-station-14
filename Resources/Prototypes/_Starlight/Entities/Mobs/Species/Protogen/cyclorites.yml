@@ -16,7 +16,7 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Cyclops/parts.rsi
     state: full
-  - type: NightVision
+# - type: NightVision # handled by eye organs
   - type: Butcherable
     butcheringType: Spike
     spawned:

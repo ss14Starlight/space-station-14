@@ -297,8 +297,8 @@
     - ProtoResomi
     - SiliconEmotesFH
     - NotLabelable
-  - type: NightVision
-  - type: FlashModifier
+# - type: NightVision # handled by eye organs
+# - type: FlashModifier
     modifier: 2
   - type: Vocal
     sounds:
