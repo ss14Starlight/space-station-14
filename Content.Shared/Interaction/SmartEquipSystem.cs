@@ -13,6 +13,10 @@ using Robust.Shared.Containers;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
 
+#region Starlight
+using Content.Shared._Starlight.Interaction.Components;
+#endregion
+
 namespace Content.Shared.Interaction;
 
 /// <summary>
@@ -191,6 +195,18 @@ public sealed class SmartEquipSystem : EntitySystem
                 if (!_inventory.CanUnequip(uid, equipmentSlot, out var suitStorageReason))
                 {
                     _popup.PopupClient(Loc.GetString(suitStorageReason), uid, uid);
+                    return;
+                }
+
+                _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
+                _hands.TryPickup(uid, slotItem, handsComp: hands);
+                return;
+            }
+            if (handItem == null && HasComp<ForceQuickDrawComponent>(slotItem)) //Any item with this comp will just be moved directly to hand. Useful for pistols and the like.
+            {
+                if (!_inventory.CanUnequip(uid, equipmentSlot, out var ForceQuickDrawReason))
+                {
+                    _popup.PopupClient(Loc.GetString(ForceQuickDrawReason), uid, uid);
                     return;
                 }
 

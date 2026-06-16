@@ -8,6 +8,7 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Events;
@@ -138,10 +139,21 @@ public abstract class SharedCrawlUnderObjectsSystem : EntitySystem
         // Restore normal collision masks
         if (TryComp<FixturesComponent>(uid, out var fixtureComponent))
         {
+            var down = TryComp<StandingStateComponent>(uid, out var standing) && !standing.Standing;
+
             foreach (var (key, originalMask) in component.ChangedFixtures)
             {
                 if (fixtureComponent.Fixtures.TryGetValue(key, out var fixture))
-                    _physics.SetCollisionMask(uid, key, fixture, originalMask, fixtureComponent);
+                {
+                    var targetMask = down
+                        ? originalMask & ~StandingStateSystem.StandingCollisionLayer
+                        : originalMask | StandingStateSystem.StandingCollisionLayer;
+
+                    if (fixture.CollisionMask == targetMask)
+                        continue;
+
+                    _physics.SetCollisionMask(uid, key, fixture, targetMask, fixtureComponent);
+                }
             }
         }
 
