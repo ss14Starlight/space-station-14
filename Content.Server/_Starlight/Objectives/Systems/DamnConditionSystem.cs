@@ -5,9 +5,9 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
-public sealed class DamnConditionSystem : EntitySystem
+public sealed partial class DamnConditionSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
 
     public override void Initialize()
     {

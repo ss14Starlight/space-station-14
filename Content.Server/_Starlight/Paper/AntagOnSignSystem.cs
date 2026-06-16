@@ -11,15 +11,15 @@ using Content.Server._Starlight.Achievement; // Starlight: Achievements
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class AntagOnSignSystem : EntitySystem
+public sealed partial class AntagOnSignSystem : EntitySystem
 {
-    [Dependency] private readonly AchievementSystem _achievements = default!; // Starlight: Achievements
+    [Dependency] private AchievementSystem _achievements = default!; // Starlight: Achievements
 
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
     private ISawmill _sawmill = default!;
 
     private readonly EntProtoId _paradoxCloneRuleId = "ParadoxCloneSpawn";

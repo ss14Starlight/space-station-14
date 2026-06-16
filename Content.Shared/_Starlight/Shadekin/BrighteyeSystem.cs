@@ -5,10 +5,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Shadekin;
 
-public sealed class BrighteyeSystem : EntitySystem
+public sealed partial class BrighteyeSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TagSystem _tag = default!;
     private static readonly ProtoId<TagPrototype> _bowTag = "Bow";
 
     public override void Initialize()

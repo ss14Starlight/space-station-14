@@ -17,16 +17,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;
 
-public sealed class SharedGargantuaSystem : EntitySystem
+public sealed partial class SharedGargantuaSystem : EntitySystem
 {
     private static readonly EntProtoId BloodSwellStatusEffect = "StatusEffectVampireBloodSwell";
     private static readonly EntProtoId BloodRushStatusEffect = "StatusEffectVampireBloodRush";
 
-    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
+    [Dependency] private MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedVampireActionUseSystem _vampireActions = default!;
 
     public override void Initialize()
     {

@@ -4,7 +4,7 @@ namespace Content.Shared._Starlight.FiringPins.Functionality;
 
 public sealed partial class FiringPinShotCounterSystem : EntitySystem
 {
-    [Dependency] private readonly FiringPinSystem _firingPin = default!;
+    [Dependency] private FiringPinSystem _firingPin = default!;
 
     public override void Initialize()
     {

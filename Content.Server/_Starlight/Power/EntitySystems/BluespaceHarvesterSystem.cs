@@ -19,17 +19,17 @@ namespace Content.Server._Starlight.Power.EntitySystems;
 /// Manages Bluespace Harvester machines that convert electrical power into OWN research points.
 /// Points can be spent to spawn items from configurable loot pools.
 /// </summary>
-public sealed class BluespaceHarvesterSystem : EntitySystem
+public sealed partial class BluespaceHarvesterSystem : EntitySystem
 {
     private const float PowerEpsilon = 0.01f;
 
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PowerNetSystem _powerNet = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PowerNetSystem _powerNet = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {

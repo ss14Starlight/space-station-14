@@ -45,21 +45,21 @@ namespace Content.Server.Revolutionary;
 /// <summary>
 /// Handles the revolutionary supply rift system.
 /// </summary>
-public sealed class RevSupplyRiftSystem : EntitySystem
+public sealed partial class RevSupplyRiftSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly Chat.Managers.IChatManager _chatManager = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly AlertLevelSystem _alert = default!; // Starlight
-    [Dependency] private readonly StationSystem _station = default!; // starlight
-    [Dependency] private readonly IConfigurationManager _config = default!; // Starlight
-    [Dependency] private readonly RoundEndSystem _roundEnd = default!; // starlight
-    [Dependency] private readonly SharedTransformSystem _transform = default!; // Starlight
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private Chat.Managers.IChatManager _chatManager = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private StoreSystem _store = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private AlertLevelSystem _alert = default!; // Starlight
+    [Dependency] private StationSystem _station = default!; // starlight
+    [Dependency] private IConfigurationManager _config = default!; // Starlight
+    [Dependency] private RoundEndSystem _roundEnd = default!; // starlight
+    [Dependency] private SharedTransformSystem _transform = default!; // Starlight
 
     private static readonly ProtoId<ListingPrototype> RevSupplyRiftListingId = "RevSupplyRiftListing";
 

@@ -14,11 +14,11 @@ namespace Content.Server._Starlight.Antags.Vampires.Systems;
 /// <summary>
 /// Handles vampiric claws lifecycle and effects
 /// </summary>
-public sealed class VampiricClawsSystem : EntitySystem
+public sealed partial class VampiricClawsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstream = default!;
-    [Dependency] private readonly VampireSystem _vampire = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedBloodstreamSystem _bloodstream = default!;
+    [Dependency] private VampireSystem _vampire = default!;
 
     public override void Initialize()
     {

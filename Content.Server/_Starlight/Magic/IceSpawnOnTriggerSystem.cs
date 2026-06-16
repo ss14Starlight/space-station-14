@@ -14,15 +14,15 @@ namespace Content.Server._Starlight.Magic;
 /// This creates a visual area of frozen ground by spawning IceCrust entities
 /// and freezing the atmosphere to create a realistic ice storm effect.
 /// </summary>
-public sealed class IceSpawnOnTriggerSystem : EntitySystem
+public sealed partial class IceSpawnOnTriggerSystem : EntitySystem
 {
     // System dependencies
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ITileDefinitionManager _tileDefManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

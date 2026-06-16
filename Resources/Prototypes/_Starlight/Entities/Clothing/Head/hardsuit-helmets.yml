@@ -1237,3 +1237,28 @@
     tags:
     - WhitelistChameleon
     - CorgiWearable
+
+#Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndieCommander ] # Starlight
+  id: ClothingHeadHelmetHardsuitGreenshield
+  categories: [ DoNotMap ]
+  name: Greenshield hardsuit helmet
+  description: A special hardsuit helmet worn by Greenshield Officers.
+  components:
+    - type: Sprite
+      sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+    - type: Clothing
+      sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+    - type: PointLight
+      color: "#addbff"
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+    - type: Tag
+      tags:
+        - CorgiWearable
