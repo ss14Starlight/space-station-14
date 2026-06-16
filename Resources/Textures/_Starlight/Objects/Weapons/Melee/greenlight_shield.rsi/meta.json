@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-4.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "off-icon",
+      "copyright": "Created by hanz5579 on the Starlight Discord"
+    },
+    {
+      "name": "greenlight_shield-off-inhand-right",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    },
+    {
+      "name": "greenlight_shield-off-inhand-left",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    },
+    {
+      "name": "on-icon",
+      "copyright": "Created by hanz5579 on the Starlight Discord"
+    },
+    {
+      "name": "greenlight_shield-on-inhand-right",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    },
+    {
+      "name": "greenlight_shield-on-inhand-left",
+      "copyright": "Created by hanz5579 on the Starlight Discord",
+      "directions": 4
+    }
+  ]
+}

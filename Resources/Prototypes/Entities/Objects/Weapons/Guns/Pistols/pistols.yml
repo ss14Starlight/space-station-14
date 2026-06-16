@@ -94,6 +94,7 @@
     soundHit:
       collection: MetalThud
   - type: AltFireMelee
+  - type: ForceQuickDraw #All pistols can now be smart equipped from pockets instead of removing their magazines! Rejoice!
   # starlight end
 
 - type: entity

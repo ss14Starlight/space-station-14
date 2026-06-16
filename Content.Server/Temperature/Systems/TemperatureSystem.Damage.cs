@@ -35,6 +35,8 @@ public sealed partial class TemperatureSystem
     /// </summary>
     public HashSet<Entity<TemperatureDamageComponent>> ShouldUpdateDamage = new();
 
+    private readonly List<Entity<TemperatureDamageComponent>> _shouldUpdateDamageBuffer = []; // Starlight
+
     /// <summary>
     /// Alert prototype for Temperature.
     /// </summary>
@@ -67,22 +69,33 @@ public sealed partial class TemperatureSystem
         _thermalRegulatorQuery = GetEntityQuery<ThermalRegulatorComponent>();
     }
 
+    #region Starlight Edit
+    // Collection modified during Enumeration fix
     private void UpdateDamage()
     {
-        foreach (var entity in ShouldUpdateDamage)
+        _shouldUpdateDamageBuffer.Clear();
+        _shouldUpdateDamageBuffer.AddRange(ShouldUpdateDamage);
+        ShouldUpdateDamage.Clear();
+
+        foreach (var entity in _shouldUpdateDamageBuffer)
         {
             if (Deleted(entity) || Paused(entity))
                 continue;
 
-            var deltaTime = _gameTiming.CurTime - entity.Comp.LastUpdate;
-            if (entity.Comp.TakingDamage && deltaTime < entity.Comp.UpdateInterval)
+            if (!TryComp<TemperatureDamageComponent>(entity.Owner, out var tempDamage))
                 continue;
 
-            ChangeDamage(entity, deltaTime);
+            var deltaTime = _gameTiming.CurTime - tempDamage.LastUpdate;
+
+            if (tempDamage.TakingDamage && deltaTime < tempDamage.UpdateInterval)
+                continue;
+
+            ChangeDamage((entity.Owner, tempDamage), deltaTime);
         }
 
-        ShouldUpdateDamage.Clear();
+        // ShouldUpdateDamage.Clear(); // Starlight Edit: Moved up
     }
+    #endregion
 
     private void ChangeDamage(Entity<TemperatureDamageComponent> entity, TimeSpan deltaTime)
     {
