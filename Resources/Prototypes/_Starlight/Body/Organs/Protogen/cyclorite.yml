@@ -22,6 +22,7 @@
   description: "Cyclorites see the world slightly differently."
   components:
   - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyclorite/organs.rsi
     layers:
       - state: eyeball
   - type: FunctionalOrgan
