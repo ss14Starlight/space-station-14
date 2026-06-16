@@ -137,6 +137,7 @@
     offsetFront: -0.16, -0.12
     offsetBack: -0.16, 0.05
   - type: Rummager
+  - type: RodentiaBagJump
   - type: HumanoidAppearance
     species: Rodentia
     undergarmentTop: UndergarmentTopTanktopRodentia

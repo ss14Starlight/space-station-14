@@ -3,7 +3,6 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
-using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
@@ -15,9 +14,6 @@ namespace Content.Shared._Starlight.Storage;
 
 public sealed partial class RodentiaBagJumpSystem : EntitySystem
 {
-    private static readonly TimeSpan GroundBagDelay = TimeSpan.FromSeconds(2);
-    private static readonly TimeSpan AttachedBagDelay = TimeSpan.FromSeconds(5);
-
     [Dependency] private readonly ISharedAdminLogManager _adminLog = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
@@ -38,7 +34,7 @@ public sealed partial class RodentiaBagJumpSystem : EntitySystem
         if (!args.CanInteract || !args.CanAccess || args.User == args.Target)
             return;
 
-        if (!IsRodentia(args.User) || !_actionBlocker.CanMove(args.User))
+        if (!TryComp<RodentiaBagJumpComponent>(args.User, out var component) || !_actionBlocker.CanMove(args.User))
             return;
 
         if (TryGetTargetBag(args.Target, out var bag, out var attached) && CanJumpInto(args.User, bag))
@@ -46,7 +42,7 @@ public sealed partial class RodentiaBagJumpSystem : EntitySystem
             args.Verbs.Add(new AlternativeVerb
             {
                 Text = Loc.GetString("rodentia-bag-jump-verb"),
-                Act = () => StartJump(args.User, bag, args.Target, attached),
+                Act = () => StartJump(args.User, bag, args.Target, attached, component),
                 Priority = 2,
                 Impact = LogImpact.Medium,
             });
@@ -59,7 +55,7 @@ public sealed partial class RodentiaBagJumpSystem : EntitySystem
             return;
 
         args.Handled = true;
-        if (!IsRodentia(args.User) || !CanJumpInto(args.User, ent.Owner))
+        if (!HasComp<RodentiaBagJumpComponent>(args.User) || !CanJumpInto(args.User, ent.Owner))
             return;
 
         if (args.Attached && (args.Target == null || args.Used != ent.Owner || !IsBackBag(args.Target.Value, ent.Owner)))
@@ -74,9 +70,10 @@ public sealed partial class RodentiaBagJumpSystem : EntitySystem
         _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(args.User):player} jumped into bag {ToPrettyString(ent.Owner)}");
     }
 
-    private void StartJump(EntityUid user, EntityUid bag, EntityUid clicked, bool attached)
+    private void StartJump(EntityUid user, EntityUid bag, EntityUid clicked, bool attached, RodentiaBagJumpComponent component)
     {
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, attached ? AttachedBagDelay : GroundBagDelay, new RodentiaBagJumpDoAfterEvent(attached), bag, target: attached ? clicked : bag, used: attached ? bag : null)
+        var delay = attached ? component.AttachedBagDelay : component.GroundBagDelay;
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, delay, new RodentiaBagJumpDoAfterEvent(attached), bag, target: attached ? clicked : bag, used: attached ? bag : null)
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -122,11 +119,6 @@ public sealed partial class RodentiaBagJumpSystem : EntitySystem
     {
         return TryComp<StorageComponent>(bag, out var storage)
             && _storage.CanInsert(bag, user, out _, storage);
-    }
-
-    private bool IsRodentia(EntityUid uid)
-    {
-        return TryComp<HumanoidAppearanceComponent>(uid, out var humanoid) && humanoid.Species == "Rodentia";
     }
 
     [Serializable, NetSerializable]
