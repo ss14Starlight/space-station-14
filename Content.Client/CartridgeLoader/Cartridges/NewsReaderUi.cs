@@ -31,14 +31,8 @@ public sealed partial class NewsReaderUi : UIFragment
             SendNewsReaderMessage(NewsReaderUiAction.NotificationSwitch, userInterface);
         };
         // Starlight-edit: start
-        _fragment.OnLikeButtonPressed += () =>
-        {
-            SendNewsReaderMessage(NewsReaderUiAction.Like, userInterface);
-        };
-        _fragment.OnDislikeButtonPressed += () =>
-        {
-            SendNewsReaderMessage(NewsReaderUiAction.Dislike, userInterface);
-        };
+        _fragment.OnLikeButtonPressed += () => SendNewsReaderMessage(NewsReaderUiAction.Like, userInterface);
+        _fragment.OnDislikeButtonPressed += () => SendNewsReaderMessage(NewsReaderUiAction.Dislike, userInterface);
         // Starlight-edit: end
     }
 
