@@ -41,3 +41,68 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: OrganDamage
+    damage:
+      types:
+        Shock: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Caustic: 20
+        Radiation: 10
+
+- type: entity
+  id: OrganProtoSlimeLungs
+  parent: OrganSlimeLungs
+  name: augmented slime gas sacs
+  description: "Collects nitrogen, which slime cells use for maintenance."
+  components:
+  - type: OrganDamage
+    damage:
+      types:
+        Asphyxiation: 130
+        Cellular: 30 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 20
+        Radiation: 30
+
+- type: entity
+  id: OrganProtoSlimePeepoids
+  parent: OrganSlimePeepoids
+  name: augmented peepoids
+  description: "Primitive and goopy, but more or less just as good as the human equivalent."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Slime/organs.rsi
+    state: peepoids
+  - type: Item
+    size: Small
+    heldPrefix: peepoids
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobHumanoidEyes
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 15 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 10
+        Radiation: 10
+        Caustic: 10
+
+- type: entity
+  id: OrganProtoSlimeSlurpoid
+  parent: OrganSlimeSlurpoid
+  name: augmented slurpoid
+  description: "It has all the consistency of gelatin."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Slime/organs.rsi
+    state: slurpoid
+  - type: OrganDamage
+    damage:
+      types:
+        Poison: 10
+        Cellular: 15 # 1.5x cellular, since it can make it impossible to revive them with the half healing they get
+        Bloodloss: 10
+        Radiation: 10
+        Caustic: 10
