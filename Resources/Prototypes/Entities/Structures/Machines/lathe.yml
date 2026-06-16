@@ -233,6 +233,7 @@
     - Equipment
     - StarlightProtolatheLootable # Starlight start
     - StarlightScienceWeapons
+    - WirelessCameraHandheld # MOFFSTATION CHANGE - Adds wireless handheld camera
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - StarlightSurgeryDynamic
