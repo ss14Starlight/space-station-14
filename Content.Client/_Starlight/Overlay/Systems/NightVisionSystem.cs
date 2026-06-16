@@ -87,6 +87,10 @@ public sealed class NightVisionSystem : EntitySystem
         //only add if its active
         if (!TryComp<NightVisionComponent>(uid, out var nightVision) || !nightVision.Active) return;
 
+        // some disabilities (like Nightblind) block night vision
+        // some organs, like cyber eyes, can bypass disability - we'll check if the current organ ignores disabilities or not
+        if(HasComp<NightVisionBlockerComponent>(uid) && nightVision.DisabilityBlockable) return;
+
         //only add if effect isnt already used
         if (_effect != null) return;
 
