@@ -1,20 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Prism) Minor tweaks to Armory layout.
-    type: Tweak
-  id: 405617
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Prism) Lawyers no longer get stuck in the Courtroom where they spawn.
-    type: Fix
-  id: 405618
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
   - message: (Reach) +2 suits to Security.
     type: Tweak
   id: 405619
@@ -2799,4 +2785,18 @@ Entries:
   id: 406016
   time: '2026-06-15T17:24:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4792
+- author: 0warie
+  changes:
+  - message: Correctly show "Hunted" background trait in character menu.
+    type: Fix
+  id: 406017
+  time: '2026-06-16T08:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4802
+- author: 0warie
+  changes:
+  - message: Display all background traits in character menu instead of first to resolve.
+    type: Fix
+  id: 406018
+  time: '2026-06-16T08:39:10.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4802
 Order: -1
