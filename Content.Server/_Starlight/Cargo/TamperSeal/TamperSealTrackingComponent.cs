@@ -25,7 +25,7 @@ public sealed partial class TamperSealTrackingComponent : Component
     /// <summary>
     /// The maximum number of records to keep in history.
     /// </summary>
-    public int MaxRecords = 50;
+    public int MaxRecords = 30;
 
     /// <summary>
     /// The maximum age of records to keep in history. Only affects time-based record expungement
@@ -38,17 +38,12 @@ public sealed partial class TamperSealTrackingComponent : Component
     /// <summary>
     /// Whether we're judging delivery performance.
     /// </summary>
-    public bool JudgementEnabled = false;
+    public bool JudgementEnabled = true;
 
     /// <summary>
     /// Minimum number of records required before judging.
     /// </summary>
     public int? JudgementMinRecords = 8;
-
-    /// <summary>
-    /// How much
-    /// </summary>
-    public int JudgementMinTotalValue = 30_000;
 
     #endregion
     #region Failure

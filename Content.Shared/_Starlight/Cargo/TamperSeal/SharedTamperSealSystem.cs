@@ -322,7 +322,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end"), uid, user);
 
         // Lastly, raise an event on the station.
-        RaiseLocalEvent(seal.RecipientStation, new TamperSealUnsealedEvent(uid, seal, user));
+        RaiseLocalEvent(uid, new TamperSealUnsealedEvent(uid, seal, user));
     }
 
     private void DoDestroy(EntityUid uid, EntityUid user, TamperSealComponent seal)
@@ -358,7 +358,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end"), uid, user, PopupType.LargeCaution);
 
         // Lastly, raise an event on the station.
-        RaiseLocalEvent(seal.RecipientStation, new TamperSealDestroyedEvent(uid, seal, user));
+        RaiseLocalEvent(uid, new TamperSealDestroyedEvent(uid, seal, user));
     }
 
     #endregion
@@ -370,32 +370,29 @@ public sealed partial class TamperSealUnsealedDoAfterEvent : SimpleDoAfterEvent;
 [Serializable, NetSerializable]
 public sealed partial class TamperSealDestroyedDoAfterEvent : SimpleDoAfterEvent;
 
-[Serializable, NetSerializable]
-public abstract class BaseTamperSealEvent(EntityUid uid, TamperSealComponent tamperSeal) : EntityEventArgs
+public abstract class BaseTamperSealEvent(EntityUid sealedId, TamperSealComponent seal) : EntityEventArgs
 {
     [DataField]
-    public EntityUid SealEntity { get; } = uid;
+    public EntityUid SealedId { get; } = sealedId;
     [DataField]
-    public TamperSealComponent Seal { get; } = tamperSeal;
+    public TamperSealComponent TamperSeal { get; } = seal;
 }
 
-[Serializable, NetSerializable]
 public sealed partial class TamperSealUnsealedEvent(
-    EntityUid uid,
-    TamperSealComponent tamperSeal,
-    EntityUid actor)
-    : BaseTamperSealEvent(uid, tamperSeal)
+    EntityUid sealedId,
+    TamperSealComponent seal,
+    EntityUid actorId)
+    : BaseTamperSealEvent(sealedId, seal)
 {
     [DataField]
-    public EntityUid Actor { get; } = actor;
+    public EntityUid ActorId { get; } = actorId;
 }
 
-[Serializable, NetSerializable]
 public sealed partial class TamperSealDestroyedEvent(
-    EntityUid uid,
-    TamperSealComponent tamperSeal,
+    EntityUid sealedId,
+    TamperSealComponent seal,
     EntityUid actor)
-    : BaseTamperSealEvent(uid, tamperSeal)
+    : BaseTamperSealEvent(sealedId, seal)
 {
     [DataField]
     public EntityUid Actor { get; } = actor;

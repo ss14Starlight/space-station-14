@@ -688,11 +688,10 @@ namespace Content.Server.Cargo.Systems
             seal.RecipientStation = GetEntity(order.StationId);
             seal.RecipientAccount = order.Account;
 
-            var totalCost = order.Price * order.OrderQuantity;
             seal.Value = order.Price; // Value of a single unit.
-            seal.RewardSpesos = (int) Math.Floor(.1f * totalCost); // Rewards rounded down.
-            seal.PenaltySpesos = (int) Math.Ceiling(.2f * totalCost); // Penalties rounded up.
-            seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * totalCost); // Refunds rounded down.
+            seal.RewardSpesos = (int) Math.Floor(.1f * order.Price); // Rewards rounded down.
+            seal.PenaltySpesos = (int) Math.Ceiling(.2f * order.Price); // Penalties rounded up.
+            seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * order.Price); // Refunds rounded down.
 
             // Set the required tool quality based on tags. If none is present, the default is Slicing.
             if (_tags.HasTag(item, _tamperSealPrying))

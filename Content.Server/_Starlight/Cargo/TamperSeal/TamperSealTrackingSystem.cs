@@ -28,14 +28,14 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
     private void OnTamperSealUnsealed(EntityUid uid, TamperSealComponent seal, TamperSealUnsealedEvent args)
     {
         var tracker = GetPerformanceTracker(seal);
-        RecordPerformance(tracker, true, args.Seal.Value);
+        RecordPerformance(tracker, true, args.TamperSeal.Value);
         ReassessPerformance(tracker);
     }
 
     private void OnTamperSealDestroyed(EntityUid uid, TamperSealComponent seal, TamperSealDestroyedEvent args)
     {
         var tracker = GetPerformanceTracker(seal);
-        RecordPerformance(tracker, false, args.Seal.Value);
+        RecordPerformance(tracker, false, args.TamperSeal.Value);
         ReassessPerformance(tracker);
     }
 
@@ -63,7 +63,7 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
             _chat.DispatchStationAnnouncement(tracker.StationId,
                 Loc.GetString("tamper-seal-performance-failure-message"),
                 Loc.GetString("tamper-seal-performance-failure-sender"),
-                false,
+                true,
                 tracker.FailureAnnounceSound,
                 tracker.FailureAnnounceColor);
             return;
