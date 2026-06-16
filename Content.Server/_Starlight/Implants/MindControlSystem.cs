@@ -13,7 +13,7 @@ using Content.Shared.Emp;
 using Content.Shared.Mindshield.Components;
 
 namespace Content.Server._Starlight.Implants;
-public sealed class MindControlSystem : EntitySystem
+public sealed partial class MindControlSystem : EntitySystem
 {
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private SharedMindSystem _mind = default!;
@@ -40,7 +40,7 @@ public override void Initialize()
             args.Cancel();
         }
 
-        if (!_mind.TryGetMind(args.Target, out var mindId, out var mind) || _mind.IsCharacterDeadIc(mind))
+        if (!_mind.TryGetMind(args.Target, out _, out var mind) || _mind.IsCharacterDeadIc(mind))
         {
             _popup.PopupEntity(Loc.GetString("mind-control-invalid"), args.User, args.User, PopupType.Small);
             args.Cancel();
