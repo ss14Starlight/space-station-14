@@ -685,4 +685,6 @@
       icon:
         sprite: Objects/Specific/Medical/syndi_implanter.rsi
         state: implanter0
-    - type: EscapeShuttleCondition
+    - type: FreeObjective
+    - type: TargetObjective
+      title: objective-mind-control-master-title
