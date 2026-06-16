@@ -117,6 +117,7 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
 
         EnsureComp<StationNewsComponent>(station.Value);
+        EnsureComp<StationNewsReactionsComponent>(station.Value); // Starlight
     }
 
     private void OnWriteUiDeleteMessage(Entity<NewsWriterComponent> ent, ref NewsWriterDeleteMessage msg)
@@ -136,6 +137,7 @@ public sealed class NewsSystem : SharedNewsSystem
             );
 
             articles.RemoveAt(msg.ArticleNum);
+            RemoveArticleReactions(ent, msg.ArticleNum); // Starlight
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         }
         else
@@ -214,7 +216,6 @@ public sealed class NewsSystem : SharedNewsSystem
             // Starlight-edit: start
             Likes = 0,
             Dislikes = 0,
-            ReactedStationRecordKeyIds = new List<(NetEntity, uint)>(),
             Views = 0
             // Starlight-edit: end
         };
@@ -374,7 +375,7 @@ public sealed class NewsSystem : SharedNewsSystem
             ent.Comp.ArticleNumber + 1,
             articles.Count,
             ent.Comp.NotificationOn,
-            HasReactedToCurrentArticle(loaderUid, articles[ent.Comp.ArticleNumber])); // Starlight
+            HasReactedToCurrentArticle(ent, loaderUid)); // Starlight
 
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
@@ -407,17 +408,18 @@ public sealed class NewsSystem : SharedNewsSystem
         NewsReaderLeafArticle(ent, 0);
 
         var article = articles[ent.Comp.ArticleNumber];
-        article.ReactedStationRecordKeyIds ??= new List<(NetEntity, uint)>();
+        if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, true))
+            return;
 
         foreach (var key in recordKeys)
         {
             var netKey = (GetNetEntity(key.OriginStation), key.Id);
-            if (article.ReactedStationRecordKeyIds.Contains(netKey))
+            if (reactions.Contains(netKey))
                 return;
         }
 
         var firstKey = recordKeys.First();
-        article.ReactedStationRecordKeyIds.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
+        reactions.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
 
         if (like)
             article.Likes++;
@@ -427,22 +429,71 @@ public sealed class NewsSystem : SharedNewsSystem
         articles[ent.Comp.ArticleNumber] = article;
     }
 
-    private bool HasReactedToCurrentArticle(EntityUid loaderUid, NewsArticle article)
+    private bool HasReactedToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
     {
         if (!_accessReaderSystem.FindStationRecordKeys(loaderUid, out var recordKeys))
             return false;
 
-        if (article.ReactedStationRecordKeyIds == null)
+        if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, false))
             return false;
 
         foreach (var key in recordKeys)
         {
             var netKey = (GetNetEntity(key.OriginStation), key.Id);
-            if (article.ReactedStationRecordKeyIds.Contains(netKey))
+            if (reactions.Contains(netKey))
                 return true;
         }
 
         return false;
+    }
+
+    private bool TryGetArticleReactions(EntityUid articleOwner, int articleNumber,
+        [NotNullWhen(true)] out HashSet<(NetEntity, uint)>? reactions,
+        bool create)
+    {
+        reactions = null;
+
+        if (_station.GetOwningStation(articleOwner) is not { } station)
+            return false;
+
+        if (!TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            if (!create)
+                return false;
+
+            comp = EnsureComp<StationNewsReactionsComponent>(station);
+        }
+
+        if (!comp.ReactedByArticle.TryGetValue(articleNumber, out reactions))
+        {
+            if (!create)
+                return false;
+
+            reactions = new HashSet<(NetEntity, uint)>();
+            comp.ReactedByArticle[articleNumber] = reactions;
+        }
+
+        return true;
+    }
+
+    private void RemoveArticleReactions(EntityUid articleOwner, int articleNumber)
+    {
+        if (_station.GetOwningStation(articleOwner) is not { } station ||
+            !TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            return;
+        }
+
+        comp.ReactedByArticle.Remove(articleNumber);
+
+        foreach (var (index, reactions) in comp.ReactedByArticle.ToArray())
+        {
+            if (index <= articleNumber)
+                continue;
+
+            comp.ReactedByArticle.Remove(index);
+            comp.ReactedByArticle[index - 1] = reactions;
+        }
     }
 #endregion
 

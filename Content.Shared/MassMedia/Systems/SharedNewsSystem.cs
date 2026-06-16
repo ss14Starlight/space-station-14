@@ -32,9 +32,6 @@ public struct NewsArticle
     [ViewVariables(VVAccess.ReadWrite)]
     public int Dislikes;
 
-    [ViewVariables]
-    public ICollection<(NetEntity, uint)>? ReactedStationRecordKeyIds;
-
     [ViewVariables(VVAccess.ReadWrite)]
     public int Views;
     // Starlight-edit: end

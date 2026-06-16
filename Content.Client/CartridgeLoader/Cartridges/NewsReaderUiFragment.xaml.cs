@@ -45,6 +45,8 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
         Like.Visible = true;
         Dislike.Visible = true;
         Views.Visible = true;
+        ReactionsSeparator.Visible = true;
+        ViewsSeparator.Visible = true;
         // Starlight-edit: end
 
         PageName.Text = article.Title;
@@ -81,6 +83,8 @@ public sealed partial class NewsReaderUiFragment : BoxContainer
         Like.Visible = false;
         Dislike.Visible = false;
         Views.Visible = false;
+        ReactionsSeparator.Visible = false;
+        ViewsSeparator.Visible = false;
         Like.Disabled = false;
         Dislike.Disabled = false;
         // Starlight-edit: end
