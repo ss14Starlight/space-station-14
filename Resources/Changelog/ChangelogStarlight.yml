@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Cog) Added CMO suit storage to their room, replaces having their hardsuit in their locker.
-    type: Tweak
-  id: 405657
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
   - message: (Cog) Added CE suit storage tot ehir room, replaces having their hardsuit in their locker.
     type: Tweak
   id: 405658
@@ -2799,4 +2792,11 @@ Entries:
   id: 406056
   time: '2026-06-16T15:11:07.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: STARLIGHT TEAM
+  changes:
+  - message: The comet is now a purchasable option in the shipyard console for 98,500 spesos. (Credit of ship design goes to thoughtlessuser).
+    type: Add
+  id: 406057
+  time: '2026-06-16T15:34:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4751
 Order: -1
