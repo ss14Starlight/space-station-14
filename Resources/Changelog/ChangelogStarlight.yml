@@ -1,186 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Reach) +2 suits to Security.
-    type: Tweak
-  id: 405619
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Reach) Arrivals should now properly lock with Reach (instead of the ATS).
-    type: Fix
-  id: 405620
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Sepultum) +4 suits to Security EVA (12 total).
-    type: Tweak
-  id: 405621
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Sepultum) +1 Brigmedic.
-    type: Tweak
-  id: 405622
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Sepultum) +1 Detective.
-    type: Tweak
-  id: 405623
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Seprentcrest) +2 suits to Security Armory.
-    type: Tweak
-  id: 405624
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Serpentcrest) Some extra goodies (random crates) in Armory to help SEC deal with the station.
-    type: Tweak
-  id: 405625
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Silica) Minor tweaks to Armory.
-    type: Tweak
-  id: 405626
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Space Mall) +6 suits to Security Armory (12 total).
-    type: Tweak
-  id: 405627
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Starboard) +6 suits to Security EVA (12 total).
-    type: Tweak
-  id: 405628
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Starboard) Removed the suits from Security Armory (moved them to Secuirty EVA storage) so that people don't think there's only two Security suits for all of SEC.
-    type: Tweak
-  id: 405629
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Starboard) +1 Brigmedic.
-    type: Tweak
-  id: 405630
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: Caws
-  changes:
-  - message: (Starboard) +1 Detective.
-    type: Tweak
-  id: 405631
-  time: '2026-06-05T00:29:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4598
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Moths' LED faces now correctly render.
-    type: Fix
-  id: 405632
-  time: '2026-06-05T03:48:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4662
-- author: wonderfulnewworld
-  changes:
-  - message: ProtoKins' bodies are now arranged in the same order as a normal Shadekin's.
-    type: Fix
-  id: 405633
-  time: '2026-06-05T03:48:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4662
-- author: wonderfulnewworld
-  changes:
-  - message: Added functionality for allowing clothing slots to depend on multiple clothing slots alternatively.
-    type: Add
-  id: 405634
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: The Nyx-Class Protogen frame can now equip an item to your suit storage slot.
-    type: Add
-  id: 405635
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: Added functionality for barotrauma protection to accept alternative clothing slots.
-    type: Add
-  id: 405636
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: Hitscan weapons can now deal extra damage to people wearing armor with negative resistances.
-    type: Add
-  id: 405637
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: Added a section to Proto-Moth's guidebook entry mentioning their severe fire weakness more directly.
-    type: Add
-  id: 405638
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: Renamed Urist McUrister to Urist McHands the Proto-Dwarf.
-    type: Tweak
-  id: 405639
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: The Hermes-Class Protogen frame now correctly increases damage taken by hitscan weapons.
-    type: Fix
-  id: 405640
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: The Nyx-Class Protogen frame now actually counts as barotrauma protection.
-    type: Fix
-  id: 405641
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Cyclorites now correctly process poisons like normal Cyclorites.
-    type: Fix
-  id: 405642
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Laspi can now eat computer boards.
-    type: Fix
-  id: 405643
-  time: '2026-06-05T03:48:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4649
-- author: Caws
-  changes:
-  - message: Some special pre-mapped jugs, like the uranium jug on the Code Psi Armory, should now work as intended.
-    type: Fix
-  id: 405644
-  time: '2026-06-05T08:27:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4657
 - author: Mack
   changes:
   - message: Fixed issue with secure terminal requests charging money when it isn't approved.
@@ -2799,4 +2617,186 @@ Entries:
   id: 406018
   time: '2026-06-16T08:39:10.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4802
+- author: Darius
+  changes:
+  - message: Added heat effect to solar storm.
+    type: Add
+  id: 406019
+  time: '2026-06-16T09:24:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4798
+- author: Darius
+  changes:
+  - message: Removed flash effect from solar flare.
+    type: Remove
+  id: 406020
+  time: '2026-06-16T09:24:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4798
+- author: Darius
+  changes:
+  - message: Removed ignition effect from solar flare.
+    type: Remove
+  id: 406021
+  time: '2026-06-16T09:24:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4798
+- author: Darius
+  changes:
+  - message: Increased direct damage from the solar flare per-tick from 1 to 3.
+    type: Tweak
+  id: 406022
+  time: '2026-06-16T09:24:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4798
+- author: Darius
+  changes:
+  - message: Changed radstorm texture, decreasing opacity.
+    type: Tweak
+  id: 406023
+  time: '2026-06-16T09:24:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4798
+- author: Darius
+  changes:
+  - message: Lowered the volume of the siren SFX for radstorm and solar flare.
+    type: Tweak
+  id: 406024
+  time: '2026-06-16T09:24:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4798
+- author: RenMeow1
+  changes:
+  - message: Proto-avali scream sound clip.
+    type: Add
+  id: 406025
+  time: '2026-06-16T09:59:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4795
+- author: Vincolan
+  changes:
+  - message: Added Wireless reporter Camera.
+    type: Add
+  id: 406026
+  time: '2026-06-16T10:27:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4805
+- author: Way
+  changes:
+  - message: (Hotel) Added new fax machines.
+    type: Add
+  id: 406027
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: Way
+  changes:
+  - message: (Hotel) Added Kiki to Botany.
+    type: Add
+  id: 406028
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: Way
+  changes:
+  - message: (Hotel) Shipyard console.
+    type: Add
+  id: 406029
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: Way
+  changes:
+  - message: (Hotel) More decal and tile tweaks.
+    type: Tweak
+  id: 406030
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: Way
+  changes:
+  - message: (Bagel) Added new fax machines.
+    type: Add
+  id: 406031
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: Way
+  changes:
+  - message: (Bagel) Added Kiki to Botany.
+    type: Add
+  id: 406032
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: Way
+  changes:
+  - message: (Bagel) Shipyard console.
+    type: Add
+  id: 406033
+  time: '2026-06-16T10:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4791
+- author: wonderfulnewworld
+  changes:
+  - message: Adjusted Alpha gamemode weights to correct balance between action and calmer shifts.
+    type: Tweak
+  id: 406034
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Terror Spiders can now show up in All at Once/Aller at Once.
+    type: Tweak
+  id: 406035
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: The Cosmic Cult can now show up in All at Once, Aller at Once, Almost All at Once, and Almost Aller at Once.
+    type: Tweak
+  id: 406036
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: SELF can no longer show up during NukeOps.
+    type: Tweak
+  id: 406037
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaked abductor scaling, to try and get the additional ones to spawn more often.
+    type: Tweak
+  id: 406038
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Vampires and Changelings now have an equal chance to show up on gamemodes they're both allowed to show up in.
+    type: Tweak
+  id: 406039
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Reduced the chance Ninja spawns Eep to be equal to the old Terror Spider chance.
+    type: Tweak
+  id: 406040
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Removed upper limit on princess of terror spawns, since we're actually hitting 200pop frequently now.
+    type: Tweak
+  id: 406041
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Terror Spiders now call evac on victory/loss, instead of instantly ending the round.
+    type: Tweak
+  id: 406042
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Terror spiders announcements actually have localization now.
+    type: Fix
+  id: 406043
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
+- author: wonderfulnewworld
+  changes:
+  - message: Ninjas can no longer call terror spiders.
+    type: Fix
+  id: 406044
+  time: '2026-06-16T10:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4794
 Order: -1
