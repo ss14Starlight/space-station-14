@@ -25,6 +25,19 @@ public struct NewsArticle
 
     [ViewVariables]
     public TimeSpan ShareTime;
+    // Starlight-edit: start
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Likes;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Dislikes;
+
+    [ViewVariables]
+    public ICollection<(NetEntity, uint)>? ReactedStationRecordKeyIds;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Views;
+    // Starlight-edit: end
 }
 
 [ByRefEvent]

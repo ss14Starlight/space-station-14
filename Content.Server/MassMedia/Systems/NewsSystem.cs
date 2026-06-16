@@ -210,7 +210,13 @@ public sealed class NewsSystem : SharedNewsSystem
             Title = title.Length <= MaxTitleLength ? title : $"{title[..MaxTitleLength]}...",
             Content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...",
             Author = author,
-            ShareTime = _ticker.RoundDuration()
+            ShareTime = _ticker.RoundDuration(),
+            // Starlight-edit: start
+            Likes = 0,
+            Dislikes = 0,
+            ReactedStationRecordKeyIds = new List<(NetEntity, uint)>(),
+            Views = 0
+            // Starlight-edit: end
         };
 
         articles.Add(article.Value);
@@ -284,25 +290,37 @@ public sealed class NewsSystem : SharedNewsSystem
         if (args is not NewsReaderUiMessageEvent message)
             return;
 
+        var shouldCountView = false; // Starlight
+
         switch (message.Action)
         {
             case NewsReaderUiAction.Next:
                 NewsReaderLeafArticle(ent, 1);
+                shouldCountView = true; // Starlight
                 break;
             case NewsReaderUiAction.Prev:
                 NewsReaderLeafArticle(ent, -1);
+                shouldCountView = true; // Starlight
                 break;
             case NewsReaderUiAction.NotificationSwitch:
                 ent.Comp.NotificationOn = !ent.Comp.NotificationOn;
                 break;
+            // Starlight-edit: start
+            case NewsReaderUiAction.Like:
+                TryReactToCurrentArticle(ent, args.Actor, true);
+                break;
+            case NewsReaderUiAction.Dislike:
+                TryReactToCurrentArticle(ent, args.Actor, false);
+                break;
+            // Starlight-edit: end
         }
 
-        UpdateReaderUi(ent, GetEntity(args.LoaderUid));
+        UpdateReaderUi(ent, GetEntity(args.LoaderUid), shouldCountView);
     }
 
     private void OnReaderUiReady(Entity<NewsReaderCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        UpdateReaderUi(ent, args.Loader);
+        UpdateReaderUi(ent, args.Loader, true);
     }
     #endregion
 
@@ -331,7 +349,7 @@ public sealed class NewsSystem : SharedNewsSystem
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
-    private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
+    private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid, bool shouldCountView = false) // Starlight
     {
         if (!TryGetArticles(ent, out var articles))
             return;
@@ -344,11 +362,19 @@ public sealed class NewsSystem : SharedNewsSystem
             return;
         }
 
+        if (shouldCountView) // Starlight
+        {
+            var article = articles[ent.Comp.ArticleNumber];
+            article.Views++;
+            articles[ent.Comp.ArticleNumber] = article;
+        }
+
         var state = new NewsReaderBoundUserInterfaceState(
             articles[ent.Comp.ArticleNumber],
             ent.Comp.ArticleNumber + 1,
             articles.Count,
-            ent.Comp.NotificationOn);
+            ent.Comp.NotificationOn,
+            HasReactedToCurrentArticle(loaderUid, articles[ent.Comp.ArticleNumber])); // Starlight
 
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
@@ -366,6 +392,59 @@ public sealed class NewsSystem : SharedNewsSystem
         if (ent.Comp.ArticleNumber < 0)
             ent.Comp.ArticleNumber = articles.Count - 1;
     }
+
+# region Starlight
+
+    private void TryReactToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid user, bool like)
+    {
+        if (!TryGetArticles(ent, out var articles) ||
+            articles.Count == 0)
+            return;
+
+        if (!_accessReaderSystem.FindStationRecordKeys(user, out var recordKeys))
+            return;
+
+        NewsReaderLeafArticle(ent, 0);
+
+        var article = articles[ent.Comp.ArticleNumber];
+        article.ReactedStationRecordKeyIds ??= new List<(NetEntity, uint)>();
+
+        foreach (var key in recordKeys)
+        {
+            var netKey = (GetNetEntity(key.OriginStation), key.Id);
+            if (article.ReactedStationRecordKeyIds.Contains(netKey))
+                return;
+        }
+
+        var firstKey = recordKeys.First();
+        article.ReactedStationRecordKeyIds.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
+
+        if (like)
+            article.Likes++;
+        else
+            article.Dislikes++;
+
+        articles[ent.Comp.ArticleNumber] = article;
+    }
+
+    private bool HasReactedToCurrentArticle(EntityUid loaderUid, NewsArticle article)
+    {
+        if (!_accessReaderSystem.FindStationRecordKeys(loaderUid, out var recordKeys))
+            return false;
+
+        if (article.ReactedStationRecordKeyIds == null)
+            return false;
+
+        foreach (var key in recordKeys)
+        {
+            var netKey = (GetNetEntity(key.OriginStation), key.Id);
+            if (article.ReactedStationRecordKeyIds.Contains(netKey))
+                return true;
+        }
+
+        return false;
+    }
+#endregion
 
     private void UpdateWriterDevices()
     {
