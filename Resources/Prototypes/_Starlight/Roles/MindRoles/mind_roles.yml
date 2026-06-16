@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MindRoleGhostRoleNeutral
+  id: MindRoleGhostCentCommAligned
+  name: Ghost Role (CentComm Aligned)
+  components:
+    - type: MindRole
+      roleType: CentCommAligned
+      subtype: role-subtype-CentComm
+
+- type: entity
+  parent: MindRoleGhostRoleNeutral
   id: MindRoleGhostTSFAligned
   name: Ghost Role (TSF Aligned)
   components:

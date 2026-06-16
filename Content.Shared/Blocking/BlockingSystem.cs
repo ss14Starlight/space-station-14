@@ -18,6 +18,10 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Shared.Item.ItemToggle.Components;
+#endregion
+
 namespace Content.Shared.Blocking;
 
 public sealed partial class BlockingSystem : EntitySystem
@@ -165,6 +169,15 @@ public sealed partial class BlockingSystem : EntitySystem
             return false;
         }
 
+        #region Starlight
+        // Don't allow someone to block if their shield isn't activated
+        if (TryComp<ItemToggleComponent>(item, out var itemToggle) && !itemToggle.Activated)
+        {
+            CantBlockError(user);
+            return false;
+        }
+        #endregion
+
         //Don't allow someone to block if someone else is on the same tile
         var playerTileRef = _turf.GetTileRef(xform.Coordinates);
         if (playerTileRef != null)
@@ -173,7 +186,7 @@ public sealed partial class BlockingSystem : EntitySystem
             var mobQuery = GetEntityQuery<MobStateComponent>();
             foreach (var uid in intersecting)
             {
-                if (uid != user && mobQuery.HasComponent(uid))
+                if (uid != user && mobQuery.HasComponent(uid) && (MetaData(uid).Flags & MetaDataFlags.InContainer) == 0) //Starlight edit, if the entity is in a container (like a pAI) ignore it
                 {
                     TooCloseError(user);
                     return false;

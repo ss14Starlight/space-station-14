@@ -837,3 +837,16 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
+
+# Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingUniformBase ]
+  categories: [ DoNotMap ]
+  id: ClothingUniformJumpsuitGreenshield
+  name: greenshield uniform
+  description: A special suit made for the best of the elites under CentComm.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpsuit/ert_leader.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpsuit/ert_leader.rsi

@@ -1,60 +1,4 @@
 Entries:
-- author: Rinary
-  changes:
-  - message: Predicted vent crawling update, so now it's will be even more smoother.
-    type: Tweak
-  id: 405649
-  time: '2026-06-08T17:56:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4575
-- author: Rinary
-  changes:
-  - message: Now vent crawling isn't tile based(but it snaps at the end of vent crawling in center of tile).
-    type: Tweak
-  id: 405650
-  time: '2026-06-08T17:56:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4575
-- author: Rinary
-  changes:
-  - message: Changed vent crawling overlay, now it shows only current layer and removed current pipe highlight(you have blind overlay and offset for this).
-    type: Tweak
-  id: 405651
-  time: '2026-06-08T17:56:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4575
-- author: Caws
-  changes:
-  - message: (Cog) AI Lawboards crate to AI Core, replaces loose lawboards lying around AI Core.
-    type: Add
-  id: 405652
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
-  - message: (Cog) Document printer and fax machine added to Library.
-    type: Add
-  id: 405653
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
-  - message: (Cog) CuraDrobe added to Libarian's room.
-    type: Add
-  id: 405654
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
-  - message: (Cog) The area around the Vault has been expanded, allowing for the Vault's nuke to be armed on-the-spot like other maps.
-    type: Tweak
-  id: 405655
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
-- author: Caws
-  changes:
-  - message: (Cog) Added HOS suit storage to their room, replaces having their hardsuit in their locker.
-    type: Tweak
-  id: 405656
-  time: '2026-06-08T17:56:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4684
 - author: Caws
   changes:
   - message: (Cog) Added CMO suit storage to their room, replaces having their hardsuit in their locker.
@@ -2799,4 +2743,60 @@ Entries:
   id: 406048
   time: '2026-06-16T12:55:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4819
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: Greenshield Officer Job (3 hours of BSO time + extra roles). Admin only spawn.
+    type: Add
+  id: 406049
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: CentComm alignment.
+    type: Add
+  id: 406050
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: Toggleable shields now require the shield to be toggled to actually give protection.
+    type: Fix
+  id: 406051
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: pAI's and other minded entities no longer prevent you from raising your shield as long as they are in a container of some kind.
+    type: Fix
+  id: 406052
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: Greenshield Officer role and equipment, including a green energy shield that requires a power cell to operate. Self-charging power cells like micros cannot be used with them due to balance.
+    type: Add
+  id: 406053
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: Changes to the underlying code of blocking and reflection to enable power draw when reducing damage.
+    type: Tweak
+  id: 406054
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: Power cells with a recharge pause time will now not start recharging until their pause has been satisfied with zero power draw. This only affects xenoborg stealth module and the newly added greenlight shield.
+    type: Fix
+  id: 406055
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
+- author: Bornstellar and Hanz (Adrian Butler)
+  changes:
+  - message: Pistols, handheld computers like station maps/portable crew monitors, and holoprojectors no longer eject their magazine/battery when using a hotkey to grab them from a pocket.
+    type: Tweak
+  id: 406056
+  time: '2026-06-16T15:11:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4671
 Order: -1
