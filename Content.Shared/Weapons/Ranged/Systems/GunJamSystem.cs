@@ -9,11 +9,11 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 // Handles per-shot jam chance for guns with GunJamDefectComponent.
 // A jammed gun cannot fire until the player racks the slide (Z / Use In Hand).
-public sealed class GunJamSystem : EntitySystem
+public sealed partial class GunJamSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {

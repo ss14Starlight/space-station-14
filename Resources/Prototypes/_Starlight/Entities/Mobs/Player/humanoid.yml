@@ -559,3 +559,79 @@
         - DeathRattleImplantTSF
         - DeathAcidifierImplant
         - FreedomImplant
+
+# CentComm
+## Greenshield Officer
+
+- type: entity
+  name: Greenshield Officer
+  suffix: Basic
+  id: RandomHumanoidCCGreenshieldSpawnerBasic
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: obs
+    - type: RandomHumanoidSpawner
+      settings: CCGreenshieldBasic
+
+- type: entity
+  name: Greenshield Officer
+  suffix: EVA
+  id: RandomHumanoidCCGreenshieldSpawnerEVA
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: obs
+    - type: RandomHumanoidSpawner
+      settings: CCGreenshieldEVA
+
+- type: randomHumanoidSettings
+  id: CCGreenshieldBasic
+  speciesBlacklist:
+    - Vox
+    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
+    - ProtoDiona
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+    - ProtoAvali
+    - ProtoFelionoid
+    - ProtoKin
+    - ProtoThaven
+    - ProtoCyclorite
+    - ProtoDwarf
+    - ProtoMoth
+    - ProtoSlimePerson
+    - ProtoLagomorph
+    - ProtoElf
+    - Protogen
+    - ProtoHuman
+  parent: EventHumanoidCentcomm
+  randomizeName: false
+  components:
+    - type: GhostRole
+      name: ghost-role-information-green-shield-officer-name
+      description: ghost-role-information-green-shield-officer-description
+      rules: ghost-role-information-cc-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCentCommAligned
+      job: CentralCommandGreenShield
+    - type: Loadout
+      prototypes: [GSOGear]
+      roleLoadout: [RoleSurvivalSecurity]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: randomHumanoidSettings
+  id: CCGreenshieldEVA
+  parent: CCGreenshieldBasic
+  components:
+    - type: Loadout
+      prototypes: [GSOGearHardsuit]

@@ -11,13 +11,13 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.PhysicalSocialInteraction.Systems;
 
-public sealed class PhysicalSocialInteractionSystem : EntitySystem
+public sealed partial class PhysicalSocialInteractionSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
     public override void Initialize()
     {
         //subscribe to inspect events on the physical social interaction receiver component

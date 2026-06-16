@@ -38,9 +38,9 @@ public sealed partial class ShuttleSystem
     /*
      * This is a way to move a shuttle from one location to another, via an intermediate map for fanciness.
      */
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight
-    [Dependency] private readonly IPlayerManager _plr = default!; // Starlight
-    [Dependency] private readonly CameraRecoilSystem _recoil = default!; // Starlight
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight
+    [Dependency] private IPlayerManager _plr = default!; // Starlight
+    [Dependency] private CameraRecoilSystem _recoil = default!; // Starlight
 
     private readonly SoundSpecifier _startupSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/hyperspace_begin.ogg")
     {

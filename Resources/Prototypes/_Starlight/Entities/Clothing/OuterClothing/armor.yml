@@ -404,6 +404,28 @@
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
 
+# Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterArmorRaid, ClothingOuterStorageBase ]
+  categories: [ DoNotMap ]
+  id: ClothingOuterVestGreenshield
+  name: greenshield vest
+  description: A protective vest worn by Greenshields. It even has pockets and a flashlight!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
+    - type: Tag
+      tags: []
+    - type: ClothingSpeedModifier
+      walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
+    - type: Storage
+      grid:
+        - 0,0,2,1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
 # Reporter armor vest
 - type: entity
   parent: [BaseReporterContraband, ClothingOuterArmorBase]

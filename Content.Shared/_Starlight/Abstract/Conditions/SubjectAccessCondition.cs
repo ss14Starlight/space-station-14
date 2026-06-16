@@ -10,7 +10,7 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 
 public sealed partial class SubjectAccessCondition : BaseCondition
 {
-    [Dependency] public readonly IPrototypeManager PrototypeManager = default!;
+    [Dependency] public IPrototypeManager PrototypeManager = default!;
 
     [DataField]
     public ProtoId<AccessLevelPrototype>? access;

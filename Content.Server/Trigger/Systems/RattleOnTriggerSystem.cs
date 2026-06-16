@@ -11,13 +11,13 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Trigger.Systems;
 
-public sealed class RattleOnTriggerSystem : EntitySystem
+public sealed partial class RattleOnTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly ChatSystem _chat = default!; // Starlight
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!; // Starlight
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private ChatSystem _chat = default!; // Starlight
+    [Dependency] private IAdminLogManager _adminLogger = default!; // Starlight
 
     public override void Initialize()
     {

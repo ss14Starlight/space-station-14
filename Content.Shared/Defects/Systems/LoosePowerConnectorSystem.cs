@@ -13,14 +13,14 @@ namespace Content.Shared.Defects.Systems;
 
 // Randomly deactivates toggleable weapons with LoosePowerConnectorDefectComponent on each swing.
 // After deactivating, automatically reactivates after a short delay and plays a spark sound.
-public sealed class LoosePowerConnectorSystem : EntitySystem
+public sealed partial class LoosePowerConnectorSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {

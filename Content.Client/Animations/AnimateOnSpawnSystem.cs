@@ -5,13 +5,13 @@ using Robust.Client.Animations;
 
 namespace Content.Client.Animations;
 
-public sealed class AnimateOnSpawnSystem : EntitySystem
+public sealed partial class AnimateOnSpawnSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming Timing = default!;
-    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
+    [Dependency] private IGameTiming Timing = default!;
+    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private AnimationPlayerSystem _animationSystem = default!;
 
     private ISawmill _sawmill = default!;
 
