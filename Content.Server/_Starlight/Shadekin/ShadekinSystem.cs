@@ -292,7 +292,6 @@ public sealed partial class ShadekinSystem : EntitySystem
     private void ToggleNightVision(EntityUid uid, ShadekinState shadekinState)
     {
         var nightVision = EnsureComp<NightVisionComponent>(uid);
-
         var shouldBeActive = shadekinState == ShadekinState.Dark;
 
         // avoid dirtying if we don't need to
@@ -301,9 +300,6 @@ public sealed partial class ShadekinSystem : EntitySystem
 
         // update whether or not nightVision should be active based on light level
         nightVision.Active = shouldBeActive;
-
-        // temp log to make sure i'n not stupid
-        Log.Info($"{ToPrettyString(uid)} changed nightVision to {nightVision.Active}");
 
         // ensure nightVision updates to reflect the new state
         Dirty(uid, nightVision);
