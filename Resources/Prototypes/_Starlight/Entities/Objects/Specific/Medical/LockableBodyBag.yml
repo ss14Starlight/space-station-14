@@ -57,12 +57,12 @@
   id: BodyBagCC
   parent: [ BodyBagLockable, BaseCentcommContraband ]
   suffix: DO NOT MAP
-  name: CentComm Lockable body bag
+  name: CentComm lockable body bag
   components:
     - type: Sprite
-      sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
+      sprite: _Starlight/Objects/Specific/Medical/cclockablebodybag.rsi
     - type: Icon
-      sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
+      sprite: _Starlight/Objects/Specific/Medical/cclockablebodybag.rsi
       state: bag
     - type: AccessReader
       access: [["BlueShield"]]

@@ -1,13 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Manor) CentComm bedsheet from NTR's room.
-    type: Remove
-  id: 405699
-  time: '2026-06-08T18:51:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4679
-- author: Caws
-  changes:
   - message: (Starboard) Electrolyzer added to Atmos.
     type: Add
   id: 405700
@@ -2799,4 +2792,11 @@ Entries:
   id: 406098
   time: '2026-06-17T14:03:01.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4835
+- author: Toxyams
+  changes:
+  - message: Toilets give plasteel on deconstruct.
+    type: Fix
+  id: 406099
+  time: '2026-06-17T14:38:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4834
 Order: -1
