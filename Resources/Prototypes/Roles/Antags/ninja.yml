@@ -17,7 +17,12 @@
   - !type:RoleTimeRequirement
     role: AntagThief # Learn how to be subversive and stealthy.
     time: 1h
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
   playTimeTracker: AntagNinja
+  !type:SpeciesRequirement
   # Starlight end
 
 #Ninja Gear
