@@ -63,7 +63,6 @@ public abstract class SharedFlashSystem : EntitySystem
         Subs.SubscribeWithRelay<FlashImmunityComponent, FlashAttemptEvent>(OnFlashImmunityFlashAttempt, held: false);
         SubscribeLocalEvent<FlashImmunityComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<FlashComponent, MapInitEvent>(OnFlashMapInit); // Starlight
-        SubscribeLocalEvent<FlashModifierComponent, FlashAttemptEvent>(OnModifierFlashAttempt); // Starlight
 
         _statusEffectsQuery = GetEntityQuery<StatusEffectsComponent>();
         _damagedByFlashingQuery = GetEntityQuery<DamagedByFlashingComponent>();
@@ -179,9 +178,11 @@ public abstract class SharedFlashSystem : EntitySystem
             return;
 
         #region Starlight
-        // Increase the flash duration if the flashed entity has a multiplier
-        if (attempt.Multiplier != 1f)
-            flashDuration *= attempt.Multiplier;
+        // Increase the flash duration if the flashed entity has a multiplier (some species are more vulnerable to flashes)
+        if(TryComp<FlashModifierComponent>(target, out var flashMod))
+        {
+            flashDuration *= flashMod.Modifier;
+        }
         #endregion Starlight
 
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
@@ -278,14 +279,6 @@ public abstract class SharedFlashSystem : EntitySystem
     {
         args.Cancelled = true;
     }
-
-    #region Starlight
-    /// <summary>
-    /// Increases the flash duration if the entity has a FlashModifierComponent.
-    /// </summary>
-    private void OnModifierFlashAttempt(EntityUid uid, FlashModifierComponent component, FlashAttemptEvent args)
-        => args.Multiplier = component.Modifier;
-    #endregion Starlight
 
     private void OnFlashImmunityFlashAttempt(Entity<FlashImmunityComponent> ent, ref FlashAttemptEvent args)
     {
