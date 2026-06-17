@@ -22,7 +22,6 @@
     - IPC
     inverted: true
   playTimeTracker: AntagNinja
-  !type:SpeciesRequirement
   # Starlight end
 
 #Ninja Gear
