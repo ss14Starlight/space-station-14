@@ -137,7 +137,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             );
 
             articles.RemoveAt(msg.ArticleNum);
-            RemoveArticleReactions(ent, msg.ArticleNum); // Starlight
+            RemoveArticleTracking(ent, msg.ArticleNum); // Starlight
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         }
         else
@@ -362,13 +362,10 @@ public sealed partial class NewsSystem : SharedNewsSystem
             _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, new NewsReaderEmptyBoundUserInterfaceState(ent.Comp.NotificationOn));
             return;
         }
-
-        if (shouldCountView) // Starlight
-        {
-            var article = articles[ent.Comp.ArticleNumber];
-            article.Views++;
-            articles[ent.Comp.ArticleNumber] = article;
-        }
+        // Starlight-edit: start
+        if (shouldCountView)
+            TryCountCurrentArticleView(ent, loaderUid, articles);
+        // Starlight-edit: end
 
         var state = new NewsReaderBoundUserInterfaceState(
             articles[ent.Comp.ArticleNumber],
@@ -447,6 +444,29 @@ public sealed partial class NewsSystem : SharedNewsSystem
         return false;
     }
 
+    private void TryCountCurrentArticleView(Entity<NewsReaderCartridgeComponent> ent, EntityUid viewer, List<NewsArticle> articles)
+    {
+        if (!_accessReaderSystem.FindStationRecordKeys(viewer, out var recordKeys))
+            return;
+
+        if (!TryGetArticleViews(ent, ent.Comp.ArticleNumber, out var views, true))
+            return;
+
+        foreach (var key in recordKeys)
+        {
+            var netKey = (GetNetEntity(key.OriginStation), key.Id);
+            if (views.Contains(netKey))
+                return;
+        }
+
+        var firstKey = recordKeys.First();
+        views.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
+
+        var article = articles[ent.Comp.ArticleNumber];
+        article.Views++;
+        articles[ent.Comp.ArticleNumber] = article;
+    }
+
     private bool TryGetArticleReactions(EntityUid articleOwner, int articleNumber,
         [NotNullWhen(true)] out HashSet<(NetEntity, uint)>? reactions,
         bool create)
@@ -476,7 +496,36 @@ public sealed partial class NewsSystem : SharedNewsSystem
         return true;
     }
 
-    private void RemoveArticleReactions(EntityUid articleOwner, int articleNumber)
+    private bool TryGetArticleViews(EntityUid articleOwner, int articleNumber,
+        [NotNullWhen(true)] out HashSet<(NetEntity, uint)>? views,
+        bool create)
+    {
+        views = null;
+
+        if (_station.GetOwningStation(articleOwner) is not { } station)
+            return false;
+
+        if (!TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            if (!create)
+                return false;
+
+            comp = EnsureComp<StationNewsReactionsComponent>(station);
+        }
+
+        if (!comp.ViewedByArticle.TryGetValue(articleNumber, out views))
+        {
+            if (!create)
+                return false;
+
+            views = new HashSet<(NetEntity, uint)>();
+            comp.ViewedByArticle[articleNumber] = views;
+        }
+
+        return true;
+    }
+
+    private void RemoveArticleTracking(EntityUid articleOwner, int articleNumber)
     {
         if (_station.GetOwningStation(articleOwner) is not { } station ||
             !TryComp<StationNewsReactionsComponent>(station, out var comp))
@@ -484,15 +533,21 @@ public sealed partial class NewsSystem : SharedNewsSystem
             return;
         }
 
-        comp.ReactedByArticle.Remove(articleNumber);
+        ShiftArticleTracking(comp.ReactedByArticle, articleNumber);
+        ShiftArticleTracking(comp.ViewedByArticle, articleNumber);
+    }
 
-        foreach (var (index, reactions) in comp.ReactedByArticle
+    private static void ShiftArticleTracking(Dictionary<int, HashSet<(NetEntity, uint)>> records, int articleNumber)
+    {
+        records.Remove(articleNumber);
+
+        foreach (var (index, articleRecords) in records
                      .Where(entry => entry.Key > articleNumber)
                      .OrderByDescending(entry => entry.Key)
                      .ToArray())
         {
-            comp.ReactedByArticle.Remove(index);
-            comp.ReactedByArticle[index - 1] = reactions;
+            records.Remove(index);
+            records[index - 1] = articleRecords;
         }
     }
 #endregion

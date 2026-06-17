@@ -4,4 +4,5 @@ namespace Content.Server.MassMedia.Components;
 public sealed partial class StationNewsReactionsComponent : Component
 {
     public readonly Dictionary<int, HashSet<(NetEntity, uint)>> ReactedByArticle = new();
+    public readonly Dictionary<int, HashSet<(NetEntity, uint)>> ViewedByArticle = new();
 }
