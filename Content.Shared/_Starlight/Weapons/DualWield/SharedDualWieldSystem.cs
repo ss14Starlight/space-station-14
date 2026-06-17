@@ -12,11 +12,11 @@ namespace Content.Shared._Starlight.Weapons.DualWield;
 /// Handles the dual-wield toggle verb and cleanup when a gun leaves a hand.
 /// The actual alternating-gun logic lives in SharedGunSystem (TryGetGun + OnShootRequest).
 /// </summary>
-public sealed class SharedDualWieldSystem : EntitySystem
+public sealed partial class SharedDualWieldSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
 
     public override void Initialize()
     {

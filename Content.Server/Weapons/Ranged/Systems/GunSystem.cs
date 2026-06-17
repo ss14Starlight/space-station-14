@@ -62,12 +62,12 @@ namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem : SharedGunSystem
 {
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
 
 #region Starlight
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 #endregion Starlight
 
     private const float DamagePitchVariation = 0.05f;

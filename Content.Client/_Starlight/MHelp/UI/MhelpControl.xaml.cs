@@ -11,9 +11,9 @@ namespace Content.Client._Starlight.MHelp.UI;
 [GenerateTypedNameReferences]
 public sealed partial class MhelpControl : Control
 {
-    [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    [Dependency] private readonly IUserInterfaceManager _ui = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private IClientAdminManager _adminManager = default!;
+    [Dependency] private IUserInterfaceManager _ui = default!;
+    [Dependency] private IConfigurationManager _config = default!;
     public MentorMHelpUIHandler MHelpHelper = default!;
 
     private Guid? _currentTicket;

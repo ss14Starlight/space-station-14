@@ -10,9 +10,9 @@ namespace Content.Shared.Defects.Systems;
 /// At MapInit, scales down all damage values on MeleeWeaponComponent by
 /// DamageMultiplier. Runs after DefectSystem so only surviving defects apply.
 /// </summary>
-public sealed class ReducedDamageDefectSystem : EntitySystem
+public sealed partial class ReducedDamageDefectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

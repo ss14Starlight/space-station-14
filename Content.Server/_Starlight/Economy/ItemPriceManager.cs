@@ -5,11 +5,11 @@ using Content.Shared.Destructible.Thresholds;
 
 namespace Content.Server.Economy;
 
-public sealed class ItemPriceManager : EntitySystem
+public sealed partial class ItemPriceManager : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
     private readonly Dictionary<string, int> _prototypePrices = new();
 
     private Dictionary<string, MinMax>? _protoPriceCategoriesCache;

@@ -31,20 +31,20 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
-public sealed class SupermatterSystem : AccUpdateEntitySystem
+public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly AchievementSystem _achievements = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SupermatterCascadeSystem _cascade = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SupermatterCascadeSystem _cascade = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;

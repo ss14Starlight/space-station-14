@@ -1073,3 +1073,56 @@
     fireRate: 2
     minAngle: 1
     maxAngle: 2
+
+#Green Shield Officer
+- type: entity
+  name: MT-7G Magnum
+  parent: [ BaseWeaponBatterySmall, BaseCentcommContraband, BaseGrandTheftContraband ]
+  categories: [ DoNotMap ]
+  id: WeaponEnergyMagnumGunGreenshield
+  description: This is an expensive, modern recreation of the Mateba revolver with a minor overclock. CED assures a 96% reliability with regular maintenance.
+  components:
+    - type: Gun
+      fireRate: 2
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    - type: Appearance
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+    - type: Lock
+      mindShieldLock: true
+      autoUnlock: true
+      autoLock: true
+    - type: AccessReader
+      access: [ [ "BlueShield" ] ]
+    - type: Item
+      size: Small
+      shape:
+        - 0, 0, 1, 1
+      sprite: _Starlight/Objects/Weapons/Guns/Battery/Energy_Magnum.rsi
+    - type: BatteryAmmoProvider
+      proto: DisablerBolt
+      fireCost: 80
+    - type: BatteryWeaponFireModes
+      fireModes:
+        - proto: DisablerBolt # same as X-01
+          fireCost: 40
+          magState: disable
+          visualState: disable-unshaded
+        - proto: RedHeavyLaser # Does more damage but costs more energy. 8 shots per full charge
+          fireCost: 200
+          magState: kill
+          visualState: kill-unshaded
+        - proto: DestructionBeam # structural damage, same as X-01
+          fireCost: 100
+          magState: destroy
+          visualState: destroy-unshaded
+    - type: Battery
+      maxCharge: 1600
+      startingCharge: 1500
+    - type: BatterySelfRecharger
+      autoRechargeRate: 150 # much faster charging...
+      autoRechargePauseTime: 10 # but 10 second delay beteen shooting and it starting to recharge

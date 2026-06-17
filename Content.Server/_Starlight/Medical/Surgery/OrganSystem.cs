@@ -26,14 +26,14 @@ namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
 {
 
-    [Dependency] private readonly BlindableSystem _blindable = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

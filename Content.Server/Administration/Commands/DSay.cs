@@ -8,10 +8,10 @@ using Content.Shared.Ghost; // Starlight
 namespace Content.Server.Administration.Commands;
 
 [AnyCommand]
-public sealed class DsayCommand : LocalizedEntityCommands
+public sealed partial class DsayCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly IAdminManager _admin = default!; // Starlight
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private IAdminManager _admin = default!; // Starlight
 
     public override string Command => "dsay";
 

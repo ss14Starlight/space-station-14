@@ -146,8 +146,8 @@ public sealed partial class RadiationReceiverTimerComponent : Component
 
 public sealed partial class RadiationTimerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IEntityManager entityManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IEntityManager entityManager = default!;
 
     public override void Update(float frameTime)
     {

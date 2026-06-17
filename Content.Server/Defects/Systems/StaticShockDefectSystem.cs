@@ -10,10 +10,10 @@ namespace Content.Server.Defects.Systems;
 /// Insulation is handled automatically by the electrocution system.
 /// Combat gloves, Captain's gloves, and similar insulated items will block the zap.
 /// </summary>
-public sealed class StaticShockDefectSystem : EntitySystem
+public sealed partial class StaticShockDefectSystem : EntitySystem
 {
-    [Dependency] private readonly ElectrocutionSystem _electrocution = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private ElectrocutionSystem _electrocution = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
