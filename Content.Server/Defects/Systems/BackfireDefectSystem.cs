@@ -10,10 +10,10 @@ namespace Content.Server.Defects.Systems;
 /// The explosion is centred on the weapon tile so it naturally damages anyone
 /// standing there, including the shooter.
 /// </summary>
-public sealed class BackfireDefectSystem : EntitySystem
+public sealed partial class BackfireDefectSystem : EntitySystem
 {
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

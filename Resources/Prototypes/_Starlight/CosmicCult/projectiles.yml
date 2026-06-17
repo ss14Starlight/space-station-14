@@ -151,45 +151,6 @@
       - HideContextMenu
 
 - type: entity
-  parent: BaseBullet
-  id: CosmicLambdaParticle
-  name: Nullspace stabilizer particles
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: CosmicLambdaParticle
-  - type: PointLight
-    enabled: true
-    color: "#a142ae"
-    radius: 2.0
-    energy: 7.0
-  - type: Sprite
-    sprite: _Starlight/CosmicCult/Effects/lambda_projectilevfx.rsi
-    layers:
-      - state: razor
-        shader: unshaded
-  - type: Ammo
-    muzzleFlash: null
-  - type: Physics
-  - type: Fixtures
-    fixtures:
-      projectile:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.2,-0.2,0.2,0.2"
-        hard: false
-        mask:
-        - Opaque
-  - type: Projectile
-    damage:
-      types:
-        Cold: 5
-  - type: TimedDespawn
-    lifetime: 3
-  - type: Reflective
-    reflective:
-    - Energy
-
-- type: entity
   id: CosmicLambdaBeam
   parent: BasicHitscan
   name: Nullspace Stabilizer Beam

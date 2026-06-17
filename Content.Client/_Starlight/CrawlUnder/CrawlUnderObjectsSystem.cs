@@ -3,9 +3,9 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.CrawlUnder;
 
-public sealed class CrawlUnderObjectsSystem : SharedCrawlUnderObjectsSystem
+public sealed partial class CrawlUnderObjectsSystem : SharedCrawlUnderObjectsSystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     protected override bool TryPopupCooldown(CrawlUnderObjectsComponent comp)
     {

@@ -15,7 +15,7 @@ namespace Content.Server.StoreDiscount.Systems;
 /// Populates the Second Hand tab of an uplink with a random selection of worn/damaged syndicate items.
 /// Mirrors the structure of <see cref="StoreDiscountSystem"/> but for second-hand item listings.
 /// </summary>
-public sealed class SecondHandSystem : EntitySystem
+public sealed partial class SecondHandSystem : EntitySystem
 {
     private static readonly ProtoId<StoreCategoryPrototype> SecondHandStoreCategoryKey = "SecondHandItems";
     //private static readonly ProtoId<FeedbackPopupPrototype> SecondHandFeedbackPopupId = "SecondHandFeedback"; // Starlight
@@ -23,8 +23,8 @@ public sealed class SecondHandSystem : EntitySystem
     private const int MinSecondHandItems = 8;
     private const int MaxSecondHandItems = 14;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     //[Dependency] private readonly ServerFeedbackManager _feedbackManager = default!; // Starlight
 
     public override void Initialize()

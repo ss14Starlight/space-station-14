@@ -16,9 +16,9 @@ namespace Content.Server._Starlight.Language;
 
 public sealed partial class LanguageSystem : SharedLanguageSystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
     public override void Initialize()
     {
         base.Initialize();

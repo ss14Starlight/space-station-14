@@ -10,10 +10,10 @@ namespace Content.Client._Starlight.Radio.Systems;
 /// <summary>
 /// Handles sprite overrides for the encryption key.
 /// </summary>
-public sealed class ClientEncryptionKeySystem : EntitySystem
+public sealed partial class ClientEncryptionKeySystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly StarlightEntitySystem _sl = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private StarlightEntitySystem _sl = default!;
 
     public override void Initialize()
     {

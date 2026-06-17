@@ -300,3 +300,16 @@
     - type: HideLayerClothing
       layers:
         Hair: HEAD
+
+#Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetRaid ]
+  id: ClothingHeadHelmetGreenshield
+  categories: [ DoNotMap ]
+  name: Greenshield helmet
+  description: A special helmet worn by Greenshield Officers.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Helmets/greenshield_helmet.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Helmets/greenshield_helmet.rsi

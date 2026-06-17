@@ -13,10 +13,10 @@ namespace Content.Shared.Defects.Systems;
 /// via GunRefreshModifiersEvent, so they compose correctly with wield bonuses
 /// without needing direct GunComponent write access.
 /// </summary>
-public sealed class GunSpreadDefectSystem : EntitySystem
+public sealed partial class GunSpreadDefectSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!;
 
     public override void Initialize()
     {

@@ -5,14 +5,14 @@ using Content.Shared.Dataset;
 
 namespace Content.Shared._Starlight.Thaven;
 
-public abstract class SharedThavenMoodSystem : EntitySystem
+public abstract partial class SharedThavenMoodSystem : EntitySystem
 {
 
     public static readonly ProtoId<DatasetPrototype> YesAndDataset = "ThavenMoodsYesAnd";
     public static readonly ProtoId<DatasetPrototype> NoAndDataset = "ThavenMoodsNoAnd";
     public static readonly ProtoId<DatasetPrototype> WildcardDataset = "ThavenMoodsWildcard";
 
-    [Dependency] private readonly EmagSystem _emag = default!;
+    [Dependency] private EmagSystem _emag = default!;
     public override void Initialize()
     {
         base.Initialize();

@@ -7,10 +7,10 @@ namespace Content.Shared.Defects.Systems;
 
 // Randomizes TimerTriggerComponent.Delay at spawn for entities with
 // RandomFuseDefectComponent, so each instance has a unique fuse countdown.
-public sealed class RandomFuseSystem : EntitySystem
+public sealed partial class RandomFuseSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

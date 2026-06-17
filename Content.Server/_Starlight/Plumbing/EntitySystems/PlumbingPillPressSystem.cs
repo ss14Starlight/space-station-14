@@ -26,15 +26,15 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Supports optional mixing mode with two ratio-controlled inlets (E/W).
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingPillPressSystem : EntitySystem
+public sealed partial class PlumbingPillPressSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly PlumbingPullSystem _pullSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly LabelSystem _labelSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private PlumbingPullSystem _pullSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private LabelSystem _labelSystem = default!;
 
     private static readonly EntProtoId _pillPrototypeId = "Pill";
     private static readonly EntProtoId _patchPrototypeId = "Patch";

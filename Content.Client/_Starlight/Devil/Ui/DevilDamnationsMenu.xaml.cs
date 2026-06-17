@@ -9,7 +9,7 @@ namespace Content.Client._Starlight.Devil.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class DevilDamnationsMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public DevilDamnationsMenu()
     {

@@ -10,9 +10,9 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingModifyIdCardHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly AccessSystem _access = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private AccessSystem _access = default!;
 
     public override void Initialize()
     {

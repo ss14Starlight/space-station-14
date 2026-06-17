@@ -6,10 +6,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.NullSpace;
 
-public sealed class NullSpaceBlockerSystem : EntitySystem
+public sealed partial class NullSpaceBlockerSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvs = default!;
     public EntProtoId _shadekinShadow = "ShadekinShadow";
     public override void Initialize()
     {
