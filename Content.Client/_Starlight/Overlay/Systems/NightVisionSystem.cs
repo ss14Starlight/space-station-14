@@ -33,6 +33,7 @@ public sealed partial class NightVisionSystem : EntitySystem
         SubscribeLocalEvent<NightVisionComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
 
         SubscribeLocalEvent<NightVisionComponent, FlashImmunityCheckEvent>(OnFlashImmunityChanged);
+        SubscribeLocalEvent<NightVisionComponent, AfterAutoHandleStateEvent>(OnAutoHandleEvent);
 
         SubscribeLocalEvent<NightVisionBlockerComponent, ComponentInit>(OnBlockerChanged);
         SubscribeLocalEvent<NightVisionBlockerComponent, ComponentRemove>(OnBlockerChanged);
@@ -50,6 +51,14 @@ public sealed partial class NightVisionSystem : EntitySystem
         {
             AttemptAddVision(ent.Owner);
         }
+    }
+
+    private void OnAutoHandleEvent(Entity<NightVisionComponent> ent, ref AfterAutoHandleStateEvent args)
+    {
+        if (ent.Comp.Active)
+            AttemptAddVision(ent.Owner);
+        else
+            AttemptRemoveVision(ent.Owner);
     }
 
     private void OnPlayerAttached(Entity<NightVisionComponent> ent, ref LocalPlayerAttachedEvent args)

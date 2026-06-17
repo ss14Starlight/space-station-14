@@ -3,7 +3,8 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Eye.Blinding.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState(true)]
 public sealed partial class NightVisionComponent : Component
 {
     [DataField, AutoNetworkedField]
