@@ -2,7 +2,7 @@
     "version": 1,
 
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894. | shuttle variants by mikeysaurus for starlight | Universal ID variants by CrazyPhantom for starlight",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894. | shuttle variants by mikeysaurus for starlight | Universal ID variants by CrazyPhantom for starlight | shuttle-cargo edited by Darius",
 
     "size": {
         "x": 32,
@@ -372,7 +372,7 @@
         },
         {
             "name": "comm-sup",
-            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github).",
+            "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/bd6873fd4dd6a61d7e46f1d75cd4d90f64c40894, updated for departmental edits by redmushie (disord, github). edited to new colour scheme by Darius",
             "directions": 4,
             "delays": [
                 [
