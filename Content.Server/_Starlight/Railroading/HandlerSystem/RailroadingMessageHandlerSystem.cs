@@ -9,9 +9,9 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingMessageHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPlayerManager _players = default!;
 
     public override void Initialize()
     {

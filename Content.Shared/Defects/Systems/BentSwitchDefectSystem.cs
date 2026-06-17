@@ -9,9 +9,9 @@ namespace Content.Shared.Defects.Systems;
 /// semi-automatic only via SharedGunSystem.SetAvailableModes.
 /// Does nothing on guns that don't have FullAuto.
 /// </summary>
-public sealed class BentSwitchDefectSystem : EntitySystem
+public sealed partial class BentSwitchDefectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedGunSystem _gunSystem = default!;
+    [Dependency] private SharedGunSystem _gunSystem = default!;
 
     public override void Initialize()
     {

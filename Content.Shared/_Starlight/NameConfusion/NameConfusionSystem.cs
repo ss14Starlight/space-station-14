@@ -11,11 +11,11 @@ namespace Content.Shared._Starlight.NameConfusion;
 /// <summary>
 /// Admeme system to make people get confused about their name.
 /// </summary>
-public sealed class NameConfusionSystem : EntitySystem
+public sealed partial class NameConfusionSystem : EntitySystem
 {
-    [Dependency] private readonly NameModifierSystem _name = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private NameModifierSystem _name = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 
     private const int NameModPriority = -900; // Basically it just needs to happen first.
 

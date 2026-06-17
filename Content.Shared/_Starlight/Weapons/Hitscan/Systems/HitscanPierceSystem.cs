@@ -20,7 +20,7 @@ namespace Content.Server._Starlight.Combat.Ranged;
 
 public sealed partial class PierceSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 
     private EntityQuery<HitscanReflectComponent> _reflectQuery;
 

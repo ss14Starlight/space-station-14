@@ -4,9 +4,9 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Power.EntitySystems;
 
-public sealed class PoweredLockerSystem : EntitySystem
+public sealed partial class PoweredLockerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public void TogglePower(EntityUid uid, PoweredLockerComponent? powerComp = null, bool? powered = null)
     {

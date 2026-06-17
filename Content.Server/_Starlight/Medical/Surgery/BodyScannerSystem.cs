@@ -10,7 +10,7 @@ namespace Content.Server._Starlight.Medical.Surgery;
 
 public sealed partial class BodyScannerSystem : SharedBodyScannerSystem
 {
-    [Dependency] private readonly HealthAnalyzerSystem _healthAnalyzer = default!;
+    [Dependency] private HealthAnalyzerSystem _healthAnalyzer = default!;
 
     public override void Initialize()
     {

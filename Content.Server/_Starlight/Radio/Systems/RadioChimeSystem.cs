@@ -6,9 +6,9 @@ using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Radio.Systems;
 
-public sealed class RadioChimeSystem : EntitySystem
+public sealed partial class RadioChimeSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
     private readonly SoundPathSpecifier _aiChimeSound = new("/Audio/_Starlight/Effects/Radio/ai.ogg");
 
     /// <summary>

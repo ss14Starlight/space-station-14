@@ -20,14 +20,14 @@ namespace Content.Server._Starlight.Medical.Surgery;
 // https://github.com/RMC-14/RMC-14
 public sealed partial class SurgerySystem : SharedSurgerySystem
 {
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly SleepingSystem _sleeping = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private ContainerSystem _containers = default!;
+    [Dependency] private SleepingSystem _sleeping = default!;
 
     private readonly List<EntProtoId> _surgeries = [];
     public override void Initialize()

@@ -8,9 +8,9 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingDonationRewardSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly SalarySystem _salarySystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private SalarySystem _salarySystem = default!;
     public override void Initialize()
     {
         base.Initialize();
