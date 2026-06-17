@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/16/2026 23:21:08
+  time: 06/16/2026 23:47:43
   entityCount: 2571
 maps: []
 grids:
@@ -1090,7 +1090,7 @@ entities:
       pos: -15.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -15159.225
+      secondsUntilStateChange: -16742.57
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1353,7 +1353,7 @@ entities:
       pos: -5.5,-22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -1881.1702
+      secondsUntilStateChange: -3464.5156
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -10844,39 +10844,33 @@ entities:
       targetTemperature: 73.15
     - type: AtmosPipeColor
       color: '#087CA7FF'
-- proto: GasThermoMachineFreezerEnabled
-  entities:
   - uid: 1609
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
       pos: -8.5,3.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerDisabled: True
-  - uid: 1610
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -9.5,3.5
-      parent: 1
-    - type: ApcPowerReceiver
-      powerDisabled: True
-- proto: GasThermoMachineHeaterEnabled
-  entities:
-  - uid: 1611
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -7.5,3.5
       parent: 1
     - type: ApcPowerReceiver
       powerDisabled: True
   - uid: 1612
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      pos: -9.5,3.5
+      parent: 1
+    - type: ApcPowerReceiver
+      powerDisabled: True
+- proto: GasThermoMachineHeater
+  entities:
+  - uid: 1610
+    components:
+    - type: Transform
       pos: -6.5,3.5
+      parent: 1
+    - type: ApcPowerReceiver
+      powerDisabled: True
+  - uid: 1611
+    components:
+    - type: Transform
+      pos: -7.5,3.5
       parent: 1
     - type: ApcPowerReceiver
       powerDisabled: True
