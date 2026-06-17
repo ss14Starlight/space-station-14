@@ -1,5 +1,6 @@
 {
   "version": 1,
+  "license": "CC-BY-SA-3.0",
   "copyright": "State based copyright",
   "size": {
     "x": 32,
@@ -8,59 +9,48 @@
   "states": [
     {
       "name": "bag",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord"
     },
     {
       "name": "bag-inhand-left",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord",
       "directions": 4
     },
     {
       "name": "bag-inhand-right",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord",
       "directions": 4
     },
     {
       "name": "bag_folded",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord"
     },
     {
       "name": "paper",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     },
     {
       "name": "open_overlay",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     },
     {
       "name": "bounty",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     },
     {
       "name": "captains_paper",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     },
     {
       "name": "invoice",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     },
     {
       "name": "locked",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     },
     {
       "name": "unlocked",
-      "license": "CC-BY-SA-3.0",
       "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia"
     }
   ]
