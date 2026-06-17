@@ -498,28 +498,19 @@
   parent: [GreenLightShield, BaseGrandTheftContraband ]
   id: BlueLightShield
   categories: [ DoNotMap ]
-  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
-      layers:
-        - state: off-icon
-        - state: on-icon
-          color: "#FFFFFF"
-          visible: false
-          shader: unshaded
-          map: [ "shield" ]
     - type: PointLight
-      netsync: false
-      enabled: false
-      radius: 2
-      energy: 3
       color: "#87CEEB"
-      castShadows: false #SL lighting optimization
     - type: Item
-      size: Small
       sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
-      heldPrefix: off
+    - type: ComponentToggler
+      components:
+        - type: HeldSpeedModifier #unwieldy when deployed
+          walkModifier: 1
+          sprintModifier: 0.6
     - type: PowerCellDraw
       drawRate: 2  # watts while active # final stat TBD
     - type: Blocking # Stats TBD
