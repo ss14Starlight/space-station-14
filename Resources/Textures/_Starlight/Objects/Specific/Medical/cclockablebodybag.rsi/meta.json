@@ -9,21 +9,21 @@
   "states": [
     {
       "name": "bag",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by Bornstellar"
+      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord"
     },
     {
       "name": "bag-inhand-left",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by Bornstellar",
+      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord",
       "directions": 4
     },
     {
       "name": "bag-inhand-right",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by Bornstellar",
+      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord",
       "directions": 4
     },
     {
       "name": "bag_folded",
-      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by Bornstellar"
+      "copyright": "Bag sprites by TacoLlama (github) label sprites by Vermidia, Green modification by born_stellar on discord"
     },
     {
       "name": "paper",
