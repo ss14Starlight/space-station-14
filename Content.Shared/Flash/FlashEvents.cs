@@ -7,10 +7,13 @@ namespace Content.Shared.Flash;
 /// Raised on the target hit by the flash and their inventory items.
 /// </summary>
 [ByRefEvent]
-public record struct FlashAttemptEvent(EntityUid Target, EntityUid? User, EntityUid? Used, bool Cancelled = false) : IInventoryRelayEvent
+#region Starlight
+// Starlight: added Multiplier parameter
+public record struct FlashAttemptEvent(EntityUid Target, EntityUid? User, EntityUid? Used, bool Cancelled = false, float Multiplier = 1f) : IInventoryRelayEvent
 {
     SlotFlags IInventoryRelayEvent.TargetSlots => SlotFlags.HEAD | SlotFlags.EYES | SlotFlags.MASK;
 }
+#endregion Starlight
 
 /// <summary>
 /// Called when a player is successfully flashed.
