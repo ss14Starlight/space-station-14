@@ -5,10 +5,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Client.Dragon;
 
-public sealed class DragonSystem : EntitySystem
+public sealed partial class DragonSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPointLightSystem _lights = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SharedPointLightSystem _lights = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

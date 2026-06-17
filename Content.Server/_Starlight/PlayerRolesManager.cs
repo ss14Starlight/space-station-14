@@ -11,10 +11,10 @@ namespace Content.Server.Starlight;
 
 public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjectInit
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly ILogManager _logger = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private IServerNetManager _netMgr = default!;
+    [Dependency] private ILogManager _logger = default!;
 
     private readonly Dictionary<ICommonSession, PlayerReg> _players = new();
 

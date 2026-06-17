@@ -113,6 +113,7 @@ cosmiccult-rift-inuse = You can't do this right now.
 cosmiccult-rift-invaliduser = You lack the proper tools to deal with this.
 cosmiccult-rift-chaplainoops = Wield your holy scripture.
 cosmiccult-rift-lambda-charging = The Nullspace Stabilizer blast is charging...
+cosmiccult-rift-bible-charging = You begin purifying the malign rift...
 cosmiccult-rift-alreadyempowered = You are already empowered; the rift's power would be wasted.
 cosmiccult-rift-wasempowered = Your body won't be able to handle being empowered a second time...
 cosmiccult-rift-beginabsorb = The rift begins to merge with you...
@@ -159,7 +160,6 @@ cosmiccult-ui-deconverted-ruletext = Your character may learn what happened thro
 
 cosmiccult-ui-popup-confirm = Confirm
 
-
 ## OBJECTIVES / CHARACTERMENU
 
 objective-issuer-cosmiccult = [bold][color=#cae8e8]The Unknown[/color][/bold]
@@ -179,9 +179,13 @@ objective-condition-victory-desc = Beckon The Unknown, and herald the final curt
 
 ## CHAT ANNOUNCEMENTS
 
+cosmiccult-announcement-sender = The Unknown
+
 cosmiccult-radio-tier1-progress = The Monument is beckoned unto the station...
 
 cosmiccult-announce-tier2-progress = An unnerving numbness prickles your senses.
+
+cosmiccult-announce-tier3-progress = Arcs of bluespace energy crackle across the station's groaning structure. The end draws near.
 
 cosmiccult-announce-tier3-warning = Critical increase in nullspace activity detected. Infected personnel are to be subdued or neutralized on sight.
 

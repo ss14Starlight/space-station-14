@@ -2,6 +2,7 @@
   id: SOP
   name: guide-entry-sl-sop-intro
   text: "/ServerInfo/Guidebook/StarlightSOP/sop-intro.xml"
+  priority: 12
   children:
     - general-sop
     - departmental-sop

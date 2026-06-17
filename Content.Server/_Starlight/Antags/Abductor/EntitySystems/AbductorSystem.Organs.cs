@@ -11,10 +11,10 @@ namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly IGameTiming _time = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IGameTiming _time = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();

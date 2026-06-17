@@ -15,12 +15,12 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Medical.Limbs;
 public sealed partial class LimbSystem : SharedLimbSystem
 {
-    [Dependency] private readonly ContainerSystem _containers = default!;
-    [Dependency] private readonly BodySystem _body = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private ContainerSystem _containers = default!;
+    [Dependency] private BodySystem _body = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly EntProtoId _virtual = "PartVirtual";
     public override void Initialize()

@@ -15,14 +15,14 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
 namespace Content.Shared.Starlight.ItemSwitch;
-public abstract class SharedItemSwitchSystem : EntitySystem
+public abstract partial class SharedItemSwitchSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly ClothingSystem _clothing = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private ClothingSystem _clothing = default!;
 
     private EntityQuery<ItemSwitchComponent> _query;
 

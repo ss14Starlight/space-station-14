@@ -18,7 +18,7 @@
     {
       "name": "back",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Huaqas (GitHub)"
     },
     {
       "name": "head",
@@ -43,7 +43,7 @@
     {
       "name": "ears",
       "directions": 4,
-      "copyright": "by DocMoth"
+      "copyright": "by Huaqas (GitHub)"
     },
     {
       "name": "eyes",
@@ -58,7 +58,7 @@
     {
       "name": "belt",
       "directions": 4,
-      "copyright": "by Zeyria"
+      "copyright": "by Huaqas (GitHub)"
     },
     {
       "name": "shoes",
@@ -84,6 +84,11 @@
       "name": "misc",
       "directions": 4,
       "copyright": "by DocMoth"
+    },
+    {
+      "name": "suitStorage",
+      "directions": 4,
+      "copyright": "by Huaqas (GitHub)"
     }
   ]
 }
