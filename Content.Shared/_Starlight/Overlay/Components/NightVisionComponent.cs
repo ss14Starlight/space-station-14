@@ -13,7 +13,7 @@ public sealed partial class NightVisionComponent : Component
     /// Whether or not the night vision provided by this component is blocked by disabilities.
     /// Special organs like cybereyes bypass disabilities, while fleshy default organs won't.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool DisabilityBlockable = false;
 
     [DataField]
