@@ -6,11 +6,11 @@ using Robust.Shared.Random;
 namespace Content.Shared.Weapons.Ranged.Systems;
 
 // Randomizes shots-per-burst each time a burst completes for guns with GunBurstVarianceDefectComponent.
-public sealed class GunBurstVarianceSystem : EntitySystem
+public sealed partial class GunBurstVarianceSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
 
     public override void Initialize()
     {

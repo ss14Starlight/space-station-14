@@ -10,9 +10,9 @@ namespace Content.Client._Starlight;
 
 public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerMan = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private ISharedPlayerManager _playerMan = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     private NullSpaceOverlay _overlay = default!;
 

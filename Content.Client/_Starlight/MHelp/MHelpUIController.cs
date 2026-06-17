@@ -18,16 +18,16 @@ using Content.Shared._NullLink;
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
-public sealed class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>
+public sealed partial class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>
 {
-    [Dependency] private readonly INullLinkPlayerRolesManager _playerRoles = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
-    [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly StaffHelpUIController _staffhelp = default!;
-    [Dependency] private readonly AHelpUIController _aHelp = default!;
+    [Dependency] private INullLinkPlayerRolesManager _playerRoles = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _playerRolesReq = default!;
+    [Dependency] private IClientAdminManager _adminManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private StaffHelpUIController _staffhelp = default!;
+    [Dependency] private AHelpUIController _aHelp = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MentorSystem? _mentorSystem;

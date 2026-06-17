@@ -20,15 +20,15 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._Starlight.Combat.OnHit;
 
-public abstract class SharedOnHitSystem : EntitySystem
+public abstract partial class SharedOnHitSystem : EntitySystem
 {
-    [Dependency] protected readonly INetManager _net = default!;
-    [Dependency] protected readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected readonly SharedAudioSystem _audio = default!;
-    [Dependency] protected readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] protected readonly SharedSolutionContainerSystem _solutionContainers = default!;
-    [Dependency] protected readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] protected readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] protected INetManager _net = default!;
+    [Dependency] protected SharedDoAfterSystem _doAfter = default!;
+    [Dependency] protected SharedAudioSystem _audio = default!;
+    [Dependency] protected ReactiveSystem _reactiveSystem = default!;
+    [Dependency] protected SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] protected SharedColorFlashEffectSystem _color = default!;
+    [Dependency] protected SharedCuffableSystem _cuffs = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<InjectOnHitComponent, MeleeHitEvent>(OnInjectOnMeleeHit);

@@ -14,7 +14,7 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 [MeansImplicitUse]
 public abstract partial class BaseCondition
 {
-    [Dependency] protected readonly IEntityManager Ent = default!;
+    [Dependency] protected IEntityManager Ent = default!;
 
     public virtual bool Handle(EntityUid @subject, EntityUid @object)
     {

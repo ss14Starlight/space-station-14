@@ -15,11 +15,11 @@ namespace Content.Shared.Defects.Systems;
 ///   2 defects → "Worn"
 ///   3+ defects → "Rusty"
 /// </summary>
-public sealed class DefectSystem : EntitySystem
+public sealed partial class DefectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
     public override void Initialize()
     {

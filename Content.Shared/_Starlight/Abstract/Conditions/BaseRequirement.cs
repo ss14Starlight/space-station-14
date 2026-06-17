@@ -12,7 +12,7 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 [MeansImplicitUse]
 public abstract partial class BaseRequirement
 {
-    [Dependency] protected readonly IEntityManager Ent = default!;
+    [Dependency] protected IEntityManager Ent = default!;
 
     public virtual string GetRequirementDescription()
     {

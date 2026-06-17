@@ -581,6 +581,38 @@
 
 - type: entity
   parent: BasePDA
+  categories: [ DoNotMap ]
+  id: CentCommGreenShieldPDA
+  name: greenshield PDA
+  description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone who thinks they are way too important.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/pda.rsi
+    - type: Pda
+      id: CCGreenShieldIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-ntnc-cs
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pda.rsi
+      state: pda-ntnc-cs
+    - type: CartridgeLoader
+      uiKey: enum.PdaUiKey.Key
+      preinstalled:
+        - CrewManifestCartridge
+        - NotekeeperCartridge
+        - NanoTaskCartridge
+        - NewsReaderCartridge
+        - MedTekCartridge
+        - WantedListCartridge
+        - LogProbeCartridge
+        - AstroNavCartridge
+        - NanoChatCartridge
+
+- type: entity
+  parent: BasePDA
   id: NTNCCSPDA
   name: nt nc naval officer's PDA
   components:

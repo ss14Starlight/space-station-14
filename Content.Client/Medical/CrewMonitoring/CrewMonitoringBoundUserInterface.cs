@@ -12,10 +12,10 @@ using Content.Shared.Medical.SuitSensors;
 
 namespace Content.Client.Medical.CrewMonitoring;
 
-public sealed class CrewMonitoringBoundUserInterface : BoundUserInterface
+public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // Starlight
-    [Dependency] private readonly IGameTiming _gameTiming = default!; // Starlight
+    [Dependency] private ISharedPlayerManager _playerManager = default!; // Starlight
+    [Dependency] private IGameTiming _gameTiming = default!; // Starlight
 
     [ViewVariables]
     private CrewMonitoringWindow? _menu;

@@ -18,10 +18,10 @@ namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 /// Handles spawning spark visual effects when armor with high pierce resistance
 /// or Rock material is hit by SP or HP hitscan bullets.
 /// </summary>
-public abstract class SharedArmorSparkEffectSystem : EntitySystem
+public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

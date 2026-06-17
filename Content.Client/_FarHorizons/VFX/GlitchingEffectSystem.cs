@@ -6,12 +6,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Client._FarHorizons.VFX;
 
-public sealed class GlitchingEffectSystem : EntitySystem
+public sealed partial class GlitchingEffectSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     private GlitchingEffectOverlay _overlay = default!;
 

@@ -25,12 +25,12 @@ namespace Content.Server._Starlight.EndOfRoundGriefing;
 ///
 /// The server side of the EORG prevent system manages state and is responsible for managing the <see cref="PreventEorgComponent"/>s on players.
 /// </summary>
-public sealed class EorgPreventionSystem : SharedEorgPreventionSystem
+public sealed partial class EorgPreventionSystem : SharedEorgPreventionSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _rolesReq = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _rolesReq = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
 
     public override void Initialize()
     {
