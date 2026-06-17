@@ -170,6 +170,17 @@
 
 - type: entity
   parent: BaseMindRoleAntag
+  id: MindRoleMindControlled
+  name: Mind Controlled Role
+  components:
+  - type: MindRole
+    antagPrototype: MindControlled
+    roleType: TeamAntagonist
+    subtype: role-subtype-mind-controlled
+  - type: MindControl
+
+- type: entity
+  parent: BaseMindRoleAntag
   id: MindRoleTerminator
   name: Terminator Role
   components:

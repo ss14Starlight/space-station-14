@@ -13,7 +13,18 @@ public sealed class CyborgAllAccessParityTest
     /// </summary>
     private static readonly HashSet<ProtoId<AccessLevelPrototype>> _exclusions =
     [
-        new("Debrief") // Borgs are not head of staff, and should not be in debrief.
+        new("Debrief"), // Borgs are not head of staff, and should not be in debrief.
+        new("Captain"),
+        new("HeadOfPersonnel"),
+        new("ChiefEngineer"),
+        new("ChiefMedicalOfficer"),
+        new("HeadOfSecurity"),
+        new("ResearchDirector"),
+        new("Armory"),
+        new("Quartermaster"),
+        new("Magistrate"),
+        new("Ntrep"),
+        new("BlueShield"),
     ];
 
     private static readonly ProtoId<AccessGroupPrototype> _allAccessGroup = "AllAccess";

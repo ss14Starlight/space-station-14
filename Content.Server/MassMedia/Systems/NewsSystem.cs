@@ -117,6 +117,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             return;
 
         EnsureComp<StationNewsComponent>(station.Value);
+        EnsureComp<StationNewsReactionsComponent>(station.Value); // Starlight
     }
 
     private void OnWriteUiDeleteMessage(Entity<NewsWriterComponent> ent, ref NewsWriterDeleteMessage msg)
@@ -136,6 +137,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             );
 
             articles.RemoveAt(msg.ArticleNum);
+            RemoveArticleReactions(ent, msg.ArticleNum); // Starlight
             _audio.PlayPvs(ent.Comp.ConfirmSound, ent);
         }
         else
@@ -210,7 +212,12 @@ public sealed partial class NewsSystem : SharedNewsSystem
             Title = title.Length <= MaxTitleLength ? title : $"{title[..MaxTitleLength]}...",
             Content = content.Length <= MaxContentLength ? content : $"{content[..MaxContentLength]}...",
             Author = author,
-            ShareTime = _ticker.RoundDuration()
+            ShareTime = _ticker.RoundDuration(),
+            // Starlight-edit: start
+            Likes = 0,
+            Dislikes = 0,
+            Views = 0
+            // Starlight-edit: end
         };
 
         articles.Add(article.Value);
@@ -284,25 +291,37 @@ public sealed partial class NewsSystem : SharedNewsSystem
         if (args is not NewsReaderUiMessageEvent message)
             return;
 
+        var shouldCountView = false; // Starlight
+
         switch (message.Action)
         {
             case NewsReaderUiAction.Next:
                 NewsReaderLeafArticle(ent, 1);
+                shouldCountView = true; // Starlight
                 break;
             case NewsReaderUiAction.Prev:
                 NewsReaderLeafArticle(ent, -1);
+                shouldCountView = true; // Starlight
                 break;
             case NewsReaderUiAction.NotificationSwitch:
                 ent.Comp.NotificationOn = !ent.Comp.NotificationOn;
                 break;
+            // Starlight-edit: start
+            case NewsReaderUiAction.Like:
+                TryReactToCurrentArticle(ent, args.Actor, true);
+                break;
+            case NewsReaderUiAction.Dislike:
+                TryReactToCurrentArticle(ent, args.Actor, false);
+                break;
+            // Starlight-edit: end
         }
 
-        UpdateReaderUi(ent, GetEntity(args.LoaderUid));
+        UpdateReaderUi(ent, GetEntity(args.LoaderUid), shouldCountView);
     }
 
     private void OnReaderUiReady(Entity<NewsReaderCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
-        UpdateReaderUi(ent, args.Loader);
+        UpdateReaderUi(ent, args.Loader, true);
     }
     #endregion
 
@@ -331,7 +350,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
-    private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
+    private void UpdateReaderUi(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid, bool shouldCountView = false) // Starlight
     {
         if (!TryGetArticles(ent, out var articles))
             return;
@@ -344,11 +363,19 @@ public sealed partial class NewsSystem : SharedNewsSystem
             return;
         }
 
+        if (shouldCountView) // Starlight
+        {
+            var article = articles[ent.Comp.ArticleNumber];
+            article.Views++;
+            articles[ent.Comp.ArticleNumber] = article;
+        }
+
         var state = new NewsReaderBoundUserInterfaceState(
             articles[ent.Comp.ArticleNumber],
             ent.Comp.ArticleNumber + 1,
             articles.Count,
-            ent.Comp.NotificationOn);
+            ent.Comp.NotificationOn,
+            HasReactedToCurrentArticle(ent, loaderUid)); // Starlight
 
         _cartridgeLoaderSystem.UpdateCartridgeUiState(loaderUid, state);
     }
@@ -366,6 +393,109 @@ public sealed partial class NewsSystem : SharedNewsSystem
         if (ent.Comp.ArticleNumber < 0)
             ent.Comp.ArticleNumber = articles.Count - 1;
     }
+
+# region Starlight
+
+    private void TryReactToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid user, bool like)
+    {
+        if (!TryGetArticles(ent, out var articles) ||
+            articles.Count == 0)
+            return;
+
+        if (!_accessReaderSystem.FindStationRecordKeys(user, out var recordKeys))
+            return;
+
+        NewsReaderLeafArticle(ent, 0);
+
+        var article = articles[ent.Comp.ArticleNumber];
+        if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, true))
+            return;
+
+        foreach (var key in recordKeys)
+        {
+            var netKey = (GetNetEntity(key.OriginStation), key.Id);
+            if (reactions.Contains(netKey))
+                return;
+        }
+
+        var firstKey = recordKeys.First();
+        reactions.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
+
+        if (like)
+            article.Likes++;
+        else
+            article.Dislikes++;
+
+        articles[ent.Comp.ArticleNumber] = article;
+    }
+
+    private bool HasReactedToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
+    {
+        if (!_accessReaderSystem.FindStationRecordKeys(loaderUid, out var recordKeys))
+            return false;
+
+        if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, false))
+            return false;
+
+        foreach (var key in recordKeys)
+        {
+            var netKey = (GetNetEntity(key.OriginStation), key.Id);
+            if (reactions.Contains(netKey))
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetArticleReactions(EntityUid articleOwner, int articleNumber,
+        [NotNullWhen(true)] out HashSet<(NetEntity, uint)>? reactions,
+        bool create)
+    {
+        reactions = null;
+
+        if (_station.GetOwningStation(articleOwner) is not { } station)
+            return false;
+
+        if (!TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            if (!create)
+                return false;
+
+            comp = EnsureComp<StationNewsReactionsComponent>(station);
+        }
+
+        if (!comp.ReactedByArticle.TryGetValue(articleNumber, out reactions))
+        {
+            if (!create)
+                return false;
+
+            reactions = new HashSet<(NetEntity, uint)>();
+            comp.ReactedByArticle[articleNumber] = reactions;
+        }
+
+        return true;
+    }
+
+    private void RemoveArticleReactions(EntityUid articleOwner, int articleNumber)
+    {
+        if (_station.GetOwningStation(articleOwner) is not { } station ||
+            !TryComp<StationNewsReactionsComponent>(station, out var comp))
+        {
+            return;
+        }
+
+        comp.ReactedByArticle.Remove(articleNumber);
+
+        foreach (var (index, reactions) in comp.ReactedByArticle
+                     .Where(entry => entry.Key > articleNumber)
+                     .OrderByDescending(entry => entry.Key)
+                     .ToArray())
+        {
+            comp.ReactedByArticle.Remove(index);
+            comp.ReactedByArticle[index - 1] = reactions;
+        }
+    }
+#endregion
 
     private void UpdateWriterDevices()
     {
