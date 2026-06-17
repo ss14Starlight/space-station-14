@@ -27,7 +27,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: NTS Ingeniator
+      name: NTS 'Kickstart' Ingeniator
     - type: Transform
       pos: 4.80921,-11.67172
       parent: invalid
