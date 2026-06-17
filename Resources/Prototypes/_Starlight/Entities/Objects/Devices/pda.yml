@@ -687,6 +687,8 @@
   name: NT PDA
   description: A stately blue PDA used by top NanoTrasen Officials and Special Forces.
   components:
+  - type: sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardNTSF
   - type: Appearance
@@ -723,6 +725,8 @@
   name: jailbroken PDA
   description: A illegally modified generic NanoTrasen PDA. Please report this to your nearest NanoTrasen Representative for investigation.
   components:
+  - type: sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardDecimus
   - type: Appearance
