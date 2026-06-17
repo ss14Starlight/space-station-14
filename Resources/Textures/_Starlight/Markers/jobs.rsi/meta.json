@@ -75,6 +75,11 @@
     },
     {
       "name": "nct"
+    },
+    {
+      "name": "GSO",
+      "copyright": "BornStellar",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }
