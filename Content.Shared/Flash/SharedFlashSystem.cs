@@ -23,6 +23,7 @@ using System.Linq;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.Flash.Components;
 
 namespace Content.Shared.Flash;
 
