@@ -180,7 +180,9 @@ public abstract class SharedFlashSystem : EntitySystem
 
         #region Starlight
         // Increase the flash duration if the flashed entity has a multiplier (some species are more vulnerable to flashes)
-        if(TryComp<FlashModifierComponent>(target, out var flashMod))
+        if(TryComp<FlashModifierComponent>(target, out var flashMod)
+            && float.IsFinite(flashMod.Modifier)
+            && flashMod.Modifier > 0)
         {
             flashDuration *= flashMod.Modifier;
         }
