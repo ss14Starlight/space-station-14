@@ -5,6 +5,8 @@ using Content.Server.StationEvents.Events;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Content.Shared._Starlight.VentCrawl.EntitySystems;
+using Content.Shared._Starlight.VentCrawl.Components;
+using Robust.Shared.Map;
 
 namespace Content.Server._Starlight.StationEvents.Events;
 
@@ -61,9 +63,37 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
     private void OnAfterSelection(Entity<VentSpawnRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
         if (!ent.Comp.InsertInVent) return;
-        if (!ent.Comp.Vent.TryGetValue(args.EntityUid, out var vent)) return;
+        if (!ent.Comp.Vent.TryGetValue(args.EntityUid, out var vent))
+            return;
 
-        if (!_ventCrawl.TryInsert(vent.Uid, args.EntityUid))
-            Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)} into vent {ToPrettyString(vent.Uid)}");
+        if (TryInsertInVent(args.EntityUid, vent))
+            return;
+
+        ent.Comp.ValidLocations.Remove(vent);
+
+        while (ent.Comp.ValidLocations.Count > 0)
+        {
+            vent = ent.Comp.ValidLocations[RobustRandom.Next(ent.Comp.ValidLocations.Count)];
+            ent.Comp.Vent[args.EntityUid] = vent;
+            _transform.SetMapCoordinates(args.EntityUid, vent.Coords);
+
+            if (TryInsertInVent(args.EntityUid, vent))
+                return;
+
+            ent.Comp.ValidLocations.Remove(vent);
+        }
+
+    }
+
+    private bool TryInsertInVent(EntityUid uid, (MapCoordinates Coords, EntityUid Uid) vent)
+    {
+        if (!HasComp<VentCrawlEntryComponent>(vent.Uid) ||
+            !TryComp<VentCrawlTubeComponent>(vent.Uid, out var tube) ||
+            !tube.Connected)
+        {
+            return false;
+        }
+
+        return _ventCrawl.TryInsert(vent.Uid, uid);
     }
 }
