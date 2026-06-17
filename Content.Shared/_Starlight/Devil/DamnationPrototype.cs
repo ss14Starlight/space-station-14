@@ -30,6 +30,7 @@ public sealed partial class DamnationPrototype : IPrototype
     /// <summary>
     /// Maximum number of uses this damnation. -1 indicates infinite uses available.
     /// </summary>
+    [DataField("maxUses")]
     public int MaxUses = -1;
 
     /// <summary>

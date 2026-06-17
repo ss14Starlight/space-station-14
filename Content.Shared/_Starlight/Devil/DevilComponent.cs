@@ -59,6 +59,7 @@ public sealed partial class DevilComponent : Component
     /// <summary>
     /// How much has the devil used each damnation?
     /// </summary>
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<ProtoId<DamnationPrototype>, int> DamnationUsage = new();
 
     // todo make actual devil names
