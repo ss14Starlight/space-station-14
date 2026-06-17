@@ -9,14 +9,14 @@ using Content.Shared.Starlight.Overlay;
 
 namespace Content.Client._Starlight.Overlay;
 
-public sealed class ThermalVisionSystem : SharedThermalVisionSystem
+public sealed partial class ThermalVisionSystem : SharedThermalVisionSystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
     private ThermalVisionEntityHighlightOverlay _throughWallsOverlay = default!;
     private ThermalVisionOverlay _overlay = default!;

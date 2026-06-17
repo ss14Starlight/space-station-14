@@ -21,3 +21,12 @@
   name: chat-speech-verb-name-lagomorph
   speechVerbStrings:
   - chat-speech-verb-lagomorph
+
+- type: speechVerb
+  id: Rodentia
+  name: chat-speech-verb-name-rodentia
+  speechVerbStrings:
+    - chat-speech-verb-rodentia-1
+    - chat-speech-verb-rodentia-2
+    - chat-speech-verb-rodentia-3
+    - chat-speech-verb-rodentia-4

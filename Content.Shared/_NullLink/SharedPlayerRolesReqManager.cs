@@ -6,10 +6,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._NullLink;
 
-public abstract class SharedPlayerRolesReqManager : ISharedNullLinkPlayerRolesReqManager
+public abstract partial class SharedPlayerRolesReqManager : ISharedNullLinkPlayerRolesReqManager
 {
-    [Dependency] protected readonly IPrototypeManager _proto = default!;
-    [Dependency] protected readonly IConfigurationManager _cfg = default!;
+    [Dependency] protected IPrototypeManager _proto = default!;
+    [Dependency] protected IConfigurationManager _cfg = default!;
 
     public void Initialize()
     {

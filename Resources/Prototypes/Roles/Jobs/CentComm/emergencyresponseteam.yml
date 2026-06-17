@@ -518,17 +518,16 @@
     back:
     - JugGoldenBicaridine
     - AutoMenderBruteFilled
-    - Hypospray
-    - BeakerSmallArith
-    - BeakerSmallDiph
-    - ChemistryBottlePuncturase
+    - JugPunctTranex
+    - JugDexPlusSaline
     - ChemistryBottleAmoxla
-    - ChemistryBottleBruizine
-    - ChemistryBottleDexalinPlus
+    - ChemistryBottleDiphenhydramine
     - JugGoldenDermaline
     - AutoMenderBurnFilled
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
     - TelescopicShield
-    - EmergencyRollerBedSpawnFolded
+    - Hypospray
     - BodyBagLockableFolded
     - BodyBagLockableFolded
     belt:
@@ -551,20 +550,17 @@
     back:
     - JugGoldenBicaridine
     - AutoMenderBruteFilled
-    - Hypospray
-    - BeakerSmallArith
-    - BeakerSmallDiph
-    - ChemistryBottlePuncturase
+    - JugPunctTranex
+    - JugDexPlusSaline
+    - ChemistryBottleOmnizine
     - ChemistryBottleAmoxla
-    - ChemistryBottleBruizine
-    - ChemistryBottleDexalinPlus
     - JugGoldenDermaline
     - AutoMenderBurnFilled
     - TelescopicShield
+    - Hypospray
     - MagazineBatteryLr30
     - MagazineBatteryLr30
     - MagazineBatteryLr30
-    - BodyBagLockableFolded
 
 - type: chameleonOutfit
   id: ERTMedicalChameleonOutfit

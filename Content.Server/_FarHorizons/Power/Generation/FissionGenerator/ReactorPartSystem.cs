@@ -13,9 +13,9 @@ namespace Content.Server._FarHorizons.Power.Generation.FissionGenerator;
 
 public sealed partial class ReactorPartSystem : SharedReactorPartSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     /// <summary>
     /// Processing multiplier based on atmospherics time and speedup cvar

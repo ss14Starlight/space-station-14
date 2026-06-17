@@ -14,9 +14,9 @@ namespace Content.Server._Starlight.Objectives.Systems;
 /// <summary>
 /// Handles Teach a Lesson logic on if a specific entity has died at least once during the round
 /// </summary>
-public sealed class TeachALessonConditionSystem : EntitySystem
+public sealed partial class TeachALessonConditionSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroad = default!;
+    [Dependency] private RailroadingSystem _railroad = default!;
     public override void Initialize()
     {
         base.Initialize();

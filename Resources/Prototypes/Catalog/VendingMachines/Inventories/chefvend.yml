@@ -35,6 +35,7 @@
   emaggedInventory:
     FoodMeatHuman: 4
     FoodFriedfelionoid: 1
+    FoodFriedRodentia: 1
     HeadVulpkanin: 1
     FoodCakeResomiSlice: 2
     # Starlight End

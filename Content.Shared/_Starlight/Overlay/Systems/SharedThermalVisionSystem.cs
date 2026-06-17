@@ -8,9 +8,9 @@ using static Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
 
 namespace Content.Shared.Eye.Blinding.Components;
 
-public abstract class SharedThermalVisionSystem : EntitySystem
+public abstract partial class SharedThermalVisionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
 
     protected virtual bool IsPredict() => false;
     public EntProtoId Action = "ActionToggleThermal";

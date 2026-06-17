@@ -3,9 +3,9 @@ using Content.Shared.Verbs;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed class DarkHubSystem : EntitySystem
+public sealed partial class DarkHubSystem : EntitySystem
 {
-    [Dependency] private readonly DarkPortalSystem _portal = default!;
+    [Dependency] private DarkPortalSystem _portal = default!;
     public override void Initialize()
     {
         base.Initialize();

@@ -5,10 +5,10 @@ using Content.Client.Stylesheets;
 
 namespace Content.Client._Starlight.MHelp;
 
-public sealed class StaffHelpUIController : UIController
+public sealed partial class StaffHelpUIController : UIController
 {
-    [Dependency] private readonly AHelpUIController _aHelp = default!;
-    [Dependency] private readonly MHelpUIController _mHelp = default!;
+    [Dependency] private AHelpUIController _aHelp = default!;
+    [Dependency] private MHelpUIController _mHelp = default!;
 
     private StaffHelpWindow? _staffHelpWindow;
 

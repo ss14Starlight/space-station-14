@@ -10,7 +10,7 @@ namespace Content.Client.Labels.UI
     [GenerateTypedNameReferences]
     public sealed partial class HandLabelerWindow : DefaultWindow
     {
-        [Dependency] private readonly IConfigurationManager _cfg = default!; // Starlight
+        [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
         public event Action<string>? OnLabelChanged;
         public event Action<string>? OnLabelSelected; // Starlight

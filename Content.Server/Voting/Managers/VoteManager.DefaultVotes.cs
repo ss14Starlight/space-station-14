@@ -43,10 +43,10 @@ namespace Content.Server.Voting.Managers
             [ "option" ]
         );
         #endregion
-        [Dependency] private readonly IPlayerLocator _locator = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
-        [Dependency] private readonly IBanManager _bans = default!;
-        [Dependency] private readonly VoteWebhooks _voteWebhooks = default!;
+        [Dependency] private IPlayerLocator _locator = default!;
+        [Dependency] private ILogManager _logManager = default!;
+        [Dependency] private IBanManager _bans = default!;
+        [Dependency] private VoteWebhooks _voteWebhooks = default!;
 
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;

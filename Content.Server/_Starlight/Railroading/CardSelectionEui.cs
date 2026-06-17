@@ -6,9 +6,9 @@ using Content.Shared.Eui;
 
 namespace Content.Server.Ghost.Roles.UI;
 
-public sealed class CardSelectionEui : BaseEui
+public sealed partial class CardSelectionEui : BaseEui
 {
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
     public required Entity<RailroadableComponent> Subject { get; init; }
 
     public CardSelectionEui() => IoCManager.InjectDependencies(this);

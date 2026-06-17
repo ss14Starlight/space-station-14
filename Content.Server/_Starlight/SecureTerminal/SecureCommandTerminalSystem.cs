@@ -37,32 +37,32 @@ namespace Content.Server.Starlight.SecureTerminal;
 /// Drives the Secure Command Terminal — proposal creation, multi-party authorization,
 /// countdown timers, fee deduction, salary penalties, and final action execution.
 /// </summary>
-public sealed class SecureCommandTerminalSystem : EntitySystem
+public sealed partial class SecureCommandTerminalSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly StationSystem _stations = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
-    [Dependency] private readonly AlertArmorySystem _armory = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly AccessReaderSystem _access = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedIdCardSystem _idCard = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly NukeCodePaperSystem _nukeCodeSystem = default!;
-    [Dependency] private readonly SharedAirlockSystem _airlock = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResources = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private StationSystem _stations = default!;
+    [Dependency] private AlertLevelSystem _alertLevel = default!;
+    [Dependency] private AlertArmorySystem _armory = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedIdCardSystem _idCard = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private NukeCodePaperSystem _nukeCodeSystem = default!;
+    [Dependency] private SharedAirlockSystem _airlock = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!;
 
     public override void Initialize()
     {

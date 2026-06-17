@@ -20,7 +20,7 @@ namespace Content.Shared.Silicons.Borgs;
 public abstract partial class SharedBorgSystem
 {
     private EntityQuery<BorgModuleComponent> _moduleQuery;
-    [Dependency] private readonly SharedToolSystem _tool = default!; //Starlight
+    [Dependency] private SharedToolSystem _tool = default!; //Starlight
 
     public void InitializeModule()
     {

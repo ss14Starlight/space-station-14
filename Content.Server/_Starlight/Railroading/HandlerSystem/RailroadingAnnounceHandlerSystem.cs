@@ -9,9 +9,9 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingAnnounceHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public override void Initialize()
     {

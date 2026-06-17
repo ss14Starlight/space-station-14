@@ -37,10 +37,6 @@
 
   You can hold up to 14 Motes of Entropy, and approaching The Monument will automatically deposit all Entropy you posess.
 
-  [textlink="For more on the Monument, click here." link="CosmicCultMonument"]
-
-  [textlink="For more on Influences, click here." link="CosmicCultInfluences"]
-
   <Box>
     <GuideEntityEmbed Entity="CosmicVacuousSpire" Caption="A vacuous spire"/>
   </Box>
@@ -59,20 +55,6 @@
   Any chaplains or crewmembers with a mindshield cannot be converted using a Glyph of Knowledge. Once the Monument is fully empowered, the Glyph of Truth can be used to convert these crewmembers.
 
   You will need a certain amount of crewmembers to be present for conversion to succeed. The number required can be checked by accessing the Monument. [italic]If not enough cultists are present, conversion will fail, and your cult may be exposed.[/italic]
-
-  [textlink="For information on deconversion, click here." link="CosmicCultDeconversion"]
-
-  ## Malign Rifts
-  <Box>
-    <GuideEntityEmbed Entity="CosmicMalignRift" Caption=""/>
-  </Box>
-  As your cult progresses, [color=#4cabb3]Malign Rifts[/color] will begin to spawn throughout the surrounding environment. These rifts in realspace bleed unstable astral power, and should be located as soon as possible!
-
-  Cultists may stealthily [color=#4cabb3]absorb[/color] a Malign Rift by interacting with it.
-
-  Successful absorbtion of a Malign Rift will [bold]permanently[/bold] empower the cultist doing so, increasing the strength of all the [color=#4cabb3]Influences[/color] they possess, and doubling the [color=#4cabb3]Entropy[/color] they gain from siphoning crewmembers. Empowered cultists also no longer need to breathe, and are immune to the vaccuum of space. Empowered cultists also gain the [color=#4cabb3]Null Fragmentation[/color] influence, which can be used to convert a Cyborg into an [color=#4cabb3]Entropic Colossus[/color], or to corrupt the station AI's laws.
-
-  Malign Rifts can be purged by interacting with them using a bible.
 
   ## Vacuous Chantries
   <Box>

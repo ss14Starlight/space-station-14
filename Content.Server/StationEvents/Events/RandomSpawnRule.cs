@@ -9,11 +9,11 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class RandomSpawnRule : StationEventSystem<RandomSpawnRuleComponent>
+public sealed partial class RandomSpawnRule : StationEventSystem<RandomSpawnRuleComponent>
 {
     // Moffstation - Start - Syndicate dead drop
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private RadioSystem _radio = default!;
     // Moffstation - End
 
     protected override void Started(EntityUid uid, RandomSpawnRuleComponent comp, GameRuleComponent gameRule, GameRuleStartedEvent args)

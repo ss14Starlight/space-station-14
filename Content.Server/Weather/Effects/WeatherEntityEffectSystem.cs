@@ -4,9 +4,9 @@ using Content.Shared.Weather.Effects;
 
 namespace Content.Server.Weather.Effects;
 
-public sealed class WeatherEntityEffectSystem : EntitySystem
+public sealed partial class WeatherEntityEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedEntityEffectsSystem _effects = default!;
+    [Dependency] private SharedEntityEffectsSystem _effects = default!;
 
     public override void Initialize()
     {
