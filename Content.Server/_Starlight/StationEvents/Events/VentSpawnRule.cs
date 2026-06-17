@@ -41,6 +41,13 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
         var locations = EntityQueryEnumerator<VentCritterSpawnLocationComponent, TransformComponent>();
         while (locations.MoveNext(out var loc, out _, out var transform))
         {
+            if (!transform.Anchored || !HasComp<VentCrawlEntryComponent>(loc) ||
+                !TryComp<VentCrawlTubeComponent>(loc, out var tube) ||
+                !tube.Connected)
+            {
+                continue;
+            }
+
             if (CompOrNull<StationMemberComponent>(transform.GridUid)?.Station == station)
                 comp.ValidLocations.Add((_transform.GetMapCoordinates(transform), loc));
         }
