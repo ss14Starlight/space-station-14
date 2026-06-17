@@ -4,9 +4,9 @@ using Content.Shared.Power.EntitySystems;
 
 namespace Content.Shared._Starlight.Power.EntitySystems;
 
-public sealed class BatterySelfRechargerSystem : EntitySystem
+public sealed partial class BatterySelfRechargerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
 
     public void UpdateAutoRechargeRate(EntityUid uid, float value, BatterySelfRechargerComponent? comp)
     {

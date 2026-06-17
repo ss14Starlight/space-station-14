@@ -12,13 +12,13 @@ using Robust.Server.Audio;
 
 namespace Content.Server._Starlight.FactionClothingBlockerSystem;
 
-public sealed class AccessClothingBlockerSystem : EntitySystem
+public sealed partial class AccessClothingBlockerSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly GibbingSystem _gibSystem = default!;
-    [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private GibbingSystem _gibSystem = default!;
+    [Dependency] private ExplosionSystem _explosionSystem = default!;
+    [Dependency] private AudioSystem _audioSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     public override void Initialize()
     {

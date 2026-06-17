@@ -24,3 +24,12 @@
   category: Small
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/prospector.yml
+
+- type: vessel
+  id: Comet
+  name: EXP-Comet
+  description: A large salvage vessel designed to hold entire salvaging teams for operations.
+  price: 98500
+  category: Large
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/Comet.yml

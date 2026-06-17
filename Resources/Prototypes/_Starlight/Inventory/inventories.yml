@@ -640,8 +640,23 @@
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: neck
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: belt
       misc:
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
             state: misc
+      id:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: suitStorage
+      suitstorage:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Rodentia/displacement.rsi
+            state: suitStorage

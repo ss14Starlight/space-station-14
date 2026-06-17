@@ -14,8 +14,8 @@ namespace Content.Server._Starlight.Medical.Limbs;
 
 public sealed partial class LimbItemStorageSystem : EntitySystem
 {
-    [Dependency] private readonly StarlightEntitySystem _slEnt = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private StarlightEntitySystem _slEnt = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     public override void Initialize()
     {

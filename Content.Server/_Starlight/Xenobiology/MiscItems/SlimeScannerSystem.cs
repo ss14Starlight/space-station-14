@@ -10,11 +10,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Xenobiology.MiscItems;
 
-public sealed class SlimeScannerSystem : EntitySystem
+public sealed partial class SlimeScannerSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly HungerSystem _hungerSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private HungerSystem _hungerSystem = default!;
 
     public override void Initialize()
     {

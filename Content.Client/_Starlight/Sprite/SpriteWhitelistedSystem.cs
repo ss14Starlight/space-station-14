@@ -8,9 +8,9 @@ using Robust.Shared.Player;
 namespace Content.Client._Starlight.Sprite;
 public sealed partial class SpriteWhitelistedSystem : EntitySystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override void Initialize()
     {

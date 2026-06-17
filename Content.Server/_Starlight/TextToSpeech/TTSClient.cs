@@ -11,9 +11,9 @@ using EnumeratorCancellation = System.Runtime.CompilerServices.EnumeratorCancell
 
 namespace Content.Server._Starlight.TextToSpeech;
 
-public sealed class TTSClient : ITTSClient
+public sealed partial class TTSClient : ITTSClient
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private const string Queue = "tts_jobs";
     private const int TimeoutS = 5;

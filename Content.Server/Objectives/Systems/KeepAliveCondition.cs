@@ -12,11 +12,11 @@ namespace Content.Server.Objectives.Systems;
 /// <summary>
 /// Handles keep alive condition logic.
 /// </summary>
-public sealed class KeepAliveConditionSystem : EntitySystem
+public sealed partial class KeepAliveConditionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly TargetObjectiveSystem _target = default!;
-    [Dependency] private readonly RailroadingSystem _railroad = default!; // Starlight
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private TargetObjectiveSystem _target = default!;
+    [Dependency] private RailroadingSystem _railroad = default!; // Starlight
 
     public override void Initialize()
     {

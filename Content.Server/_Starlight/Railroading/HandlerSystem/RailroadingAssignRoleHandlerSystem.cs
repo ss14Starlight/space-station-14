@@ -7,7 +7,7 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingAssignRoleHandlerSystem : EntitySystem
 {
-    [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private RoleSystem _roles = default!;
     public override void Initialize()
     {
         base.Initialize();

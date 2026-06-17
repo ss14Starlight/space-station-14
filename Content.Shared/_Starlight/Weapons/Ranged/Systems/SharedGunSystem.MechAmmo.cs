@@ -12,8 +12,8 @@ namespace Content.Shared.Weapons.Ranged.Systems; //Wrong namespace for this, but
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly SharedMechSystem _mech = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private SharedMechSystem _mech = default!;
     protected virtual void InitializeMech()
     {
         SubscribeLocalEvent<MechAmmoProviderComponent, EntGotInsertedIntoContainerMessage>(OnGunInstalled);
