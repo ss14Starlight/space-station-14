@@ -1,7 +1,7 @@
-# LMG
+#region LMG
 - type: entity
   name: CODE-6 "Arbitration"
-  id: WeaponLightMachineGunMedTak
+  id: WeaponMedTakLightMachineGun
   parent: [ BaseWeaponLightMachineGun, BaseMedTakContraband ]
   description: "An ultralight assault LMG developed for MedTak security.\nAccepts .30 box magazines."
   components:
@@ -56,12 +56,13 @@
     maxAngle: 30
     angleIncrease: 2
     angleDecay: 10
-    fireRate: 8
+    fireRate: 6
 
+#region Rifle
 - type: entity
   name: CODE-9 "Compliance"
   parent: [ BaseWeaponRifle, BaseMedTakContraband ]
-  id: WeaponRifleMedTak
+  id: WeaponMedTakRifle
   description: "A bullpuped heavy rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
   components:
   - type: Sprite
@@ -112,7 +113,7 @@
 - type: entity
   name: CODE-9 ROW
   parent: BaseItem
-  id: WeaponRifleMedTakROW
+  id: WeaponMedTakRifleROW
   description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
   components:
   - type: Sprite
@@ -154,12 +155,12 @@
     affectedByEmp: true
   - type: AmmoCounter
 
-# Pistol
+#region Pistol
 - type: entity
   name: CODE-4 "Triage"
   description: "A heavy sidearm issued to MedTak operators.\nAccepts .40 pistol magazines."
   parent: [ BaseWeaponPistol, BaseMedTakContraband ]
-  id: WeaponPistolMedTak
+  id: WeaponMedTakPistol
   components:
     - type: Gun
       fireRate: 5
@@ -188,6 +189,39 @@
               - CartridgePistolDP
     - type: Sprite
       sprite: _Starlight/Admeme/Weapons/MedTak/Pistol.rsi
-    # - type: ChamberMagazineAmmoProvider
-    #   availablePrefixes:
-    #     - ""
+
+#region SMG
+- type: entity
+  name: CODE-10 "Intervention"
+  parent: [BaseWeaponSubMachineGun, BaseMedTakContraband]
+  id: WeaponMedTakSubMachineGun
+  description: A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Weapons/MedTak/SMG.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Admeme/Weapons/MedTak/SMG.rsi
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -4
+    maxAngle: -6
+  - type: Gun
+    fireRate: 6
+    minAngle: 5
+    maxAngle: 10
+    availableModes:
+    - FullAuto
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance
