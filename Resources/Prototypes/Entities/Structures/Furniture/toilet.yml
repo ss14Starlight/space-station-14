@@ -72,7 +72,7 @@
   - type: Drain
     autoDrain: false
   - type: StaticPrice
-    price: 100
+    price: 125 # Starlight
   - type: ActivatableUI
     key: enum.DisposalUnitUiKey.Key
     verbOnly: true # Not strictly needed, but we want E to toggle lid
