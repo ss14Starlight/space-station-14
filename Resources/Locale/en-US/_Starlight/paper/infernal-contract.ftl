@@ -21,6 +21,7 @@ infernal-contract-base =
 infernal-contract-examined-Valid = The contract is ready for signing.
 infernal-contract-examined-InvalidFormat = The contract is invalid, as it is missing vital smallprint.
 infernal-contract-examined-TooCostly = The contract is not a fair deal for hell, it will not be actioned.
+infernal-contract-examined-OverusedDamnation = The contract contains a damnation that has been used too much, and is no longer fiscally advantageous.
 infernal-contract-examined-UnknownClauses = The contract contains clauses which are not permitted for mortals.
 infernal-contract-examined-Signed = The contract has been signed!
 

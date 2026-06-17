@@ -56,6 +56,11 @@ public sealed partial class DevilComponent : Component
     /// </summary>
     public List<EntityUid> DamnedSouls = new();
 
+    /// <summary>
+    /// How much has the devil used each damnation?
+    /// </summary>
+    public Dictionary<ProtoId<DamnationPrototype>, int> DamnationUsage = new();
+
     // todo make actual devil names
     public List<ProtoId<LocalizedDatasetPrototype>> NameSegments = new()
     {
