@@ -255,3 +255,77 @@
     FoodFrozenSandwich : 1
   reagents:
     IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeSherbetIcecream
+  name: sherbet icecream
+  result: FoodSherbetIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries : 1
+    FoodOrange: 1
+    FoodLime: 1
+    FoodLemon: 1
+  reagents:
+    IceCream: 10
+
+- type: microwaveMealRecipe
+  id: RecipeBananaSplitIcecream
+  name: banana split icecream
+  result: FoodBananaSplitIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBanana : 1
+    FoodBerries: 1
+  reagents:
+    IceCream: 10
+    CocoaPowder: 5
+
+- type: microwaveMealRecipe
+  id: RecipeOrangeSwirlIcecream
+  name: orange swirl icecream
+  result: FoodOrangeSwirlIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodOrange: 1
+  reagents:
+    IceCream: 15
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipeBlueberryIcecream
+  name: blueberry icecream
+  result: FoodBlueberryIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 2
+  reagents:
+    IceCream: 15
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipeNeapolitanIcecream
+  name: neapolitan icecream
+  result: FoodNeapolitanIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 1
+  reagents:
+    IceCream: 20
+    CocoaPowder: 5
+

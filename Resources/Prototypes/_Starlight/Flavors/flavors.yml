@@ -87,3 +87,28 @@
   id: snowcreamicecream
   flavorType: Complex
   description: flavor-complex-snowcream-icecream
+
+- type: flavor
+  id: sherbeticecream
+  flavorType: Complex
+  description: flavor-complex-sherbet-icecream
+
+- type: flavor
+  id: bananaspliticecream
+  flavorType: Complex
+  description: flavor-complex-banana-split-icecream
+
+- type: flavor
+  id: orangeswirlicecream
+  flavorType: Complex
+  description: flavor-complex-orange-swirl-icecream
+
+- type: flavor
+  id: blueberryicecream
+  flavorType: Complex
+  description: flavor-complex-blueberry-icecream
+
+- type: flavor
+  id: neapolitanicecream
+  flavorType: Complex
+  description: flavor-complex-neapolitan-icecream

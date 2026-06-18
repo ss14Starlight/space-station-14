@@ -179,3 +179,138 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
+
+- type: entity
+  name: sherbet icecream
+  parent: FoodIceCreamBase
+  id: FoodSherbetIcecream
+  description: Lemon, Lime, Orange, and Strawberry in a fruity tangy blend.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - sherbeticecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/rainbow_sherbet_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/rainbow_sherbet_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: banana split icecream
+  parent: FoodIceCreamBase
+  id: FoodBananaSplitIcecream
+  description: The holy trio of ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - bananaspliticecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/banana_split_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/banana_split_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Theobromine
+          Quantity: 5
+
+
+- type: entity
+  name: orange swirl icecream
+  parent: FoodIceCreamBase
+  id: FoodOrangeSwirlIcecream
+  description: Vanilla ice cream with orange sherbet swirled together.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - orangeswirlicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/orange_swirl_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/orange_swirl_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: blueberry icecream
+  parent: FoodIceCreamBase
+  id: FoodBlueberryIcecream
+  description: Vanilla ice cream with orange sherbet swirled together.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - blueberryicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/blueberry_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/blueberry_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: neapolitan icecream
+  parent: FoodIceCreamBase
+  id: FoodNeapolitanIcecream
+  description: Vanilla, strawbery, and chocolate stacked together.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - neapolitanicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/napoleon_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/napoleon_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Theobromine
+          Quantity: 5
