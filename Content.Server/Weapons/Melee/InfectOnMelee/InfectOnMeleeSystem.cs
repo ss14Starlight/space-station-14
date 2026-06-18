@@ -14,11 +14,11 @@ using Content.Shared.Damage.Components;
 
 namespace Content.Server.Weapons.Melee.InfectOnMelee;
 
-public sealed class InfectOnMeleeSystem : EntitySystem
+public sealed partial class InfectOnMeleeSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly MobStateSystem _mob = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private MobStateSystem _mob = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {

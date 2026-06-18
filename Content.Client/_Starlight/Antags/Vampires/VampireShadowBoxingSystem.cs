@@ -8,10 +8,10 @@ namespace Content.Client._Starlight.Antags.Vampires;
 /// <summary>
 /// Client-side system to render shadow boxing punch travel effects
 /// </summary>
-public sealed class VampireShadowBoxingSystem : EntitySystem
+public sealed partial class VampireShadowBoxingSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private record struct ActivePunch(EntityUid Entity, EntityUid Source, EntityUid Target, TimeSpan SpawnTime, TimeSpan LifeTime);
     private readonly List<ActivePunch> _active = new();

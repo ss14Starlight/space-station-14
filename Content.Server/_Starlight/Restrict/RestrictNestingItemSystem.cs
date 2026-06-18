@@ -6,7 +6,7 @@ using Content.Shared.Starlight.Restrict;
 namespace Content.Server._Starlight.Restrict;
 public sealed partial class RestrictNestingItemSystem : SharedRestrictNestingItemSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         base.Initialize();

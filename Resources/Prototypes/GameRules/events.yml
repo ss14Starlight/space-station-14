@@ -35,6 +35,7 @@
     - id: NightShift
     - id: SyndicateDeadDrop
     # Starlight End
+    - id: MalignRiftSpawn # Funky
 
 - type: entityTable
   id: BasicAntagEventsTable

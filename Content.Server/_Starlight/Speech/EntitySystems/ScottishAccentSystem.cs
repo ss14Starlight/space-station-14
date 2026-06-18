@@ -6,7 +6,7 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed partial class ScottishAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     [GeneratedRegex(@"ing\b", RegexOptions.IgnoreCase)]
     private static partial Regex RegexIng();

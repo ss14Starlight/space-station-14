@@ -16,7 +16,6 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Cyclops/parts.rsi
     state: full
-  - type: NightVision
   - type: Butcherable
     butcheringType: Spike
     spawned:

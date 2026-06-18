@@ -9,13 +9,13 @@ using Robust.Shared.Configuration;
 
 namespace Content.Server._Starlight.GameTicking;
 
-public sealed class RoundEndVoteSystem : EntitySystem
+public sealed partial class RoundEndVoteSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IVoteManager _voteManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private IVoteManager _voteManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
 
     private TimeSpan? _voteStartTime;
 

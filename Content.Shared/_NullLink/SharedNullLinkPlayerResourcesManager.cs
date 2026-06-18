@@ -4,11 +4,11 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._NullLink;
 
-public abstract class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlayerResourcesManager
+public abstract partial class SharedNullLinkPlayerResourcesManager : ISharedNullLinkPlayerResourcesManager
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedPlayersRoleManager _sharedPlayers = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
+    [Dependency] private ISharedPlayersRoleManager _sharedPlayers = default!;
 
     protected ISawmill _sawmill = default!;
 

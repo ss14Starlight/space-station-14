@@ -9,13 +9,13 @@ using Robust.Shared.Configuration;
 
 namespace Content.Client._Starlight.Overlay.Trail;
 
-public sealed class TrailSystem : EntitySystem
+public sealed partial class TrailSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IStarlightShaderManager _shaderMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IStarlightShaderManager _shaderMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private TrailOverlay _overlay = default!;
     private bool _enabled = true;

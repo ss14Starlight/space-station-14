@@ -9,7 +9,7 @@ namespace Content.Server._Starlight.Railroading;
 // todo make TaskSystem<TTask,TWatcher>
 public sealed partial class RailroadingAvoidHandcuffsTaskSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
     public override void Initialize()
     {
         base.Initialize();

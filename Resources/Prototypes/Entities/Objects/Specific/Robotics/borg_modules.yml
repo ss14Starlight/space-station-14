@@ -816,13 +816,14 @@
     hands:
     #region Starlight
     - item: RCD
-    - hand:
+    - item: RPD
+    - item: RCDAmmo
+      hand:
         emptyRepresentative: RCDAmmo
         emptyLabel: borg-slot-rcd-ammo-empty
         whitelist:
           components:
           - RCDAmmo
-    - item: RPDRecharging
     #endregion Starlight
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic

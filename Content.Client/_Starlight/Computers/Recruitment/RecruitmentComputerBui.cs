@@ -13,11 +13,11 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Starlight.Computers.Recruitment;
 
 [UsedImplicitly]
-public sealed class RecruitmentComputerBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
+public sealed partial class RecruitmentComputerBui(EntityUid owner, Enum uiKey) : BoundUserInterface(owner, uiKey)
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IPrototypeManager _protos = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
 
     private readonly Dictionary<ProtoId<JobPrototype>, List<RichTextLabel>> _jobs = [];
 
