@@ -1,34 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) WinterDrobe to Cryosleep and Arrivals.
-    type: Add
-  id: 405703
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Pride-O-Mat to Cryoslepe and Arrivals.
-    type: Add
-  id: 405704
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Added Clown's locker which had been unrightfully missing from their room.
-    type: Add
-  id: 405705
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Surgery is no longer -40C, it should be +5C now instead. You can still tweak the freezer in the room to chill the room further if desired.
-    type: Tweak
-  id: 405706
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
   - message: (Starboard) RD's suit is now in its own suit storage rather than in the RD's locker.
     type: Tweak
   id: 405707
@@ -2799,4 +2771,32 @@ Entries:
   id: 406102
   time: '2026-06-18T09:28:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4829
+- author: Caws
+  changes:
+  - message: Swapped out the experimental RPD for a regular RPD added to Engineering cyborgs. It can be refilled it with compressed matter just like the RCD.
+    type: Tweak
+  id: 406103
+  time: '2026-06-18T10:11:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4830
+- author: Caws
+  changes:
+  - message: Engineering cyborgs will now start with compressed matter in their whitelisted hand slot.
+    type: Tweak
+  id: 406104
+  time: '2026-06-18T10:11:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4830
+- author: Caws
+  changes:
+  - message: Missing "Sensors and monitors" string in the Rapid Piping Device (RPD) construction menu.
+    type: Fix
+  id: 406105
+  time: '2026-06-18T10:11:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4830
+- author: Caws
+  changes:
+  - message: "New trait: 'Nightblind', available to any species that has night vision. Opting into this trait disables your night vision entirely. Some eye replacements, like cyber eyes, can overcome this trait."
+    type: Add
+  id: 406106
+  time: '2026-06-18T10:11:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4797
 Order: -1
