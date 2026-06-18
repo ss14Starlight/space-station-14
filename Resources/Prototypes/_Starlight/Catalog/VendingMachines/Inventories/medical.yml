@@ -357,9 +357,10 @@
     StrangePill: 1
     PillDesoxyephedrine5: 1
 
-# DeForest Vendor stuff
+# Deforest Vendor stuff
+# Interstellar = Departmental, Planetary = Civilian
 - type: vendingMachineInventory
-  id: DeForestInterstellarWallInventory
+  id: DeforestInterstellarWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
     ClothingBeltMedical: 2
@@ -385,7 +386,7 @@
 
 
 - type: vendingMachineInventory
-  id: DeForestPlanetaryWallInventory
+  id: DeforestPlanetaryWallInventory
   startingInventory:
     HandheldHealthAnalyzer: 1
     AloeCream: 3
@@ -408,7 +409,7 @@
     AirlossAutoInjector: 1
 
 - type: vendingMachineInventory
-  id: DeForestInterstellarInventory
+  id: DeforestInterstellarInventory
   startingInventory:
     HandheldHealthAnalyzer: 3
     ClothingBeltMedical: 3
@@ -449,7 +450,7 @@
     PyraAutoInjector: 1
 
 - type: vendingMachineInventory
-  id: DeForestPlanetaryInventory
+  id: DeforestPlanetaryInventory
   startingInventory:
     HandheldHealthAnalyzer: 3
     AloeCream: 3

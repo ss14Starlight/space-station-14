@@ -293,6 +293,10 @@
     - InterdyneEnterpriseInventory #SL
     - InterdyneCommercialWallInventory #SL
     - InterdyneEnterpriseWallInventory #SL
+    - DeforestInterstellarInventory # SL
+    - DeforestPlanetaryInventory # SL
+    - DeforestInterstellarWallInventory # SL
+    - DeforestPlanetaryWallInventory # SL
   - type: Sprite
     layers:
     - state: base

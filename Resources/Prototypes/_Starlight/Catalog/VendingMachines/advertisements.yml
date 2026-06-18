@@ -21,3 +21,9 @@
   values:
     prefix: advertisement-interdyne-
     count: 9
+
+- type: localizedDataset
+  id: DeforestAds
+  values:
+    prefix: advertisement-deforest-
+    count: 9

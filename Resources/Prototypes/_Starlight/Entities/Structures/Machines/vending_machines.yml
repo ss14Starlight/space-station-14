@@ -490,6 +490,116 @@
   - type: AccessReader
     access: [["Medical"], ["SyndicateAgent"]]
 
+# DeForest Medical Vending machines
+- type: entity
+  parent: VendingMachineMedicalBase
+  id: VendingMachineMedicalBaseDeforest
+  name: DeForest Planetary
+  description: It's a medical drug dispenser by DeForest Medical. Health that Touches the Sky.
+  components:
+  - type: VendingMachine
+    pack: DeforestPlanetaryInventory
+    offState: off-civilian
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+    ejectDelay: 0.6
+    showPrices: True
+  - type: DatasetVocalizer
+    dataset: InterdyneAds
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/deforest_medical.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#9dc5c9" # TODO: Change color
+
+- type: entity
+  parent: VendingMachineMedicalBaseDeforest
+  id: VendingMachineMedicalDeforest
+  name: DeForest Interstellar
+  components:
+  - type: VendingMachine
+    pack: DeforestInterstellarInventory
+    offState: off
+    showPrices: false  # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Service"]] # They all have a gimmick; this one is service access.
+
+# Wallmounts
+- type: entity
+  parent: VendingMachineWallmount
+  id: VendingMachineWallMedicalCivilianDeforest
+  name: DeForest health-aid planetary
+  description: It's a wall-mounted medical equipment dispenser by DeForest Medical. Health that Touches the Sky.
+  components:
+  - type: VendingMachine
+    pack: DeforestPlanetaryWallInventory
+    offState: off-civilian
+    showPrices: True # Starlight-edit: Vending Machines Prices
+    brokenState: broken
+    normalState: normal-unshaded
+    denyState: deny-unshaded
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCivilianCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    sprite: _Starlight/Structures/Machines/VendingMachines/deforest_wallmed.rsi
+    layers:
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off-civilian"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.3
+    energy: 3.0
+    color: "#43ccb5"
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianDeforest
+  id: VendingMachineWallMedicalDeforest
+  name: DeForest health-aid interstellar
+  components:
+  - type: VendingMachine
+    pack: DeforestInterstellarWallInventory
+    offState: off
+    showPrices: false # Starlight-edit: Vending Machines Prices
+  - type: Machine # Starlight-edit: Vending Machine boards
+    board: VendingMachineWallMedicalCircuitboard # Starlight-edit: Vending Machine boards
+  - type: Sprite
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["Medical"], ["Service"]] # They all have a gimmick; this one is service access.
+
 - type: entity
   parent: VendingMachine
   id: VendingMachineCAD
@@ -712,6 +822,20 @@
 - type: entity
   parent: VendingMachineMedicalSyndicate
   id: VendingMachineMedicalSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalBaseDeforest
+  id: VendingMachineMedicalBaseDeforestEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineMedicalDeforest
+  id: VendingMachineMedicalDeforestEmpty
   suffix: Empty
   components:
     - type: EmptyVendingMachine
@@ -1055,6 +1179,20 @@
 - type: entity
   parent: VendingMachineWallMedicalSyndicate
   id: VendingMachineWallMedicalSyndicateEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalCivilianDeforest
+  id: VendingMachineWallMedicalCivilianDeforestEmpty
+  suffix: Empty
+  components:
+    - type: EmptyVendingMachine
+
+- type: entity
+  parent: VendingMachineWallMedicalDeforest
+  id: VendingMachineWallMedicalDeforestEmpty
   suffix: Empty
   components:
     - type: EmptyVendingMachine

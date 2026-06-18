@@ -202,6 +202,8 @@
       prob: 0.20
     - id: OminousPill # Starlight
       prob: 0.10 # Starlight
+    - id: WeirdPill # Starlight
+      prob: 0.10 # Starlight
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable
