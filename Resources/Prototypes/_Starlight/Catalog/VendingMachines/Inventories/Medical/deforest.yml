@@ -14,7 +14,8 @@
     ChemistryBottleEpinephrine: 3
     Syringe: 3
     PillCanisterTricordrazine: 2
-    JetInjector: 1
+    JetInjector: 2
+    DeforestJetInjector: 1
     BruteAutoInjector: 1
     BurnAutoInjector: 1
     EmergencyMedipen: 1
@@ -63,6 +64,7 @@
     ChemistryBottleBicaridine: 1
     Syringe: 5
     JetInjector: 3
+    DeforestJetInjector: 2
     AntiPoisonMedipen: 2
     BruteAutoInjector: 3
     BurnAutoInjector: 3
