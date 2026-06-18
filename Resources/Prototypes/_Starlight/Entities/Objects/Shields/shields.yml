@@ -446,7 +446,7 @@
             shader: unshaded
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 0.50
+      reflectProb: 0.10
       reflects:
         - Energy
       reflectEnergyDraw: 80 # final stat TBD
@@ -474,24 +474,28 @@
       passiveBlockModifier:
         coefficients:
           Blunt: 1.0
-          Slash: 0.9
+          Slash: 0.8
           Piercing: 0.85
           Heat: 0.6
       activeBlockModifier:
         coefficients:
-          Blunt: 1.2
-          Slash: 0.85
+          Blunt: 0.95
+          Slash: 0.75
           Piercing: 0.5
           Heat: 0.4
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 10 #Final stat STB
+      damageEnergyDraw: 4 #Final stat TBD
+      PassiveBlockFraction: 0.8
     - type: Damageable
       damageContainer: Shield
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
+    - type: Tag
+      tags:
+        - Shield
 
 - type: entity
   name: bluelight shield
@@ -506,11 +510,6 @@
       color: "#87CEEB"
     - type: Item
       sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
-    - type: ComponentToggler
-      components:
-        - type: HeldSpeedModifier #unwieldy when deployed
-          walkModifier: 1
-          sprintModifier: 0.6
     - type: PowerCellDraw
       drawRate: 2  # watts while active # final stat TBD
     - type: Blocking # Stats TBD
@@ -522,11 +521,11 @@
           Heat: 0.6
       activeBlockModifier:
         coefficients:
-          Blunt: 1.2
+          Blunt: 1.0
           Slash: 0.85
           Piercing: 0.5
           Heat: 0.4
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 10 #Final stat STB
+      damageEnergyDraw: 4 #Final stat STB
