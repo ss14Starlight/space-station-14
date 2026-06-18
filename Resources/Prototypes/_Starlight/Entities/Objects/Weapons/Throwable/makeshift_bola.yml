@@ -41,7 +41,7 @@
         Blunt: 5
   - type: Ensnaring
     freeTime: 2.0
-    breakoutTime: 2.5 #lowered from 3.5 makeshift bola should be little quicker to remove
+    breakoutTime: 2 #lowered from 3.5 makeshift bola should be little quicker to remove
     walkSpeed: 0.5 #makeshift bola shouldn't slow too much
     sprintSpeed: 0.5
     staminaDamage: 0 # anything but this is gamebreaking
