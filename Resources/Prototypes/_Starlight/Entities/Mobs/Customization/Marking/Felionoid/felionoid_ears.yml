@@ -2,7 +2,7 @@
   id: FelionoidEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: ears
@@ -11,7 +11,7 @@
   id: FelionoidEarsRound
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: ears_round

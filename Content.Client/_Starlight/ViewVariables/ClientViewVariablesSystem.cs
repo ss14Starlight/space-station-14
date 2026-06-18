@@ -6,9 +6,9 @@ namespace Content.Client._Starlight.ViewVariables;
 /// <summary>
 /// Currently serves the sole purpose of listening for OpenViewVariablesEvent. Riviting I know.
 /// </summary>
-public sealed class ClientViewVariablesSystem : EntitySystem
+public sealed partial class ClientViewVariablesSystem : EntitySystem
 {
-    [Dependency] private readonly IClientConsoleHost _shell = default!;
+    [Dependency] private IClientConsoleHost _shell = default!;
 
     public override void Initialize()
     {

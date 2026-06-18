@@ -10,8 +10,8 @@ namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class GermanAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     [GeneratedRegex(@"(?<=\s|^)th", RegexOptions.IgnoreCase)]
     private static partial Regex RegexTh();

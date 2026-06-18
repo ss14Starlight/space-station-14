@@ -29,6 +29,12 @@ ghost-role-information-space-courier-trunk-name = Space Courier Trunk pAI
 ghost-role-information-space-courier-trunk-description = You are the personal AI included inside of a space courier's trunk.
 ghost-role-information-space-courier-trunk-rules = Ensure your owner makes all of their deliveries! Give yourself a name, too.
 
+ghost-role-information-cc-aligned-rules = You are [color={role-type-cc-aligned-alternate-color}][bold]{role-type-cc-aligned-name}[/bold][/color].
+                                             You are to serve the interests of Central Command, even if they differ from NanoTrasen or the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
+                                             You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+                                             You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+                                             You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
 ghost-role-information-corporate-aligned-rules = You are [color={role-type-corporate-aligned-alternate-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
                                              You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
                                              You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
@@ -101,3 +107,6 @@ ghost-role-information-monkey-advanced-description = Why, I daresay I could go f
 
 ghost-role-information-kobold-advanced-name = Advanced Kobold
 ghost-role-information-kobold-advanced-description = You have a craving for filet mignon.
+
+ghost-role-information-kiki-name = Kiki
+ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.

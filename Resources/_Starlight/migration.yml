@@ -107,5 +107,9 @@ ClothingHandsCatPawsBrownInsulated: null
 ClothingHandsCatPawsBlackInsulated: null
 ClothingHandsCatPawsBlackWhiteInsulated: null
 
-#2026-06-11 - Replacing Bolas with Security Bolas
+#2026-06-09 - Removing the large warden locker
+LockerWardenLarge: LockerWarden
+LockerWardenLargeFilled: LockerWardenFilled
+
+#2026-06-18 - Replacing Bolas with Security Bolas
 Bola: SecurityBola

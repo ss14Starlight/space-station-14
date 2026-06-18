@@ -17,19 +17,19 @@ using Content.Shared.Starlight.CCVar;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
+public sealed partial class LoadMapRuleSystem : StationEventSystem<LoadMapRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MapSystem _map = default!;
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly GridPreloaderSystem _gridPreloader = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MapSystem _map = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private GridPreloaderSystem _gridPreloader = default!;
     #region Starlight
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IMapManager _maps = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly EntityManager _entMan = default!;
-    [Dependency] private readonly DynamicRuleSystem _dynamicRule = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IMapManager _maps = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EntityManager _entMan = default!;
+    [Dependency] private DynamicRuleSystem _dynamicRule = default!;
     #endregion Starlight
 
     protected override void Added(EntityUid uid, LoadMapRuleComponent comp, GameRuleComponent rule, GameRuleAddedEvent args)

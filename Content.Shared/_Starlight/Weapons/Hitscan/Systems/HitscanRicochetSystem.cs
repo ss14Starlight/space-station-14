@@ -14,8 +14,8 @@ namespace Content.Server._Starlight.Combat.Ranged;
 
 public sealed partial class HitscanRicochetSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private EntityQuery<HitscanReflectComponent> _reflectQuery;
 

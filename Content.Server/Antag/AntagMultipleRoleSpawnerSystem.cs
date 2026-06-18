@@ -3,10 +3,10 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Antag;
 
-public sealed class AntagMultipleRoleSpawnerSystem : EntitySystem
+public sealed partial class AntagMultipleRoleSpawnerSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private ISawmill _sawmill = default!;
 

@@ -11,10 +11,10 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Server.Mech.Equipment.EntitySystems;
-public sealed class MechGunSystem : EntitySystem
+public sealed partial class MechGunSystem : EntitySystem
 {
-    [Dependency] private readonly MechSystem _mech = default!;
-    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private MechSystem _mech = default!;
+    [Dependency] private BatterySystem _battery = default!;
 
     public override void Initialize()
     {

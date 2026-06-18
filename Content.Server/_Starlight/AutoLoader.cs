@@ -6,12 +6,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight;
 
-public sealed class AutoLoaderSystem : EntitySystem
+public sealed partial class AutoLoaderSystem : EntitySystem
 {
-    [Dependency] private readonly DisposableSystem _disposableSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private DisposableSystem _disposableSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
         => base.Initialize();

@@ -17,7 +17,7 @@ namespace Content.Server.Construction.Completions;
 [UsedImplicitly, DataDefinition]
 public sealed partial class TransformMech : IGraphAction
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
 
     private ISawmill _log { get => field ??= _logManager.GetSawmill("construction.mech"); } = default!;
 

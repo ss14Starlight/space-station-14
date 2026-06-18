@@ -110,6 +110,12 @@
 - type: Tag
   id: CantBecomeRevolutionary
 
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
+
 - type: Tag
   id: CentcommVibroblade
 
@@ -219,13 +225,16 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
 
 - type: Tag
-  id: EmergencyWelder
+  id: Elf
 
 - type: Tag
-  id: ExternalAirlock
+  id: EmergencyWelder
 
 - type: Tag
   id: Felionoid
@@ -244,6 +253,12 @@
 
 - type: Tag
   id: FormerSoldierTraitBackground
+
+- type: Tag
+  id: FringeTraitBackground
+
+- type: Tag
+  id: FrontierTraitBackground
 
 - type: Tag
   id: FlatpackBlacklist
@@ -294,6 +309,9 @@
   id: HiltWood
 
 - type: Tag
+  id: HuntedTraitBackground
+
+- type: Tag
   id: ImprovisedAmmoBox
 
 - type: Tag
@@ -341,6 +359,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -467,6 +488,9 @@
   id: OvenMachineBoard
 
 - type: Tag
+  id: ParadoxCloneTraitBackground
+
+- type: Tag
   id: ParaKnife
 
 - type: Tag
@@ -494,6 +518,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -501,6 +531,9 @@
 
 - type: Tag
   id: Resomi
+
+- type: Tag
+  id: Rodentia
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
@@ -527,6 +560,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore
@@ -608,6 +644,9 @@
 
 - type: Tag
   id: UnDissolvable
+
+- type: Tag
+  id: USSPTraitBackground
 
 - type: Tag
   id: Vial

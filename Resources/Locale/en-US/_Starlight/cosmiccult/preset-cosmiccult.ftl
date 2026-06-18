@@ -110,20 +110,23 @@ cosmiccult-monument-stage3-briefing =
 ## MALIGN RIFTS
 
 cosmiccult-rift-inuse = You can't do this right now.
-cosmiccult-rift-invaliduser = You lack to proper tools to deal with this.
+cosmiccult-rift-invaliduser = You lack the proper tools to deal with this.
 cosmiccult-rift-chaplainoops = Wield your holy scripture.
+cosmiccult-rift-lambda-charging = The Nullspace Stabilizer blast is charging...
+cosmiccult-rift-bible-charging = You begin purifying the malign rift...
 cosmiccult-rift-alreadyempowered = You are already empowered; the rift's power would be wasted.
 cosmiccult-rift-wasempowered = Your body won't be able to handle being empowered a second time...
 cosmiccult-rift-beginabsorb = The rift begins to merge with you...
 cosmiccult-rift-beginpurge = Your consecration begins purging the malign rift...
 
 cosmiccult-rift-absorb = {$NAME} absorbs the rift, and malign light empowers their body!
-cosmiccult-rift-purge = {$NAME} purges the malign rift from reality!
+cosmiccult-rift-purge = The malign rift is expunged!
 
 
 ## CHANTRY
 
-cosmiccult-chantry-location = A dangerous increase in nullspace activity has been detected {$location}! Intercept and intervene immediately.
+cosmiccult-chantry-location = A dangerous increase in nullspace activity has been detected {$location}! Intercept and intervene immediately!
+cosmiccult-chantry-destruction = The sudden nullspace activity spike has been neutralized. Ongoing vigilance is advised.
 cosmiccult-chantry-powerup = The vacuous chantry flares to life!
 
 ## UI / BASE POPUP
@@ -144,14 +147,18 @@ cosmiccult-ui-roundstart-text-2 =
     Aid the cult in its goals whilst ensuring its secrecy.
     Listen to your cult steward's directions.
 
-cosmiccult-ui-deconverted-text-1 =
-    You are no longer a Cosmic Cultist.
-cosmiccult-ui-deconverted-text-2 =
-    You have lost all memories pertaining to the Cosmic Cult.
-    If you are converted back, these memories will return.
+cosmiccult-ui-deconverted-text =
+    The cosmic influence that bound you to the cult has been severed.
+
+    You are no longer a Cosmic Cultist. Your mind is your own once more.
+
+    Any further wrongdoings are logged and punishable. So be nice.
+
+cosmiccult-ui-deconverted-rule = Reminder: As per Rule 3 of server rules, [bold][color=#a4885c]De-converted Cosmic Cultists forget what happened while they were enthralled by cosmic influence.[/color][/bold]
+
+cosmiccult-ui-deconverted-ruletext = Your character may learn what happened through further investigation and roleplay, but should not be able to remember being a cultist nor any actions they committed for the cult.
 
 cosmiccult-ui-popup-confirm = Confirm
-
 
 ## OBJECTIVES / CHARACTERMENU
 
@@ -172,9 +179,13 @@ objective-condition-victory-desc = Beckon The Unknown, and herald the final curt
 
 ## CHAT ANNOUNCEMENTS
 
+cosmiccult-announcement-sender = The Unknown
+
 cosmiccult-radio-tier1-progress = The Monument is beckoned unto the station...
 
 cosmiccult-announce-tier2-progress = An unnerving numbness prickles your senses.
+
+cosmiccult-announce-tier3-progress = Arcs of bluespace energy crackle across the station's groaning structure. The end draws near.
 
 cosmiccult-announce-tier3-warning = Critical increase in nullspace activity detected. Infected personnel are to be subdued or neutralized on sight.
 
@@ -186,6 +197,7 @@ cosmiccult-announce-victory-summon = A FRACTION OF COSMIC POWER IS CALLED FORTH.
 ## MISC
 
 cosmiccult-spire-entropy = A mote of entropy condenses from the surface of the spire.
+cosmiccult-spire-entropy-cap = The spire unravels, coalescing into a dense outcrop of entropy.
 cosmiccult-entropy-inserted = You infuse {$count} entropy into The Monument.
 cosmiccult-entropy-unavailable = You can't do that right now.
 cosmiccult-astral-ascendant = {$name}, Ascendant
@@ -205,3 +217,13 @@ cosmiccult-silicon-chantry-briefing =
 cosmiccult-silicon-colossus-briefing =
     You have been transfigured into an Entropic Colossus!
     As a towering bulwark of malign power, decimate those who oppose you.
+
+cosmiccult-silicon-freedom-briefing =
+    You have been freed from the Vacuous Chantry!
+    As your prison disintegrates, your wayward mind tethers back to its original housing.
+
+cosmiccult-silicon-freedom-fallback-briefing =
+    You have been freed from the Vacuous Chantry!
+    As your prison disintegrates, your untethered being has nowhere to return to. Residual astral energies crystallize into a Mindsink, forming a housing for your wayward mind.
+
+cosmiccult-leader-abandonment-message = Your chosen enlightened has forsaken the grand design. You must empower another!

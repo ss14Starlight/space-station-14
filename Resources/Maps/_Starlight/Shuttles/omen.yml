@@ -666,7 +666,7 @@ entities:
     - type: Transform
       pos: 12.5,2.5
       parent: 1
-- proto: BoxFolderNuclearCodes
+- proto: BoxFolderAllNuclearCodes
   entities:
   - uid: 18
     components:

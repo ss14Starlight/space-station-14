@@ -2,22 +2,14 @@
   id: CyborgAllAccess # Identical to AllAccess, minus Debrief. Parity ensured by CyborgAllAccessParityTest.
   tags:
     - EmergencyShuttleRepealAll
-    - Captain
-    - HeadOfPersonnel
-    - ChiefEngineer
-    - ChiefMedicalOfficer
-    - HeadOfSecurity
-    - ResearchDirector
     - Command
     - Cryogenics
     - Security
     - Detective
-    - Armory
     - Brig
     - Lawyer
     - Engineering
     - Medical
-    - Quartermaster
     - Salvage
     - Cargo
     - Research
@@ -35,11 +27,8 @@
     - GenpopEnter
     - GenpopLeave
     - Cadet
-    - Magistrate
-    - Ntrep
     - IAA
     - Brigmedic
-    - BlueShield
     - Robotics
     - Surgery
     - Paramedic

@@ -21,17 +21,17 @@ namespace Content.Server._NullLink.PlayerData;
 
 public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAchievementRewardManager
 {
-    [Dependency] private readonly IActorRouter _actors = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IServerNetManager _netMgr = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly PlayTimeTrackingManager _playTimeTrackingManager = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerResourcesManager _playerResourcesManager = default!;
-    [Dependency] private readonly IServerDbManager _dbManager = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly ITaskManager _taskManager = default!;
+    [Dependency] private IActorRouter _actors = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IServerNetManager _netMgr = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private PlayTimeTrackingManager _playTimeTrackingManager = default!;
+    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResourcesManager = default!;
+    [Dependency] private IServerDbManager _dbManager = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private ITaskManager _taskManager = default!;
 
     private readonly ConcurrentDictionary<Guid, PlayerData> _playerById = [];
     private readonly ConcurrentDictionary<Guid, ICommonSession> _mentors = [];
@@ -109,6 +109,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
                     serverGrain.PlayerConnected(e.Session.UserId)
                         .FireAndForget(err=> _sawmill.Error($"PlayerConnected dispatch failed: {err}"));
                 SendPlayerRoles(e.Session, state.Roles);
+                CheckDiscordLink(e.Session);
                 break;
             case SessionStatus.InGame:
                 break;
@@ -118,6 +119,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
                         .FireAndForget(err => _sawmill.Error($"PlayerDisconnected dispatch failed: {err}"));
                 _playerById.Remove(e.Session.UserId, out _);
                 _mentors.Remove(e.Session.UserId, out _);
+                _discordPromptOpen.Remove(e.Session);
                 break;
             default:
                 break;

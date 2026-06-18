@@ -4,7 +4,7 @@
   id: RoleplayGuideIntro
   name: guide-entry-roleplay-intro
   text: "/ServerInfo/_Starlight/Guidebook/Roleplay/RoleplayGuides.xml"
-  priority: 0
+  priority: 11
   children:
     - RoleplayGuide01
     - RoleplayGuide02
