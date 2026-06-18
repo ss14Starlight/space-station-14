@@ -9,6 +9,7 @@
     "states": [
         {
             "name": "icon"
+            "state based copyright": "Taken from Citadel Station at https://github.com/Citadel-Station-13/Citadel-Station-13/commit/3cfea7eb92246d311de8b531347795bc76d6dab6, Inhands taken from TG Station at https://github.com/tgstation/tgstation/commit/8facec32c9716ec43819057b868bd5c03a05d13d, resized to 16x32 by Puggers(discord ncduve7716)",
         },
         {
             "name": "inhand-left",
