@@ -344,7 +344,6 @@
     - TearGasGrenade
     - GrenadeStinger
     - Flash
-    - Bola
     - Zipties
     - Truncheon
     - TelescopicShield
@@ -356,6 +355,7 @@
     - Stunbaton
     - Handcuffs
     - Handcuffs
+    - SecurityBola
     - HoloprojectorSecurity
     - MedkitCombatFilled
     - CrowbarRed
