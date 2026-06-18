@@ -291,10 +291,18 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void ToggleNightVision(EntityUid uid, ShadekinState shadekinState)
     {
-        if (shadekinState == ShadekinState.Dark)
-            EnsureComp<NightVisionComponent>(uid);
-        else if (TryComp<NightVisionComponent>(uid, out var nightvision) && !nightvision.Clothes)
-            RemComp<NightVisionComponent>(uid);
+        var nightVision = EnsureComp<NightVisionComponent>(uid);
+        var shouldBeActive = shadekinState == ShadekinState.Dark;
+
+        // avoid dirtying if we don't need to
+        if(nightVision.Active == shouldBeActive)
+            return;
+
+        // update whether or not nightVision should be active based on light level
+        nightVision.Active = shouldBeActive;
+
+        // ensure nightVision updates to reflect the new state
+        Dirty(uid, nightVision);
     }
 
     private void CheckThresholds(EntityUid uid, ShadekinComponent component, float lightExposure)

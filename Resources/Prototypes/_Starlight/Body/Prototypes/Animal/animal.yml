@@ -3,6 +3,12 @@
   name: "animal"
   root: torso
   slots:
+    head:
+      part: HeadAnimal
+      connections:
+        - torso
+      organs:
+        eyes: OrganAnimalEyes
     torso:
       part: TorsoAnimal
       connections:
@@ -25,6 +31,12 @@
   name: "mouse"
   root: torso
   slots:
+    head:
+      part: HeadAnimal
+      connections:
+        - torso
+      organs:
+        eyes: OrganAnimalEyes
     torso:
       part: TorsoAnimal
       connections:

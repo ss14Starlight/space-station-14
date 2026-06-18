@@ -247,3 +247,15 @@
         children:
         - id: PrintedDocumentProductOrder
           amount: 18
+
+- type: entity
+  parent: BoxFolderNuclearCodes
+  id: BoxFolderAllNuclearCodes
+  name: nuclear code folder
+  suffix: All Nukes
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: NukeCodePaperAllNukes
+    sound:
+      path: /Audio/Effects/packetrip.ogg

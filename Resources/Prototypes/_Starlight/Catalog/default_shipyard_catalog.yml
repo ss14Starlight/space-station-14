@@ -2,7 +2,7 @@
   id: PTS
   name: Private Transport Shuttle
   description: A private transport vessel for up to 6 passengers.
-  price: 26700
+  price: 21200
   category: Small
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/pts.yml
@@ -33,3 +33,39 @@
   category: Large
   group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/Comet.yml
+
+- type: vessel
+  id: Munchies
+  name: SRB-Munchies
+  description: A medium sized restaurant ship designed to sell food to people.
+  price: 38250
+  category: Medium
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Munchies.yml
+
+- type: vessel
+  id: CargoGas
+  name: CS-2P6 "Plasma"
+  description: A small sized cargo shuttle 'borrowed' from another station that is able to hold gas.
+  price: 26410
+  category: Small
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/cargo_plasma.yml
+
+- type: vessel
+  id: Pioneer
+  name: SR-4S1 "Pioneer"
+  description: A medium sized salvaging ship made for salvaging operations.
+  price: 39200
+  category: Medium
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/Salvage/pioneer.yml
+
+- type: vessel
+  id: Breaker
+  name: NTMS-42A "Breaker"
+  description: A medium sized mining shuttle made for mining operations.
+  price: 32850
+  category: Medium
+  group: Cargo
+  shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml

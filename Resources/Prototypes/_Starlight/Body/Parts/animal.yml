@@ -120,6 +120,18 @@
         Quantity: 20
 
 - type: entity
+  id: HeadAnimal
+  name: animal head
+  parent: PartAnimal
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: head_m
+    - type: BodyPart
+      partType: Head
+
+- type: entity
   parent: PartAnimal
   id: LeftHandSmartCorgi
   name: corgi hand

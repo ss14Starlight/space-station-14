@@ -297,9 +297,6 @@
     - ProtoResomi
     - SiliconEmotesFH
     - NotLabelable
-  - type: NightVision
-  - type: FlashModifier
-    modifier: 2
   - type: Vocal
     sounds:
       Male: ProtoResomiMSounds
