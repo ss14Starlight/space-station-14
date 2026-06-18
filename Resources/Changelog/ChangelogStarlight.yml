@@ -1,27 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: (Starboard) Electrolyzer added to Atmos.
-    type: Add
-  id: 405700
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) AtmosDrobe added to Atmos.
-    type: Add
-  id: 405701
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Spare Captain ID added to Captain's Room.
-    type: Add
-  id: 405702
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
   - message: (Starboard) WinterDrobe to Cryosleep and Arrivals.
     type: Add
   id: 405703
@@ -2799,4 +2778,25 @@ Entries:
   id: 406099
   time: '2026-06-17T14:38:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4834
+- author: CrazyPhantom
+  changes:
+  - message: Nuclear Operatives are now given the codes to both nukes.
+    type: Tweak
+  id: 406100
+  time: '2026-06-18T09:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4841
+- author: Darius
+  changes:
+  - message: Cargo console sprites colour scheme changed from yellow to brown.
+    type: Tweak
+  id: 406101
+  time: '2026-06-18T09:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4829
+- author: Darius
+  changes:
+  - message: Cargo Drobe sprite colour scheme changed from yellow to brown.
+    type: Tweak
+  id: 406102
+  time: '2026-06-18T09:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4829
 Order: -1
