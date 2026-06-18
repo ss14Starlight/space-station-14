@@ -49,3 +49,12 @@
     contentMargin: 0.0, 0.0, 0.0, 0.0
     headerImagePath: "/Textures/_Starlight/Interface/Paper/paper_heading_nt_cc_logos.svg.96dpi.png"
     headerMargin: 0.0, 0.0, 0.0, 0.0
+
+- type: entity
+  parent: NukeCodePaper
+  id: NukeCodePaperAllNukes
+  suffix: All Nukes
+  components:
+  - type: NukeCodePaper
+    allNukesAvailable: true
+    printAll: true

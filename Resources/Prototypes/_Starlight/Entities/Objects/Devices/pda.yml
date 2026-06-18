@@ -684,10 +684,18 @@
 - type: entity
   parent: CentcomPDA
   id: NTSFPDA
-  suffix: NTSF #starlight
+  name: NT PDA
+  description: A stately blue PDA used by top NanoTrasen Officials and Special Forces.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardNTSF
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ntsf
   - type: HealthAnalyzer
     maxScanRange: null
     scanDelay: 0
@@ -695,6 +703,9 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-ntsf
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -711,10 +722,18 @@
 - type: entity
   parent: CentcomPDA
   id: DecimusPDA
-  suffix: ERROR #starlight
+  name: jailbroken PDA
+  description: An illegally modified generic NanoTrasen PDA. Please report this to your nearest NanoTrasen Representative for investigation.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardDecimus
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-decimus
   - type: HealthAnalyzer
     maxScanRange: null
     scanDelay: 0
@@ -722,6 +741,9 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-decimus
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:

@@ -1,123 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: (Manor) Windoors that lead to GenPop are now Brig access instead of Security access.
-    type: Fix
-  id: 405696
-  time: '2026-06-08T18:51:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4679
-- author: Caws
-  changes:
-  - message: (Manor) AI Upload computer linked to AI Core.
-    type: Fix
-  id: 405697
-  time: '2026-06-08T18:51:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4679
-- author: Caws
-  changes:
-  - message: (Manor) BSO's room is now NT access.
-    type: Fix
-  id: 405698
-  time: '2026-06-08T18:51:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4679
-- author: Caws
-  changes:
-  - message: (Manor) CentComm bedsheet from NTR's room.
-    type: Remove
-  id: 405699
-  time: '2026-06-08T18:51:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4679
-- author: Caws
-  changes:
-  - message: (Starboard) Electrolyzer added to Atmos.
-    type: Add
-  id: 405700
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) AtmosDrobe added to Atmos.
-    type: Add
-  id: 405701
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Spare Captain ID added to Captain's Room.
-    type: Add
-  id: 405702
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) WinterDrobe to Cryosleep and Arrivals.
-    type: Add
-  id: 405703
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Pride-O-Mat to Cryoslepe and Arrivals.
-    type: Add
-  id: 405704
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Added Clown's locker which had been unrightfully missing from their room.
-    type: Add
-  id: 405705
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Surgery is no longer -40C, it should be +5C now instead. You can still tweak the freezer in the room to chill the room further if desired.
-    type: Tweak
-  id: 405706
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) RD's suit is now in its own suit storage rather than in the RD's locker.
-    type: Tweak
-  id: 405707
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) CMO's suit is now in its own suit storage rather than in the CMO's locker.
-    type: Tweak
-  id: 405708
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Moved a light in Cargo that was blocking the indicator light on the Mail Teleporter.
-    type: Fix
-  id: 405709
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) BSO's room is now NT access.
-    type: Fix
-  id: 405710
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: Caws
-  changes:
-  - message: (Starboard) Handcuffs removed from Bridge.
-    type: Remove
-  id: 405711
-  time: '2026-06-08T18:51:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4680
-- author: wonderfulnewworld
-  changes:
-  - message: AGhost also sees Protogen health bars.
-    type: Fix
-  id: 405712
-  time: '2026-06-08T19:46:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4677
 - author: wonderfulnewworld
   changes:
   - message: Barotrauma protection works again.
@@ -2799,4 +2680,123 @@ Entries:
   id: 406095
   time: '2026-06-17T09:05:24.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4755
+- author: Cringe_Cursed
+  changes:
+  - message: Added View counts and Like/Dislike buttons to news articles in the “News Reader” PDA app.
+    type: Add
+  id: 406096
+  time: '2026-06-17T09:58:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4822
+- author: CrazyPhantom
+  changes:
+  - message: Removed the Following access from Cyborgs, Captain, HoP, ER, CMO, HoS, RD, QM, Armory, NTR, BSO and Magistrate.
+    type: Remove
+  id: 406097
+  time: '2026-06-17T09:58:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4827
+- author: Bornstellar
+  changes:
+  - message: AI no longer killed when pulling an Intellicard out of your pocket with hotkeys.
+    type: Fix
+  id: 406098
+  time: '2026-06-17T14:03:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4835
+- author: Toxyams
+  changes:
+  - message: Toilets give plasteel on deconstruct.
+    type: Fix
+  id: 406099
+  time: '2026-06-17T14:38:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4834
+- author: CrazyPhantom
+  changes:
+  - message: Nuclear Operatives are now given the codes to both nukes.
+    type: Tweak
+  id: 406100
+  time: '2026-06-18T09:28:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4841
+- author: Darius
+  changes:
+  - message: Cargo console sprites colour scheme changed from yellow to brown.
+    type: Tweak
+  id: 406101
+  time: '2026-06-18T09:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4829
+- author: Darius
+  changes:
+  - message: Cargo Drobe sprite colour scheme changed from yellow to brown.
+    type: Tweak
+  id: 406102
+  time: '2026-06-18T09:28:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4829
+- author: Caws
+  changes:
+  - message: Swapped out the experimental RPD for a regular RPD added to Engineering cyborgs. It can be refilled it with compressed matter just like the RCD.
+    type: Tweak
+  id: 406103
+  time: '2026-06-18T10:11:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4830
+- author: Caws
+  changes:
+  - message: Engineering cyborgs will now start with compressed matter in their whitelisted hand slot.
+    type: Tweak
+  id: 406104
+  time: '2026-06-18T10:11:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4830
+- author: Caws
+  changes:
+  - message: Missing "Sensors and monitors" string in the Rapid Piping Device (RPD) construction menu.
+    type: Fix
+  id: 406105
+  time: '2026-06-18T10:11:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4830
+- author: Caws
+  changes:
+  - message: "New trait: 'Nightblind', available to any species that has night vision. Opting into this trait disables your night vision entirely. Some eye replacements, like cyber eyes, can overcome this trait."
+    type: Add
+  id: 406106
+  time: '2026-06-18T10:11:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4797
+- author: StygianEagle
+  changes:
+  - message: NTSF and Decimus figured out where they misplaced their real PDAs and as such CC has retaken possession of their spare PDAs.
+    type: Tweak
+  id: 406107
+  time: '2026-06-18T10:54:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4840
+- author: Toxyams
+  changes:
+  - message: Buckling( and un-buckling) no longer restores blindness.
+    type: Fix
+  id: 406108
+  time: '2026-06-18T12:28:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4838
+- author: Toxyams
+  changes:
+  - message: Animals such as mouse, hamsters can eat carrots without going blind.
+    type: Fix
+  id: 406109
+  time: '2026-06-18T12:28:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4838
+- author: Tjmaxmillion
+  changes:
+  - message: The NTR, Magistrate, IAA and NTCT now start with a flash.
+    type: Add
+  id: 406110
+  time: '2026-06-18T12:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4578
+- author: Tjmaxmillion
+  changes:
+  - message: NTCT added to Corporate Secrets in Metashield.
+    type: Add
+  id: 406111
+  time: '2026-06-18T12:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4578
+- author: Tjmaxmillion
+  changes:
+  - message: Flashes are no longer contraband for NT Personnel.
+    type: Tweak
+  id: 406112
+  time: '2026-06-18T12:28:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4578
 Order: -1
