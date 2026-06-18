@@ -1,4 +1,3 @@
-//starlight maintained file, this is needed for the DB rework of markings
 using System.Text.Json;
 using Content.Shared.Humanoid.Markings;
 

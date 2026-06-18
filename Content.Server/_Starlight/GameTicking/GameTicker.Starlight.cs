@@ -11,7 +11,7 @@ using Robust.Shared.Localization;
 using static Content.Shared.Administration.Notes.AdminMessageEuiState;
 
 namespace Content.Server.GameTicking;
-public sealed partial class GameTicker //🌟Starlight🌟
+public sealed partial class GameTicker
 {
 
     #region Starlight

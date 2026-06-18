@@ -4,7 +4,6 @@ using Content.Shared.Starlight.CCVar;
 
 namespace Content.Server.Connection;
 
-// Starlight
 public sealed partial class ConnectionManager
 {
     private readonly object _rateLock = new();
