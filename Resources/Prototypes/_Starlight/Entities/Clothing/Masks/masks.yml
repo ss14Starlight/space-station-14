@@ -242,3 +242,6 @@
     sprite: Clothing/Mask/ert.rsi
   - type: Clothing
     sprite: Clothing/Mask/ert.rsi
+  - type: Tag
+    tags:
+      - WhitelistChameleon

@@ -400,3 +400,6 @@
       sprite: _Starlight/Clothing/Neck/Mantles/ERTmantle.rsi
     - type: Clothing
       sprite: _Starlight/Clothing/Neck/Mantles/ERTmantle.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon
