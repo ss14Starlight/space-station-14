@@ -33,7 +33,7 @@
   category: Large
   group: Civilian
   shuttlePath: /Maps/_Starlight/Shuttles/ingeniator.yml
-  
+
 - type: vessel
   id: Comet
   name: EXP-Comet
