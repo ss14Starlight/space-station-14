@@ -2,7 +2,6 @@
 
 namespace Content.Shared.Shuttles.BUIStates;
 
-#region Starlight
 /// <summary>
 /// Wrapper for the dictionary of docking port states.
 /// </summary>
@@ -11,4 +10,3 @@ public sealed class DockingPortStates(Dictionary<NetEntity, List<DockingPortStat
 {
     public Dictionary<NetEntity, List<DockingPortState>> Docks = docks;
 }
-#endregion

@@ -1,5 +1,3 @@
-// Starlight
-
 using System.Linq;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Part;
