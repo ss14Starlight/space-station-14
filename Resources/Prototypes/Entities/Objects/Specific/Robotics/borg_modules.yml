@@ -816,6 +816,7 @@
     hands:
     #region Starlight
     - item: RCD
+    - item: RPD
     - item: RCDAmmo
       hand:
         emptyRepresentative: RCDAmmo
@@ -823,7 +824,6 @@
         whitelist:
           components:
           - RCDAmmo
-    - item: RPD
     #endregion Starlight
     - item: BorgFireExtinguisher
     - item: BorgHandheldGPSBasic
