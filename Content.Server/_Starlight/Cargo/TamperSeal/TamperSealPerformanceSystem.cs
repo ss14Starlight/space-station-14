@@ -10,7 +10,7 @@ namespace Content.Server._Starlight.Cargo.TamperSeal;
 /// <summary>
 /// Tracks tamper seal integrity performance metrics. These metrics are scoped to stations and are server-side only.
 /// </summary>
-public sealed partial class TamperSealTrackingSystem : EntitySystem
+public sealed partial class TamperSealPerformanceSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ChatSystem _chat = default!;
@@ -45,7 +45,7 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
     /// <summary>
     /// Given a tracker, reassess the current delivery performance of the station.
     /// </summary>
-    private void ReassessPerformance(TamperSealTrackingComponent tracker)
+    private void ReassessPerformance(TamperSealPerformanceComponent tracker)
     {
         if (!tracker.JudgementEnabled) return;
         if (tracker.Records.Count < tracker.JudgementMinRecords) return;
@@ -83,7 +83,7 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
     /// <param name="tracker"></param>
     /// <param name="success"></param>
     /// <param name="value"></param>
-    private void RecordPerformance(TamperSealTrackingComponent tracker, bool success, int value)
+    private void RecordPerformance(TamperSealPerformanceComponent tracker, bool success, int value)
     {
         var record = new TamperSealResult(_timing.CurTime, success, value);
         tracker.Records.Add(record);
@@ -92,7 +92,7 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
         ExpungeOutdatedRecords(tracker);
     }
 
-    private void ExpungeOverflowedRecords(TamperSealTrackingComponent tracker)
+    private void ExpungeOverflowedRecords(TamperSealPerformanceComponent tracker)
     {
         var records = tracker.Records;
         if (records.Count <= tracker.MaxRecords)
@@ -101,7 +101,7 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
         records.RemoveRange(0, tracker.MaxRecords - records.Count);
     }
 
-    private void ExpungeOutdatedRecords(TamperSealTrackingComponent tracker)
+    private void ExpungeOutdatedRecords(TamperSealPerformanceComponent tracker)
     {
         var removable = tracker.Records.Capacity - tracker.MinRecords;
         if (removable <= 0)
@@ -117,11 +117,11 @@ public sealed partial class TamperSealTrackingSystem : EntitySystem
         }
     }
 
-    private TamperSealTrackingComponent GetPerformanceTracker(TamperSealComponent seal)
+    private TamperSealPerformanceComponent GetPerformanceTracker(TamperSealComponent seal)
     {
-        if (!TryComp<TamperSealTrackingComponent>(seal.RecipientStation, out var tracker))
+        if (!TryComp<TamperSealPerformanceComponent>(seal.RecipientStation, out var tracker))
         {
-            tracker = AddComp<TamperSealTrackingComponent>(seal.RecipientStation);
+            tracker = AddComp<TamperSealPerformanceComponent>(seal.RecipientStation);
             tracker.StationId = seal.RecipientStation;
         }
 

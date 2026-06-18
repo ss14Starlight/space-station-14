@@ -9,7 +9,6 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
-using Content.Shared.Localizations;
 using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
@@ -37,17 +36,20 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     {
         base.Initialize();
 
+        // Direct interactions with a tamper-sealed entity.
         SubscribeLocalEvent<TamperSealComponent, StorageOpenAttemptEvent>(OnStorageOpenAttempt,
             before: [typeof(LockSystem)]);
         SubscribeLocalEvent<TamperSealComponent, LockToggleAttemptEvent>(OnLockToggleAttempt);
-
         SubscribeLocalEvent<TamperSealComponent, ActivateInWorldEvent>(OnActivateInWorld,
             before: [typeof(LockSystem)]);
-        SubscribeLocalEvent<TamperSealComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
+        SubscribeLocalEvent<TamperSealComponent, InteractUsingEvent>(OnInteractUsing);
+
+        // Do-after completions
         SubscribeLocalEvent<TamperSealComponent, TamperSealUnsealedDoAfterEvent>(OnUnsealDoAfter);
         SubscribeLocalEvent<TamperSealComponent, TamperSealDestroyedDoAfterEvent>(OnDestroyDoAfter);
-        SubscribeLocalEvent<TamperSealComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
 
+        // Right-click, Examine
+        SubscribeLocalEvent<TamperSealComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
         SubscribeLocalEvent<TamperSealComponent, ExaminedEvent>(OnExamined);
     }
 
@@ -82,9 +84,9 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     /// <summary>
     /// Try to destroy on interacting with an item, e.g. holding a knife.
     /// </summary>
-    private void OnAfterInteractUsing(EntityUid uid, TamperSealComponent component, ref AfterInteractUsingEvent args)
+    private void OnInteractUsing(EntityUid uid, TamperSealComponent component, ref InteractUsingEvent args)
     {
-        if (!args.CanReach || args.Handled || component.Opened)
+        if (args.Handled || component.Opened)
             return;
 
         args.Handled = TryDestroy(uid, args.Used, args.User, component);
@@ -138,31 +140,33 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     /// </summary>
     private void OnExamined(EntityUid uid, TamperSealComponent seal, ExaminedEvent args)
     {
-        if (seal.Opened)
+        if (seal.Opened && !seal.Destroyed) // Closed seals & Destroyed seals have Examine text.
             return;
+
+        var recipient = _proto.Index(seal.RecipientAccount);
+
+        // Destroyed examine text should be subtle and goes to the bottom.
+        if (seal.Destroyed)
+        {
+            args.PushMarkup(Loc.GetString(
+                $"tamper-seal-examine-destroyed-{seal.DestroyToolQuality.Id.ToLowerInvariant()}",
+                ("recipient", Loc.GetString(recipient.TamperSealName)),
+                ("recipientColor", recipient.Color)), -100);
+            return;
+        }
 
         // When there are no access levels specified, it's basically AA, so we have a different locale string for that.
         if (seal.Accesses.Count == 0)
         {
-            args.PushMarkup(Loc.GetString("tamper-seal-examine-public-access-description"));
+            args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-public"));
             return;
         }
 
-        // Collect one string per access level, localized and colorized.
-        var names = seal.Accesses
-            .Select(id => _proto.TryIndex(id, out var proto)
-                ? proto.GetAccessLevelName()
-                : Loc.GetString("access-reader-unknown-id"))
-            .Select(name => Loc.GetString("access-reader-access-label", ("access", name)))
-            .ToList();
-
-        // Concatenate the accesses as "or" in a locale-sensitive manner.
-        var formatted = ContentLocalizationManager.FormatListToOr(names);
-
         // High-priority text so it shows at the top, since the tamper seal is the first thing you need to deal with
         // when interacting with an entity that has one.
-        args.PushMarkup(Loc.GetString("tamper-seal-examine-private-access-description",
-            ("access", formatted)), 100);
+        args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-restricted",
+            ("recipient", Loc.GetString(recipient.TamperSealName)),
+            ("recipientColor", recipient.Color)), 100);
     }
 
     #endregion
@@ -197,13 +201,13 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return;
         }
 
-        DoDestroy(args.Target.Value, args.User, seal);
+        DoDestroy(args.Target.Value, seal, args.User);
         args.Handled = true;
     }
 
     #endregion
 
-    #region API
+    #region Internal
 
     private void TryUnseal(EntityUid uid, EntityUid user, TamperSealComponent? seal = null)
     {
@@ -213,16 +217,18 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (seal.Opened)
             return;
 
-        // If they have no access we just tell them.
+        var recipient = _proto.Index(seal.RecipientAccount);
+
+        // If they have no access, we just tell them.
         if (!CanUnseal(uid, user, seal))
         {
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-no-access"), uid, user);
+            _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-no-access"), uid, user);
             _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
-                $"{ToPrettyString(user):player} had no access to unseal the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}. ({string.Join(",", seal.Accesses):accesses})");
+                $"{ToPrettyString(user):player} had no access to unseal the {Loc.GetString(recipient.TamperSealName)} tamper seal on {ToPrettyString(uid)}. ({string.Join(",", seal.Accesses):accesses})");
             return;
         }
 
-        _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-begin"), uid, user);
+        _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-begin"), uid, user);
         _audio.PlayPredicted(seal.UnsealBeginSound, uid, user);
 
         // Start the do-after to unseal. It's short but not instant so that you can cancel if you do it accidentally.
@@ -240,7 +246,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
 
         _doAfter.TryStartDoAfter(args);
         _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
-            $"{ToPrettyString(user):player} began unsealing the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}.");
+            $"{ToPrettyString(user):player} began unsealing the {Loc.GetString(recipient.TamperSealName)} tamper seal on {ToPrettyString(uid)}.");
     }
 
     private bool TryDestroy(EntityUid uid, EntityUid? tool, EntityUid user, TamperSealComponent? seal = null)
@@ -248,8 +254,16 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (!Resolve(uid, ref seal))
             return false;
 
-        var hasTool = tool.HasValue && _tool.HasQuality(tool.Value, seal.DestroyToolQuality);
-        var toolKind = seal.DestroyToolQuality.Id.ToLowerInvariant(); // "slicing" or "prying".
+        var hasTool = tool.HasValue;
+        var hasCorrectTool = tool.HasValue && _tool.HasQuality(tool.Value, seal.DestroyToolQuality);
+        var toolKind = seal.DestroyToolQuality.Id.ToLowerInvariant(); // "slicing", "cutting" or "prying".
+        var recipient = _proto.Index(seal.RecipientAccount);
+
+        if (hasTool && !hasCorrectTool)
+        {
+            // I'd love to "return true" to block any interaction, but it also breaks e.g. dna scanners.
+            return false;
+        }
 
         // Show a popup and play sound.
         _popup.PopupPredicted(
@@ -261,7 +275,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // Doing it manually like this with AttemptFrequency.EveryTick works perfectly.
         var args =
             new DoAfterArgs(EntityManager, user,
-                TimeSpan.FromSeconds(hasTool ? seal.DestroyWithToolTime : seal.DestroyWithHandsTime),
+                TimeSpan.FromSeconds(hasCorrectTool ? seal.DestroyWithToolTime : seal.DestroyWithHandsTime),
                 new TamperSealDestroyedDoAfterEvent(), uid,
                 target: uid, used: tool)
             {
@@ -273,13 +287,9 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             };
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(user):player} began destroying the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}.");
+            $"{ToPrettyString(user):player} began destroying the {Loc.GetString(recipient.TamperSealName)} tamper seal on {ToPrettyString(uid)}.");
         return _doAfter.TryStartDoAfter(args);
     }
-
-    #endregion
-
-    #region Internal
 
     private bool CanUnseal(EntityUid uid, EntityUid user, TamperSealComponent? seal = null)
     {
@@ -299,66 +309,143 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (seal.Opened)
             return;
 
+        var recipientName = Loc.GetString(_proto.Index(seal.RecipientAccount).TamperSealName);
+        var delivererName = Loc.GetString(_proto.Index(seal.DelivererAccount).TamperSealName);
+
         seal.Opened = true;
+        Dirty(uid, seal);
 
         _audio.PlayPredicted(seal.UnsealEndSound, uid, user);
         Appearance.SetData(uid, TamperSealVisuals.Opened, seal.Opened);
-        Dirty(uid, seal);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(user):player} unsealed the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}.");
+            $"{ToPrettyString(user):player} unsealed the {recipientName} tamper seal on {ToPrettyString(uid)}.");
 
         // Reward deliverer, only if deliverer != recipient (otherwise easy infinite money).
         if (TryComp<StationBankAccountComponent>(seal.RecipientStation, out var bank) &&
             seal.DelivererAccount != seal.RecipientAccount &&
-            seal.RewardSpesos > 0)
+            seal.RewardSpesos > 0 &&
+            ApplyReward(uid, seal, bank, user))
         {
             _audio.PlayPredicted(seal.RewardSound, uid, user);
-            _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, seal.RewardSpesos);
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end-reward", ("reward", seal.RewardSpesos)),
-                uid, user);
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end-reward",
+                    ("deliverer", delivererName),
+                    ("reward", seal.RewardSpesos)),
+                uid, user, PopupType.Medium);
         }
         else
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end"), uid, user);
+            _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-end"), uid, user);
 
-        // Lastly, raise an event on the station.
+        // Notify any interested parties and defer removal of the component.
         RaiseLocalEvent(uid, new TamperSealUnsealedEvent(uid, seal, user));
     }
 
-    private void DoDestroy(EntityUid uid, EntityUid user, TamperSealComponent seal)
+    protected void DoDestroy(EntityUid uid, TamperSealComponent seal, EntityUid? user = null,
+        bool skipVisuals = false, bool predictable = true)
     {
         if (seal.Opened || seal.Destroyed)
             return;
 
+        var recipientName = Loc.GetString(_proto.Index(seal.RecipientAccount).TamperSealName);
+        var delivererName = Loc.GetString(_proto.Index(seal.DelivererAccount).TamperSealName);
+
         seal.Opened = true;
         seal.Destroyed = true;
-        _audio.PlayPredicted(seal.DestroyEndSound, uid, user);
-        Appearance.SetData(uid, TamperSealVisuals.Opened, seal.Opened);
-        Appearance.SetData(uid, TamperSealVisuals.Destroyed, seal.Destroyed);
         Dirty(uid, seal);
 
-        _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(user):player} destroyed the {seal.RecipientAccount.Id} tamper seal on {ToPrettyString(uid)}.");
+        if (!skipVisuals)
+        {
+            _audio.PlayPredicted(seal.DestroyEndSound, uid, user);
+            Appearance.SetData(uid, TamperSealVisuals.Opened, seal.Opened);
+            Appearance.SetData(uid, TamperSealVisuals.Destroyed, seal.Destroyed);
+        }
 
+        if (user != null)
+            _adminLogger.Add(LogType.Action, LogImpact.Medium,
+                $"{ToPrettyString(user):player} destroyed the {recipientName} tamper seal on {ToPrettyString(uid)}");
+        else
+            _adminLogger.Add(LogType.Action, LogImpact.Medium,
+                $"Unknown source destroyed the {recipientName} tamper seal on {ToPrettyString(uid)}");
+
+        // If all money transfers, report to the user that the deliverer was punished.
         if (seal.DelivererAccount != seal.RecipientAccount &&
             (seal.PenaltySpesos > 0 || seal.PenaltyRefundSpesos > 0) &&
             TryComp<StationBankAccountComponent>(seal.RecipientStation, out var bank) &&
-            _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.DelivererAccount, -seal.PenaltySpesos) &&
-            _cargo.TryAdjustBankAccount((seal.RecipientStation, bank), seal.RecipientAccount, seal.PenaltyRefundSpesos))
+            ApplyPenaltyAndRefund(uid, seal, bank, user))
         {
-            // If all money transfers, report to the user that the deliverer was punished.
-            _audio.PlayPredicted(seal.PenaltySound, uid, user);
-            _popup.PopupPredicted(Loc.GetString(
-                "tamper-seal-popup-destroy-end-penalty",
-                ("penalty", seal.PenaltySpesos),
-                ("refund", seal.PenaltyRefundSpesos)), uid, user, PopupType.LargeCaution);
+            // Unfortunately, some event sources do not give us a user, so we have to resort to non-predicted options in those cases.
+            if (user != null && predictable)
+            {
+                _audio.PlayPredicted(seal.PenaltySound, uid, user);
+                _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
+                    ("deliverer", delivererName),
+                    ("penalty", seal.PenaltySpesos),
+                    ("refund", seal.PenaltyRefundSpesos)), uid, user, PopupType.LargeCaution);
+            }
+            else
+            {
+                var pos = Transform(uid).Coordinates;
+                _audio.PlayPvs(seal.PenaltySound, pos);
+                _popup.PopupCoordinates(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
+                    ("deliverer", delivererName),
+                    ("penalty", seal.PenaltySpesos),
+                    ("refund", seal.PenaltyRefundSpesos)), pos, PopupType.LargeCaution);
+            }
         }
         else
-            // Otherwise just report the seal was broken.
-            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end"), uid, user, PopupType.LargeCaution);
+        {
+            if (predictable)
+                _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end"), uid, user, PopupType.LargeCaution);
+            else
+                _popup.PopupEntity(Loc.GetString("tamper-seal-popup-destroy-end"), uid, PopupType.LargeCaution);
+        }
 
-        // Lastly, raise an event on the station.
+        // Notify any interested parties and defer removal of the component.
         RaiseLocalEvent(uid, new TamperSealDestroyedEvent(uid, seal, user));
+    }
+
+    private bool ApplyReward(EntityUid uid, TamperSealComponent seal, StationBankAccountComponent bank, EntityUid user)
+    {
+        var rewarded = _cargo.TryAdjustBankAccount((seal.RecipientStation, bank),
+            seal.DelivererAccount, seal.RewardSpesos);
+
+        if (rewarded)
+            LogTransaction(uid, seal.DelivererAccount, "opening", "rewarded", seal.RewardSpesos, user);
+
+        return rewarded;
+    }
+
+    /// <summary>
+    /// Applies the destruction penalty and refund to the respective bank accounts.
+    /// </summary>
+    /// <returns>True when the penalty was applied.</returns>
+    private bool ApplyPenaltyAndRefund(EntityUid uid, TamperSealComponent seal, StationBankAccountComponent bank, EntityUid? user = null)
+    {
+        var penalized = _cargo.TryAdjustBankAccount((seal.RecipientStation, bank),
+            seal.DelivererAccount, -seal.PenaltySpesos);
+
+        var refunded = penalized && // <-- Refund only when penalty was applied.
+                       _cargo.TryAdjustBankAccount((seal.RecipientStation, bank),
+                           seal.RecipientAccount, seal.PenaltyRefundSpesos);
+
+        if (penalized)
+            LogTransaction(uid, seal.DelivererAccount, "destroying", "penalized", seal.PenaltySpesos, user);
+        if (refunded)
+            LogTransaction(uid, seal.RecipientAccount, "destroying", "refunded", seal.PenaltyRefundSpesos, user);
+
+        return penalized;
+    }
+
+    private void LogTransaction(EntityUid uid, ProtoId<CargoAccountPrototype> account, string action, string result, int spesos, EntityUid? user)
+    {
+        var accountName = Loc.GetString(_proto.Index(account).TamperSealName);
+
+        if (user != null)
+            _adminLogger.Add(LogType.Action, LogImpact.Medium,
+                $"{ToPrettyString(user):player} caused {accountName} to be {result} {spesos} spesos by {action} the seal on {ToPrettyString(uid)}");
+        else
+            _adminLogger.Add(LogType.Action, LogImpact.Medium,
+                $"{ToPrettyString(user):player} caused {accountName} to be {result} {spesos} spesos by {action} the seal on {ToPrettyString(uid)}");
     }
 
     #endregion
@@ -370,30 +457,26 @@ public sealed partial class TamperSealUnsealedDoAfterEvent : SimpleDoAfterEvent;
 [Serializable, NetSerializable]
 public sealed partial class TamperSealDestroyedDoAfterEvent : SimpleDoAfterEvent;
 
-public abstract class BaseTamperSealEvent(EntityUid sealedId, TamperSealComponent seal) : EntityEventArgs
+public abstract class BaseTamperSealEvent(EntityUid uid, TamperSealComponent seal) : EntityEventArgs
 {
-    [DataField]
-    public EntityUid SealedId { get; } = sealedId;
-    [DataField]
-    public TamperSealComponent TamperSeal { get; } = seal;
+    [DataField] public EntityUid Uid { get; } = uid;
+    [DataField] public TamperSealComponent TamperSeal { get; } = seal;
 }
 
 public sealed partial class TamperSealUnsealedEvent(
-    EntityUid sealedId,
+    EntityUid uid,
     TamperSealComponent seal,
-    EntityUid actorId)
-    : BaseTamperSealEvent(sealedId, seal)
+    EntityUid user)
+    : BaseTamperSealEvent(uid, seal)
 {
-    [DataField]
-    public EntityUid ActorId { get; } = actorId;
+    [DataField] public EntityUid User { get; } = user;
 }
 
 public sealed partial class TamperSealDestroyedEvent(
-    EntityUid sealedId,
+    EntityUid uid,
     TamperSealComponent seal,
-    EntityUid actor)
-    : BaseTamperSealEvent(sealedId, seal)
+    EntityUid? user)
+    : BaseTamperSealEvent(uid, seal)
 {
-    [DataField]
-    public EntityUid Actor { get; } = actor;
+    [DataField] public EntityUid? User { get; } = user;
 }

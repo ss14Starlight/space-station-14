@@ -2,8 +2,12 @@ using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Cargo.TamperSeal;
 
+/// <summary>
+/// This component tracks tamper seal integrity performance metrics. These metrics are scoped to stations and are
+/// server-side only. This component is applied directly to the station entity.
+/// </summary>
 [RegisterComponent]
-public sealed partial class TamperSealTrackingComponent : Component
+public sealed partial class TamperSealPerformanceComponent : Component
 {
     /// <summary>
     /// The ID of the station that this tracking component belongs to.
@@ -28,7 +32,7 @@ public sealed partial class TamperSealTrackingComponent : Component
     public int MaxRecords = 30;
 
     /// <summary>
-    /// The maximum age of records to keep in history. Only affects time-based record expungement
+    /// The maximum age of records to keep in history. Only affects time-based record expungement.
     /// </summary>
     public TimeSpan RecordLifetime = TimeSpan.FromMinutes(20);
 
@@ -38,6 +42,7 @@ public sealed partial class TamperSealTrackingComponent : Component
     /// <summary>
     /// Whether we're judging delivery performance.
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public bool JudgementEnabled = true;
 
     /// <summary>
@@ -64,12 +69,12 @@ public sealed partial class TamperSealTrackingComponent : Component
     public float FailureClearThreshold = .8f;
 
     /// <summary>
-    ///
+    /// The sound to play with the failure announcement.
     /// </summary>
     public SoundSpecifier FailureAnnounceSound = new SoundPathSpecifier("/Audio/Misc/notice1.ogg");
 
     /// <summary>
-    ///
+    /// The color to use for the failure announcement.
     /// </summary>
     public Color FailureAnnounceColor = Color.Yellow;
 

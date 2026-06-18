@@ -48,6 +48,7 @@ public sealed partial class CargoAccountPrototype : IPrototype
     public EntProtoId AcquisitionSlip;
 
     #region Starlight
+    [DataField] public LocId TamperSealName;
     [DataField] public Color TamperSealColor;
 
     /// <summary>
