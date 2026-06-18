@@ -10,9 +10,9 @@ namespace Content.Shared.Starlight.Restrict;
 
 public abstract partial class SharedRestrictSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     private const string BypassUserTagChecks = "BypassUserTagChecks";
 

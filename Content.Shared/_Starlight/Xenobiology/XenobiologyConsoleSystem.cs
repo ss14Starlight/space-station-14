@@ -14,12 +14,12 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Xenobiology;
 
-public sealed class XenobiologyConsoleSystem : EntitySystem
+public sealed partial class XenobiologyConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private EntityLookupSystem _entityLookupSystem = default!;
 
     private static readonly EntProtoId _monkeyCubeName = "MonkeyCube";
     private static readonly EntProtoId _mutationPotionName = "SlimeMutationPotion";

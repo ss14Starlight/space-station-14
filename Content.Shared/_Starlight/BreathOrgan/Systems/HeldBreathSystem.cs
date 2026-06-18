@@ -12,10 +12,10 @@ public sealed partial class HeldBreathSystem : EntitySystem
 {
     public static readonly EntProtoId HeldBreathId = "StatusEffectHeldBreath";
 
-    [Dependency] protected readonly IGameTiming GameTiming = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] protected readonly AlertsSystem Alerts = default!;
-    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] protected IGameTiming GameTiming = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] protected AlertsSystem Alerts = default!;
+    [Dependency] private StatusEffectsSystem _status = default!;
 
     public override void Initialize()
     {

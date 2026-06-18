@@ -8,13 +8,13 @@ using Content.Shared.Starlight.Overlay;
 
 namespace Content.Client._Starlight.Overlay;
 
-public sealed class NightVisionSystem : EntitySystem
+public sealed partial class NightVisionSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly FlashImmunitySystem _flashImmunity = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private FlashImmunitySystem _flashImmunity = default!;
 
     private NightVisionOverlay _overlay = default!;
     [ViewVariables]

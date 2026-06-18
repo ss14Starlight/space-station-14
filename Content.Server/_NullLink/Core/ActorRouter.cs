@@ -16,7 +16,7 @@ namespace Content.Server._NullLink.Core;
 
 public sealed partial class ActorRouter : IActorRouter, IDisposable
 {
-    [Dependency] private readonly Robust.Shared.Configuration.IConfigurationManager _cfg = default!;
+    [Dependency] private Robust.Shared.Configuration.IConfigurationManager _cfg = default!;
 
     private ISawmill _sawmill = default!;
     private string _clusterConnectionString = string.Empty;

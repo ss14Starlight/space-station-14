@@ -8,8 +8,8 @@ namespace Content.Server.PAI;
 
 public sealed partial class PAISystem
 {
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
+    [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
 
     private const string PaiConsoleSlotId = "pai_slot";
 

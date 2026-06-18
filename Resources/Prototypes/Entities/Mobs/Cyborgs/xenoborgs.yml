@@ -52,6 +52,7 @@
     - Inorganic
     - Silicon
     - IPC # SL
+    - Hybrid # Starlight
   - type: ItemSlots
     slots:
       cell_slot:

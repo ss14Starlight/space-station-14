@@ -9,7 +9,7 @@ namespace Content.Client.Changeling;
 public sealed partial class ChangelingSystem : EntitySystem
 {
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     public override void Initialize()
     {
         base.Initialize();

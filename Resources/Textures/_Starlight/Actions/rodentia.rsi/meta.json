@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Per state",
+  "rsic": false,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "cheeks-empty",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "mikeysaurus"
+    },
+    {
+      "name": "cheeks-full",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "mikeysaurus"
+    },
+    {
+      "name": "sneak-mode",
+      "license": "CC-BY-SA-3.0",
+      "copyright": "mikeysaurus"
+    }
+  ]
+}

@@ -7,10 +7,10 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class RmStationCommand : LocalizedCommands
+public sealed partial class RmStationCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
 
     public override string Command => "rmstation";
     public override string Description => "Deletes a station.";

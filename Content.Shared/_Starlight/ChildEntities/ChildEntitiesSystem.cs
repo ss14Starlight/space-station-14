@@ -5,7 +5,7 @@ namespace Content.Shared._Starlight.Railroading;
 
 public sealed partial class ChildEntitiesSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private INetManager _net = default!;
     public override void Initialize()
     {
         base.Initialize();

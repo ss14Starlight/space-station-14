@@ -55,6 +55,12 @@ public static class NullLink
     }
 
     [Serializable, NetSerializable]
+    public sealed class ServerRequirements() : EntityEventArgs
+    {
+        public required Dictionary<string, bool> InsufficientPlaytime { get; set; }
+    }
+
+    [Serializable, NetSerializable]
     public record Server
     {
         public required string Title { get; set; }
@@ -66,6 +72,10 @@ public static class NullLink
         public bool IsAdultOnly { get; set; }
 
         public required string ConnectionString { get; set; }
+
+        public int? PanicBunkerMinAccountAge { get; set; }
+
+        public int? PanicBunkerMinOverallMinutes { get; set; }
     }
 
     [Serializable, NetSerializable]
@@ -91,6 +101,8 @@ public static class NullLink
         public int? MaxPlayers { get; set; }
 
         public int? Players { get; set; }
+
+        public bool? PanicBunkerActive { get; set; }
 
         public ServerStatus Status { get; set; }
         public string GetStatus()=> Status switch

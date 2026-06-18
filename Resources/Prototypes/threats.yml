@@ -9,9 +9,9 @@
     LoneOp: 0.25
     NinjaBackup: 0.75
     Rod: 0.75
-    TerrorSpider: 0.5
     Wizard: 0.1
     Xenoborgs: 0.05
+    Eeeplet: 0.5
     # Starlight End
 
 - type: ninjaHackingThreat

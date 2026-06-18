@@ -15,8 +15,7 @@ using Robust.Shared.Input;
 
 #region Starlight
 using Robust.Client.UserInterface;
-using Robust.Shared.IoC;
-using static Content.Shared.Paper.PaperComponent;
+using Content.Client._Starlight.UserInterface.RichText;
 #endregion Starlight
 
 namespace Content.Client.Paper.UI
@@ -26,8 +25,8 @@ namespace Content.Client.Paper.UI
     {
         private PaperComponent.PaperBoundUserInterfaceState _currentState = default!;
         private string _currentRawText = string.Empty;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         private static Color DefaultTextColor = new(25, 25, 25);
 

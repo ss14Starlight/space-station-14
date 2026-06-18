@@ -16,10 +16,10 @@ namespace Content.Shared.Starlight.EntityEffects.Effects;
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
 public sealed partial class DissolvableReactionEntityEffectSystem : EntityEffectSystem<DissolvableComponent, DissolvableReaction>
 {
-    [Dependency] private readonly SharedDissolvableSystem _dissolvable = default!;
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly EntityManager _entMan = default!;
+    [Dependency] private SharedDissolvableSystem _dissolvable = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private EntityManager _entMan = default!;
 
     protected override void Effect(Entity<DissolvableComponent> entity, ref EntityEffectEvent<DissolvableReaction> args)
     {

@@ -9,8 +9,8 @@ namespace Content.Shared.Starlight.Clothing;
 
 public sealed partial class SharedRollUpSleevesSystem : EntitySystem
 {
-    [Dependency] private readonly ClothingSystem _clothingSystem = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private ClothingSystem _clothingSystem = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

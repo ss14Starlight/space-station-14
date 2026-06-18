@@ -4,9 +4,9 @@ using Content.Shared.Body.Components;
 
 namespace Content.Client._Starlight.Overlay;
 
-public abstract class BaseEntityHighlightOverlay : BaseVisionOverlay
+public abstract partial class BaseEntityHighlightOverlay : BaseVisionOverlay
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private readonly ContainerSystem _containerSystem;
     private readonly TransformSystem _transform = default!;
     public BaseEntityHighlightOverlay(ShaderPrototype shader) : base(shader)

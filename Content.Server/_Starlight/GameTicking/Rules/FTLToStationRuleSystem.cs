@@ -7,10 +7,10 @@ using Content.Shared.Station.Components;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class FTLToStationRuleSystem : GameRuleSystem<FTLToStationRuleComponent>
+public sealed partial class FTLToStationRuleSystem : GameRuleSystem<FTLToStationRuleComponent>
 {
-    [Dependency] private readonly ShuttleSystem _shuttles = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private ShuttleSystem _shuttles = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     public override void Initialize()
     {

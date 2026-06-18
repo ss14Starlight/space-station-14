@@ -8,11 +8,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Xenobiology;
 
-public sealed class XenobiologyConsoleMessageSystem : EntitySystem
+public sealed partial class XenobiologyConsoleMessageSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
