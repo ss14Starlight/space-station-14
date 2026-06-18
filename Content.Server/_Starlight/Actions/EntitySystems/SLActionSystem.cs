@@ -8,8 +8,8 @@ namespace Content.Server._Starlight.Actions.EntitySystems;
 [GenerateLocalSubscriptions<IWithAction>]
 public sealed partial class SLActionSystem : EntitySystem
 {
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private ActionsSystem _actions = default!;
 
     public override void Initialize()
     {

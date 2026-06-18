@@ -16,15 +16,15 @@ using System.Numerics;
 namespace Content.Client._Starlight.Achievement;
 
 [UsedImplicitly]
-public sealed class AchievementUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
+public sealed partial class AchievementUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
 {
     private const int NotificationDisplayDuration = 5000;
     private const float NotificationWidth = 460f;
     private const float NotificationTopOffset = 18f;
     private static readonly SoundPathSpecifier _notificationSound = new("/Audio/Effects/chime.ogg");
 
-    [Dependency] private readonly IClientAchievementManager _achievements = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IClientAchievementManager _achievements = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MenuButton? _achievementButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AchievementButton;

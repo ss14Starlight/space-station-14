@@ -7,9 +7,9 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Starlight.Overlay;
 
-public sealed class FlashImmunitySystem : EntitySystem
+public sealed partial class FlashImmunitySystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
     public override void Initialize()
     {
         base.Initialize();

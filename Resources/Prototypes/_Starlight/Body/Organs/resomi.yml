@@ -12,6 +12,7 @@
   - type: FunctionalOrgan
     comps:
     - type: NightVision
+      disabilityBlockable: true
     - type: FlashModifier
       modifier: 2
 
