@@ -10,11 +10,11 @@ using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class SecurityDrillRule : StationEventSystem<SecurityDrillRuleComponent>
+public sealed partial class SecurityDrillRule : StationEventSystem<SecurityDrillRuleComponent>
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
 
     protected override void Added(EntityUid uid, SecurityDrillRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

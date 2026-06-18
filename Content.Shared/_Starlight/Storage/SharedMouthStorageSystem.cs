@@ -32,7 +32,9 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
 
     protected bool IsMouthBlocked(MouthStorageComponent component)
     {
-        if (!TryComp<StorageComponent>(component.MouthId, out var storage))
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (!TryComp<StorageComponent>(component.MouthId, out var storage) ||
+            storage.Container == null)
             return false;
 
         return storage.Container.ContainedEntities.Count > 0;
@@ -71,11 +73,11 @@ public abstract partial class SharedMouthStorageSystem : EntitySystem
     /// </summary>
     private void SpitOutMouth(EntityUid uid, MouthStorageComponent component)
     {
-        if (component.MouthId == null)
-            return;
-
-        if (!TryComp<StorageComponent>(component.MouthId.Value, out var storage)
-            || storage.Container.ContainedEntities.Count == 0)
+        // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
+        if (component.MouthId == null ||
+            !TryComp<StorageComponent>(component.MouthId.Value, out var storage) ||
+            storage.Container == null ||
+            storage.Container.ContainedEntities.Count == 0)
             return;
 
         var dumpQueue = _container.EmptyContainer(storage.Container, true, Transform(uid).Coordinates);

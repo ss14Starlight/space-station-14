@@ -190,8 +190,8 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
                         Loc.GetString("central-command-terror-spiders-announcement-lose"),
                         Loc.GetString("central-command-sender"),
                         true,
-                        new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce_broken.ogg"),
-                        Color.Red
+                        new SoundPathSpecifier("/Audio/_Starlight/Announcements/callEvac.ogg"),
+                        Color.Green
                     );
                 }
                 else if (component.Status == TerrorSpidersWinStatus.Win)
@@ -201,7 +201,7 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
                         Loc.GetString("central-command-sender"),
                         true,
                         new SoundPathSpecifier("/Audio/_Starlight/Announcements/announce_broken.ogg"),
-                        Color.Green
+                        Color.Red
                     );
                 }
 
@@ -216,8 +216,8 @@ public sealed partial class TerrorSpiderRuleSystem : GameRuleSystem<TerrorSpider
 
         if (!component.RoundAlreadyEnded && component.EndRoundTime < _timing.CurTime)
         {
-            // End the round
-            _roundEnd.EndRound();
+            // Call Evac and end the gamemode
+            _roundEnd.RequestRoundEnd(null, false);
             component.RoundAlreadyEnded = true;
             _ticker.EndGameRule(uid);
         }

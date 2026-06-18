@@ -9,7 +9,7 @@ namespace Content.Server._NullLink.PlayerData;
 
 public sealed partial class NullLinkPlayerManager
 {
-    [Dependency] private readonly EuiManager _euiManager = default!;
+    [Dependency] private EuiManager _euiManager = default!;
 
     private readonly HashSet<ICommonSession> _discordPromptOpen = [];
 

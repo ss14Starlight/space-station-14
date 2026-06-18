@@ -12,10 +12,10 @@ namespace Content.Server.Defects.Systems;
 /// RandomExplosiveYieldDefectComponent at MapInit.
 /// Uses public helpers on the owner systems to avoid direct component writes.
 /// </summary>
-public sealed class RandomExplosiveYieldDefectSystem : EntitySystem
+public sealed partial class RandomExplosiveYieldDefectSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedExplosionSystem _explosion = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedExplosionSystem _explosion = default!;
 
     public override void Initialize()
     {

@@ -7,10 +7,10 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 // Randomizes loaded ammo count for magazines with RandomAmmoFillComponent.
 // Runs after SharedGunSystem so it overrides the UnspawnedCount = Capacity
 // reset performed in OnBallisticMapInit.
-public sealed class RandomAmmoFillSystem : EntitySystem
+public sealed partial class RandomAmmoFillSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

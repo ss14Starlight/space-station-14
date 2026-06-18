@@ -11,10 +11,10 @@ using Content.Shared.Station.Components;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
+public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
 {
-    [Dependency] private readonly SharedPoweredLightSystem _poweredLightSystem = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private SharedPoweredLightSystem _poweredLightSystem = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public override void Initialize()
     {

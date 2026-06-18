@@ -23,15 +23,15 @@ public sealed partial class RailroadingSystem : SharedRailroadingSystem
 {
     private const string CriminalCardPrototypeId = "RRCardCriminal";
 
-    [Dependency] private readonly AchievementSystem _achievements = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IAdminManager _admins = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-    [Dependency] private readonly RailroadRuleSystem _railroadRule = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IAdminManager _admins = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private AlertsSystem _alerts = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private RailroadRuleSystem _railroadRule = default!;
 
     public readonly ProtoId<AlertPrototype> AlertProtoId = "RailroadingChoice";
     private readonly Dictionary<ICommonSession, CardSelectionEui> _openUis = [];

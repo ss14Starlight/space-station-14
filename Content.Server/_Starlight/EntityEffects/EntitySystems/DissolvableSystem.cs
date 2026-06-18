@@ -24,18 +24,18 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.EntityEffects.EntitySystems;
 
-public sealed class DissolvableSystem : SharedDissolvableSystem
+public sealed partial class DissolvableSystem : SharedDissolvableSystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
-    [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedStunSystem _stunSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private TemperatureSystem _temperatureSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityLookupSystem _lookupSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
 
     private readonly Dictionary<Entity<DissolvableComponent>, float> _dissolveEvets = new();
 
