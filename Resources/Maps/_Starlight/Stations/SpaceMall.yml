@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/18/2026 00:41:11
+  time: 06/18/2026 21:49:45
   entityCount: 42381
 maps:
 - 1
@@ -18559,7 +18559,7 @@ entities:
       pos: 79.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -284190.34
+      secondsUntilStateChange: -284313.06
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19701,7 +19701,7 @@ entities:
       pos: -38.5,-5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -157701.4
+      secondsUntilStateChange: -157824.12
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -123945,27 +123945,6 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Office
-  - uid: 20433
-    components:
-    - type: Transform
-      pos: 25.5,45.5
-      parent: 2
-    - type: FaxMachine
-      name: Detective
-  - uid: 20436
-    components:
-    - type: Transform
-      pos: 19.5,-40.5
-      parent: 2
-    - type: FaxMachine
-      name: Service
-  - uid: 20437
-    components:
-    - type: Transform
-      pos: 86.5,17.5
-      parent: 2
-    - type: FaxMachine
-      name: Chapel
 - proto: FaxMachineCaptain
   entities:
   - uid: 20429
@@ -124136,6 +124115,13 @@ entities:
     - type: Transform
       pos: 3.5,27.5
       parent: 2
+- proto: FaxMachineSecurityDetective
+  entities:
+  - uid: 20433
+    components:
+    - type: Transform
+      pos: 25.5,45.5
+      parent: 2
 - proto: FaxMachineSecurityFront
   entities:
   - uid: 42333
@@ -124173,6 +124159,11 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Kitchen
+  - uid: 20436
+    components:
+    - type: Transform
+      pos: 19.5,-40.5
+      parent: 2
 - proto: FaxMachineServiceBar
   entities:
   - uid: 17452
@@ -124214,6 +124205,13 @@ entities:
     components:
     - type: Transform
       pos: 10.5,-36.5
+      parent: 2
+- proto: FaxMachineServiceShrine
+  entities:
+  - uid: 20437
+    components:
+    - type: Transform
+      pos: 86.5,17.5
       parent: 2
 - proto: FaxMachineServiceTheater
   entities:

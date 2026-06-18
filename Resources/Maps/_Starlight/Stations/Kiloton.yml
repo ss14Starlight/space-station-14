@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/18/2026 05:09:02
+  time: 06/18/2026 21:50:30
   entityCount: 41189
 maps:
 - 1
@@ -102892,6 +102892,8 @@ entities:
     - type: Transform
       pos: -1.5,-5.5
       parent: 2
+- proto: FaxMachineCommandConference
+  entities:
   - uid: 22483
     components:
     - type: Transform
