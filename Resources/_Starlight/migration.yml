@@ -106,3 +106,6 @@ ClothingHandsCatPawsWhiteInsulated: null
 ClothingHandsCatPawsBrownInsulated: null
 ClothingHandsCatPawsBlackInsulated: null
 ClothingHandsCatPawsBlackWhiteInsulated: null
+
+#2026-06-11 - Replacing Bolas with Security Bolas
+Bola: SecurityBola
