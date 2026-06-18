@@ -14,9 +14,9 @@ namespace Content.Shared._Starlight.Magic.Systems;
 
 public sealed partial class TowerOfBabelSystem : EntitySystem
 {
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

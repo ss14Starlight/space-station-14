@@ -7,9 +7,9 @@ using Content.Shared.Tag;
 
 namespace Content.Shared.Eye;
 
-public sealed class VisionDarkenerSystem : EntitySystem
+public sealed partial class VisionDarkenerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedDarkenedVisionSystem _darkenedVision = default!;
+    [Dependency] private SharedDarkenedVisionSystem _darkenedVision = default!;
     public override void Initialize()
     {
         base.Initialize();

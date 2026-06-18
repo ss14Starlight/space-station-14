@@ -4,7 +4,7 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
 {
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
 
     private bool IsSlottedPAI(EntityUid user, EntityUid console)
     => _containerSystem.TryGetContainingContainer(user, out var container) &&

@@ -10,7 +10,7 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
 
     private static readonly ProtoId<StatusEffectPrototype> _ratvarianKey = "RatvarianLanguage";
 

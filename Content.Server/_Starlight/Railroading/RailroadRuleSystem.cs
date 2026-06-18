@@ -25,14 +25,14 @@ public sealed partial class RailroadRuleSystem : GameRuleSystem<RailroadRuleComp
     private const byte SpawnPerTick = 10;
     private const byte ProcessingMaxTry = 10;
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IComponentFactory _comp = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IComponentFactory _comp = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private SharedJobSystem _job = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
 
     public override void Initialize()
         => base.Initialize();

@@ -8,11 +8,11 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeNameChangePotionSystem : EntitySystem
+public sealed partial class SlimeNameChangePotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _sharedPopupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private MetaDataSystem _metaDataSystem = default!;
+    [Dependency] private SharedPopupSystem _sharedPopupSystem = default!;
 
     public override void Initialize()
     {

@@ -12,13 +12,13 @@ using Content.Shared.PowerCell;
 
 namespace Content.Server.Emp;
 
-public sealed class EmpSystem : SharedEmpSystem
+public sealed partial class EmpSystem : SharedEmpSystem
 {
     // 🌟Starlight🌟  start
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private ItemToggleSystem _itemToggle = default!;
 
     // 🌟Starlight🌟 end
 

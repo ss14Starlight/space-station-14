@@ -8,10 +8,10 @@ using Robust.Shared.Timing;
 namespace Content.Shared._Starlight.Input;
 
 // Taken from https://github.com/RMC-14/RMC-14
-public sealed class StarlightInputSystem : EntitySystem
+public sealed partial class StarlightInputSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private bool _activeInputMoverEnabled;
 
