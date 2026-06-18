@@ -20,13 +20,13 @@
           min: 305
           max: 999.99
         amount: -5000
-      - !type:AdjustTemperature 
+      - !type:AdjustTemperature
         conditions:
         - !type:TemperatureCondition
           min: 1000
           max: 3999.99
         amount: -25000
-      - !type:AdjustTemperature 
+      - !type:AdjustTemperature
         conditions:
         - !type:TemperatureCondition
           min: 4000
