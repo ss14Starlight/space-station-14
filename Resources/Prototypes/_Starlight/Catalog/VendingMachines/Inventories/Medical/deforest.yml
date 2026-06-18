@@ -13,18 +13,18 @@
     Bloodpack: 3
     ChemistryBottleEpinephrine: 3
     Syringe: 3
+    PillCanisterTricordrazine: 2
     JetInjector: 1
     BruteAutoInjector: 1
     BurnAutoInjector: 1
     EmergencyMedipen: 1
-    PillCanisterTricordrazine: 2
   contrabandInventory:
     PillCanisterRandom: 1
     PowerCellSmall: 2
     WeirdPill: 1
   emaggedInventory:
     StrangePill: 1
-    PillLead5: 1
+    PillDesoxyephedrine5: 1
 
 - type: vendingMachineInventory
   id: DeforestPlanetaryWallInventory
@@ -115,6 +115,6 @@
     BurnAutoInjector: 1
     FoodCabbage: 1
   emaggedInventory:
-    StrangePill: 1
+    StrangePill: 2
     PillDesoxyephedrine5: 1
     AirlossAutoInjector: 1
