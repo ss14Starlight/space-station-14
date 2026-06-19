@@ -31,7 +31,7 @@
 - type: entity
   parent: [AdvancedJetInjector, BaseMedicalContraband]
   id: DeforestJetInjector
-  name: deforest jet injector
+  name: DeForest jet injector
   description: A cool, modern, ultra high quality injector. Allows for a fast injection, with a smaller capacity as a tradeoff. Go Interstellar, with DeForest Medical!
   components:
   - type: Sprite
