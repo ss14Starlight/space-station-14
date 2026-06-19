@@ -212,10 +212,6 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return;
         }
 
-        _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-begin"),
-            uid, user, PopupType.Medium);
-        _audio.PlayPredicted(seal.UnsealBeginSound, uid, user);
-
         // Start the do-after to unseal. It's short but not instant so that you can cancel if you do it accidentally.
         var args =
             new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(seal.UnsealTime),
@@ -229,7 +225,14 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
                 AttemptFrequency = AttemptFrequency.EveryTick,
             };
 
-        _doAfter.TryStartDoAfter(args);
+        if (!_doAfter.TryStartDoAfter(args))
+            return;
+
+        // Show a popup and play sound.
+        _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-begin"),
+            uid, user, PopupType.Medium);
+        _audio.PlayPredicted(seal.UnsealBeginSound, uid, user);
+
         _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
             $"{ToPrettyString(user):player} began unsealing the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
     }
@@ -247,12 +250,6 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (hasTool && !hasCorrectTool)
             return false;
 
-        // Show a popup and play sound.
-        _popup.PopupPredicted(
-            Loc.GetString($"tamper-seal-popup-destroy-{(hasTool ? toolKind : "hands")}-begin"),
-            uid, user, PopupType.Large);
-        _audio.PlayPredicted(seal.DestroyBeginSound, uid, user);
-
         // I tried using ToolSystem.UseTool, but that causes mispredicts due to setting a different AttemptFrequency.
         // Doing it manually like this with AttemptFrequency.EveryTick works perfectly.
         var args =
@@ -268,9 +265,18 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
                 AttemptFrequency = AttemptFrequency.EveryTick,
             };
 
+        if (!_doAfter.TryStartDoAfter(args))
+            return false;
+
+        // Show a popup and play sound.
+        _popup.PopupPredicted(
+            Loc.GetString($"tamper-seal-popup-destroy-{(hasTool ? toolKind : "hands")}-begin"),
+            uid, user, PopupType.Large);
+        _audio.PlayPredicted(seal.DestroyBeginSound, uid, user);
+
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
             $"{ToPrettyString(user):player} began destroying the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
-        return _doAfter.TryStartDoAfter(args);
+        return true;
     }
 
     private bool CanUnseal(EntityUid uid, EntityUid user, TamperSealComponent? seal = null)

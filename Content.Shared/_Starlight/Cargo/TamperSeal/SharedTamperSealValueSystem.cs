@@ -69,10 +69,11 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
-        // Apply the mutation. Note the refund is only applied if the penalty succeeded in getting applied.
+        // Apply the penalty. This money goes into the ether.
         ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized", args.User);
 
-        if (refundCredit.HasValue)
+        // If the refund amount is non-zero and we have a recipient, move the refund funds from deliverer to recipient.
+        if (refundCredit.HasValue && value.Refund != 0)
         {
             var refundDebited = ApplyMutation(uid, (stationId, bank), refundCharge, "destroying", "refund charged", args.User);
             if (refundDebited)
