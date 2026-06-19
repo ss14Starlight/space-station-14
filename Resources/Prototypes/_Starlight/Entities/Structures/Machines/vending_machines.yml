@@ -386,6 +386,7 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalBaseSyndicate
   name: Interdyne Commercial
+  suffix: Civilian
   description: It's a medical drug dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
@@ -418,6 +419,7 @@
   parent: VendingMachineMedicalBaseSyndicate
   id: VendingMachineMedicalSyndicate
   name: Interdyne Enterprise
+  suffix: Departmental
   components:
   - type: VendingMachine
     pack: InterdyneEnterpriseInventory
@@ -442,6 +444,7 @@
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilianSyndicate
   name: Interdyne life-aid commercial
+  suffix: Civilian, Wallmount
   description: It's a wall-mounted medical equipment dispenser by Interdyne Pharmaceutics. For the Health of Humankind.
   components:
   - type: VendingMachine
@@ -472,6 +475,7 @@
   parent: VendingMachineWallMedicalCivilianSyndicate
   id: VendingMachineWallMedicalSyndicate
   name: Interdyne life-aid enterprise
+  suffix: Departmental, Wallmount
   components:
   - type: VendingMachine
     pack: InterdyneEnterpriseWallInventory
@@ -496,6 +500,7 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalBaseDeforest
   name: DeForest Planetary
+  suffix: Civilian
   description: It's a medical drug dispenser by DeForest Medical. Health that Touches the Sky.
   components:
   - type: VendingMachine
@@ -528,6 +533,7 @@
   parent: VendingMachineMedicalBaseDeforest
   id: VendingMachineMedicalDeforest
   name: DeForest Interstellar
+  suffix: Departmental
   components:
   - type: VendingMachine
     pack: DeforestInterstellarInventory
@@ -552,6 +558,7 @@
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilianDeforest
   name: DeForest health-aid planetary
+  suffix: Civilian, Wallmount
   description: It's a wall-mounted medical equipment dispenser by DeForest Medical. Health that Touches the Sky.
   components:
   - type: VendingMachine
@@ -582,6 +589,7 @@
   parent: VendingMachineWallMedicalCivilianDeforest
   id: VendingMachineWallMedicalDeforest
   name: DeForest health-aid interstellar
+  suffix: Departmental, Wallmount
   components:
   - type: VendingMachine
     pack: DeforestInterstellarWallInventory
@@ -606,6 +614,7 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalBaseGold
   name: NanoMed Civilian GOLD
+  suffix: Civilian
   description: The fact that you've arrived here-rather, to this NanoMed GOLD- at this moment in your life is nothing short of a miracle. It delights me to no end.
   components:
   - type: VendingMachine
@@ -638,6 +647,7 @@
   parent: VendingMachineMedicalBaseGold
   id: VendingMachineMedicalGold
   name: NanoMed Plus GOLD
+  suffix: Departmental
   components:
   - type: VendingMachine
     pack: GoldNanoMedPlusInventory
@@ -662,6 +672,7 @@
   parent: VendingMachineWallmount
   id: VendingMachineWallMedicalCivilianGold
   name: NanoMed band-aid GOLD
+  suffix: Civilian, Wallmount
   description: It's a luxury wall-mounted medical equipment dispenser.  It delights you to no end.
   components:
   - type: VendingMachine
@@ -692,6 +703,7 @@
   parent: VendingMachineWallMedicalCivilianGold
   id: VendingMachineWallMedicalGold
   name: NanoMed GOLD
+  suffix: Departmental, Wallmount
   components:
   - type: VendingMachine
     pack: GoldNanoMedInventory
