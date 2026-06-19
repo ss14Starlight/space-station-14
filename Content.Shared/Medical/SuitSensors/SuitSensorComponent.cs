@@ -100,4 +100,11 @@ public sealed partial class SuitSensorComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public string Faction = "crew";
+
+    /// <summary>
+    ///     STARLIGHT If true, the sensor keeps reporting even when the wearer is off-grid (e.g. drifting in space),
+    ///     and retains its assigned station instead of dropping it. Used by always-on trackers like the command tracking implant.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool IgnoreGrid = false;
 }

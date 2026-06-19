@@ -275,6 +275,11 @@
       radioChannel:
       - Security
       - Command
+    # Starlight: always track, even off-grid in space, with no distance limit on the station's map.
+    - type: SuitSensor
+      ignoreGrid: true
+    - type: WirelessNetworkConnection
+      range: 1000000
 
 # Xenoroach self-destruct implant
 - type: entity

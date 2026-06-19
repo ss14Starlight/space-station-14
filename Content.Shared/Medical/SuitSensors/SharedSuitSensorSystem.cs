@@ -72,8 +72,16 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
         if (!sensor.Comp.StationId.HasValue && Transform(sensor.Owner).GridUid == null)
             return false;
 
-        sensor.Comp.StationId = _stationSystem.GetOwningStation(sensor.Owner);
-        Dirty(sensor);
+        var owningStation = _stationSystem.GetOwningStation(sensor.Owner);
+
+        // Starlight: always-on trackers keep their last known station when off-grid (e.g. drifting in space),
+        // instead of dropping it to null and going dark.
+        if (owningStation != null || !sensor.Comp.IgnoreGrid)
+        {
+            sensor.Comp.StationId = owningStation;
+            Dirty(sensor);
+        }
+
         return sensor.Comp.StationId.HasValue;
     }
 
@@ -354,7 +362,8 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
         var transform = ent.Comp2;
 
         // check if sensor is enabled and worn by user
-        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) || transform.GridUid == null)
+        // Starlight: IgnoreGrid trackers keep reporting off-grid (coords fall back to map-relative below).
+        if (sensor.Mode == SuitSensorMode.SensorOff || sensor.User == null || !HasComp<MobStateComponent>(sensor.User) || (transform.GridUid == null && !sensor.IgnoreGrid))
             return null;
 
         // try to get mobs id from ID slot
