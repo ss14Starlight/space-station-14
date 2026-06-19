@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Spliced from monkey sprite (tgstation, edited by Alekshhh) and chicken mask by Kasern",
+  "states": [
+    {
+      "name": "chimpken",
+      "directions": 4
+    }
+  ]
+}
