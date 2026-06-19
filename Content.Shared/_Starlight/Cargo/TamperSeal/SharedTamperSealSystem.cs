@@ -307,7 +307,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (ev.PlaySound)
             _audio.PlayPredicted(seal.UnsealEndSound, uid, user); // The sound is shared.
         if (ev.ShowPopup)
-            _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-end"), uid, user); // Popup is personal.
+            _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-end"), uid, user, PopupType.Medium); // Popup is personal.
     }
 
     protected void DoDestroy(EntityUid uid, TamperSealComponent seal, EntityUid? user = null,

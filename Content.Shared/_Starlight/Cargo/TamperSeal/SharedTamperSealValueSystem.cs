@@ -35,6 +35,8 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
         var reward = new FinancialMutation(args.Seal.Deliverer, value.Reward);
         var deliverer = _proto.Index(args.Seal.Deliverer);
 
+        if (args.Seal.Deliverer == args.Seal.Recipient) // Don't let Cargo reward themselves.
+            return;
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
@@ -54,7 +56,7 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
     private void OnSealDestroyed(EntityUid uid, TamperSealValueComponent value, ref TamperSealDestroyedEvent args)
     {
         var stationId = value.StationId;
-        var penalty = new FinancialMutation(args.Seal.Deliverer, value.Penalty);
+        var penalty = new FinancialMutation(args.Seal.Deliverer, -value.Penalty);
         var refundCharge = new FinancialMutation(args.Seal.Deliverer, -value.Refund);
         FinancialMutation? refundCredit = args.Seal.Recipient.HasValue
             ? new FinancialMutation(args.Seal.Recipient.Value, value.Refund)
@@ -62,6 +64,8 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
 
         var deliverer = _proto.Index(penalty.Account);
 
+        if (args.Seal.Deliverer == args.Seal.Recipient) // Don't let Cargo penalize/refund themselves.
+            return;
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 

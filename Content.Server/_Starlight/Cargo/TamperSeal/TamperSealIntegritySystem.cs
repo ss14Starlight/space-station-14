@@ -80,7 +80,7 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
         // If state should change from "Failing" to "Not failing".
         if (shouldClear && tracker.Failure)
         {
-            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(tracker.StationId):station} tamper-seal integrity levels restored to at least {tracker.FailureSetThreshold*100f}%.");
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(tracker.StationId):station} tamper-seal integrity levels restored to at least {tracker.FailureClearThreshold*100f}%.");
             tracker.Failure = false;
         }
     }

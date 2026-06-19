@@ -25,7 +25,7 @@ tamper-seal-examine-destroyed-prying = There is some [color={$recipientColor}]{$
 
 # Performance failure announcement
 tamper-seal-performance-failure-sender = Interstellar Trade Guild
-tamper-seal-performance-failure-message = Repeated destruction of tamper seals detected. We strongly encourage you to conduct an internal investigation into this matter.
+tamper-seal-performance-failure-message = Repeated destruction of tamper-sealed orders detected. We encourage you to investigate the department responsible for handling your orders.
 
 # Short account names
 tamper-seal-account-name-unknown = Unknown
