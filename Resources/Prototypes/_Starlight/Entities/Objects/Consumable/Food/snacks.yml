@@ -113,14 +113,17 @@
 
 # Rodentia Cheese Box
 - type: entity
-  parent: FoodSnackNutribrick
   id: FoodPacketCheeseBox
+  parent: FoodSnackNutribrick
   name: cheese box
   description: A randomly selected piece of cheese from the NanoTrasen galactic cheese vault. Calorie dense and irresistible to rodents!
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
+    state: box
   - type: SpawnItemsOnUse
     items:
-      - id: FoodPacketMRETrash
+      - id: FoodPacketCheeseBoxTrash
       - id: FoodNutriCheeseEdam
         orGroup: Cheese
       - id: FoodNutriCheeseBrie
@@ -147,7 +150,8 @@
 - type: entity
   id: FoodPacketCheeseBoxTrash
   parent: FoodPacketMRETrash
-  abstract: true
+  name: cheese box
+  description: A box that once held delicious cheese, is now a crumbled mess.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
@@ -170,7 +174,7 @@
   id: FoodNutriCheeseBrie
   parent: FoodRodentiaCheeseBase
   name: brie
-  description: Soft and creamy like buttery.
+  description: Soft and creamy, like butter.
   components:
   - type: Sprite
     state: brie
@@ -180,10 +184,10 @@
       - creamy
 
 - type: entity
-  id: FoodNutriCheeseMozerellaSticks
+  id: FoodNutriCheeseMozzarellaSticks
   parent: FoodRodentiaCheeseBase
   name: mozzarella sticks
-  description: STRINGY CHEESE STICKS! YUM!
+  description: Stringy cheese sticks! Yum!
   components:
   - type: Sprite
     state: mozzarella-sticks
@@ -203,4 +207,4 @@
   - type: FlavorProfile
     flavors:
       - cheesy
-      - strinky
+      - stinky

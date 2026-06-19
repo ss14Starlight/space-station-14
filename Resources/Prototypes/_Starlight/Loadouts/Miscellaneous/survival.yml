@@ -332,4 +332,4 @@
     proto: EffectsSpeciesRodentia
   storage:
     back:
-    - BoxSurvivalMilitaryCheese
+    - BoxSurvivalMilitaryDouble # Militarty budget cuts mean Military Rodentia don't get cheese. Sad days.
