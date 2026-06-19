@@ -131,7 +131,7 @@
         orGroup: Cheese
     sound:
       path: /Audio/Effects/unwrap.ogg
-    requireHands: false 
+    requireHands: false
 
 - type: entity
   id: FoodRodentiaCheeseBase

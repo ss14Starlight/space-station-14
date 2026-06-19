@@ -264,7 +264,7 @@
 # Rodentia Cheese Loadouts
 - type: loadout
   id: EmergencyCheese # Default Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -273,7 +273,7 @@
 
 - type: loadout
   id: EmergencyCheeseExtended # Extended Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -282,7 +282,7 @@
 
 - type: loadout
   id: EmergencyCheeseMedical # Medical Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -291,7 +291,7 @@
 
 - type: loadout
   id: EmergencyCheeseSecurity # Security Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -300,7 +300,7 @@
 
 - type: loadout
   id: EmergencyCheeseMime # Mime Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -309,7 +309,7 @@
 
 - type: loadout
   id: EmergencyCheeseClown # Clown Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -318,7 +318,7 @@
 
 - type: loadout
   id: EmergencyCheeseSyndicate # Syndicate Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
@@ -327,7 +327,7 @@
 
 - type: loadout
   id: EmergencyCheeseMilitary # Military Rodentia box
-  effects: 
+  effects:
   - !type:GroupLoadoutEffect
     proto: EffectsSpeciesRodentia
   storage:
