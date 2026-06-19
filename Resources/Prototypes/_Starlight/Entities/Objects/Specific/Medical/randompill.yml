@@ -288,7 +288,6 @@
   - type: Item
     size: Tiny
     sprite: _Starlight/Objects/Specific/Chemistry/pills.rsi
-    state: goldenpill
   - type: SolutionContainerManager
     solutions:
       food:
