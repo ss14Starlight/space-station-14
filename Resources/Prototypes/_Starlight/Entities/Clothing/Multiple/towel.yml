@@ -373,3 +373,36 @@
         color: "#EAE8E8"
   - type: Fiber
     fiberColor: fibers-white
+
+- type: entity
+  id: TowelColorGold
+  name: gold towel
+  parent: BaseTowel
+  components:
+  - type: Sprite
+    layers:
+    - state: icon
+      color: "#F7C430"
+    - state: iconstripe
+      color: "#535353"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#F7C430"
+      right:
+      - state: inhand-right
+        color: "#F7C430"
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        color: "#F7C430"
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#F7C430"
+      belt:
+      - state: equipped-BELT
+        color: "#F7C430"
+  - type: Fiber
+    fiberColor: fibers-gold
