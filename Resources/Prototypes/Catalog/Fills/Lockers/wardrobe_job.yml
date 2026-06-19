@@ -74,6 +74,7 @@
       - id: Blunt
       - id: PackPaperRolling
       - id: OminousPill # Starlight
+      - id: GoldenPill # Starlight
       - id: Cigarette
         amount: !type:RangeNumberSelector
           range: 1, 4

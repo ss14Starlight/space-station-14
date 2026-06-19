@@ -57,7 +57,7 @@
 # NanoMed GOLD yellow ointments
 - type: entity
   name: gold ointment
-  description: Limited-edition Golden Bruise packs. Doesn't heal caustic.
+  description: Limited-edition golden ointment. Heals mild caustic burns, too!
   parent: BaseStarlightHealingItem
   id: GoldOintment
   suffix: Full
@@ -82,6 +82,7 @@
         Heat: -8
         Cold: -8
         Shock: -8
+        Caustic: -4
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:
@@ -93,7 +94,7 @@
 
 - type: entity
   name: gold ointment
-  description: Limited-edition Golden Bruise packs. Doesn't heal caustic. They're exceedingly rare. Treasure them.
+  description: Limited-edition golden ointments. Heals mild caustic burns, too! They're exceedingly rare. Treasure them.
   parent: GoldOintment
   id: GoldOintment1
   suffix: Single

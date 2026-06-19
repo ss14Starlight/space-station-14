@@ -213,3 +213,85 @@
   - type: RandomFillSolution
     solution: food
     weightedRandomId: RandomFillWeirdPill
+
+# It has an equal chance of everything, with quantities better than the Ominous Pill. Truly, a legendary mains pull.
+- type: weightedRandomFillSolution
+  id: RandomFillGoldenPill
+  fills:
+  # 4 equal groups for a total weight of 100
+    - quantity: 30
+      weight: 25
+      reagents:
+      - Desoxyephedrine
+      - Ephedrine
+      - Omnizine
+      - Tricordrazine
+      - Vitamin
+      - PolypyryliumOligomers
+      - Charcoal
+      - Ipecac
+      - SodiumPolyacrylate
+      - SpaceDrugs
+      - SpaceGlue
+      - Laughter
+      - JuiceThatMakesYouWeh
+      - Lipozine
+      - Carpetium
+      - Bananadine
+      - THC
+      - MindbreakerToxin
+      - Mustard
+      - HorseradishSauce
+      - Honk
+      - MuteToxin
+      - Pax
+      - Fresium
+      - Cryptobiolin
+      - Nocturine
+    - quantity: 25
+      weight: 25
+      reagents:
+      - Stimulants
+    - quantity: 20
+      weight: 25
+      reagents:
+      - Ichor
+      - Necrosol
+      - Vestine
+      - Uranium
+      - Licoxide
+      - Razorium
+      - Potassium
+      - Phlogiston
+      - Bleach
+      - CarpoToxin
+      - BuzzochloricBees
+      - Amatoxin
+      - Tazinide
+    - quantity: 15
+      weight: 25
+      reagents:
+      - Cognizine
+      - Toxin
+      - Lexorin
+      - Lead
+
+- type: entity
+  name: golden pill
+  parent: Pill
+  id: GoldenPill
+  description: Jackpot! Golden unmarked pill! There could be anything in here!
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Chemistry/pills.rsi
+    state: goldenpill
+  - type: Item
+    size: Tiny
+    sprite: _Starlight/Objects/Specific/Chemistry/pills.rsi
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+  - type: RandomFillSolution
+    solution: food
+    weightedRandomId: RandomFillGoldenPill
