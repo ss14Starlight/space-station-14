@@ -61,16 +61,18 @@
   parent: MonkeyCubeBox
   name: variant cube box
   id: VariantCubeBox
-  description: Both kobold cubes and monkey cubes. Just add water!
+  description: Kobold, monkey and chimpken cubes. Just add water!
   components:
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
         children:
         - id: KoboldCubeWrapped
-          amount: 4
+          amount: 3
         - id: MonkeyCubeWrapped
-          amount: 4
+          amount: 3
+        - id: ChimpkenCubeWrapped
+          amount: 3
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
     state: box_variant
