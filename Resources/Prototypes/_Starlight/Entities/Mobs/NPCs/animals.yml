@@ -128,3 +128,71 @@
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
 
+# Append this to:
+# Resources/Prototypes/_Starlight/Entities/Mobs/NPCs/animals.yml
+
+- type: entity
+  name: chimpken
+  id: MobChimpken
+  parent: [MobBaseAncestor, BaseSpeciesPickupable]
+  description: A horrifying splice of chicken and primate, born of a NanoTrasen vat accident nobody will admit to. Clucks. Climbs. Tastes like chicken, obviously.
+  components:
+  - type: NameIdentifier
+    group: Monkey
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: VentCrawler
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-primate
+  - type: AlwaysRevolutionaryConvertible
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-monkey-name
+    description: ghost-role-information-monkey-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: Clumsy
+    gunShootFailDamage:
+      types:
+        Blunt: 5
+        Piercing: 4
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
+    clumsySound:
+      path: /Audio/Animals/monkey_scream.ogg
+  # Override the inherited Sprite so the Base layer uses the chimpken sprite.
+  # All other layers are kept so clothing / handcuffs / cream pie still render.
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: chimpken
+      sprite: _Starlight/Mobs/Animals/chimpken.rsi
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "ears" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  # Override the inherited Butcherable so it drops chicken meat instead of FoodMeat.
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatChicken
+      amount: 3
+  - type: Tag
+    tags:
+      - Monkey
