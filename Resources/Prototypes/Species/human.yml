@@ -6,7 +6,7 @@
   sprites: MobHumanSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: AppearanceHuman
-  skinColoration: HumanToned
+  skinColoration: Hues
   customName: true # Starlight
   roundstartCyberwareCapacity: 5 # Starlight
 
