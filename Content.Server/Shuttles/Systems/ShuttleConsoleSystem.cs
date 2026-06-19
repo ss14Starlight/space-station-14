@@ -30,6 +30,7 @@ using Content.Server._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Shuttles.Components;
 using Robust.Shared.Containers;
 using Content.Shared.PAI;
+using Content.Shared._Starlight.Shuttles.BUIStates;
 
 namespace Content.Server.Shuttles.Systems;
 

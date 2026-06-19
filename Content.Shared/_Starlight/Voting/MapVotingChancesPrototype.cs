@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Voting.Prototypes;
+namespace Content.Shared._Starlight.Voting;
 
 [Prototype("mapvotingchances")]
 public sealed partial class MapVotingChancesPrototype : IPrototype

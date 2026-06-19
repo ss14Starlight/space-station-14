@@ -1,8 +1,9 @@
+using Content.Shared._Starlight.Store;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.StoreDiscount.Components;
+namespace Content.Shared._Starlight.StoreDiscount.Components;
 
 /// <summary>
 /// Partner-component for adding second-hand (worn/damaged) item functionality to StoreSystem via SecondHandSystem.

@@ -11,6 +11,7 @@ using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Configuration; //Starlight-edit
 using Robust.Shared.Physics.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Shared.Shuttles.Systems;
 

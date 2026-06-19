@@ -1,9 +1,13 @@
+using Content.Shared._Starlight.Clothing.Components;
+using Content.Shared._Starlight.Eye;
+using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Eye;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
 
-namespace Content.Shared.Clothing.EntitySystems;
+namespace Content.Shared._Starlight.Clothing.Systems;
 
 public sealed partial class WeldingMaskSystem : EntitySystem
 {

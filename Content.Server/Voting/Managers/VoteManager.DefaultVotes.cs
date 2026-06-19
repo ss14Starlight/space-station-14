@@ -17,13 +17,13 @@ using Content.Shared.Maps;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
-using Content.Shared.Voting.Prototypes;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes; // Starlight
-using Prometheus; //Starlight
+using Prometheus;
+using Content.Shared._Starlight.Voting; //Starlight
 
 namespace Content.Server.Voting.Managers
 {

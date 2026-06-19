@@ -1,9 +1,11 @@
+using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 
-namespace Content.Shared.Weapons.Ranged.Systems;
+namespace Content.Shared._Starlight.Weapons.Ranged.Systems;
 
 // Randomizes shots-per-burst each time a burst completes for guns with GunBurstVarianceDefectComponent.
 public sealed partial class GunBurstVarianceSystem : EntitySystem

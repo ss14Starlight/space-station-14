@@ -7,7 +7,8 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Kitchen.Components // Starlight-edit: moved from server
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Kitchen
 {
     [RegisterComponent]
     public sealed partial class CookingDeviceComponent : Component // Starlight-edit: Renamed from MicrowaveComponent to CookingDeviceComponent

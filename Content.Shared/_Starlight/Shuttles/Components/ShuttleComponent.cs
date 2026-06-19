@@ -2,6 +2,7 @@ using Content.Shared.Shuttles.Systems;
 using Robust.Shared.GameStates;
 using System.Numerics;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Shuttles.Components
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]

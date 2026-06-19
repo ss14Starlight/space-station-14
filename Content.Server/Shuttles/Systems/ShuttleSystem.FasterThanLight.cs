@@ -29,7 +29,8 @@ using Content.Server.Camera; // Starlight
 using Content.Shared._Starlight.Camera; // Starlight
 using Content.Shared.Station.Components; // Starlight
 using Robust.Server.Player;
-using Content.Shared.Body.Components; // Starlight
+using Content.Shared.Body.Components;
+using Content.Shared._Starlight.Shuttles.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 

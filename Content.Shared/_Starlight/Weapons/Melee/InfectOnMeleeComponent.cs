@@ -1,7 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Melee;
+namespace Content.Shared._Starlight.Weapons.Melee;
 
 [RegisterComponent]
 [NetworkedComponent]

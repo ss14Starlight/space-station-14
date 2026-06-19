@@ -65,6 +65,7 @@ using Content.Server._Starlight.GameTicking;
 using Content.Server._Starlight.Implants;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared._Starlight.Revolutionary.Components;
+using Content.Server._Starlight.Revolutionary.Components;
 #endregion Starlight
 
 namespace Content.Server.GameTicking.Rules;

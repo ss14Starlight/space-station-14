@@ -1,6 +1,11 @@
 using System.Linq;
 //using Content.Server.FeedbackSystem; // Starlight
 using Content.Server.Store.Systems;
+using Content.Server.StoreDiscount.Systems;
+using Content.Shared._Starlight.Store;
+using Content.Shared._Starlight.StoreDiscount.Components;
+
+
 //using Content.Shared.FeedbackSystem; // Starlight
 using Content.Shared.GameTicking;
 using Content.Shared.Store;
@@ -9,7 +14,7 @@ using Content.Shared.StoreDiscount.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.StoreDiscount.Systems;
+namespace Content.Server._Starlight.StoreDiscount.Systems;
 
 /// <summary>
 /// Populates the Second Hand tab of an uplink with a random selection of worn/damaged syndicate items.

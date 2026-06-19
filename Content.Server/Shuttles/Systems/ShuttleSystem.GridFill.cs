@@ -14,6 +14,7 @@ using Content.Server._Starlight.Station;
 using Content.Shared.Random.Helpers;
 using Content.Server._Starlight.Salvage.VGRoid;
 using Content.Server._Starlight.Shuttles.Components;
+using Content.Shared._Starlight.Shuttles.Components;
 #endregion
 
 namespace Content.Server.Shuttles.Systems;

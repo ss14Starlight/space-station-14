@@ -75,6 +75,7 @@ using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Events;
 using Content.Server._Starlight.Roles;
 using Content.Shared._Starlight.Medical;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.Achievement;
 

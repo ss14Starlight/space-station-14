@@ -42,7 +42,7 @@ using Robust.Shared.GameObjects;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Events; // starlight
 
-namespace Content.Server.Revolutionary;
+namespace Content.Server._Starlight.Revolutionary;
 
 /// <summary>
 /// Handles the revolutionary supply rift system.

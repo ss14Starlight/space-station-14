@@ -1,6 +1,7 @@
-﻿using Robust.Shared.Serialization;
+﻿using Content.Shared.Shuttles.BUIStates;
+using Robust.Shared.Serialization;
 
-namespace Content.Shared.Shuttles.BUIStates;
+namespace Content.Shared._Starlight.Shuttles.BUIStates;
 
 /// <summary>
 /// Wrapper for the dictionary of docking port states.

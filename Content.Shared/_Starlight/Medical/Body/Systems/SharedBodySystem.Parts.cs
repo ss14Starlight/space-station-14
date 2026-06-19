@@ -17,6 +17,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared._Starlight.Movement.Components;
 #endregion Starlight
 
 // ReSharper disable once CheckNamespace

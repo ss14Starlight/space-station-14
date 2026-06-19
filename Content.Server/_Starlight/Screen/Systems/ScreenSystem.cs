@@ -11,7 +11,7 @@ using Content.Shared.TextScreen;
 using Content.Shared.Station.Components; // Starlight
 
 
-namespace Content.Server.Screen.Systems;
+namespace Content.Server._Starlight.Screen.Systems;
 
 /// <summary>
 /// Controls the wallmounted screens on stations and shuttles displaying e.g. FTL duration, ETA

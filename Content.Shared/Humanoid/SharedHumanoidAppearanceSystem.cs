@@ -23,7 +23,6 @@ using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
 #region Starlight
 using Content.Shared._Starlight.TextToSpeech;
-using Content.Shared._Starlight.Humanoid;
 #endregion
 
 namespace Content.Shared.Humanoid;

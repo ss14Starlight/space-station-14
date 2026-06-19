@@ -1,4 +1,3 @@
-using Content.Server.Kitchen.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Clumsy;
@@ -32,7 +31,7 @@ using Content.Shared.Kitchen.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 
-namespace Content.Server.Execution;
+namespace Content.Server._Starlight.Execution;
 
 /// <summary>
 ///     Verb for violently murdering cuffed creatures.

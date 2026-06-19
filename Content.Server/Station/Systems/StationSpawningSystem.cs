@@ -34,6 +34,7 @@ using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Antags.Components;
 using Content.Shared._Starlight.Station;
+using Content.Shared._Starlight.Humanoid;
 // Starlight End
 
 namespace Content.Server.Station.Systems;

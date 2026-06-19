@@ -65,8 +65,10 @@ using Content.Shared.Chemistry.Reagent;
 // Starlight edit end
 using Content.Shared.Zombies;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Changeling;
+using Content.Server._Starlight.Objectives.Components;
 
-namespace Content.Server.Changeling;
+namespace Content.Server._Starlight.Changeling;
 
 public sealed partial class ChangelingSystem : EntitySystem
 {

@@ -15,6 +15,7 @@ using Content.Server.Implants;
 using Content.Shared._Starlight.Implants.Components;
 using Content.Shared._Starlight.Revolutionary.Components;
 using Content.Shared._Starlight.Store.Conditions;
+using Content.Server._Starlight.Revolutionary.Components;
 namespace Content.Server._Starlight.Implants;
 public sealed partial class USSPUplinkSystem : EntitySystem
 {

@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 // Gives a toggleable weapon a chance to deactivate on each swing.
 // Flavor: a loose internal power connector that can't hold contact under impact.

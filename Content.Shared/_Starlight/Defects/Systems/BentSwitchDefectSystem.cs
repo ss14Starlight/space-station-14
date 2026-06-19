@@ -1,8 +1,8 @@
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 
-namespace Content.Shared.Defects.Systems;
+namespace Content.Shared._Starlight.Defects.Systems;
 
 /// <summary>
 /// At MapInit, forces any gun with FullAuto in its available modes into

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Threading;
+using Content.Server._Starlight.Discord;
 using Content.Server.Administration.Systems;
 using Content.Server.Database;
 using Content.Server.Discord;
@@ -10,6 +11,7 @@ using Robust.Shared;
 using Robust.Shared.Localization;
 using static Content.Shared.Administration.Notes.AdminMessageEuiState;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.GameTicking;
 public sealed partial class GameTicker
 {

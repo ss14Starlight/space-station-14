@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Weather.Effects;
+namespace Content.Shared._Starlight.Weather.Effects;
 
 /// <summary>
 /// When added to a weather status effect entity (alongside <see cref="WeatherStatusEffectComponent"/>),

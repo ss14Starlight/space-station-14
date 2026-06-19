@@ -5,8 +5,9 @@ using Content.Shared._Starlight;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Content.Shared._Starlight.Medical.Limbs;
+using Content.Shared.Humanoid;
 
-namespace Content.Shared.Humanoid
+namespace Content.Shared._Starlight.Humanoid
 {
     public enum CyberneticImplantType {
         Undefined,

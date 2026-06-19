@@ -13,7 +13,9 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
 using Content.Shared._Starlight;
 using Robust.Shared.Utility;
-using Content.Shared._Starlight.Medical.Limbs; // Starlight
+using Content.Shared._Starlight.Medical.Limbs;
+using Content.Client._Starlight.Humanoid; // Starlight
+using Content.Shared._Starlight.Humanoid;
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 

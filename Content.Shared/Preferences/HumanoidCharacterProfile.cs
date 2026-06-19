@@ -18,6 +18,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Traits;
+using Content.Shared._Starlight.Humanoid;
 
 namespace Content.Shared.Preferences
 {

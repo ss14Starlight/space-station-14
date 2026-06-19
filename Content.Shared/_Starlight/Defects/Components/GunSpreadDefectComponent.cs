@@ -1,6 +1,6 @@
 using Robust.Shared.Maths;
 
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// Randomizes a gun's spread at MapInit via GunRefreshModifiersEvent.

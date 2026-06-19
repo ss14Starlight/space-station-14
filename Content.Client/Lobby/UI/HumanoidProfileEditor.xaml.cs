@@ -42,6 +42,8 @@ using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Traits;
 using Content.Client._Starlight.Lobby.UI;
 using Content.Client._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Humanoid;
+using Content.Client._Starlight.Humanoid;
 #endregion Starlight
 
 namespace Content.Client.Lobby.UI

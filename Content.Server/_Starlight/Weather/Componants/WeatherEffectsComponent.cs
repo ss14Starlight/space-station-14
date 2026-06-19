@@ -1,7 +1,7 @@
 using Content.Shared.Weather;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Weather.Components;
+namespace Content.Server._Starlight.Weather.Componants;
 
 /// <summary>
 /// When added to a weather status effect entity (alongside <see cref="WeatherStatusEffectComponent"/>),

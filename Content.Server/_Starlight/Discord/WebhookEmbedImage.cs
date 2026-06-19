@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace Content.Server.Discord;
+namespace Content.Server._Starlight.Discord;
 
 public struct WebhookEmbedImage
 {

@@ -30,6 +30,7 @@ using Robust.Shared.Utility;
 
 #region Starlight
 using Content.Client._Starlight.Lobby.UI;
+using Content.Client._Starlight.Humanoid;
 #endregion
 
 namespace Content.Client.Lobby;
