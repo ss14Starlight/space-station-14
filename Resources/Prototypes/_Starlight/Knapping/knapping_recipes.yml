@@ -10,6 +10,7 @@
   - "#####"
   - "#####"
   - "#####"
+
 - type: knappingRecipe
   id: KnapRecipeStoneArrowheads
   name: knapping-recipe-stone-arrowheads
@@ -22,6 +23,7 @@
   - "#.#.#"
   - ".###."
   - "..#.."
+
 - type: knappingRecipe
   id: KnapRecipeSoftMetalGearBlank
   name: knapping-recipe-soft-metal-gear-blank

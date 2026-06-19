@@ -27,6 +27,7 @@
     materialName: knapping-material-stone
     recipes:
     - KnapRecipeStoneArrowheads
+
 - type: entity
   id: KnappingMaterialSoftMetal
   parent: BaseItem
