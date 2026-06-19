@@ -14,8 +14,8 @@ namespace Content.Shared._Starlight.Abstract.Conditions;
 
 public sealed partial class SubjectDepartmentCondition : BaseCondition
 {
-    [Dependency] public readonly IPrototypeManager PrototypeManager = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] public IPrototypeManager PrototypeManager = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
 
     [DataField]
     public HashSet<ProtoId<DepartmentPrototype>>? Whitelist;

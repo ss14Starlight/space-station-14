@@ -11,8 +11,8 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadDarkTaskSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();

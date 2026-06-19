@@ -581,6 +581,38 @@
 
 - type: entity
   parent: BasePDA
+  categories: [ DoNotMap ]
+  id: CentCommGreenShieldPDA
+  name: greenshield PDA
+  description: Comes with all the bells and whistles for all those times you do more than walk slowly next to someone who thinks they are way too important.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/pda.rsi
+    - type: Pda
+      id: CCGreenShieldIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-ntnc-cs
+    - type: Icon
+      sprite: _Starlight/Objects/Devices/pda.rsi
+      state: pda-ntnc-cs
+    - type: CartridgeLoader
+      uiKey: enum.PdaUiKey.Key
+      preinstalled:
+        - CrewManifestCartridge
+        - NotekeeperCartridge
+        - NanoTaskCartridge
+        - NewsReaderCartridge
+        - MedTekCartridge
+        - WantedListCartridge
+        - LogProbeCartridge
+        - AstroNavCartridge
+        - NanoChatCartridge
+
+- type: entity
+  parent: BasePDA
   id: NTNCCSPDA
   name: nt nc naval officer's PDA
   components:
@@ -652,10 +684,18 @@
 - type: entity
   parent: CentcomPDA
   id: NTSFPDA
-  suffix: NTSF #starlight
+  name: NT PDA
+  description: A stately blue PDA used by top NanoTrasen Officials and Special Forces.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardNTSF
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ntsf
   - type: HealthAnalyzer
     maxScanRange: null
     scanDelay: 0
@@ -663,6 +703,9 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-ntsf
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -679,10 +722,18 @@
 - type: entity
   parent: CentcomPDA
   id: DecimusPDA
-  suffix: ERROR #starlight
+  name: jailbroken PDA
+  description: An illegally modified generic NanoTrasen PDA. Please report this to your nearest NanoTrasen Representative for investigation.
   components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
   - type: Pda
     id: CentcomIDCardDecimus
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-decimus
   - type: HealthAnalyzer
     maxScanRange: null
     scanDelay: 0
@@ -690,6 +741,9 @@
   - type: Tag #  Ignore Chameleon tags
     tags:
     - DoorBumpOpener
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-decimus
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:

@@ -20,13 +20,13 @@ namespace Content.Server._Starlight.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly PullingSystem _pullingSystem = default!;
-    [Dependency] private readonly InventorySystem _inv = default!;
-    [Dependency] private readonly SharedCuffableSystem _cuffs = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly RemoteEyeSystem _remoteEye = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private PullingSystem _pullingSystem = default!;
+    [Dependency] private InventorySystem _inv = default!;
+    [Dependency] private SharedCuffableSystem _cuffs = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private RemoteEyeSystem _remoteEye = default!;
 
     private static readonly EntProtoId _teleportationEffect = "EffectTeleportation";
     private static readonly EntProtoId _teleportationEffectEntity = "EffectTeleportationEntity";

@@ -39,9 +39,9 @@ namespace Content.Server.Changeling;
 
 public sealed partial class ChangelingSystem : EntitySystem
 {
-    [Dependency] private readonly StatusEffectsSystem _statusEffect = default!;
-    [Dependency] private readonly ChangelingIdentitySystem _changelingIdentitySystem = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private ChangelingIdentitySystem _changelingIdentitySystem = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     private static readonly ProtoId<ReagentPrototype> FerrochromicAcidPrototype = "FerrochromicAcid";
     private static readonly ProtoId<ReagentPrototype> PolytrinicAcidPrototype = "PolytrinicAcid";

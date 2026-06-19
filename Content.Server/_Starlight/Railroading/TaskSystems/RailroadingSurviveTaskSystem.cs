@@ -8,7 +8,7 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
 
     public override void Initialize()
     {

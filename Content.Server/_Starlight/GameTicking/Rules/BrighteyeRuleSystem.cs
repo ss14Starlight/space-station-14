@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class BrighteyeRuleSystem : GameRuleSystem<BrighteyeRuleComponent>
+public sealed partial class BrighteyeRuleSystem : GameRuleSystem<BrighteyeRuleComponent>
 {
-    [Dependency] private readonly RailroadDarkTaskSystem _railroadDarkTaskSystem = default!;
+    [Dependency] private RailroadDarkTaskSystem _railroadDarkTaskSystem = default!;
 
     public override void Initialize()
     {

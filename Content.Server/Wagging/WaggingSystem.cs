@@ -15,13 +15,13 @@ namespace Content.Server.Wagging;
 /// <summary>
 /// Adds an action to toggle wagging animation for tails markings that supporting this
 /// </summary>
-public sealed class WaggingSystem : EntitySystem
+public sealed partial class WaggingSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
     //[Dependency] private readonly IPrototypeManager _prototype = default!; // Starlight-removed - we dropped the last use of this from upstream
 
-    [Dependency] private readonly StarlightMarkingSystem _starlightMarking = default!; //starlight edit
+    [Dependency] private StarlightMarkingSystem _starlightMarking = default!; //starlight edit
 
     public override void Initialize()
     {

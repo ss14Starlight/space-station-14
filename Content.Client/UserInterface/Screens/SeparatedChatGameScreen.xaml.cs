@@ -15,7 +15,7 @@ public sealed partial class SeparatedChatGameScreen : InGameScreen
     public const string StyleClassChatContainer = "ChatContainer";
     public const string StyleClassChatOutput = "ChatOutput";
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!; // Starlight
+    [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
     public SeparatedChatGameScreen()
     {

@@ -7,9 +7,9 @@ using Content.Shared.Research.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class NullSpaceDrainerSystem : EntitySystem
+public sealed partial class NullSpaceDrainerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<NullSpaceDrainerComponent, OnAttemptEnergyUseEvent>(OnAttempt);

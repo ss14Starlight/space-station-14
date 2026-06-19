@@ -12,13 +12,13 @@ using Content.Shared.Implants.Components;
 
 using Content.Server.GameTicking.Rules;
 namespace Content.Server.Implants;
-public sealed class USSPUplinkSystem : EntitySystem
+public sealed partial class USSPUplinkSystem : EntitySystem
 {
-    [Dependency] private readonly StoreSystem _storeSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly RevolutionaryRuleSystem _rev = default!;
-    [Dependency] private readonly SubdermalImplantSystem _implant = default!;
+    [Dependency] private StoreSystem _storeSystem = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private RevolutionaryRuleSystem _rev = default!;
+    [Dependency] private SubdermalImplantSystem _implant = default!;
 
     public override void Initialize()
     {
