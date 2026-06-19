@@ -40,8 +40,9 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
-        // Apply the mutation.
-        ApplyMutation(uid, (stationId, bank), reward, "opening", "rewarded", args.User);
+        // Apply the reward if applicable.
+        if (reward.Amount != 0)
+            ApplyMutation(uid, (stationId, bank), reward, "opening", "rewarded", args.User);
 
         _audio.PlayPredicted(value.RewardSound, uid, args.User);
         _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end-reward",
@@ -69,11 +70,12 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
-        // Apply the penalty. This money goes into the ether.
-        ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized", args.User);
+        // Apply the penalty if applicable. This money goes into the ether.
+        if (penalty.Amount != 0)
+            ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized", args.User);
 
-        // If the refund amount is non-zero and we have a recipient, move the refund funds from deliverer to recipient.
-        if (refundCredit.HasValue && value.Refund != 0)
+        // Apply the refund if applicable. Transfers from deliverer to recipient.
+        if (value.Refund != 0 && refundCredit.HasValue)
         {
             var refundDebited = ApplyMutation(uid, (stationId, bank), refundCharge, "destroying", "refund charged", args.User);
             if (refundDebited)
