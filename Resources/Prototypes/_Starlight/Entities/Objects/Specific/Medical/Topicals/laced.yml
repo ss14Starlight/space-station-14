@@ -4,7 +4,7 @@
   description: Specalized mixture of Puncturase and Security-Quality Red Goo. Best used for bullet-wounds, as it is much less effective on other types of damage.
   parent: BaseStarlightHealingItem
   id: RedPunctPack
-  suffix:
+  suffix: 20
   components:
   - type: Tag
     tags:
@@ -75,7 +75,7 @@
   description: Specalized mixture of Lacerinol and Security-Quality Red Goo. Best used for stab-wounds, as it is much less effective on other types of damage.
   parent: BaseStarlightHealingItem
   id: RedLacePack
-  suffix: 10
+  suffix: 20
   components:
   - type: Tag
     tags:
@@ -146,7 +146,7 @@
   description: Specalized mixture of Bruizine and Security-Quality Red Goo. Best used for blunt-force trauma, as it is much less effective on other types of damage.
   parent: BaseStarlightHealingItem
   id: RedBruizPack
-  suffix: 10
+  suffix: 20
   components:
   - type: Tag
     tags:
@@ -172,6 +172,10 @@
   - type: Stack
     stackType: RedBruizPack
     count: 20
+  - type: InteractRestriction #FH - Edit
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
 
 - type: entity
   name: red bruiz-laced brute pack

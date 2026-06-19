@@ -16,6 +16,7 @@
       - VendingMachineMedical
       - VendingMachineMedical
       - VendingMachineMedical
+      - VendingMachineMedical
       - VendingMachineMedical # 70% chance of NanoMed Plus, ignoring the rare prototype
       - VendingMachineMedicalDeforest
       - VendingMachineMedicalDeforest # 20% chance of DeForest Interstellar
@@ -38,6 +39,7 @@
         state: medical-civilian
   - type: RandomSpawner
     prototypes:
+      - VendingMachineMedicalBase
       - VendingMachineMedicalBase
       - VendingMachineMedicalBase
       - VendingMachineMedicalBase
@@ -70,6 +72,7 @@
       - VendingMachineWallMedical
       - VendingMachineWallMedical
       - VendingMachineWallMedical
+      - VendingMachineWallMedical
       - VendingMachineWallMedical # 70% chance of NanoMed, ignoring the rare prototype
       - VendingMachineWallMedicalDeforest
       - VendingMachineWallMedicalDeforest # 20% chance of DeForest health-aid interstellar
@@ -92,6 +95,7 @@
         state: wallmed-civilian
   - type: RandomSpawner
     prototypes:
+      - VendingMachineWallMedicalCivilian
       - VendingMachineWallMedicalCivilian
       - VendingMachineWallMedicalCivilian
       - VendingMachineWallMedicalCivilian
