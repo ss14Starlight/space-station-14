@@ -2,8 +2,6 @@ using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
 using Content.Server.Temperature.Components;
-using Content.Shared._Starlight.Construction;
-using Content.Shared._Starlight.FiringPins; // starlight
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
@@ -23,6 +21,11 @@ using Robust.Shared.Utility;
 // ReSharper disable once RedundantUsingDirective
 using Robust.Shared.Exceptions;
 #endif
+
+#region Starlight
+using Content.Shared._Starlight.Construction;
+using Content.Shared._Starlight.FiringPins;
+#endregion
 
 namespace Content.Server.Construction
 {
