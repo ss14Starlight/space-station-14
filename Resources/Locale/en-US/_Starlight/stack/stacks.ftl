@@ -92,6 +92,14 @@ stack-deforestbrutepack = {$amount ->
     [1] deforestbrutepack
     *[other] deforestbrutepacks
 }
+stack-goldointment = {$amount ->
+    [1] goldointment
+    *[other] goldointments
+}
+stack-goldbrutepack = {$amount ->
+    [1] goldbrutepack
+    *[other] goldbrutepacks
+}
 stack-redpunctpack = {$amount ->
     [1] redpunctpack
     *[other] redpunctpacks
