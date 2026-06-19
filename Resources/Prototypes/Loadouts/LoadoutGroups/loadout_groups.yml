@@ -398,13 +398,6 @@
   - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
-  id: AssistantJobTrinkets # Starlight - depassenger
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieAssistant # Starlight - depassenger
-
-- type: loadoutGroup
   id: BartenderHead
   name: loadout-group-bartender-head
   minLimit: 0

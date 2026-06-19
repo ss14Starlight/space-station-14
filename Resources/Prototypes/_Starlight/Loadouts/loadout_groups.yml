@@ -1217,3 +1217,10 @@
   - BrigmedicRig
   - BrigmedicBelt
   - CorpsmanBelt
+
+- type: loadoutGroup
+  id: TechnicalAssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieTechnicalAssistant
