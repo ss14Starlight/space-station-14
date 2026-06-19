@@ -19,8 +19,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+using Content.Client.Lobby;
+using Content.Client.Lobby.UI;
 
-namespace Content.Client.Lobby.UI
+namespace Content.Client._Starlight.Lobby.UI
 {
     [GenerateTypedNameReferences]
     public sealed partial class LateJoinGui : DefaultWindow

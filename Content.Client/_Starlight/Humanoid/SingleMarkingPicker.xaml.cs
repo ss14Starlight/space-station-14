@@ -6,7 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.Utility;
 
-namespace Content.Client.Humanoid;
+namespace Content.Client._Starlight.Humanoid;
 
 [GenerateTypedNameReferences]
 public sealed partial class SingleMarkingPicker : BoxContainer

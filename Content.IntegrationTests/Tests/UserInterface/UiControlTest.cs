@@ -5,6 +5,10 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.IoC;
 using Robust.Shared.Reflection;
 
+#region Starlight
+using Content.Client._Starlight.Lobby.UI;
+#endregion
+
 namespace Content.IntegrationTests.Tests.UserInterface;
 
 [TestFixture]

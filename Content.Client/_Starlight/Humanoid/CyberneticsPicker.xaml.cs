@@ -8,7 +8,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client.Humanoid;
+namespace Content.Client._Starlight.Humanoid;
 
 [GenerateTypedNameReferences]
 public sealed partial class CyberneticsPicker : Control

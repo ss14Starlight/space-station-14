@@ -12,8 +12,9 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Client.Lobby;
 
-namespace Content.Client.Lobby.UI;
+namespace Content.Client._Starlight.Lobby.UI;
 
 /// <summary>
 /// UI class to handle the selection of a player's job priorities.

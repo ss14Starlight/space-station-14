@@ -9,8 +9,10 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.Utility;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Client.Lobby;
+using Content.Client.Lobby.UI;
 
-namespace Content.Client.Lobby.UI.ProfileEditorControls;
+namespace Content.Client._Starlight.Lobby.UI.ProfileEditorControls;
 
 /// <summary>
 /// This class provides a control that gives you a sprite view of an entity with an applied
