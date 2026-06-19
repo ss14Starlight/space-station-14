@@ -6,7 +6,7 @@
   components:
   - type: Airtight
   - type: Sprite
-    color: "#ffffffdd"
+    color: "#ffE5F3FD"
   - type: Fixtures
     fixtures:
       fix1:
@@ -19,12 +19,6 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 30
@@ -58,12 +52,6 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 30
@@ -83,21 +71,18 @@
   name: thick spider web
   description: It's stringy, sticky, opaque and strong.
   components:
+  - type: Sprite
+    color: "#B9BBB6ff"
   - type: Occluder
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 60
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
 - type: entity
   id: SpiderWebSlime
   parent: SpiderWebBase
@@ -118,12 +103,6 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 10
@@ -172,7 +151,7 @@
   description: It's stringy, sticky.
   components:
   - type: Sprite
-    color: "#ffffff5e"
+    color: "#ffff5edd"
   - type: Fixtures
     fixtures:
       fix1:
@@ -185,12 +164,6 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 25
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 5
@@ -211,7 +184,7 @@
   description: It's stringy, sticky. Contains a solution that keeps spiderlings away.
   components:
   - type: Sprite
-    color: "#ffffff5e"
+    color: "#826d8cdd"
   - type: Fixtures
     fixtures:
       fix1:
@@ -231,12 +204,6 @@
         - SpiderlingImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 10
