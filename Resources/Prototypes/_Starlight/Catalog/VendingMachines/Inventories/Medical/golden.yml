@@ -20,7 +20,7 @@
   emaggedInventory:
     OminousPill: 1
     GoldenPill: 1
-    PillDesoxyephedrine5: 1
+    PillGold5: 1
 
 # All access version. Should reflect the stock of NanoMedInventory, but less powerful
 - type: vendingMachineInventory
@@ -42,7 +42,7 @@
   emaggedInventory:
     OminousPill: 1
     GoldenPill: 1
-    PillDesoxyephedrine5: 1
+    PillGold5: 1
 
 # Core medical supply vendor
 - type: vendingMachineInventory
@@ -81,7 +81,7 @@
   emaggedInventory:
     OminousPill: 2
     GoldenPill: 2
-    PillDesoxyephedrine5: 2
+    PillGold5: 2
 
 # All access version. Should reflect NanoMedCivilianWallInventory, but with more stock
 - type: vendingMachineInventory
@@ -110,4 +110,4 @@
   emaggedInventory:
     OminousPill: 2
     GoldenPill: 2
-    PillDesoxyephedrine5: 1
+    PillGold5: 1
