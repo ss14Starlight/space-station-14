@@ -31,7 +31,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -71,7 +70,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -100,8 +98,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-
 - type: entity
   id: SpiderWebSlime
   parent: SpiderWebBase
@@ -134,7 +130,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.3
     sprintSpeedModifier: 0.3
@@ -202,7 +197,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.7
     sprintSpeedModifier: 0.7
@@ -212,10 +206,12 @@
 
 - type: entity
   id: SpiderWebSpiderlings
-  parent: SpiderWeb
+  parent: SpiderWebBase
   name: spiderlings spider web
   description: It's stringy, sticky. Contains a solution that keeps spiderlings away.
   components:
+  - type: Sprite
+    color: "#ffffff5e"
   - type: Fixtures
     fixtures:
       fix1:
@@ -233,3 +229,23 @@
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
         - SpiderlingImpassable
+  - type: Destructible
+    thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.7
+    sprintSpeedModifier: 0.7
+    blacklist:
+      components:
+      - IgnoreSpiderWeb
