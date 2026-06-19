@@ -35,6 +35,9 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
+    // Starlight: id of the command tracking implant so we can filter it.
+    private const string CommandTrackingImplantProto = "CommandTrackingImplant";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -193,12 +196,15 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                     (filter.ShownDepartments.Count == 0 || filter.ShownDepartments.Any(dept => sensor.JobDepartments.Contains(dept)))
                     && (!filter.OnlyShowWoundedOrDead || !sensor.IsAlive || sensor.DamagePercentage is not null && sensor.DamagePercentage > 0.5)
                     && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction))).ToList();
-        if (filter is not null && filter.AlwaysShowTrackingImplants)
+        if (filter is not null && filter.AlwaysShowCommandTrackingImplants)
         {
             foreach (var sensor in allSensors)
             {
                 var clientEntity = GetEntity(sensor.SuitSensorUid);
-                if (TryComp<SubdermalImplantComponent>(clientEntity, out var suitSensor) && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
+                // STARLIGHT: Match on the implant prototype
+                if (TryComp<SubdermalImplantComponent>(clientEntity, out _)
+                    && MetaData(clientEntity).EntityPrototype?.ID == CommandTrackingImplantProto
+                    && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
                 {
                     filteredSensors.Add(sensor);
                 }

@@ -12,14 +12,14 @@ public sealed partial class CrewMonitoringFilterComponent : Component
     public List<string> ShownDepartments = new();
 
     /// <summary>
-    ///     Always show crew with tracking implants in addition.
+    ///     Always show crew with command tracking implants
     /// </summary>
-    [DataField("alwaysShowTrackingImplants"), ViewVariables(VVAccess.ReadWrite)]
-    public bool AlwaysShowTrackingImplants = false;
+    [DataField("alwaysShowCommandTrackingImplants"), ViewVariables(VVAccess.ReadWrite)]
+    public bool AlwaysShowCommandTrackingImplants = false;
 
     /// <summary>
     ///     Only show crew who are wounded or dead.
-    /// <summary>
+    /// </summary>
     [DataField("onlyShowWoundedOrDead"), ViewVariables(VVAccess.ReadWrite)]
     public bool OnlyShowWoundedOrDead = false;
 

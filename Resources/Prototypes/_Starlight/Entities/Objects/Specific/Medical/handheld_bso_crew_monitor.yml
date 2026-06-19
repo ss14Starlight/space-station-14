@@ -43,7 +43,7 @@
   - type: CrewMonitoringFilter
     shownDepartments:
     - Command
-    alwaysShowTrackingImplants: true
+    alwaysShowCommandTrackingImplants: true
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: CrewMonitor
