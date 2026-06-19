@@ -882,7 +882,14 @@
         - id: OminousPill # Starlight start
           weight: 0.375
           amount: !type:RangeNumberSelector
-            range: 0, 3 # Starlight end
+            range: 1, 3
+        - id: WeirdPill
+          weight: 0.5
+          amount: *Range1to6
+        - id: GoldenPill
+          weight: 0.25
+          amount: !type:RangeNumberSelector
+            range: 1, 2  # Starlight end
 
 # Syringes
 - type: entity
@@ -1113,6 +1120,7 @@
     - id: PillPotassiumIodide
     - id: PillTricordrazine
     - id: StrangePill
+    - id: WeirdPill # Starlight
 
 - type: entityTable
   id: RandomSafeSyringeTable
