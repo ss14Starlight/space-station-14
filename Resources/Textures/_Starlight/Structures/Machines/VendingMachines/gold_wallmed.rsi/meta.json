@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from /tg/station at commit 6665eec76c98a4f3f89bebcd10b34b47dcc0b8ae, off.png taken from /tg/station commit ede31369cfa5ea1bed9262b5ef4bbef85f60fe26 and edited by @Flareguy & IProduceWidgets (github), DeForest themed normal-unshaded, deny-unshaded, and off-civilian by Conflee",
+  "copyright": "Taken from /tg/station at commit 6665eec76c98a4f3f89bebcd10b34b47dcc0b8ae, off.png taken from /tg/station commit ede31369cfa5ea1bed9262b5ef4bbef85f60fe26 and edited by @Flareguy & IProduceWidgets (github), off, off-civilian, normal-unshaded, and deny-unshaded turned Gold by wonderfulnewworld (GitHub)",
   "size": {
     "x": 32,
     "y": 32
@@ -25,7 +25,7 @@
           0.1
         ]
       ],
-	  "copyright": "Conflee",
+	  "copyright": "TG Station, Flareguy, IproduceWidgets, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
@@ -36,17 +36,17 @@
           0.1
         ]
       ],
-	  "copyright": "Conflee",
+	  "copyright": "TG Station, Flareguy, IproduceWidgets, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "off",
-	  "copyright": "TG Station, Flareguy, IproduceWidgets",
+	  "copyright": "TG Station, Flareguy, IproduceWidgets, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "off-civilian",
-	  "copyright": "TG Station, Flareguy, IproduceWidgets, Conflee",
+	  "copyright": "TG Station, Flareguy, IproduceWidgets, wonderfulnewworld",
 	  "license": "CC-BY-SA-3.0"
     }
   ]
