@@ -1106,10 +1106,10 @@
   id: SalvageSpecialistJumpsuit
   name: loadout-group-salvage-specialist-jumpsuit
   loadouts:
-  - SalvageSpecialistJumpsuit start
+  - SalvageSpecialistJumpsuit
   - SalvageSpecialistJumpskirt
   - SalvageSpecialistJumpsuitFormal
-  - SalvageSpecialistJumpskirtFormal end
+  - SalvageSpecialistJumpskirtFormal
 
 - type: loadoutGroup
   id: LibrarianJobTrinkets
@@ -1129,11 +1129,11 @@
   - LizardPlushieChef
 
 - type: loadoutGroup
-  id: AssistantJobTrinkets - depassenger
+  id: AssistantJobTrinkets
   name: loadout-group-jobtrinkets
   minLimit: 0
   loadouts:
-  - LizardPlushieAssistant - depassenger
+  - LizardPlushieAssistant
 
 - type: loadoutGroup
   id: CaptainEyewear
@@ -1164,10 +1164,10 @@
   minLimit: 0
   loadouts:
   - BrigmedicBeret
-  - BrigmedicNurseHat start
+  - BrigmedicNurseHat
   - CorpsmanBeret
   - CorpsmanNurseHat
-  - BrigmedicNurseHatOfLife end
+  - BrigmedicNurseHatOfLife
   - SecurityHelmet
 
 - type: loadoutGroup
@@ -1175,13 +1175,13 @@
   name: loadout-group-brigmedic-jumpsuit
   loadouts:
   - JumpsuitBrigmedic
-  - JumpskirtBrigmedic line swap v
-  - JumpsuitCorpsman line swap ^
-  - JumpskirtCorpsman start
+  - JumpskirtBrigmedic
+  - JumpsuitCorpsman
+  - JumpskirtCorpsman
   - CorpsmanResponse
   - CorpsmanTrauma
   - BrigmedicJumpsuitOfLife
-  - BrigmedicJumpskirtOfLife end
+  - BrigmedicJumpskirtOfLife
 
 - type: loadoutGroup
   id: BrigmedicBackpack
