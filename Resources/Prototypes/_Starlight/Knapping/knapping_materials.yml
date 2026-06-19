@@ -8,8 +8,6 @@
     sprite: _Starlight/Objects/Materials/knapping_materials.rsi
     state: clay
   - type: Knappable
-    width: 7
-    height: 7
     materialName: knapping-material-clay
     recipes:
     - KnapRecipeClayBrick
@@ -30,7 +28,7 @@
 
 - type: entity
   id: KnappingMaterialSoftMetal
-  parent: BaseItem
+  parent: BaseKnappingMaterial
   name: soft metal blank
   description: A crude, soft metal blank. Use it in hand to shape rough parts.
   components:
@@ -38,8 +36,6 @@
     sprite: _Starlight/Objects/Materials/knapping_materials.rsi
     state: soft_metal
   - type: Knappable
-    width: 7
-    height: 7
     materialName: knapping-material-soft-metal
     recipes:
     - KnapRecipeSoftMetalGearBlank

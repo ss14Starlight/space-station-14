@@ -29,6 +29,9 @@ public sealed partial class KnappingWindow : FancyWindow
     private static readonly Color _previewFilledTint = new(0.78f, 0.61f, 0.44f);
     private static readonly Color _previewRemovedTint = new(0.20f, 0.17f, 0.15f);
 
+    private const int MinDifficultyDiamonds = 1;
+    private const int MaxDifficultyDiamonds = 5;
+
     public KnappingWindow()
     {
         RobustXamlLoader.Load(this);
@@ -174,7 +177,7 @@ public sealed partial class KnappingWindow : FancyWindow
 
         foreach (var recipe in state.Recipes.OrderBy(x => Loc.GetString(x.Category)).ThenBy(x => x.Difficulty).ThenBy(x => Loc.GetString(x.Name)))
         {
-            var difficulty = new string('◆', Math.Clamp(recipe.Difficulty, 1, 5));
+            var difficulty = new string('◆', Math.Clamp(recipe.Difficulty, MinDifficultyDiamonds, MaxDifficultyDiamonds));
             var text = Loc.GetString("knapping-recipe-dropdown-entry",
                 ("category", Loc.GetString(recipe.Category)),
                 ("recipe", Loc.GetString(recipe.Name)),

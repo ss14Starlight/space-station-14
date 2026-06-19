@@ -30,7 +30,7 @@
   description: knapping-recipe-desc-soft-metal-gear-blank
   category: knapping-category-soft-metal
   difficulty: 4
-  output: KnapOutputSoftMetalGearBlank
+  output: KnappingOutputSoftMetalGearBlank
   allowOffset: true
   pattern:
   - ".#.#."
