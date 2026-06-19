@@ -1,4 +1,4 @@
-namespace Content.Server._Starlight.Cargo.TamperSeal;
+namespace Content.Server._Starlight.Cargo.TamperSeal.Components;
 
 /// <summary>
 /// Marker component that makes a tamper-sealed container tracked for integrity performance purposes.
@@ -7,5 +7,8 @@ namespace Content.Server._Starlight.Cargo.TamperSeal;
 [RegisterComponent]
 public sealed partial class TamperSealIntegrityBeaconComponent : Component
 {
+    /// <summary>
+    /// The station that this beacon reports to.
+    /// </summary>
     public EntityUid StationId;
 }

@@ -12,7 +12,6 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal;
@@ -26,7 +25,6 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -242,7 +240,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         var hasCorrectTool = tool.HasValue && _tool.HasQuality(tool.Value, seal.DestroyToolQuality);
         var toolKind = seal.DestroyToolQuality.Id.ToLowerInvariant(); // "slicing" or "prying".
 
-        // I'd love to "return true" to block any interaction, but it also breaks other things like dna scanners.
+        // I'd love to "return true" to block any interaction, but it also breaks other things like forensic scanners.
         if (hasTool && !hasCorrectTool)
             return false;
 

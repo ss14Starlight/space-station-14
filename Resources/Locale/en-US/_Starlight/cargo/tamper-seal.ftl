@@ -35,12 +35,3 @@ tamper-seal-account-name-medical = Medical
 tamper-seal-account-name-science = Science
 tamper-seal-account-name-security = Security
 tamper-seal-account-name-service = Service
-
-# Descriptive colors for seals
-tamper-seal-account-name-unknown-color = white
-tamper-seal-account-name-cargo-color = brown
-tamper-seal-account-name-engineering-color = yellow
-tamper-seal-account-name-medical-color = blue
-tamper-seal-account-name-science-color = magenta
-tamper-seal-account-name-security-color = red
-tamper-seal-account-name-service-color = green

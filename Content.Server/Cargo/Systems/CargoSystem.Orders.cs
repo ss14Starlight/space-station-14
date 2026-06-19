@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Content.Server._Starlight.Cargo.TamperSeal;
 using Content.Server.Cargo.Components;
 using Content.Shared.Access;
 using Content.Shared.Cargo;
@@ -25,6 +24,8 @@ using Robust.Shared.Utility;
 
 #region Starlight
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
+using Content.Server._Starlight.Cargo.TamperSeal.Components;
+using Content.Shared.Starlight.CCVar;
 using Content.Shared.Tools;
 #endregion
 
@@ -39,12 +40,17 @@ namespace Content.Server.Cargo.Systems
         #region Starlight
         [Dependency] private TagSystem _tags = default!;
 
+        private float _tamperSealRewardMultiplier = 0.1f;
+        private float _tamperSealPenaltyMultiplier = 0.1f;
+        private float _tamperSealRefundMultiplier = 0.25f;
+
         private static readonly ProtoId<TagPrototype> _tamperSealable = "TamperSealable";
         private static readonly ProtoId<TagPrototype> _tamperSealSlicing = "TamperSealSlicing";
         private static readonly ProtoId<TagPrototype> _tamperSealPrying = "TamperSealPrying";
 
         private static readonly ProtoId<ToolQualityPrototype> _toolSlicing = "Slicing";
         private static readonly ProtoId<ToolQualityPrototype> _toolPrying = "Prying";
+
         #endregion
 
         private void InitializeConsole()
@@ -56,6 +62,12 @@ namespace Content.Server.Cargo.Systems
             SubscribeLocalEvent<CargoOrderConsoleComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<CargoOrderConsoleComponent, InteractUsingEvent>(OnInteractUsing);
             SubscribeLocalEvent<CargoOrderConsoleComponent, GotEmaggedEvent>(OnEmagged);
+
+            // Starlight BEGIN
+            _cfg.OnValueChanged(StarlightCCVars.TamperSealRewardMultiplier, v => _tamperSealRewardMultiplier = v, true);
+            _cfg.OnValueChanged(StarlightCCVars.TamperSealPenaltyMultiplier, v => _tamperSealPenaltyMultiplier = v, true);
+            _cfg.OnValueChanged(StarlightCCVars.TamperSealRefundMultiplier, v => _tamperSealRefundMultiplier = v, true);
+            // Starlight END
         }
 
         private void OnInteractUsingCash(EntityUid uid, CargoOrderConsoleComponent component, ref InteractUsingEvent args)
@@ -696,11 +708,9 @@ namespace Content.Server.Cargo.Systems
             var value = EnsureComp<TamperSealValueComponent>(item);
             value.StationId = GetEntity(order.StationId);
             value.Value = order.Price;
-
-            // TODO: Move the .1f and .2f constants to a station-bound config comp?
-            value.Reward = (int) Math.Floor(.1f * order.Price); // Rewards rounded down.
-            value.Penalty = (int) Math.Ceiling(.2f * order.Price); // Penalties rounded up.
-            value.Refund = (int) Math.Floor(.2f * order.Price); // Refunds rounded down.
+            value.Reward = (int) Math.Floor(_tamperSealRewardMultiplier * order.Price); // Rewards rounded down.
+            value.Penalty = (int) Math.Ceiling(_tamperSealPenaltyMultiplier * order.Price); // Penalties rounded up.
+            value.Refund = (int) Math.Ceiling(_tamperSealRefundMultiplier * order.Price); // Refunds rounded up.
 
             // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
             var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);

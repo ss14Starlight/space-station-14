@@ -1,6 +1,9 @@
 using System.Linq;
+using Content.Server._Starlight.Cargo.TamperSeal.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Cargo.TamperSeal;
+using Content.Shared.Administration.Logs;
+using Content.Shared.Database;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Cargo.TamperSeal;
@@ -12,6 +15,7 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
 
     public override void Initialize()
     {
@@ -63,6 +67,7 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
         {
             tracker.Failure = true;
 
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(tracker.StationId):station} tamper-seal integrity levels dropped below {tracker.FailureSetThreshold*100f}%. Dispatching announcement.");
             _chat.DispatchStationAnnouncement(tracker.StationId,
                 Loc.GetString("tamper-seal-performance-failure-message"),
                 Loc.GetString("tamper-seal-performance-failure-sender"),
@@ -75,7 +80,7 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
         // If state should change from "Failing" to "Not failing".
         if (shouldClear && tracker.Failure)
         {
-            // TODO: admin log?
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{ToPrettyString(tracker.StationId):station} tamper-seal integrity levels restored to at least {tracker.FailureSetThreshold*100f}%.");
             tracker.Failure = false;
         }
     }

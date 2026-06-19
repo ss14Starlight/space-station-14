@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server._Starlight.Cargo.TamperSeal;
+namespace Content.Server._Starlight.Cargo.TamperSeal.Components;
 
 /// <summary>
 /// This component tracks tamper seal integrity performance metrics. These metrics are scoped to stations and are

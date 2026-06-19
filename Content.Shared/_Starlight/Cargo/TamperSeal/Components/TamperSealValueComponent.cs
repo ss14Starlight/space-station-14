@@ -33,7 +33,7 @@ public sealed partial class TamperSealValueComponent : Component
     /// <summary>
     /// How much to refund the <see cref="TamperSealComponent.Recipient"/> when the seal is destroyed.
     /// </summary>
-    [DataField, AutoNetworkedField] public int? Refund;
+    [DataField, AutoNetworkedField] public int Refund;
 
     /// <summary>
     /// The sound that plays when a reward is given.

@@ -35,7 +35,7 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
             return;
 
         // Apply the mutation.
-        ApplyMutation(uid, (stationId, bank), reward, "opening", "rewarded");
+        ApplyMutation(uid, (stationId, bank), reward, "opening", "rewarded", args.User);
 
         _audio.PlayPredicted(value.RewardSound, uid, args.User);
         _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end-reward",
@@ -51,8 +51,9 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
     {
         var stationId = value.StationId;
         var penalty = new FinancialMutation(args.Seal.Deliverer, value.Penalty);
-        FinancialMutation? refund = args.Seal.Recipient.HasValue && value.Refund.HasValue
-            ? new FinancialMutation(args.Seal.Recipient.Value, value.Refund.Value)
+        var refundCharge = new FinancialMutation(args.Seal.Deliverer, -value.Refund);
+        FinancialMutation? refundCredit = args.Seal.Recipient.HasValue
+            ? new FinancialMutation(args.Seal.Recipient.Value, value.Refund)
             : null;
 
         var deliverer = _proto.Index(penalty.Account);
@@ -61,9 +62,14 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
             return;
 
         // Apply the mutation. Note the refund is only applied if the penalty succeeded in getting applied.
-        var penalized = ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized");
-        if (penalized && refund.HasValue)
-            ApplyMutation(uid, (stationId, bank), refund.Value, "destroying", "penalized");
+        ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized", args.User);
+
+        if (refundCredit.HasValue)
+        {
+            var refundDebited = ApplyMutation(uid, (stationId, bank), refundCharge, "destroying", "refund charged", args.User);
+            if (refundDebited)
+                ApplyMutation(uid, (stationId, bank), refundCredit.Value, "destroying", "refund credited", args.User);
+        }
 
         // Play public sound.
         if (args.ServerOnly)
@@ -86,7 +92,7 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
                 uid, args.User, PopupType.LargeCaution);
         }
 
-        // Cancel the "You destroy the seal" popup as we substituted it with the destroy popup.
+        // Cancel the "You destroy the seal" popup as we substituted it with the destruction popup.
         args.ShowPopup = false;
     }
 
