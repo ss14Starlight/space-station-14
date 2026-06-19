@@ -13,7 +13,14 @@ public sealed partial class TamperSealComponent : Component
 {
     #region Parties
 
+    /// <summary>
+    /// The deliverer of this tamper-sealed container.
+    /// </summary>
     [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> Deliverer = "Cargo";
+
+    /// <summary>
+    /// The recipient of this tamper-sealed container, if any.
+    /// </summary>
     [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype>? Recipient;
 
     #endregion

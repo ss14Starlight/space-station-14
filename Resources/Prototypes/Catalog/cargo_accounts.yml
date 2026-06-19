@@ -5,7 +5,7 @@
   color: "#b48b57"
   radioChannel: Supply
   acquisitionSlip: PaperAcquisitionSlipCargo
-  tamperSealName: tamper-seal-account-name-cargo
+  tamperSealName: tamper-seal-account-name-cargo # Starlight
   tamperSealColor: "#b38b56" # Starlight
   tamperSealAccesses: ["Cargo"] # Starlight
 
@@ -13,10 +13,10 @@
   id: Engineering
   name: cargo-account-engineering-name
   code: cargo-account-engineering-code
-  color: "#ffd000"
+  color: "#ffd000" # Starlight: Changed to actually be more Engineering yellow rather than their radio key orange.
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
-  tamperSealName: tamper-seal-account-name-engineering
+  tamperSealName: tamper-seal-account-name-engineering # Starlight
   tamperSealColor: "#ffff00" # Starlight
   tamperSealAccesses: ["Engineering"] # Starlight
 
@@ -27,7 +27,7 @@
   color: "#57b8f0"
   radioChannel: Medical
   acquisitionSlip: PaperAcquisitionSlipMedical
-  tamperSealName: tamper-seal-account-name-medical
+  tamperSealName: tamper-seal-account-name-medical # Starlight
   tamperSealColor: "#00ffff" # Starlight
   tamperSealAccesses: ["Medical"] # Starlight
 
@@ -38,7 +38,7 @@
   color: "#cd7ccd"
   radioChannel: Science
   acquisitionSlip: PaperAcquisitionSlipScience
-  tamperSealName: tamper-seal-account-name-science
+  tamperSealName: tamper-seal-account-name-science # Starlight
   tamperSealColor: "#ff73ff" # Starlight
   tamperSealAccesses: ["Research"] # Starlight
 
@@ -49,7 +49,7 @@
   color: "#ff4242"
   radioChannel: Security
   acquisitionSlip: PaperAcquisitionSlipSecurity
-  tamperSealName: tamper-seal-account-name-security
+  tamperSealName: tamper-seal-account-name-security # Starlight
   tamperSealColor: "#e63c3c" # Starlight
   tamperSealAccesses: ["Security"] # Starlight
 
@@ -60,6 +60,6 @@
   color: "#539c00"
   radioChannel: Service
   acquisitionSlip: PaperAcquisitionSlipService
-  tamperSealName: tamper-seal-account-name-service
+  tamperSealName: tamper-seal-account-name-service # Starlight
   tamperSealColor: "#5eff00" # Starlight
   tamperSealAccesses: ["Service"] # Starlight

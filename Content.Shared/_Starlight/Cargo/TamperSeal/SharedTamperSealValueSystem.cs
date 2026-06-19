@@ -9,7 +9,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal;
 
-public sealed partial class SharedTamperSealRewardSystem : EntitySystem
+/// <summary>
+/// Handles rewards, penalties, and refunds of tamper-sealed orders that were unsealed or destroyed.
+/// Requires a <see cref="TamperSealComponent"/> and <see cref="TamperSealValueComponent"/> to operate.
+/// </summary>
+public sealed partial class SharedTamperSealValueSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedCargoSystem _cargo = default!;

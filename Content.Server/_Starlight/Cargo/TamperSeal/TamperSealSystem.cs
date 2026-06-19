@@ -6,6 +6,7 @@ using Content.Shared.Damage.Systems;
 
 namespace Content.Server._Starlight.Cargo.TamperSeal;
 
+/// <inheritdoc/>
 public sealed partial class TamperSealSystem : SharedTamperSealSystem
 {
     [Dependency] private DestructibleSystem _destructible = default!;

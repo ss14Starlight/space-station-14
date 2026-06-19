@@ -16,6 +16,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal;
 
+/// <summary>
+/// Manages tamper-sealed containers. Can be used independently of the cargo system or the tamper seal reward system.
+/// </summary>
 public abstract partial class SharedTamperSealSystem : EntitySystem
 {
     [Dependency] protected SharedAppearanceSystem Appearance = default!;
