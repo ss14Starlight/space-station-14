@@ -97,22 +97,24 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
     private void ExpungeOverflowedRecords(TamperSealIntegrityTrackerComponent tracker)
     {
         var records = tracker.Records;
-        if (records.Count <= tracker.MaxRecords)
+        var overflow = records.Count - tracker.MaxRecords;
+        if (overflow <= 0)
             return;
 
-        records.RemoveRange(0, tracker.MaxRecords - records.Count);
+        records.RemoveRange(0, overflow);
     }
 
     private void ExpungeOutdatedRecords(TamperSealIntegrityTrackerComponent tracker)
     {
-        var removable = tracker.Records.Capacity - tracker.MinRecords;
+        var removable = tracker.Records.Count - tracker.MinRecords;
         if (removable <= 0)
             return;
 
+        var cutoff = _timing.CurTime - tracker.RecordLifetime;
         for (var i = 0; i < removable; i++)
         {
             var record = tracker.Records[0];
-            if (record.Time >= _timing.CurTime - tracker.RecordLifetime)
+            if (record.Time >= cutoff)
                 break;
 
             tracker.Records.RemoveAt(0);
