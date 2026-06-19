@@ -360,6 +360,7 @@
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalSecurity
   name: NanoMed Security
+  suffix: Security
   description: It's a medical drug dispenser. Natural chemicals only!
   components:
   - type: VendingMachine
