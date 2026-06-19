@@ -20,18 +20,18 @@ namespace Content.Client.SubFloor;
 
 public sealed class TrayScannerSystem : SharedTrayScannerSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly AnimationPlayerSystem _animation = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly TrayScanRevealSystem _trayScanReveal = default!;
-    [Dependency] private readonly IInputManager _inputManager = default!;
-    [Dependency] private readonly EntityQuery<TrayScannerComponent> _trayScannerQuery = default!;
-    [Dependency] private readonly EntityQuery<SubFloorHideComponent> _subFloorHideQuery = default!;
+    [Dependency] private IGameTiming _timing = default!; // starlight edit: removed readonly
+    [Dependency] private IPlayerManager _player = default!; // starlight edit: removed readonly
+    [Dependency] private AnimationPlayerSystem _animation = default!; // starlight edit: removed readonly
+    [Dependency] private EntityLookupSystem _lookup = default!; // starlight edit: removed readonly
+    [Dependency] private InventorySystem _inventory = default!; // starlight edit: removed readonly
+    [Dependency] private SharedAppearanceSystem _appearance = default!; // starlight edit: removed readonly
+    [Dependency] private SharedTransformSystem _transform = default!; // starlight edit: removed readonly
+    [Dependency] private SpriteSystem _sprite = default!; // starlight edit: removed readonly
+    [Dependency] private TrayScanRevealSystem _trayScanReveal = default!; // starlight edit: removed readonly
+    [Dependency] private IInputManager _inputManager = default!; // starlight edit: removed readonly
+    [Dependency] private EntityQuery<TrayScannerComponent> _trayScannerQuery = default!; // starlight edit: removed readonly
+    [Dependency] private EntityQuery<SubFloorHideComponent> _subFloorHideQuery = default!; // starlight edit: removed readonly
 
     private const string TRayAnimationKey = "trays";
     private const double AnimationLength = 0.3;

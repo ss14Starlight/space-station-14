@@ -14,11 +14,11 @@ namespace Content.Shared.SubFloor;
 
 public abstract class SharedTrayScannerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedEyeSystem _eye = default!;
-    [Dependency] private readonly UseDelaySystem _delay = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!; // starlight edit: removed readonly
+    [Dependency] private SharedAudioSystem _audio = default!; // starlight edit: removed readonly
+    [Dependency] private SharedEyeSystem _eye = default!; // starlight edit: removed readonly
+    [Dependency] private UseDelaySystem _delay = default!; // starlight edit: removed readonly
+    [Dependency] private INetManager _netMan = default!; // starlight edit: removed readonly
 
     public const float SubfloorRevealAlpha = 0.8f;
 
