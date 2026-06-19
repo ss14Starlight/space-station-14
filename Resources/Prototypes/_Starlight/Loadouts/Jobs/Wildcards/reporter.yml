@@ -49,3 +49,26 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: RisingReporter
+
+- type: loadout
+  id: DigiboardMassMedia
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobReporter
+      time: 10h
+  equipment:
+    head: ClothingHeadHatFedoraPress
+
+- type: loadout
+  id: HoloReporterPin
+  effects:
+    - !type:JobRequirementLoadoutEffect
+      requirement:
+        !type:RoleTimeRequirement
+        role: JobReporter
+        time: 10h
+  storage:
+    back:
+      - HoloReporterPin

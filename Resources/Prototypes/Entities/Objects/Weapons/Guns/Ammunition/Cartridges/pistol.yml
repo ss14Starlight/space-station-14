@@ -34,51 +34,6 @@
         color: "#3F47DB"
 
 - type: entity
-  id: CartridgePistolHP
-  name: cartridge (.35 auto HP)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolTraceHP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#000000"
-
-- type: entity
-  id: CartridgePistolFMJ
-  name: cartridge (.35 auto FMJ)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolTraceFMJ
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#B68F0E"
-
-- type: entity
-  id: CartridgePistolAP
-  name: cartridge (.35 auto AP)
-  parent: BaseCartridgePistol
-  components:
-  - type: CartridgeAmmo
-    proto: BulletPistolTraceAP
-  - type: Sprite
-    layers:
-      - state: base
-        map: [ "enum.AmmoVisualLayers.Base" ]
-      - state: tip
-        map: [ "enum.AmmoVisualLayers.Tip" ]
-        color: "#1A8C1A"
-
-- type: entity
   parent: BaseCartridgePistol
   id: CartridgePistolPractice
   name: cartridge (.35 auto practice)
