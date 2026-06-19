@@ -7,4 +7,5 @@ namespace Content.Shared.Emp;
 [Access(typeof(SharedEmpSystem))]
 public sealed partial class EmpImmuneComponent : Component
 {
+
 }
