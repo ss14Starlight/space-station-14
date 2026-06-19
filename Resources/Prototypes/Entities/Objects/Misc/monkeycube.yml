@@ -115,7 +115,7 @@
     items:
       - id: SyndicateSponge
 
-       type: entity
+- type: entity
   parent: BaseWrappedCube
   name: chimpken cube
   id: ChimpkenCubeWrapped
