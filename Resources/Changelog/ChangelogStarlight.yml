@@ -1,39 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Barotrauma protection works again.
-    type: Fix
-  id: 405713
-  time: '2026-06-08T19:46:38.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4672
-- author: wonderfulnewworld
-  changes:
-  - message: Protogens are no longer drunk forever.
-    type: Tweak
-  id: 405714
-  time: '2026-06-08T19:46:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4673
-- author: wonderfulnewworld
-  changes:
-  - message: The species-specific protogen organs now have different names.
-    type: Tweak
-  id: 405715
-  time: '2026-06-08T19:46:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4673
-- author: Caws
-  changes:
-  - message: The 'door runtime' event no longer force-opens doors at the end of the event.
-    type: Tweak
-  id: 405716
-  time: '2026-06-08T21:41:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4643
-- author: Caws
-  changes:
-  - message: The 'door runtime' event correctly restores the safety wire of doors it affects after the event ends.
-    type: Fix
-  id: 405717
-  time: '2026-06-08T21:41:58.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4643
 - author: SiTW
   changes:
   - message: Technical Assistants now get AstroNav.
@@ -2799,4 +2764,39 @@ Entries:
   id: 406112
   time: '2026-06-18T12:28:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4578
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: Added DeForest Interstellar/Planetary and NanoMed GOLD/Civilian medical vendors.
+    type: Add
+  id: 406113
+  time: '2026-06-19T08:19:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4856
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: Added random medical vending machine spawners.
+    type: Add
+  id: 406114
+  time: '2026-06-19T08:19:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4856
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: Added weird pills and golden (random) pills.
+    type: Add
+  id: 406115
+  time: '2026-06-19T08:19:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4856
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: Standardizes items in medical vendors, then specializes them based on vendor type.
+    type: Tweak
+  id: 406116
+  time: '2026-06-19T08:19:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4856
+- author: wonderfulnewworld, Conflee
+  changes:
+  - message: Medical vendors have clearer suffixes now.
+    type: Tweak
+  id: 406117
+  time: '2026-06-19T08:19:09.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4856
 Order: -1
