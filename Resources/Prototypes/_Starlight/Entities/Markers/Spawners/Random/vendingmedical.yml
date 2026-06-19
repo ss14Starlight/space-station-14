@@ -7,7 +7,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rs
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
         state: medical
   - type: RandomSpawner
     prototypes:
@@ -34,7 +34,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rs
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
         state: medical-civilian
   - type: RandomSpawner
     prototypes:
@@ -61,7 +61,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rs
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
         state: wallmed
   - type: RandomSpawner
     prototypes:
@@ -88,7 +88,7 @@
   - type: Sprite
     layers:
       - state: red
-      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rs
+      - sprite: _Starlight/Structures/Machines/VendingMachines/random.rsi
         state: wallmed-civilian
   - type: RandomSpawner
     prototypes:
