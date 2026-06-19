@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
-using Content.Shared.Starlight.CCVar; // Starlight
+using Content.Shared._Starlight.CCVar; // Starlight
 using Content.Shared.GameTicking;
 using Content.Shared._CD.Records; // Cosmatic Drift Record System
 using Content.Shared.Humanoid;

@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Components;
 
 [RegisterComponent]
 public sealed partial class NullPhaseComponent : Component

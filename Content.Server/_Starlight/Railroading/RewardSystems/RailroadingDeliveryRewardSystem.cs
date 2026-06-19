@@ -16,8 +16,11 @@ using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.GameTicking;
+using Content.Shared._Starlight.Abstract;
+using Content.Shared._Starlight.Railroading.Components.Reward;
+using Content.Shared._Starlight.Railroading.Components;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.RewardSystems;
 
 public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySystem
 {

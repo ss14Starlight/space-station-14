@@ -4,7 +4,7 @@ using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Store.Conditions;
+namespace Content.Shared._Starlight.Store.Conditions;
 
 /// <summary>
 /// A condition that limits the number of times an item can be purchased globally.

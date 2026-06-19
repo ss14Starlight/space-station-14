@@ -5,7 +5,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Body.Components
+namespace Content.Server._Starlight.Medical.Body.Components
 {
     [RegisterComponent, Access(typeof(RespiratorSystem)), AutoGenerateComponentPause]
     public sealed partial class RespiratorComponent : Component

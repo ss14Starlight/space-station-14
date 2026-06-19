@@ -2,7 +2,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.UI.MapObjects;
-using Content.Shared.Starlight.CCVar; //Starlight-edit
+using Content.Shared._Starlight.CCVar; //Starlight-edit
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;

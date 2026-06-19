@@ -1,7 +1,7 @@
 using Content.Server._Starlight.Medical.Body.Systems;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Body.Components;
+namespace Content.Server._Starlight.Medical.Body.Components;
 
 [RegisterComponent]
 [Access(typeof(ThermalRegulatorSystem))]

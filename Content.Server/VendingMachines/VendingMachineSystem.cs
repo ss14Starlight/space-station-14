@@ -17,8 +17,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 // 🌟Starlight🌟
-using Content.Server.Economy;
-using Content.Shared.Economy;
 using Content.Shared.Emag.Components;
 using Content.Shared.Tag;
 using Content.Shared.Cargo.Components;
@@ -27,6 +25,8 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared._NullLink;
 using Robust.Shared.Player;
+using Content.Server._Starlight.Economy;
+using Content.Shared._Starlight.Economy;
 
 namespace Content.Server.VendingMachines
 {

@@ -25,6 +25,11 @@ using Robust.Shared.Localization;
 using Content.Server.Botany.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Server._Starlight.Shuttles.Systems;
+using Content.Server._Starlight.Shuttles.Components;
+using Content.Shared._Starlight.Shuttles.Components;
+using Robust.Shared.Containers;
+using Content.Shared.PAI;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -44,6 +49,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private ILogManager _log = default!;
     [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
     [Dependency] private IGameTiming _timing = default!; // _Starlight
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
 
     #region Starlight
     // Periodic blip/laser update
@@ -537,4 +543,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
             beacons ?? new List<ShuttleBeaconObject>(),
             exclusions ?? new List<ShuttleExclusionObject>());
     }
+    // Starlight Start
+    private bool IsSlottedPAI(EntityUid actor, EntityUid target)
+    {
+        return HasComp<PAIComponent>(actor) &&
+            _containerSystem.TryGetContainingContainer(actor, out var container) &&
+            container.Owner == target &&
+            container.ID == "pai_slot";
+    }
+    // Starlight End
 }

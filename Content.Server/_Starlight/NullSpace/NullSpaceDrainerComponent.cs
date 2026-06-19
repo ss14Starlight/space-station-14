@@ -1,4 +1,4 @@
-namespace Content.Server._Starlight.Shadekin;
+namespace Content.Server._Starlight.NullSpace;
 
 [RegisterComponent]
 public sealed partial class NullSpaceDrainerComponent : Component

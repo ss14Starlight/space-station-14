@@ -15,7 +15,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar; //🌟Starlight🌟
+using Content.Shared._Starlight.CCVar; //🌟Starlight🌟
 using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;

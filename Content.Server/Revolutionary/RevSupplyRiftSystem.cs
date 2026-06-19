@@ -32,13 +32,15 @@ using System.Linq;
 using Content.Server.AlertLevel; // starlight
 using Content.Server.RoundEnd; // starlight
 using Content.Server.Station.Systems;
-using Content.Shared.Starlight.CCVar; // starlight
+using Content.Shared._Starlight.CCVar; // starlight
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
-using Robust.Shared.GameObjects; // starlight
+using Robust.Shared.GameObjects;
+using Content.Shared._Starlight.Revolutionary.Components;
+using Content.Shared._Starlight.Store.Events; // starlight
 
 namespace Content.Server.Revolutionary;
 

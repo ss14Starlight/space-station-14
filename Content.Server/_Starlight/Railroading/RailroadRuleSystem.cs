@@ -8,13 +8,16 @@ using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Server.Player;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using static Content.Shared._Starlight.Railroading.RailroadRuleComponent;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Abstract;
+using static Content.Shared._Starlight.Railroading.Components.RailroadRuleComponent;
+using Content.Shared._Starlight.Abstract.Conditions;
 
 namespace Content.Server._Starlight.Railroading;
 

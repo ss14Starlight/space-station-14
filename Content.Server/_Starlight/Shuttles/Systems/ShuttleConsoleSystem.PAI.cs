@@ -1,6 +1,6 @@
 using Robust.Server.Containers;
 
-namespace Content.Server.Shuttles.Systems;
+namespace Content.Server._Starlight.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
 {

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Net;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 
 namespace Content.Server.Connection;
 

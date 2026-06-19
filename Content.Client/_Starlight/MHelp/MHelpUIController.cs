@@ -1,7 +1,7 @@
 using Content.Client._Starlight.MHelp;
 using Content.Client.Administration.Managers;
-using Content.Shared.Starlight.MHelp;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.MHelp;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Administration;
 using JetBrains.Annotations;
 using Robust.Client.Audio;
@@ -15,7 +15,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Shared._NullLink;
-namespace Content.Client.UserInterface.Systems.Bwoink;
+using Content.Client.UserInterface.Systems.Bwoink;
+namespace Content.Client._Starlight.MHelp;
 
 [UsedImplicitly]
 public sealed partial class MHelpUIController : UIController, IOnSystemChanged<MentorSystem>

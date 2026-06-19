@@ -21,7 +21,6 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
-using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
@@ -37,6 +36,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Prometheus;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Server._Starlight.Medical.Body.Components;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 

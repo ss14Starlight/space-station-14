@@ -11,8 +11,9 @@ using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Content.Shared.Body.Part;
-using Content.Shared.Starlight;
-using Robust.Shared.Utility; // Starlight
+using Content.Shared._Starlight;
+using Robust.Shared.Utility;
+using Content.Shared._Starlight.Medical.Limbs; // Starlight
 
 namespace Content.Client.Lobby.UI.ProfileEditorControls;
 

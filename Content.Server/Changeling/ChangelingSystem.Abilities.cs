@@ -33,6 +33,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Overlay.Components;
 // Starlight edit end
 
 namespace Content.Server.Changeling;

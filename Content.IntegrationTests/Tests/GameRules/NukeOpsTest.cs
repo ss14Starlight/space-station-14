@@ -1,7 +1,6 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
-using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.GameTicking.Rules.Components;
@@ -20,7 +19,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.NukeOps;
 using Content.Shared.Pinpointer;
 using Content.Shared.Roles.Components;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Station.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.GameObjects;

@@ -19,11 +19,11 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Body.Components; // Starlight
 using System.Linq;
 using Content.Shared.EntityEffects.Effects.Solution;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server._Starlight.Medical.Body.Components;
 
 namespace Content.Server.Fluids.EntitySystems;
 
