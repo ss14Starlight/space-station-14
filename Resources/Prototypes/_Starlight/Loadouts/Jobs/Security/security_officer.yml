@@ -126,3 +126,54 @@
   id: SecMittens
   equipment:
     gloves: ClothingHandsMittensSecurityRed
+
+- type: loadout
+  id: SecurityJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
+
+- type: loadout
+  id: SecurityHelmetPlate
+  equipment:
+    head: ClothingHeadHelmetPlate
+
+- type: loadout
+  id: SecurityHelmetStabproof
+  equipment:
+    head: ClothingHeadHelmetStabproof
+
+- type: loadout
+  id: SecurityHelmetHeatAbsorbent
+  equipment:
+    head: ClothingHeadHelmetHeatAbsorbent
+
+- type: loadout
+  id: ArmorVestPlate
+  equipment:
+    outerClothing: ClothingOuterArmorPlate
+
+- type: loadout
+  id: ArmorVestStab
+  equipment:
+    outerClothing: ClothingOuterArmorStab
+
+- type: loadout
+  id: ArmorVestHeatAbsorb
+  equipment:
+    outerClothing: ClothingOuterArmorHeatAbsorb
+
+- type: loadout
+  id: WindbreakerSecurity
+  equipment:
+    outerClothing: ClothingOuterWindbreakerSecurity
+
+# Misc
+- type: loadout
+  id: SecurityGlasses
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: SecurityHud
+  equipment:
+    eyes: ClothingEyesHudSecurity
