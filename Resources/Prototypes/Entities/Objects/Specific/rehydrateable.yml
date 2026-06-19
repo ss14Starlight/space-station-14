@@ -276,3 +276,12 @@
   - type: Rehydratable
     possibleSpawns:
     - MopBucket
+
+    - type: entity
+  parent: RehydratableAnimalCube
+  id: ChimpkenCube
+  name: chimpken cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobChimpken
