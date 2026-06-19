@@ -28,6 +28,7 @@ tamper-seal-performance-failure-sender = Interstellar Trade Guild
 tamper-seal-performance-failure-message = Repeated destruction of tamper seals detected. We strongly encourage you to conduct an internal investigation into this matter.
 
 # Short account names
+tamper-seal-account-name-unknown = Unknown
 tamper-seal-account-name-cargo = Cargo
 tamper-seal-account-name-engineering = Engineering
 tamper-seal-account-name-medical = Medical

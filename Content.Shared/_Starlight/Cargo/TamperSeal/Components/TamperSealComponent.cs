@@ -1,5 +1,4 @@
 using Content.Shared.Access;
-using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -12,6 +11,9 @@ namespace Content.Shared._Starlight.Cargo.TamperSeal.Components;
 public sealed partial class TamperSealComponent : Component
 {
     #region State
+
+    [DataField, AutoNetworkedField] public LocId OwnerName = "tamper-seal-account-name-unknown";
+
     /// <summary>
     /// The color of the tamper seal.
     /// </summary>
@@ -77,61 +79,6 @@ public sealed partial class TamperSealComponent : Component
     /// The sound to play when the Destroy do-after ends.
     /// </summary>
     [DataField] public SoundSpecifier DestroyEndSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
-
-    #endregion
-    #region Rewards and Penalties
-
-    /// <summary>
-    /// The entity ID of the station that all referenced CargoAccounts belong to.
-    /// </summary>
-    [DataField, AutoNetworkedField] public EntityUid RecipientStation = EntityUid.Invalid;
-
-    /// <summary>
-    /// The value represented by this tamper seal. Only used for performance tracking.
-    /// Note that this represents the value of a single crate and not an entire order!
-    /// </summary>
-    [DataField, AutoNetworkedField] public int Value;
-
-    /// <summary>
-    /// The ID of the account responsible for a successful delivery.
-    /// </summary>
-    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> DelivererAccount = "Cargo";
-
-    /// <summary>
-    /// The ID of the account that placed the order, and that should be reimbursed on a failed delivery.
-    /// </summary>
-    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> RecipientAccount = "Cargo";
-
-    /// <summary>
-    /// The sound that plays when a reward is given.
-    /// </summary>
-    [DataField] public SoundSpecifier RewardSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
-
-    /// <summary>
-    /// The reward to be given to <see cref="DelivererAccount"/> on a successful delivery.
-    /// </summary>
-    [DataField, AutoNetworkedField] public int RewardSpesos;
-
-    /// <summary>
-    /// The sound that plays when a penalty is incurred.
-    /// </summary>
-    [DataField] public SoundSpecifier PenaltySound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg")
-    {
-        Params = new AudioParams
-        {
-            Volume = -3 // This sound is so incredibly loud.
-        }
-    };
-
-    /// <summary>
-    /// How much the <see cref="DelivererAccount"/> is penalized on failed delivery.
-    /// </summary>
-    [DataField, AutoNetworkedField] public int PenaltySpesos;
-
-    /// <summary>
-    /// How much the <see cref="RecipientAccount"/> is refunded on failed delivery.
-    /// </summary>
-    [DataField, AutoNetworkedField] public int PenaltyRefundSpesos;
 
     #endregion
 

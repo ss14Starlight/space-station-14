@@ -682,16 +682,23 @@ namespace Content.Server.Cargo.Systems
 
             // Apply a tamper seal to the entity if it supports it.
             var recipient = _protoMan.Index(account);
+
             var seal = EnsureComp<TamperSealComponent>(item);
             seal.Color = recipient.TamperSealColor;
             seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
-            seal.RecipientStation = GetEntity(order.StationId);
-            seal.RecipientAccount = order.Account;
+            seal.OwnerName = recipient.TamperSealName;
 
-            seal.Value = order.Price; // Value of a single unit.
-            seal.RewardSpesos = (int) Math.Floor(.1f * order.Price); // Rewards rounded down.
-            seal.PenaltySpesos = (int) Math.Ceiling(.2f * order.Price); // Penalties rounded up.
-            seal.PenaltyRefundSpesos = (int) Math.Floor(.2f * order.Price); // Refunds rounded down.
+            var reward = EnsureComp<TamperSealValueComponent>(item);
+            reward.StationId = GetEntity(order.StationId);
+            reward.Value = order.Price;
+
+            // TODO: Move the .1f and .2f constants to a station-bound config comp?
+            reward.Reward = new FinancialMutation(recipient,
+                (int) Math.Floor(.1f * order.Price)); // Rewards rounded down.
+            reward.Penalty = new FinancialMutation(order.Account,
+                (int) Math.Ceiling(.2f * order.Price)); // Penalties rounded up.
+            reward.Refund = new FinancialMutation(order.Account,
+                (int) Math.Floor(.2f * order.Price)); // Refunds rounded down.
 
             // Set the required tool quality based on tags. If none is present, the default is Slicing.
             if (_tags.HasTag(item, _tamperSealPrying))

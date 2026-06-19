@@ -1,9 +1,8 @@
+using System.Linq;
+using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Cargo.TamperSeal;
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Robust.Shared.Timing;
-using System.Linq;
-using Content.Server.Chat.Systems;
-using Robust.Shared.Audio;
 
 namespace Content.Server._Starlight.Cargo.TamperSeal;
 
@@ -19,23 +18,24 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TamperSealComponent, TamperSealUnsealedEvent>(OnTamperSealUnsealed);
-        SubscribeLocalEvent<TamperSealComponent, TamperSealDestroyedEvent>(OnTamperSealDestroyed);
+        SubscribeLocalEvent<TamperSealValueComponent, TamperSealValueRewardedEvent>(OnTamperSealRewarded);
+        SubscribeLocalEvent<TamperSealValueComponent, TamperSealValuePenalizedEvent>(OnTamperSealPenalized);
     }
 
     #region Events
 
-    private void OnTamperSealUnsealed(EntityUid uid, TamperSealComponent seal, TamperSealUnsealedEvent args)
+    private void OnTamperSealRewarded(EntityUid uid, TamperSealValueComponent value, TamperSealValueRewardedEvent args)
     {
-        var tracker = GetPerformanceTracker(seal);
-        RecordPerformance(tracker, true, args.TamperSeal.Value);
+        var tracker = GetPerformanceTracker(value);
+        RecordPerformance(tracker, true, value.Value);
         ReassessPerformance(tracker);
     }
 
-    private void OnTamperSealDestroyed(EntityUid uid, TamperSealComponent seal, TamperSealDestroyedEvent args)
+    private void OnTamperSealPenalized(EntityUid uid, TamperSealValueComponent value,
+        TamperSealValuePenalizedEvent args)
     {
-        var tracker = GetPerformanceTracker(seal);
-        RecordPerformance(tracker, false, args.TamperSeal.Value);
+        var tracker = GetPerformanceTracker(value);
+        RecordPerformance(tracker, false, value.Value);
         ReassessPerformance(tracker);
     }
 
@@ -56,7 +56,7 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
         var shouldSet = successRate < tracker.FailureSetThreshold;
         var shouldClear = successRate >= tracker.FailureClearThreshold;
 
-        // State change from "Not failing" to "Failing"
+        // If state should change from "Not failing" to "Failing".
         if (shouldSet && !tracker.Failure)
         {
             tracker.Failure = true;
@@ -69,7 +69,7 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
             return;
         }
 
-        // State change from "Failing" to "Not failing"
+        // If state should change from "Failing" to "Not failing".
         if (shouldClear && tracker.Failure)
         {
             // TODO: admin log?
@@ -117,17 +117,15 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
         }
     }
 
-    private TamperSealPerformanceComponent GetPerformanceTracker(TamperSealComponent seal)
+    private TamperSealPerformanceComponent GetPerformanceTracker(TamperSealValueComponent value)
     {
-        if (!TryComp<TamperSealPerformanceComponent>(seal.RecipientStation, out var tracker))
-        {
-            tracker = AddComp<TamperSealPerformanceComponent>(seal.RecipientStation);
-            tracker.StationId = seal.RecipientStation;
-        }
+        if (TryComp<TamperSealPerformanceComponent>(value.StationId, out var tracker))
+            return tracker;
 
+        tracker = AddComp<TamperSealPerformanceComponent>(value.StationId);
+        tracker.StationId = value.StationId;
         return tracker;
     }
 
     #endregion
 }
-

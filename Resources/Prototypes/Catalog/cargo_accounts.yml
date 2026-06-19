@@ -13,7 +13,7 @@
   id: Engineering
   name: cargo-account-engineering-name
   code: cargo-account-engineering-code
-  color: "#ff733c"
+  color: "#ffd000"
   radioChannel: Engineering
   acquisitionSlip: PaperAcquisitionSlipEngineering
   tamperSealName: tamper-seal-account-name-engineering

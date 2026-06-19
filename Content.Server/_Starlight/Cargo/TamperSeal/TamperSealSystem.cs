@@ -23,6 +23,9 @@ public sealed partial class TamperSealSystem : SharedTamperSealSystem
         SubscribeLocalEvent<TamperSealComponent, ComponentShutdown>(OnTamperSealShutdown);
     }
 
+    /// <summary>
+    /// Detect tamper-sealed entities being destroyed and trigger punishment if applicable.
+    /// </summary>
     private void OnDamageChanged(EntityUid uid, TamperSealComponent seal, DamageChangedEvent args)
     {
         if (seal.Opened)
@@ -34,10 +37,8 @@ public sealed partial class TamperSealSystem : SharedTamperSealSystem
         if (args.Damageable.TotalDamage < destroyedAt)
             return;
 
-        // Trigger destroy behavior (shared code). Note that:
-        // - skipVisuals because the entity is being destroyed completely.
-        // - unpredicted because this is triggered from the server.
-        DoDestroy(uid, seal, args.Origin, skipVisuals: true, predictable: false);
+        // Trigger destroy behavior (shared code).
+        DoDestroy(uid, seal, args.Origin, entityDestroyed: true, serverOnly: true);
     }
 
     /// <summary>
