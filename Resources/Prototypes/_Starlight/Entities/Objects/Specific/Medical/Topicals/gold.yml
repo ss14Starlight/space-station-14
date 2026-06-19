@@ -2,7 +2,7 @@
 # NanoMed GOLD yellow bruise packs
 - type: entity
   name: gold bruise pack
-  description: Limited-edition Golden Bruise packs.
+  description: Limited-edition golden bruise packs.
   parent: BaseStarlightHealingItem
   id: GoldBrutePack
   suffix: Full
@@ -36,7 +36,7 @@
 
 - type: entity
   name: gold bruise pack
-  description: Limited-edition Golden Bruise packs. They're exceedingly rare. Treasure them.
+  description: Limited-edition golden bruise packs. They're exceedingly rare. Treasure them.
   parent: GoldBrutePack
   id: GoldBrutePack1
   suffix: Single
