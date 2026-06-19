@@ -426,10 +426,8 @@
   - type: StaticPrice
     price: 125
     # Starlight BEGIN
-  - type: Tag
-    tags:
-      - TamperSealable
-      - TamperSealSlicing
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
     # Starlight END
 
 - type: entity

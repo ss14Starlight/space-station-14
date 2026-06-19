@@ -113,19 +113,24 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return;
 
         var user = args.User;
-        var item = args.Using;
-        var hasCorrectTool = item != null && _tool.HasQuality(item.Value, seal.DestroyToolQuality);
+        var tool = args.Using;
+        var matchingToolTypes = tool.HasValue
+            ? seal.DestroyToolQualities
+                .Where(quality => _tool.HasQuality(tool.Value, quality))
+                .ToList()
+            : new();
+        var hasCorrectTool = matchingToolTypes.Count > 0;
 
         var verb = new AlternativeVerb()
         {
             Text = Loc.GetString("tamper-seal-verb-destroy"),
-            IconEntity = hasCorrectTool ? GetNetEntity(item) : null,
+            IconEntity = hasCorrectTool ? GetNetEntity(tool) : null,
             Message = Loc.GetString(hasCorrectTool
                 ? "tamper-seal-verb-destroy-tool-description"
                 : "tamper-seal-verb-destroy-hands-description"),
             Act = () =>
             {
-                TryDestroy(uid, item, user, seal);
+                TryDestroy(uid, tool, user, seal);
             },
             Priority = 50
         };
@@ -243,8 +248,15 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return false;
 
         var hasTool = tool.HasValue;
-        var hasCorrectTool = tool.HasValue && _tool.HasQuality(tool.Value, seal.DestroyToolQuality);
-        var toolKind = seal.DestroyToolQuality.Id.ToLowerInvariant(); // "slicing" or "prying".
+        var matchingToolTypes = tool.HasValue
+            ? seal.DestroyToolQualities
+                .Where(quality => _tool.HasQuality(tool.Value, quality))
+                .ToList()
+            : new();
+        var hasCorrectTool = matchingToolTypes.Count > 0;
+        var toolKind = matchingToolTypes
+            .Select(type => type.ToString().ToLowerInvariant())
+            .FirstOrDefault("hands"); // "slicing", "cutting", "prying" or "hands".
 
         // I'd love to "return true" to block any interaction, but it also breaks other things like forensic scanners.
         if (hasTool && !hasCorrectTool)
@@ -270,7 +282,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
 
         // Show a popup and play sound.
         _popup.PopupPredicted(
-            Loc.GetString($"tamper-seal-popup-destroy-{(hasTool ? toolKind : "hands")}-begin"),
+            Loc.GetString($"tamper-seal-popup-destroy-{toolKind}-begin"),
             uid, user, PopupType.Large);
         _audio.PlayPredicted(seal.DestroyBeginSound, uid, user);
 

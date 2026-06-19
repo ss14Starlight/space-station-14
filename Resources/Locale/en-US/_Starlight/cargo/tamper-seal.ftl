@@ -10,17 +10,18 @@ tamper-seal-popup-destroy-slicing-begin = You cut the tamper seal..
 tamper-seal-popup-destroy-cutting-begin = You cut the tamper seal..
 tamper-seal-popup-destroy-prying-begin = You pry off the tamper seal..
 tamper-seal-popup-destroy-end = Seal broken!
-tamper-seal-popup-destroy-end-penalty = Seal broken! {$deliverer} is penalized {$penalty} spesos!
+tamper-seal-popup-destroy-end-penalty = Seal broken! Partial refund issued, {$deliverer} penalized {$penalty} spesos!
 
 # Verbs
 tamper-seal-verb-destroy = Destroy seal
 tamper-seal-verb-destroy-hands-description = Rip off the tamper seal with your hands. A sharp tool will make this go faster.
-tamper-seal-verb-destroy-tool-description = Use your cutting tool to break the seal.
+tamper-seal-verb-destroy-tool-description = Use your tool to break the seal.
 
 # Examine
 tamper-seal-examine-sealed-public = There is a [color=yellow]tamper seal[/color] present.
 tamper-seal-examine-sealed-restricted = There is a [color={$recipientColor}]{$recipient}[/color] tamper seal present.
 tamper-seal-examine-destroyed-slicing = There is some [color={$recipientColor}]{$recipient}[/color] tamper seal residue visible.
+tamper-seal-examine-destroyed-cutting = There is some [color={$recipientColor}]{$recipient}[/color] tamper seal residue visible.
 tamper-seal-examine-destroyed-prying = There is some [color={$recipientColor}]{$recipient}[/color] plastic residue and scratch marks near the top of the canister.
 
 # Performance failure announcement

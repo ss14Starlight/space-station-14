@@ -78,10 +78,8 @@
   - type: RequireProjectileTarget
   # Starlight BEGIN
   - type: ChildBlockVision # Blinding from containers
-  - type: Tag
-    tags:
-      - TamperSealable
-      - TamperSealSlicing
+  - type: TamperSealable
+    destroyToolQualities: [ Cutting, Slicing ]
   - type: PaperLabel # Overrides parent
     labelSlot:
       priority: 100 # <-- Only change relative to BasePaperLabelable.

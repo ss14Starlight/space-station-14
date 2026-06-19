@@ -24,8 +24,6 @@ using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Content.Server._Starlight.Cargo.TamperSeal.Components;
 using Content.Shared.Access;
 using Content.Shared.Starlight.CCVar;
-using Content.Shared.Tag;
-using Content.Shared.Tools;
 #endregion
 
 namespace Content.Server.Cargo.Systems
@@ -37,18 +35,9 @@ namespace Content.Server.Cargo.Systems
         [Dependency] private IGameTiming _timing = default!;
 
         #region Starlight
-        [Dependency] private TagSystem _tags = default!;
-
         private float _tamperSealRewardMultiplier = 0.1f;
         private float _tamperSealPenaltyMultiplier = 0.1f;
         private float _tamperSealRefundMultiplier = 0.25f;
-
-        private static readonly ProtoId<TagPrototype> _tamperSealable = "TamperSealable";
-        private static readonly ProtoId<TagPrototype> _tamperSealSlicing = "TamperSealSlicing";
-        private static readonly ProtoId<TagPrototype> _tamperSealPrying = "TamperSealPrying";
-
-        private static readonly ProtoId<ToolQualityPrototype> _toolSlicing = "Slicing";
-        private static readonly ProtoId<ToolQualityPrototype> _toolPrying = "Prying";
         #endregion
 
         private void InitializeConsole()
@@ -689,7 +678,7 @@ namespace Content.Server.Cargo.Systems
 
             #region Starlight
             // If the entity does not support tamper seals, do not apply one.
-            if (!_tags.HasTag(item, _tamperSealable))
+            if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
                 return true;
 
             var recipient = _protoMan.Index(account);
@@ -701,6 +690,7 @@ namespace Content.Server.Cargo.Systems
             seal.RecipientExamineColor = recipient.Color;
             seal.Color = recipient.TamperSealColor;
             seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
+            seal.DestroyToolQualities = tamperSealable.DestroyToolQualities;
 
             // Attach a tamper seal value component to enable reward/penalty on unseal/destroy.
             var value = EnsureComp<TamperSealValueComponent>(item);
@@ -713,12 +703,6 @@ namespace Content.Server.Cargo.Systems
             // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
             var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
             integrity.StationId = GetEntity(order.StationId);
-
-            // Set the required tool quality based on tags. If none is present, the default is Slicing.
-            if (_tags.HasTag(item, _tamperSealPrying))
-                seal.DestroyToolQuality = _toolPrying;
-            else if (_tags.HasTag(item, _tamperSealSlicing))
-                seal.DestroyToolQuality = _toolSlicing;
 
             DirtyEntity(item);
             return true;

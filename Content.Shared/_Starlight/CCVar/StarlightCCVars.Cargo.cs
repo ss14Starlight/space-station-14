@@ -22,5 +22,5 @@ public sealed partial class StarlightCCVars
     /// This is deducted from the deliverer and given to the recipient.
     /// </summary>
     public static readonly CVarDef<float> TamperSealRefundMultiplier =
-        CVarDef.Create("cargo.tamper_seal_refund_mult", 0.25f, CVar.SERVER);
+        CVarDef.Create("cargo.tamper_seal_refund_mult", 0.5f, CVar.SERVER);
 }

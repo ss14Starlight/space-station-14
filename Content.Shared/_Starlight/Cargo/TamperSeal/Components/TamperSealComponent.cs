@@ -37,12 +37,12 @@ public sealed partial class TamperSealComponent : Component
     [DataField, AutoNetworkedField] public LocId RecipientName = "tamper-seal-account-name-unknown";
 
     /// <summary>
-    /// The color of the recipient in the Examine text.
+    /// The color of the recipient in the Examine text. This differs from the seal color and is usually a lower contrast.
     /// </summary>
     [DataField, AutoNetworkedField] public Color RecipientExamineColor = Color.White;
 
     /// <summary>
-    /// The color of the tamper seal.
+    /// The color of the tamper seal sprite.
     /// </summary>
     [DataField, AutoNetworkedField] public Color Color = Color.White; // Better than transparent as default.
 
@@ -75,12 +75,14 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The sound to play when the Unseal do-after begins.
     /// </summary>
-    [DataField] public SoundSpecifier UnsealBeginSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_takeoff.ogg");
+    [DataField, AutoNetworkedField] public SoundSpecifier UnsealBeginSound =
+        new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_takeoff.ogg");
 
     /// <summary>
     /// The sound to play when the Unseal do-after ends.
     /// </summary>
-    [DataField] public SoundSpecifier UnsealEndSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
+    [DataField, AutoNetworkedField] public SoundSpecifier UnsealEndSound =
+        new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
 
     #endregion
     #region Destroying
@@ -88,7 +90,8 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// Tool quality needed to undo the tamper seal.
     /// </summary>
-    [DataField, AutoNetworkedField] public ProtoId<ToolQualityPrototype> DestroyToolQuality = "Slicing";
+    [DataField, AutoNetworkedField] public HashSet<ProtoId<ToolQualityPrototype>> DestroyToolQualities =
+        new() { "Slicing", "Cutting" };
 
     /// <summary>
     /// How long it takes to Destroy the seal with the correct tool.
@@ -103,12 +106,14 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The sound to play when the Destroy do-after begins.
     /// </summary>
-    [DataField] public SoundSpecifier DestroyBeginSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_takeoff.ogg");
+    [DataField, AutoNetworkedField] public SoundSpecifier DestroyBeginSound =
+        new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_takeoff.ogg");
 
     /// <summary>
     /// The sound to play when the Destroy do-after ends.
     /// </summary>
-    [DataField] public SoundSpecifier DestroyEndSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
+    [DataField, AutoNetworkedField] public SoundSpecifier DestroyEndSound =
+        new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
 
     #endregion
 }

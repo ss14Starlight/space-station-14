@@ -144,10 +144,8 @@
     - type: Paintable
       group: Canisters
     # Starlight BEGIN
-    - type: Tag
-      tags:
-        - TamperSealable
-        - TamperSealPrying
+    - type: TamperSealable
+      destroyToolQualities: [Prying]
     - type: PaperLabel # Overrides parent
       labelSlot:
         priority: 100 # <-- Only change relative to BasePaperLabelable.

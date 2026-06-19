@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class TamperSealValueComponent : Component
 {
     /// <summary>
@@ -38,12 +38,12 @@ public sealed partial class TamperSealValueComponent : Component
     /// <summary>
     /// The sound that plays when a reward is given.
     /// </summary>
-    [DataField] public SoundSpecifier RewardSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
+    [DataField, AutoNetworkedField] public SoundSpecifier RewardSound = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
 
     /// <summary>
     /// The sound that plays when a penalty is incurred.
     /// </summary>
-    [DataField] public SoundSpecifier PenaltySound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg")
+    [DataField, AutoNetworkedField] public SoundSpecifier PenaltySound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg")
     {
         Params = new AudioParams
         {
