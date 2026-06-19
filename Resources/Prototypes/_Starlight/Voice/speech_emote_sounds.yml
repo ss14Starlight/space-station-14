@@ -674,3 +674,34 @@
 - type: emoteSounds
   parent: UnisexRodentia
   id: FemaleRodentia
+
+- type: emoteSounds
+  id: CluwneBeast
+  sound:
+    collection: CluwneBeastScreams
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: MothBodyEmotes
+  sounds:
+    FlapWings:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
+
+- type: emoteSounds
+  id: MothroachBodyEmotes
+  sounds:
+    FlapWings:
+      path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
+      params:
+        pitch: 1.45
