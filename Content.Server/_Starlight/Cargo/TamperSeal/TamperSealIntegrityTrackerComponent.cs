@@ -7,7 +7,7 @@ namespace Content.Server._Starlight.Cargo.TamperSeal;
 /// server-side only. This component is applied directly to the station entity.
 /// </summary>
 [RegisterComponent]
-public sealed partial class TamperSealPerformanceComponent : Component
+public sealed partial class TamperSealIntegrityTrackerComponent : Component
 {
     /// <summary>
     /// The ID of the station that this tracking component belongs to.
@@ -29,7 +29,7 @@ public sealed partial class TamperSealPerformanceComponent : Component
     /// <summary>
     /// The maximum number of records to keep in history.
     /// </summary>
-    public int MaxRecords = 30;
+    public int MaxRecords = 40;
 
     /// <summary>
     /// The maximum age of records to keep in history. Only affects time-based record expungement.
@@ -81,9 +81,8 @@ public sealed partial class TamperSealPerformanceComponent : Component
     #endregion
 }
 
-public sealed class TamperSealResult(TimeSpan time, bool success, int value)
+public sealed class TamperSealResult(TimeSpan time, bool success)
 {
     public TimeSpan Time { get; } = time;
     public bool Success { get; } = success;
-    public int Value { get; } = value;
 }

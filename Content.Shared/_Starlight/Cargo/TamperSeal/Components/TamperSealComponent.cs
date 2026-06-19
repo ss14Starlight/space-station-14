@@ -1,4 +1,5 @@
 using Content.Shared.Access;
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Tools;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -10,14 +11,36 @@ namespace Content.Shared._Starlight.Cargo.TamperSeal.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class TamperSealComponent : Component
 {
-    #region State
+    #region Parties
 
-    [DataField, AutoNetworkedField] public LocId OwnerName = "tamper-seal-account-name-unknown";
+    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> Deliverer = "Cargo";
+    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype>? Recipient;
+
+    #endregion
+    #region Derivatives
+
+    /*
+     * All properties in this section are derived from the Recipient but can be manually overridden,
+     * be it for mapping or event purposes.
+     */
+
+    /// <summary>
+    /// The name of the recipient of the sealed container.
+    /// </summary>
+    [DataField, AutoNetworkedField] public LocId RecipientName = "tamper-seal-account-name-unknown";
 
     /// <summary>
     /// The color of the tamper seal.
     /// </summary>
-    [DataField, AutoNetworkedField] public Color Color = Color.White; // Better than invisible as default.
+    [DataField, AutoNetworkedField] public Color Color = Color.White; // Better than transparent as default.
+
+    /// <summary>
+    /// The access levels that can unlock this tamper seal legally.
+    /// </summary>
+    [DataField, AutoNetworkedField] public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
+
+    #endregion
+    #region State
 
     /// <summary>
     /// Whether the tamper seal was opened. Does not distinguish between unsealing and destroying the seal.
@@ -28,11 +51,6 @@ public sealed partial class TamperSealComponent : Component
     /// Whether the tamper seal was destroyed.
     /// </summary>
     [DataField, AutoNetworkedField] public bool Destroyed;
-
-    /// <summary>
-    /// The access levels that can unlock this tamper seal legally.
-    /// </summary>
-    [DataField, AutoNetworkedField] public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
 
     #endregion
     #region Unsealing
@@ -81,7 +99,6 @@ public sealed partial class TamperSealComponent : Component
     [DataField] public SoundSpecifier DestroyEndSound = new SoundPathSpecifier("/Audio/Items/Handcuffs/rope_breakout.ogg");
 
     #endregion
-
 }
 
 /// <summary>

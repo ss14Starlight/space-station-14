@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Starlight.Cargo.TamperSeal;
 using Content.Server.Cargo.Components;
 using Content.Shared.Access;
 using Content.Shared.Cargo;
@@ -677,28 +678,32 @@ namespace Content.Server.Cargo.Systems
             }
 
             #region Starlight
+            // If the entity does not support tamper seals, do not apply one.
             if (!_tags.HasTag(item, _tamperSealable))
                 return true;
 
-            // Apply a tamper seal to the entity if it supports it.
             var recipient = _protoMan.Index(account);
 
+            // Apply a tamper seal to the entity. This does the actual sealing logic.
             var seal = EnsureComp<TamperSealComponent>(item);
+            seal.Recipient = account;
+            seal.RecipientName = recipient.TamperSealName;
             seal.Color = recipient.TamperSealColor;
             seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
-            seal.OwnerName = recipient.TamperSealName;
 
-            var reward = EnsureComp<TamperSealValueComponent>(item);
-            reward.StationId = GetEntity(order.StationId);
-            reward.Value = order.Price;
+            // Attach a tamper seal value component to enable reward/penalty on unseal/destroy.
+            var value = EnsureComp<TamperSealValueComponent>(item);
+            value.StationId = GetEntity(order.StationId);
+            value.Value = order.Price;
 
             // TODO: Move the .1f and .2f constants to a station-bound config comp?
-            reward.Reward = new FinancialMutation(recipient,
-                (int) Math.Floor(.1f * order.Price)); // Rewards rounded down.
-            reward.Penalty = new FinancialMutation(order.Account,
-                (int) Math.Ceiling(.2f * order.Price)); // Penalties rounded up.
-            reward.Refund = new FinancialMutation(order.Account,
-                (int) Math.Floor(.2f * order.Price)); // Refunds rounded down.
+            value.Reward = (int) Math.Floor(.1f * order.Price); // Rewards rounded down.
+            value.Penalty = (int) Math.Ceiling(.2f * order.Price); // Penalties rounded up.
+            value.Refund = (int) Math.Floor(.2f * order.Price); // Refunds rounded down.
+
+            // Attach an integrity component. This is used by the integrity system to detect repeat tampering.
+            var integrity = EnsureComp<TamperSealIntegrityBeaconComponent>(item);
+            integrity.StationId = GetEntity(order.StationId);
 
             // Set the required tool quality based on tags. If none is present, the default is Slicing.
             if (_tags.HasTag(item, _tamperSealPrying))

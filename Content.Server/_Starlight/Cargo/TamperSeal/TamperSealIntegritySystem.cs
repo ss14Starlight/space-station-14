@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Shared._Starlight.Cargo.TamperSeal;
-using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Cargo.TamperSeal;
@@ -9,7 +8,7 @@ namespace Content.Server._Starlight.Cargo.TamperSeal;
 /// <summary>
 /// Tracks tamper seal integrity performance metrics. These metrics are scoped to stations and are server-side only.
 /// </summary>
-public sealed partial class TamperSealPerformanceSystem : EntitySystem
+public sealed partial class TamperSealIntegritySystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private ChatSystem _chat = default!;
@@ -18,25 +17,26 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<TamperSealValueComponent, TamperSealValueRewardedEvent>(OnTamperSealRewarded);
-        SubscribeLocalEvent<TamperSealValueComponent, TamperSealValuePenalizedEvent>(OnTamperSealPenalized);
+        SubscribeLocalEvent<TamperSealIntegrityBeaconComponent, TamperSealOpenedEvent>(OnTamperSealOpened);
+        SubscribeLocalEvent<TamperSealIntegrityBeaconComponent, TamperSealDestroyedEvent>(OnTamperSealDestroyed);
     }
 
     #region Events
 
-    private void OnTamperSealRewarded(EntityUid uid, TamperSealValueComponent value, TamperSealValueRewardedEvent args)
+    private void OnTamperSealOpened(EntityUid uid, TamperSealIntegrityBeaconComponent comp, TamperSealOpenedEvent args)
     {
-        var tracker = GetPerformanceTracker(value);
-        RecordPerformance(tracker, true, value.Value);
+        var tracker = GetTracker(comp.StationId);
+        RecordPerformance(tracker, true);
         ReassessPerformance(tracker);
+        RemCompDeferred<TamperSealIntegrityBeaconComponent>(uid);
     }
 
-    private void OnTamperSealPenalized(EntityUid uid, TamperSealValueComponent value,
-        TamperSealValuePenalizedEvent args)
+    private void OnTamperSealDestroyed(EntityUid uid, TamperSealIntegrityBeaconComponent comp, TamperSealDestroyedEvent args)
     {
-        var tracker = GetPerformanceTracker(value);
-        RecordPerformance(tracker, false, value.Value);
+        var tracker = GetTracker(comp.StationId);
+        RecordPerformance(tracker, false);
         ReassessPerformance(tracker);
+        RemCompDeferred<TamperSealIntegrityBeaconComponent>(uid);
     }
 
     #endregion
@@ -45,7 +45,7 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
     /// <summary>
     /// Given a tracker, reassess the current delivery performance of the station.
     /// </summary>
-    private void ReassessPerformance(TamperSealPerformanceComponent tracker)
+    private void ReassessPerformance(TamperSealIntegrityTrackerComponent tracker)
     {
         if (!tracker.JudgementEnabled) return;
         if (tracker.Records.Count < tracker.JudgementMinRecords) return;
@@ -60,6 +60,7 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
         if (shouldSet && !tracker.Failure)
         {
             tracker.Failure = true;
+
             _chat.DispatchStationAnnouncement(tracker.StationId,
                 Loc.GetString("tamper-seal-performance-failure-message"),
                 Loc.GetString("tamper-seal-performance-failure-sender"),
@@ -77,22 +78,16 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
         }
     }
 
-    /// <summary>
-    ///
-    /// </summary>
-    /// <param name="tracker"></param>
-    /// <param name="success"></param>
-    /// <param name="value"></param>
-    private void RecordPerformance(TamperSealPerformanceComponent tracker, bool success, int value)
+    private void RecordPerformance(TamperSealIntegrityTrackerComponent tracker, bool success)
     {
-        var record = new TamperSealResult(_timing.CurTime, success, value);
+        var record = new TamperSealResult(_timing.CurTime, success);
         tracker.Records.Add(record);
 
         ExpungeOverflowedRecords(tracker);
         ExpungeOutdatedRecords(tracker);
     }
 
-    private void ExpungeOverflowedRecords(TamperSealPerformanceComponent tracker)
+    private void ExpungeOverflowedRecords(TamperSealIntegrityTrackerComponent tracker)
     {
         var records = tracker.Records;
         if (records.Count <= tracker.MaxRecords)
@@ -101,7 +96,7 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
         records.RemoveRange(0, tracker.MaxRecords - records.Count);
     }
 
-    private void ExpungeOutdatedRecords(TamperSealPerformanceComponent tracker)
+    private void ExpungeOutdatedRecords(TamperSealIntegrityTrackerComponent tracker)
     {
         var removable = tracker.Records.Capacity - tracker.MinRecords;
         if (removable <= 0)
@@ -117,13 +112,13 @@ public sealed partial class TamperSealPerformanceSystem : EntitySystem
         }
     }
 
-    private TamperSealPerformanceComponent GetPerformanceTracker(TamperSealValueComponent value)
+    private TamperSealIntegrityTrackerComponent GetTracker(EntityUid stationId)
     {
-        if (TryComp<TamperSealPerformanceComponent>(value.StationId, out var tracker))
+        if (TryComp<TamperSealIntegrityTrackerComponent>(stationId, out var tracker))
             return tracker;
 
-        tracker = AddComp<TamperSealPerformanceComponent>(value.StationId);
-        tracker.StationId = value.StationId;
+        tracker = AddComp<TamperSealIntegrityTrackerComponent>(stationId);
+        tracker.StationId = stationId;
         return tracker;
     }
 

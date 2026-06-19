@@ -20,9 +20,20 @@ public sealed partial class TamperSealValueComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField] public int Value;
 
-    [DataField, AutoNetworkedField] public FinancialMutation Reward;
-    [DataField, AutoNetworkedField] public FinancialMutation Penalty;
-    [DataField, AutoNetworkedField] public FinancialMutation? Refund;
+    /// <summary>
+    /// How much to credit the <see cref="TamperSealComponent.Deliverer"/> when the seal is opened.
+    /// </summary>
+    [DataField, AutoNetworkedField] public int Reward;
+
+    /// <summary>
+    /// How much to penalize the <see cref="TamperSealComponent.Deliverer"/> when the seal is destroyed.
+    /// </summary>
+    [DataField, AutoNetworkedField] public int Penalty;
+
+    /// <summary>
+    /// How much to refund the <see cref="TamperSealComponent.Recipient"/> when the seal is destroyed.
+    /// </summary>
+    [DataField, AutoNetworkedField] public int? Refund;
 
     /// <summary>
     /// The sound that plays when a reward is given.

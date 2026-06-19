@@ -28,39 +28,40 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
     private void OnSealOpened(EntityUid uid, TamperSealValueComponent value, ref TamperSealOpenedEvent args)
     {
         var stationId = value.StationId;
-        var mutation = value.Reward;
-
-        var deliverer = _proto.Index(value.Reward.Account);
+        var reward = new FinancialMutation(args.Seal.Deliverer, value.Reward);
+        var deliverer = _proto.Index(args.Seal.Deliverer);
 
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
         // Fire a Before event to maybe cancel the rewarding.
-        var beforeEv = new TamperSealBeforeRewardEvent(uid, args.Seal, value, mutation);
+        var beforeEv = new TamperSealBeforeRewardEvent(uid, args.Seal, value, reward);
         RaiseLocalEvent(uid, ref beforeEv);
         if (beforeEv.Canceled) return;
 
         // If not canceled, apply the mutation.
-        ApplyMutation(uid, (stationId, bank), mutation, "opening", "rewarded");
+        ApplyMutation(uid, (stationId, bank), reward, "opening", "rewarded");
 
         _audio.PlayPredicted(value.RewardSound, uid, args.User);
         _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-unseal-end-reward",
                 ("deliverer", Loc.GetString(deliverer.TamperSealName)),
-                ("reward", value.Reward.Amount)),
+                ("reward", reward.Amount)),
             uid, args.User, PopupType.Medium);
 
         // Don't show the "unseal finished" popup if we already showed a reward popup.
         args.ShowPopup = false;
 
         // Announce it happened.
-        RaiseLocalEvent(uid, new TamperSealValueRewardedEvent(uid, args.Seal, value, mutation));
+        RaiseLocalEvent(uid, new TamperSealValueRewardedEvent(uid, args.Seal, value, reward));
     }
 
     private void OnSealDestroyed(EntityUid uid, TamperSealValueComponent value, ref TamperSealDestroyedEvent args)
     {
         var stationId = value.StationId;
-        var penalty = value.Penalty;
-        var refund = value.Refund;
+        var penalty = new FinancialMutation(args.Seal.Deliverer, value.Penalty);
+        FinancialMutation? refund = args.Seal.Recipient.HasValue && value.Refund.HasValue
+            ? new FinancialMutation(args.Seal.Recipient.Value, value.Refund.Value)
+            : null;
 
         var deliverer = _proto.Index(penalty.Account);
 

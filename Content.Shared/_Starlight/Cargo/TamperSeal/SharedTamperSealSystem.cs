@@ -12,6 +12,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal;
@@ -25,6 +26,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -142,7 +144,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         {
             args.PushMarkup(Loc.GetString(
                 $"tamper-seal-examine-destroyed-{seal.DestroyToolQuality.Id.ToLowerInvariant()}",
-                ("recipient", Loc.GetString(seal.OwnerName)),
+                ("recipient", GetLocRecipientName(seal)),
                 ("recipientColor", seal.Color)), -100);
             return;
         }
@@ -157,7 +159,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // High-priority text so it shows at the top, since the tamper seal is the first thing you need to deal with
         // when interacting with an entity that has one.
         args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-restricted",
-            ("recipient", Loc.GetString(seal.OwnerName)),
+            ("recipient", GetLocRecipientName(seal)),
             ("recipientColor", seal.Color)), 100);
     }
 
@@ -189,7 +191,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (args.Cancelled)
         {
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                $"{ToPrettyString(args.User):player} stopped destroying the {Loc.GetString(seal.OwnerName)} tamper seal on {ToPrettyString(uid)}.");
+                $"{ToPrettyString(args.User):player} stopped destroying the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
             return;
         }
 
@@ -209,14 +211,12 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (seal.Opened)
             return;
 
-        var recipientName = Loc.GetString(seal.OwnerName);
-
         // If they have no access, we just tell them.
         if (!CanUnseal(uid, user, seal))
         {
             _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-no-access"), uid, user);
             _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
-                $"{ToPrettyString(user):player} had no access to unseal the {recipientName} tamper seal on {ToPrettyString(uid)}. ({string.Join(",", seal.Accesses):accesses})");
+                $"{ToPrettyString(user):player} had no access to unseal the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}. ({string.Join(",", seal.Accesses):accesses})");
             return;
         }
 
@@ -238,7 +238,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
 
         _doAfter.TryStartDoAfter(args);
         _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
-            $"{ToPrettyString(user):player} began unsealing the {recipientName} tamper seal on {ToPrettyString(uid)}.");
+            $"{ToPrettyString(user):player} began unsealing the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
     }
 
     private bool TryDestroy(EntityUid uid, EntityUid? tool, EntityUid user, TamperSealComponent? seal = null)
@@ -276,7 +276,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             };
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(user):player} began destroying the {Loc.GetString(seal.OwnerName)} tamper seal on {ToPrettyString(uid)}.");
+            $"{ToPrettyString(user):player} began destroying the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
         return _doAfter.TryStartDoAfter(args);
     }
 
@@ -304,7 +304,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         Appearance.SetData(uid, TamperSealVisuals.Opened, seal.Opened);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
-            $"{ToPrettyString(user):player} unsealed the {Loc.GetString(seal.OwnerName)} tamper seal on {ToPrettyString(uid)}.");
+            $"{ToPrettyString(user):player} unsealed the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
 
         // Notify any interested listeners.
         var ev = new TamperSealOpenedEvent(uid, seal, user);
@@ -333,15 +333,13 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             Appearance.SetData(uid, TamperSealVisuals.Destroyed, seal.Destroyed);
         }
 
-        var ownerName = Loc.GetString(seal.OwnerName);
-
         // Log the destruction.
         if (user != null)
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                $"{ToPrettyString(user):player} destroyed the {ownerName} tamper seal on {ToPrettyString(uid)}");
+                $"{ToPrettyString(user):player} destroyed the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}");
         else
             _adminLogger.Add(LogType.Action, LogImpact.Medium,
-                $"Unknown source destroyed the {ownerName} tamper seal on {ToPrettyString(uid)}");
+                $"Unknown source destroyed the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}");
 
         // Notify any interested parties.
         var ev = new TamperSealDestroyedEvent(uid, seal, user, entityDestroyed, serverOnly);
@@ -364,6 +362,17 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             _popup.PopupEntity(Loc.GetString("tamper-seal-popup-destroy-end"), uid, PopupType.LargeCaution);
         else
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end"), uid, user, PopupType.LargeCaution);
+    }
+
+    /// <summary>
+    /// Localizes the recipient name, using the literal value if it fails to resolve.
+    /// This enables manual overriding of the key with a literal value without erroring/warning.
+    /// </summary>
+    private string GetLocRecipientName(TamperSealComponent seal)
+    {
+        if (!Loc.TryGetString(seal.RecipientName, out var recipientName))
+            recipientName = seal.RecipientName;
+        return recipientName;
     }
 
     #endregion
