@@ -41,7 +41,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 
-public sealed class HemomancerSystem : EntitySystem
+public sealed partial class HemomancerSystem : EntitySystem
 {
     private static readonly ProtoId<DamageTypePrototype> _poisonTypeId = "Poison";
     private static readonly ProtoId<DamageTypePrototype> _bluntTypeId = "Blunt";
@@ -57,30 +57,30 @@ public sealed class HemomancerSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, EntityUid> _predatorSenseUiActionEntities = new();
 
-    [Dependency] private readonly VampireSystem _vampire = default!;
+    [Dependency] private VampireSystem _vampire = default!;
 
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedWieldableSystem _wieldable = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly PolymorphSystem _polymorph = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedWieldableSystem _wieldable = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private PolymorphSystem _polymorph = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private ISawmill? _sawmill;
 

@@ -14,8 +14,8 @@ namespace Content.Client.Starlight.SecureTerminal;
 [GenerateTypedNameReferences]
 public sealed partial class SecureCommandTerminalWindow : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _protos = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _protos = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public event Action<string>? OnRequest;
     public event Action<string>? OnAuthorize;

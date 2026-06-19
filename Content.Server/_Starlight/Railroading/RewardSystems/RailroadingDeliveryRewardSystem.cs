@@ -21,17 +21,17 @@ namespace Content.Server._Starlight.Railroading;
 
 public sealed partial class RailroadingDeliveryRewardSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly FingerprintReaderSystem _fingerprintReader = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly LabelSystem _label = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private FingerprintReaderSystem _fingerprintReader = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private LabelSystem _label = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
+    [Dependency] private StationSystem _station = default!;
 
     protected override float Threshold { get; set; } = 2.3f;
 

@@ -12,11 +12,11 @@ namespace Content.Server.GameTicking.Rules;
 /// <summary>
 /// A system to handle one-shot dynamic rules, with slightly different add/start semantics.
 /// </summary>
-public sealed class SubRuleSystem : GameRuleSystem<SubRuleComponent>
+public sealed partial class SubRuleSystem : GameRuleSystem<SubRuleComponent>
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Added(EntityUid uid, SubRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

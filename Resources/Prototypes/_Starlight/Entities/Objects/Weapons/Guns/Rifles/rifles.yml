@@ -90,6 +90,12 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Large
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/laser_carbine.rsi
+    quickEquip: false
+    slots:
+      - Back
+      - suitStorage
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:

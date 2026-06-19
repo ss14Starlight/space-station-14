@@ -10,7 +10,7 @@ roles-antag-vamire-name = Vampire
 roles-antag-vampire-description = Feed on the crew. Extend your fangs and drink their blood.
 
 roles-antag-thrall-name = Thrall
-roles-antag-thrall-description = Serve your master faithfully and obey their commands.
+roles-antag-thrall-objective = Serve your master faithfully and obey their commands.
 
 vampire-roundend-name = vampire
 

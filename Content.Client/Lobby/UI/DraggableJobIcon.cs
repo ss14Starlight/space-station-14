@@ -14,11 +14,11 @@ namespace Content.Client.Lobby.UI;
 /// This class defines a UI control for a draggable job icon. These elements are to be used with
 /// <see cref="DraggableJobTarget"/>
 /// </summary>
-public sealed class DraggableJobIcon : TextureRect
+public sealed partial class DraggableJobIcon : TextureRect
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IUserInterfaceManager _uiManager = default!;
 
     /// <summary>
     /// The TextureScale of a job icon

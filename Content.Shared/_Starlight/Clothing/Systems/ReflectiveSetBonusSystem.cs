@@ -12,10 +12,10 @@ namespace Content.Shared._Starlight.Clothing.Systems;
 /// This system grants 100% reflection to the vest and helmet only when both are equipped.
 /// Uses component tags to detect matching items and listens to global equip/unequip events.
 /// </summary>
-public sealed class ReflectiveSetBonusSystem : EntitySystem
+public sealed partial class ReflectiveSetBonusSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {

@@ -8,9 +8,9 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Commands;
 
 [AdminCommand(AdminFlags.Host)]
-public sealed class ReloadConfigCommand : LocalizedCommands
+public sealed partial class ReloadConfigCommand : LocalizedCommands
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     public override string Command => "reloadconfig";
     public override string Description => "Reloading cvars from disk. Attention required Starlight watchdog or cvar setup config.file.";
 

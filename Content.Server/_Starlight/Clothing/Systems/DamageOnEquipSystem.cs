@@ -12,14 +12,14 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._Starlight.Clothing.Systems;
 
-public sealed class DamageOnEquipSystem : EntitySystem
+public sealed partial class DamageOnEquipSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damage = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly MobStateSystem _state = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damage = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private MobStateSystem _state = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

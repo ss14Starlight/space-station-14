@@ -7,9 +7,9 @@ using SELFRuleComponent = Content.Server._Starlight.GameTicking.Rules.Components
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 
-public sealed class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
+public sealed partial class SELFRuleSystem : GameRuleSystem<SELFRuleComponent>
 {
-    [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private AntagSelectionSystem _antag = default!;
 
     public override void Initialize()
     {

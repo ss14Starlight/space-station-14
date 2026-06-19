@@ -46,6 +46,32 @@
     symmetry: Left
 
 - type: entity
+  parent: PartAnimal
+  id: LeftHandAnimal
+  name: left animal hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: l_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  parent: PartAnimal
+  id: RightHandAnimal
+  name: right animal hand
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    layers:
+    - state: r_hand
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
   id: LegsAnimal
   name: animal legs
   parent: PartAnimal
@@ -92,6 +118,18 @@
         Quantity: 10
       - ReagentId: Blood
         Quantity: 20
+
+- type: entity
+  id: HeadAnimal
+  name: animal head
+  parent: PartAnimal
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Sprite
+      layers:
+        - state: head_m
+    - type: BodyPart
+      partType: Head
 
 - type: entity
   parent: PartAnimal

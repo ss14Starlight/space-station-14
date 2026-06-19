@@ -174,6 +174,7 @@
           Rebooting: { state: dead }
           Dead: { state: dead }
   - type: Intellicard
+  - type: ForceQuickDraw #Starlight don't pull the posi-brain out when the intelecard is in a pocket and hotkey used to bring it to a player hand
 
 - type: entity
   id: PlayerStationAiPreview

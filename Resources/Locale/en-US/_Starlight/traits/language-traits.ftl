@@ -62,3 +62,6 @@ trait-language-aielic-desc = The beautiful language of the queli is ideally suit
 
 trait-language-lagomorphian-name = Lagomorphian
 trait-language-lagomorphian-desc = The lynarxical tongue, developed as an integration language for the Lagomorph's differing vocal structure.
+
+trait-language-squeakish-name = Squeakish
+trait-language-squeakish-desc = You can speak Squeakish, the language of the Rodentia, which is made up of a series of chirps and squeaks.

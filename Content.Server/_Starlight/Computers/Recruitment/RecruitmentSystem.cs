@@ -5,7 +5,7 @@ namespace Content.Server._Starlight.Computers.Recruitment;
 
 public sealed partial class RecruitmentSystem : EntitySystem
 {
-    [Dependency] private readonly StationJobsSystem _jobsSystem = default!;
+    [Dependency] private StationJobsSystem _jobsSystem = default!;
 
     public override void Initialize()
         => Subs.BuiEvents<RecruitmentComputerComponent>(RecruitmentComputerUiKey.Key, subs => subs.Event<RecruitmentChangeBuiMsg>(OnChangeBuiMsg));

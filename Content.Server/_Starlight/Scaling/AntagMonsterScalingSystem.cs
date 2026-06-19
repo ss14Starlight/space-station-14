@@ -13,12 +13,12 @@ using Content.Shared._Starlight.Scaling;
 
 namespace Content.Server._Starlight.Scaling;
 
-public sealed class ScalingSystem : SharedScalingSystem
+public sealed partial class ScalingSystem : SharedScalingSystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly StationRecordsSystem _recordsSystem = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
 
     private readonly Dictionary<EntityUid, double> _cachedPopulations = new();
 
