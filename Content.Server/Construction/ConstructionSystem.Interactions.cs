@@ -253,6 +253,17 @@ namespace Content.Server.Construction
                 doAfterState = DoAfterState.Completed;
             }
 
+            #region Starlight
+            // Fire an event for intercepting construction steps caused by user interaction.
+            if (doAfterState == DoAfterState.None && ev is InteractUsingEvent earlyCheck)
+            {
+                var attemptEv = new ConstructionInteractAttemptEvent(earlyCheck.User, uid);
+                RaiseLocalEvent(uid, ref attemptEv);
+                if (attemptEv.Canceled)
+                    return HandleResult.False;
+            }
+            #endregion
+
             // The cases in this switch will handle the interaction and return
             switch (step)
             {
@@ -293,16 +304,6 @@ namespace Content.Server.Construction
                     // If we still haven't completed this step's DoAfter...
                     if (doAfterState == DoAfterState.None && insertStep.DoAfter > 0)
                     {
-                        #region Starlight
-                        // We need an event to cancel construction steps so we can prevent the DoAfter from starting
-                        // in the first place. This event is raised **on the entity** that is being interacted with.
-                        var attemptEv = new ConstructionInteractAttemptEvent(interactUsing.User, uid);
-                        RaiseLocalEvent(uid, ref attemptEv);
-
-                        if (attemptEv.Cancelled)
-                            return HandleResult.False;
-                        #endregion
-
                         var doAfterEv = new ConstructionInteractDoAfterEvent(EntityManager, interactUsing);
 
                         var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, step.DoAfter, doAfterEv, uid, uid, interactUsing.Used)
@@ -381,16 +382,6 @@ namespace Content.Server.Construction
                     // If we're handling an event after its DoAfter finished...
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
-
-                    #region Starlight
-                    // We need an event to cancel construction steps so we can prevent the DoAfter from starting
-                    // in the first place. This event is raised **on the entity** that is being interacted with.
-                    var attemptEv = new ConstructionInteractAttemptEvent(interactUsing.User, uid);
-                    RaiseLocalEvent(uid, ref attemptEv);
-
-                    if (attemptEv.Cancelled)
-                        return HandleResult.False;
-                    #endregion
 
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,

@@ -48,10 +48,10 @@ public sealed partial class TamperSealSystem : SharedTamperSealSystem
     private void OnConstructionInteractAttempt(EntityUid uid, TamperSealComponent seal,
         ref ConstructionInteractAttemptEvent args)
     {
-        if (args.Cancelled || seal.Opened)
+        if (args.Canceled || seal.Opened)
             return;
 
-        args.Cancelled = true;
+        args.Canceled = true;
     }
 
     /// <summary>
