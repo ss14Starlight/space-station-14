@@ -1,4 +1,4 @@
-name: Check for StarLight Directory
+name: Check for Starlight Directories
 
 on:
   pull_request:
