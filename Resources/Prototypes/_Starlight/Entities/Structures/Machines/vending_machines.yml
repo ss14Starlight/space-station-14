@@ -925,56 +925,56 @@
 - type: entity
   parent: VendingMachineMedicalBase
   id: VendingMachineMedicalBaseEmpty
-  suffix: Empty
+  suffix: Empty, Civilian
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedical
   id: VendingMachineMedicalEmpty
-  suffix: Empty
+  suffix: Empty, Departmental
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalBaseSyndicate
   id: VendingMachineMedicalBaseSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Civilian
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalSyndicate
   id: VendingMachineMedicalSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Departmental
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalBaseDeforest
   id: VendingMachineMedicalBaseDeforestEmpty
-  suffix: Empty
+  suffix: Empty, Civilian
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalDeforest
   id: VendingMachineMedicalDeforestEmpty
-  suffix: Empty
+  suffix: Empty, Departmental
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalBaseGold
   id: VendingMachineMedicalBaseGoldEmpty
-  suffix: Empty
+  suffix: Empty, Civilian
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineMedicalGold
   id: VendingMachineMedicalGoldEmpty
-  suffix: Empty
+  suffix: Empty, Departmental
   components:
     - type: EmptyVendingMachine
 
@@ -1296,56 +1296,56 @@
 - type: entity
   parent: VendingMachineWallMedicalCivilian
   id: VendingMachineWallMedicalCivilianEmpty
-  suffix: Empty
+  suffix: Empty, Civilian, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedical
   id: VendingMachineWallMedicalEmpty
-  suffix: Empty
+  suffix: Empty, Departmental, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalCivilianSyndicate
   id: VendingMachineWallMedicalCivilianSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Civilian, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalSyndicate
   id: VendingMachineWallMedicalSyndicateEmpty
-  suffix: Empty
+  suffix: Empty, Departmental, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalCivilianDeforest
   id: VendingMachineWallMedicalCivilianDeforestEmpty
-  suffix: Empty
+  suffix: Empty, Civilian, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalDeforest
   id: VendingMachineWallMedicalDeforestEmpty
-  suffix: Empty
+  suffix: Empty, Departmental, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalCivilianGold
   id: VendingMachineWallMedicalCivilianGoldEmpty
-  suffix: Empty
+  suffix: Empty, Civilian, Wallmount
   components:
     - type: EmptyVendingMachine
 
 - type: entity
   parent: VendingMachineWallMedicalGold
   id: VendingMachineWallMedicalGoldEmpty
-  suffix: Empty
+  suffix: Empty, Departmental, Wallmount
   components:
     - type: EmptyVendingMachine
 
@@ -1373,7 +1373,7 @@
 - type: entity
   parent: VendingMachineMedicalSecurity
   id: VendingMachineMedicalSecurityEmpty
-  suffix: Empty
+  suffix: Empty, Security
   components:
     - type: EmptyVendingMachine
 
