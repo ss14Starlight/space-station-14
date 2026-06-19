@@ -2,11 +2,11 @@
   id: SpiderWebAirtight
   parent: SpiderWebBase
   name: airtight spider web
-  description: It's stringy, sticky and airtight.
+  description: It's stringy, sticky, and airtight.
   components:
   - type: Airtight
   - type: Sprite
-    color: "#ffE5F3FD"
+    color: "#bdd5e7ff"
   - type: Fixtures
     fixtures:
       fix1:
@@ -36,7 +36,7 @@
   id: SpiderWebStrong
   parent: SpiderWebBase
   name: strong spider web
-  description: It's stringy, sticky and strong.
+  description: It's stringy, sticky, and strong.
   components:
   - type: Sprite
     color: "#ffffffdd"
@@ -69,10 +69,10 @@
   id: SpiderWebStrongThick
   parent: SpiderWebStrong
   name: thick spider web
-  description: It's stringy, sticky, opaque and strong.
+  description: It's stringy, sticky, opaque, and strong.
   components:
   - type: Sprite
-    color: "#B9BBB6ff"
+    color: "#826d8cdd"
   - type: Occluder
   - type: Destructible
     thresholds:
@@ -87,7 +87,7 @@
   id: SpiderWebSlime
   parent: SpiderWebBase
   name: slime spider web
-  description: It's stringy and sticky.
+  description: It's stringy, sticky, and slimy.
   components:
   - type: Sprite
     color: "#94ffcdbe"
@@ -128,7 +128,7 @@
   id: SpiderWebPoison
   parent: SpiderWebSlime
   name: poison spider web
-  description: It's stringy and sticky.
+  description: It's stringy, sticky, and feels wet.
   components:
   - type: Sprite
     color: "#009926bd"
@@ -148,10 +148,10 @@
   id: SpiderWebStealth
   parent: SpiderWebBase
   name: stealth spider web
-  description: It's stringy, sticky.
+  description: It's stringy and sticky.
   components:
   - type: Sprite
-    color: "#ffff5edd"
+    color: "#ffffff5e"
   - type: Fixtures
     fixtures:
       fix1:
@@ -181,10 +181,10 @@
   id: SpiderWebSpiderlings
   parent: SpiderWebBase
   name: spiderlings spider web
-  description: It's stringy, sticky. Contains a solution that keeps spiderlings away.
+  description: It's stringy and sticky. Contains a solution that keeps spiderlings away.
   components:
   - type: Sprite
-    color: "#826d8cdd"
+    color: "#eaadc6ff"
   - type: Fixtures
     fixtures:
       fix1:
