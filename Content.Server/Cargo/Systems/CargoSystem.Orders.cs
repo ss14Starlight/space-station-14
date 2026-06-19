@@ -49,7 +49,6 @@ namespace Content.Server.Cargo.Systems
 
         private static readonly ProtoId<ToolQualityPrototype> _toolSlicing = "Slicing";
         private static readonly ProtoId<ToolQualityPrototype> _toolPrying = "Prying";
-
         #endregion
 
         private void InitializeConsole()

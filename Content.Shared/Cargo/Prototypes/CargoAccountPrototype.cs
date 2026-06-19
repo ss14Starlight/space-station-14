@@ -48,7 +48,14 @@ public sealed partial class CargoAccountPrototype : IPrototype
     public EntProtoId AcquisitionSlip;
 
     #region Starlight
+    /// <summary>
+    /// The name of the recipient to use on tamper seal examination.
+    /// </summary>
     [DataField] public LocId TamperSealName;
+
+    /// <summary>
+    /// The color to use for tamper seals.
+    /// </summary>
     [DataField] public Color TamperSealColor;
 
     /// <summary>

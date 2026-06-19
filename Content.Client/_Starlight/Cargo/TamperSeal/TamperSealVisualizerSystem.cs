@@ -4,7 +4,7 @@ using Robust.Client.GameObjects;
 namespace Content.Client._Starlight.Cargo.TamperSeal;
 
 /// <summary>
-/// Visualizes a container that is taped shut.
+/// Visualizes a container that is tamper-sealed.
 /// </summary>
 public sealed partial class TamperSealVisualizerSystem : VisualizerSystem<TamperSealComponent>
 {
@@ -28,6 +28,9 @@ public sealed partial class TamperSealVisualizerSystem : VisualizerSystem<Tamper
         ShowLayerConditional(ent, TamperSealLayers.Destroyed, color, opened && destroyed);
     }
 
+    /// <summary>
+    /// Sets layer visibility and color if it exists.
+    /// </summary>
     private void ShowLayerConditional(Entity<SpriteComponent?> sprite, Enum layerKey, Color color, bool value)
     {
         if (_sprite.LayerMapTryGet(sprite, layerKey, out var layer, false))

@@ -71,5 +71,4 @@ public sealed partial class TamperSealSystem : SharedTamperSealSystem
         Appearance.RemoveData(uid, TamperSealVisuals.Destroyed);
     }
 
-
 }
