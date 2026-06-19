@@ -10,7 +10,7 @@
   effects:
   - !type:SpeciesLoadoutEffect
     species:
-    #- Rodentia
+    - Rodentia
 
 - type: loadoutEffectGroup
   id: IPC

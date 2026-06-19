@@ -88,7 +88,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
         - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -107,7 +107,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
         - id: DrinkWaterBottleFull
 
 - type: entity
@@ -124,7 +124,7 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
         - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -144,7 +144,7 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
         - id: DrinkWaterBottleFull
 
 - type: entity
@@ -174,7 +174,7 @@
         - id: EmergencyFunnyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
         - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -193,7 +193,7 @@
         - id: ExtendedEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
 
 - type: entity
   parent: BoxSurvivalSyndicateCheese
@@ -206,5 +206,5 @@
         - id: DoubleEmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodSnackNutricheese
+        - id: FoodPacketCheeseBox
 

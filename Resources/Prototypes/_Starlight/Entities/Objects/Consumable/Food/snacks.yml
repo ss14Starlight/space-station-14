@@ -65,21 +65,21 @@
     tags:
     - Trash
 
-# Rodentia Nutricheese
+# Rodentia Cheese Box
 - type: entity
   parent: FoodSnackNutribrick
-  id: FoodSnackNutricheese
-  name: nutricheese
-  description: A randomly selected piece of cheese from the NanoTrasen glactic cheese vault. Caloriedense and irresistible to rodents!
+  id: FoodPacketCheeseBox
+  name: cheese box
+  description: A randomly selected piece of cheese from the NanoTrasen galactic cheese vault. Calorie dense and irresistible to rodents!
   components:
   - type: SpawnItemsOnUse
     items:
       - id: FoodPacketMRETrash
-      - id: FoodNutriCheeseComte
+      - id: FoodNutriCheeseEdam
         orGroup: Cheese
       - id: FoodNutriCheeseBrie
         orGroup: Cheese
-      - id: FoodNutriCheeseGruyere
+      - id: FoodNutriCheeseMozzarellaSticks
         orGroup: Cheese
       - id: FoodNutriCheeseGorgonzola
         orGroup: Cheese
@@ -88,54 +88,73 @@
     requireHands: false 
 
 - type: entity
-  id: FoodNutriCheeseBase
+  id: FoodRodentiaCheeseBase
   parent: FoodSnackNutribrickOpen
   abstract: true
   components:
   - type: Sprite
-    #sprite: _Starlight/Consumable/Food/Nutricheese.rsi # TODO: Custom sprites for cheese.
-    sprite: Objects/Consumable/Food/ingredients.rsi
-    state: cheesewedge
+    sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
   - type: FlavorProfile
     flavors:
-      - nutribrick # TODO: 
+      - cheesy
 
 - type: entity
-  id: FoodNutriCheeseGruyere
-  parent: FoodNutriCheeseBase
-  name: Gruyere
-  description: Yum!
+  id: FoodPacketCheeseBoxTrash
+  parent: FoodPacketMRETrash
+  abstract: true
   components:
   - type: Sprite
-    # state: gruyere
-    color: white
+    sprite: _Starlight/Objects/Consumable/Food/cheese.rsi
+    state: box-trash
+
+- type: entity
+  id: FoodNutriCheeseEdam
+  parent: FoodRodentiaCheeseBase
+  name: edam
+  description: A delicate and nutty cheese, wrapped in a thin red wax for it's protection.
+  components:
+  - type: Sprite
+    state: edam
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - nutty
 
 - type: entity
   id: FoodNutriCheeseBrie
-  parent: FoodNutriCheeseBase
-  name: Brie
-  description: Yum!
+  parent: FoodRodentiaCheeseBase
+  name: brie
+  description: Soft and creamy like buttery.
   components:
   - type: Sprite
-    # state:
-    color: red
+    state: brie
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - creamy
 
 - type: entity
-  id: FoodNutriCheeseComte
-  parent: FoodNutriCheeseBase
-  name: Comte
-  description: Yum!
+  id: FoodNutriCheeseMozerellaSticks
+  parent: FoodRodentiaCheeseBase
+  name: mozzarella sticks
+  description: STRINGY CHEESE STICKS! YUM!
   components:
   - type: Sprite
-    # state:
-    color: green
+    state: mozzarella-sticks
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - stringy
 
 - type: entity
   id: FoodNutriCheeseGorgonzola
-  parent: FoodNutriCheeseBase
-  name: Gorgonzola
-  description: Yum!
+  parent: FoodRodentiaCheeseBase
+  name: gorgonzola
+  description: The stinkiest cheese for the stinkiest of mice!
   components:
   - type: Sprite
-    # state:
-    color: blue
+    state: gorgonzola
+  - type: FlavorProfile
+    flavors:
+      - cheesy
+      - strinky

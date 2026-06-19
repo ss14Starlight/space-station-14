@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-4.0",
+    "copyright": "Cheese and box sprites by DocMoth (GitHub).",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "box"
+        },
+        {
+            "name": "box-trash"
+        },
+        {
+            "name": "brie"
+        },
+        {
+            "name": "edam"
+        },
+        {
+            "name": "gorgonzola"
+        },
+        {
+            "name": "mozzarella-sticks"
+        }
+    ]
+}
