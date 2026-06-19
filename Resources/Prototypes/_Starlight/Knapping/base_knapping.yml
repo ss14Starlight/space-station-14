@@ -1,0 +1,24 @@
+- type: entity
+  abstract: true
+  id: BaseKnappingMaterial
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Small
+  - type: ActivatableUI
+    key: enum.KnappingUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.KnappingUiKey.Key:
+        type: KnappingBoundUserInterface
+  - type: Knappable
+    width: 7
+    height: 7
+
+- type: entity
+  abstract: true
+  id: BaseKnappingOutput
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Small

@@ -1,0 +1,47 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                      x:Class="Content.Client._Starlight.Knapping.UI.KnappingWindow"
+                      Title="{Loc 'knapping-window-title'}"
+                      MinSize="650 500">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+        <Label Name="SubtitleLabel" />
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="10" VerticalExpand="True">
+            <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                        <Label Name="BoardHeaderLabel" />
+                        <Label Name="MaterialLabel" />
+                    </BoxContainer>
+
+                    <GridContainer Name="BoardGrid" Columns="7" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                    <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalAlignment="Center">
+                        <Button Name="CarveModeButton" />
+                        <Button Name="RestoreModeButton" />
+                    </BoxContainer>
+
+                    <Label Name="HelpLabel" />
+                </BoxContainer>
+            </PanelContainer>
+
+            <PanelContainer MinWidth="260" VerticalExpand="True">
+                <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="8">
+                    <Label Name="RecipeHeaderLabel" />
+                    <OptionButton Name="RecipeOption" MinWidth="238" />
+
+                    <Label Name="PreviewHeaderLabel" />
+                    <GridContainer Name="PreviewGrid" Columns="7" HorizontalAlignment="Center" />
+
+                    <Label Name="RecipeCategoryLabel" />
+                    <Label Name="RecipeDescriptionLabel" />
+                    <Label Name="StatusLabel" />
+                </BoxContainer>
+            </PanelContainer>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6" HorizontalAlignment="Right">
+            <Button Name="FinishButton" />
+        </BoxContainer>
+    </BoxContainer>
+</controls:FancyWindow>

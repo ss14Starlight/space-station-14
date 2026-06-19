@@ -1,0 +1,47 @@
+- type: entity
+  id: KnappingMaterialClay
+  parent: BaseKnappingMaterial
+  name: workable clay lump
+  description: A soft lump of clay. Use it in hand to shape it.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/knapping_materials.rsi
+    state: clay
+  - type: Knappable
+    width: 7
+    height: 7
+    materialName: knapping-material-clay
+    recipes:
+    - KnapRecipeClayBrick
+
+- type: entity
+  id: KnappingMaterialStone
+  parent: BaseItem
+  name: knappable stone chunk
+  description: A workable stone chunk. Use it in hand to chip it into tools or blocks.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/knapping_materials.rsi
+    state: stone
+  - type: Knappable
+    width: 7
+    height: 7
+    materialName: knapping-material-stone
+    recipes:
+    - KnapRecipeStoneArrowheads
+
+- type: entity
+  id: KnappingMaterialSoftMetal
+  parent: BaseItem
+  name: soft metal blank
+  description: A crude, soft metal blank. Use it in hand to shape rough parts.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/knapping_materials.rsi
+    state: soft_metal
+  - type: Knappable
+    width: 7
+    height: 7
+    materialName: knapping-material-soft-metal
+    recipes:
+    - KnapRecipeSoftMetalGearBlank

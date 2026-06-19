@@ -1,0 +1,29 @@
+- type: entity
+  id: KnappingOutputClayBrick
+  parent: BaseItem
+  name: clay brick
+  description: A shaped test piece from the Starlight knapping vertical slice.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/knapping_outputs.rsi
+    state: KnapOutputClayBrick
+
+- type: entity
+  id: KnappingOutputStoneArrowheads
+  parent: BaseItem
+  name: stone arrowheads
+  description: A shaped test piece from the Starlight knapping vertical slice.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/knapping_outputs.rsi
+    state: KnapOutputStoneArrowheads
+
+- type: entity
+  id: KnappingOutputSoftMetalGearBlank
+  parent: BaseItem
+  name: soft metal gear blank
+  description: A shaped test piece from the Starlight knapping vertical slice.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Materials/knapping_outputs.rsi
+    state: KnapOutputSoftMetalGearBlank
