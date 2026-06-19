@@ -10,7 +10,7 @@ tamper-seal-popup-destroy-slicing-begin = You cut the tamper seal..
 tamper-seal-popup-destroy-cutting-begin = You cut the tamper seal..
 tamper-seal-popup-destroy-prying-begin = You pry off the tamper seal..
 tamper-seal-popup-destroy-end = Seal broken!
-tamper-seal-popup-destroy-end-penalty = Seal broken! Partial refund issued, {$deliverer} penalized {$penalty} spesos!
+tamper-seal-popup-destroy-end-penalty = Seal broken! {$deliverer} fined {$penalty} spesos. Refund provided.
 
 # Verbs
 tamper-seal-verb-destroy = Destroy seal

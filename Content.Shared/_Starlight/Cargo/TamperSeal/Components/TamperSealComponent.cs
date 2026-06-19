@@ -21,7 +21,7 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The recipient of this tamper-sealed container, if any.
     /// </summary>
-    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype>? Recipient;
+    [DataField, AutoNetworkedField] public ProtoId<CargoAccountPrototype> Recipient = "Cargo";
 
     #endregion
     #region Derivatives

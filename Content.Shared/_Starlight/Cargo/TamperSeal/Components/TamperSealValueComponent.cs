@@ -31,7 +31,8 @@ public sealed partial class TamperSealValueComponent : Component
     [DataField, AutoNetworkedField] public int Penalty;
 
     /// <summary>
-    /// How much to refund the <see cref="TamperSealComponent.Recipient"/> when the seal is destroyed.
+    /// How much to charge the <see cref="TamperSealComponent.Deliverer"/> and refund the
+    /// <see cref="TamperSealComponent.Recipient"/> when the seal is destroyed
     /// </summary>
     [DataField, AutoNetworkedField] public int Refund;
 

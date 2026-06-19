@@ -13,6 +13,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Content.Shared.Station.Components;
+using Content.Shared.Tools;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -690,7 +691,7 @@ namespace Content.Server.Cargo.Systems
             seal.RecipientExamineColor = recipient.Color;
             seal.Color = recipient.TamperSealColor;
             seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
-            seal.DestroyToolQualities = tamperSealable.DestroyToolQualities;
+            seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
 
             // Attach a tamper seal value component to enable reward/penalty on unseal/destroy.
             var value = EnsureComp<TamperSealValueComponent>(item);

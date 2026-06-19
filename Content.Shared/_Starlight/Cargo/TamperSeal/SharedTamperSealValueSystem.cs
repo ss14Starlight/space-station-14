@@ -59,11 +59,10 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
         var stationId = value.StationId;
         var penalty = new FinancialMutation(args.Seal.Deliverer, -value.Penalty);
         var refundCharge = new FinancialMutation(args.Seal.Deliverer, -value.Refund);
-        FinancialMutation? refundCredit = args.Seal.Recipient.HasValue
-            ? new FinancialMutation(args.Seal.Recipient.Value, value.Refund)
-            : null;
+        var refundCredit = new FinancialMutation(args.Seal.Recipient, value.Refund);
 
-        var deliverer = _proto.Index(penalty.Account);
+        var deliverer = _proto.Index(args.Seal.Deliverer);
+        var recipient = _proto.Index(args.Seal.Recipient);
 
         if (args.Seal.Deliverer == args.Seal.Recipient) // Don't let Cargo penalize/refund themselves.
             return;
@@ -75,11 +74,11 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
             ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized", args.User);
 
         // Apply the refund if applicable. Transfers from deliverer to recipient.
-        if (value.Refund != 0 && refundCredit.HasValue)
+        if (value.Refund != 0)
         {
-            var refundDebited = ApplyMutation(uid, (stationId, bank), refundCharge, "destroying", "refund charged", args.User);
+            var refundDebited = ApplyMutation(uid, (stationId, bank), refundCharge, "destroying", "charged", args.User);
             if (refundDebited)
-                ApplyMutation(uid, (stationId, bank), refundCredit.Value, "destroying", "refund credited", args.User);
+                ApplyMutation(uid, (stationId, bank), refundCredit, "destroying", "refunded", args.User);
         }
 
         // Play public sound.
@@ -90,6 +89,7 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
             var coords = Transform(uid).Coordinates;
             _audio.PlayPvs(value.PenaltySound, coords);
             _popup.PopupCoordinates(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
+                    ("recipient", Loc.GetString(recipient.TamperSealName)),
                     ("deliverer", Loc.GetString(deliverer.TamperSealName)),
                     ("penalty", Math.Abs(penalty.Amount))),
                 coords, PopupType.LargeCaution);
@@ -98,6 +98,7 @@ public sealed partial class SharedTamperSealValueSystem : EntitySystem
         {
             _audio.PlayPredicted(value.PenaltySound, Transform(uid).Coordinates, args.User);
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-end-penalty",
+                    ("recipient", Loc.GetString(recipient.TamperSealName)),
                     ("deliverer", Loc.GetString(deliverer.TamperSealName)),
                     ("penalty", Math.Abs(penalty.Amount))),
                 uid, args.User, PopupType.LargeCaution);
