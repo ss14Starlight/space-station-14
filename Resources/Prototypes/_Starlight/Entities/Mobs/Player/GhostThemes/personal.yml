@@ -110,3 +110,17 @@
   requirements:
   - !type:UsernameRequirement
     username: KamilaAvali
+
+- type: ghostTheme
+  id: ConfGhost
+  name: conf ghost
+  description: Looks retro.
+  private: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/conflee.rsi
+      state: conf_ghost
+    color: "#ffffff"
+  requirements:
+  - !type:UsernameRequirement
+    username: Conflee
