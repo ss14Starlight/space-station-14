@@ -11,12 +11,12 @@ namespace Content.Shared.Clothing.EntitySystems;
 
 public sealed class FleetingClothingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ClothingSystem _clothing = default!;
-    [Dependency] private readonly SharedDestructibleSystem _destructibleSystem = default!;
+    [Dependency] private IGameTiming _timing = default!; // starlight edit: removed readonly
+    [Dependency] private INetManager _net = default!; // starlight edit: removed readonly
+    [Dependency] private SharedAudioSystem _audio = default!; // starlight edit: removed readonly
+    [Dependency] private SharedPopupSystem _popup = default!; // starlight edit: removed readonly
+    [Dependency] private ClothingSystem _clothing = default!; // starlight edit: removed readonly
+    [Dependency] private SharedDestructibleSystem _destructibleSystem = default!; // starlight edit: removed readonly
 
     public override void Initialize()
     {
