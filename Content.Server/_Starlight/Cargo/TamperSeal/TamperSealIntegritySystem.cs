@@ -36,7 +36,9 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
         var tracker = GetTracker(comp.StationId);
         RecordPerformance(tracker, false);
         ReassessPerformance(tracker);
-        RemCompDeferred<TamperSealIntegrityBeaconComponent>(uid);
+
+        if (!args.EntityDestroyed)
+            RemCompDeferred<TamperSealIntegrityBeaconComponent>(uid);
     }
 
     #endregion

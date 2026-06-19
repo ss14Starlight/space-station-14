@@ -136,18 +136,8 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     /// </summary>
     private void OnExamined(EntityUid uid, TamperSealComponent seal, ExaminedEvent args)
     {
-        if (seal.Opened && !seal.Destroyed) // Closed seals & Destroyed seals have Examine text.
+        if (seal.Opened) // Closed seals & Destroyed seals have Examine text.
             return;
-
-        // Destroyed examine text should be subtle and goes to the bottom.
-        if (seal.Destroyed)
-        {
-            args.PushMarkup(Loc.GetString(
-                $"tamper-seal-examine-destroyed-{seal.DestroyToolQuality.Id.ToLowerInvariant()}",
-                ("recipient", GetLocRecipientName(seal)),
-                ("recipientColor", seal.Color)), -100);
-            return;
-        }
 
         // When there are no access levels specified, it's basically AA, so we have a different locale string for that.
         if (seal.Accesses.Count == 0)
@@ -160,7 +150,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // when interacting with an entity that has one.
         args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-restricted",
             ("recipient", GetLocRecipientName(seal)),
-            ("recipientColor", seal.Color)), 100);
+            ("recipientColor", seal.RecipientExamineColor)), 100);
     }
 
     #endregion
@@ -214,13 +204,15 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // If they have no access, we just tell them.
         if (!CanUnseal(uid, user, seal))
         {
-            _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-no-access"), uid, user);
+            _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-no-access"),
+                uid, user, PopupType.Medium);
             _adminLogger.Add(LogType.InteractActivate, LogImpact.Low,
                 $"{ToPrettyString(user):player} had no access to unseal the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}. ({string.Join(",", seal.Accesses):accesses})");
             return;
         }
 
-        _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-begin"), uid, user);
+        _popup.PopupClient(Loc.GetString("tamper-seal-popup-unseal-begin"),
+            uid, user, PopupType.Medium);
         _audio.PlayPredicted(seal.UnsealBeginSound, uid, user);
 
         // Start the do-after to unseal. It's short but not instant so that you can cancel if you do it accidentally.
@@ -307,7 +299,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             $"{ToPrettyString(user):player} unsealed the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
 
         // Notify any interested listeners.
-        var ev = new TamperSealOpenedEvent(uid, seal, user);
+        var ev = new TamperSealOpenedEvent(seal, user);
         RaiseLocalEvent(uid, ref ev);
 
         // Show popup unless disabled.
@@ -342,7 +334,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
                 $"Unknown source destroyed the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}");
 
         // Notify any interested parties.
-        var ev = new TamperSealDestroyedEvent(uid, seal, user, entityDestroyed, serverOnly);
+        var ev = new TamperSealDestroyedEvent(seal, user, entityDestroyed, serverOnly);
         RaiseLocalEvent(uid, ref ev);
 
         if (ev.PlaySound)
@@ -355,8 +347,6 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
 
         if (!ev.ShowPopup)
             return;
-
-        // TODO: hier ergens verder gaan volgens mij
 
         if (serverOnly)
             _popup.PopupEntity(Loc.GetString("tamper-seal-popup-destroy-end"), uid, PopupType.LargeCaution);
@@ -386,7 +376,6 @@ public sealed partial class TamperSealDestroyedDoAfterEvent : SimpleDoAfterEvent
 
 [ByRefEvent]
 public record struct TamperSealOpenedEvent(
-    EntityUid Id,
     TamperSealComponent Seal,
     EntityUid User,
     bool PlaySound = true,
@@ -394,7 +383,6 @@ public record struct TamperSealOpenedEvent(
 
 [ByRefEvent]
 public record struct TamperSealDestroyedEvent(
-    EntityUid Id,
     TamperSealComponent Seal,
     EntityUid? User,
     bool EntityDestroyed,

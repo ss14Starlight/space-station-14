@@ -1,13 +1,11 @@
-using Robust.Shared.GameStates;
-
 namespace Content.Server._Starlight.Cargo.TamperSeal;
 
 /// <summary>
 /// Marker component that makes a tamper-sealed container tracked for integrity performance purposes.
-/// Despite the name there is no actual radio or examine text involved due to scope creep being a thing.
+/// Despite the name, there is no actual radio or examine text involved, because scope creep.
 /// </summary>
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class TamperSealIntegrityBeaconComponent : Component
 {
-    [DataField, AutoNetworkedField] public EntityUid StationId;
+    public EntityUid StationId;
 }

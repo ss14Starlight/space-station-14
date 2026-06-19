@@ -20,8 +20,8 @@ tamper-seal-verb-destroy-tool-description = Use your cutting tool to break the s
 # Examine
 tamper-seal-examine-sealed-public = There is a [color=yellow]tamper seal[/color] present.
 tamper-seal-examine-sealed-restricted = There is a [color={$recipientColor}]{$recipient}[/color] tamper seal present.
-tamper-seal-examine-destroyed-slicing = There is some [color={$recipientColor}]{$recipient}[/color] tamper seal residue left behind.
-tamper-seal-examine-destroyed-prying = There is some [color={$recipientColor}]{$recipient}[/color]- plastic residue and scratch marks near the top of the canister.
+tamper-seal-examine-destroyed-slicing = There is some [color={$recipientColor}]{$recipient}[/color] tamper seal residue visible.
+tamper-seal-examine-destroyed-prying = There is some [color={$recipientColor}]{$recipient}[/color] plastic residue and scratch marks near the top of the canister.
 
 # Performance failure announcement
 tamper-seal-performance-failure-sender = Interstellar Trade Guild
@@ -35,3 +35,12 @@ tamper-seal-account-name-medical = Medical
 tamper-seal-account-name-science = Science
 tamper-seal-account-name-security = Security
 tamper-seal-account-name-service = Service
+
+# Descriptive colors for seals
+tamper-seal-account-name-unknown-color = white
+tamper-seal-account-name-cargo-color = brown
+tamper-seal-account-name-engineering-color = yellow
+tamper-seal-account-name-medical-color = blue
+tamper-seal-account-name-science-color = magenta
+tamper-seal-account-name-security-color = red
+tamper-seal-account-name-service-color = green

@@ -688,6 +688,7 @@ namespace Content.Server.Cargo.Systems
             var seal = EnsureComp<TamperSealComponent>(item);
             seal.Recipient = account;
             seal.RecipientName = recipient.TamperSealName;
+            seal.RecipientExamineColor = recipient.Color;
             seal.Color = recipient.TamperSealColor;
             seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
 

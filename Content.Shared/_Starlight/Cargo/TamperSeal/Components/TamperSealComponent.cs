@@ -30,6 +30,11 @@ public sealed partial class TamperSealComponent : Component
     [DataField, AutoNetworkedField] public LocId RecipientName = "tamper-seal-account-name-unknown";
 
     /// <summary>
+    /// The color of the recipient in the Examine text.
+    /// </summary>
+    [DataField, AutoNetworkedField] public Color RecipientExamineColor = Color.White;
+
+    /// <summary>
     /// The color of the tamper seal.
     /// </summary>
     [DataField, AutoNetworkedField] public Color Color = Color.White; // Better than transparent as default.

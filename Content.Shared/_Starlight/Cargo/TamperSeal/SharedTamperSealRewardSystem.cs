@@ -34,12 +34,7 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
-        // Fire a Before event to maybe cancel the rewarding.
-        var beforeEv = new TamperSealBeforeRewardEvent(uid, args.Seal, value, reward);
-        RaiseLocalEvent(uid, ref beforeEv);
-        if (beforeEv.Canceled) return;
-
-        // If not canceled, apply the mutation.
+        // Apply the mutation.
         ApplyMutation(uid, (stationId, bank), reward, "opening", "rewarded");
 
         _audio.PlayPredicted(value.RewardSound, uid, args.User);
@@ -50,9 +45,6 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
 
         // Don't show the "unseal finished" popup if we already showed a reward popup.
         args.ShowPopup = false;
-
-        // Announce it happened.
-        RaiseLocalEvent(uid, new TamperSealValueRewardedEvent(uid, args.Seal, value, reward));
     }
 
     private void OnSealDestroyed(EntityUid uid, TamperSealValueComponent value, ref TamperSealDestroyedEvent args)
@@ -68,13 +60,7 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
         if (!TryComp<StationBankAccountComponent>(stationId, out var bank))
             return;
 
-        // Fire a Before event to maybe cancel the penalty.
-        var beforeEv = new TamperSealBeforePenaltyEvent(uid, args.Seal, value, penalty, refund);
-        RaiseLocalEvent(uid, ref beforeEv);
-        if (beforeEv.Canceled) return;
-
-        // If not canceled, apply the mutation.
-        // Note the refund is only applied if the penalty succeeded in getting applied.
+        // Apply the mutation. Note the refund is only applied if the penalty succeeded in getting applied.
         var penalized = ApplyMutation(uid, (stationId, bank), penalty, "destroying", "penalized");
         if (penalized && refund.HasValue)
             ApplyMutation(uid, (stationId, bank), refund.Value, "destroying", "penalized");
@@ -100,11 +86,8 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
                 uid, args.User, PopupType.LargeCaution);
         }
 
-        // Cancel the "You destroy the seal" popup as we subs
+        // Cancel the "You destroy the seal" popup as we substituted it with the destroy popup.
         args.ShowPopup = false;
-
-        // Announce it happened.
-        RaiseLocalEvent(uid, new TamperSealValuePenalizedEvent(uid, args.Seal, value, penalty, refund));
     }
 
     /// <summary>
@@ -151,33 +134,3 @@ public sealed partial class SharedTamperSealRewardSystem : EntitySystem
                 $"Unknown source caused {accountName} to be {result} {mutation.Amount} spesos by {action} the seal on {ToPrettyString(uid)}");
     }
 }
-
-[ByRefEvent]
-public record struct TamperSealBeforeRewardEvent(
-    EntityUid Id,
-    TamperSealComponent Seal,
-    TamperSealValueComponent Value,
-    FinancialMutation Mutation,
-    bool Canceled = false);
-
-[ByRefEvent]
-public record struct TamperSealBeforePenaltyEvent(
-    EntityUid Id,
-    TamperSealComponent Seal,
-    TamperSealValueComponent Value,
-    FinancialMutation Penalty,
-    FinancialMutation? Refund,
-    bool Canceled = false);
-
-public record struct TamperSealValueRewardedEvent(
-    EntityUid Id,
-    TamperSealComponent Seal,
-    TamperSealValueComponent Value,
-    FinancialMutation Mutation);
-
-public record struct TamperSealValuePenalizedEvent(
-    EntityUid Id,
-    TamperSealComponent Seal,
-    TamperSealValueComponent Value,
-    FinancialMutation Penalty,
-    FinancialMutation? Refund);
