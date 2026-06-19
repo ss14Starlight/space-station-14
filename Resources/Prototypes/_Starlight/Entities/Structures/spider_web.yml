@@ -69,7 +69,7 @@
   id: SpiderWebStrongThick
   parent: SpiderWebStrong
   name: thick spider web
-  description: It's stringy, sticky, opaque, and strong.
+  description: It's stringy, sticky, solid, and strong.
   components:
   - type: Sprite
     color: "#826d8cdd"
@@ -128,7 +128,7 @@
   id: SpiderWebPoison
   parent: SpiderWebSlime
   name: poison spider web
-  description: It's stringy, sticky, and feels wet.
+  description: It's stringy, sticky, and sickly.
   components:
   - type: Sprite
     color: "#009926bd"
