@@ -377,3 +377,24 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Eyes/Glasses/jamjarcentcomm.rsi
     - type: VisionCorrection
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesNoirAssistant
+  name: cheap noir-tech glasses
+  description: A pair of glasses that simulate what the world looked like before the invention of color.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/noir.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/sunglasses.rsi
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: NoirOverlay
+  - type: Tag
+    tags:
+    - HamsterWearable
+    - WhitelistChameleon
