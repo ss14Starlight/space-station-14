@@ -4,26 +4,24 @@
   description: knapping-recipe-desc-clay-brick
   category: knapping-category-clay-construction
   difficulty: 1
-  output: KnapOutputClayBrick
+  output: KnappingOutputClayBrick
   allowOffset: true
   pattern:
   - "#####"
   - "#####"
   - "#####"
-
 - type: knappingRecipe
   id: KnapRecipeStoneArrowheads
   name: knapping-recipe-stone-arrowheads
   description: knapping-recipe-desc-stone-arrowheads
   category: knapping-category-stone-tools
   difficulty: 2
-  output: KnapOutputStoneArrowheads
+  output: KnappingOutputStoneArrowheads
   allowOffset: true
   pattern:
   - "#.#.#"
   - ".###."
   - "..#.."
-
 - type: knappingRecipe
   id: KnapRecipeSoftMetalGearBlank
   name: knapping-recipe-soft-metal-gear-blank

@@ -16,7 +16,7 @@
 
 - type: entity
   id: KnappingMaterialStone
-  parent: BaseItem
+  parent: BaseKnappingMaterial
   name: knappable stone chunk
   description: A workable stone chunk. Use it in hand to chip it into tools or blocks.
   components:
@@ -24,12 +24,9 @@
     sprite: _Starlight/Objects/Materials/knapping_materials.rsi
     state: stone
   - type: Knappable
-    width: 7
-    height: 7
     materialName: knapping-material-stone
     recipes:
     - KnapRecipeStoneArrowheads
-
 - type: entity
   id: KnappingMaterialSoftMetal
   parent: BaseItem
