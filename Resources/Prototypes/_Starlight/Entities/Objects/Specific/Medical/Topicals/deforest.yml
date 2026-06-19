@@ -3,7 +3,7 @@
 - type: entity
   name: DeForest bruise pack
   description: DeForest-Graded Bruise Packs for all your needs.
-  parent: BlueBrutePack
+  parent: Bluebrutepack
   id: DeforestBrutePack
   suffix: Full
   components:
@@ -55,7 +55,7 @@
 - type: entity
   name: DeForest ointment
   description: DeForest's soothing ointment, used to treat severe burns. Does nothing for caustic.
-  parent: BlueOintment
+  parent: Blueointment
   id: DeforestOintment
   suffix: Full
   components:
