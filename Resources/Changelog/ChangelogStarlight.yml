@@ -1,18 +1,4 @@
 Entries:
-- author: SiTW
-  changes:
-  - message: Technical Assistants now get AstroNav.
-    type: Tweak
-  id: 405718
-  time: '2026-06-08T21:42:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4648
-- author: wonderfulnewworld, ZerraTheBunny
-  changes:
-  - message: Proto-Lagomorphs now have their own face/face LED markings.
-    type: Add
-  id: 405719
-  time: '2026-06-08T21:42:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4670
 - author: wonderfulnewworld, ZerraTheBunny
   changes:
   - message: True Protogens and Proto-Lagomorphs no longer have 2 of a lot of hair and undergarment markings.
@@ -2799,4 +2785,18 @@ Entries:
   id: 406117
   time: '2026-06-19T08:19:09.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4856
+- author: AegisShield
+  changes:
+  - message: Removed silk drops from terror spider webs.
+    type: Remove
+  id: 406118
+  time: '2026-06-19T12:20:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4859
+- author: AegisShield
+  changes:
+  - message: Tweaked Airtight, Spiderling, and Thick web colors to be more visually distinct.
+    type: Tweak
+  id: 406119
+  time: '2026-06-19T12:20:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4859
 Order: -1
