@@ -87,6 +87,39 @@
               damageCoefficient: 0.5
 
 - type: entity
+  parent: ClothingOuterBaseLarge
+  id: ChangelingClothingOuterArmor
+  name: chitinous armor
+  description: An all-consuming chitinous mass of armor.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: Changeling/ling_armor.rsi
+  - type: Clothing
+    sprite: Changeling/ling_armor.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+  - type: Unremoveable
+
+
+- type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorPlate
   name: plate carrier
@@ -426,6 +459,7 @@
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
+
 # Reporter armor vest
 - type: entity
   parent: [BaseReporterContraband, ClothingOuterArmorBase]
