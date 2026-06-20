@@ -1,5 +1,6 @@
 using Content.Server.Administration.Managers;
 using Content.Server.Atmos.Components;
+using Content.Server.Body.Components;
 using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
@@ -52,7 +53,6 @@ using Content.Shared.Changeling.Components;
 using Content.Server.Animals.Components;
 using Content.Shared.Animals;
 using Content.Shared.FixedPoint;
-using Content.Server._Starlight.Medical.Body.Components;
 using Content.Shared._Starlight.Changeling;
 #endregion Starlight
 

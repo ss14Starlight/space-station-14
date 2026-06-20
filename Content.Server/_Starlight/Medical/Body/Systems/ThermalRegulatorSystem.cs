@@ -3,7 +3,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Temperature.Components;
 using Robust.Shared.Timing;
 using Content.Shared.Mobs.Systems;
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 

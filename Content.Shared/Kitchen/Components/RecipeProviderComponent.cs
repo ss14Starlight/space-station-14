@@ -1,4 +1,3 @@
-using Content.Shared.Kitchen;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Kitchen.Components;

@@ -1,4 +1,4 @@
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 using Content.Server.Temperature.Systems;
 using Content.Shared._Starlight.CoolingUnit;
 using Content.Shared.Inventory;

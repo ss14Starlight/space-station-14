@@ -1,4 +1,4 @@
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 using Content.Server.Administration.Logs;
 using Content.Server.Temperature.Components;
 using Content.Shared.Alert;

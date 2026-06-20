@@ -36,7 +36,7 @@ using Robust.Shared.Timing;
 using Prometheus;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared._Starlight.Vampire.Components;
 

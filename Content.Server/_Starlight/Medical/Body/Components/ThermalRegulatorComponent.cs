@@ -1,7 +1,8 @@
 using Content.Server._Starlight.Medical.Body.Systems;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server._Starlight.Medical.Body.Components;
+// ReSharper disable once CheckNamespace
+namespace Content.Server.Body.Components;
 
 [RegisterComponent]
 [Access(typeof(ThermalRegulatorSystem))]

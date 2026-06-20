@@ -5,7 +5,8 @@ using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server._Starlight.Medical.Body.Components
+// ReSharper disable once CheckNamespace
+namespace Content.Server.Body.Components
 {
     [RegisterComponent, Access(typeof(RespiratorSystem)), AutoGenerateComponentPause]
     public sealed partial class RespiratorComponent : Component

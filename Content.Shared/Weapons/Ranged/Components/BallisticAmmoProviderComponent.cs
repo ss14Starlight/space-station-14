@@ -1,10 +1,12 @@
-using Content.Shared._Starlight.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Weapons.Ranged.Systems;
+#endregion
 
 namespace Content.Shared.Weapons.Ranged.Components;
 

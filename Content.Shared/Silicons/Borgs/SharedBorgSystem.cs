@@ -35,9 +35,8 @@ using Robust.Shared.Timing;
 using Content.Shared.Radio.Components;
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Actions.Components;
-using Content.Shared._Starlight.TextToSpeech;
 // Starlight begin
-using System.Linq;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Tag;
 // Starlight end
 

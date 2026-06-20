@@ -12,7 +12,7 @@ using System.Numerics;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Body.Systems;
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 
 namespace Content.IntegrationTests.Tests._Starlight.Body
 {

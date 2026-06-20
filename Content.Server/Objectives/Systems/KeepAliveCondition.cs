@@ -1,12 +1,13 @@
-using Content.Server._Starlight.Objectives.Events;
-using Content.Server._Starlight.Railroading;
 using Content.Server.Objectives.Components;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared.Mind;
+#region Starlight
+using Content.Shared.Objectives.Components;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Mind;
 using Content.Shared.Objectives;
-using Content.Shared.Objectives.Components;
+using Content.Server._Starlight.Objectives.Events;
+using Content.Server._Starlight.Railroading;
+#endregion
 
 namespace Content.Server.Objectives.Systems;
 

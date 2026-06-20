@@ -23,7 +23,7 @@ using System.Linq;
 using Content.Shared.EntityEffects.Effects.Solution;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 using Content.Server._Starlight.Medical.Body.Systems;
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 
 namespace Content.Server.Fluids.EntitySystems;
 

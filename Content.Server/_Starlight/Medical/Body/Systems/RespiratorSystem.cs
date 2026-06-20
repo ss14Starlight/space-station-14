@@ -24,7 +24,7 @@ using Content.Shared._Starlight.Medical.Body.Events;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Actions.Components;
-using Content.Server._Starlight.Medical.Body.Components;
+using Content.Server.Body.Components;
 
 namespace Content.Server._Starlight.Medical.Body.Systems;
 
