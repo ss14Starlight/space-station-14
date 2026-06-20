@@ -90,7 +90,7 @@ public sealed partial class VentSpawnRule : StationEventSystem<VentSpawnRuleComp
             ent.Comp.ValidLocations.Remove(vent);
         }
 
-        Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)} into vent {ToPrettyString(ent.Owner)}");
+        Log.Warning($"VentSpawnRule: failed to insert {ToPrettyString(args.EntityUid)}. Last tried vent: {ToPrettyString(vent.Uid)}; rule: {ToPrettyString(ent.Owner)}");
     }
 
     private bool TryInsertInVent(EntityUid uid, (MapCoordinates Coords, EntityUid Uid) vent)
