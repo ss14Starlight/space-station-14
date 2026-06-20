@@ -11,10 +11,10 @@ namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly FlammableSystem _flammable = default!;
-    [Dependency] private readonly StunSystem _stun = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private FlammableSystem _flammable = default!;
+    [Dependency] private StunSystem _stun = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private void SubscribeDamned()
     {

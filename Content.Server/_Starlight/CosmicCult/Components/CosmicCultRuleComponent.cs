@@ -1,5 +1,6 @@
 using Content.Server.RoundEnd;
 using Content.Shared._Starlight.CosmicCult.Components;
+using Content.Server._Starlight.CosmicCult.EntitySystems;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -9,7 +10,7 @@ namespace Content.Server._Starlight.CosmicCult.Components;
 /// <summary>
 /// Component for the CosmicCultRuleSystem that should store gameplay info.
 /// </summary>
-[RegisterComponent, Access(typeof(CosmicCultRuleSystem))]
+[RegisterComponent, Access(typeof(CosmicCultRuleSystem), typeof(CosmicSpireSystem))]
 [AutoGenerateComponentPause]
 public sealed partial class CosmicCultRuleComponent : Component
 {

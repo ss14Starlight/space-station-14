@@ -2,7 +2,8 @@ using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Administration.Systems;
 using Content.Server.Hands.Systems;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.Medical.Limbs;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -14,8 +15,8 @@ namespace Content.Server._Starlight.Medical.Limbs;
 
 public sealed partial class LimbItemStorageSystem : EntitySystem
 {
-    [Dependency] private readonly StarlightEntitySystem _slEnt = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private StarlightEntitySystem _slEnt = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     public override void Initialize()
     {

@@ -7,12 +7,12 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
-public sealed class SupermatterCascadeSystem : EntitySystem
+public sealed partial class SupermatterCascadeSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     private readonly LinkedList<Branch> _branches = [];
     private LinkedListNode<Branch>? _node;

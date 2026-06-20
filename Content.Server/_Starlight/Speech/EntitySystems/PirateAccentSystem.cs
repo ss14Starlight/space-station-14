@@ -13,8 +13,8 @@ public sealed partial class PirateAccentSystem : EntitySystem
     [GeneratedRegex(@"^(\S+)")]
     private static partial Regex FirstWordAllCapsRegex();
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     public override void Initialize()
     {

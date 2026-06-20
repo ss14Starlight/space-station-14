@@ -6,25 +6,25 @@ using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Starlight.TTS;
+namespace Content.Server._Starlight.TextToSpeech;
 
 public sealed partial class TTSSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _xforms = default!;
-    [Dependency] private readonly RadioChimeSystem _chime = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ITTSClient _client = default!;
-    [Dependency] private readonly IRobustRandom _rng = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
+    [Dependency] private SharedTransformSystem _xforms = default!;
+    [Dependency] private RadioChimeSystem _chime = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ITTSClient _client = default!;
+    [Dependency] private IRobustRandom _rng = default!;
+    [Dependency] private LanguageSystem _language = default!;
 
     private readonly List<string> _sampleText =
     [

@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Shared._Starlight.ItemSwitch.Components;
+using Content.Shared._Starlight.Switchable;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Interaction;
@@ -14,15 +16,15 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 
-namespace Content.Shared.Starlight.ItemSwitch;
-public abstract class SharedItemSwitchSystem : EntitySystem
+namespace Content.Shared._Starlight.ItemSwitch;
+public abstract partial class SharedItemSwitchSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly ClothingSystem _clothing = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private ClothingSystem _clothing = default!;
 
     private EntityQuery<ItemSwitchComponent> _query;
 

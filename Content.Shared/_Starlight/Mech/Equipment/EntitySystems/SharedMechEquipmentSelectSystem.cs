@@ -5,10 +5,10 @@ using Content.Shared.Mech.Equipment.Components;
 
 namespace Content.Shared._Starlight.Mech.Equipment.EntitySystems;
 
-public sealed class SharedMechEquipmentSelectSystem : EntitySystem
+public sealed partial class SharedMechEquipmentSelectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

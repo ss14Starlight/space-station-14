@@ -837,3 +837,47 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpsuit/RetroSec.rsi
+
+# Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingUniformBase ]
+  categories: [ DoNotMap ]
+  id: ClothingUniformJumpsuitGreenshield
+  name: greenshield uniform
+  description: A special suit made for the best of the elites under CentComm.
+  components:
+    - type: Sprite
+      sprite: Clothing/Uniforms/Jumpsuit/ert_leader.rsi
+    - type: Clothing
+      sprite: Clothing/Uniforms/Jumpsuit/ert_leader.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAssistant
+  name: assistant jumpsuit
+  description: A tasteful green jumpsuit that reminds you of the good old days.
+  components:
+  - type: RollUpSleeves
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+    layers:
+    - state: icon
+      color: "#639137"
+    - state: trinkets-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#639137"
+      - state: trinkets-inhand-left
+      right:
+      - state: inhand-right
+        color: "#639137"
+      - state: trinkets-inhand-right
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#639137"
+      - state: trinkets-equipped-INNERCLOTHING

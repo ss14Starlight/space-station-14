@@ -11,15 +11,15 @@ using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Content.Shared.Damage.Systems;
 
-namespace Content.Server._Starlight.PinataSystem;
+namespace Content.Shared._Starlight.PinataSystem;
 
-public sealed class PinataSystem : EntitySystem
+public sealed partial class PinataSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable =  default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private EntityTableSystem _entityTable =  default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

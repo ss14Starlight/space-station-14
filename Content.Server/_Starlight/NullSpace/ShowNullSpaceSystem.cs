@@ -3,12 +3,14 @@ using Robust.Server.GameObjects;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.NullSpace.Systems;
 
 namespace Content.Server._Starlight.NullSpace;
 
 public sealed partial class ShowNullSpaceSystem : SharedShowNullSpaceSystem
 {
-    [Dependency] private readonly EyeSystem _eye = default!;
+    [Dependency] private EyeSystem _eye = default!;
     public override void Initialize()
     {
         base.Initialize();

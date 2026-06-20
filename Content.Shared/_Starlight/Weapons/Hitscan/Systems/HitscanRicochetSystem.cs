@@ -1,7 +1,6 @@
 ﻿using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
-using Content.Shared._Starlight.Weapon;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Collision.Shapes;
@@ -9,13 +8,15 @@ using Robust.Shared.Physics;
 using Robust.Shared.Random;
 using System.Linq;
 using System.Numerics;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.Weapons.Hitscan.Components;
 
-namespace Content.Server._Starlight.Combat.Ranged;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanRicochetSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _rand = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private EntityQuery<HitscanReflectComponent> _reflectQuery;
 

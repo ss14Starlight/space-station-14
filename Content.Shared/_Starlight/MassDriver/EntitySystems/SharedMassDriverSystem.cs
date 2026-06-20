@@ -9,13 +9,13 @@ using Content.Shared.Ghost;
 
 namespace Content.Shared._Starlight.MassDriver.EntitySystems;
 
-public abstract class SharedMassDriverSystem : EntitySystem
+public abstract partial class SharedMassDriverSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAmbientSoundSystem _audioSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAmbientSoundSystem _audioSystem = default!;
     private EntityQuery<GhostComponent> _ghostQuery;
 
     public override void Initialize()

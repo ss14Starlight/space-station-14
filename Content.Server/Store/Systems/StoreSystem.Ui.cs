@@ -14,7 +14,6 @@ using Content.Shared.Mind;
 using Content.Shared.PDA.Ringer;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Store.Conditions;
 using Content.Shared.Store.Events;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
@@ -24,6 +23,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Prometheus; //Starlight
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Store.Events;
+using Content.Shared._Starlight.Store.Conditions;
+using Content.Server._Starlight.Revolutionary;
 
 
 namespace Content.Server.Store.Systems;
@@ -38,17 +40,17 @@ public sealed partial class StoreSystem
     );
     #endregion
 
-    [Dependency] private readonly IAdminLogManager _admin = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
-    [Dependency] private readonly ActionUpgradeSystem _actionUpgrade = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly StackSystem _stack = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly RevSupplyRiftSystem _revSupplyRift = default!; // Starlight
-    [Dependency] private readonly LanguageSystem _languageSystem = default!; //Starlight
+    [Dependency] private IAdminLogManager _admin = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private ActionContainerSystem _actionContainer = default!;
+    [Dependency] private ActionUpgradeSystem _actionUpgrade = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private StackSystem _stack = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private RevSupplyRiftSystem _revSupplyRift = default!; // Starlight
+    [Dependency] private LanguageSystem _languageSystem = default!; //Starlight
 
     private void InitializeUi()
     {
