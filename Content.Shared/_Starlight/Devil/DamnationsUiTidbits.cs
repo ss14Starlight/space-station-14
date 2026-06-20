@@ -12,7 +12,8 @@ public enum DamnationsMenuUiKey : byte
 [Serializable, NetSerializable]
 public sealed partial class DevilDamnationsBuiState : BoundUserInterfaceState
 {
-    public readonly List<ProtoId<DamnationPrototype>> Damnations;
+    // damnation prototypes, and number of times they were used
+    public readonly List<(ProtoId<DamnationPrototype>, int)> Damnations;
 
-    public DevilDamnationsBuiState(List<ProtoId<DamnationPrototype>> damnations) => Damnations = new(damnations);
+    public DevilDamnationsBuiState(List<(ProtoId<DamnationPrototype>, int)> damnations) => Damnations = new(damnations);
 }

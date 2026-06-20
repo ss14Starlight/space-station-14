@@ -42,7 +42,8 @@ public sealed partial class DevilComponent : Component
         "Electricity",
         "Noslip",
         "Mute",
-        "Stink"
+        "Stink",
+        "Terminator"
     };
 
     /// <summary>

@@ -358,7 +358,8 @@ public abstract partial class SharedDevilSystem : EntitySystem
         // send UI update once on init, there is no reason (at the moment) to further update it
         // though functionality should still remain for state update
         if(!TryComp<UserInterfaceComponent>(devil.Owner, out var userInterfaceComp) || !TryComp<ActorComponent>(devil.Owner, out var actorComp)) return;
-        var uiState = new DevilDamnationsBuiState(devil.Comp.AvailableDamnations);
+        var damnationsMeta = devil.Comp.AvailableDamnations.Select(x => (x, devil.Comp.DamnationUsage.GetValueOrDefault(x, 0))).ToList();
+        var uiState = new DevilDamnationsBuiState(damnationsMeta);
         _userInterface.SetUiState((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
     }
     #endregion

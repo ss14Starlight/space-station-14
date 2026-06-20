@@ -9,12 +9,12 @@ namespace Content.Client._Starlight.Devil.Ui;
 [GenerateTypedNameReferences]
 public sealed partial class DevilDamnationsCategory : Control
 {
-    public DevilDamnationsCategory(string categoryTitle, List<DamnationPrototype> damnations)
+    public DevilDamnationsCategory(string categoryTitle, List<(DamnationPrototype, int)> damnations)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        damnations.Sort((x, y) => x.Cost.CompareTo(y.Cost));
+        damnations.Sort((x, y) => x.Item1.Cost.CompareTo(y.Item1.Cost));
 
         CategoryTitle.SetMarkup(categoryTitle);
 

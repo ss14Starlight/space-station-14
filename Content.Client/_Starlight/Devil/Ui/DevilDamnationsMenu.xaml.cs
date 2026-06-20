@@ -27,12 +27,12 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
         DamnationCategories.SetTabTitle(0, Loc.GetString("devil-damnations-info-title"));
 
         // now get all prototypes, and sort them into categories
-        Dictionary<string, List<DamnationPrototype>> allDamnations = new();
-        foreach (var damnationId in state.Damnations)
+        Dictionary<string, List<(DamnationPrototype, int)>> allDamnations = new();
+        foreach (var damnationMeta in state.Damnations)
         {
-            if (_prototypeManager.TryIndex(damnationId, out var damnation))
+            if (_prototypeManager.TryIndex(damnationMeta.Item1, out var damnation))
             {
-                allDamnations.GetOrNew(damnation.Category).Add(damnation);
+                allDamnations.GetOrNew(damnation.Category).Add((damnation, damnationMeta.Item2));
             }
         }
 
