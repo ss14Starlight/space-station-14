@@ -225,3 +225,57 @@
     steps: 6
     zeroVisible: true
   - type: Appearance
+
+#region Shotgun
+- type: entity
+  name: CODE-11 "Compromise"
+  parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseMedTakContraband]
+  id: WeaponMedTakShotgun
+  description: An sleek drum-fed shotgun, rounds are chambered semi-automatically with the secondary trigger.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Weapons/MedTak/Shotgun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Admeme/Weapons/MedTak/Shotgun.rsi
+  - type: Item
+    sprite: _Starlight/Admeme/Weapons/MedTak/Shotgun.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    spread: 15
+    fireRate: 1
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgun
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        whitelistFailPopup: gun-magazine-whitelist-fail
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    autoCycle: false
+    soundRack:
+      path: /Audio/_Starlight/Weapons/Guns/Cock/gun_boomslang_lever.ogg
+      params:
+        volume: 3
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
