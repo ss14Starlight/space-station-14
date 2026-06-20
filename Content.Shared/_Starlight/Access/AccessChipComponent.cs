@@ -1,6 +1,7 @@
+using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Access.Components;
+namespace Content.Shared._Starlight.Access;
 
 /// <summary>
 /// Marks an item as a single-use access chip that can grant accesses to an ID card.

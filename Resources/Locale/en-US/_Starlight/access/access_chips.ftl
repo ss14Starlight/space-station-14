@@ -10,6 +10,7 @@ ent-AccessChipSecurity = security access chip
 ent-AccessChipScience = science access chip
     .desc = A single-use access chip. Use on an ID card to grant Research access. After use, the chip is destroyed.
 
+ent-AccessChipSupply = supply access chip
     .desc = A single-use access chip. Use on an ID card to grant Cargo access. After use, the chip is destroyed.
 
 # Access chip feedback messages
