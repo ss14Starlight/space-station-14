@@ -2,13 +2,15 @@ using Content.Server._Starlight.Objectives.Events;
 using Content.Server._Starlight.Station;
 using Content.Server.GameTicking;
 using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Objectives;
 using Content.Shared.Station;
 using Content.Shared.Station.Components;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadingCrewRetentionTaskSystem : EntitySystem
 {

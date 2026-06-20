@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Server.Revolutionary.Components;
+namespace Content.Server._Starlight.Revolutionary.Components;
 
 /// <summary>
 /// Component used for storing the implant UID for a head revolutionary.

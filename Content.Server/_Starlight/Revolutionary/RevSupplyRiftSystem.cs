@@ -29,18 +29,20 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
-using Content.Server.AlertLevel; // starlight
-using Content.Server.RoundEnd; // starlight
+using Content.Server.AlertLevel;
+using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
-using Content.Shared.Starlight.CCVar; // starlight
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
-using Robust.Shared.GameObjects; // starlight
+using Robust.Shared.GameObjects;
+using Content.Shared._Starlight.Revolutionary.Components;
+using Content.Shared._Starlight.Store.Events;
 
-namespace Content.Server.Revolutionary;
+namespace Content.Server._Starlight.Revolutionary;
 
 /// <summary>
 /// Handles the revolutionary supply rift system.

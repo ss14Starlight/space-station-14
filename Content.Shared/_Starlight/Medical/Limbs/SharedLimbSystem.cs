@@ -1,6 +1,6 @@
 ﻿using Content.Shared.Body.Components;
 using Content.Shared.Body.Systems;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 

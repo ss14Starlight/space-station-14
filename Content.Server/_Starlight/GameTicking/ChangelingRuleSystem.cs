@@ -1,8 +1,11 @@
+using Content.Server._Starlight.Roles;
 using Content.Server.Antag;
+using Content.Server.GameTicking.Rules;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Roles;
+using Content.Shared._Starlight.Changeling;
 using Content.Shared.Changeling;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -14,7 +17,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using System.Text;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server._Starlight.GameTicking;
 
 public sealed partial class ChangelingRuleSystem : GameRuleSystem<SLChangelingRuleComponent>
 {

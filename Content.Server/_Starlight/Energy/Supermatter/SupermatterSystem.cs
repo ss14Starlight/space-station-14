@@ -28,6 +28,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 

@@ -1,10 +1,11 @@
 using Content.Server.DoAfter;
-using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Antags.Abductor;
 using Robust.Server.GameObjects;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

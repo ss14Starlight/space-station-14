@@ -6,7 +6,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Tag;
 
 using Content.Shared.Eye;
+using Content.Shared._Starlight.Eye;
 
-namespace Content.Server.Eye;
+namespace Content.Server._Starlight.Eye;
 
 public sealed class DarkenedVisionSystem : SharedDarkenedVisionSystem {}

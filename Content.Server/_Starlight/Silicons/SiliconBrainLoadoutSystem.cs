@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Medical.Body.Prototypes;
+using Content.Shared._Starlight.Roles;
 using Content.Shared._Starlight.Silicons;
 using Content.Shared.Body.Components;
 using Content.Shared.Humanoid.Prototypes;

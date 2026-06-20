@@ -4,6 +4,7 @@ using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Polymorph;

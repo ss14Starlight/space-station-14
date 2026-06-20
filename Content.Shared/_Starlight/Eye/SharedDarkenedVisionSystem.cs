@@ -5,7 +5,7 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Tag;
 
-namespace Content.Shared.Eye;
+namespace Content.Shared._Starlight.Eye;
 
 public abstract partial class SharedDarkenedVisionSystem : EntitySystem
 {

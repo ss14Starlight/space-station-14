@@ -1,11 +1,12 @@
 using Content.Server.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players;
-using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Antags.Abductor;
 using Robust.Server.Player;
 using Robust.Shared.Network;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem
 {

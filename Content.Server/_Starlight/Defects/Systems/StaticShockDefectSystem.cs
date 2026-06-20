@@ -1,9 +1,9 @@
 using Content.Server.Electrocution;
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Interaction;
 using Robust.Shared.Random;
 
-namespace Content.Server.Defects.Systems;
+namespace Content.Server._Starlight.Defects.Systems;
 
 /// <summary>
 /// Zaps the user when they successfully use the item on a target.

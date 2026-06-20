@@ -1,7 +1,7 @@
 using Content.Shared.Administration;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight;
+namespace Content.Shared._Starlight;
 
 /// <summary>
 ///     Represents data for a single player.

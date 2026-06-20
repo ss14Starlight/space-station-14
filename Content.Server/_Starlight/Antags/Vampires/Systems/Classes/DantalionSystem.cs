@@ -34,7 +34,7 @@ using Content.Server.EUI;
 using Content.Server._Starlight.Language;
 using Content.Server.Roles;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
 public sealed partial class DantalionSystem : EntitySystem
 {

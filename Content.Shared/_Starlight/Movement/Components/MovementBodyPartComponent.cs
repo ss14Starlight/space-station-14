@@ -1,8 +1,9 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.Movement.Components;
+using Robust.Shared.GameStates;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Shared.Movement.Components;
+namespace Content.Shared._Starlight.Movement.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class MovementBodyPartComponent : Component
