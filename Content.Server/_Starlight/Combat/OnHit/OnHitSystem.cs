@@ -1,5 +1,4 @@
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.Combat.OnHit;
 
 namespace Content.Server._Starlight.Combat.OnHit;

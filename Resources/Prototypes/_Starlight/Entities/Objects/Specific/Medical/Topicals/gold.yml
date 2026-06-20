@@ -1,0 +1,112 @@
+## Bruise packs
+# NanoMed GOLD yellow bruise packs
+- type: entity
+  name: gold bruise pack
+  description: Limited-edition golden bruise packs.
+  parent: BaseStarlightHealingItem
+  id: GoldBrutePack
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: yellowbrutepack2
+  - type: Item
+    heldPrefix: goldbrutepack
+  - type: Stack
+    stackType: GoldBrutePack
+    count: 10
+  - type: Healing
+    damageContainers:
+      - Biological
+      - Hybrid
+    delay: 1.6
+    damage:
+      groups:
+        Brute: -24 # 8 for each type in the group! Wow, that's amazing!
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  name: gold bruise pack
+  description: Limited-edition golden bruise packs. They're exceedingly rare. Treasure them.
+  parent: GoldBrutePack
+  id: GoldBrutePack1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: yellowbrutepack
+  - type: Stack
+    stackType: GoldBrutePack
+    count: 1
+
+- type: stack
+  id: GoldBrutePack
+  name: stack-goldbrutepack
+  spawn: GoldBrutePack1
+  maxCount: 10
+
+## Ointments
+# NanoMed GOLD yellow ointments
+- type: entity
+  name: gold ointment
+  description: Limited-edition golden ointment. Heals mild caustic burns, too!
+  parent: BaseStarlightHealingItem
+  id: GoldOintment
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Ointment
+  - type: Sprite
+    state: yellowointment3
+  - type: Item
+    heldPrefix: goldointment
+  - type: Stack
+    stackType: GoldOintment
+    count: 10
+  - type: Healing
+    damageContainers:
+      - Biological
+      - Hybrid
+    delay: 1.6 # STARLIGHT
+    damage:
+      types:
+        Heat: -8
+        Cold: -8
+        Shock: -8
+        Caustic: -4
+    healingBeginSound:
+      path: "/Audio/Items/Medical/ointment_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/ointment_end.ogg"
+  - type: InteractRestriction
+    restrictInteractionTarget:
+      blacklist:  # Use blacklist instead of whitelist so can be clicked on bags/medkits
+        - IPC
+
+- type: entity
+  name: gold ointment
+  description: Limited-edition golden ointments. Heals mild caustic burns, too! They're exceedingly rare. Treasure them.
+  parent: GoldOintment
+  id: GoldOintment1
+  suffix: Single
+  components:
+  - type: Sprite
+    state: yellowointment
+  - type: Stack
+    stackType: GoldOintment
+    count: 1
+
+- type: stack
+  id: GoldOintment
+  name: stack-goldointment
+  spawn: GoldOintment1
+  maxCount: 10

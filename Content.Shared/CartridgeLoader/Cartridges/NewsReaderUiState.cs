@@ -10,13 +10,15 @@ public sealed class NewsReaderBoundUserInterfaceState : BoundUserInterfaceState
     public int TargetNum;
     public int TotalNum;
     public bool NotificationOn;
+    public bool HasReacted; // Starlight
 
-    public NewsReaderBoundUserInterfaceState(NewsArticle article, int targetNum, int totalNum, bool notificationOn)
+    public NewsReaderBoundUserInterfaceState(NewsArticle article, int targetNum, int totalNum, bool notificationOn, bool hasReacted) // Starlight
     {
         Article = article;
         TargetNum = targetNum;
         TotalNum = totalNum;
         NotificationOn = notificationOn;
+        HasReacted = hasReacted; // Starlight
     }
 }
 

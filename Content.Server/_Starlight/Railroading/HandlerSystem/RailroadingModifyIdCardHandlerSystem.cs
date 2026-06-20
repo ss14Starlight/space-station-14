@@ -1,12 +1,12 @@
-using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Server.Access.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.Access.Components;
 using System.Linq;
 using Content.Shared.Access;
+using Content.Shared._Starlight.Railroading.Components;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.HandlerSystem;
 
 public sealed partial class RailroadingModifyIdCardHandlerSystem : EntitySystem
 {
