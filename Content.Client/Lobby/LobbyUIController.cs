@@ -28,6 +28,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
+#region Starlight
+using Content.Client._Starlight.Lobby.UI;
+#endregion
+
 namespace Content.Client.Lobby;
 
 public sealed partial class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
