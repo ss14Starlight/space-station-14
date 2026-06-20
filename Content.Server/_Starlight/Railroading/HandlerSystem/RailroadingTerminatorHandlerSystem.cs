@@ -1,8 +1,9 @@
 using Content.Server._Starlight.Terminator;
 using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components.Handlers.Terminator;
 using Content.Shared._Starlight.Railroading.Events;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.HandlerSystem;
 
 public sealed partial class RailroadingTerminatorHandlerSystem : EntitySystem
 {

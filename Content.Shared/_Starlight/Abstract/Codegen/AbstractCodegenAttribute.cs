@@ -1,5 +1,5 @@
 using System;
-namespace Content.Shared.Starlight.Abstract.Codegen;
+namespace Content.Shared._Starlight.Abstract.Codegen;
 
 [AttributeUsage(AttributeTargets.Class)]
 public sealed class GenerateLocalSubscriptionsAttribute<T> : Attribute

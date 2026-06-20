@@ -1,5 +1,5 @@
 ﻿using System.Numerics;
-using Content.Shared.DirectionalSigns.Components;
+using Content.Shared._Starlight.DirectionalSigns.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Graphics;

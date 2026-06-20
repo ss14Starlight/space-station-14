@@ -2,6 +2,7 @@ using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Station.Components;
 

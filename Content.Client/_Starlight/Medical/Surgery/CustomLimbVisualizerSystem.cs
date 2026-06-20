@@ -1,10 +1,11 @@
 ﻿using Content.Shared.Item;
 using Robust.Client.GameObjects;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared.Humanoid;
 using System.Numerics;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Client._Starlight.Medical.Surgery;
 

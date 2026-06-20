@@ -1,7 +1,7 @@
 using Robust.Shared.Utility;
 using static Robust.Shared.Utility.SpriteSpecifier;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components;
 
 [RegisterComponent]
 public sealed partial class RailroadCardComponent : Component

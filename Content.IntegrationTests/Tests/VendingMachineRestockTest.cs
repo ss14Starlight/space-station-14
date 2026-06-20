@@ -9,7 +9,6 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.EntityTable;
 using Content.Shared.Prototypes;
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.VendingMachines;
@@ -17,6 +16,9 @@ using Content.Shared.Wires;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Shared._Starlight.Antags.Abductor.Prototypes;
+#endregion
 
 namespace Content.IntegrationTests.Tests
 {

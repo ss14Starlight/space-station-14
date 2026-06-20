@@ -1,3 +1,4 @@
+using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Objectives.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Cuffs.Components;

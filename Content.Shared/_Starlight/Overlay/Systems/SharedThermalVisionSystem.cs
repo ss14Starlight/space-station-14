@@ -2,11 +2,13 @@
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.Starlight.Overlay;
+using Content.Shared._Starlight.Overlay;
 using Robust.Shared.Prototypes;
 using static Content.Shared.Weapons.Ranged.Systems.SharedGunSystem;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Overlay.Events;
 
-namespace Content.Shared.Eye.Blinding.Components;
+namespace Content.Shared._Starlight.Overlay.Systems;
 
 public abstract partial class SharedThermalVisionSystem : EntitySystem
 {

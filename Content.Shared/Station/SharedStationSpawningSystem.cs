@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared.Containers.ItemSlots; // Starlight
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -9,11 +8,14 @@ using Content.Shared.Roles;
 using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Robust.Shared.Collections;
-using Robust.Shared.Map; // Starlight
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using Content.Shared.Preferences; // Starlight
+#region Starlight
+using Content.Shared.Preferences;
+using Content.Shared._Starlight.Roles;
+using Content.Shared.Containers.ItemSlots;
+#endregion
 
 namespace Content.Shared.Station;
 

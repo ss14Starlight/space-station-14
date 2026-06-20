@@ -3,6 +3,9 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Preferences.Loadouts;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+#region Starlight
+using Content.Shared.Humanoid;
+#endregion
 
 namespace Content.Shared.Humanoid.Prototypes;
 

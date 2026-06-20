@@ -12,6 +12,9 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Client._Starlight.Lobby.UI;
+#endregion
 
 namespace Content.Client.Lobby.UI
 {

@@ -7,7 +7,7 @@ using Content.Shared.Rotation;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 
-namespace Content.IntegrationTests.Tests.Body
+namespace Content.IntegrationTests.Tests._Starlight.Body
 {
     [TestFixture]
     [TestOf(typeof(BodyPartComponent))]

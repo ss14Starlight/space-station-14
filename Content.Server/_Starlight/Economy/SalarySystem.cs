@@ -9,15 +9,16 @@ using Content.Shared._NullLink;
 using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Starlight.SecureTerminal;
+using Content.Server._Starlight.SecureTerminal;
+using Content.Shared._Starlight.Economy;
 
-namespace Content.Shared.Starlight.Economy;
+namespace Content.Server._Starlight.Economy;
 public sealed partial class SalarySystem : SharedSalarySystem
 {
     [Dependency] private IEntityManager _entityManager = default!;

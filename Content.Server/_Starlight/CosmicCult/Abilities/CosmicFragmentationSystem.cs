@@ -17,6 +17,7 @@ using Content.Shared._Starlight.Language;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared._FarHorizons.Silicons.IPC.Components;
 using Content.Shared.Mobs;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 

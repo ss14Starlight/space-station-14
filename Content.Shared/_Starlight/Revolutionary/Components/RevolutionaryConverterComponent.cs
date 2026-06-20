@@ -2,7 +2,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
 using Robust.Shared.ViewVariables;
 
-namespace Content.Shared.Revolutionary.Components
+namespace Content.Shared._Starlight.Revolutionary.Components
 {
     /// <summary>
     /// Component used for tracking which head revolutionary converted a revolutionary.

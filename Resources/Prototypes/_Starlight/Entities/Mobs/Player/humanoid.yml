@@ -570,7 +570,7 @@
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
-      state: obs
+      state: GSO
     - type: RandomHumanoidSpawner
       settings: CCGreenshieldBasic
 
@@ -581,7 +581,7 @@
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
-      state: obs
+      state: GSO
     - type: RandomHumanoidSpawner
       settings: CCGreenshieldEVA
 

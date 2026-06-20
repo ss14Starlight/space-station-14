@@ -7,7 +7,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.NullSpace;
+namespace Content.Server._Starlight.Bluespace;
 
 public sealed partial class BluespaceCrystalSystem : EntitySystem
 {

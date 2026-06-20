@@ -2,7 +2,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.Prototypes;
 
 [Prototype("abductorListing")]
 [DataDefinition]
