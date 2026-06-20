@@ -732,6 +732,7 @@
           - Document
           components:
           - Stamp
+          - IdCard
     - hand:
         emptyLabel: borg-slot-papers-empty
         emptyRepresentative: BorgModulePaperStampPlaceholder
@@ -740,6 +741,7 @@
           - Document
           components:
           - Stamp
+          - IdCard
     - hand:
         emptyLabel: borg-slot-papers-empty
         emptyRepresentative: BorgModulePaperStampPlaceholder
@@ -748,6 +750,7 @@
           - Document
           components:
           - Stamp
+          - IdCard
   - type: BorgModuleIcon
     icon: { sprite: Objects/Misc/pens.rsi, state: overpriced_pen }
 
