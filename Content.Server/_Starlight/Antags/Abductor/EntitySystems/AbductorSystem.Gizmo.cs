@@ -1,6 +1,4 @@
-﻿using Content.Shared._Starlight.Antags.Abductor;
-using Content.Shared._Starlight.Medical.Surgery;
-using Content.Shared.DoAfter;
+﻿using Content.Shared.DoAfter;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Shared.Interaction;

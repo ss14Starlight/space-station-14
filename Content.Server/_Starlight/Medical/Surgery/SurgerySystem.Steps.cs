@@ -9,7 +9,6 @@ using Content.Shared.Humanoid;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Bed.Sleep;
 using Content.Server._Starlight.Medical.Limbs;
-using Content.Server.Administration.Systems;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;

@@ -1,4 +1,3 @@
-using System;
 using Content.Shared.StationRecords;
 
 namespace Content.Shared._Starlight.StationRecords;

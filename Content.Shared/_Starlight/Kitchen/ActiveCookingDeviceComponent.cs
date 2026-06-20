@@ -1,4 +1,3 @@
-using Content.Shared.Kitchen;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 // ReSharper disable once CheckNamespace

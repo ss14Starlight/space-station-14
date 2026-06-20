@@ -1,6 +1,5 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;

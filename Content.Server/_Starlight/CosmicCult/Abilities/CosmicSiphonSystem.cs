@@ -7,7 +7,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared.SSDIndicator;
 using Content.Server._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace.Components;

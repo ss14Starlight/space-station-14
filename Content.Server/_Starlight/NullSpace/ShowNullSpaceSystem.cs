@@ -2,7 +2,6 @@ using Content.Shared.Eye;
 using Robust.Server.GameObjects;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared._Starlight.NullSpace;
 using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared._Starlight.NullSpace.Systems;
 

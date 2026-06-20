@@ -1,6 +1,3 @@
-using Content.Server._Starlight.GameTicking.Rules;
-using Robust.Shared.Prototypes;
-
 namespace Content.Server._Starlight.GameTicking.Rules;
 
 [RegisterComponent, Access(typeof(NanoChatSpamRuleSystem))]

@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Kitchen.Components;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;

@@ -1,5 +1,4 @@
 ﻿using Content.Server.Fax;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Components.Handlers.Fax;
 using Content.Shared._Starlight.Railroading.Events;

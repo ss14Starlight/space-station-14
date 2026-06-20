@@ -1,6 +1,5 @@
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.SecureTerminal;
 

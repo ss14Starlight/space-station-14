@@ -1,6 +1,3 @@
-using Robust.Shared.GameObjects;
-using Robust.Shared.Serialization.Manager.Attributes;
-
 namespace Content.Shared._Starlight.Defects.Components;
 
 // Abstract base for all defect components on second-hand / worn items.

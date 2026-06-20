@@ -1,6 +1,5 @@
 using Content.Client._Starlight.Overlay.Overlays;
 using Content.Shared._Starlight.Overlay.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;

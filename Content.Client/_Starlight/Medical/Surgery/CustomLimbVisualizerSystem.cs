@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Item;
 using Robust.Client.GameObjects;
-using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared.Humanoid;
 using System.Numerics;
 using Robust.Shared.Timing;

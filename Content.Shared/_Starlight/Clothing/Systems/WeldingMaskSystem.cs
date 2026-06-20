@@ -3,7 +3,6 @@ using Content.Shared._Starlight.Eye;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.Eye;
 using Content.Shared.Item;
 using Content.Shared.Item.ItemToggle.Components;
 

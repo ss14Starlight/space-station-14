@@ -158,6 +158,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreather # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheese # Starlight
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
@@ -738,6 +739,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherClown # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseClown # Starlight
 
 - type: loadoutGroup
   id: ClownJobTrinkets
@@ -809,6 +811,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherMime # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMime # Starlight
 
 - type: loadoutGroup
   id: MimeJobTrinkets
@@ -1214,6 +1217,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherExtended # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseExtended # Starlight
 
 # Science
 - type: loadoutGroup
@@ -1605,6 +1609,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonbreatherSecurity # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseSecurity # Starlight
 
 # Wildcards
 - type: loadoutGroup
@@ -1655,6 +1660,7 @@
   - LoadoutSpeciesVoxNitrogen
   - EmergencyNonBreatherSyndicate # 🌟Starlight🌟
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseSyndicate # Starlight
 
 - type: loadoutGroup
   id: SurvivalMilitaryDouble
@@ -1667,6 +1673,7 @@
   - EmergencyElfOxygenMilitaryDouble # Starlight
   - EmergencyDwarfOxygenMilitaryDouble # Starlight
   - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMilitary # Starlight
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

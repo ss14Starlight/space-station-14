@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Medical.Items;
 using Content.Shared._Starlight.Medical.Items.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
@@ -6,7 +5,6 @@ using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Damage;
 using Content.Shared.Audio;
 using Content.Shared.Popups;
 using Content.Shared.Chemistry.Reagent;

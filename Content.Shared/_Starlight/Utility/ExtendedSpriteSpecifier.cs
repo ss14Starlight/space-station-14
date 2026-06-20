@@ -1,8 +1,6 @@
 using System.Numerics;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Shared._Starlight.Utility;
 
