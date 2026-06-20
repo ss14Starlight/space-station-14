@@ -10,6 +10,7 @@
     stateDoorOpen: secure_open
     stateDoorClosed: secure_door
 
+## Security
 # Security Officer
 - type: entity
   id: LockerSecurityLarge
@@ -38,7 +39,7 @@
   - type: AccessReader
     access: [["Brigmedic"]]
 
-# NanoTrasen Representatives
+## NanoTrasen Representatives
 #BSO
 - type: entity
   id: LockerBlueshield
@@ -111,6 +112,7 @@
   - type: WiresPanelSecurity
     securityLevel: medSecurity
 
+## Cargo
 # Salvage Lead
 - type: entity
   id: LockerSalvageLead
@@ -237,7 +239,7 @@
   - type: AccessReader
     access: [["Mail"]]
 
-# Medical
+## Medical
 # Surgeon
 - type: entity
   id: LockerSurgeon
@@ -302,7 +304,7 @@
     - type: AccessReader
       access: [["Medical"], ["Research"]] # Genetics is a weird job, it's kinda arbitrarily in medical and science depending on fork, so might as well give both.
 
-# Science
+## Science
 # Roboticist
 - type: entity
   id: LockerRoboticist
@@ -319,7 +321,8 @@
     - type: AccessReader
       access: [["Robotics"]]
 
-# Janitor locker
+## Service
+# Janitor
 - type: entity
   id: LockerJanitor
   name: janitorial locker

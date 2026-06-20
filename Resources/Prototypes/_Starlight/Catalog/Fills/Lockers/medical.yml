@@ -41,3 +41,81 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: EffectFlashBluespace
+
+# Surgeon
+- type: entity
+  id: LockerSurgeonFilled
+  suffix: Filled
+  parent: LockerSurgeon
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillSurgeon
+
+- type: entityTable
+  id: LockerFillSurgeon
+  table: !type:AllSelector
+    children:
+      - !type:GroupSelector
+        children:
+        - id: ClothingHeadHatSurgcapBlue
+        - id: ClothingHeadHatSurgcapGreen
+        - id: ClothingHeadHatSurgcapPurple
+        - id: ClothingHeadHatSurgcapBlack
+        - id: ClothingHeadHatSurgcapCyan
+        - id: ClothingHeadHatSurgcapPink
+        - id: ClothingHeadHatSurgcapWhite
+      - id: ClothingUniformJumpsuitMedicalDoctor
+      - id: ClothingUniformJumpkirtMedicalDoctor
+      - !type:GroupSelector
+        children:
+        - id: ClothingBackpackMedical
+        - id: ClothingBackpackSatchelMedical
+        - id: ClothingBackpackDuffelMedical
+      - !type:GroupSelector
+        children:
+        - id: ClothingShoesColorWhite
+        - id: ClothingShoesLeather
+      - !type:GroupSelector
+        children:
+        - id: ClothingHandsGlovesLatex
+        - id: ClothingHandsGlovesNitrile
+      - id: ClothingBeltMedical
+      - id: SurgicalKitMedicalFilled
+      - id: BottleCaseParamedicFilled
+      - id: HealiumTankFilled
+      - id: NitrousOxideTankFilled
+      - id: MedkitFilled
+      - id: UniformScrubsColorBlue
+      - !type:GroupSelector
+        children:
+        - id: UniformScrubsColorGreen
+        - id: UniformScrubsColorPurple
+        - id: UniformScrubsColorBlack
+        - id: UniformScrubsColorCyan
+        - id: UniformScrubsColorPink
+        - id: UniformScrubsColorWhite
+      - !type:GroupSelector
+        children:
+        - id: BoxFolderClipboard
+          weight: 0.1
+        - id: BoxFolderClipboardEmpty
+        - id: BoxFolderClipboardThreePapers
+          weight: 0.3
+        - id: BoxFolderPlasticClipboard
+          weight: 0.1
+        - id: BoxFolderPlasticClipboardEmpty
+        - id: BoxFolderPlasticClipboardThreePapers
+          weight: 0.3
+      - !type:GroupSelector
+        children:
+        - id: Pen
+        - id: LuxuryPen
+          weight: 0.2
+      - id: PlushieLizardJobMedicaldoctor
+        prob: 0.02
+      - id: ChemistryBottleLaughter # Widely recognized as the best medicine :o)
+        prob: 0.01
