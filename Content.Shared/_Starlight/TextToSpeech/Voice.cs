@@ -4,7 +4,7 @@ using System.Linq;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.TextToSpeech;
+namespace Content.Shared._Starlight.TextToSpeech;
 /// <summary>
 /// Prototype represent TTS voices
 /// </summary>

@@ -3,7 +3,7 @@ using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Tasks;
 
 /// <summary>
 /// Components like Task describe the objectives that need to be completed and store progress.

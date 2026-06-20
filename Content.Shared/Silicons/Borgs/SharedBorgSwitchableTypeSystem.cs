@@ -1,6 +1,6 @@
 using System.Linq; // Starlight-edit
 using Content.Shared._Afterlight.Silicons.Borgs; // Afterlight
-using Content.Shared.Starlight; // Starlight-edit
+using Content.Shared._Starlight; // Starlight-edit
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;

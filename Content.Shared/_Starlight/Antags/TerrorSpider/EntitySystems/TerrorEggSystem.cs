@@ -6,8 +6,9 @@ using Robust.Shared.Random;
 using Content.Shared.UserInterface;
 using Robust.Shared.Player;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Abstract;
 
-namespace Content.Shared._Starlight.Antags.TerrorSpider;
+namespace Content.Shared._Starlight.Antags.TerrorSpider.EntitySystems;
 public sealed partial class TerrorEggSystem : AccUpdateEntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;

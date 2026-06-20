@@ -6,7 +6,7 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffectNew;
 using Robust.Shared.Random;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class StutteringSystem : SharedStutteringSystem
 {

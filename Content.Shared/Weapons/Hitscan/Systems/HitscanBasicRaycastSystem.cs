@@ -24,6 +24,8 @@ using Content.Shared.Tag;
 using System.Reflection;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.NullSpace.Components;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Hitscan.Systems;

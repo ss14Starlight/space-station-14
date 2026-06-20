@@ -38,7 +38,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Physics;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
 public sealed partial class GargantuaSystem : EntitySystem
 {

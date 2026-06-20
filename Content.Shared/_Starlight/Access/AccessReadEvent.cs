@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Content.Shared.Inventory;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery;
 
 namespace Content.Shared._Starlight.Access;
 [ByRefEvent]

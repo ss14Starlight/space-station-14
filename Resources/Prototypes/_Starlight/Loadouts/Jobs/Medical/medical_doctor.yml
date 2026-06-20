@@ -70,3 +70,8 @@
   id: MedicalEyePatchHud
   equipment:
     eyes: ClothingEyesEyepatchHudMedical
+
+- type: loadout
+  id: WindbreakerMedical
+  equipment:
+    outerClothing: ClothingOuterWindbreakerMedical

@@ -1,6 +1,4 @@
-using Content.Shared.Starlight.Weapon.Systems;
 using System.Numerics;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Random;
@@ -8,8 +6,10 @@ using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Weapons;
+using Content.Shared._Starlight.Weapons.Components;
 
-namespace Content.Server._Starlight.Weapon.Systems;
+namespace Content.Server._Starlight.Weapons;
 public sealed partial class WeaponDismantleOnShootSystem : SharedWeaponDismantleOnShootSystem
 {
     [Dependency] private ThrowingSystem _throwing = default!;

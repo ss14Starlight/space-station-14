@@ -5,6 +5,9 @@ using Robust.Shared.Prototypes;
 using Content.Client._Starlight.Overlay;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
+using Content.Shared._Starlight.NullSpace.Systems;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Client._Starlight.Overlay.Overlays;
 
 namespace Content.Client._Starlight;
 
