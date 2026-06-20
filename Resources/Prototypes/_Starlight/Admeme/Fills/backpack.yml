@@ -107,3 +107,5 @@
         - id: MedTakMindShieldImplanter
         - id: MedTakDeathRattleImplanter
         - id: MedkitCombatMedTakFilled
+        - id: DoubleEmergencyOxygenTankFilled
+        - id: ClothingMaskGasSecurity
