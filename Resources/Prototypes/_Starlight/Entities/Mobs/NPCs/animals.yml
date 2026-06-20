@@ -149,8 +149,8 @@
   - type: GhostRole
     prob: 0.05
     makeSentient: true
-    name: ghost-role-information-monkey-name
-    description: ghost-role-information-monkey-description
+    name: ghost-role-information-chimpken-name
+    description: ghost-role-information-chimpken-description
     rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
   - type: Clumsy
