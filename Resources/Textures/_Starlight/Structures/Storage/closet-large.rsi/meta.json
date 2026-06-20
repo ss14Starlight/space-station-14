@@ -4,7 +4,7 @@
       "x": 32,
       "y": 32
     },
-    "copyright": "Original Sec locker taken from tgstation, Doublesec done by Killer Tamashi | Double salv/mining by mikeysaurus",
+    "copyright": "Original Sec locker taken from tgstation, Doublesec done by Killer Tamashi | Double salv/mining by mikeysaurus, double cargo/mail by wonderfulnewworld (GitHub)",
     "license": "CC-BY-SA-3.0",
     "states": [
         {
@@ -38,13 +38,16 @@
             "name": "secure_open"
         },
         {
-            "name": "sec"
+            "name": "sec",
+			"copyright": "Killer Tamashi"
         },
         {
-            "name": "sec_door"
+            "name": "sec_door",
+			"copyright": "Killer Tamashi"
         },
         {
-            "name": "sec_open"
+            "name": "sec_open",
+			"copyright": "Killer Tamashi"
         },
         {
             "name": "brigmedic"
@@ -53,22 +56,44 @@
             "name": "brigmedic_door"
         },
         {
-            "name": "miner"
+            "name": "miner",
+			"copyright": "mikeysaurus"
         },
         {
-            "name": "miner_door"
+            "name": "miner_door",
+			"copyright": "mikeysaurus"
         },
         {
-            "name": "miner_open"
+            "name": "miner_open",
+			"copyright": "mikeysaurus"
         },
         {
-            "name": "salvage"
+            "name": "salvage",
+			"copyright": "mikeysaurus"
         },
         {
-            "name": "salvage_door"
+            "name": "salvage_door",
+			"copyright": "mikeysaurus"
         },
         {
-            "name": "salvage_open"
+            "name": "salvage_open",
+			"copyright": "mikeysaurus"
+        },
+        {
+            "name": "cargo",
+			"copyright": "mikeysaurus, wonderfulnewworld"
+        },
+        {
+            "name": "cargo_door",
+			"copyright": "mikeysaurus, wonderfulnewworld"
+        },
+        {
+            "name": "mail",
+			"copyright": "mikeysaurus, wonderfulnewworld"
+        },
+        {
+            "name": "mail_door",
+			"copyright": "mikeysaurus, wonderfulnewworld"
         }
     ]
 }
