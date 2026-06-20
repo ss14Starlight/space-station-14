@@ -27,7 +27,7 @@
     maxDamage: 500
     damage:
       types:
-        Blunt: 0.5
+        Blunt: 0.2
   - type: PressureProtection
     highPressureModifier: 20
     highPressureMultiplier: 1000
