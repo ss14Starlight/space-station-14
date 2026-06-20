@@ -23,7 +23,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckPauldronSecurity
   name: Security guard pauldron
-  description: A authoritative red pauldron denoting Security affiliation. Perfect for those who enforce the law.
+  description: An authoritative red pauldron denoting Security affiliation. Perfect for those who enforce the law.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/GuardPauldrons/sec_guard_pauldron.rsi
