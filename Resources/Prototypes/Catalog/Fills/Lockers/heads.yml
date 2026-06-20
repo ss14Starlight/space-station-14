@@ -462,6 +462,7 @@
     - id: ClothingOuterWinterHoS
 #    - id: ClothingHandsGlovesCombat # Starlight, they spawn with them now.
     - id: SecureBriefings
+    - id: GuardBoxDufflePrefill # Starlight, duffle full of random guard gear that spawns in the locker for HoS to assign officers to departments.
     - id: PrintedDocumentGreenshiftAlert
       conditions:
       - !type:GamemodeCondition

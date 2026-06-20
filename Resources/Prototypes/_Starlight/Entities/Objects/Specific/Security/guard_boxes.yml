@@ -1,0 +1,94 @@
+# Guard Boxes - contain a department pauldron, access chip, and encryption key
+
+- type: entity
+  parent: BaseItem
+  id: GuardBoxEngineering
+  name: engineering guard box
+  description: A sealed box containing equipment for Engineering guards.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipEngineering
+    - id: ClothingNeckPauldronEngineeringGuard
+    - id: EncryptionKeyEngineering
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: GuardBoxMedical
+  name: medical guard box
+  description: A sealed box containing equipment for Medical guards.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipMedical
+    - id: ClothingNeckPauldronMedicalGuard
+    - id: EncryptionKeyMedical
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: GuardBoxScience
+  name: science guard box
+  description: A sealed box containing equipment for Science guards.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipScience
+    - id: ClothingNeckPauldronScienceGuard
+    - id: EncryptionKeyScience
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: GuardBoxSupply
+  name: supply guard box
+  description: A sealed box containing equipment for Supply/Cargo guards.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipSupply
+    - id: ClothingNeckPauldronSupplyGuard
+    - id: EncryptionKeyCargo
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: GuardBoxDufflePrefill
+  parent: ClothingBackpackDuffel
+  name: Department Guard Equipment Bag
+  description: A dufflebag containing a variety of equipment for department guards. The bag is unsealed, but the contents are still organized and ready for use.
+  components:
+  - type: StorageFill
+    contents:
+    - id: GuardBoxEngineering
+      amount: 2
+    - id: GuardBoxMedical
+      amount: 2
+    - id: GuardBoxScience
+      amount: 2
+    - id: GuardBoxSupply
+      amount: 2
