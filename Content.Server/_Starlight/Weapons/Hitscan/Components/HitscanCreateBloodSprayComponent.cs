@@ -1,4 +1,4 @@
-namespace Content.Server.Weapons.Hitscan.Components;
+namespace Content.Server._Starlight.Weapons.Hitscan.Components;
 
 [RegisterComponent]
 public sealed partial class HitscanCreateBloodSprayComponent : Component;

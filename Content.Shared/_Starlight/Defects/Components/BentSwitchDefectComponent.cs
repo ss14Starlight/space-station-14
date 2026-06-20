@@ -1,4 +1,4 @@
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// Forces the gun into semi-automatic mode at spawn by overwriting AvailableModes

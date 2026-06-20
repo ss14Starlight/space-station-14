@@ -1,7 +1,7 @@
 using System.Numerics;
 using Robust.Client.Graphics;
 
-namespace Content.Client.Screen;
+namespace Content.Client._Starlight.Screen;
 
 [RegisterComponent]
 public sealed partial class ScreenVisualsComponent : Component

@@ -1,11 +1,10 @@
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
-using Content.Shared.UserInterface;
 using Content.Shared.Verbs;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.Clothing;
+namespace Content.Shared._Starlight.Clothing;
 
 public sealed partial class SharedRollUpSleevesSystem : EntitySystem
 {

@@ -1,10 +1,10 @@
 using System.Linq;
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Weapons.Melee;
 using Robust.Shared.Network;
 
-namespace Content.Shared.Defects.Systems;
+namespace Content.Shared._Starlight.Defects.Systems;
 
 /// <summary>
 /// At MapInit, scales down all damage values on MeleeWeaponComponent by

@@ -1,8 +1,9 @@
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Server.Holiday;
 using Content.Shared.Holiday;
 
-namespace Content.Server.Holiday;
+namespace Content.Server._Starlight.Holiday;
 
 public sealed partial class HolidayVisualsSystem : EntitySystem
 {

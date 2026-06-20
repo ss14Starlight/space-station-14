@@ -1,4 +1,6 @@
-namespace Content.Shared.Emp;
+using Content.Shared.Emp;
+
+namespace Content.Shared._Starlight.Emp;
 
 /// <summary>
 /// The entity with this component is not affected by Emp.

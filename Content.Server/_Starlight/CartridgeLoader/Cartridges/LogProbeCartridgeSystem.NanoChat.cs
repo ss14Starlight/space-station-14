@@ -3,6 +3,7 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared._CD.CartridgeLoader.Cartridges;
 using Content.Shared._CD.NanoChat;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.CartridgeLoader.Cartridges;
 
 public sealed partial class LogProbeCartridgeSystem

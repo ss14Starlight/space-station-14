@@ -1,4 +1,3 @@
-using Content.Server.Kitchen.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Chat;
 using Content.Shared.Clumsy;
@@ -8,15 +7,12 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Execution;
 using Content.Shared.IdentityManagement;
-using Content.Shared.Interaction.Events;
-using Content.Shared.Mind;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Hitscan.Components;
-using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
@@ -24,16 +20,14 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Content.Shared.Weapons.Ranged;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Kitchen.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Components;
 
-namespace Content.Server.Execution;
+namespace Content.Server._Starlight.Execution;
 
 /// <summary>
 ///     Verb for violently murdering cuffed creatures.

@@ -2,7 +2,6 @@ using Content.Server.Chat.Managers;
 using Content.Server.Popups;
 using Content.Shared._Starlight.Xenobiology;
 using Content.Shared.Chat;
-using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Robust.Shared.Player;
 

@@ -1,8 +1,10 @@
+using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 
-namespace Content.Shared.Weapons.Ranged.Systems;
+namespace Content.Shared._Starlight.Weapons.Ranged.Systems;
 
 // Randomizes loaded ammo count for magazines with RandomAmmoFillComponent.
 // Runs after SharedGunSystem so it overrides the UnspawnedCount = Capacity

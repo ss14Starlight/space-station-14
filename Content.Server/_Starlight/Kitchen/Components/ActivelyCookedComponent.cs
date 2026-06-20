@@ -1,4 +1,4 @@
-namespace Content.Server.Kitchen.Components;
+namespace Content.Server._Starlight.Kitchen.Components;
 
 /// <summary>
 /// Attached to an object that's actively being microwaved

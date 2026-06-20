@@ -2,6 +2,7 @@ using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.AlertLevel;
 using Content.Server.GameTicking;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared._Starlight.Light;
 using Content.Shared.GameTicking.Components;
@@ -9,7 +10,7 @@ using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.Station.Components;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
 public sealed partial class NightShiftRule : StationEventSystem<NightShiftRuleComponent>
 {

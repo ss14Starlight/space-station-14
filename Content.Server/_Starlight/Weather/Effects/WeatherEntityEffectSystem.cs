@@ -1,8 +1,8 @@
+using Content.Server.Weather;
+using Content.Shared._Starlight.Weather.Effects;
 using Content.Shared.EntityEffects;
-using Content.Shared.Weather;
-using Content.Shared.Weather.Effects;
 
-namespace Content.Server.Weather.Effects;
+namespace Content.Server._Starlight.Weather.Effects;
 
 public sealed partial class WeatherEntityEffectSystem : EntitySystem
 {

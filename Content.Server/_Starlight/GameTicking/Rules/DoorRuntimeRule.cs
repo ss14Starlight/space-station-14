@@ -1,5 +1,6 @@
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Shared.Doors.Components;
 using Content.Shared.Doors.Systems;
 using Content.Shared.Electrocution;
@@ -8,7 +9,7 @@ using Content.Shared.Silicons.StationAi;
 using Content.Shared.Station.Components;
 using Robust.Shared.Timing;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
 /// <summary>
 /// A gamerule themed around a hostile virus-like program that bolts and electrifes doors on the station.

@@ -1,14 +1,10 @@
-using Content.Client.Movement.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Content.Shared.Eye.Blinding;
-using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
-using Content.Shared.Eye;
+using Content.Shared._Starlight.Eye;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Client.Overlays;
 
 public sealed partial class DarkenedVisionOverlay : Overlay

@@ -1,4 +1,4 @@
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// Reduces melee weapon damage at spawn by multiplying all damage values on
