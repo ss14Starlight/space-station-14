@@ -3,7 +3,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Starlight.EntityEffects.Components;
+namespace Content.Shared._Starlight.EntityEffects.Components;
 
 [RegisterComponent]
 public sealed partial class DissolvableComponent : Component

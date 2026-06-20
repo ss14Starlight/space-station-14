@@ -5,18 +5,19 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
-using Content.Shared._Starlight.Weapon;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Weapons.Hitscan.Components;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
 
-namespace Content.Server._Starlight.Combat.Ranged;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
 public sealed partial class PierceSystem : EntitySystem
 {

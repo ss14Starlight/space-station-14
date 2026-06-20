@@ -1,7 +1,7 @@
-﻿using Content.Shared.Starlight.Clothing;
+﻿using Content.Shared._Starlight.Clothing;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Starlight.Clothing;
+namespace Content.Shared._Starlight.Clothing;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedRollUpSleevesSystem)), AutoGenerateComponentState]
 public sealed partial class RollUpSleevesComponent : Component

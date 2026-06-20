@@ -11,10 +11,11 @@ using Content.Shared.Station.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 

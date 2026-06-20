@@ -4,7 +4,7 @@ using Content.Shared.Item;
 using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-namespace Content.Shared.Starlight.Medical.Surgery;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class CustomLimbVisualizerComponent : Component

@@ -1,6 +1,6 @@
-﻿using Content.Shared.Starlight.ItemSwitch;
+﻿using Content.Shared._Starlight.ItemSwitch;
 
-namespace Content.Server.Item;
+namespace Content.Server._Starlight.ItemSwitch;
 
 public sealed class ItemSwitchSystem : SharedItemSwitchSystem
 {

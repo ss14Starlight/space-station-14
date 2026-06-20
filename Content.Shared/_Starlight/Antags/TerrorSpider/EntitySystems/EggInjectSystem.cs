@@ -9,7 +9,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._Starlight.Antags.TerrorSpider;
+namespace Content.Shared._Starlight.Antags.TerrorSpider.EntitySystems;
 
 public sealed partial class EggInjectSystem : EntitySystem
 {

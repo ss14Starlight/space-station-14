@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
 #region Starlight
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 using Robust.Shared.Serialization;
 #endregion Starlight
 

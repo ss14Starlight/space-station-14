@@ -1,8 +1,7 @@
 using System.Diagnostics;
 using Content.Client._Starlight.Shaders;
-using Content.Client._Starlight.Trail;
 using Content.Shared._Starlight.Trail;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;

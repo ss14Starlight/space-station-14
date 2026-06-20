@@ -14,7 +14,6 @@ using Content.Shared.Mind;
 using Content.Shared.PDA.Ringer;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Store.Conditions;
 using Content.Shared.Store.Events;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
@@ -24,6 +23,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Prometheus; //Starlight
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Store.Events;
+using Content.Shared._Starlight.Store.Conditions;
+using Content.Server._Starlight.Revolutionary;
 
 
 namespace Content.Server.Store.Systems;

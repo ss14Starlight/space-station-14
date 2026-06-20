@@ -2,7 +2,7 @@ using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Starlight.SecureTerminal;
+namespace Content.Shared._Starlight.SecureTerminal;
 
 /// <summary>
 /// Defines one requestable action in the Secure Command Terminal.

@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Administration.Logs;
@@ -40,10 +39,11 @@ using Robust.Shared.Utility;
 #region Starlight
 using Content.Shared._Starlight.Weapons.DualWield;
 using Content.Shared.Mech.Components;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 using Content.Shared.Weapons.Hitscan.Events;
 using Content.Shared._Starlight.Camera;
 using Content.Shared._Starlight.VentCrawl.Components;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Ranged.Systems;

@@ -4,7 +4,7 @@ using Content.Server.EUI;
 using Content.Shared._Starlight.GhostTheme;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Console;

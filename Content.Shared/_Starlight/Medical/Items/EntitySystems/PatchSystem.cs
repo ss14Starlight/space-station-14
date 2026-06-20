@@ -1,5 +1,5 @@
-using Content.Shared.Starlight.Medical.Items;
-using Content.Shared.Starlight.Medical.Items.Components;
+using Content.Shared._Starlight.Medical.Items;
+using Content.Shared._Starlight.Medical.Items.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.DoAfter;
@@ -16,7 +16,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Components;
 
-namespace Content.Shared.Medical.Items.EntitySystems;
+namespace Content.Shared._Starlight.Medical.Items.EntitySystems;
 
 public sealed partial class PatchSystem : EntitySystem
 {
