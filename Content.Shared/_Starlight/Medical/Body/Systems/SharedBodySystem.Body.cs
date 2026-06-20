@@ -13,6 +13,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Medical.Body.Prototypes;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem

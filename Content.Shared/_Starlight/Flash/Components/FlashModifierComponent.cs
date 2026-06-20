@@ -1,4 +1,4 @@
-namespace Content.Shared.Flash.Components;
+namespace Content.Shared._Starlight.Flash.Components;
 
 [RegisterComponent]
 public sealed partial class FlashModifierComponent : Component

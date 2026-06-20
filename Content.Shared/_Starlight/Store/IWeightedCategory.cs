@@ -1,4 +1,4 @@
-namespace Content.Shared.Store;
+namespace Content.Shared._Starlight.Store;
 
 /// <summary>
 /// Shared contract for category prototypes that participate in weighted random selection.

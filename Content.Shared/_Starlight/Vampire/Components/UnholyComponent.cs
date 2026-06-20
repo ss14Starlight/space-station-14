@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Vampire.Components;
+namespace Content.Shared._Starlight.Vampire.Components;
 
 /// <summary>
 /// Marker component for entities considered "unholy" by holy items like the Bible.

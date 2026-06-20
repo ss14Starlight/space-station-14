@@ -1,10 +1,13 @@
-﻿using Content.Shared.Starlight.Antags.Abductor;
+﻿using Content.Shared._Starlight.Antags.Abductor;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.RichText;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
 using static Robust.Client.UserInterface.Control;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.Antags.Abductor.UI;
+using Content.Shared._Starlight.Antags.Abductor.Prototypes;
 
 namespace Content.Client._Starlight.Antags.Abductor;
 

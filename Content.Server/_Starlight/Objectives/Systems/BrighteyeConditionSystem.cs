@@ -2,6 +2,7 @@ using Content.Shared.Objectives.Components;
 using Content.Shared.Mind;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 

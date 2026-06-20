@@ -1,9 +1,10 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 
-namespace Content.Server.Weapons.Hitscan.Systems;
+namespace Content.Server._Starlight.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanIgniteEffectSystem : EntitySystem
 {

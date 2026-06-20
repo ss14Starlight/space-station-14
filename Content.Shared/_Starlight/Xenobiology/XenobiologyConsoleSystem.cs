@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Starlight.Computers.RemoteEye;
+using Content.Shared._Starlight.Computers.RemoteEye.Components;
 using Content.Shared._Starlight.Xenobiology.MiscItems;
 using Content.Shared._Starlight.Xenobiology.Potions;
 using Content.Shared.Actions;

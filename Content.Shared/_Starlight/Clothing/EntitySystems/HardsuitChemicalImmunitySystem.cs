@@ -1,5 +1,6 @@
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared._Starlight.Clothing.Components;
+using Content.Shared._Starlight.Combat.OnHit;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Inventory;

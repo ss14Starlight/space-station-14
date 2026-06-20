@@ -1,11 +1,4 @@
 Entries:
-- author: wonderfulnewworld, ZerraTheBunny
-  changes:
-  - message: Cyclorite markings now have localization.
-    type: Fix
-  id: 405723
-  time: '2026-06-08T21:42:02.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4670
 - author: Johnny
   changes:
   - message: A few prototypes of jugs and bags for QoL in loadouts.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406122
   time: '2026-06-19T13:07:18.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4842
+- author: Hot_Mic
+  changes:
+  - message: Added Shuttle "NTS 'Kickstart' Ingeniator", a purchasable engineering shuttle in the shipyard console for 100,000 spesos.
+    type: Add
+  id: 406123
+  time: '2026-06-19T14:29:18.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4749
 Order: -1

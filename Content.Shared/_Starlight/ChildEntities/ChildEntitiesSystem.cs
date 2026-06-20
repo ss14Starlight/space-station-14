@@ -1,7 +1,7 @@
 using Content.Shared.Buckle.Components;
 using Robust.Shared.Network;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.ChildEntities;
 
 public sealed partial class ChildEntitiesSystem : EntitySystem
 {

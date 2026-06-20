@@ -1,4 +1,4 @@
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// Gives a gun a per-shot chance to backfire, triggering a small explosion at the

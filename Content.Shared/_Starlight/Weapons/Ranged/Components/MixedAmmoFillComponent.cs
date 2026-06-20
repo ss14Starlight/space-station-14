@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager.Attributes;
 
-namespace Content.Shared.Weapons.Ranged.Components;
+namespace Content.Shared._Starlight.Weapons.Ranged.Components;
 
 /// <summary>
 /// Defines one entry in a MixedAmmoFillComponent's weighted ammo table.

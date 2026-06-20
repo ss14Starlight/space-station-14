@@ -3,8 +3,10 @@ using Robust.Shared.Player;
 using Robust.Client.Player;
 using Content.Client.Overlays;
 using Content.Shared.Eye;
+using Content.Shared._Starlight.Eye;
+using Content.Client._Starlight.Overlay.Overlays;
 
-namespace Content.Client.Eye;
+namespace Content.Client._Starlight.Eye;
 
 public sealed partial class DarkenedVisionSystem : SharedDarkenedVisionSystem
 {

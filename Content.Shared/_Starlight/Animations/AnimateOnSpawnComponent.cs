@@ -1,7 +1,7 @@
 ﻿using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Animations;
+namespace Content.Shared._Starlight.Animations;
 
 [RegisterComponent]
 public sealed partial class AnimateOnSpawnComponent : Component

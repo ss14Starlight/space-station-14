@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Ranged.Components;
+namespace Content.Shared._Starlight.Weapons.Ranged.Components;
 
 // When added to an entity with BallisticAmmoProviderComponent, randomizes
 // the loaded round count at MapInit to a uniform value in [MinFillFraction, MaxFillFraction]

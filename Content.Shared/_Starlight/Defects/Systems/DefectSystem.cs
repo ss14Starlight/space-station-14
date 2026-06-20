@@ -1,8 +1,8 @@
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 
-namespace Content.Shared.Defects.Systems;
+namespace Content.Shared._Starlight.Defects.Systems;
 
 /// <summary>
 /// Rolls DefectComponent.Prob for each defect on entities with RandomDefectsComponent

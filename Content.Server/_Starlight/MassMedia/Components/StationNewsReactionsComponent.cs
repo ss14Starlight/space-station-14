@@ -1,4 +1,4 @@
-namespace Content.Server.MassMedia.Components;
+namespace Content.Server._Starlight.MassMedia.Components;
 
 [RegisterComponent]
 public sealed partial class StationNewsReactionsComponent : Component

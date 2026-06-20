@@ -1,10 +1,12 @@
+using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Shared.Weapons.Ranged.Systems;
+namespace Content.Shared._Starlight.Weapons.Ranged.Systems;
 
 /// <summary>
 /// Fills a ballistic magazine at MapInit with a weighted-random mix of ammo types

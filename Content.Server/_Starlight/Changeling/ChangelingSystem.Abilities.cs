@@ -33,9 +33,12 @@ using Content.Shared.Humanoid;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Server._Starlight.Language;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Changeling;
+using Content.Server._Starlight.Objectives.Components;
 // Starlight edit end
 
-namespace Content.Server.Changeling;
+namespace Content.Server._Starlight.Changeling;
 
 public sealed partial class ChangelingSystem : EntitySystem
 {

@@ -1,4 +1,4 @@
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// Randomizes explosive yield and/or projectile count at MapInit.

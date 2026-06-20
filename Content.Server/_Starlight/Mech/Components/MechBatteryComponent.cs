@@ -1,4 +1,4 @@
-namespace Content.Server.Mech.Components;
+namespace Content.Server._Starlight.Mech.Components;
 
 [RegisterComponent]
 public sealed partial class MechBatteryComponent : Component

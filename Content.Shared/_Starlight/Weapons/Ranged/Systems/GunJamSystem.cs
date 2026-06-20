@@ -1,11 +1,13 @@
+using Content.Shared._Starlight.Weapons.Ranged.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Weapons.Ranged.Systems;
+namespace Content.Shared._Starlight.Weapons.Ranged.Systems;
 
 // Handles per-shot jam chance for guns with GunJamDefectComponent.
 // A jammed gun cannot fire until the player racks the slide (Z / Use In Hand).

@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Eye;
+namespace Content.Shared._Starlight.Eye;
 
 /// <summary>
 /// Piece of gear that darkens the user vision

@@ -1,5 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Shared.Player;
 
 namespace Content.Shared._NullLink;

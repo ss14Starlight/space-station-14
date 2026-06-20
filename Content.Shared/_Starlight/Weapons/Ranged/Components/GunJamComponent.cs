@@ -1,8 +1,8 @@
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Ranged.Components;
+namespace Content.Shared._Starlight.Weapons.Ranged.Components;
 
 // Gives a gun a per-shot chance to jam. A jammed gun cannot fire until the player
 // racks the slide (Z / Use In Hand), which instantly clears the jam.

@@ -1,6 +1,6 @@
 using Content.Shared._Starlight.Abstract.Conditions;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Abstract.Conditions;
 
 [RegisterComponent]
 public sealed partial class ConditionsComponent : Component

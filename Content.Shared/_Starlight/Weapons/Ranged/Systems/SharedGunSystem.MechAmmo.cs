@@ -8,7 +8,8 @@ using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Containers;
 using Content.Shared.Mech.EntitySystems;
 
-namespace Content.Shared.Weapons.Ranged.Systems; //Wrong namespace for this, but it needs to be in the same namespace as GunSystem
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {

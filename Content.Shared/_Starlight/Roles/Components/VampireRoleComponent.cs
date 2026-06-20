@@ -1,6 +1,7 @@
+using Content.Shared.Roles.Components;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Roles.Components;
+namespace Content.Shared._Starlight.Roles.Components;
 
 /// <summary>
 /// Mind role marker for Vampires.

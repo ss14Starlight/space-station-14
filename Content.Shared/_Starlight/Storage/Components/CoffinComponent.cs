@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Storage.Components;
+namespace Content.Shared._Starlight.Storage.Components;
 
 /// <summary>
 /// Marker component for coffin entities. Used by prototypes (e.g., CrateCoffin).

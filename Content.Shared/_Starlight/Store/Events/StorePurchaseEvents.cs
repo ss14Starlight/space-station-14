@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Store.Events;
+namespace Content.Shared._Starlight.Store.Events;
 
 /// <summary>
 /// Event raised when a store purchase is attempted.

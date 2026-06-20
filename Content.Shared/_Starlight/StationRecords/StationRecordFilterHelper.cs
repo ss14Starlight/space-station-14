@@ -1,6 +1,7 @@
 using System;
+using Content.Shared.StationRecords;
 
-namespace Content.Shared.StationRecords;
+namespace Content.Shared._Starlight.StationRecords;
 
 /// <summary>
 /// Shared helper methods for station record filtering logic.

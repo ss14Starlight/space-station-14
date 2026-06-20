@@ -11,8 +11,9 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Damage.Components;
+using Content.Shared._Starlight.Weapons.Melee;
 
-namespace Content.Server.Weapons.Melee.InfectOnMelee;
+namespace Content.Server._Starlight.Weapons.InfectOnMelee;
 
 public sealed partial class InfectOnMeleeSystem : EntitySystem
 {
