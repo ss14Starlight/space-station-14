@@ -452,7 +452,7 @@
   parent: ClothingOuterCoatLabSeniorChemist
   id: ClothingOuterCoatLabSeniorChemistLong
   name: long senior chemist lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but long with bright orange and purple accents.
+  description: A NanoTrasen standard labcoat for medical personnel but long with bright orange and purple accents.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Coats/senior_chemistry_long_lab.rsi
@@ -470,7 +470,7 @@
   parent: ClothingOuterCoatLab
   id: ClothingOuterCoatLabVirologyLong
   name: long virologist lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but with bright green accents.
+  description: A NanoTrasen standard labcoat for medical personnel but with bright green accents.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Coats/virology_long_lab.rsi
@@ -487,7 +487,7 @@
   parent: ClothingOuterCoatLab
   id: ClothingOuterCoatLabBlackLong
   name: long black lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but in black.
+  description: A NanoTrasen standard labcoat for medical personnel but in black.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Coats/black_long_lab.rsi
@@ -504,7 +504,7 @@
   parent: ClothingOuterCoatLab
   id: ClothingOuterCoatLabCoronerLong
   name: long coroner lab coat
-  description: A Nanotrasen standard labcoat for medical personnel but in black with white accents.
+  description: A NanoTrasen standard labcoat for medical personnel but in black with white accents.
   components:
     - type: Sprite
       sprite: _Starlight/Clothing/OuterClothing/Coats/coroner_long_lab.rsi
