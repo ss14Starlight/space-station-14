@@ -161,7 +161,7 @@
     name: ghost-role-information-xenoroach-name
     description: ghost-role-information-xenoroach-description
     rules: ghost-role-information-silicon-rules
-    MindRoles:
+    mindRoles:
     - MindRoleXenoborg
     raffle:
       settings: default
