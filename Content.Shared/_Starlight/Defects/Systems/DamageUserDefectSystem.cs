@@ -1,9 +1,9 @@
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Defects.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Network;
 
-namespace Content.Shared.Defects.Systems;
+namespace Content.Shared._Starlight.Defects.Systems;
 
 /// <summary>
 /// Burns the wielder for a small amount of heat damage on every melee swing.

@@ -1,7 +1,7 @@
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Weapons.Ranged.Components;
+namespace Content.Shared._Starlight.Weapons.Ranged.Components;
 
 // Randomizes shots-per-burst on a per-burst basis. A burst-mode gun with this component
 // fires a different number of rounds each trigger pull, within [MinShots, MaxShots].

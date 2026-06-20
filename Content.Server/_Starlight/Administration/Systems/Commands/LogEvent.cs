@@ -1,9 +1,8 @@
-using Content.Server._Starlight.Administration.Systems;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
-namespace Content.Server._Starlight.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
 public sealed partial class LogEventCommand : LocalizedEntityCommands

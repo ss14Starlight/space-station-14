@@ -11,7 +11,7 @@ using Content.Shared.Administration;
 using Content.Shared.Climbing.Components;
 using Content.Shared.Doors.Components;
 using Content.Shared.NPC;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Configuration;

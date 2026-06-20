@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using Content.Server.Administration;
 using Content.Shared.Administration;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 

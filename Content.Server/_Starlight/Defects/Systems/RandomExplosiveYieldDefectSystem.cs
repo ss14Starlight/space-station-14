@@ -1,11 +1,11 @@
 using Content.Server.Explosion.Components;
-using Content.Shared.Defects.Components;
-using Content.Shared.Defects.Systems;
+using Content.Shared._Starlight.Defects.Components;
+using Content.Shared._Starlight.Defects.Systems;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Explosion.EntitySystems;
 using Robust.Shared.Random;
 
-namespace Content.Server.Defects.Systems;
+namespace Content.Server._Starlight.Defects.Systems;
 
 /// <summary>
 /// Randomizes explosive yield and projectile count for grenades with

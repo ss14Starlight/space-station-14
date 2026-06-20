@@ -1,16 +1,12 @@
 using System.Numerics;
 using Content.Shared._Starlight.Combat.Effects.Components;
 using Content.Shared.Armor;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Materials;
-using Content.Shared.Silicons.Borgs;
-using Content.Shared.Weapons.Ranged;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 

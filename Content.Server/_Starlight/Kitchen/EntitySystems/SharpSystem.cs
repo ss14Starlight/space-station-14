@@ -19,7 +19,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Kitchen.EntitySystems;
+namespace Content.Server._Starlight.Kitchen.EntitySystems;
 
 public sealed partial class SharpSystem : EntitySystem
 {

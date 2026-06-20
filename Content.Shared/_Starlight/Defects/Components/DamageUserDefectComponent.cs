@@ -1,6 +1,6 @@
 using Content.Shared.Damage;
 
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// Applies damage to the wielder on every melee swing, regardless of whether the

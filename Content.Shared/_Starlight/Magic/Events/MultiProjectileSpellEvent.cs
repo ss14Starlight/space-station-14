@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Magic.Events;
+namespace Content.Shared._Starlight.Magic.Events;
 
 /// <summary>
 /// Fires multiple projectiles in a spread pattern, like a shotgun blast.

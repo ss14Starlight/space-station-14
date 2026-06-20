@@ -1,7 +1,5 @@
-﻿using Content.Server.Actions; //Starlight
-using Content.Server.Humanoid;
+﻿using Content.Server.Humanoid;
 using Content.Shared.Cloning.Events;
-using Content.Shared._Starlight.Humanoid.Markings;
 using Content.Shared.Actions;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -9,6 +7,10 @@ using Content.Shared.Mobs;
 using Content.Shared.Toggleable;
 using Content.Shared.Wagging;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Server.Actions;
+using Content.Shared._Starlight.Humanoid.Markings;
+#endregion
 
 namespace Content.Server.Wagging;
 

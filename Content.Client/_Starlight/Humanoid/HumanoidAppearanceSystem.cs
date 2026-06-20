@@ -12,7 +12,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Client.Humanoid;
+namespace Content.Client._Starlight.Humanoid;
 
 public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 {

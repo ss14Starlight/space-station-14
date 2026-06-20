@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._Starlight.Weapons.Hitscan.Components;
 using Content.Server.Decals;
-using Content.Server.Weapons.Hitscan.Components;
 using Content.Shared._Starlight.Medical.Body.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Decals;
@@ -10,7 +10,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Weapons.Hitscan.Systems;
+namespace Content.Server._Starlight.Weapons.Hitscan.Systems;
 
 public sealed partial class HitscanCreateBloodSpraySystem : EntitySystem
 {

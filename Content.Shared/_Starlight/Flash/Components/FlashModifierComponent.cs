@@ -1,8 +1,10 @@
-namespace Content.Shared.Flash.Components;
+using Robust.Shared.GameStates;
 
-[RegisterComponent]
+namespace Content.Shared._Starlight.Flash.Components;
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FlashModifierComponent : Component
 {
-    [DataField]
+    [DataField, AutoNetworkedField]
     public float Modifier = 1f;
 }

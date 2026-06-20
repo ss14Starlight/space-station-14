@@ -2,10 +2,11 @@ using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Interaction;
+using Content.Shared.MagicMirror;
 using Content.Shared.UserInterface;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.MagicMirror;
+namespace Content.Shared._Starlight.MagicMirror;
 
 public abstract partial class SharedMagicMirrorSystem : EntitySystem
 {

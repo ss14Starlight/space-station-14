@@ -3,7 +3,6 @@ using Content.Server.Construction;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Hands.Systems;
-using Content.Server.Kitchen.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Temperature.Systems;
@@ -38,7 +37,9 @@ using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage.Components;
 using Content.Shared.Temperature.Components;
+using Content.Server._Starlight.Kitchen.Components;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Kitchen.EntitySystems
 {
     public sealed partial class CookingDeviceSystem : EntitySystem // Starlight-edit: renamed from MicrowaveSystem to CookingDeviceSystem
