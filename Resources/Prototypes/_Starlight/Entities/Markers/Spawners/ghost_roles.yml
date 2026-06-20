@@ -209,7 +209,6 @@
     - MindRoleSyndicateSpy
   - type: GhostRoleMobSpawner
     prototype: MobHumanSyndicateSpy
-
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
