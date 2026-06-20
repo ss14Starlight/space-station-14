@@ -276,6 +276,8 @@
     - type: Access
       tags:
       - MedTak
+      - Medical
+      - Maintenance
     - type: AccessReader
       access: [["MedTak"]]
     - type: ShowHealthBars
@@ -291,11 +293,13 @@
       - Binary
       - MedTak
       - Common
+      - Medical
     - type: ActiveRadio
       channels:
       - Binary
       - MedTak
       - Common
+      - Medical
     - type: MovementAlwaysTouching
     - type: Speech
       speechSounds: SyndieBorg

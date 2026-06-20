@@ -671,11 +671,24 @@
 # MedTak
 - type: entity
   parent: IDCardStandard
+  id: MedTakIDCard
+  abstract: true
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+    - type: IdCard
+    - type: Access
+      tags:
+        - MedTak
+        - Medical
+        - Maintenance
+
+- type: entity
+  parent: MedTakIDCard
   id: MedTakTeamLeadIDCard
   name: MedTak team leader ID card
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: medtak
         - sprite: *starlight-icon-rsi
@@ -684,17 +697,13 @@
     - type: IdCard
       jobTitle: job-name-medtak-leader
       jobIcon: JobIconMedTakLeader
-    - type: Access
-      tags:
-        - MedTak
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedTakIDCard
   id: MedTakDispatcherIDCard
   name: MedTak dispatcher ID card
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: medtak
         - sprite: *starlight-icon-rsi
@@ -703,17 +712,13 @@
     - type: IdCard
       jobTitle: job-name-medtak-dispatcher
       jobIcon: JobIconMedTakDispatcher
-    - type: Access
-      tags:
-        - MedTak
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedTakIDCard
   id: MedTakMedicIDCard
   name: MedTak medic ID card
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: medtak
         - sprite: *starlight-icon-rsi
@@ -722,17 +727,13 @@
     - type: IdCard
       jobTitle: job-name-medtak-medic
       jobIcon: JobIconMedTakMedic
-    - type: Access
-      tags:
-        - MedTak
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedTakIDCard
   id: MedTakPilotIDCard
   name: MedTak pilot ID card
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: medtak
         - sprite: *starlight-icon-rsi
@@ -741,17 +742,13 @@
     - type: IdCard
       jobTitle: job-name-medtak-pilot
       jobIcon: JobIconMedTakPilot
-    - type: Access
-      tags:
-        - MedTak
 
 - type: entity
-  parent: IDCardStandard
+  parent: MedTakIDCard
   id: MedTakSecurityIDCard
   name: MedTak security ID card
   components:
     - type: Sprite
-      sprite: _Starlight/Objects/Misc/id_cards.rsi
       layers:
         - state: medtak
         - sprite: *starlight-icon-rsi
@@ -760,6 +757,3 @@
     - type: IdCard
       jobTitle: job-name-medtak-security
       jobIcon: JobIconMedTakSecurity
-    - type: Access
-      tags:
-        - MedTak
