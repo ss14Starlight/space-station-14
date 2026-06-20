@@ -11,16 +11,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: List Prototypes directory
-        run: ls -l Resources/Prototypes
-
-      - name: Check for Resources/Prototypes/_StarLight directory
+      - name: Check for StarLight folders
         run: |
-          if [ -d "Resources/Prototypes/_StarLight" ]; then
-            echo "::error::Directory Resources/Prototypes/_StarLight exists! It should be _Starlight."
+          bad_paths="$(find . -path './.git' -prune -o -type d -name '*StarLight*' -print)"
+
+          if [ -n "$bad_paths" ]; then
+            echo "::error::Found folders using StarLight. They should use Starlight."
+            echo "$bad_paths"
             exit 1
           else
-            echo "No typo directory found."
+            echo "No StarLight folders found."
           fi
 
       - name: Validate _Starlight namespaces
