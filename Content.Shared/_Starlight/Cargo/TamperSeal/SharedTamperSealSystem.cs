@@ -11,6 +11,7 @@ using Content.Shared.Localizations;
 using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
+using Content.Shared.Tools.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
@@ -246,15 +247,15 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             $"{ToPrettyString(user):player} began unsealing the {GetLocRecipientName(seal)} tamper seal on {ToPrettyString(uid)}.");
     }
 
-    private bool TryDestroy(EntityUid uid, EntityUid? tool, EntityUid user, TamperSealComponent? seal = null)
+    private bool TryDestroy(EntityUid uid, EntityUid? held, EntityUid user, TamperSealComponent? seal = null)
     {
         if (!Resolve(uid, ref seal))
             return false;
 
-        var hasTool = tool.HasValue;
-        var matchingToolTypes = tool.HasValue
+        var hasTool = held.HasValue && HasComp<ToolComponent>(held.Value);
+        var matchingToolTypes = held.HasValue
             ? seal.DestroyToolQualities
-                .Where(quality => _tool.HasQuality(tool.Value, quality))
+                .Where(quality => _tool.HasQuality(held.Value, quality))
                 .ToList()
             : new();
         var hasCorrectTool = matchingToolTypes.Count > 0;
@@ -267,6 +268,10 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             .Select(nameLoc => Loc.GetString(nameLoc))
             .ToList());
 
+        // If the held item is not a tool, just abort.
+        if (held.HasValue && !hasTool)
+            return false;
+
         // I'd love to "return true" to block any interaction, but it also breaks other things like forensic scanners.]
         // Despite returning false for that case we still give a popup.
         if (hasTool && !hasCorrectTool)
@@ -274,7 +279,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-tool-required",
                     ("qualities", qualities)),
                 uid, user, PopupType.Medium);
-            return false;
+            return true;
         }
 
         // If the user is not using the correct tool (and is thus using their hands), but has no hands,
@@ -284,7 +289,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-hands-or-tool-required",
                     ("qualities", qualities)),
                 uid, user, PopupType.Medium);
-            return false;
+            return true;
         }
 
         // I tried using ToolSystem.UseTool, but that causes mispredicts due to setting a different AttemptFrequency.
@@ -293,7 +298,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             new DoAfterArgs(EntityManager, user,
                 TimeSpan.FromSeconds(hasCorrectTool ? seal.DestroyWithToolTime : seal.DestroyWithHandsTime),
                 new TamperSealDestroyedDoAfterEvent(), uid,
-                target: uid, used: tool)
+                target: uid, used: held)
             {
                 BreakOnDamage = true,
                 BreakOnMove = true,
