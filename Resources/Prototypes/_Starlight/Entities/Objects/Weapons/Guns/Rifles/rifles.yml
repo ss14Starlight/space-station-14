@@ -90,6 +90,12 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Item
     size: Large
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/laser_carbine.rsi
+    quickEquip: false
+    slots:
+      - Back
+      - suitStorage
   - type: MagazineAmmoProvider
   - type: ItemSlots
     slots:
@@ -490,7 +496,6 @@
       maxOffset: 0.5
       pvsIncrease: 1.4
 
-# Starlight start
 - type: entity
   name: SPC-Lionhunter
   parent: [ BaseWeaponSniper, BaseGunWieldable, BaseMajorContraband ]
@@ -542,4 +547,14 @@
         ents: []
       firing_pin: !type:Container
   - type: Appearance
-# Starlight end
+
+- type: entity
+  name: ForceableFollow AKMS
+  parent: [ WeaponRifleAk, BaseSovietContraband ]
+  id: WeaponRifleAkAdmeme
+  suffix: Admeme
+  description: An iconic weapon of war. Uses .30 rifle ammo.
+  components:
+  - type: Tag
+    tags:
+    - ForceableFollow

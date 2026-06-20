@@ -12,3 +12,18 @@
       tags:
         - Write
         - Pen
+
+- type: entity
+  id: PenQuillBurnt
+  parent: [PenEmbeddable, BaseMajorContraband]
+  name: burnt quill
+  description: This quill seems to have a lot of weight to it.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/pens.rsi
+      layers:
+      - state: pen_devil
+    - type: Tag
+      tags:
+      - Write
+      - Pen

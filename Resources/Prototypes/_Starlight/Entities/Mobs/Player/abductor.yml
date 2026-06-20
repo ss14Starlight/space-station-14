@@ -3,7 +3,6 @@
   parent: BaseMobAbductor
   id: MobAbductor
   components:
-  - type: UniversalLanguageSpeaker
   - type: Abductor
   - type: Tag
     tags:

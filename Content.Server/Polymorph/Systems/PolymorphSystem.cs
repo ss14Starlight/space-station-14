@@ -25,30 +25,32 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Robust.Shared.Serialization.Manager; // Starlight
+using Content.Shared._Starlight.Language.Components; // Starlight
+using System.Linq; // Starlight
 
 namespace Content.Server.Polymorph.Systems;
 
 public sealed partial class PolymorphSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly SharedBuckleSystem _buckle = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
-    [Dependency] private readonly ServerInventorySystem _inventory = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly IComponentFactory _compFact = default!; // Starlight
-    [Dependency] private readonly ISerializationManager _serialization = default!; // Starlight
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private SharedBuckleSystem _buckle = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private ServerInventorySystem _inventory = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private IComponentFactory _compFact = default!; // Starlight
+    [Dependency] private ISerializationManager _serialization = default!; // Starlight
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
 
@@ -226,6 +228,32 @@ public sealed partial class PolymorphSystem : EntitySystem
         _mindSystem.MakeSentient(child);
 
         // Starlight - start
+
+        // Try to get the language knowledge from the new entity so we can apply this to
+        // the polymorph target
+        LanguageKnowledgeComponent? polymorphedEntityKnownLanguages = null;
+        LanguageSpeakerComponent? polymorphedEntitySpokenLanguages = null;
+        if (configuration.TransferLanguages)
+        {
+            if (TryComp<LanguageKnowledgeComponent>(child, out var formerEntityKnownLanguages))
+            {
+                polymorphedEntityKnownLanguages = new LanguageKnowledgeComponent
+                {
+                    Speaks = [.. formerEntityKnownLanguages.Speaks],
+                    Understands = [.. formerEntityKnownLanguages.Understands]
+                };
+            }
+            if (TryComp<LanguageSpeakerComponent>(child, out var formerEntitySpokenLanguages))
+            {
+                polymorphedEntitySpokenLanguages = new LanguageSpeakerComponent
+                {
+                    SpokenLanguages = [.. formerEntitySpokenLanguages.SpokenLanguages],
+                    UnderstoodLanguages = [.. formerEntitySpokenLanguages.UnderstoodLanguages],
+                    CurrentLanguage = formerEntitySpokenLanguages.CurrentLanguage
+                };
+            }
+        }
+
         // Copy specified components over
         foreach (var compName in configuration.CopiedComponents)
         {
@@ -235,6 +263,7 @@ public sealed partial class PolymorphSystem : EntitySystem
 
             EntityManager.CopyComponent(uid, child, comp);
         }
+
         // Startlight - end
 
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
@@ -307,6 +336,24 @@ public sealed partial class PolymorphSystem : EntitySystem
         EnsurePausedMap();
         if (PausedMap != null)
             _transform.SetParent(uid, targetTransformComp, PausedMap.Value);
+
+        // Starlight Begin
+        // If the polymorph target has any languages, move them over to the target
+        if (configuration.TransferLanguages)
+        {
+            if (TryComp<LanguageKnowledgeComponent>(child, out var knownLanguage) && polymorphedEntityKnownLanguages != null)
+            {
+                knownLanguage.Speaks = [.. knownLanguage.Speaks.Union(polymorphedEntityKnownLanguages.Speaks)];
+                knownLanguage.Understands = [.. knownLanguage.Understands.Union(polymorphedEntityKnownLanguages.Understands)];
+            }
+            if (TryComp<LanguageSpeakerComponent>(child, out var spokenLanguage) && polymorphedEntitySpokenLanguages != null)
+            {
+                spokenLanguage.SpokenLanguages = [.. spokenLanguage.SpokenLanguages.Union(polymorphedEntitySpokenLanguages.SpokenLanguages)];
+                spokenLanguage.UnderstoodLanguages = [.. spokenLanguage.UnderstoodLanguages.Union(polymorphedEntitySpokenLanguages.UnderstoodLanguages)];
+                spokenLanguage.CurrentLanguage = polymorphedEntitySpokenLanguages.CurrentLanguage;
+            }
+        }
+        // Starlight End
 
         // Raise an event to inform anything that wants to know about the entity swap
         var ev = new PolymorphedEvent(uid, child, false);

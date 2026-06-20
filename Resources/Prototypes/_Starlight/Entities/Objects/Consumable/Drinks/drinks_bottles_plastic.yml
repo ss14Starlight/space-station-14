@@ -1,0 +1,16 @@
+- type: entity
+  parent: [DrinkVisualsAllFilled, DrinkBottlePlasticSmallBaseFull]
+  id: DrinkAleBottlePlasticFull
+  name: ale bottle
+  description: Simple clean ale of Dwarf origin. The plastic bottle somewhat ruins the taste.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Ale
+          Quantity: 30
+  - type: Sprite
+    sprite: Objects/Consumable/Drinks/waterbottle.rsi
+  - type: Label
+    currentLabel: reagent-name-ale

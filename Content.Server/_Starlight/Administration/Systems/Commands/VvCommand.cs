@@ -10,10 +10,10 @@ namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Fun)]
-public sealed class VvCommand : ToolshedCommand
+public sealed partial class VvCommand : ToolshedCommand
 {
-    [Dependency] private readonly IViewVariablesManager _vvm = default!;
-    [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private IViewVariablesManager _vvm = default!;
+    [Dependency] private IEntityNetworkManager _net = default!;
 
     [CommandImplementation("open")]
     public EntityUid Vv(IInvocationContext ctx, [PipedArgument] EntityUid uid)

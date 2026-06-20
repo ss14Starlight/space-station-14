@@ -174,16 +174,4 @@
     ShivaStealObjective: 1
     TropicoStealObjective: 1
 
-# Starlight start
-- type: weightedRandom # Starlight
-  id: ThiefObjectiveGroupEscape # Starlight
-  weights: # Starlight
-    ThiefObjectiveGroupEscapeForced: 1 # Starlight, have to do it this way because it's hardcoded to pick a group from a group
-
-- type: weightedRandom
-  id: ThiefObjectiveGroupEscapeForced # Starlight
-  weights:
-#    EscapeThiefShuttleObjective: # Starlight forced already anyways
-    EscapeMasterThiefObjective: 1 # Starlight
-
 #Crew, wizard, when you code it...

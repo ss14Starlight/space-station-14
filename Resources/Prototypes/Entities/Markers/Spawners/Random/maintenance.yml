@@ -263,6 +263,8 @@
         children:
         - id: ClothingHandsGlovesColorYellowBudget
           weight: 5
+        - id: ClothingHandsGlovesFingerlessBudget # Starlight
+          weight: 3 # Starlight
         - id: ClothingHandsGlovesFingerlessInsulated
           weight: 0.5
         - id: ClothingHandsGlovesColorYellow
@@ -455,9 +457,11 @@
   table: !type:GroupSelector
     children:
     - id: ClothingHandsGlovesColorYellowBudget # budget insuls
-      weight: 85
+      weight: 80 # Starlight
     - id: ClothingHandsGlovesColorYellow # true insuls
       weight: 10
+    - id: ClothingHandsGlovesFingerlessBudget # fingerless budget insuls
+      weight: 5 # Starlight
     - id: ClothingHandsGlovesFingerlessInsulated # fingerless
       weight: 4
     - id: ClothingHandsGlovesConducting # conducting

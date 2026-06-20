@@ -3,7 +3,8 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
-using Content.Shared.Abilities.Goliath;
+using Content.Server._Starlight.Achievement;
+using Content.Server.Station.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
@@ -24,21 +25,24 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Abstract;
 
 namespace Content.Server._Starlight.Energy.Supermatter;
 
-public sealed class SupermatterSystem : AccUpdateEntitySystem
+public sealed partial class SupermatterSystem : AccUpdateEntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly LightningSystem _lightning = default!;
-    [Dependency] private readonly RadioSystem _radioSystem = default!;
-    [Dependency] private readonly SupermatterCascadeSystem _cascade = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ExplosionSystem _explosion = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private AchievementSystem _achievements = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private LightningSystem _lightning = default!;
+    [Dependency] private RadioSystem _radioSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SupermatterCascadeSystem _cascade = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ExplosionSystem _explosion = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     private readonly Dictionary<EntityUid, Entity<SupermatterComponent>> _supermatters = [];
     private DamageGroupPrototype? _brute;
@@ -62,6 +66,8 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         if (IsImmune(args.User))
             return;
 
+        _achievements.QueueUnlockAchievement(args.User, "forbidden_candy");
+
         _audio.PlayPvs(Const.AudioEvaporate, ent.Owner);
 
         float damage = 1;
@@ -84,6 +90,8 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
         // Check for supermatter immunity
         if (IsImmune(args.OtherEntity))
             return;
+
+        _achievements.QueueUnlockAchievement(args.OtherEntity, "forbidden_candy");
 
         _audio.PlayPvs(Const.AudioEvaporate, ent.Owner);
         float damage = 1;
@@ -137,6 +145,10 @@ public sealed class SupermatterSystem : AccUpdateEntitySystem
     private void Cascad(Entity<SupermatterComponent> supermatter)
     {
         if (supermatter.Comp.Durability > 0.01) return;
+
+        if (_station.GetOwningStation(supermatter.Owner) is { } station)
+            _achievements.QueueUnlockAchievementForJobs("you_super_matter", station, "ChiefEngineer", "AtmosphericTechnician");
+
         _explosion.QueueExplosion(supermatter, ExplosionSystem.DefaultExplosionPrototypeId, 150, 3, 20);
         _cascade.StartCascade(Transform(supermatter.Owner).Coordinates);
         QueueDel(supermatter.Owner);

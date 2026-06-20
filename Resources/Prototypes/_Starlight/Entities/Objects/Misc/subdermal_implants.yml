@@ -54,7 +54,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: RattleOnTrigger
-    radioChannel: TSF
+    radioChannel:
+    - TSF
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -211,7 +212,8 @@
   categories: [ HideSpawnMenu ]
   components:
     - type: RattleOnTrigger
-      radioChannel: MedTak
+      radioChannel:
+      - MedTak
     - type: SuitSensor
       faction: MedTak
       randomMode: false
@@ -235,3 +237,64 @@
   components:
   - type: MindShieldImplant
     mindShieldStatusIcon: MedTakMindShieldIcon
+
+# NanoTrasen Implants
+- type: entity
+  parent: BaseSubdermalImplant
+  id: RadioImplantNanoTrasen
+  name: nanotrasen radio implant
+  description: This implant grants access to the NanoTrasen channel without a headset. Only authorized for NanoTrasen personnel.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+  - type: RadioImplant
+    radioChannels:
+    - NanoTrasen
+
+- type: entity
+  parent: DeathRattleImplant
+  id: DeathRattleImplantNanoTrasen
+  name: nanotrasen death rattle implant
+  description: This implant will inform the NanoTrasen radio channel should the user fall into critical condition or die.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: RattleOnTrigger
+    radioChannel:
+    - NanoTrasen
+
+# Station Implants
+- type: entity
+  parent: TrackingImplant
+  id: CommandTrackingImplant
+  name: command tracking implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the security and command radio channels.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: RattleOnTrigger
+      targetUser: true
+      radioChannel:
+      - Security
+      - Command
+
+# Xenoroach self-destruct implant
+- type: entity
+  parent: BaseSubdermalImplant
+  id: XenoroachSelfDestructImplant
+  name: xenoroach self-destruct implant
+  description: Dissolves the xenoroach chassis and any held items on manual activation.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SubdermalImplant
+    permanent: true
+    implantAction: ActionActivateXenoroachSelfDestruct
+  - type: TriggerOnActivateImplant
+  - type: GibOnTrigger
+    targetUser: true
+    deleteItems: true
+  - type: SpawnOnTrigger
+    proto: XenoborgAcidifier
+    predicted: true
+  - type: Tag
+    tags:
+    - SubdermalImplant
+    - HideContextMenu

@@ -75,6 +75,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: [ ClothingUniformSkirtBase, BaseSecurityContraband ]
@@ -86,6 +91,11 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/corpsman_trauma.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
 
 - type: entity
   parent: ClothingUniformBase
@@ -745,7 +755,7 @@
 - type: entity
   parent: [ ClothingUniformBase, BaseCommandContraband ]
   id: MagistrateUniformSkirt
-  name: magistrate's Jumpskirt
+  name: magistrate's jumpskirt
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/magistrate.rsi
@@ -773,3 +783,33 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAssistant
+  name: assistant jumpskirt
+  description: A tasteful green jumpskirt that reminds you of the good old days.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    layers:
+    - state: icon
+      color: "#639137"
+    - state: trinkets-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#639137"
+      - state: trinkets-inhand-left
+      right:
+      - state: inhand-right
+        color: "#639137"
+      - state: trinkets-inhand-right
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#639137"
+      - state: trinkets-equipped-INNERCLOTHING

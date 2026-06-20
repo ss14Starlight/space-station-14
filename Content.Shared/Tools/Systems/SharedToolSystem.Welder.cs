@@ -8,12 +8,15 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Tools.Components;
+#region Starlight
+using Content.Shared._Starlight.ItemSwitch.Components;
+#endregion
 
 namespace Content.Shared.Tools.Systems;
 
 public abstract partial class SharedToolSystem
 {
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
 
     public void InitializeWelder()
     {

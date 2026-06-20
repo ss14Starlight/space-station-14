@@ -1,58 +1,48 @@
-using System;
-using System.Linq;
-using Content.Server.Administration.Systems;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Climbing.Systems;
 using Content.Shared.Tag;
-using Content.Shared.Damage;
 using Content.Shared.DoAfter;
-using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Standing;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Reflection;
 using Robust.Shared.Serialization.Manager;
-using Robust.Shared.Timing;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
-namespace Content.Shared.Starlight.Medical.Surgery;
+namespace Content.Shared._Starlight.Medical.Surgery;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 public abstract partial class SharedSurgerySystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IComponentFactory _compFactory = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotateToFace = default!;
-    [Dependency] private readonly StandingStateSystem _standing = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
-    [Dependency] private readonly IReflectionManager _reflectionManager = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly StarlightEntitySystem _entitySystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IComponentFactory _compFactory = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private RotateToFaceSystem _rotateToFace = default!;
+    [Dependency] private StandingStateSystem _standing = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedBodySystem _body = default!;
+    [Dependency] private IReflectionManager _reflectionManager = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private StarlightEntitySystem _entitySystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {

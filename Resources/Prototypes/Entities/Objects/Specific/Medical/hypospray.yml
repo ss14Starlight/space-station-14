@@ -16,6 +16,10 @@
     solution: hypospray
     exactVolume: true
   - type: Appearance
+  - type: MeleeWeapon # Starlight start
+    damage:
+      types:
+        Piercing: 5 # Starlight end
 
 - type: entity
   parent: [BaseHypospray, BaseGrandTheftContraband]

@@ -9,14 +9,14 @@ namespace Content.Server.GameTicking.Rules;
 
 public abstract partial class GameRuleSystem<T> : EntitySystem where T : IComponent
 {
-    [Dependency] protected readonly IRobustRandom RobustRandom = default!;
-    [Dependency] protected readonly IChatManager ChatManager = default!;
-    [Dependency] protected readonly GameTicker GameTicker = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IRobustRandom RobustRandom = default!;
+    [Dependency] protected IChatManager ChatManager = default!;
+    [Dependency] protected GameTicker GameTicker = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     // Not protected, just to be used in utility methods
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private MapSystem _map = default!;
 
     public override void Initialize()
     {
@@ -35,13 +35,22 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
             return;
 
         var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out _, out var gameRule))
+        while (query.MoveNext(out var uid, out var rule, out var gameRule))
         {
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
             if (args.Players.Length >= minPlayers)
                 continue;
+
+            // Starlight-start
+            if (!CanStartRule(uid, rule, gameRule, args, out var reason))
+            {
+                ChatManager.SendAdminAnnouncement(Loc.GetString("preset-cant-start", ("reason", reason)));
+                args.Cancel();
+                Log.Info($"Rule '{name}' can't start with reason: {reason}");
+            }
+            // Starlight-end
 
             if (gameRule.CancelPresetOnTooFewPlayers)
             {
@@ -146,4 +155,15 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
             ActiveTick(uid, comp1, comp2, frameTime);
         }
     }
+
+    #region Starlight
+    /// <summary>
+    /// Called when trying to start this gamerule.
+    /// </summary>
+    protected virtual bool CanStartRule(EntityUid uid, T component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
+    {
+        reason = "";
+        return true;
+    }
+    #endregion
 }

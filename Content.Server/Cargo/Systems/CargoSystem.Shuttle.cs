@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Server.Atmos.EntitySystems; //Starlight
 using Content.Server.Cargo.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -9,6 +8,10 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+#region Starlight
+using Content.Server._Starlight.Cargo.Components;
+using Content.Server.Atmos.EntitySystems;
+#endregion
 
 namespace Content.Server.Cargo.Systems;
 
@@ -18,7 +21,7 @@ public sealed partial class CargoSystem
      * Handles cargo shuttle / trade mechanics.
      */
 
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!; //Starlight
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!; //Starlight
 
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
     private bool _lockboxCutEnabled;

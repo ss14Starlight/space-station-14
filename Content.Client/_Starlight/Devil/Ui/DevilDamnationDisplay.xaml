@@ -1,0 +1,26 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         xmlns:style="clr-namespace:Content.Client.Stylesheets"
+         Margin="0 0 0 10">
+    <PanelContainer Name="DamnationPanel"
+                    VerticalExpand="True"
+                    StyleClasses="BackgroundDark">
+        <BoxContainer Orientation="Vertical"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      Margin="5 5 5 5">
+            <Collapsible>
+                <CollapsibleHeading Name="DamnationTitle"/>
+                <CollapsibleBody>
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="10 0 10 0"
+                                  HorizontalExpand="True">
+                        <RichTextLabel Name="DamnationCost" StyleClasses="LabelSubText"/>
+                        <customControls:HSeparator Margin="0 5 0 5"/>
+                        <RichTextLabel Name="DamnationDescription"/>
+                    </BoxContainer>
+                </CollapsibleBody>
+            </Collapsible>
+        </BoxContainer>
+    </PanelContainer>
+</Control>
