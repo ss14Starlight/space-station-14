@@ -280,6 +280,8 @@
       ignoreGrid: true
     - type: WirelessNetworkConnection
       range: 1000000
+    # Starlight: snapshot the wearer's ID card on implant so the BSO monitor keeps showing it after ID changes.
+    - type: StoredImplantIdentity
 
 # Xenoroach self-destruct implant
 - type: entity

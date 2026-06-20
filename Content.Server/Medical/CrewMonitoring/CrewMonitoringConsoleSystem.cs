@@ -11,14 +11,16 @@ using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
 #region Starlight
+using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
+using Content.Shared.Access.Systems;
 using Content.Server.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.ComponentModel.DataAnnotations;
 #endregion
 
 namespace Content.Server.Medical.CrewMonitoring;
@@ -32,6 +34,8 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
     [Dependency] private SharedAudioSystem _audioSystem = default!; // Starlight
     [Dependency] private SharedAppearanceSystem _appearanceSystem = default!; // Starlight
     [Dependency] private SharedPowerReceiverSystem _powerReceiver = default!; // Starlight
+    [Dependency] private SharedIdCardSystem _idCard = default!; // Starlight
+    [Dependency] private IPrototypeManager _proto = default!; // Starlight
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
@@ -45,6 +49,37 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, BoundUIOpenedEvent>(OnUIOpened);
         SubscribeLocalEvent<CrewMonitoringConsoleComponent, CrewMonitoringWarpRequestMessage>(OnWarpRequest); // Starlight
+        SubscribeLocalEvent<StoredImplantIdentityComponent, ImplantImplantedEvent>(OnIdentityImplanted); // Starlight
+    }
+
+    /// <summary>
+    ///     STARLIGHT: COMMAND TRACKER: Snapshot the implanted persons ID, so if their ID gets removed we fallback to these values.
+    /// </summary>
+    private void OnIdentityImplanted(Entity<StoredImplantIdentityComponent> ent, ref ImplantImplantedEvent args)
+    {
+        if (!args.Implanted.Valid)
+            return;
+
+        var comp = ent.Comp;
+        comp.JobDepartments.Clear();
+
+        if (_idCard.TryFindIdCard(args.Implanted, out var card))
+        {
+            comp.Name = card.Comp.FullName;
+            comp.Job = card.Comp.LocalizedJobTitle;
+            comp.JobIcon = card.Comp.JobIcon;
+
+            foreach (var department in card.Comp.JobDepartments)
+                comp.JobDepartments.Add(Loc.GetString(_proto.Index(department).Name));
+        }
+        else
+        {
+            comp.Name = null;
+            comp.Job = null;
+            comp.JobIcon = null;
+        }
+
+        comp.Captured = true;
     }
 
     /// <summary>
@@ -202,17 +237,46 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             {
                 var clientEntity = GetEntity(sensor.SuitSensorUid);
                 // STARLIGHT: Match on the implant prototype
-                if (TryComp<SubdermalImplantComponent>(clientEntity, out _)
-                    && MetaData(clientEntity).EntityPrototype?.ID == CommandTrackingImplantProto
-                    && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction)))
-                {
+                if (!TryComp<SubdermalImplantComponent>(clientEntity, out _)
+                    || MetaData(clientEntity).EntityPrototype?.ID != CommandTrackingImplantProto
+                    || (filter.ShownFactions.Count != 0 && !filter.ShownFactions.Contains(sensor.Faction)))
+                    continue;
+
+                // if wearer has matching ID just continue
+                if (filteredSensors.Contains(sensor))
+                    continue;
+
+                // Not otherwise visible fallback to stored values.
+                if (TryComp<StoredImplantIdentityComponent>(clientEntity, out var stored) && stored.Captured)
+                    filteredSensors.Add(WithStoredIdentity(sensor, stored));
+                else
                     filteredSensors.Add(sensor);
-                }
             }
         }
         filteredSensors = filteredSensors.Distinct().ToList();
         _uiSystem.SetUiState(uid, CrewMonitoringUIKey.Key, new CrewMonitoringState(_gameTiming.CurTime, component.LastSensorDataReceivedAt, filteredSensors)); // Starlight end
     }
+
+    /// <summary>
+    ///     STARLIGHT: Produce a copy of a sensor status with its name/job/departments replaced by the identity
+    ///     captured at implant time, return a copy of the original so other crewmons don't have the feature.
+    /// </summary>
+    private static SuitSensorStatus WithStoredIdentity(SuitSensorStatus source, StoredImplantIdentityComponent stored)
+        => new(
+            source.OwnerUid,
+            source.SuitSensorUid,
+            stored.Name ?? source.Name,
+            stored.Job ?? source.Job,
+            stored.JobIcon ?? source.JobIcon,
+            stored.JobDepartments.Count > 0 ? new(stored.JobDepartments) : source.JobDepartments)
+        {
+            Timestamp = source.Timestamp,
+            Faction = source.Faction,
+            IsAlive = source.IsAlive,
+            TotalDamage = source.TotalDamage,
+            TotalDamageThreshold = source.TotalDamageThreshold,
+            Coordinates = source.Coordinates,
+        };
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)
