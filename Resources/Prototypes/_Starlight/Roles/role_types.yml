@@ -13,7 +13,19 @@
   symbol: "🗡" # Should never be antag, but just in case.
 
 - type: roleType
+  id: CentCommAligned
+  name: role-type-cc-aligned-name
+  color: '#00b600'
+  symbol: "🗡" # Should never be antag, but just in case.
+
+- type: roleType
   id: TSFAligned
   name: role-type-tsf-aligned-name
   color: '#22a7ff'
   symbol: "🗡" # Should never be antag, but just in case.
+
+- type: roleType
+  id: HarmlessAntagonist
+  name: role-type-harmless-antagonist-name
+  color: "#ff8800"
+  symbol: "🦇"

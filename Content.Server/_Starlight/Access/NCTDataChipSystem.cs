@@ -7,11 +7,11 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 
-namespace Content.Server._Starlight.Access.Systems;
+namespace Content.Server._Starlight.Access;
 
-public sealed class NCTDataChipSystem : EntitySystem
+public sealed partial class NCTDataChipSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

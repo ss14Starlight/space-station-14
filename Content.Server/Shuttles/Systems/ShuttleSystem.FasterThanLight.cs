@@ -24,12 +24,14 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using FTLMapComponent = Content.Shared.Shuttles.Components.FTLMapComponent;
-using Content.Server._Starlight.Station; // Starlight
-using Content.Server.Camera; // Starlight
-using Content.Shared._Starlight.Camera; // Starlight
-using Content.Shared.Station.Components; // Starlight
+#region Starlight
+using Content.Server._Starlight.Station;
+using Content.Server.Camera;
+using Content.Shared._Starlight.Camera;
+using Content.Shared.Station.Components;
 using Robust.Server.Player;
-using Content.Shared.Body.Components; // Starlight
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -38,9 +40,9 @@ public sealed partial class ShuttleSystem
     /*
      * This is a way to move a shuttle from one location to another, via an intermediate map for fanciness.
      */
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight
-    [Dependency] private readonly IPlayerManager _plr = default!; // Starlight
-    [Dependency] private readonly CameraRecoilSystem _recoil = default!; // Starlight
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight
+    [Dependency] private IPlayerManager _plr = default!; // Starlight
+    [Dependency] private CameraRecoilSystem _recoil = default!; // Starlight
 
     private readonly SoundSpecifier _startupSound = new SoundPathSpecifier("/Audio/Effects/Shuttle/hyperspace_begin.ogg")
     {

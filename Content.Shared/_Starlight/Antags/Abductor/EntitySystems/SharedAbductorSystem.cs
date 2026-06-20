@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Starlight.Access;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Clothing.EntitySystems;
@@ -9,13 +10,13 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 
-public abstract class SharedAbductorSystem : EntitySystem
+public abstract partial class SharedAbductorSystem : EntitySystem
 {
-    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] private EntityLookupSystem _entityLookup = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     public override void Initialize()
     {

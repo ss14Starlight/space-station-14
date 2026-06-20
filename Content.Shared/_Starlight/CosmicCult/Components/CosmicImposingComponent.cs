@@ -16,6 +16,9 @@ public sealed partial class CosmicImposingComponent : Component
     public TimeSpan Expiry;
 
     [DataField]
+    public float SpeedMultiplier = 0.65f;
+
+    [DataField]
     public SpriteSpecifier Sprite = new SpriteSpecifier.Rsi(new("/Textures/_Starlight/CosmicCult/Effects/ability_imposition_overlay.rsi"), "vfx");
 }
 

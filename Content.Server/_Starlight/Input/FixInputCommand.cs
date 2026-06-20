@@ -9,11 +9,11 @@ namespace Content.Server._Starlight.Input;
 
 [ToolshedCommand]
 [AnyCommand]
-public sealed class FixInputCommand : ToolshedCommand
+public sealed partial class FixInputCommand : ToolshedCommand
 {
-    [Dependency] private readonly IEntityNetworkManager _net = default!;
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private IEntityNetworkManager _net = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     [CommandImplementation]
     public void FixInput(IInvocationContext ctx)

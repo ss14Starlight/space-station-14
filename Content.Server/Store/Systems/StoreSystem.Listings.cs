@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Starlight.Store.Conditions;
 using Content.Shared.Mind;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -132,7 +133,7 @@ public sealed partial class StoreSystem
                 // First pass: check if this listing has a StockLimitedListingCondition
                 foreach (var condition in listing.Conditions)
                 {
-                    if (condition is Content.Shared.Store.Conditions.StockLimitedListingCondition)
+                    if (condition is StockLimitedListingCondition)
                     {
                         hasStockLimitedCondition = true;
                         break;
@@ -145,7 +146,7 @@ public sealed partial class StoreSystem
                     if (!condition.Condition(args))
                     {
                         // If this is a StockLimitedListingCondition, we want to show the item but mark it as unavailable
-                        if (condition is Content.Shared.Store.Conditions.StockLimitedListingCondition)
+                        if (condition is StockLimitedListingCondition)
                         {
                             listing.Unavailable = true;
                         }

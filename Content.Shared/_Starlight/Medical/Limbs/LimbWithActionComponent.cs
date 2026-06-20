@@ -2,7 +2,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-namespace Content.Shared.Starlight;
+namespace Content.Shared._Starlight.Medical.Limbs;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class LimbWithActionComponent : Component, IWithAction

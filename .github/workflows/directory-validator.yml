@@ -1,4 +1,4 @@
-name: Check for StarLight Directory
+name: Check Starlight Directories
 
 on:
   pull_request:
@@ -22,3 +22,6 @@ jobs:
           else
             echo "No typo directory found."
           fi
+
+      - name: Validate _Starlight namespaces
+        run: python3 Tools/_Starlight/check_starlight_namespaces.py

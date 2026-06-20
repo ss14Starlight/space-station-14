@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 

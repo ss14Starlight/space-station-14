@@ -11,7 +11,7 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.Systems;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Prometheus;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
@@ -24,10 +24,11 @@ using Robust.Shared.Timing;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using Stopwatch = System.Diagnostics.Stopwatch;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.Physics;
 
-public sealed class SLMoverController : SharedMoverController
+public sealed partial class SLMoverController : SharedMoverController
 {
     private static readonly Gauge _activeMoverGauge = Metrics.CreateGauge(
         "physics_active_mover_count",
@@ -60,12 +61,12 @@ public sealed class SLMoverController : SharedMoverController
     private readonly IHistogram _durShuttle = _moverUpdateDuration.WithLabels("shuttle");
     private readonly IHistogram _durTotal = _moverUpdateDuration.WithLabels("total");
 
-    [Dependency] private readonly ThrusterSystem _thruster = default!;
-    [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-    [Dependency] private readonly IParallelManager _parallel = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ThrusterSystem _thruster = default!;
+    [Dependency] private SharedTransformSystem _xformSystem = default!;
+    [Dependency] private IParallelManager _parallel = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private HandleMobMovementJob _handleMobMovementJob;
 

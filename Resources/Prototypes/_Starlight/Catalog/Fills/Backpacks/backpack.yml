@@ -35,3 +35,24 @@
         - id: ClothingHeadHatBunnyGang
         - id: ClothingNeckBunnyGang
         - id: ClothingOuterBunnyGang
+
+# Greenshield Officer
+- type: entity
+  id: ClothingBackpackGreenshieldFilled
+  parent: ClothingBackpackGreenshield
+  suffix: Filled
+  categories: [ DoNotMap ]
+  components:
+    - type: EntityTableContainerFill
+      containers:
+        storagebase: !type:AllSelector
+          children:
+            - id: MagazinePistolSubMachineGunTopMounted
+            - id: MagazinePistolSubMachineGunTopMounted
+            - id: MagazinePistolSubMachineGunTopMounted
+            - id: JawsOfLifeMed
+            - id: DefibrillatorCompact
+            - id: TearGasGrenade
+            - id: SmokeGrenade
+            - id: GrenadeFlashBang
+            - id: DrinkMREFlask

@@ -4,12 +4,12 @@ using Content.Shared.Verbs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.TextToSpeech;
+namespace Content.Shared._Starlight.TextToSpeech;
 
-public sealed class TTSExamineSystem : EntitySystem
+public sealed partial class TTSExamineSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private ExamineSystemShared _examine = default!;
 
     public override void Initialize()
     {

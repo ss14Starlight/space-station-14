@@ -10,11 +10,11 @@ namespace Content.Client._Starlight.Overlay.Systems;
 /// whether the local player has the component, so no event subscriptions are needed.
 /// This avoids all ghost-role-takeover event-ordering edge cases.
 /// </summary>
-public sealed class IntrinsicPinpointerSystem : EntitySystem
+public sealed partial class IntrinsicPinpointerSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IEyeManager _eye = default!;
 
     public override void Initialize()
     {
