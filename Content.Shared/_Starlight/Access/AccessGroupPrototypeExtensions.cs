@@ -1,5 +1,4 @@
 using Content.Shared.Access;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Starlight.Access;
 

@@ -1,5 +1,4 @@
 using Content.Server.EUI;
-using Content.Server.Ghost.Roles.UI;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
 using JetBrains.Annotations;

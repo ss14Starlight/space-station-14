@@ -1,5 +1,4 @@
 using Content.Shared.Clothing;
-using Content.Shared.Clothing.Components;
 using Content.Shared.Tag;
 
 namespace Content.Shared._Starlight.Clothing;

@@ -1,5 +1,4 @@
 ﻿using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Starlight.Animations;
 

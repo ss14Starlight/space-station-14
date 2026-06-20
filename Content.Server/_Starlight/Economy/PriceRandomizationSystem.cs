@@ -1,5 +1,4 @@
 using Content.Shared.GameTicking;
-using Robust.Shared.Configuration;
 
 namespace Content.Server._Starlight.Economy
 {

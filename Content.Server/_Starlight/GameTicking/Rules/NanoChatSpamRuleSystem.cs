@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Content.Server.CartridgeLoader;
 using Content.Server._CD.CartridgeLoader.Cartridges;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Systems;
 using Robust.Server.Player;
 using Content.Shared._CD.NanoChat;

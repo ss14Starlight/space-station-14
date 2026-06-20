@@ -1,4 +1,3 @@
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Tag;
 

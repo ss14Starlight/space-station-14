@@ -1,5 +1,3 @@
-using Robust.Shared.Maths;
-
 namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>

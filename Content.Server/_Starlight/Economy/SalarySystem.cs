@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Content.Server._NullLink.PlayerData;
-using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking.Events;
 using Content.Server.Mind;

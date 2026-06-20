@@ -1,5 +1,4 @@
 ﻿using Content.Server._Starlight.StationEvents.Events;
-using Content.Server.StationEvents.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
 

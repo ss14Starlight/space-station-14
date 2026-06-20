@@ -1,9 +1,6 @@
 ﻿using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid;
-using Content.Shared.Item;
-using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]

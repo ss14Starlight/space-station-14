@@ -1,7 +1,6 @@
 using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
