@@ -5,7 +5,7 @@
         "x": 32,
         "y": 32
     },
-    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee | SalvageLead by mikeysaurus | Cargo, Mail, NTR, Magi, BSO, IAA, and NCT by wonderfulnewworld",
+    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg), Miner by Conflee | SalvageLead by mikeysaurus | Cargo, Mail, Surgeon, Coroner, Virologist, Geneticist, Roboticist, NTR, Magi, BSO, IAA, and NCT by wonderfulnewworld",
     "license": "CC-BY-SA-3.0",
     "states":
     [
@@ -138,6 +138,54 @@
         },
         {
             "name": "mail_open",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "medical_open",
+			"copyright": "TG Station"
+        },
+        {
+            "name": "robosurgeon-black_open",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "surgeon",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "surgeon_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "coroner",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "coroner_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "virologist",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "virologist_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "geneticist",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "geneticist_door",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "roboticist",
+			"copyright": "wonderfulnewworld"
+        },
+        {
+            "name": "roboticist_door",
 			"copyright": "wonderfulnewworld"
         }
     ]
