@@ -161,12 +161,10 @@
     name: ghost-role-information-xenoroach-name
     description: ghost-role-information-xenoroach-description
     rules: ghost-role-information-silicon-rules
-    mindRoles:
-    - MindRoleXenoborg
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
-    prototype: MobXenoroach
+    prototype: 
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -192,3 +190,27 @@
       - state: green
       - sprite: Mobs/Aliens/cluwnebeast.rsi
         state: icon
+
+- type: entity
+  categories: [ Spawner ]
+  parent: MarkerBase
+  id: SpawnPointSyndicateSpy
+  name: syndicate spy spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-SyndicateSpy-name
+    description: ghost-role-information-SyndicateSpy-description
+    rules: ghost-role-information-SyndicateSpy-rules
+    raffle:
+      settings: default
+    mindRoles:
+    - MindRoleSyndicateSpy
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanSyndicateSpy
+
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: Structures/Wallmounts/signs.rsi
+      state: radiation

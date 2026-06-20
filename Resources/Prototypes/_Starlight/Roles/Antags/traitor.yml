@@ -4,3 +4,22 @@
   antagonist: true
   setPreference: false
   objective: roles-antag-mind-controlled-objective
+
+- type: antag
+  id: SyndicateSpy
+  name: roles-antag-SyndicateSpy-name
+  antagonist: true
+  objective: roles-antag-SyndicateSpy-Objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 48h
+  - !type:RoleTimeRequirement
+    role: JobSecurityOfficer # Bare minimum 1 hour non cadet. Teaches you how to use normal guns.
+    time: 1h
+  - !type:RoleTimeRequirement
+    role: JobHeadOfPersonnel
+    time: 1h # Atleast know some paperwork skills
+  - !type:RoleTimeRequirement
+    role: AntagTraitor
+    time: 1h # Learn the Syndicate Ways and how to use chameleon gear
+  playTimeTracker: AntagSyndicateSpy

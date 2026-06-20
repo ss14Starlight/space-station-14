@@ -49,3 +49,13 @@
   - type: MindRole
     exclusiveAntag: true
     antagPrototype: TerrorPrincess
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleSyndicateSpy
+  name: Syndicate Spy Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: SyndicateSpy
+    

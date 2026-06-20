@@ -4,3 +4,19 @@
   equipment:
     mask: ClothingMaskBreath
     back: ClothingBagPet
+
+- type: startingGear
+  id: SyndicateSpyGear
+  equipment:
+    eyes: ClothingEyesHudSyndicateAgent
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    ears: ClothingHeadsetAltSyndicateAgent
+    gloves: ClothingHandsGlovesHop
+    shoes: ClothingShoesColorBlack
+    id: SyndiPDA
+    pocket1: Welder
+  storage:
+    back:
+    - GearAcidifierImplanter
+    - VoiceMaskImplanter

@@ -110,3 +110,7 @@ ghost-role-information-kobold-advanced-description = You have a craving for file
 
 ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
+
+ghost-role-information-SyndicateSpy-name = Syndicate Spy
+ghost-role-information-SyndicateSpy-description = You are a spy sent by Syndicate High Command. You must spy on the station and report your findings to High Command.
+ghost-role-information-SyndicateSpy-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. You are a Syndicate Spy, Coordinate with your teammate and report your findings using the fax machine. 
