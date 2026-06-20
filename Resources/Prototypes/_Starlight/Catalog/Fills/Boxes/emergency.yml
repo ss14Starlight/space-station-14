@@ -194,7 +194,7 @@
     layers:
     - state: dwarfemergencytank
 
-# Rodentita Survival Boxes
+# Rodentia Survival Boxes
 - type: entity
   parent: BoxSurvival
   id: BoxSurvivalCheese
