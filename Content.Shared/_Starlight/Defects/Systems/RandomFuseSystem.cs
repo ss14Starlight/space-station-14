@@ -1,9 +1,9 @@
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Trigger.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
 
-namespace Content.Shared.Defects.Systems;
+namespace Content.Shared._Starlight.Defects.Systems;
 
 // Randomizes TimerTriggerComponent.Delay at spawn for entities with
 // RandomFuseDefectComponent, so each instance has a unique fuse countdown.

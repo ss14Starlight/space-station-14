@@ -1,13 +1,12 @@
-using Content.Shared.Construction.Prototypes;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Item;
-using Content.Shared.Kitchen.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Kitchen.Components // Starlight-edit: moved from server
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Kitchen
 {
     [RegisterComponent]
     public sealed partial class CookingDeviceComponent : Component // Starlight-edit: Renamed from MicrowaveComponent to CookingDeviceComponent

@@ -1,7 +1,7 @@
 using System.Text.Json;
 using Content.Shared.Humanoid.Markings;
 
-namespace Content.Server.Humanoid.Markings.Extensions;
+namespace Content.Server._Starlight.Humanoid;
 
 public static class MarkingExtensions
 {

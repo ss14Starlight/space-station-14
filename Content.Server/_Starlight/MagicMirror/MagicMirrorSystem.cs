@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.DoAfter;
 using Content.Server.Humanoid;
+using Content.Shared._Starlight.MagicMirror;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -13,7 +14,7 @@ using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.MagicMirror;
+namespace Content.Server._Starlight.MagicMirror;
 
 /// <summary>
 /// Allows humanoids to change their appearance mid-round.

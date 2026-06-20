@@ -2,19 +2,18 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Content.Server._Starlight.Language;
 using Content.Server._Starlight.Radio.Systems;
-using Content.Server._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Chat;
 using Content.Shared.Radio;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Starlight.TTS;
+namespace Content.Server._Starlight.TextToSpeech;
 
 public sealed partial class TTSSystem : EntitySystem
 {

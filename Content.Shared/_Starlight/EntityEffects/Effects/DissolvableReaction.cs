@@ -1,13 +1,12 @@
-using JetBrains.Annotations;
 using Content.Shared.EntityEffects;
 using Content.Shared.Database;
 using Content.Shared.Tag;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
-using Content.Shared.Starlight.EntityEffects.Components;
-using Content.Shared.Starlight.EntityEffects.EntitySystems;
+using Content.Shared._Starlight.EntityEffects.Components;
+using Content.Shared._Starlight.EntityEffects.EntitySystems;
 
-namespace Content.Shared.Starlight.EntityEffects.Effects;
+namespace Content.Shared._Starlight.EntityEffects.Effects;
 
 /// <summary>
 /// Makes this entity sentient. Allows ghost to take it over if it's not already occupied.

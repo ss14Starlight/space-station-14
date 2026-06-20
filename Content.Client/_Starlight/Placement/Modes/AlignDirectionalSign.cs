@@ -2,7 +2,7 @@
 using Robust.Client.Placement;
 using Robust.Shared.Map;
 
-namespace Content.Client.Placement.Modes;
+namespace Content.Client._Starlight.Placement.Modes;
 
 /// <summary>
 /// Placement mode for directional signs that snaps them vertically to accommodate stacking.

@@ -1,9 +1,6 @@
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Timing;
+using Content.Shared._Starlight.Abstract;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components;
 
 [RegisterComponent]
 public sealed partial class RailroadableComponent : Component

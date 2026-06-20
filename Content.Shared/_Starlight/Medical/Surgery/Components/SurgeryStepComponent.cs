@@ -4,7 +4,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.Reagent;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
-namespace Content.Shared.Starlight.Medical.Surgery.Steps;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 [Access(typeof(SharedSurgerySystem))]

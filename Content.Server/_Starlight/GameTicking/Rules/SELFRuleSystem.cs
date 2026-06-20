@@ -1,9 +1,9 @@
 using Content.Server.Antag;
 using Content.Server.Roles;
 using Content.Server.GameTicking.Rules;
-using Content.Shared._Starlight.Roles.Components;
 using Content.Shared._Starlight.Antags.SELF;
 using SELFRuleComponent = Content.Server._Starlight.GameTicking.Rules.Components.SELFRuleComponent;
+using Content.Shared._Starlight.Roles;
 
 namespace Content.Server._Starlight.GameTicking.Rules;
 

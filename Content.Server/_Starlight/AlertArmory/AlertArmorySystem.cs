@@ -19,7 +19,7 @@ using Content.Shared.Popups;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Configuration;
 
-namespace Content.Server.Starlight.AlertArmory;
+namespace Content.Server._Starlight.AlertArmory;
 
 public sealed partial class AlertArmorySystem : EntitySystem
 {

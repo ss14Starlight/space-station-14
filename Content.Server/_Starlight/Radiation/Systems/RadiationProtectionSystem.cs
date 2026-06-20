@@ -2,7 +2,7 @@
 using Content.Shared.Damage.Components;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Radiation.EntitySystems;
+namespace Content.Server._Starlight.Radiation.Systems;
 
 public sealed partial class RadiationProtectionSystem : EntitySystem
 {

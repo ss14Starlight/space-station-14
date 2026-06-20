@@ -1,6 +1,6 @@
 ﻿using Content.Shared.Movement.Components;
 using Content.Shared.NPC;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;

@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.GameStates;
 
-namespace Content.Shared.DirectionalSigns.Components;
+namespace Content.Shared._Starlight.DirectionalSigns.Components;
 
 /// <summary>
 /// Component that marks a sign for sprite rotation and offset correction when the 'eye' rotates.
