@@ -1,6 +1,7 @@
 using Content.Shared.PAI;
 using Robust.Server.Containers;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem
