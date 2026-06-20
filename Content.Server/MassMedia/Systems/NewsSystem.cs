@@ -308,10 +308,10 @@ public sealed partial class NewsSystem : SharedNewsSystem
                 break;
             // Starlight-edit: start
             case NewsReaderUiAction.Like:
-                TryReactToCurrentArticle(ent, args.Actor, true);
+                TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), true);
                 break;
             case NewsReaderUiAction.Dislike:
-                TryReactToCurrentArticle(ent, args.Actor, false);
+                TryReactToCurrentArticle(ent, GetEntity(args.LoaderUid), false);
                 break;
             // Starlight-edit: end
         }
@@ -393,13 +393,10 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
 # region Starlight
 
-    private void TryReactToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid user, bool like)
+    private void TryReactToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid reader, bool like)
     {
         if (!TryGetArticles(ent, out var articles) ||
             articles.Count == 0)
-            return;
-
-        if (!_accessReaderSystem.FindStationRecordKeys(user, out var recordKeys))
             return;
 
         NewsReaderLeafArticle(ent, 0);
@@ -408,15 +405,9 @@ public sealed partial class NewsSystem : SharedNewsSystem
         if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, true))
             return;
 
-        foreach (var key in recordKeys)
-        {
-            var netKey = (GetNetEntity(key.OriginStation), key.Id);
-            if (reactions.Contains(netKey))
-                return;
-        }
-
-        var firstKey = recordKeys.First();
-        reactions.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
+        var readerKey = GetNetEntity(reader);
+        if (!reactions.Add(readerKey))
+            return;
 
         if (like)
             article.Likes++;
@@ -428,39 +419,20 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
     private bool HasReactedToCurrentArticle(Entity<NewsReaderCartridgeComponent> ent, EntityUid loaderUid)
     {
-        if (!_accessReaderSystem.FindStationRecordKeys(loaderUid, out var recordKeys))
-            return false;
-
         if (!TryGetArticleReactions(ent, ent.Comp.ArticleNumber, out var reactions, false))
             return false;
 
-        foreach (var key in recordKeys)
-        {
-            var netKey = (GetNetEntity(key.OriginStation), key.Id);
-            if (reactions.Contains(netKey))
-                return true;
-        }
-
-        return false;
+        return reactions.Contains(GetNetEntity(loaderUid));
     }
 
     private void TryCountCurrentArticleView(Entity<NewsReaderCartridgeComponent> ent, EntityUid viewer, List<NewsArticle> articles)
     {
-        if (!_accessReaderSystem.FindStationRecordKeys(viewer, out var recordKeys))
-            return;
-
         if (!TryGetArticleViews(ent, ent.Comp.ArticleNumber, out var views, true))
             return;
 
-        foreach (var key in recordKeys)
-        {
-            var netKey = (GetNetEntity(key.OriginStation), key.Id);
-            if (views.Contains(netKey))
-                return;
-        }
-
-        var firstKey = recordKeys.First();
-        views.Add((GetNetEntity(firstKey.OriginStation), firstKey.Id));
+        var viewerKey = GetNetEntity(viewer);
+        if (!views.Add(viewerKey))
+            return;
 
         var article = articles[ent.Comp.ArticleNumber];
         article.Views++;
@@ -468,7 +440,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
     }
 
     private bool TryGetArticleReactions(EntityUid articleOwner, int articleNumber,
-        [NotNullWhen(true)] out HashSet<(NetEntity, uint)>? reactions,
+        [NotNullWhen(true)] out HashSet<NetEntity>? reactions,
         bool create)
     {
         reactions = null;
@@ -489,7 +461,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             if (!create)
                 return false;
 
-            reactions = new HashSet<(NetEntity, uint)>();
+            reactions = new HashSet<NetEntity>();
             comp.ReactedByArticle[articleNumber] = reactions;
         }
 
@@ -497,7 +469,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
     }
 
     private bool TryGetArticleViews(EntityUid articleOwner, int articleNumber,
-        [NotNullWhen(true)] out HashSet<(NetEntity, uint)>? views,
+        [NotNullWhen(true)] out HashSet<NetEntity>? views,
         bool create)
     {
         views = null;
@@ -518,7 +490,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
             if (!create)
                 return false;
 
-            views = new HashSet<(NetEntity, uint)>();
+            views = new HashSet<NetEntity>();
             comp.ViewedByArticle[articleNumber] = views;
         }
 
@@ -537,7 +509,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
         ShiftArticleTracking(comp.ViewedByArticle, articleNumber);
     }
 
-    private static void ShiftArticleTracking(Dictionary<int, HashSet<(NetEntity, uint)>> records, int articleNumber)
+    private static void ShiftArticleTracking(Dictionary<int, HashSet<NetEntity>> records, int articleNumber)
     {
         records.Remove(articleNumber);
 
