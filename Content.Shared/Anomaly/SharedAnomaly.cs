@@ -126,11 +126,15 @@ public sealed class AnomalyGeneratorUserInterfaceState : BoundUserInterfaceState
 
     public int FuelCost;
 
-    public AnomalyGeneratorUserInterfaceState(TimeSpan cooldownEndTime, int fuelAmount, int fuelCost)
+    /// <summary>Current Arcanus Flux level for display in the generator UI.</summary>
+    public float ArcanusFlux;
+
+    public AnomalyGeneratorUserInterfaceState(TimeSpan cooldownEndTime, int fuelAmount, int fuelCost, float arcanusFlux)
     {
         CooldownEndTime = cooldownEndTime;
         FuelAmount = fuelAmount;
         FuelCost = fuelCost;
+        ArcanusFlux = arcanusFlux;
     }
 }
 

@@ -70,6 +70,21 @@ anomaly-generator-charges = {$charges ->
 }
 anomaly-generator-announcement = An anomaly has been generated!
 
+# Arcanus Flux — UI display
+arcanus-flux-display = Arcanus Flux:
+
+# Arcanus Flux — science radio alerts
+arcanus-flux-alert-warn = [ARCANUS FLUX] Readings approaching unstable levels: { $flux } AF. Science is advised to monitor the Nullscar.
+arcanus-flux-alert-critical = [ARCANUS FLUX] CRITICAL — Flux at { $flux } AF. Nullscar instability detected. Extreme events imminent.
+arcanus-flux-extreme-anomaly-spawned = [ARCANUS FLUX] WARNING — An anomaly has become overclocked. Extreme event in progress.
+arcanus-flux-generator-overload-warning = [Flux Warning] Anomaly generator overloading. Flux too high for too long. Reduce flux immediately or evacuate the area.
+arcanus-flux-generator-exploded = [ARCANUS FLUX] Generator overload failure. The Nullscar feedback has been partially discharged.
+
+# Arcanus Flux — CC announcements
+arcanus-flux-cc-sender = Central Command
+arcanus-flux-nullscar-announcement = Attention all personnel aboard this station. Central Command instructs all Science department staff to cease or reduce anomaly research activity immediately. Our instruments have detected a significant Nullscar disturbance in your vicinity. Nullscar pressure is at dangerous levels. Continued anomalous activity risks catastrophic station-wide events. You are advised to initiate flux dissipation procedures at once.
+arcanus-flux-nullscar-overload =  A catastrophic Nullscar overload event has been detected at your station. The Nullscar has collapsed locally. Central Command is unable to guarantee crew safety. All department heads are urged to take immediate protective action.
+
 anomaly-command-pulse = Pulses a target anomaly
 anomaly-command-supercritical = Makes a target anomaly go supercritical
 

@@ -45,6 +45,10 @@ public sealed partial class AnomalyGeneratorWindow : FancyWindow
         var charges = state.FuelAmount / state.FuelCost;
         FuelText.Text = Loc.GetString("anomaly-generator-charges", ("charges", charges));
 
+        // Arcanus Flux display
+        var fluxColor = state.ArcanusFlux >= 500f ? "crimson" : "forestgreen";
+        FluxLabel.SetMarkup(Loc.GetString("arcanus-flux-display") + $" [color={fluxColor}]{(int)state.ArcanusFlux} / 1000 AF[/color]");
+
         UpdateTimer();
         UpdateReady(); // yes this can trigger twice. no i don't care
     }

@@ -29,6 +29,7 @@
                 </BoxContainer>
                 <RichTextLabel Name="CooldownLabel" StyleClasses="highlight" />
                 <RichTextLabel Name="ReadyLabel" StyleClasses="highlight" />
+                <RichTextLabel Name="FluxLabel" StyleClasses="highlight" />
             </BoxContainer>
             <!--Sprite View-->
             <PanelContainer Margin="12 0 0 0"

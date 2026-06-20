@@ -29,6 +29,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly AmbientSoundSystem _ambient = default!;
+    [Dependency] private readonly ArcanusFlux.ArcanusFluxSystem _arcanusFlux = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly MaterialStorageSystem _material = default!;

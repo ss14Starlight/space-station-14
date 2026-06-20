@@ -1,6 +1,7 @@
 using Content.Server.Anomaly.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Anomaly;
+using Content.Shared.Anomaly.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Materials;
 using Content.Shared.Radio;
@@ -52,11 +53,13 @@ public sealed partial class AnomalySystem
         TryGeneratorCreateAnomaly(uid, component);
     }
 
+    private TimeSpan _nextGeneratorUiRefresh = TimeSpan.Zero;
+
     public void UpdateGeneratorUi(EntityUid uid, AnomalyGeneratorComponent component)
     {
         var materialAmount = _material.GetMaterialAmount(uid, component.RequiredMaterial);
 
-        var state = new AnomalyGeneratorUserInterfaceState(component.CooldownEndTime, materialAmount, component.MaterialPerAnomaly);
+        var state = new AnomalyGeneratorUserInterfaceState(component.CooldownEndTime, materialAmount, component.MaterialPerAnomaly, _arcanusFlux.Flux);
         _ui.SetUiState(uid, AnomalyGeneratorUiKey.Key, state);
     }
 
@@ -153,9 +156,94 @@ public sealed partial class AnomalySystem
         Spawn(toSpawn, targetCoords);
     }
 
+    /// <summary>
+    /// Spawns <paramref name="toSpawn"/> on a random valid tile of <paramref name="grid"/> and returns the spawned entity.
+    /// Returns <c>null</c> if no valid tile was found within the attempt limit.
+    /// </summary>
+    public EntityUid? SpawnOnRandomGridLocationReturning(EntityUid grid, string toSpawn)
+    {
+        if (!TryComp<MapGridComponent>(grid, out var gridComp))
+            return null;
+
+        var xform = Transform(grid);
+        var targetCoords = xform.Coordinates;
+        var gridBounds = gridComp.LocalAABB.Scale(_configuration.GetCVar(CCVars.AnomalyGenerationGridBoundsScale));
+        var found = false;
+
+        for (var i = 0; i < 25; i++)
+        {
+            var randomX = Random.Next((int) gridBounds.Left, (int) gridBounds.Right);
+            var randomY = Random.Next((int) gridBounds.Bottom, (int) gridBounds.Top);
+            var tile = new Vector2i(randomX, randomY);
+
+            if (_atmosphere.IsTileSpace(grid, xform.MapUid, tile) ||
+                _atmosphere.IsTileAirBlockedCached(grid, tile))
+                continue;
+
+            var physQuery = GetEntityQuery<PhysicsComponent>();
+            var valid = true;
+            foreach (var ent in _mapSystem.GetAnchoredEntities(grid, gridComp, tile))
+            {
+                if (!physQuery.TryGetComponent(ent, out var body))
+                    continue;
+                if (body.BodyType != BodyType.Static || !body.Hard ||
+                    (body.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+                    continue;
+                valid = false;
+                break;
+            }
+            if (!valid)
+                continue;
+
+            var pos = _mapSystem.GridTileToLocal(grid, gridComp, tile);
+            var mapPos = _transform.ToMapCoordinates(pos);
+            var antiQuery = AllEntityQuery<AntiAnomalyZoneComponent, TransformComponent>();
+            while (antiQuery.MoveNext(out _, out var zone, out var antiXform))
+            {
+                if (antiXform.MapID != mapPos.MapId)
+                    continue;
+                var delta = _transform.GetWorldPosition(antiXform) - mapPos.Position;
+                if (delta.LengthSquared() < zone.ZoneRadius * zone.ZoneRadius)
+                {
+                    valid = false;
+                    break;
+                }
+            }
+            if (!valid)
+                continue;
+
+            targetCoords = pos;
+            found = true;
+            break;
+        }
+
+        if (!found)
+            return null;
+
+        return Spawn(toSpawn, targetCoords);
+    }
+
     private void OnGeneratingStartup(EntityUid uid, GeneratingAnomalyGeneratorComponent component, ComponentStartup args)
     {
         Appearance.SetData(uid, AnomalyGeneratorVisuals.Generating, true);
+    }
+
+    /// <summary>
+    /// Applies Extreme Anomaly stats to an anomaly entity: fast pulses, low growth threshold,
+    /// high severity growth, and a starting stability/severity that drives it toward supercritical.
+    /// Called by <see cref="ArcanusFlux.ArcanusFluxSystem"/> after spawning an extreme anomaly.
+    /// </summary>
+    public void ApplyExtremeAnomalyStats(EntityUid uid)
+    {
+        if (!TryComp<AnomalyComponent>(uid, out var anom))
+            return;
+
+        anom.MinPulseLength = TimeSpan.FromSeconds(15);
+        anom.MaxPulseLength = TimeSpan.FromSeconds(30);
+        anom.GrowthThreshold = 0.3f;
+        anom.SeverityGrowthCoefficient = 0.2f;
+        ChangeAnomalyStability(uid, 0.6f, anom);
+        ChangeAnomalySeverity(uid, 0.4f, anom);
     }
 
     private void OnGeneratingFinished(EntityUid uid, AnomalyGeneratorComponent component)
@@ -181,6 +269,15 @@ public sealed partial class AnomalySystem
 
     private void UpdateGenerator()
     {
+        // Refresh the generator UI every second so Arcanus Flux stays current
+        if (Timing.CurTime >= _nextGeneratorUiRefresh)
+        {
+            _nextGeneratorUiRefresh = Timing.CurTime + TimeSpan.FromSeconds(1);
+            var uiQuery = EntityQueryEnumerator<AnomalyGeneratorComponent>();
+            while (uiQuery.MoveNext(out var uid, out var gen))
+                UpdateGeneratorUi(uid, gen);
+        }
+
         var query = EntityQueryEnumerator<GeneratingAnomalyGeneratorComponent, AnomalyGeneratorComponent>();
         while (query.MoveNext(out var ent, out var active, out var gen))
         {
