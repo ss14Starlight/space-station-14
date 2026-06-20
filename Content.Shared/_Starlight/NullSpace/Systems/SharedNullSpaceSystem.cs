@@ -11,8 +11,9 @@ using Content.Shared.Explosion;
 using Content.Shared.Stunnable;
 using Content.Shared.Movement.Events;
 using Content.Shared.Gravity;
+using Content.Shared._Starlight.NullSpace.Components;
 
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
 public abstract partial class SharedNullSpaceSystem : EntitySystem
 {

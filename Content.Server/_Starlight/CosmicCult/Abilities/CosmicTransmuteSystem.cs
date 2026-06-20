@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Popups;
 using Content.Shared.Whitelist;
 using Robust.Shared.Random;

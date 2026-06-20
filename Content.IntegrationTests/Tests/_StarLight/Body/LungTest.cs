@@ -14,7 +14,7 @@ using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Medical.Body.Systems;
 
-namespace Content.IntegrationTests.Tests.Body
+namespace Content.IntegrationTests.Tests._Starlight.Body
 {
     [TestFixture]
     [TestOf(typeof(LungSystem))]

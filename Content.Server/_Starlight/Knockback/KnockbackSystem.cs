@@ -1,5 +1,5 @@
 using System.Numerics;
-using Content.Shared.Starlight.Knockback;
+using Content.Shared._Starlight.Knockback;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;

@@ -1,6 +1,6 @@
 using Robust.Shared.Audio;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Handlers.Fax;
 
 [RegisterComponent]
 public sealed partial class RailroadFaxOnChosenComponent : Component, IRailroadFaxComponent

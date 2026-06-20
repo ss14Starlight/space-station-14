@@ -4,7 +4,7 @@ using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Reward;
 
 [RegisterComponent]
 public sealed partial class RailroadDeliveryRewardComponent : Component

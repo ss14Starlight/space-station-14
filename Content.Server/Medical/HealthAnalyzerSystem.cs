@@ -31,6 +31,7 @@ using Robust.Shared.Prototypes; // Starlight-edit
 using Robust.Shared.Timing;
 using Robust.Shared.Utility; // Starlight-edit
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical;
 
 namespace Content.Server.Medical;
 

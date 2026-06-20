@@ -8,15 +8,17 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
-using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Antags.Abductor;
 using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Spawners;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

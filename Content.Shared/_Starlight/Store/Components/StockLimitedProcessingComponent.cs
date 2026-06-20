@@ -3,7 +3,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Store.Components;
+namespace Content.Shared._Starlight.Store.Components;
 
 /// <summary>
 /// This component is used to track which store listings are currently being processed.

@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 
 using Content.Shared.Actions;
 
-namespace Content.Shared.Silicons.StationAi;
+namespace Content.Shared._Starlight.StationAi;
 
 public sealed partial class StationAiOpenWarpActionEvent : InstantActionEvent
 {

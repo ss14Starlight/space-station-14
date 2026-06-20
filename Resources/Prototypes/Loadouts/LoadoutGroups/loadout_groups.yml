@@ -234,20 +234,6 @@
   - CaptainWintercoat
 
 - type: loadoutGroup
-  id: CaptainEyewear
-  name: loadout-group-captain-eyewear
-  loadouts:
-  - CaptainGlasses
-  - CaptainHud
-
-- type: loadoutGroup
-  id: CaptainJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieCaptain
-
-- type: loadoutGroup
   id: HoPHead
   name: loadout-group-hop-head
   minLimit: 0
@@ -412,13 +398,6 @@
   - Heels # 🌟Starlight🌟
 
 - type: loadoutGroup
-  id: AssistantJobTrinkets # Starlight - depassenger
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieAssistant # Starlight - depassenger
-
-- type: loadoutGroup
   id: BartenderHead
   name: loadout-group-bartender-head
   minLimit: 0
@@ -452,16 +431,6 @@
   loadouts:
   - LizardPlushieBartender
   - BartenderGoldenShaker
-
-- type: loadoutGroup
-  id: ServiceWorkerJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieServiceWorker
-  - LizardPlushieBartender # Starlight
-  - LizardPlushieBotanist # Starlight
-  - LizardPlushieChef # Starlight
 
 - type: loadoutGroup
   id: ChefHead
@@ -510,14 +479,6 @@
   - LibrarianJumpskirt
   - CuratorJumpsuit
   - CuratorJumpskirt
-
-
-- type: loadoutGroup
-  id: LibrarianJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieLibrarian
 
 - type: loadoutGroup
   id: LawyerJumpsuit
@@ -1057,15 +1018,6 @@
   - SalvageSpecialistWintercoat
 
 - type: loadoutGroup
-  id: SalvageSpecialistJumpsuit
-  name: loadout-group-salvage-specialist-jumpsuit
-  loadouts:
-  - SalvageSpecialistJumpsuit # starlight start
-  - SalvageSpecialistJumpskirt
-  - SalvageSpecialistJumpsuitFormal
-  - SalvageSpecialistJumpskirtFormal # starlight end
-
-- type: loadoutGroup
   id: SalvageSpecialistShoes
   name: loadout-group-salvage-specialist-shoes
   minLimit: 0 # Starlight
@@ -1141,14 +1093,6 @@
   loadouts:
   - YellowJumpsuit
   - YellowJumpskirt
-
-
-- type: loadoutGroup
-  id: TechnicalAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieTechnicalAssistant
 
 - type: loadoutGroup
   id: StationEngineerHead
@@ -1419,14 +1363,6 @@
   - WhiteJumpsuit
   - WhiteJumpskirt
 
-
-- type: loadoutGroup
-  id: ResearchAssistantJobTrinkets
-  name: loadout-group-jobtrinkets
-  minLimit: 0
-  loadouts:
-  - LizardPlushieResearchAssistant
-
 # Security
 - type: loadoutGroup
   id: HeadofSecurityHead
@@ -1513,83 +1449,6 @@
   loadouts:
   - LizardPlushieWarden
   - SecStar
-
-- type: loadoutGroup
-  id: SecurityEyewear
-  name: loadout-group-security-eyewear
-  loadouts:
-  - SecurityGlasses
-  - SecurityHud
-  - DetectiveNoirGlasses
-  - SecurityGlassesPrescription # Starlight
-
-- type: loadoutGroup
-  id: BrigmedicHead
-  name: loadout-group-brigmedic-head
-  minLimit: 0
-  loadouts:
-  - BrigmedicBeret
-  - BrigmedicNurseHat # Starlight start
-  - CorpsmanBeret
-  - CorpsmanNurseHat
-  - BrigmedicNurseHatOfLife # Starlight end
-  - SecurityHelmet
-
-- type: loadoutGroup
-  id: BrigmedicJumpsuit
-  name: loadout-group-brigmedic-jumpsuit
-  loadouts:
-  - JumpsuitBrigmedic
-  - JumpskirtBrigmedic # Starlight line swap v
-  - JumpsuitCorpsman # Starlight line swap ^
-  - JumpskirtCorpsman # Starlight start
-  - CorpsmanResponse
-  - CorpsmanTrauma
-  - BrigmedicJumpsuitOfLife
-  - BrigmedicJumpskirtOfLife # starlight end
-
-- type: loadoutGroup
-  id: BrigmedicBackpack
-  name: loadout-group-brigmedic-backpack
-  loadouts:
-  - BrigmedicBackpack
-  - BrigmedicSatchel
-  - BrigmedicDuffel
-  - CorpsmanBackpack # Starlight
-  - CorpsmanSatchel # Starlight
-  - CorpsmanDuffel # Starlight
-  - LeatherSatchel # starlight
-
-- type: loadoutGroup
-  id: BrigmedicOuterClothing
-  name: loadout-group-brigmedic-outerclothing
-  minLimit: 0 # starlight
-  defaultSelected: 1 # starlight
-  loadouts:
-  - BrigmedicCoat
-  - BrigmedicLabCoat # Starlight
-  - CorpsmanCoat #Starlight
-  - CorpsmanLabCoat # Starlight
-  - SecurityOfficerWintercoat
-
-- type: loadoutGroup
-  id: BrigmedicEyewear
-  name: loadout-group-brigmedic-eyewear
-  loadouts:
-  - BrigmedicGlasses
-  - BrigmedicHud
-  - BrigmedicEyePatchHud # Starlight
-  - BrigmeicGlassesPrescription # Starlight
-  - CorpsmanGlasses # Starlight
-  - CorpsmanHud # Starlight
-
-- type: loadoutGroup
-  id: BrigmedicBelt
-  name: loadout-group-brigmedic-belt
-  loadouts:
-  - BrigmedicRig
-  - BrigmedicBelt #Starlight
-  - CorpsmanBelt #Starlight
 
 - type: loadoutGroup
   id: SecurityHead

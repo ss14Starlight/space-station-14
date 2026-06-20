@@ -1,5 +1,6 @@
 ﻿using Content.Client._Starlight.Tag;
 using Content.Shared._Starlight.OnCollide;
+using Content.Shared._Starlight.Sprite;
 using Content.Shared.Whitelist;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;

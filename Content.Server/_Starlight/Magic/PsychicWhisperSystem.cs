@@ -5,7 +5,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Magic.Events;
 using Robust.Shared.Player;
 
-namespace Content.Server._Starlight.Magic.Systems;
+namespace Content.Server._Starlight.Magic;
 
 /// <summary>
 ///     Implementation for the Elf 'Psychic Whisper' Cantrip

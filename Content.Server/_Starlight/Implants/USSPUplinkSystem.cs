@@ -9,9 +9,14 @@ using Content.Shared.Popups;
 using Content.Shared.IdentityManagement;
 using Content.Server.RoundEnd;
 using Content.Shared.Implants.Components;
-
+using Content.Shared._Starlight.Implants.Components;
 using Content.Server.GameTicking.Rules;
-namespace Content.Server.Implants;
+using Content.Server.Implants;
+using Content.Shared._Starlight.Implants.Components;
+using Content.Shared._Starlight.Revolutionary.Components;
+using Content.Shared._Starlight.Store.Conditions;
+using Content.Server._Starlight.Revolutionary.Components;
+namespace Content.Server._Starlight.Implants;
 public sealed partial class USSPUplinkSystem : EntitySystem
 {
     [Dependency] private StoreSystem _storeSystem = default!;
@@ -43,7 +48,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
     private void ResetUplinkStocks()
     {
         // Use reflection to access the private static dictionaries in StockLimitedListingCondition
-        var type = typeof(Content.Shared.Store.Conditions.StockLimitedListingCondition);
+        var type = typeof(StockLimitedListingCondition);
 
         // Get the _stockCounts dictionary
         var stockCountsField = type.GetField("_stockCounts",
@@ -241,7 +246,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
             if (originalOwner != null && originalOwner.Value != args.Implanted)
             {
                 // Only change ownership if the implanted entity is a head revolutionary
-                var uplinkOwnerComp = EnsureComp<Content.Shared.Implants.Components.USSPUplinkOwnerComponent>(uid);
+                var uplinkOwnerComp = EnsureComp<USSPUplinkOwnerComponent>(uid);
                 uplinkOwnerComp.OwnerUid = args.Implanted;
 
                 // Notify the original owner that their uplink has been claimed by another head revolutionary
@@ -345,7 +350,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
                 if (originalOwner != null)
                 {
                     // Find all uplinks owned by this head revolutionary
-                    var uplinkQuery = EntityManager.EntityQueryEnumerator<Content.Shared.Implants.Components.USSPUplinkOwnerComponent, StoreComponent>();
+                    var uplinkQuery = EntityManager.EntityQueryEnumerator<USSPUplinkOwnerComponent, StoreComponent>();
                     while (uplinkQuery.MoveNext(out var uplinkOwnerOwner, out var uplinkOwner, out var uplinkStore))
                     {
                         if (uplinkOwner.OwnerUid == originalOwner && uplinkOwnerOwner != uid)
@@ -515,7 +520,7 @@ public sealed partial class USSPUplinkSystem : EntitySystem
         {
             foreach (var condition in args.PurchasedItem.Conditions)
             {
-                if (condition is Content.Shared.Store.Conditions.StockLimitedListingCondition)
+                if (condition is StockLimitedListingCondition)
                 {
                     isStockLimited = true;
                     break;
