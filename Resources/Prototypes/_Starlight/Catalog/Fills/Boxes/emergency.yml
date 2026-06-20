@@ -286,7 +286,7 @@
         - id: EmergencyOxygenTankFilled
         - id: EmergencyMedipen
         - id: Flare
-        - id: FoodBreadBaguette # Mime Rodentias still get bread. They're under contract with the French.
+        - id: FoodBreadNutriBatard # Mime Rodentias still get bread. They're under contract with the French.
         - id: DrinkWaterBottleFull
 
 - type: entity
