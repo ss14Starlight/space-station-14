@@ -212,14 +212,14 @@
     minAngle: -4
     maxAngle: -6
   - type: Gun
-    fireRate: 6
+    fireRate: 7
     minAngle: 5
     maxAngle: 10
     availableModes:
     - FullAuto
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      path: /Audio/_Starlight/Weapons/Guns/Gunshots/pdw90_shot.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 6
