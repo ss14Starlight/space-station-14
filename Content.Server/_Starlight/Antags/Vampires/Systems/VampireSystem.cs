@@ -21,6 +21,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Server.GameTicking;
+using Content.Server.Body.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Popups;
@@ -36,7 +37,6 @@ using Robust.Shared.Timing;
 using Prometheus;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Shared._Starlight.Overlay.Components;
-using Content.Server.Body.Components;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Shared._Starlight.Vampire.Components;
 
