@@ -1,8 +1,6 @@
-using Content.Shared._Starlight.Antags.Abductor;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
-using Content.Shared._Starlight.Medical.Surgery;
 using Content.Shared.DoAfter;
 using Content.Shared.Body.Systems;
 using Content.Shared.Body.Organ;

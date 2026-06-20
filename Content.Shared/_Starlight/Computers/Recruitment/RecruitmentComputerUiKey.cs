@@ -1,9 +1,6 @@
 ﻿using Content.Shared.Roles;
-using Content.Shared._Starlight.Antags.Abductor;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Toolshed.TypeParsers;
-using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
 namespace Content.Shared._Starlight.Computers.Recruitment;
 [Serializable, NetSerializable]

@@ -1,5 +1,3 @@
-using Robust.Shared.Utility;
-
 namespace Content.Shared._Starlight.Railroading.Components.Watchers;
 
 /// <summary>

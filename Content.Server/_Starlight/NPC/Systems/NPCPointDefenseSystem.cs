@@ -1,5 +1,4 @@
 using Content.Server._Starlight.NPC.Components;
-using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.Weapons.Ranged.Systems;
 

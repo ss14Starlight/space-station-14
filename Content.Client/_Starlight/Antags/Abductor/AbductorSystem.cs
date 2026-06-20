@@ -1,5 +1,4 @@
-﻿using Content.Shared._Starlight.Antags.Abductor;
-using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+﻿using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 
 namespace Content.Client._Starlight.Antags.Abductor;
 

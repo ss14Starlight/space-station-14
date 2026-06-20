@@ -18,7 +18,6 @@ using Content.Shared.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Configuration;
-using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.AlertArmory;
 

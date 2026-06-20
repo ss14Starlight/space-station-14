@@ -1,5 +1,4 @@
-﻿using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
+﻿using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 

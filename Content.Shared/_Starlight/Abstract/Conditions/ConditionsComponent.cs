@@ -1,5 +1,3 @@
-using Content.Shared._Starlight.Abstract.Conditions;
-
 namespace Content.Shared._Starlight.Abstract.Conditions;
 
 [RegisterComponent]

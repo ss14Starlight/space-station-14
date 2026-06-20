@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Content.Shared.EntityEffects;
 using Content.Shared.Database;
 using Content.Shared.Tag;

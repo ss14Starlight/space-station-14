@@ -1,4 +1,3 @@
-using Content.Server._Starlight.Antags;
 using Content.Server._Starlight.GameTicking.Rules.Components;
 using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Antag;

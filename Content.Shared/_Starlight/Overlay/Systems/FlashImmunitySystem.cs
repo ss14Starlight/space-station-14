@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Overlay.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Flash.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
