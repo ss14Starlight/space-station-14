@@ -5,8 +5,9 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Server.Popups;
 using Robust.Shared.Prototypes;
+using Content.Shared._Starlight.Access;
 
-namespace Content.Server.Access.Systems;
+namespace Content.Server._Starlight.Access;
 
 /// <summary>
 /// System for handling single-use access chips that grant accesses to ID cards.
