@@ -1,10 +1,12 @@
 ﻿using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared.Starlight.Economy;
+using Content.Shared._Starlight.Economy;
 using Robust.Server.Player;
 using Robust.Shared.Random;
+using Content.Server._Starlight.Economy;
+using Content.Shared._Starlight.Railroading.Components.Reward;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.RewardSystems;
 
 public sealed partial class RailroadingDonationRewardSystem : EntitySystem
 {

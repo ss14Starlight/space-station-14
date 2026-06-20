@@ -1,4 +1,5 @@
-﻿using Content.Shared.Starlight.ItemSwitch;
+﻿using Content.Shared._Starlight.ItemSwitch;
+using Content.Shared._Starlight.ItemSwitch.Components;
 using Content.Shared.Item.ItemToggle.Components;
 using Robust.Client.GameObjects;
 

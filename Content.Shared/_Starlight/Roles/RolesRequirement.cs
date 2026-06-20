@@ -6,8 +6,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 using Content.Shared._NullLink;
+using Content.Shared.Roles;
 
-namespace Content.Shared.Roles;
+namespace Content.Shared._Starlight.Roles;
 
 [UsedImplicitly]
 [Serializable, NetSerializable]

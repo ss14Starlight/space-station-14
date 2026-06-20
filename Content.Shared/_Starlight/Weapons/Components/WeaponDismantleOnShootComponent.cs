@@ -6,7 +6,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared._Starlight.Weapon.Components;
+namespace Content.Shared._Starlight.Weapons.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class WeaponDismantleOnShootComponent : Component
 {

@@ -1,4 +1,5 @@
 using Content.Server._Starlight.Antags;
+using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Administration.Systems;
 using Content.Server.Chat.Managers;
 using Content.Shared.Administration;

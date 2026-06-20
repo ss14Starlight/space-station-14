@@ -2,7 +2,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.UserInterface;
 using Robust.Shared.Network;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.UI;
 
 public sealed partial class ActivateUiOnStrappedSystem : EntitySystem
 {

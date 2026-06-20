@@ -39,11 +39,11 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mindshield.Components;
-using Content.Shared.Starlight.Overlay;
+using Content.Shared._Starlight.Overlay;
 using Content.Shared.Atmos.Rotting;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
-
+using Content.Shared._Starlight.Overlay.Systems;
 
 namespace Content.Server._Starlight.Antags.Vampires.Systems;
 

@@ -1,5 +1,5 @@
 using Content.Shared.Atmos;
-namespace Content.Server.Cargo.Components;
+namespace Content.Server._Starlight.Cargo.Components;
 
 /// <summary>
 /// Takes input gas and stores it for sale

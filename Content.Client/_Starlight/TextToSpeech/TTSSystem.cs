@@ -2,8 +2,8 @@
 using System.IO;
 using Content.Client._Starlight.Radio.Systems;
 using Content.Client._Starlight.TextToSpeech;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Client.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -13,7 +13,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Player;
 using Robust.Shared.Spawners;
 
-namespace Content.Client._Starlight.TTS;
+namespace Content.Client._Starlight.TextToSpeech;
 
 /// <summary>
 /// Plays TTS audio

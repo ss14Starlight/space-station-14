@@ -315,14 +315,3 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-
-- type: entity
-  name: ForceableFollow AKMS
-  parent: [ WeaponRifleAk, BaseSovietContraband ]
-  id: WeaponRifleAkAdmeme
-  suffix: Admeme
-  description: An iconic weapon of war. Uses .30 rifle ammo.
-  components:
-  - type: Tag
-    tags:
-    - ForceableFollow
