@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Item.ItemToggle.Components;
+namespace Content.Shared._Starlight.ItemSwitch.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class ItemSwitchComponent : Component

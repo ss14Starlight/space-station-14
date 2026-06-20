@@ -1,4 +1,4 @@
-using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Antags.Abductor;
 using Robust.Shared.Timing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -6,8 +6,10 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Server.Chat.Systems;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

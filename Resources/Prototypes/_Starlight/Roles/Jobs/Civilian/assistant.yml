@@ -1,0 +1,10 @@
+- type: chameleonOutfit
+  id: AssistantChameleonOutfit
+  job: Assistant
+  equipment:
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesGlassesCheapSunglasses
+    mask: ClothingMaskGas
+    neck: ClothingNeckMantle
+    outerClothing: ClothingOuterWinterCoat
+    gloves: ClothingHandsGlovesColorYellowBudget

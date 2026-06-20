@@ -2,6 +2,7 @@ using Content.Server.Popups;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;

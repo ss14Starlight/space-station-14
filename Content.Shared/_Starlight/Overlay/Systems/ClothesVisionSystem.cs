@@ -2,8 +2,10 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Robust.Shared.Serialization.Manager;
 using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Shadekin.Components;
 
-namespace Content.Shared.Eye.Blinding.Components;
+namespace Content.Shared._Starlight.Overlay.Systems;
 
 public sealed partial class ClothesVisionSystem : EntitySystem
 {

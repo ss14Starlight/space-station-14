@@ -1,5 +1,5 @@
 ﻿using Content.Shared.Roles;
-using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Antags.Abductor;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Toolshed.TypeParsers;

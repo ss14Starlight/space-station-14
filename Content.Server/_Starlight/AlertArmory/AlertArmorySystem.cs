@@ -18,8 +18,9 @@ using Content.Shared.CCVar;
 using Content.Shared.Popups;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Configuration;
+using Content.Shared._Starlight.Shuttles.Components;
 
-namespace Content.Server.Starlight.AlertArmory;
+namespace Content.Server._Starlight.AlertArmory;
 
 public sealed partial class AlertArmorySystem : EntitySystem
 {

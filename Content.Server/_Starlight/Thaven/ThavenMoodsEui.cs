@@ -3,7 +3,6 @@ using Content.Server.EUI;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
 using Content.Shared._Starlight.Thaven;
-using Content.Shared._Starlight.Thaven.Components;
 
 namespace Content.Server._Starlight.Thaven;
 

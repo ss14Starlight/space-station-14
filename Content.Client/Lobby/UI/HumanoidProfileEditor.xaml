@@ -3,9 +3,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:humanoid="clr-namespace:Content.Client.Humanoid"
     xmlns:profileEditorControls="clr-namespace:Content.Client.Lobby.UI.ProfileEditorControls"
-    xmlns:traits="clr-namespace:Content.Client._Starlight.Traits.UI"
     xmlns:ui="clr-namespace:Content.Client.Lobby.UI"
     xmlns:ui1="clr-namespace:Content.Client._Starlight.Lobby.UI"
+    xmlns:traits="clr-namespace:Content.Client._Starlight.Traits.UI"
+    xmlns:starlightHumanoid="clr-namespace:Content.Client._Starlight.Humanoid"
+    xmlns:starlightProfileEditorControls="clr-namespace:Content.Client._Starlight.Lobby.UI.ProfileEditorControls"
     HorizontalExpand="True">
     <!--  Left side  -->
     <BoxContainer
@@ -220,8 +222,10 @@
                         </BoxContainer>
                         <!--  Hair  -->
                         <BoxContainer Margin="10" Orientation="Horizontal">
-                            <humanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
-                            <humanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+                            <!-- Starlight edit Start -->
+                            <starlightHumanoid:SingleMarkingPicker Name="HairStylePicker" Category="Hair" />
+                            <starlightHumanoid:SingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+                            <!-- Starlght edit End -->
                         </BoxContainer>
                         <!--  Eyes  -->
                         <BoxContainer Margin="10" Orientation="Vertical">
@@ -268,7 +272,9 @@
                 Orientation="Vertical">
                 <!--  Cybernetics  -->
                 <ScrollContainer VerticalExpand="True">
-                    <humanoid:CyberneticsPicker Name="Cybernetics" />
+                    <!-- Starlight edit Start -->
+                    <starlightHumanoid:CyberneticsPicker Name="Cybernetics" />
+                    <!-- Starlight edit End -->
                 </ScrollContainer>
             </BoxContainer>
             <!--  Starlight start  -->
@@ -294,5 +300,7 @@
         </TabContainer>
     </BoxContainer>
     <!--  Right side  -->
-    <profileEditorControls:ProfilePreview Name="Preview" />
+    <!-- Starlight edit Start -->
+    <starlightProfileEditorControls:ProfilePreview Name="Preview" />
+    <!-- Starlight edit End -->
 </BoxContainer>

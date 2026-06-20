@@ -3,7 +3,7 @@ using Content.Shared.Shuttles.Components;
 using Robust.Client.Input;
 using Robust.Client.Player;
 
-namespace Content.Client.PAI;
+namespace Content.Client._Starlight.PAI;
 
 /// <summary>
 /// Safety net: if the shuttle console is deleted while the local player is still piloting it,

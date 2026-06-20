@@ -1,9 +1,10 @@
 using Content.Server.Audio;
+using Content.Server.GameTicking;
 using Content.Shared._Starlight.GameTicking.Components;
 using Content.Shared.GameTicking.Prototypes;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.GameTicking;
+namespace Content.Server._Starlight.GameTicking;
 
 /// <summary>
 /// System that handles special lobby content (music and backgrounds) for game rules.
