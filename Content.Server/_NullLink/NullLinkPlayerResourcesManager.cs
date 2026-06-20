@@ -1,7 +1,7 @@
 using Content.Server._NullLink.Core;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 

@@ -2,6 +2,7 @@
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Preferences;
 
 /// <summary>

@@ -16,6 +16,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Content.Shared.Destructible;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Nutrition.EntitySystems;
 
 public sealed partial class SliceableFoodSystem : EntitySystem

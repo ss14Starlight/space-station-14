@@ -1,9 +1,9 @@
 using Content.Server.Explosion.EntitySystems;
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Random;
 
-namespace Content.Server.Defects.Systems;
+namespace Content.Server._Starlight.Defects.Systems;
 
 /// <summary>
 /// Triggers a localised explosion at the gun's position on a per-shot roll.

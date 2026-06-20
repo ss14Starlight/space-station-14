@@ -1,4 +1,4 @@
-using Content.Shared.Defects.Components;
+using Content.Shared._Starlight.Defects.Components;
 using Content.Shared.Item.ItemToggle;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Popups;
@@ -9,7 +9,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Defects.Systems;
+namespace Content.Shared._Starlight.Defects.Systems;
 
 // Randomly deactivates toggleable weapons with LoosePowerConnectorDefectComponent on each swing.
 // After deactivating, automatically reactivates after a short delay and plays a spark sound.

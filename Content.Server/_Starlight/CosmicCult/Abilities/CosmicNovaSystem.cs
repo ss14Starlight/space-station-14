@@ -14,8 +14,8 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Server.Popups;
 using Content.Shared.Mindshield.Components;
-using Content.Shared._Starlight.NullSpace;
 using Content.Server.Bible.Components;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 

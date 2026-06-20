@@ -1,4 +1,4 @@
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 /// <summary>
 /// A simple defect marker with no runtime behavior.

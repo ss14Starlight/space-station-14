@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Verbs;
 
 namespace Content.Server._Starlight.Shadekin;

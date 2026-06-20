@@ -1,6 +1,7 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.Stunnable;
+using Robust.Shared.GameStates;
 
-namespace Content.Shared.Stunnable;
+namespace Content.Shared._Starlight.Stunnable;
 
 /// <summary>
 /// This is used to apply a friction modifier to an entity temporarily
