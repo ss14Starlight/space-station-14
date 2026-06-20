@@ -1,5 +1,7 @@
+using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 #region Starlight
 using Content.Shared.Access;
@@ -62,6 +64,6 @@ public sealed partial class CargoAccountPrototype : IPrototype
     /// The access levels that can unseal orders that are bound to this account.
     /// </summary>
     [DataField]
-    public HashSet<ProtoId<AccessLevelPrototype>> TamperSealAccesses = new();
+    public List<TamperSealAccessPattern> TamperSealAccesses = new();
     #endregion
 }

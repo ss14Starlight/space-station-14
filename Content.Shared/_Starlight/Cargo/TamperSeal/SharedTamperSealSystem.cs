@@ -5,13 +5,16 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
+using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Localizations;
 using Content.Shared.Lock;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal;
@@ -28,6 +31,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     public override void Initialize()
     {
@@ -258,9 +262,30 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             .Select(type => type.ToString().ToLowerInvariant())
             .FirstOrDefault("hands"); // "slicing", "cutting", "prying" or "hands".
 
-        // I'd love to "return true" to block any interaction, but it also breaks other things like forensic scanners.
+        var qualities = ContentLocalizationManager.FormatListToOr(seal.DestroyToolQualities
+            .Select(type => _proto.Index(type).Name)
+            .Select(nameLoc => Loc.GetString(nameLoc))
+            .ToList());
+
+        // I'd love to "return true" to block any interaction, but it also breaks other things like forensic scanners.]
+        // Despite returning false for that case we still give a popup.
         if (hasTool && !hasCorrectTool)
+        {
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-tool-required",
+                    ("qualities", qualities)),
+                uid, user, PopupType.Medium);
             return false;
+        }
+
+        // If the user is not using the correct tool (and is thus using their hands), but has no hands,
+        // then we tell them they either need hands or the correct tool (the latter being for cyborgs).
+        if (toolKind == "hands" && (!TryComp<HandsComponent>(user, out var hands) || hands.Count < 1))
+        {
+            _popup.PopupPredicted(Loc.GetString("tamper-seal-popup-destroy-hands-or-tool-required",
+                    ("qualities", qualities)),
+                uid, user, PopupType.Medium);
+            return false;
+        }
 
         // I tried using ToolSystem.UseTool, but that causes mispredicts due to setting a different AttemptFrequency.
         // Doing it manually like this with AttemptFrequency.EveryTick works perfectly.
@@ -283,7 +308,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         // Show a popup and play sound.
         _popup.PopupPredicted(
             Loc.GetString($"tamper-seal-popup-destroy-{toolKind}-begin"),
-            uid, user, PopupType.Large);
+            uid, user, PopupType.LargeCaution);
         _audio.PlayPredicted(seal.DestroyBeginSound, uid, user);
 
         _adminLogger.Add(LogType.Action, LogImpact.Medium,
@@ -296,12 +321,22 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (!Resolve(uid, ref seal))
             return false;
 
-        // If none are set, permit it.
-        if (seal.Accesses.Count == 0)
-            return true;
-
         var userTags = _accessReader.FindAccessTags(user);
-        return seal.Accesses.Any(userTags.Contains);
+        foreach (var pattern in seal.Accesses)
+        {
+            // If any of the AllOf accesses is absent, the pattern fails.
+            if (pattern.AllOf is {} allOf && !allOf.All(userTags.Contains))
+                continue;
+
+            // If any of the NoneOf accesses is present, the pattern fails.
+            if (pattern.NoneOf is {} noneOf && noneOf.Any(userTags.Contains))
+                continue;
+
+            // Success if we haven't failed.
+            return true;
+        }
+
+        return false;
     }
 
     private void DoUnseal(EntityUid uid, EntityUid user, TamperSealComponent seal)

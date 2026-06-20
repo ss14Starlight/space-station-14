@@ -5,6 +5,8 @@ tamper-seal-popup-unseal-end-reward = Seal opened. {$deliverer} is awarded {$rew
 tamper-seal-popup-unseal-no-access = This order isn't meant for your department.
 
 # Destroy popups
+tamper-seal-popup-destroy-hands-or-tool-required = You need hands or a tool that can do {$qualities}.
+tamper-seal-popup-destroy-tool-required = This tamper seal requires {$qualities} to destroy!
 tamper-seal-popup-destroy-hands-begin = You begin painfully ripping apart the tamper seal..
 tamper-seal-popup-destroy-slicing-begin = You cut the tamper seal..
 tamper-seal-popup-destroy-cutting-begin = You cut the tamper seal..

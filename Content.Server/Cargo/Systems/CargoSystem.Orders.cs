@@ -23,8 +23,8 @@ using Robust.Shared.Utility;
 #region Starlight
 using Content.Shared._Starlight.Cargo.TamperSeal.Components;
 using Content.Server._Starlight.Cargo.TamperSeal.Components;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Access;
-using Content.Shared.Starlight.CCVar;
 #endregion
 
 namespace Content.Server.Cargo.Systems
@@ -38,7 +38,7 @@ namespace Content.Server.Cargo.Systems
         #region Starlight
         private float _tamperSealRewardMultiplier = 0.1f;
         private float _tamperSealPenaltyMultiplier = 0.1f;
-        private float _tamperSealRefundMultiplier = 0.25f;
+        private float _tamperSealRefundMultiplier = 0.5f;
         #endregion
 
         private void InitializeConsole()
@@ -677,7 +677,7 @@ namespace Content.Server.Cargo.Systems
                 }
             }
 
-            #region Starlight
+            // Starlight BEGIN
             // If the entity does not support tamper seals, do not apply one.
             if (!TryComp<TamperSealableComponent>(item, out var tamperSealable))
                 return true;
@@ -690,7 +690,7 @@ namespace Content.Server.Cargo.Systems
             seal.RecipientName = recipient.TamperSealName;
             seal.RecipientExamineColor = recipient.Color;
             seal.Color = recipient.TamperSealColor;
-            seal.Accesses = new HashSet<ProtoId<AccessLevelPrototype>>(recipient.TamperSealAccesses);
+            seal.Accesses = new List<TamperSealAccessPattern>(recipient.TamperSealAccesses);
             seal.DestroyToolQualities = new HashSet<ProtoId<ToolQualityPrototype>>(tamperSealable.DestroyToolQualities);
 
             // Attach a tamper seal value component to enable reward/penalty on unseal/destroy.
@@ -707,7 +707,7 @@ namespace Content.Server.Cargo.Systems
 
             DirtyEntity(item);
             return true;
-            #endregion
+            // Starlight END
         }
 
         public List<ProtoId<CargoProductPrototype>> GetAvailableProducts(Entity<CargoOrderConsoleComponent> ent)

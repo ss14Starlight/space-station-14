@@ -49,7 +49,7 @@ public sealed partial class TamperSealComponent : Component
     /// <summary>
     /// The access levels that can unlock this tamper seal legally.
     /// </summary>
-    [DataField, AutoNetworkedField] public HashSet<ProtoId<AccessLevelPrototype>> Accesses = new();
+    [DataField, AutoNetworkedField] public List<TamperSealAccessPattern> Accesses = new();
 
     #endregion
     #region State
@@ -117,6 +117,11 @@ public sealed partial class TamperSealComponent : Component
 
     #endregion
 }
+
+[Serializable, NetSerializable, DataRecord]
+public partial record struct TamperSealAccessPattern(
+    HashSet<ProtoId<AccessLevelPrototype>>? AllOf = null,
+    HashSet<ProtoId<AccessLevelPrototype>>? NoneOf = null);
 
 /// <summary>
 /// These are basically flags that are networked so the visualizer knows how to render it.
