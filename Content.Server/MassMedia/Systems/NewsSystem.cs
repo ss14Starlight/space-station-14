@@ -515,7 +515,7 @@ public sealed partial class NewsSystem : SharedNewsSystem
 
         foreach (var (index, articleRecords) in records
                      .Where(entry => entry.Key > articleNumber)
-                     .OrderByDescending(entry => entry.Key)
+                     .OrderBy(entry => entry.Key)
                      .ToArray())
         {
             records.Remove(index);
