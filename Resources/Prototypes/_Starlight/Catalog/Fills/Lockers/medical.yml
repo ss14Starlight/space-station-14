@@ -160,6 +160,7 @@
       - id: ClothingHandsGlovesLatex
       - id: ClothingHandsGlovesNitrile
     - id: ClothingMaskSterile
+    - id: BoxFolderBlackMorgue
     - id: BoxBodyBag
     - id: BoxBodyBag
     - id: RollerBedSpawnFolded

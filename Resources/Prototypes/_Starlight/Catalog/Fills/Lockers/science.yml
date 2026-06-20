@@ -14,7 +14,10 @@
   table: !type:AllSelector
     children:
     - id: ClothingHeadsetRobotics
-    - id: ClothingHeadHatBlacksoft
+    - !type:GroupSelector
+      children:
+      - id: ClothingHeadHatBlacksoft
+      - id: ClothingHeadHatCorpsoft
     - id: ClothingUniformJumpsuitRoboticist
     - id: ClothingUniformJumpskirtRoboticist
     - id: ClothingOuterCoatRobo
@@ -29,7 +32,8 @@
     - id: ClothingEyesHudDiagnostic
     - id: HandheldHealthAnalyzer
     - id: HandheldMachineAnalyzer
-    - id: SurgicalKitMedicalFilled
+    - id: SurgicalKitRoboticsFilled
+    - id: BottleCaseRoboticsFilled
     - id: HealiumTankFilled
     - id: NitrousOxideTankFilled
     - id: MedkitFilled

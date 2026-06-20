@@ -39,61 +39,63 @@
         },
         {
             "name": "sec",
-			"copyright": "Killer Tamashi"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi"
         },
         {
             "name": "sec_door",
-			"copyright": "Killer Tamashi"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi"
         },
         {
             "name": "sec_open",
-			"copyright": "Killer Tamashi"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi"
         },
         {
-            "name": "brigmedic"
+            "name": "brigmedic",
+			"copyright": "Original locker taken from tgstation, double brigmedic done by Killer Tamashi"
         },
         {
-            "name": "brigmedic_door"
+            "name": "brigmedic_door",
+			"copyright": "Original locker taken from tgstation, double brigmedic done by Killer Tamashi"
         },
         {
             "name": "miner",
-			"copyright": "mikeysaurus"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus"
         },
         {
             "name": "miner_door",
-			"copyright": "mikeysaurus"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus"
         },
         {
             "name": "miner_open",
-			"copyright": "mikeysaurus"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus"
         },
         {
             "name": "salvage",
-			"copyright": "mikeysaurus"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus"
         },
         {
             "name": "salvage_door",
-			"copyright": "mikeysaurus"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus"
         },
         {
             "name": "salvage_open",
-			"copyright": "mikeysaurus"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus"
         },
         {
             "name": "cargo",
-			"copyright": "mikeysaurus, wonderfulnewworld"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus, further resprited into cargo wonderfulnewworld (GitHub)"
         },
         {
             "name": "cargo_door",
-			"copyright": "mikeysaurus, wonderfulnewworld"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus, further resprited into cargo wonderfulnewworld (GitHub)"
         },
         {
             "name": "mail",
-			"copyright": "mikeysaurus, wonderfulnewworld"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus, further resprited into mail wonderfulnewworld (GitHub)"
         },
         {
             "name": "mail_door",
-			"copyright": "mikeysaurus, wonderfulnewworld"
+			"copyright": "Original locker taken from tgstation, doublesec done by Killer Tamashi, resprited into Salvage mikeysaurus, further resprited into mail wonderfulnewworld (GitHub)"
         }
     ]
 }
