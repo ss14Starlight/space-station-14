@@ -7,7 +7,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.OnCollide;
+namespace Content.Shared._Starlight.Sprite;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class SpriteWhitelistedComponent : Component
 {

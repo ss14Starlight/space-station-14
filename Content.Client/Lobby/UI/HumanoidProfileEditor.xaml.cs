@@ -37,11 +37,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 #region Starlight
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.TextToSpeech;
-using Content.Client._Starlight.TTS;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared._Starlight.Traits;
 using Content.Client._Starlight.Lobby.UI;
+using Content.Client._Starlight.TextToSpeech;
+using Content.Shared._Starlight.Humanoid;
+using Content.Client._Starlight.Humanoid;
 #endregion Starlight
 
 namespace Content.Client.Lobby.UI

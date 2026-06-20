@@ -4,9 +4,9 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Station.Components;
 using Content.Server._Starlight.Thaven; //Starlight
-using Content.Shared._Starlight.Thaven.Components; //Starlight
 using Content.Server._FarHorizons.Silicons.Glitching;
 using Content.Shared._FarHorizons.Silicons.Glitching;
+using Content.Shared._Starlight.Thaven;
 
 namespace Content.Server.StationEvents.Events;
 

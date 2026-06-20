@@ -3,7 +3,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Revolutionary.Components;
+namespace Content.Shared._Starlight.Revolutionary.Components;
 
 /// <summary>
 /// Component for the revolutionary supply rift.

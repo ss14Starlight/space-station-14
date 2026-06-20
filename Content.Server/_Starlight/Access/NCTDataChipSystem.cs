@@ -7,7 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 
-namespace Content.Server._Starlight.Access.Systems;
+namespace Content.Server._Starlight.Access;
 
 public sealed partial class NCTDataChipSystem : EntitySystem
 {

@@ -171,6 +171,3 @@
     - AnomalyHost
     - Resomi
     - NotLabelable
-  - type: NightVision
-  - type: FlashModifier
-    modifier: 2

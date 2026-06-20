@@ -4,7 +4,7 @@
 using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.PinataSystem;
+namespace Content.Shared._Starlight.PinataSystem;
 
 /// <summary>
 /// Makes the entity throw items when someone hits it.

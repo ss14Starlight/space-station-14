@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.Components;
@@ -10,7 +11,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
 
-namespace Content.Server.PAI;
+namespace Content.Server._Starlight.PAI;
 
 /// <summary>
 /// Ejects a PAI from the shuttle console when the shuttle rams another grid hard enough.

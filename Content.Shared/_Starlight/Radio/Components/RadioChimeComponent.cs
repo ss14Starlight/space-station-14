@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Radio.Components
+namespace Content.Shared._Starlight.Radio.Components
 {
     [RegisterComponent]
     public sealed partial class RadioChimeComponent : Component

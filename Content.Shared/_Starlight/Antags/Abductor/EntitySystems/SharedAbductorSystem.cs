@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared._Starlight.Access;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Clothing.EntitySystems;
@@ -9,7 +10,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 
-namespace Content.Shared.Starlight.Antags.Abductor;
+namespace Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 
 public abstract partial class SharedAbductorSystem : EntitySystem
 {

@@ -1,13 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 
-namespace Content.Server.Starlight;
+namespace Content.Server._Starlight;
 
 public sealed partial class PlayerRolesManager : IPlayerRolesManager, IPostInjectInit
 {

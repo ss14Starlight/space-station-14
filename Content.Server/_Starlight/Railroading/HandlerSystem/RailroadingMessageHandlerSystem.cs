@@ -1,11 +1,12 @@
 ﻿using Content.Server.Chat.Managers;
 using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components.Handlers.Message;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Chat;
 using Robust.Server.Player;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.HandlerSystem;
 
 public sealed partial class RailroadingMessageHandlerSystem : EntitySystem
 {

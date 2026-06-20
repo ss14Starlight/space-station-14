@@ -46,6 +46,7 @@ using Content.Server.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Server.Procedural;
 using Robust.Shared.Map;
+using Content.Shared._Starlight.Shuttles.Components;
 // Starlight End
 
 namespace Content.Server.Shuttles.Systems;

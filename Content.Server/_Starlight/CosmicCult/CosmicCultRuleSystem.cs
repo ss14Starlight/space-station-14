@@ -17,7 +17,7 @@ using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Voting.Managers;
 using Content.Server.Voting;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult.Components.Examine;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
@@ -64,6 +64,7 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Radio.Components;
 using Content.Shared.Mind.Components;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.CosmicCult;
 
