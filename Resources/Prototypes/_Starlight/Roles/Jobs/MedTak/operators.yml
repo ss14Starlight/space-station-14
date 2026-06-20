@@ -11,7 +11,7 @@
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledRifle
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponRifleMedTak
+    suitstorage: WeaponMedTakRifle
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
@@ -21,13 +21,13 @@
     jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledMedic
     shoes: ClothingShoesBootsCombatFilled
-    outerClothing: ClothingOuterHardsuitMedTak
+    outerClothing: ClothingOuterHardsuitMedTakMedic
     id: MedTakMedicPDA
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledMedic
-    gloves: ClothingHandsGlovesDefibMedTak
+    gloves: ClothingHandsGlovesCombat
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
@@ -37,7 +37,7 @@
     jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledBasic
     shoes: ClothingShoesBootsCombatFilled
-    outerClothing: ClothingOuterHardsuitMedTak
+    outerClothing: ClothingOuterHardsuitMedTakPilot
     id: MedTakPilotPDA
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
@@ -60,7 +60,7 @@
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledRifle
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponRifleMedTak
+    suitstorage: WeaponMedTakRifle
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
@@ -70,14 +70,14 @@
     jumpsuit: ClothingUniformMedTakJumpsuit
     back: ClothingBackpackMedTakFilledHeavy
     shoes: ClothingShoesBootsCombatFilled
-    outerClothing: ClothingOuterHardsuitMedTak
+    outerClothing: ClothingOuterHardsuitMedTakHeavy
     id: MedTakSecurityPDA
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledHeavy
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponLightMachineGunMedTak
+    suitstorage: WeaponMedTakLightMachineGun
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
@@ -91,7 +91,7 @@
     head: ClothingHeadHatBeretMedTak
     eyes: ClothingEyesGlassesMedTak
     ears: ClothingHeadsetAltMedTak
-    belt: WeaponPistolMedTak
+    belt: WeaponMedTakPistol
     gloves: ClothingHandsGlovesCombat
     pocket1: RubberStampMedTak
     pocket2: BoxFolderMedTak

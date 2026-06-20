@@ -16,7 +16,7 @@
         - id: MagazinePistol40SP
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
-        - id: WeaponPistolMedTak
+        - id: WeaponMedTakPistol
 
 - type: entity
   id: ClothingBeltMedTakFilledRifle
@@ -35,7 +35,7 @@
         - id: MagazinePistol40SP
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
-        - id: WeaponPistolMedTak
+        - id: WeaponMedTakPistol
 
 - type: entity
   id: ClothingBeltMedTakFilledMedic
@@ -54,7 +54,7 @@
         - id: RegenerativeMesh
         - id: MagazinePistol40SP
           amount: 2
-        - id: WeaponPistolMedTak
+        - id: WeaponMedTakPistol
 
 - type: entity
   id: ClothingBeltMedTakFilledPilot
@@ -73,4 +73,4 @@
           amount: 2
         - id: Tourniquet
         - id: MedkitCombatMedTakFilled
-        - id: WeaponPistolMedTak
+        - id: WeaponMedTakPistol
