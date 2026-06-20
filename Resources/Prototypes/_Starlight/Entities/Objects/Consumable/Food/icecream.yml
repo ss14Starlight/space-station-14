@@ -314,3 +314,167 @@
           Quantity: 25
         - ReagentId: Theobromine
           Quantity: 5
+
+- type: entity
+  name: salted caramel icecream
+  parent: FoodIceCreamBase
+  id: FoodSaltedCaramelIcecream
+  description: Vanilla with a small amount of salt and caramel glaze.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - saltedcaramelicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/caramel_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/caramel_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: rocky road icecream
+  parent: FoodIceCreamBase
+  id: FoodRockyRoadIcecream
+  description: Chocolate ice cream with marshmellos and almonds.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - rockyroadicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/rockyroad_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/rockyroad_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Theobromine
+          Quantity: 5
+
+- type: entity
+  name: matcha icecream
+  parent: FoodIceCreamBase
+  id: FoodMatchaIcecream
+  description: Earthy ice cream infused with matcha powder.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - matchaicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/matcha_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/matcha_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: GreenTea
+          Quantity: 10
+
+- type: entity
+  name: pistachio icecream
+  parent: FoodIceCreamBase
+  id: FoodPistachioIcecream
+  description: Ice cream infused with pistachios.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - pistachioicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/pistachio_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/pistachio_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: peanut butter icecream
+  parent: FoodIceCreamBase
+  id: FoodPeanutButterIcecream
+  description: Peanut butter and ice cream together to raise your calories
+  components:
+  - type: FlavorProfile
+    flavors:
+    - peanutbuttericecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/peanut_butter_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/peanut_butter_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Theobromine
+          Quantity: 5
+
+- type: entity
+  name: cherry icecream
+  parent: FoodIceCreamBase
+  id: FoodCherryIcecream
+  description: Rich cherry ice cream with some crunchy chocolate chips.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - cherryicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/cherry_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/cherry_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Theobromine
+          Quantity: 5

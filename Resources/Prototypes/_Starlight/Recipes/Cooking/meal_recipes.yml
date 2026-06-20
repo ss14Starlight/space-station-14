@@ -329,3 +329,83 @@
     IceCream: 20
     CocoaPowder: 5
 
+- type: microwaveMealRecipe
+  id: RecipeSaltedCaramelIcecream
+  name: salted caramel icecream
+  result: FoodSaltedCaramelIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    Sugar: 5
+    TableSalt: 5
+
+- type: microwaveMealRecipe
+  id: RecipeRockyRoadIcecream
+  name: rocky road icecream
+  result: FoodRockyRoadIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodSnackPistachios: 1
+  reagents:
+    IceCream: 15
+    CocoaPowder: 10
+
+- type: microwaveMealRecipe
+  id: RecipeMatchaIcecream
+  name: matcha icecream
+  result: FoodMatchaIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    GreenTea: 10
+
+- type: microwaveMealRecipe
+  id: RecipePistachioIcecream
+  name: pistachio icecream
+  result: FoodPistachioIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodSnackPistachios: 1
+  reagents:
+    IceCream: 25
+
+- type: microwaveMealRecipe
+  id: RecipePeanutButterIcecream
+  name: peanut butter icecream
+  result: FoodPeanutButterIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodButterSlice: 1
+  reagents:
+    IceCream: 15
+    CocoaPowder: 5
+
+- type: microwaveMealRecipe
+  id: RecipeCherryIcecream
+  name: cherry icecream
+  result: FoodCherryIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodCherry: 1
+  reagents:
+    IceCream: 25

@@ -112,3 +112,33 @@
   id: neapolitanicecream
   flavorType: Complex
   description: flavor-complex-neapolitan-icecream
+
+- type: flavor
+  id: saltedcaramelicecream
+  flavorType: Complex
+  description: flavor-complex-salted-caramel-icecream
+
+- type: flavor
+  id: rockyroadicecream
+  flavorType: Complex
+  description: flavor-complex-rocky-road-icecream
+
+- type: flavor
+  id: matchaicecream
+  flavorType: Complex
+  description: flavor-complex-matcha-icecream
+
+- type: flavor
+  id: pistachioicecream
+  flavorType: Complex
+  description: flavor-complex-pistachio-icecream
+
+- type: flavor
+  id: peanutbuttericecream
+  flavorType: Complex
+  description: flavor-complex-peanut-butter-icecream
+
+- type: flavor
+  id: cherryicecream
+  flavorType: Complex
+  description: flavor-complex-cherry-icecream
