@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Network;
 using Content.Shared.Damage.Systems;
 
-namespace Content.Server._Starlight.PinataSystem;
+namespace Content.Shared._Starlight.PinataSystem;
 
 public sealed partial class PinataSystem : EntitySystem
 {

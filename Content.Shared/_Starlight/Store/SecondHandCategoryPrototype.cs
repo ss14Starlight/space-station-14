@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Store;
+namespace Content.Shared._Starlight.Store;
 
 /// <summary>
 /// Defines a category of second-hand (worn/damaged) uplink items with a weighted chance to be selected.

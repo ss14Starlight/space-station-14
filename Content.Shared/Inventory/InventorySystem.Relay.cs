@@ -28,12 +28,14 @@ using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Temperature;
 using Content.Shared.Verbs;
-using Content.Shared.Weapons.Hitscan.Events; // Starlight
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Zombies;
-using Content.Shared._Starlight.ScanGate; // Starlight
-using Content.Shared._Starlight.Body.Events; // Starlight
+#region Starlight
+using Content.Shared._Starlight.ScanGate;
+using Content.Shared._Starlight.Body.Events;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+#endregion
 
 namespace Content.Shared.Inventory;
 

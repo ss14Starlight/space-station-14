@@ -8,6 +8,7 @@ using Content.Server._Starlight.Objectives.Events;
 using Content.Shared._Starlight.Railroading;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 

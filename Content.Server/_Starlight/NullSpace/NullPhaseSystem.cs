@@ -15,6 +15,8 @@ using Content.Shared.Light.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Inventory;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 

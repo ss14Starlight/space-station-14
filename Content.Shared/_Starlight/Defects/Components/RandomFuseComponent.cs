@@ -1,4 +1,4 @@
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 // Randomizes the fuse delay on a TimerTriggerComponent at spawn.
 // Each instance rolls a delay in [MinDelay, MaxDelay] seconds.

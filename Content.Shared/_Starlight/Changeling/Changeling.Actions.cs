@@ -2,7 +2,7 @@ using Content.Shared.Actions;
 using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Changeling;
+namespace Content.Shared._Starlight.Changeling;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ChangelingActionComponent : Component

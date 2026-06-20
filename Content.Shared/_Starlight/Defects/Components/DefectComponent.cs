@@ -1,7 +1,7 @@
 using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization.Manager.Attributes;
 
-namespace Content.Shared.Defects.Components;
+namespace Content.Shared._Starlight.Defects.Components;
 
 // Abstract base for all defect components on second-hand / worn items.
 // When the entity also has RandomDefectsComponent, DefectSystem

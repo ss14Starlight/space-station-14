@@ -12,6 +12,9 @@ using Content.Shared.Roles.Components;
 using Content.Shared.Mind;
 using Content.Shared._Starlight.NullSpace;
 using Content.Shared.Changeling;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.Changeling;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 

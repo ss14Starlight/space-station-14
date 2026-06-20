@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
-namespace Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+namespace Content.Shared._Starlight.Medical.Surgery.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedSurgerySystem))]
 [AutoGenerateComponentPause]
 public sealed partial class IncisionOpenComponent : Component

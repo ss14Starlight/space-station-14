@@ -1,10 +1,10 @@
-using Content.Server.Weather.Components;
+using Content.Server._Starlight.Weather.Componants;
+using Content.Shared._Starlight.Weather.Effects;
 using Content.Shared.CCVar;
 using Content.Shared.Light.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffectNew.Components;
 using Content.Shared.Weather;
-using Content.Shared.Weather.Effects;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -12,6 +12,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Map.Enumerators;
 using Robust.Shared.Random;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Weather;
 
 public sealed partial class WeatherSystem

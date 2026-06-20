@@ -1,9 +1,9 @@
 ﻿using Robust.Client.GameObjects;
 using Robust.Shared.Timing;
-using Content.Shared.Animations;
 using Robust.Client.Animations;
+using Content.Shared._Starlight.Animations;
 
-namespace Content.Client.Animations;
+namespace Content.Client._Starlight.Animations;
 
 public sealed partial class AnimateOnSpawnSystem : EntitySystem
 {

@@ -1,8 +1,9 @@
 using System.Linq;
+using Content.Shared._Starlight.Store;
 using Content.Shared.Store;
 using Robust.Shared.Random;
 
-namespace Content.Server.StoreDiscount;
+namespace Content.Server._Starlight.StoreDiscount;
 
 /// <summary>
 /// Weighted category selection map using a cumulative-weight array for O(n) sampling.

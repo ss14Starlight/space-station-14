@@ -20,7 +20,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Starlight.Restrict;
+namespace Content.Shared._Starlight.Restrict;
 public abstract partial class SharedRestrictNestingItemSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;

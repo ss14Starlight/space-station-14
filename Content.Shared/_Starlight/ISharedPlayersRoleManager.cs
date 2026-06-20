@@ -2,7 +2,7 @@ using System.Linq;
 using Content.Shared.Administration;
 using Robust.Shared.Player;
 
-namespace Content.Shared.Starlight;
+namespace Content.Shared._Starlight;
 
 public interface ISharedPlayersRoleManager
 {

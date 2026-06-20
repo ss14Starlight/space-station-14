@@ -1,7 +1,8 @@
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Kitchen.Components;
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Kitchen;
 
 // Starlight-start
 

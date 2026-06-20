@@ -1,5 +1,6 @@
 using Content.Shared.PAI;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Interaction;
 
 public abstract partial class SharedInteractionSystem

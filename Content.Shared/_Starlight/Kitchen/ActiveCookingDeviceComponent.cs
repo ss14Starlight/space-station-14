@@ -1,7 +1,8 @@
 using Content.Shared.Kitchen;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Shared.Kitchen.Components; // Starlight-edit: moved from server
+// ReSharper disable once CheckNamespace
+namespace Content.Shared.Kitchen;
 
 /// <summary>
 /// Attached to a microwave that is currently in the process of cooking

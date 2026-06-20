@@ -1,8 +1,10 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Network;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Database;
 
 public abstract partial class ServerDbBase

@@ -16,6 +16,7 @@ using Robust.Shared.Utility;
 using Robust.Shared.Audio.Systems;
 using Content.Server.Radio.EntitySystems;
 using Content.Shared._Starlight.Speech;
+using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 

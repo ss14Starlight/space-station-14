@@ -1,13 +1,16 @@
 ﻿using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Starlight.Antags.Abductor;
+using Content.Shared._Starlight.Antags.Abductor;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Inventory.Events;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.ItemSwitch.Components;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

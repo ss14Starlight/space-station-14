@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Eye;
+namespace Content.Shared._Starlight.Eye;
 
 /// <summary>
 /// Adds overlay for client that darkness vision

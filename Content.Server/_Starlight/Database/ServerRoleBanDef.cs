@@ -4,6 +4,7 @@ using Content.Shared.Database;
 using Robust.Shared.Network;
 using Starlight.NullLink;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Database;
 
 public sealed class ServerRoleBanDef

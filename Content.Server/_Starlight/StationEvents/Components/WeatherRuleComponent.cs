@@ -1,8 +1,9 @@
+using Content.Server._Starlight.StationEvents.Events;
 using Content.Server.StationEvents.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.StationEvents.Components;
+namespace Content.Server._Starlight.StationEvents.Components;
 
 [RegisterComponent, Access(typeof(WeatherRule))]
 public sealed partial class WeatherRuleComponent : Component

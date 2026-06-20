@@ -1,10 +1,11 @@
 using Content.Shared._Starlight.CosmicCult;
+using Content.Shared._Starlight.NullSpace.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.NullSpace;
+namespace Content.Shared._Starlight.NullSpace.Systems;
 
 public sealed partial class NullSpaceBlockerSystem : EntitySystem
 {

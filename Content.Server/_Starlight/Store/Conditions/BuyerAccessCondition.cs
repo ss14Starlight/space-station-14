@@ -9,7 +9,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Content.Server.Mind;
 using Content.Shared.Mind;
 
-namespace Content.Server.Store.Conditions;
+namespace Content.Server._Starlight.Store.Conditions;
 
 /// <summary>
 /// Allows a store entry to be filtered out based on the user's access.

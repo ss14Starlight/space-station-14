@@ -21,6 +21,9 @@ using Content.Shared.Shuttles.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Gravity;
 using Content.Server._Starlight.CosmicCult;
+using Content.Shared._Starlight.NullSpace.Systems;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Shared._Starlight.CosmicCult.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
