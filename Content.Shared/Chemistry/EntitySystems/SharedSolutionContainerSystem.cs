@@ -464,6 +464,14 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         UpdateChemicals(soln);
     }
 
+    // Funky start
+    public void BurnFlammableReagents(Entity<SolutionComponent> soln, float fraction)
+    {
+        soln.Comp.Solution.BurnFlammableReagents(fraction, PrototypeManager);
+        UpdateChemicals(soln);
+    }
+    // Funky end
+
     /// <summary>
     ///     Sets the capacity (maximum volume) of a solution to a new value.
     /// </summary>
