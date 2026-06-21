@@ -1,5 +1,3 @@
-using Robust.Shared.GameStates;
-
 namespace Content.Server._Starlight.Revolutionary.Components;
 
 /// <summary>

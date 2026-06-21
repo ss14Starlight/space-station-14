@@ -1,4 +1,3 @@
-using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Storage.Components;
 using Content.Shared.EntityTable;

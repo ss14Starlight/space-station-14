@@ -1,10 +1,7 @@
-﻿using Content.Shared.Abilities.Goliath;
-using Content.Shared.Damage.Prototypes;
+﻿using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared.UserInterface;
-using Robust.Shared.Player;
 using Content.Shared.Damage.Systems;
 using Content.Shared._Starlight.Abstract;
 

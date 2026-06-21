@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Shared._Starlight.Store;
-using Content.Shared.Store;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.StoreDiscount;

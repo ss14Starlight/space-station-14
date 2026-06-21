@@ -1,6 +1,5 @@
 using System.Linq;
 using System.Net;
-using Content.Server.Database;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Robust.Shared.Configuration;

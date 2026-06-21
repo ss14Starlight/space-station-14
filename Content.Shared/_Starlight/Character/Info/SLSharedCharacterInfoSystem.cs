@@ -16,7 +16,6 @@ using Content.Shared.Trigger.Components.Effects;
 using Content.Shared.Verbs;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameStates;
-using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Character.Info;

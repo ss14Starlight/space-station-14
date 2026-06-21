@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Server.Access.Systems;
 using Robust.Shared.Prototypes;

@@ -1,5 +1,4 @@
 using Content.Server._Starlight.Speech.Components;
-using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Speech;
 
