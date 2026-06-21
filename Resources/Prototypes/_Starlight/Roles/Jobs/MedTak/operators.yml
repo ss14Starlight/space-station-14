@@ -44,6 +44,7 @@
     mask: ClothingMaskGasSecurity
     belt: ClothingBeltMedTakFilledPilot
     gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponMedTakShotgun
     pocket1: PenPackMedTak
     pocket2: DoubleEmergencyOxygenTankFilled
 
