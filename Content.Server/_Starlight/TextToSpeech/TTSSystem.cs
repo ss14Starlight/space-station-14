@@ -230,7 +230,7 @@ public sealed partial class TTSSystem : EntitySystem
             _ignoredRecipients.Add(args.SenderSession);
     }
 
-    private static string CleanText(string text)
+    internal static string CleanText(string text)
     {
         text = TagStripperRegex().Replace(text, "");
         text = SmartQuotes().Replace(text, "'");
