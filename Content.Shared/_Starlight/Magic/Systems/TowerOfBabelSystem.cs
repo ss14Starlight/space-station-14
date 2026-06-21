@@ -4,7 +4,6 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Events;
 using Content.Shared._Starlight.Language.Systems;
 using Content.Shared._Starlight.Magic.Components;
-using Content.Shared.Destructible;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -14,9 +13,9 @@ namespace Content.Shared._Starlight.Magic.Systems;
 
 public sealed partial class TowerOfBabelSystem : EntitySystem
 {
-    [Dependency] private readonly SharedLanguageSystem _language = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedLanguageSystem _language = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {

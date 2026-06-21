@@ -6,6 +6,7 @@
   startingGear: CargoTechGear
   icon: "JobIconCargoTechnician"
   supervisors: job-supervisors-qm
+  displayWeight: 1 # Starlight
   access:
   - Cargo
   - Maintenance

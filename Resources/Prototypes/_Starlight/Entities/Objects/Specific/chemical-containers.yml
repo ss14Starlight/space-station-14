@@ -8,7 +8,7 @@
     currentLabel: reagent-name-uranium
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Uranium
           Quantity: 200
@@ -38,7 +38,7 @@
     currentLabel: reagent-name-arithrazine
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Arithrazine
           Quantity: 200
@@ -53,7 +53,7 @@
     currentLabel: reagent-name-diphenhydramine
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Diphenhydramine
           Quantity: 200
@@ -68,7 +68,7 @@
     currentLabel: reagent-name-cryoxadone
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Cryoxadone
           Quantity: 200
@@ -83,7 +83,7 @@
     currentLabel: reagent-name-doxarubixadone
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Doxarubixadone
           Quantity: 200
@@ -98,7 +98,7 @@
     currentLabel: reagent-name-aloxadone
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Aloxadone
           Quantity: 200
@@ -113,7 +113,7 @@
     currentLabel: reagent-name-sigynate
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Sigynate
           Quantity: 200
@@ -128,7 +128,7 @@
     currentLabel: reagent-name-leporazine
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Leporazine
           Quantity: 200
@@ -143,7 +143,7 @@
     currentLabel: reagent-name-bruizine
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Bruizine
           Quantity: 200
@@ -158,7 +158,7 @@
     currentLabel: reagent-name-lacerinol
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Lacerinol
           Quantity: 200
@@ -173,7 +173,7 @@
     currentLabel: reagent-name-pyrazine
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Pyrazine
           Quantity: 200
@@ -188,7 +188,7 @@
     currentLabel: reagent-name-insuzine
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Insuzine
           Quantity: 200
@@ -203,7 +203,7 @@
     currentLabel: reagent-name-ambuzol
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Ambuzol
           Quantity: 200
@@ -218,7 +218,7 @@
     currentLabel: reagent-name-ambuzol-plus
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: AmbuzolPlus
           Quantity: 200
@@ -233,7 +233,7 @@
     currentLabel: reagent-name-amoxla
   - type: SolutionContainerManager
     solutions:
-      beaker:
+      drink:
         reagents:
         - ReagentId: Amoxla
           Quantity: 200
@@ -357,3 +357,17 @@
         reagents:
         - ReagentId: Aloxadone
           Quantity: 100
+
+- type: entity
+  parent: Jug
+  id: JugLacer
+  suffix: lacer
+  components:
+  - type: Label
+    currentLabel: reagent-name-lacerinol
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Lacerinol
+          Quantity: 200

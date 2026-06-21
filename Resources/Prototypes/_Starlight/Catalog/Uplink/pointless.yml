@@ -1,0 +1,12 @@
+- type: listing
+  id: UplinkSyndieDrobe
+  name: uplink-syndiedrobe-name
+  description: uplink-syndiedrobe-desc
+  productEntity: SyndieDrobeFlatpack
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 15
+  cost:
+    Telecrystal: 20
+  categories:
+    - UplinkPointless

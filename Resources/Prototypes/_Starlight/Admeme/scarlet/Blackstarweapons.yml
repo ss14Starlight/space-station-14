@@ -1,0 +1,41 @@
+# Prometheus Battle Rifle
+- type: entity
+  name: Prometheus battle rifle
+  parent: [WeaponRifleLecter, BaseMajorContraband]
+  id: WeaponRiflePrometheus
+  description: "A heavily modified Lecter battle rifle issued to Blackstar Dreadwalker operatives. A 3-round burst mechanism has been machined into the action, making it lethal at any range. Feeds from .20 rifle magazines."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Admeme/Scarlet/Prometheus.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Starlight/Admeme/Scarlet/Prometheus.rsi
+  - type: Gun
+    fireRate: 5
+    burstFireRate: 8
+    shotsPerBurst: 3
+    burstCooldown: 0.6
+    minAngle: 21
+    maxAngle: 32
+    angleIncrease: 2
+    angleDecay: 16
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    - Burst
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -28
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.80

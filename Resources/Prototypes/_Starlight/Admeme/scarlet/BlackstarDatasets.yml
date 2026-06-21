@@ -1,0 +1,17 @@
+- type: localizedDataset
+  id: NamesBlackstarLast
+  values:
+    prefix: names-blackstar-last-dataset-
+    count: 25
+
+- type: localizedDataset
+  id: NamesBlackstarLegionnaireLast
+  values:
+    prefix: names-blackstar-legionnaire-last-dataset-
+    count: 25
+
+- type: localizedDataset
+  id: NamesBlackstarBlackguardLast
+  values:
+    prefix: names-blackstar-blackguard-last-dataset-
+    count: 25

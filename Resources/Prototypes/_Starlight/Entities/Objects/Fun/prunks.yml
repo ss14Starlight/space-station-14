@@ -266,3 +266,133 @@
     energy: 7.5
     color: "#00ccff"
     castShadows: false
+
+# Chono Loke ammo
+
+- type: entity
+  id: BulletChonoLokeFakeBlast
+  name: fake blast
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 0
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 0.01
+    intensitySlope: 1
+    maxIntensity: 0.01
+    canCreateVacuum: false
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/Effects/snap.ogg
+
+- type: entity
+  id: ChonoLokeFakeBlastShell
+  name: fake blast grenade shell
+  suffix: Chono Loke
+  parent: BaseGrenade
+  description: A DONK CO. brand grenade shell. The label promises a "BOOM!" but the fine print says "cosmetic only."
+  components:
+  - type: CartridgeAmmo
+    proto: BulletChonoLokeFakeBlast
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: blast
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: blast
+    suffix: false
+  - type: Tag
+    tags:
+    - ChonoLoke
+
+- type: entity
+  id: ChonoLokeFakeFragShell
+  name: fake frag grenade shell
+  suffix: Chono Loke
+  parent: BaseGrenade
+  description: A DONK CO. brand frag shell. Features a very convincing explosive label. The fuse is a piece of string.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletChonoLokeFakeBlast
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    layers:
+    - state: frag
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+    state: frag
+    suffix: false
+  - type: Tag
+    tags:
+    - ChonoLoke
+
+- type: entity
+  id: ChonoLokeCreamPieShell
+  name: Chono bannna cream pie tin
+  suffix: Chono Loke
+  parent: BaseGrenade
+  description: A DONK CO. "shell" that's literally just a banana cream pie crammed into a tube of a chono loke. Somehow, it works.
+  components:
+  - type: CartridgeAmmo
+    proto: FoodPieBananaCream
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: Objects/Consumable/Food/Baked/pie.rsi
+    layers:
+    - state: tin
+  - type: Tag
+    tags:
+    - ChonoLoke
+
+- type: entity
+  parent: Foolbox
+  id: ChonoLokeBundleBag
+  name: DONK CO. Chono Loke bundle
+  description: A DONK CO. carry bag containing one (1) "totally real" grenade launcher and six (6) "totally real" grenade shells. DONK CO. accepts no liability for accidental honking.
+  components:
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,3
+    storageOpenSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
+    storageCloseSound:
+      collection: BikeHorn
+      params:
+        variation: 0.125
+    storageInsertSound:
+      collection: FootstepClown
+    storageRemoveSound:
+      collection: FootstepClown
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponLauncherChonoLoke
+        - id: ChonoLokeFakeBlastShell
+        - id: ChonoLokeFakeBlastShell
+        - id: ChonoLokeFakeFragShell
+        - id: ChonoLokeFakeFragShell
+        - id: ChonoLokeCreamPieShell
+        - id: ChonoLokeCreamPieShell

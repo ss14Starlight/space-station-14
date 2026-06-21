@@ -1,0 +1,46 @@
+- type: job
+  id: IAA
+  name: job-name-iaa
+  description: job-description-iaa
+  playTimeTracker: JobIAA
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 36000 # 10h
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 # 10h
+  startingGear: IAAGear
+  icon: "JobIconIAA"
+  rules: job-rules-corporate-aligned
+  supervisors: job-supervisors-nt-personnel
+  canBeAntag: false
+  displayWeight: 3
+  access:
+  - IAA
+  - Brig
+  - Maintenance
+#  - Lawyer # Lawyer is now for Lawyers, not IAAs.
+  - GenpopEnter
+  - GenpopLeave
+  - Command
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: IAAGear
+  equipment:
+    #shoes: ClothingShoesColorBlack
+    id: IAAPDA
+    eyes: ClothingEyesGlassesSunglasses
+    ears: ClothingHeadsetIAA
+    belt: BoxFolderNanoTrasenClipboard
+  inhand:
+    - BriefcaseIAAFilled
+
+- type: chameleonOutfit
+  id: IAAChameleonOutfit
+  job: IAA
+  equipment:
+    eyes: ClothingEyesGlassesSunglasses

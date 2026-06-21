@@ -2,7 +2,7 @@
 using Content.Shared._Starlight.Speech;
 using Content.Shared.Radio;
 
-namespace Content.Server.Starlight.TTS;
+namespace Content.Server._Starlight.TextToSpeech;
 
 public sealed class RadioSpokeEvent : EntityEventArgs
 {

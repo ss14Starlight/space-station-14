@@ -78,6 +78,9 @@
   id: Bow
 
 - type: Tag
+  id: BrigmedicBeltEquip
+
+- type: Tag
   id: BulletUnarmedCollide
 
 - type: Tag
@@ -109,6 +112,12 @@
 
 - type: Tag
   id: CantBecomeRevolutionary
+
+- type: Tag # used for camera construction graphs
+  id: Camera
+
+- type: Tag # used for camera construction graphs
+  id: CameraReinforced
 
 - type: Tag
   id: CentcommVibroblade
@@ -144,10 +153,16 @@
   id: ClarkeTreads
 
 - type: Tag
+  id: ChonoLoke
+
+- type: Tag
   id: ClownKudzu
 
 - type: Tag
   id: CluwneBeastWearable
+
+- type: Tag
+  id: CombatMech
 
 - type: Tag
   id: Compy
@@ -216,13 +231,16 @@
   id: DurandTargetingControlModule
 
 - type: Tag
+  id: Dwarf
+
+- type: Tag
   id: ElderArena
 
 - type: Tag
-  id: EmergencyWelder
+  id: Elf
 
 - type: Tag
-  id: ExternalAirlock
+  id: EmergencyWelder
 
 - type: Tag
   id: Felionoid
@@ -241,6 +259,12 @@
 
 - type: Tag
   id: FormerSoldierTraitBackground
+
+- type: Tag
+  id: FringeTraitBackground
+
+- type: Tag
+  id: FrontierTraitBackground
 
 - type: Tag
   id: FlatpackBlacklist
@@ -291,6 +315,9 @@
   id: HiltWood
 
 - type: Tag
+  id: HuntedTraitBackground
+
+- type: Tag
   id: ImprovisedAmmoBox
 
 - type: Tag
@@ -309,7 +336,13 @@
   id: ImprovisedWrench
 
 - type: Tag
+  id: IgnoreMele
+
+- type: Tag
   id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+
+- type: Tag
+  id: IndustrialMech
 
 - type: Tag
   id: InsulatedFabric
@@ -338,6 +371,9 @@
 
 - type: Tag
   id: LabellerRefillPaper
+
+- type: Tag
+  id: Lagomorph
 
 - type: Tag
   id: LoneOpsUplink
@@ -379,6 +415,9 @@
   id: MagazineAK570_90mm
 
 - type: Tag
+  id: PaddyUpgradeKit
+
+- type: Tag
   id: PowerCageOmega
 
 - type: Tag
@@ -397,7 +436,13 @@
   id: MagazinePistolDP
 
 - type: Tag
+  id: MagazinePistolHighCapacitySP
+
+- type: Tag
   id: MagazinePistolImprovised
+
+- type: Tag
+  id: MagazinePistolSubMachineGunSP
 
 - type: Tag
   id: MagazineRifleM52
@@ -418,7 +463,13 @@
   id: MagicalEncounterTraitBackground
 
 - type: Tag
+  id: MechAirTank
+
+- type: Tag
   id: MechReactor
+
+- type: Tag
+  id: MechThruster
 
 - type: Tag
   id: MedCyberEyes
@@ -437,6 +488,18 @@
   id: ModularBarrel
 
 - type: Tag
+  id: ModuleBlacklistXenoborgEngiWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgHeavyWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgScoutWeapon
+
+- type: Tag
+  id: ModuleBlacklistXenoborgStealthWeapon
+
+- type: Tag
   id: Nexus
 
 - type: Tag
@@ -452,7 +515,7 @@
   id: OvenMachineBoard
 
 - type: Tag
-  id: PaddyMech
+  id: ParadoxCloneTraitBackground
 
 - type: Tag
   id: ParaKnife
@@ -482,6 +545,12 @@
   id: PrototypeJawsOfLife
 
 - type: Tag
+  id: ProtoElf
+
+- type: Tag
+  id: ProtoLagomorph
+
+- type: Tag
   id: PrototypeVibroblade
 
 - type: Tag
@@ -489,6 +558,12 @@
 
 - type: Tag
   id: Resomi
+
+- type: Tag
+  id: RipleyMKIIUpgradeKit
+
+- type: Tag
+  id: Rodentia
 
 - type: Tag
   id: RomerolDisasterSurvivorTraitBackground
@@ -515,6 +590,9 @@
 
 - type: Tag
   id: SecuredLocker
+
+- type: Tag
+  id: Shadekin
 
 - type: Tag
   id: ShadekinCore
@@ -548,6 +626,9 @@
 
 - type: Tag
   id: SovietWarehouse
+
+- type: Tag
+  id: SpecialMech
 
 - type: Tag
   id: SpeedLoaderMagnumImprovised
@@ -596,6 +677,9 @@
 
 - type: Tag
   id: UnDissolvable
+
+- type: Tag
+  id: USSPTraitBackground
 
 - type: Tag
   id: Vial

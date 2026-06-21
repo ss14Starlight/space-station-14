@@ -5,3 +5,6 @@ admin-verb-make-pirate-sl = Make the target a proper Starlight pirate — sets f
 admin-verb-text-make-pirate-sl = Make Pirate (SL)
 
 pirate-crew-briefing = You are a crew member of this pirate vessel. Your duty is to your captain and your crew. Follow orders, take what you can, and make it back to the ship alive. A pirate's code is law aboard this ship.
+admin-verb-make-devil = Make the target into a devil.
+
+admin-verb-text-make-devil = Make Devil

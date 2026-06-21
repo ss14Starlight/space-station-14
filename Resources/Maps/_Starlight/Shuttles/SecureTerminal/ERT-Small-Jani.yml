@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 04/16/2026 22:35:27
-  entityCount: 288
+  time: 05/22/2026 05:18:39
+  entityCount: 289
 maps: []
 grids:
 - 1
@@ -989,6 +989,15 @@ entities:
     - type: Transform
       pos: -2.3055506,0.74232674
       parent: 1
+- proto: FuelDispenser
+  entities:
+  - uid: 192
+    components:
+    - type: Transform
+      pos: -4.5,2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: GasMinerNitrogen
   entities:
   - uid: 120
@@ -1549,6 +1558,13 @@ entities:
     - type: Transform
       pos: -4.5471506,0.6716477
       parent: 1
+- proto: MedkitRoboticFilled
+  entities:
+  - uid: 289
+    components:
+    - type: Transform
+      pos: -4.6295533,0.501451
+      parent: 1
 - proto: MegaSprayBottle
   entities:
   - uid: 188
@@ -1574,15 +1590,6 @@ entities:
     components:
     - type: Transform
       pos: -3.5,2.5
-      parent: 1
-    - type: Fixtures
-      fixtures: {}
-- proto: PosterContrabandLustyExomorph
-  entities:
-  - uid: 192
-    components:
-    - type: Transform
-      pos: -4.5,2.5
       parent: 1
     - type: Fixtures
       fixtures: {}

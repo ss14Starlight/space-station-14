@@ -15,13 +15,16 @@
   - Wizard
   # Starlight-start
   - Abductors
-  - Vampires
-  - TerrorSpiders
   - Brighteye
-  - SELFAgent
-  # Starlight-end
-  - Conspirators # Harmony 
   - CosmicCult # Stellar - Cosmic Cult
+  - Devil
+  - SELFAgent
+  - TerrorSpiders
+  - Vampires
+  # Starlight-end
+  - Conspirators # Harmony
+  - CosmicCult # Stellar - Cosmic Cult
+  - Eeeps # imp
 
 - type: guideEntry
   id: Traitors

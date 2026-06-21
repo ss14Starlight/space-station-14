@@ -47,6 +47,12 @@
   id: ClothingShoesMilitaryBase
   components:
   - type: Matchbox
+  - type: Storage
+    grid: [] # starlight
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+      item: !type:ContainerSlot
   - type: ItemSlots
     slots:
       item:
@@ -62,6 +68,8 @@
   id: ClothingShoesBootsSecFilled
   suffix: Filled
   components:
+  - type: Storage
+    grid: [] # starlight
   - type: ContainerFill
     containers:
       item:
@@ -76,3 +84,7 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.025
     coolingCoefficient: 0.6 # Starlight
+  - type: Armor # Starlight start
+    modifiers:
+      coefficients:
+        Cold: 0.90 # Starlight end

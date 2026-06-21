@@ -29,6 +29,12 @@ ghost-role-information-space-courier-trunk-name = Space Courier Trunk pAI
 ghost-role-information-space-courier-trunk-description = You are the personal AI included inside of a space courier's trunk.
 ghost-role-information-space-courier-trunk-rules = Ensure your owner makes all of their deliveries! Give yourself a name, too.
 
+ghost-role-information-cc-aligned-rules = You are [color={role-type-cc-aligned-alternate-color}][bold]{role-type-cc-aligned-name}[/bold][/color].
+                                             You are to serve the interests of Central Command, even if they differ from NanoTrasen or the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
+                                             You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
+                                             You are allowed to remember knowledge about the game in general, such as how to cook, how to use objects, etc.
+                                             You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
+
 ghost-role-information-corporate-aligned-rules = You are [color={role-type-corporate-aligned-alternate-color}][bold]{role-type-corporate-aligned-name}[/bold][/color].
                                              You are to serve the interests of NanoTrasen and Central Command, even if they differ from the stations'. Remember, you do [color=red]NOT[/color] serve the crew.
                                              You don't remember any of your previous life, and you don't remember anything you learned as a ghost.
@@ -76,21 +82,31 @@ ghost-role-information-derelict-purrfus-cyborg-name = Derelict Purrfus Cyborg
 ghost-role-information-derelict-purrfus-cyborg-description = You are a purrfus cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station. ERR urrfus lo-es you purrfus loves you puRrfus loves yo- ERR
 
 ghostrole-information-derelict-heavy-xenoborg-name = Derelict Heavy Xenoborg
-ghostrole-information-derelict-heavy-xenoborg-description = You are a heavy xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-heavy-xenoborg-description = You are a heavy xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
 ghostrole-information-derelict-engi-xenoborg-name = Derelict Engi Xenoborg
-ghostrole-information-derelict-engi-xenoborg-description = You are a engineering xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-engi-xenoborg-description = You are a engineering xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
 ghostrole-information-derelict-scout-xenoborg-name = Derelict Scout Xenoborg
-ghostrole-information-derelict-scout-xenoborg-description = You are a scout xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-scout-xenoborg-description = You are a scout xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
 ghostrole-information-derelict-stealth-xenoborg-name = Derelict Stealth Xenoborg
-ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth xenoborg the mothership left behind, After years of exposure to ion storms you find yourself near a space station.
+ghostrole-information-derelict-stealth-xenoborg-description = You are a stealth xenoborg the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
+ghostrole-information-derelict-borgi-xenoborg-name = Derelict XenoBorgi
+ghostrole-information-derelict-borgi-xenoborg-description = You are a xenoborgi the mothership left behind. After months of exposure to ion storms you find yourself near a space station.
 
+ghost-role-information-terror-princess-name = Terror princess
+ghost-role-information-terror-princess-description = You are a princess of terror spiders, Your target is to create a big nest and create a big population of spiders to enslave this station!!!
 
+ghost-role-information-smartcorgi-name = Smart Corgi
+ghost-role-information-smartcorgi-description = You are a dog that is more intelligent than its peers, capable of tool manipulation. Truly a miracle product of science. Unfortunately, while you understand people just fine, you only speak Dog.
 
+ghost-role-information-monkey-advanced-name = Advanced Monkey
+ghost-role-information-monkey-advanced-description = Why, I daresay I could go for a banana.
 
+ghost-role-information-kobold-advanced-name = Advanced Kobold
+ghost-role-information-kobold-advanced-description = You have a craving for filet mignon.
 
-
-
+ghost-role-information-kiki-name = Kiki
+ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.

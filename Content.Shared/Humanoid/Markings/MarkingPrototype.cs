@@ -53,7 +53,8 @@ namespace Content.Shared.Humanoid.Markings
 
         public Marking AsMarking()
         {
-            return new Marking(ID, Sprites.Count);
+            // Starlight edit - markings can expose fewer color slots than sprite layers.
+            return new Marking(ID, ColorSlotCount);
         }
     }
 }
