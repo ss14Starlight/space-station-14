@@ -14,6 +14,7 @@ using Content.Shared.Maps;
 using Content.Shared.Popups;
 using Content.Shared.Slippery;
 using Content.Shared._Funkystation.Fluids;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Content.Shared.StepTrigger.Systems;
@@ -40,6 +41,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
+    [Dependency] private EntityQuery<FootprintComponent> _footprintQuery = default!; // Funky/Starlight
     [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
 
     /*
@@ -553,6 +555,9 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
             if (!_puddleQuery.TryGetComponent(ent, out var puddle))
                 continue;
 
+            if (_footprintQuery.HasComponent(ent.Value)) // Funky/Starlight
+                continue;
+
             if (TryAddSolution(ent.Value, solution, sound, puddleComponent: puddle))
             {
                 EnsureComp<ActiveEdgeSpreaderComponent>(ent.Value);
@@ -590,6 +595,9 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         while (anc.MoveNext(out var ent))
         {
             if (!_puddleQuery.HasComponent(ent.Value))
+                continue;
+
+            if (_footprintQuery.HasComponent(ent.Value)) // Funky/Starlight
                 continue;
 
             puddleUid = ent.Value;

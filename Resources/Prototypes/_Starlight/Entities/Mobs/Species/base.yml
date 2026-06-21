@@ -349,6 +349,7 @@
   - type: HumanoidEMP # Far Horizons - HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
     effectCooldown: 2
   - type: HumanoidEMPComposite # Far Horizons - HumanoidEMPComposite is used to gather EMP effects from HumanoidEMPCompositeElement components on all limbs and organs. These effects added in addition to effects in HumanoidEMP and won't work without it
+  - type: FootprintOwner # Funky change
 
 - type: entity
   save: false

@@ -135,13 +135,16 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
         _deletionQueue.Remove(entity);
         UpdateSlip((entity, entity.Comp), args.Solution.Comp.Solution);
-        UpdateSlow(entity, args.Solution.Comp.Solution);
+        UpdateSlow(entity, args.Solution.Comp.Solution, entity.Comp); // <-- Pass the component here - Funky
         UpdateEvaporation(entity, args.Solution.Comp.Solution);
         UpdateAppearance((entity, entity.Comp));
     }
 
     private void OnGetFootstepSound(Entity<PuddleComponent> entity, ref GetFootstepSoundEvent args)
     {
+        if (!entity.Comp.AffectsSound) // Funky
+            return;
+
         if (!_solutionContainerSystem.ResolveSolution(entity.Owner, entity.Comp.SolutionName, ref entity.Comp.Solution,
                 out var solution))
             return;
@@ -215,7 +218,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
     private void UpdateAppearance(Entity<PuddleComponent?, AppearanceComponent?> ent)
     {
         var (uid, puddle, appearance) = ent;
-        if (!Resolve(ent, ref puddle, ref appearance))
+        // Uses TryComp behind the scenes now, protecting Footprints which lack it
+        if (!Resolve(ent, ref puddle, ref appearance, false)) // Funky
             return;
 
         var volume = FixedPoint2.Zero;
@@ -347,8 +351,16 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         Dirty(entity, slipComp);
     }
 
-    private void UpdateSlow(EntityUid uid, Solution solution)
+    private void UpdateSlow(EntityUid uid, Solution solution, PuddleComponent puddle) // Funky
     {
+        #region Funky
+        if (!puddle.AffectsMovement)
+        {
+            RemComp<SpeedModifierContactsComponent>(uid);
+            return;
+        }
+        #endregion
+
         var maxViscosity = 0f;
         foreach (var (reagent, _) in solution.Contents)
         {
