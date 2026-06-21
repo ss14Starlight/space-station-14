@@ -1,4 +1,4 @@
-# Guard Boxes - contain a department pauldron, access chip, and encryption key
+# Guard Boxes - contain a department pauldron and access chip.
 
 - type: entity
   parent: BaseItem
