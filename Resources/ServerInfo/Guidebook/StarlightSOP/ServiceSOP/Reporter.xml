@@ -3,11 +3,11 @@
 
     <GuideEntityEmbed Entity="RandomHumanoidVisitorReporter" Caption="Reporter"/>
 
-    1.Reporters report directly to the Head of Personnel.
+    1. Reporters report directly to the Head of Personnel.
 
-    2.Reporters may wear the press armor only if the alert is Blue or above AND they are in immediate danger.
+    2. Reporters may wear the press armor only if the alert is Blue or above AND they are in immediate danger.
 
-    3.While wearing press equipment (holo-pin and vest), reporters may not engage in combat except in self-defense.
+    3. While wearing press equipment (holo-pin and vest), reporters may not engage in combat except in self-defense.
 
-    4.The HoP may temporarily revoke the reporter's equipment (vest, camera, recorder) or immediately demote them for SOP breaches.
+    4. The HoP may temporarily revoke the reporter's equipment (vest, camera, recorder) or immediately demote them for SOP breaches.
 </Document>
