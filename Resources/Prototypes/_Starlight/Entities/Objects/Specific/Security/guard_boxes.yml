@@ -4,7 +4,7 @@
   parent: BaseItem
   id: GuardBoxEngineering
   name: engineering guard box
-  description: A sealed box containing equipment for Engineering guards.
+  description: A sealed box containing equipment for Engineering guards. You can give these to a Security officer to equip them with the appropriate access and uniform.
   components:
   - type: Item
     size: Small
@@ -15,7 +15,6 @@
     items:
     - id: AccessChipEngineering
     - id: ClothingNeckPauldronEngineeringGuard
-    - id: EncryptionKeyEngineering
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -23,7 +22,7 @@
   parent: BaseItem
   id: GuardBoxMedical
   name: medical guard box
-  description: A sealed box containing equipment for Medical guards.
+  description: A sealed box containing equipment for Medical guards. You can give these to a Security officer to equip them with the appropriate access and uniform.
   components:
   - type: Item
     size: Small
@@ -34,7 +33,6 @@
     items:
     - id: AccessChipMedical
     - id: ClothingNeckPauldronMedicalGuard
-    - id: EncryptionKeyMedical
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -42,7 +40,7 @@
   parent: BaseItem
   id: GuardBoxScience
   name: science guard box
-  description: A sealed box containing equipment for Science guards.
+  description: A sealed box containing equipment for Science guards. You can give these to a Security officer to equip them with the appropriate access and uniform.
   components:
   - type: Item
     size: Small
@@ -53,7 +51,6 @@
     items:
     - id: AccessChipScience
     - id: ClothingNeckPauldronScienceGuard
-    - id: EncryptionKeyScience
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -61,7 +58,7 @@
   parent: BaseItem
   id: GuardBoxSupply
   name: supply guard box
-  description: A sealed box containing equipment for Supply/Cargo guards.
+  description: A sealed box containing equipment for Supply/Cargo guards. You can give these to a Security officer to equip them with the appropriate access and uniform.
   components:
   - type: Item
     size: Small
@@ -72,23 +69,5 @@
     items:
     - id: AccessChipSupply
     - id: ClothingNeckPauldronSupplyGuard
-    - id: EncryptionKeyCargo
     sound:
       path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  id: GuardBoxDufflePrefill
-  parent: ClothingBackpackDuffel
-  name: Department Guard Equipment Bag
-  description: A dufflebag containing a variety of equipment for department guards. The bag is unsealed, but the contents are still organized and ready for use.
-  components:
-  - type: StorageFill
-    contents:
-    - id: GuardBoxEngineering
-      amount: 2
-    - id: GuardBoxMedical
-      amount: 2
-    - id: GuardBoxScience
-      amount: 2
-    - id: GuardBoxSupply
-      amount: 2
