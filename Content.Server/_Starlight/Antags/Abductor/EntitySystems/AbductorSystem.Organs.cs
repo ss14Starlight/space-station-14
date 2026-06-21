@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Antags.Abductor;
 using Robust.Shared.Timing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;

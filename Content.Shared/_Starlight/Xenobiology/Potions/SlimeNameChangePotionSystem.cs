@@ -1,8 +1,5 @@
 using Content.Shared.Interaction;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.NameModifier.Components;
-using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Serialization;
 

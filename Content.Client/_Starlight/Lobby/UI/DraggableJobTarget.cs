@@ -1,7 +1,6 @@
 ﻿using System.Collections.Immutable;
 using System.Linq;
 using System.Numerics;
-using Content.Client.Lobby.UI;
 using Content.Client.Stylesheets;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;

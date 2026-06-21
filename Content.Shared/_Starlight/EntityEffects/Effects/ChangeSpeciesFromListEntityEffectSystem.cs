@@ -1,5 +1,4 @@
 using Content.Shared.EntityEffects;
-using Content.Shared.EntityTable;
 using Content.Shared.Humanoid;
 using Robust.Shared.Random;
 

@@ -1,5 +1,3 @@
-using Robust.Shared.Audio;
-
 namespace Content.Shared._Starlight.Railroading.Components.Handlers.Fax;
 
 [RegisterComponent]

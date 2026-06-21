@@ -10,7 +10,6 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech.Muting;
-using Content.Shared._Starlight.Antags.Abductor;
 using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared._Starlight.Language.Components;

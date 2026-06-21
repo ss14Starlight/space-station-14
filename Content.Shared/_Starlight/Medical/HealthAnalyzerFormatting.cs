@@ -1,6 +1,5 @@
 using Content.Shared.Atmos;
 using Content.Shared.Mobs;
-using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Medical;

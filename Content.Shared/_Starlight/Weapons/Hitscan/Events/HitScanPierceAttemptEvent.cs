@@ -1,7 +1,5 @@
-using System.Numerics;
 using Content.Shared._Starlight.Combat.Ranged.Pierce;
 using Content.Shared.Inventory;
-using Content.Shared.Weapons.Reflect;
 
 namespace Content.Shared._Starlight.Weapons.Hitscan.Events;
 

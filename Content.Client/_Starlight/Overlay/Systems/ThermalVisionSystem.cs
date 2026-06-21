@@ -1,11 +1,9 @@
-using Content.Shared.Eye.Blinding.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.Overlay;
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Client._Starlight.Overlay.Overlays;
 using Content.Shared._Starlight.Overlay.Systems;

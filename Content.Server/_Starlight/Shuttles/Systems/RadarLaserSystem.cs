@@ -1,5 +1,4 @@
 using Content.Server._Starlight.Shuttles.Components;
-using Content.Server.Shuttles.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;

@@ -1,6 +1,5 @@
 using Content.Server._Starlight.Light.Components;
 using Content.Server.DeviceLinking.Systems;
-using Content.Server.Light.Components;
 using Content.Shared.DeviceLinking.Events;
 
 namespace Content.Server._Starlight.Light.EntitySystems;
