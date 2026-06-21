@@ -221,10 +221,22 @@
   - MagazinePistolSubMachineGunIncendiary
   - MagazinePistolSubMachineGunUranium
   - MagazinePistolSubMachineGunAP
+  - MagazinePistolSubMachineGunHighCapacitySP
+  - MagazinePistolSubMachineGunHighCapacityHP
+  - MagazinePistolSubMachineGunHighCapacityFMJ
+  - MagazinePistolSubMachineGunHighCapacityAP
+  - MagazinePistolSubMachineGunHighCapacityUranium
+  - MagazinePistolSubMachineGunHighCapacityIncendiary
 # Rifle
   - MagazineRifleIncendiary
   - MagazineRifleUranium
   - MagazineRifleAP
+  - MagazineRifleHighCapacitySP
+  - MagazineRifleHighCapacityHP
+  - MagazineRifleHighCapacityFMJ
+  - MagazineRifleHighCapacityAP
+  - MagazineRifleHighCapacityUranium
+  - MagazineRifleHighCapacityIncendiary
 # Shotgun
   - MagazineShotgunBeanbag
   - MagazineShotgunIncendiary

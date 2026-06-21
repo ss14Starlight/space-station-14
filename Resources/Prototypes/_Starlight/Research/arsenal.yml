@@ -1,3 +1,23 @@
+# Tier 1
+- type: technology
+  id: ExtendedAmmunition
+  name: research-technology-extended-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: sp
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - MagazineRifleHighCapacitySP
+  - MagazineRifleHighCapacityHP
+  - MagazineRifleHighCapacityFMJ
+  - MagazinePistolSubMachineGunHighCapacitySP
+  - MagazinePistolSubMachineGunHighCapacityHP
+  - MagazinePistolSubMachineGunHighCapacityFMJ
+  radioChannels:
+  - Security
+
 # Tier 2
 - type: technology
   id: Paddy
@@ -77,6 +97,27 @@
   - MagazineBoxLightRifleAP
   - MagazineDMRAP
   - MagazinePistolSubMachineGunAP
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ExtendedAdvancedAmmunition
+  name: research-technology-extended-advanced-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: uranium
+  discipline: Arsenal
+  tier: 2
+  cost: 12000
+  recipeUnlocks:
+    - MagazineRifleHighCapacityIncendiary
+    - MagazinePistolSubMachineGunHighCapacityIncendiary
+    - MagazineRifleHighCapacityUranium
+    - MagazinePistolSubMachineGunHighCapacityUranium
+  technologyPrerequisites:
+    - ExtendedAmmunition
+    - DraconicMunitions
+    - UraniumMunitions
   radioChannels:
   - Security
 
@@ -209,5 +250,23 @@
   cost: 5000
   recipeUnlocks:
   - ScanGateMachineCircuitboard
+  radioChannels:
+  - Security
+
+- type: technology
+  id: ExtendedPierceAmmunition
+  name: research-technology-extended-pierce-ammunition
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi
+    state: ap
+  discipline: Arsenal
+  tier: 3
+  cost: 17500
+  recipeUnlocks:
+    - MagazineRifleHighCapacityAP
+    - MagazinePistolSubMachineGunHighCapacityAP
+  technologyPrerequisites:
+    - ExtendedAdvancedAmmunition
+    - ArmorPenetrationMunitions
   radioChannels:
   - Security
