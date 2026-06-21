@@ -40,8 +40,7 @@
     heatDamage:
       types:
         Heat: 1.5
-  - type: Metabolizer
-    metabolizerTypes: [ Rat ]
+  - type: TerrorSpider
   - type: OptionsVisualizer
     visuals:
       base:

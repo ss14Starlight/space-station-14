@@ -259,7 +259,7 @@
           min: 1
         # Starlight-start
         - !type:HasComponentsCondition
-          inverted: false
+          inverted: true
           components:
           - type: TerrorSpider
         # Starlight-end
@@ -278,7 +278,7 @@
           min: 0.8
         # Starlight-start
         - !type:HasComponentsCondition
-          inverted: false
+          inverted: true
           components:
           - type: TerrorSpider
         # Starlight-end
