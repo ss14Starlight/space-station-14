@@ -747,7 +747,7 @@
         reagents:
         - ReagentId: Butter
           Quantity: 15
-  - type: Extractable
+  - type: Extractable # Starlight
     grindableSolutionName: food
   - type: SliceableFood
     count: 3
@@ -770,7 +770,7 @@
         reagents:
         - ReagentId: Butter
           Quantity: 5
-  - type: Extractable
+  - type: Extractable # Starlight
     grindableSolutionName: food
   - type: Tag
     tags:
@@ -791,7 +791,7 @@
         maxVol: 100
         reagents:
         - ReagentId: Butter
-          Quantity: 15
+          Quantity: 15 # Starlight
         - ReagentId: THC
           Quantity: 82
   - type: Extractable
