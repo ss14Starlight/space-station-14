@@ -636,3 +636,13 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/beep100.rsi
     state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMedTak
+  name: "MedTak: Live to See Tomorrow"
+  description: "An advertisment poster for a MedTak insurance plan."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/MedTak.rsi
+    state: medtak
