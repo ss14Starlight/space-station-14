@@ -99,6 +99,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/AdminSpawn/**", // admin gaming
            #region starlight
             "/Maps/_Starlight/Shuttles/Radiotower.yml", // Command stamps - listening post.
+            "/Maps/_Starlight/Shuttles/SyndicateSpyShip.yml" // Syndicate Spies need a Syndicate fax and stamps
             #endregion
         };
 
