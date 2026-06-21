@@ -1,13 +1,11 @@
 using Content.Server.Objectives.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction.Components;
-using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mind;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.ItemSwitch;
+using Content.Shared._Starlight.ItemSwitch;
 using Content.Shared.UserInterface;
 using Robust.Shared.Spawners;
 using Robust.Shared.Prototypes;
@@ -15,8 +13,12 @@ using System.Linq;
 using Content.Server.VendingMachines;
 using Content.Shared.VendingMachines;
 using Robust.Shared.Audio;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.Antags.Abductor.UI;
+using Content.Shared._Starlight.ItemSwitch.Components;
 
-namespace Content.Server._Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {

@@ -1,6 +1,6 @@
 #nullable enable
 using Content.Shared.CCVar;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared;
 
 namespace Content.IntegrationTests;

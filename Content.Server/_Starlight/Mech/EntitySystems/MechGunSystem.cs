@@ -1,16 +1,12 @@
 using Content.Server.Mech.Systems;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.Equipment.Components;
-using Content.Shared.Power;
 using Content.Shared.Power.Components;
-using Content.Shared.Throwing;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
-using Robust.Shared.Random;
 
-namespace Content.Server.Mech.Equipment.EntitySystems;
+namespace Content.Server._Starlight.Mech.EntitySystems;
 public sealed partial class MechGunSystem : EntitySystem
 {
     [Dependency] private MechSystem _mech = default!;

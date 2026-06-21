@@ -7,7 +7,7 @@ using Robust.Client.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Client.Screen;
+namespace Content.Client._Starlight.Screen;
 
 /// overview:
 /// Data is passed from server to client through <see cref="SharedAppearanceSystem.SetData"/>,

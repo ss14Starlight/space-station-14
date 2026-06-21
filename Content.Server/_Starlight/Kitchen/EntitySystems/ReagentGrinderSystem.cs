@@ -23,7 +23,7 @@ using Content.Shared.Jittering;
 using Content.Shared.Kitchen.EntitySystems;
 using Content.Shared.Power;
 
-namespace Content.Server.Kitchen.EntitySystems
+namespace Content.Server._Starlight.Kitchen.EntitySystems
 {
     [UsedImplicitly]
     internal sealed partial class ReagentGrinderSystem : SharedReagentGrinderSystem

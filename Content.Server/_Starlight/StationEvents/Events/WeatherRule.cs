@@ -1,11 +1,13 @@
+using Content.Server._Starlight.StationEvents.Components;
 using Content.Server.StationEvents.Components;
+using Content.Server.StationEvents.Events;
 using Content.Server.Weather;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Station.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.StationEvents.Events;
 
 public sealed partial class WeatherRule : StationEventSystem<WeatherRuleComponent>
 {

@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using System.Net;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.Connection;
 
 public sealed partial class ConnectionManager

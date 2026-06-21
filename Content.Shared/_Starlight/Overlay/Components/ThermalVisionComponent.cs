@@ -1,9 +1,7 @@
-using Content.Shared.Eye.Blinding.Systems;
 using Robust.Shared.GameStates;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Eye.Blinding.Components;
+namespace Content.Shared._Starlight.Overlay.Components;
 
 [RegisterComponent]
 [NetworkedComponent]

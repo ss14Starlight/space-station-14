@@ -1,6 +1,6 @@
 using Content.Server._Starlight.Antags.Vampires.Systems;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.Objectives.Components;
 
 [RegisterComponent, Access(typeof(VampireSystem))]
 public sealed partial class BloodDrainConditionComponent : Component

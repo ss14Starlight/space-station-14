@@ -1,6 +1,6 @@
 using Content.Server.Objectives.Systems;
 
-namespace Content.Server.Objectives.Components;
+namespace Content.Server._Starlight.Objectives.Components;
 
 /// <summary>
 /// Requires that you have the same identity a target for a certain length of time before the round ends.
