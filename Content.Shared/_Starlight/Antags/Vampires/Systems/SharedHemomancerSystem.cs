@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 
 namespace Content.Shared._Starlight.Antags.Vampires.Systems;

@@ -78,6 +78,9 @@
   id: Bow
 
 - type: Tag
+  id: BrigmedicBeltEquip
+
+- type: Tag
   id: BulletUnarmedCollide
 
 - type: Tag
@@ -157,6 +160,9 @@
 
 - type: Tag
   id: CluwneBeastWearable
+
+- type: Tag
+  id: CombatMech
 
 - type: Tag
   id: Compy
@@ -330,7 +336,13 @@
   id: ImprovisedWrench
 
 - type: Tag
+  id: IgnoreMele
+
+- type: Tag
   id: Inedible # Prevents something from being eaten using DevourSystem, but only if on the direct target (e.g. doesn't apply if in inventory of target)
+
+- type: Tag
+  id: IndustrialMech
 
 - type: Tag
   id: InsulatedFabric
@@ -403,6 +415,9 @@
   id: MagazineAK570_90mm
 
 - type: Tag
+  id: PaddyUpgradeKit
+
+- type: Tag
   id: PowerCageOmega
 
 - type: Tag
@@ -421,7 +436,13 @@
   id: MagazinePistolDP
 
 - type: Tag
+  id: MagazinePistolHighCapacitySP
+
+- type: Tag
   id: MagazinePistolImprovised
+
+- type: Tag
+  id: MagazinePistolSubMachineGunSP
 
 - type: Tag
   id: MagazineRifleM52
@@ -442,7 +463,13 @@
   id: MagicalEncounterTraitBackground
 
 - type: Tag
+  id: MechAirTank
+
+- type: Tag
   id: MechReactor
+
+- type: Tag
+  id: MechThruster
 
 - type: Tag
   id: MedCyberEyes
@@ -533,6 +560,9 @@
   id: Resomi
 
 - type: Tag
+  id: RipleyMKIIUpgradeKit
+
+- type: Tag
   id: Rodentia
 
 - type: Tag
@@ -596,6 +626,9 @@
 
 - type: Tag
   id: SovietWarehouse
+
+- type: Tag
+  id: SpecialMech
 
 - type: Tag
   id: SpeedLoaderMagnumImprovised

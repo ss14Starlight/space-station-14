@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using Content.Server.Discord;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 

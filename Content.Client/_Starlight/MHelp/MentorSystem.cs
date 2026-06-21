@@ -1,5 +1,5 @@
 #nullable enable
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.MHelp;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 

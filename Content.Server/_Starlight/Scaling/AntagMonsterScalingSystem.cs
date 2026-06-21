@@ -1,8 +1,7 @@
 using Content.Server.Ghost.Roles.Events;
-using Content.Shared._Starlight.Scaling.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Roles;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Content.Server.StationRecords.Systems;
