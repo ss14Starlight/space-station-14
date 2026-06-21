@@ -748,7 +748,7 @@
         - ReagentId: Butter
           Quantity: 15
   - type: Extractable # Starlight
-    grindableSolutionName: food
+    grindableSolutionName: food # Starlight
   - type: SliceableFood
     count: 3
     slice: FoodButterSlice
@@ -771,7 +771,7 @@
         - ReagentId: Butter
           Quantity: 5
   - type: Extractable # Starlight
-    grindableSolutionName: food
+    grindableSolutionName: food # Starlight
   - type: Tag
     tags:
     - Slice
