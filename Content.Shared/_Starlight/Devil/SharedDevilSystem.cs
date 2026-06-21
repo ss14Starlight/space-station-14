@@ -3,9 +3,12 @@ using System.Text.RegularExpressions;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
+using Content.Shared.Players;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.UserInterface;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -24,6 +27,8 @@ public abstract partial class SharedDevilSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
+    [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     private Dictionary<ProtoId<DamnationPrototype>, DamnationPrototype> _damnations = new();
     public override void Initialize()
@@ -38,6 +43,8 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         SubscribeLocalEvent<DevilComponent, ComponentInit>(OnDevilInit);
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
+        SubscribeLocalEvent<DevilComponent, BoundUIOpenedEvent>(OnBUIOpened);
+        SubscribeLocalEvent<DevilComponent, BoundUIClosedEvent>(OnBUIClosed);
 
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
         SubscribeLocalEvent<DamnedComponent, ComponentShutdown>(OnDamnationShutdown);
@@ -361,6 +368,22 @@ public abstract partial class SharedDevilSystem : EntitySystem
         _userInterface.SetUiState((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
 
         _userInterface.TryToggleUi((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
+    }
+
+    // here we add/remove pvs overrides for damned players, so that they don't show up naked on the damned ui
+    private void OnBUIOpened(Entity<DevilComponent> devil, ref BoundUIOpenedEvent args)
+    {
+        if (!_player.TryGetSessionByEntity(devil.Owner, out var session)) return;
+
+        foreach (var uid in devil.Comp.DamnedSouls)
+            _pvs.AddSessionOverride(uid, session);
+    }
+    private void OnBUIClosed(Entity<DevilComponent> devil, ref BoundUIClosedEvent args)
+    {
+        if (!_player.TryGetSessionByEntity(devil.Owner, out var session)) return;
+
+        foreach (var uid in devil.Comp.DamnedSouls)
+            _pvs.RemoveSessionOverride(uid, session);
     }
 
     private void OnDevilInit(Entity<DevilComponent> devil, ref ComponentInit args) =>

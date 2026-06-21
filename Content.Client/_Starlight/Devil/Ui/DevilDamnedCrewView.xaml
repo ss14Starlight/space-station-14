@@ -1,13 +1,17 @@
 <Control xmlns="https://spacestation14.io"
-         xmlns:style="clr-namespace:Content.Client.Stylesheets">
-    <PanelContainer>
-        <BoxContainer Orientation="Vertical"
-                      VerticalExpand="True">
+         xmlns:style="clr-namespace:Content.Client.Stylesheets"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         Margin="5 5 5 5">
+    <PanelContainer VerticalExpand="True">
+        <BoxContainer Orientation="Vertical">
             <SpriteView Name="DamnedSprite"
-                        SetSize="32 64"
-                        OverrideDirection="South"/>
+                        SetSize="64 64"
+                        Scale="2 2"
+                        OverrideDirection="South"
+                        HorizontalAlignment="Center"/>
             <Label Name="DamnedName"
-                   StyleClasses="LabelKeyText"/>
+                   StyleClasses="LabelKeyText"
+                   HorizontalAlignment="Center"/>
         </BoxContainer>
     </PanelContainer>
 </Control>

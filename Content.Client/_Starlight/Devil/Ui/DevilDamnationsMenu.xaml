@@ -13,15 +13,17 @@
                 <ScrollContainer HScrollEnabled="False"
                                  VerticalExpand="True"
                                  Margin="10 10 10 10">
-                    <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
-                                   VerticalAlignment="Top"/>
-                    <Control MinHeight="10"/>
-                    <Label Text="{Loc 'devil-damnations-ui-damned-crew'}"
-                           StyleClasses="LabelBig"/>
-                    <BoxContainer Name="DamnedCrewList"
-                                  Orientation="Horizontal"
-                                  VerticalExpand="True"
-                                  HorizontalExpand="False">
+                    <BoxContainer Orientation="Vertical">
+                        <RichTextLabel Text="{Loc 'devil-damnations-ui-menu-text'}"
+                                       VerticalAlignment="Top"/>
+                        <Control MinHeight="10"/>
+                        <Label Text="{Loc 'devil-damnations-ui-damned-crew'}"
+                               StyleClasses="LabelBig"/>
+                        <BoxContainer Name="DamnedCrewList"
+                                      Orientation="Horizontal"
+                                      VerticalExpand="True"
+                                      Margin="5 5 5 5">
+                        </BoxContainer>
                     </BoxContainer>
                 </ScrollContainer>
             </BoxContainer>
