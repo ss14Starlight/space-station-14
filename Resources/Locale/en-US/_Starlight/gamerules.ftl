@@ -18,3 +18,6 @@ all-at-once-except-zombieteors-description = It's almost just not your day...
 
 aller-at-once-except-zombieteors-title = Almost Aller at Once
 aller-at-once-except-zombieteors-description = You have fucked up now.
+
+conspirators-title = Conspirators
+conspirators-description = There is a conspiracy afoot
