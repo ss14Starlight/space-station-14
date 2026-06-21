@@ -8,7 +8,7 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 
-namespace Content.IntegrationTests.Tests.Body;
+namespace Content.IntegrationTests.Tests._Starlight.Body;
 
 [TestFixture]
 public sealed class SaveLoadReparentTest

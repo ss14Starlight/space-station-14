@@ -6,12 +6,12 @@ using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
-using Content.Server.Starlight.AlertArmory;
+using Content.Server._Starlight.AlertArmory;
 using Content.Shared.Access.Systems;
 using Content.Shared.Database;
 using Content.Shared.Popups;
 using Content.Shared.Station.Components;
-using Content.Shared.Starlight.SecureTerminal;
+using Content.Shared._Starlight.SecureTerminal;
 using Content.Server.GameTicking.Rules.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
@@ -31,7 +31,7 @@ using Content.Shared.Toggleable;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Shared._NullLink;
 
-namespace Content.Server.Starlight.SecureTerminal;
+namespace Content.Server._Starlight.SecureTerminal;
 
 /// <summary>
 /// Drives the Secure Command Terminal — proposal creation, multi-party authorization,

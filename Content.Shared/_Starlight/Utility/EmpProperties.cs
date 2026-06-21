@@ -1,8 +1,6 @@
-using Robust.Shared.Utility;
 using Robust.Shared.Serialization;
-using Robust.Shared.Serialization.Manager.Attributes;
 
-namespace Content.Shared.Starlight.Utility;
+namespace Content.Shared._Starlight.Utility;
 
 [Serializable, NetSerializable]
 [DataDefinition]

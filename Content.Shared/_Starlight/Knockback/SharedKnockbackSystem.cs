@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared._Starlight.Weapon.Components;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
@@ -11,11 +10,9 @@ using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Map;
 
 //linq
-using System.Linq;
-using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Examine;
 
-namespace Content.Shared.Starlight.Knockback;
+namespace Content.Shared._Starlight.Knockback;
 
 public abstract partial class SharedKnockbackSystem : EntitySystem
 {

@@ -2,15 +2,12 @@ using Content.Shared.Humanoid;
 using Content.Shared.Alert;
 using System.Linq;
 using Content.Shared.Examine;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Movement.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Damage;
 using Robust.Shared.Timing;
-using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
 using Content.Shared.Actions;
 using Content.Shared.Station;
@@ -36,6 +33,10 @@ using Content.Shared._Starlight.Medical.Body.Events;
 using Robust.Shared.Containers;
 using Content.Server.Examine;
 using Robust.Server.GameObjects;
+using Content.Shared._Starlight.Shadekin.Components;
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.NullSpace.Components;
+using Content.Server._Starlight.Shadekin.Components;
 
 namespace Content.Server._Starlight.Shadekin;
 
@@ -291,10 +292,18 @@ public sealed partial class ShadekinSystem : EntitySystem
 
     private void ToggleNightVision(EntityUid uid, ShadekinState shadekinState)
     {
-        if (shadekinState == ShadekinState.Dark)
-            EnsureComp<NightVisionComponent>(uid);
-        else if (TryComp<NightVisionComponent>(uid, out var nightvision) && !nightvision.Clothes)
-            RemComp<NightVisionComponent>(uid);
+        var nightVision = EnsureComp<NightVisionComponent>(uid);
+        var shouldBeActive = shadekinState == ShadekinState.Dark;
+
+        // avoid dirtying if we don't need to
+        if(nightVision.Active == shouldBeActive)
+            return;
+
+        // update whether or not nightVision should be active based on light level
+        nightVision.Active = shouldBeActive;
+
+        // ensure nightVision updates to reflect the new state
+        Dirty(uid, nightVision);
     }
 
     private void CheckThresholds(EntityUid uid, ShadekinComponent component, float lightExposure)

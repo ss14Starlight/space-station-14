@@ -7,7 +7,7 @@ using Content.Shared.Examine;
 using Content.Shared.Input;
 using Content.Shared.Wall;
 // Starlight start
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 // Starlight end
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;

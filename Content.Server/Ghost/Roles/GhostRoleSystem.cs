@@ -39,7 +39,7 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 
 namespace Content.Server.Ghost.Roles;
 

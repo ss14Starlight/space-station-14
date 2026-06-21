@@ -23,3 +23,9 @@
   name: role-type-tsf-aligned-name
   color: '#22a7ff'
   symbol: "🗡" # Should never be antag, but just in case.
+
+- type: roleType
+  id: HarmlessAntagonist
+  name: role-type-harmless-antagonist-name
+  color: "#ff8800"
+  symbol: "🦇"

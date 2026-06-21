@@ -21,7 +21,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.CustomObjectiveSummary; // Starlight
-using Content.Shared._Starlight.Station; // Starlight
+using Content.Shared._Starlight.Station;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Abstract; // Starlight
 
 namespace Content.Server.Objectives;
 

@@ -11,3 +11,5 @@ flavor-base-festive = festive
 flavor-complex-highlander = like THERE CAN BE ONLY ONE
 flavor-complex-the-last-call = like death's cold embrace
 flavor-base-perfid = perfid
+flavor-base-stringy = stringy
+flavor-base-stinky = stinky

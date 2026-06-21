@@ -4,7 +4,6 @@ using Content.Server._Starlight.Radio.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Server.Power.Components;
-using Content.Server.Starlight.TTS;
 using Content.Server.VoiceMask;
 using Content.Shared;
 using Content.Shared._Starlight.Language;
@@ -24,7 +23,7 @@ using Content.Shared.Roles;
 using Content.Shared.Silicons.Borgs.Components;
 using Content.Shared.Silicons.StationAi;
 using Content.Shared.Speech;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -37,7 +36,8 @@ using Robust.Shared.Replays;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Radio;
 using Content.Shared._Starlight.Language.Components;
-using Content.Shared.Ghost; //Starlight
+using Content.Shared.Ghost;
+using Content.Server._Starlight.TextToSpeech; //Starlight
 
 namespace Content.Server.Radio.EntitySystems;
 
