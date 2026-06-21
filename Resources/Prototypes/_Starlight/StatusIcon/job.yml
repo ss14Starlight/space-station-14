@@ -259,6 +259,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakLeader
   jobName: job-name-medtak-leader
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -267,6 +268,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakDispatcher
   jobName: job-name-medtak-dispatcher
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -275,6 +277,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakMedic
   jobName: job-name-medtak-medic
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -283,6 +286,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakPilot
   jobName: job-name-medtak-pilot
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -291,6 +295,7 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakSecurity
   jobName: job-name-medtak-security
+  allowSelection: false
 
 - type: jobIcon
   parent: JobIcon
@@ -299,3 +304,4 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakBorg
   jobName: job-name-medtak-borg
+  allowSelection: false

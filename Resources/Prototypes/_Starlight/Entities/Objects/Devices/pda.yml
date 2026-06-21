@@ -864,6 +864,9 @@
   - type: Icon
     sprite: _Starlight/Objects/Devices/pda.rsi
     state: pda-medtak
+  - type: Tag
+    tags:
+    - DoorBumpOpener
 
 - type: entity
   parent: MedTakMedicPDA

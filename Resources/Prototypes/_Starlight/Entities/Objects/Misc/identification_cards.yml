@@ -682,6 +682,9 @@
         - MedTak
         - Medical
         - Maintenance
+    - type: Tag
+      tags:
+      - DoorBumpOpener
 
 - type: entity
   parent: MedTakIDCard

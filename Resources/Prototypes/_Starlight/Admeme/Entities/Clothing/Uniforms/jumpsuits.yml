@@ -42,6 +42,8 @@
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_uniform.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_uniform.rsi
+  - type: Tag
+    tags: []
 
 - type: entity
   parent: [ ClothingUniformBase, BaseMedTakContraband ]
@@ -53,3 +55,5 @@
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_formal.rsi
   - type: Clothing
     sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_formal.rsi
+  - type: Tag
+    tags: []
