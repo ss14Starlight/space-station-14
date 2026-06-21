@@ -308,30 +308,30 @@
   worksOnTheDead: true
   metabolisms:
     Medicine:
-      metabolismRate: 2.5
+      metabolismRate: 0.5
       effects:
       - !type:AdjustTemperature
         conditions:
         - !type:TemperatureCondition
           min: 4000.00
-        amount: -10000000
+        amount: -5000000
       - !type:AdjustTemperature
         conditions:
         - !type:TemperatureCondition
           min: 1000.00
           max: 3999.99
-        amount: -2000000
-      - !type:AdjustTemperature
-        conditions:
-        - !type:TemperatureCondition
-          min: 600.00
-          max: 999.99
         amount: -1000000
       - !type:AdjustTemperature
         conditions:
         - !type:TemperatureCondition
-          min: 400.00
-          max: 599.99
+          min: 500.00
+          max: 999.99
+        amount: -400000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 293.15
+          max: 499.99
         amount: -100000
       - !type:PopupMessage
         type: Local

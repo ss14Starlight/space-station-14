@@ -114,13 +114,13 @@
   impact: Medium
   reactants:
     Aloxadone:
-      amount: 15
+      amount: 10
     Leporazine:
-      amount: 15
+      amount: 10
     Arcryox:
-      amount: 15
+      amount: 10
   products:
-    Iceialin: 2.5
+    Iceialin: 2
 
 - type: reaction
   id: Necrosol
