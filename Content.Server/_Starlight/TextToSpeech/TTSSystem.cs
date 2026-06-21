@@ -233,13 +233,17 @@ public sealed partial class TTSSystem : EntitySystem
     private static string CleanText(string text)
     {
         text = TagStripperRegex().Replace(text, "");
+        text = SmartQuotes().Replace(text, "'");
         text = CharFilter().Replace(text, "");
         text = NumberConverter.NumberPattern().Replace(text, match => NumberConverter.Convert(match.Value));
         return text;
     }
 
-    [GeneratedRegex(@"[^a-zA-Z0-9,.\-?! ]")]
+    [GeneratedRegex(@"[^a-zA-Z0-9,.\-?!' ]")]
     private static partial Regex CharFilter();
+
+    [GeneratedRegex(@"[\u2018\u2019]")]
+    private static partial Regex SmartQuotes();
 
     [GeneratedRegex(@"\[[^\]]*\]")]
     private static partial Regex TagStripperRegex();
