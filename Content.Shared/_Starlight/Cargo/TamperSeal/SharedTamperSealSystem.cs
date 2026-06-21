@@ -150,13 +150,6 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
         if (seal.Opened) // Closed seals & Destroyed seals have Examine text.
             return;
 
-        // When there are no access levels specified, it's basically AA, so we have a different locale string for that.
-        if (seal.Accesses.Count == 0)
-        {
-            args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-public"));
-            return;
-        }
-
         // High-priority text so it shows at the top, since the tamper seal is the first thing you need to deal with
         // when interacting with an entity that has one.
         args.PushMarkup(Loc.GetString("tamper-seal-examine-sealed-restricted",
@@ -327,6 +320,9 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
             return false;
 
         var userTags = _accessReader.FindAccessTags(user);
+        if (seal.Accesses.Count == 0)
+            return true;
+
         foreach (var pattern in seal.Accesses)
         {
             // If any of the AllOf accesses is absent, the pattern fails.

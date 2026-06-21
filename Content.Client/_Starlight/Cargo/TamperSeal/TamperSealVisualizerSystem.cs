@@ -17,8 +17,8 @@ public sealed partial class TamperSealVisualizerSystem : VisualizerSystem<Tamper
         if (args.Sprite == null)
             return;
 
-        _appearance.TryGetData(uid, TamperSealVisuals.Opened, out bool opened);
-        _appearance.TryGetData(uid, TamperSealVisuals.Destroyed, out bool destroyed);
+        var opened = component.Opened;
+        var destroyed = component.Destroyed;
         var color = component.Color;
 
         var ent = (uid, args.Sprite);

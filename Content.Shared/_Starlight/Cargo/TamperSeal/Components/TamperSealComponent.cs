@@ -8,7 +8,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Cargo.TamperSeal.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true, fieldDeltas: true)]
 public sealed partial class TamperSealComponent : Component
 {
     #region Parties
