@@ -40,6 +40,8 @@
     heatDamage:
       types:
         Heat: 1.5
+  - type: Metabolizer
+    metabolizerTypes: [ Rat ]
   - type: OptionsVisualizer
     visuals:
       base:
