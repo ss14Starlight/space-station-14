@@ -230,6 +230,12 @@ public sealed partial class TTSSystem : EntitySystem
             _ignoredRecipients.Add(args.SenderSession);
     }
 
+    /// <summary>
+    /// Cleans and normalizes text for TTS output, preserving apostrophes, normalizing smart quotes,
+    /// stripping formatting tags, and converting numbers to word representations.
+    /// </summary>
+    /// <param name="text">The raw text to be cleaned.</param>
+    /// <returns>The cleaned and normalized text.</returns>
     internal static string CleanText(string text)
     {
         text = TagStripperRegex().Replace(text, "");

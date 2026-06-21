@@ -3,9 +3,15 @@ using NUnit.Framework;
 
 namespace Content.Tests.Server.TextToSpeech;
 
+/// <summary>
+/// Unit tests verifying the text cleaning and normalization behavior in TTSSystem.
+/// </summary>
 [TestFixture]
 public sealed class TTSTests
 {
+    /// <summary>
+    /// Verifies that standard ASCII apostrophes (used in contractions, accents, or plurals) are preserved.
+    /// </summary>
     [Test]
     public void TestCleanTextPreservesApostrophes()
     {
@@ -21,6 +27,9 @@ public sealed class TTSTests
         Assert.That(TTSSystem.CleanText("Chris' coat"), Is.EqualTo("Chris' coat"));
     }
 
+    /// <summary>
+    /// Verifies that unicode smart quotes (both single quotes and smart apostrophes) are normalized to standard ASCII apostrophes.
+    /// </summary>
     [Test]
     public void TestCleanTextNormalizesSmartQuotes()
     {
@@ -32,6 +41,9 @@ public sealed class TTSTests
         Assert.That(TTSSystem.CleanText("Chris’ coat"), Is.EqualTo("Chris' coat"));
     }
 
+    /// <summary>
+    /// Verifies that formatting tags (like BBCode) and non-alphanumeric/non-punctuation characters are stripped.
+    /// </summary>
     [Test]
     public void TestCleanTextStripsInvalidCharacters()
     {
