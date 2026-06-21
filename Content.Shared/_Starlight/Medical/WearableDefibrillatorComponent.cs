@@ -2,9 +2,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
-namespace Content.Shared.Medical;
+namespace Content.Shared._Starlight.Medical;
 
 /// <summary>
 /// This is used for defibrillators intended to be equipped, like gloves that can shock people.

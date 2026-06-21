@@ -21,6 +21,7 @@ using Content.Shared.Actions;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Damage;
+using Content.Shared._Starlight.Medical;
 #endregion
 
 namespace Content.Shared.Medical;
