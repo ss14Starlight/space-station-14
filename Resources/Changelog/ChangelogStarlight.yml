@@ -1,13 +1,6 @@
 Entries:
 - author: Swonki, Romero
   changes:
-  - message: Riot Shotgun to be magazine fed.
-    type: Tweak
-  id: 405732
-  time: '2026-06-08T22:30:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4627
-- author: Swonki, Romero
-  changes:
   - message: New Riot Shotgun Sprite.
     type: Add
   id: 405733
@@ -2799,4 +2792,11 @@ Entries:
   id: 406131
   time: '2026-06-20T13:41:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4861
+- author: Huaqas, DocMoth
+  changes:
+  - message: Rodentia will now be supplied a random piece of cheese from the NanoTrasen Galactic Cheese Vault in their Survival Boxes at round start.
+    type: Add
+  id: 406132
+  time: '2026-06-20T15:27:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4853
 Order: -1
