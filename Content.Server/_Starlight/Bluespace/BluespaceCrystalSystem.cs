@@ -1,4 +1,3 @@
-using Content.Server._Starlight.Bluespace;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
@@ -7,7 +6,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.NullSpace;
+namespace Content.Server._Starlight.Bluespace;
 
 public sealed partial class BluespaceCrystalSystem : EntitySystem
 {

@@ -16,6 +16,26 @@
       rateModifier: 100.0
 
 - type: entity
+  id: OrganProtoCycloriteEye
+  parent: OrganProtogenEyes
+  name: cyclorite cybernetic eye
+  description: "Cyclorites see the world slightly differently."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Mobs/Species/Cyclorite/organs.rsi
+    layers:
+      - state: eyeball
+  - type: FunctionalOrgan
+    comps:
+    # - type: CycloriteVision
+    - type: NightVision
+      disabilityBlockable: true
+  - type: OrganVisualization
+    layer: Eyes
+    prototypes:
+      Default: MobCycloriteEyes
+
+- type: entity
   id: OrganProtoCycloriteHeart
   parent: OrganProtogenHeart
   name: cyclorite cybernetic heart

@@ -1,5 +1,4 @@
 using Robust.Shared.Localization;
-using NUnit.Framework;
 
 namespace Content.IntegrationTests.Tests._Starlight.Localization;
 

@@ -5,7 +5,6 @@ using Content.Server.Polymorph.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
-using Content.Shared._Starlight.Antags.Vampires.Systems;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
@@ -39,7 +38,7 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
 public sealed partial class HemomancerSystem : EntitySystem
 {

@@ -2,7 +2,6 @@ using System.Numerics;
 using System.Linq;
 using Content.Shared._Starlight.EntityBeacon.Components;
 using Content.Shared.Maps;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Map;

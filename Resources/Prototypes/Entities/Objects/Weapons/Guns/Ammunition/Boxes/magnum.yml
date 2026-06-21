@@ -55,21 +55,6 @@
 
 - type: entity
   parent: BaseMagazineBoxMagnum
-  id: MagazineBoxMagnumFMJ
-  name: ammunition box (.45 magnum FMJ)
-  components:
-  - type: BallisticAmmoProvider
-    proto: CartridgeMagnumFMJ
-  - type: Sprite
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-    - state: fmj
-
-- type: entity
-  parent: BaseMagazineBoxMagnum
   id: MagazineBoxMagnumPractice
   name: ammunition box (.45 magnum practice)
   description: A cardboard box of .45 magnum rounds. Intended to hold harmless practice ammunition.

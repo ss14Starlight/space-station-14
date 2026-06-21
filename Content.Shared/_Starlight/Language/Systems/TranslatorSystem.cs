@@ -9,7 +9,6 @@ using Content.Shared.Popups;
 using Content.Shared.PowerCell;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using HandheldTranslatorComponent = Content.Shared._Starlight.Language.Components.HandheldTranslatorComponent;
 
 namespace Content.Shared._Starlight.Language.Systems;

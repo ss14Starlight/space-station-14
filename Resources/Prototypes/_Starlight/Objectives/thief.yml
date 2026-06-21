@@ -323,7 +323,6 @@
   - type: Objective
     difficulty: 0.9 # So a lot of things actually count towards this objective, normal Doctor, Paramed, CMO, Brigmed, BSO... But you can't really hold more than three at a time.
 
-
 - type: entity
   parent: [BaseThiefObjective, BaseLivingObjective]
   id: EscapeMasterThiefObjective
@@ -340,3 +339,14 @@
     blacklist:
       components: # So you can't get this and the normal Escape objective at the same time.
       - EscapeShuttleCondition
+
+- type: entity
+  parent: BaseThiefStealCollectionObjective
+  id: FigurineStealCollectionObjective
+  components:
+  - type: StealCondition
+    stealGroup: Figurines
+    minCollectionSize: 10
+    maxCollectionSize: 18 #will be limited to the number of figures on the station anyway.
+  - type: Objective
+    difficulty: 0.7 #Starlight edit, youre fighting others for em

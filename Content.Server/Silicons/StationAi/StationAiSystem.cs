@@ -52,6 +52,7 @@ using Robust.Shared.Localization;
 using Robust.Shared.Log;
 using Robust.Shared.Map;
 using System.Collections.Generic;
+using Content.Shared._Starlight.StationAi;
 #endregion Starlight
 
 namespace Content.Server.Silicons.StationAi;

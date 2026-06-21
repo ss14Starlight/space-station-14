@@ -1,7 +1,7 @@
 ﻿using Content.Server._Starlight.Objectives.Components;
 using Content.Server._Starlight.Objectives.Events;
 using Content.Server._Starlight.Railroading;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;

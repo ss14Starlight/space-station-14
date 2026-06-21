@@ -3,7 +3,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Slippery;
 using Content.Shared._Starlight.Mech.Equipment.Components;
 using Content.Shared._Starlight.Mech.Equipment.EntitySystems;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Starlight.Mech.Equipment.EntitySystems;

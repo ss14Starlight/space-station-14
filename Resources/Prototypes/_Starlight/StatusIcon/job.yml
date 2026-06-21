@@ -305,3 +305,19 @@
     state: MedTakBorg
   jobName: job-name-medtak-borg
   allowSelection: false
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenoborg
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Xenoborg
+  jobName: chat-radio-xenoborg
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenoborgMothership
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Mothership
+  jobName: chat-radio-mothership
