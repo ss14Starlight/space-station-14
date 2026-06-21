@@ -1,9 +1,0 @@
-- type: entity
-  parent: BaseUnknownShuttleRule
-  id: SyndicateSpiesEvent
-  components:
-  - type: StationEvent
-    maxOccurrences: 1
-  - type: LoadMapRule
-    gridPath: /Maps/_Starlight/Shuttles/SyndicateSpyShip.yml
-    

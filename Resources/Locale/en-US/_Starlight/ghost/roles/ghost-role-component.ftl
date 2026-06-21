@@ -113,4 +113,4 @@ ghost-role-information-kiki-description = An honorable member of the kobold soci
 
 ghost-role-information-SyndicateSpy-name = Syndicate Spy
 ghost-role-information-SyndicateSpy-description = You are a spy sent by Syndicate High Command. You must spy on the station and report your findings to High Command.
-ghost-role-information-SyndicateSpy-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. You are a Syndicate Spy, Coordinate with your teammate and report your findings using the fax machine. 
+ghost-role-information-SyndicateSpy-rules = You are a [color={role-type-team-antagonist-color}][bold]{role-type-team-antagonist-name}[/bold][/color]. You are a Syndicate Spy, Coordinate with your teammate and report your findings using the fax machine.

@@ -22,4 +22,3 @@
   - !type:RoleTimeRequirement
     role: AntagTraitor
     time: 1h # Learn the Syndicate Ways and how to use chameleon gear
-  playTimeTracker: AntagSyndicateSpy
