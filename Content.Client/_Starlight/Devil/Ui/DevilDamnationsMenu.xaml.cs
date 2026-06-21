@@ -11,6 +11,7 @@ namespace Content.Client._Starlight.Devil.Ui;
 public sealed partial class DevilDamnationsMenu : FancyWindow
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     public DevilDamnationsMenu()
     {
@@ -47,6 +48,15 @@ public sealed partial class DevilDamnationsMenu : FancyWindow
 
             DamnationCategories.SetTabTitle(tabIndex, categoryTitle);
             tabIndex++;
+        }
+
+        DamnedCrewList.DisposeAllChildren();
+        foreach (var (netuid, name) in state.DamnedEntities)
+        {
+            _entityManager.TryGetEntity(netuid, out var uid);
+            if (uid is not EntityUid) continue;
+            var view = new DevilDamnedCrewView(((EntityUid)uid, name));
+            DamnedCrewList.AddChild(view);
         }
     }
 }

@@ -13,8 +13,8 @@ public sealed partial class DevilDamnationDisplay : Control
     private Color BenefitColor = Color.FromHex("#3d000a");
     private Color BenefitUnavailableColor = Color.FromHex("#2a0c11");
 
-    private Color DisadvantageColor = Color.FromHex("#010b00");
-    private Color DisadvantageUnavailableColor = Color.FromHex("#0f0003");
+    private Color DisadvantageColor = Color.FromHex("#032b01");
+    private Color DisadvantageUnavailableColor = Color.FromHex("#010f00");
 
     public DevilDamnationDisplay((DamnationPrototype, int) damnationMeta)
     {

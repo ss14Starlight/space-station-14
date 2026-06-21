@@ -1,0 +1,13 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:style="clr-namespace:Content.Client.Stylesheets">
+    <PanelContainer>
+        <BoxContainer Orientation="Vertical"
+                      VerticalExpand="True">
+            <SpriteView Name="DamnedSprite"
+                        SetSize="32 64"
+                        OverrideDirection="South"/>
+            <Label Name="DamnedName"
+                   StyleClasses="LabelKeyText"/>
+        </BoxContainer>
+    </PanelContainer>
+</Control>

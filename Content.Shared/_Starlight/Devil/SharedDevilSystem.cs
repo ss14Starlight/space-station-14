@@ -23,6 +23,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly MetaDataSystem _metadata = default!;
+    [Dependency] private readonly IEntityManager _entity = default!;
 
     private Dictionary<ProtoId<DamnationPrototype>, DamnationPrototype> _damnations = new();
     public override void Initialize()
@@ -36,7 +37,6 @@ public abstract partial class SharedDevilSystem : EntitySystem
         SubscribeLocalEvent<InfernalContractComponent, PaperInputTextMessage>(OnPaperInputTextMessage, after: [typeof(PaperSystem)]);
 
         SubscribeLocalEvent<DevilComponent, ComponentInit>(OnDevilInit);
-        SubscribeLocalEvent<DevilComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
 
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
@@ -347,21 +347,25 @@ public abstract partial class SharedDevilSystem : EntitySystem
     private void OnOpenDamnationsMenu(Entity<DevilComponent> devil, ref OpenDamnationsMenuEvent args)
     {
         if (!TryComp<UserInterfaceComponent>(devil.Owner, out var userInterfaceComp) || !TryComp<ActorComponent>(devil.Owner, out var actorComp)) return;
+
+        var damnationsMeta = devil.Comp.AvailableDamnations.Select(x => (x, devil.Comp.DamnationUsage.GetValueOrDefault(x, 0))).ToList();
+        var damnedCrew = new List<(NetEntity, string)>();
+        foreach (var uid in devil.Comp.DamnedSouls)
+        {
+            _entity.TryGetNetEntity(uid, out var netuid);
+            if(netuid is not NetEntity) continue;
+            damnedCrew.Add(((NetEntity)netuid, Name(uid)));
+        }
+
+        var uiState = new DevilDamnationsBuiState(damnationsMeta, damnedCrew);
+        _userInterface.SetUiState((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
+
         _userInterface.TryToggleUi((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
 
     private void OnDevilInit(Entity<DevilComponent> devil, ref ComponentInit args) =>
         // setup damnation map, prevent duplicate proto lookups as this will be happening very frequently
         _damnations = _proto.EnumeratePrototypes<DamnationPrototype>().ToDictionary(p => (ProtoId<DamnationPrototype>)p.ID, p => p);
-    private void OnMapInit(Entity<DevilComponent> devil, ref MapInitEvent args)
-    {
-        // send UI update once on init, there is no reason (at the moment) to further update it
-        // though functionality should still remain for state update
-        if(!TryComp<UserInterfaceComponent>(devil.Owner, out var userInterfaceComp) || !TryComp<ActorComponent>(devil.Owner, out var actorComp)) return;
-        var damnationsMeta = devil.Comp.AvailableDamnations.Select(x => (x, devil.Comp.DamnationUsage.GetValueOrDefault(x, 0))).ToList();
-        var uiState = new DevilDamnationsBuiState(damnationsMeta);
-        _userInterface.SetUiState((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
-    }
     #endregion
 }
 

@@ -4,6 +4,7 @@ devil-damnations-ui-damnation-name = {CAPITALIZE($name)}
 devil-damnations-ui-cost = Cost: {$cost}, Max Uses: {$uses}/{$maxuses}
 devil-damnations-ui-benefits = Benefits
 devil-damnations-ui-disadvantages = Curses
+devil-damnations-ui-damned-crew = Damned crew
 
 devil-damnations-info-title = Info
 devil-damnations-category-curses-title = Curses
