@@ -1,102 +1,4 @@
 Entries:
-- author: Swonki, Romero
-  changes:
-  - message: New Riot Shotgun Sprite.
-    type: Add
-  id: 405733
-  time: '2026-06-08T22:30:28.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4627
-- author: Scarlet Lightweaver.
-  changes:
-  - message: Added a way to get ammo for the clowns fake china lake.
-    type: Add
-  id: 405734
-  time: '2026-06-08T23:11:24.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4651
-- author: Conflee, Scarlet.
-  changes:
-  - message: Added the xenoroach! a little spybot that can slide under tables doors and crawl in vents and under tables.
-    type: Add
-  id: 405735
-  time: '2026-06-08T23:11:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4640
-- author: Conflee, Scarlet.
-  changes:
-  - message: Removed the xenoborgi recpie so it remains admeme only.
-    type: Remove
-  id: 405736
-  time: '2026-06-08T23:11:26.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4640
-- author: CrazyPhantom
-  changes:
-  - message: Electric Sheep. Zzzzzzzzzz...zap!
-    type: Add
-  id: 405737
-  time: '2026-06-08T23:11:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4568
-- author: CrazyPhantom
-  changes:
-  - message: Ninja's can now call in Electric Sheep.
-    type: Add
-  id: 405738
-  time: '2026-06-08T23:11:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4568
-- author: Mack
-  changes:
-  - message: Angel Arms will no longer drain all the chemicals from a container when the wrong injector is used.
-    type: Fix
-  id: 405739
-  time: '2026-06-08T23:11:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4661
-- author: Mack
-  changes:
-  - message: You can no longer attach cyberlimb tools to limbs.
-    type: Fix
-  id: 405740
-  time: '2026-06-08T23:11:31.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4661
-- author: Way, Kirb
-  changes:
-  - message: Reinforced cameras.
-    type: Add
-  id: 405741
-  time: '2026-06-08T23:48:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4685
-- author: Way, Kirb
-  changes:
-  - message: camera wire panels can now be secured like doors/lockers.
-    type: Add
-  id: 405742
-  time: '2026-06-08T23:48:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4685
-- author: Scrambledeggs00
-  changes:
-  - message: Re-sprited burn and brute menders, allowed their volume to be seen via examination and item information, and made the brute mender's volume 35u.
-    type: Tweak
-  id: 405743
-  time: '2026-06-09T06:41:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4688
-- author: PON
-  changes:
-  - message: (LAGAN) Added minor medical supplies to artifact (Science Interns rejoice).
-    type: Add
-  id: 405744
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added mail tech locker.
-    type: Add
-  id: 405745
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added decals in front of most turnstiles.
-    type: Add
-  id: 405746
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
 - author: PON
   changes:
   - message: (LAGAN) Added a second Flasher to the armory.
@@ -2799,4 +2701,102 @@ Entries:
   id: 406132
   time: '2026-06-20T15:27:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4853
+- author: wonderfulnewworld
+  changes:
+  - message: Added Surgeon, Coroner, Virologist, Geneticist, and Roboticist lockers.
+    type: Add
+  id: 406133
+  time: '2026-06-21T12:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4869
+- author: wonderfulnewworld
+  changes:
+  - message: Added large variants of Cargo Technician and Mail Technician lockers.
+    type: Add
+  id: 406134
+  time: '2026-06-21T12:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4869
+- author: wonderfulnewworld
+  changes:
+  - message: Added roboticist surgical case and bottle case.
+    type: Add
+  id: 406135
+  time: '2026-06-21T12:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4869
+- author: wonderfulnewworld
+  changes:
+  - message: The Healium Air Tank now has its own sprite.
+    type: Add
+  id: 406136
+  time: '2026-06-21T12:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4869
+- author: wonderfulnewworld
+  changes:
+  - message: The Healium Air Tank now has Pluox, so it can actually sleep Voxes.
+    type: Tweak
+  id: 406137
+  time: '2026-06-21T12:11:02.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4869
+- author: Sparlight
+  changes:
+  - message: Borgi cubes no longer produce 'mistake' smart corgis that aren't sentient; all 'mistake' corgis will now be ghost roles.
+    type: Tweak
+  id: 406138
+  time: '2026-06-21T12:11:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4880
+- author: Johnny
+  changes:
+  - message: Super synths can be played on the neck now.
+    type: Fix
+  id: 406139
+  time: '2026-06-21T12:39:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4881
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Security now has a general population cell to throw rowdy prisoners in.
+    type: Add
+  id: 406140
+  time: '2026-06-21T12:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Medical is now more fleshed out, larger, and can support more people in it.
+    type: Add
+  id: 406141
+  time: '2026-06-21T12:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Lil stupid lil tiny baby medical.
+    type: Remove
+  id: 406142
+  time: '2026-06-21T12:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Debrief got moved a bit to make way for the REAL star of the show, genpop.
+    type: Tweak
+  id: 406143
+  time: '2026-06-21T12:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: Johnny
+  changes:
+  - message: (CC_SC17) The gassing system has been changed to use healium, and is less of a main star of this CC as it literally hasnt been used before.
+    type: Tweak
+  id: 406144
+  time: '2026-06-21T12:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: Johnny
+  changes:
+  - message: (CC_SC17) Some pipes were apparently set wrong so i fixed those up.
+    type: Fix
+  id: 406145
+  time: '2026-06-21T12:39:06.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: BlythT
+  changes:
+  - message: TTS pronunciation of apostrophe'd words.
+    type: Fix
+  id: 406146
+  time: '2026-06-21T19:41:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4882
 Order: -1

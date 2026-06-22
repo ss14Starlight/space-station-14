@@ -1,52 +1,78 @@
 ﻿{
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by SevenShades",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "bottle1"
+      "name": "bottle1",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle2"
+      "name": "bottle2",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle3"
+      "name": "bottle3",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle4"
+      "name": "bottle4",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle5"
+      "name": "bottle5",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle6"
+      "name": "bottle6",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle7"
+      "name": "bottle7",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottle8"
+      "name": "bottle8",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "bottlecase"
+      "name": "bottlecase",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "injectorpack"
+      "name": "injectorpack",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "surgerykit"
+      "name": "surgerykit",
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+	  "copyright": "Sprited by SevenShades",
+	  "license": "CC-BY-SA-3.0"
     }
   ]
 }
