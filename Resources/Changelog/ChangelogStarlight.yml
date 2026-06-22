@@ -1,13 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Added decals in front of most turnstiles.
-    type: Add
-  id: 405746
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Added a second Flasher to the armory.
     type: Add
   id: 405747
@@ -2799,4 +2792,11 @@ Entries:
   id: 406145
   time: '2026-06-21T12:39:06.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4850
+- author: BlythT
+  changes:
+  - message: TTS pronunciation of apostrophe'd words.
+    type: Fix
+  id: 406146
+  time: '2026-06-21T19:41:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4882
 Order: -1
