@@ -210,6 +210,10 @@ public partial class SharedBodySystem
         comps = null;
         return false;
     }
+
+    /// <summary>
+    /// Checks if the slot with the given name exists on the body. Does NOT check if an organ is present in the slot.
+    /// </summary>
     public bool HasOrganSlot(EntityUid bodyId, BodyComponent body, string slotId)
     {
         foreach (var (_, partComp) in GetBodyChildren(bodyId, body))
