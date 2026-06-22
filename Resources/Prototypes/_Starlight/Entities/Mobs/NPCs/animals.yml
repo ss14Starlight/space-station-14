@@ -127,4 +127,66 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
-
+            
+- type: entity
+  name: chimpken
+  id: MobChimpken
+  parent: [MobBaseAncestor, BaseSpeciesPickupable]
+  description: A horrifying genetic abomination or the ultimate fusion of primate and chicken?
+  components:
+  - type: NameIdentifier
+    group: Chimpken
+  - type: Speech
+    speechSounds: Monkey
+    speechVerb: Monkey
+  - type: VentCrawler
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-primate
+  - type: AlwaysRevolutionaryConvertible
+  - type: GhostRole
+    prob: 0.05
+    makeSentient: true
+    name: ghost-role-information-chimpken-name
+    description: ghost-role-information-chimpken-description
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: Clumsy
+    gunShootFailDamage:
+      types:
+        Blunt: 5
+        Piercing: 4
+        Heat: 3
+    catchingFailDamage:
+      types:
+        Blunt: 1
+    clumsySound:
+      path: /Audio/Animals/monkey_scream.ogg
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: chimpken
+      sprite: _Starlight/Mobs/Animals/chimpken.rsi
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "ears" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatChicken
+      amount: 3
+  - type: Tag
+    tags:
+      - Monkey
