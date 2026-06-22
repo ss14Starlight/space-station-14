@@ -2,7 +2,7 @@
 # Cosmetic items that denote departmental affiliation
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseSecurityContraband]
   id: ClothingNeckPauldronEngineeringGuard
   name: Engineering guard pauldron
   description: A sturdy orange pauldron denoting an assigned Engineering guard.
@@ -11,7 +11,7 @@
     sprite: _Starlight/Clothing/Neck/GuardPauldrons/engi_guard_pauldron.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseSecurityContraband]
   id: ClothingNeckPauldronMedicalGuard
   name: Medical guard pauldron
   description: A crisp blue pauldron denoting an assigned Medical guard.
@@ -20,7 +20,7 @@
     sprite: _Starlight/Clothing/Neck/GuardPauldrons/med_guard_pauldron.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseSecurityContraband]
   id: ClothingNeckPauldronSecurity
   name: Security guard pauldron
   description: An authoritative red pauldron denoting Security affiliation. Perfect for those who enforce the law.
@@ -29,7 +29,7 @@
     sprite: _Starlight/Clothing/Neck/GuardPauldrons/sec_guard_pauldron.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseSecurityContraband]
   id: ClothingNeckPauldronScienceGuard
   name: Science guard pauldron
   description: A vibrant purple pauldron denoting an assigned Science guard.
@@ -38,7 +38,7 @@
     sprite: _Starlight/Clothing/Neck/GuardPauldrons/sci_guard_pauldron.rsi
 
 - type: entity
-  parent: ClothingNeckBase
+  parent: [ClothingNeckBase, BaseSecurityContraband]
   id: ClothingNeckPauldronSupplyGuard
   name: Supply guard pauldron
   description: A practical brown pauldron denoting an assigned Supply guard.
