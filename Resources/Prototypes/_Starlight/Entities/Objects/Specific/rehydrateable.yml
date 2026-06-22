@@ -30,3 +30,13 @@
     - type: Rehydratable
       possibleSpawns:
         - MobCCMoproach
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: ChimpkenCube
+  name: chimpken cube
+  description: Just add water!
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobChimpken
