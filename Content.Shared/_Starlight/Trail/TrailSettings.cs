@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization.Manager.Attributes;
-
 namespace Content.Shared._Starlight.Trail;
 
 /// <summary>

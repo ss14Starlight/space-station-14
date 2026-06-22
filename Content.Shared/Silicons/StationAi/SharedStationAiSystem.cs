@@ -38,13 +38,13 @@ using Robust.Shared.Utility;
 #region Starlight
 using Content.Shared._Starlight.Silicons.Borgs;
 using Content.Shared.Silicons.Borgs.Components;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Player;
 using System.Linq;
 using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.DeviceLinking;
 using System.Numerics;
-using Content.Server.Administration.Systems;
+using Content.Shared._Starlight;
 #endregion Starlight
 
 namespace Content.Shared.Silicons.StationAi;

@@ -200,8 +200,12 @@
     children:
     - id: StrangePill
       prob: 0.20
-    - id: OminousPill # Starlight
-      prob: 0.10 # Starlight
+    - id: OminousPill # Starlight start
+      prob: 0.10
+    - id: WeirdPill
+      prob: 0.10
+    - id: GoldenPill
+      prob: 0.05 # Starlight end
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable

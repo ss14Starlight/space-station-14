@@ -1,4 +1,4 @@
-using Content.Shared._Starlight.Roles.Components;
+using Content.Shared._Starlight.Roles;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;

@@ -30,6 +30,25 @@
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
 
+# Outer Clothing.
+- type: loadout
+  id: CoronerLabCoatLong
+  equipment:
+    outerClothing: ClothingOuterCoatLabCoronerLong
+  effects:
+    - !type:GroupLoadoutEffect
+      proto: SeniorPhysician
+
+- type: loadout
+  id: BlackLabCoatLong
+  equipment:
+    outerClothing: ClothingOuterCoatLabBlackLong
+
+- type: loadout
+  id: VirologistLabCoatLong
+  equipment:
+    outerClothing: ClothingOuterCoatLabVirologyLong
+
 # Gloves
 - type: loadout
   id: NitrileGloves
@@ -51,3 +70,8 @@
   id: MedicalEyePatchHud
   equipment:
     eyes: ClothingEyesEyepatchHudMedical
+
+- type: loadout
+  id: WindbreakerMedical
+  equipment:
+    outerClothing: ClothingOuterWindbreakerMedical

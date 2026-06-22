@@ -35,7 +35,7 @@ namespace Content.Server.Nuke
             if (!Resolve(uid, ref component))
                 return;
 
-            if (TryGetRelativeNukeCode(uid, out var paperContent, station, onlyCurrentStation: component.AllNukesAvailable))
+            if (TryGetRelativeNukeCode(uid, out var paperContent, station, onlyCurrentStation: component.AllNukesAvailable, printAll: component.PrintAll)) // Starlight Edit: Added ``printAll``
             {
                 if (TryComp<PaperComponent>(uid, out var paperComp))
                     _paper.SetContent((uid, paperComp), paperContent);
@@ -92,7 +92,8 @@ namespace Content.Server.Nuke
             [NotNullWhen(true)] out string? nukeCode,
             EntityUid? station = null,
             TransformComponent? transform = null,
-            bool onlyCurrentStation = false)
+            bool onlyCurrentStation = false,
+            bool printAll = false) // Starlight
         {
             nukeCode = null;
             if (!Resolve(uid, ref transform))
@@ -125,7 +126,10 @@ namespace Content.Server.Nuke
 
                 codesMessage.PushNewline();
                 codesMessage.AddMarkupOrThrow(Loc.GetString("nuke-codes-list", ("name", MetaData(nukeUid).EntityName), ("code", nuke.Code)));
-                break;
+                // Starlight edit Start
+                if (!printAll)
+                    break;
+                // Starlight edit End
             }
 
             if (!codesMessage.IsEmpty)

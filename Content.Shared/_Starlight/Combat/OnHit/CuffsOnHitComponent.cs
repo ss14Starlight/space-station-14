@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Damage.Components;
+namespace Content.Shared._Starlight.Combat.OnHit;
 
 [RegisterComponent]
 public sealed partial class CuffsOnHitComponent : Component

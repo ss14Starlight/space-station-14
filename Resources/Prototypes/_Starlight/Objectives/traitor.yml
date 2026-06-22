@@ -677,7 +677,7 @@
   parent: [BaseObjective]
   id: MindControlledFollowOrders
   name: Follow orders.
-  description: Follow orders from your master. Use your best judgement when alone.
+  description: Ensure the success of your handler; use your best judgement when alone.
   components:
     - type: Objective
       issuer: objective-issuer-syndicate
@@ -685,4 +685,4 @@
       icon:
         sprite: Objects/Specific/Medical/syndi_implanter.rsi
         state: implanter0
-    - type: EscapeShuttleCondition
+    - type: FreeObjective

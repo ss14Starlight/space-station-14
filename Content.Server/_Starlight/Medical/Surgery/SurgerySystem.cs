@@ -2,9 +2,8 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Shared.Body.Part;
-using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Starlight.Medical.Surgery.Effects.Step;
-using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared._Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Prototypes;
 using Content.Shared.Bed.Sleep;
@@ -14,6 +13,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Damage.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 // Based on the RMC14.

@@ -58,6 +58,54 @@
     mindRole: "MindRoleSiliconBrain"
     silent: true
 
+- type: entity
+  id: PlayerBorgSyndicateMedicalBattery
+  parent: BorgChassisSyndicateMedical
+  suffix: Battery, Module, Operative
+  components:
+  - type: NukeOperative
+  - type: ContainerFill
+    containers:
+      borg_brain:
+        - PositronicBrain
+      borg_module:
+        - BorgModuleTool
+        - BorgModuleSyndicateAdvancedChemical
+        - BorgModuleTopicals
+        - BorgModuleSyndicateRescue
+        - BorgModuleSyndicateWeapon
+        - BorgModuleSyndicateNukeDisk
+  - type: DefaultBorgModules
+    modules:
+      - BorgModuleTool
+      - BorgModuleSyndicateAdvancedChemical
+      - BorgModuleTopicals
+      - BorgModuleSyndicateRescue
+      - BorgModuleSyndicateWeapon
+      - BorgModuleSyndicateNukeDisk
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellHyper
+        blacklist:
+          tags:
+          - MechReactor
+
+- type: entity
+  id: PlayerBorgSyndicateMedicalGhostRole
+  parent: PlayerBorgSyndicateMedicalBattery
+  suffix: Ghost role
+  components:
+    - type: GhostRole
+      name: ghost-role-information-syndicate-cyborg-medical-name
+      description: ghost-role-information-syndicate-cyborg-description
+      rules: ghost-role-information-silicon-rules
+      important: true
+      raffle:
+        settings: default
+    - type: GhostTakeoverAvailable
+
 # region derelict
 
 - type: entity

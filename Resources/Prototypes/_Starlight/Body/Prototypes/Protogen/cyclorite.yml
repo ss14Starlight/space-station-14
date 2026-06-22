@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
+        eyes: OrganProtoCycloriteEye
         tongue: OrganProtogenTongue
         eye_implant: null
         brain_implant: null

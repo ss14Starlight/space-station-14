@@ -1,9 +1,9 @@
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Popups;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Warps;
 using Content.Shared.Whitelist;
 using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Shadekin;
