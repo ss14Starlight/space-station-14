@@ -366,7 +366,7 @@
 
 - type: entity
   parent: GasCanisterBrokenBase
-  id: UlnitraniumDioxideCanisterBroken
+  id: UlnitraniumCanisterBroken
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Storage/canister.rsi
