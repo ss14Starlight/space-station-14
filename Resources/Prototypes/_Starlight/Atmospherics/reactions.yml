@@ -96,7 +96,7 @@
   - 0     # carbon dioxide
   - 0     # plasma
   - 0     # tritium
-  - 0     # vapor
+  - 0.01  # vapor
   - 0     # miasma
   - 0.01  # n2o
   - 0     # frezon
