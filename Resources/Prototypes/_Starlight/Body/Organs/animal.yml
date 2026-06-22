@@ -4,7 +4,7 @@
   parent: PartAnimal
   id: LeftHandAdmemeCorgi
   name: corgi hand
-  categories: [ HideSpawnMenu ]
+  suffix: Corgi
   components:
   - type: Sprite
     layers:
@@ -17,7 +17,7 @@
   parent: PartAnimal
   id: RightHandAdmemeCorgi
   name: corgi hand
-  categories: [ HideSpawnMenu ]
+  suffix: Corgi
   components:
   - type: Sprite
     layers:
