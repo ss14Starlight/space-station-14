@@ -8,6 +8,10 @@
   format: name-identifier-format-kobold
 
 - type: nameIdentifierGroup
+  id: Chimpken
+  format: name-identifier-format-chimpken
+
+- type: nameIdentifierGroup
   id: Holoparasite
   format: name-identifier-format-holoparasite
 
