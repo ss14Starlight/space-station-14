@@ -2,6 +2,7 @@
   id: MedTakTeamLead
   equipment:
     jumpsuit: ClothingUniformMedTakJumpsuit
+    neck: ClothingNeckMantleMedTakLead
     back: ClothingBackpackMedTakFilledLeader
     shoes: ClothingShoesBootsMagMedTak
     outerClothing: ClothingOuterHardsuitMedTak

@@ -20,3 +20,26 @@
       sprite: _Starlight/Admeme/Clothing/Neck/Mantles/majorpauldron-ntnc.rsi
     - type: Clothing
       sprite: _Starlight/Admeme/Clothing/Neck/Mantles/majorpauldron-ntnc.rsi
+
+# MedTak
+- type: entity
+  parent: [ ClothingNeckBase, BaseMedTakContraband ]
+  id: ClothingNeckMantleMedTakLead
+  name: MedTak team leader mantle
+  description: A mantle indicating the leader of a MedTak team.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/leader-medtak.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/leader-medtak.rsi
+
+- type: entity
+  parent: [ ClothingNeckBase, BaseMedTakContraband ]
+  id: ClothingNeckMantleMedTakLeadFormal
+  name: MedTak formal mantle
+  description: A formal mantle and cape given to decorated MedTak team leaders.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/formal-medtak.rsi
+    - type: Clothing
+      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/formal-medtak.rsi
