@@ -1,11 +1,11 @@
 using Content.Shared.Actions;
 using Content.Shared.Body.Part;
-using Content.Shared.Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Actions.Events;
-  
+
 [Virtual]
 public partial class SurgeryActionEvent : InstantActionEvent
 {
