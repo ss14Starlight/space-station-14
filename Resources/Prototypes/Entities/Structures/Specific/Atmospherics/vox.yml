@@ -28,6 +28,10 @@
       Helium: stationHelium
       AntiNoblium: danger
       # Funkystation End: Funky atmos - /tg/ gases
+      # Starlight start, Starlight gases
+      Ulnitranium: stationUlnitranium
+      ZXA: stationZXA
+      # Starlight end
 
 - type: entity
   parent: [AirSensorVoxBase, AirSensor]
@@ -83,6 +87,10 @@
     - Helium
     - AntiNoblium
     # Funkystation End: Funky atmos - /tg/ gases
+    # Starlight start, Starlight gases
+    - Ulnitranium
+    - ZXA
+    # Starlight end
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

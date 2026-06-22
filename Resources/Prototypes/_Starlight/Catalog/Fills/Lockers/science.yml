@@ -34,7 +34,6 @@
     - id: HandheldMachineAnalyzer
     - id: SurgicalKitRoboticsFilled
     - id: BottleCaseRoboticsFilled
-    - id: HealiumTankFilled
     - id: NitrousOxideTankFilled
     - id: MedkitFilled
     - id: MedkitRoboticFilled
