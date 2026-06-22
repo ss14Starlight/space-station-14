@@ -497,7 +497,6 @@
           Heat: 1
           Piercing: 1
       damageEnergyDraw: 4 #Final stat TBD
-      PassiveBlockFraction: 0.8
     - type: Damageable
       damageContainer: Shield
     - type: ContainerContainer
