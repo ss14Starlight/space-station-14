@@ -35,7 +35,7 @@
   Shadekin due to their natural adaptation to their home dimension have innate Night-vision.
   Capable of seeing and viewing things even in the most abyss-like darknesses, not needing any form of light providing device.
   When wearing flash resistant equipment their vision will be normal.
-  This can be easily sorted by the Shadekin wearing a HUD variant, no longer having flash resistance, but keeping the utility that their nightvision and the HUD provide.
+  This can be easily sorted by the Shadekin wearing a HUD variant, no longer having flash resistance, but keeping the utility that their night vision and the HUD provide.
   <Box>
     <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo Nightvision\nHas flash immunity"/>
     <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNightvision\nNo flash immunity"/>
