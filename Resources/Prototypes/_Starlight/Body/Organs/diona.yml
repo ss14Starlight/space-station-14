@@ -128,8 +128,9 @@
 # Organs that turn into nymphs on removal
 - type: entity
   id: OrganDionaBrainNymph
+  categories: [ HideSpawnMenu ]
   parent: OrganDionaBrain
-  name: diona brain
+  name: diona nymph brain
   suffix: Diona
   description: "The source of incredible, unending intelligence. Honk."
   components:
@@ -140,9 +141,10 @@
 
 - type: entity
   id: OrganDionaStomachNymph
+  categories: [ HideSpawnMenu ]
   parent: OrganDionaStomach
-  name: diona stomach
-  suffix: Diona
+  name: diona nymph stomach
+  suffix: Diona Nymph
   description: "Gross. This is hard to stomach."
   components:
   - type: Nymph
@@ -150,9 +152,10 @@
 
 - type: entity
   id: OrganDionaLungsNymph
+  categories: [ HideSpawnMenu ]
   parent: OrganDionaLungs
-  name: diona lungs
-  suffix: Diona
+  name: diona nymph lungs
+  suffix: Diona Nymph
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
   - type: Nymph
@@ -161,6 +164,7 @@
 # Nymphs that the organs will turn into
 - type: entity
   id: OrganDionaNymphBrain
+  categories: [ HideSpawnMenu ]
   parent: MobDionaNymph #starlight Nubody will not pass.
   name: diona nymph
   suffix: Diona Nymph
@@ -174,6 +178,7 @@
 
 - type: entity
   id: OrganDionaNymphStomach
+  categories: [ HideSpawnMenu ]
   parent: MobDionaNymphAccent #starlight Nubody will not pass.
   name: diona nymph stomach
   suffix: Diona Nymph
@@ -187,6 +192,7 @@
 
 - type: entity
   id: OrganDionaNymphLungs
+  categories: [ HideSpawnMenu ]
   parent: MobDionaNymphAccent #starlight Nubody will not pass.
   name: diona nymph lungs
   suffix: Diona Nymph
