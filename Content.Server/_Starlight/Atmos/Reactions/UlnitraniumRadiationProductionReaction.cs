@@ -137,30 +137,3 @@ public sealed partial class UlnitraniumRadiationProductionReaction : IGasReactio
         return receiverComp.CurrentRadiation;
     }
 }
-
-[RegisterComponent]
-public sealed partial class RadiationReceiverTimerComponent : Component
-{
-    public TimeSpan TimerExpiresAt { get; set; } = TimeSpan.Zero;
-}
-
-public sealed partial class RadiationTimerSystem : EntitySystem
-{
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IEntityManager entityManager = default!;
-
-    public override void Update(float frameTime)
-    {
-        base.Update(frameTime);
-
-        var query = entityManager.EntityQueryEnumerator<RadiationReceiverTimerComponent>();
-        while (query.MoveNext(out var uid, out var timer))
-        {
-            if (_timing.CurTime >= timer.TimerExpiresAt)
-            {
-                entityManager.RemoveComponent<RadiationReceiverComponent>(uid);
-                entityManager.RemoveComponent<RadiationReceiverTimerComponent>(uid);
-            }
-        }
-    }
-}
