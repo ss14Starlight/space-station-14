@@ -511,7 +511,7 @@
 
 - type: entity
   name: bluelight shield
-  parent: [GreenLightShield, BaseGrandTheftContraband ]
+  parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: BlueLightShield
   categories: [ DoNotMap ]
   description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
