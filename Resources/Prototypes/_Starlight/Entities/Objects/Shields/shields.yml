@@ -541,6 +541,9 @@
           Heat: 1
           Piercing: 1
       damageEnergyDraw: 4 #Final stat STB
+    - type: Contraband
+      allowedDepartments: []
+      allowedJobs: [ BlueShield ]
 
 - type: entity
   parent: BaseShield
