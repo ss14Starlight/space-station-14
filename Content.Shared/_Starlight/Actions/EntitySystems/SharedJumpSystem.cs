@@ -11,6 +11,7 @@ using Robust.Shared.Map;
 using Content.Shared.Stunnable;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
+using Content.Shared.Popups;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
 
@@ -25,6 +26,7 @@ public abstract partial class SharedJumpSystem : EntitySystem
     [Dependency] private ActionContainerSystem _actionContainer = default!;
     [Dependency] private SharedStunSystem _stun = default!;
     [Dependency] private SharedChargesSystem _chargesSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -98,12 +100,24 @@ public abstract partial class SharedJumpSystem : EntitySystem
         args.Handled = true;
     }
 
+    /// <summary>
+    /// Attempts to make this entity jump somewhere.
+    /// </summary>
+    /// <param name="performer">The entity performing the jump. In the case of jetpacks, the jetpack is the performer!</param>
+    /// <param name="target">The entity that will be moved by the jump.</param>
     private void Jump(EntityUid performer, EntityUid target, EntityCoordinates targetCoords, JumpActionEvent args)
     {
         var userTransform = Transform(target);
         var userMapCoords = _transform.GetMapCoordinates(userTransform);
 
-        if (args.FromGrid && !_mapMan.TryFindGridAt(userMapCoords, out _, out _)) return;
+        // check if this jump requires a grid to 'jump off of'
+        if (args.FromGrid && !_mapMan.TryFindGridAt(userMapCoords, out _, out _))
+        {
+            // tell the user why the jump failed
+            var msg = Loc.GetString(args.JumpFailPopup);
+            _popup.PopupClient(msg, target, target);
+            return;
+        }
 
         TryJump(performer, targetCoords, args, target, 15f, args.ToPointer, args.Sound, args.Distance);
     }

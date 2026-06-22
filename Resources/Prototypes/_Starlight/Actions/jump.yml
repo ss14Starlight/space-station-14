@@ -1,7 +1,7 @@
 - type: entity
   id: Jump
   name: Jump
-  description: You jumps at the selected direction.
+  description: Jump toward your mouse cursor.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
@@ -83,8 +83,8 @@
   - type: WorldTargetAction
     event: !type:JetJumpActionEvent
       distance: 10
-      fromGrid: false
       toPointer: false
+      jumpFailPopup: jump-failed-because-jetpack
       sound:
         path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
 
@@ -120,7 +120,7 @@
   - type: WorldTargetAction
     event: !type:JumpActionEvent
       distance: 10
-      fromGrid: false
       toPointer: false
+      jumpFailPopup: jump-failed-because-jetpack
       sound:
         path: /Audio/_Starlight/Effects/Jump/jetpack.ogg
