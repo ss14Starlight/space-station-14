@@ -38,7 +38,7 @@
   parent: AirTank
   suffix: Empty
   name: zxa tank
-  description: Contains a mixture of air and ZXA. Keep the pressure at 65 and it should put even those nitrogen breathers to sleep. It can hold 5 L of gas.
+  description: Contains a mixture of air and ZXA. Keep the pressure at 23.6 and it'll send anyone with lungs straight to dreamland. It can hold 5 L of gas.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Tanks/anesthetic3.rsi

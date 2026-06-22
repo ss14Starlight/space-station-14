@@ -378,4 +378,4 @@
   components:
   - type: Sprite
     sprite: _Starlight/Structures/Storage/canister.rsi
-    state: ZXA_broken
+    state: zxa_broken
