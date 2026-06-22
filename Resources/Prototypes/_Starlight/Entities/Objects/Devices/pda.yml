@@ -610,9 +610,6 @@
         - LogProbeCartridge
         - AstroNavCartridge
         - NanoChatCartridge
-    - type: Tag
-      tags:
-        - WhitelistChameleonPDA
 
 - type: entity
   parent: BasePDA
