@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared._Starlight.Eye.Blinding.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Body.Components;
@@ -42,12 +43,26 @@ public sealed partial class ChildBlockVisionSystem : EntitySystem
             var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
 
-            // if we got organs but no eyes then cancel the event to blind
-            if (totalOrgans.Count > 0 && eyes.Count == 0)
+            // if we got organs but no eyes, yet have the option to add eyes, then cancel the event to blind
+            // Only apply eye-removal blindness if this entity actually HAS eye organ slots
+            // (even if those slots are currently empty due to surgical removal).
+            // Nonhumanoids with no eye slots should be unaffected.
+            bool hasEyeSlots = false;
+            foreach (var (_, part) in _bodySystem.GetBodyChildren(ent.Owner, body))
+            {
+                if (part.Organs.Keys.Any(slotId => slotId == "eyes"))
+                {
+                    hasEyeSlots = true;
+                    break;
+                }
+            }
+
+            if (hasEyeSlots && eyes.Count == 0)
             {
                 args.Cancel();
                 return;
             }
+
         }
 
         var parent = _transform.GetParentUid(ent);
