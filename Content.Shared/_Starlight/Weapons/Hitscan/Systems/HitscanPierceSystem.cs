@@ -15,14 +15,22 @@ using Content.Shared._Starlight.Weapon;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using YamlDotNet.Core.Tokens;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Blocking;
+using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Tag;
 
 namespace Content.Server._Starlight.Combat.Ranged;
 
 public sealed partial class PierceSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _rand = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private EntityQuery<HitscanReflectComponent> _reflectQuery;
+    private static readonly ProtoId<TagPrototype> ShieldTag = "Shield";
 
     public override void Initialize()
     {
@@ -50,6 +58,18 @@ public sealed partial class PierceSystem : EntitySystem
 
         var ev = new HitScanPierceAttemptEvent(hitscan.Comp.PierceLevel, true);
         RaiseLocalEvent(data.HitEntity.Value, ref ev);
+
+        //Check to see if a hand held shield is equipped to block piercing
+        if (ev.Pierced) //If the bullet is already blocked, no need to run this check
+            foreach (var held in _handsSystem.EnumerateHeld(data.HitEntity.Value)) //check each hand slot
+            {
+                if (!_tag.HasTag(held, ShieldTag) //Check if the item can be used as a shield, a hand held hardsuit isn't a shield.
+                    || !TryComp<PierceableComponent>(held, out var pierceable) || pierceable.Level <= hitscan.Comp.PierceLevel //Check to see if the shield has the stopping power
+                    || (TryComp<ItemToggleComponent>(held, out var itemToggle) && !itemToggle.Activated)) //If the shield has a toggle comp, it needs to be toggled on to be of use
+                    continue;
+                ev.Pierced = false;
+                break; //Once we know the bullet is being stopped by something, no need to check other hand slots
+            }
 
         if (!ev.Pierced)
             return;
