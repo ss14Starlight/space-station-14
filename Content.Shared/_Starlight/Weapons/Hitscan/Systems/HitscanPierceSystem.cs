@@ -6,10 +6,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared._Starlight.Weapons.Hitscan.Components;
 using Content.Shared._Starlight.Weapons.Hitscan.Events;
-using YamlDotNet.Core.Tokens;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Tag;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
@@ -20,7 +20,7 @@ public sealed partial class PierceSystem : EntitySystem
     [Dependency] private TagSystem _tag = default!;
 
     private EntityQuery<HitscanReflectComponent> _reflectQuery;
-    private static readonly ProtoId<TagPrototype> ShieldTag = "Shield";
+    private static readonly ProtoId<TagPrototype> _shieldTag = "Shield";
 
     public override void Initialize()
     {
@@ -53,7 +53,7 @@ public sealed partial class PierceSystem : EntitySystem
         if (ev.Pierced) //If the bullet is already blocked, no need to run this check
             foreach (var held in _handsSystem.EnumerateHeld(data.HitEntity.Value)) //check each hand slot
             {
-                if (!_tag.HasTag(held, ShieldTag) //Check if the item can be used as a shield, a hand held hardsuit isn't a shield.
+                if (!_tag.HasTag(held, _shieldTag) //Check if the item can be used as a shield, a hand held hardsuit isn't a shield.
                     || !TryComp<PierceableComponent>(held, out var pierceable) || pierceable.Level <= hitscan.Comp.PierceLevel //Check to see if the shield has the stopping power
                     || (TryComp<ItemToggleComponent>(held, out var itemToggle) && !itemToggle.Activated)) //If the shield has a toggle comp, it needs to be toggled on to be of use
                     continue;
