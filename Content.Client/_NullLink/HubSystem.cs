@@ -1,6 +1,5 @@
 using Content.Client.Lobby;
 using Content.Shared._NullLink;
-using Content.Shared.CCVar;
 using Content.Shared.NullLink.CCVar;
 using Robust.Client.State;
 using Robust.Shared.Configuration;

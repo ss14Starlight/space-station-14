@@ -1,5 +1,4 @@
 using Content.Server.Mind;
-using Content.Server.Roles;
 using Content.Shared.Roles;
 
 namespace Content.Server._Starlight.Roles;

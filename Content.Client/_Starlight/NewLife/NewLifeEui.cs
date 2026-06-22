@@ -1,6 +1,6 @@
 using Content.Client.Eui;
 using Content.Client.Lobby;
-using Content.Shared.Starlight.NewLife;
+using Content.Shared._Starlight.NewLife;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
 

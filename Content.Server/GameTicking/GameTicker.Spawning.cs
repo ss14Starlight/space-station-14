@@ -32,6 +32,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server._NullLink.PlayerData;
+using Content.Server._Starlight.NewLife;
 
 namespace Content.Server.GameTicking
 {

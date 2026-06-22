@@ -38,7 +38,8 @@ using Robust.Shared.Spawners;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Station; // Starlight
-using Content.Shared.Station.Components; // Starlight
+using Content.Shared.Station.Components;
+using Content.Shared._Starlight.Shuttles.Components; // Starlight
 
 namespace Content.Server.Shuttles.Systems;
 

@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Client._Starlight.Shaders;
-using Content.Client._Starlight.Trail;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
