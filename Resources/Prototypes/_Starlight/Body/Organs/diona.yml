@@ -131,7 +131,7 @@
   categories: [ HideSpawnMenu ]
   parent: OrganDionaBrain
   name: diona nymph brain
-  suffix: Diona
+  suffix: Diona Nymph
   description: "The source of incredible, unending intelligence. Honk."
   components:
   - type: Brain
