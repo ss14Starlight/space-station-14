@@ -40,7 +40,6 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private PlayTimeTrackingManager _tracking = default!;
-    [Dependency] private NullLinkPlayerManager _nullLinkPlayer = default!;
 
     public override void Initialize()
     {
@@ -219,18 +218,10 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
                 playTimes = outPlayTimes;
             }
 
-            // NullLink-start: NullLink PlayTime
+            // NullLink-start
 
-            if (_nullLinkPlayer.TryGetPlayerData(player.UserId, out var data))
+            if (_tracking.TryGetTrackerTimes(player, out var rolePlayTime))
             {
-                var rolePlayTime = data.RolePlayTimePerServer
-                    .SelectMany(server => server.Value)
-                    .GroupBy(x => x.Key)
-                    .ToDictionary(
-                        g => g.Key,
-                        g => new TimeSpan(g.Sum(x => x.Value.Ticks))
-                    );
-
                 playTimes ??= new Dictionary<string, TimeSpan>();
 
                 foreach (var (role, time) in rolePlayTime)
