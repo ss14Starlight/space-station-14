@@ -1,13 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Added a second Flasher to the armory.
-    type: Add
-  id: 405747
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Added a filing cabinet for all that important paperwork.
     type: Add
   id: 405748
@@ -2799,4 +2792,11 @@ Entries:
   id: 406146
   time: '2026-06-21T19:41:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4882
+- author: Caws
+  changes:
+  - message: Proto-Resomi eyes now have night vision and flash vulnerability like their non-protogen counterparts.
+    type: Fix
+  id: 406147
+  time: '2026-06-22T08:18:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4892
 Order: -1
