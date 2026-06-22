@@ -309,7 +309,7 @@
     state: devil_r_foot
 
 - type: marking
-  id: DollShellChestFemaleDevil
+  id: DollShellChestDevil
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Doll]
@@ -320,24 +320,10 @@
           color: "#ffffff"
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_torso_f
+    state: devil_torso
 
 - type: marking
-  id: DollShellChestMaleDevil
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Doll]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#ffffff"
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_torso_m
-
-- type: marking
-  id: DollShellHeadFemaleDevil
+  id: DollShellHeadDevil
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Doll]
@@ -348,21 +334,7 @@
           color: "#ffffff"
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_head_f
-
-- type: marking
-  id: DollShellHeadMaleDevil
-  bodyPart: Head
-  markingCategory: Head
-  speciesRestriction: [Doll]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#ffffff"
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: devil_head_m
+    state: devil_head
 
 #Segmented
 - type: marking
@@ -478,7 +450,7 @@
     state: segmented_r_foot
 
 - type: marking
-  id: DollShellChestFemaleSegmented
+  id: DollShellChestSegmented
   bodyPart: Chest
   markingCategory: Chest
   speciesRestriction: [Doll]
@@ -489,24 +461,10 @@
           color: "#ffffff"
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_torso_f
+    state: segmented_torso
 
 - type: marking
-  id: DollShellChestMaleSegmented
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Doll]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-          color: "#ffffff"
-  sprites:
-  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_torso_m
-
-- type: marking
-  id: DollShellHeadFemaleSegmented
+  id: DollShellHeadSegmented
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Doll]
@@ -517,10 +475,11 @@
           color: "#ffffff"
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_head_f
+    state: segmented_head
 
+#Species Masks
 - type: marking
-  id: DollShellHeadMaleSegmented
+  id: DollShellHeadFox
   bodyPart: Head
   markingCategory: Head
   speciesRestriction: [Doll]
@@ -531,4 +490,18 @@
           color: "#ffffff"
   sprites:
   - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
-    state: segmented_head_m
+    state: head_fox
+
+- type: marking
+  id: DollShellHeadMoth
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [Doll]
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#ffffff"
+  sprites:
+  - sprite: _Starlight/Mobs/Customization/Doll/shell.rsi
+    state: head_moth

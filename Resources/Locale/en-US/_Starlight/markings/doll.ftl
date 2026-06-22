@@ -21,10 +21,8 @@ marking-DollShellLLegDevil = Left Devil Leg Shell
 marking-DollShellRLegDevil = Right Devil Leg Shell
 marking-DollShellLFootDevil = Left Devil Foot Shell
 marking-DollShellRFootDevil = Right Devil Foot Shell
-marking-DollShellChestFemaleDevil = Feminine Devil Chest Shell
-marking-DollShellChestMaleDevil = Masculine Devil Chest Shell
-marking-DollShellHeadFemaleDevil = Feminine Devil Head Shell
-marking-DollShellHeadMaleDevil = Masculine Devil Head Shell
+marking-DollShellChestDevil = Devil Chest Shell
+marking-DollShellHeadDevil = Devil Head Shell
 
 marking-DollShellLArmSegmented = Left Segmented Arm Shell
 marking-DollShellRArmSegmented = Right Segmented Arm Shell
@@ -34,7 +32,8 @@ marking-DollShellLLegSegmented = Left Segmented Leg Shell
 marking-DollShellRLegSegmented = Right Segmented Leg Shell
 marking-DollShellLFootSegmented = Left Segmented Foot Shell
 marking-DollShellRFootSegmented = Right Segmented Foot Shell
-marking-DollShellChestFemaleSegmented = Feminine Segmented Chest Shell
-marking-DollShellChestMaleSegmented = Masculine Segmented Chest Shell
-marking-DollShellHeadFemaleSegmented = Feminine Segmented Head Shell
-marking-DollShellHeadMaleSegmented = Masculine Segmented Head Shell
+marking-DollShellChestSegmented = Segmented Chest Shell
+marking-DollShellHeadSegmented = Segmented Head Shell
+
+marking-DollShellHeadFox = Fox-like Head Shell
+marking-DollShellHeadMoth = Moth-ish Head Shell

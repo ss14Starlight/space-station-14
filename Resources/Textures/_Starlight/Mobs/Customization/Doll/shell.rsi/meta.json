@@ -118,22 +118,12 @@
     		"copyright": "Maitake"        
         },
         {
-            "name": "devil_head_f",
+            "name": "devil_head",
             "directions": 4,
     		"copyright": "Maitake"        
         },
         {
-            "name": "devil_head_m",
-            "directions": 4,
-    		"copyright": "Maitake"        
-        },
-        {
-            "name": "devil_torso_f",
-            "directions": 4,
-    		"copyright": "Maitake"        
-        },
-        {
-            "name": "devil_torso_m",
+            "name": "devil_torso",
             "directions": 4,
     		"copyright": "Maitake"        
         },
@@ -178,22 +168,22 @@
     		"copyright": "Maitake"        
         },
         {
-            "name": "segmented_head_f",
+            "name": "segmented_head",
             "directions": 4,
     		"copyright": "Maitake"        
         },
         {
-            "name": "segmented_head_m",
+            "name": "segmented_torso",
             "directions": 4,
     		"copyright": "Maitake"        
         },
         {
-            "name": "segmented_torso_f",
+            "name": "head_fox",
             "directions": 4,
     		"copyright": "Maitake"        
         },
         {
-            "name": "segmented_torso_m",
+            "name": "head_moth",
             "directions": 4,
     		"copyright": "Maitake"        
         }
