@@ -32,7 +32,7 @@
   Using HUD variants allows you to keep your innate vision, at the cost of losing flash immunity.
   You can configure if you start with glasses or HUD in the loadouts for all relevant roles.
   <Box>
-    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo Night vision\nHas flash immunity"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo night vision\nHas flash immunity"/>
     <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNight vision\nNo flash immunity"/>
   </Box>
   ## Flash Duration

@@ -37,7 +37,7 @@
   When wearing flash resistant equipment their vision will be normal.
   This can be easily sorted by the Shadekin wearing a HUD variant, no longer having flash resistance, but keeping the utility that their night vision and the HUD provide.
   <Box>
-    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo Night vision\nHas flash immunity"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo night vision\nHas flash immunity"/>
     <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNight vision\nNo flash immunity"/>
   </Box>
 
