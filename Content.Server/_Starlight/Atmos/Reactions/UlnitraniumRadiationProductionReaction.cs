@@ -1,3 +1,5 @@
+using Content.Server.Atmos;
+using Content.Server.Atmos.Reactions;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.NodeContainer.NodeGroups;
 using Content.Shared.Atmos;
@@ -5,12 +7,10 @@ using Content.Shared.Atmos.Reactions;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
 using Content.Server.Radiation.Systems;
-using Robust.Shared.Map.Components;
-using Content.Server.Atmos.Components;
 using Content.Server.Radiation.Components;
 
 
-namespace Content.Server.Atmos.Reactions;
+namespace Content.Server._Starlight.Atmos.Reactions;
 
 /// <summary>
 ///     Based on Funky Atmos
