@@ -210,4 +210,13 @@ public partial class SharedBodySystem
         comps = null;
         return false;
     }
+    public bool HasOrganSlot(EntityUid bodyId, BodyComponent body, string slotId)
+    {
+        foreach (var (_, partComp) in GetBodyChildren(bodyId, body))
+        {
+            if (partComp.Organs.ContainsKey(slotId))
+                return true;
+        }
+        return false;
+    }
 }

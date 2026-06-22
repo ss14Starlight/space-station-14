@@ -43,21 +43,7 @@ public sealed partial class ChildBlockVisionSystem : EntitySystem
             var totalOrgans = _bodySystem.GetBodyOrganEntityComps<OrganComponent>((ent.Owner, body));
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((ent.Owner, body));
 
-            // if we got organs but no eyes, yet have the option to add eyes, then cancel the event to blind
-            // Only apply eye-removal blindness if this entity actually HAS eye organ slots
-            // (even if those slots are currently empty due to surgical removal).
-            // Nonhumanoids with no eye slots should be unaffected.
-            bool hasEyeSlots = false;
-            foreach (var (_, part) in _bodySystem.GetBodyChildren(ent.Owner, body))
-            {
-                if (part.Organs.Keys.Any(slotId => slotId == "eyes"))
-                {
-                    hasEyeSlots = true;
-                    break;
-                }
-            }
-
-            if (hasEyeSlots && eyes.Count == 0)
+            if (_bodySystem.HasOrganSlot(ent.Owner, body, "eyes") && eyes.Count == 0)
             {
                 args.Cancel();
                 return;
