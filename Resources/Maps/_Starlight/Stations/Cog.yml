@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/18/2026 01:49:19
+  time: 06/22/2026 03:02:44
   entityCount: 33043
 maps:
 - 1
@@ -15433,7 +15433,7 @@ entities:
       pos: 20.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -93995.13
+      secondsUntilStateChange: -94106.75
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -15565,7 +15565,7 @@ entities:
       pos: -48.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16345.897
+      secondsUntilStateChange: -16457.514
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15576,7 +15576,7 @@ entities:
       pos: -51.5,52.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17710.08
+      secondsUntilStateChange: -17821.697
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16722,7 +16722,7 @@ entities:
       pos: 26.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -101162.26
+      secondsUntilStateChange: -101273.875
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -17031,7 +17031,7 @@ entities:
       pos: 5.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17494.318
+      secondsUntilStateChange: -17605.936
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -18200,7 +18200,7 @@ entities:
       pos: -48.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16400.932
+      secondsUntilStateChange: -16512.549
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -186998,28 +186998,27 @@ entities:
     - type: Transform
       pos: 52.670685,1.6892309
       parent: 2
-- proto: TurnstileGenpopEnter
+- proto: TurnstileArmory
   entities:
   - uid: 12244
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: -43.5,54.5
       parent: 2
     - type: AccessReader
       accessListsOriginal:
-      - - GenpopEnter
-      - - Security
+      - - Armory
   - uid: 15789
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: -1.5707963267948966 rad
       pos: -41.5,55.5
       parent: 2
     - type: AccessReader
       accessListsOriginal:
-      - - GenpopEnter
-      - - Security
+      - - Armory
+- proto: TurnstileGenpopEnter
+  entities:
   - uid: 28508
     components:
     - type: Transform
@@ -187035,26 +187034,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -30.5,42.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - GenpopEnter
-      - - Security
-  - uid: 32965
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -32.5,53.5
-      parent: 2
-    - type: AccessReader
-      accessListsOriginal:
-      - - GenpopEnter
-      - - Security
-  - uid: 32972
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -32.5,55.5
       parent: 2
     - type: AccessReader
       accessListsOriginal:
@@ -187080,6 +187059,26 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - GenpopLeave
+      - - Security
+- proto: TurnstileSecurity
+  entities:
+  - uid: 32965
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -32.5,53.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
+      - - Security
+  - uid: 32972
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -32.5,55.5
+      parent: 2
+    - type: AccessReader
+      accessListsOriginal:
       - - Security
 - proto: TwoWayLever
   entities:

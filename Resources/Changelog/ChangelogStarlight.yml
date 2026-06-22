@@ -1,20 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Added a filing cabinet for all that important paperwork.
-    type: Add
-  id: 405748
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added MANY Air Alarms and Fire Alarms so rooms weren't sharing one main alarm.
-    type: Add
-  id: 405749
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Added more security spawn locations to be more sporadic.
     type: Add
   id: 405750
@@ -2799,4 +2785,18 @@ Entries:
   id: 406147
   time: '2026-06-22T08:18:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4892
+- author: Conflee
+  changes:
+  - message: Added Security, Armory, and Syndicate Turnstile Prototypes for mapping.
+    type: Add
+  id: 406148
+  time: '2026-06-22T08:47:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4889
+- author: Conflee
+  changes:
+  - message: Fixed Prisoners being able to walk out of Genpop on Cog.
+    type: Fix
+  id: 406149
+  time: '2026-06-22T08:47:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4889
 Order: -1
