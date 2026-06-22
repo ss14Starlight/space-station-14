@@ -1,5 +1,4 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Content.Shared._Starlight.Eye.Blinding.Components;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Content.Shared.Body.Components;
