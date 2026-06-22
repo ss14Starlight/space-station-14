@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Combination of the Monkey sprite (by Alekshhh) and Richard Mask (by Firefox13), edited further by Kasern.",
+  "states": [
+    {
+      "name": "chimpken",
+      "directions": 4
+    }
+  ]
+}
