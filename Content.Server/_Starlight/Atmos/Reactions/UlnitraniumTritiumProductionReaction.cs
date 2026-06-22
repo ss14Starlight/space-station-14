@@ -33,13 +33,13 @@ public sealed partial class UlnitraniumTritiumProductionReaction : IGasReactionE
         var ulnitProduced = producedAmount;
         var hydroProduced = producedAmount * 0.01f;
 
-        mixture.AdjustMoles(Gas.CarbonDioxide, -n2oRemoved);
-        mixture.AdjustMoles(Gas.Oxygen, -nitRemoved);
+        mixture.AdjustMoles(Gas.NitrousOxide, -n2oRemoved);
+        mixture.AdjustMoles(Gas.Nitrogen, -nitRemoved);
         mixture.AdjustMoles(Gas.Tritium, -tritRemoved);
         mixture.AdjustMoles(Gas.Ulnitranium, ulnitProduced);
         mixture.AdjustMoles(Gas.Hydrogen, hydroProduced);
 
-        var energyReleased = producedAmount * Atmospherics.PluoxiumProductionEnergy;
+        var energyReleased = producedAmount * Atmospherics.UlnitraniumProductionEnergy;
         var heatCap = atmosphereSystem.GetHeatCapacity(mixture, true);
         if (heatCap > Atmospherics.MinimumHeatCapacity)
             mixture.Temperature = Math.Max((mixture.Temperature * heatCap + energyReleased) / heatCap, Atmospherics.TCMB);

@@ -82,7 +82,7 @@
   - 0     # halon
   - 0     # helium
   - 0     # antinob
-  - 0.01     # ulnitranium
+  - 0.01  # ulnitranium
   effects:
   - !type:ProtoNitrateAlternateProductionReaction {}
 
