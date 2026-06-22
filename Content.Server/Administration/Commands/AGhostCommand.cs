@@ -121,7 +121,7 @@ public sealed partial class AGhostCommand : LocalizedCommands
         ghostSystem.SetCanReturnToBody((ghost, comp), canReturn);
 
         // Starlight begin
-        _entities.EntityNetManager.SendSystemNetworkMessage(new AdminGhostEvent(), shell.Player!.Channel);
+        _entities.EntityNetManager.SendSystemNetworkMessage(new AdminGhostEvent(), player.Channel);
         // Starlight end
     }
 }
