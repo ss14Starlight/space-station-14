@@ -7,7 +7,6 @@ using Content.Server.GameTicking;
 using Content.Server.GameTicking.Events;
 using Content.Server.Preferences.Managers;
 using Content.Server.Station.Events;
-using Content.Shared._Starlight;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs;
@@ -21,6 +20,10 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+
+#region NullLink
+using Content.Server._NullLink.PlayerData;
+#endregion
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -37,6 +40,7 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototypes = default!;
     [Dependency] private SharedRoleSystem _roles = default!;
     [Dependency] private PlayTimeTrackingManager _tracking = default!;
+    [Dependency] private NullLinkPlayerManager _nullLinkPlayer = default!;
 
     public override void Initialize()
     {
@@ -214,6 +218,30 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
             {
                 playTimes = outPlayTimes;
             }
+
+            // NullLink-start: NullLink PlayTime
+
+            if (_nullLinkPlayer.TryGetPlayerData(player.UserId, out var data))
+            {
+                var rolePlayTime = data.RolePlayTimePerServer
+                    .SelectMany(server => server.Value)
+                    .GroupBy(x => x.Key)
+                    .ToDictionary(
+                        g => g.Key,
+                        g => new TimeSpan(g.Sum(x => x.Value.Ticks))
+                    );
+
+                playTimes ??= new Dictionary<string, TimeSpan>();
+
+                foreach (var (role, time) in rolePlayTime)
+                {
+                    playTimes[role] = playTimes.TryGetValue(role, out var existing)
+                        ? existing + time
+                        : time;
+                }
+            }
+
+            // NullLink-end
         }
         return playTimes;
     }
