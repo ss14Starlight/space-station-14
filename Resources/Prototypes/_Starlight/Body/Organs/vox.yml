@@ -129,19 +129,7 @@
 # Starlight End
 
 - type: entity
-  id: OrganVoxTongueA
-  parent: OrganHumanTongue
-  name: vox tongue
-  suffix: Vox
-  description: "A fleshy muscle mostly used for screaming."
-  components:
-  - type: Sprite
-    sprite: Mobs/Species/Vox/organs.rsi
-  - type: Item
-    size: Small
-
-- type: entity
-  id: OrganVoxTongueB
+  id: OrganVoxTongue
   parent: OrganHumanTongue
   name: vox tongue
   suffix: Vox
