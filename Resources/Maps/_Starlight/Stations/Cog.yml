@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/22/2026 19:31:10
-  entityCount: 33044
+  time: 06/22/2026 20:16:36
+  entityCount: 33045
 maps:
 - 1
 grids:
@@ -17,6 +17,7 @@ tilemap:
   79: FloorArcadeBlue2
   64: FloorAsteroidSandDug
   63: FloorAsteroidSandUnvariantized
+  76: FloorAstroDirt
   68: FloorAstroGrass
   49: FloorAstroIce
   48: FloorAstroSnow
@@ -45,7 +46,6 @@ tilemap:
   6: FloorMiningDark
   55: FloorMowedAstroGrass
   4: FloorOldConcreteMono
-  76: FloorAstroDirt
   51: FloorRGlass
   62: FloorReinforced
   44: FloorSteel
@@ -15433,7 +15433,7 @@ entities:
       pos: 20.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -94424.41
+      secondsUntilStateChange: -94703.11
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -15565,7 +15565,7 @@ entities:
       pos: -48.5,57.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16775.166
+      secondsUntilStateChange: -17053.87
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -15576,7 +15576,7 @@ entities:
       pos: -51.5,52.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -18139.35
+      secondsUntilStateChange: -18418.053
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16722,7 +16722,7 @@ entities:
       pos: 26.5,17.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -101591.53
+      secondsUntilStateChange: -101870.234
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -17031,7 +17031,7 @@ entities:
       pos: 5.5,-3.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17923.588
+      secondsUntilStateChange: -18202.291
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -18200,7 +18200,7 @@ entities:
       pos: -48.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16830.201
+      secondsUntilStateChange: -17108.904
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -131891,6 +131891,14 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -14.5,-21.5
+      parent: 2
+    - type: AtmosPipeColor
+      color: '#0055CCFF'
+  - uid: 33045
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -41.5,59.5
       parent: 2
     - type: AtmosPipeColor
       color: '#0055CCFF'
