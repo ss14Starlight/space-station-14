@@ -14,7 +14,7 @@
   parent: OrganHumanEyes
   name: shadekin eyes
   suffix: Shadekin
-  description: "Eyes of a Black-eye shadekin that can never see their home reality again. These eyes have excellent night vision, but are very sensitive to bright flashes as a result."
+  description: "Eyes of a Black-eye Shadekin that can never see their home reality again. These eyes have excellent night vision, but are very sensitive to bright flashes as a result."
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Species/Shadekin/organs.rsi
@@ -111,7 +111,7 @@
   parent: BaseItem
   name: shadekin core
   suffix: Shadekin
-  description: A core of a shadekin, a mysterious and powerful organ that seems to be the source of their energy.
+  description: A core of a Shadekin, a mysterious and powerful organ that seems to be the source of their energy.
   components:
   - type: OrganShadekinCore
   - type: Organ
