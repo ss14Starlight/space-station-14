@@ -37,15 +37,16 @@
         showInChat: true
         probability: 0.05
 
-      - !type:EvenHealthChange
+      - !type:HealthChange
         conditions:
         - !type:ReagentCondition
           reagent: ZXA
           min: 1
         ignoreResistances: true
-        maxScale: 10
+        maxScale: 5
         damage:
-          Genetic: -0.01 # It can heal you a *tiny* amount, if you wanna sleep it off.
+          types:
+            Cellular: -0.01 # It can heal you a *tiny* amount, if you wanna sleep it off.
 
 
       - !type:ModifyStatusEffect
