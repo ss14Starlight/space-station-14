@@ -290,10 +290,10 @@
   # Starlight-start - Disables upstream stamina resistance
   # - type: StaminaResistance # do not add these to other equipment or mobs, we don't want to microbalance these everywhere
   #   damageCoefficient: 0.45
-  # Starlight-end
   - type: ClothingSpeedModifier
     walkModifier: 0.9
     sprintModifier: 0.9
+  # Starlight-end
   #Shoulder mounted flashlight
   - type: ToggleableVisuals
     spriteLayer: light
