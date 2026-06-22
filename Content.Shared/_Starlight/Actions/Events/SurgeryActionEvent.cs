@@ -1,6 +1,8 @@
 using Content.Shared.Actions;
 using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 

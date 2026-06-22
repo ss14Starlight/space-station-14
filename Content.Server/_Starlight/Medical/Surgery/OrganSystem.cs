@@ -5,6 +5,7 @@ using Content.Shared._Starlight.Actions.Components;
 using Content.Shared.Actions;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;

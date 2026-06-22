@@ -2,9 +2,12 @@
 using System.Linq;
 using Content.Shared._Starlight.Actions.Events;
 using Content.Shared.Body.Part;
+using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared._Starlight.Medical.Surgery;
+using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Actions.EntitySystems;
