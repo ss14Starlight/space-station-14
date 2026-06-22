@@ -112,3 +112,15 @@
   - type: SpawnItemsOnUse
     items:
       - id: SyndicateSponge
+
+- type: entity
+  parent: BaseWrappedCube
+  name: chimpken cube
+  id: ChimpkenCubeWrapped
+  description: Unwrap this to get a chimpken cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ChimpkenCube
+  - type: Sprite
+    state: wrapper_chimpken
