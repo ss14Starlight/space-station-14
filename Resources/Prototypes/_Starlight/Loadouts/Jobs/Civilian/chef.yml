@@ -19,7 +19,7 @@
 
 # Senior Jumpsuit
 - type: loadout
-  id: ChefJumpsuitBlack
+  id: ChefJumpsuitSenior
   effects:
     - !type:GroupLoadoutEffect
         proto: SeniorChef
