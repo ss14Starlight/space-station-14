@@ -157,13 +157,9 @@ public sealed class GenesSystem : EntitySystem
         }
 
         if (_entityManager.TryGetComponent<OnSolutionChangedTraitsComponent>(entity, out var onSolutionChangedTraits))
-        {
             onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
-        }
 
         if (_entityManager.TryGetComponent<PassiveTraitsComponent>(entity, out var passiveTraits))
-        {
             passiveTraits.Traits = newPassiveTraits;
-        }
     }
 }
