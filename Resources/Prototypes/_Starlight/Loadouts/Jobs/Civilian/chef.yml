@@ -21,7 +21,7 @@
 - type: loadout
   id: ChefJumpsuitBlack
   effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorChef
+    - !type:GroupLoadoutEffect
+        proto: SeniorChef
   equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlack
+    jumpsuit: ClothingUniformJumpsuitChefSenior
