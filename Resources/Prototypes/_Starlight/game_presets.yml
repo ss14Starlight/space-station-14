@@ -212,3 +212,18 @@
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
   - RailroadingMinor # 🌟Starlight🌟
+
+- type: gamePreset
+  id: Conspirators
+  name: conspirators-gamemode-title
+  description: conspirators-gamemode-description
+  showInVote: True
+  minPlayers: 17
+  rules:
+    - Conspirators
+    - SubGamemodesRuleNoChangelings
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+    - RailroadingMinor # 🌟Starlight🌟
