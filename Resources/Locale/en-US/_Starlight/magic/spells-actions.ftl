@@ -1,3 +1,6 @@
+spell-slippery-clean-start = You begin scrubbing the slippery magic off of {THE($target)}...
+spell-slippery-clean-success = You wash away the slippery magic from {THE($target)}!
+
 action-speech-spell-icestorm = GLACIA TEMPESTAS!
 action-speech-spell-icestorm-tts = Glacia TEMP-E-STAS!
 
