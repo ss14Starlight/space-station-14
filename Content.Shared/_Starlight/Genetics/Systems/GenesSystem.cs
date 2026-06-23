@@ -109,53 +109,61 @@ public sealed class GenesSystem : EntitySystem
             }
         }
 
-        var onceTraits = _entityManager.EnsureComponent<OnceTraitsComponent>(entity.Owner);
-        var onSolutionChangedTraits = _entityManager.EnsureComponent<OnSolutionChangedTraitsComponent>(entity.Owner);
-        var passiveTraits = _entityManager.EnsureComponent<PassiveTraitsComponent>(entity.Owner);
+        if (_entityManager.TryGetComponent<OnceTraitsComponent>(entity, out var onceTraits))
+        {
+            /*
+             * Okay, this is going to be ugly.
+             * The once traits need to be updated in the following way:
+             * 1. If a trait exists in the old list but not in the new list, call onRemoved
+             * 2. If a trait does not exist in the old list but does exist in the new list, call onAdded
+             * 3. If a trait exists in both lists AND the trait has an onUpdated, call onUpdated
+             * 4. If a trait exists in both lists AND the trait does not have an onUpdated, call onRemoved and then onAdded
+             * wait, I can handle all of this with sets, what am I doing?
+             * 1 is O - N
+             * 2 is N - O
+             * 3 and 4 are both O /\ N
+             */
 
-        /*
-         * Okay, this is going to be ugly.
-         * The once traits need to be updated in the following way:
-         * 1. If a trait exists in the old list but not in the new list, call onRemoved
-         * 2. If a trait does not exist in the old list but does exist in the new list, call onAdded
-         * 3. If a trait exists in both lists AND the trait has an onUpdated, call onUpdated
-         * 4. If a trait exists in both lists AND the trait does not have an onUpdated, call onRemoved and then onAdded
-         * wait, I can handle all of this with sets, what am I doing?
-         * 1 is O - N
-         * 2 is N - O
-         * 3 and 4 are both O /\ N
-         */
-        foreach (var t in onceTraits.Traits.Keys.Except(newOnceTraits.Keys))
-        {
-            var trait = _prototypeManager.Index(t);
-            _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnRemovedEffect.Effect,
-                ((onceTraits.Traits[t] * trait.OnRemovedEffect.ScalingFactor) + trait.OnRemovedEffect.ScalingOffset).Float());
-        }
-        foreach (var t in newOnceTraits.Keys.Except(onceTraits.Traits.Keys))
-        {
-            var trait = _prototypeManager.Index(t);
-            _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnAddedEffect.Effect,
-                ((newOnceTraits[t] * trait.OnAddedEffect.ScalingFactor) + trait.OnAddedEffect.ScalingOffset).Float());
-        }
-        foreach (var t in onceTraits.Traits.Keys.Intersect(newOnceTraits.Keys))
-        {
-            var trait = _prototypeManager.Index(t);
-            if (trait.OnUpdatedEffect is null)
+            foreach (var t in onceTraits.Traits.Keys.Except(newOnceTraits.Keys))
             {
+                var trait = _prototypeManager.Index(t);
                 _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnRemovedEffect.Effect,
                     ((onceTraits.Traits[t] * trait.OnRemovedEffect.ScalingFactor) + trait.OnRemovedEffect.ScalingOffset).Float());
+            }
+            foreach (var t in newOnceTraits.Keys.Except(onceTraits.Traits.Keys))
+            {
+                var trait = _prototypeManager.Index(t);
                 _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnAddedEffect.Effect,
                     ((newOnceTraits[t] * trait.OnAddedEffect.ScalingFactor) + trait.OnAddedEffect.ScalingOffset).Float());
             }
-            else
+            foreach (var t in onceTraits.Traits.Keys.Intersect(newOnceTraits.Keys))
             {
-                _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnUpdatedEffect.Effect,
-                    ((newOnceTraits[t] * trait.OnUpdatedEffect.ScalingFactor) + trait.OnUpdatedEffect.ScalingOffset).Float());
+                var trait = _prototypeManager.Index(t);
+                if (trait.OnUpdatedEffect is null)
+                {
+                    _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnRemovedEffect.Effect,
+                        ((onceTraits.Traits[t] * trait.OnRemovedEffect.ScalingFactor) + trait.OnRemovedEffect.ScalingOffset).Float());
+                    _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnAddedEffect.Effect,
+                        ((newOnceTraits[t] * trait.OnAddedEffect.ScalingFactor) + trait.OnAddedEffect.ScalingOffset).Float());
+                }
+                else
+                {
+                    _entityEffectsSystem.TryApplyEffect(entity.Owner, trait.OnUpdatedEffect.Effect,
+                        ((newOnceTraits[t] * trait.OnUpdatedEffect.ScalingFactor) + trait.OnUpdatedEffect.ScalingOffset).Float());
+                }
             }
+
+            onceTraits.Traits = newOnceTraits;
         }
 
-        onceTraits.Traits = newOnceTraits;
-        onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
-        passiveTraits.Traits = newPassiveTraits;
+        if (_entityManager.TryGetComponent<OnSolutionChangedTraitsComponent>(entity, out var onSolutionChangedTraits))
+        {
+            onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
+        }
+
+        if (_entityManager.TryGetComponent<PassiveTraitsComponent>(entity, out var passiveTraits))
+        {
+            passiveTraits.Traits = newPassiveTraits;
+        }
     }
 }
