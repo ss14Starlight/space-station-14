@@ -8,7 +8,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: DefibrillatorSyndicate
+        - id: MedkitCombatMedTakFilledMedic
         - id: BodyBagMedTakFolded
         - id: MedTakHoverBedSpawnFolded
         - id: MagazineBoxPistol40SP
@@ -89,6 +89,7 @@
         - id: MedTakDeathRattleImplanter
         - id: TearGasGrenade
         - id: GrenadeFlashBang
+        - id: HandheldMedTakMonitor
         - id: BoxFolderMedTak
         - id: RubberStampMedTak
 

@@ -15,6 +15,21 @@
         - id: BurnAutoInjector
 
 - type: entity
+  id: MedkitCombatMedTakFilledMedic
+  suffix: Filled, Medic
+  parent: MedkitCombatMedTak
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RegenerativeMesh
+        - id: Bloodpack
+        - id: Bloodpack
+        - id: ChemistryBottleSaline
+        - id: ChemistryBottleAmoxla
+
+- type: entity
   id: MedkitCombatMedTakFilledBorg
   suffix: Filled, Borg
   parent: MedkitCombatMedTak
@@ -27,7 +42,7 @@
         - id: MedicatedSuture
         - id: RegenerativeMesh
         - id: Bloodpack
-        - id: Syringe
+        - id: ChemistryEmptyBottle01
         - id: ChemistryEmptyBottle01
 
 - type: entity

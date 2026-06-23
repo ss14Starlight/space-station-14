@@ -1247,16 +1247,7 @@
     - state: icon-medtak-med
   - type: ItemBorgModule
     hands:
-    - item: HandheldHealthAnalyzer
-    - item: TacticalJetInjector
-      hand:
-        emptyLabel: borg-slot-syringe-empty
-        emptyRepresentative: TacticalJetInjector
-        whitelist:
-          tags:
-          - Syringe
-          - JetInjector
-          - Medipen
+    - item: BorgHypo
     - hand:
         emptyLabel: borg-slot-topicals-empty
         emptyRepresentative: MedicatedSuture
@@ -1267,6 +1258,7 @@
           tags:
           - ChemDispensable
           - Bottle
+    - item: Syringe
     - item: MedTakHoverBedSpawnFolded
       hand:
         emptyLabel: borg-slot-rollerbeds-empty
@@ -1292,7 +1284,7 @@
     - state: icon-medtak-sec
   - type: ItemBorgModule
     hands:
-    - item: WeaponRifleMedTakROW
+    - item: WeaponMedTakRifleROW
     - item: HammerMedTakOneHanded
   - type: BorgModuleIcon
     icon: { sprite: _Starlight/Interface/Actions/actions_borg.rsi, state: medtak-combat-module }

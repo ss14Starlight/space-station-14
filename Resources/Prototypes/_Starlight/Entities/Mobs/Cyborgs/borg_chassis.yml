@@ -288,6 +288,17 @@
     - type: SolutionScanner
     - type: FlashImmunity
       showInExamine: false
+    - type: HealthAnalyzer
+      damageContainers:
+      - Biological
+      - Hybrid
+    - type: ActionGrant
+      actions:
+      - ActionMedTek # MedTek With an E my beloathed
+    - type: UserInterface
+      interfaces:
+        enum.HealthAnalyzerUiKey.Key:
+          type: HealthAnalyzerBoundUserInterface
     - type: IntrinsicRadioTransmitter
       channels:
       - Binary
