@@ -1,0 +1,23 @@
+# Outer Clothing
+- type: loadout
+  id: ChefJacketSenior
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 216000 # 60 hours
+  equipment:
+    outerClothing: ClothingOuterCoatChefSenior
+
+# Jumpsuit
+- type: loadout
+  id: ChefJumpsuitBlack
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChef
+      time: 216000 # 60 hours
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
