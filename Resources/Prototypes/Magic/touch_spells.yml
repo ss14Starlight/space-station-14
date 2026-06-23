@@ -97,6 +97,7 @@
       - type: Slippery
       - type: StepTrigger
         requiredTriggeredSpeed: -1
+      - type: SpellSlippery
   - type: SpeakOnAction
     sentence: action-speech-spell-slip
     tts: action-speech-spell-slip-tts
