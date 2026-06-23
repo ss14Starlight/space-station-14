@@ -1,6 +1,6 @@
 [head=1][color=#009100]────────────────────[/color][/head]
 [color=#cc0000]█▀▀ █▀▀ █▀▀▄[/color] [head=3]   [color=#cc0000]CENTRAL SECURITY DIVISION [/color][/head]
-[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of Nanotrasen[/color][/bolditalic]
+[color=#cc0000]█░░ ▀▀█ █░░█[/color][bolditalic]     [color=#cc0000]Eradicating the enemies of NanoTrasen[/color][/bolditalic]
 [color=#cc0000]▀▀▀ ▀▀▀ ▀▀▀░[/color]   [color=#aaaaaa][italic]OFFICIAL CSD OFFICE DOCUMENT[/italic][/color]
 [head=1][color=#009100]────────────────────[/color][/head]
 [head=1][color=#cc0000]Classified Secure Document[/color][/head]

@@ -22,11 +22,11 @@ namespace Content.Server.Light.EntitySystems;
 /// <summary>
 ///     System for the PoweredLightComponents
 /// </summary>
-public sealed class PoweredLightSystem : SharedPoweredLightSystem
+public sealed partial class PoweredLightSystem : SharedPoweredLightSystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!; // SL
-    [Dependency] private readonly ChatSystem _chat = default!; // SL
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // SL
+    [Dependency] private GameTicker _gameTicker = default!; // SL
+    [Dependency] private ChatSystem _chat = default!; // SL
+    [Dependency] private AlertLevelSystem _alertLevel = default!; // SL
 
     public override void Initialize()
     {
@@ -39,24 +39,19 @@ public sealed class PoweredLightSystem : SharedPoweredLightSystem
 
     private void OnGhostBoo(EntityUid uid, PoweredLightComponent light, GhostBooEvent args)
     {
-        if (light.IgnoreGhostsBoo)
-            return;
+        if (light.IgnoreGhostsBoo || HasComp<BlinkingPoweredLightComponent>(uid))
+            return; // The light is immune or already blinking.
 
         // check cooldown first to prevent abuse
-        var time = GameTiming.CurTime;
-        if (light.LastGhostBlink != null)
-        {
-            if (time <= light.LastGhostBlink + light.GhostBlinkingCooldown)
-                return;
-        }
+        var curTime = GameTiming.CurTime;
+        if (light.LastGhostBlink != null && curTime <= light.LastGhostBlink + light.GhostBlinkingCooldown)
+            return;
 
-        light.LastGhostBlink = time;
+        light.LastGhostBlink = curTime;
 
-        ToggleBlinkingLight(uid, light, true);
-        uid.SpawnTimer(light.GhostBlinkingTime, () =>
-        {
-            ToggleBlinkingLight(uid, light, false);
-        });
+        var blinkingComp = EnsureComp<BlinkingPoweredLightComponent>(uid);
+        blinkingComp.StopBlinkingTime = curTime + light.GhostBlinkingTime;
+        Dirty(uid, blinkingComp);
 
         args.Handled = true;
     }

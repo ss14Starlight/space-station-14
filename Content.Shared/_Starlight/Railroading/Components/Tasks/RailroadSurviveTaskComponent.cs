@@ -1,6 +1,6 @@
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Tasks;
 
 [RegisterComponent]
 public sealed partial class RailroadSurviveTaskComponent : Component

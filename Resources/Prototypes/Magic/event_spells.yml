@@ -166,6 +166,7 @@
     sentence: action-speech-spell-summon-guns
     tts: action-speech-spell-summon-guns-tts # Starlight
     modifier: Spell # Starlight
+  - type: EorgPreventAction # Starlight
 - type: entity
   parent: BaseAction
   id: ActionSummonMagic
@@ -215,3 +216,4 @@
     sentence: action-speech-spell-summon-magic
     tts: action-speech-spell-summon-magic-tts # Starlight
     modifier: Spell # Starlight
+  - type: EorgPreventAction # Starlight

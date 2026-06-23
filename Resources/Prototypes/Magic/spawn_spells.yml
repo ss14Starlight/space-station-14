@@ -22,3 +22,4 @@
     sentence: action-speech-spell-summon-magicarp
     tts: action-speech-spell-summon-magicarp-tts
     modifier: Spell
+  - type: EorgPreventAction # Starlight

@@ -45,6 +45,9 @@
     - Martyr
     - DuckAndCover
     - Paranoid
+    - UniversalCollapse
+    - SiliconsMustBeUsed
+    - FishAncestry
 
 
 # You must always lie, and can never acknowledge that you are lying. If anyone asks, you're incapable of deception.
@@ -377,3 +380,21 @@
   id: Paranoid
   moodName: thaven-mood-paranoid-name
   moodDesc: thaven-mood-paranoid-desc
+
+# Universal Collapse: The universe is collapsing in on itself, only you can save it! You must do this without acting strange or criminal so the station doesn't fall into panic.
+- type: thavenMood
+  id: UniversalCollapse
+  moodName: thaven-mood-universal-collapse-name
+  moodDesc: thaven-mood-universal-collapse-desc
+
+  # Silicons must be used: Doing labour is outdated and disgusting. All difficult jobs must be done by the silicon, it's what they were made for.
+- type: thavenMood
+  id: SiliconsMustBeUsed
+  moodName: thaven-mood-silicons-must-be-used-name
+  moodDesc: thaven-mood-silicons-must-be-used-desc
+
+# Fish Ancestry: You must submerge or lay in water at least once per 10 minutes, or when you have been in a warm climate. You must do this to avoid drying out.
+- type: thavenMood
+  id: FishAncestry
+  moodName: thaven-mood-fish-ancestry-name
+  moodDesc: thaven-mood-fish-ancestry-desc

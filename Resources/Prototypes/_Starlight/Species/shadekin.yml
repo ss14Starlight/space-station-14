@@ -12,7 +12,7 @@
   maleFirstNames: names_shadekin
   femaleFirstNames: names_shadekin
   naming: First
-  minAge: 18
+  minAge: 20
   maxAge: 300
   youngAge: 100
   oldAge: 200

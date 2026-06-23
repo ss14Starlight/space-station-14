@@ -11,7 +11,9 @@
 
     BlueShield: 110
     NanoTrasenRepresentative: 165
+    Magistrate: 176
     NanotrasenCareerTrainer: 150
+    IAA: 76
 
     Chemist: 90
     Paramedic: 50
@@ -37,6 +39,7 @@
     Chef: 50
     Janitor: 30
     Botanist: 50
+    Lawyer: 55
     Librarian: 50
     Musician: 40
     Bartender: 50
@@ -55,10 +58,6 @@
     MiningSpecialist: 60
     CargoTechnician: 45
     MailTech: 55
-
-    Lawyer: 55
-    IAA: 76
-    Magistrate: 176
 
     Visitor: 0
 

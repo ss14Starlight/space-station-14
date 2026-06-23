@@ -2,7 +2,6 @@ using System.Numerics;
 using System.Threading;
 using Content.Shared.Actions.Components;
 using Content.Shared.Actions.Events;
-using Content.Shared.Actions;
 using Content.Shared.Maps;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
@@ -21,17 +20,17 @@ namespace Content.Client._Starlight.CosmicCult.Visuals;
 /// <summary>
 /// This handles rendering a preview of where the monument will be placed
 /// </summary>
-public sealed class MonumentPlacementPreviewSystem : EntitySystem
+public sealed partial class MonumentPlacementPreviewSystem : EntitySystem
 {
     //most of these aren't used by this system, see MonumentPlacementPreviewOverlay for a note on why they're here
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IOverlayManager _overlay = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IOverlayManager _overlay = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private TurfSystem _turf = default!;
 
     private MonumentPlacementPreviewOverlay? _cachedOverlay;
     private CancellationTokenSource? _cancellationTokenSource;
@@ -72,14 +71,10 @@ public sealed class MonumentPlacementPreviewSystem : EntitySystem
     }
 
     private void OnCosmicMoveMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicMoveMonument args)
-    {
-        DoMonumentAnimation(args.Performer);
-    }
+        => DoMonumentAnimation(args.Performer);
 
     private void OnCosmicPlaceMonument(Entity<CosmicCultLeadComponent> ent, ref EventCosmicPlaceMonument args)
-    {
-        DoMonumentAnimation(args.Performer);
-    }
+        => DoMonumentAnimation(args.Performer);
 
     //duplicated from the ability check, minus the station check because that can't be done clientside afaik?
     //and no popups because they're done in the ability check as well
@@ -168,10 +163,7 @@ public sealed class MonumentPlacementPreviewSystem : EntitySystem
 
         //start a timer to start the fade out as well, with the same cancellation token
         Timer.Spawn(comp.PrimeTime + comp.ConfirmDelay - TimeSpan.FromSeconds(overlay.FadeOutTime),
-            () =>
-            {
-                overlay.FadingOut = true;
-            },
+            () => overlay.FadingOut = true,
             tokenSource.Token
         );
     }

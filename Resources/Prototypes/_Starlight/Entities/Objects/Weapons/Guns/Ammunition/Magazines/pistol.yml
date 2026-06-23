@@ -37,9 +37,23 @@
   - type: Appearance
 
 - type: entity
+  id: BaseMagazinePistolGolden
+  parent: BaseMagazinePistol
+  name: golden pistol magazine (.35 auto)
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag_golden.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
   id: BaseMagazinePistolHighCapacity
-  name: machine pistol magazine (.35 auto)
-  parent: BaseItem
+  name: extended pistol magazine (.35 auto)
+  parent: [ BaseItem, BaseSecurityContraband ]
   abstract: true
   components:
   - type: Tag
@@ -73,6 +87,20 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: BaseMagazinePistolHighCapacityGolden
+  parent: BaseMagazinePistolHighCapacity
+  name: golden extended pistol magazine (.35 auto)
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_high_capacity_mag_golden.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
   id: BaseMagazinePistolSubMachineGun  # Yeah it's weird but it's pistol caliber
@@ -177,10 +205,56 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolEmptyGolden
+  name: golden pistol magazine (.35 auto any)
+  suffix: empty
+  parent: MagazinePistolSPGolden
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolSP
   name: pistol magazine (.35 auto SP)
   parent: BaseMagazinePistol
   description: 10-round single-stack magazine for pistols. Intended to hold general-purpose kinetic ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
+  id: MagazinePistolSPGolden
+  name: golden pistol magazine (.35 auto SP)
+  parent: BaseMagazinePistolGolden
+  description: 10-round single-stack magazine for pistols. Comes in a golden magazine.
   components:
   - type: BallisticAmmoProvider
     proto: CartridgePistolSP
@@ -418,7 +492,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityEmpty
-  name: machine pistol magazine (.35 auto any)
+  name: extended pistol magazine (.35 auto any)
   suffix: empty
   parent: BaseMagazinePistolHighCapacity
   components:
@@ -438,8 +512,29 @@
       - state: inhand-right-mag
 
 - type: entity
+  id: MagazinePistolHighCapacityEmptyGolden
+  name: golden extended pistol magazine (.35 auto any)
+  suffix: empty
+  parent: BaseMagazinePistolHighCapacityGolden
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
   id: MagazinePistolHighCapacitySP
-  name: machine pistol magazine (.35 auto SP)
+  name: extended pistol magazine (.35 auto SP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -462,8 +557,32 @@
         color: "#575EF5"
 
 - type: entity
+  id: MagazinePistolHighCapacitySPGolden
+  parent: BaseMagazinePistolHighCapacityGolden
+  name: golden extended pistol magazine (.35 auto SP)
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolSP
+  - type: Sprite
+    layers:
+    - state: sp
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#575EF5"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#575EF5"
+
+- type: entity
   id: MagazinePistolHighCapacityHP
-  name: machine pistol magazine (.35 auto HP)
+  name: extended pistol magazine (.35 auto HP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -487,7 +606,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityFMJ
-  name: machine pistol magazine (.35 auto FMJ)
+  name: extended pistol magazine (.35 auto FMJ)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -511,7 +630,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityAP
-  name: machine pistol magazine (.35 auto AP)
+  name: extended pistol magazine (.35 auto AP)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -535,7 +654,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityPractice
-  name: machine pistol magazine (.35 auto practice)
+  name: extended pistol magazine (.35 auto practice)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -559,7 +678,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityRubber
-  name: machine pistol magazine (.35 auto rubber)
+  name: extended pistol magazine (.35 auto rubber)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -583,7 +702,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityIncendiary
-  name: machine pistol magazine (.35 auto incendiary)
+  name: extended pistol magazine (.35 auto incendiary)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider
@@ -607,7 +726,7 @@
 
 - type: entity
   id: MagazinePistolHighCapacityUranium
-  name: machine pistol magazine (.35 auto uranium)
+  name: extended pistol magazine (.35 auto uranium)
   parent: BaseMagazinePistolHighCapacity
   components:
   - type: BallisticAmmoProvider

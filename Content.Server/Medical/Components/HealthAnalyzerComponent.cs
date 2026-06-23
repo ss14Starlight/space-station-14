@@ -111,7 +111,7 @@ public sealed partial class HealthAnalyzerComponent : Component
     [DataField]
     public TimeSpan TalkInterval = TimeSpan.FromSeconds(5);
 
-    # endregion Starlight
+    #endregion Starlight
     //FarHorizons Start
     [DataField]
     public EntProtoId Action = "ActionMedTek";

@@ -1,8 +1,9 @@
 using Content.Shared.Destructible.Thresholds;
+using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components;
 
 [RegisterComponent]
 public sealed partial class RailroadSpawnFlowComponent : Component
@@ -15,4 +16,7 @@ public sealed partial class RailroadSpawnFlowComponent : Component
 
     [DataField]
     public ProtoId<JobPrototype>? JobPrototype;
+
+    [DataField]
+    public EntProtoId<ObjectiveComponent>? ObjectivePrototype;
 }

@@ -59,6 +59,7 @@
   components:
   - type: Action
     useDelay: 10
+    priority: -99 # Starlight - Make Scream second in Action bar priority.
     icon: Interface/Actions/scream.png
     checkCanInteract: false
   - type: InstantAction
@@ -85,23 +86,6 @@
     useDelay: 1
     icon: { sprite: Objects/Tools/flashlight.rsi, state: flashlight }
     iconOn: { sprite: Objects/Tools/flashlight.rsi, state: flashlight-on }
-
-- type: entity
-  parent: BaseAction
-  id: ActionToggleDome
-  name: Toggle energy dome
-  description: Turn the energy barrier on or off.
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Action
-    itemIconStyle: BigAction
-    priority: -10
-    icon:
-      sprite: Objects/Weapons/Melee/e_shield.rsi
-      state: eshield-on
-    useDelay: 1
-  - type: InstantAction
-    event: !type:ToggleActionEvent
 
 - type: entity
   parent: BaseAction
@@ -456,6 +440,17 @@
       state: icon
   - type: InstantAction
     event: !type:GravityJumpEvent {}
+
+- type: entity
+  parent: ActionGravityJump
+  id: ActionJumpBoost
+  name: Jump boost
+  components:
+  - type: Action
+    useDelay: 16
+    icon:
+      sprite: Interface/Actions/actions_borg.rsi
+      state: xenoborg-jump-module
 
 - type: entity
   parent: BaseAction

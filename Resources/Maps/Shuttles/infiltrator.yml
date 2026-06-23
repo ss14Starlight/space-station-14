@@ -800,7 +800,7 @@ entities:
     - type: Transform
       pos: 0.49331844,-13.366474
       parent: 1
-- proto: BoxFolderNuclearCodes
+- proto: BoxFolderAllNuclearCodes
   entities:
   - uid: 510
     components:

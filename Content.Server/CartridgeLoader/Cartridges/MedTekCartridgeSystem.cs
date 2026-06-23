@@ -7,15 +7,15 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Actions;
 using Content.Shared.Damage.Components;
-using Content.Shared._FarHorizons.CartridgeLoader.Cartridges;
+using Content.Shared._Starlight.CartridgeLoader.Cartridges;
 //FarHorizons End
 
 namespace Content.Server.CartridgeLoader.Cartridges;
 
-public sealed class MedTekCartridgeSystem : EntitySystem
+public sealed partial class MedTekCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!; //FarHorizons
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoaderSystem = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!; //FarHorizons
     public override void Initialize()
     {
         base.Initialize();

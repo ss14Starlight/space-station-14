@@ -6,9 +6,9 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Commands;
 
 [AdminCommand(AdminFlags.Host)]
-public sealed class ServerTransferCommand : LocalizedCommands
+public sealed partial class ServerTransferCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private IEntitySystemManager _entitySystemManager = default!;
 
     public override string Command => "servertransfer";
     public override string Description => "Sets a target server address (ss14://host:port) to redirect all players to at round end.";
@@ -41,12 +41,9 @@ public sealed class ServerTransferCommand : LocalizedCommands
     }
 
     public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    => args.Length switch
     {
-        switch (args.Length)
-        {
-            case 1:
-                return CompletionResult.FromHint("ss14://host:port");
-        }
-        return CompletionResult.Empty;
-    }
+        1 => CompletionResult.FromHint("ss14://host:port"),
+        _ => CompletionResult.Empty,
+    };
 }

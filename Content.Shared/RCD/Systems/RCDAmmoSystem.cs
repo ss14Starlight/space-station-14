@@ -4,15 +4,17 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.RCD.Components;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.RCD.Systems;
 
-public sealed class RCDAmmoSystem : EntitySystem
+public sealed partial class RCDAmmoSystem : EntitySystem
 {
-    [Dependency] private readonly SharedChargesSystem _sharedCharges = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedChargesSystem _sharedCharges = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -57,7 +59,7 @@ public sealed class RCDAmmoSystem : EntitySystem
         Dirty(uid, comp);
 
         // prevent having useless ammo with 0 charges
-        if (comp.Charges <= 0)
+        if (comp.Charges <= 0 && _net.IsServer) // Starlight - QueueDel would throw an error when deleting RCD ammo
             QueueDel(uid);
     }
 }

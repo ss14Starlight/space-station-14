@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
-using Content.Shared.Starlight.CCVar; // Starlight
 using Content.Shared.GameTicking;
 using Content.Shared._CD.Records; // Cosmatic Drift Record System
 using Content.Shared.Humanoid;
@@ -17,7 +16,11 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+#region Starlight
 using Content.Shared._Starlight.Traits;
+using Content.Shared._Starlight.Humanoid;
+using Content.Shared._Starlight.CCVar;
+#endregion
 
 namespace Content.Shared.Preferences
 {
@@ -754,6 +757,12 @@ namespace Content.Shared.Preferences
             {
                 SpeciesLoadout ??= new RoleLoadout(speciesPrototype.Loadout.Value);
                 SpeciesLoadout.Role = speciesPrototype.Loadout.Value;
+
+                var loadout = prototypeManager.Index(SpeciesLoadout.Role);
+                foreach (var (group, _) in SpeciesLoadout.SelectedLoadouts.ShallowClone())
+                    if (!loadout.Groups.Contains(group))
+                        SpeciesLoadout.SelectedLoadouts.Remove(group);
+
                 SpeciesLoadout.SetDefault(this, session, prototypeManager);
             }
             // Far Horizons end

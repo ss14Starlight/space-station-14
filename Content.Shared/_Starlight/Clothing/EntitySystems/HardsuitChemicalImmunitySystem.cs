@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared._Starlight.Clothing.Components;
+using Content.Shared._Starlight.Combat.OnHit;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Damage.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -13,11 +13,11 @@ namespace Content.Shared._Starlight.Clothing.EntitySystems;
 /// System that handles hardsuit chemical immunity, preventing injection-based attacks
 /// when wearing hardsuits with the immunity component.
 /// </summary>
-public sealed class HardsuitChemicalImmunitySystem : EntitySystem
+public sealed partial class HardsuitChemicalImmunitySystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

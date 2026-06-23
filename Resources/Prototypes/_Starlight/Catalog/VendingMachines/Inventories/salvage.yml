@@ -137,7 +137,7 @@
   id: VendorSalvageWeaponMechMelleDrillDiamond
   productEntity: WeaponMechMelleDrillDiamond
   cost:
-    SalvageTicket: 600
+    SalvageTicket: 800
   categories:
   - SalvageEquipment
   conditions:

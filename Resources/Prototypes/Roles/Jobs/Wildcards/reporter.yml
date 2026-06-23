@@ -3,6 +3,9 @@
   name: job-name-reporter
   description: job-description-reporter
   playTimeTracker: JobReporter
+  requirements: # Starlight BEGIN
+    - !type:OverallPlaytimeRequirement
+      time: 4h # Starlight END
   startingGear: ReporterGear
   icon: "JobIconReporter"
   supervisors: job-supervisors-hop
@@ -25,6 +28,8 @@
     - TapeRecorder
     - CassetteTape
     - CassetteTape
+    - RubberStampReporter
+    - ClothingOuterPressArmor
   # Starlight End
 
 - type: chameleonOutfit

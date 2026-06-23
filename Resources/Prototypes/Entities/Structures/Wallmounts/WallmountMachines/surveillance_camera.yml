@@ -94,6 +94,11 @@
               collection: MetalBreak
               params:
                 volume: -8
+  - type: Tag # SL edit start
+    tags:
+      - Camera
+  - type: WiresPanelSecurity
+    wiresAccessible: True # SL edit end
   placement:
     mode: SnapgridCenter
     snap:

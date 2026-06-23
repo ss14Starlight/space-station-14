@@ -30,3 +30,49 @@
   components:
   - type: RevolverAmmoProvider
     proto: GrenadeCleanade
+
+- type: entity
+  parent: [ BaseWeaponLauncher, BaseGunWieldable ]
+  id: WeaponLauncherChonoLoke
+  name: chono loke
+  description: A suspiciously convincing replica of the infamous China Lake grenade launcher, lovingly handcrafted by DONK CO. Fires DONK CO.-certified "totally real" grenades. Also accepts real ones, but that's probably fine.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Launchers/chono_loke.rsi
+    layers:
+      - state: icon
+        map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Launchers/chono_loke.rsi
+    slots:
+    - Back
+    - suitStorage
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
+  - type: AmmoCounter
+  - type: Gun
+    pump: true
+    fireRate: 0.8
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    clumsyProof: true
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - ChonoLoke
+    capacity: 3
+    proto: ChonoLokeFakeBlastShell
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: GunRequiresWield
+  - type: StaticPrice
+    price: 750

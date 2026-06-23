@@ -1,8 +1,7 @@
-using Content.Server.GameTicking;
+using Content.Server._Starlight.Shadekin.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Shared._Starlight.Shadekin;
-using Content.Shared.Tag;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;
 using Robust.Shared.Map;
@@ -10,15 +9,12 @@ using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.Shadekin;
 
-public sealed class DarkBreacherSystem : EntitySystem
+public sealed partial class DarkBreacherSystem : EntitySystem
 {
-    [Dependency] private readonly LinkedEntitySystem _link = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly ShadekinSystem _shadekin = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ShadekinSystem _shadekin = default!;
 
     public override void Initialize()
     {

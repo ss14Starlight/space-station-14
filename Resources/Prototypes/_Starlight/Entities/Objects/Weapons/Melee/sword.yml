@@ -194,3 +194,30 @@
       soundHit:
         path: /Audio/Weapons/bladeslice.ogg
     - type: Item
+
+# TODO: Make this part of Chaplain Nullrod when its coded...
+- type: entity
+  name: sacred chainsaw sword
+  parent: BaseSword
+  id: ChainsawSword
+  description: Suffer not a heretic to live.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/chainsaw_sword.rsi
+    - type: MeleeWeapon
+      attackRate: 1
+      damage:
+        types:
+          Structural: 5
+          Slash: 15
+          Holy: 20
+      soundHit:
+        path: /Audio/Weapons/chainsaw.ogg
+    - type: Item
+    - type: DisarmMalus
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Melee/chainsaw_sword.rsi
+      slots:
+      - belt
+    - type: Contraband
+      allowedJobs: [ Chaplain ]

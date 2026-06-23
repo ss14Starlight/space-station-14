@@ -238,3 +238,6 @@ thaven-mood-amateur-photographer-desc = You feel the need to use flashes to take
 
 thaven-mood-insecure-name = Insecure
 thaven-mood-insecure-desc = You care deeply what people think about you, particularly about your {$appearance}.
+
+thaven-mood-live-laugh-love-name = Live Laugh Love
+thaven-mood-live-laugh-love-desc = Live the shift like it's your last. Laugh at every joke. Spread the joys and love of the station.

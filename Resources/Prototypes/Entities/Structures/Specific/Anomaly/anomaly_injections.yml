@@ -288,13 +288,13 @@
         minAmount: 7
         maxAmount: 10
         maxRange: 4
-      floor: FloorAsteroidTile
+      floor: FloorAstroAsteroidTile #Starlight
     - settings:
         spawnOnSuperCritical: true
         minAmount: 15
         maxAmount: 25
         maxRange: 6
-      floor: FloorAsteroidTile
+      floor: FloorAstroAsteroidTile #Starlight
   - type: EntitySpawnAnomaly
     entries:
     - settings:

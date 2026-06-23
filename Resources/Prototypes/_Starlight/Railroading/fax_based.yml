@@ -1,5 +1,4 @@
 # Conditions
-
 - type: entity
   id: CrewCondition
   categories: [ HideSpawnMenu ]
@@ -12,6 +11,7 @@
       - Abductor
       - Skeleton
       - Terminator
+      - IPC
     - !type:SubjectMindAntagCondition
       blacklist:
       - Brighteye
@@ -32,40 +32,48 @@
     description: rr-criminal-desc
   - type: RailroadFaxOnChosen
     addresses:
-    - Captain's Office
+    - Captain's Office # PR #4706: Remove once fax protos are used everywhere
     - Captain
     - Security
     - Bridge
-    - Conference Room
-    - HoS Office
-    - Warden's Office
+    - Conference
+    - Conference Room  # PR #4706: Remove once fax protos are used everywhere
+    - HoS Office # PR #4706: Remove once fax protos are used everywhere
+    - Head of Security
+    - Warden's Office # PR #4706: Remove once fax protos are used everywhere
     - Warden
-    - Detective's Office
+    - Detective
+    - Detective's Office # PR #4706: Remove once fax protos are used everywhere
     - Magistrate
     - Central Command
     letters:
     - name: rr-criminal-letter-name
       content: rr-criminal-1-letter-content
+      paperPrototype: PaperNTCC
       stampState: paper_stamp-centcom
       stampedBy:
         - stampedColor: "#006666"
           stampedName: rr-nt-isd
   - type: RailroadFaxOnFailed
     addresses:
-    - Captain's Office
+    - Captain's Office # PR #4706: Remove once fax protos are used everywhere
     - Captain
     - Security
     - Bridge
+    - Conference # PR #4706: Remove once fax protos are used everywhere
     - Conference Room
-    - HoS Office
-    - Warden's Office
+    - HoS Office # PR #4706: Remove once fax protos are used everywhere
+    - Head of Security
+    - Warden's Office # PR #4706: Remove once fax protos are used everywhere
     - Warden
-    - Detective's Office
+    - Detective
+    - Detective's Office # PR #4706: Remove once fax protos are used everywhere
     - Magistrate
     - Central Command
     letters:
     - name: rr-criminal-failed-name
       content: rr-criminal-failed-content
+      paperPrototype: PaperNTCC
       stampState: paper_stamp-centcom
       stampedBy:
         - stampedColor: "#006620"

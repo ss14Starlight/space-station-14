@@ -4,6 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 
 [RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
 public sealed partial class DantalionComponent : VampireClassComponent
 {
 	/// <summary>
@@ -28,6 +29,7 @@ public sealed partial class DantalionComponent : VampireClassComponent
 	///     Whether Blood Bond is currently active
 	/// </summary>
 	[ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
 	public bool BloodBondActive = false;
 
 	/// <summary>
@@ -38,24 +40,47 @@ public sealed partial class DantalionComponent : VampireClassComponent
 	/// <summary>
 	///     Thralls currently linked via Blood Bond
 	/// </summary>
-	[ViewVariables(VVAccess.ReadOnly)]
-	public HashSet<EntityUid> BloodBondLinkedThralls = new();
+    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
+	public List<EntityUid> BloodBondLinkedThralls = new();
 
-	[ViewVariables(VVAccess.ReadOnly)]
-	public bool BloodBondProcessingDamage = false;
+    [DataField, AutoNetworkedField]
+    public EntProtoId BloodBondBeamPrototype = string.Empty;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool BloodBondProcessingDamage = false;
 
     [DataField]
-    public EntProtoId rallyOverlayEffect = "VampireRallyOverlayEffect";
+    public EntProtoId RallyOverlayEffect = "VampireRallyOverlayEffect";
+
     [DataField]
     public int ThrallHealBurn = 3;
+
     [DataField]
     public int ThrallHealBrute = 3;
+
     [DataField]
     public int ThrallHealAsphyxiation = 5;
+
     [DataField]
     public int ThrallLevel2Blood = 400;
+
     [DataField]
     public int ThrallLevel3Blood = 600;
+
     [DataField]
     public int HealBloodThreshold = 300;
+
+    [DataField]
+    public Dictionary<string, int> ThrallHealGroups = new()
+    {
+        { "Brute", 3 },
+        { "Burn", 3 },
+    };
+
+    [DataField]
+    public Dictionary<string, int> ThrallHealTypes = new()
+    {
+        { "Asphyxiation", 5 },
+    };
 }

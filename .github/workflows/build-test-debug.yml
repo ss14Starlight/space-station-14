@@ -176,13 +176,22 @@ jobs:
         fi
 
   ci-success:
-    name: Build & Test Debug
+    name: Debug CI Required
+    if: ${{ always() }}
     needs:
       - build
       - content-tests
       - integration-tests
     runs-on: ubuntu-latest
     steps:
+      - name: Fail if any dependency was not successful
+        if: ${{ needs.build.result != 'success' || needs['content-tests'].result != 'success' || needs['integration-tests'].result != 'success' }}
+        run: |
+          echo "build=${{ needs.build.result }}"
+          echo "content-tests=${{ needs['content-tests'].result }}"
+          echo "integration-tests=${{ needs['integration-tests'].result }}"
+          exit 1
+
       - name: CI succeeded
         run: exit 0
 

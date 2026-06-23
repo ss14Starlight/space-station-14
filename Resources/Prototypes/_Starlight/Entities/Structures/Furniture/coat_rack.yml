@@ -58,3 +58,15 @@
   - type: Tag
     tags:
     - Wooden
+
+- type: entity
+  name: wooden rack
+  id: FurnitureWoodRack
+  parent: FurnitureCoatRack
+  description: A wooden rack for storing things.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Furniture/woodrack.rsi
+    state: woodrack
+    noRot: true
+

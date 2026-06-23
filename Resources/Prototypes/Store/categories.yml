@@ -90,7 +90,6 @@
   priority: 10
 
 #nukie delivery
-
 - type: storeCategory
   id: NukieDelivery
   name: store-category-nukie-delivery
@@ -115,20 +114,3 @@
   id: DiscountedItems
   name: store-discounted-items
   priority: 200
-
-# changeling
-
-- type: storeCategory
-  id: ChangelingAbilityCombat
-  name: store-ling-category-combat
-  priority: 0
-
-- type: storeCategory
-  id: ChangelingAbilitySting
-  name: store-ling-category-sting
-  priority: 1
-
-- type: storeCategory
-  id: ChangelingAbilityUtility
-  name: store-ling-category-utility
-  priority: 2

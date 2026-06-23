@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites from https://github.com/SPLURT-Station/S.P.L.U.R.T-Station-13/blob/HEAD/icons/turf/decals.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "drain_bend_ne"
+    },
+    {
+      "name": "drain_bend_nw"
+    },
+    {
+      "name": "drain_bend_se"
+    },
+    {
+      "name": "drain_bend_sw"
+    },
+    {
+      "name": "drain_corner_ne"
+    },
+    {
+      "name": "drain_corner_nw"
+    },
+    {
+      "name": "drain_corner_se"
+    },
+    {
+      "name": "drain_corner_sw"
+    },
+    {
+      "name": "drain_east"
+    },
+    {
+      "name": "drain_north"
+    },
+    {
+      "name": "drain_south"
+    },
+    {
+      "name": "drain_west"
+    }
+  ]
+}

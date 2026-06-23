@@ -1114,13 +1114,14 @@
 - type: startingGear
   id: VisitorLawyerAltA
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerBlack
+    jumpsuit: ClothingUniformJumpsuitLawyerService # Starlight
     shoes: ClothingShoesColorBlack
     head: ClothingHeadHatFedoraGrey
     misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
-    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesCheapSunglasses # Starlight
+    ears: ClothingHeadsetService # Starlight, no longer Security
     pocket1: RubberStampLawyer
     pocket2: LuxuryPen
   inhand:
@@ -1129,13 +1130,14 @@
 - type: startingGear
   id: VisitorLawyerAltB
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerBlue
+    jumpsuit: ClothingUniformJumpsuitLawyerGray # Starlight
     shoes: ClothingShoesLeather
     head: ClothingHeadHatFedoraBrown
     misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
-    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesCheapSunglasses # Starlight
+    ears: ClothingHeadsetService # Starlight, no longer Security
     pocket1: RubberStampLawyer
     pocket2: SmokingPipeFilledTobacco
   inhand:
@@ -1144,14 +1146,15 @@
 - type: startingGear
   id: VisitorLawyerAltC
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerRed
+    jumpsuit: ClothingUniformJumpsuitLawyerPink # Starlight
     shoes: ClothingShoesColorRed
     head: ClothingHeadHatCowboyBrown
     misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
-    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesCheapSunglasses # Starlight
+    ears: ClothingHeadsetService # Starlight, no longer Security
     pocket1: RubberStampLawyer
     pocket2: SmokingPipeFilledTobacco
   inhand:
@@ -1160,7 +1163,7 @@
 - type: startingGear
   id: VisitorLawyerAltD
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerPurple
+    jumpsuit: ClothingUniformJumpsuitLawyerBlackTwo # Starlight
     shoes: ClothingShoesSnakeskinBoots
     gloves: ClothingHandsGlovesColorWhite
     head: ClothingHeadHatBeaverHat
@@ -1168,7 +1171,8 @@
     mask: CigarGold
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
-    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesCheapSunglasses # Starlight
+    ears: ClothingHeadsetService # Starlight, no longer Security
     outerClothing: ClothingOuterCoatExpensive
     pocket1: RubberStampLawyer
     pocket2: LuxuryPen
@@ -1178,14 +1182,15 @@
 - type: startingGear
   id: VisitorLawyerAltE
   equipment:
-    jumpsuit: ClothingUniformJumpsuitLawyerGood
+    jumpsuit: ClothingUniformJumpsuitLawyerBad # Starlight
     shoes: ClothingShoesLeather
     head: ClothingHeadHatCorpsoft
     misc: ClothingNeckLawyerbadge # Starlight: Neck -> Misc
     id: VisitorPDA
     back: ClothingBackpackSatchelLeather
     belt: ClothingBeltStorageWaistbag
-    ears: ClothingHeadsetSecurity
+    eyes: ClothingEyesGlassesCheapSunglasses # Starlight
+    ears: ClothingHeadsetService # Starlight, no longer Security
     pocket1: RubberStampLawyer
     pocket2: LuxuryPen
   inhand:

@@ -72,7 +72,7 @@
 			</BoxContainer>
 
             <!--Reactor display-->
-            <PanelContainer Name="GridVisuals" StyleClasses="Inset" HorizontalExpand="True" Margin="5 5 5 5">
+            <PanelContainer Name="GridVisuals" StyleClasses="BackgroundPanelDark" HorizontalExpand="True" Margin="5 5 5 5">
                 <BoxContainer Orientation="Vertical">
 					<Button Name="ChangeViewButton" Text="{Loc comp-nuclear-reactor-ui-view-change}"/>
                     <Label Name="ViewLabel" Text="{Loc comp-nuclear-reactor-ui-view-temp}" StyleClasses="LabelKeyText" />

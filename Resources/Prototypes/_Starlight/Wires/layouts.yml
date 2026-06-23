@@ -54,3 +54,7 @@
 - type: wireLayout
   parent: Airlock
   id: AirlockBlackstar
+
+- type: wireLayout
+  parent: Airlock
+  id: AirlockMedTak

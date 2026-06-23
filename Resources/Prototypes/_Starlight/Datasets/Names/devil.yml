@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: NamesDevil
+  values:
+    prefix: names-devil-dataset-
+    count: 17
+
+- type: localizedDataset
+  id: NamesDevilTitle
+  values:
+    prefix: names-devil-title-dataset-
+    count: 17

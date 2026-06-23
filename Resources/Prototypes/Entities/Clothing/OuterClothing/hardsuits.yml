@@ -197,7 +197,7 @@
     node: hardsuitGoliath
   - type: Tag
     tags:
-    - CorgiWearable
+    - CorgiWearable #Starlight
     - Hardsuit
     - WhitelistChameleon
 
@@ -387,6 +387,11 @@
     clothingPrototype: ClothingHeadHelmetHardsuitWarden
   - type: StealTarget # Starlight
     stealGroup: WardenHardsuit # Starlight
+  - type: Tag
+    tags:
+    - Hardsuit
+    - CorgiWearable #Starlight
+    - WhitelistChameleon
 
 #Captain's Hardsuit
 - type: entity
@@ -618,6 +623,12 @@
     delay: 10.0
   - type: StealTarget # Starlight
     stealGroup: HOSHardsuit # Starlight
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - CorgiWearable
+    - Hardsuit
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -1121,6 +1132,30 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitERTMedical
+  - type: ItemToggle
+    onUse: false
+    soundActivate:
+      path: /Audio/Items/flashlight_on.ogg
+    soundDeactivate:
+      path: /Audio/Items/flashlight_off.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Effects/Vehicle/ambulancesiren.ogg #not the best sound, but after looking through all of current freesound regarding sirens and ambulance, this was the best compromise
+      params:
+        volume: -4
+  - type: UseDelay
+    delay: 1.0
+  - type: ToggleClothing
+    action: ActionToggleParamedicSiren
+  - type: ItemTogglePointLight
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: blue
+    mask: /Textures/Effects/LightMasks/double_cone.png
+  - type: RotatingLight
+    speed: 360
 #Starlight
   - type: Tag
     tags:
@@ -1362,37 +1397,3 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
-
-- type: entity
-  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
-  id: ChangelingClothingOuterHardsuit
-  name: organic space suit
-  description: A spaceworthy biomass of pressure and temperature resistant tissue.
-  suffix: Unremoveable
-  components:
-  - type: Sprite
-    sprite: Changeling/ling_spacesuit.rsi
-  - type: Clothing
-    sprite: Changeling/ling_spacesuit.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.225
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.01
-  - type: ExplosionResistance
-    damageCoefficient: 0.2
-  - type: Pierceable
-    level: Flesh
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 1
-        Heat: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: Unremoveable

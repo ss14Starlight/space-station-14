@@ -1,22 +1,19 @@
-using Content.Client.Lobby.UI;
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
 
 namespace Content.Client._Starlight.Shadekin;
 
-public sealed class ShadegenSystem : EntitySystem
+public sealed partial class ShadegenSystem : EntitySystem
 {
-    [Dependency] private readonly PointLightSystem _lightSys = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private PointLightSystem _lightSys = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     private readonly HashSet<EntityUid> _updateQueue = new();
 
     public override void Initialize()
-    {
-        base.Initialize();
-    }
+        => base.Initialize();
 
     public override void FrameUpdate(float frameTime)
     {

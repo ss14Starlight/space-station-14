@@ -1,59 +1,39 @@
-using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Server.Afk;
-using Content.Server.Database;
-using Content.Server.Discord;
-using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
 using Content.Server._NullLink.PlayerData;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Administration;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
-using Content.Shared.Humanoid.Markings;
-using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
-using Content.Shared.Starlight.CCVar;
-using Content.Shared.Starlight.MHelp;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.MHelp;
 using Content.Shared._NullLink;
 using JetBrains.Annotations;
 using Robust.Server.Player;
-using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using Robust.Shared;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Sockets;
-using System.Text.Json.Nodes;
-using System.Text.Json;
-using System.Text.RegularExpressions;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
-using System;
 
-namespace Content.Server.Administration.Systems;
+namespace Content.Server._Starlight;
 
 [UsedImplicitly]
 public sealed partial class MentorSystem : SharedMentorSystem
 {
     private const string RateLimitKey = "MentorHelp";
 
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
-    [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayers = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly ISharedAdminLogManager _alog = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
+    [Dependency] private INullLinkPlayerManager _nullLinkPlayers = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PlayerRateLimitManager _rateLimit = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private ISharedAdminLogManager _alog = default!;
 
     private readonly Dictionary<Guid, MentorTicket> _tickets = [];
     private ISawmill _sawmill = default!;

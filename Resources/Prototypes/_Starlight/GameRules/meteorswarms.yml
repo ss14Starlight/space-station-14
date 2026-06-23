@@ -1,0 +1,21 @@
+# Event Tables
+
+#Slowrod
+- type: entity
+  id: ImmovableRodSlugSpawn
+  parent: BaseGameRule
+  components:
+  - type: StationEvent
+    startAnnouncement: station-event-immovable-slug-start-announcement
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: .25
+    reoccurrenceDelay: 1
+    duration: 1
+    earliestStart: 30
+    minimumPlayers: 25
+  - type: ImmovableRodRule
+    rodPrototypes:
+    - id: ImmovableRodSlug
+      prob: 0.05
+      orGroup: rodProto

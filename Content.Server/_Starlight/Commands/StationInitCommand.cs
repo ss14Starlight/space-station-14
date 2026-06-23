@@ -16,14 +16,13 @@ namespace Content.Server._Starlight.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class StationInitCommand : ToolshedCommand
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
     private StationSystem? _station;
-    private static readonly string InitText = "Initialized new station with id";
-    private static readonly string Advice = "Add more grids to this station by using stations:addgrid.";
-    private static readonly string AlreadyStation = "This grid already belongs to a station. Consider using stations:addgrid.";
-    private static readonly string NoId = "You must set the ID of this station with stationinit:setid before you can initialize it.";
-    private static readonly string NotGrid = "This entity is not a grid.";
-    private static readonly string InvalidEntity = "This entity is either deleted or invalid.";
+    private const string InitText = "Initialized new station with id";
+    private const string Advice = "Add more grids to this station by using stations:addgrid.";
+    private const string AlreadyStation = "This grid already belongs to a station. Consider using stations:addgrid.";
+    private const string NoId = "You must set the ID of this station with stationinit:setid before you can initialize it.";
+    private const string NotGrid = "This entity is not a grid.";
+    private const string InvalidEntity = "This entity is either deleted or invalid.";
 
     /// <summary>
     /// Mark the beginning of the chain, attaching BecomesStationMidRoundComponent to the piped grid.
@@ -192,6 +191,14 @@ public sealed class StationInitCommand : ToolshedCommand
         return uid;
     }
 
+    [CommandImplementation("setdovariationpass")]
+    public EntityUid SetDoRoundstartVariationPass(IInvocationContext ctx, [PipedArgument] EntityUid uid, bool allow)
+    {
+        if (!EnsureWorkable(ctx, uid, out var comp)) return uid;
+        comp.DoRoundstartVariationPass = allow;
+        return uid;
+    }
+
     [CommandImplementation("initialize")]
     public EntityUid Initialize(IInvocationContext ctx, [PipedArgument] EntityUid uid)
     {
@@ -203,7 +210,6 @@ public sealed class StationInitCommand : ToolshedCommand
     [CommandImplementation("initializeget")]
     public EntityUid InitializeGet(IInvocationContext ctx, [PipedArgument] EntityUid uid) =>
         !EnsureId(ctx, uid, out _) ? EntityUid.Invalid : CreateStation(ctx, uid);
-
 
     [CommandImplementation("begin")]
     public IEnumerable<EntityUid> Begin(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid)
@@ -280,6 +286,10 @@ public sealed class StationInitCommand : ToolshedCommand
     [CommandImplementation("setallowevents")]
     public IEnumerable<EntityUid> SetAllowEvents(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
         => uid.Select(x=>SetAllowEvents(ctx ,x, allow));
+
+    [CommandImplementation("setdovariationpass")]
+    public IEnumerable<EntityUid> SetDoRoundstartVariationPass(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, bool allow)
+        => uid.Select(x => SetDoRoundstartVariationPass(ctx, x, allow));
 
     [CommandImplementation("namegrid")]
     public IEnumerable<EntityUid> NameGrid(IInvocationContext ctx, [PipedArgument] IEnumerable<EntityUid> uid, string name)

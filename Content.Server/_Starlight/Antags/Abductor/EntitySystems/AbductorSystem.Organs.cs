@@ -1,4 +1,3 @@
-using Content.Shared.Starlight.Antags.Abductor;
 using Robust.Shared.Timing;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
@@ -6,15 +5,17 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Server.Chat.Systems;
 using Content.Shared.Damage.Systems;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly IGameTiming _time = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IGameTiming _time = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     private float _delayAccumulator = 0f;
     private readonly Stopwatch _stopwatch = new();
@@ -27,11 +28,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         { AbductorOrganType.Egg, TimeSpan.FromSeconds(120) },
         { AbductorOrganType.Spider, TimeSpan.FromSeconds(240) },
     };
+    private const float OrganUpdateInterval = 3f;
+    private const double OrganUpdateBudgetMs = 0.5;
+    private const int PassiveHealingPerType = -3;
 
     public void InitializeOrgans()
     {
         foreach (var specif in _prototypeManager.EnumeratePrototypes<DamageTypePrototype>())
-            _passiveHealing.DamageDict.Add(specif.ID, -3);
+            _passiveHealing.DamageDict.Add(specif.ID, PassiveHealingPerType);
 
         _stopwatch.Start();
     }
@@ -40,14 +44,14 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     {
         _delayAccumulator += frameTime;
 
-        if (_delayAccumulator < 3f)
+        if (_delayAccumulator < OrganUpdateInterval)
             return;
 
         _delayAccumulator = 0f;
         _stopwatch.Restart();
 
         var query = EntityQueryEnumerator<AbductorVictimComponent>();
-        while (query.MoveNext(out var uid, out var victim) && _stopwatch.Elapsed < TimeSpan.FromMilliseconds(0.5))
+        while (query.MoveNext(out var uid, out var victim) && _stopwatch.Elapsed < TimeSpan.FromMilliseconds(OrganUpdateBudgetMs))
         {
             if (victim.Organ == AbductorOrganType.None)
                 continue;

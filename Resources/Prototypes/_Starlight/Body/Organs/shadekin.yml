@@ -20,6 +20,9 @@
   - type: FunctionalOrgan
     comps:
     - type: NightVision
+      disabilityBlockable: true
+    - type: FlashModifier
+      modifier: 2
   - type: OrganVisualization
     layer: Eyes
     prototypes:

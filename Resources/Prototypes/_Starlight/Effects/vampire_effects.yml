@@ -160,6 +160,12 @@
       drawdepth: BelowMobs
     - type: Transform
       noRot: false
+    - type: VampireBeamVisual
+      angleOffset: 180
+      spriteIsVertical: true
+      thickness: 0.9
+      minDistance: 0.1
+      minLength: 0.05
 
 - type: entity
   id: VampireBloodBondBeamVisual
@@ -175,6 +181,12 @@
       drawdepth: BelowMobs
     - type: Transform
       noRot: false
+    - type: VampireBeamVisual
+      angleOffset: 180
+      spriteIsVertical: true
+      thickness: 0.9
+      minDistance: 0.1
+      minLength: 0.05
 
 - type: entity
   id: VampireDarkPassageMistIn
@@ -293,7 +305,7 @@
       state: demonic_grasp
       drawdepth: Effects
     - type: TimedDespawn
-      lifetime: 1.4
+      lifetime: 1.39
     - type: Physics
       canCollide: false
     - type: Transform

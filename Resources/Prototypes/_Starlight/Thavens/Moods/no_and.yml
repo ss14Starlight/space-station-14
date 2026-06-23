@@ -57,6 +57,8 @@
     - Caveman
     - AngerProblems
     - Allergies
+    - ClownHatred
+    - CoverYourHead
 
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
@@ -242,6 +244,7 @@
   conflicts:
     - HardsuitsBad
     - UniformIsJob
+    - CoverYourHead
 
 # Never trust anyone whose outfit is better than yours.
 - type: thavenMood
@@ -515,3 +518,17 @@
   moodDesc: thaven-mood-allergies-desc
   moodVars:
     item: Items
+
+# Clown Hatred: Clowns are not funny. They are just some sick joke. They deserve nothing but ridicule and hate. Don't let them be harmed, they don't even deserve death.
+- type: thavenMood
+  id: ClownHatred
+  moodName: thaven-mood-clown-hatred-name
+  moodDesc: thaven-mood-clown-hatred-desc
+
+# Cover Your Head: Bald, hairy, it doesn't matter. You must be wearing a hat at all times, not wearing a hat is rude and unprofessional. Anyone not wearing a hat doesn't deserve respect.
+- type: thavenMood
+  id: CoverYourHead
+  moodName: thaven-mood-cover-your-head-name
+  moodDesc: thaven-mood-cover-your-head-desc
+  conflicts:
+    - HatHair

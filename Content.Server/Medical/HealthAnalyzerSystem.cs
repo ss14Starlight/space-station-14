@@ -31,30 +31,31 @@ using Robust.Shared.Prototypes; // Starlight-edit
 using Robust.Shared.Timing;
 using Robust.Shared.Utility; // Starlight-edit
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Shared._Starlight.Medical;
 
 namespace Content.Server.Medical;
 
-public sealed class HealthAnalyzerSystem : EntitySystem
+public sealed partial class HealthAnalyzerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly PowerCellSystem _cell = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly ItemToggleSystem _toggle = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly TransformSystem _transformSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
-    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private PowerCellSystem _cell = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private ItemToggleSystem _toggle = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private TransformSystem _transformSystem = default!;
+    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
     // Starlight-start: Printable health reports.
-    [Dependency] private readonly TimeSystem _timeSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly PaperSystem _paperSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedTimeSystem _timeSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private PaperSystem _paperSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     // Starlight-end
 
-    [Dependency] private readonly ChatSystem _chat = default!; // Starlight-edit
+    [Dependency] private ChatSystem _chat = default!; // Starlight-edit
 
     public override void Initialize()
     {
@@ -107,6 +108,13 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     {
         if (args.Target == null || !args.CanReach || !HasComp<MobStateComponent>(args.Target) || !_cell.HasDrawCharge(uid.Owner, user: args.User))
         	return;
+
+        // Starlight - Check DamageContainers... this is an upstream variable that is unsued... lets use it!
+        if (uid.Comp.DamageContainers is not null
+            && TryComp<DamageableComponent>(args.Target, out var damageable)
+            && damageable.DamageContainerID is not null
+            && !uid.Comp.DamageContainers.Contains(damageable.DamageContainerID))
+            return;
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
 

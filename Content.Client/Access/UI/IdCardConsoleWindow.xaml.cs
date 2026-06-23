@@ -17,9 +17,9 @@ namespace Content.Client.Access.UI
     [GenerateTypedNameReferences]
     public sealed partial class IdCardConsoleWindow : DefaultWindow
     {
-        [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private IConfigurationManager _cfgManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private ILogManager _logManager = default!;
         private readonly ISawmill _logMill = default!;
 
         private IdCardConsoleBoundUserInterface? _owner; // Starlight edit
@@ -371,7 +371,7 @@ namespace Content.Client.Access.UI
                 FullNameLineEdit.Text,
                 JobTitleLineEdit.Text,
                 _pendingPressedAccessLevels.ToList(),
-                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : string.Empty);
+                jobProtoDirty ? _jobPrototypeIds[JobPresetOptionButton.SelectedId] : null);
 
             // Clear the override after submit so next UpdateState can update pressed state as normal
             _pendingAccessOverride = false;

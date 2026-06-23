@@ -1,7 +1,6 @@
 using Content.Server._Starlight.Plumbing.Nodes;
 using Content.Server._Starlight.Plumbing.Components;
 using Content.Server.NodeContainer.EntitySystems;
-using Content.Server.NodeContainer.Nodes;
 using Content.Shared._Starlight.Plumbing;
 using Content.Shared._Starlight.Plumbing.Components;
 using Content.Shared.Atmos;
@@ -10,7 +9,6 @@ using Content.Shared.Maps;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using System;
 
 namespace Content.Server._Starlight.Plumbing.EntitySystems;
 
@@ -18,13 +16,13 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Server system that sends PlumbingNode directions and connection state to clients.
 ///     Also tracks floor coverage to hide connectors under floor tiles.
 /// </summary>
-public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
+public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private ITileDefinitionManager _tileDefManager = default!;
 
-    private static readonly PipeDirection[] CardinalDirections =
+    private static readonly PipeDirection[] _cardinalDirections =
     [
         PipeDirection.North,
         PipeDirection.South,
@@ -48,14 +46,10 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     }
 
     private void OnStartup(EntityUid uid, PlumbingConnectorAppearanceComponent component, ComponentStartup args)
-    {
-        UpdateAppearance(uid);
-    }
+        => UpdateAppearance(uid);
 
     private void OnNodeUpdate(EntityUid uid, PlumbingConnectorAppearanceComponent component, ref NodeGroupsRebuilt args)
-    {
-        UpdateAppearance(uid);
-    }
+        => UpdateAppearance(uid);
 
     private void OnAnyNodeGroupsRebuilt(EntityUid uid, NodeContainerComponent component, ref NodeGroupsRebuilt args)
     {
@@ -276,7 +270,7 @@ public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
     {
         var connected = PipeDirection.None;
 
-        foreach (var dir in CardinalDirections)
+        foreach (var dir in _cardinalDirections)
         {
             if (!nodeDir.HasFlag(dir))
                 continue;

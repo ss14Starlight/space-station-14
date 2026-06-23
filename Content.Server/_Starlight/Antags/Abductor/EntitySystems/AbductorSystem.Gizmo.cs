@@ -1,26 +1,21 @@
-﻿using Content.Shared.Starlight.Antags.Abductor;
-using Content.Shared.Starlight.Medical.Surgery;
-using Content.Shared.Actions;
-using Content.Shared.DoAfter;
-using Content.Shared.Effects;
+﻿using Content.Shared.DoAfter;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Spawners;
-using Robust.Server.GameObjects;
 using Content.Shared.Interaction;
 using Content.Shared.Weapons.Melee.Events;
-using System.Linq;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
-using System;
 using Content.Shared.ActionBlocker;
+using Content.Shared._Starlight.Antags.Abductor.EntitySystems;
+using Content.Shared._Starlight.Antags.Abductor.Components;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 
-namespace Content.Server.Starlight.Antags.Abductor;
+namespace Content.Server._Starlight.Antags.Abductor.EntitySystems;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ActionBlockerSystem _actionBlockerSystem = default!;
 
     private static readonly ProtoId<TagPrototype> _abductor = "Abductor";
     public void InitializeGizmo()

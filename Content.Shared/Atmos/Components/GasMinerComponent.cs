@@ -55,6 +55,9 @@ public sealed partial class GasMinerComponent : Component
     ///     Whether the gas miner needs to be anchored to work or not.
     /// </summary>
     [DataField] public bool RequireAnchored = true;
+
+    [DataField]
+    public bool ShowInfoOnExamine = true;
     #endregion
 }
 

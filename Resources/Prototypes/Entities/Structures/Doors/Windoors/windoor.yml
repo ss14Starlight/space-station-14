@@ -389,12 +389,12 @@
 
 - type: entity
   parent: WindoorSecureSecurityLocked
-  id: WindoorSecureSecurityLawyerLocked
-  suffix: Security/Lawyer, Locked
+  id: WindoorSecureSecurityInternalAffairsLocked
+  suffix: Security/Internal Affairs, Locked # Starlight
   components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSecurityLawyer ]
+      board: [ DoorElectronicsSecurityInternalAffairs ] # Starlight
 
 - type: entity
   parent: WindoorSecure

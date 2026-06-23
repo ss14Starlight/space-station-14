@@ -1,0 +1,16 @@
+<Document>
+  # True Protogen
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtogen" Caption=""/>
+  </Box>
+
+  What's a "True Protogen", you ask? At what point of replaced limbs and organs do you no longer consider yourself to be the same as when you started?
+  Whatever your original species actually was, you've long cast it away, and embraced your current self as your own successor.
+
+  Search for a hope and a future. Find your own answer.
+
+  ## Resistances
+  - Receive [color=#ffa500]20% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#1e90ff]50% less cold damage[/color].
+</Document>

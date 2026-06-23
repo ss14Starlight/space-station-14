@@ -3,17 +3,15 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.Xenobiology.UI;
 
-public sealed class SlimeNameChangePotionBoundUserInterface : BoundUserInterface
+public sealed partial class SlimeNameChangePotionBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     [ViewVariables]
     private SlimeNameChangePotionWindow? _window;
 
     public SlimeNameChangePotionBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-        IoCManager.InjectDependencies(this);
-    }
+        => IoCManager.InjectDependencies(this);
 
     protected override void Open()
     {

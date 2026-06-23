@@ -94,3 +94,30 @@
   requirements:
   - !type:DiscordRolesRequirement
     requirement: TicketsAdministratorReq
+
+- type: ghostTheme
+  id: WispTheme
+  name: Wisp
+  description: A faint, curious wisp, its glow like a guiding hand of a senior mind behind the veil.
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/CosmicCult/Mobs/wisp.rsi
+      state: wisp
+      shader: unshaded
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: SeniorDeveloperReq
+
+- type: ghostTheme
+  id: CustodianTheme
+  name: Custodian
+  description: A floating horror, steady with the confidence of a creator.
+  colorizeable: true
+  spriteSpecifier:
+    sprite:
+      sprite: _Starlight/Mobs/Customization/GhostThemes/ghosts.rsi
+      state: ghost-custodian
+  requirements:
+  - !type:DiscordRolesRequirement
+    requirement: DeveloperReq

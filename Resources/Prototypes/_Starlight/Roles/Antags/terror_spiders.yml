@@ -1,0 +1,10 @@
+- type: antag
+  id: TerrorPrincess
+  name: roles-antag-terror-princess-name
+  antagonist: true
+  objective: roles-antag-terror-princess-description
+  guides: [ TerrorSpiders ]
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 48h
+  playTimeTracker: AntagTerrorPrincess

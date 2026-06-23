@@ -1,15 +1,13 @@
 # Reports
 
 doc-text-printer-report-morgue =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
     ⠀                              [bold]MORGUE DNR REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name: [form]
@@ -25,15 +23,13 @@ doc-text-printer-report-morgue =
 
 
 doc-text-printer-report-station =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                            [bold]SITUATION REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Purpose: [form]
@@ -53,15 +49,13 @@ doc-text-printer-report-station =
 
 
 doc-text-printer-report-on-elimination-of-violations =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀            [bold]ISSUE RESOLUTION REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Issue(s) identified by: [form]
@@ -76,15 +70,13 @@ doc-text-printer-report-on-elimination-of-violations =
 
 
 doc-text-printer-report-department =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                           [bold]DEPARTMENTAL REVIEW[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Number of employees in the department: [form]
@@ -105,15 +97,13 @@ doc-text-printer-report-department =
 
 
 doc-text-printer-report-employee-performance =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
    ⠀⠀                 [bold]WORK REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], have completed the following work: [form]
@@ -125,15 +115,13 @@ doc-text-printer-report-employee-performance =
 
 
 doc-text-printer-report-on-the-chapters-meeting =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
    ⠀⠀                     [bold]VOTE RECORD[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     The question put to the committee: [form]
@@ -171,15 +159,13 @@ doc-text-printer-report-on-the-chapters-meeting =
 
 
 doc-text-printer-internal-affairs-agents-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
    ⠀⠀               [bold]AUDIT REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], during the course of an internal audit requested by [form] for the reason of [form], found the following irregularities: [form]
@@ -191,15 +177,13 @@ doc-text-printer-internal-affairs-agents-report =
 
 
 doc-text-printer-condition-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                           [bold]MAINTENANCE REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Irregularities were identified in the station's [form].
@@ -215,15 +199,13 @@ doc-text-printer-condition-report =
 
 
 doc-text-printer-object-investigation-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀          [bold]UNKNOWN OBJECT INVESTIGATION REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     A device or artifact of unfamiliar function or provenance has been collected and analyzed.
@@ -241,15 +223,13 @@ doc-text-printer-object-investigation-report =
 
 
 doc-text-printer-experiment-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                              [bold]EXPERIMENT REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     External description of the object of the experiment: [form]
@@ -270,15 +250,13 @@ doc-text-printer-experiment-report =
 
 
 doc-text-printer-disposal-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ─────────────────────────────────────────
    ⠀⠀                                [bold]DISPOSAL REPORT[/bold]
     ─────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     The objects at [form] have been disposed of. During the disposal process, the following valuable items and/or materials were sent to the departments indicated below.
@@ -295,15 +273,13 @@ doc-text-printer-disposal-report =
 
 
 doc-text-printer-arrest-report =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                            [bold]SECURITY ARREST REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Arrestee: [form]
@@ -329,15 +305,13 @@ doc-text-printer-arrest-report =
 # Statements
 
 doc-text-printer-statement-appointment-interim-chapter =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀          [bold]INTERIM COMMAND APPOINTMENT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request approval of my appointment to the position of Acting [form]. Upon assuming the position, I agree to follow Standard Operating Procedures and, until the arrival of a replacement from Central Command, shall ensure the order and management of my Department, and the safety of the equipment and tools of my office, including those tools and pieces of equipment that are irreplaceable or essential to the Department's work, or whose misuse might have serious consequences for station safety or security.
@@ -349,15 +323,13 @@ doc-text-printer-statement-appointment-interim-chapter =
 
 
 doc-text-printer-employment-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                           [bold]EMPLOYMENT CONTRACT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], formally request to be appointed as an employee of the following department, in the position indicated below, for the remainder of the shift, or until resignation.
@@ -376,15 +348,13 @@ doc-text-printer-employment-statement =
 
 
 doc-text-printer-resignation-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                          [bold]NOTICE OF RESIGNATION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby resign my position because of [form].
@@ -398,15 +368,13 @@ doc-text-printer-resignation-statement =
 
 
 doc-text-printer-access-request-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                       [bold]ACCESS REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request the following access be added to my ID card:
@@ -424,15 +392,13 @@ doc-text-printer-access-request-statement =
 
 
 doc-text-printer-equipment-request-statement =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                    [bold]EQUIPMENT REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request the following equipment be issued to me:
@@ -451,15 +417,13 @@ doc-text-printer-equipment-request-statement =
 # InquiriesAndAppeals
 
 doc-text-printer-invocation =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                         [bold]NOTICE OF SUMMONS[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
    ⠀[form] is hereby asked by [signature] to appear at [form], without delay.
@@ -474,15 +438,13 @@ doc-text-printer-invocation =
 
 
 doc-text-printer-evacuation-shuttle-request =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                    [bold]EVACUATION SHUTTLE REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     To Central Command,
@@ -497,15 +459,13 @@ doc-text-printer-evacuation-shuttle-request =
 
 
 doc-text-printer-shuttle-registration-request =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                  [bold]SHUTTLE REGISTRATION FORM[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I hereby request that the following shuttle be registered in the NanoTrasen system for identification.
@@ -524,15 +484,13 @@ doc-text-printer-shuttle-registration-request =
 
 
 doc-text-printer-request-call-centcomm-members =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀              [bold]REQUEST TO CALL CENTCOMM MEMBERS[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request to be considered for a call with CentComm administrative officers.
@@ -545,15 +503,13 @@ doc-text-printer-request-call-centcomm-members =
 
 
 doc-text-printer-request-establish-threat-level =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀             [bold]REQUEST TO ESTABLISH THREAT LEVEL[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request that follow threat level be established: [form]
@@ -566,15 +522,13 @@ doc-text-printer-request-establish-threat-level =
 
 
 doc-text-printer-request-change-salary =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                         [bold]SALARY CHANGE REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby a salary increase/decrease of [form] (amount or percentage).
@@ -591,15 +545,13 @@ doc-text-printer-request-change-salary =
 
 
 doc-text-printer-request-for-non-listed-employment =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀             [bold]NON-LISTED EMPLOYMENT CONTRACT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name of applicant: [signature]
@@ -620,15 +572,13 @@ doc-text-printer-request-for-non-listed-employment =
 
 
 doc-text-printer-request-for-promotion =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                         [bold]REQUEST FOR PROMOTION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], assert that the following employee has obtained the necessary qualifications and experience to be promoted.
@@ -647,15 +597,13 @@ doc-text-printer-request-for-promotion =
 
 
 doc-text-printer-request-documents =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ──────────────────────────────────────────
    ⠀⠀                  [bold]REQUEST FOR RELEASE OF DOCUMENTS[/bold]
     ──────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request a copy of the following document(s), in order to verify compliance with Standard Operating Procedures and/or Corporate Law.
@@ -672,15 +620,13 @@ doc-text-printer-request-documents =
 
 
 doc-text-printer-request-euthanasia =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                        [bold]PETITION FOR EUTHANASIA[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby request to be euthanized.
@@ -692,7 +638,7 @@ doc-text-printer-request-euthanasia =
    ⠀[check] I am of sound mind, as determined by a member of the Medical Department.
 
    ⠀    Inspecting Doctor: [signature]
-   ⠀    Date and Time: [form]
+   ⠀     Date and Time: [datetime]
 
    ⠀[check] I have no claims against the Medical Department in their adherence to euthanasia protocols.
 
@@ -704,15 +650,13 @@ doc-text-printer-request-euthanasia =
 
 
 doc-text-printer-request-construction-work =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                     [bold]CONSTRUCTION REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature] formally request construction work at: [form]
@@ -727,15 +671,13 @@ doc-text-printer-request-construction-work =
 
 
 doc-text-printer-request-modernization =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                         [bold]MODERNIZATION REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request to upgrade the instrumentation in the following department: [form]
@@ -751,15 +693,13 @@ doc-text-printer-request-modernization =
 
 
 doc-text-printer-request-ert =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀           [bold]EMERGENCY RESPONSE TEAM REQUEST[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], request an ERT team to be sent to the station to assist with an ongoing problem that exceeds the station's current resources to resolve.
@@ -781,15 +721,13 @@ doc-text-printer-request-ert =
 
 
 doc-text-printer-product-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                                 [bold]PRODUCT ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Request to produce products by the following department: [form]
@@ -809,15 +747,13 @@ doc-text-printer-product-order =
 # Complaints
 
 doc-text-printer-complaint-violation-labor-rules =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
     ⠀⠀[bold]DEPARTMENTAL COMPLAINT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], believe that major misconduct, constituting either breach of SOP or Corporate Law, has occurred, or is ongoing, as described below.
@@ -838,15 +774,13 @@ doc-text-printer-complaint-violation-labor-rules =
 
 
 doc-text-printer-offense-complaint =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                             [bold]CRIMINAL COMPLAINT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], believe that the following person has violated Corporate Law.
@@ -871,15 +805,13 @@ doc-text-printer-offense-complaint =
 # Permissions
 
 doc-text-printer-permission-equipment =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                           [bold]EQUIPMENT PERMIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the use of departmental work equipment of the following department: [form]
@@ -900,15 +832,13 @@ doc-text-printer-permission-equipment =
 
 
 doc-text-printer-search-permission =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                             [bold]SEARCH WARRANT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the search of the following person and/or location
@@ -936,15 +866,13 @@ doc-text-printer-search-permission =
 
 
 doc-text-printer-permission-to-carry-weapons =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                             [bold]WEAPON PERMIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the carrying of the following weapon by the named person, as long as it is used for its intended purpose. In the event of a violation, the authorization will be revoked and the weapon will be confiscated by Security.
@@ -965,15 +893,13 @@ doc-text-printer-permission-to-carry-weapons =
 
 
 doc-text-printer-permission-dispose-body =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                 [bold]BODY DISPOSAL AUTHORIZATION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the disposal of the body of the following person or animal: [form]
@@ -990,15 +916,13 @@ doc-text-printer-permission-dispose-body =
 
 
 doc-text-printer-construction-permit =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                           [bold]CONSTRUCTION PERMIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], authorize the redevelopment of the following part of the station: [form]
@@ -1014,15 +938,13 @@ doc-text-printer-construction-permit =
 
 
 doc-text-printer-surgery-consent-permit =
-    [logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                           [bold]SURGERY CONSENT FORM[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     In sound mind I, [signature], authorize the following surgery or surgeries to be performed upon me.
@@ -1050,8 +972,6 @@ doc-text-printer-surgery-consent-permit =
 
 
 doc-text-printer-art-permit =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
@@ -1077,15 +997,13 @@ doc-text-printer-art-permit =
 # OrdersAndInstructions
 
 doc-text-printer-dismissal-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                               [bold]DISMISSAL ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], order that the following employee be removed from their current position.
@@ -1102,15 +1020,13 @@ doc-text-printer-dismissal-order =
 
 
 doc-text-printer-access-revocation-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                       [bold]ACCESS REVOCATION ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], hereby order that certain access rights be removed from the ID card of an employee, as specified below.
@@ -1129,15 +1045,13 @@ doc-text-printer-access-revocation-order =
 
 
 doc-text-printer-incentive-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                       [bold]RECOGNITION OF MERIT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
 
     Dear [form],
 
@@ -1160,15 +1074,13 @@ doc-text-printer-incentive-order =
 
 
 doc-text-printer-prisoner-parole-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                         [bold]ORDER OF MANDATORY PAROLE[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Parolee: [form]
@@ -1189,15 +1101,13 @@ doc-text-printer-prisoner-parole-order =
 
 
 doc-text-printer-order-recognizing-reasonableness-creature =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
-   ⠀[bold]DECLARATION OF SENTIENCE[/bold]
+                                ⠀[bold]DECLARATION OF SENTIENCE[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     I, [signature], in the course of testing the entity described below, have detected signs of intelligence and rationality. It has exhibited an ability to think and learn, and a capacity to comprehend morality.
@@ -1216,15 +1126,13 @@ doc-text-printer-order-recognizing-reasonableness-creature =
 
 
 doc-text-printer-medical-intervention-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                [bold]MEDICAL INTERVENTION ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Pursuant to Corporate Law, the Qualified Medical Officer named herein orders that the following medical intervention be carried out promptly and without delay.
@@ -1245,15 +1153,13 @@ doc-text-printer-medical-intervention-order =
 
 
 doc-text-printer-execution-dnr-order =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀             [bold]EXECUTION AND DO-NOT-REVIVE ORDER[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name of Prisoner:  [form]
@@ -1279,15 +1185,13 @@ doc-text-printer-execution-dnr-order =
 # Communications
 
 doc-text-printer-centcomm-communication =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                   [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
    ⠀⠀                    [bold]CENTCOMM COMMUNICATION[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Greetings CentComm,
@@ -1301,15 +1205,13 @@ doc-text-printer-centcomm-communication =
 
 
 doc-text-printer-salvagelead-report =
-    ⠀[logo]            [cclogo]
-
                               [head=3]NT-CC Consortium Services[/head]
 
                    [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
     ⠀⠀                   [bold]SALVAGE LEAD REPORT[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+     Date and Time: [datetime]
     Document Compiler: [signature]
 
     Expeditionary Threat: [form]
@@ -1334,15 +1236,13 @@ doc-text-printer-salvagelead-report =
    ⠀                      [italic]Place for Stamps and/or Signatures[/italic]
 
 doc-text-printer-enemy-of-corporation-designation =
-   ⠀[logo]            [cclogo]
-
                              [head=3]NT-CC Consortium Services[/head]
 
                    [center][color=#1f75bb][italic][bold]   OFFICIAL CENTCOMM DOCUMENTATION[/bold][/italic][/color][/center]
     ────────────────────────────────────────
     ⠀⠀             [bold]ENEMY OF CORPORATION DESIGNATION FORM[/bold]
     ────────────────────────────────────────
-    Date and Time: [form]
+    Date and Time: [datetime]
     Document Compiler: [signature]
 
     Name of Enemy Combatant:  [form]

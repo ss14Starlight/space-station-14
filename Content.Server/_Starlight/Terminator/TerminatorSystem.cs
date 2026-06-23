@@ -7,14 +7,14 @@ namespace Content.Server._Starlight.Terminator;
 
 public sealed partial class TerminatorSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly GameTicker _game = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private GameTicker _game = default!;
 
-    private EntProtoId SpawnRulePrototype = "TerminatorSpawn";
+    private readonly EntProtoId _spawnRulePrototype = "TerminatorSpawn";
 
     public bool CreateTerminator(EntityUid target)
     {
-        var uid = _game.AddGameRule(SpawnRulePrototype);
+        var uid = _game.AddGameRule(_spawnRulePrototype);
         var comp = EnsureComp<TerminatorRuleComponent>(uid);
 
         if (!_mind.TryGetMind(target, out var mindId, out var mind)) return false;

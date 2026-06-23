@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Chat;
 using Content.Shared.CCVar;
 using Robust.Shared.Utility;
@@ -8,8 +9,9 @@ using Robust.Client.UserInterface.XAML;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+#region Starlight
 using Content.Client._Starlight.TextToSpeech;
-using Content.Client._Starlight.TTS;
+#endregion
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 
@@ -23,7 +25,6 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Whisper,
         ChatChannel.Emotes,
         ChatChannel.Radio,
-        ChatChannel.CollectiveMind,
         ChatChannel.Notifications,
         ChatChannel.LOOC,
         ChatChannel.OOC,
@@ -65,6 +66,7 @@ public sealed partial class ChannelFilterPopup : Popup
         // Starlight start
         InitializeTTSMuteChannels();
         TTSClearQueueButton.OnPressed += _ => ClearQueue();
+        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSCheckboxes();
         // Starlight end
     }
     // Starlight start
@@ -107,6 +109,17 @@ public sealed partial class ChannelFilterPopup : Popup
             _ttsStream = entManager.System<TextToSpeechStreamSystem>();
         }
         _ttsStream?.SetChannelMuted(channelId, args.Pressed);
+    }
+
+    private void ToggleAllTTSCheckboxes()
+    {
+        // If all are checked, unchecks all. Otherwise, check all boxes.
+        bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
+        bool newState = !allChecked;
+        foreach (var checkbox in _ttsMuteStates.Values)
+        {
+            checkbox.Pressed = newState;
+        }
     }
 
     // Starlight end

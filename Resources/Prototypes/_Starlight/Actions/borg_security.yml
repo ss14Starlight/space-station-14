@@ -1,0 +1,34 @@
+# Security borg chassis intrinsic actions
+
+- type: entity
+  parent: BaseAction
+  id: ActionBorgOpenLawbook
+  name: Open Law Database
+  description: Access your integrated Space Law database.
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    itemIconStyle: NoItem
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: icon_law
+  - type: InstantAction
+    event: !type:BorgLawbookActionEvent
+
+- type: entity
+  parent: BaseAction
+  id: ActionBorgCallForHelp
+  name: Call for Backup!
+  description: Broadcast a distress signal to the Security channel with your current location. 120 second cooldown.
+  components:
+  - type: Action
+    checkCanInteract: false
+    checkConsciousness: false
+    useDelay: 120
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Starlight/Objects/Specific/Security/crisisButton.rsi
+      state: icon
+  - type: InstantAction
+    event: !type:BorgCallForHelpActionEvent

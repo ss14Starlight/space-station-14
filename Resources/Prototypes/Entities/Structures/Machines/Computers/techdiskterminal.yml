@@ -18,6 +18,8 @@
       enum.EdgeConnectionVisuals.ConnectionMask:
         computerLayerBody:
           None: { state: icon, sprite: Structures/Machines/tech_disk_printer.rsi }
+  - type: EdgeConnection
+    connectionKey: other
   # Starlight End
   - type: DiskConsole
   - type: ResearchClient

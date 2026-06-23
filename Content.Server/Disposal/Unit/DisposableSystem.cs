@@ -1,7 +1,6 @@
-using Content.Server._Starlight; // SL
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Disposal.Tube;
-using Content.Shared.Body.Components;
+using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Disposal.Components;
 using Content.Shared.Item;
@@ -11,22 +10,26 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+#region Starlight
+using Content.Server._Starlight;
+using Content.Shared.Body.Components;
+#endregion
 
 namespace Content.Server.Disposal.Unit
 {
-    public sealed class DisposableSystem : EntitySystem
+    public sealed partial class DisposableSystem : EntitySystem
     {
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly DisposalUnitSystem _disposalUnitSystem = default!;
-        [Dependency] private readonly DisposalTubeSystem _disposalTubeSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-        [Dependency] private readonly SharedMapSystem _maps = default!;
-        [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
-        [Dependency] private readonly AutoLoaderSystem _autoLoader = default!; // SL
+        [Dependency] private ThrowingSystem _throwing = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private DamageableSystem _damageable = default!;
+        [Dependency] private DisposalUnitSystem _disposalUnitSystem = default!;
+        [Dependency] private DisposalTubeSystem _disposalTubeSystem = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private SharedContainerSystem _containerSystem = default!;
+        [Dependency] private SharedMapSystem _maps = default!;
+        [Dependency] private SharedPhysicsSystem _physicsSystem = default!;
+        [Dependency] private SharedTransformSystem _xformSystem = default!;
+        [Dependency] private AutoLoaderSystem _autoLoader = default!; // SL
 
         private EntityQuery<DisposalTubeComponent> _disposalTubeQuery;
         private EntityQuery<DisposalUnitComponent> _disposalUnitQuery;

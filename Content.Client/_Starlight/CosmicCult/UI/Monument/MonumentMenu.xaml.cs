@@ -2,7 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult.Prototypes;
 using Content.Shared._Starlight.CosmicCult;
@@ -20,10 +20,10 @@ namespace Content.Client._Starlight.CosmicCult.UI.Monument;
 [GenerateTypedNameReferences]
 public sealed partial class MonumentMenu : FancyWindow
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private readonly SpriteSystem _sprite;
 
@@ -55,10 +55,8 @@ public sealed partial class MonumentMenu : FancyWindow
         RemoveGlyphButton.OnPressed += _ => OnRemoveGlyphButtonPressed?.Invoke();
         SelectGlyphButton.OnPressed += _ => OnSelectGlyphButtonPressed?.Invoke(_selectedGlyphProtoId);
 
-        _cfg.OnValueChanged(StarlightCCVars.CosmicCultistEntropyValue, entropy =>
-        {
-            _entropyPerCultist = entropy;
-        },
+        _cfg.OnValueChanged(StarlightCCVars.CosmicCultistEntropyValue, entropy
+            => _entropyPerCultist = entropy,
         invokeImmediately: true);
     }
 
@@ -163,7 +161,7 @@ public sealed partial class MonumentMenu : FancyWindow
         }
     }
 
-    private InfluenceUIBox.InfluenceUIBoxState GetUIBoxStateForInfluence(InfluencePrototype influence, MonumentBuiState state)
+    private InfluenceUIBox.InfluenceUIBoxState GetUIBoxStateForInfluence(InfluencePrototype influence, MonumentBuiState _)
     {
         if (!_ent.TryGetComponent<CosmicCultComponent>(_player.LocalEntity, out var cultComp))
             return InfluenceUIBox.InfluenceUIBoxState.Locked; //early return with locked if there's somehow no cult comp
