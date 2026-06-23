@@ -1,118 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Added a second Flasher to the armory.
-    type: Add
-  id: 405747
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added a filing cabinet for all that important paperwork.
-    type: Add
-  id: 405748
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added MANY Air Alarms and Fire Alarms so rooms weren't sharing one main alarm.
-    type: Add
-  id: 405749
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added more security spawn locations to be more sporadic.
-    type: Add
-  id: 405750
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added Civilian NanoMed to Evac west wall.
-    type: Add
-  id: 405751
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added fish tank to BSO room.
-    type: Add
-  id: 405752
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added a clown spawn to booking.
-    type: Add
-  id: 405753
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added firelock to Salvage / Mining dock.
-    type: Add
-  id: 405754
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added some cargo tech lockers and a table with playing cards.
-    type: Add
-  id: 405755
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added a paint gun to cargo in case you wish to remove the decals.
-    type: Add
-  id: 405756
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added a material silo to cargo.
-    type: Add
-  id: 405757
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added Mass scanner in front of cargo.
-    type: Add
-  id: 405758
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added sinks to the barber area for shampooing. Two are empty, one is filled.
-    type: Add
-  id: 405759
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added a coffee dispenser to Atmos corner.
-    type: Add
-  id: 405760
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added a Nuclear Reactor east of main engine.
-    type: Add
-  id: 405761
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Added Beep 100 poster next to engineering entrance... o7.
-    type: Add
-  id: 405762
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Added windoors to the chemistry conveyor belt.
     type: Add
   id: 405763
@@ -2799,4 +2687,116 @@ Entries:
   id: 406146
   time: '2026-06-21T19:41:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4882
+- author: Caws
+  changes:
+  - message: Proto-Resomi eyes now have night vision and flash vulnerability like their non-protogen counterparts.
+    type: Fix
+  id: 406147
+  time: '2026-06-22T08:18:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4892
+- author: Conflee
+  changes:
+  - message: Added Security, Armory, and Syndicate Turnstile Prototypes for mapping.
+    type: Add
+  id: 406148
+  time: '2026-06-22T08:47:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4889
+- author: Conflee
+  changes:
+  - message: Fixed Prisoners being able to walk out of Genpop on Cog.
+    type: Fix
+  id: 406149
+  time: '2026-06-22T08:47:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4889
+- author: Sparlight
+  changes:
+  - message: Critters no longer go permanently blind from unexpected sources.
+    type: Fix
+  id: 406150
+  time: '2026-06-22T09:40:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4888
+- author: redmushie
+  changes:
+  - message: Tamper-sealed cargo orders! Only the department that ordered something can open it without incurring a penalty.
+    type: Add
+  id: 406151
+  time: '2026-06-22T10:12:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4764
+- author: redmushie
+  changes:
+  - message: Opening a tamper-sealed order rewards Cargo with 10% of the order price.
+    type: Add
+  id: 406152
+  time: '2026-06-22T10:12:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4764
+- author: redmushie
+  changes:
+  - message: Destroying a tamper-sealed order penalizes Cargo for 10% of the order price, and refunds the ordering department 50% at Cargo's expense.
+    type: Add
+  id: 406153
+  time: '2026-06-22T10:12:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4764
+- author: redmushie
+  changes:
+  - message: Cyborgs can open tamper-sealed orders belonging to their departments.
+    type: Add
+  id: 406154
+  time: '2026-06-22T10:12:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4764
+- author: redmushie
+  changes:
+  - message: The Interstellar Trade Guild will warn the station if a lot of tamper seals are destroyed.
+    type: Add
+  id: 406155
+  time: '2026-06-22T10:12:59.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4764
+- author: Johnny
+  changes:
+  - message: Recipe to grind a NORMAL stick of butter for liquid butter.
+    type: Add
+  id: 406156
+  time: '2026-06-22T10:35:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4825
+- author: Johnny
+  changes:
+  - message: Recipe to grind a slice of butter for liquid butter.
+    type: Add
+  id: 406157
+  time: '2026-06-22T10:35:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4825
+- author: Johnny
+  changes:
+  - message: Cannabis butter had... Less butter than a normal stick of butter? Yeah it has same amount of butter now.
+    type: Fix
+  id: 406158
+  time: '2026-06-22T10:35:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4825
+- author: Johnny
+  changes:
+  - message: Terror spiders already ate their breakfast, so no hungy or thirsty anymore!
+    type: Remove
+  id: 406159
+  time: '2026-06-22T15:31:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4870
+- author: Johnny
+  changes:
+  - message: Terror spiders barotrauma values have been heavily modified, and they are actually pretty resistant to spacing (overpressure still does a decent bit).
+    type: Tweak
+  id: 406160
+  time: '2026-06-22T15:31:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4870
+- author: Johnny
+  changes:
+  - message: Terror spiders... Didnt have the terror spider component? So yeah I added that and now they dont barf or get toxicated from ammonia.
+    type: Fix
+  id: 406161
+  time: '2026-06-22T15:31:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4870
+- author: Kasern
+  changes:
+  - message: Deep-frying a penguin cutlet now makes a nugget.
+    type: Add
+  id: 406162
+  time: '2026-06-22T15:53:47.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4854
 Order: -1
