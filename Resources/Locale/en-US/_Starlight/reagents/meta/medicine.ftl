@@ -18,3 +18,6 @@ reagent-desc-briomadine = An advanced semi-natural medicine used to treat seriou
 
 reagent-name-acrileni = acrileni
 reagent-desc-acrileni = A weak natural medicine able to treat light peircing damage.
+
+reagent-name-iceialin = iceialin
+reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperature of a corpse back to normal.

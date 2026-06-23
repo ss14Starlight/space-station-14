@@ -3,7 +3,7 @@
   parent: OrganProtogenEyes
   name: resomi cybernetic eyes
   suffix: Proto-Resomi
-  description: "Resomi eyes have great nightvision for hunting prey in maintenance tunnels."
+  description: "These cybernetic eyes have great night vision for hunting prey in maintenance tunnels, but are very sensitive to bright flashes."
   components:
   - type: FunctionalOrgan
     comps:
