@@ -1,0 +1,39 @@
+# Contract
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakContract
+  name: MedTak Coverage Contract
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-contract.txt
+
+# Correspondence
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakCorrespondence
+  name: MedTak Correspondence
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-correspondence.txt
+
+# Invoice
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakInvoice
+  name: MedTak Invoice
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-invoice.txt
+
+# Report
+- type: entity
+  parent: PaperMedTak
+  id: PrintedDocumentMedTakReport
+  name: MedTak After Action Report
+  components:
+    - type: Paper
+    - type: TextFilePaperContent
+      fileName: medtak-report.txt
