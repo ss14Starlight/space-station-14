@@ -5,6 +5,15 @@
 ### Psyche - relating to mind, ability to do things
 ### Materiel - relating to physical things, taking something away or giving something
 
+## Cost:
+### Cost should be balanced such that "Soul" remains the most desirable punishment.
+### Even if your damnation has a fate worse than having your soul taken, you should not go above 10 points,
+### otherwise it becomes the focus of the deals that the devil does.
+### Also keep in mind that if your deal is fatal, the cost should not necessarily be high, because people are
+### likely to chain it on along with Soul anyway if it guaranteed round removes them at some point
+### Devil deals should focus on enhancing existing chaos, deals that create new chaos (i.e. spawn a terminator or minor antag)
+### Should be heavily limited in use, otherwise we just end up with people spawning 12 terminators for shits and giggles.
+
 # CURSES
 
 - type: damnation
@@ -159,6 +168,7 @@
   category: materiel
   description: The signator learns some magical transport spells.
   cost: 16
+  maxUses: 2
   components:
     - type: Jaunt
   reverseOnRemove: true

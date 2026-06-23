@@ -56,6 +56,7 @@
     - Brighteye #Starlight
     - ThiefGamerule # Starlight, Event Light
     # - CosmicCult #Starlight
+    - Devil # Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -99,6 +100,7 @@
     - RailroadingTerminator # Starlight
     - RailroadingMinor # Starlight
     # - CosmicCult # Starlight
+    - Devil # Starlight
 
 - type: gamePreset
   id: Extended

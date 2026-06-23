@@ -28,8 +28,8 @@ public sealed partial class DevilDamnationDisplay : Control
         var damnationCost = Loc.GetString("devil-damnations-ui-cost", ("cost", damnation.Cost), ("uses", uses), ("maxuses", damnation.MaxUses == -1 ? "infinite" : damnation.MaxUses));
         var damnationDescription = damnation.Description;
         var damnationBackgroundColor = damnation.MaxUses > uses ?
-            (damnation.Cost >= 0 ? DisadvantageColor : BenefitColor) :
-            (damnation.Cost >= 0 ? DisadvantageUnavailableColor : BenefitUnavailableColor);
+            ((damnation.Cost is >= 0 or -1) ? DisadvantageColor : BenefitColor) :
+            ((damnation.Cost is >= 0 or -1) ? DisadvantageUnavailableColor : BenefitUnavailableColor);
 
         DamnationTitle.Title = damnationTitle;
         DamnationCost.SetMarkup(damnationCost);

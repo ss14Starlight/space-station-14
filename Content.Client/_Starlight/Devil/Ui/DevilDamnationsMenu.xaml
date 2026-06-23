@@ -19,10 +19,14 @@
                         <Control MinHeight="10"/>
                         <Label Text="{Loc 'devil-damnations-ui-damned-crew'}"
                                StyleClasses="LabelBig"/>
-                        <BoxContainer Name="DamnedCrewList"
-                                      Orientation="Horizontal"
-                                      VerticalExpand="True"
-                                      Margin="5 5 5 5">
+                        <BoxContainer Orientation="Vertical"
+                                      HorizontalExpand="True">
+                            <GridContainer Name="DamnedCrewList"
+                                           VerticalExpand="True"
+                                           HorizontalAlignment="Center"
+                                           Columns="3"
+                                           Margin="5 5 5 5">
+                            </GridContainer>
                         </BoxContainer>
                     </BoxContainer>
                 </ScrollContainer>
