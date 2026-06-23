@@ -126,8 +126,7 @@
         sizeMaps:
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
-            state: hand-kobold
-            
+            state: hand-kobold            
 - type: entity
   name: chimpken
   id: MobChimpken
