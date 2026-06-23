@@ -4,7 +4,7 @@ namespace Content.Shared._Starlight.FiringPins.Functionality;
 
 public sealed partial class FiringPinExpeditionSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private SharedStationSystem _station = default!;
 
     public override void Initialize()
     {

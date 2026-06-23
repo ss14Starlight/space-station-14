@@ -12,13 +12,14 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 #region Starlight
-using Content.Shared.Starlight.Medical.Surgery.Events;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Systems;
 using Content.Shared._Starlight.Medical.Body.Part;
 using Content.Shared._Starlight.Medical.Body.Events;
+using Content.Shared._Starlight.Movement.Components;
 #endregion Starlight
 
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Body.Systems;
 
 public partial class SharedBodySystem

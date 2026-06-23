@@ -1,6 +1,6 @@
 using System.Numerics;
 using Content.Shared.Atmos.Components;
-using Content.Shared.VentCrawl.Components;
+using Content.Shared._Starlight.VentCrawl.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
@@ -15,9 +15,15 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
 
     private readonly SpriteSystem _spriteSystem;
     private readonly EntityLookupSystem _lookup;
+    private readonly SharedTransformSystem _xformSys = default!;
 
-    private static readonly Color PipeGlowColor = new(0.5f, 0.85f, 1.0f, 0.4f);
-    private static readonly Color CurrentPipeGlowColor = new(1.0f, 0.45f, 0.45f, 0.4f);
+    private static readonly Color _pipeGlowColor = new(0.4f, 0.8f, 1.0f, 0.35f);
+    private static readonly Color _pipeBaseColor = new(0.75f, 0.92f, 1.0f, 1.0f);
+    private static readonly Vector2[] _glowOffsets =
+    {
+        new(-GlowRadius, 0), new(GlowRadius, 0),
+        new(0, -GlowRadius), new(0,  GlowRadius),
+    };
     private const float GlowRadius = 0.015f;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
@@ -27,6 +33,7 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
         IoCManager.InjectDependencies(this);
         _spriteSystem = _entityManager.System<SpriteSystem>();
         _lookup = _entityManager.System<EntityLookupSystem>();
+        _xformSys = _entityManager.System<SharedTransformSystem>();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
@@ -34,71 +41,87 @@ public sealed partial class VentCrawPipeOverlay : Robust.Client.Graphics.Overlay
         var player = _playerManager.LocalSession?.AttachedEntity;
         if (player == null) return;
 
-        if (!_entityManager.TryGetComponent<BeingVentCrawlComponent>(player, out var component))
+        if (!_entityManager.TryGetComponent<BeingVentCrawlComponent>(player, out var beingCrawl))
             return;
 
-        if (!_entityManager.TryGetComponent<VentCrawlHolderComponent>(component.Holder, out var holder))
+        if (!_entityManager.TryGetComponent<VentCrawlHolderComponent>(beingCrawl.Holder, out var holder))
             return;
+
+        var playerLayer = ResolvePlayerLayer(holder);
 
         var worldHandle = args.WorldHandle;
-        var bounds = args.WorldBounds;
-
-        var entities = _lookup.GetEntitiesIntersecting(
-            args.MapId,
-            bounds,
-            LookupFlags.Uncontained
-        );
-
         worldHandle.UseShader(null);
 
-        foreach (var uid in entities)
+        var eyeRot = _entityManager.GetComponent<EyeComponent>(player.Value).Rotation;
+
+        var query = _entityManager.EntityQueryEnumerator<
+            PipeAppearanceComponent,
+            SpriteComponent,
+            TransformComponent>();
+
+        while (query.MoveNext(out var uid, out _, out var sprite, out _))
         {
-            if (!_entityManager.HasComponent<PipeAppearanceComponent>(uid)) continue;
-            if (!_entityManager.TryGetComponent<SpriteComponent>(uid, out var sprite)) continue;
-            if (!sprite.Visible) continue;
+            if (!sprite.Visible)
+                continue;
 
-            var xform = _entityManager.GetComponent<TransformComponent>(uid);
-            var worldPos = xform.WorldPosition;
-            var worldRot = xform.WorldRotation;
-
-            var offsets = new Vector2[]
+            if (!_entityManager.HasComponent<VentCrawlManifoldComponent>(uid))
             {
-                new(-GlowRadius, 0), new(GlowRadius, 0),
-                new(0, -GlowRadius), new(0, GlowRadius),
-            };
+                if (!_entityManager.TryGetComponent<AtmosPipeLayersComponent>(uid, out var pipeLayer))
+                    continue;
 
-            var eyeRot = _entityManager.GetComponent<EyeComponent>(player.Value).Rotation;
+                if (pipeLayer.CurrentPipeLayer != playerLayer)
+                    continue;
+            }
 
-            var isCurrentTube = holder.CurrentTube == uid;
-            var glowColor = isCurrentTube ? CurrentPipeGlowColor : PipeGlowColor;
-            var baseColor = isCurrentTube ? new Color(1.0f, 0.6f, 0.6f, 1.0f) : new Color(0.8f, 0.95f, 1.0f, 1.0f);
+            var worldPos = _xformSys.GetWorldPosition(uid);
+
+            if (!args.WorldBounds.Contains(worldPos))
+                continue;
+
+            var worldRot = _xformSys.GetWorldRotation(uid);
 
             var oldColor = sprite.Color;
 
-            _spriteSystem.SetColor((uid, sprite), glowColor);
+            _spriteSystem.SetColor((uid, sprite), _pipeGlowColor);
 
-            foreach (var offset in offsets)
+            foreach (var offset in _glowOffsets)
             {
                 _spriteSystem.RenderSprite(
                     (uid, sprite),
-                    worldHandle,
+                    args.WorldHandle,
                     eyeRot,
                     worldRot,
-                    worldPos + offset
-                );
+                    worldPos + offset);
             }
 
-            _spriteSystem.SetColor((uid, sprite), baseColor);
+            _spriteSystem.SetColor((uid, sprite), _pipeBaseColor);
 
             _spriteSystem.RenderSprite(
                 (uid, sprite),
-                worldHandle,
+                args.WorldHandle,
                 eyeRot,
                 worldRot,
-                worldPos
-            );
+                worldPos);
 
             _spriteSystem.SetColor((uid, sprite), oldColor);
         }
+    }
+
+    private AtmosPipeLayer ResolvePlayerLayer(VentCrawlHolderComponent holder)
+    {
+        if (holder.CurrentTube != null
+            && _entityManager.HasComponent<VentCrawlManifoldComponent>(holder.CurrentTube.Value)
+            && holder.ManifoldLayer != null)
+            return holder.ManifoldLayer.Value;
+
+        if (holder.CurrentTube != null
+            && _entityManager.TryGetComponent<AtmosPipeLayersComponent>(holder.CurrentTube.Value, out var cur))
+            return cur.CurrentPipeLayer;
+
+        if (holder.NextTube != null
+            && _entityManager.TryGetComponent<AtmosPipeLayersComponent>(holder.NextTube.Value, out var next))
+            return next.CurrentPipeLayer;
+
+        return AtmosPipeLayer.Primary;
     }
 }

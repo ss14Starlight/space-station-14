@@ -6,14 +6,14 @@ using Content.Shared.Roles;
 using Content.Shared._Starlight.CosmicCult.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Shared._Starlight.CosmicCult;
 
-public abstract class SharedCosmicCultSystem : EntitySystem
+public abstract partial class SharedCosmicCultSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedRoleSystem _role = default!;
 
     public override void Initialize()
     {
@@ -26,33 +26,23 @@ public abstract class SharedCosmicCultSystem : EntitySystem
     }
 
     public bool EntityIsCultist(EntityUid user)
-    {
-        if (!_mind.TryGetMind(user, out var mind, out _))
-            return false;
-
-        return HasComp<CosmicCultComponent>(user) || _role.MindHasRole<CosmicCultRoleComponent>(mind);
-    }
+        => _mind.TryGetMind(user, out var mind, out _)
+            && (HasComp<CosmicCultComponent>(user)
+            || _role.MindHasRole<CosmicCultRoleComponent>(mind));
 
     public bool EntitySeesCult(EntityUid user)
-    {
-        return EntityIsCultist(user) || HasComp<GhostComponent>(user) || HasComp<ShowNullSpaceComponent>(user);
-    }
+        => EntityIsCultist(user) || HasComp<GhostComponent>(user) || HasComp<ShowNullSpaceComponent>(user);
 
     /// <summary>
     /// Determines if a Cosmic Cult Lead component should be sent to the client.
     /// </summary>
-    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultLeadComponent comp, ref ComponentGetStateAttemptEvent args)
-    {
+    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultLeadComponent comp, ref ComponentGetStateAttemptEvent args) =>
         args.Cancelled = !CanGetState(args.Player);
-    }
-
     /// <summary>
     /// Determines if a Cosmic Cultist component should be sent to the client.
     /// </summary>
-    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultComponent comp, ref ComponentGetStateAttemptEvent args)
-    {
+    private void OnCosmicCultCompGetStateAttempt(EntityUid uid, CosmicCultComponent comp, ref ComponentGetStateAttemptEvent args) =>
         args.Cancelled = !CanGetState(args.Player);
-    }
 
     /// <summary>
     /// The criteria that determine whether a Cult Member component should be sent to a client.

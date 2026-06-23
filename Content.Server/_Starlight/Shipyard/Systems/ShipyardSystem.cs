@@ -11,22 +11,22 @@ using Content.Shared.Station.Components;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Utility;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using System.Numerics;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 
-public sealed class ShipyardSystem : SharedShipyardSystem
+public sealed partial class ShipyardSystem : SharedShipyardSystem
 {
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly PricingSystem _pricing = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private MapSystem _mapSystem = default!;
+    [Dependency] private PricingSystem _pricing = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private MapLoaderSystem _map = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     public EntityUid? ShipyardMapEntity { get; private set; }
     public MapId? ShipyardMapId { get; private set; }
@@ -42,8 +42,8 @@ public sealed class ShipyardSystem : SharedShipyardSystem
         _enabled = _configManager.GetCVar(StarlightCCVars.Shipyard);
         _configManager.OnValueChanged(StarlightCCVars.Shipyard, SetShipyardEnabled);
         SubscribeLocalEvent<ShipyardConsoleComponent, ComponentInit>(OnShipyardStartup);
-        SubscribeLocalEvent<ShipyardConsoleComponent, ComponentShutdown>(OnShipyardShutdown);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<ShipyardConsoleComponent, ComponentShutdown>(OnShipyardShutdown);
     }
 
     private void OnShipyardStartup(EntityUid uid, ShipyardConsoleComponent component, ComponentInit args)
@@ -53,9 +53,24 @@ public sealed class ShipyardSystem : SharedShipyardSystem
 
         SetupShipyard();
     }
+    private void OnShipyardShutdown(EntityUid uid, ShipyardConsoleComponent component, ComponentShutdown args)
+    {
+        // Only clean when the last console is removed
+        var query = EntityQueryEnumerator<ShipyardConsoleComponent>();
 
-    private void OnShipyardShutdown(EntityUid uid, ShipyardConsoleComponent component, ComponentShutdown args) =>
+        while (query.MoveNext(out var otherUid, out _))
+        {
+            if (otherUid == uid)
+                continue;
+
+            if (TerminatingOrDeleted(otherUid))
+                continue;
+
+            return;
+        }
+
         CleanupShipyard();
+    }
 
     public override void Shutdown()
     {
@@ -92,15 +107,53 @@ public sealed class ShipyardSystem : SharedShipyardSystem
     {
         vessel = null;
 
-        if (stationUid == null)
+        if (!_enabled)
+        {
+            Log.Warning("Shipyard purchase failed for {Path}: shipyard is disabled.", shuttlePath);
             return;
+        }
+
+        if (ShipyardMapId == null ||
+            ShipyardMapEntity == null ||
+            !Exists(ShipyardMapEntity.Value))
+        {
+            Log.Warning(
+                "Shipyard map was missing during purchase of {Path}; recreating it. MapEntity={MapEntity}, MapId={MapId}",
+                shuttlePath,
+                ShipyardMapEntity,
+                ShipyardMapId);
+
+            SetupShipyard();
+        }
+
+        if (ShipyardMapId == null)
+        {
+            Log.Error("Shipyard purchase failed for {Path}: shipyard map is still null after SetupShipyard().", shuttlePath);
+            return;
+        }
+
+        if (stationUid == null)
+        {
+            Log.Warning("Shipyard purchase failed for {Path}: stationUid was null.", shuttlePath);
+            return;
+        }
 
         if (!TryComp(stationUid.Value, out StationDataComponent? stationData))
+        {
+            Log.Warning("Shipyard purchase failed for {Path}: station {Station} has no StationDataComponent.", shuttlePath, stationUid);
             return;
+        }
 
         var shuttleUid = AddShuttle(shuttlePath);
         if (shuttleUid == null)
+        {
+            Log.Warning(
+                "Shipyard purchase failed for {Path}: AddShuttle returned null. MapEntity={MapEntity}, MapId={MapId}",
+                shuttlePath,
+                ShipyardMapEntity,
+                ShipyardMapId);
             return;
+        }
 
         void CleanupFailedShuttle(EntityUid uid)
         {
@@ -171,7 +224,10 @@ public sealed class ShipyardSystem : SharedShipyardSystem
     private EntityUid? AddShuttle(string shuttlePath)
     {
         if (ShipyardMapId == null)
+        {
+            Log.Error("Unable to spawn shuttle {Path}: ShipyardMapId is null.", shuttlePath);
             return null;
+        }
 
         if (!_map.TryLoadGrid(ShipyardMapId.Value, new ResPath(shuttlePath), out var grid) || grid == null)
         {

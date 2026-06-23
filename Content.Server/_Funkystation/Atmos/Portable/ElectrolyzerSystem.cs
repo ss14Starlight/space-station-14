@@ -17,17 +17,17 @@ using Robust.Shared.Audio;
 
 namespace Content.Server._Funkystation.Atmos.Portable;
 
-public sealed class ElectrolyzerSystem : EntitySystem
+public sealed partial class ElectrolyzerSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly GasTileOverlaySystem _gasOverlaySystem = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly StackSystem _stackSystem = default!;
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private GasTileOverlaySystem _gasOverlaySystem = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private StackSystem _stackSystem = default!;
+    [Dependency] private HandsSystem _handsSystem = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private AudioSystem _audio = default!;
     private const float WorkingPower = 2f;
     private const float PowerEfficiency = 1f;
     private const string PlasmaTag = "SheetPlasma"; // Starlight Edit: PlasmaSheet -> SheetPlasma

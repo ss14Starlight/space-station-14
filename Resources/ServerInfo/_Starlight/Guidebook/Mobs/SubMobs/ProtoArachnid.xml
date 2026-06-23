@@ -1,0 +1,11 @@
+<Document>
+  # Proto-Arachnid
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceProtoArachnid" Caption=""/>
+  </Box>
+
+  ## Resistances
+  - Receive [color=#ffa500]20% more heat damage[/color], [color=#8147ff]25% more shock damage[/color], and [color=#FF3636]10% more blunt damage[/color].
+  - Receive [color=#64ffe6]10% less poison damage[/color], [color=#e0a5b9]15% less caustic damage[/color], and [color=#1e90ff]30% less cold damage[/color].
+</Document>

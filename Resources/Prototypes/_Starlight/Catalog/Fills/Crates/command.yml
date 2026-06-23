@@ -14,3 +14,15 @@
         - id: CommsComputerCircuitboard
         - id: AutolatheMachineCircuitboard
         - id: CircuitImprinterMachineCircuitboard
+
+- type: entity
+  parent: [ CrateCommandSecure, BaseCommandContraband ]
+  id: CrateCommandTrackingImplants
+  name: command tracking implants
+  description: Contains a handful of command tracking implanters. Can't let them run around without supervision.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: CommandTrackerImplanter
+        amount: 5

@@ -8,12 +8,12 @@ using Content.Shared.Interaction;
 
 namespace Content.Server._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeFireproofPotionSystem : EntitySystem
+public sealed partial class SlimeFireproofPotionSystem : EntitySystem
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
-    [Dependency] private readonly TemperatureSystem _temperatureSystem = default!;
-    [Dependency] private readonly FireProtectionSystem _fireProtectionSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
+    [Dependency] private TemperatureSystem _temperatureSystem = default!;
+    [Dependency] private FireProtectionSystem _fireProtectionSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

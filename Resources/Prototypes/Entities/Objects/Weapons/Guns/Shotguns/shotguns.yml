@@ -15,6 +15,9 @@
       Skating:
         knockback: 2
         staminaMultiplier: 50
+      Rodentia:
+        knockback: 3
+        staminaMultiplier: 20
       Resomi:
         knockback: 3
         staminaMultiplier: 20
@@ -63,20 +66,6 @@
   - type: FiringPinHolder
     supportedPins: [ Rifle, GunUpgrade ]
   # starlight end
-
-- type: entity
-  parent: BaseWeaponShotgunAny
-  id: BaseWeaponShotgun
-  abstract: true
-  components:
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - ShellShotgun
-    capacity: 7
-    proto: ShellShotgun
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
 
 - type: entity
   name: Bulldog
@@ -168,8 +157,10 @@
   description: A premium semi-automatic shotgun, and the pride of all security forces. Takes 12 gauge shells. # Starlight: .50 -> 12 gauge
   components: # intend for Enforcer to have wider choke for semi-auto function
   - type: Gun
-    spread: 5
-    pump: true
+    spread: 15
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
@@ -177,6 +168,7 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
+    capacity: 4 #Starlight 7-> 4
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
 
 - type: entity
@@ -196,7 +188,7 @@
   - type: Item
     sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
   - type: Gun
-    spread: 15
+    spread: 5
     pump: true
     fireRate: 1
   - type: Sprite
@@ -333,7 +325,7 @@
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunHushpup
   name: Hushpup
-  description: An obscure modification of the Enforcer, fitted with an experimental muffler. Great for those with a strict moral code. Uses .50 shotgun shells.
+  description: An obscure modification of the Enforcer, fitted with an experimental muffler. Great for those with a strict moral code. Uses 12 gauge shells. # Starlight
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi

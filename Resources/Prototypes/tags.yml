@@ -897,9 +897,6 @@
   id: MagazinePistolSubMachineGun # WeaponSubMachineGunC20r, WeaponSubMachineGunDrozd, WeaponSubMachineGunAtreides
 
 - type: Tag
-  id: MagazinePistolHighCapacitySP
-
-- type: Tag
   id: MagazinePistolSubMachineGunTopMounted # WeaponSubMachineGunWt550
 
 - type: Tag
@@ -915,9 +912,6 @@
 
 - type: Tag # Used on DungeonRoom prototypes.
   id: Maints # RoomFill spawner whitelist for MaintsRoomMarker.
-
-- type: Tag
-  id: MagazinePistolSubMachineGunSP
 
 - type: Tag
   id: Matchstick # Storage whitelist: Ashtray. ConstructionGraph: ImprovisedShotgunShellGraph
@@ -939,12 +933,6 @@
 
 - type: Tag
   id: Metal # Used by MicrowaveSystem. Causes microwaves to malfunction when tagged entity is nuked.
-
-- type: Tag
-  id: MechAirTank
-
-- type: Tag
-  id: MechThruster
 
 - type: Tag
   id: MicroBomb # ReplacementImplant whitelist on MacroBombImplant.
@@ -1049,9 +1037,6 @@
 
 - type: Tag
   id: Packet # Storage whitelist: ClothingBeltChef
-
-- type: Tag
-  id: PaddyUpgradeKit
 
 - type: Tag
   id: Pancake # CargoBounty: BountyPancake
@@ -1230,9 +1215,6 @@
   id: RipleyPeripheralsControlModule # ConstructionGraph: Ripley
 
 - type: Tag
-  id: RipleyMKIIUpgradeKit
-
-- type: Tag
   id: RipleyRArm # PartAssembly: RipleyHarness. ItemMapper: RipleyHarness
 
 - type: Tag
@@ -1269,9 +1251,6 @@
 
 - type: Tag
   id: SecBeltEquip # Storage whitelist: ClothingBeltSecurity
-
-- type: Tag
-  id: BrigmedicBeltEquip
 
 - type: Tag
   id: SecurePlasmaWindoor # Used in ConstructionGraph "Windoor" to navigate between Windoor, PlasmaWindoor, and UraniumWindoor airlocks.
@@ -1329,19 +1308,6 @@
 
 - type: Tag # Used on DungeonRoom prototypes.
   id: SnowyLabs # PrefabDunGen whitelist on SnowyLabs DungeonConfig.
-
-- type: Tag
-  id: IndustrialMech
-
-- type: Tag
-  id: IgnoreMele
-
-- type: Tag
-  id: CombatMech
-# TODO: Make medical mech
-
-- type: Tag
-  id: SpecialMech
 
 - type: Tag
   id: Soap # Storage whitelist: BorgModuleCustodial, ClothingBeltJanitor. CargoBounty: BountySoap

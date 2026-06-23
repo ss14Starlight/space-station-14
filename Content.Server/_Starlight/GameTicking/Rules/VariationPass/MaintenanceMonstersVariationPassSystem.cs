@@ -1,20 +1,22 @@
-using Content.Server.GameTicking.Rules.VariationPass.Components;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Storage.Components;
 using Content.Shared.EntityTable;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Content.Server.GameTicking.Rules.VariationPass;
+using Content.Server._Starlight.GameTicking.Rules.VariationPass.Components;
+using Content.Server.GameTicking.Rules;
 
-namespace Content.Server.GameTicking.Rules.VariationPass;
+namespace Content.Server._Starlight.GameTicking.Rules.VariationPass;
 
 /// <summary>
 /// Handles putting things in lockers around the station, intended for creatures.
 /// </summary>
-public sealed class MaintenanceMonstersVariationPassSystem : VariationPassSystem<MaintenanceMonstersVariationPassComponent>
+public sealed partial class MaintenanceMonstersVariationPassSystem : VariationPassSystem<MaintenanceMonstersVariationPassComponent>
 {
-    [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private EntityStorageSystem _entityStorage = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void ApplyVariation(Entity<MaintenanceMonstersVariationPassComponent> ent, ref StationVariationPassEvent args)
     {
