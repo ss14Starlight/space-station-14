@@ -53,14 +53,15 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
     /// </summary>
     private void ReassessPerformance(TamperSealIntegrityTrackerComponent tracker)
     {
-        if (!tracker.JudgementEnabled) return;
-        if (tracker.Records.Count < tracker.JudgementMinRecords) return;
-
+        // Before guards so we can read out the success fraction via VV.
         var successCount = tracker.Records.Count(x => x.Success);
-        var successRate = (float)successCount / tracker.Records.Count;
+        var successFraction = tracker.SuccessFraction = (float)successCount / tracker.Records.Count;
 
-        var shouldSet = successRate < tracker.FailureSetThreshold;
-        var shouldClear = successRate >= tracker.FailureClearThreshold;
+        if (!tracker.Enabled) return;
+        if (tracker.Records.Count < tracker.MinRecords) return;
+
+        var shouldSet = successFraction < tracker.FailureSetThreshold;
+        var shouldClear = successFraction >= tracker.FailureClearThreshold;
 
         // If state should change from "Not failing" to "Failing".
         if (shouldSet && !tracker.Failure)
@@ -88,37 +89,9 @@ public sealed partial class TamperSealIntegritySystem : EntitySystem
     private void RecordPerformance(TamperSealIntegrityTrackerComponent tracker, bool success)
     {
         var record = new TamperSealResult(_timing.CurTime, success);
-        tracker.Records.Add(record);
-
-        ExpungeOverflowedRecords(tracker);
-        ExpungeOutdatedRecords(tracker);
-    }
-
-    private void ExpungeOverflowedRecords(TamperSealIntegrityTrackerComponent tracker)
-    {
-        var records = tracker.Records;
-        var overflow = records.Count - tracker.MaxRecords;
-        if (overflow <= 0)
-            return;
-
-        records.RemoveRange(0, overflow);
-    }
-
-    private void ExpungeOutdatedRecords(TamperSealIntegrityTrackerComponent tracker)
-    {
-        var removable = tracker.Records.Count - tracker.MinRecords;
-        if (removable <= 0)
-            return;
-
-        var cutoff = _timing.CurTime - tracker.RecordLifetime;
-        for (var i = 0; i < removable; i++)
-        {
-            var record = tracker.Records[0];
-            if (record.Time >= cutoff)
-                break;
-
-            tracker.Records.RemoveAt(0);
-        }
+        if (tracker.Records.Count == tracker.MaxRecords)
+            tracker.Records.Dequeue();
+        tracker.Records.Enqueue(record);
     }
 
     private TamperSealIntegrityTrackerComponent GetTracker(EntityUid stationId)

@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization;
 
 namespace Content.Server._Starlight.Cargo.TamperSeal.Components;
 
@@ -12,43 +14,29 @@ public sealed partial class TamperSealIntegrityTrackerComponent : Component
     /// <summary>
     /// The ID of the station that this tracking component belongs to.
     /// </summary>
-    public EntityUid StationId;
-
-    #region History
-
-    /// <summary>
-    /// Historical tamper seal results.
-    /// </summary>
-    public List<TamperSealResult> Records { get; private set; } = new();
-
-    /// <summary>
-    /// The minimum number of records to keep in history. Only affects time-based record expungement.
-    /// </summary>
-    public int MinRecords = 10;
-
-    /// <summary>
-    /// The maximum number of records to keep in history.
-    /// </summary>
-    public int MaxRecords = 40;
-
-    /// <summary>
-    /// The maximum age of records to keep in history. Only affects time-based record expungement.
-    /// </summary>
-    public TimeSpan RecordLifetime = TimeSpan.FromMinutes(20);
-
-    #endregion
-    #region Judgement
+    [ViewVariables(VVAccess.ReadOnly)] public EntityUid StationId;
 
     /// <summary>
     /// Whether we're judging delivery performance.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite)]
-    public bool JudgementEnabled = true;
+    [ViewVariables(VVAccess.ReadWrite)] public bool Enabled = true;
+
+    #region State
+
+    /// <summary>
+    /// Historical tamper seal results.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)] public Queue<TamperSealResult> Records = new(40);
 
     /// <summary>
     /// Minimum number of records required before judging.
     /// </summary>
-    public int? JudgementMinRecords = 8;
+    [ViewVariables(VVAccess.ReadWrite)] public int? MinRecords = 8;
+
+    /// <summary>
+    /// The maximum number of records to keep in history.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)] public int MaxRecords = 40;
 
     #endregion
     #region Failure
@@ -56,17 +44,23 @@ public sealed partial class TamperSealIntegrityTrackerComponent : Component
     /// <summary>
     /// Whether we are currently below the failure threshold, and as such have already sent an announcement.
     /// </summary>
-    public bool Failure = false;
+    [ViewVariables(VVAccess.ReadWrite)] public bool Failure = false;
+
+    /// <summary>
+    /// The last recorded success fraction.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly), UsedImplicitly]
+    public float SuccessFraction;
 
     /// <summary>
     /// When the delivery success rate falls below this threshold, we announce and set the failure flag.
     /// </summary>
-    public float FailureSetThreshold = .7f;
+    [ViewVariables(VVAccess.ReadWrite)] public float FailureSetThreshold = .7f;
 
     /// <summary>
     /// Once the success rate meets or exceeds this threshold, we clear the failure flag.
     /// </summary>
-    public float FailureClearThreshold = .8f;
+    [ViewVariables(VVAccess.ReadWrite)] public float FailureClearThreshold = .8f;
 
     /// <summary>
     /// The sound to play with the failure announcement.
@@ -81,6 +75,7 @@ public sealed partial class TamperSealIntegrityTrackerComponent : Component
     #endregion
 }
 
+[Serializable]
 public sealed class TamperSealResult(TimeSpan time, bool success)
 {
     public TimeSpan Time { get; } = time;
