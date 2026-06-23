@@ -18,11 +18,11 @@ namespace Content.Client._Starlight.BreathOrgan.UI;
 /// <summary>
 /// A copy of a gas tank window, made to change the behaviour in case of organ gas tanks
 /// </summary>
-public sealed class OrganGasTankWindow
+public sealed partial class OrganGasTankWindow
     : BaseWindow
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IResourceCache _cache = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IResourceCache _cache = default!;
 
     private readonly RichTextLabel _lblPressure;
     private readonly RichTextLabel _lblInternals;

@@ -16,6 +16,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Access.Components;
 using Robust.Shared.GameObjects;
 using Content.Shared.Access.Systems;
+using Content.Shared._Starlight.Store.Components;
 #endregion Starlight
 
 namespace Content.Server.Store.Systems;
@@ -26,10 +27,10 @@ namespace Content.Server.Store.Systems;
 /// </summary>
 public sealed partial class StoreSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

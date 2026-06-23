@@ -12,6 +12,7 @@
   antagonist: true
   setPreference: true # Starlight. reenabled to allow for preferences to work on midround wizard
   objective: roles-antag-wizard-objective # TODO: maybe give random objs and stationary ones from AntagObjectives and AntagRandomObjectives
+  roleLoadout: [ AntagWizard ] # Starlight
   requirements: # I hate time locked roles but this should be enough time for someone to be acclimated
   - !type:OverallPlaytimeRequirement
     time: 48h # Starlight. You've got the potential to mass grief.

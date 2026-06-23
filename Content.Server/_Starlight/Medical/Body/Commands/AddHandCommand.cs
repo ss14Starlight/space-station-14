@@ -13,10 +13,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.Medical.Body.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-sealed class AddHandCommand : IConsoleCommand
+sealed partial class AddHandCommand : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
 
     private static readonly EntProtoId _defaultHandPrototype = "LeftHandHuman";
     private static int s_handIdAccumulator;

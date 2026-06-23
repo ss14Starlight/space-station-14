@@ -18,3 +18,4 @@ store-category-cantrips-standard = Standard Cantrips
 
 # Uplinks
 store-category-cybernetics = Cybernetics
+store-category-dagd = Glory

@@ -5,7 +5,7 @@
 - type: entity
   parent: MobStatusEffectBase
   id: MobThresholdsTheHighlander
-  name: <<TheHighlander Status Effect>>
+  name: uncrittable
   components:
   - type: StatusEffect
     whitelist:
@@ -31,7 +31,7 @@
 - type: entity
   parent: MobStatusEffectBase
   id: MobThresholdsDeathInTheAfternoon
-  name: <<DeathInTheAfternoon Status Effect>>
+  name: resilience to death
   components:
   - type: StatusEffect
     whitelist:
@@ -74,7 +74,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorWhiskey
-  name: <<Whiskey Status Effect>>
+  name: 10% resistance to Blunt damage
   components:
   - type: BonusArmorStatusEffect
     ignoreKnockdown: false
@@ -87,7 +87,7 @@
     startSound:
       path: /Audio/_Starlight/Magic/dwarf-buff-whiskey.ogg
       params:
-        volume: -12.0
+        volume: -3.0
     startPositional: false
     #endSound:
     #  path: /Audio/_Starlight/Magic/gust.ogg
@@ -95,8 +95,27 @@
 
 - type: entity
   parent: BonusArmorDwarfGeneric
+  id: BonusArmorIrishBool
+  name: 90% resistance to Stamina damage
+  components:
+  - type: BonusArmorStatusEffect
+    ignoreKnockdown: false
+    staminaDamageModifier: 0.1
+    explosionResistance: 1.00
+    modifiers:
+      coefficients:
+        Blunt: 1.00
+  - type: SoundStatusEffect
+    startSound:
+      path: /Audio/_Starlight/Magic/dwarf-buff-generic.ogg
+      params:
+        volume: -3.0
+    startPositional: false
+
+- type: entity
+  parent: BonusArmorDwarfGeneric
   id: BonusArmorAbsinthe
-  name: <<Absinthe Status Effect>>
+  name: 10% resistance to Piercing damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -109,7 +128,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorCognac
-  name: <<Cognac Status Effect>>
+  name: 10% resistance to Cold damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -122,7 +141,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorAntifreeze
-  name: <<Antifreeze Status Effect>>
+  name: 50% resistance to Cold damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -135,7 +154,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorGin
-  name: <<Gin Status Effect>>
+  name: 10% resistance to Caustic damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -148,7 +167,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorRum
-  name: <<Rum Status Effect>>
+  name: 10% resistance to Slash damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -161,7 +180,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorTequila
-  name: <<Tequila Status Effect>>
+  name: 10% resistance to Heat damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -174,7 +193,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorVermouth
-  name: <<Vermouth Status Effect>>
+  name: 10% resistance to Shock damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -187,7 +206,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorAndalusia
-  name: <<Andalusia Status Effect>>
+  name: 10% resistance to Shock and Piercing damage, +5% vulnerability to Slash and Heat damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -203,7 +222,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorB52
-  name: <<B52 Status Effect>>
+  name: 25% resistance to explosions
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -217,7 +236,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorDriestMartini
-  name: <<Driest Martini Status Effect>>
+  name: 15% resistance to Brute damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -232,7 +251,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorPainkiller
-  name: <<Painkiller Status Effect>>
+  name: immunity to Bloodloss
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -245,7 +264,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorErikaSurprise
-  name: <<Erika Surprise Status Effect>>
+  name: 15% resistance to all Burn damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -260,7 +279,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorGargleBlaster
-  name: <<Gargle Blaster Status Effect>>
+  name: 10% resistance to Brute damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -275,7 +294,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorGrog
-  name: <<Grog Status Effect>>
+  name: 10% resistance to Slash and Heat damage, +5% vulnerability to Blunt and Cold damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -291,7 +310,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorMoscowMule
-  name: <<Moscow Mule Status Effect>>
+  name: 10% resistance to Poison and Radiation damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -305,7 +324,7 @@
 - type: entity
   parent: BonusArmorDwarfGeneric
   id: BonusArmorDaiquiri
-  name: <<Daiquiri Status Effect>>
+  name: 10% resistance to Blunt and Cold damage, +5% vulnerability to Piercing and Shock damage
   components:
   - type: BonusArmorStatusEffect
     modifiers:
@@ -340,7 +359,7 @@
 - type: entity
   parent: BonusScalarDwarfGeneric
   id: BonusScalarIrishCream
-  name: <<Irish Cream Status Effect>>
+  name: 25% increased attack rate when unarmed
   components:
   - type: BonusScalarStatusEffect
     # reference example of all possible effects for BonusScalarStatusEffect:
@@ -357,7 +376,7 @@
 - type: entity
   parent: BonusScalarDwarfGeneric # not actually a BonusScalarStatusEffect, but whatever -- we're using the same icon anyway
   id: BonusDamageBraveBull
-  name: <<Brave Bull Status Effect>>
+  name: added Structural damage to unarmed attacks
   components:
   - type: BonusDamageStatusEffect
     # reference example of all possible effects for BonusDamageStatusEffect:
@@ -375,7 +394,7 @@
 - type: entity
   parent: BonusScalarDwarfGeneric
   id: BonusScalarBronx
-  name: <<Bronx Status Effect>>
+  name: 50% increased unarmed damage
   components:
   - type: BonusScalarStatusEffect
     coefficients:
@@ -387,7 +406,7 @@
 - type: entity
   parent: BonusScalarDwarfGeneric
   id: BonusScalarXenoBasher
-  name: <<Xeno Basher Status Effect>>
+  name: 10% increased attack speed with melee weapons
   components:
   - type: BonusScalarStatusEffect
     coefficients:
@@ -399,7 +418,7 @@
 - type: entity
   parent: BonusScalarDwarfGeneric
   id: BonusScalarIrishCarBomb
-  name: <<Irish Car Bomb Status Effect>>
+  name: 20% increased damage with melee weapons
   components:
   - type: BonusScalarStatusEffect
     coefficients:
@@ -411,7 +430,7 @@
 - type: entity
   parent: BonusScalarDwarfGeneric
   id: BonusScalarSyndicateBomb
-  name: <<Syndicate Bomb Status Effect>>
+  name: 25% reduced interaction time
   components:
   - type: BonusScalarStatusEffect
     coefficients:

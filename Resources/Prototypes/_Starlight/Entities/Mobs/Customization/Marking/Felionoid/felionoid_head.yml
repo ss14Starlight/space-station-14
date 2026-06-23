@@ -2,7 +2,7 @@
   id: FelionoidHeadTiger
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: Tiger_stripes_face
@@ -11,7 +11,7 @@
   id: FelionoidHeadTabby
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: Tabby_head
@@ -20,7 +20,7 @@
   id: FelionoidHeadCalico
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: calico1_head
@@ -31,7 +31,7 @@
   id: FelionoidHeadStripes
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: head_stripes

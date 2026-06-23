@@ -9,9 +9,11 @@
     speaks:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: ThermalVision # Starlight-edit: Thermal Vision
   - type: VentCrawler # Starlight-edit: Vent Crawl
@@ -193,6 +195,7 @@
     understands:
     - GalacticCommon
     - Mouse
+    - Squeakish # Rodentia language
   # Starlight-end
   - type: VentCrawler # Starlight-edit: Vent Crawl
   - type: CombatMode
@@ -341,11 +344,13 @@
 - type: entityTable
   id: RatKingLoot
   table: !type:GroupSelector
-    children:
+    children: # Starlight - Food table update
     - id: RandomSpawner100
-      weight: 66
+      weight: 70
     - id: FoodCheese
-      weight: 28
+      weight: 15
+    - id: FoodCheese
+      weight: 10
     - id: IngotGold1
       weight: 5
 

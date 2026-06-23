@@ -4,7 +4,6 @@ using Content.Shared.Preferences.Loadouts.Effects;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared._Starlight.Silicons;
 

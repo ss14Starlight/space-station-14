@@ -65,6 +65,12 @@
         range: 1, 5
     - id: OminousPill # Starlight start
       amount: !type:RangeNumberSelector
+        range: 1, 2
+    - id: WeirdPill
+      amount: !type:RangeNumberSelector
+        range: 2, 4
+    - id: GoldenPill
+      amount: !type:RangeNumberSelector
         range: 1, 2 # Starlight end
 
 - type: entityTable #5x tiny

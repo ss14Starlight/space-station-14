@@ -1,0 +1,60 @@
+- type: soundCollection
+  id: ProtoArachnidScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Arachnid/arachnid_scream.ogg
+
+- type: soundCollection
+  id: ProtoAvaliScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Avali/avali_scream.ogg
+
+- type: soundCollection
+  id: ProtoCycloriteScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Cyclorite/scream_1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Cyclorite/scream_2.ogg
+
+- type: soundCollection
+  id: ProtoFelionoidScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream2.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream3.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Felionoid/cat_scream4.ogg
+
+- type: soundCollection
+  id: ProtoHumanMScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Human/malescream_1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/malescream_2.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/malescream_3.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/malescream_4.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/malescream_5.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/malescream_6.ogg
+
+- type: soundCollection
+  id: ProtoHumanFScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_2.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_3.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_4.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Human/femalescream_5.ogg
+
+- type: soundCollection
+  id: ProtoMothScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Moth/moth_scream.ogg
+
+- type: soundCollection
+  id: ProtoVoxScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Vox/shriek1.ogg
+
+- type: soundCollection
+  id: ProtoVulpScreams
+  files:
+    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_scream1.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_scream2.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_scream3.ogg
+    - /Audio/_FarHorizons/Voice/Proto/Vulpkanin/vulp_scream4.ogg

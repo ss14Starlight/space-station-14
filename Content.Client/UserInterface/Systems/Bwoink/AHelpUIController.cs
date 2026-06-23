@@ -10,7 +10,7 @@ using Content.Client.Lobby.UI;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
-using Content.Shared.Starlight.MHelp;
+using Content.Shared._Starlight.MHelp;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Input;
@@ -33,16 +33,16 @@ using Content.Client._Starlight.MHelp;
 namespace Content.Client.UserInterface.Systems.Bwoink;
 
 [UsedImplicitly]
-public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
+public sealed partial class AHelpUIController: UIController, IOnSystemChanged<BwoinkSystem>, IOnStateChanged<GameplayState>, IOnStateChanged<LobbyState>
 {
-    [Dependency] private readonly IClientAdminManager _adminManager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IClyde _clyde = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
-    [Dependency] private readonly IInputManager _input = default!;
+    [Dependency] private IClientAdminManager _adminManager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IClyde _clyde = default!;
+    [Dependency] private IUserInterfaceManager _uiManager = default!;
+    [Dependency] private IInputManager _input = default!;
     [UISystemDependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly StaffHelpUIController _staffHelp = default!;
+    [Dependency] private StaffHelpUIController _staffHelp = default!;
 
     private BwoinkSystem? _bwoinkSystem;
     public Controls.MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;

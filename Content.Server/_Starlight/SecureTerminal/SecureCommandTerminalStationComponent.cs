@@ -1,6 +1,6 @@
-using Content.Shared.Starlight.SecureTerminal;
+using Content.Shared._Starlight.SecureTerminal;
 
-namespace Content.Server.Starlight.SecureTerminal;
+namespace Content.Server._Starlight.SecureTerminal;
 
 /// <summary>
 /// Tracks all Secure Command Terminal proposals for a station.
@@ -32,6 +32,10 @@ public sealed partial class SecureCommandTerminalStationComponent : Component
     [ViewVariables]
     public readonly Dictionary<string, TimeSpan> DeployedArmories = new();
 
+    /// <summary>Requester of each deployed armory.</summary>
+    [ViewVariables]
+    public readonly Dictionary<string, EntityUid> DeployedArmoryRequesters = new();
+
     /// <summary>When the current alert level was last set (CurTime). Used for RequiresAlertActiveMinutes checks.</summary>
     [ViewVariables]
     public TimeSpan AlertLevelSetAt;
@@ -41,6 +45,9 @@ public sealed partial class SecureCommandTerminalStationComponent : Component
 public sealed class SecureTerminalProposalData
 {
     public string RequestId = string.Empty;
+
+    /// <summary>The player who created the request.</summary>
+    public EntityUid Requester = EntityUid.Invalid;
 
     /// <summary>The reason of the Request.</summary>
     public string Reason = string.Empty;
