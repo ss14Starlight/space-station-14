@@ -8,4 +8,5 @@
     items:
       - id: ChimpkenCube
   - type: Sprite
+    sprite: _Starlight/Objects/Misc/chimpkencube.rsi
     state: wrapper_chimpken
