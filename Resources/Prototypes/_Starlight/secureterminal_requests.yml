@@ -61,7 +61,7 @@
   description: secure-terminal-ert-engineering-desc
   announcement: secure-terminal-ert-engineering-announcement
   announcementColor: "#ffaa33"
-  activationDelaySecs: 600
+  activationDelaySecs: 180
   requireReason: true
   fee: 5000
   salaryPenalty: 0.05
@@ -70,13 +70,10 @@
   oneTimeUse: true
   sortOrder: 50
   authGroups:
-    - [Captain, ChiefEngineer]
-    - [Captain, ChiefEngineer]
+    - [Captain, ChiefEngineer, NTR]
   authGroupLabels:
-    - "Captain / CE (1)"
-    - "Captain / CE (2)"
+    - "Captain / CE / NTR (1)"
   cooldownSecs: 3600
-  authTimer: 20
 
 # ── ERT Medical ───────────────────────────────────────────────────────────────
 - type: secureTerminalRequest

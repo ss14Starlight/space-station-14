@@ -58,7 +58,7 @@
     - type: StationEvent
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Small-Engi.yml
+      gridPath: /Maps/_Starlight/Shuttles/SecureTerminal/ERT-Large-Engi.yml
 
 - type: entity
   parent: BaseGameRule
