@@ -1,0 +1,41 @@
+- type: entity
+  id: MedTakTechFab
+  parent: BaseLatheLube
+  name: MedTak techfab
+  description: Prints equipment for a MedTak outpost.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/techfab.rsi
+    layers:
+    - sprite: &base-rsi Structures/Machines/techfab.rsi
+      state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - sprite: _Starlight/Admeme/Objects/MedTak/lathe.rsi
+      state: lathe-medtak
+    - sprite: *base-rsi
+      state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - sprite: *base-rsi
+      state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - sprite: *base-rsi
+      state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Lathe
+    idleState: icon
+    runningState: icon
+    staticPacks:
+    - TopicalsStatic
+    - ChemistryStatic
+    # - MedicalStatic
+    - MedicalClothingStatic
+    - StarlightMedicalStatic
+    - StarlightSurgeryDynamic
+    - StarlightAutomendersDynamic
+    - StarlightCyberlimbDynamic
+    - StarlightCyberOrgansDynamic
+    - StarlightImplantDynamic
+    - StarlightBudgetCyberOrgansDynamic
+    - SecurityCyberLimbs
+  - type: OreSiloClient

@@ -20,7 +20,7 @@
     implantTime: 2.5
 
 - type: entity
-  id: MedTakImplanterMindShieldImplanter
+  id: MedTakImplanterMindShield
   name: MedTak mindshield implanter
   parent: MedTakImplanter
   components:
