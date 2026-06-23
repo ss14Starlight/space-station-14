@@ -67,7 +67,7 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: KoboldCubeWrapped 
+        - id: KoboldCubeWrapped
           amount: 3 # Starlight
         - id: MonkeyCubeWrapped
           amount: 3 # Starlight
