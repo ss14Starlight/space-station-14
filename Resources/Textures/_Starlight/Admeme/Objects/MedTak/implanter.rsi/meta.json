@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by SevenShades",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "broken"
+    },
+    {
+      "name": "implanter-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "implanter-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "implanter0"
+    },
+    {
+      "name": "implanter1"
+    },
+    {
+      "name": "gold"
+    }
+  ]
+}

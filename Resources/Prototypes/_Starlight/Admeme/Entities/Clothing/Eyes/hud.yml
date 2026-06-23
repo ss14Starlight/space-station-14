@@ -36,16 +36,15 @@
   - type: Clothing
     sprite: _Starlight/Admeme/Clothing/Eyes/Hud/medtak.rsi
   - type: FlashImmunity
+  - type: ShowImplantedIcons
+    shownIcons:
+    - MedTak
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowHealthBars
     damageContainers:
     - Biological
     - IPC
-    - Hybrid
-  - type: ShowHealthIcons
-    damageContainers:
-    - Biological
     - Hybrid
   - type: Tag
     tags:

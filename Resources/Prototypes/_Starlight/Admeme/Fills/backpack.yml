@@ -17,7 +17,7 @@
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
-        - id: MedTakDeathRattleImplanter
+        - id: MedTakImplanterTrackingTeam
 
 - type: entity
   id: ClothingBackpackMedTakFilledBasic
@@ -32,7 +32,7 @@
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
-        - id: MedTakDeathRattleImplanter
+        - id: MedTakImplanterTrackingTeam
 
 - type: entity
   id: ClothingBackpackMedTakFilledHeavy
@@ -47,7 +47,7 @@
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
-        - id: MedTakDeathRattleImplanter
+        - id: MedTakImplanterTrackingTeam
         - id: GrenadeFlashBang
         - id: TearGasGrenade
         - id: TearGasGrenade
@@ -67,7 +67,7 @@
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
-        - id: MedTakDeathRattleImplanter
+        - id: MedTakImplanterTrackingTeam
         - id: TearGasGrenade
         - id: GrenadeFlashBang
 
@@ -86,7 +86,7 @@
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
-        - id: MedTakDeathRattleImplanter
+        - id: MedTakImplanterTrackingTeam
         - id: TearGasGrenade
         - id: GrenadeFlashBang
         - id: HandheldMedTakMonitor
@@ -106,7 +106,7 @@
         - id: DrinkMREFlask
         - id: FoodSnackNutribrick
         - id: MedTakMindShieldImplanter
-        - id: MedTakDeathRattleImplanter
+        - id: MedTakImplanterTrackingTeam
         - id: MedkitCombatMedTakFilled
         - id: DoubleEmergencyOxygenTankFilled
         - id: ClothingMaskGasSecurity
