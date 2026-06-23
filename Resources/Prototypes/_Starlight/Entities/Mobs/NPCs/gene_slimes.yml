@@ -35,6 +35,12 @@
         - Blank0
         - Blank1
         - Blank2
+        - Blank3
+        - Blank4
+        - Blank5
+        - Blank6
+        - Blank7
+        - Blank8
     - type: GeneticSlime
     - type: TemperatureDamage
       coldDamage:
@@ -73,3 +79,66 @@
     scalingFactor: 1
     scalingOffset: 0
   cooldown: 60
+
+- type: extractReaction
+  id: blankSolutionReaction
+  requirements: {}
+  effects: []
+  shouldDelete: false
+
+- type: onSolutionChangedTrait
+  id: Blank3
+  name: Blank Trait 3 (On Solution Changed)
+  description: Does nothing.
+  extractReaction: blankSolutionReaction
+
+- type: onSolutionChangedTrait
+  id: Blank4
+  name: Blank Trait 4 (On Solution Changed)
+  description: Does nothing.
+  extractReaction: blankSolutionReaction
+
+- type: onSolutionChangedTrait
+  id: Blank5
+  name: Blank Trait 5 (On Solution Changed)
+  description: Does nothing.
+  extractReaction: blankSolutionReaction
+
+- type: onceTrait
+  id: Blank6
+  name: Blank Trait 6 (Once)
+  description: Does nothing.
+  onAddedEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+  onRemovedEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+
+- type: onceTrait
+  id: Blank7
+  name: Blank Trait 7 (Once)
+  description: Does nothing.
+  onAddedEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+  onRemovedEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+
+- type: onceTrait
+  id: Blank8
+  name: Blank Trait 8 (Once)
+  description: Does nothing.
+  onAddedEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
+  onRemovedEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0

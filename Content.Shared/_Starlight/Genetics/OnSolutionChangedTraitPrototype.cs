@@ -15,6 +15,6 @@ public sealed partial class OnSolutionChangedTraitPrototype : AbstractTraitProto
     /// Each entry is a reagent reaction, consisting of the requirements and then the response
     /// </summary>
     [ViewVariables]
-    [DataField]
-    public List<ProtoId<ExtractReactionPrototype>> ExtractReactions = new();
+    [DataField(required: true)]
+    public ProtoId<ExtractReactionPrototype> ExtractReaction = new();
 }
