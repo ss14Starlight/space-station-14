@@ -1,3 +1,4 @@
+using Content.Server._Harmony.GameTicking.Rules.Components;
 using Content.Server.Administration.Managers;
 using Content.Server.Antag;
 using Content.Shared.Administration;
@@ -52,5 +53,23 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
             Message = string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),
         };
         args.Verbs.Add(cosmiccult);
+
+        var conspiratorName = Loc.GetString("admin-verb-text-make-conspirator");
+        Verb conspirator = new()
+        {
+            Text = conspiratorName,
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "Conspirator"),
+            Act = () =>
+            {
+                _antagSelection.ForceMakeAntag<ConspiratorRuleComponent>(targetPlayer, "Conspirators");
+                _autolog.LogToDiscord(
+                    string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-conspirator")),
+                    player.Name);
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-conspirator")),
+        };
+        args.Verbs.Add(conspirator);
     }
 }

@@ -8,3 +8,9 @@ pirate-crew-briefing = You are a crew member of this pirate vessel. Your duty is
 admin-verb-make-devil = Make the target into a devil.
 
 admin-verb-text-make-devil = Make Devil
+
+admin-verb-make-conspirator = Make the target into a S.E.L.F Agent.
+admin-verb-text-make-selfagent = Make S.E.L.F Agent
+
+admin-verb-make-conspirator = Make the target into a Conspirator.
+admin-verb-text-make-selfagent = Make Conspirator
