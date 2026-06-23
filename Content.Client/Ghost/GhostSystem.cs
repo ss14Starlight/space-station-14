@@ -21,7 +21,7 @@ namespace Content.Client.Ghost
         [Dependency] private PointLightSystem _pointLightSystem = default!;
         [Dependency] private ContentEyeSystem _contentEye = default!;
         [Dependency] private SpriteSystem _sprite = default!;
-        [Dependency] private IConfigurationManager _cfg = default!;
+        [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
         public int AvailableGhostRoleCount { get; private set; }
 
