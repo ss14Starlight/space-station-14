@@ -202,7 +202,7 @@
   group: Breakfast
   solids:
     FoodEgg: 1
-    
+
 # Plain Donuts
 - type: deepFryingRecipe
   id: RecipeDonut
@@ -217,7 +217,7 @@
   name: meat donut
   result: FoodDonutMeat
   time: 5
-  group: Dessert 
+  group: Dessert
   solids:
     FoodDonutPlain: 1
     FoodMeatCutlet: 1
@@ -325,7 +325,7 @@
   solids:
     FoodDonutJellyPlain: 1
     FoodApple: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeDonutJellyBungo
   name: bungo jelly donut
@@ -335,7 +335,7 @@
   solids:
     FoodDonutJellyPlain: 1
     FoodBungo: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeDonutJellyBluePumpkin
   name: blue pumpkin jelly donut
@@ -345,7 +345,7 @@
   solids:
     FoodDonutJellyPlain: 1
     FoodBluePumpkin: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeDonutJellyChocolate
   name: chocolate jelly donut
@@ -355,7 +355,7 @@
   solids:
     FoodDonutJellyPlain: 1
     FoodCocoaPod: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeDonutJellySweetpea
   name: sweetpea jelly donut
@@ -365,7 +365,7 @@
   solids:
     FoodDonutJellyPlain: 1
     FoodPeaPod: 1
-    
+
 - type: microwaveMealRecipe
   id: RecipeDonutJellySpaceman
   name: spaceman jelly donut
@@ -386,7 +386,7 @@
     FoodDonutJellyPlain: 1
   reagents:
     Sugar: 5
-    
+
 - type: microwaveMealRecipe
   id: RecipeDonutJellyCaramel
   name: caramel jelly donut
