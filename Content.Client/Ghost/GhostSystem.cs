@@ -5,6 +5,7 @@ using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Player;
+using Content.Shared._Starlight.Ghost; // Starlight
 
 namespace Content.Client.Ghost
 {
@@ -71,6 +72,7 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<EyeComponent, ToggleLightingActionEvent>(OnToggleLighting);
             SubscribeLocalEvent<EyeComponent, ToggleFoVActionEvent>(OnToggleFoV);
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
+            SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporeal); // Starlight
         }
 
         private void OnStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -211,5 +213,18 @@ namespace Content.Client.Ghost
         {
             GhostVisibility = visibility ?? !GhostVisibility;
         }
+
+        #region Starlight
+
+        private void OnCorporeal(GhostCorporealEvent ev)
+        {
+            var uid = GetEntity(ev.Uid);
+            if (!TryComp<SpriteComponent>(uid, out var comp))
+                return;
+
+            _sprite.SetVisible((uid, comp), ev.IsCorporeal || uid == _playerManager.LocalEntity || GhostVisibility);
+        }
+
+        #endregion
     }
 }
