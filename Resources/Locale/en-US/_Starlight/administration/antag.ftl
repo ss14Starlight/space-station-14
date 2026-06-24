@@ -13,4 +13,4 @@ admin-verb-make-conspirator = Make the target into a S.E.L.F Agent.
 admin-verb-text-make-selfagent = Make S.E.L.F Agent
 
 admin-verb-make-conspirator = Make the target into a Conspirator.
-admin-verb-text-make-selfagent = Make Conspirator
+admin-verb-text-make-conspirator = Make Conspirator
