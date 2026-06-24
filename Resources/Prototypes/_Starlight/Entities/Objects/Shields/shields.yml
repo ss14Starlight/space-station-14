@@ -405,7 +405,7 @@
       level: Metal
 
 - type: entity
-  name: Z-01g phase shield
+  name: Z-03 phase shield
   parent: [BaseItem, BaseCentcommContraband ]
   id: GreenLightShield
   categories: [ DoNotMap ]
@@ -509,7 +509,7 @@
       level: HardenedMetal
 
 - type: entity
-  name: Z-01 phase shield
+  name: X-03 phase shield
   parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
   id: BlueLightShield
   categories: [ DoNotMap ]
