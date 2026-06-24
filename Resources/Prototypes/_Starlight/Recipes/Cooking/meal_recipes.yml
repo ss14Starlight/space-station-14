@@ -420,7 +420,7 @@
     FoodLollipopPlain: 1
     FoodBerries: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeHardCandy
   name: hard candy recipe
   result: FoodSnackHardCandy
