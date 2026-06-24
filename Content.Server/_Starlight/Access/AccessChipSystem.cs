@@ -86,9 +86,28 @@ public sealed partial class AccessChipSystem : EntitySystem
         if (!TryComp<AccessComponent>(target, out var accessComp))
             return AccessChipResult.Failure;
 
-        var hasAtLeastOneNew = false;
+        // build a sanitized list of accesses that are actually allowed on ID cards.
+        var filteredAccesses = new List<ProtoId<AccessLevelPrototype>>();
 
         foreach (var access in chipComponent.GrantedAccesses)
+        {
+            // Validate prototype exists and is allowed on ID cards.
+            if (!_prototypeManager.TryIndex(access, out var proto))
+                continue;
+
+            if (!proto.CanAddToIdCard)
+                continue;
+
+            filteredAccesses.Add(access);
+        }
+
+        // If nothing valid remains, treat it as a failure (nothing to apply)
+        if (filteredAccesses.Count == 0)
+            return AccessChipResult.Failure;
+
+        var hasAtLeastOneNew = false;
+
+        foreach (var access in filteredAccesses)
         {
             if (!accessComp.Tags.Contains(access))
             {
@@ -97,13 +116,20 @@ public sealed partial class AccessChipSystem : EntitySystem
             }
         }
 
-        // ID card already has access
+        // Card already contains everything valid from this chip
         if (!hasAtLeastOneNew)
             return AccessChipResult.AlreadyHasAllAccess;
 
+        // Merge existing + filtered new accesses
         var newAccesses = new List<ProtoId<AccessLevelPrototype>>(accessComp.Tags);
-        newAccesses.AddRange(chipComponent.GrantedAccesses);
 
+        foreach (var access in filteredAccesses)
+        {
+            if (!newAccesses.Contains(access))
+                newAccesses.Add(access);
+        }
+
+        // Final safety validation already enforced above, but this keeps future-proofing intact
         if (!_access.TrySetTags(target, newAccesses))
             return AccessChipResult.Failure;
 
