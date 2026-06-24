@@ -209,7 +209,7 @@
       - cheesy
       - stinky
 
-- type: entity
+- type: entity #Kasern
   parent: FoodSnackBase
   id: FoodSnackCandyApple
   name: toffee apple
@@ -219,8 +219,6 @@
     sprite: Objects/Consumable/Food/candy.rsi
     state: apple
   - type: Item
-    sprite: Objects/Consumable/Food/candy.rsi
-    heldPrefix: apple
     size: Small
   - type: Tag
     tags:
