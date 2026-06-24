@@ -26,11 +26,9 @@ public sealed partial class AccessChipSystem : EntitySystem
 
     private void OnChipAfterInteract(Entity<AccessChipComponent> chip, ref AfterInteractEvent args)
     {
-        // Ensure interaction was successful and can reach
         if (args.Target == null || !args.CanReach || args.Handled)
             return;
 
-        // Check if target has IdCardComponent
         if (!TryComp<IdCardComponent>(args.Target, out var _))
         {
             _popup.PopupCursor(
@@ -40,13 +38,9 @@ public sealed partial class AccessChipSystem : EntitySystem
             return;
         }
 
-        // Attempt to add the accesses to the ID card
-        if (!TryAddAccessesToCard(args.Target.Value, chip.Comp))
-            return;
+        // Try apply accesses and capture result reason
+        var result = TryAddAccessesToCard(args.Target.Value, chip.Comp);
 
-        args.Handled = true;
-
-        // Show success popup with access names
         var accessNames = new List<string>();
         foreach (var accessId in chip.Comp.GrantedAccesses)
         {
@@ -56,29 +50,63 @@ public sealed partial class AccessChipSystem : EntitySystem
             }
         }
 
+        // Nothing changed because access already existed
+        if (result == AccessChipResult.AlreadyHasAllAccess)
+        {
+            _popup.PopupCursor(
+                Loc.GetString("access-chip-already-has-access", ("access", string.Join(", ", accessNames))),
+                args.User,
+                PopupType.MediumCaution);
+            return;
+        }
+
+        // Hard failure (no access component or system failure)
+        if (result != AccessChipResult.Success)
+            return;
+
+        args.Handled = true;
+
         _popup.PopupCursor(
             Loc.GetString("access-chip-used", ("access", string.Join(", ", accessNames))),
             args.User,
             PopupType.Medium);
 
-        // Delete the chip after successful use
         QueueDel(chip.Owner);
     }
 
-    private bool TryAddAccessesToCard(EntityUid target, AccessChipComponent chipComponent)
+    private enum AccessChipResult
     {
-        // Get current accesses from the target ID card
-        if (!TryComp<AccessComponent>(target, out var accessComp))
-            return false;
+        Success,
+        AlreadyHasAllAccess,
+        Failure
+    }
 
-        // Create a new set with existing accesses and new ones
+    private AccessChipResult TryAddAccessesToCard(EntityUid target, AccessChipComponent chipComponent)
+    {
+        if (!TryComp<AccessComponent>(target, out var accessComp))
+            return AccessChipResult.Failure;
+
+        var hasAtLeastOneNew = false;
+
+        foreach (var access in chipComponent.GrantedAccesses)
+        {
+            if (!accessComp.Tags.Contains(access))
+            {
+                hasAtLeastOneNew = true;
+                break;
+            }
+        }
+
+        // ID card already has access
+        if (!hasAtLeastOneNew)
+            return AccessChipResult.AlreadyHasAllAccess;
+
         var newAccesses = new List<ProtoId<AccessLevelPrototype>>(accessComp.Tags);
         newAccesses.AddRange(chipComponent.GrantedAccesses);
 
-        // Apply the new access set
         if (!_access.TrySetTags(target, newAccesses))
-            return false;
+            return AccessChipResult.Failure;
 
-        return true;
+        return AccessChipResult.Success;
     }
 }
