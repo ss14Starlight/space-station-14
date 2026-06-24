@@ -11,11 +11,11 @@ namespace Content.Client._Afterlight.Silicons.Borgs;
 /// <summary>
 /// Primarily handles the appearance aspects of the borg subtype.
 /// </summary>
-public sealed class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSubtypeSystem
+public sealed partial class BorgSwitchableSubtypeSystem : SharedBorgSwitchableSubtypeSystem
 {
-    [Dependency] private readonly SpriteSystem _sprite = default!;
-    [Dependency] private readonly BorgSystem _borg = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private BorgSystem _borg = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {

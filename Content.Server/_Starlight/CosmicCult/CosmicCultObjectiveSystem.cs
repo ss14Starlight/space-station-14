@@ -1,4 +1,3 @@
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles;
@@ -10,13 +9,13 @@ using Content.Server.Station.Systems;
 
 namespace Content.Server._Starlight.CosmicCult;
 
-public sealed class CosmicCultObjectiveSystem : EntitySystem
+public sealed partial class CosmicCultObjectiveSystem : EntitySystem
 {
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly NumberObjectiveSystem _number = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private NumberObjectiveSystem _number = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {

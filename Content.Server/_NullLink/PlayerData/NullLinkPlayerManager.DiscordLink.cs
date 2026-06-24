@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using Content.Server._NullLink;
 using Content.Server._NullLink.Helpers;
 using Content.Server.EUI;
 using Robust.Shared.Enums;
@@ -9,7 +7,7 @@ namespace Content.Server._NullLink.PlayerData;
 
 public sealed partial class NullLinkPlayerManager
 {
-    [Dependency] private readonly EuiManager _euiManager = default!;
+    [Dependency] private EuiManager _euiManager = default!;
 
     private readonly HashSet<ICommonSession> _discordPromptOpen = [];
 

@@ -14,6 +14,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
+    damageContainers: # Starlight start
+    - Biological
+    - Hybrid # Starlight end, Protogens
   - type: ShowHealthIcons
 
 - type: entity
@@ -246,7 +249,10 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-  - type: SolutionScanner #starlight
+    damageContainers: # Starlight start
+    - Biological
+    - Hybrid # Protogens
+  - type: SolutionScanner # Starlight end
   - type: Tag
     tags:
     - PetWearable

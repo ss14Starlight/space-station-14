@@ -25,25 +25,29 @@ using Robust.Shared.Localization;
 using Content.Server.Botany.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Server._Starlight.Shuttles.Systems;
+using Content.Server._Starlight.Shuttles.Components;
+using Content.Shared._Starlight.Shuttles.Components;
+using Content.Shared._Starlight.Shuttles.BUIStates;
 
 namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 {
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ShuttleSystem _shuttle = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TagSystem _tags = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private readonly ILogManager _log = default!;
-    [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
-    [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private ActionBlockerSystem _blocker = default!;
+    [Dependency] private AlertsSystem _alertsSystem = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ShuttleSystem _shuttle = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private TagSystem _tags = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private ILogManager _log = default!;
+    [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
+    [Dependency] private IGameTiming _timing = default!; // _Starlight
 
     #region Starlight
     // Periodic blip/laser update

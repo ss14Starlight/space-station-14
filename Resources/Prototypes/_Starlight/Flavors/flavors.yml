@@ -59,6 +59,16 @@
   description: flavor-base-perfid
 
 - type: flavor
+  id: stringy
+  flavorType: Base
+  description: flavor-base-stringy
+
+- type: flavor
+  id: stinky
+  flavorType: Base
+  description: flavor-base-stinky
+
+- type: flavor
   id: vanillaicecream
   flavorType: Complex
   description: flavor-complex-vanilla-icecream

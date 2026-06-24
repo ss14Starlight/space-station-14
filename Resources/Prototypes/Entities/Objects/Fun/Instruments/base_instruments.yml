@@ -9,6 +9,7 @@
   - type: Instrument
   - type: ActivatableUI
     inHandsOnly: true
+    requireActiveHand: false # starlight
     singleUser: true
     verbText: verb-instrument-openui
     key: enum.InstrumentUiKey.Key

@@ -29,6 +29,7 @@
   - type: Tag
     tags:
       - HolosignProjector
+  - type: ForceQuickDraw #Starlight Don't pull the power cell when using hotkeys to remove from pockets
 
 - type: entity
   parent: Holoprojector

@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandArachnid
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandArachnid
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegArachnid
       connections:

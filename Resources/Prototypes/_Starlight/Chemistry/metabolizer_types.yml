@@ -1,0 +1,23 @@
+- type: metabolizerType
+  id: Vampire
+  name: metabolizer-type-vampire
+
+- type: metabolizerType
+  id: BudgetCyber
+  name: metabolizer-type-budget-cyber
+
+- type: metabolizerType
+  id: Cyclorite
+  name: metabolizer-type-cyclorite
+
+- type: metabolizerType
+  id: Avali
+  name: metabolizer-type-avali
+
+- type: metabolizerType
+  id: Resomi
+  name: metabolizer-type-resomi
+
+- type: metabolizerType
+  id: Rodentia
+  name: metabolizer-type-rodentia

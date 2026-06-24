@@ -1,12 +1,13 @@
 ﻿using System.Text.RegularExpressions;
+using Content.Shared._Starlight.Speech.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
 
-namespace Content.Shared._Starlight.Speech.Components;
+namespace Content.Server._Starlight.Speech.EntitySystems;
 
 public sealed partial class GrowlingAccentSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

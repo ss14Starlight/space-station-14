@@ -1,14 +1,12 @@
-﻿using Content.Shared.Body.Components;
-using Content.Shared.Body.Systems;
-using Content.Shared.Starlight;
+﻿using Content.Shared.Body.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Medical.Limbs;
-public abstract class SharedLimbSystem : EntitySystem
+public abstract partial class SharedLimbSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedContainerSystem _containers = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedContainerSystem _containers = default!;
 
     public override void Initialize()
     {
