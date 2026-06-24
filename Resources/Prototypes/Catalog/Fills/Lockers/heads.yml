@@ -248,6 +248,8 @@
     - id: RubberStampCE
     - id: MetalFoamGrenade
     - id: PlushieMatthew #starlight
+    - id: HoloprojectorEngineering # Starlight
+    - id: AirGrenade # Starlight
     - id: PrintedDocumentGreenshiftAlert #SL
       conditions: #SL
       - !type:GamemodeCondition #SL
