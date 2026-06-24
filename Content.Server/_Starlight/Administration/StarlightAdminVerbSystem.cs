@@ -9,6 +9,7 @@ using Content.Server._Starlight.CosmicCult.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using Content.Server._Starlight.Administration.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Administration;
 
@@ -17,6 +18,8 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
     [Dependency] private AntagSelectionSystem _antagSelection = default!;
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private AutoDiscordLogSystem _autolog = default!;
+
+    private static readonly EntProtoId DefaultConspiratorRule = "Conspirators";
 
     public override void Initialize()
         => SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
@@ -62,13 +65,13 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
             Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "Conspirator"),
             Act = () =>
             {
-                _antagSelection.ForceMakeAntag<ConspiratorRuleComponent>(targetPlayer, "Conspirators");
+                _antagSelection.ForceMakeAntag<ConspiratorRuleComponent>(targetPlayer, DefaultConspiratorRule);
                 _autolog.LogToDiscord(
-                    string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-conspirator")),
+                    string.Join(": ", conspiratorName, Loc.GetString("admin-verb-make-conspirator")),
                     player.Name);
             },
             Impact = LogImpact.High,
-            Message = string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-conspirator")),
+            Message = string.Join(": ", conspiratorName, Loc.GetString("admin-verb-make-conspirator")),
         };
         args.Verbs.Add(conspirator);
     }

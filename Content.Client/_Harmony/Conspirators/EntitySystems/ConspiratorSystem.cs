@@ -9,8 +9,8 @@ namespace Content.Client._Harmony.Conspirators.EntitySystems;
 
 public sealed class ConspiratorSystem : SharedConspiratorSystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {
