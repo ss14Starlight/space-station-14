@@ -1,0 +1,81 @@
+- type: entity
+  id: ActionSummonDemonicContract
+  name: Summon Infernal Contract
+  description: Summon an incredibly ominous piece of paper.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 30
+    icon:
+      sprite: _Starlight/Objects/Misc/infernal_contract.rsi
+      state: paper_words
+  - type: InstantAction
+    event: !type:SummonDemonicContractEvent
+
+- type: entity
+  id: ActionDamnationsMenu
+  name: Open Book of the Damned
+  description: Refer to your list of damnations, see what ways you can oblige the crew.
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Objects/Misc/books.rsi
+      state: book_icon
+  - type: InstantAction
+    event: !type:OpenDamnationsMenuEvent {}
+
+- type: entity
+  id: ActionSummonBident
+  parent: BaseAction
+  name: Recall Bident
+  description: Summon a suitably evil looking weapon for diplomatic purposes.
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Weapons/Melee/devilfork.rsi
+      state: icon
+    raiseOnAction: true
+    useDelay: 5
+  - type: InstantAction
+    event: !type:OnItemSummonActionEvent
+  - type: ItemSummon
+    summonableItem: DemonicPitchfork
+
+- type: entity
+  id: ActionSummonDevilPen
+  parent: BaseAction
+  name: Manifest Quill
+  description: Something to write with...
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: _Starlight/Objects/Misc/pens.rsi
+      state: pen_devil
+    raiseOnAction: true
+    useDelay: 10
+  - type: InstantAction
+    event: !type:OnItemSummonActionEvent
+  - type: ItemSummon
+    summonableItem: PenQuillBurnt
+
+- type: entity
+  id: ActionInfernalJaunt
+  parent: BaseActionPolymorph
+  name: Infernal Jaunt
+  description: Make an entrance! Comes with two charges - one for the entrance, and one for the exit. 5 minute recharge.
+  components:
+  - type: Action
+    useDelay: 10
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: jaunt
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: InfernalJaunt
+  - type: LimitedCharges
+    maxCharges: 2
+  - type: AutoRecharge
+    rechargeDuration: 150 # 2.5 min

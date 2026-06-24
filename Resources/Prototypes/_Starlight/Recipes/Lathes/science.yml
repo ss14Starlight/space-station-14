@@ -30,3 +30,10 @@
   materials:
     Plastic: 200
     Glass: 150
+
+## Dynamic
+
+- type: latheRecipePack
+  id: OublietteCircuitBoard
+  recipes:
+  - OublietteCircuitBoard

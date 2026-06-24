@@ -122,7 +122,7 @@
   parent: [BaseCentcommContraband, ClothingShoesBootsMagSyndie]
   id: ClothingShoesBootsMagERT
   name: ERT magboots
-  description: Upgraded magnetic boots utilized by Nanotrasen's Emergency Response Teams, they have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas.
+  description: Upgraded magnetic boots utilized by NanoTrasen's Emergency Response Teams, they have a heavy magnetic pull and integrated thrusters. It can hold 0.75 L of gas. # SL
   components:
   - type: Sprite
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi

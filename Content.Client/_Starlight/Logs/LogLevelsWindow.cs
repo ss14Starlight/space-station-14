@@ -1,20 +1,18 @@
 using System.Linq;
 using System.Text;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
-using Robust.Shared.Log;
-
 namespace Content.Client._Starlight.Logs;
 
-public sealed class LogLevelsWindow : DefaultWindow
+public sealed partial class LogLevelsWindow : DefaultWindow
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
-    private static readonly string[] LevelNames = ["(inherit)", "Verbose", "Debug", "Info", "Warning", "Error", "Fatal"];
-    private static readonly LogLevel?[] LevelValues = [null, LogLevel.Verbose, LogLevel.Debug, LogLevel.Info, LogLevel.Warning, LogLevel.Error, LogLevel.Fatal];
+    private static readonly string[] _levelNames = ["(inherit)", "Verbose", "Debug", "Info", "Warning", "Error", "Fatal"];
+    private static readonly LogLevel?[] _levelValues = [null, LogLevel.Verbose, LogLevel.Debug, LogLevel.Info, LogLevel.Warning, LogLevel.Error, LogLevel.Fatal];
 
     private readonly LineEdit _searchBox;
     private readonly BoxContainer _sawmillList;
@@ -93,17 +91,17 @@ public sealed class LogLevelsWindow : DefaultWindow
             };
 
             var combo = new OptionButton { MinWidth = 100 };
-            for (var i = 0; i < LevelNames.Length; i++)
-                combo.AddItem(LevelNames[i], i);
+            for (var i = 0; i < _levelNames.Length; i++)
+                combo.AddItem(_levelNames[i], i);
 
-            var currentIdx = Array.IndexOf(LevelValues, sawmill.Level);
+            var currentIdx = Array.IndexOf(_levelValues, sawmill.Level);
             combo.SelectId(currentIdx >= 0 ? currentIdx : 0);
 
             var captured = sawmill;
             combo.OnItemSelected += args =>
             {
                 combo.SelectId(args.Id);
-                captured.Level = LevelValues[args.Id];
+                captured.Level = _levelValues[args.Id];
                 SaveLevels();
             };
 

@@ -46,10 +46,14 @@ using Content.Shared.Temperature.Components;
 #region Starlight
 using Content.Server._Starlight.Language;
 using Content.Shared._Starlight.Language.Components;
-using Content.Server._Starlight.Antags.Vampires;
+using Content.Shared.Mobs.Systems;
 using Content.Shared._Starlight.Antags.Vampires.Components;
+using Content.Shared.Changeling;
+using Content.Shared.Changeling.Components;
 using Content.Server.Animals.Components;
 using Content.Shared.Animals;
+using Content.Shared.FixedPoint;
+using Content.Shared._Starlight.Changeling;
 #endregion Starlight
 
 namespace Content.Server.Zombies;
@@ -62,23 +66,24 @@ namespace Content.Server.Zombies;
 /// </remarks>
 public sealed partial class ZombieSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IBanManager _ban = default!;
-    [Dependency] private readonly IChatManager _chatMan = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly NpcFactionSystem _faction = default!;
-    [Dependency] private readonly GhostSystem _ghost = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly ServerInventorySystem _inventory = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly NameModifierSystem _nameMod = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly LanguageSystem _language = default!; // Starlight-edit: Languages
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IBanManager _ban = default!;
+    [Dependency] private IChatManager _chatMan = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private NpcFactionSystem _faction = default!;
+    [Dependency] private GhostSystem _ghost = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private ServerInventorySystem _inventory = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private NameModifierSystem _nameMod = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private LanguageSystem _language = default!; // Starlight-edit: Languages
+    [Dependency] private MobThresholdSystem _mobThreshold = default!; // Starlight-start: zombie HP buff
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -159,8 +164,8 @@ public sealed partial class ZombieSystem
         EnsureComp<LanguageSpeakerComponent>(target, out var speaker);
         EnsureComp<RestoreLanguageCacheOnCloneComponent>(target);
 
-        knowledge.SpokenLanguages.Clear();
-        knowledge.UnderstoodLanguages.Clear();
+        knowledge.Speaks.Clear();
+        knowledge.Understands.Clear();
 
         speaker.SpokenLanguages.Clear();
         speaker.UnderstoodLanguages.Clear();
@@ -168,6 +173,10 @@ public sealed partial class ZombieSystem
         _language.AddLanguage(target, "Zombie");
 
         RemComp<VampireComponent>(target); //De-vamps Vampire zombies
+        RemComp<ChangelingComponent>(target); //De-lings Changeling zombies
+        RemComp<ChangelingIdentityComponent>(target); //De-lings Changeling zombies
+        RemComp<ChangelingDevourComponent>(target); //De-lings Changeling zombies
+        RemComp<ChangelingTransformComponent>(target); //De-lings Changeling zombies
         RemComp<EggLayerComponent>(target); //Prevent infinite egg production
         RemComp<UdderComponent>(target); //Prevent infinite milk production
         RemComp<WoolyComponent>(target); //Prevent infinite wool production
@@ -277,6 +286,22 @@ public sealed partial class ZombieSystem
         //Heals the zombie from all the damage it took while human
         _damageable.ClearAllDamage(target);
         _mobState.ChangeMobState(target, MobState.Alive);
+
+        // Starlight-start: zombie HP buff — add ThresholdBoost HP to all non-alive thresholds
+        if (TryComp<MobThresholdsComponent>(target, out var threshComp))
+        {
+            // Capture all values before any writes; SetMobStateThreshold mutates the
+            // dictionary in-place and could clobber the next state's key mid-loop.
+            var boosts = new List<(FixedPoint2 NewValue, MobState State)>();
+            foreach (var state in new[] { MobState.Critical, MobState.Dead })
+            {
+                if (_mobThreshold.TryGetThresholdForState(target, state, out var cur, threshComp))
+                    boosts.Add((cur.Value + zombiecomp.ThresholdBoost, state));
+            }
+            foreach (var (newValue, state) in boosts)
+                _mobThreshold.SetMobStateThreshold(target, newValue, state, threshComp);
+        }
+        // Starlight-end
 
         _faction.ClearFactions(target, dirty: false);
         _faction.AddFaction(target, ZombieFaction);

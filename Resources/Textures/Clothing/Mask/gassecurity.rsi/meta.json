@@ -41,6 +41,11 @@
     {
       "name": "equipped-MASK-vulpkanin",
       "directions": 4
+    },
+    {
+      "name": "equipped-MASK-dog",
+      "copyright": "Edited by SevenShades for Starlight",
+      "directions": 4
     }
   ]
 }

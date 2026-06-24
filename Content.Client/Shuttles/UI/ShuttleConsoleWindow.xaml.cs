@@ -13,7 +13,7 @@ namespace Content.Client.Shuttles.UI;
 public sealed partial class ShuttleConsoleWindow : FancyWindow,
     IComputerWindow<ShuttleBoundUserInterfaceState>
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
+    [Dependency] private IEntityManager _entManager = default!;
 
     private ShuttleConsoleMode _mode = ShuttleConsoleMode.Nav;
 
@@ -142,8 +142,8 @@ public sealed partial class ShuttleConsoleWindow : FancyWindow,
         MapContainer.SetShuttle(coordinates?.EntityId);
         MapContainer.SetConsole(owner);
 
-        NavContainer.UpdateState(cState.NavState);
+        NavContainer.UpdateState(cState.NavState, cState.DockingPortStates); // Starlight: +dockingPortStates
         MapContainer.UpdateState(cState.MapState);
-        DockContainer.UpdateState(coordinates?.EntityId, cState.DockState);
+        DockContainer.UpdateState(coordinates?.EntityId, cState.DockingPortStates); // Starlight: +dockingPortStates
     }
 }

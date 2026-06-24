@@ -1,0 +1,56 @@
+- type: entity
+  id: DemonicPitchfork
+  parent: [BaseItem, BaseMajorContraband]
+  name: bident
+  description: the faded text "bloodedge the griff-" is engraved along the side.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/devilfork.rsi
+    state: icon
+  - type: EmbeddableProjectile
+    offset: -0.15,0.0
+  - type: ThrowingAngle
+    angle: 225
+  - type: LandAtCursor
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 10
+        Heat: 7
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 7
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 17
+        Heat: 7
+  - type: Item
+    size: Large
+  - type: UseDelay
+  - type: Appearance

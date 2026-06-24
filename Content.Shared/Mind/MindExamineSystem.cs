@@ -4,15 +4,18 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+#region Starlight
+using Content.Shared._Starlight.Mind.Events;
+#endregion
 
 namespace Content.Shared.Mind;
 
-public sealed class MindExamineSystem : EntitySystem
+public sealed partial class MindExamineSystem : EntitySystem
 {
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
     public override void Initialize()
     {
@@ -23,6 +26,7 @@ public sealed class MindExamineSystem : EntitySystem
         SubscribeLocalEvent<MindExaminableComponent, MindAddedMessage>((e, ref _) => RefreshMindStatus(e.AsNullable()));
         SubscribeLocalEvent<MindExaminableComponent, MindRemovedMessage>((e, ref _) => RefreshMindStatus(e.AsNullable()));
         SubscribeLocalEvent<MindExaminableComponent, MobStateChangedEvent>((e, ref _) => RefreshMindStatus(e.AsNullable()));
+        SubscribeLocalEvent<MindExaminableComponent, MindUserIdChangedEvent>((e, ref _) => RefreshMindStatus(e.AsNullable())); // Starlight
 
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
@@ -32,6 +36,12 @@ public sealed class MindExamineSystem : EntitySystem
     {
         if (!args.IsInDetailsRange)
             return;
+
+        // Starlight Start
+        // This is important for corpses that went catatonic/out-of-PVS.
+        if (!_net.IsClient)
+            RefreshMindStatus(ent.AsNullable());
+        // Starlight End
 
         var message = ent.Comp.State switch
         {
@@ -100,20 +110,24 @@ public sealed class MindExamineSystem : EntitySystem
         // 3. Dead + Has Session: Player is dead but still connected
         // 4. Alive + No User ID: Entity is alive but has no mind attached to it
         // 5. Alive + No Session: Player disconnected while alive (SSD)
-
+        // Starlight edit Start
+        var state = MindState.None;
         if (dead && hasUserId == null)
-            ent.Comp.State = MindState.Irrecoverable;
+            state = MindState.Irrecoverable;
         else if (dead && !hasActiveSession)
-            ent.Comp.State = MindState.DeadSSD;
+            state = MindState.DeadSSD;
         else if (dead)
-            ent.Comp.State = MindState.Dead;
+            state = MindState.Dead;
         else if (hasUserId == null)
-            ent.Comp.State = MindState.Catatonic;
+            state = MindState.Catatonic;
         else if (!hasActiveSession)
-            ent.Comp.State = MindState.SSD;
-        else
-            ent.Comp.State = MindState.None;
+            state = MindState.SSD;
 
+        if (ent.Comp.State == state)
+            return;
+
+        ent.Comp.State = state;
+        // Starlight edit End
         Dirty(ent);
     }
 }

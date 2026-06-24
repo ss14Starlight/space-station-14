@@ -34,6 +34,8 @@
     interfaces:
       enum.FaxUiKey.Key:
         type: FaxBoundUi
+      enum.FaxMachineConfigureUiKey.Key: # Starlight
+        type: FaxMachineConfigureBoundUserInterface # Starlight
   - type: StationAiWhitelist
   - type: ApcPowerReceiver
     powerLoad: 250
@@ -76,46 +78,45 @@
 
 # Special
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineCentralCommandBase # Starlight
   id: FaxMachineCentcom
-  name: CentComm long range fax machine
-  suffix: CentCom
+  #name: long range fax machine # Starlight: Inherit name
+  suffix: "CC: Central Command" # Starlight
   components:
-  - type: Sprite
-    layers:
-      - state: icon
-        map: [ "base" ]
-        color: "#bfe3ff"
+  # Starlight: No Sprite override
   - type: FaxMachine
+    group: FaxGroupCentralCommand # Starlight
+    intrinsicGroup: FaxGroupCentralCommand # Starlight
+    order: 100 # Starlight
     name: "Central Command"
     notifyAdmins: true
 
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineSyndicateBase # Starlight
   id: FaxMachineSyndie
-  name: syndicate long range fax machine
-  suffix: Syndicate
+  #name: syndicate long range fax machine # Starlight: Inherit name
+  suffix: "Syndicate: ERR*?*%!" # Starlight
   components:
-  - type: Sprite
-    layers:
-      - state: icon
-        map: [ "base" ]
-        color: "#a3a3a3"
+  # Starlight: No Sprite override
   - type: FaxMachine
     name: "ERR*?*%!"
+    group: FaxGroupSyndicate # Starlight
+    order: 200 # Starlight
     responsePings: false
     notifyAdmins: true
   - type: Emagged
     emagType: Interaction
 
 - type: entity
-  parent: FaxMachineBase
+  parent: FaxMachineCommandBase # Starlight
   id: FaxMachineCaptain
-  name: captain long range fax machine
-  suffix: NukeCodes
+  #name: captain long range fax machine # Starlight: Inherit name
+  suffix: "CMD: Captain, NukeCodes" # Starlight
   components:
     - type: FaxMachine
-      name: "Captain's Office"
+      group: FaxGroupCommand # Starlight
+      order: 200 # Starlight
+      name: "Captain"
       receiveNukeCodes: true
     - type: StealTarget
       stealGroup: FaxMachineCaptain

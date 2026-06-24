@@ -10,6 +10,7 @@
   startingGear: ChemistGear
   icon: "JobIconChemist"
   supervisors: job-supervisors-cmo
+  displayWeight: 4 # Starlight
   access:
   - Medical
   - Chemistry
@@ -25,12 +26,9 @@
   equipment:
     # id: ChemistryPDA #Starlight
     ears: ClothingHeadsetMedical
-    # belt: ChemBag #Starlight
-    # pocket1: HandLabeler #Starlight
-    # eyes: ClothingEyesGlassesChemical #Starlight
-  #storage:
-    #back:
-    #- Stuff
+#    belt: ChemBag # Starlight start
+#    pocket1: HandLabeler
+#    eyes: ClothingEyesGlassesChemical # Starlight end
 
 - type: chameleonOutfit
   id: ChemistChameleonOutfit

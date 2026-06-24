@@ -1,0 +1,110 @@
+# Nuno cards
+- type: entity
+  parent: BasePlayingCardDeckBox
+  id: NunoCardDeckBox
+  name: box of playing cards
+  suffix: Nuno
+  components:
+  - type: Sprite
+    sprite: _Moffstation/Objects/Misc/Cards/card_nuno.rsi
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - NunoCardDeck
+
+- type: entity
+  parent: BasePlayingCardDeck
+  id: NunoCardDeck
+  name: deck of cards
+  suffix: Nuno
+  components:
+  - type: PlayingCardDeck
+    prototype: StandardNunoCards
+
+- type: playingCardDeck
+  parent: BaseNunoDeck
+  id: StandardNunoCards
+  sprite: _Moffstation/Objects/Misc/Cards/card_nuno.rsi
+
+
+# Base definitions
+- type: playingCardDeck
+  id: BaseNunoDeck
+  abstract: true
+  commonReverseLayers:
+  - state: singlecard_down_nuno
+  cardNameLoc: nuno-card-name
+  cardDescLoc: nuno-card-desc
+  cardReverseNameLoc: nuno-card-name-reverse
+  cardReverseDescLoc: nuno-card-desc-reverse
+  suitLoc: nuno-card-suit-name
+  cardValueLoc: nuno-card-value-name
+  cards:
+  - id: plus4
+    nameLoc: playing-card-plus4
+    count: 4
+  - id: wildcard
+    nameLoc: playing-card-wildcard
+    count: 4
+  - suit: NunoBlue
+  - suit: NunoGreen
+  - suit: NunoRed
+  - suit: NunoYellow
+
+- type: playingCardSuit
+  id: BaseNunoColor
+  abstract: true
+  cards:
+  - id: "plus2"
+    count: 2
+  - id: "reverse"
+    count: 2
+  - id: "skip"
+    count: 2
+  - id: "0"
+  - id: "9"
+    count: 2
+  - id: "8"
+    count: 2
+  - id: "7"
+    count: 2
+  - id: "6"
+    count: 2
+  - id: "5"
+    count: 2
+  - id: "4"
+    count: 2
+  - id: "3"
+    count: 2
+  - id: "2"
+    count: 2
+  - id: "1"
+    count: 2
+
+- type: playingCardSuit
+  parent: BaseNunoColor
+  id: NunoBlue
+  commonObverseLayers:
+  - state: background_blue
+  defaultObverseLayerState: "nuno{card}"
+
+- type: playingCardSuit
+  parent: BaseNunoColor
+  id: NunoGreen
+  commonObverseLayers:
+  - state: background_green
+  defaultObverseLayerState: "nuno{card}"
+
+- type: playingCardSuit
+  parent: BaseNunoColor
+  id: NunoRed
+  commonObverseLayers:
+  - state: background_red
+  defaultObverseLayerState: "nuno{card}"
+
+- type: playingCardSuit
+  parent: BaseNunoColor
+  id: NunoYellow
+  commonObverseLayers:
+  - state: background_yellow
+  defaultObverseLayerState: "nuno{card}"

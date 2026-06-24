@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Server.Humanoid.Markings.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -29,6 +28,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Traits;
+using Content.Server._Starlight.Humanoid;
 
 namespace Content.Server.Database
 {
@@ -574,7 +574,7 @@ namespace Content.Server.Database
             ImmutableArray<ImmutableArray<byte>>? modernHWIds,
             bool includeUnbanned);
 
-        public abstract Task AddServerBanAsync(ServerBanDef serverBan);
+        public abstract Task<int> AddServerBanAsync(ServerBanDef serverBan);
         public abstract Task AddServerUnbanAsync(ServerUnbanDef serverUnban);
 
         public async Task EditServerBan(int id, string reason, NoteSeverity severity, DateTimeOffset? expiration, Guid editedBy, DateTimeOffset editedAt)
@@ -844,10 +844,12 @@ namespace Content.Server.Database
 
             foreach (var ban in bans)
             {
+                if (ban.Id == null || ban.Network)
+                    continue;
                 db.DbContext.ServerBanHit.Add(new ServerBanHit
                 {
                     ConnectionId = connection,
-                    BanId = ban.Id!.Value
+                    BanId = ban.Id.Value
                 });
             }
 

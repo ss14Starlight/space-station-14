@@ -15,12 +15,14 @@
   - Wizard
   # Starlight-start
   - Abductors
-  - Vampires
-  - TerrorSpiders
   - Brighteye
-  - SELFAgent
-  # Starlight-end
   - CosmicCult # Stellar - Cosmic Cult
+  - Devil
+  - SELFAgent
+  - TerrorSpiders
+  - Vampires
+  # Starlight-end
+  - Eeeps # imp
 
 - type: guideEntry
   id: Traitors
@@ -66,6 +68,10 @@
   id: Wizard
   name: guide-entry-wizard
   text: "/ServerInfo/Guidebook/Antagonist/Wizard.xml"
+  # Moffstation - Start - Wizard Duelist
+  children:
+  - WizardDuel
+  # Moffstation - End
 
 - type: guideEntry
   id: Xenoborgs

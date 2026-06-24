@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
-using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Station;
 
-public sealed class StationCrewCountSystem : EntitySystem
+public sealed partial class StationCrewCountSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager  = default!;
+    [Dependency] private IPlayerManager _playerManager  = default!;
 
     /// <summary>
     /// Gets the total crew count in the round.

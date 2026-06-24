@@ -1,0 +1,246 @@
+# Generic
+
+- type: loadoutGroup
+  id: MedicalMask
+  name: loadout-group-medical-mask
+  minLimit: 0
+  loadouts:
+  - SterileMask
+
+- type: loadoutGroup
+  id: MedicalBackpack
+  name: loadout-group-medical-doctor-backpack
+  loadouts:
+  - MedicalDoctorBackpack
+  - MedicalDoctorSatchel
+  - MedicalDoctorDuffel
+  - LeatherSatchel # 🌟Starlight🌟
+
+- type: loadoutGroup
+  id: MedicalShoes
+  name: loadout-group-medical-doctor-shoes
+  minLimit: 0 # 🌟Starlight🌟
+  defaultSelected: 1 # 🌟Starlight🌟
+  loadouts:
+  - WhiteShoes
+  - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
+
+- type: loadoutGroup
+  id: SurvivalMedical
+  name: loadout-group-survival-medical
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenMedical
+  - EmergencyOxygenMedical
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyElfOxygenMedical # 🌟Starlight🌟
+  - EmergencyNonBreatherMedical # 🌟Starlight🌟
+  - EmergencyIPC # 🌟Starlight🌟
+  - EmergencyCheeseMedical # Starlight
+
+
+# Chief Medical Officer
+- type: loadoutGroup
+  id: ChiefMedicalOfficerHead
+  name: loadout-group-chief-medical-officer-head
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerBeret
+  - CMOMedicalHeadMirror
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerJumpsuit
+  name: loadout-group-chief-medical-officer-jumpsuit
+  loadouts:
+  - ChiefMedicalOfficerJumpsuit
+  - ChiefMedicalOfficerJumpskirt
+  - ChiefMedicalOfficerTurtleneckJumpsuit
+  - ChiefMedicalOfficerTurtleneckJumpskirt
+  - ChiefMedicalOfficerFormalSuit # DeltaV
+  - ChiefMedicalOfficerFormalSkirt # DeltaV
+  - ChiefMedicalOfficerVestSuit # DeltaV
+  - ChiefMedicalOfficerVestSkirt # DeltaV
+  - ChiefMedicalOfficerSummerSuit # DeltaV
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerOuterClothing
+  name: loadout-group-chief-medical-officer-outerclothing
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerLabCoat
+  - ChiefMedicalOfficerLabCoatLong # DeltaV
+  - ChiefMedicalOfficerWintercoat
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerNeck
+  name: loadout-group-chief-medical-officer-neck
+  minLimit: 0
+  loadouts:
+  - ChiefMedicalOfficerCloak
+  - ChiefMedicalOfficerMantle
+  - ChiefMedicalOfficerShawl # DeltaV
+  - ChiefMedicalOfficerOverShoulder # DeltaV
+
+- type: loadoutGroup
+  id: ChiefMedicalOfficerShoes
+  name: loadout-group-chief-medical-officer-shoes
+  minLimit: 0 # 🌟Starlight🌟
+  defaultSelected: 1 # 🌟Starlight🌟
+  loadouts:
+  - BrownShoes
+  - WhiteShoes # 🌟Starlight🌟
+  - MedicalWinterBoots
+  - Heels # 🌟Starlight🌟
+  - LaceupShoes # 🌟Starlight🌟
+  - LeatherShoes # 🌟Starlight🌟
+
+# Medical Doctor
+
+- type: loadoutGroup
+  id: MedicalDoctorHead
+  name: loadout-group-medical-doctor-head
+  minLimit: 0
+  loadouts:
+  - MedicalBeret
+  - SeniorPhysicianBeret
+  - MedicalHeadMirror
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - BlackSurgeryCap # Delta V
+  - CyanSurgeryCap # Delta V
+  - PinkSurgeryCap # Delta V
+  - RainbowSurgeryCap # Delta V
+  - WhiteSurgeryCap # Delta V
+  - NurseHat
+
+- type: loadoutGroup
+  id: MedicalDoctorJumpsuit
+  name: loadout-group-medical-doctor-jumpsuit
+  loadouts:
+  - MedicalDoctorJumpsuit
+  - MedicalDoctorJumpskirt
+  - SeniorPhysicianJumpsuit
+  - SeniorPhysicianJumpskirt
+  - MedicalBlueScrubs
+  - MedicalGreenScrubs
+  - MedicalPurpleScrubs
+  - MedicalBlackScrubs # DeltaV
+  - MedicalCyanScrubs # DeltaV
+  - MedicalPinkScrubs # DeltaV
+  - MedicalRainbowScrubs # DeltaV
+  - MedicalWhiteScrubs # DeltaV
+  # afterlight start
+  - NurseJumpskirt
+  - CoronerJumpskirt
+  - CoronerJumpsuit
+  - CoronerJumpsuitAlt
+  # afterlight end
+
+- type: loadoutGroup
+  id: MedicalDoctorOuterClothing
+  name: loadout-group-medical-doctor-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoat
+  - MedicalDoctorWintercoat
+  - SeniorPhysicianLabCoat
+  - WindbreakerMedical # 🌟Starlight🌟
+  - RegularLabCoatLong # DeltaV
+  - CoronerLabCoatLong # Starlight
+
+- type: loadoutGroup
+  id: MedicalDoctorPDA
+  name: loadout-group-medical-doctor-id
+  loadouts:
+  - MedicalDoctorPDA
+  - SeniorPhysicianPDA
+
+# Medical Intern
+
+- type: loadoutGroup
+  id: MedicalInternJumpsuit
+  name: loadout-group-medical-intern-jumpsuit
+  loadouts:
+  - WhiteJumpsuit
+  - WhiteJumpskirt
+
+# Chemist
+
+- type: loadoutGroup
+  id: ChemistJumpsuit
+  name: loadout-group-chemist-jumpsuit
+  loadouts:
+  - ChemistJumpsuit
+  - ChemistJumpskirt
+  - SeniorChemistJumpsuit # Starlight
+  - SeniorChemistJumpskirt # starlight
+
+- type: loadoutGroup
+  id: ChemistOuterClothing
+  name: loadout-group-chemist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RegularLabCoat
+  - ChemistLabCoat
+  - ChemistWintercoat
+  - SeniorChemistLabCoat # Starlight
+  - SeniorChemistWintercoat # Starlight
+  - RegularLabCoatLong # DeltaV
+  - ChemistLabCoatLong # DeltaV
+  - SeniorChemistLabCoatLong # Starlight
+
+- type: loadoutGroup
+  id: ChemistBackpack
+  name: loadout-group-chemist-backpack
+  loadouts:
+  - ChemistBackpack
+  - ChemistSatchel
+  - ChemistDuffel
+  - SeniorChemistBackpack # Starlight
+  - SeniorChemistSatchel # Starlight
+  - SeniorChemistDuffel # Starlight
+  - LeatherSatchel # starlight
+
+# Paramedic
+
+- type: loadoutGroup
+  id: ParamedicHead
+  name: loadout-group-paramedic-head
+  minLimit: 0
+  loadouts:
+  - ParamedicHead
+
+- type: loadoutGroup
+  id: ParamedicJumpsuit
+  name: loadout-group-paramedic-jumpsuit
+  loadouts:
+  - ParamedicJumpsuit
+  - ParamedicJumpskirt
+  - SeniorParamedicJumpsuit # Starlight start
+  - SeniorParamedicJumpskirt # starlight end
+
+- type: loadoutGroup
+  id: ParamedicOuterClothing
+  name: loadout-group-paramedic-outerclothing
+  minLimit: 0
+  loadouts:
+  - ParamedicWindbreaker
+  - ParamedicWintercoat
+  - ParamedicJacket # DeltaV
+
+- type: loadoutGroup
+  id: ParamedicShoes
+  name: loadout-group-paramedic-shoes
+  minLimit: 0 # Starlight
+  defaultSelected: 1 # Starlight
+  loadouts:
+  - BlueShoes
+  - WhiteShoes
+  - MedicalWinterBoots
+  - Heels # Starlight
+  - HighHeelBoots # Starlight

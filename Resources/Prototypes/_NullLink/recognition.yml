@@ -2,6 +2,90 @@
   id: STARLIGHT
   recognition:
   # DB1
+    alpha:
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+    beta:
+      - STARLIGHT.alpha
+      - STARLIGHT.gamma
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+    gamma:
+      - STARLIGHT.alpha
+      - STARLIGHT.beta
+      - STARLIGHT.delta
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+    delta:
+      - STARLIGHT.alpha
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+    epsilon:
+      - STARLIGHT.alpha
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+  # debug
+    test:
+      - STARLIGHT.alpha
+      - STARLIGHT.beta
+      - STARLIGHT.gamma
+      - STARLIGHT.delta
+      - STARLIGHT.epsilon
+      - TRIESTEPORT.main
+      - AFTERLIGHT.main
+      - CLOVER.main
+
+- type: serverPlaytimeRecognition
+  id: TRIESTEPORT
+  recognition:
+    main: [] #TODO @pixeltheaertist
+      #- STARLIGHT.alpha
+      #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
+      #- AFTERLIGHT.main
+      #- CLOVER.main
+
+- type: serverPlaytimeRecognition
+  id: AFTERLIGHT
+  recognition:
+    main: [] #TODO @drsmugleaf
+      #- STARLIGHT.alpha
+      #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
+      #- TRIESTEPORT.main
+      #- CLOVER.main
+
+- type: serverPlaytimeRecognition
+  id: CLOVER
+  recognition:
+    main: [] #TODO @ai_ivo
+      #- STARLIGHT.alpha
+      #- STARLIGHT.delta
+      #- STARLIGHT.epsilon
+      #- TRIESTEPORT.main
+      #- AFTERLIGHT.main
+
+# Bans
+
+- type: serverBanRecognition
+  id: STARLIGHT
+  recognition:
+  # DB1
     alfa:
       - STARLIGHT.beta
       - STARLIGHT.gamma
@@ -50,30 +134,30 @@
       - AFTERLIGHT.main
       - CLOVER.main
 
-- type: serverPlaytimeRecognition
+- type: serverBanRecognition
   id: TRIESTEPORT
   recognition:
-    main: #TODO @pixeltheaertist
+    main: [] #TODO @pixeltheaertist
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon
       #- AFTERLIGHT.main
       #- CLOVER.main
 
-- type: serverPlaytimeRecognition
+- type: serverBanRecognition
   id: AFTERLIGHT
   recognition:
-    main: #TODO @drsmugleaf
+    main: [] #TODO @drsmugleaf
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon
       #- TRIESTEPORT.main
       #- CLOVER.main
 
-- type: serverPlaytimeRecognition
+- type: serverBanRecognition
   id: CLOVER
   recognition:
-    main: #TODO @ai_ivo
+    main: [] #TODO @ai_ivo
       #- STARLIGHT.alfa
       #- STARLIGHT.delta
       #- STARLIGHT.epsilon

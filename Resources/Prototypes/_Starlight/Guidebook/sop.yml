@@ -2,6 +2,7 @@
   id: SOP
   name: guide-entry-sl-sop-intro
   text: "/ServerInfo/Guidebook/StarlightSOP/sop-intro.xml"
+  priority: 12
   children:
     - general-sop
     - departmental-sop
@@ -403,6 +404,8 @@
   name: guide-entry-sl-nano-trasen-employee-sop-nt-rep
   text: "/ServerInfo/Guidebook/StarlightSOP/NanoTrasenEmployeeSOP/nano-trasen-employee-sop-nt-rep.xml"
   priority: 1
+  children:
+      - CombinationLocks
 
 - type: guideEntry
   id: nano-trasen-employee-sop-bso
@@ -783,6 +786,7 @@
   priority: 2
   children:
     - service-sop-headofpersonnel
+    - service-sop-lawyer
 
 
 - type: guideEntry
@@ -790,3 +794,9 @@
   name: guide-entry-sl-service-sop-headofpersonnel
   text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/HeadOfPersonnel.xml"
   priority: 1
+
+- type: guideEntry
+  id: service-sop-lawyer
+  name: guide-entry-sl-service-sop-lawyer
+  text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Lawyer.xml"
+  priority: 2

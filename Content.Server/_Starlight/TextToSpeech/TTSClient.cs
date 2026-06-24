@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Prometheus;
 using Robust.Shared.Configuration;
 using StackExchange.Redis;
@@ -11,9 +11,9 @@ using EnumeratorCancellation = System.Runtime.CompilerServices.EnumeratorCancell
 
 namespace Content.Server._Starlight.TextToSpeech;
 
-public sealed class TTSClient : ITTSClient
+public sealed partial class TTSClient : ITTSClient
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     private const string Queue = "tts_jobs";
     private const int TimeoutS = 5;

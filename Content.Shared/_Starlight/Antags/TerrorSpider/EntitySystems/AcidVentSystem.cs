@@ -1,12 +1,12 @@
 using Content.Shared.Tag;
 using Content.Shared.Tools.Systems;
 
-namespace Content.Shared._Starlight.Antags.TerrorSpider;
+namespace Content.Shared._Starlight.Antags.TerrorSpider.EntitySystems;
 
-public sealed class AcidVentSystem : EntitySystem
+public sealed partial class AcidVentSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly WeldableSystem _weldable = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private WeldableSystem _weldable = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<AcidVentEvent>(OnAcidVent);

@@ -1,0 +1,83 @@
+- type: entity
+  id: BaseTreeDry
+  description: Yep, it's a tree.
+  abstract: true
+  components:
+  - type: SpriteFade
+  - type: Clickable
+  - type: Sprite
+    noRot: true
+    sprite: _Starlight/Objects/Decoration/DryNature/trees.rsi
+    drawdepth: Overdoors
+    offset: 0,0.9
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,0.4,0.1,-0.1"
+          #1st&3rd number controls West and East bounds. 2nd&4th control North and South bounds.
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 4
+
+
+- type: entity
+  parent: BaseTreeDry
+  id: DryTreeA
+  name: Dry Tree
+  components:
+  - type: Sprite
+    state: drytreeA
+
+- type: entity
+  parent: BaseTreeDry
+  id: DryTreeB
+  name: Dry Tree
+  components:
+  - type: Sprite
+    state: drytreeB
+
+- type: entity
+  parent: BaseTreeDry
+  id: DryTreeC
+  name: Dry Tree
+  components:
+  - type: Sprite
+    state: drytreeC

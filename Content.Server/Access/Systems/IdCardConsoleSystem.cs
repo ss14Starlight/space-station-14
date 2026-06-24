@@ -26,19 +26,19 @@ using Robust.Shared.Random;
 namespace Content.Server.Access.Systems;
 
 [UsedImplicitly]
-public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
+public sealed partial class IdCardConsoleSystem : SharedIdCardConsoleSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly StationRecordsSystem _record = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly AccessSystem _access = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private StationRecordsSystem _record = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private AccessSystem _access = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
 
     public override void Initialize()
     {
@@ -219,7 +219,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         string newFullName,
         string newJobTitle,
         List<ProtoId<AccessLevelPrototype>> newAccessList,
-        ProtoId<JobPrototype> newJobProto,
+        ProtoId<JobPrototype>? newJobProto, // Starlight: Nullable
         EntityUid player,
         IdCardConsoleComponent? component = null)
     {
@@ -243,7 +243,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         if ((!TryComp<StationRecordKeyStorageComponent>(targetId, out var keyStorage)
             || keyStorage.Key is not { } key
             || !_record.TryGetRecord<GeneralStationRecord>(key, out _))
-            && newJobProto != string.Empty)
+            && newJobProto != null) // Starlight: Nullable instead
         {
             Comp<IdCardComponent>(targetId).JobPrototype = newJobProto;
         }
@@ -254,7 +254,7 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         var allGroupTags = new HashSet<ProtoId<AccessLevelPrototype>>();
         foreach (var group in component.AccessGroups.ToList())
         {
-            if (_prototype.TryIndex<AccessGroupPrototype>(group, out var groupPrototype))
+            if (_prototype.TryIndex(group, out var groupPrototype))
                 allGroupTags.UnionWith(groupPrototype.Tags);
         }
 

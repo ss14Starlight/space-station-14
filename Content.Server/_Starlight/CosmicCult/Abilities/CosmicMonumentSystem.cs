@@ -1,34 +1,32 @@
 using System.Numerics;
 using Content.Server.Actions;
 using Content.Server.Popups;
-using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._Starlight.CosmicCult.Components;
 using Content.Shared._Starlight.CosmicCult;
 using Content.Shared.Maps;
-using Content.Shared.Station.Components;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Content.Shared._Starlight.NullSpace;
+using Content.Shared._Starlight.NullSpace.Components;
 
 namespace Content.Server._Starlight.CosmicCult.Abilities;
 
-public sealed class CosmicMonumentSystem : EntitySystem
+public sealed partial class CosmicMonumentSystem : EntitySystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly CosmicCultRuleSystem _cultRule = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly MonumentSystem _monument = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private CosmicCultRuleSystem _cultRule = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private MonumentSystem _monument = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private StationSystem _station = default!;
 
-    private static readonly EntProtoId MonumentCollider = "MonumentCollider";
-    private static readonly EntProtoId MonumentCosmicCultMoveEnd = "MonumentCosmicCultMoveEnd";
-    private static readonly EntProtoId MonumentCosmicCultMoveStart = "MonumentCosmicCultMoveStart";
+    private static readonly EntProtoId _monumentCollider = "MonumentCollider";
+    private static readonly EntProtoId _monumentCosmicCultMoveEnd = "MonumentCosmicCultMoveEnd";
+    private static readonly EntProtoId _monumentCosmicCultMoveStart = "MonumentCosmicCultMoveStart";
 
     public override void Initialize()
     {
@@ -59,7 +57,7 @@ public sealed class CosmicMonumentSystem : EntitySystem
 
         _actions.RemoveAction(uid.Owner, uid.Comp.CosmicMonumentPlaceActionEntity);
 
-        Spawn(MonumentCollider, pos);
+        Spawn(_monumentCollider, pos);
         var monument = Spawn(uid.Comp.MonumentPrototype, pos);
 
         _cultRule.TransferCultAssociation(uid, monument);
@@ -83,14 +81,14 @@ public sealed class CosmicMonumentSystem : EntitySystem
         }
 
         //spawn the destination effect first because we only need one
-        var destEnt = Spawn(MonumentCosmicCultMoveEnd, pos);
+        var destEnt = Spawn(_monumentCosmicCultMoveEnd, pos);
         var destComp = EnsureComp<MonumentMoveDestinationComponent>(destEnt);
         destComp.Monument = cult.Comp.MonumentInGame;
         var coords = Transform(cult.Comp.MonumentInGame).Coordinates;
-        Spawn(MonumentCollider, pos); //spawn a new collider
+        Spawn(_monumentCollider, pos); //spawn a new collider
 
-        Spawn(MonumentCosmicCultMoveStart, coords);
-        Spawn(MonumentCollider, Transform(cult.Comp.MonumentInGame).Coordinates); //spawn a new collider
+        Spawn(_monumentCosmicCultMoveStart, coords);
+        Spawn(_monumentCollider, Transform(cult.Comp.MonumentInGame).Coordinates); //spawn a new collider
 
         _monument.PhaseOutMonument(cult.Comp.MonumentInGame);
         destComp.PhaseInTimer = cult.Comp.MonumentInGame.Comp.PhaseOutTimer + TimeSpan.FromSeconds(0.75);
@@ -131,7 +129,7 @@ public sealed class CosmicMonumentSystem : EntitySystem
         var station = _station.GetStationInMap(xform.MapID);
         EntityUid? stationGrid = null;
         if (station is { } stationUid)
-            stationGrid = _station.GetLargestGrid((stationUid, (StationDataComponent?) null));
+            stationGrid = _station.GetLargestGrid((stationUid, null));
 
         if (stationGrid is not null && stationGrid != xform.GridUid)
         {

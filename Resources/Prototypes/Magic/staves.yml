@@ -65,6 +65,7 @@
   - type: Tag
     tags:
     - WizardWand
+  - type: EorgPreventRangedInteract # Starlight
 
 
 - type: entity

@@ -4,7 +4,7 @@
   bodyPart: Tail
   markingCategory: Tail
   waggingId: FelionoidTailAnimated
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: tail_behind
@@ -15,7 +15,7 @@
   bodyPart: Tail
   markingCategory: Tail
   staticId: FelionoidTail
-  speciesRestriction: [Felionoid]
+  speciesRestriction: [Felionoid, ProtoFelionoid]
   sprites:
     - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
       state: tail_wagging
@@ -26,7 +26,7 @@
 #  id: FelionoidTailTipAnimated
 #  bodyPart: Tail
 #  markingCategory: Tail
-#  speciesRestriction: [Felionoid]
+#  speciesRestriction: [Felionoid, ProtoFelionoid]
 #  sprites:
 #    - sprite: _Starlight/Mobs/Customization/Felionoid/parts.rsi
 #      state: tail_base_wagging

@@ -7,10 +7,10 @@ using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 namespace Content.Client.Mech;
 
 /// <inheritdoc/>
-public sealed class MechSystem : SharedMechSystem
+public sealed partial class MechSystem : SharedMechSystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -43,9 +43,6 @@ public sealed class MechSystem : SharedMechSystem
 
         if (args.Sprite.LayerMapTryGet(MechVisualLayers.Light, out var lightId) && args.Sprite.TryGetLayer(lightId, out var lightLayer) && _appearance.TryGetData<bool>(uid, MechVisuals.Light, out var light, args.Component))
             lightLayer.Visible = light;
-
-        if (args.Sprite.LayerMapTryGet(MechVisualLayers.Siren, out var sirenId) && args.Sprite.TryGetLayer(sirenId, out var sirenLayer) && _appearance.TryGetData<bool>(uid, MechVisuals.Siren, out var siren, args.Component))
-            sirenLayer.Visible = siren;
 
         _sprite.LayerSetRsiState((uid, args.Sprite), MechVisualLayers.Base, state);
         _sprite.SetDrawDepth((uid, args.Sprite), (int)drawDepth);

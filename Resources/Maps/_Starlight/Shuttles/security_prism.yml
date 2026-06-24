@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Grid
-  engineVersion: 272.0.0
+  engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 02/03/2026 02:52:53
-  entityCount: 168
+  time: 05/20/2026 02:04:38
+  entityCount: 169
 maps: []
 grids:
 - 1
@@ -632,6 +632,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,19.5
       parent: 1
+- proto: ClosetFireFilled
+  entities:
+  - uid: 167
+    components:
+    - type: Transform
+      pos: -0.5,17.5
+      parent: 1
 - proto: ComputerIFF
   entities:
   - uid: 80
@@ -782,6 +789,13 @@ entities:
     - type: Transform
       pos: -0.5,13.5
       parent: 1
+- proto: HandHeldMassScanner
+  entities:
+  - uid: 169
+    components:
+    - type: Transform
+      pos: 2.46874,15.449656
+      parent: 1
 - proto: LightBulbCrystalBlue
   entities:
   - uid: 103
@@ -796,6 +810,13 @@ entities:
       parent: 104
     - type: Physics
       canCollide: False
+- proto: LockerEvacRepairFilled
+  entities:
+  - uid: 166
+    components:
+    - type: Transform
+      pos: 2.5,17.5
+      parent: 1
 - proto: PlastitaniumWindow
   entities:
   - uid: 106
@@ -1231,18 +1252,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 3.5,18.5
-      parent: 1
-  - uid: 166
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,17.5
-      parent: 1
-  - uid: 167
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,17.5
       parent: 1
 - proto: WindoorSecureArmoryLocked
   entities:

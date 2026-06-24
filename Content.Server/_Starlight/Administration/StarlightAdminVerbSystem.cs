@@ -13,14 +13,12 @@ namespace Content.Server._Starlight.Administration;
 
 public sealed partial class StarlightAdminVerbSystem : EntitySystem
 {
-    [Dependency] private readonly AntagSelectionSystem _antagSelection = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!;
+    [Dependency] private AntagSelectionSystem _antagSelection = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private AutoDiscordLogSystem _autolog = default!;
 
     public override void Initialize()
-    {
-        SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
-    }
+        => SubscribeLocalEvent<GetVerbsEvent<Verb>>(GetVerbs);
 
     private void GetVerbs(GetVerbsEvent<Verb> args)
     {
@@ -46,7 +44,9 @@ public sealed partial class StarlightAdminVerbSystem : EntitySystem
             Act = () =>
             {
                 _antagSelection.ForceMakeAntag<CosmicCultRuleComponent>(targetPlayer, "CosmicCult");
-                _autolog.LogToDiscord(string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")), player.Name); //Starlight
+                _autolog.LogToDiscord(
+                    string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),
+                    player.Name);
             },
             Impact = LogImpact.High,
             Message = string.Join(": ", cosmicCultName, Loc.GetString("admin-verb-make-cosmiccultist")),

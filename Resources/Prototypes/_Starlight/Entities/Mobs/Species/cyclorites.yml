@@ -15,8 +15,6 @@
   - type: Icon
     sprite: _Starlight/Mobs/Species/Cyclorite/parts.rsi
     state: cyclorite
-  # - type: CycloriteVision
-  - type: NightVision
   - type: Thirst
   - type: Butcherable
     butcheringType: Spike
@@ -89,3 +87,6 @@
     knockdownDamageThreshold: 10
   - type: Stamina
     forceStandStamina: 20
+  - type: CombatMode
+    canDisarm: true
+    disarmFailChance: 0.5 # 50 stamina damage with 50% chance

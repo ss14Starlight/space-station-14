@@ -1,7 +1,7 @@
 ﻿using Content.Server._Starlight.Objectives.Components;
 using Content.Server._Starlight.Objectives.Events;
 using Content.Server._Starlight.Railroading;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
@@ -9,12 +9,12 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
-public sealed class DepartmentObjectiveSystem : EntitySystem
+public sealed partial class DepartmentObjectiveSystem : EntitySystem
 {
 
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly RailroadingSystem _railroad = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private RailroadingSystem _railroad = default!;
 
     public override void Initialize()
     {

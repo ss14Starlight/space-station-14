@@ -18,8 +18,9 @@
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned
-  supervisors: job-supervisors-centcom
+  supervisors: job-supervisors-nt-personnel
   canBeAntag: false
+  displayWeight: 4
   access:
     - Command
     - Bar
@@ -51,6 +52,7 @@
     - Paramedic
     - Mining
     - SalvageLead
+    - Debrief
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -62,7 +64,7 @@
     # id: BlueShieldPDA
     ears: ClothingHeadsetAltBSO # Starlight
     # belt: ClothingBeltBlueShieldWebbingFilled
-    pocket1: WeaponPistolSP8T
+    pocket1: WeaponPistolBlueguard
     pocket2: HandheldBSOCrewMonitor
   storage:
     back:

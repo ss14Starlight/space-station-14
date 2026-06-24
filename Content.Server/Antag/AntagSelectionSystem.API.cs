@@ -195,7 +195,13 @@ public sealed partial class AntagSelectionSystem
 
             foreach (var role in roles)
             {
-                if (humanoid.AntagPreferences.Contains(role))
+                // Starlight edit Start: RoleBans
+                var list = new List<ProtoId<AntagPrototype>> { role };
+
+                if (humanoid.AntagPreferences.Contains(role)
+                    && !_ban.IsRoleBanned(session, list)
+                    && _playTime.IsAllowed(session, list))
+                // Starlight edit End: Rolebans
                     return true;
             }
         }
@@ -261,7 +267,13 @@ public sealed partial class AntagSelectionSystem
 
             foreach (var antag in antagList)
             {
-                if (humanoid.AntagPreferences.Contains(antag))
+                // Starlight edit Start: RoleBans
+                var list = new List<ProtoId<AntagPrototype>> { antag };
+
+                if (humanoid.AntagPreferences.Contains(antag)
+                    && !_ban.IsRoleBanned(session, list)
+                    && _playTime.IsAllowed(session, list))
+                // Starlight edit End: RoleBans
                     return true;
             }
         }

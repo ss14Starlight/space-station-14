@@ -3,6 +3,7 @@
   id: NuclearBomb
   name: nuclear fission explosive
   description: You probably shouldn't stick around to see if this is armed.
+  suffix: ROUND ENDING # Starlight
   components:
   - type: Transform
     anchored: true
@@ -122,7 +123,7 @@
 - type: entity
   parent: NuclearBomb
   id: NuclearBombUnanchored
-  suffix: unanchored
+  suffix: ROUND ENDING, unanchored # Starlight
   components:
   - type: Transform
     anchored: false

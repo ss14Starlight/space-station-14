@@ -1,22 +1,19 @@
-using Content.Client._Starlight.TTS;
 using Content.Shared.GameTicking;
 using Content.Shared.Radio;
-using Content.Shared.Starlight.TextToSpeech;
-using Robust.Client.Player;
+using Content.Shared._Starlight.TextToSpeech;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.TextToSpeech;
 
-public sealed class TextToSpeechStreamSystem : EntitySystem
+public sealed partial class TextToSpeechStreamSystem : EntitySystem
 {
     protected override string SawmillName => "tts";
 
     private readonly Dictionary<Guid, TTSStream> _streams = [];
     private readonly HashSet<ProtoId<RadioChannelPrototype>> _mutedChannels = [];
 
-    [Dependency] private readonly TextToSpeechSystem _tts = default!;
+    [Dependency] private TextToSpeechSystem _tts = default!;
 
     public override void Initialize()
     {

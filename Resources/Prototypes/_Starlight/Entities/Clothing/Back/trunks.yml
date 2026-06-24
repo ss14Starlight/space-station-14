@@ -42,7 +42,7 @@
   parent: [ClothingBackpackTrunk, BaseMinorContraband]
   id: ClothingBackpackTrunkSyndicate
   name: syndicate trunk
-  description: Huge, metal, reflective, and stylish. All the other syndicates will want to get their hands on this trunk.
+  description: Huge, metal, and stylish. All the other syndicates will want to get their hands on this trunk.
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Back/Trunks/syndicate.rsi
@@ -57,10 +57,6 @@
         Blunt: 15
     soundHit:
       collection: MetalThud
-  - type: Reflect  # It's a metal trunk
-    reflectProb: 0.2
-    reflects:
-      - Energy
 
 # Fashion-O-Mat
 - type: entity

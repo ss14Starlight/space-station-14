@@ -1,15 +1,17 @@
-namespace Content.Shared._Starlight.Language.Components.Translators;
+using Robust.Shared.GameStates;
+
+namespace Content.Shared._Starlight.Language.Components;
 
 /// <summary>
 ///   A translator that must be held in a hand or a pocket of an entity in order ot have effect.
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class HandheldTranslatorComponent : BaseTranslatorComponent
 {
     /// <summary>
     ///   Whether interacting with this translator toggles it on and off.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool ToggleOnInteract = true;
 
     /// <summary>
@@ -19,6 +21,6 @@ public sealed partial class HandheldTranslatorComponent : BaseTranslatorComponen
     /// <remarks>
     ///      This should generally be used for translators that translate speech between two languages.
     /// </remarks>
-    [DataField]
+    [DataField, AutoNetworkedField]
     public bool SetLanguageOnInteract = true;
 }

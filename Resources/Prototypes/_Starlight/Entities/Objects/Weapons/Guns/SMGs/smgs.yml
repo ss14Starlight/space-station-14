@@ -345,7 +345,7 @@
   name: WT550r
   parent: [WeaponSubMachineGunWt550, BaseGrandTheftContraband] # Starlight, grand theft
   id: WeaponSubMachineGunWt550r
-  description: A special red-colored limited edition of the WT550, the WT550r.  Designed by Nanotrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
+  description: A special red-colored limited edition of the WT550, the WT550r.  Designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550r.rsi

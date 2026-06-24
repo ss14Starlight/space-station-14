@@ -14,11 +14,11 @@ namespace Content.Server._Starlight.BreathOrgan.Systems;
 /// A system that adds a verb to refill organ gas tank,
 /// it is required as we cannot normally access organs in our body.
 /// </summary>
-public sealed class OrganGasTankFillSystem : EntitySystem
+public sealed partial class OrganGasTankFillSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmos = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedBodySystem _body = default!;
+    [Dependency] private AtmosphereSystem _atmos = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedBodySystem _body = default!;
 
     public override void Initialize()
     {
@@ -66,7 +66,7 @@ public sealed class OrganGasTankFillSystem : EntitySystem
 
     private void FillOrganGasTanks(
         Entity<GasCanisterComponent> canister,
-        EntityUid user,
+        EntityUid _,
         List<Entity<GasTankComponent, OrganGasTankFillableComponent, OrganComponent>> organTanks)
     {
         // Check if the canister has any moles

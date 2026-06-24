@@ -4,13 +4,13 @@ using System.Runtime.CompilerServices;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Administration.Systems;
+namespace Content.Shared._Starlight;
 
 public sealed partial class StarlightEntitySystem : EntitySystem
 {
-    [Robust.Shared.IoC.Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-    [Robust.Shared.IoC.Dependency] private readonly ILogManager _logManager = default!;
-    [Robust.Shared.IoC.Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Robust.Shared.IoC.Dependency] private SharedTransformSystem _transformSystem = default!;
+    [Robust.Shared.IoC.Dependency] private ILogManager _logManager = default!;
+    [Robust.Shared.IoC.Dependency] private IPrototypeManager _prototypes = default!;
 
     ISawmill _sawmill = default!;
 

@@ -1,3 +1,4 @@
+using Content.Shared._Starlight.Shuttles.BUIStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Shuttles.BUIStates;
@@ -9,9 +10,11 @@ namespace Content.Shared.Shuttles.BUIStates;
 public sealed class NavBoundUserInterfaceState : BoundUserInterfaceState
 {
     public NavInterfaceState State;
+    public DockingPortStates DockingPortStates; // Starlight
 
-    public NavBoundUserInterfaceState(NavInterfaceState state)
+    public NavBoundUserInterfaceState(NavInterfaceState state, DockingPortStates dockingPortStates) // Starlight: +dockingPortStates
     {
         State = state;
+        DockingPortStates = dockingPortStates; // Starlight
     }
 }

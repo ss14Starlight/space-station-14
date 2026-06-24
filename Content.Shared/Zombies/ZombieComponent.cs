@@ -1,5 +1,6 @@
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.FixedPoint;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
@@ -108,14 +109,17 @@ public sealed partial class ZombieComponent : Component
     [DataField("passiveHealing")]
     public DamageSpecifier PassiveHealing = new()
     {
+        // Starlight-start
         DamageDict = new ()
         {
-            { "Blunt", -0.7 }, // Starlight-edit
-            { "Slash", -0.5 }, // Starlight-edit
-            { "Piercing", -0.6 }, // Starlight-edit
-            { "Heat", -0.02 },
-            { "Shock", -0.05 } // Starlight-edit
+            { "Blunt", -0.7 },
+            { "Slash", -0.6 },
+            { "Piercing", -0.5 },
+            { "Heat", -0.2 },
+            { "Shock", -0.1 },
+            { "Bloodloss", -0.5 }
         }
+        // Starlight-end
     };
 
     /// <summary>
@@ -132,9 +136,11 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", -3 }, // Starlight-edit
-            { "Slash", -3 }, // Starlight-edit
-            { "Piercing", -3 } // Starlight-edit
+            // Starlight-start
+            { "Blunt", -3 },
+            { "Slash", -3 },
+            { "Piercing", -3 }
+            // Starlight-end
         }
     };
 
@@ -150,26 +156,6 @@ public sealed partial class ZombieComponent : Component
             { "Structural", 10 }
         }
     };
-
-    // starlight
-    /// <summary>
-    /// What bite damage should be assigned to this mob if it previously had a 0 damage attack (mice, moproaches, etc)
-    /// </summary>
-    [DataField]
-    public DamageSpecifier MinimumDamageOnBite = new()
-    {
-        DamageDict = new()
-        {
-            { "Slash", 10 },
-            { "Structural", 5 }
-        }
-    };
-
-    /// <summary>
-    ///     Starlight, this just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
-    /// </summary>
-    [DataField("BiteSpeed")]
-    public float BiteSpeed = 1.0f;
 
     /// <summary>
     ///     Path to antagonist alert sound.
@@ -194,4 +180,33 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     [DataField("newBloodReagents")]
     public Solution NewBloodReagents = new([new("ZombieBlood", 1)]);
+
+    #region Starlight
+
+    /// <summary>
+    /// What bite damage should be assigned to this mob if it previously had a 0 damage attack (mice, moproaches, etc)
+    /// </summary>
+    [DataField]
+    public DamageSpecifier MinimumDamageOnBite = new()
+    {
+        DamageDict = new()
+        {
+            { "Slash", 10 },
+            { "Structural", 5 }
+        }
+    };
+
+    /// <summary>
+    /// This just makes zombies always attack at the same speed as a base human (and also the first C# code I did eheee :3)
+    /// </summary>
+    [DataField("BiteSpeed")]
+    public float BiteSpeed = 1.0f;
+
+    /// <summary>
+    /// Amount to increase Critical and Dead mob state thresholds upon zombification.
+    /// </summary>
+    [DataField("thresholdBoost")]
+    public FixedPoint2 ThresholdBoost = 15;
+
+    #endregion
 }

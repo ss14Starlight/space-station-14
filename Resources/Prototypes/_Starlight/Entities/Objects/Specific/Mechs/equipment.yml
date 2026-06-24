@@ -1,8 +1,8 @@
 - type: entity
   id: MechEquipmentBorgPilot
   parent: [ BaseMechEquipment ]
-  name: exosuit AI control beacon
-  description: A device used to transmit exosuit data. Also allows active AI units to take control of said exosuit.
+  name: exosuit silicon control beacon
+  description: A device used to transmit exosuit data. Also allows active cyborg units to take control of said exosuit.
   components:
   - type: MechEquipment
     equipmentType: Passive
@@ -42,9 +42,6 @@
     containers:
       item-container: !type:Container
   - type: ChildBlockVision
-  - type: Tag
-    tags:
-    - PaddyMech
   - type: Retractor
     speed: 1.5
     startSound:
