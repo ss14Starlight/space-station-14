@@ -215,12 +215,13 @@
 
 - type: gamePreset
   id: Conspirators
-  name: conspirators-gamemode-title
-  description: conspirators-gamemode-description
+  name: conspirators-title
+  description: conspirators-description
   showInVote: True
   minPlayers: 17
   rules:
     - Conspirators
+    - ThiefGamerule
     - SubGamemodesRuleNoChangelings
     - BasicStationEventScheduler
     - MeteorSwarmScheduler

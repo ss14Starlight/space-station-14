@@ -6,6 +6,7 @@
   name: conspiracy-title
   description: conspiracy-description
   showInVote: false # secret
+  minPlayers: 17
   rules:
   - Conspirators
   - Traitor # 🌟Starlight🌟
