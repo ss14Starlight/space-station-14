@@ -194,7 +194,7 @@
   ingredient: FoodMeatPenguinCutlet
   group: TP14-Deep-Fry
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeEggBoiled
   name: boiled egg recipe
   result: FoodEggBoiled
