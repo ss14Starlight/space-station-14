@@ -7,3 +7,13 @@
   cost: 6000
   category: cargoproduct-category-name-security
   group: market
+
+- type: cargoProduct #crate containing one of each department guard equipmentr box
+  id: GuardBoxesCrate
+  icon:
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  product: CrateGuardBoxes
+  cost: 750
+  category: cargoproduct-category-name-security
+  group: market
