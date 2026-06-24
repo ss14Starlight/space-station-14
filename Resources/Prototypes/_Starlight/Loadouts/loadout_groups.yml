@@ -892,6 +892,7 @@
   loadouts:
     - SecurityRedNeckTie
     - SecurityDetNeckTie
+    - SecurityNeckPauldron
 
 # HoS/Ward Masks
 - type: loadoutGroup

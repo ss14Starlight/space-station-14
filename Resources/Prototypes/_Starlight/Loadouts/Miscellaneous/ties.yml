@@ -14,3 +14,11 @@
         proto: MasterDet
   equipment:
     neck: ClothingNeckTieDet
+
+- type: loadout
+  id: SecurityNeckPauldron
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: EliteOfficer
+  equipment:
+    neck: ClothingNeckPauldronSecurity

@@ -165,6 +165,11 @@
   - ClothingHeadHatWarden
   - ClothingUniformJumpsuitWarden
   - ClothingUniformJumpskirtWarden
+  - ClothingNeckPauldronEngineeringGuard # Starlight
+  - ClothingNeckPauldronMedicalGuard # Starlight
+  - ClothingNeckPauldronScienceGuard # Starlight
+  - ClothingNeckPauldronSupplyGuard # Starlight
+  - ClothingNeckPauldronServiceGuard # Starlight
 
 - type: latheRecipePack
   id: ClothingService

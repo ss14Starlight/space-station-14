@@ -41,7 +41,7 @@ loadout-group-blueshield-neck = Blueshield Neck
 loadout-group-blueshield-id = Blueshield ID
 
 # Security
-loadout-group-security-tie = Security tie
+loadout-group-security-tie = Security neck
 loadout-group-security-mask = Security mask
 loadout-group-security-mask-elite = Elite Security mask
 

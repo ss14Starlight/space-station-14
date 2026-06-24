@@ -23,3 +23,28 @@
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretDutyOfficer
   result: ClothingHeadHatBeretDutyOfficer
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckPauldronEngineeringGuard
+  result: ClothingNeckPauldronEngineeringGuard
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckPauldronMedicalGuard
+  result: ClothingNeckPauldronMedicalGuard
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckPauldronScienceGuard
+  result: ClothingNeckPauldronScienceGuard
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckPauldronSupplyGuard
+  result: ClothingNeckPauldronSupplyGuard
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckPauldronServiceGuard
+  result: ClothingNeckPauldronServiceGuard
