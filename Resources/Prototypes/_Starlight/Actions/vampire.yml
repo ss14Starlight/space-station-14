@@ -755,7 +755,7 @@
   parent: BaseAction
   id: ActionVampireOverwhelmingForce
   name: Overwhelming Force
-  description: When toggled you cannot be shoved, pushed or pulled. You automatically pry open powered doors at a blood cost.(15)
+  description: When toggled, you cannot be shoved, pushed or pulled. You automatically pry open powered doors at a blood cost. (15)
   components:
     - type: Action
       useDelay: 2 # Toggle
