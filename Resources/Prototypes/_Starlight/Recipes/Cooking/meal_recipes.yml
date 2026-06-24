@@ -186,7 +186,7 @@
     Water: 10
     Fat: 10
 
-- type: deepFryingRecipe # Kasern
+- type: deepFryingRecipe
   id: TP14RecipePenguinNugget
   name: penguin nugget recipe
   result: FoodBakedNugget
