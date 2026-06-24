@@ -1,0 +1,168 @@
+# Access Chips - Single-use items that grant department-specific accesses to ID cards
+# These chips can be used on ID cards to grant access levels related to their department
+
+- type: entity
+  parent: BaseItem
+  id: AccessChipBase
+  name: access chip
+  description: A single-use access chip. Use on an ID card to grant access. You shouldn't be able to see this item.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/potatoai_chip.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: AccessChip
+
+# Engineering Access Chip
+
+- type: entity
+  parent: AccessChipBase
+  id: AccessChipEngineering
+  name: engineering access chip
+  description: A single-use access chip. Use on an ID card to grant Engineering access. After use, the chip is destroyed.
+  components:
+  - type: AccessChip
+    grantedAccesses:
+    - Engineering
+
+# Medical Access Chip
+
+- type: entity
+  parent: AccessChipBase
+  id: AccessChipMedical
+  name: medical access chip
+  description: A single-use access chip. Use on an ID card to grant Medical access. After use, the chip is destroyed.
+  components:
+  - type: AccessChip
+    grantedAccesses:
+    - Medical
+
+# Security Access Chip
+
+- type: entity
+  parent: AccessChipBase
+  id: AccessChipSecurity
+  name: security access chip
+  description: A single-use access chip. Use on an ID card to grant Security access. After use, the chip is destroyed.
+  components:
+  - type: AccessChip
+    grantedAccesses:
+    - Security
+
+# Science Access Chip
+
+- type: entity
+  parent: AccessChipBase
+  id: AccessChipScience
+  name: science access chip
+  description: A single-use access chip. Use on an ID card to grant Research access. After use, the chip is destroyed.
+  components:
+  - type: AccessChip
+    grantedAccesses:
+    - Research
+
+# Supply/Cargo Access Chip
+
+- type: entity
+  parent: AccessChipBase
+  id: AccessChipSupply
+  name: supply access chip
+  description: A single-use access chip. Use on an ID card to grant Cargo access. After use, the chip is destroyed.
+  components:
+  - type: AccessChip
+    grantedAccesses:
+    - Cargo
+
+# Access Chip Boxes - single use consumable (to leave no empty box item behind to clutter the world)
+
+- type: entity
+  parent: BaseItem
+  id: AccessChipBoxEngineering
+  name: engineering access chip box
+  description: A sealed box containing engineering access chips. You can give these out to crewmembers to give them basic access to engineering areas. Once opened, the box will be consumed and leave no empty box behind.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipEngineering
+      amount: 3
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: AccessChipBoxMedical
+  name: medical access chip box
+  description: A sealed box containing medical access chips. You can give these out to crewmembers to give them basic access to medical areas. Once opened, the box will be consumed and leave no empty box behind.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipMedical
+      amount: 3
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: AccessChipBoxScience
+  name: science access chip box
+  description: A sealed box containing science access chips. You can give these out to crewmembers to give them basic access to science areas. Once opened, the box will be consumed and leave no empty box behind.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipScience
+      amount: 3
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: AccessChipBoxSupply
+  name: supply access chip box
+  description: A sealed box containing supply access chips. You can give these out to crewmembers to give them basic access to supply areas. Once opened, the box will be consumed and leave no empty box behind.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipSupply
+      amount: 3
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  parent: BaseItem
+  id: AccessChipBoxSecurity
+  name: security access chip box
+  description: A sealed box containing security access chips. You can give these out to crewmembers to give them basic access to security areas. Once opened, the box will be consumed and leave no empty box behind.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Storage/boxicons.rsi
+    state: box
+  - type: SpawnItemsOnUse
+    items:
+    - id: AccessChipSecurity
+      amount: 3
+    sound:
+      path: /Audio/Effects/unwrap.ogg

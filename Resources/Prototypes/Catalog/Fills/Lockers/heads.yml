@@ -55,6 +55,7 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: AccessChipBoxSupply #SL
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -254,6 +255,7 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    - id: AccessChipBoxEngineering #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -327,6 +329,7 @@
         - Greenshift
         - Sandbox
     - id: JawsOfLifeMed #Starlight end
+    - id: AccessChipBoxMedical #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -393,6 +396,7 @@
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
     #endregion Starlight
+    - id: AccessChipBoxScience #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -468,6 +472,7 @@
         presets:
         - Greenshift
         - Sandbox # Starlight end
+    - id: AccessChipBoxSecurity #SL
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
