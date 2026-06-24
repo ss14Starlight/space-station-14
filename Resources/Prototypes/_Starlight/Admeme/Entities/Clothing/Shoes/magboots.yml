@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingShoesBootsMagBase, BaseSyndicateContraband, ClothingShoesMilitaryBase]
+  parent: [ClothingShoesBootsMagBase, BaseMedTakContraband, ClothingShoesMilitaryBase]
   id: ClothingShoesBootsMagMedTak
   name: MedTak combat magboots
   description: Standard issue combat magboots for any MedTak units deployed as non-planetary coverage.

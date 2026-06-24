@@ -22,7 +22,7 @@ Incident Summary:
  └─────────────────────────────────┘
 Outcome:
  ┌─────────────────────────────────┐
- Client status at time 
+ Client status at time
  of discharge:
  [form]
    Medic signature:
