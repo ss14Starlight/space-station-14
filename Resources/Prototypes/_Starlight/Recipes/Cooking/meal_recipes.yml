@@ -423,7 +423,7 @@
 - type: microwaveMealRecipe
   id: RecipeHardCandy
   name: hard candy recipe
-  result: FoodSnackHardCandy
+  result: FoodSnackHardCandyOpen
   time: 5
   deviceType: Oven
   group: Dessert
