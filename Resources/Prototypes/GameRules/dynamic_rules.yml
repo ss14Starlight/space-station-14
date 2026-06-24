@@ -127,7 +127,7 @@
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
         - id: ParadoxCloneSpawn
-          weight: 25
+          weight: 20 # Starlight, this doesn't need to be 25, it's not *that* interesting.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -172,7 +172,7 @@
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
         - id: Brighteye # Starlight start
-          weight: 1
+          weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
