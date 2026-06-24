@@ -12,18 +12,3 @@
           amount: 3
         - id: ClothingHeadHelmetReflective
           amount: 3
-
-- type: entity
-  parent: CrateSecgear
-  id: CrateGuardBoxes
-  name: departmental guard equipment crate
-  description: Contains guard equipment boxes for Engineering, Medical, Science, and Supply departmental guards.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: GuardBoxEngineering
-        - id: GuardBoxMedical
-        - id: GuardBoxScience
-        - id: GuardBoxSupply
