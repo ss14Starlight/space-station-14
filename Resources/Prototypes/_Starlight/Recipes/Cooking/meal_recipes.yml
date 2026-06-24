@@ -399,7 +399,7 @@
     Sugar: 5
     Milk: 5
 
-# candies    
+# candies
 - type: microwaveMealRecipe
   id: RecipeLollipopPlain
   name: plain lollipop recipe
