@@ -55,7 +55,6 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
-    - id: GuardBoxSupply #Starlight, box for department guard to be issued by the head of staff, contains spare access and uniform for the guard.
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -255,7 +254,6 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
-    - id: GuardBoxEngineering #Starlight, box for department guard to be issued by the head of staff, contains spare access and uniform for the guard.
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -329,7 +327,6 @@
         - Greenshift
         - Sandbox
     - id: JawsOfLifeMed #Starlight end
-    - id: GuardBoxMedical #Starlight, box for department guard to be issued by the head of staff, contains spare access and uniform for the guard.
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -393,7 +390,6 @@
     #region Starlight
     - id: RDDiploma
     - id: XenobiologyConsoleCameraTagger
-    - id: GuardBoxScience #Starlight, box for department guard to be issued by the head of staff, contains spare access and uniform for the guard.
     #- id: PaperIonstormBorgs
     #  prob: 0.10 #1/10 rounds will have this paper that can be signed repeatedly for no discernable effect!
     #endregion Starlight
