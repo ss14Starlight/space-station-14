@@ -1,0 +1,18 @@
+- type: antag
+  id: SamuraiAntag
+  name: samurai-ghost-role-name
+  antagonist: true
+  objective: roles-antag-samurai-objective
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobBorg
+    time: 3h
+  playTimeTracker: AntagSamurai
+
+- type: startingGear
+  id: SamuraiGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitKimono
+    shoes: ClothingShoesWizard
+    id: NinjaPDA
+    ears: ClothingHeadsetFreelance

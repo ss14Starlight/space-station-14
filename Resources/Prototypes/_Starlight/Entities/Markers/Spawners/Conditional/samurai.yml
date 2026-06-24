@@ -1,0 +1,35 @@
+- type: entity
+  id: SpawnPointSamurai
+  parent: MarkerBase
+  name: samurai
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation
+  - type: GhostRoleMobSpawner
+    prototype: RandomHumanoidSamuraiSpawnerBasic
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SamuraiSpawner
+  components:
+  - type: GhostRole
+    name: ghost-role-information-samurai-name
+    description: ghost-role-information-samurai-description
+    rules: ghost-role-information-samurai-rules
+    important: true # SL
+    mindRoles:
+    - MindRoleSamurai
+    raffle:
+      settings: default
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation

@@ -109,3 +109,7 @@
 - type: playTimeTracker
   id: AntagTerrorPrincess
   name: roles-antag-terror-princess-name
+
+- type: playTimeTracker
+  id: AntagSamurai
+  name: roles-antag-samurai-name

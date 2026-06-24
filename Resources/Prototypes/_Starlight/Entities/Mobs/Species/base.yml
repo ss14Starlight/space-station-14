@@ -214,6 +214,9 @@
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
         requireInputValidation: false
+      enum.SamuraiCodesUiKey.Key:
+        type: SamuraiCodesBoundUserInterface
+        requireInputValidation: false
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -280,6 +283,9 @@
         type: VampireLocateBui
       enum.ThavenMoodsUiKey.Key: # impstation edit
         type: ThavenMoodsBoundUserInterface
+        requireInputValidation: false
+      enum.SamuraiCodesUiKey.Key:
+        type: SamuraiCodesBoundUserInterface
         requireInputValidation: false
   - type: Barotrauma
     damage:

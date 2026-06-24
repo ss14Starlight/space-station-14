@@ -102,6 +102,7 @@
       - id: AbductorsSpawn
       - id: RailroadingTerminator
       - id: Brighteye
+      - id: SamuraiSpawn
 
 - type: entity
   parent: BaseGameRule
@@ -441,3 +442,42 @@
       - MindRoleParadoxClone
   - type: DynamicRuleCost
     cost: 50
+
+- type: entity
+  parent: BaseGameRule
+  id: SamuraiSpawn
+  components:
+  - type: StationEvent
+    earliestStart: 55
+    weight: 3
+    minimumPlayers: 35
+    duration: null
+  - type: RuleGrids
+  - type: LoadMapRule
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/striker-edit.yml
+  - type: AntagObjectives
+    objectives:
+    - ParadoxCloneKillObjective
+    - ParadoxCloneLivingObjective
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SamuraiSpawner
+      mindRoles:
+        - MindRoleSamurai
+      min: 1
+      pickPlayer: false
+      startingGear: SamuraiGear
+      roleLoadout:
+      - RoleSurvivalWizardDuelist
+      components:
+      - type: Samurai
+      - type: SamuraiCodes
+      - type: RandomMetadata
+        nameSegments:
+        - NamesRegalratKingdom
+        - NamesRegalratTitle
+        nameFormat: name-format-nukie-generic
+      tags:
+        - CantBecomeRevolutionary
+  - type: DynamicRuleCost
+    cost: 75

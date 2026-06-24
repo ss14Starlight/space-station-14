@@ -13,4 +13,10 @@ public sealed class ImpCCVars : CVars
     public static readonly CVarDef<uint> ThavenSharedMoodCount =
         CVarDef.Create<uint>("thaven.shared_mood_count", 1, CVar.SERVERONLY);
 
+    /// <summary>
+    /// The number of shared codes to give samurai by default.
+    /// </summary>
+    public static readonly CVarDef<uint> SamuraiSharedCodeCount =
+        CVarDef.Create<uint>("samurai.shared_code_count", 1, CVar.SERVERONLY);
+
 }

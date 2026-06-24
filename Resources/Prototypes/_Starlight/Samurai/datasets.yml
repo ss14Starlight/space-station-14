@@ -1,0 +1,4 @@
+- type: weightedRandom
+  id: RandomSamuraiCodeDataset
+  weights:
+    SamuraiCodesBase: 1

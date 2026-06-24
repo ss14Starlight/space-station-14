@@ -1,0 +1,14 @@
+# Shared honor codes
+
+# Make sure to add new moods to this dataset or they will not be selected!!!!!!
+- type: dataset
+  id: SamuraiCodesShared
+  values:
+    - Test1Shared
+
+
+# Keep Your Moods Secret: Thaven moods are a strictly-kept secret, and should never be revealed to anyone.
+- type: samuraiCode
+  id: Test1Shared
+  codeName: samurai-code-test-shared-name
+  codeDesc: samurai-code-test-shared-desc

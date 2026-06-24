@@ -1,0 +1,7 @@
+- type: loadout
+  id: SamuraiClothesBasic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitKimono
+    shoes: ClothingShoesWizard
+    id: NinjaPDA
+    ears: ClothingHeadsetFreelance
