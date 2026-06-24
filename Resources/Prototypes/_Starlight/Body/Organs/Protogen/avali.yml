@@ -2,6 +2,7 @@
   id: OrganProtoAvaliStomach
   parent: OrganProtogenStomach
   name: avali biological reactor
+  suffix: Proto-Avali
   components:
   - type: Stomach
     specialDigestible:
@@ -22,6 +23,7 @@
   id: OrganProtoAvaliHeart
   parent: OrganProtogenHeart
   name: avali cybernetic heart
+  suffix: Proto-Avali
   components:
   - type: Metabolizer
     maxReagents: 2
@@ -35,6 +37,7 @@
   id: OrganProtoAvaliLiver
   parent: OrganProtogenLiver
   name: avali cybernetic liver
+  suffix: Proto-Avali
   components:
   - type: Metabolizer
     updateInterval: 1.5
