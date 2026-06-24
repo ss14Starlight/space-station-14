@@ -48,7 +48,7 @@ public sealed partial class CrewMonitoringBoundUserInterface : BoundUserInterfac
             }
         }
 
-        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(); // Starlight
+        _menu = this.CreatePopOutableWindow<CrewMonitoringWindow>(EntMan); // Starlight
         _menu.Set(stationName, gridUid);
         _menu.MapClicked += OnMapClicked; // Starlight
     }

@@ -22,7 +22,7 @@ public sealed class RadarConsoleBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = this.CreatePopOutableWindow<RadarConsoleWindow>(); // Starlight: popout
+        _window = this.CreatePopOutableWindow<RadarConsoleWindow>(EntMan); // Starlight: popout
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

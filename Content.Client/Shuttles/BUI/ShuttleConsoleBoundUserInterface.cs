@@ -21,7 +21,7 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
-        _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(); // Starlight: popout support
+        _window = this.CreatePopOutableWindow<ShuttleConsoleWindow>(EntMan); // Starlight: popout support
 
         _window.RequestFTL += OnFTLRequest;
         _window.RequestBeaconFTL += OnFTLBeaconRequest;

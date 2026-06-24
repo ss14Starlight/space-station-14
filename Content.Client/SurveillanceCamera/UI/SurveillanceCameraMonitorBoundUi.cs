@@ -27,7 +27,7 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
     {
         base.Open();
 
-        _window = this.CreatePopOutableWindow<SurveillanceCameraMonitorWindow>(); // Starlight: popout
+        _window = this.CreatePopOutableWindow<SurveillanceCameraMonitorWindow>(EntMan); // Starlight: popout
 
         _window.CameraSelected += OnCameraSelected;
         _window.SubnetOpened += OnSubnetRequest;

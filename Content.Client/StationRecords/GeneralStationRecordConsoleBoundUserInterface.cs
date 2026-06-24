@@ -17,7 +17,7 @@ public sealed class GeneralStationRecordConsoleBoundUserInterface : BoundUserInt
     {
         base.Open();
 
-        _window = this.CreatePopOutableWindow<GeneralStationRecordConsoleWindow>(); // Starlight: popout support
+        _window = this.CreatePopOutableWindow<GeneralStationRecordConsoleWindow>(EntMan); // Starlight: popout support
         _window.OnKeySelected += key =>
             SendMessage(new SelectStationRecord(key));
         _window.OnFiltersChanged += (type, filterValue) =>
