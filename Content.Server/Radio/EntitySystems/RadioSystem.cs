@@ -436,6 +436,9 @@ public sealed partial class RadioSystem : EntitySystem
 
         jobName ??= "";
 
+        // escape job name to stop markup injection.
+        jobName = FormattedMessage.EscapeStringParameter(jobName);
+
         return (iconId, jobName);
     }
     private string WrapRadioMessage(
