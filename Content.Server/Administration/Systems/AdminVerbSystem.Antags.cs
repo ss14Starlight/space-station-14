@@ -333,24 +333,6 @@ public sealed partial class AdminVerbSystem
                 Message = Loc.GetString("admin-verb-make-brighteye"),
             };
             args.Verbs.Add(brighteye);
-
-            // Harmony start
-            var conspiratorName = Loc.GetString("admin-verb-text-make-conspirator");
-            Verb conspirator = new()
-            {
-                Text = conspiratorName,
-                Category = VerbCategory.Antag,
-                Icon = new SpriteSpecifier.Rsi(new("/Textures/_Harmony/Interface/Misc/job_icons.rsi"), "Conspirator"),
-                Act = () =>
-                {
-                    _antag.ForceMakeAntag<ConspiratorRuleComponent>(targetPlayer, DefaultConspiratorRule);
-                },
-                Impact = LogImpact.High,
-                Message = string.Join(": ", conspiratorName, Loc.GetString("admin-verb-make-conspirator")),
-            };
-            args.Verbs.Add(conspirator);
-            // Harmony end
-
         }
 
         var pirateSLName = Loc.GetString("admin-verb-text-make-pirate-sl");
