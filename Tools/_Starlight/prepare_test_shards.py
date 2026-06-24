@@ -51,6 +51,7 @@ def main():
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT, # merge stderr into stdout
         text=True,
+        check=True,
     )
 
     # Pipe the test names into the partitioning script to generate the shard filters.
