@@ -209,7 +209,7 @@
       - cheesy
       - stinky
 
-- type: entity #Kasern
+- type: entity
   parent: FoodSnackBase
   id: FoodSnackCandyApple
   name: toffee apple
