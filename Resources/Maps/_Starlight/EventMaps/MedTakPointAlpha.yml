@@ -1,16 +1,16 @@
 meta:
   format: 7
-  category: Map
+  category: Grid
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/24/2026 03:02:55
-  entityCount: 1777
-maps:
-- 397
+  time: 06/24/2026 08:57:52
+  entityCount: 1776
+maps: []
 grids:
 - 1
-orphans: []
+orphans:
+- 1
 nullspace: []
 tilemap:
   3: Space
@@ -31,7 +31,7 @@ entities:
       name: MedTak Point Alpha
     - type: Transform
       pos: -0.5,-0.47916666
-      parent: 397
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -981,16 +981,6 @@ entities:
     - type: RadiationGridResistance
     - type: IFF
       color: '#FFFFFFFF'
-  - uid: 397
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: Broadphase
-    - type: OccluderTree
 - proto: ActionToggleInternals
   entities:
   - uid: 700
