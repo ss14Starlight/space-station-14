@@ -48,6 +48,17 @@ public abstract partial class SharedSharpSystem : EntitySystem
     }
 
     /// <summary>
+    ///     Gets the delay duration required to butcher a target using a specific knife/tool.
+    /// </summary>
+    public float GetButcherDelay(EntityUid knife, EntityUid target, SharpComponent? sharp = null, ButcherableComponent? butcher = null)
+    {
+        sharp ??= EntityManager.GetComponent<SharpComponent>(knife);
+        butcher ??= EntityManager.GetComponent<ButcherableComponent>(target);
+
+        return sharp.ButcherDelayModifier * butcher.ButcherDelay;
+    }
+
+    /// <summary>
     ///     Validates the butchering requirements and attempts to initiate the do-after timer.
     /// </summary>
     public bool TryStartButcherDoafter(EntityUid knife, EntityUid target, EntityUid user)
@@ -77,8 +88,10 @@ public abstract partial class SharedSharpSystem : EntitySystem
         // so that the doafter can be interrupted if they drop the item in their hands
         var needHand = user != knife;
 
+        var delay = GetButcherDelay(knife, target, sharp, butcher);
+
         var doAfter =
-            new DoAfterArgs(EntityManager, user, sharp.ButcherDelayModifier * butcher.ButcherDelay, new SharpDoAfterEvent(), knife, target: target, used: knife)
+            new DoAfterArgs(EntityManager, user, delay, new SharpDoAfterEvent(), knife, target: target, used: knife)
             {
                 BreakOnDamage = true,
                 BreakOnMove = true,

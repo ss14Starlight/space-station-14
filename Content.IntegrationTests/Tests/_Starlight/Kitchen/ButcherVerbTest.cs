@@ -7,6 +7,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Verbs;
+using Content.Shared._Starlight.Kitchen.EntitySystems;
 using NUnit.Framework;
 using Robust.Shared.Containers;
 using Robust.Shared.GameObjects;
@@ -30,6 +31,11 @@ public sealed class ButcherVerbTest : InteractionTest
         {
             var mobStateSystem = SEntMan.System<MobStateSystem>();
             mobStateSystem.ChangeMobState(SEntMan.GetEntity(pig), MobState.Dead);
+
+            if (SEntMan.TryGetComponent<ButcherableComponent>(SEntMan.GetEntity(pig), out var butcher))
+            {
+                butcher.ButcherDelay = 0.01f;
+            }
         });
         await RunTicks(10);
         return pig;
@@ -268,7 +274,17 @@ public sealed class ButcherVerbTest : InteractionTest
     {
         // Spawn a dead pig and hold a knife
         var pig = await SpawnDeadPig();
-        await PlaceInHands("KitchenKnife");
+
+        // Override delay to 0.5s so it doesn't complete during the 1 tick in Interact()
+        await Server.WaitPost(() =>
+        {
+            if (SEntMan.TryGetComponent<ButcherableComponent>(SEntMan.GetEntity(pig), out var butcher))
+            {
+                butcher.ButcherDelay = 0.5f;
+            }
+        });
+
+        var knife = await PlaceInHands("KitchenKnife");
         await RunTicks(10);
 
         // Start butchering, but don't await do-after completion immediately
@@ -278,8 +294,9 @@ public sealed class ButcherVerbTest : InteractionTest
         await CancelDoAfters();
 
         // Wait for the duration of the cancelled do-after to ensure it doesn't trigger anyway
-        var butcher = Comp<ButcherableComponent>(pig);
-        await RunSeconds(butcher.ButcherDelay + 1f);
+        var sharpSystem = SEntMan.System<SharedSharpSystem>();
+        var delay = sharpSystem.GetButcherDelay(SEntMan.GetEntity(knife), SEntMan.GetEntity(pig));
+        await RunSeconds(delay + 1f);
 
         // Assert that the pig is NOT deleted after the duration has elapsed
         AssertExists(pig);
