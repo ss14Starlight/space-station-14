@@ -22,6 +22,18 @@
         rolls: !type:RangeNumberSelector
           range: 6, 8
 
+- type: entity
+  id: BottleCaseRoboticsFilled
+  parent: BottleCaseRobotics
+  suffix: Robotics, Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: RandomBottleRoboticsTable
+        rolls: !type:RangeNumberSelector
+          range: 2, 6
+
 - type: entityTable
   id: RandomBottleSafeTable
   table: !type:GroupSelector
@@ -61,6 +73,37 @@
       weight: 1
       children:
       - id: ChemistryBottleWeh
+
+- type: entityTable
+  id: RandomBottleRoboticsTable
+  table: !type:GroupSelector
+    children:
+    - !type:GroupSelector # Stuff robotics could "technically" have
+      weight: 80
+      children:
+      - id: ChemistryBottleWeldingFuel
+      - id: ChemistryBottleOil
+    - !type:GroupSelector # When the roboticist burns their eyes, also acetone and phenol because it's kinda funny
+      weight: 10
+      children:
+      - id: ChemistryBottleOculine
+      - id: ChemistryBottleAcetone
+      - id: ChemistryBottlePhenol
+    - !type:GroupSelector # Hey, it's "technically" an oil!
+      weight: 5
+      children:
+      - id: ChemistryBottleCornoil
+    - !type:GroupSelector # Funny chems, they can share this with medical because funny
+      weight: 4
+      children:
+      - id: ChemistryBottleLaughter
+      - id: ChemistryBottleDoctorsDelight
+      - id: ChemistryBottleDesoxyephedrine
+      - id: ChemistryBottleEphedrine
+    - !type:GroupSelector # Hew
+      weight: 1
+      children:
+      - id: ChemistryBottleHew
 
 - type: entity
   id: BottleCaseParamedicFilled
