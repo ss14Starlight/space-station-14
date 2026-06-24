@@ -1,3 +1,4 @@
+#region Papers
 # Contract
 - type: entity
   parent: PaperMedTak
@@ -37,3 +38,67 @@
     - type: Paper
     - type: TextFilePaperContent
       fileName: medtak-report.txt
+
+#region Recipes
+- type: latheRecipe
+  id: PrintedDocumentMedTakContractRecipe
+  result: PrintedDocumentMedTakContract
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakCorrespondenceRecipe
+  result: PrintedDocumentMedTakCorrespondence
+  categories:
+  - Communications
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakInvoiceRecipe
+  result: PrintedDocumentMedTakInvoice
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakReportRecipe
+  result: PrintedDocumentMedTakReport
+  categories:
+  - Reports
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+- type: latheRecipe
+  id: PrintedDocumentMedTakBlank
+  result: PaperMedTak
+  categories:
+  - Statements
+  completetime: 2
+  applyMaterialDiscount: false
+  materials:
+    SheetPrinter: 100
+
+#region Pack
+- type: latheRecipePack
+  id: MedTakDocs
+  recipes:
+  # Communications
+  - PrintedDocumentMedTakCorrespondenceRecipe
+  # Statements
+  - PrintedDocumentMedTakContractRecipe
+  - PrintedDocumentMedTakInvoiceRecipe
+  - PrintedDocumentMedTakBlank
+  # Reports
+  - PrintedDocumentMedTakReportRecipe

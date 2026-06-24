@@ -125,7 +125,7 @@
 - type: entity
   parent: BoxFolderBaseEmpty
   id: BoxFolderMedTak
-  suffix: MedTak invoices
+  suffix: MedTak
   components:
   - type: Sprite
     layers:
@@ -136,5 +136,12 @@
     containers:
       storagebase: !type:AllSelector
         children:
+        - id: PrintedDocumentMedTakInvoice
+          amount: 2
+        - id: PrintedDocumentMedTakReport
+          amount: 2
+        - id: PrintedDocumentMedTakContract
+          amount: 2
+        - id: PrintedDocumentMedTakCorrespondence
         - id: PaperMedTak
-          amount: 10
+          amount: 3

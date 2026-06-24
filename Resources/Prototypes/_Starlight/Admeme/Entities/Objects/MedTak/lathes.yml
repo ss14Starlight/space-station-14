@@ -28,7 +28,6 @@
     staticPacks:
     - TopicalsStatic
     - ChemistryStatic
-    # - MedicalStatic
     - MedicalClothingStatic
     - StarlightMedicalStatic
     - StarlightSurgeryDynamic
@@ -39,3 +38,23 @@
     - StarlightBudgetCyberOrgansDynamic
     - SecurityCyberLimbs
   - type: OreSiloClient
+
+- type: entity
+  parent: PrinterDoc
+  id: PrinterDocMedTak
+  name: document printer
+  suffix: MedTak
+  description: Bureaucratic perfection. Stores a database of relevant MedTak documents, and lets you print them as long as you have paper.
+  components:
+  - type: Lathe
+    producingSound: /Audio/Machines/scanning.ogg
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - MedTakDocs
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Document
+    storage:
+      SheetPrinter: 1000
