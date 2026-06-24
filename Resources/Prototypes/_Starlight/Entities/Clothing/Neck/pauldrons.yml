@@ -45,3 +45,12 @@
   components:
   - type: Sprite
     sprite: _Starlight/Clothing/Neck/GuardPauldrons/supply_guard_pauldron.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseSecurityContraband]
+  id: ClothingNeckPauldronServiceGuard
+  name: Service guard pauldron
+  description: A utilitarian green-ish pauldron denoting an assigned Service guard.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Neck/GuardPauldrons/service_guard_pauldron.rsi
