@@ -23,6 +23,7 @@ public abstract class PopOutFancyWindow : FancyWindow, IPopOutWindow
     public event Action? OnPopout;
 
     private OSWindow? _popOutWindow;
+    private Control? _contentParent; // Where the contents lived before being popped out, so they can be returned.
 
     protected PopOutFancyWindow()
     {
@@ -51,13 +52,35 @@ public abstract class PopOutFancyWindow : FancyWindow, IPopOutWindow
             // We're about to close the in-game window on purpose, so don't treat that as closing for good.
             OnClose -= FinalClose;
 
+            // Remember where the contents live so they can be returned when the desktop window closes.
+            _contentParent = Control.Parent;
             Control.Orphan();
             Close();
 
-            _popOutWindow = PopOutHelper.Show(Title ?? string.Empty, Size, Control, () => OnFinalClose?.Invoke());
+            _popOutWindow = PopOutHelper.Show(Title ?? string.Empty, Size, Control, OnPopOutClosed);
 
             OnPopout?.Invoke();
         };
+    }
+
+    /// <summary>
+    /// When we close a popout return the contents back to the in-game window where applicable.
+    /// If the window is disposed when closed like BUI's we just dispose it all.
+    /// </summary>
+    private void OnPopOutClosed()
+    {
+        // desktop window closes async a frame after close(), so if the window is already gone
+        // by the time we run this and try to reparent there is nothing to reparent and we crash.
+        // This makes sure we have something to reparent.
+        if (_contentParent is { Disposed: false } parent && !Control.Disposed)
+        {
+            Control.Orphan();
+            parent.AddChild(Control);
+        }
+
+        _contentParent = null;
+        _popOutWindow = null;
+        OnFinalClose?.Invoke();
     }
 
     private void FinalClose() => OnFinalClose?.Invoke();
