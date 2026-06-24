@@ -22,6 +22,6 @@
   id: ChefJumpsuitSenior
   effects:
     - !type:GroupLoadoutEffect
-        proto: SeniorChef
+      proto: SeniorChef
   equipment:
     jumpsuit: ClothingUniformJumpsuitChefSenior
