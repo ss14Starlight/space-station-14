@@ -1075,11 +1075,12 @@
         type: WiresBoundUserInterface
   - type: Computer
     board: CargoRequestComputerCircuitboard
-  # Starlight Start - Immersive Lighting PR
-  - type: PointLight
+  # Starlight Start
+  - type: PointLight # Immersive lighting PR
     radius: 2.5
     energy: 1.5
     color: "#b89f25"
+  - type: ActivatableUIRequiresAccess # Actually check access.
   # Starlight End
   - type: AccessReader
     access: [["Cargo"]]
