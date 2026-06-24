@@ -42,7 +42,8 @@
 
 - type: entity
   save: false
-  name: Urisst' Mztosster
+  name: Urist McScalester
+  suffix: Urisst' Mztosster
   parent: BaseMobProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
   id: MobProtoReptilian # Starlight, ProtoReptile -> ProtoReptilian
 
