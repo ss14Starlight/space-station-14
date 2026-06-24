@@ -255,7 +255,7 @@
   parent: BaseAction
   id: ActionVampireBloodEruption
   name: Blood Eruption (100)
-  description: Erupt damage dealing blood puddles around you.
+  description: Erupt damage-dealing blood puddles around you.
   components:
     - type: Action
       useDelay: 90
@@ -376,7 +376,7 @@
   parent: BaseAction
   id: ActionVampireShadowBoxing
   name: Shadow Boxing (50)
-  description: Command your shadow bats to assault. The swarm disperses if you move to far away.
+  description: Command your shadow bats to assault. The swarm disperses if you move too far away.
   components:
     - type: Action
       useDelay: 30
@@ -455,7 +455,7 @@
   parent: BaseAction
   id: ActionVampireEternalDarkness
   name: Eternal Darkness
-  description: Toggle to shroud the area around you in darkness, you radiate an unnatural chill.
+  description: Toggle to shroud the area around you in darkness; you radiate an unnatural chill.
   components:
     - type: Action
       useDelay: 2 # Toggle
@@ -713,7 +713,7 @@
   parent: BaseAction
   id: ActionVampireBloodRush
   name: Blood Rush (30)
-  description: For a limited time run with unnatural swiftness.
+  description: For a limited time, run with unnatural swiftness.
   components:
     - type: Action
       useDelay: 30
