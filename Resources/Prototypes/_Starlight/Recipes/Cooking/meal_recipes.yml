@@ -222,7 +222,7 @@
     FoodDonutPlain: 1
     FoodMeatCutlet: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutChocolate
   name: chocolate donut
   result: FoodDonutChocolate
@@ -232,7 +232,7 @@
     FoodDonutPlain: 1
     FoodCocoaPod: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutApple
   name: apple donut
   result: FoodDonutApple
@@ -242,7 +242,7 @@
     FoodDonutPlain: 1
     FoodApple: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutBungo
   name: bungo donut
   result: FoodDonutBungo
@@ -252,7 +252,7 @@
     FoodDonutPlain: 1
     FoodBungo: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutBluePumpkin
   name: blue pumpkin donut
   result: FoodDonutBluePumpkin
@@ -262,7 +262,7 @@
     FoodDonutPlain: 1
     FoodBluePumpkin: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutPink
   name: pink donut
   result: FoodDonutPink
@@ -273,7 +273,7 @@
   reagents:
     Sugar: 5
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutCaramel
   name: caramel donut
   result: FoodDonutCaramel
@@ -285,7 +285,7 @@
     Sugar: 5
     Milk: 5
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutSweetpea
   name: sweetpea donut
   result: FoodDonutSweetpea
@@ -295,7 +295,7 @@
     FoodDonutPlain: 1
     FoodPeaPod: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutSpaceman
   name: spaceman donut
   result: FoodDonutSpaceman
@@ -306,7 +306,7 @@
     FoodSpacemansTrumpet: 1
 
 # Jelly Donuts
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellyPlain
   name: jelly donut
   result: FoodDonutJellyPlain
@@ -316,7 +316,7 @@
     FoodDonutPlain: 1
     FoodBerries: 1
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellyApple
   name: apple jelly donut
   result: FoodDonutJellyApple
@@ -326,7 +326,7 @@
     FoodDonutJellyPlain: 1
     FoodApple: 1
     
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellyBungo
   name: bungo jelly donut
   result: FoodDonutJellyBungo
@@ -336,7 +336,7 @@
     FoodDonutJellyPlain: 1
     FoodBungo: 1
     
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellyBluePumpkin
   name: blue pumpkin jelly donut
   result: FoodDonutJellyBluePumpkin
@@ -346,7 +346,7 @@
     FoodDonutJellyPlain: 1
     FoodBluePumpkin: 1
     
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellyChocolate
   name: chocolate jelly donut
   result: FoodDonutJellyChocolate
@@ -356,7 +356,7 @@
     FoodDonutJellyPlain: 1
     FoodCocoaPod: 1
     
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellySweetpea
   name: sweetpea jelly donut
   result: FoodDonutJellySweetpea
@@ -366,7 +366,7 @@
     FoodDonutJellyPlain: 1
     FoodPeaPod: 1
     
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellySpaceman
   name: spaceman jelly donut
   result: FoodDonutJellySpaceman
