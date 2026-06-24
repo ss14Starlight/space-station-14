@@ -32,11 +32,11 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-         - id: CosmicCult
-           weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
-           conditions:
-           - !type:HasBudgetCondition
-           - !type:MaxRuleOccurenceCondition
+        - id: CosmicCult
+          weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
         - id: Zombie
           weight: 10 # Starlight, roughly equal to its place in Alpha's normal secret weights.
           conditions:
