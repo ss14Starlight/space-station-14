@@ -1,4 +1,4 @@
-<ui:GuidebookWindow xmlns="https://spacestation14.io" 
+<ui:GuidebookWindow xmlns="https://spacestation14.io"
                 xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
                 xmlns:fancyTree="clr-namespace:Content.Client.UserInterface.Controls.FancyTree"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
