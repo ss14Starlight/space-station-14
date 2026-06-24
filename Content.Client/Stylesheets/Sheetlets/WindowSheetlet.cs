@@ -120,7 +120,7 @@ public sealed class WindowSheetlet<T> : Sheetlet<T>
                 .Class(PopOutExtensions.PopOutButtonStyleClass)
                 .PseudoPressed()
                 .Modulate(Palettes.Neutral.PressedElement),
-            //Starlight end
+            // Starlight end
             // Title
             E<Label>()
                 .Class("FancyWindowTitle") // TODO: hardcoding class name

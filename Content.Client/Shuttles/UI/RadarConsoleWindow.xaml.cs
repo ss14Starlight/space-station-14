@@ -11,7 +11,7 @@ using Robust.Shared.Map;
 namespace Content.Client.Shuttles.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class RadarConsoleWindow : PopOutFancyWindow,
+public sealed partial class RadarConsoleWindow : PopOutFancyWindow, // Starlight: popout support
     IComputerWindow<NavInterfaceState>
 {
     protected override Control Control => RadarScreen; // Starlight: popout support

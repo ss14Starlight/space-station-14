@@ -12,7 +12,7 @@ using Robust.Shared.Map;
 namespace Content.Client.Shuttles.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow,
+public sealed partial class ShuttleConsoleWindow : PopOutFancyWindow, // Starlight: popout support
     IComputerWindow<ShuttleBoundUserInterfaceState>
 {
     [Dependency] private IEntityManager _entManager = default!;

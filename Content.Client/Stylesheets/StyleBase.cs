@@ -196,7 +196,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#753131")),
                     }),
-                //Starlight begin
+                // Starlight begin
                 // popout button base texture.
                 new StyleRule(
                     new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
@@ -222,7 +222,7 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#FFFFFF")),
                     }),
-                //Starlight end
+                // Starlight end
             };
         }
     }

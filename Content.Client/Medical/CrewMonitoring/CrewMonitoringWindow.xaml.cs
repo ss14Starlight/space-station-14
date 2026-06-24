@@ -24,7 +24,7 @@ using Content.Client._Starlight.UserInterface;
 namespace Content.Client.Medical.CrewMonitoring;
 
 [GenerateTypedNameReferences]
-public sealed partial class CrewMonitoringWindow : PopOutFancyWindow
+public sealed partial class CrewMonitoringWindow : PopOutFancyWindow // Starlight: popout support
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

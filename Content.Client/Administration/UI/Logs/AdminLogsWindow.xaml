@@ -1,3 +1,4 @@
+<!-- Starlight: Reworked to PopOutWindow for popout support -->
 <logs:AdminLogsWindow xmlns="https://spacestation14.io"
             xmlns:logs="clr-namespace:Content.Client.Administration.UI.Logs"
             Title="{Loc admin-logs-title}"

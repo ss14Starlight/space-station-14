@@ -156,9 +156,9 @@ public sealed partial class GuidebookUIController : UIController, IOnStateEntere
         }
     }
 
+    // Starlight start
     private void OnWindowOpen() => GuidebookButton?.Pressed = true;
 
-    // Starlight start
     private void SetupGuidebookWindow()
     {
         _guideWindow = UIManager.CreateWindow<GuidebookWindow>();

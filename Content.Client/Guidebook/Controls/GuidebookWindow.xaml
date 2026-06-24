@@ -1,3 +1,4 @@
+<!-- Starlight: Reworked to PopOutFancyWindow for popout support -->
 <ui:GuidebookWindow xmlns="https://spacestation14.io"
                 xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
                 xmlns:fancyTree="clr-namespace:Content.Client.UserInterface.Controls.FancyTree"

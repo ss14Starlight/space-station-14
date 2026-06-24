@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.StationRecords;
 
 [GenerateTypedNameReferences]
-public sealed partial class GeneralStationRecordConsoleWindow : PopOutWindow
+public sealed partial class GeneralStationRecordConsoleWindow : PopOutWindow // Starlight: popout support
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
