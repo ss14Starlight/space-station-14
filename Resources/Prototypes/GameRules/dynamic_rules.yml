@@ -58,7 +58,7 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 25
-        - id: TerrorSpiderSpawn
+        - id: TerrorSpidersSpawn
           weight: 10
           conditions:
           - !type:HasBudgetCondition
