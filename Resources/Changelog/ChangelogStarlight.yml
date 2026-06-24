@@ -1,55 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Replaced all astro tiles with astro-turf. The lizards shall no longer ash!
-    type: Tweak
-  id: 405805
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Moved the NCT Room below arrivals and in front of bridge.
-    type: Tweak
-  id: 405806
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked Both Docking Arms so evac is able to dock if others are blocked.
-    type: Tweak
-  id: 405807
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked the size of South East solars.
-    type: Tweak
-  id: 405808
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked the bar for the boxing ring.
-    type: Tweak
-  id: 405809
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed AI Upload to have a law crate and generators.
-    type: Tweak
-  id: 405810
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked the stages, using platforms for depth.
-    type: Tweak
-  id: 405811
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Changed Brigmed slots from 1 to 2, locker being changed to the large locker.
     type: Tweak
   id: 405812
@@ -2799,4 +2750,53 @@ Entries:
   id: 406204
   time: '2026-06-23T17:37:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4904
+- author: BlythT
+  changes:
+  - message: Fixed butcher verb popping in by adding client-side verb prediction.
+    type: Fix
+  id: 406205
+  time: '2026-06-24T06:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4900
+- author: Johnny
+  changes:
+  - message: Added a circuitboard in the captains locker for the shipyard console so that it is more accessible no matter what map it is.
+    type: Add
+  id: 406206
+  time: '2026-06-24T14:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4907
+- author: Johnny
+  changes:
+  - message: The shipyard console circuitboard is now a thief objective per request.
+    type: Add
+  id: 406207
+  time: '2026-06-24T14:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4907
+- author: Scarlet Lightweaver and all the space stations.
+  changes:
+  - message: Added a magnet to the material silo departments hooray.
+    type: Add
+  id: 406208
+  time: '2026-06-24T14:55:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4902
+- author: Kasern
+  changes:
+  - message: Senior Chef Jacket.
+    type: Add
+  id: 406209
+  time: '2026-06-24T16:25:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4912
+- author: Kasern
+  changes:
+  - message: Senior Chef Jumpsuit.
+    type: Add
+  id: 406210
+  time: '2026-06-24T16:25:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4912
+- author: Kasern
+  changes:
+  - message: Senior Chef loadout options.
+    type: Add
+  id: 406211
+  time: '2026-06-24T16:25:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4912
 Order: -1

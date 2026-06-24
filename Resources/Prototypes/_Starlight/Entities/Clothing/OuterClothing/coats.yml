@@ -613,3 +613,14 @@
     sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Coats/field_jacket.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatChefSenior
+  name: senior chef's jacket
+  description: A pristine black jacket worn by the head of the kitchen. Tasteful, with a hint of authority.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/OuterClothing/Coats/chef-senior.rsi
