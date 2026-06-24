@@ -430,7 +430,7 @@
   reagents:
     Sugar: 5
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeCandyApple
   name: toffee apple recipe
   result: FoodSnackCandyApple
