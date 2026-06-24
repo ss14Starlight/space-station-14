@@ -410,7 +410,7 @@
     Water: 5
   group: Dessert
 
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeLollipopSwirl
   name: swirl lollipop recipe
   result: FoodSnackSwirlLollipop
