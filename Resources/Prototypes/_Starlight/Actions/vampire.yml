@@ -1,4 +1,4 @@
-# Base vampire abilities
+# Base abilities
 
 - type: entity
   parent: BaseAction
