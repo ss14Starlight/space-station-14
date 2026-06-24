@@ -55,6 +55,7 @@
     species: ProtoDwarf
     hideLayersOnEquip:
     - Hair
+    - Snout
   - type: Inventory
     templateId: protogen
     femaleDisplacements:

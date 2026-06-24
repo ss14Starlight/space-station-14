@@ -425,7 +425,6 @@
   name: mining specialist's jumpskirt
   description: A suit passed down through many generations. a fine layer of dust trails behind it.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mining.rsi
   - type: Clothing
