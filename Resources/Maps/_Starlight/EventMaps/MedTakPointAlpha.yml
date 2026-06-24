@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/23/2026 14:54:55
-  entityCount: 1776
+  time: 06/24/2026 03:02:55
+  entityCount: 1777
 maps:
 - 397
 grids:
@@ -4130,11 +4130,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: -19.485828,0.7881242
       parent: 1
-  - uid: 1133
+  - uid: 1777
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: -27.915632,6.676139
+      pos: -27.556402,6.769099
       parent: 1
 - proto: ChemDispenser
   entities:
@@ -9286,6 +9286,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 4.5,-11.5
+      parent: 1
+- proto: PrinterDocMedTak
+  entities:
+  - uid: 1133
+    components:
+    - type: Transform
+      pos: -27.5,5.5
       parent: 1
 - proto: Rack
   entities:
