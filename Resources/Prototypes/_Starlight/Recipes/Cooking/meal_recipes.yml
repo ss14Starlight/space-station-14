@@ -208,3 +208,11 @@
     Sugar: 15
     Water: 5
   group: Dessert
+
+- type: deepFryingRecipe
+  id: TP14RecipePenguinNugget
+  name: penguin nugget recipe
+  result: FoodBakedNugget
+  time: 20
+  ingredient: FoodMeatPenguinCutlet
+  group: TP14-Deep-Fry

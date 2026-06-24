@@ -1,5 +1,10 @@
 name: "Labels: Branch stable"
 
+# Cancel older jobs on PRs when new changes are pushed
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 on:
   pull_request_target:
     types:
