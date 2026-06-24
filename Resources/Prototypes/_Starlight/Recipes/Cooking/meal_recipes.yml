@@ -387,7 +387,7 @@
   reagents:
     Sugar: 5
     
-- type: microwaveMealRecipe # Kasern
+- type: microwaveMealRecipe
   id: RecipeDonutJellyCaramel
   name: caramel jelly donut
   result: FoodDonutJellyCaramel
