@@ -17,8 +17,9 @@ def main():
         print("Shard filters already generated, skipping.", file=sys.stderr)
         return
 
-    # Prepend ~/.dotnet to PATH so the dotnet CLI is found on per-user installations
     env = os.environ.copy()
+
+    # Prepend ~/.dotnet to PATH so the dotnet CLI is found on per-user installations
     dotnet_home = Path.home() / ".dotnet"
     env["PATH"] = str(dotnet_home) + os.pathsep + env.get("PATH", "")
 
