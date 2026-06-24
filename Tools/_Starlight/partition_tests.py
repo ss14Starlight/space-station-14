@@ -4,11 +4,11 @@
 Partitions test classes across shards for parallel CI execution.
 
 Mode 1 - Generate all shard filters to files:
-    dotnet test --list-tests ... | python3 test_shard_filter.py generate <total-shards> <output-dir>
-    Writes <output-dir>/shard_0.filter .. shard_N.filter
+    dotnet test --list-tests ... | python3 partition_tests.py generate <total-shards> <output-dir>
+    Writes <output-dir>/shard_0.runsettings .. shard_N.runsettings
 
 Mode 2 - Read a pre-generated filter file:
-    python3 test_shard_filter.py read <filter-file>
+    python3 partition_tests.py read <runsettings-file>
     Prints the filter to stdout (empty output if file is empty/missing)
 
 Exit codes:
@@ -18,6 +18,7 @@ Exit codes:
 
 import sys
 import os
+import xml.etree.ElementTree as ET
 
 
 # Weight multipliers for tests that are lighter than their test count suggests.
@@ -342,18 +343,24 @@ def cmd_generate():
     for shard in range(total):
         my_classes = sorted(shards[shard])
         filter_expr = build_filter(my_classes)
-        path = os.path.join(output_dir, f"shard_{shard}.filter")
-        with open(path, "w") as f:
-            f.write(filter_expr)
         print(f"  Shard {shard}: {len(my_classes)} classes, weight {shard_loads[shard]:.1f} ({sum(class_counts[c] for c in my_classes)} tests)", file=sys.stderr)
         for cls in my_classes:
             w = class_weight(cls)
             print(f"    - {cls} ({class_counts[cls]} tests, weight {w:.1f})", file=sys.stderr)
 
+        rs_path = os.path.join(output_dir, f"shard_{shard}.runsettings")
+        with open(rs_path, "w", newline="\n") as f:
+            f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+            f.write("<RunSettings>\n")
+            f.write("  <NUnit>\n")
+            f.write("    <MapWarningTo>Failed</MapWarningTo>\n")
+            f.write(f"    <Where>{filter_expr}</Where>\n")
+            f.write("  </NUnit>\n")
+            f.write("</RunSettings>\n")
 
 def cmd_read():
     if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} read <filter-file>", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} read <runsettings-file>", file=sys.stderr)
         sys.exit(1)
 
     path = sys.argv[2]
@@ -361,13 +368,16 @@ def cmd_read():
         return
     with open(path) as f:
         content = f.read().strip()
-    if content:
-        # Print human-readable class list to stderr
-        methods = [part.replace("method==", "").strip("' ") for part in content.split("||")]
+
+    # Parse the XML content
+    root = ET.fromstring(content)
+    where = root.findtext("NUnit/Where", default="").strip()
+    if where:
+        methods = [part.replace("method==", "").strip("' ") for part in where.split("||")]
         print(f"Running {len(methods)} test groups:", file=sys.stderr)
         for m in methods:
             print(f"  - {m}", file=sys.stderr)
-        print(content)
+        print(where)
 
 
 def main():
