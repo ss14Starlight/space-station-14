@@ -193,6 +193,15 @@
   time: 20
   ingredient: FoodMeatPenguinCutlet
   group: TP14-Deep-Fry
+
+- type: microwaveMealRecipe # Kasern
+  id: RecipeEggBoiled
+  name: boiled egg recipe
+  result: FoodEggBoiled
+  time: 5
+  group: Breakfast
+  solids:
+    FoodEgg: 1
     
 # Plain Donuts
 - type: deepFryingRecipe
@@ -294,7 +303,7 @@
   group: Dessert
   solids:
     FoodDonutPlain: 1
-    FoodGrape: 1
+    FoodSpacemansTrumpet: 1
 
 # Jelly Donuts
 - type: microwaveMealRecipe # Kasern
@@ -365,7 +374,7 @@
   group: Dessert
   solids:
     FoodDonutJellyPlain: 1
-    FoodGrape: 1
+    FoodSpacemansTrumpet: 1
 
 - type: microwaveMealRecipe # Kasern
   id: RecipeDonutJellyPink
