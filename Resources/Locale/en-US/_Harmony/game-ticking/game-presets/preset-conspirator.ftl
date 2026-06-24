@@ -1,7 +1,7 @@
 conspirator-objective-issuer = [color=#724F29]Conspiracy[/color]
 
-conspirator-role-greeting = 
-    You are a conspirator. 
+conspirator-role-greeting =
+    You are a conspirator.
     You start knowing the identities of the other conspirators and have been implanted with a radio to communicate with them.
     Work together and stop at nothing to bring the conspiracy to life.
 
@@ -11,7 +11,7 @@ conspirator-objective = The conspiracy's objective was to: [color=white]{$object
 
 conspirator-identities = The conspirators are:
 conspirator-name = {$name} is a conspirator.
-conspirator-radio-implant = Communicate with other conspirators using your radio implant (:o).
+conspirator-radio-implant = Communicate with other conspirators using your radio implant (:*).
 
 conspiracy-title = Conspiracy
 conspiracy-description = A conspiracy is afoot!
