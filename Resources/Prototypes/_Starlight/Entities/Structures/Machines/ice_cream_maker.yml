@@ -28,6 +28,7 @@
   - type: ActivatableUI
     key: enum.MicrowaveUiKey.Key
   - type: Machine
+    board: IcecreamMakerMachineCircuitBoard
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

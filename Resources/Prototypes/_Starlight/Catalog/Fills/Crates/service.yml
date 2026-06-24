@@ -9,3 +9,24 @@
       entity_storage:
         id: MagazineGrenadeCleanade
         amount: 2
+
+- type: entity
+  id: CrateServiceIcecreamMakerStarter
+  parent: CrateFreezer
+  name: ice cream maker starter crate
+  description: Contains a flatpack of an ice cream maker, a jug of ice cream and cocoa powder.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JugIcecream
+          amount: 1
+        - id: JugCocoaPowder
+          amount: 1
+        - id: FoodSnackPistachios
+          amount: 5
+        - id: FoodBerries
+          amount: 3
+        - id: IcecreamMakerFlatpack
+          amount: 1

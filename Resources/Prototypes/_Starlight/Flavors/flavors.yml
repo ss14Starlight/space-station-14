@@ -142,3 +142,38 @@
   id: cherryicecream
   flavorType: Complex
   description: flavor-complex-cherry-icecream
+
+- type: flavor
+  id: applecinnamonicecream
+  flavorType: Complex
+  description: flavor-complex-apple-cinnamon-icecream
+
+- type: flavor
+  id: goldapplecinnamonicecream
+  flavorType: Complex
+  description: flavor-complex-gold-apple-cin-icecream
+
+- type: flavor
+  id: holymelonicecream
+  flavorType: Complex
+  description: flavor-complex-holy-melon-icecream
+
+- type: flavor
+  id: rainbowhighicecream
+  flavorType: Complex
+  description: flavor-complex-rainbow-high-icecream
+
+- type: flavor
+  id: meaticecream
+  flavorType: Complex
+  description: flavor-complex-meat-icecream
+
+- type: flavor
+  id: wehicecream
+  flavorType: Complex
+  description: flavor-complex-weh-icecream
+
+- type: flavor
+  id: spacecarpicecream
+  flavorType: Complex
+  description: flavor-complex-space-carp-icecream

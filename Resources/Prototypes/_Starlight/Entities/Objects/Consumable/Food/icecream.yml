@@ -1,3 +1,30 @@
+- type: entity
+  parent: Jug
+  suffix: Ice cream
+  id: JugIcecream
+  components:
+  - type: Label
+    currentLabel: reagent-name-ice-cream
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: IceCream
+          Quantity: 200
+
+- type: entity
+  parent: Jug
+  suffix: Cocoa powder
+  id: JugCocoaPowder
+  components:
+  - type: Label
+    currentLabel: reagent-name-cocoapowder
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: CocoaPowder
+          Quantity: 200
 
 - type: entity
   abstract: true
@@ -5,6 +32,9 @@
   id: FoodIceCreamBase
   components:
   - type: Appearance
+  # - type: ScaleVisuals
+  #   scale: 0.75, 0.75
+  #   originalScale: 1.0, 1.0
   - type: Sprite
     layers:
     - state: icon_empty
@@ -477,4 +507,200 @@
         - ReagentId: Nutriment
           Quantity: 25
         - ReagentId: Theobromine
+          Quantity: 5
+
+- type: entity
+  name: apple cinnamon icecream
+  parent: FoodIceCreamBase
+  id: FoodAppleCinnamonIcecream
+  description: Vanilla ice cream with apple slices and cinnamon toppings.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - applecinnamonicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/apple_cinnamon_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/apple_cinnamon_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: gold apple cinnamon icecream
+  parent: FoodIceCreamBase
+  id: FoodGoldAppleCinnamonIcecream
+  description: Ice cream that radiates health.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - goldapplecinnamonicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/gold_apple_cinna_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/gold_apple_cinna_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: DoctorsDelight
+          Quantity: 20
+
+- type: entity
+  name: holy melon icecream
+  parent: FoodIceCreamBase
+  id: FoodHolyMelonIcecream
+  description: Holy Melon Sorbet that cleanses your soul.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - holymelonicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/holy_melon_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/holy_melon_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Holywater
+          Quantity: 20
+
+- type: entity
+  name: rainbow high icecream
+  parent: FoodIceCreamBase
+  id: FoodRainbowHighIcecream
+  description: This icecream is way out there...
+  components:
+  - type: FlavorProfile
+    flavors:
+    - rainbowhighicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/rainbow_high_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/rainbow_high_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: MindbreakerToxin
+          Quantity: 10
+        - ReagentId: SpaceDrugs
+          Quantity: 10
+        - ReagentId: Happiness
+          Quantity: 10
+
+- type: entity
+  name: meat icecream
+  parent: FoodIceCreamBase
+  id: FoodMeatIcecream
+  description: A raw T-bone steak with ice cream on it.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meaticecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/meat_icecream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/meat_icecream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 20
+
+- type: entity
+  name: weh icecream
+  parent: FoodIceCreamBase
+  id: FoodWehIcecream
+  description: Lime ice cream in the shape of a beloved plush.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - wehicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/weh_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/weh_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: JuiceThatMakesYouWeh
+          Quantity: 15
+
+- type: entity
+  name: space carp icecream
+  parent: FoodIceCreamBase
+  id: FoodSpaceCarpIcecream
+  description: Blueberry ice cream with... space carp in it.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - spacecarpicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/carp_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/carp_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+        - ReagentId: Ichor
           Quantity: 5

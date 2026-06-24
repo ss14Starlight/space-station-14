@@ -409,3 +409,96 @@
     FoodCherry: 1
   reagents:
     IceCream: 25
+
+- type: microwaveMealRecipe
+  id: RecipeAppleCinnamonIcecream
+  name: apple cinnamon icecream
+  result: FoodAppleCinnamonIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodApple: 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeGoldAppleCinnamonIcecream
+  name: gold apple cinnamon icecream
+  result: FoodGoldAppleCinnamonIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodGoldenApple: 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeHolyMelonIcecream
+  name: holy melon icecream
+  result: FoodHolyMelonIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodHolymelonSlice: 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeRainbowHighIcecream
+  name: rainbow high icecream
+  result: FoodRainbowHighIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    GroundCannabisRainbow: 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeMeatIceream
+  name: meat icecream
+  result: FoodMeatIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodMeat : 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeWehIceream
+  name: weh icecream
+  result: FoodWehIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodLime: 1
+  reagents:
+    IceCream: 10
+    JuiceThatMakesYouWeh: 5
+
+- type: microwaveMealRecipe
+  id: RecipeSpaceCarpIceream
+  name: weh icecream
+  result: FoodSpaceCarpIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 1
+    FoodMeatDragonCutlet: 1
+  reagents:
+    IceCream: 10

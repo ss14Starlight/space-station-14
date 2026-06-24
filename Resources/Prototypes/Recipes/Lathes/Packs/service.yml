@@ -35,6 +35,7 @@
   - MicrowaveMachineCircuitboard
   - OvenMachineCircuitboard # Starlight-edit
   - StoveMachineCircuitboard # Starlight-edit
+  - IcecreamMakerMachineCircuitBoard # Starlight-edit
   - ReagentGrinderMachineCircuitboard
   - ElectricGrillMachineCircuitboard
   - BoozeDispenserMachineCircuitboard
