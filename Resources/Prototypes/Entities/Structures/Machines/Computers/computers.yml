@@ -1260,7 +1260,7 @@
   - type: PointLight
     color: "#afe837"
   - type: AccessReader
-    access: [["Service"], ["Theatre"]]
+    access: [["Service"]] # Starlight: Service is actually everyone in Service now.
 
 - type: entity
   id: ComputerCargoBounty
