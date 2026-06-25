@@ -1,132 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Replaced all astro tiles with astro-turf. The lizards shall no longer ash!
-    type: Tweak
-  id: 405805
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Moved the NCT Room below arrivals and in front of bridge.
-    type: Tweak
-  id: 405806
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked Both Docking Arms so evac is able to dock if others are blocked.
-    type: Tweak
-  id: 405807
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked the size of South East solars.
-    type: Tweak
-  id: 405808
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked the bar for the boxing ring.
-    type: Tweak
-  id: 405809
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed AI Upload to have a law crate and generators.
-    type: Tweak
-  id: 405810
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked the stages, using platforms for depth.
-    type: Tweak
-  id: 405811
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed Brigmed slots from 1 to 2, locker being changed to the large locker.
-    type: Tweak
-  id: 405812
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed Detective slots from 1 to 2.
-    type: Tweak
-  id: 405813
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed windows inside of medical to be non-reinforced.
-    type: Tweak
-  id: 405814
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed medical to have windows between the main room and locker room.
-    type: Tweak
-  id: 405815
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked medical intern spawns to spawn them in the main room.
-    type: Tweak
-  id: 405816
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked paramedic shutters to be paramedic access only, and to start closed.
-    type: Tweak
-  id: 405817
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked courtroom to have benches instead of chairs.
-    type: Tweak
-  id: 405818
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked IAA to be over one tile from Lawyer.
-    type: Tweak
-  id: 405819
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked pipes in atmos to be colored correctly.
-    type: Tweak
-  id: 405820
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Changed kitchen airlock to a glass airlock.
-    type: Tweak
-  id: 405821
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked many windows to be non-reinforced if not space facing.
-    type: Tweak
-  id: 405822
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Tweaked southwest solars to have three flatpacked assembly's instead of an extra crate.
     type: Tweak
   id: 405823
@@ -2799,4 +2673,130 @@ Entries:
   id: 406204
   time: '2026-06-23T17:37:43.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4904
+- author: BlythT
+  changes:
+  - message: Fixed butcher verb popping in by adding client-side verb prediction.
+    type: Fix
+  id: 406205
+  time: '2026-06-24T06:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4900
+- author: Johnny
+  changes:
+  - message: Added a circuitboard in the captains locker for the shipyard console so that it is more accessible no matter what map it is.
+    type: Add
+  id: 406206
+  time: '2026-06-24T14:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4907
+- author: Johnny
+  changes:
+  - message: The shipyard console circuitboard is now a thief objective per request.
+    type: Add
+  id: 406207
+  time: '2026-06-24T14:30:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4907
+- author: Scarlet Lightweaver and all the space stations.
+  changes:
+  - message: Added a magnet to the material silo departments hooray.
+    type: Add
+  id: 406208
+  time: '2026-06-24T14:55:41.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4902
+- author: Kasern
+  changes:
+  - message: Senior Chef Jacket.
+    type: Add
+  id: 406209
+  time: '2026-06-24T16:25:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4912
+- author: Kasern
+  changes:
+  - message: Senior Chef Jumpsuit.
+    type: Add
+  id: 406210
+  time: '2026-06-24T16:25:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4912
+- author: Kasern
+  changes:
+  - message: Senior Chef loadout options.
+    type: Add
+  id: 406211
+  time: '2026-06-24T16:25:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4912
+- author: redmushie
+  changes:
+  - message: All Service jobs now have Service access. Chaplain, Clown, Mime and Musician did not have it previously.
+    type: Tweak
+  id: 406212
+  time: '2026-06-24T18:15:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4927
+- author: redmushie
+  changes:
+  - message: The service request console now only uses Service access.
+    type: Tweak
+  id: 406213
+  time: '2026-06-24T18:15:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4927
+- author: wonderfulnewworld, Golub
+  changes:
+  - message: Added Cosmic Cult, Wizard Duel, Xenoborgs, Terror Spiders, Vampires, Changelings, SELF, Sub Wizards, and Paradox Crisis to Dynamic.
+    type: Add
+  id: 406214
+  time: '2026-06-24T18:36:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4920
+- author: wonderfulnewworld, Golub
+  changes:
+  - message: Added a higher ceiling to Dynamic's roundstart budget.
+    type: Add
+  id: 406215
+  time: '2026-06-24T18:36:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4920
+- author: wonderfulnewworld, Golub
+  changes:
+  - message: Tweaked Dynamic weights.
+    type: Tweak
+  id: 406216
+  time: '2026-06-24T18:36:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4920
+- author: wonderfulnewworld, Golub
+  changes:
+  - message: Dynamic will now actually select roundstart antagonists.
+    type: Fix
+  id: 406217
+  time: '2026-06-24T18:36:50.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4920
+- author: redmushie
+  changes:
+  - message: Request computers actually check access now.
+    type: Fix
+  id: 406218
+  time: '2026-06-24T21:12:58.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4928
+- author: Mack
+  changes:
+  - message: 'Popout to: Guidebook, Crew Monitors, Mass Scanners, Shuttle Consoles, Camera Monitors, AI Station records, Ghost Character Editor.'
+    type: Add
+  id: 406219
+  time: '2026-06-25T07:27:03.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4922
+- author: Mack
+  changes:
+  - message: ID job names not being escaped.
+    type: Fix
+  id: 406220
+  time: '2026-06-25T08:26:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4925
+- author: Caws
+  changes:
+  - message: Added new sprites for the Security mini jetpack to make it more obvious it's a mini jetpack (and not a full-size jetpack).
+    type: Add
+  id: 406221
+  time: '2026-06-25T09:27:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4914
+- author: Caws
+  changes:
+  - message: Fixed the name of the security mini jetpack. Previously, it was "security jetpack" if it spawned full of gas and "security mini jetpack" if it spawned empty.
+    type: Fix
+  id: 406222
+  time: '2026-06-25T09:27:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4914
 Order: -1

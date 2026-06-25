@@ -138,7 +138,7 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 5 # 🌟Starlight🌟
+  minPlayers: 50 # 🌟Starlight🌟
   rules:
   - DynamicRule
   - DummyNonAntag
