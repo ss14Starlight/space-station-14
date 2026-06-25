@@ -106,18 +106,13 @@
   - type: Item
     storedOffset: 0,-2
   - type: RevolverAmmoProvider
-    capacity: 8 # Starlight start, bigger chamber
-    chambers: [ True, True, True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null, null, null ]
+    capacity: 9 # Starlight start, bigger chamber
+    chambers: [ True, True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null, null ]
   - type: Gun
-    fireRate: 2.1
-    selectedMode: Burst
+    fireRate: 2.225
     availableModes:
     - SemiAuto
-    - Burst
-    shotsPerBurst: 2
-    burstCooldown: 0.8
-    burstFireRate: 4
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/revolver.ogg # Starlight end
   - type: StealTarget
