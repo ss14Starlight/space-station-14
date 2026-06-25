@@ -73,7 +73,7 @@ public abstract partial class SharedTamperSealSystem : EntitySystem
     /// </summary>
     private void OnActivateInWorld(EntityUid uid, TamperSealComponent seal, ref ActivateInWorldEvent args)
     {
-        if (seal.Opened || args.Handled)
+        if (seal.Opened || args.Handled || !args.Complex)
             return;
 
         TryUnseal(uid, args.User, seal);

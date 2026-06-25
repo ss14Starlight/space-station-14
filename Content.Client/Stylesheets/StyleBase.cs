@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client.Resources;
 using Content.Client.UserInterface.Controls;
 using Robust.Client.Graphics;
@@ -59,6 +60,7 @@ namespace Content.Client.Stylesheets
                 12
             );
             var textureCloseButton = resCache.GetTexture("/Textures/Interface/Nano/cross.svg.png");
+            var texturePopOutButton = resCache.GetTexture("/Textures/_Starlight/Interface/Nano/pop_out.svg.png"); // Starlight
 
             // Button styles.
             var buttonTex = resCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
@@ -194,6 +196,33 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#753131")),
                     }),
+                // Starlight begin
+                // popout button base texture.
+                new StyleRule(
+                    new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
+                        null),
+                    new[]
+                    {
+                        new StyleProperty(TextureButton.StylePropertyTexture, texturePopOutButton),
+                        new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#4B596A")),
+                    }),
+                // popout button hover.
+                new StyleRule(
+                    new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
+                        new[] {TextureButton.StylePseudoClassHover}),
+                    new[]
+                    {
+                        new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#A0A0A0")),
+                    }),
+                // popout button pressed.
+                new StyleRule(
+                    new SelectorElement(typeof(TextureButton), new[] {PopOutExtensions.PopOutButtonStyleClass}, null,
+                        new[] {TextureButton.StylePseudoClassPressed}),
+                    new[]
+                    {
+                        new StyleProperty(Control.StylePropertyModulateSelf, Color.FromHex("#FFFFFF")),
+                    }),
+                // Starlight end
             };
         }
     }
