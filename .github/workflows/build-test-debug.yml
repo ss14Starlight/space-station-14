@@ -47,7 +47,7 @@ jobs:
     - name: Discover Integration Tests
       run: |
         dotnet test --list-tests --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj 2>&1 | \
-          python3 Tools/test_shard_filter.py generate 8 .integration-filters
+          python3 Tools/_Starlight/partition_tests.py generate 8 .integration-filters
 
     - name: Archive build output
       run: tar czf /tmp/build.tar.gz --exclude='.git' .
@@ -131,13 +131,13 @@ jobs:
         max_attempts: 2
         retry_on: any
         command: |
-          FILTER=$(python3 Tools/test_shard_filter.py read .integration-filters/shard_${{ matrix.shard }}.filter)
-          if [ -z "$FILTER" ]; then
+          RUNSETTINGS=".integration-filters/shard_${{ matrix.shard }}.runsettings"
+          if [ ! -f "$RUNSETTINGS" ]; then
             echo "No tests assigned to shard ${{ matrix.shard }}"
             exit 0
           fi
           timeout --signal=TERM --kill-after=2m 15m \
-            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min -- NUnit.MapWarningTo=Failed NUnit.Where="$FILTER"
+            dotnet test --no-build --configuration DebugOpt Content.IntegrationTests/Content.IntegrationTests.csproj --logger "trx;LogFileName=results.trx" --logger "console;verbosity=normal" --results-directory /tmp/test-results --blame-hang --blame-hang-timeout 3min --settings "$RUNSETTINGS"
 
     - name: Test results
       continue-on-error: true
