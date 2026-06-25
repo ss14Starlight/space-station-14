@@ -1,6 +1,6 @@
 using Robust.Shared.Configuration;
 
-namespace Content.Shared.Starlight.CCVar;
+namespace Content.Shared._Starlight.CCVar;
 
 public sealed partial class StarlightCCVars
 {
@@ -26,7 +26,7 @@ public sealed partial class StarlightCCVars
     /// How long we wait before starting the stewardship vote.
     /// </summary>
     public static readonly CVarDef<int> CosmicCultStewardVoteDelayTimer =
-        CVarDef.Create("cosmiccult.steward_vote_delay", 25, CVar.SERVER);
+        CVarDef.Create("cosmiccult.steward_vote_delay", 7, CVar.SERVER);
 
     /// <summary>
     /// The delay between the monument getting upgraded to tier 2 and the crew learning of that fact. the monument cannot be upgraded again in this time.

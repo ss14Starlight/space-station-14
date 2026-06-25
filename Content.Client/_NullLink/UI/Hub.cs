@@ -16,7 +16,7 @@ using static Robust.Client.UserInterface.Controls.BoxContainer;
 
 namespace Content.Client._NullLink.UI;
 
-internal sealed class Hub : PanelContainer, IDisposable
+internal sealed partial class Hub : PanelContainer, IDisposable
 {
     private const string IconFont = "/Fonts/_NullLink/GameIcons/game-icons.ttf";
     private const string TextFont = "/Fonts/NotoSans/NotoSans-Regular.ttf";
@@ -34,11 +34,11 @@ internal sealed class Hub : PanelContainer, IDisposable
     private static readonly Color WarningColor = Color.FromHex("#e74c3c");
     private static readonly Color GhostColor = Color.FromHex("#5cb85c");
 
-    [Dependency] private readonly ILogManager _logs = default!;
-    [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-    [Dependency] private readonly IGameController _game = default!;
-    [Dependency] private readonly IResourceCache _resCache = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private ILogManager _logs = default!;
+    [Dependency] private IEntitySystemManager _systemManager = default!;
+    [Dependency] private IGameController _game = default!;
+    [Dependency] private IResourceCache _resCache = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
 
     private HubSystem _hub = default!;
     private ISawmill _sawmill = default!;

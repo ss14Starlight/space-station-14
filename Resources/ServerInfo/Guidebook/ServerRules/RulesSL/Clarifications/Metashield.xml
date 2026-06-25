@@ -8,7 +8,7 @@ The [bold]Metashield[/bold] is the system that determines what your character ca
 This system is broken up into four core pillars: [bold]Unknown Information, Corporate Secrets, Secure Knowledge, and Background.[/bold]
 
 - [bold][color=#ff6200]Unknown Information[/color][/bold] is not known by anyone, or is only known by a very small group of people which is defined specifically.
-- [bold][color=#9819ff]Corporate Secrets[/color][/bold] are only known by high value members of the corporation. These are; All of Command, the Station AI, NanoTrasen Representative, Blue Shield Officer, Magistrate, and all Central Command roles such as ERT, OPs, CBURN, etc. Corporate Secrets should be kept secret until it is necessary to reveal them, revealing them frivolously is frowned upon by Central Command.
+- [bold][color=#9819ff]Corporate Secrets[/color][/bold] are only known by high value members of the corporation. These are; All of Command, the Station AI, NanoTrasen Representative, Blue Shield Officer, Magistrate, NanoTrasen Career Trainer and all Central Command roles such as ERT, OPs, CBURN, etc. Corporate Secrets should be kept secret until it is necessary to reveal them, revealing them frivolously is frowned upon by Central Command.
 - [bold][color=#f00000]Secure Knowledge[/color][/bold] is only known by members of Security, Internal Affairs Agents, and everyone who knows Corporate Secrets. This includes the Brig Medic, Warden, Security Cadets- all Security jobs. Secure Knowledge should be kept secret until necessary, but may be revealed in order to preserve Crew lives.
 - [bold][color=#0af024]Background[/color][/bold] is a system that allows any characters to know specific pieces of ordinarily Metashielded knowledge. Every character may only have one Background, which is picked during Character Creation as a Trait and can not be changed mid-round or frequently at all. Your Background should reflect the life your character has lived, and act in complement to their characterization and backstory.
 
@@ -56,41 +56,43 @@ Examples:
 - You can, after being revived, comment on the fact that you have stab wounds if you were killed with a bladed weapon, or that your clothes look burned.
 - You can not, after being revived, comment that you have bullet wounds of a specific caliber which must mean a specific gun was used to kill you. You can't tell that by looking at a wound.
 
-All silicon memories are cached to an on-chassis storage medium that's wirelessly backed up every 5 minutes.  PosiBrains and MMIs that have been removed from their chassis may not recall the last five minutes unless placed back into the chassis they previously inhabited.  Destruction of the chassis results in a total loss of those memories.  Further, corruption of a chassis (such as by Syndicate/SELF emag) discontinues the backups, making all memories after the event completely inaccessible unless placed back into the corrupted chassis.
 
 ## Corporate Secrets
-[color=#9819ff]Corporate Secrets[/color] are only known by high value members of the corporation. These are; All of Command, the Station AI, NanoTrasen Representative, Blue Shield Officer, Magistrate, and all Central Command roles such as ERT, OPs, CBURN, etc. Corporate Secrets should be kept secret until it is necessary to reveal them, revealing them frivolously is frowned upon by Central Command. This information is considered sensitive and libel to cause mass panic if learned by the Crew.
+[color=#9819ff]Corporate Secrets[/color] are only known by high value members of the corporation. These are; All of Command, the Station AI, NanoTrasen Representative, Blue Shield Officer, Magistrate, NanoTrasen Career Trainer and all Central Command roles such as ERT, OPs, CBURN, etc. Corporate Secrets should be kept secret until it is necessary to reveal them, revealing them frivolously is frowned upon by Central Command. This information is considered sensitive and libel to cause mass panic if learned by the Crew.
 
 Corporate Secrets may be revealed to individuals, departments, or the station as a whole if deemed necessary. You had better have a good reason to do so however, and expect your reasoning to be cross examined and scrutinized heavily by Central Command. Revealing Corporate Secrets to Security is generally deemed more acceptable, better for them to clean up an issue without panicking the rest of the Crew.
 
+
 [bold][color=#9819ff]Ninjas || [/color][/bold]
-Ninjas are a collective of Clans that seek to steal our research and disrupt our operations. They frequently target vital systems to cause a distraction, and then attempt to hack into Research Servers to download what we have learned. How hostile these Clans are varies greatly, so we advise attempting to handle them discreetly if able to minimize disruption.
+Ninjas are a collective of Clans that seek to steal research and disrupt NT-CC operations. They possess access-breaking technology, and predominately target our research servers. Hostile ninjas are to be treated as boarders, and dealt with accordingly.
 
 
 [bold][color=#9819ff]Abductors || [/color][/bold]
-Silent and uncommunicative, Abductors is the name given to an advanced alien species that has been probing the edges of TSF space for over a decade now, long enough that their image has worked its way into media and rumor. Our official stance is that they are not real. Should Abductor activity be identified, due to the nature of their experiments you are advised to inform necessary Medical staff only. Surgeons will be needed to remove foreign organs and replace them.
+Abductors are mysterious aliens with cloaking and advanced teleporting technology. Their modus-operandi consists of kidnapping other sentient species and implanting them with tracking organs. Abductors engaging in this are to be treated as boarders, and dealt with accordingly.
 
 
 [bold][color=#9819ff]Romerol Virus || [/color][/bold]
-Romerol is a highly violent contagion that pilots the dead to facilitate its own spread. The current source is unknown, but it is suspected to be artificial in nature. A cure has been documented, and this information should be disseminated to Medical staff in the event of an outbreak. Subjects are capable of revival via cloning should their corpse be recovered rapidly. If quarantine can not be maintained, requesting for CBURN is advised.
+Romerol is a highly violent contagion that pilots the dead to facilitate its own spread. Where it comes from is unknown, but it is spread intentionally by certain organisations, such as the Syndicate. Ambuzol is a publicly known strong rotting reversal chem, but its use to cure Romerol is not known publicly.
 
 
-[bold][color=#9819ff]Paradox Clones || [/color][/bold]
-Cracks in reality sometimes result in intrusions from other parallel worlds. This phenominon is exclusive to sectors near the Null Scar, and is a matter of great interest to NanoTrasen. Should a duplicate be discovered it should be observed and studied, and only terminated if it proves to be hostile.
+[bold][color=#9819ff]Interdimensional Intruders || [/color][/bold]
+Cracks in reality sometimes result in intrusions from other parallel worlds. This phenomenon is exclusive to sectors near the Null Scar, and is a matter of great interest to NanoTrasen. Should an interdimensional intruder be discovered it should be observed and studied, and only terminated if it proves to be hostile.
+
+[italic]Paradox Clones, Exterminators, etc.[/italic]
+
 
 [bold][color=#9819ff]Cults || [/color][/bold]
-Although the concept and existence of 'cults' is known to the Crew, as they have existed since the dawn of time, the specifics of any cult with real power, such as the Cosmic Cult, are kept secret. Often intentionally by the cults themselves. Chaplains hold the most knowledge of the Crew about these sects, having long studied the religions and faiths of the universe.
+While most cults are harmless superstition, some are in contact with very real entities, often extradimensional. These cults sometimes sneak onto NT-CC stations to convert them into secretive bases from which to perform forbidden rituals. Obviously, this is bad for efficiency, and must be stopped.
+
+The [bold]Chaplain[/bold] specifically knows of these cults, despite not being part of the Corporate Secret list.
+
 
 [bold][color=#9819ff]Nuclear Operatives || [/color][/bold]
-The Syndicate is a shell of its former self, due to their involvement in and defeat during the Pod Wars. They have grown increasingly more irrational and hostile since their resurgence however, and the rumors you have heard about Nuclear attacks are true. You must protect the Warhead onboard your station, and the Authentication Disk to activate it, at all costs. A confirmed attack from Nuclear Operatives is grounds to suspend Corporate Law and Standard Operating Procedure. Contact Central Command immediately to establish Martial Law.
+Despite being a shell of their former selves, the Syndicate does sometimes mount assaults on the station, aiming to use its self-destruction measures against it.
 
-[bold][color=#9819ff]Exterminators || [/color][/bold]
-Assassins of unknown origin have been rumored that have unnatural resilience to basically all conventional weapons in a Security Team's arsenal. Their origin is unknown and reason for their killings unclear. They self destruct into a melted mess when they have finished their task. Weirdest yet, NanoTrasen and CentCom seem to dodge any questions on the topic...
 
 [bold][color=#9819ff]NTSF Decimus || [/color][/bold]
-NanoTrasen Special Forces are broken up into Task Forces that specialize in different scenarios and problems. Officially, there are only Nine of these Task Forces. Unofficially, there are Ten. Task Force Ten, Decimus, handles termination of rogue stations. This is reserved only for extreme situations where an entire station has defected to an enemy of the Trans-Solar Federation, such as the Syndicate or the USSP.
-
-Code Epsilon is the designation for this necessary last resort measure, should it ever occur. Thankfully it has never seen deployment, as no station would ever willingly defect to an enemy like that. Still, the protocol exists, and if the general public were to learn of it, it would be disastrous. The existence of Decimus should never be revealed under any circumstances.
+The existence of NanoTrasen Special Forces is common, and recruitment drives for them everywhere on NT-CC stations. Decimus, however, and it's associated Epsilon alert level, are highly illegal procedures that the consortium keeps secret. Even those in the know will believe it to have never been used.
 
 
 ## Secure Knowledge
@@ -98,69 +100,56 @@ Code Epsilon is the designation for this necessary last resort measure, should i
 
 
 [bold][color=#f00000]Revolutionary Methods || [/color][/bold]
-The fact that USSP infiltrators make use of mind control flashes to forcibly control individuals, and unstable Redspace rifts to transport bulk equipment crates, is something that CentComm has learned through repeated incidents. Mindshields were specifically developed to counter this forced control, by Revolutionaries and by any others who might exploit the same weakness in the mind for their own ends. It is known that Mindshields will prevent and break this control.
+Nobody would ever betray NT-CC to become a communist by choice, obviously, and so the United Soviet Socialist Planets utilises agents armed with mind-altering devices, disguised as flashes, to convert the crew by force. The agents that bring these aboard also have teleportation technology to bring in equipment needed for their revolution.
 
-Not all flashes have this power however, and it should never be the first assumption. Strong evidence is needed before Revolutionaries are suspected, as revealing that the USSP has this capability would undermine the Crew's ability to trust one another and would significantly damage cohesion and moral.
+Not all flashes have this power however, and it should never be the first assumption. Strong evidence is needed before Revolutionaries are suspected.
 
 Examples:
 - A Scientist flashing someone in the bar is not grounds to suspect there is a Revolution.
-- Multiple confirmed reports of crew being flashed by other crew is grounds to suspect there is a Revolution.
 - A large group of Crew in a department they should not be in all passing around weapons or flashes is grounds to suspect there is a Revolution.
 - A Mindshielding failing on a Crewmember is proof that there is a Revolution.
 
-[bold][color=#f00000]Bright-eye || [/color][/bold]
-Bright-eyes are the alternative and seemingly natural state of Shadekin, a Inter dimensional race that regularly is more akin to an ensemble of often solitary vagrants. Commonly isolated and alone, it is incredibly rare to ever have more than one in any given location. Many encounters with Bright-eyes have displayed great variance in attitude and intent, however most commonly seen as observers seeking to understand, with some accounts of potential hostility in a few cases. Due to varied accounts, handling of the instances are to be cautious and investigative on first contact, and proceed further with what is gleaned from the interaction as per reason, be it containment, neutralization or monitored dwelling aboard. Shadekin of all kinds are often aware of the existence of their Bright-eye counter-parts.\n[italic]NOTE: Bluespace Crystals are known to disrupt their Nullspace travel.[italic]
 
 [bold][color=#f00000]Changelings || [/color][/bold]
-The existence of Changelings, alien parasites that can steal the likeness of your friends and coworkers to blend in, is a serious but uncommon threat that stations may face. They pose an undue risk to the moral and cohesion of a station should they be revealed, paranoia and distrust severely and negatively impact the bottom line. Should Changelings be identified onboard your Station, you are advised to inform necessary Medical staff only. Chemists may facilitate blood tests, Surgeons may attempt to revive hollow corpses with organ transplants or cryopods.
+Changelings are an parasitic species associated with radical elements of the Syndicate. They are able to change their shape down to the genetic level, and are known to consume their victims in a distinctive inside-out manner, leaving their bodies hollow.
 
 
 [bold][color=#f00000]Suspected Syndicate Corporations || [/color][/bold]
-While nobody is able to prove anything, Central Command maintains a small curated list of corporations they believe to be backing the Syndicate. Security is made privy to this list so they may observe and report any connections to Syndicate activity onboard stations.
+While nobody is able to prove anything, Central Command maintains a small curated list of corporations they believe to be backing the Syndicate. Security is made privy to this list so they may observe and report any connections to Syndicate activity onboard stations. Their products should be viewed with suspicion but may or may not be considered contraband. Consult with Corporate Law for more information.
 
 These suspected corporations are:
 - Cybersun
 - Waffle Co.
 - Interdyne
 
-Their products should be viewed with suspicion but may or may not be considered contraband. Consult with Corporate Law for more information.
-
 
 [bold][color=#f00000]Non-NanoTrasen Implants || [/color][/bold]
-While it is known that NanoTrasen are not the only company to make Implanters, you may not suspect someone of having an Implant without valid evidence, such as seeing them do something they should not be able to do, seeing them use an Implanter, finding a spent Implanter with their DNA or prints on it, etc. Spent Implanters and Implant Boxes have labels, and these may be used to figure out which Implant someone has for removal.
+The world of implants is wide and varied, and the specifics of the implants utilised by hostile organisations is only known to those taught.
 
 
 [bold][color=#f00000]Vampires || [/color][/bold]
-The fact that Vampires are real is unknown to the general public. While not inherently illegal, Vampires sometimes have an agenda onboard a Station and should be kept under extra scrutiny if they reveal themselves. More flashy abilities such as teleportation, invisibility, immense strength, and mind control are known to security.
+Where Vampires come from is poorly understood, but rigorous interrogation has confirmed that they belong to some kind of vampire organisation intent on expanding their influence. These organisations frequently send their kind to infiltrate our stations.
 
 
 [bold][color=#f00000]Wizards || [/color][/bold]
-The Wizard Federation is very outspoken about their so-called 'magic', but most consider them to be nutjobs roleplaying in space. Whether that they do is actually 'magic' or not, they are a danger and Security has been briefed on them. Security knows they may have access to strange abilities, but they do not know the extent of the Wizard's capabilities.
+The Wizard Federation is very outspoken about their so-called 'magic'. Whether that they do is actually 'magic' or not, they are a danger and Security has been briefed on them. Security knows they may have access to strange abilities, but they do not know the extent of the Wizard's capabilities.
+
 
 [bold][color=#f00000]Xenoborgs || [/color][/bold]
-Xenoborgs are rogue Silicons that have started assimilating organics to grow their number. They are known to harvest the brains of unfortunate crew members, whose bodies they destroy before they turn them into more xenoborgs. Preventing crew from being abducted is imperative to prevent a critical mass of hostile borgs.
+Xenoborgs are rogue Silicons that have started assimilating organics to grow their number. They are known to harvest the brains of unfortunate crew members, whose bodies they destroy before they turn them into more Xenoborgs. Preventing crew from being abducted is imperative to prevent a critical mass of hostile borgs.
 
 
 [bold][color=#f00000]Syndicate Equipment || [/color][/bold]
-Security is aware of some specific equipment associated with the Syndicate. They are not aware of all or even most of the items within the uplink, however they do get foreknowledge of;
+Security is aware of some specific equipment associated with the Syndicate. They are not aware of all or even most of the items within the uplink, however they do get foreknowledge of:
 - Syndicate Hardsuits, EVA Suits, Jetpacks, Mag Boots, Chest Rigs, and Web Vests
 - Syndicate Guns and Energy Swords
 - Basic tools; Syndicate Jaws of Life, EMAG, Access Breaker, Suspicious Toolbox and its contents, and Radio Jammer
 
 You also know that things called [bold]'Uplinks'[/bold] exist which allow the Syndicate to access their tools, but you do not know how they work or are accessed unless you find one open.
 
-You may use examine text to identify that something is in fact Syndicate Contraband, but this only applies if the item has a Contraband tag that explicitly tells you it is Contraband. Examining items to reveal secret uses, such as Hypopens, Exploding Pens, Energy Daggers, or Chameleon items, is not allowed.
-
-Examples:
-- You may know, without encountering one, that Syndicate Agent may have a Blood-Red Harduit.
-- You may know, without encountering one, that Syndicate Agents may have a Viper Pistol.
-- You can not know, until encountering one, that Syndicate Agents may have Access Breakers.
-- You can know, on examining a Camera Bug, that it is Syndicate Contraband, because the game tells you it is.
-- You may not know, on examining a Hypopen, that it is a Hypopen just because the game tells you it has fluid storage.
-
 
 [bold][color=#f00000]High Value Targets || [/color][/bold]
-All items that can be targets of theft by the Syndicate are known to Security. This includes the CE's Mag Boots, Captain's Gun, RD's Hardsuit, etc. While normal crew know they are somewhat valuable, they do not know that they are deliberately targeted for theft.
+All items that can be targets of theft by the Syndicate are known to Security. This includes the CE's Mag Boots, Captain's Gun, RD's Hardsuit, etc. While normal crew know they are valuable, they do not know that they are deliberately targeted for theft by Syndicate Agents.
 
 
 ## Backgrounds
@@ -200,9 +189,6 @@ You were once the unfortunate recipient of a probing. The Grays are real! They h
 [bold][color=#0af024]Petty Criminal || [/color][/bold]
 While reformed, more or less, you used to get involved in the types of crowds and businesses you really shouldn't have. Because of these connections, you are aware of what items on the station are likely to be worth a lot, and that they are probably targeted by the Syndicate and other Thieves. You know what all the Steal Objective Targets are.
 
-
-[bold][color=#0af024]Hunted  || [/color][/bold]
-You saw something dreadful. It looked human at first, then it burned down to a metal skeleton. Nothing would slow it down and it acted with the single minded purpose of ending them, and it did. Crushed them like nothing, then it melted away in a brilliant fire. You watched it burn, and saw you watching. You have seen too much, it will come for you next. Of this you are certain...
 
 ## Additional Information
 ### Rumors and Pop Culture

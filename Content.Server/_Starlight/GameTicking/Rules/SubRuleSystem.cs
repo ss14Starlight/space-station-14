@@ -1,4 +1,5 @@
 using Content.Server.Administration.Logs;
+using Content.Server.GameTicking.Rules;
 using Content.Shared.Database;
 using Content.Shared.EntityTable;
 using Content.Shared.EntityTable.Conditions;
@@ -6,17 +7,18 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.GameTicking.Rules;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.GameTicking.Rules;
 
-namespace Content.Server.GameTicking.Rules;
+namespace Content.Server._Starlight.GameTicking.Rules;
 
 /// <summary>
 /// A system to handle one-shot dynamic rules, with slightly different add/start semantics.
 /// </summary>
-public sealed class SubRuleSystem : GameRuleSystem<SubRuleComponent>
+public sealed partial class SubRuleSystem : GameRuleSystem<SubRuleComponent>
 {
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     protected override void Added(EntityUid uid, SubRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

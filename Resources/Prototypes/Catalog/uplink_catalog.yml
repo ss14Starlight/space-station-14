@@ -14,21 +14,6 @@
   categories:
   - UplinkWeaponry
 
-# starlight start
-- type: listing
-  id: UplinkRevolverPython
-  name: uplink-revolver-python-name
-  description: uplink-revolver-python-desc
-  productEntity: WeaponRevolverPythonAP
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 4 # Originally was 13 and then 8 TC but was not used due to high cost
-  categories:
-  - UplinkWeaponry
-# starlight end
-
 # Inbuilt suppressor so it's sneaky + more expensive.
 - type: listing
   id: UplinkPistolCobra
@@ -188,20 +173,6 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkFireAxe
-  name: uplink-fire-axe-flaming-name
-  description: uplink-fire-axe-flaming-desc
-  icon: { sprite: /Textures/Objects/Weapons/Melee/fireaxeflaming.rsi, state: icon }
-  productEntity: FireAxeFlaming
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4 # Starlight-edit: 10 -> 4
-  cost:
-    Telecrystal: 6 # Starlight-edit: 15 -> 6
-  categories:
-  - UplinkWeaponry
-
-- type: listing
   id: UplinkHushpup
   name: uplink-hushpup-name
   description: uplink-hushpup-desc
@@ -292,25 +263,6 @@
       - NukeOpsUplink
 
 - type: listing
-  id: UplinkEstoc
-  name: uplink-estoc-name
-  description: uplink-estoc-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/estoc.rsi, state: icon }
-  productEntity: BriefcaseWeaponDMRFilled
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 10
-  cost:
-    Telecrystal: 14
-  categories:
-  - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - NukeOpsUplink
-
-- type: listing
   id: UplinkEstocBundle
   name: uplink-estoc-bundle-name
   description: uplink-estoc-bundle-desc
@@ -377,18 +329,6 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
-
-# starlight start
-- type: listing
-  id: UplinkExplosiveGrenadeFlash
-  name: uplink-flash-grenade-name
-  description: uplink-flash-grenade-desc
-  productEntity: GrenadeFlashBang
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkExplosives
-# starlight end
 
 - type: listing
   id: UplinkSmokeGrenade
@@ -559,21 +499,6 @@
       tags:
       - NukeOpsUplink
 
-# starlight start
-- type: listing
-  id: UplinkClusterGrenade
-  name: uplink-cluster-grenade-name
-  description: uplink-cluster-grenade-desc
-  productEntity: ClusterGrenade
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 5
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkExplosives
-# starlight end
-
 - type: listing
   id: UplinkGrenadeShrapnel
   name: uplink-shrapnel-grenade-name
@@ -600,23 +525,7 @@
   categories:
   - UplinkExplosives
 
-# starlight start
-- type: listing
-  id: UplinkEmpKit
-  name: uplink-emp-kit-name
-  description: uplink-emp-kit-desc
-  productEntity: ElectricalDisruptionKit
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 6
-  categories:
-    - UplinkExplosives
-# starlight end
-
 # Ammo
-# Starlight start
 - type: listing
   id: UplinkPistol9mmMagazineSP
   name: uplink-pistol-high-capacity-magazine-name # Starlight, actually descriptive now
@@ -627,29 +536,6 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
-
-- type: listing
-  id: UplinkPistol9mmMagazineHP
-  name: uplink-pistol-hp-magazine-name # Starlight
-  description: uplink-pistol-hp-magazine-desc # Starlight
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red } # Starlight, now actually the right icon
-  productEntity: MagazinePistolHP
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
-
-- type: listing
-  id: UplinkPistol9mmMagazineFMJ
-  name: uplink-pistol-fmj-magazine-name # Starlight
-  description: uplink-pistol-fmj-magazine-desc # Starlight
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: fmj } # Starlight, now actually the right icon
-  productEntity: MagazinePistolFMJ
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkAmmo
-# Starlight end
 
 # For the C20R
 - type: listing
@@ -695,19 +581,6 @@
   productEntity: MagazinePistolCaselessRifle
   cost:
     Telecrystal: 1
-  categories:
-  - UplinkAmmo
-
-# Starlight start
-# For the Python
-- type: listing
-  id: UplinkSpeedLoaderMagnumAP
-  name: uplink-speedloader-magnum-name
-  description: uplink-speedloader-magnu-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumAP
-  cost:
-    Telecrystal: 3
   categories:
   - UplinkAmmo
 
@@ -1225,34 +1098,6 @@
   categories:
   - UplinkDisruption
 
-# Starlight start
-- type: listing
-  id: UplinkBreachingHammer
-  name: uplink-breaching-hammer-name
-  description: uplink-breaching-hammer-desc
-  productEntity: HammerBreachingNT
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 8
-  cost:
-    Telecrystal: 12
-  categories:
-  - UplinkWeaponry
-
-- type: listing
-  id: UplinkDuffelSurgery
-  name: uplink-duffel-surgery-name
-  description: uplink-duffel-surgery-desc
-  productEntity: ClothingBackpackDuffelSyndicateFilledMedical
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkDisruption
-# Starlight end
-
 - type: listing
   id: UplinkPowerSink
   name: uplink-power-sink-name
@@ -1547,45 +1392,6 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# Starlight start
-- type: listing
-  id: UplinkDarkGygax
-  name: uplink-mech-teleporter-assault-name
-  description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/darkgygax.rsi, state: base }
-  productEntity: CrateCybersunDarkGygaxBundle
-  cost:
-    Telecrystal: 75
-  categories:
-  - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-    blacklist:
-      tags:
-      - LoneOpsUplink
-
-- type: listing
-  id: UplinkMauler
-  name: uplink-mech-teleporter-heavy-name
-  description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/_Starlight/Objects/Specific/Mechs/Mechs/mauler.rsi, state: base }
-  productEntity: CrateCybersunMaulerBundle
-  cost:
-    Telecrystal: 100
-  categories:
-  - UplinkAllies
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-    blacklist:
-      tags:
-      - LoneOpsUplink
-# Starlight end
 # Implants
 
 - type: listing
@@ -1947,7 +1753,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Armor/syndie-raid.rsi, state: icon }
   productEntity: ClothingBackpackSyndicateRaidBundle
   cost:
-    Telecrystal: 8
+    Telecrystal: 8 # Starlight
   categories:
   - UplinkWearables
   conditions:
@@ -2003,16 +1809,6 @@
       whitelist:
         tags:
           - NukeOpsUplink
-
-- type: listing
-  id: UplinkClothingConductingGloves
-  name: uplink-clothing-conducting-gloves-name
-  description: uplink-clothing-conducting-gloves-desc
-  productEntity: ClothingHandsGlovesConducting
-  cost:
-    Telecrystal: 1
-  categories:
-  - UplinkPointless
 
 - type: listing
   id: UplinkBackpackSyndicate
@@ -2219,46 +2015,6 @@
     - Captain # Starlight
 
 - type: listing
-  id: uplinkRiggedBoxingGlovesAssistant
-  name: uplink-rigged-boxing-gloves-name
-  description: uplink-rigged-boxing-gloves-desc
-  productEntity: ClothingHandsGlovesBoxingRigged
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 3
-  cost:
-    Telecrystal: 5 # Starlight
-  categories:
-    - UplinkJob
-  conditions:
-    - !type:BuyerJobCondition
-      whitelist:
-        - Assistant
-
-- type: listing
-  id: UplinkNecronomicon # Starlight
-  name: uplink-necronomicon-name
-  description: uplink-necronomicon-desc
-  productEntity: BibleNecronomicon
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 2
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
-    - Chaplain
-    - HeadOfPersonnel # Starlight
-    - Captain # Starlight
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
-- type: listing
   id: uplinkHolyHandGrenade
   name: uplink-holy-hand-grenade-name
   description: uplink-holy-hand-grenade-desc
@@ -2293,27 +2049,6 @@
   - !type:BuyerJobCondition
     whitelist:
     - Mime
-    - Clown
-    - Performer # Starlight
-    - HeadOfPersonnel # Starlight
-    - Captain # Starlight
-
-- type: listing
-  id: UplinkBananaPeelExplosive # Starlight
-  name: uplink-banana-peel-explosive-name
-  description: uplink-banana-peel-explosive-desc
-  icon: { sprite: Objects/Specific/Hydroponics/banana.rsi, state: peel }
-  productEntity: TrashBananaPeelExplosiveUnarmed
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 1
-  cost:
-    Telecrystal: 2
-  categories:
-  - UplinkJob
-  conditions:
-  - !type:BuyerJobCondition
-    whitelist:
     - Clown
     - Performer # Starlight
     - HeadOfPersonnel # Starlight

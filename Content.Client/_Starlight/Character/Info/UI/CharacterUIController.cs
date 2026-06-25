@@ -1,6 +1,6 @@
 ﻿using Content.Client._Starlight.Character.Info.UI;
 
-// ReSharper disable CheckNamespace
+// ReSharper disable once CheckNamespace
 namespace Content.Client.UserInterface.Systems.Character;
 
 public sealed partial class CharacterUIController

@@ -1,5 +1,4 @@
-﻿using Content.Shared.FixedPoint;
-using Robust.Shared.Audio;
+﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Movement.Components;

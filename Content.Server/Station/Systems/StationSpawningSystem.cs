@@ -33,6 +33,8 @@ using Prometheus;
 using Content.Server._Starlight.Administration.Systems;
 using Content.Server._Starlight.Medical.Body.Systems;
 using Content.Server._Starlight.Antags.Components;
+using Content.Shared._Starlight.Station;
+using Content.Shared._Starlight.Humanoid;
 // Starlight End
 
 namespace Content.Server.Station.Systems;
@@ -42,27 +44,27 @@ namespace Content.Server.Station.Systems;
 /// Also provides helpers for spawning in the player's mob.
 /// </summary>
 [PublicAPI]
-public sealed class StationSpawningSystem : SharedStationSpawningSystem
+public sealed partial class StationSpawningSystem : SharedStationSpawningSystem
 {
-    [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
-    [Dependency] private readonly ActorSystem _actors = default!;
-    [Dependency] private readonly IdCardSystem _cardSystem = default!;
+    [Dependency] private SharedAccessSystem _accessSystem = default!;
+    [Dependency] private ActorSystem _actors = default!;
+    [Dependency] private IdCardSystem _cardSystem = default!;
     //[Dependency] private readonly IConfigurationManager _configurationManager = default!; // Starlight-removed - we dropped the one use of this
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
-    [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
-    [Dependency] private readonly PdaSystem _pdaSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly MindSystem _mindSystem = default!;
-    [Dependency] private readonly LimbSystem _limbSystem = default!;
-    [Dependency] private readonly BodySystem _bodySystem = default!;
-    [Dependency] private readonly GrammarSystem _grammarSystem = default!; // Starlight
-    [Dependency] private readonly AutoDiscordLogSystem _autolog = default!; // Starlight
+    [Dependency] private HumanoidAppearanceSystem _humanoidSystem = default!;
+    [Dependency] private IdentitySystem _identity = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
+    [Dependency] private PdaSystem _pdaSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private LimbSystem _limbSystem = default!;
+    [Dependency] private BodySystem _bodySystem = default!;
+    [Dependency] private GrammarSystem _grammarSystem = default!; // Starlight
+    [Dependency] private AutoDiscordLogSystem _autolog = default!; // Starlight
 
     private List<CyberneticImplant> _allCybernetics = default!; // Starlight
 
     #region Starlight
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
     private static readonly ProtoId<SpeciesPrototype> FallbackSpecies = "Human";
     private static readonly ProtoId<JobPrototype> FallbackJob = "Assistant";
     private static readonly Gauge _speciesJobsSpawns = Metrics.CreateGauge(

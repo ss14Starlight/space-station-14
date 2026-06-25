@@ -38,6 +38,19 @@
     RightLegFelionoid: 1
 
 - type: microwaveMealRecipe
+  id: RecipeFoodFriedRodentia
+  name: kentucky fried rodentia recipe
+  result: FoodFriedRodentia
+  time: 10
+  reagents:
+    Egg: 5
+    Flour: 10
+    Water: 5
+  solids:
+    HeadRodentia: 1
+    TorsoRodentia: 1
+
+- type: microwaveMealRecipe
   id: RecipeFoodCookedlizard
   name: Volcanic explosion recipe
   result: FoodCookedLizardPlate
@@ -151,6 +164,14 @@
   ingredient: MobFelionoid
   includeFormerly: true
 
+- type: deepFryingRecipe
+  id: KFRAlternative
+  name: Kentucky Fried Rodentia
+  result: FoodFriedRodentia
+  time: 30
+  ingredient: MobRodentia
+  includeFormerly: true
+
 - type: microwaveMealRecipe
   id: RecipeFoodCookedShadekinCore
   name: core spaghetti
@@ -177,3 +198,21 @@
   solids:
     FoodDonutPlain: 1
     FoodMeatCutlet: 1
+
+- type: microwaveMealRecipe
+  id: RecipeLollipopPlain
+  name: plain lollipop recipe
+  result: FoodLollipopPlain
+  time: 15
+  reagents:
+    Sugar: 15
+    Water: 5
+  group: Dessert
+
+- type: deepFryingRecipe
+  id: TP14RecipePenguinNugget
+  name: penguin nugget recipe
+  result: FoodBakedNugget
+  time: 20
+  ingredient: FoodMeatPenguinCutlet
+  group: TP14-Deep-Fry

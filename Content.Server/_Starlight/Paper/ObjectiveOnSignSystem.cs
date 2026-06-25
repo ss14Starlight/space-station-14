@@ -7,11 +7,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server._Starlight.Paper;
 
-public sealed class ObjectiveOnSignSystem : EntitySystem
+public sealed partial class ObjectiveOnSignSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {

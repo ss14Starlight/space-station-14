@@ -17,7 +17,7 @@ public sealed partial class AchievementNotification : Control
     private const float DragHeaderHeight = 34f;
     private const float CloseButtonHitWidth = 40f;
 
-    [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
+    [Dependency] private IEntitySystemManager _entitySystems = default!;
     private bool _dragging;
     private Vector2 _dragOffset;
 

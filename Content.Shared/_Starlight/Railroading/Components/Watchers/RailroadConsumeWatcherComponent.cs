@@ -1,4 +1,4 @@
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Watchers;
 
 /// <summary>
 /// Components like watch act as a kind of subscription to specific events, for relaying them onto the card entity.

@@ -59,10 +59,10 @@ reagent-name-polypyrylium-oligomers = Polypyrylium Oligomers
 reagent-desc-polypyrylium-oligomers = A purple mixture of short polyelectrolyte chains not easily synthesized in the laboratory. Heals asphyxiation and brute damage. Stops bleeding over time.
 
 reagent-name-ambuzol = ambuzol
-reagent-desc-ambuzol = A highly engineered substance able to halt the progression of a zombie infection.
+reagent-desc-ambuzol = A highly engineered substance able to regress the progress of rotting.
 
 reagent-name-ambuzol-plus = ambuzol plus
-reagent-desc-ambuzol-plus = Further engineered with omnizine, inoculates the living against the infection.
+reagent-desc-ambuzol-plus = Further engineered with omnizine, it substantially regresses rot progress in corpses.
 
 reagent-name-pulped-banana-peel = pulped banana peel
 reagent-desc-pulped-banana-peel = Pulped banana peels have some effectiveness against bleeding.

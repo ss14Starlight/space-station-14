@@ -32,29 +32,29 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Tag;
-using Content.Shared.Vampire.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Vampire.Components;
 #endregion Starlight
 
 namespace Content.Server.Bible
 {
-    public sealed class BibleSystem : EntitySystem
+    public sealed partial class BibleSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-        [Dependency] private readonly InventorySystem _invSystem = default!;
-        [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly UseDelaySystem _delay = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly SharedStunSystem _stun = default!;
-        [Dependency] private readonly HandsSystem _hands = default!; //Starlight
-        [Dependency] private readonly TagSystem _tags = default!; //Starlight
-        [Dependency] private readonly NameModifierSystem _nameModifier = default!; //Starlight
+        [Dependency] private IRobustRandom _random = default!;
+        [Dependency] private ActionBlockerSystem _blocker = default!;
+        [Dependency] private DamageableSystem _damageableSystem = default!;
+        [Dependency] private InventorySystem _invSystem = default!;
+        [Dependency] private MobStateSystem _mobStateSystem = default!;
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private SharedActionsSystem _actionsSystem = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private UseDelaySystem _delay = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private SharedStunSystem _stun = default!;
+        [Dependency] private HandsSystem _hands = default!; //Starlight
+        [Dependency] private TagSystem _tags = default!; //Starlight
+        [Dependency] private NameModifierSystem _nameModifier = default!; //Starlight
 
 
         public override void Initialize()

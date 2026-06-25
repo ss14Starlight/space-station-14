@@ -9,8 +9,9 @@ using Robust.Client.UserInterface.XAML;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
+#region Starlight
 using Content.Client._Starlight.TextToSpeech;
-using Content.Client._Starlight.TTS;
+#endregion
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
 

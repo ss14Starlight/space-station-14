@@ -24,18 +24,20 @@ using Content.Shared.Tag;
 using System.Reflection;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Random;
+using Content.Shared._Starlight.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.NullSpace.Components;
 #endregion Starlight
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanBasicRaycastSystem : EntitySystem
+public sealed partial class HitscanBasicRaycastSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly ISharedAdminLogManager _log = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly TagSystem _tag = default!; //Starlight -- arming distance
-    [Dependency] private readonly IRobustRandom _rand = default!; // Starlight-edit
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private ISharedAdminLogManager _log = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tag = default!; //Starlight -- arming distance
+    [Dependency] private IRobustRandom _rand = default!; // Starlight-edit
 
     private EntityQuery<HitscanBasicVisualsComponent> _visualsQuery;
 
