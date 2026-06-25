@@ -25,8 +25,11 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+  - !type:AddComponentSpecial # Starlight. Forgo's the need to add ambu+ pills in their loadout
+    components:
+    - type: ZombieImmune
 
-- type: startingGear
+- type: startingGear # Starlight. Loadouts and their contents have been changed.
   id: CBURNGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBrown
@@ -38,39 +41,61 @@
     outerClothing: ClothingOuterSoftsuitCBURN #Starlight
     shoes: ClothingShoesBootsCombatFilled
     id: CBURNPDA
+    pocket1: FlashlightSeclite
     pocket2: WeaponPDW9
-    belt: ClothingBeltMilitaryWebbingERT
+    belt: PrototypeVibrobladeSheathFilled
     head: ClothingHeadSoftsuitCBURN # Starlight
     suitstorage: WeaponRiflePrometheus
   storage:
     back:
-    - JugDexPlusSaline
-    - JugPunctTranex
-    - JugLacer
-    - BeakerSmallDiph
-    - HoloprojectorField
-    - HoloprojectorSecurity
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
+    - MagazineRifleSP
     - MagazineRifleIncendiary
-    - MagazineRifleIncendiary
-    - MagazineRifleIncendiary
-    - MagazineRifleIncendiary
-    - PowerCellHigh
+    - MagazineRifleHP
     - InflatableDoorStack
     - InflatableWallStack
-    - GrenadeIncendiary
+    - HoloprojectorSecurity
+    - HoloprojectorField
+    - PowerCellHigh
+    - PowerCellHigh
+    - MedkitCombatFilled
+    - BeakerSmallLace
     - ChemistryBottleAmbuzol
     - Syringe
+
+- type: startingGear # Starlight start
+  parent: CBURNGear
+  id: CBURNCorpsman
+  equipment:
+    belt: ClothingBeltMilitaryWebbingERT
+    suitstorage: WeaponLr30
+  storage:
+    back:
+    - JugGoldenBicaridine
+    - AutoMenderBruteFilled
+    - JugLacer
+    - JugDexPlusSaline
+    - Hypospray
+    - JugGoldenDermaline
+    - AutoMenderBurnFilled
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - BodyBagLockableFolded
     belt:
-    - CombatMedipen
-    - CombatMedipen
-    - JawsOfLife
+    - AdvancedMedipen
+    - AdvancedMedipen
     - DefibrillatorCompact
     - MedkitCombatFilled
-    - PillAmbuzolPlus
-    - SyringeCryostasis
-    - MagazinePistol40HP
-    - WeaponPistolStechkin
-    - AntiPoisonMedipen
+    - MedkitCombatFilled
+    - AdvancedMedipen
+    - CombatMedipen
+    - MagazinePistolSP
+    - WeaponPistolEnforcer
+    - AntiPoisonMedipen # Starlight end
 
 - type: chameleonOutfit
   id: CBURNChameleonOutfit
