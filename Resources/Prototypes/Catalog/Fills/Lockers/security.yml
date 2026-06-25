@@ -281,10 +281,16 @@
       amount: 2 # Starlight
     - id: WeaponRifleLeikha
       amount: 1
+    - id: WeaponRifleM90GrenadeLauncher
+      amount: 1
     - id: MagazineRifleHP
       amount: 4 # Starlight
     - id: MagazineRifleSP
       amount: 4 # Starlight
+    - id: MagazineLightRifleSP
+      amount: 1 # Starlight
+    - id: MagazineLightRifleHP
+      amount: 1 # Starlight
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]
