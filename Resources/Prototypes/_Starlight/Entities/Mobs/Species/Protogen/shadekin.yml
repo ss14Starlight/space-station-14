@@ -16,9 +16,9 @@
       - Marish
       - Empathy
     - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
-      doAfterDelay: 0.75 # Faster than normal so using welding to heal isn't absolute ass for protogens
+      doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
+      selfRepairPenalty: 1.2 # It's not much, but it makes it a little slower.
       allowSelfRepair: true
-      selfRepairPenalty: 1.5 # Slower than getting someone else to weld you, but at least it consumes less fuel...
       fuelCost: 7.5 # Little cheaper on protogens, since they're not fully cybernetic.
       damage:
         groups:
