@@ -650,7 +650,7 @@
   parent: [ChemicalMedipen]
   id: AdvancedMedipen
   name: advanced medipen
-  description: A single-dose, non-refillable medipen containing a mix of polypyrylium and other chemicals to fix damages.
+  description: A single-dose, non-refillable medipen containing a large quantity of polypyrylium for long term stabilization.
   components:
   - type: Item
     inhandVisuals:
