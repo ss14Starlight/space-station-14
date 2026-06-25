@@ -573,13 +573,17 @@
       raffle:
         settings: short
       job: CBURN
+    - type: ZombieImmune # Starlight
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
       nameFormat: name-format-ert
+    - type: AutoImplant # Starlight
+      implants:
+        - MindShieldImplant
 
-- type: entity
+- type: entity # Starlight start
   id: RandomHumanoidSpawnerCBURNCorpsman
   name: CBURN Corpsman
   suffix: ERTRole
@@ -605,11 +609,15 @@
       raffle:
         settings: short
       job: CBURN
+    - type: AutoImplant
+      implants:
+        - MindShieldImplant
+    - type: ZombieImmune
     - type: RandomMetadata
       nameSegments:
       - NamesMilitaryFirst
       - NamesMilitaryLast
-      nameFormat: name-format-ert
+      nameFormat: name-format-ert # Starlight end
 
 ## Central Command
 
