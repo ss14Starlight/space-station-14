@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/23/2026 00:07:17
-  entityCount: 2748
+  time: 06/25/2026 21:34:17
+  entityCount: 2749
 maps: []
 grids:
 - 1
@@ -414,19 +414,19 @@ entities:
           0,3:
             0: 48127
           -1,3:
-            0: 25343
-            2: 4096
+            0: 29439
           0,4:
             0: 48063
           1,0:
             1: 4368
           1,1:
             0: 5392
+            1: 4
           1,2:
-            0: 61525
+            0: 61661
           1,3:
-            0: 5111
-            3: 8192
+            0: 12787
+            1: 32768
           1,-1:
             0: 4369
           1,4:
@@ -436,13 +436,14 @@ entities:
           2,3:
             0: 48
           0,5:
-            0: 14395
+            0: 47163
           -1,4:
             0: 57463
           -1,5:
             0: 26223
           0,6:
             0: 4147
+            1: 16384
           -1,6:
             0: 63087
           0,7:
@@ -450,12 +451,12 @@ entities:
           -1,7:
             0: 255
           1,5:
-            0: 262
+            0: 4454
           -4,0:
-            4: 631
+            2: 631
             0: 61440
           -4,-1:
-            4: 28672
+            2: 28672
             0: 255
           -4,1:
             0: 65520
@@ -464,16 +465,16 @@ entities:
           -4,3:
             0: 29183
           -5,2:
-            0: 61508
+            0: 61542
           -5,3:
-            0: 33020
+            0: 33016
+            1: 8192
           -4,4:
             0: 10103
           -3,0:
             0: 65535
           -3,1:
-            0: 14194
-            3: 16384
+            0: 30578
           -3,2:
             0: 62071
           -3,3:
@@ -493,19 +494,18 @@ entities:
           -2,-1:
             0: 65535
           -2,4:
-            0: 32827
-            3: 12416
-            5: 16384
+            0: 61627
           -1,-1:
             0: 65467
           -5,4:
             0: 2184
           -4,5:
-            0: 33678
+            0: 45966
           -5,5:
-            0: 12
+            0: 204
           -4,6:
             0: 136
+            1: 16384
           -3,5:
             0: 53435
           -3,6:
@@ -513,9 +513,7 @@ entities:
           -3,7:
             0: 255
           -2,5:
-            0: 61503
-            6: 64
-            5: 128
+            0: 61695
           -2,6:
             0: 61695
           -2,7:
@@ -529,68 +527,70 @@ entities:
           -5,-1:
             1: 16388
           -5,1:
+            1: 4
             0: 1024
           0,-4:
             0: 20429
           0,-5:
-            7: 4368
+            3: 4368
             1: 8736
             0: 52431
           -1,-4:
             0: 7965
           0,-3:
             0: 4607
-            4: 49152
+            2: 49152
           -1,-3:
             0: 35071
-            4: 12288
+            2: 12288
           0,-2:
             0: 53521
-            4: 2252
+            2: 2252
           -1,-2:
             0: 47240
-            4: 51
+            2: 51
           1,-4:
-            0: 1361
+            0: 3537
           1,-3:
             0: 21
-            4: 4096
+            2: 4096
             1: 17408
           1,-2:
-            4: 17
+            2: 17
             0: 4096
             1: 68
           1,-5:
             0: 4369
             1: 16384
           0,-6:
-            0: 2816
+            0: 2992
           -1,-6:
             1: 3072
             0: 4352
           -1,-5:
             0: 4383
-            7: 52416
+            3: 52416
             1: 8736
           1,-6:
-            0: 256
+            0: 272
+            1: 16384
           -4,-4:
             0: 4095
           -4,-5:
             0: 65535
           -4,-3:
             0: 255
-            4: 20480
+            2: 20480
           -4,-2:
-            4: 85
+            2: 85
             0: 61440
           -3,-4:
             0: 3549
           -3,-3:
             0: 16639
-            8: 4096
+            4: 4096
           -3,-2:
-            8: 17
+            4: 17
             0: 61508
           -3,-5:
             0: 6135
@@ -598,25 +598,27 @@ entities:
             0: 7645
           -2,-3:
             0: 255
-            9: 4096
-            10: 16384
+            5: 4096
+            6: 16384
           -2,-2:
-            9: 17
+            5: 17
             0: 61440
-            10: 68
+            6: 68
           -2,-5:
             0: 56797
           -4,-6:
-            0: 2816
+            0: 2992
           -3,-6:
-            0: 256
-            1: 1536
+            0: 272
+            1: 1600
           -2,-6:
             0: 8000
+          -5,-6:
+            1: 16384
           -5,-5:
             1: 16384
           -5,-4:
-            0: 1088
+            0: 1632
           -5,-3:
             0: 4
           -5,-2:
@@ -631,28 +633,8 @@ entities:
           immutable: True
           moles: {}
         - volume: 2500
-          temperature: 293.14975
-          moles:
-            Oxygen: 21.824879
-            Nitrogen: 82.10312
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-            Oxygen: 20.078888
-            Nitrogen: 75.53487
-        - volume: 2500
           temperature: 293.15
           moles: {}
-        - volume: 2500
-          temperature: 293.15
-          moles:
-            Oxygen: 21.6852
-            Nitrogen: 81.57766
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-            Oxygen: 23.57087
-            Nitrogen: 88.67137
         - volume: 2500
           temperature: 293.15
           moles:
@@ -1518,7 +1500,7 @@ entities:
       pos: -5.5,-22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -21920.979
+      secondsUntilStateChange: -22822.785
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -1646,7 +1628,7 @@ entities:
       pos: -20.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13196.072
+      secondsUntilStateChange: -14097.878
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -13516,7 +13498,7 @@ entities:
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
-      pos: 4.4037285,-17.52721
+      pos: 4.363966,-17.551552
       parent: 1
     - type: Paper
       content: >-
@@ -13531,7 +13513,7 @@ entities:
       parent: 1
     - type: Paper
       content: >-
-        Hello to the captain of this wonderful shuttle. Do remember that this shuttle's SM is meant to fuel TEG's Burn Chamber. There's also a nuclear reactor as well that somehow makes a lots of power for its small size. 
+        Hello to the captain of this wonderful shuttle. Do remember that this shuttle's SM is meant to fuel TEG's Burn Chamber. There's also a nuclear reactor as well that somehow makes a lots of power for its small size.
 
 
         Anyways, enjoy your day and have fun.
@@ -18063,6 +18045,8 @@ entities:
       fixtures: {}
   - uid: 2705
     components:
+    - type: MetaData
+      name: Water Vapor
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -12.5,-5.5
@@ -18086,115 +18070,113 @@ entities:
   - uid: 2730
     components:
     - type: Transform
-      pos: -1.5,25.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2745
-      - 2746
-  - uid: 2738
-    components:
-    - type: Transform
-      pos: -6.5,27.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2745
-      - 2746
-  - uid: 2739
-    components:
-    - type: Transform
-      pos: 1.5,20.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2745
-      - 2746
-  - uid: 2740
-    components:
-    - type: Transform
-      pos: -7.5,20.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2745
-      - 2746
-  - uid: 2741
-    components:
-    - type: Transform
-      pos: -4.5,-11.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2745
-      - 2746
-  - uid: 2742
-    components:
-    - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -7.5,0.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 2745
       - 2746
+      - 2745
+  - uid: 2738
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -6.5,27.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
+  - uid: 2739
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,25.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
+  - uid: 2740
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,2.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
+  - uid: 2741
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,20.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
+  - uid: 2742
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -5.5,7.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
   - uid: 2743
     components:
     - type: Transform
-      pos: 0.5,5.5
+      rot: -1.5707963267948966 rad
+      pos: -13.5,-15.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 2745
       - 2746
+      - 2745
   - uid: 2744
     components:
     - type: Transform
-      pos: -14.5,18.5
-      parent: 1
-    - type: DeviceNetwork
-      configurators:
-      - invalid
-      deviceLists:
-      - 2745
-      - 2746
-  - uid: 2747
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -3.5,-21.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 2745
       - 2746
+      - 2745
+  - uid: 2747
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -14.5,18.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
   - uid: 2748
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -6.5,7.5
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-11.5
       parent: 1
     - type: DeviceNetwork
-      configurators:
-      - invalid
       deviceLists:
-      - 2745
       - 2746
+      - 2745
+  - uid: 2749
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -7.5,20.5
+      parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 2746
+      - 2745
 - proto: WeaponEnergyTurretCommandControlPanel
   entities:
   - uid: 2745
@@ -18205,15 +18187,16 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 2738
-      - 2730
-      - 2740
       - 2739
-      - 2743
-      - 2742
       - 2741
-      - 2747
+      - 2740
+      - 2738
       - 2748
+      - 2742
+      - 2749
+      - 2747
+      - 2743
+      - 2730
       - 2744
   - uid: 2746
     components:
@@ -18223,15 +18206,16 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
-      - 2738
-      - 2730
-      - 2740
       - 2739
-      - 2743
-      - 2742
       - 2741
-      - 2747
+      - 2740
+      - 2738
       - 2748
+      - 2742
+      - 2749
+      - 2747
+      - 2743
+      - 2730
       - 2744
 - proto: WeaponParticleDecelerator
   entities:
