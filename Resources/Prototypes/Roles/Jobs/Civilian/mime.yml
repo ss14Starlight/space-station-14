@@ -12,6 +12,7 @@
   access:
   - Theatre
   - Maintenance
+  - Service # Starlight
   special:
   - !type:AddComponentSpecial
     components:
