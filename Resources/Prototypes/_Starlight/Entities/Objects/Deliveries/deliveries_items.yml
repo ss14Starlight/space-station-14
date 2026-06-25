@@ -104,6 +104,7 @@
         - ExpeditionsCircuitboardStealObjective
         - SalvageShuttleConsoleCircuitboardStealObjective
         - MiningShuttleConsoleCircuitboardStealObjective
+        - ShipyardCircuitboardStealObjective
         - CargoShuttleCircuitboardStealObjective
         - CommsComputerCircuitboardStealObjective
         - IDCardComputerCircuitboardStealObjective

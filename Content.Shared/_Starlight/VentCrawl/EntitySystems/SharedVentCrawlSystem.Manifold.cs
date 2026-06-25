@@ -1,6 +1,5 @@
 ﻿using System.Numerics;
 using Content.Shared._Starlight.VentCrawl.Components;
-using Content.Shared.Atmos.Components;
 
 namespace Content.Shared._Starlight.VentCrawl.EntitySystems;
 

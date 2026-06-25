@@ -13,6 +13,15 @@
     allowedDepartments: [ TSF ]
     severity: TSF
 
+# Roboticist
+- type: entity
+  id: BaseRoboticistContraband
+  parent: BaseRestrictedContraband
+  abstract: true
+  components:
+  - type: Contraband
+    allowedJobs: [ Roboticist ]
+
 #Advanced Cyberlimbs
 - type: entity
   id: BaseAdvancedCyberlimbContraband
