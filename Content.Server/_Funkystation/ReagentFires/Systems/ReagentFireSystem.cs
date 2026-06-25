@@ -3,6 +3,7 @@ using Content.Server._Funkystation.ReagentFires.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Decals;
+using Content.Shared._Funkystation.CCVar;
 using Content.Shared._Funkystation.ReagentFires;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
@@ -17,6 +18,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -36,13 +38,17 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
         [Dependency] private readonly DecalSystem _decalSystem = null!;
         [Dependency] private readonly IRobustRandom _random = null!;
         [Dependency] private readonly DamageableSystem _damageable = null!;
+        [Dependency] private readonly IConfigurationManager _cfg = null!;
 
         private readonly List<EntityUid> _toExtinguish = new();
         private readonly string[] _burntDecals = ["burnt1", "burnt2", "burnt3", "burnt4"];
+        private float _puddleDamageMultiplier = 1.0f;
+        private readonly List<(EntityUid Uid, ReagentPuddleFireComponent FireComp, PuddleComponent Puddle, TransformComponent Xform)> _activeFires = new();
 
         public override void Initialize()
         {
             base.Initialize();
+            Subs.CVar(_cfg, ReagentFireCVars.PuddleFireDamageMultiplier, value => _puddleDamageMultiplier = value, true);
             SubscribeLocalEvent<SolutionComponent, SolutionChangedEvent>(OnSolutionChanged);
             SubscribeLocalEvent<TransformComponent, TileExposedEvent>(OnTileExposed);
             SubscribeLocalEvent<PuddleComponent, TileFireEvent>(OnPuddleTileFire);
@@ -240,10 +246,19 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
         {
             base.Update(frameTime);
             _toExtinguish.Clear();
+            _activeFires.Clear();
 
             var activeQuery = EntityQueryEnumerator<ReagentPuddleFireComponent, PuddleComponent, TransformComponent>();
             while (activeQuery.MoveNext(out var uid, out var fireComp, out var puddle, out var xform))
             {
+                _activeFires.Add((uid, fireComp, puddle, xform));
+            }
+
+            foreach (var (uid, fireComp, puddle, xform) in _activeFires)
+            {
+                if (Deleted(uid))
+                    continue;
+
                 if (!fireComp.OnFire)
                 {
                     if (fireComp.Flammability <= 0)
@@ -418,8 +433,8 @@ namespace Content.Server._Funkystation.ReagentFires.Systems
                 var structuralProto = _prototypeManager.Index<DamageTypePrototype>("Structural");
                 var heatProto = _prototypeManager.Index<DamageTypePrototype>("Heat");
 
-                var structuralDamage = new DamageSpecifier(structuralProto, 2f * flammability);
-                var heatDamage = new DamageSpecifier(heatProto, 2f * flammability);
+                var structuralDamage = new DamageSpecifier(structuralProto, 2f * flammability * _puddleDamageMultiplier);
+                var heatDamage = new DamageSpecifier(heatProto, 2f * flammability * _puddleDamageMultiplier);
 
                 var totalDamage = structuralDamage + heatDamage;
 
