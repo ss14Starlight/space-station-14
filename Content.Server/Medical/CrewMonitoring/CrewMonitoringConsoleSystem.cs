@@ -11,15 +11,15 @@ using Content.Shared.Pinpointer;
 using Content.Server.Silicons.StationAi;
 using Robust.Server.GameObjects;
 #region Starlight
-using Content.Shared.Implants;
+using Content.Shared.Implants; // Starlight
 using Content.Shared.Implants.Components;
-using Content.Shared.Access.Systems;
+using Content.Shared.Access.Systems; // Starlight
 using Content.Server.Power.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Silicons.StationAi;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Prototypes; // Starlight
 using Robust.Shared.Timing;
 #endregion
 
@@ -39,8 +39,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
 
     private readonly ISawmill _sawmill = Logger.GetSawmill("crewmonitoring"); // Starlight
 
-    // Starlight: id of the command tracking implant so we can filter it.
-    private const string CommandTrackingImplantProto = "CommandTrackingImplant";
+    private const string CommandTrackingImplantProto = "CommandTrackingImplant"; // Starlight: id of the command tracking implant so we can filter it.
 
     public override void Initialize()
     {
@@ -231,7 +230,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                     (filter.ShownDepartments.Count == 0 || filter.ShownDepartments.Any(dept => sensor.JobDepartments.Contains(dept)))
                     && (!filter.OnlyShowWoundedOrDead || !sensor.IsAlive || sensor.DamagePercentage is not null && sensor.DamagePercentage > 0.5)
                     && (filter.ShownFactions.Count == 0 || filter.ShownFactions.Contains(sensor.Faction))).ToList();
-        if (filter is not null && filter.AlwaysShowCommandTrackingImplants)
+        if (filter is not null && filter.AlwaysShowCommandTrackingImplants) // Starlight
         {
             foreach (var sensor in allSensors)
             {
@@ -242,11 +241,11 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
                     || (filter.ShownFactions.Count != 0 && !filter.ShownFactions.Contains(sensor.Faction)))
                     continue;
 
-                // if wearer has matching ID just continue
+                // STARLIGHT: if wearer has matching ID just continue
                 if (filteredSensors.Contains(sensor))
                     continue;
 
-                // Not otherwise visible fallback to stored values.
+                // STARLIGHT: Not otherwise visible fallback to stored values.
                 if (TryComp<StoredImplantIdentityComponent>(clientEntity, out var stored) && stored.Captured)
                     filteredSensors.Add(WithStoredIdentity(sensor, stored));
                 else
@@ -277,6 +276,7 @@ public sealed partial class CrewMonitoringConsoleSystem : EntitySystem
             TotalDamageThreshold = source.TotalDamageThreshold,
             Coordinates = source.Coordinates,
         };
+
     private void OnWarpRequest(EntityUid uid, CrewMonitoringConsoleComponent component, ref CrewMonitoringWarpRequestMessage args)
     {
         if (args.Actor is not { Valid: true } actor)

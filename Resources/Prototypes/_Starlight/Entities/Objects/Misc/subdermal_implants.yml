@@ -275,11 +275,10 @@
       radioChannel:
       - Security
       - Command
-    # Starlight: always track, even off-grid in space, with no distance limit on the station's map.
     - type: SuitSensor
       ignoreGrid: true
     - type: WirelessNetworkConnection
-      range: 1000000
+      range: 400
     # Starlight: snapshot the wearer's ID card on implant so the BSO monitor keeps showing it after ID changes.
     - type: StoredImplantIdentity
 

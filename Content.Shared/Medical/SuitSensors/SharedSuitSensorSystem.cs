@@ -72,7 +72,7 @@ public abstract partial class SharedSuitSensorSystem : EntitySystem
         if (!sensor.Comp.StationId.HasValue && Transform(sensor.Owner).GridUid == null)
             return false;
 
-        var owningStation = _stationSystem.GetOwningStation(sensor.Owner);
+        var owningStation = _stationSystem.GetOwningStation(sensor.Owner); // Starlight
 
         // Starlight: always-on trackers keep their last known station when off-grid (e.g. drifting in space),
         // instead of dropping it to null and going dark.
