@@ -19,3 +19,5 @@ ghost-role-information-green-shield-officer-name = Greenshield Officer
 ghost-role-information-green-shield-officer-description = You are charged directly from the highest levels of CentComm to protect CentComm VIPs and maintain the peace at Central Command outposts.
 
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]
+ghost-gui-aghost-toggle-ghost-visibility-popup-on = Invisible to non-admins.
+ghost-gui-aghost-toggle-ghost-visibility-popup-off = Visible to non-admins.
