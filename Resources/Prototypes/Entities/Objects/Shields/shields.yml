@@ -59,15 +59,15 @@
                 SheetGlass:
                   min: 2
                   max: 2
+    - type: StaticPrice
+      price: 100
     # Starlight-start
+    - type: Pierceable
+      level: Flesh
     - type: Tag
       tags:
         - Shield
-    - type: Pierceable
-      level: Metal
-    # Starlight-end
-    - type: StaticPrice
-      price: 100
+    #Starlight-end
 
 - type: entity
   name: base repairable shield
@@ -85,6 +85,10 @@
     fuelCost: 10 # 1/2 of a Welder for a full repair
     doAfterDelay: 5
     allowSelfRepair: false
+  #Starlight-start
+  - type: Pierceable
+    level: Metal
+  # Starlight-end
 
 #Security Shields
 
@@ -261,8 +265,6 @@
               max: 4
     - type: StaticPrice
       price: 20
-    - type: Pierceable #Starlight
-      level: Flesh
 
 - type: entity
   name: makeshift shield
@@ -462,8 +464,6 @@
                 SheetGlass:
                   min: 5
                   max: 5
-    - type: Pierceable #Starlight
-      level: Flesh #It is glass, won't stop bullets
 
 - type: entity
   name: energy shield

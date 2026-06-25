@@ -405,7 +405,7 @@
       level: Metal
 
 - type: entity
-  name: Z-03 phase shield
+  name: X-03 green phase shield
   parent: [BaseItem, BaseCentcommContraband ]
   id: GreenLightShield
   categories: [ DoNotMap ]
@@ -459,7 +459,7 @@
       reflectProb: 0.10
       reflects:
         - Energy
-      reflectEnergyDraw: 80 # final stat TBD
+      reflectEnergyDraw: 80
     - type: Appearance
     - type: PointLight
       netsync: false
@@ -479,8 +479,8 @@
     - type: ForceQuickDraw
     - type: ToggleCellDraw
     - type: PowerCellDraw
-      drawRate: 2  # watts while active # final stat TBD
-    - type: Blocking # Stats TBD
+      drawRate: 2  # watts while active
+    - type: Blocking
       passiveBlockModifier:
         coefficients:
           Blunt: 1.0
@@ -496,7 +496,7 @@
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 4 #Final stat TBD
+      damageEnergyDraw: 4
     - type: Damageable
       damageContainer: Shield
     - type: ContainerContainer
@@ -522,8 +522,8 @@
     - type: Item
       sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
     - type: PowerCellDraw
-      drawRate: 2  # watts while active # final stat TBD
-    - type: Blocking # Stats TBD
+      drawRate: 2  # watts while active
+    - type: Blocking
       passiveBlockModifier:
         coefficients:
           Blunt: 1.0
@@ -539,7 +539,7 @@
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 4 #Final stat STB
+      damageEnergyDraw: 4
     - type: Contraband
       allowedDepartments: []
       allowedJobs: [ BlueShield ]
