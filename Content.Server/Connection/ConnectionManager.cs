@@ -27,8 +27,8 @@ using Content.Server._Starlight.Connection;
 using Content.Server.Discord.DiscordLink;
 using Content.Shared._NullLink;
 using Content.Shared.NullLink.CCVar;
-using Content.Shared.Starlight;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Utility;
 #endregion Starlight
 

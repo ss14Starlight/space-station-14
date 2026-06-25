@@ -136,6 +136,8 @@
         - Wizard
       allowNonHumans: true
       # Starlight-end
+  - type: DynamicRuleCost
+    cost: 100
 
 - type: entity
   parent: BaseGameRule

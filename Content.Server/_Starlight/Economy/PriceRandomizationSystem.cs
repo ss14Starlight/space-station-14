@@ -1,7 +1,6 @@
 using Content.Shared.GameTicking;
-using Robust.Shared.Configuration;
 
-namespace Content.Server.Economy
+namespace Content.Server._Starlight.Economy
 {
     public sealed partial class PriceRandomizationSystem : EntitySystem
     {

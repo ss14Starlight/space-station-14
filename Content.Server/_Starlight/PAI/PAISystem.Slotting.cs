@@ -1,9 +1,11 @@
+using Content.Shared._Starlight.PAI;
 using Content.Shared.PAI;
 using Content.Shared.PDA;
 using Content.Shared.UserInterface;
 using Robust.Server.Containers;
 using Robust.Shared.Player;
 
+// ReSharper disable once CheckNamespace
 namespace Content.Server.PAI;
 
 public sealed partial class PAISystem
