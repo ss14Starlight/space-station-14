@@ -50,7 +50,7 @@ public sealed partial class PierceSystem : EntitySystem
         RaiseLocalEvent(data.HitEntity.Value, ref ev);
 
         //Check to see if a hand held shield is equipped to block piercing
-        if (ev.Pierced) //If the bullet is already blocked, no need to run this check
+        if (ev.Pierced) //If the bullet still piercing the entity, check to see if anything in hand will block the bullet from piercing. If armor has already blocked the bullet, no need to check for a shield in hand.
             foreach (var held in _handsSystem.EnumerateHeld(data.HitEntity.Value)) //check each hand slot
             {
                 if (!_tag.HasTag(held, _shieldTag) //Check if the item can be used as a shield, a hand held hardsuit isn't a shield.
