@@ -258,6 +258,12 @@
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
+    - type: AutoImplant
+      implants:
+        - MedTakMindShieldImplant
+        - DeathRattleImplantNanoTrasen
+        - RedspaceImplant
+    - type: ThermalVision
 
 # TSF
 - type: entity
