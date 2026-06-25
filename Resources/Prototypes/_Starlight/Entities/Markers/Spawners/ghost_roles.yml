@@ -192,3 +192,22 @@
       - state: green
       - sprite: Mobs/Aliens/cluwnebeast.rsi
         state: icon
+
+- type: entity
+  categories: [ HideSpawnMenu, Spawner ]
+  parent: BaseAntagSpawner
+  id: SpawnPointSamurai
+  components:
+  - type: GhostRole
+    name: ghost-role-information-samurai-name
+    description: ghost-role-information-samurai-description
+    rules: ghost-role-information-samurai-rules
+    important: true # SL
+    mindRoles:
+    - MindRoleSamurai
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Structures/Wallmounts/signs.rsi
+        state: radiation

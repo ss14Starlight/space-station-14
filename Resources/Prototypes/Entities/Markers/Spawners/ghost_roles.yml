@@ -124,6 +124,10 @@
       - state: green
       - sprite: Structures/Wallmounts/signs.rsi
         state: radiation
+  - type: AntagObjectives
+    objectives:
+    - ParadoxCloneKillObjective
+    - ParadoxCloneLivingObjective
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
