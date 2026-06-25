@@ -28,6 +28,7 @@ using Robust.Shared.Utility;
 #region Starlight
 using Content.Client._Starlight.Lobby.UI;
 using Content.Client._Starlight.Humanoid;
+using Content.Client._Starlight.UserInterface; // Starlight: popout support
 using Content.Shared._Starlight.CCVar;
 using Robust.Client.UserInterface.CustomControls;
 using System.Numerics;
@@ -60,7 +61,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     /// <summary>
     /// character editor window, see OpenCharacterSetupWindow()
     /// </summary>
-    private DefaultWindow? _characterSetupWindow;
+    private PopOutWindow? _characterSetupWindow; // Starlight: PopOutWindow so teardown can close the popped-out desktop window
+    private bool _characterSetupPoppedOut; // Starlight: true while the editor lives in a pop out
     //end starlight
 
     /// <summary>
@@ -271,6 +273,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         }
 
         // make sure the window is closed.
+        _characterSetupWindow?.DisposePopOut(); // Starlight: also close the popped-out desktop window if any
         _characterSetupWindow?.Close(); // starlight
 
         RefreshLobbyPreview();
@@ -282,9 +285,9 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     public void OpenCharacterSetupWindow()
     {
         // don't open it more than once.
-        if (_characterSetupWindow is { IsOpen: true })
+        if (_characterSetupWindow is { IsOpen: true } || _characterSetupPoppedOut) // Starlight: also block while popped out
         {
-            _characterSetupWindow.MoveToFront();
+            _characterSetupWindow?.MoveToFront(); // Starlight
             return;
         }
 
@@ -298,7 +301,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         // detach the gui from it's parent (Most of the time the lobby)
         characterGui.Orphan();
 
-        var window = new CharacterSetupWindow
+        var window = new CharacterSetupWindow(characterGui) // Starlight: pass the borrowed gui so it can be popped out
         {
             Title = Loc.GetString("ghost-gui-character-editor-button"),
         };
@@ -307,20 +310,33 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         window.Contents.AddChild(characterGui);
 
         // when the window closes, detach the gui from it so the gui isn't cleaned up with the window.
-        window.OnClose += () =>
+        window.OnFinalClose += () =>
         {
-            characterGui.Orphan();
+            // Rescue the borrowed gui from being disposed with the window
+            var lobbyContainer = (_stateManager.CurrentState as LobbyState)?.Lobby?.CharacterSetupState;
+            if (characterGui.Parent != lobbyContainer)
+                characterGui.Orphan();
+
             _characterSetupWindow = null;
+            _characterSetupPoppedOut = false;
         };
+
+        // Starlight: once popped out the in-game window is gone, but keep the window ref so
+        // we can still teardown the window.
+        window.OnPopout += () => _characterSetupPoppedOut = true;
 
         _characterSetupWindow = window;
         window.OpenCentered();
     }
 
-    private sealed class CharacterSetupWindow : DefaultWindow
+    // Starlight: Reworked to PopOutWindow for popout support
+    private sealed class CharacterSetupWindow : PopOutWindow
     {
-        public CharacterSetupWindow()
+        protected override Control Control { get; } // Starlight: content that moves into the desktop window on popout
+
+        public CharacterSetupWindow(Control content) // Starlight: take the content to pop out
         {
+            Control = content; // Starlight
             CloseButton.Visible = false;
         }
     }
@@ -365,6 +381,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                 && _characterSetup.Parent != container)
             {
                 // if the ghost window is open return it.
+                _characterSetupWindow?.DisposePopOut(); // Starlight: close the popout
                 _characterSetupWindow?.Close();
                 _characterSetup.Orphan();
                 container.AddChild(_characterSetup);
