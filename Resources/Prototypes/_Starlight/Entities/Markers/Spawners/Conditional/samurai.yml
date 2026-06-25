@@ -1,0 +1,11 @@
+- type: entity
+  id: SpawnPointGhostSamurai
+  parent: MarkerBase
+  name: samurai
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Structures/Wallmounts/signs.rsi
+      state: radiation

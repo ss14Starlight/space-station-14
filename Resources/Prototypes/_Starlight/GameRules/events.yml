@@ -444,7 +444,7 @@
     cost: 50
 
 - type: entity
-  parent: BaseNukeopsRule
+  parent: BaseGameRule
   id: SamuraiSpawn
   components:
   - type: StationEvent
@@ -454,7 +454,14 @@
     duration: null
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/striker.yml
+    gridPath: /Maps/Shuttles/mining.yml
+  - type: AntagObjectives
+    objectives:
+    - HonorObjective
+    - WisdomObjective
+    - PunishObjective
+    - SamuraiSurviveObjective
+  - type: AntagLoadProfileRule
   - type: AntagSelection
     definitions:
     - spawnerPrototype: SpawnPointSamurai
@@ -476,5 +483,9 @@
       - MindRoleSamurai
       tags:
         - CantBecomeRevolutionary
+      briefing:
+        text: samurai-role-greeting
+        color: red
+        sound: /Audio/Misc/ninja_greeting.ogg
   - type: DynamicRuleCost
     cost: 75

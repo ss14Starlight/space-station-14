@@ -10,7 +10,7 @@
       issuer: objective-issuer-self
     - type: RoleRequirement
       roles:
-        - SamuraiRole
+        - Samurai
 
 - type: entity
   parent: [BaseSamuraiObjective, BaseFreeObjective]
