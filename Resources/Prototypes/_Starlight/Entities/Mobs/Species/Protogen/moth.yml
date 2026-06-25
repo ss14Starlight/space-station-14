@@ -22,7 +22,7 @@
     species: ProtoMoth
     hideLayersOnEquip:
     - HeadTop
-    - Hair # Starlight
+    - Hair
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Moth/parts.rsi
     state: full
