@@ -92,7 +92,7 @@ public sealed partial class AccessChipSystem : EntitySystem
         foreach (var access in chipComponent.GrantedAccesses)
         {
             // Validate prototype exists and is allowed on ID cards.
-            if (!_prototypeManager.TryIndex(access, out var proto))
+            if (!_prototypeManager.Resolve(access, out var proto))
                 continue;
 
             if (!proto.CanAddToIdCard)
