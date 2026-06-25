@@ -1,4 +1,84 @@
-# Industrial Mechs
+- type: entity
+  id: CombatMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+
+- type: entity
+  id: IndustrialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+  - type: MeleeThrowOnHit
+    speed: 10
+    distance: 1
+
+- type: entity
+  id: SpecialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SpecialMech
+
+- type: entity
+  id: SmallMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SmallMech
+
+- type: entity
+  id: NanotrasenMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowernano.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalnano.ogg
+
+- type: entity
+  id: SyndieMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    firstStart: true
+    lowPowerSound:
+      path: /Audio/Mecha/lowpowersyndi.ogg
+    nominalSound:
+      path: /Audio/Mecha/nominalsyndi.ogg
+    nominalLongSound:
+      path: /Audio/Mecha/longsyndiactivation.ogg
+    criticalDamageSound:
+      path: /Audio/Mecha/critdestrsyndi.ogg
+
+- type: entity
+  parent: MechHonkerBattery
+  id: MechHonkerFilled
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechSpecialBananaMortar
+      - WeaponMechSpecialMousetrapMortar
+      - MechEquipmentHorn
 
 # Ripley MK-II
 - type: entity
@@ -18,6 +98,7 @@
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
     - type: Mech
+      maxIntegrity: 250 # Plasteel armor grants this mech superior durability
       equipmentWhitelist:
         tags:
           - IndustrialMech
@@ -90,13 +171,14 @@
     - type: Mech
       equipmentWhitelist:
         tags:
-          - PaddyMech
           - IndustrialMech
+          - CombatMech
       baseState: base
       openState: base-open
       brokenState: base-broken
       mechToPilotDamageMultiplier: 0.0
       airtight: true
+      maxIntegrity: 250
       maxEquipmentAmount: 4
       pilotWhitelist:
         components:
@@ -118,6 +200,8 @@
       radius: 5
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechPaddyBattery
@@ -247,6 +331,8 @@
       radius: 6
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechGygaxBattery
@@ -309,6 +395,8 @@
       radius: 7
       energy: 5
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechDurandBattery
@@ -368,6 +456,8 @@
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechMarauderBattery
@@ -396,7 +486,7 @@
 # Seraph
 - type: entity
   id: MechSeraph
-  parent: [ BaseMech, CombatMech, BaseCentcommContraband, NanotrasenMech ]
+  parent: [ BaseMech, CombatMech, BaseNanoTrasenContraband, NanotrasenMech ]
   name: Seraph
   description: That's the last thing you'll see. # Death Squad mech
   components:
@@ -437,6 +527,8 @@
     - type: Damageable
       damageModifierSet: HeavyArmorNT
     - type: MechThrusters
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechSeraphBattery
@@ -515,6 +607,8 @@
       radius: 7
       energy: 6
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -592,6 +686,8 @@
       energy: 5
       color: "#ff0000"
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   id: MechMaulerSyndieBattery
@@ -659,6 +755,8 @@
       pilotWhitelist:
         components:
           - HumanoidAppearance
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   parent: MechHonkerDark
@@ -736,6 +834,8 @@
       radius: 7
       energy: 6
       enabled: false
+    - type: Prying
+      pryPowered: true
 
 - type: entity
   parent: MechMimeSyndie

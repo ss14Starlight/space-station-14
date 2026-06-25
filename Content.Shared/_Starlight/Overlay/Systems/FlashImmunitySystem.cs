@@ -1,15 +1,16 @@
+using Content.Shared._Starlight.Overlay.Components;
+using Content.Shared._Starlight.Overlay.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Flash.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Player;
 
-namespace Content.Shared.Starlight.Overlay;
+namespace Content.Shared._Starlight.Overlay.Systems;
 
-public sealed class FlashImmunitySystem : EntitySystem
+public sealed partial class FlashImmunitySystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
     public override void Initialize()
     {
         base.Initialize();

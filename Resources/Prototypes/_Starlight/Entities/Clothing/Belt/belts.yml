@@ -386,3 +386,17 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
   - type: Appearance
+
+# Greenshield Officer
+- type: entity
+  parent: [BaseCentcommContraband, ClothingBeltBlueShieldMedicalBelt]
+  categories: [ DoNotMap ]
+  id: ClothingBeltGreenshield
+  name: greenshield medical belt
+  description: A tactical belt that can hold many items to save the lives of CentComm.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
+    - type: Appearance

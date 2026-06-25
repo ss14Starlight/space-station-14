@@ -53,6 +53,30 @@
         },
         {
             "name": "icon-medtak-sec"
+        },
+		{
+            "name": "xenoborg_heavy",
+			"copyright": "Samuka-C"
+        },
+        {
+            "name": "xenoborg_scout",
+			"copyright": "Samuka-C"
+        },
+        {
+            "name": "xenoborg_stealth",
+			"copyright": "Samuka-C"
+        },
+		{
+            "name": "icon-xenoborg-laser3",
+			"copyright": "Samuka-C, wonderfulnewworld"
+        },
+		{
+            "name": "icon-xenoborg-sword3",
+			"copyright": "Samuka-C, wonderfulnewworld"
+        },
+		{
+            "name": "icon-xenoborg-hypo2",
+			"copyright": "Samuka-C, wonderfulnewworld"
         }
     ]
 }

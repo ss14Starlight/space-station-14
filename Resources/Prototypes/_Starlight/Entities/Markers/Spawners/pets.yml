@@ -1,0 +1,14 @@
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobKoboldKiki
+  name: Kiki Spawner
+  suffix: Botanist Pet
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: kobold
+      sprite: Mobs/Animals/kobold.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobKoboldKiki

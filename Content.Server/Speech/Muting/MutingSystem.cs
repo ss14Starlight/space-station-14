@@ -12,10 +12,10 @@ using Content.Shared.StatusEffectNew; // Starlight
 
 namespace Content.Server.Speech.Muting
 {
-    public sealed class MutingSystem : EntitySystem
+    public sealed partial class MutingSystem : EntitySystem
     {
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly LanguageSystem _languages = default!; // Starlight
+        [Dependency] private PopupSystem _popupSystem = default!;
+        [Dependency] private LanguageSystem _languages = default!; // Starlight
         public override void Initialize()
         {
             base.Initialize();
@@ -53,25 +53,29 @@ namespace Content.Server.Speech.Muting
             args.Handled = true;
         }
 
-
         private void OnSpeakAttempt(EntityUid uid, MutedComponent component, SpeakAttemptEvent args)
         {
-            // TODO something better than this.
-
-            // Starlight-start: Cannot mute if there's no speech involved
-            var language = _languages.GetLanguage(uid);
-            if (!language.Speech.RequireSpeech)
-                return;
-            // Starlight-end
-
-            if (HasComp<MimePowersComponent>(uid))
+            #region Starlight
+            // Sign language is not pantomiming! Mimes have to break their vow of silence to speak in any form
+            if(TryComp<MimePowersComponent>(uid, out var mime) && !mime.VowBroken)
+            {
                 _popupSystem.PopupEntity(Loc.GetString("mime-cant-speak"), uid, uid);
-            else if (HasComp<VentriloquistPuppetComponent>(uid))
-                _popupSystem.PopupEntity(Loc.GetString("ventriloquist-puppet-cant-speak"), uid, uid);
-            else
-                _popupSystem.PopupEntity(Loc.GetString("speech-muted"), uid, uid);
+                args.Cancel();
+                return;
+            }
 
-            args.Cancel();
+            // If language requires speech, block it when muted
+            var language = _languages.GetLanguage(uid);
+            if (language.Speech.RequireSpeech)
+            {
+                if (HasComp<VentriloquistPuppetComponent>(uid))
+                    _popupSystem.PopupEntity(Loc.GetString("ventriloquist-puppet-cant-speak"), uid, uid);
+                else
+                    _popupSystem.PopupEntity(Loc.GetString("speech-muted"), uid, uid);
+
+                args.Cancel();
+            }
+            #endregion Starlight
         }
     }
 }

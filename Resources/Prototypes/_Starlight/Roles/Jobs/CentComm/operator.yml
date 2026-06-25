@@ -24,7 +24,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorBlack
     id: CentCommOperatorPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
@@ -42,7 +42,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorBlack
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
@@ -60,7 +60,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesHop
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: BoxFolderHoPClipboard
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -79,7 +79,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorBlack
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
@@ -98,7 +98,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorYellow
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: ClothingBeltChiefEngineerFilled
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -117,7 +117,7 @@
     gloves: ClothingHandsGlovesColorBlack
     eyes: ClothingEyesGlassesCentComm
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
@@ -135,7 +135,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesNitrile
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
@@ -154,7 +154,7 @@
     eyes: ClothingEyesGlassesCentComm
     gloves: ClothingHandsGlovesColorPurple
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
   storage:
@@ -173,7 +173,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCentcommCarapace
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: CentcommVibrobladeSheathFilled
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -193,7 +193,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCentcommCarapace
     id: CentcomPDA
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetAltAdminCentCom
     belt: CentcommVibrobladeSheathFilled
     pocket1: WeaponPistolN1984
     pocket2: BoxFolderCentComClipboardEmpty
@@ -201,4 +201,3 @@
     back:
     - RubberStampCSOD
     - MindShieldImplanter
-

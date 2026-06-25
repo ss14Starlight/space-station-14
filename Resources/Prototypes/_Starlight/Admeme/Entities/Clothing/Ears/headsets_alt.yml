@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHeadsetAlt, BaseCentcommContraband]
+  parent: [ClothingHeadsetAlt, BaseNanoTrasenContraband]
   id: ClothingHeadsetAltNTNC
   name: ntnc headset
   components:

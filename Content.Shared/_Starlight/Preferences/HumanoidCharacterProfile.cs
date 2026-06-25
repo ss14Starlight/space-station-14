@@ -1,9 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Content.Shared.CCVar;
-using Robust.Shared.Prototypes; // Starlight
 
-// ReSharper disable CheckNamespace
-
+// ReSharper disable once CheckNamespace
 namespace Content.Shared.Preferences;
 
 public sealed partial class HumanoidCharacterProfile

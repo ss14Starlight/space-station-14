@@ -28,7 +28,8 @@
 - type: entity
   id: OrganArachnidStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  name: animal stomach
+  name: arachnid stomach
+  suffix: Arachnid
   description: "Gross. This is hard to stomach."
   components:
   - type: Sprite
@@ -49,12 +50,12 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
   - type: Metabolizer
-    updateInterval: 1.5
 
 - type: entity
   id: OrganArachnidLungs
   parent: [BaseArachnidOrgan, BaseOrganLungs]
-  name: lungs
+  name: arachnid lungs
+  suffix: Arachnid
   description: "Filters oxygen from an atmosphere... just more greedily."
   components:
   - type: Sprite
@@ -63,7 +64,6 @@
       - state: lung-r
   - type: Lung
   - type: Metabolizer
-    updateInterval: 1.5
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
@@ -89,7 +89,8 @@
 - type: entity
   id: OrganArachnidHeart
   parent: [BaseArachnidOrgan, BaseOrganHeart]
-  name: heart
+  name: arachnid heart
+  suffix: Arachnid
   description: "A disgustingly persistent little biological pump made for spiders."
   components:
   - type: Sprite
@@ -98,7 +99,6 @@
     size: Small
     heldPrefix: heart
   - type: Metabolizer
-    updateInterval: 1.5
     maxReagents: 2
     metabolizerTypes: [Arachnid]
     groups:
@@ -109,9 +109,9 @@
 - type: entity
   id: OrganArachnidLiver
   parent: [BaseHumanOrgan, BaseOrganLiver]
-  name: liver
+  name: arachnid liver
+  suffix: Arachnid
   description: "Pairing suggestion: chianti and fava beans."
-  categories: [ HideSpawnMenu ]
   components:
   - type: Item
     size: Small
@@ -119,7 +119,6 @@
   - type: Sprite
     state: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
-    updateInterval: 1.5
     maxReagents: 1
     metabolizerTypes: [Animal]
     groups:
@@ -128,9 +127,9 @@
 - type: entity
   id: OrganArachnidKidneys
   parent: [BaseHumanOrgan, BaseOrganKidneys]
-  name: kidneys
+  name: arachnid kidneys
+  suffix: Arachnid
   description: "Filters toxins from the bloodstream."
-  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     layers:
@@ -141,7 +140,6 @@
     size: Small
     heldPrefix: kidneys
   - type: Metabolizer
-    updateInterval: 1.5
     maxReagents: 5
     metabolizerTypes: [Animal]
     removeEmpty: true
@@ -149,7 +147,8 @@
 - type: entity
   id: OrganArachnidEyes
   parent: [BaseArachnidOrgan, BaseOrganEyes]
-  name: eyes
+  name: arachnid eyes
+  suffix: Arachnid
   description: "Two was already too many."
   components:
   - type: Sprite
@@ -169,7 +168,8 @@
 - type: entity
   id: OrganArachnidTongue
   parent: [BaseArachnidOrgan, BaseOrganTongue]
-  name: tongue
+  name: arachnid tongue
+  suffix: Arachnid
   description: "A fleshy muscle mostly used for lying."
   components:
   - type: Sprite

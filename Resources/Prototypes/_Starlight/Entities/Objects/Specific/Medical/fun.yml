@@ -1,0 +1,29 @@
+# Desoxyephedrine
+- type: entity
+  name: gold
+  parent: Pill
+  id: PillGold5
+  suffix: Gold 5u
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Gold
+          Quantity: 5
+
+# Here for consistency, but ideally if you're going to map these, use the 5u version instead.
+- type: entity
+  name: gold
+  parent: Pill
+  id: PillGold
+  suffix: Gold 15u
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Gold
+          Quantity: 15

@@ -294,7 +294,7 @@
     state: heliosMedal
   requirements:
   - progressType: drink.alcohol
-    requiredProgress: 250
+    requiredProgress: 100
     perRound: true
 
 - type: achievement
@@ -386,7 +386,7 @@
   name: achievement-you-super-matter-name
   description: achievement-you-super-matter-description
   category: milestones
-  hidden: false
+  hidden: true
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
@@ -398,7 +398,7 @@
   name: achievement-forbidden-candy-name
   description: achievement-forbidden-candy-description
   category: milestones
-  hidden: false
+  hidden: true
   showProgress: false
   icon:
     sprite: _Starlight/Interface/Achievements/icons.rsi
@@ -409,6 +409,78 @@
   id: took_an_arrow_to_the_knee
   name: achievement-took-an-arrow-to-the-knee-name
   description: achievement-took-an-arrow-to-the-knee-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: haunted
+  name: achievement-haunted-name
+  description: achievement-haunted-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: beyond_reasonable_doubt
+  name: achievement-beyond-reasonable-doubt-name
+  description: achievement-beyond-reasonable-doubt-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: viva
+  name: achievement-viva-name
+  description: achievement-viva-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: on_the_run
+  name: achievement-on-the-run-name
+  description: achievement-on-the-run-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: treason
+  name: achievement-treason-name
+  description: achievement-treason-description
+  category: milestones
+  hidden: false
+  showProgress: false
+  icon:
+    sprite: _Starlight/Interface/Achievements/icons.rsi
+    state: heliosMedal
+  requirements: []
+
+- type: achievement
+  id: wavering_loyalty
+  name: achievement-wavering-loyalty-name
+  description: achievement-wavering-loyalty-description
   category: milestones
   hidden: false
   showProgress: false

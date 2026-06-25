@@ -54,6 +54,7 @@
     - MechEquipmentHonkerMousetrapMortar
     - MechEquipmentHonkerPieCannon
     - MechEquipmentHonkerAirHorn
+    - MechEquipmentBorgBeacon
 
 - type: latheRecipePack
   id: StarlightMechReactors
@@ -61,9 +62,6 @@
     - MechReactorHigh
     - MechReactorHyper
     - MechReactorMicro
-    - MechReactorShielded
-    - MechReactorBurnout
-    - MechReactorCavalier
 
 - type: latheRecipePack
   id: StarlightMechWeapon

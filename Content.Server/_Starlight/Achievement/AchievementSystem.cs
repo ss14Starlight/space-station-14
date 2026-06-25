@@ -18,22 +18,23 @@ using Content.Server.NukeOps;
 using Content.Server.Objectives;
 using Content.Server.Objectives.Components;
 using Content.Server.Revolutionary.Components;
-using Content.Server.Roles;
 using Content.Server.Salvage.Expeditions;
 using Content.Server.Shuttles.Events;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Achievement;
+using Content.Shared._Starlight.Chemistry.Events;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared._FarHorizons.Power.Generation.FissionGenerator;
-using Content.Shared.Chemistry.Events;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Follower;
+using Content.Shared.Follower.Components;
 using Content.Shared.GameTicking;
+using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
-using Content.Shared.MedicalScanner;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -54,9 +55,7 @@ using Content.Shared.Silicons.Laws;
 using Content.Shared.Smoking;
 using Content.Shared.Station.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Store.Events;
 using Content.Shared.Tag;
-using Content.Shared.VentCrawl.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.Player;
 using Robust.Shared.Enums;
@@ -65,32 +64,40 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.VentCrawl.Components;
+using Content.Shared._Starlight.Revolutionary.Components;
+using Content.Shared._Starlight.Store.Events;
+using Content.Server._Starlight.Roles;
+using Content.Shared._Starlight.Medical;
 
 namespace Content.Server._Starlight.Achievement;
 
-public sealed class AchievementSystem : EntitySystem
+public sealed partial class AchievementSystem : EntitySystem
 {
-    [Dependency] private readonly INullLinkPlayerManager _nullLinkPlayers = default!;
-    [Dependency] private readonly IAchievementRewardManager _achievementRewards = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedBatterySystem _battery = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private INullLinkPlayerManager _nullLinkPlayers = default!;
+    [Dependency] private IAchievementRewardManager _achievementRewards = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private ObjectivesSystem _objectives = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private SharedBatterySystem _battery = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
-    private static readonly TimeSpan AchievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan _achievementHydrationRetryDelay = TimeSpan.FromSeconds(3);
+    private const int HauntedGhostFollowerThreshold = 20;
     private static readonly TimeSpan VentKillWindow = TimeSpan.FromSeconds(30);
     private const float HesDeadJimDamageThreshold = 2000f;
     private const string EthanolReagentId = "Ethanol";
+    private const string SalineReagentId = "Saline";
+    private const string AvaliSpeciesId = "Avali";
+    private const string ResomiSpeciesId = "Resomi";
     private const string UplinkCatEarsListingId = "UplinkCatEars";
-
     private readonly Dictionary<Guid, Dictionary<string, double>> _roundProgress = [];
     private readonly HashSet<Guid> _achievementFetchInFlight = [];
     private readonly HashSet<EntityUid> _commandStaffMindsThatDied = [];
@@ -115,12 +122,13 @@ public sealed class AchievementSystem : EntitySystem
         SubscribeLocalEvent<ActorComponent, RailroadingReagentMetabolizedEvent>(OnActorReagentMetabolized);
         SubscribeLocalEvent<StunbatonComponent, MeleeHitEvent>(OnStunbatonMeleeHit);
         SubscribeLocalEvent<StorePurchaseCompletedEvent>(OnStorePurchaseCompleted);
-        SubscribeLocalEvent<HumanoidAppearanceComponent, SuccessfulInjectEvent>(OnSuccessfulInject);
+        SubscribeLocalEvent<SuccessfulInjectEvent>(OnSuccessfulInject);
         SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
         SubscribeLocalEvent<ProjectileComponent, ProjectileHitEvent>(OnProjectileHit);
         SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnDamageableChanged);
         SubscribeLocalEvent<NuclearReactorComponent, NuclearReactorMeltdownEvent>(OnNuclearReactorMeltdown);
         SubscribeLocalEvent<BeingVentCrawlComponent, ComponentRemove>(OnBeingVentCrawlRemoved);
+        SubscribeLocalEvent<FollowedComponent, EntityStartedFollowingEvent>(OnEntityStartedFollowing);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
@@ -508,12 +516,13 @@ public sealed class AchievementSystem : EntitySystem
         AddRoundProgress(session.UserId, AchievementProgressKeys.StorePurchase(args.ListingId), 1);
     }
 
-    private void OnSuccessfulInject(EntityUid uid, HumanoidAppearanceComponent humanoid, SuccessfulInjectEvent args)
+    private void OnSuccessfulInject(SuccessfulInjectEvent args)
     {
-        if (humanoid.Species != "Avali" && humanoid.Species != "Resomi")
+        if (!TryComp<HumanoidAppearanceComponent>(args.TargetGettingInjected, out var humanoid)
+            || (humanoid.Species != AvaliSpeciesId && humanoid.Species != ResomiSpeciesId))
             return;
 
-        if (!args.TransferredSolution.Contents.Any(reagentQuantity => reagentQuantity.Reagent.Prototype == "Saline"))
+        if (!args.TransferredSolution.Contents.Any(reagentQuantity => reagentQuantity.Reagent.Prototype == SalineReagentId))
             return;
 
         QueueUnlockAchievement(args.EntityUsingInjector, "you_monster");
@@ -600,6 +609,13 @@ public sealed class AchievementSystem : EntitySystem
             return;
 
         QueueUnlockAchievementForCrew("graphite_fire", station);
+    }
+
+    private void OnEntityStartedFollowing(Entity<FollowedComponent> ent, ref EntityStartedFollowingEvent args)
+    {
+        var ghostFollowers = ent.Comp.Following.Count(follower => HasComp<GhostComponent>(follower));
+        if (ghostFollowers >= HauntedGhostFollowerThreshold)
+            QueueUnlockAchievement(ent.Owner, "haunted");
     }
 
     private void OnBeingVentCrawlRemoved(EntityUid uid, BeingVentCrawlComponent component, ComponentRemove args)
@@ -972,7 +988,7 @@ public sealed class AchievementSystem : EntitySystem
             return;
         }
 
-        Timer.Spawn(AchievementHydrationRetryDelay, () =>
+        Timer.Spawn(_achievementHydrationRetryDelay, () =>
         {
             if (!_playerManager.TryGetSessionById(new NetUserId(userId), out var retrySession))
                 return;

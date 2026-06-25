@@ -1,14 +1,14 @@
 - type: entity
   parent: WeaponGrapplingGun
   id: WeaponNinjaChainSickle
-  name: chain sickle
+  name: kusarigama # Starlight
   description: A sickle attached to a websilk chain. The Spider Clan embodies the ancient ways, even as they steal the future.
   components:
   - type: GrapplingGun
-#    reelMassCoefficient: 200 # You can pull everyone. # Starlight start
-#    reelForce: 20000 # STRONG reeling, you can now make them GET OVER HERE # Undo these comments when we get the next upstream merge, since we don't have physics based grappling hooks yet.
-    reelRate: 10 # Fast reeling - can move very quickly in combat with this # Starlight change this back to 7.5 next upstream merge
-#    ropeBreakPoint: 150000 # Strong rope for ninja tricks # Starlight end
+    reelMassCoefficient: 200 # You can pull everyone.
+    reelForce: 20000 # STRONG reeling, you can now make them GET OVER HERE
+    reelRate: 7.5 # Fast reeling - can move very quickly in combat with this
+    ropeBreakPoint: 150000 # Strong rope for ninja tricks
     cycleSound: /Audio/Weapons/Guns/Empty/empty.ogg # Starlight, we don't have the Moffstation sound
     ropeSprite:
       sprite: _Moffstation/Objects/Weapons/Guns/Launchers/chainsickle.rsi

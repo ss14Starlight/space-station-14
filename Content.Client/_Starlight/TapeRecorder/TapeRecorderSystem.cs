@@ -6,9 +6,9 @@ namespace Content.Client._Starlight.TapeRecorder;
 /// <summary>
 /// Required for client side prediction stuff
 /// </summary>
-public sealed class TapeRecorderSystem : SharedTapeRecorderSystem
+public sealed partial class TapeRecorderSystem : SharedTapeRecorderSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private TimeSpan _lastTickTime = TimeSpan.Zero;
 

@@ -3,7 +3,6 @@ using Content.Server.Actions;
 using Content.Shared.Hands.EntitySystems;
 using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
-using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -21,17 +20,15 @@ namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-
-    private EntProtoId SummonBidentActionProto = "ActionSummonBident";
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private RandomMetadataSystem _randomMetadata = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private AmbientSoundSystem _ambientSound = default!;
+    [Dependency] private PointLightSystem _pointLight = default!;
+    [Dependency] private PaperSystem _paper = default!;
 
     public override void Initialize()
     {
@@ -106,7 +103,7 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (FitsChangeCriteria(devilComp, devilComp.EvilHaloAppearance))
         {
-            EntityManager.EnsureComponent<AppliedSpriteLayerComponent>(uid, out var appliedSpriteLayer);
+            EnsureComp<AppliedSpriteLayerComponent>(uid, out var appliedSpriteLayer);
             appliedSpriteLayer.Sprite = new SpriteSpecifier.Rsi(new ResPath("_Starlight/Devil/evilhalo.rsi"), "halo");
             appliedSpriteLayer.Layer = "devil_halo";
             devilComp.EvilHaloAppearance.Completed = true;
@@ -116,8 +113,8 @@ public sealed partial class DevilSystem : SharedDevilSystem
         {
             EnsureComp<AmbientSoundComponent>(uid);
             _ambientSound.SetSound(uid, new SoundPathSpecifier(new ResPath("/Audio/Weapons/ebladehum.ogg")));
-            _ambientSound.SetVolume(uid, -8);
-            _ambientSound.SetRange(uid, 3);
+            _ambientSound.SetVolume(uid, -4);
+            _ambientSound.SetRange(uid, 10);
             devilComp.OminousHum.Completed = true;
         }
 
@@ -132,8 +129,14 @@ public sealed partial class DevilSystem : SharedDevilSystem
 
         if (FitsChangeCriteria(devilComp, devilComp.BidentAction))
         {
-            _actions.AddAction(uid, SummonBidentActionProto);
+            _actions.AddAction(uid, devilComp.SummonBidentActionProto);
             devilComp.BidentAction.Completed = true;
+        }
+
+        if (FitsChangeCriteria(devilComp, devilComp.InfernalJauntAction))
+        {
+            _actions.AddAction(uid, devilComp.InfernalJauntActionProto);
+            devilComp.InfernalJauntAction.Completed = true;
         }
     }
     #endregion

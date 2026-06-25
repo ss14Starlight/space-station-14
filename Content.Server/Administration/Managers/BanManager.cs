@@ -34,7 +34,7 @@ using Content.Server.Discord;
 using Content.Server.Connection;
 using Content.Server._NullLink.Core;
 using Content.Server._NullLink.Helpers;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
 using Starlight.NullLink;
@@ -47,21 +47,21 @@ namespace Content.Server.Administration.Managers;
 
 public sealed partial class BanManager : IBanManager, IPostInjectInit
 {
-    [Dependency] private readonly IActorRouter _actor = default!; // nulllink
-    [Dependency] private readonly IConnectionManager _connectionManager = default!; // Starlight
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly ServerDbEntryManager _entryManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ILocalizationManager _localizationManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly INetManager _netManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
-    [Dependency] private readonly ITaskManager _taskManager = default!;
-    [Dependency] private readonly UserDbDataManager _userDbData = default!;
+    [Dependency] private IActorRouter _actor = default!; // nulllink
+    [Dependency] private IConnectionManager _connectionManager = default!; // Starlight
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IServerDbManager _db = default!;
+    [Dependency] private ServerDbEntryManager _entryManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ILocalizationManager _localizationManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
+    [Dependency] private ITaskManager _taskManager = default!;
+    [Dependency] private UserDbDataManager _userDbData = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -171,7 +171,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Server Bans
-    public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason)
+    public async Task CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason)
     {
         DateTimeOffset? expires = null;
         if (minutes > 0)
@@ -197,7 +197,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             banningAdmin,
             null);
 
-        await _db.AddServerBanAsync(banDef);
+        var id = await _db.AddServerBanAsync(banDef);
         if (_cfg.GetCVar(CCVars.ServerBanResetLastReadRules) && target != null)
             await _db.SetLastReadRules(target.Value, null); // Reset their last read rules. They probably need a refresher!
         var adminName = banningAdmin == null
@@ -228,13 +228,43 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _chat.SendAdminAlert(logMessage);
 
         // Starlight-start
-        var ban = await _db.GetServerBanAsync(addressRange?.Item1, target, hwid?.Hwid, null);
-        if (ban != null)
-        {
-            SendWebhook(await GenerateBanPayload(ban, minutes));
+        var ban = new ServerBanDef(
+            id,
+            target,
+            addressRange,
+            hwid,
+            banDef.BanTime,
+            expires,
+            roundId,
+            playtime,
+            reason,
+            severity,
+            banningAdmin,
+            null);
 
-            if (_actor.TryGetServerGrain(out var serverGrain))
+        if (ban.Id == null)
+            _sawmill.Error($"There's ban with id 0, this breaks webhook/ban sync logic.");
+
+        try
+        {
+            await SendWebhook(await GenerateBanPayload(ban, minutes));
+        }
+        catch (Exception e)
+        {
+            _sawmill.Error($"Failed to send ban webhook for ban {ban}: {e}");
+        }
+
+        if (_actor.TryGetServerGrain(out var serverGrain))
+        {
+            try
+            {
                 await serverGrain.AddOrUpdateBan(ban.ToNullLink());
+            }
+            catch (Exception e)
+            {
+                _sawmill.Error($"Failed to propagate ban {ban} to network: {e}");
+                _chat.SendAdminAlert($"Ban {ban} saved to DB but NOT propagated to other servers. Manual resync needed.");
+            }
         }
         // Starlight-end
 
@@ -460,7 +490,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         return true;
     }
 
-    public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
+    public async Task WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
     {
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -487,7 +517,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             null,
             "plug");
 
-        SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
+        await SendWebhook(await GenerateJobBanPayload(banDef, roles, minutes));
     }
 
     public async Task<string> PardonRoleBan(int banId, NetUserId? unbanningAdmin, DateTimeOffset unbanTime)
@@ -663,7 +693,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Webhook
-    private async void SendWebhook(WebhookPayload payload)
+    private async Task SendWebhook(WebhookPayload payload)
     {
         if (_webhookUrl == string.Empty) return;
 

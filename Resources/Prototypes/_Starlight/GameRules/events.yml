@@ -19,8 +19,7 @@
       definitions:
         - spawnerPrototype: AbductorScientistSpawner
           min: 1
-          max: 2
-          playerRatio: 90 # The Scientist is more important than the Agent, but also can't do anything without them, so...
+          playerRatio: 80 # The Scientist is more important than the Agent, but also can't do anything without them, so...
           pickPlayer: false
           startingGear: AbductorScientistGear
           briefing:
@@ -50,8 +49,7 @@
           # Starlight-end
         - spawnerPrototype: AbductorAgentSpawner
           min: 1
-          max: 3
-          playerRatio: 70 # Abductors are so weak man, throw them a bone.
+          playerRatio: 65 # Abductors are so weak man, throw them a bone.
           pickPlayer: false
           startingGear: AbductorAgentGear
           briefing:
@@ -90,6 +88,7 @@
       - id: KingRatMigration
       - id: NinjaSpawn
       - id: ParadoxCloneSpawn
+      - id: ParadoxCrisisSpawn # Starlight
       - id: RevenantSpawn
       - id: SleeperAgents
       #    - id: ZombieOutbreak
@@ -97,7 +96,8 @@
       - !type:NestedSelector
         tableId: DerelictBorgEventTable
       - id: WizardSpawn
-      - id: Xenoborgs
+      - id: SubXenoborgs # Starlight, make it spawn sub instead
+      - id: EeepEvent # imp
       # Starlight gamerules:
       - id: AbductorsSpawn
       - id: RailroadingTerminator
@@ -141,9 +141,11 @@
     - type: GameRule
       minPlayers: 20
     - type: BrighteyeRule
-    - type: LoadMapRule
-      mapPath: /Maps/_Starlight/TheDark/Hideout.yml
-      mapTag: TheDark
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
     - type: AntagLoadProfileRule
       speciesHardOverride: Shadekin
       applyCharacterProfile: true
@@ -193,8 +195,27 @@
   id: TheDarkMap
   components:
     - type: StationEvent
+    - type: SubRule
+      table: !type:GroupSelector
+        children:
+          - id: TheDarkHideoutSpawn
+          - id: TheDarkGardenSpawn
+
+# Dark Maps
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkHideoutSpawn
+  components:
     - type: LoadMapRule
       mapPath: /Maps/_Starlight/TheDark/Hideout.yml
+      mapTag: TheDark
+
+- type: entity
+  parent: BaseGameRule
+  id: TheDarkGardenSpawn
+  components:
+    - type: LoadMapRule
+      mapPath: /Maps/_Starlight/TheDark/Garden.yml
       mapTag: TheDark
 
 # Derelict Cyborgs
@@ -380,3 +401,43 @@
     reoccurrenceDelay: 15
     duration: 1
   - type: IonStormRule
+
+# Multi Paradoxes
+- type: entity
+  parent: BaseGameRule
+  id: ParadoxCrisisSpawn
+  components:
+  - type: StationEvent
+    weight: 2
+    duration: null
+    earliestStart: 35
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+  - type: ParadoxCloneRule
+    objectiveBlacklist:
+      tags:
+      - ParadoxCloneObjectiveBlacklist
+  - type: AntagObjectives
+    objectives:
+    - ParadoxCloneKillObjective
+    - ParadoxCloneLivingObjective
+  - type: AntagRandomSpawn # TODO: improve spawning so they only start in maints
+  - type: AntagSelection
+    agentName: paradox-clone-round-end-agent-name
+    definitions:
+    - spawnerPrototype: SpawnPointGhostParadoxClone
+      min: 1
+      max: 4 # Starlight. Future proofing.
+      playerRatio: 70 # Starlight. Paradoxes really aren't that impactful
+      pickPlayer: false
+      startingGear: ParadoxCloneGear
+      roleLoadout:
+      - RoleSurvivalVoxTank # give vox something to breath in case they don't get a copy
+      briefing:
+        text: paradox-clone-role-greeting
+        color: lightblue
+        sound: /Audio/Misc/paradox_clone_greeting.ogg
+      mindRoles:
+      - MindRoleParadoxClone
+  - type: DynamicRuleCost
+    cost: 125
