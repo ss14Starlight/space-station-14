@@ -35,6 +35,3 @@
     - type: ClothingSpeedModifier
       walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
       sprintModifier: 0.9
-    - type: Tag
-      tags:
-        - WhitelistChameleon
