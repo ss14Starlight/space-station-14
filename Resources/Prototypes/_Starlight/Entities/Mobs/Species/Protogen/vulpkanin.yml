@@ -256,19 +256,19 @@
     - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
     - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: [ "jumpsuit" ]
-    - map: [ "enum.HumanoidVisualLayers.LFoot" ] # Starlight: Layering fix
-    - map: [ "enum.HumanoidVisualLayers.RFoot" ] # Starlight: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
     - map: [ "gloves" ]
-    - map: [ "shoes" ] # Starlight start: Layering fix
+    - map: [ "shoes" ]
     - map: [ "ears" ]
     - map: [ "eyes" ]
     - map: [ "outerClothing" ]
     - map: [ "belt" ]
     - map: [ "id" ]
     - map: [ "back" ]
-    - map: [ "neck" ] # Starlight end: Layering fix
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
@@ -279,11 +279,11 @@
     - map: [ "head" ]
     - map: [ "pocket1" ]
     - map: [ "pocket2" ]
-    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ] # Starlight start: Layering fix
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
       color: "#ffffff"
       sprite: Objects/Misc/handcuffs.rsi
       state: body-overlay-2
-      visible: false # Starlight end: Layering fix
+      visible: false
     - map: [ "clownedon" ]
       sprite: "Effects/creampie.rsi"
       state: "creampie_vulpkanin"
