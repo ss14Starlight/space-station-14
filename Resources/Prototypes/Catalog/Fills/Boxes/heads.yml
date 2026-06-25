@@ -9,6 +9,7 @@
         children:
         - id: CommsComputerCircuitboard
         - id: StationRecordsComputerCircuitboard
+        - id: ShipyardComputerCircuitboard # Starlight
 
 - type: entity
   parent: ToteBase

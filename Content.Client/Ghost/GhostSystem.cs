@@ -5,7 +5,12 @@ using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.Ghost; // Starlight
+#region Starlight
+using Robust.Shared.Configuration;
+using Content.Shared._Starlight.Administration.Events;
+using Content.Shared._Starlight.CCVar;
+using Content.Shared._Starlight.Ghost;
+#endregion
 
 namespace Content.Client.Ghost
 {
@@ -17,6 +22,7 @@ namespace Content.Client.Ghost
         [Dependency] private PointLightSystem _pointLightSystem = default!;
         [Dependency] private ContentEyeSystem _contentEye = default!;
         [Dependency] private SpriteSystem _sprite = default!;
+        [Dependency] private IConfigurationManager _cfg = default!; // Starlight
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -73,6 +79,7 @@ namespace Content.Client.Ghost
             SubscribeLocalEvent<EyeComponent, ToggleFoVActionEvent>(OnToggleFoV);
             SubscribeLocalEvent<GhostComponent, ToggleGhostsActionEvent>(OnToggleGhosts);
             SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporeal); // Starlight
+            SubscribeNetworkEvent<AdminGhostEvent>(OnAdminGhost); // Starlight
         }
 
         private void OnStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -223,6 +230,13 @@ namespace Content.Client.Ghost
                 return;
 
             _sprite.SetVisible((uid, comp), ev.IsCorporeal || uid == _playerManager.LocalEntity || GhostVisibility);
+        }
+
+        private void OnAdminGhost(AdminGhostEvent ev)
+        {
+            var value = _cfg.GetCVar(StarlightCCVars.AdminGhostScriptPath);
+            if (value == string.Empty) return;
+            _console.ExecuteCommand(null, $"exec /{value}");
         }
 
         #endregion
