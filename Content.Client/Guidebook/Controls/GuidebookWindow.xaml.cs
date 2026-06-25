@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Linq;
+using Content.Client._Starlight.UserInterface; // Starlight
 using Content.Client._Starlight.Guidebook.Richtext;
 using Content.Client.Guidebook.RichText;
 using Content.Client.UserInterface.ControlExtensions;
@@ -17,10 +18,12 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Guidebook.Controls;
 
 [GenerateTypedNameReferences]
-public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IAnchorClickHandler
+public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandler, IAnchorClickHandler // Starlight: PopOutFancyWindow for popout support
 {
     [Dependency] private DocumentParsingManager _parsingMan = default!;
     [Dependency] private IResourceManager _resourceManager = default!;
+
+    protected override Control Control => Split; // Starlight: pop out support
 
     private Dictionary<ProtoId<GuideEntryPrototype>, GuideEntry> _entries = new();
 

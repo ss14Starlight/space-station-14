@@ -402,6 +402,8 @@
         - CantBecomeRevolutionary
         - Wizard
       # Starlight-end
+  - type: DynamicRuleCost
+    cost: 75
 
 # disabled until event is rewritten to be more interesting
 #- type: entity
