@@ -1,27 +1,6 @@
 Entries:
 - author: PON
   changes:
-  - message: (LAGAN) Tweaked southwest solars to have three flatpacked assembly's instead of an extra crate.
-    type: Tweak
-  id: 405823
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked southeast solars to have an extra blade due to shrinking southwest.
-    type: Tweak
-  id: 405824
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Tweaked science artifact room belt spawns to be one filled and one empty.
-    type: Tweak
-  id: 405825
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
   - message: (LAGAN) Fixed the Booze Storage in the Borg Bar to be anchored.
     type: Fix
   id: 405826
@@ -2799,4 +2778,25 @@ Entries:
   id: 406222
   time: '2026-06-25T09:27:33.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4914
+- author: Johnny
+  changes:
+  - message: (CC-SC17) Added a basketbool ring to an unused area west of science.
+    type: Add
+  id: 406223
+  time: '2026-06-26T08:43:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4942
+- author: Johnny
+  changes:
+  - message: (CC-SC17) Tweaked a few items using VV.
+    type: Tweak
+  id: 406224
+  time: '2026-06-26T08:43:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4942
+- author: Johnny
+  changes:
+  - message: (CC-SC17) Fixed the arcade not having power.
+    type: Fix
+  id: 406225
+  time: '2026-06-26T08:43:21.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4942
 Order: -1
