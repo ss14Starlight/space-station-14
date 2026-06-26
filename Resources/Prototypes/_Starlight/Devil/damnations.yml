@@ -43,7 +43,7 @@
 - type: damnation
   id: Blindness
   name: give up my sight
-  cateogory: constitution
+  category: constitution
   description: The signator forfeits their ability to see.
   cost: -3
   components:

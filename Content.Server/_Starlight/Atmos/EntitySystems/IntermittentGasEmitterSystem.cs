@@ -3,7 +3,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Shared._Starlight.Atmos;
 using Robust.Shared.Timing;
 
-namespace Content.Server._Starlight.Atmos;
+namespace Content.Server._Starlight.Atmos.EntitySystems;
 
 public sealed partial class IntermittentGasEmitterSystem : EntitySystem
 {
