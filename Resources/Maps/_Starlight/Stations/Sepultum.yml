@@ -89287,7 +89287,7 @@ entities:
     - type: Transform
       pos: -36.548702,71.51475
       parent: 2
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnit
   entities:
   - uid: 14708
     components:

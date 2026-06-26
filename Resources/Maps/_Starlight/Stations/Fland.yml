@@ -102636,7 +102636,7 @@ entities:
     - type: Transform
       pos: 99.5,21.5
       parent: 2
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnitSpawnerLateJoin
   entities:
   - uid: 16043
     components:

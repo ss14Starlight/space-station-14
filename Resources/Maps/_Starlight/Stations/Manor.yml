@@ -86369,7 +86369,7 @@ entities:
     - type: Transform
       pos: -43.5,48.5
       parent: 2
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnit
   entities:
   - uid: 14271
     components:

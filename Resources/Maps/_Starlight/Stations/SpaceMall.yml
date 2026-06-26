@@ -108297,7 +108297,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 17.5,16.5
       parent: 2
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnitSpawnerLateJoin
   entities:
   - uid: 17717
     components:

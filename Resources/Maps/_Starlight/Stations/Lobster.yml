@@ -70262,7 +70262,7 @@ entities:
     - type: Transform
       pos: 3.5,-5.5
       parent: 2
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnit
   entities:
   - uid: 11564
     components:
