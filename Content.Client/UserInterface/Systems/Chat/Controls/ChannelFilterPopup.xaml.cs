@@ -66,7 +66,7 @@ public sealed partial class ChannelFilterPopup : Popup
         // Starlight start
         InitializeTTSMuteChannels();
         TTSClearQueueButton.OnPressed += _ => ClearQueue();
-        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSCheckboxes();
+        TTSToggleAllButton.OnPressed += _ => ToggleAllTTSMuteCheckboxes();
         // Starlight end
     }
     // Starlight start
@@ -81,6 +81,7 @@ public sealed partial class ChannelFilterPopup : Popup
         _tts?.ClearQueue();
     }
 
+    // Creates checkbox toggle mute buttons for each defined Radio channel prototype
     private void InitializeTTSMuteChannels()
     {
         var protoManager = IoCManager.Resolve<IPrototypeManager>();
@@ -94,25 +95,15 @@ public sealed partial class ChannelFilterPopup : Popup
             };
 
             var channelId = channel.ID;
-            checkbox.OnToggled += args => SetChannelMuted(args, channelId);
+            checkbox.OnToggled += args => SetChannelMuteState(channelId, args.Pressed);
 
             _ttsMuteStates[channel.ID] = checkbox;
             TTSChannelsVBox.AddChild(checkbox);
         }
     }
 
-    private void SetChannelMuted(ButtonToggledEventArgs args, ProtoId<RadioChannelPrototype> channelId)
-    {
-        ApplyChannelMuted(channelId, args.Pressed);
-    }
-
-    private void ApplyChannelMuted(ProtoId<RadioChannelPrototype> channelId, bool muted)
-    {
-        _ttsStream ??= IoCManager.Resolve<IEntityManager>().System<TextToSpeechStreamSystem>();
-        _ttsStream.SetChannelMuted(channelId, muted);
-    }
-
-    private void ToggleAllTTSCheckboxes()
+    // Toggles all mute buttons on, then off, and so on
+    private void ToggleAllTTSMuteCheckboxes()
     {
         bool allChecked = _ttsMuteStates.Values.All(checkbox => checkbox.Pressed);
         bool newState = !allChecked;
@@ -120,8 +111,15 @@ public sealed partial class ChannelFilterPopup : Popup
         foreach (var (channelId, checkbox) in _ttsMuteStates)
         {
             checkbox.Pressed = newState;
-            ApplyChannelMuted(channelId, newState);
+            SetChannelMuteState(channelId, newState);
         }
+    }
+
+    // Function to apply the mute state from the UI to the TTS system for a specific channel
+    private void SetChannelMuteState(ProtoId<RadioChannelPrototype> channelId, bool muted)
+    {
+        _ttsStream ??= IoCManager.Resolve<IEntityManager>().System<TextToSpeechStreamSystem>();
+        _ttsStream.SetChannelMuted(channelId, muted);
     }
 
     // Starlight end
