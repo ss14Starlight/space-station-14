@@ -61988,7 +61988,7 @@ entities:
       accessListsOriginal:
       - - Security
       - - Cadet
-- proto: LockerWardenFilledHardsuit
+- proto: LockerWardenFilled
   entities:
   - uid: 9567
     components:
