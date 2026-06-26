@@ -5,18 +5,18 @@ using Content.Shared.Mobs;
 using Content.Shared.Objectives.Components;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Server._Starlight.Objectives.Events;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
 
 namespace Content.Server._Starlight.Objectives.Systems;
 
 /// <summary>
 /// Handles Teach a Lesson logic on if a specific entity has died at least once during the round
 /// </summary>
-public sealed class TeachALessonConditionSystem : EntitySystem
+public sealed partial class TeachALessonConditionSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroad = default!;
+    [Dependency] private RailroadingSystem _railroad = default!;
     public override void Initialize()
     {
         base.Initialize();

@@ -18,19 +18,13 @@ namespace Content.Shared._Starlight.Devil;
 
 public abstract partial class SharedDevilSystem : EntitySystem
 {
-    [Dependency] private readonly ParsablePaperSystem _parsablePaper = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly MetaDataSystem _metadata = default!;
-    [Dependency] private readonly IEntityManager _entity = default!;
-    [Dependency] private readonly SharedPvsOverrideSystem _pvs = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private ParsablePaperSystem _parsablePaper = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private PaperSystem _paper = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
 
-    private Dictionary<ProtoId<DamnationPrototype>, DamnationPrototype> _damnations = new();
     public override void Initialize()
     {
         base.Initialize();

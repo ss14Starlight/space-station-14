@@ -14,9 +14,9 @@ namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private readonly IGameTiming _time = default!;
-    [Dependency] private readonly StaminaSystem _stamina = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private IGameTiming _time = default!;
+    [Dependency] private StaminaSystem _stamina = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
 
     private ProtoId<LocalizedDatasetPrototype> BanishPhraseDataset = "DevilBanishPhrases";
     private List<string> BanishPhrases = new();

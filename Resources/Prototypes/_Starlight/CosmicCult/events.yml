@@ -31,3 +31,17 @@
       components:
       - type: CosmicColossus
         timed: true
+
+- type: entity
+  id: MalignRiftSpawn
+  parent: BaseStationEvent
+  components:
+  - type: StationEvent
+    weight: 1.5
+    earliestStart: 45
+    # reoccurrenceDelay: 90
+    # minimumPlayers: 40
+    # maxOccurrences: 1
+    duration: 20
+    occursDuringRoundEnd: false
+  - type: MalignRiftSpawnRule

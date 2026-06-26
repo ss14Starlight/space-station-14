@@ -112,6 +112,7 @@
     materialComposition:
       Plastic: 150
 
+# Bottle Cases
 - type: entity
   id: BottleCaseMedical
   parent: [ BaseBottleCase, BaseMedicalContraband ]
@@ -167,6 +168,48 @@
     - 0,0,3,1
 
 - type: entity
+  id: BottleCaseRobotics
+  parent: [ BaseBottleCase, BaseRoboticistContraband ]
+  name: chemical case
+  suffix: Robotics
+  description: A plastic case with slots for bottles.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/cases.rsi
+    layers:
+    - state: bottlecase
+    - state: bottle1
+      map: ["bottle1"]
+      visible: false
+    - state: bottle2
+      map: ["bottle2"]
+      visible: false
+    - state: bottle3
+      map: ["bottle3"]
+      visible: false
+    - state: bottle4
+      map: ["bottle4"]
+      visible: false
+    - state: bottle5
+      map: ["bottle5"]
+      visible: false
+    - state: bottle6
+      map: ["bottle6"]
+      visible: false
+    - state: bottle7
+      map: ["bottle7"]
+      visible: false
+    - state: bottle8
+      map: ["bottle8"]
+      visible: false
+  - type: Item
+    sprite: _Starlight/Objects/Specific/Robotics/cases.rsi
+    size: Large
+    shape:
+    - 0,0,3,1
+
+# Pen Packs
+- type: entity
   id: PenPackMedical
   parent: [ BasePenPack, BaseMedicalContraband ]
   name: autoinjector pack
@@ -209,6 +252,7 @@
     shape:
     - 0,0,1,1
 
+## Surgical Cases
 - type: entity
   id: SurgicalKitMedical
   parent: [ BaseSurgicalKit, BaseMedicalContraband ]
@@ -219,8 +263,34 @@
 - type: entity
   name: surgical kit
   suffix: Medical, Filled
-  parent: SurgicalKitMedical
+  parent: [SurgicalKitMedical, SurgicalKitFill]
   id: SurgicalKitMedicalFilled
+
+- type: entity
+  id: SurgicalKitRobotics
+  parent: [ BaseSurgicalKit, BaseRoboticistContraband ]
+  name: surgical kit
+  suffix: Robotics
+  description: A compact kit of surgical tools.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Specific/Robotics/cases.rsi
+    state: surgerykit
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+    sprite: _Starlight/Objects/Specific/Robotics/cases.rsi
+
+- type: entity
+  name: surgical kit
+  suffix: Robotics, Filled
+  parent: [SurgicalKitRobotics, SurgicalKitFill]
+  id: SurgicalKitRoboticsFilled
+
+- type: entity
+  abstract: true
+  id: SurgicalKitFill
   components:
   - type: EntityTableContainerFill
     containers:

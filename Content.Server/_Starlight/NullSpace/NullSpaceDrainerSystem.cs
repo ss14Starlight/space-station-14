@@ -1,5 +1,4 @@
-using Content.Server._Starlight.Shadekin;
-using Content.Shared._Starlight.Shadekin;
+using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
@@ -7,9 +6,9 @@ using Content.Shared.Research.Components;
 
 namespace Content.Server._Starlight.NullSpace;
 
-public sealed class NullSpaceDrainerSystem : EntitySystem
+public sealed partial class NullSpaceDrainerSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<NullSpaceDrainerComponent, OnAttemptEnergyUseEvent>(OnAttempt);

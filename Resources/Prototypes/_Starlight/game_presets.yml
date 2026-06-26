@@ -152,7 +152,7 @@
     - Brighteye
     - ThiefGamerule
     - Devil
-    # - CosmicCult
+    - CosmicCult
 
 - type: gamePreset
   id: AlmostAllerAtOnce
@@ -193,7 +193,7 @@
     - RailroadingTerminator
     - RailroadingMinor
     - Devil
-    # - CosmicCult
+    - CosmicCult
 
 - type: gamePreset
   id: TerrorSpiders

@@ -1,12 +1,12 @@
 using Content.Shared.Disposal.Components;
 using Content.Shared.Disposal.Mailing;
 using Content.Shared.Popups;
-using Content.Shared.Starlight.Restrict;
+using Content.Shared._Starlight.Restrict;
 
 namespace Content.Server._Starlight.Restrict;
 public sealed partial class RestrictNestingItemSystem : SharedRestrictNestingItemSystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
     public override void Initialize()
     {
         base.Initialize();

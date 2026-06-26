@@ -6,6 +6,7 @@ using Content.Shared.StoreDiscount.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Store;
 
 namespace Content.Shared.Store;
 
@@ -25,6 +26,7 @@ public partial class ListingData : IEquatable<ListingData>
     public ListingData(ListingData other) : this(
         other.Name,
         other.DiscountCategory,
+        other.SecondHandCategory,
         other.Description,
         other.Conditions,
         other.Icon,
@@ -53,6 +55,7 @@ public partial class ListingData : IEquatable<ListingData>
     public ListingData(
         string? name,
         ProtoId<DiscountCategoryPrototype>? discountCategory,
+        ProtoId<SecondHandCategoryPrototype>? secondHandCategory,
         string? description,
         List<ListingCondition>? conditions,
         SpriteSpecifier? icon,
@@ -77,6 +80,7 @@ public partial class ListingData : IEquatable<ListingData>
     {
         Name = name;
         DiscountCategory = discountCategory;
+        SecondHandCategory = secondHandCategory;
         Description = description;
         Conditions = conditions?.ToList();
         Icon = icon;
@@ -114,6 +118,13 @@ public partial class ListingData : IEquatable<ListingData>
     /// </summary>
     [DataField]
     public ProtoId<DiscountCategoryPrototype>? DiscountCategory;
+
+    /// <summary>
+    /// Second-hand category for this listing. When set, this listing is eligible to appear in the
+    /// Second Hand uplink tab as a worn or damaged variant of a syndicate item.
+    /// </summary>
+    [DataField]
+    public ProtoId<SecondHandCategoryPrototype>? SecondHandCategory;
 
     /// <summary>
     /// The description of the listing. If empty, uses the entity's description (if present)
@@ -320,6 +331,7 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
         : base(
             listingData.Name,
             listingData.DiscountCategory,
+            listingData.SecondHandCategory,
             listingData.Description,
             listingData.Conditions,
             listingData.Icon,
@@ -466,7 +478,7 @@ public sealed partial class ListingDataWithCostModifiers : ListingData
 /// </summary>
 [Prototype]
 [DataDefinition]
-public sealed partial class DiscountCategoryPrototype : IPrototype
+public sealed partial class DiscountCategoryPrototype : IPrototype, IWeightedCategory
 {
     [ViewVariables]
     [IdDataField]

@@ -1,5 +1,5 @@
-using Content.Server._Starlight.Antags;
 using Content.Server._Starlight.GameTicking.Rules.Components;
+using Content.Server._Starlight.Objectives.Components;
 using Content.Server.Antag;
 using Content.Server.Emp;
 using Content.Server.GameTicking.Rules;
@@ -15,11 +15,11 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 
 public sealed partial class TerminatorRuleSystem : GameRuleSystem<TerminatorRuleComponent>
 {
-    [Dependency] private readonly SharedPinpointerSystem _pinpointer = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly EmpSystem _emp = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedPinpointerSystem _pinpointer = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private EmpSystem _emp = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private const float EmpPower = 2.5f;
 

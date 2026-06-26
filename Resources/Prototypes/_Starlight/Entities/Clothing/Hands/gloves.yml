@@ -184,3 +184,18 @@
     sprite: _Starlight/Clothing/Hands/Gloves/elegantmaidgloves.rsi
   - type: Fiber
     fiberColor: fibers-white
+
+- type: entity
+  parent: ClothingHandsGlovesColorBlack
+  id: ThievingGlovesReinforcement
+  suffix: Thieving, Reinforcement, Unremovable
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Thieving
+    stripTimeReduction: 0 # They don't have any steal time reduction
+    stealthy: true
+  - type: Unremoveable # Don't just take the free gloves from them, actually use them.
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-grey

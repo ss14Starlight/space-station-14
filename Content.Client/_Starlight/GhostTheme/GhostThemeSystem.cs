@@ -1,17 +1,17 @@
-using Content.Client._Starlight.Trail;
-using Content.Server.Administration.Systems;
+using Content.Client._Starlight.Overlay.Trail;
+using Content.Shared._Starlight;
 using Content.Shared._Starlight.GhostTheme;
 using Robust.Client.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Starlight.GhostTheme;
 
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly StarlightEntitySystem _entities = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private StarlightEntitySystem _entities = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
