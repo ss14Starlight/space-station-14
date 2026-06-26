@@ -9,7 +9,7 @@ public sealed partial class StarlightCCVars
     /// </summary>
 
     public static readonly CVarDef<int> UxnMaxInstrLimit =
-        CVarDef.Create("uxn.maximum_instrs", 100000, CVar.SERVERONLY);
+        CVarDef.Create("uxn.maximum_instrs", 100000, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// The default maximum number of instrs a UXN can execute at once.
@@ -18,5 +18,5 @@ public sealed partial class StarlightCCVars
     /// or simply put it will run default_instrs at once max. but if there is more uxns then it divides the avaliable instructions from maximum_instrs among the processors.
     /// </summary>
     public static readonly CVarDef<int> UxnDefaultInstrLimit =
-        CVarDef.Create("uxn.default_instrs", 1000, CVar.SERVERONLY);
+        CVarDef.Create("uxn.default_instrs", 1000, CVar.SERVER | CVar.REPLICATED);
 }

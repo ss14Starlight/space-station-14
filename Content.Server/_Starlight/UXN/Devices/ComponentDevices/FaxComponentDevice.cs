@@ -23,7 +23,7 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 /// Commands are as follows
 /// 0x00 - Continue buffered write
 /// 0x01 - Re-scan devices
-/// 0x02 - Write scanned devices to buffer1 in the format of name[null]XXXX-XXXX[null]
+/// 0x02 - Write scanned devices to buffer1 in the format of name[null]XXXX-XXXX[null], if the address is *somehow* null will store the chars INVALIDID instead of the devicenet ID.
 /// 0x03 - Update target fax addr from buffer1
 /// 0x04 - send fax. buffer 1 is the name on the fax. buffer 2 is fax contents.
 /// 0xf0 - puts the number of buffered faxes into Status
@@ -193,9 +193,10 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
         List<byte> output = new();
         foreach (var item in Entity.Comp.KnownFaxes)
         {
-            output.AddRange(Encoding.ASCII.GetBytes(item.Value));
+            var fax = item.Value;
+            output.AddRange(Encoding.ASCII.GetBytes(fax.Name.ToCharArray()));
             output.Add(0x00);
-            output.AddRange(Encoding.ASCII.GetBytes(item.Key));
+            output.AddRange(Encoding.ASCII.GetBytes(fax.Address ?? "INVALIDID"));
             output.Add(0x00);
         }
         deviceMem[memTarget & 0xF0] = (byte)(WriteBuffered(uxnMem, buf1size, buf1ptr, [.. output], true) ? FaxDeviceStatus.InformationBuffered : FaxDeviceStatus.Okay);
