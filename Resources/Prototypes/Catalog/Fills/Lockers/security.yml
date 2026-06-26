@@ -102,7 +102,6 @@
 
 - type: entity
   id: LockerBrigmedicFilled
-  categories: [ ShouldMapStation ] # Starlight
   suffix: Brigmedic, Filled
   parent: LockerBrigmedic
   components:
