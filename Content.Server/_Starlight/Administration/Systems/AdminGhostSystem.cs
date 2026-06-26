@@ -58,6 +58,7 @@ public sealed partial class AdminGhostSystem : EntitySystem
         }
         _visibility.RefreshVisibility(args.Performer);
         _popup.PopupEntity(Loc.GetString(popupLocId), args.Performer, args.Performer);
+        args.Handled = true;
     }
 
     private void OnGhostVis(Entity<AdminGhostComponent> entity, ref GetVisMaskEvent args)
