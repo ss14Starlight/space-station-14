@@ -958,7 +958,6 @@
 - type: entity
   parent: VendingMachineMedicalBase
   id: VendingMachineMedical
-  categories: [ ShouldMapStation ] # Starlight
   name: NanoMed Plus
   suffix: Departmental # Starlight
   components:
