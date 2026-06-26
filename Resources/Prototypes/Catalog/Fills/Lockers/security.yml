@@ -281,7 +281,7 @@
       amount: 2 # Starlight
     - id: WeaponRifleLeikha
       amount: 1
-    - id: WeaponRifleM90GrenadeLauncher
+    - id: WeaponRifleLawbringer
       amount: 1
     - id: MagazineRifleHP
       amount: 4 # Starlight

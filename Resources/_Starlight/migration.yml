@@ -110,3 +110,7 @@ ClothingHandsCatPawsBlackWhiteInsulated: null
 #2026-06-09 - Removing the large warden locker
 LockerWardenLarge: LockerWarden
 LockerWardenLargeFilled: LockerWardenFilled
+
+
+#2026-06-26 - M90GL Reworked into Lawbringer
+WeaponRifleM90GrenadeLauncher : WeaponRifleLawbringer

@@ -133,7 +133,7 @@
 - type: entity
   name: Lawbringer
   parent: [BaseWeaponRifle, BaseSecurityContraband]
-  id: WeaponRifleM90GrenadeLauncher
+  id: WeaponRifleLawbringer
   description: "A bullpup carbine of modern design, commissioned by CentCom for their security forces.\nFeeds from .30 rifle magazines."
   components:
   - type: Sprite
