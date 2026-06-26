@@ -12,9 +12,6 @@
   id: AbductorScientist
 
 - type: Tag
-  id: AdminGhostHidden # Tag to track hidden state of aghost to non-admin observers.
-
-- type: Tag
   id: AdminSpawnedPlayer # Signifies that this player entity was spawned via the "Spawn here" admin verb.
 
 - type: Tag

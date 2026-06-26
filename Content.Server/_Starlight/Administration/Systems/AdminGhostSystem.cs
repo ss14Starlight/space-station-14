@@ -11,7 +11,6 @@ namespace Content.Server._Starlight.Administration.Systems;
 
 public sealed partial class AdminGhostSystem : EntitySystem
 {
-    [Dependency] private TagSystem _tag = default!;
     [Dependency] private PopupSystem _popup = default!;
     [Dependency] private ActionsSystem _actions = default!;
     [Dependency] private VisibilitySystem _visibility = default!;
@@ -37,16 +36,15 @@ public sealed partial class AdminGhostSystem : EntitySystem
     {
         if (!TryComp<AdminGhostComponent>(args.Performer, out var aghostComp))
             return;
-        var hide = !_tag.HasTag(args.Performer, aghostComp.ToggleAGhostHideTag);
-        var popupLocId = hide
+        var popupLocId = !aghostComp.HiddenFromNonAdminGhosts
             ? "ghost-gui-aghost-toggle-ghost-visibility-popup-on"
             : "ghost-gui-aghost-toggle-ghost-visibility-popup-off";
-        if (hide)
+        if (!aghostComp.HiddenFromNonAdminGhosts)
         {
             _visibility.RemoveLayer(args.Performer, (int)VisibilityFlags.Normal, false);
             _visibility.RemoveLayer(args.Performer, (int)VisibilityFlags.Ghost, false);
             _visibility.AddLayer(args.Performer, (int)VisibilityFlags.Admin, false);
-            _tag.AddTag(args.Performer, aghostComp.ToggleAGhostHideTag);
+            aghostComp.HiddenFromNonAdminGhosts = true;
         }
         else
         {
@@ -54,7 +52,7 @@ public sealed partial class AdminGhostSystem : EntitySystem
             if(TryComp<GhostComponent>(args.Performer, out var ghost) && ghost.AlwaysVisible)
                 _visibility.AddLayer(args.Performer, (int)VisibilityFlags.Normal, false);
             else _visibility.AddLayer(args.Performer, (int)VisibilityFlags.Ghost, false);
-            _tag.RemoveTag(args.Performer, aghostComp.ToggleAGhostHideTag);
+            aghostComp.HiddenFromNonAdminGhosts = false;
         }
         _visibility.RefreshVisibility(args.Performer);
         _popup.PopupEntity(Loc.GetString(popupLocId), args.Performer, args.Performer);
