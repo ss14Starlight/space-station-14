@@ -1,12 +1,10 @@
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared._Starlight.Computers.RemoteEye;
 using Content.Shared._Starlight.Computers.RemoteEye.Components;
 using Content.Shared._Starlight.Xenobiology.MiscItems;
 using Content.Shared._Starlight.Xenobiology.Potions;
 using Content.Shared.Actions;
 using Content.Shared.Construction;
 using Content.Shared.Damage.Components;
-using Content.Shared.Destructible;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;

@@ -1,4 +1,3 @@
-using Content.Shared.Buckle.Components;
 using Robust.Shared.Network;
 
 namespace Content.Shared._Starlight.ChildEntities;

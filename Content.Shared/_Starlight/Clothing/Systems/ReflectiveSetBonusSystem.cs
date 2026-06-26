@@ -3,7 +3,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Tag;
 using Content.Shared.Weapons.Reflect;
-using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.Clothing.Systems;
 

@@ -1,8 +1,6 @@
-﻿using Content.Shared.Damage;
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 // Based on the RMC14.
 // https://github.com/RMC-14/RMC-14
 namespace Content.Shared._Starlight.Medical.Surgery.Components;

@@ -1,5 +1,4 @@
 using Content.Shared.Body.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 
 // ReSharper disable once CheckNamespace

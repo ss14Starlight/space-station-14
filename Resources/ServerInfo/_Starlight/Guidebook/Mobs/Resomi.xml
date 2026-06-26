@@ -25,15 +25,15 @@
   Resomi station identities will list their nickname first, followed by their pack name. For example, [color=yellow]Tashira, Darkfeathers Pack[/color].
   Some Resomi forego this system and go by other nicknames or names.
 
-  ## Nightvision
-  Resomi have a innate nightvision given to them by their eyes.
+  ## Night Vision
+  Resomi have a innate night vision given to them by their eyes.
   This allows them to see in pure darkness farther than any normal handheld lightsource would provide.
   They will have normal vision when wearing any equipment that provides flash immunity.
   Using HUD variants allows you to keep your innate vision, at the cost of losing flash immunity.
   You can configure if you start with glasses or HUD in the loadouts for all relevant roles.
   <Box>
-    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo Nightvision\nHas flash immunity"/>
-    <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNightvision\nNo flash immunity"/>
+    <GuideEntityEmbed Entity="ClothingEyesGlassesSecurity" Scale="5" Caption="Security Glasses\nNo night vision\nHas flash immunity"/>
+    <GuideEntityEmbed Entity="ClothingEyesHudSecurity" Scale="5" Caption="Security Hud\nNight vision\nNo flash immunity"/>
   </Box>
   ## Flash Duration
   Due to their eyes being more sensitive to light, Resomi will be stunned for a longer duration when flashed.

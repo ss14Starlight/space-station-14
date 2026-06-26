@@ -15,7 +15,6 @@ using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using System.Numerics;
-using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.Shipyard.Systems;
 

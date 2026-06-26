@@ -6,7 +6,6 @@ using Content.Shared.Storage;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.Strip;
 using Content.Shared.Verbs;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Storage;

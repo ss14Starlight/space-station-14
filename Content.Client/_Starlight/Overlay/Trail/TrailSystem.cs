@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Content.Client._Starlight.Shaders;
 using Content.Shared._Starlight.Trail;
 using Content.Shared._Starlight.CCVar;

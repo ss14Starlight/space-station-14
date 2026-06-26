@@ -1,5 +1,4 @@
-﻿using Content.Shared._Starlight.Antags.Abductor;
-using Robust.Shared.GameStates;
+﻿using Robust.Shared.GameStates;
 
 namespace Content.Shared._Starlight.Computers.RemoteEye.Components;
 
