@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/25/2026 08:06:57
-  entityCount: 36609
+  time: 06/26/2026 07:17:51
+  entityCount: 36608
 maps:
 - 1
 grids:
@@ -16357,7 +16357,7 @@ entities:
       pos: 33.5,-28.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -193643.48
+      secondsUntilStateChange: -193752.45
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16399,7 +16399,7 @@ entities:
       pos: 37.5,18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -249322.03
+      secondsUntilStateChange: -249431
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16446,7 +16446,7 @@ entities:
       pos: -18.5,-39.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -245474.02
+      secondsUntilStateChange: -245582.98
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16579,7 +16579,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -249269.47
+      secondsUntilStateChange: -249378.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -16635,7 +16635,7 @@ entities:
       pos: 22.5,-12.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -330737.56
+      secondsUntilStateChange: -330846.53
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18269,7 +18269,7 @@ entities:
       pos: 52.5,-0.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -246700.9
+      secondsUntilStateChange: -246809.88
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18594,7 +18594,7 @@ entities:
       pos: 40.5,2.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -244167.58
+      secondsUntilStateChange: -244276.55
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -18623,7 +18623,7 @@ entities:
       pos: -22.5,26.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -559933.5
+      secondsUntilStateChange: -560042.44
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19297,7 +19297,7 @@ entities:
       pos: -13.5,-45.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -245472.61
+      secondsUntilStateChange: -245581.58
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19524,7 +19524,7 @@ entities:
       pos: 29.5,-42.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -260435.11
+      secondsUntilStateChange: -260544.08
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -19664,7 +19664,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -658762.3
+      secondsUntilStateChange: -658871.25
       state: Opening
   - uid: 635
     components:
@@ -19676,7 +19676,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -658764.94
+      secondsUntilStateChange: -658873.9
       state: Opening
   - uid: 636
     components:
@@ -19688,7 +19688,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -658763.8
+      secondsUntilStateChange: -658872.75
       state: Opening
   - uid: 637
     components:
@@ -19699,7 +19699,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -658763
+      secondsUntilStateChange: -658871.94
       state: Opening
   - uid: 25727
     components:
@@ -110933,6 +110933,8 @@ entities:
     - type: Transform
       pos: 8.5,34.5
       parent: 2
+- proto: FaxMachineEngineeringAtmos
+  entities:
   - uid: 12556
     components:
     - type: Transform
@@ -110940,11 +110942,6 @@ entities:
       parent: 2
 - proto: FaxMachineEngineeringNuclearReactor
   entities:
-  - uid: 34587
-    components:
-    - type: Transform
-      pos: 40.5,67.5
-      parent: 2
   - uid: 36014
     components:
     - type: Transform
@@ -177215,7 +177212,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -223166.86
+      secondsUntilStateChange: -223275.83
       state: Opening
     - type: Airlock
       autoClose: False
