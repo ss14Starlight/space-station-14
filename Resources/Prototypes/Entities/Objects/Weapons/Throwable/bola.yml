@@ -7,7 +7,6 @@
   - type: Tag
     tags:
     - Bola
-    - SecBeltEquip
   - type: Item
     size: Normal
   - type: Sprite

@@ -465,6 +465,7 @@
       - CombatKnife
       - Truncheon
       - HandGrenade
+      - Bola # Starlight
       components:
       - Stunbaton
       - FlashOnTrigger
