@@ -38,10 +38,12 @@ public sealed partial class TextToSpeechStreamSystem : EntitySystem
             return;
         }
 
-        // If the channel is muted, don't play a radio chime
-        // Otherwise it would just be a radio chime followed by no speech
         if (ev.Channel != null && _mutedChannels.Contains(ev.Channel.Value))
+        {
+            if (ev.Chime is not null)
+                _tts.TryPlayChime([], AudioParams.Default, null, ev.Chime);
             return;
+        }
 
         var stream = new TTSStream
         {
