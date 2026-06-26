@@ -50,6 +50,8 @@ ghost-role-information-tsf-aligned-rules = You are [color={role-type-tsf-aligned
 
 ghost-role-information-nanotrasen-special-forces-name = NTSF Operative
 ghost-role-information-nanotrasen-special-forces-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
+ghost-role-information-nanotrasen-primus = NTSF Primus Operative
+ghost-role-information-nanotrasen-primus-description = You are a part of the Primus division of the NanoTrasen Special Forces. Perform your assigned task.
 ghost-role-information-decimus-name = Decimus Operative
 ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
 

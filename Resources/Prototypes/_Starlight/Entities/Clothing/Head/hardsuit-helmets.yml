@@ -649,6 +649,7 @@
     lowPressureMultiplier: 1000
   - type: FireProtection
     reduction: 0.2
+  - type: ClothesNightVision
   - type: Pierceable
     level: Rock
   - type: Armor

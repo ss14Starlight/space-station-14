@@ -20,9 +20,6 @@
   - AllAccess
   access:
   - CentralCommand
-  special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
 
 - type: startingGear
   id: NanoTrasenSpecialForcesGear
@@ -30,15 +27,15 @@
     jumpsuit: ClothingUniformNTNCFatigues
     back: ClothingBackpackDeathSquad
     mask: ClothingMaskGasDeathSquad
-    eyes: ClothingEyesGlassesBlueShield
+    eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitNTSF
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
     pocket2: EnergyShield
-    belt: PrototypeVibrobladeSheath
+    belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF1
     suitstorage: WeaponPulseRifle
   storage:
@@ -56,3 +53,41 @@
   inhand:
   - PrototypeVibroblade
 
+- type: startingGear
+  id: NanoTrasenSpecialForcesPrimusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponRiflePeacemaker
+  storage:
+    back:
+    - WeaponIK60
+    - MagazineRifleSP
+    - MagazineRifleHP
+    - MagazineRifleUranium
+    - MagazineRifleIncendiary
+    - MagazineRifleAP
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MagazineBatteryLr30
+    - MedkitCombatFilled
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - HoloprojectorField
+    - HoloprojectorSecurity
+    - RadiationBlockingProjector
+    - ToolDebug
+    - SmokeGrenade

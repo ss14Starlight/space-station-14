@@ -8,6 +8,9 @@
       implants:
         - DeathRattleImplantCentcomm
         - RadioImplantCentcomm
+        - BluespaceImplant
+        - FreedomImplant
+        - MindShieldImplant
 
 ## NTCC Blueshield
 
@@ -139,7 +142,7 @@
 
 - type: randomHumanoidSettings
   id: NTSFoperative
-  parent: EventHumanoidCentcomm
+  parent: EventHumanoidNTNC
   speciesBlacklist:
     - Arachnid
     - Diona
@@ -183,7 +186,74 @@
       job: NanoTrasenSpecialForces
     - type: Loadout
       prototypes: [NanoTrasenSpecialForcesGear]
-      roleLoadout: [RoleSurvivalEVA]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFPrimus
+  name: NTSF Primus Operative
+  suffix: NTSF, Primus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: ntsficon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFPrimusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFPrimusoperative
+  parent: EventHumanoidNTNC
+  speciesBlacklist:
+    - Diona
+    - Reptilian
+    - Resomi
+    - Vox
+    - Rodentia
+    - IPC
+    - Avali
+    - Felionoid
+    - Thaven
+    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
+    - ProtoDiona
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+    - ProtoAvali
+    - ProtoFelionoid
+    - ProtoKin
+    - ProtoThaven
+    - ProtoCyclorite
+    - ProtoDwarf
+    - ProtoMoth
+    - ProtoSlimePerson
+    - ProtoLagomorph
+    - ProtoElf
+    - Protogen
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-primus
+      description: ghost-role-information-nanotrasen-primus-description
+      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      important: true # SL
+      raffle:
+        settings: short
+      mindRoles:
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned # Starlight
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesPrimusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -252,7 +322,7 @@
       job: Decimus
     - type: Loadout
       prototypes: [DecimusGear]
-      roleLoadout: [RoleSurvivalEVA]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
