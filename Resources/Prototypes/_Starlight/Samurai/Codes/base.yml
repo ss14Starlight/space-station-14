@@ -4,25 +4,53 @@
 - type: dataset
   id: SamuraiCodesBase
   values:
-    - Test1
-    - Test2
-    - Test3
+    - Hierarchy
+    - Mercy
+    - Polite
+    - Law
+    - Charity
+    - Restraint
+    - Cleanliness
 
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
-  id: Test1
-  codeName: samurai-code-test1-name
-  codeDesc: samurai-code-test1-desc
+  id: Hierarchy
+  codeName: samurai-code-hierarchy-name
+  codeDesc: samurai-code-hierarchy-desc
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
-  id: Test2
-  codeName: samurai-code-test2-name
-  codeDesc: samurai-code-test2-desc
+  id: Mercy
+  codeName: samurai-code-mercy-name
+  codeDesc: samurai-code-mercy-desc
 
 # Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
-  id: Test3
-  codeName: samurai-code-test3-name
-  codeDesc: samurai-code-test-desc
+  id: Polite
+  codeName: samurai-code-polite-name
+  codeDesc: samurai-code-polite-desc
+
+# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
+- type: samuraiCode
+  id: Law
+  codeName: samurai-code-law-name
+  codeDesc: samurai-code-law-desc
+
+# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
+- type: samuraiCode
+  id: Charity
+  codeName: samurai-code-charity-name
+  codeDesc: samurai-code-charity-desc
+
+# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
+- type: samuraiCode
+  id: Restraint
+  codeName: samurai-code-restraint-name
+  codeDesc: samurai-code-restraint-desc
+
+# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
+- type: samuraiCode
+  id: Cleanliness
+  codeName: samurai-code-cleanliness-name
+  codeDesc: samurai-code-cleanliness-desc

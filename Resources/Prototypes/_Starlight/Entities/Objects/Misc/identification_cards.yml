@@ -763,3 +763,25 @@
     - type: Access
       tags:
         - MedTak
+
+#Samurai
+- type: entity
+  parent: IDCardStandard
+  id: SamuraiIDCard
+  name: Samurai ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - sprite: *starlight-icon-rsi
+      offset: *icon-offset
+      state: Samurai
+  - type: IdCard
+    jobTitle: Samurai
+    jobIcon: Samurai
+  - type: PresetIdCard
+    job: Visitor
+  - type: NanoChatCard # CD
+    listNumber: false
+

@@ -1,0 +1,56 @@
+# The base samurai honour codes
+
+# Make sure to add new moods to this dataset or they will not be selected!!!!!!
+- type: dataset
+  id: SamuraiCodesHostile
+  values:
+    - Power
+    - Death
+    - Sanctity
+    - Display
+    - Nature
+    - Pride
+    - Conquest
+    - War
+
+
+
+- type: samuraiCode
+  id: Power
+  codeName: samurai-code-power-name
+  codeDesc: samurai-code-power-desc
+
+- type: samuraiCode
+  id: Death
+  codeName: samurai-code-death-name
+  codeDesc: samurai-code-death-desc
+
+- type: samuraiCode
+  id: Sanctity
+  codeName: samurai-code-sanctity-name
+  codeDesc: samurai-code-sanctity-desc
+
+- type: samuraiCode
+  id: Display
+  codeName: samurai-code-display-name
+  codeDesc: samurai-code-display-desc
+
+- type: samuraiCode
+  id: Nature
+  codeName: samurai-code-nature-name
+  codeDesc: samurai-code-nature-desc
+
+- type: samuraiCode
+  id: Pride
+  codeName: samurai-code-pride-name
+  codeDesc: samurai-code-pride-desc
+
+- type: samuraiCode
+  id: Conquest
+  codeName: samurai-code-conquest-name
+  codeDesc: samurai-code-conquest-desc
+
+- type: samuraiCode
+  id: War
+  codeName: samurai-code-war-name
+  codeDesc: samurai-code-war-desc

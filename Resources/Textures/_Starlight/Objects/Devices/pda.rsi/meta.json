@@ -204,6 +204,11 @@
           1.0
         ]
       ]
+    },
+    {
+      "name": "pda-samurai",
+      "copyright": "Wassuy",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }

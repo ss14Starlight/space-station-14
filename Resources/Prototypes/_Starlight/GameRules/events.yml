@@ -454,7 +454,7 @@
     duration: null
   - type: RuleGrids
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/mining.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/samurai_shuttle.yml
   - type: AntagObjectives
     objectives:
     - HonorObjective
@@ -462,6 +462,9 @@
     - PunishObjective
     - SamuraiSurviveObjective
   - type: AntagLoadProfileRule
+    applyCharacterProfile: true
+    speciesOverride: Human
+    speciesOverrideBlacklist:
   - type: AntagSelection
     definitions:
     - spawnerPrototype: SpawnPointSamurai

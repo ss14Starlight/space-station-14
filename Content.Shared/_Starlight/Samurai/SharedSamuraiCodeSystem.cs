@@ -8,6 +8,8 @@ public abstract partial class SharedSamuraiCodeSystem : EntitySystem
 {
 
     public static readonly ProtoId<DatasetPrototype> BaseDataset = "SamuraiCodesBase";
+    public static readonly ProtoId<DatasetPrototype> ErraticDataset = "SamuraiCodesErratic";
+    public static readonly ProtoId<DatasetPrototype> HostileDataset = "SamuraiCodesHostile";
 
     [Dependency] private EmagSystem _emag = default!;
     public override void Initialize()

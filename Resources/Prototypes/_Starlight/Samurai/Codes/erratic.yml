@@ -1,0 +1,55 @@
+# The base samurai honour codes
+
+# Make sure to add new moods to this dataset or they will not be selected!!!!!!
+- type: dataset
+  id: SamuraiCodesErratic
+  values:
+    - Freedom
+    - Emotion
+    - Direct
+    - Relaxation
+    - Joy
+    - Equality
+    - Belief
+    - Ceremony
+
+
+- type: samuraiCode
+  id: Freedom
+  codeName: samurai-code-freedom-name
+  codeDesc: samurai-code-freedom-desc
+
+- type: samuraiCode
+  id: Emotion
+  codeName: samurai-code-emotion-name
+  codeDesc: samurai-code-emotion-desc
+
+- type: samuraiCode
+  id: Direct
+  codeName: samurai-code-direct-name
+  codeDesc: samurai-code-direct-desc
+
+- type: samuraiCode
+  id: Relaxation
+  codeName: samurai-code-relaxation-name
+  codeDesc: samurai-code-relaxation-desc
+
+- type: samuraiCode
+  id: Joy
+  codeName: samurai-code-joy-name
+  codeDesc: samurai-code-joy-desc
+
+- type: samuraiCode
+  id: Equality
+  codeName: samurai-code-equality-name
+  codeDesc: samurai-code-equality-desc
+
+- type: samuraiCode
+  id: Belief
+  codeName: samurai-code-belief-name
+  codeDesc: samurai-code-belief-desc
+
+- type: samuraiCode
+  id: Ceremony
+  codeName: samurai-code-ceremony-name
+  codeDesc: samurai-code-ceremony-desc

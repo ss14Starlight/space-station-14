@@ -1,0 +1,20 @@
+﻿{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "State based Copyright",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+            "copyright":"Swonkus on Github"
+        },
+        {
+            "name": "equipped-HELMET",
+            "directions": 4,
+            "copyright":"Swonkus on Github"
+        }
+    ]
+}

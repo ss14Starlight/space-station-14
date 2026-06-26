@@ -42,7 +42,7 @@ public sealed partial class SamuraiCodesComponent : Component
     /// will grab 1 code from each of these datasets on round start/map init
     /// </summary>
     [DataField(serverOnly: true)]
-    public List<ProtoId<DatasetPrototype>> CodeDatasets =  new() { SharedSamuraiCodeSystem.BaseDataset, SharedSamuraiCodeSystem.BaseDataset, SharedSamuraiCodeSystem.BaseDataset };
+    public List<ProtoId<DatasetPrototype>> CodeDatasets =  new() { SharedSamuraiCodeSystem.BaseDataset, SharedSamuraiCodeSystem.ErraticDataset, SharedSamuraiCodeSystem.HostileDataset };
 
     /// <summary>
     /// what dataset will the "wildcard" code be pulled from

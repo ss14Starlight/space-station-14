@@ -949,3 +949,30 @@
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
+
+#Samurai
+- type: entity
+  parent: BasePDA
+  id: SamuraiPDA
+  name: Samurai PDA
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Devices/pda.rsi
+  - type: Pda
+    id: SamuraiIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-samurai
+  - type: PdaBorderColor
+    borderColor: "#3b3b3b"
+  - type: Icon
+    sprite: _Starlight/Objects/Devices/pda.rsi
+    state: pda-samurai

@@ -228,6 +228,11 @@
             "name": "MedTak_Mindshield",
             "copyright": "SevenShades",
             "delays": [ [ 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1 ] ]
+        },
+        {
+            "name": "Samurai",
+            "copyright": "Swonkus"
         }
+
     ]
 }
