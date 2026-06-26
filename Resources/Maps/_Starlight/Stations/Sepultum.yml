@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/26/2026 20:00:40
-  entityCount: 43037
+  time: 06/26/2026 20:09:35
+  entityCount: 43051
 maps:
 - 1
 grids:
@@ -2552,6 +2552,11 @@ entities:
             6086: 4,6
             6087: 4,5
             6088: 4,4
+        - node:
+            color: '#D4D4D496'
+            id: Delivery
+          decals:
+            7467: -17,-27
         - node:
             color: '#FFFFFFFF'
             id: Delivery
@@ -13054,7 +13059,7 @@ entities:
     - type: DeviceLinkSink
       invokeCounter: 1
     - type: Door
-      secondsUntilStateChange: -235015.16
+      secondsUntilStateChange: -235546.2
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13349,7 +13354,7 @@ entities:
       pos: -7.5,67.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -188977.12
+      secondsUntilStateChange: -189508.17
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13609,7 +13614,7 @@ entities:
       pos: 7.5,4.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -243245.67
+      secondsUntilStateChange: -243776.72
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13671,7 +13676,7 @@ entities:
       pos: 16.5,93.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128173.41
+      secondsUntilStateChange: -128704.45
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13683,7 +13688,7 @@ entities:
       pos: 16.5,89.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128172.805
+      secondsUntilStateChange: -128703.85
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13694,7 +13699,7 @@ entities:
       pos: -60.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128423.17
+      secondsUntilStateChange: -128954.22
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13705,7 +13710,7 @@ entities:
       pos: -56.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128423.6
+      secondsUntilStateChange: -128954.65
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13716,7 +13721,7 @@ entities:
       pos: -52.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128424.14
+      secondsUntilStateChange: -128955.19
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13727,7 +13732,7 @@ entities:
       pos: -48.5,-47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -128424.875
+      secondsUntilStateChange: -128955.92
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13790,7 +13795,7 @@ entities:
       pos: -60.5,77.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -16442.65
+      secondsUntilStateChange: -16973.695
       state: Opening
     - type: DeviceLinkSink
       invokeCounter: 1
@@ -14170,7 +14175,7 @@ entities:
       pos: -43.5,-15.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -20531.76
+      secondsUntilStateChange: -21062.805
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14600,7 +14605,7 @@ entities:
       pos: -2.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6124.014
+      secondsUntilStateChange: -6655.0596
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -87780,6 +87785,11 @@ entities:
     - type: Transform
       pos: -134.5,-14.5
       parent: 2
+  - uid: 43030
+    components:
+    - type: Transform
+      pos: -78.5,16.5
+      parent: 2
 - proto: ComputerCargoBounty
   entities:
   - uid: 14485
@@ -89347,6 +89357,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -7.5,11.5
       parent: 2
+  - uid: 43039
+    components:
+    - type: Transform
+      pos: -49.5,69.5
+      parent: 2
+  - uid: 43040
+    components:
+    - type: Transform
+      pos: -53.5,69.5
+      parent: 2
 - proto: CryogenicSleepUnitSpawnerLateJoin
   entities:
   - uid: 14706
@@ -89640,7 +89660,7 @@ entities:
       pos: -24.5,66.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -37999.945
+      secondsUntilStateChange: -38530.99
       state: Closing
 - proto: CurtainsPurple
   entities:
@@ -89655,7 +89675,7 @@ entities:
       pos: -122.5,47.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -140363.84
+      secondsUntilStateChange: -140894.89
       state: Opening
   - uid: 14761
     components:
@@ -91414,6 +91434,17 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,51.5
       parent: 2
+  - uid: 43037
+    components:
+    - type: Transform
+      pos: -17.5,-24.5
+      parent: 2
+  - uid: 43043
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,-26.5
+      parent: 2
 - proto: DisposalJunction
   entities:
   - uid: 15047
@@ -91717,6 +91748,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -98.5,0.5
+      parent: 2
+  - uid: 15912
+    components:
+    - type: Transform
+      pos: -25.5,-24.5
       parent: 2
 - proto: DisposalPipe
   entities:
@@ -96437,11 +96473,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -26.5,-25.5
       parent: 2
-  - uid: 15912
-    components:
-    - type: Transform
-      pos: -25.5,-24.5
-      parent: 2
   - uid: 15913
     components:
     - type: Transform
@@ -97458,6 +97489,54 @@ entities:
     - type: Transform
       pos: -91.5,-14.5
       parent: 2
+  - uid: 43044
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -24.5,-24.5
+      parent: 2
+  - uid: 43045
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -23.5,-24.5
+      parent: 2
+  - uid: 43046
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -22.5,-24.5
+      parent: 2
+  - uid: 43047
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -21.5,-24.5
+      parent: 2
+  - uid: 43048
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -20.5,-24.5
+      parent: 2
+  - uid: 43049
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -19.5,-24.5
+      parent: 2
+  - uid: 43050
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -18.5,-24.5
+      parent: 2
+  - uid: 43051
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,-25.5
+      parent: 2
 - proto: DisposalTrunk
   entities:
   - uid: 16092
@@ -97976,6 +98055,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -91.5,-15.5
       parent: 2
+  - uid: 43042
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -16.5,-26.5
+      parent: 2
 - proto: DisposalUnit
   entities:
   - uid: 16181
@@ -98337,6 +98422,11 @@ entities:
     components:
     - type: Transform
       pos: -76.5,5.5
+      parent: 2
+  - uid: 43041
+    components:
+    - type: Transform
+      pos: -16.5,-26.5
       parent: 2
 - proto: DisposalXJunction
   entities:
@@ -175166,7 +175256,7 @@ entities:
       parent: 2
 - proto: VendingMachineClown
   entities:
-  - uid: 43037
+  - uid: 43038
     components:
     - type: Transform
       pos: -71.5,-25.5
@@ -254681,12 +254771,5 @@ entities:
     components:
     - type: Transform
       pos: -78.66753,23.581196
-      parent: 2
-- proto: XenobiologyConsole
-  entities:
-  - uid: 43030
-    components:
-    - type: Transform
-      pos: -78.5,16.5
       parent: 2
 ...
