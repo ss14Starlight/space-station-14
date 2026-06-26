@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/26/2026 21:07:19
-  entityCount: 2654
+  time: 06/26/2026 21:31:07
+  entityCount: 2656
 maps: []
 grids:
 - 1
@@ -357,6 +357,7 @@ entities:
             124: -6,23
             186: 0,-12
             187: 1,-12
+            209: 4,15
         - node:
             color: '#334E6DC8'
             id: BrickTileWhiteLineW
@@ -1108,7 +1109,7 @@ entities:
       pos: -15.5,14.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -26818.727
+      secondsUntilStateChange: -28245.592
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -1384,7 +1385,7 @@ entities:
       pos: -5.5,-22.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -13540.672
+      secondsUntilStateChange: -14967.536
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -1512,7 +1513,7 @@ entities:
       pos: -20.5,13.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -4815.765
+      secondsUntilStateChange: -6242.63
       state: Opening
     - type: DeviceLinkSource
       linkedPorts:
@@ -6708,6 +6709,18 @@ entities:
     - type: Transform
       pos: -9.5,7.5
       parent: 1
+- proto: CrateEngineeringCableBulk
+  entities:
+  - uid: 2655
+    components:
+    - type: Transform
+      pos: -6.5,19.5
+      parent: 1
+  - uid: 2656
+    components:
+    - type: Transform
+      pos: 4.5,-19.5
+      parent: 1
 - proto: CrateMaterialPlasteel
   entities:
   - uid: 1066
@@ -11433,11 +11446,6 @@ entities:
     - type: Transform
       pos: -6.5,3.5
       parent: 1
-    - type: UserInterface
-      actors:
-        enum.ThermomachineUiKey.Key:
-        - invalid
-    - type: ActiveUserInterface
   - uid: 1691
     components:
     - type: Transform
@@ -15296,14 +15304,12 @@ entities:
   - uid: 2230
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.6368637,-19.747604
+      pos: 4.26766,-18.637482
       parent: 1
   - uid: 2231
     components:
     - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.2931137,-19.372604
+      pos: 4.64266,-18.574982
       parent: 1
 - proto: TeslaGroundingRod
   entities:
@@ -15327,7 +15333,7 @@ entities:
   - uid: 2235
     components:
     - type: Transform
-      pos: 4.2865257,-18.570915
+      pos: 4.23641,-18.121857
       parent: 1
 - proto: Thruster
   entities:
