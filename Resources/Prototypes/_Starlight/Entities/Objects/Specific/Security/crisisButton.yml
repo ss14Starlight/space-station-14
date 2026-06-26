@@ -21,3 +21,6 @@
     targetUser: true
     messages:
       Alive: rattle-on-trigger-distress-message
+  - type: Tag
+    tags:
+      - SecBeltEquip

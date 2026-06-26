@@ -29,6 +29,9 @@
     - Forensics
   - type: StealTarget
     stealGroup: ForensicScanner
+  - type: Tag
+    tags:
+      - SecBeltEquip
 
 - type: entity
   name: forensic scanner report

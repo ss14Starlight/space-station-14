@@ -12,3 +12,6 @@
   - type: CyberneticDisruptor
     useTime: 10
     duration: 600
+  - type: Tag
+    tags:
+      - SecBeltEquip
