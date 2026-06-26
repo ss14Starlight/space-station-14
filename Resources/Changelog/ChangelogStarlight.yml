@@ -1,34 +1,6 @@
 Entries:
 - author: Cvlancer & Caws
   changes:
-  - message: (KILOTON) Added roboticist med kit to ipc repair bay.
-    type: Add
-  id: 405845
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Removed the jaws of life from cmo's office.
-    type: Remove
-  id: 405846
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Removed the tools security had access to in the substation room.
-    type: Remove
-  id: 405847
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Removed some trackers located inside bso's office.
-    type: Remove
-  id: 405848
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
   - message: (KILOTON) Changed the nutri max in the public hallway to be all access.
     type: Tweak
   id: 405849
@@ -2799,4 +2771,32 @@ Entries:
   id: 406244
   time: '2026-06-26T13:37:34.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Johnny
+  changes:
+  - message: Added vox lungs in med vend cuz people want it.
+    type: Add
+  id: 406245
+  time: '2026-06-26T18:04:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4940
+- author: Psykana, Slarticodefast, Conflee
+  changes:
+  - message: Added T-Ray Scanner Modes, allowing you to toggle between showing All, Pipes, and Wires.
+    type: Add
+  id: 406246
+  time: '2026-06-26T19:11:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4864
+- author: Psykana, Slarticodefast, Conflee
+  changes:
+  - message: Changed event field naming as part of a refactor. All Upstream and current Starlight Repo files are corrected, however Downstreams of SL may need to confirm and swap their use of Equipee to the correct event field names.
+    type: Tweak
+  id: 406247
+  time: '2026-06-26T19:11:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4864
+- author: Toxyams
+  changes:
+  - message: Vampire ability descriptions.
+    type: Tweak
+  id: 406248
+  time: '2026-06-26T19:11:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4875
 Order: -1
