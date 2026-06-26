@@ -18,4 +18,7 @@ ghost-role-information-ntnc-consortium-officer-description = You are charged dir
 ghost-role-information-green-shield-officer-name = Greenshield Officer
 ghost-role-information-green-shield-officer-description = You are charged directly from the highest levels of CentComm to protect CentComm VIPs and maintain the peace at Central Command outposts.
 
+ghost-role-information-cburn-corpsman-name = CBURN Corpsman
+ghost-role-information-cburn-corpsman-description = A highly trained CentComm medical agent, capable of fixing injuries from various threats.
+
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]
