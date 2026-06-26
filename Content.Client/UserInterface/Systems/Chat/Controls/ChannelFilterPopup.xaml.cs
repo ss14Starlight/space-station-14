@@ -86,7 +86,8 @@ public sealed partial class ChannelFilterPopup : Popup
     {
         var protoManager = IoCManager.Resolve<IPrototypeManager>();
 
-        foreach (var channel in protoManager.EnumeratePrototypes<RadioChannelPrototype>())
+        foreach (var channel in protoManager.EnumeratePrototypes<RadioChannelPrototype>()
+                     .OrderBy(channel => Loc.GetString(channel.Name)))
         {
             var checkbox = new CheckBox
             {
