@@ -1,0 +1,58 @@
+- type: entity
+  id: BaseCustomSpawner
+  name: spawner
+  description: Spawns things.
+  abstract: true
+  components:
+    - type: CustomSpawner
+    - type: InteractionOutline
+    - type: Clickable
+    - type: Physics
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 100
+          mask:
+            - TableMask
+    - type: Pullable
+    - type: Anchorable
+    - type: DeviceLinkSource
+      ports:
+        - SpawnTriggered
+        - Enabled
+        - Disabled
+    - type: DeviceLinkSink
+      ports:
+        - TriggerSpawn
+        - Enable
+        - Disable
+        - Toggle
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+#    - type: UserInterface
+#      interfaces:
+#        enum.SpawnerConfigUi.Key:
+#          type: SpawnerConfigBoundUserInterface
+
+- type: entity
+  id: CustomSpawner
+  parent: BaseCustomSpawner
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+      state: pad
+    - type: PointLight
+
+- type: entity
+  id: CustomSpawnerMarker
+  parent: BaseCustomSpawner
+  suffix: Marker
+  components:
+    - type: Marker
+    - type: CustomSpawner
+      usePadSprite: false
