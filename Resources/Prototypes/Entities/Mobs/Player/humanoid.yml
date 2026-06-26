@@ -579,9 +579,6 @@
       - NamesMilitaryFirst
       - NamesMilitaryLast
       nameFormat: name-format-ert
-    - type: AutoImplant # Starlight
-      implants:
-        - MindShieldImplant
 
 - type: entity # Starlight start
   id: RandomHumanoidSpawnerCBURNCorpsman
@@ -604,14 +601,11 @@
     - type: GhostRole
       name: ghost-role-information-cburn-corpsman-name
       description: ghost-role-information-cburn-corpsman-description
-      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       job: CBURN
-    - type: AutoImplant
-      implants:
-        - MindShieldImplant
     - type: ZombieImmune
     - type: RandomMetadata
       nameSegments:
