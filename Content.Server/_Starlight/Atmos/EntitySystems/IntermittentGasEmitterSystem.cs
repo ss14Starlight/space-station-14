@@ -29,7 +29,7 @@ public sealed partial class IntermittentGasEmitterSystem : EntitySystem
         var query = EntityQueryEnumerator<IntermittentGasEmitterComponent>();
         while (query.MoveNext(out var uid, out var comp) && stopwatch.Elapsed < updateBudget)
         {
-            if (comp.LastEmit + comp.EmitPeriod > _timing.CurTime) return;
+            if (comp.LastEmit + comp.EmitPeriod > _timing.CurTime) continue;
             comp.LastEmit = _timing.CurTime;
 
             var mixture = _atmos.GetContainingMixture(uid, false, true) ?? new();

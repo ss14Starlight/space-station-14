@@ -111,7 +111,7 @@
 - type: damnation
   id: Mute
   name: lose my voice
-  cateogry: constitution
+  category: constitution
   description: Makes the signator mute
   cost: -2
   components:

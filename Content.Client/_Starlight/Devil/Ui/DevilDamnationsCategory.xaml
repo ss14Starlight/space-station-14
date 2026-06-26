@@ -6,13 +6,15 @@
         <ScrollContainer HScrollEnabled="False"
                          VerticalExpand="True"
                          Margin="10 10 10 10">
-            <RichTextLabel Name="CategoryTitle"
-                           VerticalAlignment="Top"/>
-            <Control MinHeight="10"/>
-            <BoxContainer Name="DamnationsDisplayContainer"
-                          Orientation="Vertical"
-                          VerticalExpand="True">
-            </BoxContainer>
+            <Control VerticalExpand="True">
+                <RichTextLabel Name="CategoryTitle"
+                               VerticalAlignment="Top"/>
+                <Control MinHeight="10"/>
+                <BoxContainer Name="DamnationsDisplayContainer"
+                              Orientation="Vertical"
+                              VerticalExpand="True">
+                </BoxContainer>
+            </Control>
         </ScrollContainer>
     </BoxContainer>
 </Control>

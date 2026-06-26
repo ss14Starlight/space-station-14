@@ -6,12 +6,6 @@ namespace Content.Shared._Starlight.Atmos;
 public sealed partial class IntermittentGasEmitterComponent : Component
 {
     /// <summary>
-    /// max pressure (kPa), after which no gas will be emitted
-    /// </summary>
-    [DataField]
-    public float MaxPressure = 150;
-
-    /// <summary>
     /// moles per emit
     /// </summary>
     [DataField]
