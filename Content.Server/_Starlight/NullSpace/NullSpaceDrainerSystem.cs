@@ -31,13 +31,13 @@ public sealed partial class NullSpaceDrainerSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        EnsureComp<NullSpaceDrainerComponent>(args.Equipee);
-        component.Target = args.Equipee;
+        EnsureComp<NullSpaceDrainerComponent>(args.EquipTarget);
+        component.Target = args.EquipTarget;
     }
 
     private void OnUnequipped(EntityUid uid, NullSpaceDrainerComponent component, GotUnequippedEvent args)
     {
-        RemComp<NullSpaceDrainerComponent>(args.Equipee);
+        RemComp<NullSpaceDrainerComponent>(args.EquipTarget);
         component.Target = null;
     }
 
