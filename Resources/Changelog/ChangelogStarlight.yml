@@ -1,137 +1,4 @@
 Entries:
-- author: PON
-  changes:
-  - message: (LAGAN) Fixed the Booze Storage in the Borg Bar to be anchored.
-    type: Fix
-  id: 405826
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: PON
-  changes:
-  - message: (LAGAN) Fixed artifact doors to be science access only.
-    type: Fix
-  id: 405827
-  time: '2026-06-09T06:41:20.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4678
-- author: Mack
-  changes:
-  - message: Allow ghosts to use the character editor.
-    type: Add
-  id: 405828
-  time: '2026-06-09T07:33:44.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4656
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added Reagent grinder to Botany. (Caws).
-    type: Add
-  id: 405829
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added two condensers to Atmos. (Caws).
-    type: Add
-  id: 405830
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a separate suit storage added to Warden's office rather than having their hardsuit come with their locker. (Caws).
-    type: Add
-  id: 405831
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a Happy Honk vendor between the Clown room and the Boxing Ring. (Caws).
-    type: Add
-  id: 405832
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added water vapor miner and chamber.
-    type: Add
-  id: 405833
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a second pair of firelocks to old maints mine shaft.
-    type: Add
-  id: 405834
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a sign warning people about space near the mine shaft.
-    type: Add
-  id: 405835
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a maints door to lawyers office.
-    type: Add
-  id: 405836
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added Kiki! the new botany kobold!
-    type: Add
-  id: 405837
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added an advanced monkey spawn in the maints fight club.
-    type: Add
-  id: 405838
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a new hidden room in nuclear reactor.
-    type: Add
-  id: 405839
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added a waste option to the nuclear reactor.
-    type: Add
-  id: 405840
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added arrows to indicate which way the gas flows in the nuclear reactor piping.
-    type: Add
-  id: 405841
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added some spare black lights to the laser tag arena in case some breaks.
-    type: Add
-  id: 405842
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added some firelocks to nuclear reactor.
-    type: Add
-  id: 405843
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Added hv wiring to most docks to support power transfer in the future.
-    type: Add
-  id: 405844
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
 - author: Cvlancer & Caws
   changes:
   - message: (KILOTON) Added roboticist med kit to ipc repair bay.
@@ -2799,4 +2666,137 @@ Entries:
   id: 406225
   time: '2026-06-26T08:43:21.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4942
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added nuclear reactor.
+    type: Add
+  id: 406226
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added a new maints location "Crystal Cove" to engie maints.
+    type: Add
+  id: 406227
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added escape pod station beacons.
+    type: Add
+  id: 406228
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added shipyard console.
+    type: Add
+  id: 406229
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added the new fax machines.
+    type: Add
+  id: 406230
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added kiki and two more hydro trays.
+    type: Add
+  id: 406231
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added new maints location below nuclear reactor.
+    type: Add
+  id: 406232
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added a remote signaler to maints shop.
+    type: Add
+  id: 406233
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added several air vents to engie maints.
+    type: Add
+  id: 406234
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added extra room to the secret syndicate room.
+    type: Add
+  id: 406235
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added robotics locker to robotics.
+    type: Add
+  id: 406236
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added virology locker to viro.
+    type: Add
+  id: 406237
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added surgeon closet to surgery.
+    type: Add
+  id: 406238
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS)  Added coroner locker to morgue.
+    type: Add
+  id: 406239
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added a wrench to drugstore.
+    type: Add
+  id: 406240
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Added a ghost to gen pop mine.
+    type: Add
+  id: 406241
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Removed one mid round spawn botanist. (Now its 2 at shift start plus kiki).
+    type: Remove
+  id: 406242
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Fixed tiles under maints shop, security.
+    type: Fix
+  id: 406243
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
+- author: Cvlancer
+  changes:
+  - message: (OASIS) Fixed security dispo pipes.
+    type: Fix
+  id: 406244
+  time: '2026-06-26T13:37:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4921
 Order: -1
