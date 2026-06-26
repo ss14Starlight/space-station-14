@@ -24,7 +24,13 @@ public abstract partial class SharedDevilSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvs = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
 
+    private Dictionary<ProtoId<DamnationPrototype>, DamnationPrototype> _damnations = new();
     public override void Initialize()
     {
         base.Initialize();
