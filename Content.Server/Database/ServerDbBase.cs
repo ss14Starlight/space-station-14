@@ -8,7 +8,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
-using Content.Server.Humanoid.Markings.Extensions;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Database;
@@ -29,6 +28,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared._Starlight.Traits;
+using Content.Server._Starlight.Humanoid;
 
 namespace Content.Server.Database
 {

@@ -424,6 +424,29 @@
           canReact: false
     - type: QuickConstructable # DEN quick construction
       category: UraniumGlass
+    # Starlight start
+    - type: ConditionalHealing
+      healingDefinitions:
+        - allowedTags: [ Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
+          healing:
+            damageContainers:
+              - Hybrid
+            delay: 2
+            damage:
+              types:
+                Cellular: -5
+                Poison: -5
+            healingBeginSound:
+              path: "/Audio/Items/Medical/ointment_begin.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+            healingEndSound:
+              path: "/Audio/Items/Medical/ointment_end.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+    # Starlight end
 
 - type: entity
   parent: SheetUGlass
@@ -483,6 +506,29 @@
           canReact: false
     - type: QuickConstructable # DEN quick construction
       category: ReinforcedUraniumGlass
+    # Starlight start
+    - type: ConditionalHealing
+      healingDefinitions:
+        - allowedTags: [ Protogen, ProtoArachnid, ProtoAvali, ProtoCyclorite, ProtoDwarf, ProtoDiona, ProtoFelionoid, ProtoHuman, ProtoMoth, ProtoReptilian, ProtoResomi, ProtoSlimePerson, ProtoThaven, ProtoVox, ProtoVulp, ProtoKin, ProtoElf, ProtoLagomorph ] # Starlight
+          healing:
+            damageContainers:
+              - Hybrid
+            delay: 2
+            damage:
+              types:
+                Cellular: -10
+                Poison: -10
+            healingBeginSound:
+              path: "/Audio/Items/Medical/ointment_begin.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+            healingEndSound:
+              path: "/Audio/Items/Medical/ointment_end.ogg"
+              params:
+                volume: 1.0
+                variation: 0.125
+    # Starlight end
 
 - type: entity
   parent: SheetRUGlass

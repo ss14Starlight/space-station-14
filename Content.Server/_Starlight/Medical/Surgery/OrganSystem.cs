@@ -10,30 +10,30 @@ using Content.Shared.Eye.Blinding.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Radio.Components;
 using Content.Shared.Speech.Muting;
-using Content.Shared.Starlight.Antags.Abductor;
 using Content.Shared._Starlight.Cybernetics;
 using Content.Shared._Starlight.Cybernetics.Components;
 using Content.Shared._Starlight.Language.Components;
-using Content.Shared.Starlight.Medical.Surgery.Events;
-using Content.Shared.Starlight.Medical.Surgery.Steps.Parts;
+using Content.Shared._Starlight.Medical.Surgery.Events;
 using Content.Shared.Tag;
-using Content.Shared.VentCrawl;
 using Robust.Shared.Containers;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.VentCrawl.Components;
+using Content.Shared._Starlight.Medical.Surgery.Components;
+using Content.Shared._Starlight.Antags.Abductor.Components;
 
 namespace Content.Server._Starlight.Medical.Surgery;
 public sealed partial class OrganSystem : EntitySystem
 {
 
-    [Dependency] private readonly BlindableSystem _blindable = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private BlindableSystem _blindable = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearanceSystem = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {

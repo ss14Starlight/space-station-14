@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Medical vendor taken from tgstation at https://github.com/tgstation/tgstation/commit/1516a728931b4985c1e86f0c5995a5aa1554a1ad and modified by Swept & IProduceWidgets (github). Wallmed taken from /tg/station at commit 6665eec76c98a4f3f89bebcd10b34b47dcc0b8ae, off.png taken from /tg/station commit ede31369cfa5ea1bed9262b5ef4bbef85f60fe26 and edited by @Flareguy & IProduceWidgets (github). Converted into medical, medical-civilian, wallmed, and wallmed-civilian by wonderfulnewworld (GitHub).",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "medical",
+	  "copyright": "TG Station, Swept, IProduceWidgets, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "medical-civilian",
+	  "copyright": "TG Station, Swept, IProduceWidgets, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "wallmed",
+	  "copyright": "TG Station, Flareguy, IProduceWidgets, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    },
+    {
+      "name": "wallmed-civilian",
+	  "copyright": "TG Station, Flareguy, IProduceWidgets, wonderfulnewworld",
+	  "license": "CC-BY-SA-3.0"
+    }
+  ]
+}

@@ -6,19 +6,19 @@
   abstract: true
   components:
   - type: Sprite
-    layers:
-    - state: mender
-      map: ["enum.SolutionContainerLayers.Base"]
-    - state: mender1
-      map: ["enum.SolutionContainerLayers.Fill"]
-      visible: false
+    sprite: _Starlight/Objects/Specific/Medical/mender.rsi
   - type: Item
-    heldPrefix: mender
+    sprite: _Starlight/Objects/Specific/Medical/mender.rsi
   - type: SolutionContainerManager
     solutions:
       injector:
         maxVol: 35
+  - type: ExaminableSolution
+    solution: injector
+    exactVolume: true
   - type: RefillableSolution
+    solution: injector
+  - type: SolutionItemStatus
     solution: injector
   - type: DrawableSolution
     solution: injector
@@ -26,8 +26,8 @@
     solution: injector
   - type: Appearance
   - type: SolutionContainerVisuals
-    maxFillLevels: 3
-    fillBaseName: mender
+    maxFillLevels: 6
+    fillBaseName: fillIndicator
     solutionName: injector
   - type: Tag
     tags:
@@ -43,10 +43,14 @@
   description: A device used to heal patients brute, burn or both damage types. Uses bicaridine to work.
   parent: BaseAutoMender
   components:
-  - type: SolutionContainerManager
-    solutions:
-      injector:
-        maxVol: 30
+  - type: Sprite
+    layers:
+    - state: menderBrute
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: fillIndicator6
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Item
+    heldPrefix: menderBrute
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -63,6 +67,9 @@
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+  - type: RefillReagentFilter
+    reagents:
+    - Bicaridine
 
 - type: entity
   suffix: Filled
@@ -72,10 +79,9 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 30
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 30
+          Quantity: 35
 
 - type: entity
   id: AutoMenderBurn
@@ -83,6 +89,14 @@
   description: A device used to heal patients brute, burn or both damage types. Uses dermalin to work.
   parent: BaseAutoMender
   components:
+  - type: Sprite
+    layers:
+    - state: menderBurn
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: fillIndicator6
+      map: [ "enum.SolutionContainerLayers.Fill" ]
+  - type: Item
+    heldPrefix: menderBurn
   - type: Healing
     solutionDrain: true
     reagentsToDrain:
@@ -102,6 +116,9 @@
       path: "/Audio/_Starlight/Items/Medical/mender.ogg"
     healingEndSound:
       path: "/Audio/_Starlight/Items/Medical/mender2.ogg"
+  - type: RefillReagentFilter
+    reagents:
+    - Dermaline
 
 - type: entity
   suffix: Filled
@@ -111,7 +128,6 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 35
         reagents:
         - ReagentId: Dermaline
           Quantity: 35

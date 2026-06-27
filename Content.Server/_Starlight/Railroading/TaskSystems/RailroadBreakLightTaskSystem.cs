@@ -1,15 +1,17 @@
 using Content.Server._Starlight.Objectives.Events;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Objectives;
 using Robust.Shared.Random;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadBreakLightTaskSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
+    [Dependency] private IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();

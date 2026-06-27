@@ -34,6 +34,8 @@
     Head: MobLagomorphHead
     Eyes: MobProtogenEyes #looks odd, but this just removes eyes since they're replaced by the LEDs.
     Snout: MobHumanoidAnyMarking
+    UndergarmentTop: MobHumanoidAnyMarking
+    UndergarmentBottom: MobHumanoidAnyMarking
     Chest: MobLagomorphTorso
     HeadTop: MobHumanoidAnyMarking
     HeadSide: MobHumanoidAnyMarking
@@ -46,14 +48,30 @@
     RLeg: MobLagomorphRLeg
     LFoot: MobLagomorphLFoot
     RFoot: MobLagomorphRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoLagomorphMarkingLimits
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtogenMediumArmor, ProtogenVisor, ProtogenLights, ProtogenLEDFace ]
+      defaultMarkings: [ ProtoLagomorphVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoLagomorphLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtogenLights ]
     Hair:
       points: 1
       required: false
@@ -85,5 +103,11 @@
       required: false
     Arms:
       points: 4
+      required: false
+    UndergarmentTop:
+      points: 1
+      required: false
+    UndergarmentBottom:
+      points: 1
       required: false
 

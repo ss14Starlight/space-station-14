@@ -1,9 +1,6 @@
-using Content.Shared.Chemistry.Reagent;
-using Content.Shared.FixedPoint;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Utility;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components.Tasks;
 
 [RegisterComponent, AutoGenerateComponentPause]
 public sealed partial class RailroadTimerTaskComponent : Component

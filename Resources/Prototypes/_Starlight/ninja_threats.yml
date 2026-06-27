@@ -24,11 +24,11 @@
   rule: WizardSpawn
 
 - type: ninjaHackingThreat
-  id: TerrorSpider
-  announcement: terror-spider
-  rule: TerrorSpidersSpawn
-
-- type: ninjaHackingThreat
   id: Xenoborgs
   announcement: terror-borgs
   rule: SubXenoborgs
+
+- type: ninjaHackingThreat
+  id: Eeeplet
+  announcement: terror-eeep
+  rule: EeepEvent

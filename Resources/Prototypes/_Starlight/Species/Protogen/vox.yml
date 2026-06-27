@@ -40,14 +40,30 @@
     RLeg: MobVoxRLeg
     LFoot: MobVoxLFoot
     RFoot: MobVoxRFoot
+    FaceCover: MobHumanoidAnyMarking
+    FaceCoverCover: MobHumanoidAnyMarking
+    BodyCover: MobHumanoidAnyMarking
+    BodyCoverCover: MobHumanoidAnyMarking
 
 - type: markingPoints
   id: MobProtoVoxMarkingLimits
   points:
-    Special:
-      points: 4
+    FaceCover:
+      points: 1
       required: true
-      defaultMarkings: [ ProtoVoxMediumArmor, ProtoVoxVisor, ProtoVoxLights, ProtoVoxLEDFace ]
+      defaultMarkings: [ ProtoVoxVisor ]
+    FaceCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoVoxLEDFace ]
+    BodyCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoVoxMediumArmor ]
+    BodyCoverCover:
+      points: 1
+      required: true
+      defaultMarkings: [ ProtoVoxLights ]
     Hair:
       points: 1
       required: false

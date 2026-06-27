@@ -152,6 +152,31 @@
     listNumber: false
 
 - type: entity
+  parent: [ IDCardStandard, BaseCommandContraband ]
+  categories: [ DoNotMap ]
+  id: CCGreenShieldIDCard
+  name: greenshield ID card
+  description: Why are you looking at this instead of the person you're supposed to protect?
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Misc/id_cards.rsi
+      layers:
+        - state: gold
+        - sprite: *id-rsi
+          state: stripe_top
+          color: "#1b67a5"
+        - sprite: *id-rsi
+          state: stripe_bottom
+          color: "#1b67a5"
+        - sprite: *starlight-icon-rsi
+          offset: *icon-offset
+          state: NTNCBlueShield
+    - type: PresetIdCard
+      job: CentralCommandGreenShield
+    - type: NanoChatCard
+      listNumber: false
+
+- type: entity
   parent: [ IDCardStandard, BaseCargoContraband ]
   id: SalvageLeadIDCard
   name: salvage lead ID card
@@ -291,6 +316,25 @@
   - type: Access
     tags:
       - Communist
+
+- type: entity
+  parent: [ SyndicateIDCard, BaseSyndicateContraband ]
+  id: SyndicateFootsoldierIDCard
+  name: syndicate ID card
+  suffix: Footsoldier, Not Agent ID
+  components:
+  - type: Sprite
+    layers:
+    - state: black
+    - state: stripe_top
+      color: &color-syndicate-top "#e80c0c"
+    - state: stripe_bottom
+      color: &color-syndicate-bottom "#960606"
+    - sprite: *icon-rsi
+      offset: *icon-offset
+      state: Syndicate
+  - type: IdCard
+    jobIcon: JobIconSyndicate
 
 - type: entity
   parent: [ IDCardStandard, BaseSyndicateContraband ]

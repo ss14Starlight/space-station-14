@@ -13,7 +13,7 @@ namespace Content.Client._CD.CartridgeLoader.Cartridges;
 [GenerateTypedNameReferences]
 public sealed partial class NanoChatUiFragment : BoxContainer
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     private const int MaxMessageLength = 256;
 
