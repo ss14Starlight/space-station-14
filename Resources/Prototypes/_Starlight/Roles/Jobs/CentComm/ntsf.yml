@@ -244,33 +244,29 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFSeptimus
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
+    pocket2: WizardsGrimoireNTSF
     belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
+    neck: ClothingNeckCapeNTSF6
     suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
     - CombatMedipen
     - CombatMedipen
+    - BluespaceCrystal1
     - AirlossAutoInjector
     - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
-    - ToxicGasGrenade
-    - ExGrenade
+    - CosmicCenser
+    - JugHolywater
+    - BibleNanoTrasen
+    - MagazineMagnum
+    - MagazineMagnum
+    - WeaponPistolN1984
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSeptimusGear
@@ -281,33 +277,25 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFSeptimus
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
+    pocket2: WeaponPulsePistol
     belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
+    neck: ClothingNeckCapeNTSF7
     suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
+    - PortableRecharger
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
-    - CombatMedipen
-    - CombatMedipen
-    - AirlossAutoInjector
-    - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
+    - GrenadeIncendiary
+    - GrenadeIncendiary
+    - SingularityGrenade
     - ToxicGasGrenade
-    - ExGrenade
+    - MagazineMagnum
+    - WeaponPistolDeagle
 
 - type: startingGear
   id: NanoTrasenSpecialForcesOctavusGear
@@ -318,33 +306,41 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFOctavius
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
-    belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
-    suitstorage: WeaponPulseCarbine
+    pocket2: EnergyShield
+    belt: ClothingBeltMilitaryWebbingERT
+    neck: ClothingNeckCapeNTSF8
+    suitstorage: WeaponAdmemeX09Headsman
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
+    - WeaponPulseCarbine
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
-    - CombatMedipen
-    - CombatMedipen
-    - AirlossAutoInjector
-    - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
+    - PortableRecharger
     - ToxicGasGrenade
-    - ExGrenade
+    - ToxicGasGrenade
+    - ToxicGasGrenade
+    - ToxicGasGrenade
+    - ClusterGrenade
+    - GrenadeIncendiary
+    - GrenadeShrapnel
+    - WhiteholeGrenade
+    belt:
+    - WeaponPistolN1984Nonlethal
+    - MagazineMagnumRubber
+    - Handcuffs
+    - Handcuffs
+    - MindShieldImplanter
+    - MindShieldImplanter
+    - MindShieldImplanter
+    - MindShieldImplanter
+    - MindShieldImplanter
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
 
 - type: startingGear
   id: NanoTrasenSpecialForcesNonusGear
@@ -355,30 +351,25 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFNonus
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
+    pocket2: RadioJammer
     belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
+    neck: ClothingNeckCapeNTSF9
     suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
-    - CombatMedipen
-    - CombatMedipen
-    - AirlossAutoInjector
-    - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
+    - BoxLethalshot
+    - BoxShotgunUranium
+    - CleanerGrenade
     - SmokeGrenade
-    - ToxicGasGrenade
-    - ExGrenade
+    - PowerCellAntiqueProto
+    - PowerCellAntiqueProto
+    - MagazinePistol40AP
+    - MagazinePistol40AP
+    - WeaponPistolStechkin
+    - WeaponShotgunHushpup

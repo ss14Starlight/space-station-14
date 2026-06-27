@@ -905,6 +905,8 @@
         shader: unshaded
   - type: PointLight
     color: "#0035ff"
+  - type: ShowNullSpace
+    showShader: False
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
