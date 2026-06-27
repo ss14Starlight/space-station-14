@@ -69,25 +69,322 @@
     pocket2: WeaponPDW9
     belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF1
-    suitstorage: WeaponRiflePeacemaker
+    suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponIK60
-    - MagazineRifleSP
-    - MagazineRifleHP
+    - WeaponRiflePeacemaker
     - MagazineRifleUranium
-    - MagazineRifleIncendiary
-    - MagazineRifleAP
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
-    - MagazineBatteryLr30
+    - MagazineRifleHP
     - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
     - DefibrillatorCompact
     - CombatMedipen
     - CombatMedipen
-    - HoloprojectorField
+    - AirlossAutoInjector
+    - PunctAutoInjector
     - HoloprojectorSecurity
-    - RadiationBlockingProjector
     - ToolDebug
     - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesSecondusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFSecundus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: EnergyShield
+    belt: WeaponEnergyMagnumGun
+    neck: ClothingNeckCapeNTSF2
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePitbull
+    - MagazineMagnumRifleSP
+    - MagazineMagnumRifleSP
+    - MagazineMagnumRifleSP
+    - MagazineMagnumRifleSP
+    - MagazineMagnumRifleSP
+    - MagazineBoxMagnumAP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CombatMedipen
+    - CombatMedipen
+
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesTertiusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesQuartusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesQuintusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesSextusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesSeptimusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesOctavusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+
+- type: startingGear
+  id: NanoTrasenSpecialForcesNonusGear
+  equipment:
+    jumpsuit: ClothingUniformNTNCFatigues
+    back: ClothingBackpackDeathSquad
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesNanotrasen
+    ears: ClothingHeadsetAltNTSF
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    shoes: ClothingShoesBootsMagERT
+    id: NTSFPDA
+    pocket1: AccessOveriderUnlimited
+    pocket2: WeaponPDW9
+    belt: PrototypeVibrobladeSheathFilled
+    neck: ClothingNeckCapeNTSF1
+    suitstorage: WeaponPulseCarbine
+  storage:
+    back:
+    - WeaponRiflePeacemaker
+    - MagazineRifleUranium
+    - MagazineRifleHP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - MagazineRifleAP
+    - MagazineRifleIncendiary
+    - DefibrillatorCompact
+    - CombatMedipen
+    - CombatMedipen
+    - AirlossAutoInjector
+    - PunctAutoInjector
+    - HoloprojectorSecurity
+    - ToolDebug
+    - SmokeGrenade
+    - ToxicGasGrenade
+    - ExGrenade
+
+
+

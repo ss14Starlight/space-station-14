@@ -875,6 +875,9 @@
       walkModifier: 1.0
       sprintModifier: 1.0
     - type: HeldSpeedModifier
+    - type: Tag
+      tags:
+        - RequiredForLmgTag
     - type: FootstepModifier #starlight
       footstepSoundCollection:
         path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
