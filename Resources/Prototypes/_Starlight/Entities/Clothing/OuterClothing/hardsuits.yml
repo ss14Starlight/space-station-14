@@ -1294,7 +1294,6 @@
       clothingPrototype: ClothingHeadHelmetHardsuitGreenshield
     - type: Tag
       tags:
-        - WhitelistChameleon
         - Hardsuit
         - CorgiWearable
     - type: ClothingSpeedModifier
