@@ -65,6 +65,8 @@
         - state: eicon
     - type: Item
       size: Normal
+      shape:
+      - 0,0,1,1 # 2x2
     - type: Clothing
       sprite: null
       slots:
