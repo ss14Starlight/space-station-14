@@ -370,7 +370,9 @@ public abstract partial class SharedDevilSystem : EntitySystem
         _userInterface.TryToggleUi((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
 
-    // here we add/remove pvs overrides for damned players, so that they don't show up naked on the damned ui
+    /// <summary>
+    /// Add PVS overrides for damned players so they don't show up naked on the damned UI.
+    /// </summary>
     private void OnBUIOpened(Entity<DevilComponent> devil, ref BoundUIOpenedEvent args)
     {
         if (!_player.TryGetSessionByEntity(devil.Owner, out var session)) return;
