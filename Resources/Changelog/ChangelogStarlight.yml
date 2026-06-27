@@ -1,158 +1,4 @@
 Entries:
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Changed the nutri max in the public hallway to be all access.
-    type: Tweak
-  id: 405849
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Changed wastespace chamber to once again be used as another burn chamber.
-    type: Tweak
-  id: 405850
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Changed NTR's room now uses NT access. (Caws).
-    type: Tweak
-  id: 405851
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Changed NTR's room now uses NT access. (Caws).
-    type: Tweak
-  id: 405852
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Fixed a maints tile south of dorms.
-    type: Fix
-  id: 405853
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Fixed the empty radiation barrel still giving off radiation.
-    type: Fix
-  id: 405854
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
-  - message: (KILOTON) Fixed Door to GenPop processing from Security Lobby is now Brig access (meaning it's now IAA accessible). (Caws).
-    type: Fix
-  id: 405855
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Caws
-  changes:
-  - message: Lagomorphs metabolism is now correctly 33% faster (was ~43% faster).
-    type: Fix
-  id: 405856
-  time: '2026-06-09T07:33:49.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4691
-- author: Caws
-  changes:
-  - message: Arachnids should no longer gasp for breath randomly.
-    type: Fix
-  id: 405857
-  time: '2026-06-09T07:33:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4690
-- author: Caws
-  changes:
-  - message: Arachnids no longer have a 50% slower metabolism (that wasn't mentioned in the guidebook!).
-    type: Remove
-  id: 405858
-  time: '2026-06-09T07:33:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4690
-- author: Huaqas
-  changes:
-  - message: Resomi's original scream sound effect has returned. Chirpers rejoice.
-    type: Tweak
-  id: 405859
-  time: '2026-06-09T14:53:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4695
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: You can now select your Protogen frame for Nukeops, NukeopsCommander, NukeopsMedic, SpaceNinja, Wizard, and WizardDuelist.
-    type: Add
-  id: 405860
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Protogen Markings are now split up into their own categories, and now actually work on all species thanks to being split across new body layers.
-    type: Add
-  id: 405861
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Protogen Frame selection is a bit more clear in the menu now.
-    type: Tweak
-  id: 405862
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Basic-Class Medium Protogen Armor now has 5% Pierce Resist.
-    type: Tweak
-  id: 405863
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Moth Cold Resist +5%, Heat Vulnerability +5%.
-    type: Tweak
-  id: 405864
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Diona Slash Resist +15%, Heat Vulnerability +15%, Shock Vulnerability +20%.
-    type: Tweak
-  id: 405865
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Computer Boards are less nutritious, eat real food sometimes!
-    type: Tweak
-  id: 405866
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Updated ProtoKin's guidebook entry to specify they don't passively heal burn anymore. (This is due to their 50% healing reduction).
-    type: Tweak
-  id: 405867
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Dwarves and Skeletons can open airlocks and pilot stuff again.
-    type: Fix
-  id: 405868
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Medical Huds (all types) can now correctly see Protogen health.
-    type: Fix
-  id: 405869
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Lagomorph metabolism now matches normal Lagomorph metabolism.
-    type: Fix
-  id: 405870
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
 - author: wonderfulnewworld, Princess Gurchi
   changes:
   - message: Proto-Reptilians no longer freeze to death after leaving cryo healing pods.
@@ -2799,4 +2645,158 @@ Entries:
   id: 406248
   time: '2026-06-26T19:11:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4875
+- author: Caws
+  changes:
+  - message: Lowered the required number of readied players for Cosmic Cult to 20 (down from 30).
+    type: Tweak
+  id: 406249
+  time: '2026-06-27T08:23:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4950
+- author: Caws
+  changes:
+  - message: Portable cooling units now take 3x3 inventory slots (down from 4x4).
+    type: Tweak
+  id: 406250
+  time: '2026-06-27T09:56:19.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4949
+- author: Caws
+  changes:
+  - message: Any outer clothing that accepts a gas tank in its suit storage will now also accept portable cooling units as well.
+    type: Tweak
+  id: 406251
+  time: '2026-06-27T10:17:34.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4948
+- author: wonderfulnewworld
+  changes:
+  - message: Pirate Revolver Fire Rate +0.2.
+    type: Tweak
+  id: 406252
+  time: '2026-06-27T11:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4849
+- author: wonderfulnewworld
+  changes:
+  - message: Deckard Fire Rate +0.5, Ammo Slots +1.
+    type: Tweak
+  id: 406253
+  time: '2026-06-27T11:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4849
+- author: wonderfulnewworld
+  changes:
+  - message: Inspector Fire Rate +0.725, Ammo Slots +3.
+    type: Tweak
+  id: 406254
+  time: '2026-06-27T11:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4849
+- author: wonderfulnewworld
+  changes:
+  - message: The detective now spawns with an extra speed loader for their inspector.
+    type: Tweak
+  id: 406255
+  time: '2026-06-27T11:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4849
+- author: wonderfulnewworld
+  changes:
+  - message: The shoulder holster can now be worn on the neck slot, in addition to the existing belt slot.
+    type: Tweak
+  id: 406256
+  time: '2026-06-27T11:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4849
+- author: wonderfulnewworld
+  changes:
+  - message: Most revolvers and anvil guns now use proper capitalization.
+    type: Fix
+  id: 406257
+  time: '2026-06-27T11:17:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4849
+- author: wonderfulnewworld
+  changes:
+  - message: You can no longer roll the sleeves up on the mining specialist jumpskirt, since it doesn't actually have a sprite for that.
+    type: Remove
+  id: 406258
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Welders consume less welding fuel when welding Protogens.
+    type: Tweak
+  id: 406259
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: It is now slower for Protogens to weld themselves.
+    type: Tweak
+  id: 406260
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: It is now faster for others to heal IPCs.
+    type: Tweak
+  id: 406261
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Protogen now have access to the Thaven, Lagomorph, and Laspi vocal emotes they didn't have.
+    type: Tweak
+  id: 406262
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Lagomorphs can now stomp.
+    type: Tweak
+  id: 406263
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Lagomorphs now have the extended hearing of normal Lagomorphs.
+    type: Fix
+  id: 406264
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Vulps now have the same temperature protection as normal Vulps.
+    type: Fix
+  id: 406265
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Vulp sprites are now consistent across male and female, and no longer clip their shoes.
+    type: Fix
+  id: 406266
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Avali now use their correct clothing sprites.
+    type: Fix
+  id: 406267
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Reptilians can now actually thump their tails.
+    type: Fix
+  id: 406268
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Reptilians can now have hair.
+    type: Fix
+  id: 406269
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: wonderfulnewworld
+  changes:
+  - message: Fixed some Protogen markings not disappearing under helmets.
+    type: Fix
+  id: 406270
+  time: '2026-06-27T11:36:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4917
 Order: -1
