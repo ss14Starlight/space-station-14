@@ -14,7 +14,9 @@
           map: ["power"]
     - type: Appearance
     - type: Item
-      size: Huge
+      size: Large
+      shape:
+      - 0,0,2,2 # 3x3
     - type: Clothing
       quickEquip: false
       sprite: _Starlight/Objects/Tanks/coolingunit.rsi
