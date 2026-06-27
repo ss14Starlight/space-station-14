@@ -64,7 +64,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.55 # Same as NoChangelings
+      prob: 0.55
     - id: SLChangeling #Starlight lings
       prob: 0.20 # Can be a little higher now, since lings don't have their standalone anymore.
     - id: SubWizard
