@@ -10,24 +10,12 @@ public sealed partial class IntermittentGasEmitterSystem : EntitySystem
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private AtmosphereSystem _atmos = default!;
 
-    private Stopwatch stopwatch = new();
-    private TimeSpan updateBudget = TimeSpan.FromMilliseconds(0.5);
-
-    public override void Initialize()
-    {
-        base.Initialize();
-
-        stopwatch.Start();
-    }
-
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        stopwatch.Restart();
-
         var query = EntityQueryEnumerator<IntermittentGasEmitterComponent>();
-        while (query.MoveNext(out var uid, out var comp) && stopwatch.Elapsed < updateBudget)
+        while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.LastEmit + comp.EmitPeriod > _timing.CurTime) continue;
             comp.LastEmit = _timing.CurTime;

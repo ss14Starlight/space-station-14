@@ -28,7 +28,7 @@ infernal-contract-examined-Signed = The contract has been signed!
 infernal-contract-examined-cost = This contract has a cost of {$value}
 infernal-contract-examined-misspelling = The contract has invalid clauses: {$items}
 
-infernal-contract-misspelled-name = misprinted infernal contract
+infernal-contract-misspelled-name = misspelled infernal contract
 infernal-contract-valid-name = infernal contract
 
 infernal-contract-popup-fail = The contract burns your hand! Something about it isn't right!

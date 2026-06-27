@@ -2,7 +2,7 @@ using Content.Shared.Atmos;
 
 namespace Content.Shared._Starlight.Atmos;
 
-[RegisterComponent, AutoGenerateComponentState]
+[RegisterComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
 public sealed partial class IntermittentGasEmitterComponent : Component
 {
     /// <summary>
@@ -23,6 +23,6 @@ public sealed partial class IntermittentGasEmitterComponent : Component
     [DataField(required: true)]
     public TimeSpan EmitPeriod;
 
-    [AutoNetworkedField]
+    [AutoNetworkedField, AutoPausedField]
     public TimeSpan LastEmit = TimeSpan.FromSeconds(0);
 }

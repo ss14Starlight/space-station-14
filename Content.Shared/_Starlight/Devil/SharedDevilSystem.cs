@@ -360,8 +360,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         foreach (var uid in devil.Comp.DamnedSouls)
         {
             _entity.TryGetNetEntity(uid, out var netuid);
-            if(netuid is not NetEntity) continue;
-            damnedCrew.Add(((NetEntity)netuid, Name(uid)));
+            if(netuid is { } netEnt) damnedCrew.Add((netEnt, Name(uid)));
         }
 
         var uiState = new DevilDamnationsBuiState(damnationsMeta, damnedCrew);
