@@ -29,9 +29,11 @@
     - Forensics
   - type: StealTarget
     stealGroup: ForensicScanner
+  # Starlight-Start: Allow Forensic Scanner into Security Belt
   - type: Tag
     tags:
       - SecBeltEquip
+  # Starlight-End
 
 - type: entity
   name: forensic scanner report
