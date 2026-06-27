@@ -76,11 +76,6 @@
       fuelCost: 10 # 1/2 of a Welder for a full repair
       doAfterDelay: 5
       allowSelfRepair: false
-    - type: Tag
-      tags:
-        - Shield
-    - type: Pierceable
-      level: Metal
 
 - type: entity
   name: paladin greatshield
@@ -398,11 +393,6 @@
           Heat: 7
     - type: StaticPrice
       price: 350
-    - type: Tag
-      tags:
-        - Shield
-    - type: Pierceable
-      level: Metal
 
 - type: entity
   name: X-03 green phase shield
