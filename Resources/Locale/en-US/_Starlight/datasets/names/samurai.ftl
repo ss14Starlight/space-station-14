@@ -1,0 +1,17 @@
+names-samurai-dataset-1 = Miyamoto
+names-samurai-dataset-2 = Oda
+names-samurai-dataset-3 = Toyotomi
+names-samurai-dataset-4 = Tomoe
+names-samurai-dataset-5 = Tokugawa
+names-samurai-dataset-6 = Kusunoki
+names-samurai-dataset-7 = Hattori
+names-samurai-dataset-8 = Hazo
+names-samurai-dataset-9 = Sanada
+names-samurai-dataset-10 = Yukimura
+names-samurai-dataset-11 = Takeda
+names-samurai-dataset-12 = Shingen
+names-samurai-dataset-13 = Honda
+names-samurai-dataset-14 = Uesugi
+names-samurai-dataset-15 = Minamoto
+names-samurai-dataset-16 = Masumune
+names-samurai-dataset-17 = Shimazu

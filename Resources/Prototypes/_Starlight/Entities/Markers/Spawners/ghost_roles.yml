@@ -205,6 +205,8 @@
     important: true # SL
     mindRoles:
     - MindRoleSamurai
+    raffle:
+      settings: default
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

@@ -1,0 +1,11 @@
+- type: localizedDataset
+  id: NamesSamurai
+  values:
+    prefix: names-samurai-dataset-
+    count: 17
+
+- type: localizedDataset
+  id: NamesSamuraiClan
+  values:
+    prefix: names-samurai-clan-dataset-
+    count: 17

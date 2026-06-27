@@ -400,3 +400,49 @@
     - type: Clothing
       sprite: _Starlight/Clothing/Belt/retro_officer_belt.rsi
     - type: Appearance
+
+#Samurai Sheath
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase]
+  id: SamuraiElectrodachiSheath
+  name: Samurai Electrodachi Sheath
+  description: This sheath is designed to shield the wearer from the consequences of carrying an electric sword on your hip.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Belt/samurai_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Starlight/Clothing/Belt/samurai_sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - Electrodachi
+  - type: ItemMapper
+    mapLayers:
+      sheath-sword:
+        whitelist:
+          tags:
+          - Electrodachi
+  - type: Appearance
+
+- type: entity
+  parent: SamuraiElectrodachiSheath
+  id: SamuraiElectrodachiSheathFilled
+  name: Samurai Electrodachi Sheath
+  description: This sheath is designed to shield the wearer from the consequences of carrying an electric sword on your hip.
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - Electrodachi
+

@@ -448,9 +448,9 @@
   id: SamuraiSpawn
   components:
   - type: StationEvent
-    earliestStart: 55
-    weight: 3
-    minimumPlayers: 35
+    earliestStart: 50
+    weight: 2
+    minimumPlayers: 30
     duration: null
   - type: RuleGrids
   - type: LoadMapRule
@@ -460,7 +460,7 @@
     - HonorObjective
     - WisdomObjective
     - PunishObjective
-    - SamuraiSurviveObjective
+    issuer: objective-issuer-samurai
   - type: AntagLoadProfileRule
     applyCharacterProfile: true
     speciesOverride: Human
@@ -479,9 +479,9 @@
       - type: SamuraiCodes
       - type: RandomMetadata
         nameSegments:
-        - NamesSyndicatePrefix
-        - NamesSyndicateNormal
-        nameFormat: name-format-nukie-generic
+        - NamesSamurai
+        - NamesSamuraiClan
+        nameFormat: name-format-standard
       mindRoles:
       - MindRoleSamurai
       tags:

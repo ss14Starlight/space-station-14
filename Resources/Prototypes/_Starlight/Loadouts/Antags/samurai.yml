@@ -5,3 +5,5 @@
     shoes: ClothingShoesWizard
     id: SamuraiPDA
     ears: ClothingHeadsetFreelance
+    belt: SamuraiElectrodachiSheath
+    back: Katana

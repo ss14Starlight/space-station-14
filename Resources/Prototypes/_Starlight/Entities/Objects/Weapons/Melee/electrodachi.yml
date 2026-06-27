@@ -1,0 +1,83 @@
+- type: entity
+  name: electrodachi
+  parent: [ BaseSword, BaseHighlyIllegalContraband ]
+  id: Electrodachi
+  description: An ancient weapon, itching to slay the dishonorable
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Melee/electrodachi.rsi
+    scale: "1.2, 1.2"
+    layers:
+    - state: electrodachi_off
+      map: [ "enum.ToggleableVisuals.Layer" ]
+  - type: Stunbaton
+    energyPerUse: 50
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundDeactivate:
+      collection: sparks
+      params:
+        variation: 0.250
+    soundFailToActivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.250
+  - type: ItemTogglePrefix
+    prefixOn: on
+    prefixOff: off
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Shock: 10
+        Slash: 5
+    deactivatedSoundOnHit: #starlight
+      collection: GenericHit #starlight
+  - type: MeleeWeapon
+    attackRate: .9
+    range: 1.25
+    damage:
+      types:
+        Slash: 15
+        Piercing: 5
+    bluntStaminaDamageFactor: 2.0
+    animation: WeaponArcThrust
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+  - type: StaminaDamageOnHit
+    damage: 25
+    sound: /Audio/Weapons/egloves.ogg
+  - type: StaminaDamageOnCollide
+    damage: 20
+    sound: /Audio/Weapons/egloves.ogg
+  - type: LandAtCursor # it deals stamina damage when thrown
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: UseDelay
+  - type: Item
+    heldPrefix: off
+    size: Huge
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Melee/electrodachi.rsi
+    quickEquip: false
+    slots:
+    - suitStorage
+    - Back
+  - type: DisarmMalus
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: {state: electrodachi_on}
+          False: {state: electrodachi_off}
+  - type: StaticPrice
+    price: 10000
+  - type: Tag
+    tags:
+    - Electrodachi

@@ -18,4 +18,8 @@ ghost-role-information-ntnc-consortium-officer-description = You are charged dir
 ghost-role-information-green-shield-officer-name = Greenshield Officer
 ghost-role-information-green-shield-officer-description = You are charged directly from the highest levels of CentComm to protect CentComm VIPs and maintain the peace at Central Command outposts.
 
+ghost-role-information-samurai-name = Samurai
+ghost-role-information-samurai-description = You are a Samurai, a representative of your clan. You have been sent on a mission to educate the station on what it means to be honorable.
+ghost-role-information-samurai-rules = You must abide by your code of honor, and use it to judge what is honorable and not.
+
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]

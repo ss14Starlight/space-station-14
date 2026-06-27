@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based Copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "electrodachi_off",
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "electrodachi_on",
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "equipped-BACKPACK",
+      "directions": 4,
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "off-inhand-left",
+      "directions": 4,
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "off-inhand-right",
+      "directions": 4,
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "on-inhand-left",
+      "directions": 4,
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "on-inhand-right",
+      "directions": 4,
+      "copyright": "Swonkus"
+    }
+  ]
+}
