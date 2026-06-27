@@ -201,7 +201,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpsuitSeniorBrigmedic
-  name: senior brigmedic jumpsuit
+  name: senior formal brigmedic jumpsuit
   description: A formal suit for the seasoned brigmedic.
   components:
   - type: Sprite
@@ -256,7 +256,7 @@
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]
   id: ClothingUniformJumpsuitFormalSeniorSecoff
-  name: formal security jumpsuit
+  name: formal senior security jumpsuit
   description: A formal attire for the senior security officer.
   components:
   - type: Sprite
