@@ -81,7 +81,7 @@
     - PunctAutoInjector
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - DefibrillatorCompact    
+    - DefibrillatorCompact
     - HoloprojectorSecurity
     - ToolDebug
     - SmokeGrenade
@@ -113,7 +113,7 @@
     - MagazineMagnumRifleSP
     - MagazineMagnumRifleSP
     - MedkitCombatFilled
-    - MedkitCombatFilled    
+    - MedkitCombatFilled
     - CombatMedipen
     - CombatMedipen
     - CombatMedipen
@@ -244,7 +244,7 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFSeptimus
+    outerClothing: ClothingOuterHardsuitNTSFSextus
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited

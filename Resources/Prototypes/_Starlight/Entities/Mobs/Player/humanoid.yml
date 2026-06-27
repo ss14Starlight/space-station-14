@@ -475,8 +475,8 @@
 
 - type: entity
   id: RandomHumanoidSpawnerNTSFOctavius
-  name: NTSF Septimus Operative
-  suffix: NTSF, Septimus
+  name: NTSF Octavius Operative
+  suffix: NTSF, Octavius
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -593,9 +593,6 @@
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
-    - type: AutoImplant
-      implants:
-        - MedTakMindShieldImplant
     - type: ThermalVision
 
 # TSF
