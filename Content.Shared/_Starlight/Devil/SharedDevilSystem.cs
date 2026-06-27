@@ -391,8 +391,10 @@ public abstract partial class SharedDevilSystem : EntitySystem
             _pvs.RemoveSessionOverride(uid, session);
     }
 
+    /// <summary>
+    /// Setup damnation map, prevent duplicate proto lookups as this will be happening very frequently.
+    /// </summary>
     private void OnDevilInit(Entity<DevilComponent> devil, ref ComponentInit args) =>
-        // setup damnation map, prevent duplicate proto lookups as this will be happening very frequently
         _damnations = _proto.EnumeratePrototypes<DamnationPrototype>().ToDictionary(p => (ProtoId<DamnationPrototype>)p.ID, p => p);
     #endregion
 }
