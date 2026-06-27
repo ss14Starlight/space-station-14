@@ -2,5 +2,5 @@
   id: RandomSamuraiCodeDataset
   weights:
     SamuraiCodesBase: 1
-    SamuraiCodeseErratic: 1
+    SamuraiCodesErratic: 1
     SamuraiCodesHostile: 1

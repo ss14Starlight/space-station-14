@@ -485,6 +485,7 @@
       mindRoles:
       - MindRoleSamurai
       tags:
+        - Samurai
         - CantBecomeRevolutionary
       briefing:
         text: samurai-role-greeting

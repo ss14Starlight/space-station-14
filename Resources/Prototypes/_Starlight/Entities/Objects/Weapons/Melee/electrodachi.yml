@@ -81,3 +81,8 @@
   - type: Tag
     tags:
     - Electrodachi
+  - type: RestrictByUserTag
+    contains:
+    - Samurai
+    messages:
+    - samurai-weapon-restricted-1
