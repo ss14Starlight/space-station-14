@@ -298,7 +298,7 @@
     - WeaponPistolDeagle
 
 - type: startingGear
-  id: NanoTrasenSpecialForcesOctavusGear
+  id: NanoTrasenSpecialForcesOctaviusGear
   equipment:
     jumpsuit: ClothingUniformNTNCFatigues
     back: ClothingBackpackDeathSquad
