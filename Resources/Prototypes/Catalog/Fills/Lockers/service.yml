@@ -1,5 +1,6 @@
 - type: entity
   id: LockerBoozeFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerBooze
   components:
@@ -67,6 +68,7 @@
 
 - type: entity
   id: ClosetJanitorFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: ClosetJanitor
   components:
@@ -124,6 +126,7 @@
 
 - type: entity
   id: LockerBotanistFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerBotanist
   components:

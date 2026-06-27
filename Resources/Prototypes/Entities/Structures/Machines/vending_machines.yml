@@ -124,6 +124,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineCondiments
+  categories: [ ShouldMapStation ] # Starlight - some food chems are exclusively provided by this!
   name: condiment station
   description: Slather these thick gooey substances on your food for a full flavor effect.
   components:
@@ -296,6 +297,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineChefvend
+  categories: [ ShouldMapStation ] # Starlight
   name: ChefVend
   description: An ingredient vendor for all your cheffin needs.
   components:
@@ -364,6 +366,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineClothing
+  categories: [ ShouldMapStation ] # Starlight
   name: ClothesMate
   description: A vending machine for clothing.
   components:
@@ -397,6 +400,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineWinter
+  categories: [ ShouldMapStation ] # Starlight
   name: WinterDrobe
   description: The best place to enjoy the cold!
   components:
@@ -780,6 +784,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineDinnerware
+  categories: [ ShouldMapStation ] # Starlight
   name: Plasteel Chef's Dinnerware Vendor
   description: A kitchen and restaurant equipment vendor.
   components:
@@ -977,6 +982,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineNutri
+  categories: [ ShouldMapStation ] # Starlight
   name: NutriMax
   description: A vending machine containing nutritional substances for plants and botanical tools.
   components:
@@ -1014,6 +1020,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSec
+  categories: [ ShouldMapStation ] # Starlight
   name: SecTech
   description: A vending machine containing Security equipment. A label reads SECURITY PERSONNEL ONLY.
   components:
@@ -1055,6 +1062,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSeedsUnlocked
+  categories: [ ShouldMapStation ] # Starlight (for GenPops)
   name: MegaSeed Servitor
   description: For when you need seeds fast. Hands down the best seed selection on the station!
   suffix: Unlocked
@@ -1091,6 +1099,7 @@
 - type: entity
   parent: VendingMachineSeedsUnlocked
   id: VendingMachineSeeds
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Hydroponics
   components:
   - type: Machine # Starlight-edit: Vending Machine boards
@@ -1369,6 +1378,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineRobotics
+  categories: [ ShouldMapStation ] # Starlight
   name: Robotech Deluxe
   description: All the tools you need to create your own robot army.
   components:
@@ -1440,6 +1450,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineGames
+  categories: [ ShouldMapStation ] # Starlight
   name: Good Clean Fun
   description: Vends things that the Captain and Head of Personnel are probably not going to appreciate you fiddling with instead of your job...
   components:
@@ -1510,6 +1521,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSalvage
+  categories: [ ShouldMapStation ] # Starlight
   name: Salvage Vendor
   description: A dwarf's best friend!
   components:
@@ -1604,6 +1616,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineHydrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: HyDrobe
   description: A machine with a catchy name. It dispenses botany related clothing and gear.
   components:
@@ -1638,6 +1651,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineLawDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: LawDrobe
   description: Objection! This wardrobe dispenses the rule of law... and lawyer clothing..
   components:
@@ -1668,6 +1682,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSecDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: SecDrobe
   description: A vending machine for security and security-related clothing!
   components:
@@ -1702,6 +1717,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingBarDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: BarDrobe
   description: A stylish vendor to dispense the most stylish bar clothing!
   components:
@@ -1733,6 +1749,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineChapel
+  categories: [ ShouldMapStation ] # Starlight
   name: PietyVend
   components:
   - type: VendingMachine
@@ -1763,6 +1780,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineCargoDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: CargoDrobe
   description: A highly advanced vending machine for buying cargo related clothing for free.
   components:
@@ -1797,6 +1815,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineMediDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: MediDrobe
   description: A vending machine rumoured to be capable of dispensing clothing for medical personnel.
   components:
@@ -1827,6 +1846,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineChemDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: ChemDrobe
   description: A vending machine for dispensing chemistry related clothing.
   components:
@@ -1887,6 +1907,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineAtmosDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: AtmosDrobe
   description: This relatively unknown vending machine delivers clothing for Atmospherics Technicians, an equally unknown job.
   components:
@@ -1921,6 +1942,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineEngiDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: EngiDrobe
   description: A vending machine renowned for vending industrial grade clothing.
   components:
@@ -1955,6 +1977,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineChefDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: ChefDrobe
   description: This vending machine might not dispense meat, but it certainly dispenses chef related clothing.
   components:
@@ -1985,6 +2008,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineDetDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: DetDrobe
   description: A machine for all your detective needs, as long as you need clothes.
   components:
@@ -2015,6 +2039,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineJaniDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: JaniDrobe
   description: A self cleaning vending machine capable of dispensing clothing for janitors.
   components:
@@ -2049,6 +2074,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineSciDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: SciDrobe
   description: A simple vending machine suitable to dispense well tailored science clothing. Endorsed by Space Cubans.
   components:
@@ -2114,6 +2140,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineRoboDrobe
+  categories: [ ShouldMapStation ] # Starlight
   name: RoboDrobe
   description: A vending machine designed to dispense clothing known only to roboticists.
   components:
@@ -2235,6 +2262,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineHappyHonk
+  categories: [ ShouldMapStation ] # Starlight
   name: Happy Honk Dispenser
   description: A happy honk meal box dispenser made by honk! co.
   components:
@@ -2278,6 +2306,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachinePride
+  categories: [ ShouldMapStation ] # Starlight
   name: Pride-O-Mat
   description: A vending machine containing pride.
   components:
@@ -2348,6 +2377,7 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineChemicals
+  categories: [ ShouldMapStation ] # Starlight
   name: ChemVend
   description: Probably not the coffee machine.
   components:

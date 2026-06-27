@@ -515,8 +515,6 @@
       collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
-    LagomorphStomp:
-      collection: LagomorphStomp
 
 - type: emoteSounds
   id: FemaleLagomorph
@@ -553,8 +551,6 @@
       collection: LagomorphSneeze
     LagomorphSnore:
       collection: LagomorphSnore
-    LagomorphStomp:
-      collection: LagomorphStomp
 
 - type: emoteSounds
   id: Dog
@@ -705,3 +701,19 @@
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
       params:
         pitch: 1.45
+
+- type: emoteSounds
+  id: LagomorphBodyEmotes
+  sounds:
+    LagomorphStomp:
+      collection: LagomorphStomp
+    Clap:
+      collection: Claps
+    ClapSingle:
+      collection: ClapSingle
+    Snap:
+      collection: Snaps
+      params:
+        volume: -6
+    Salute:
+      collection: Salutes
