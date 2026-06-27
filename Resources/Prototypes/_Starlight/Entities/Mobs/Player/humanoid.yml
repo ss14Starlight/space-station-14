@@ -32,7 +32,6 @@
     - Protogen
     - ProtoHuman
   components:
-    - type: ZombieImmune
     - type: AutoImplant
       implants:
         - DeathRattleImplantCentcomm
@@ -200,7 +199,7 @@
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
-      state: ntsficon
+      state: primusicon
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
@@ -216,16 +215,177 @@
     - type: GhostRole
       name: ghost-role-information-nanotrasen-primus
       description: ghost-role-information-nanotrasen-primus-description
-      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
         #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-        - MindRoleGhostCorporateAligned # Starlight
+        - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
       prototypes: [NanoTrasenSpecialForcesPrimusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSecundus
+  name: NTSF Secundus Operative
+  suffix: NTSF, Secundus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: secundusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSecundusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFSecundusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-secundus
+      description: ghost-role-information-nanotrasen-secundus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
+      raffle:
+        settings: short
+      mindRoles:
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesSecondusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFTertius
+  name: NTSF Tertius Operative
+  suffix: NTSF, Tertius
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: tertiusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFTertiusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFTertiusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-tertius
+      description: ghost-role-information-nanotrasen-tertius-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
+      raffle:
+        settings: short
+      mindRoles:
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesTertiusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: Thieving
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFQuartus
+  name: NTSF Quartus Operative
+  suffix: NTSF, Quartus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: quartusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFQuartusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFQuartusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-quartus
+      description: ghost-role-information-nanotrasen-quartus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
+      raffle:
+        settings: short
+      mindRoles:
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesQuartusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFQuintus
+  name: NTSF Quintus Operative
+  suffix: NTSF, Quintus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: quintusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirstLeader
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFQuintusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFQuintusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-nanotrasen-quintus
+      description: ghost-role-information-nanotrasen-quintus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
+      raffle:
+        settings: short
+      mindRoles:
+        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesQuintusGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
@@ -251,36 +411,7 @@
 
 - type: randomHumanoidSettings
   id: Decimusoperative
-  parent: EventHumanoidCentcomm
-  speciesBlacklist:
-    - Arachnid
-    - Diona
-    - Reptilian
-    - Resomi
-    - Vox
-    - Vulpkanin
-    - Avali
-    - Felionoid
-    - Shadekin
-    - Thaven
-    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman
+  parent: EventHumanoidNTNC
   components:
     - type: GhostRole
       name: ghost-role-information-decimus-name
@@ -304,8 +435,6 @@
     - type: AutoImplant
       implants:
         - MedTakMindShieldImplant
-        - DeathRattleImplantNanoTrasen
-        - RedspaceImplant
     - type: ThermalVision
 
 # TSF

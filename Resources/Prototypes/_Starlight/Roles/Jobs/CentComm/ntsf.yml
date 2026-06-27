@@ -37,7 +37,7 @@
     pocket2: EnergyShield
     belt: PrototypeVibrobladeSheathFilled
     neck: ClothingNeckCapeNTSF1
-    suitstorage: WeaponPulseRifle
+    suitstorage: WeaponPulseCarbine
   storage:
     back:
     - WeaponPulsePistol
@@ -50,8 +50,6 @@
     - Hypospray
     - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
     - FreedomImplanter
-  inhand:
-  - PrototypeVibroblade
 
 - type: startingGear
   id: NanoTrasenSpecialForcesPrimusGear
@@ -75,15 +73,15 @@
     - WeaponRiflePeacemaker
     - MagazineRifleUranium
     - MagazineRifleHP
-    - MedkitCombatFilled
-    - MedkitCombatFilled
     - MagazineRifleAP
     - MagazineRifleIncendiary
-    - DefibrillatorCompact
     - CombatMedipen
     - CombatMedipen
     - AirlossAutoInjector
     - PunctAutoInjector
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - DefibrillatorCompact    
     - HoloprojectorSecurity
     - ToolDebug
     - SmokeGrenade
@@ -114,13 +112,18 @@
     - MagazineMagnumRifleSP
     - MagazineMagnumRifleSP
     - MagazineMagnumRifleSP
-    - MagazineMagnumRifleSP
-    - MagazineBoxMagnumAP
     - MedkitCombatFilled
-    - MedkitCombatFilled
+    - MedkitCombatFilled    
     - CombatMedipen
     - CombatMedipen
-
+    - CombatMedipen
+    - PunctAutoInjector
+    - HoloprojectorField
+    - PowerCellMicroreactor
+    - ClusterGrenade
+    - SmokeGrenade
+    - GrenadeShrapnel
+    - SingularityGrenade
 
 - type: startingGear
   id: NanoTrasenSpecialForcesTertiusGear
@@ -131,34 +134,34 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFTertius
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
-    belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
+    pocket2: CCEmagUnlimited
+    belt: ClothingBeltMilitaryWebbingERT
+    neck: ClothingNeckCapeNTSF3
     suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
-    - MedkitCombatFilled
-    - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
-    - CombatMedipen
-    - CombatMedipen
-    - AirlossAutoInjector
-    - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
-    - ToxicGasGrenade
-    - ExGrenade
-
+    - RCDExperimental
+    - HoloprojectorEngineering
+    - ClothingHeadHatCone
+    - ClothingHeadHatCone
+    - InflatableDoorStack
+    - InflatableWallStack
+    - InflatableWallStack
+    - PortableRecharger
+    belt:
+    - WeaponRevolverInspector
+    - SpeedLoaderMagnumFMJ
+    - SpeedLoaderMagnumFMJ
+    - JawsOfLife
+    - PowerDrill
+    - WelderExperimental
+    - Multitool
+    - GasAnalyzer
+    - WeaponGrapplingGun
 
 - type: startingGear
   id: NanoTrasenSpecialForcesQuartusGear
@@ -169,34 +172,26 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFQuartus
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
+    pocket2: EnergyShield
     belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
+    neck: ClothingNeckCapeNTSF4
     suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
+    - RCDExperimental
+    - HoloprojectorField
     - MedkitCombatFilled
     - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
-    - CombatMedipen
-    - CombatMedipen
-    - AirlossAutoInjector
-    - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
-    - SmokeGrenade
-    - ToxicGasGrenade
-    - ExGrenade
-
+    - ClothingEyesGlassesNullSpace
+    - PowerCellMicroreactor
+    - WeaponTetherGun
+    - WeaponGauntletGorilla
+    - WeaponPistolCHIMPUpgraded
+    - AnomalyScanner
 
 - type: startingGear
   id: NanoTrasenSpecialForcesQuintusGear
@@ -207,33 +202,38 @@
     eyes: ClothingEyesGlassesNanotrasen
     ears: ClothingHeadsetAltNTSF
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitNTSFPrimus
+    outerClothing: ClothingOuterHardsuitNTSFQuintus
     shoes: ClothingShoesBootsMagERT
     id: NTSFPDA
     pocket1: AccessOveriderUnlimited
-    pocket2: WeaponPDW9
-    belt: PrototypeVibrobladeSheathFilled
-    neck: ClothingNeckCapeNTSF1
+    pocket2: EnergyShieldUnbreakable
+    belt: ClothingBeltMilitaryWebbingERT
+    neck: ClothingNeckCapeNTSF5
     suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponRiflePeacemaker
-    - MagazineRifleUranium
-    - MagazineRifleHP
-    - MedkitCombatFilled
-    - MedkitCombatFilled
-    - MagazineRifleAP
-    - MagazineRifleIncendiary
-    - DefibrillatorCompact
-    - CombatMedipen
-    - CombatMedipen
-    - AirlossAutoInjector
-    - PunctAutoInjector
-    - HoloprojectorSecurity
-    - ToolDebug
+    - WeaponLightMachineGunM492
+    - C4
+    - ClusterGrenade
+    - SingularityGrenade
+    - C4
+    - ClusterGrenade
+    - SingularityGrenade
+    - GrenadeShrapnel
+    - GrenadeIncendiary
     - SmokeGrenade
-    - ToxicGasGrenade
-    - ExGrenade
+    - WhiteholeGrenade
+    belt:
+    - WeaponEnergyMagnum
+    - LightRifleHeavyMagazineFMJ
+    - LightRifleHeavyMagazineFMJ
+    - LightRifleHeavyMagazineUranium
+    - LightRifleHeavyMagazineAP
+    - MedkitCombatFilled
+    - MedkitCombatFilled
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
 
 - type: startingGear
   id: NanoTrasenSpecialForcesSextusGear
@@ -272,7 +272,6 @@
     - ToxicGasGrenade
     - ExGrenade
 
-
 - type: startingGear
   id: NanoTrasenSpecialForcesSeptimusGear
   equipment:
@@ -309,7 +308,6 @@
     - SmokeGrenade
     - ToxicGasGrenade
     - ExGrenade
-
 
 - type: startingGear
   id: NanoTrasenSpecialForcesOctavusGear
@@ -348,7 +346,6 @@
     - ToxicGasGrenade
     - ExGrenade
 
-
 - type: startingGear
   id: NanoTrasenSpecialForcesNonusGear
   equipment:
@@ -385,6 +382,3 @@
     - SmokeGrenade
     - ToxicGasGrenade
     - ExGrenade
-
-
-
