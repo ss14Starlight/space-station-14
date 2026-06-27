@@ -313,10 +313,9 @@
     pocket2: EnergyShield
     belt: ClothingBeltMilitaryWebbingERT
     neck: ClothingNeckCapeNTSF8
-    suitstorage: WeaponAdmemeX09Headsman
+    suitstorage: WeaponPulseCarbine
   storage:
     back:
-    - WeaponPulseCarbine
     - MedkitCombatFilled
     - MedkitCombatFilled
     - PortableRecharger
