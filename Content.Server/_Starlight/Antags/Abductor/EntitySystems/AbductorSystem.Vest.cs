@@ -22,19 +22,19 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
     }
     private void OnEquipped(Entity<AbductorVestComponent> ent, ref GotEquippedEvent args)
     {
-        if (!HasComp<StealthComponent>(args.Equipee) && ent.Comp.CurrentState != AbductorArmorModeType.Combat)
+        if (!HasComp<StealthComponent>(args.EquipTarget) && ent.Comp.CurrentState != AbductorArmorModeType.Combat)
         {
-            AddComp<StealthComponent>(args.Equipee);
-            AddComp<StealthOnMoveComponent>(args.Equipee);
+            AddComp<StealthComponent>(args.EquipTarget);
+            AddComp<StealthOnMoveComponent>(args.EquipTarget);
         }
     }
 
     private void OnUnequipped(Entity<AbductorVestComponent> ent, ref GotUnequippedEvent args)
     {
-        if (HasComp<StealthComponent>(args.Equipee))
+        if (HasComp<StealthComponent>(args.EquipTarget))
         {
-            RemComp<StealthComponent>(args.Equipee);
-            RemComp<StealthOnMoveComponent>(args.Equipee);
+            RemComp<StealthComponent>(args.EquipTarget);
+            RemComp<StealthOnMoveComponent>(args.EquipTarget);
         }
     }
 
