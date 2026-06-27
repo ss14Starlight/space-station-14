@@ -99,6 +99,48 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecBlue
 
+- type: loadout
+  id: FormalOfficerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSecoff
+
+- type: loadout
+  id: FormalOfficerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
+
+- type: loadout
+  id: DeputyFormalJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalDeputy
+
+- type: loadout
+  id: DeputyFormalJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalDeputy
+
 #Outerclothes
 - type: loadout
   id: SecurityBomber
@@ -166,6 +208,13 @@
   id: WindbreakerSecurity
   equipment:
     outerClothing: ClothingOuterWindbreakerSecurity
+
+# Hats
+
+- type: loadout
+  id: DeputyHat
+  equipment:
+    head: ClothingHeadDeputyHat
 
 # Misc
 - type: loadout
