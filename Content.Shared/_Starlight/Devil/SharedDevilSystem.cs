@@ -380,6 +380,9 @@ public abstract partial class SharedDevilSystem : EntitySystem
         foreach (var uid in devil.Comp.DamnedSouls)
             _pvs.AddSessionOverride(uid, session);
     }
+    /// <summary>
+    /// Remove the PVS overrides we added when the BUI was opened.
+    /// </summary>
     private void OnBUIClosed(Entity<DevilComponent> devil, ref BoundUIClosedEvent args)
     {
         if (!_player.TryGetSessionByEntity(devil.Owner, out var session)) return;
