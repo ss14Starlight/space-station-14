@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer & Caws
   changes:
-  - message: (KILOTON) Changed the nutri max in the public hallway to be all access.
-    type: Tweak
-  id: 405849
-  time: '2026-06-09T07:33:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4694
-- author: Cvlancer & Caws
-  changes:
   - message: (KILOTON) Changed wastespace chamber to once again be used as another burn chamber.
     type: Tweak
   id: 405850
@@ -2799,4 +2792,11 @@ Entries:
   id: 406248
   time: '2026-06-26T19:11:29.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4875
+- author: Caws
+  changes:
+  - message: Lowered the required number of readied players for Cosmic Cult to 20 (down from 30).
+    type: Tweak
+  id: 406249
+  time: '2026-06-27T08:23:00.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4950
 Order: -1
