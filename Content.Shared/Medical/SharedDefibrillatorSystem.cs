@@ -95,12 +95,12 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         if (!args.SlotFlags.HasFlag(ent.Comp.RequiredSlot))
             return;
 
-        if (!TryComp<DoAfterComponent>(args.Equipee, out var doAfterComp))
+        if (!TryComp<DoAfterComponent>(args.EquipTarget, out var doAfterComp))
             return;
 
         foreach (var doAfter in doAfterComp.DoAfters.Values)
             if (doAfter.Args.Event is DefibrillatorZapDoAfterEvent)
-                _doAfter.Cancel(args.Equipee, doAfter.Index);
+                _doAfter.Cancel(args.EquipTarget, doAfter.Index);
     }
 #endregion
 
