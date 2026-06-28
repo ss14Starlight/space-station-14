@@ -29,6 +29,7 @@
       - Grumbakul
       - Aielic
       - Lagomorphian
+      - Squeakish
 
 - type: entity
   id: BaseBorgiLanguages
@@ -63,6 +64,7 @@
       - Grumbakul
       - Aielic
       - Lagomorphian
+      - Squeakish
 
 - type: entity
   id: BaseSiliconBrainLanguages
@@ -108,6 +110,7 @@
       - Grumbakul
       - Aielic
       - Lagomorphian
+      - Squeakish
       - Xeno
       - Xenomind
 
@@ -144,4 +147,5 @@
       - Grumbakul
       - Aielic
       - Lagomorphian
+      - Squeakish
       - Xeno
