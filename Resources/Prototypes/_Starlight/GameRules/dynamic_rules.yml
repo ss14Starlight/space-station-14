@@ -46,8 +46,6 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-          - !type:RoundDurationCondition
-            max: 600 # Don't roll zombies after 10 minutes, we don't really like midround zombies.
           - !type:PlayerCountCondition
             min: 20
         - id: WizardDuel
@@ -99,6 +97,83 @@
           - !type:MaxRuleOccurenceCondition
         - id: SubWizard
           prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 40
+          - !type:MaxRuleOccurenceCondition
+      # Dynamic Multiantag, can spawn at the start, or midround. Exciting, no? Run across the sky!
+      - !type:GroupSelector
+        children:
+        - id: Traitor
+          weight: 21
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: Nukeops
+          weight: 9
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: Revolutionary
+          weight: 9
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: CosmicCult
+          weight: 9
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: WizardDuel
+          weight: 5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 35
+        - id: Xenoborgs
+          weight: 5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: TerrorSpidersSpawn
+          weight: 5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 50
+        - id: Thief
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: VampireLess
+          weight: 6
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: SLChangeling
+          weight: 6
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: SiliconLiberation
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: SubWizard
+          weight: 5
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
