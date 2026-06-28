@@ -29,6 +29,7 @@
     staminaModifier: 0.2
   - type: ZombificationResistance
     zombificationResistanceCoefficient: 0.1
+  - type: HardsuitChemicalImmunity
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
