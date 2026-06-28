@@ -203,7 +203,7 @@
   name: terrorspiders-gamemode-title
   description: terrorspiders-gamemode-description
   showInVote: True
-  minPlayers: 35
+  minPlayers: 50
   rules:
   - TerrorSpidersSpawn
   - SubGamemodesRuleNoChangelings
