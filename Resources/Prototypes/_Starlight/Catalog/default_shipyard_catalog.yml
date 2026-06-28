@@ -81,7 +81,7 @@
 
 - type: vessel
   id: Breaker
-  name: NTMS-42A "Breaker"
+  name: NTS "Angel's Mercy" Medicina
   description: NTMS Angel's Mercy is a self-contained medical shuttle equipped to provide emergency treatment, surgery, and patient recovery. Designed as a fully operational mobile hospital.
   price: 80000
   category: Medium
