@@ -43,9 +43,9 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
         HumanoidCharacterProfile? profile = null;
         if (args.Session != null)
         {
-            var roles = args.AntagRoles;
+            //var roles = args.AntagRoles; // Starlight
             var prefs = _prefs.GetPreferences(args.Session.UserId);
-            profile = prefs.SelectProfileForAntag(roles);
+            profile = prefs.SelectProfileForAntag(args.Antag.PrefRoles); // Starlight
         }
 
         // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)

@@ -673,4 +673,39 @@ public sealed partial class AntagSelectionSystem
 
         return false;
     }
+    #region Starlight
+    /// <summary>
+    /// Returns all antagonist preference groups that the given player has been pre-selected for.
+    /// </summary>
+    /// <param name="player">Player whose pre-selected antagonist preference groups are being queried.</param>
+    /// <returns>
+    /// A list of antagonist preference groups, where each group contains the acceptable
+    /// antagonist preferences for one pre-selected antagonist assignment.
+    /// </returns>
+    [PublicAPI]
+    public List<HashSet<ProtoId<AntagPrototype>>> GetPreSelectedAntags(ICommonSession player)
+    {
+        var result = new List<HashSet<ProtoId<AntagPrototype>>>();
+
+        var query = QueryAllRules();
+        while (query.MoveNext(out var uid, out var comp, out _))
+        {
+            if (HasComp<EndedGameRuleComponent>(uid))
+                continue;
+
+            foreach (var (proto, sessions) in comp.PreSelectedSessions)
+            {
+                if (!sessions.Contains(player))
+                    continue;
+
+                if (!Proto.Resolve(proto, out var def))
+                    continue;
+
+                result.Add(def.PrefRoles.ToHashSet());
+            }
+        }
+
+        return result;
+    }
+    #endregion
 }

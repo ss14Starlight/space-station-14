@@ -14,6 +14,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     [Dependency] protected readonly IPrototypeManager Proto = default!;
     [Dependency] protected readonly IRobustRandom RobustRandom = default!;
     [Dependency] protected readonly GameTicker GameTicker = default!;
+    [Dependency] protected readonly IChatManager Chat = default!; // Starlight, admin announcement
 
     // Not protected, just to be used in utility methods
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
@@ -47,9 +48,12 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
                 continue;
 
             // Starlight-start
-            if (!CanStartRule(uid, rule, gameRule, args, out var reason))
+            if (!CanStartRule(uid, gameRule, args, out var reason))
             {
-                ChatManager.SendAdminAnnouncement(Loc.GetString("preset-cant-start", ("reason", reason)));
+                Chat.SendAdminAnnouncement(
+                    Loc.GetString("preset-cant-start", ("reason", reason)),
+                    null,
+                    null);
                 args.Cancel();
                 Log.Info($"Rule '{name}' can't start with reason: {reason}");
             }
@@ -57,10 +61,13 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
 
             if (gameRule.CancelPresetOnTooFewPlayers)
             {
-                ChatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players",
-                    ("readyPlayersCount", args.Players.Length),
-                    ("minimumPlayers", minPlayers),
-                    ("presetName", name)));
+                Chat.SendAdminAnnouncement( // Starlight start
+                    Loc.GetString("preset-not-enough-ready-players",
+                        ("readyPlayersCount", args.Players.Length),
+                        ("minimumPlayers", minPlayers),
+                        ("presetName", name)),
+                    null,
+                    null); // Starlight end
                 args.Cancel();
                 //TODO remove this once announcements are logged
                 Log.Info($"Rule '{name}' requires {minPlayers} players, but only {args.Players.Length} are ready.");
@@ -163,7 +170,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     /// <summary>
     /// Called when trying to start this gamerule.
     /// </summary>
-    protected virtual bool CanStartRule(EntityUid uid, T component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
+    protected virtual bool CanStartRule(EntityUid uid, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
     {
         reason = "";
         return true;
