@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/26/2026 14:11:26
-  entityCount: 187
+  time: 06/28/2026 08:51:07
+  entityCount: 193
 maps: []
 grids:
 - 1
@@ -184,6 +184,14 @@ entities:
       parent: 1
     - type: Fixtures
       fixtures: {}
+- proto: AtmosDeviceFanDirectional
+  entities:
+  - uid: 193
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -4.5,-0.5
+      parent: 1
 - proto: Bed
   entities:
   - uid: 8
@@ -695,6 +703,38 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-7.5
+      parent: 1
+- proto: Grille
+  entities:
+  - uid: 188
+    components:
+    - type: Transform
+      pos: 0.5,4.5
+      parent: 1
+- proto: GrilleDiagonal
+  entities:
+  - uid: 189
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,4.5
+      parent: 1
+  - uid: 190
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,3.5
+      parent: 1
+  - uid: 191
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,3.5
+      parent: 1
+  - uid: 192
+    components:
+    - type: Transform
+      pos: -0.5,4.5
       parent: 1
 - proto: Gyroscope
   entities:
