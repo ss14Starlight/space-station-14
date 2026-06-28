@@ -32,6 +32,9 @@
         - NotLabelable
     - type: HumanoidAppearance
       species: ProtoAvali
+      hideLayersOnEquip:
+      - Tail
+      - HeadTop
     - type: Hunger # on 2x more
       thresholds:
         Overfed: 250
@@ -145,7 +148,7 @@
     - type: HumanoidAppearance
       species: ProtoAvali
     - type: Inventory
-      speciesId: Avali
+      speciesId: avali
       templateId: protogen
       displacements:
         jumpsuit:
