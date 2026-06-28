@@ -80,7 +80,7 @@
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
 
 - type: vessel
-  id: Breaker
+  id: Medicina
   name: NTS "Angel's Mercy" Medicina
   description: NTMS Angel's Mercy is a self-contained medical shuttle equipped to provide emergency treatment, surgery, and patient recovery. Designed as a fully operational mobile hospital.
   price: 70000
