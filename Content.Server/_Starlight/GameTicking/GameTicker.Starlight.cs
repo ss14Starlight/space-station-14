@@ -1,15 +1,9 @@
-using System;
 using System.Linq;
 using System.Threading;
 using Content.Server._Starlight.Discord;
-using Content.Server.Administration.Systems;
-using Content.Server.Database;
 using Content.Server.Discord;
-using Content.Shared._Starlight;
 using Content.Shared._Starlight.CCVar;
 using Robust.Shared;
-using Robust.Shared.Localization;
-using static Content.Shared.Administration.Notes.AdminMessageEuiState;
 
 // ReSharper disable once CheckNamespace
 namespace Content.Server.GameTicking;

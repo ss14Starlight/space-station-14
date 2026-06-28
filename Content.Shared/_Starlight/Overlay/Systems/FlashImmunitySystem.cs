@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Overlay.Components;
 using Content.Shared._Starlight.Overlay.Events;
 using Content.Shared.Clothing.Components;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Flash.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
@@ -56,14 +55,14 @@ public sealed partial class FlashImmunitySystem : EntitySystem
 
     private void OnFlashImmunityEquipped(EntityUid uid, FlashImmunityComponent component, GotEquippedEvent args)
     {
-        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.Equipee));
-        RaiseLocalEvent(args.Equipee, flashImmunityChangedEvent);
+        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private void OnFlashImmunityUnEquipped(EntityUid uid, FlashImmunityComponent component, GotUnequippedEvent args)
     {
-        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.Equipee));
-        RaiseLocalEvent(args.Equipee, flashImmunityChangedEvent);
+        FlashImmunityCheckEvent flashImmunityChangedEvent = new(uid, HasFlashImmunityVisionBlockers(args.EquipTarget));
+        RaiseLocalEvent(args.EquipTarget, flashImmunityChangedEvent);
     }
 
     private EntityUid GetPossibleWearer(EntityUid uid)

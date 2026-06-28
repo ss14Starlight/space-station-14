@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseHeaterMachine
   id: KitchenElectricGrill
+  categories: [ ShouldMapStation ] # Starlight
   name: electric grill
   description: A microwave? No, a real man cooks steaks on a grill!
   components:

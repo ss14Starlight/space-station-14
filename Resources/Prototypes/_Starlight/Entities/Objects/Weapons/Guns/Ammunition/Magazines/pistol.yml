@@ -447,7 +447,7 @@
 
 - type: entity
   id: MagazinePistolImprovised
-  name: "Improvised Pistol Magazine (.35)"
+  name: "improvised pistol magazine (.35)"
   parent: [ BaseItem, BaseMinorContraband ]
   components:
   - type: Tag
@@ -1026,7 +1026,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunImprovised
-  name: Improvised SMG magazine (.35 auto)
+  name: improvised SMG magazine (.35 auto)
   parent: [ BaseMagazinePistolSubMachineGun, BaseMinorContraband ]
   components:
   - type: BallisticAmmoProvider

@@ -1,7 +1,6 @@
 using Content.Server._Starlight.Shadekin.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Shared._Starlight.Shadekin;
 using Content.Shared._Starlight.Shadekin.Components;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Teleportation.Systems;

@@ -1,6 +1,3 @@
-using Content.Shared.Trigger.Components.Triggers;
-
-using Content.Shared.Trigger.Systems;
 using Content.Shared.Trigger;
 using Content.Shared.Pointing;
 

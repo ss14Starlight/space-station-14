@@ -1,4 +1,3 @@
-using System;
 namespace Content.Shared._Starlight.Abstract.Codegen;
 
 [AttributeUsage(AttributeTargets.Class)]

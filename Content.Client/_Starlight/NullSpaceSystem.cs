@@ -1,8 +1,6 @@
 using Robust.Client.Graphics;
 using Robust.Shared.Player;
-using Content.Shared._Starlight.NullSpace;
 using Robust.Shared.Prototypes;
-using Content.Client._Starlight.Overlay;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Clothing.Components;
 using Content.Shared._Starlight.NullSpace.Systems;
@@ -68,7 +66,7 @@ public sealed partial class NullSpaceSystem : SharedNullSpaceSystem
 
     private void GotEquippedEvent(EntityUid uid, ShowNullSpaceComponent component, GotEquippedEvent args)
     {
-        if (args.Equipee != _playerMan.LocalEntity
+        if (args.EquipTarget != _playerMan.LocalEntity
             || !component.ShowShader
             || !TryComp<ClothingComponent>(uid, out var clothing)
             || !clothing.Slots.HasFlag(args.SlotFlags))

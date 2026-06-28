@@ -1,7 +1,6 @@
 using Content.Server.Chat.Managers;
 using Content.Server.Station.Systems;
 using Content.Server.StationRecords.Systems;
-using Content.Shared.Abilities.Goliath;
 using Content.Shared.Chat;
 using Content.Shared.Delivery;
 using Content.Shared.FingerprintReader;
@@ -10,7 +9,6 @@ using Content.Shared.Mind;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.StationRecords;
 using Content.Shared._Starlight.Railroading.Events;
-using Content.Shared._Starlight.Railroading;
 using Robust.Server.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;

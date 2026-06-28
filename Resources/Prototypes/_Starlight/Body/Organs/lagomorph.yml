@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: OrganLagomorphEyes
   parent: OrganHumanEyes
-  name: eyes
+  name: lagomorph eyes
   suffix: Lagomorph
   description: "Couldn't have seen that one coming."
   components:
@@ -13,8 +13,9 @@
 - type: entity
   id: OrganLagomorphStomach
   parent: [OrganAnimalStomach, BaseOrganStomach]
-  name: stomach
-  description: "Gross. This is hard to stomach."
+  name: lagomorph stomach
+  suffix: Lagomorph
+  description: "Yearns for fresh produce."
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
@@ -37,8 +38,9 @@
 - type: entity
   id: OrganLagomorphHeart
   parent: OrganAnimalHeart
-  name: heart
-  description: "Gross. This is hard to stomach."
+  name: lagomorph heart
+  suffix: Lagomorph
+  description: "The rapidly beating heart of a Lagomorph."
   components:
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi

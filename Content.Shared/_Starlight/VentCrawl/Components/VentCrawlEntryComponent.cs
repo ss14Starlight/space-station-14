@@ -1,4 +1,3 @@
-using Content.Shared.Actions.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.VentCrawl.Components;

@@ -6,7 +6,6 @@ using Content.Shared.Body.Part;
 using Content.Shared.DragDrop;
 using Content.Shared.Gibbing;
 using Content.Shared.Inventory;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;

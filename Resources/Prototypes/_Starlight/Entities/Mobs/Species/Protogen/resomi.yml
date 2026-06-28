@@ -50,7 +50,11 @@
   - type: HumanoidAppearance
     species: ProtoResomi
     hideLayersOnEquip:
+    - Special
+    - Head
     - Hair
+    - HeadTop
+    - HeadSide
   - type: Fixtures
     fixtures:
       fix1:

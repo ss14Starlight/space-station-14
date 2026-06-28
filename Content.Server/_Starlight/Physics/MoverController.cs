@@ -1,5 +1,4 @@
 using System.Collections.Concurrent;
-using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
 using Content.Server.Shuttles.Systems;
@@ -24,7 +23,6 @@ using Robust.Shared.Timing;
 using DependencyAttribute = Robust.Shared.IoC.DependencyAttribute;
 using DroneConsoleComponent = Content.Server.Shuttles.DroneConsoleComponent;
 using Stopwatch = System.Diagnostics.Stopwatch;
-using Content.Shared._Starlight.Shuttles.Components;
 
 namespace Content.Server._Starlight.Physics;
 

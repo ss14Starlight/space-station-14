@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
-using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Robust.Shared.Network;
 

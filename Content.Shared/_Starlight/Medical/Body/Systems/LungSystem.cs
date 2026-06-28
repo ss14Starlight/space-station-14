@@ -1,11 +1,9 @@
 using Content.Shared.Atmos;
-using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Inventory.Events;
-using Robust.Shared.Prototypes;
 using BreathToolComponent = Content.Shared.Atmos.Components.BreathToolComponent;
 using InternalsComponent = Content.Shared.Body.Components.InternalsComponent;
 
@@ -37,10 +35,10 @@ public sealed partial class LungSystem : EntitySystem
             return;
         }
 
-        if (TryComp(args.Equipee, out InternalsComponent? internals))
+        if (TryComp(args.EquipTarget, out InternalsComponent? internals))
         {
-            ent.Comp.ConnectedInternalsEntity = args.Equipee;
-            _internals.ConnectBreathTool((args.Equipee, internals), ent);
+            ent.Comp.ConnectedInternalsEntity = args.EquipTarget;
+            _internals.ConnectBreathTool((args.EquipTarget, internals), ent);
         }
     }
 

@@ -1,4 +1,3 @@
-using Content.Shared.Power;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Content.Shared._Starlight.Weapons.Ranged.Components;

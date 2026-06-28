@@ -1,5 +1,3 @@
-using System;
-using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;

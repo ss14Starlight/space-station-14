@@ -442,7 +442,7 @@
       - MindRoleParadoxClone
   - type: DynamicRuleCost
     cost: 125
-
+#Samurai
 - type: entity
   parent: BaseGameRule
   id: SamuraiSpawn
