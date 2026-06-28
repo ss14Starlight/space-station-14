@@ -1,4 +1,5 @@
-﻿- type: microwaveMealRecipe
+# Contraband
+- type: microwaveMealRecipe
   id: RecipeDreamingCake
   name: Dreaming cake Recipe
   result: FoodResomiCake
@@ -64,98 +65,6 @@
     RightHandReptilian: 1
     FoodCabbage: 1
 
-- type: microwaveMealRecipe
-  id: RecipeMothCake
-  name: cotton cake recipe
-  result: FoodCottonCake
-  time: 15
-  group: Cake
-  solids:
-    FoodMothBatter: 1
-
-- type: microwaveMealRecipe
-  id: RecipeNutribrickPizza
-  name: nutribrick pizza recipe
-  result: FoodPizzaNutribrick
-  time: 30
-  group: Pizza
-  reagents:
-    BbqSauce: 10
-  solids:
-    FoodDoughFlat: 1
-    FoodSnackNutribrickOpen: 2
-
-- type: microwaveMealRecipe
-  id: RecipeWrapperPizza
-  name: wrapper pizza recipe
-  result: FoodPizzaWrapper
-  time: 30
-  group: Pizza
-  reagents:
-    Astrotame: 10
-  solids:
-    FoodDoughCottonFlat: 1
-    FoodPacketMRETrash: 2
-
-- type: microwaveMealRecipe
-  id: RecipeCharcuterie
-  name: charcuterie recipe
-  result: FoodCharcuterie
-  time: 5
-  group: Savory
-  solids:
-    FoodCheeseSlice: 2
-    FoodMeatCutletCooked: 2
-    FoodBreadPlainSlice: 2
-    FoodPlateSmall: 1
-
-- type: microwaveMealRecipe
-  id: RecipeKhlahKalash
-  name: khlav kalash recipe
-  result: FoodMealKhlavKalash
-  time: 5
-  group: Savory
-  reagents:
-    Enzyme: 1
-  solids:
-    FoodMeatRotten: 2
-    FoodKebabSkewer: 1
-
-# a deliberately annoying recipe for a fairly dangerous dish:
-- type: microwaveMealRecipe
-  id: RecipeStewSoupBlinding # yes the name is backward, this is consistent with the original
-  name: blinding stew recipe
-  result: FoodSoupStewBlinding
-  time: 29 # good luck getting this timing perfect
-  deviceType: Stove
-  group: Secret
-  reagents:
-    WeldingFuel: 10
-  solids:
-    FoodSoupStew: 1
-
-- type: microwaveMealRecipe
-  id: RecipeHaggis
-  name: haggis recipe
-  result: FoodHaggis
-  time: 15
-  group: Savory
-  reagents:
-    UncookedAnimalProteins: 10
-  solids:
-    OrganAnimalStomach: 1
-
-- type: microwaveMealRecipe
-  id: RecipeBlackPudding
-  name: black pudding recipe
-  result: FoodBlackPudding
-  time: 15
-  group: Savory
-  reagents:
-    Blood: 10
-    Water: 10
-    Fat: 10
-
 - type: deepFryingRecipe
   id: KFFAlternative
   name: Kentucky Fried Felionoid
@@ -182,6 +91,119 @@
     FoodNoodlesBoiled: 1
     OrganShadekinCore: 1
 
+# a deliberately annoying recipe for a fairly dangerous dish:
+- type: microwaveMealRecipe
+  id: RecipeStewSoupBlinding # yes the name is backward, this is consistent with the original
+  name: blinding stew recipe
+  result: FoodSoupStewBlinding
+  time: 29 # good luck getting this timing perfect
+  deviceType: Stove
+  group: Secret
+  reagents:
+    WeldingFuel: 10
+  solids:
+    FoodSoupStew: 1
+
+# cake
+- type: microwaveMealRecipe
+  id: RecipeMothCake
+  name: cotton cake recipe
+  result: FoodCottonCake
+  time: 15
+  group: Cake
+  solids:
+    FoodMothBatter: 1
+
+# pizza
+- type: microwaveMealRecipe
+  id: RecipeNutribrickPizza
+  name: nutribrick pizza recipe
+  result: FoodPizzaNutribrick
+  time: 30
+  group: Pizza
+  reagents:
+    BbqSauce: 10
+  solids:
+    FoodDoughFlat: 1
+    FoodSnackNutribrickOpen: 2
+
+- type: microwaveMealRecipe
+  id: RecipeWrapperPizza
+  name: wrapper pizza recipe
+  result: FoodPizzaWrapper
+  time: 30
+  group: Pizza
+  reagents:
+    Astrotame: 10
+  solids:
+    FoodDoughCottonFlat: 1
+    FoodPacketMRETrash: 2
+
+# misc
+- type: microwaveMealRecipe
+  id: RecipeCharcuterie
+  name: charcuterie recipe
+  result: FoodCharcuterie
+  time: 5
+  group: Savory
+  solids:
+    FoodCheeseSlice: 2
+    FoodMeatCutletCooked: 2
+    FoodBreadPlainSlice: 2
+    FoodPlateSmall: 1
+
+- type: microwaveMealRecipe
+  id: RecipeKhlahKalash
+  name: khlav kalash recipe
+  result: FoodMealKhlavKalash
+  time: 5
+  group: Savory
+  reagents:
+    Enzyme: 1
+  solids:
+    FoodMeatRotten: 2
+    FoodKebabSkewer: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHaggis
+  name: haggis recipe
+  result: FoodHaggis
+  time: 15
+  group: Savory
+  reagents:
+    UncookedAnimalProteins: 10
+  solids:
+    OrganAnimalStomach: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBlackPudding
+  name: black pudding recipe
+  result: FoodBlackPudding
+  time: 15
+  group: Savory
+  reagents:
+    Blood: 10
+    Water: 10
+    Fat: 10
+
+- type: deepFryingRecipe
+  id: TP14RecipePenguinNugget
+  name: penguin nugget recipe
+  result: FoodBakedNugget
+  time: 20
+  ingredient: FoodMeatPenguinCutlet
+  group: TP14-Deep-Fry
+
+- type: microwaveMealRecipe
+  id: RecipeEggBoiled
+  name: boiled egg recipe
+  result: FoodEggBoiled
+  time: 5
+  group: Breakfast
+  solids:
+    FoodEgg: 1
+
+# Plain Donuts
 - type: deepFryingRecipe
   id: RecipeDonut
   name: plain donut
@@ -195,10 +217,189 @@
   name: meat donut
   result: FoodDonutMeat
   time: 5
+  group: Dessert
   solids:
     FoodDonutPlain: 1
     FoodMeatCutlet: 1
 
+- type: microwaveMealRecipe
+  id: RecipeDonutChocolate
+  name: chocolate donut
+  result: FoodDonutChocolate
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodCocoaPod: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutApple
+  name: apple donut
+  result: FoodDonutApple
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodApple: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBungo
+  name: bungo donut
+  result: FoodDonutBungo
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodBungo: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBluePumpkin
+  name: blue pumpkin donut
+  result: FoodDonutBluePumpkin
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodBluePumpkin: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPink
+  name: pink donut
+  result: FoodDonutPink
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+  reagents:
+    Sugar: 5
+
+- type: microwaveMealRecipe
+  id: RecipeDonutCaramel
+  name: caramel donut
+  result: FoodDonutCaramel
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+  reagents:
+    Sugar: 5
+    Milk: 5
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSweetpea
+  name: sweetpea donut
+  result: FoodDonutSweetpea
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodPeaPod: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSpaceman
+  name: spaceman donut
+  result: FoodDonutSpaceman
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodSpacemansTrumpet: 1
+
+# Jelly Donuts
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyPlain
+  name: jelly donut
+  result: FoodDonutJellyPlain
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutPlain: 1
+    FoodBerries: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyApple
+  name: apple jelly donut
+  result: FoodDonutJellyApple
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+    FoodApple: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyBungo
+  name: bungo jelly donut
+  result: FoodDonutJellyBungo
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+    FoodBungo: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyBluePumpkin
+  name: blue pumpkin jelly donut
+  result: FoodDonutJellyBluePumpkin
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+    FoodBluePumpkin: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyChocolate
+  name: chocolate jelly donut
+  result: FoodDonutJellyChocolate
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+    FoodCocoaPod: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellySweetpea
+  name: sweetpea jelly donut
+  result: FoodDonutJellySweetpea
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+    FoodPeaPod: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellySpaceman
+  name: spaceman jelly donut
+  result: FoodDonutJellySpaceman
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+    FoodSpacemansTrumpet: 1
+
+- type: microwaveMealRecipe # Kasern
+  id: RecipeDonutJellyPink
+  name: pink jelly donut
+  result: FoodDonutJellyPink
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+  reagents:
+    Sugar: 5
+
+- type: microwaveMealRecipe
+  id: RecipeDonutJellyCaramel
+  name: caramel jelly donut
+  result: FoodDonutJellyCaramel
+  time: 5
+  group: Dessert
+  solids:
+    FoodDonutJellyPlain: 1
+  reagents:
+    Sugar: 5
+    Milk: 5
+
+# candies
 - type: microwaveMealRecipe
   id: RecipeLollipopPlain
   name: plain lollipop recipe
@@ -209,10 +410,33 @@
     Water: 5
   group: Dessert
 
-- type: deepFryingRecipe
-  id: TP14RecipePenguinNugget
-  name: penguin nugget recipe
-  result: FoodBakedNugget
-  time: 20
-  ingredient: FoodMeatPenguinCutlet
-  group: TP14-Deep-Fry
+- type: microwaveMealRecipe
+  id: RecipeLollipopSwirl
+  name: swirl lollipop recipe
+  result: FoodSnackSwirlLollipop
+  time: 5
+  group: Dessert
+  solids:
+    FoodLollipopPlain: 1
+    FoodBerries: 1
+
+- type: microwaveMealRecipe
+  id: RecipeHardCandy
+  name: hard candy recipe
+  result: FoodSnackHardCandyOpen
+  time: 5
+  deviceType: Oven
+  group: Dessert
+  reagents:
+    Sugar: 5
+
+- type: microwaveMealRecipe
+  id: RecipeCandyApple
+  name: toffee apple recipe
+  result: FoodSnackCandyApple
+  time: 10
+  group: Dessert
+  reagents:
+    Sugar: 10
+  solids:
+    FoodApple: 1
