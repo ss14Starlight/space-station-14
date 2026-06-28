@@ -102,10 +102,10 @@
           - !type:PlayerCountCondition
             min: 40
           - !type:MaxRuleOccurenceCondition
-      # Dynamic Multiantag, can spawn at the start, or midround. Exciting, no? Run across the sky!
+      # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky!
       - !type:GroupSelector
         children:
-        - id: Traitor
+        - id: TraitorLess
           weight: 21
           conditions:
           - !type:HasBudgetCondition
@@ -138,7 +138,7 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 35
-        - id: Xenoborgs
+        - id: SubXenoborgs
           weight: 5
           conditions:
           - !type:HasBudgetCondition
@@ -152,7 +152,7 @@
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 50
-        - id: Thief
+        - id: ThiefLess
           weight: 10
           conditions:
           - !type:HasBudgetCondition
@@ -162,7 +162,7 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        - id: SLChangeling
+        - id: SLChangelingLess
           weight: 6
           conditions:
           - !type:HasBudgetCondition
