@@ -95,8 +95,22 @@
       collection: ProtoShadekinWurble
     Snarl:
       collection: ProtoVulpSnarls
-    Thump: # Starlight start
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg # Starlight end
+    ThavenGlub: # Starlight start
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenMHum
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSneeze:
+      collection: LagomorphSneeze
+    LagomorphSnore:
+      collection: LagomorphSnore
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops # Starlight end
 
 - type: emoteSounds
   id: ProtoHumanFSounds
@@ -195,8 +209,22 @@
       path: /Audio/Items/bikehorn.ogg
     Ping:
       path: /Audio/Effects/Cargo/ping.ogg
-    Thump: # Starlight start
-      path: /Audio/Voice/Reptilian/reptilian_tailthump.ogg # Starlight end
+    ThavenGlub: # Starlight start
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenFHum
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSneeze:
+      collection: LagomorphSneeze
+    LagomorphSnore:
+      collection: LagomorphSnore
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops # Starlight end
 
 - type: emoteSounds
   parent: ProtoHumanMSounds

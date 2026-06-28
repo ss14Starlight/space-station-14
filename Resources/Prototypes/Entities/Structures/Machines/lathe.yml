@@ -419,6 +419,7 @@
 
 - type: entity
   id: SecurityTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: security techfab
   description: Prints equipment for use by security crew.
@@ -514,6 +515,7 @@
 
 - type: entity
   id: MedicalTechFab
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLatheLube
   name: medical techfab
   description: Prints equipment for use by the medbay.
@@ -561,6 +563,7 @@
 - type: entity
   parent: BaseLathe
   id: UniformPrinter
+  categories: [ ShouldMapStation ] # Starlight
   name: uniform printer
   description: Prints new or replacement uniforms.
   components:
@@ -605,6 +608,7 @@
 
 - type: entity
   id: Biogenerator
+  categories: [ ShouldMapStation ] # Starlight
   parent: BaseLathe
   name: biogenerator
   description: Converts plants into biomass, which can be used to construct useful items.
