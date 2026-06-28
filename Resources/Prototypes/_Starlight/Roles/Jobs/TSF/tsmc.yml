@@ -31,7 +31,6 @@
   icon: JobIconTSF
   rules: job-rules-tsf-aligned
   supervisors: job-supervisors-solgov
-  canBeAntag: false
   access:
     - Solgov
   special:
@@ -55,7 +54,6 @@
   icon: JobIconTSF
   rules: job-rules-tsf-aligned
   supervisors: job-supervisors-solgov
-  canBeAntag: false
   access:
     - Solgov
   special:

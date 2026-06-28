@@ -35,6 +35,7 @@
     role: JobBorg
     time: 54000  # Starlight 15 hrs
   guides: [ Xenoborgs ]
+  playTimeTracker: AntagXenoborg # Starlight
 
 - type: antagSpecifier
   abstract: true
@@ -48,4 +49,3 @@
 - type: antagSpecifier
   parent: BaseXenoborg
   id: Xenoborg
-  playTimeTracker: AntagXenoborg # Starlight
