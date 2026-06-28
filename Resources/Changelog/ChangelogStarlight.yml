@@ -1,41 +1,6 @@
 Entries:
 - author: Caws
   changes:
-  - message: Mimes can no longer use AAC tablets while their vow of silence is active.
-    type: Tweak
-  id: 405889
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by writing.
-    type: Tweak
-  id: 405890
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence using sign language nor hiveminds (e.g. the Nexus).
-    type: Tweak
-  id: 405891
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by using NanoChat.
-    type: Tweak
-  id: 405892
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by using NanoTasks (they may only print NanoTasks if the description is blank).
-    type: Tweak
-  id: 405893
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
   - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
     type: Add
   id: 405894
@@ -2799,4 +2764,39 @@ Entries:
   id: 406288
   time: '2026-06-28T21:01:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: Johnny
+  changes:
+  - message: Added the advanced medipen as a lesser form of a combat medipen for ERT such as CBURN.
+    type: Add
+  id: 406289
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: Added a new role, the CBURN Corpsman.
+    type: Add
+  id: 406290
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: CBURN Agents loadout has been changed.
+    type: Tweak
+  id: 406291
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: All CBURN are automatically zombie immune.
+    type: Tweak
+  id: 406292
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: Changed CBURN suits to actually protect against injection based attacks like hardsuits.
+    type: Fix
+  id: 406293
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
 Order: -1
