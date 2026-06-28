@@ -4,11 +4,11 @@
 Partitions test classes across shards for parallel CI execution.
 
 Mode 1 - Generate all shard filters to files:
-    dotnet test --list-tests ... | python3 test_shard_filter.py generate <total-shards> <output-dir>
-    Writes <output-dir>/shard_0.filter .. shard_N.filter
+    dotnet test --list-tests ... | python3 partition_tests.py generate <total-shards> <output-dir>
+    Writes <output-dir>/shard_0.runsettings .. shard_N.runsettings
 
 Mode 2 - Read a pre-generated filter file:
-    python3 test_shard_filter.py read <filter-file>
+    python3 partition_tests.py read <runsettings-file>
     Prints the filter to stdout (empty output if file is empty/missing)
 
 Exit codes:
@@ -18,6 +18,7 @@ Exit codes:
 
 import sys
 import os
+import xml.etree.ElementTree as ET
 
 
 # Weight multipliers for tests that are lighter than their test count suggests.
@@ -38,7 +39,7 @@ WEIGHT_OVERRIDES = {
     "AllComponentsOneToOneDeleteTest": 0.5,
     "AllItemsHaveSpritesTest": 0.25,
     "AllMapsTested": 0.5,
-    "AllSalvageMapsLoadableTest": 0.25,
+    "AllSalvageMapsLoadableTest": 5.0,
     "AndTest": 0.5,
     "ApcChargingTest": 0.5,
     "ApcNetTest": 1.0,
@@ -96,7 +97,7 @@ WEIGHT_OVERRIDES = {
     "HeadsetKeys": 0.25,
     "HeatScaleCVar_Replicates_Agree": 0.25,
     "HumanMoveOverTest": 0.125,
-    "HungerThirstIncreaseDecreaseTest": 0.25,
+    "HungerThirstIncreaseDecreaseTest": 3.0,
     "IgnoredComponentsExistInTheCorrectPlaces": 0.5,
     "InsertAndDispenseItemTest": 0.125,
     "InsertDumpableInsertableItemTest": 0.5,
@@ -118,9 +119,10 @@ WEIGHT_OVERRIDES = {
     "MultiTile_Spawn_CacheUpdatesOnAtmosTick": 0.125,
     "NoCargoBountyArbitrageTest": 0.25,
     "NoCargoOrderArbitrage": 0.25,
-    "NoMaterialArbitrage": 0.25,
-    "NoSavedPostMapInitTest": 0.25,
+    "NoMaterialArbitrage": 15.0,
+    "NoSavedPostMapInitTest": 30.0,
     "NoSliceableBountyArbitrageTest": 0.5,
+    "NonGameMapsLoadableTest": 80.0,
     "NullOutTileAtmosphereGasMixture": 0.5,
     "PardonTest": 0.25,
     "ParseTestDocument": 2.0,
@@ -145,11 +147,15 @@ WEIGHT_OVERRIDES = {
     "RestartTest": 0.5,
     "RestockTest": 0.5,
     "SelectionTest": 0.5,
-    "ServerPrototypeSaveLoadSaveTest": 0.5,
+    "ServerPrototypeSaveLoadSaveTest": 30.0,
     "SetWorkingState_AlreadyInState_NoChange": 0.5,
     "SetWorkingState_IdleToWorking_UpdatesLoad": 0.25,
+    "ShuttlesLoadableTest": 70.0,
     "SpaceNoPuddleTest": 0.25,
-    "SpawnAndDeleteAllEntitiesOnDifferentMaps": 0.5,
+    "SpawnAndDeleteAllEntitiesInTheSameSpot": 60.0,
+    "SpawnAndDeleteAllEntitiesOnDifferentMaps": 100.0,
+    "SpawnAndDeleteEntityCountTest": 115.0,
+    "SpawnAndDirtyAllEntities": 240.0,
     "SpawnItemInSlotTest": 0.25,
     "Spawn_CacheUpdatesOnAtmosTick": 0.125,
     "Spawn_ReconstructedUpdatesImmediately": 0.5,
@@ -162,8 +168,11 @@ WEIGHT_OVERRIDES = {
     "TestAb": 0.5,
     "TestAddRemoveHasRoles": 2.0,
     "TestAlarmThreshold": 0.5,
+    "TestAllClientPrototypesAreSerializable": 35.0,
     "TestAllConcurrent": 0.25,
     "TestAllRestocksAreAvailableToBuy": 0.5,
+    "TestAllServerPrototypesAreSerializable": 35.0,
+    "TestApcLoad": 10.0,
     "TestBatteriesProportional": 0.5,
     "TestBatteryRamp": 0.25,
     "TestBladeServerBoardHasValidBladeServer": 0.25,
@@ -241,6 +250,7 @@ WEIGHT_OVERRIDES = {
     "ValidateJobPrototypes": 0.125,
     "ValidateMobThresholds": 0.125,
     "ValidatePrototypeContents": 0.5,
+    "ValidateRolePrototypes": 65.0,
     "WeightlessStatusTest": 0.25,
     "WindowOnGrille": 0.25,
     "WirelessNetworkDeviceSendAndReceive": 0.25,
@@ -333,18 +343,24 @@ def cmd_generate():
     for shard in range(total):
         my_classes = sorted(shards[shard])
         filter_expr = build_filter(my_classes)
-        path = os.path.join(output_dir, f"shard_{shard}.filter")
-        with open(path, "w") as f:
-            f.write(filter_expr)
         print(f"  Shard {shard}: {len(my_classes)} classes, weight {shard_loads[shard]:.1f} ({sum(class_counts[c] for c in my_classes)} tests)", file=sys.stderr)
         for cls in my_classes:
             w = class_weight(cls)
             print(f"    - {cls} ({class_counts[cls]} tests, weight {w:.1f})", file=sys.stderr)
 
+        rs_path = os.path.join(output_dir, f"shard_{shard}.runsettings")
+        with open(rs_path, "w", newline="\n") as f:
+            f.write('<?xml version="1.0" encoding="UTF-8"?>\n')
+            f.write("<RunSettings>\n")
+            f.write("  <NUnit>\n")
+            f.write("    <MapWarningTo>Failed</MapWarningTo>\n")
+            f.write(f"    <Where>{filter_expr}</Where>\n")
+            f.write("  </NUnit>\n")
+            f.write("</RunSettings>\n")
 
 def cmd_read():
     if len(sys.argv) != 3:
-        print(f"Usage: {sys.argv[0]} read <filter-file>", file=sys.stderr)
+        print(f"Usage: {sys.argv[0]} read <runsettings-file>", file=sys.stderr)
         sys.exit(1)
 
     path = sys.argv[2]
@@ -352,13 +368,16 @@ def cmd_read():
         return
     with open(path) as f:
         content = f.read().strip()
-    if content:
-        # Print human-readable class list to stderr
-        methods = [part.replace("method==", "").strip("' ") for part in content.split("||")]
+
+    # Parse the XML content
+    root = ET.fromstring(content)
+    where = root.findtext("NUnit/Where", default="").strip()
+    if where:
+        methods = [part.replace("method==", "").strip("' ") for part in where.split("||")]
         print(f"Running {len(methods)} test groups:", file=sys.stderr)
         for m in methods:
             print(f"  - {m}", file=sys.stderr)
-        print(content)
+        print(where)
 
 
 def main():

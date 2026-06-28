@@ -456,7 +456,8 @@
 - type: entity
   name: m1911
   parent: [BaseWeaponBatterySmall, BaseSecurityContraband ]
-  id: WeaponM1911
+  id: WeaponPulseM1911
+  suffix: Pulse
   description: A compact pulse core in a classic NanoTrasen officer pistol design. It's not the size of the gun, it's the size of the hole it puts in people.
   components:
   - type: Appearance
