@@ -571,7 +571,7 @@
       tags:
         - Shield
     - type: Pierceable
-      level: Metal
+      level: HardenedMetal
     # Starlight-end
 
 - type: entity
