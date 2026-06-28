@@ -22,5 +22,5 @@ public sealed partial class VentSpawnRuleComponent : Component
     /// Location that was picked.
     /// </summary>
     [DataField]
-    public Dictionary<EntityUid, (MapCoordinates Coords, EntityUid Uid)> Vent = new();
+    public Dictionary<string, (MapCoordinates Coords, EntityUid Uid)> Vent = new();
 }

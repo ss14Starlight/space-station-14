@@ -926,7 +926,7 @@ public record struct AntagSelectLocationEvent(Entity<AntagSelectionComponent> Ga
 }
 
 /// <summary>
-/// Event raised on a game ruleR entity after the setup logic for an antag is complete.
+/// Event raised on a game rule entity after the setup logic for an antag is complete.
 /// Used for applying additional more complex setup logic.
 /// </summary>
 [ByRefEvent]

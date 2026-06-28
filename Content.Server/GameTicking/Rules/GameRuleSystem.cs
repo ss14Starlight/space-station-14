@@ -39,7 +39,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
             return;
 
         var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out _, out var gameRule))
+        while (query.MoveNext(out var uid, out var rule, out var gameRule)) // Starlight, need to out a rule here because of Terror Spiders overwriting it
         {
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
@@ -48,7 +48,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
                 continue;
 
             // Starlight-start
-            if (!CanStartRule(uid, gameRule, args, out var reason))
+            if (!CanStartRule(uid, rule, gameRule, args, out var reason))
             {
                 Chat.SendAdminAnnouncement(
                     Loc.GetString("preset-cant-start", ("reason", reason)),
@@ -170,7 +170,7 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
     /// <summary>
     /// Called when trying to start this gamerule.
     /// </summary>
-    protected virtual bool CanStartRule(EntityUid uid, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
+    protected virtual bool CanStartRule(EntityUid uid, T component, GameRuleComponent gameRule, RoundStartAttemptEvent args, out string reason)
     {
         reason = "";
         return true;
