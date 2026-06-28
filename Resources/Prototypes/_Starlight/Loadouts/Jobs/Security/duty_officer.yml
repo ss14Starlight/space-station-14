@@ -54,12 +54,12 @@
     jumpsuit: ClothingUniformJumpskirtFormalSecoff
 
 - type: loadout
-  id: SeniorDutyOfficerJumpsuitFormal
+  id: DutyOfficerSeniorJumpsuitFormal
   equipment:
     jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
 
 - type: loadout
-  id: SeniorDutyOfficerJumpskirtFormal
+  id: DutyOfficerSeniorJumpskirtFormal
   equipment:
     jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
 
