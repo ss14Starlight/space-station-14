@@ -81,7 +81,7 @@
     color: "#ffffff"
   requirements:
     - !type:UsernameRequirement
-      username: Bird_
+      username: Bird.
 
 - type: ghostTheme
   id: TessTheEvil

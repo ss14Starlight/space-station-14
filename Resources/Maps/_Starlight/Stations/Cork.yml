@@ -30691,7 +30691,7 @@ entities:
     - type: AccessReader
       accessListsOriginal:
       - - Cryogenics
-- proto: CryogenicSleepUnitSpawner
+- proto: CryogenicSleepUnitSpawnerLateJoin
   entities:
   - uid: 3737
     components:
