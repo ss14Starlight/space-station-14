@@ -110,8 +110,6 @@ public sealed class CorporealCommand : ToolshedCommand
             _visibility.AddLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
             _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
             _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Admin, false);
-            // if (TryComp<AdminGhostComponent>(uid, out var aghost))
-            //     aghost.HiddenFromNonAdminGhosts = false;
         }
         else
         {
