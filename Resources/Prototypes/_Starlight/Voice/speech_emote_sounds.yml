@@ -705,3 +705,15 @@
       path: /Audio/_Starlight/Voice/Moth/moth_flapwings.ogg
       params:
         pitch: 1.45
+
+- type: emoteSounds
+  id: Monkey
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Animals/monkey_scream.ogg
+    Gasp:
+      collection: MonkeyScreeches
+    DefaultDeathgasp:
+      collection: MonkeyScreeches
