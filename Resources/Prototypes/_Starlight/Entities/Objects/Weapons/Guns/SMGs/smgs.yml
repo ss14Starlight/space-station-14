@@ -368,7 +368,7 @@
 
 - type: entity
   name: WT550g
-  parent: [ WeaponSubMachineGunWt550, BaseCentcommContraband ]
+  parent: [ WeaponSubMachineGunWt550 ]
   id: WeaponSubMachineGunWt550g
   description: A special green-colored limited edition of the WT550, the WT550g.  Designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
   components:
@@ -391,3 +391,6 @@
       slots:
         gun_magazine:
           startingItem: MagazinePistolSubMachineGunTopMounted
+    - type: Contraband
+      allowedDepartments: [ CentralCommand ]
+      allowedJobs: []
