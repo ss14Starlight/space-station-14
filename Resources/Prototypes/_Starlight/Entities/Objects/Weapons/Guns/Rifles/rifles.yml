@@ -566,7 +566,7 @@
   description: "A bullpup carbine of modern design, commissioned by CentCom for their security forces.\nFeeds from .30 rifle magazines."
   components:
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lawbringer.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
@@ -575,7 +575,7 @@
   - type: Gun
     fireRate: 4.7
   - type: Clothing
-    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lawbringer.rsi
   - type: ItemSlots
     slots:
       gun_magazine:
