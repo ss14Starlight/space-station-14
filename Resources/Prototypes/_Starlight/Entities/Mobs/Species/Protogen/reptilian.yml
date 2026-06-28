@@ -18,7 +18,11 @@
   - type: HumanoidAppearance
     species: ProtoReptilian
     hideLayersOnEquip:
+    - Snout
+    - HeadTop
+    - HeadSide
     - Hair
+    - Tail
   - type: Puller
     needsHands: false
   - type: Icon
@@ -27,6 +31,12 @@
   - type: Body
     prototype: ProtoReptilian
     requiredLegs: 2
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'FlapWings', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
+  - type: BodyEmotes
+    soundsId: ReptilianBodyEmotes
   - type: Butcherable
     butcheringType: Spike
     spawned:
