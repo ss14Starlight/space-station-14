@@ -208,3 +208,31 @@
     flavors:
       - cheesy
       - stinky
+
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackCandyApple
+  name: toffee apple
+  description: A crisp apple encased in a hard shell of sugar. A carnival classic.
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/candy.rsi
+    state: apple
+  - type: Item
+    size: Small
+  - type: Tag
+    tags:
+    - FoodSnack
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Sugar
+          Quantity: 10
+        - ReagentId: Nutriment
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - sweet
+    - apple

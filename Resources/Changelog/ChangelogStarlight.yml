@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess Gurchi
   changes:
-  - message: Proto-Reptilians no longer freeze to death after leaving cryo healing pods.
-    type: Fix
-  id: 405871
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
   - message: Protogen tails now correctly make the thump sound.
     type: Fix
   id: 405872
@@ -2799,4 +2792,11 @@ Entries:
   id: 406270
   time: '2026-06-27T11:36:14.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4917
+- author: Kasern-ss14
+  changes:
+  - message: recipes for donuts, jelly donuts, boiled egg, lollipops and hard candy.
+    type: Add
+  id: 406271
+  time: '2026-06-28T10:01:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4923
 Order: -1
