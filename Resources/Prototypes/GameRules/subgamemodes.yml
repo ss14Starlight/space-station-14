@@ -97,10 +97,12 @@
 
 - type: entity
   parent: BaseGameRule
-  id: Xenoborgs
+  id: SubXenoborgs
   components:
   - type: XenoborgsRule
   - type: RuleGrids
   - type: GameRule
     minPlayers: 20 # Starlight
     cancelPresetOnTooFewPlayers: false
+  - type: DynamicRuleCost # Starlight
+    cost: 150 # Starlight
