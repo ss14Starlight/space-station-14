@@ -15,6 +15,8 @@ namespace Content.Server.GameTicking;
 public sealed partial class GameTicker
 {
     [ViewVariables] private readonly List<(TimeSpan, string)> _allPreviousGameRules = new();
+    readonly int _effectivePlayerCutoff = 40; // Starlight, the number of online players at which unready players start counting as effectively ready
+    readonly double _unreadyPlayerMultiplier = 0.6; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
 
     /// <summary>
     ///     A list storing the start times of all game rules that have been started this round.
@@ -356,18 +358,30 @@ public sealed partial class GameTicker
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
-            if (args.Players.Length >= minPlayers)
+            #region Starlight
+            var readyPlayers = args.Players.Length;
+            var onlinePlayers = PlayerGameStatuses.Count;
+            var effectivePlayers = readyPlayers;
+
+            // If there are at least _effectivePlayerCutoff online players, we consider some unready players as effectively ready
+            if (onlinePlayers >= _effectivePlayerCutoff)
+            {
+                var unreadyPlayers = Math.Max(0, onlinePlayers - readyPlayers);
+                effectivePlayers += (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
+            }
+            #endregion
+            if (effectivePlayers >= minPlayers) // Starlight, args.Players.Length -> effectivePlayers
                 continue;
 
             if (gameRule.CancelPresetOnTooFewPlayers)
             {
-                _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players",
-                    ("readyPlayersCount", args.Players.Length),
+                _chatManager.SendAdminAnnouncement(Loc.GetString("preset-not-enough-ready-players-sl", // Starlight
+                    ("readyPlayersCount", effectivePlayers), // Starlight
                     ("minimumPlayers", minPlayers),
                     ("presetName", name)));
                 args.Cancel();
                 //TODO remove this once announcements are logged
-                Log.Info($"Rule '{name}' requires {minPlayers} players, but only {args.Players.Length} are ready.");
+                Log.Info($"Rule '{name}' requires {minPlayers} players, but only {effectivePlayers} are effectively ready."); //Starlight
             }
             else
             {
