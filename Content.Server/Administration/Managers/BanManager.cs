@@ -622,17 +622,17 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             : null;
     }
 
-    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<JobPrototype>> jobs)
+    public bool IsRoleBanned(ICommonSession player, List<ProtoId<JobPrototype>> jobs) // Starlight, reverted to a lst
     {
         return IsRoleBanned(player, jobs, PrefixJob);
     }
 
-    public bool IsRoleBanned(ICommonSession player, params List<ProtoId<AntagPrototype>> antags)
+    public bool IsRoleBanned(ICommonSession player, List<ProtoId<AntagPrototype>> antags) // Starlight, reverted to a list
     {
         return IsRoleBanned(player, antags, PrefixAntag);
     }
 
-    private bool IsRoleBanned<T>(ICommonSession player, params List<ProtoId<T>> roles) where T : class, IPrototype
+    private bool IsRoleBanned<T>(ICommonSession player, List<ProtoId<T>> roles, string prefix) where T : class, IPrototype // Starlight, reverted prefix back in
     {
         var bans = GetRoleBans(player.UserId);
 
