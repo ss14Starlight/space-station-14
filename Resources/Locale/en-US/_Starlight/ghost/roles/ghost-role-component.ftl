@@ -112,4 +112,4 @@ ghost-role-information-kiki-name = Kiki
 ghost-role-information-kiki-description = An honorable member of the kobold society in charge of botany and helping the botanists in any way she can.
 
 ghost-role-information-chimpken-name = Chimpken
-ghost-role-information-chimpken-description = OMG. What is that thing?
+ghost-role-information-chimpken-description = The pinnacle of genetic science or a crime against nature?
