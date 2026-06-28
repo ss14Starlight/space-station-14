@@ -17,7 +17,6 @@
   supervisors: job-supervisors-nt-personnel
   displayWeight: 2
   overrideConsoleVisibility: false
-  canBeAntag: false
   joinNotifyCrew: true
   access:
     - Lawyer

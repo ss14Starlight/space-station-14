@@ -10,7 +10,6 @@
   icon: JobIconTSF
   rules: job-rules-tsf-aligned
   supervisors: job-supervisors-solgov
-  canBeAntag: false
   access:
     - Solgov
   special:
