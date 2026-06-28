@@ -296,6 +296,8 @@
     - ToxicGasGrenade
     - MagazineMagnum
     - WeaponPistolDeagle
+    - ChemistryBottleAmbuzolPlus
+    - Syringe
 
 - type: startingGear
   id: NanoTrasenSpecialForcesOctaviusGear
