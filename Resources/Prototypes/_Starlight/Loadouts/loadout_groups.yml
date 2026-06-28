@@ -964,8 +964,8 @@
   - DutyOfficerJumpskirtBlue
   - DutyOfficerJumpsuitFormal
   - DutyOfficerJumpskirtFormal
-  - SeniorDutyOfficerJumpsuitFormal
-  - SeniorDutyOfficerJumpskirtFormal
+  - DutyOfficerSeniorJumpsuitFormal
+  - DutyOfficerSeniorJumpskirtFormal
   - DutyOfficerJumpsuitOrange # DeltaV
   - DutyOfficerJumpskirtOrange # DeltaV
 
