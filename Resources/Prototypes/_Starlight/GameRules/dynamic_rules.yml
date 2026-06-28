@@ -70,7 +70,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 50
+            min: 35
       # Minor Rules
       - !type:GroupSelector
         conditions:
@@ -160,7 +160,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
-            min: 50
+            min: 35
         - id: ThiefLess
           weight: 10
           prob: 0.50
