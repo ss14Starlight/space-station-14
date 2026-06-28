@@ -299,5 +299,6 @@ public sealed partial class DragonSystem : EntitySystem
         _movement.RefreshMovementSpeedModifiers(dragonUid);
         _popup.PopupEntity(Loc.GetString("carp-rift-destroyed"), dragonUid, dragonUid);
         // Starlight edit End
+        }
     }
 }
