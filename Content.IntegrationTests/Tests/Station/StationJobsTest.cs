@@ -132,14 +132,14 @@ public sealed class StationJobsTest
             {
                 if (i < PlayerCount)
                 {
-                    fakePlayers.AddJob(dummy, "TAssistant", JobPriority.Medium)
-                        .AddPreference("TClown", JobPriority.Low)
-                        .AddPreference("TMime", JobPriority.High);
+                    fakePlayers.AddJob(dummy, "TAssistant") // Starlight, no longer checking priority here, since we handle it elsewhere due to multislot
+                        .AddPreference("TClown") // Starlight
+                        .AddPreference("TMime"); // Starlight
                     i++;
                 }
                 else
                 {
-                    fakePlayers.AddJob(dummy, "TCaptain", JobPriority.High);
+                    fakePlayers.AddJob(dummy, "TCaptain"); // Starlight
                 }
             }
             Assert.That(fakePlayers, Is.Not.Empty);
@@ -296,8 +296,7 @@ internal static class JobExtensions
     public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
         ICommonSession player,
-        string jobId,
-        JobPriority prio = JobPriority.Medium)
+        string jobId)
     {
         inp.Add(
             player.UserId,
@@ -311,7 +310,7 @@ internal static class JobExtensions
     #endregion
 
     public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
-        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId) // Starlight, remove priority
     {
         return inp.ToDictionary(x => x.Key, x => x.Value.WithJob(jobId)); // Starlight
     }
