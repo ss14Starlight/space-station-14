@@ -635,11 +635,8 @@ namespace Content.Server.Ghost
         }
 
         //Starlight begin: Ghost admeme nonsense. Couldn't think of a better way to tell client to update chat channel permissions.
-        public void CorporealStateChanged(EntityUid uid, bool isCorporeal)
-        {
+        public void CorporealStateChanged(EntityUid uid, bool isCorporeal) =>
             RaiseNetworkEvent(new GhostCorporealEvent(isCorporeal, GetNetEntity(uid)));
-            RaiseNetworkEvent(new GhostCorporealChatUpdateEvent(isCorporeal), uid);
-        }
         //Starlight end
     }
 

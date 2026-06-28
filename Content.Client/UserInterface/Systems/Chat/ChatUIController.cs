@@ -197,7 +197,7 @@ public sealed partial class ChatUIController : UIController
         _net.RegisterNetMessage<MsgChatMessage>(OnChatMessage);
         _net.RegisterNetMessage<MsgDeleteChatMessagesBy>(OnDeleteChatMessagesBy);
         SubscribeNetworkEvent<DamageForceSayEvent>(OnDamageForceSay);
-        SubscribeNetworkEvent<GhostCorporealChatUpdateEvent>(OnCorporealChanged); // Starlight
+        SubscribeNetworkEvent<GhostCorporealEvent>(OnCorporealChanged); // Starlight
         _config.OnValueChanged(CCVars.ChatEnableColorName, (value) => { _chatNameColorsEnabled = value; });
         _chatNameColorsEnabled = _config.GetCVar(CCVars.ChatEnableColorName);
 
@@ -876,8 +876,11 @@ public sealed partial class ChatUIController : UIController
     }
 
     // Starlight begin: dumb event listener for updating channel permissions
-    private void OnCorporealChanged(GhostCorporealChatUpdateEvent ev, EntitySessionEventArgs _) =>
+    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _)
+    {
+        if (EntityManager.GetEntity(ev.Uid) != _player.LocalEntity) return;
         UpdateChannelPermissions();
+    }
     // Starlight end
 
     private void OnChatMessage(MsgChatMessage message)
