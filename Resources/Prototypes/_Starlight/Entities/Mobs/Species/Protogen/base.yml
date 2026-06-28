@@ -63,11 +63,12 @@
       visible: false
   - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
     doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
+    selfRepairPenalty: 1.3 # It's not much, but it makes it a little slower.
     allowSelfRepair: true
-    fuelCost: 10
+    fuelCost: 7.5 # Little cheaper on protogens, since they're not fully cybernetic.
     damage:
       groups:
-        Brute: -30 # 5 for each type with reduction applied
+        Brute: -24 # 4 for each type with reduction applied
   - type: Hunger
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
@@ -154,6 +155,11 @@
   - type: HumanoidAppearance
     species: Protogen
     hideLayersOnEquip:
+    - Snout
+    - SnoutCover
+    - HeadTop
+    - HeadSide
+    - FacialHair
     - Hair
   - type: Inventory
     speciesId: protogen #to be replaced with proto[species] when new sprites are made
@@ -178,7 +184,7 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Borg
-    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow','Thump', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk']
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
   - type: Vocal
     sounds:
       Male: ProtoHumanMSounds
