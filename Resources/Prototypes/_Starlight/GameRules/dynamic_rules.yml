@@ -1,0 +1,184 @@
+- type: entity
+  parent: BaseGameRule
+  id: SLDynamicRule
+  components:
+  - type: GameRule
+    minPlayers: 15 # Realistically you won't get many good gamemodes rolling with less than 15 players.
+  - type: DynamicRule
+    startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags. This at least lets traitorling/vamptors roll.
+    startingBudgetMax: 550
+    table: !type:AllSelector
+      children:
+      # Major Rules
+      - !type:GroupSelector
+        - !type:RoundDurationCondition
+          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
+        children:
+        - id: Traitor
+          weight: 35
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: Nukeops
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: Revolutionary
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 15
+        - id: CosmicCult
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: Zombie
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:RoundDurationCondition
+            max: 600 # Don't roll zombies after 10 minutes, we don't really like midround zombies.
+          - !type:PlayerCountCondition
+            min: 20
+        - id: WizardDuel
+          weight: 5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 35
+        - id: Xenoborgs
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 20
+        - id: TerrorSpidersSpawn
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:PlayerCountCondition
+            min: 50
+      # Minor Rules
+      - !type:GroupSelector
+        - !type:RoundDurationCondition
+          max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
+        children:
+        - id: Thief
+          prob: 0.4
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: VampireLess
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: SLChangeling
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: SiliconLiberation
+          prob: 0.15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+        - id: SubWizard
+          prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 40
+          - !type:MaxRuleOccurenceCondition
+      # Midround rules
+      - !type:GroupSelector
+        conditions:
+        - !type:RoundDurationCondition
+          min: 300 # minimum 5 minutes
+        children:
+        - id: SleeperAgents
+          weight: 15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:RoundDurationCondition
+            min: 900 # 15 minutes
+        - id: DragonSpawn
+          weight: 15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:RoundDurationCondition
+            min: 900 # 15 minutes
+        - id: NinjaSpawn
+          weight: 20
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:RoundDurationCondition
+            min: 900 # 15 minutes
+        - id: ParadoxCloneSpawn
+          weight: 20
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+            max: 2 # We don't want this showing up too often as it's got high weight and isn't that interesting, so only 2.
+          - !type:RoundDurationCondition
+            min: 600 # 10 minutes
+        - id: ParadoxCrisisSpawn
+          weight: 10
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+            max: 2
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
+        - id: LoneOpsSpawn
+          weight: 5
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 2100 # 35 minutes
+        - id: WizardSpawn
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 40
+          - !type:RoundDurationCondition
+            min: 1800 # 30 minutes
+        - id: SubXenoborgs
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 40
+          - !type:RoundDurationCondition
+            min: 2700 # 45 minutes
+        - id: AbductorsSpawn
+          weight: 15
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 10
+          - !type:RoundDurationCondition
+            min: 900 # 15 minutes
+        - id: Brighteye
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 20
+          - !type:RoundDurationCondition
+            min: 600 # 10 minutes
