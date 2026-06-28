@@ -13,7 +13,7 @@ using Content.Shared.Fax.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Content.Shared.Verbs;
 using Robust.Server.Containers;
 using Robust.Shared.Configuration;
