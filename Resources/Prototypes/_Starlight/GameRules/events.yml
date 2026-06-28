@@ -441,7 +441,7 @@
       mindRoles:
       - MindRoleParadoxClone
   - type: DynamicRuleCost
-    cost: 50
+    cost: 125
 
 - type: entity
   parent: BaseGameRule
@@ -492,4 +492,4 @@
         color: red
         sound: /Audio/Misc/ninja_greeting.ogg
   - type: DynamicRuleCost
-    cost: 75
+    cost: 100
