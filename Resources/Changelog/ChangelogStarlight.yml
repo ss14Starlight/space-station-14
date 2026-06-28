@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess Gurchi
   changes:
-  - message: All Protogen can now get hand implants.
-    type: Fix
-  id: 405874
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: True Protogen can be picked up.
-    type: Fix
-  id: 405875
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
   - message: ProtoKin can hear Empathy now.
     type: Fix
   id: 405876
@@ -2799,4 +2785,18 @@ Entries:
   id: 406273
   time: '2026-06-28T15:55:04.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4939
+- author: BornStellat
+  changes:
+  - message: Pierceable comp to hand held shields.
+    type: Add
+  id: 406274
+  time: '2026-06-28T17:52:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4953
+- author: BornStellat
+  changes:
+  - message: Worn armor and handheld items with the shield tag will now stop bullets from piercing the entity if the bullet pierce level is lower than the armor value.
+    type: Fix
+  id: 406275
+  time: '2026-06-28T17:52:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4953
 Order: -1
