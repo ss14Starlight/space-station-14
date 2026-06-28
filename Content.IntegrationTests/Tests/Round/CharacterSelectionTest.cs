@@ -25,26 +25,17 @@ public sealed class CharacterSelectionTest
 
     [TestPrototypes]
     private static readonly string Prototypes = $@"
-- type: entity
-  parent: BaseTraitorRule
-  id: {TraitorsMode}
-  components:
-  - type: GameRule
-    minPlayers: 0
-    delay:
-      min: 5
-      max: 10
   - type: AntagSelection
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 99
-      playerRatio: 1
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: true
-      mindRoles:
-      - MindRoleTraitor
+    antags:
+    - !type:AllSelector
+      antag: !type:Antag
+        prefRoles: [ Traitor ]
+        blacklist:
+          components:
+          - AntagImmune
+        lateJoinAdditional: true
+        mindRoles:
+        - MindRoleTraitor
 
 - type: gamePreset
   id: {TraitorsMode}
@@ -69,7 +60,7 @@ public sealed class CharacterSelectionTest
             Captain: [ 1, 1 ]
             Assistant: [ -1, -1 ]
             Mime: [ 1, 1 ]
-";
+"; // Starlight, updated to new Antag format
 
     // some constants to help test case readability & also make the compiler catch typos
     private static readonly ProtoId<JobPrototype> Captain = "Captain";
