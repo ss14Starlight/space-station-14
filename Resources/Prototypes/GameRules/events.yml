@@ -101,14 +101,6 @@
     selectionTime: Never
 
 - type: entity
-  abstract: true
-  parent: BaseGameRule
-  id: BaseAntagGhostRoleRule
-  components:
-  - type: AntagSelection
-    selectionTime: Never
-
-- type: entity
   id: BaseStationEvent
   parent: BaseGameRule
   abstract: true

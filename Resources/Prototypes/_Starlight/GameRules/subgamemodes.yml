@@ -10,7 +10,6 @@
     - FreeBorgsObjective
   - type: AntagSelection
     agentName: self-round-end-agent-name
-    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ SELFAgent ]
       max: 3
@@ -39,7 +38,6 @@
     maxDifficulty: 3
   - type: AntagSelection
     agentName: thief-round-end-agent-name
-    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Thief ]
       max: 3 # Starlight. Prevents excess thieves from spawning on Revs.
@@ -68,7 +66,6 @@
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
-    selectionTime: IntraPlayerSpawn # Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
       max: 6 # Starlight. Accounting for scaling. Not as many as the full gamemode.
@@ -127,7 +124,6 @@
     - groups: SubTraitorObjectiveGroups
     maxDifficulty: 4 # Less intrusive traitors.
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
       max: 6 # Starlight. Less intrusive traitors.
@@ -151,7 +147,6 @@
     - DamnSoulsDevilObjective
   - type: AntagSelection
     agentName: devil-round-end-agent-name
-    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Devil ]
       max: 1

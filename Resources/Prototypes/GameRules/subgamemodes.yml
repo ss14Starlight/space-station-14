@@ -73,7 +73,6 @@
     maxDifficulty: 10
   - type: AntagSelection
     agentName: vampire-roundend-name
-    selectionTime: IntraPlayerSpawn # Starlight. Only select vamps on round start
     definitions:
     - prefRoles: [ Vampire ]
       max: 10 # Starlight. Full gamemode Vamps scale higher to account for scaling.

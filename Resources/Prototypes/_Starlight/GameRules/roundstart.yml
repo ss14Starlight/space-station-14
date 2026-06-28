@@ -157,7 +157,6 @@
       min: 240
       max: 420
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
       max: 12 # Starlight. For VampTraitorLing.

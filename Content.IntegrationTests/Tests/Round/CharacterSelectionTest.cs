@@ -35,7 +35,6 @@ public sealed class CharacterSelectionTest
       min: 5
       max: 10
   - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
     definitions:
     - prefRoles: [ Traitor ]
       max: 99
