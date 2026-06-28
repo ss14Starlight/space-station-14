@@ -307,13 +307,24 @@ internal static class JobExtensions
         return inp;
     }
 
-    #endregion
-
-    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
-        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId) // Starlight, remove priority
+    /*public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
     {
-        return inp.ToDictionary(x => x.Key, x => x.Value.WithJob(jobId)); // Starlight
+        return inp.ToDictionary(x => x.Key, x => x.Value.WithJob(jobId).WithJobPriority(jobId, prio));
+    }*/
+    // Our preference selection is arranged differently than Wizden's due to multislot
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
+     this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
+     string jobId)
+     {
+        foreach (var (player, profile) in inp.ToArray())
+        {
+            inp[player] = profile.WithJob(jobId);
+            }
+
+        return inp;
     }
+    #endregion
 
     public static Dictionary<NetUserId, HumanoidCharacterProfile> WithPlayers(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
