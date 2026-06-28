@@ -107,11 +107,13 @@
         children:
         - id: TraitorLess
           weight: 21
+          prob: 0.50 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: Nukeops
           weight: 9
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -119,6 +121,7 @@
             min: 20
         - id: Revolutionary
           weight: 9
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -126,6 +129,7 @@
             min: 15
         - id: CosmicCult
           weight: 9
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -133,6 +137,7 @@
             min: 20
         - id: WizardDuel
           weight: 5
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -140,6 +145,7 @@
             min: 35
         - id: SubXenoborgs
           weight: 5
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -147,6 +153,7 @@
             min: 20
         - id: TerrorSpidersSpawn
           weight: 5
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -154,26 +161,31 @@
             min: 50
         - id: ThiefLess
           weight: 10
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: VampireLess
           weight: 6
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: SLChangelingLess
           weight: 6
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: SiliconLiberation
           weight: 10
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: SubWizard
           weight: 5
+          prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
