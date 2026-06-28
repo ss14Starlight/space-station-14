@@ -11,6 +11,9 @@
     [
         {
             "name": "pad"
+        },
+        {
+            "name": "default-holo"
         }
     ]
 }

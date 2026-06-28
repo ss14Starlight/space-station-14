@@ -30,3 +30,12 @@ signal-port-description-gun-5 = Shuttle weapon slot 5.
 
 signal-port-name-gun-6 = Gun Slot 6
 signal-port-description-gun-6 = Shuttle weapon slot 6.
+
+signal-port-name-spawn-triggered = Spawn Triggered
+signal-port-description-spawn-triggered = Emitted when the spawner spawns something.
+
+signal-port-name-enabled = Enabled
+signal-port-description-enabled = Emitted when the device is turned on and enabled.
+
+signal-port-name-disabled = Disabled
+signal-port-description-disabled = Emitted when the device is turned off and disabled.

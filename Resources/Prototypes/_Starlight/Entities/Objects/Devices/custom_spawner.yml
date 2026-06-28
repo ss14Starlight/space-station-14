@@ -5,6 +5,7 @@
   abstract: true
   components:
     - type: CustomSpawner
+      hologramProtoId: CustomSpawnerHologram
     - type: InteractionOutline
     - type: Clickable
     - type: Physics
@@ -28,31 +29,63 @@
     - type: DeviceLinkSink
       ports:
         - TriggerSpawn
-        - Enable
-        - Disable
+        - On
+        - Off
         - Toggle
     - type: DeviceNetwork
       deviceNetId: Wireless
       receiveFrequencyId: BasicDevice
-#    - type: UserInterface
-#      interfaces:
-#        enum.SpawnerConfigUi.Key:
-#          type: SpawnerConfigBoundUserInterface
+    - type: WirelessNetworkConnection
+      range: 200
 
 - type: entity
   id: CustomSpawner
   parent: BaseCustomSpawner
   components:
+    - type: CustomSpawner
+      hologramVisible: true
+      hologramSprite:
+        sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+        state: default-holo
+      hologramColor1: "#65b8e2"
+      hologramColor2: "#3a6981"
     - type: Sprite
       sprite: _Starlight/Objects/Devices/custom_spawner.rsi
       state: pad
     - type: PointLight
+      energy: 3
+      radius: 3
+      curveFactor: 5
+      falloff: 3
 
 - type: entity
   id: CustomSpawnerMarker
   parent: BaseCustomSpawner
   suffix: Marker
   components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+      state: default-holo
     - type: Marker
     - type: CustomSpawner
       usePadSprite: false
+      isMarker: true
+
+- type: entity
+  id: CustomSpawnerHologram
+  name: hologram
+  categories: [ HideSpawnMenu, DoNotMap ]
+  components:
+    - type: Sprite
+    - type: CustomSpawnerHologram
+      rsi: _Starlight/Objects/Devices/custom_spawner.rsi
+      state: default-holo
+      shaderName: Hologram
+      color1: "#65b8e2"
+      color2: "#3a6981"
+      alpha: 0.9
+      intensity: 2
+      scrollRate: 0.125
+    - type: Tag
+      tags:
+        - HideContextMenu
