@@ -127,6 +127,7 @@
           32:
             sprite: _Starlight/Mobs/Animals/displacements.rsi
             state: hand-kobold
+
 - type: entity
   name: chimpken
   id: MobChimpken
@@ -138,6 +139,9 @@
   - type: Speech
     speechSounds: Monkey
     speechVerb: Monkey
+  - type: Vocal
+    sounds:
+      Unsexed: Monkey
   - type: VentCrawler
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-primate
