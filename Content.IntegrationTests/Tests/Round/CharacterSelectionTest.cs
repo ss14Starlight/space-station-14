@@ -385,12 +385,14 @@ public sealed class CharacterSelectionTest
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
             pair.AssertJob(data.ExpectedJob.ToString(), pair.Player!);
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
-            var antags = antagSystem.GetPreSelectedAntagDefinitions(pair.Player);
+            var playerManager = pair.Server.PlayerMan; // Starlight start
+            var session = playerManager.GetSessionById(pair.Client.User!.Value);
+            var antags = antagSystem.GetPreSelectedAntags(session); // Starlight end
             if (data.ExpectTraitor)
             {
                 Assert.That(antags.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.First(), Is.EqualTo("MindRoleTraitor"));
+                //Assert.That(antags.First().MindRoles.Count, Is.EqualTo(1)); // Starlight
+                Assert.That(antags.First(), Does.Contain(Traitor)); //  Starlight
             }
             else
             {

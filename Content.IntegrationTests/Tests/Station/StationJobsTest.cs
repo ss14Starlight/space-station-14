@@ -280,7 +280,8 @@ public sealed class StationJobsTest
 
 internal static class JobExtensions
 {
-    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
+    #region Starlight
+    /*public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium,
         int amount = 1)
     {
@@ -290,12 +291,29 @@ internal static class JobExtensions
         }
 
         return inp;
+    }*/
+    // Our job selection is arranged differently than Wizden's
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
+        this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
+        ICommonSession player,
+        string jobId,
+        JobPriority prio = JobPriority.Medium)
+    {
+        inp.Add(
+            player.UserId,
+            HumanoidCharacterProfile.Random()
+                .WithJob(jobId)
+                .AsEnabled());
+
+        return inp;
     }
+
+    #endregion
 
     public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
     {
-        return inp.ToDictionary(x => x.Key, x => x.Value.WithJobPriority(jobId, prio));
+        return inp.ToDictionary(x => x.Key, x => x.Value.WithJob(jobId)); // Starlight
     }
 
     public static Dictionary<NetUserId, HumanoidCharacterProfile> WithPlayers(
