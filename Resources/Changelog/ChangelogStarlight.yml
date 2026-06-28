@@ -1,95 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: ProtoKin can hear Empathy now.
-    type: Fix
-  id: 405876
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Vulps no longer starve 10x faster than they're supposed to.
-    type: Fix
-  id: 405877
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: The Duty Officer's Winter Coat now has a suit storage slot.
-    type: Fix
-  id: 405878
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: Cvlancer
-  changes:
-  - message: Fixed the east side security substation not receiving power by removing a cable terminal.
-    type: Fix
-  id: 405879
-  time: '2026-06-10T08:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4713
-- author: Caws
-  changes:
-  - message: The large version of the warden locker has been removed due to being unused.
-    type: Remove
-  id: 405880
-  time: '2026-06-10T09:12:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4708
-- author: Caws
-  changes:
-  - message: Security's Hybrid Taser now fits in your suit storage, just like the Disabler and Dominator.
-    type: Fix
-  id: 405881
-  time: '2026-06-10T09:32:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4707
-- author: Caws
-  changes:
-  - message: The Ion Rifle now fits in your suit storage, just like other rifles.
-    type: Fix
-  id: 405882
-  time: '2026-06-10T09:32:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4707
-- author: TaserTheFox
-  changes:
-  - message: Some reagent bottles now have the correct labels.
-    type: Fix
-  id: 405883
-  time: '2026-06-10T09:54:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4697
-- author: STARLIGHT TEAM
-  changes:
-  - message: (CC_SC17) Completely removed the old atmospherics piping and such.
-    type: Remove
-  id: 405884
-  time: '2026-06-10T10:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4687
-- author: STARLIGHT TEAM
-  changes:
-  - message: (CC_SC17) Completely new atmospherics piping and layout.
-    type: Add
-  id: 405885
-  time: '2026-06-10T10:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4687
-- author: STARLIGHT TEAM
-  changes:
-  - message: (CC_SC17) Security front entrance now stops those tiders from breakin in.
-    type: Tweak
-  id: 405886
-  time: '2026-06-10T10:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4687
-- author: Caws
-  changes:
-  - message: The siren for Code Violet is now a little quieter.
-    type: Tweak
-  id: 405887
-  time: '2026-06-10T18:15:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4722
-- author: Caws
-  changes:
-  - message: The siren for Code Violet now fades out instead of just cutting off at the end.
-    type: Fix
-  id: 405888
-  time: '2026-06-10T18:15:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4722
 - author: Caws
   changes:
   - message: Mimes can no longer use AAC tablets while their vow of silence is active.
@@ -2799,4 +2708,95 @@ Entries:
   id: 406275
   time: '2026-06-28T17:52:08.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4953
+- author: BornStellar
+  changes:
+  - message: greenlight shield renamed to X-03 green phase shield.
+    type: Tweak
+  id: 406276
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield HP changed from 36HP to 90HP.
+    type: Tweak
+  id: 406277
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield Slash resistance changed from 20% to 10%.
+    type: Tweak
+  id: 406278
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield active block modifiers are now better than their passive modifiers across the board instead of worse.
+    type: Tweak
+  id: 406279
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield reflect chance lowered from 50% to 10%, still only for lasers.
+    type: Tweak
+  id: 406280
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: WT550g, a variant of the WT550r that comes with a green colour scheme.
+    type: Add
+  id: 406281
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: WT550 magazine (.35 FMJ auto top-mounted). A WT550 mag with FMJ instead of SP loaded.
+    type: Add
+  id: 406282
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: WT550 magazine (.35 HP auto top-mounted). A WT550 mag with HP instead of SP loaded.
+    type: Add
+  id: 406283
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: removed two combat medipens from GSO belt and replaced with an extra set of cuffs.
+    type: Tweak
+  id: 406284
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: Taser fire mode on the MT-7G.
+    type: Add
+  id: 406285
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: department of the GSO job.
+    type: Fix
+  id: 406286
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: outfits for use in setting outfits of arbitrary entities (was requested by some admins).
+    type: Add
+  id: 406287
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: names of the file names for the sprites of the X-03 shield to better match other sprite naming conventions.
+    type: Tweak
+  id: 406288
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
 Order: -1
