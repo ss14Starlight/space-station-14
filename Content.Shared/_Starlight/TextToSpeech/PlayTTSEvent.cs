@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using Content.Shared.Damage.Components;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;

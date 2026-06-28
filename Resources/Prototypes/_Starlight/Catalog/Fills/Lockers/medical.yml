@@ -41,3 +41,212 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: EffectFlashBluespace
+
+# Surgeon
+- type: entity
+  id: LockerSurgeonFilled
+  suffix: Filled
+  parent: LockerSurgeon
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillSurgeon
+
+- type: entityTable
+  id: LockerFillSurgeon
+  table: !type:AllSelector
+    children:
+      - !type:GroupSelector
+        children:
+        - id: ClothingHeadHatSurgcapBlue
+        - id: ClothingHeadHatSurgcapGreen
+        - id: ClothingHeadHatSurgcapPurple
+        - id: ClothingHeadHatSurgcapBlack
+        - id: ClothingHeadHatSurgcapCyan
+        - id: ClothingHeadHatSurgcapPink
+        - id: ClothingHeadHatSurgcapWhite
+      - id: ClothingHeadsetMedical
+      - id: ClothingUniformJumpsuitMedicalDoctor
+      - id: ClothingUniformJumpskirtMedicalDoctor
+      - !type:GroupSelector
+        children:
+        - id: ClothingBackpackMedical
+        - id: ClothingBackpackSatchelMedical
+        - id: ClothingBackpackDuffelMedical
+      - !type:GroupSelector
+        children:
+        - id: ClothingShoesColorWhite
+        - id: ClothingShoesLeather
+      - !type:GroupSelector
+        children:
+        - id: ClothingHandsGlovesLatex
+        - id: ClothingHandsGlovesNitrile
+      - id: ClothingMaskSterile
+      - id: ClothingEyesHudMedical
+      - id: HandheldHealthAnalyzer
+      - id: ClothingBeltMedicalFilled
+      - id: SurgicalKitMedicalFilled
+      - id: BottleCaseParamedicFilled
+      - id: HealiumTankFilled
+      - id: NitrousOxideTankFilled
+      - id: MedkitFilled
+      - id: Bloodpack
+      - id: Bloodpack
+      - id: UniformScrubsColorBlue
+      - !type:GroupSelector
+        children:
+        - id: UniformScrubsColorGreen
+        - id: UniformScrubsColorPurple
+        - id: UniformScrubsColorBlack
+        - id: UniformScrubsColorCyan
+        - id: UniformScrubsColorPink
+        - id: UniformScrubsColorWhite
+      - !type:GroupSelector
+        children:
+        - id: BoxFolderClipboard
+          weight: 0.1
+        - id: BoxFolderClipboardEmpty
+        - id: BoxFolderClipboardThreePapers
+          weight: 0.3
+        - id: BoxFolderPlasticClipboard
+          weight: 0.1
+        - id: BoxFolderPlasticClipboardEmpty
+        - id: BoxFolderPlasticClipboardThreePapers
+          weight: 0.3
+      - !type:GroupSelector
+        children:
+        - id: Pen
+        - id: LuxuryPen
+          weight: 0.2
+      - id: PlushieLizardJobMedicaldoctor
+        prob: 0.02
+      - id: ChemistryBottleLaughter # Widely recognized as the best medicine :o)
+        prob: 0.01
+
+# Coroner
+- type: entity
+  id: LockerCoronerFilled
+  suffix: Filled
+  parent: LockerCoroner
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillCoroner
+
+- type: entityTable
+  id: LockerFillCoroner
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadsetMedical
+    - id: ClothingUniformJumpsuitCoroner
+    - id: ClothingUniformJumpskirtCoroner
+    - !type:GroupSelector
+      children:
+      - id: ClothingBackpackMedical
+      - id: ClothingBackpackSatchelMedical
+      - id: ClothingBackpackDuffelMedical
+    - !type:GroupSelector
+      children:
+      - id: ClothingShoesColorWhite
+      - id: ClothingShoesLeather
+    - !type:GroupSelector
+      children:
+      - id: ClothingHandsGlovesLatex
+      - id: ClothingHandsGlovesNitrile
+    - id: ClothingMaskSterile
+    - id: BoxFolderBlackMorgue
+    - id: BoxBodyBag
+    - id: BoxBodyBag
+    - id: RollerBedSpawnFolded
+    - id: RollerBedSpawnFolded
+    - id: SurgicalKitMedicalFilled
+    - id: ClothingEyesHudMedical
+    - id: HandheldHealthAnalyzer
+    - id: PlushieLizardJobMedicaldoctor
+      prob: 0.02
+
+# Virologist
+- type: entity
+  id: LockerVirologistFilled
+  suffix: Filled
+  parent: LockerVirologist
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillVirologist
+
+- type: entityTable
+  id: LockerFillVirologist
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadsetMedical
+    - id: ClothingHeadHatHoodBioVirology
+    - id: ClothingOuterBioVirology
+    - id: ClothingUniformJumpsuitVirology
+    - id: ClothingUniformJumpskirtVirology
+    - !type:GroupSelector
+      children:
+      - id: ClothingBackpackVirology
+      - id: ClothingBackpackSatchelVirology
+      - id: ClothingBackpackDuffelVirology
+    - id: ClothingShoesColorWhite
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingMaskSterile
+    - id: Syringe
+    - id: BoxMouthSwab
+    - id: BottleCaseMedicalFilled
+    - id: ClothingEyesHudMedical
+    - id: ClothingBeltMedicalFilled
+    - id: HandheldHealthAnalyzer
+    - id: PlushieLizardJobMedicaldoctor
+      prob: 0.02
+    - id: ChemistryBottleLaughter
+      prob: 0.01
+
+# Geneticist
+- type: entity
+  id: LockerGeneticistFilled
+  suffix: Filled
+  parent: LockerGeneticist
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillGeneticist
+
+- type: entityTable
+  id: LockerFillGeneticist
+  table: !type:AllSelector
+    children:
+    - id: ClothingHeadsetMedical
+    - id: ClothingUniformJumpsuitGenetics
+    - id: ClothingUniformJumpskirtGenetics
+    - !type:GroupSelector
+      children:
+      - id: ClothingBackpackGenetics
+      - id: ClothingBackpackSatchelGenetics
+      - id: ClothingBackpackDuffelGenetics
+    - id: ClothingShoesColorWhite
+    - id: ClothingHandsGlovesLatex
+    - id: ClothingMaskSterile
+    - id: Syringe
+    - id: JetInjector
+    - id: BottleCaseMedicalFilled
+    - id: ClothingEyesHudMedical
+    - id: ClothingBeltMedicalFilled
+    - id: HandheldHealthAnalyzer
+    - id: PlushieLizardJobMedicaldoctor
+      prob: 0.02
+    - id: ChemistryBottleLaughter
+      prob: 0.01

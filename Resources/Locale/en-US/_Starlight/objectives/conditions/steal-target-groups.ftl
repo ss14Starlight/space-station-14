@@ -41,6 +41,7 @@ steal-target-groups-mining-shuttle-console-circuitboard = mining shuttle console
 steal-target-groups-salvage-shuttle-console-circuitboard = salvage shuttle console board
 steal-target-groups-communications-computer-circuitboard = communications computer board
 steal-target-groups-id-card-computer-circuitboard = ID card computer board
+steal-target-groups-shipyard-computer-circuitboard = shipyard computer board
 
 steal-target-groups-clothing-headset-alt-command = command over-ear headset
 steal-target-groups-ptech-circuitboard = PTech circuitboard

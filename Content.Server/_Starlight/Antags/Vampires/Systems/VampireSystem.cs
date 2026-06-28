@@ -1,12 +1,10 @@
 using Content.Server.Actions;
 using Content.Server.Atmos.EntitySystems;
-using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Systems;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
 using Content.Shared._Starlight.Antags.Vampires.Prototypes;
-using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Alert;
 using Content.Shared.Actions.Components;
 using Content.Shared.Damage;

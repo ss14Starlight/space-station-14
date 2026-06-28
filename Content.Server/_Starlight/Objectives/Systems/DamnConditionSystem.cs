@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server._Starlight.Objectives.Components;
-using Content.Server.Objectives.Components;
 using Content.Shared._Starlight.Devil;
 using Content.Shared.Objectives.Components;
 

@@ -1,11 +1,9 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN.PrimitiveTasks;
 using Content.Server.NPC.Pathfinding;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Starlight.NPC.HTN.PrimitiveTasks.Operators;

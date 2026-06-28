@@ -212,6 +212,7 @@
 - type: entity
   parent: ToiletGoldenEmpty
   id: ToiletGoldenDirtyWater
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Dirty Water, StealTarget
   components:
   - type: StealTarget

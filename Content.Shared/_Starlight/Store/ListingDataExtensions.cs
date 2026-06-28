@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Content.Shared.Store;
 
 namespace Content.Shared._Starlight.Store;

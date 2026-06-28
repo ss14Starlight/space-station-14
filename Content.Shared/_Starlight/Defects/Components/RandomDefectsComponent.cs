@@ -1,5 +1,3 @@
-using Robust.Shared.GameObjects;
-
 namespace Content.Shared._Starlight.Defects.Components;
 
 // Marker component that causes DefectSystem to roll each

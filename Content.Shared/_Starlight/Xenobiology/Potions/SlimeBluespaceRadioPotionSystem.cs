@@ -2,7 +2,6 @@ using Content.Shared._Starlight.Language.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Radio.Components;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Starlight.Xenobiology.Potions;
 

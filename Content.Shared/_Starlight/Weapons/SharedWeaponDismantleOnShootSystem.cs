@@ -1,7 +1,6 @@
 using Content.Shared._Starlight.Weapons.Components;
 using Content.Shared.Examine;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Random;
 
 namespace Content.Shared._Starlight.Weapons;

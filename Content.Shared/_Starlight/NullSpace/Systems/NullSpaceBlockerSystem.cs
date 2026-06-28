@@ -1,4 +1,3 @@
-using Content.Shared._Starlight.CosmicCult;
 using Content.Shared._Starlight.NullSpace.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;

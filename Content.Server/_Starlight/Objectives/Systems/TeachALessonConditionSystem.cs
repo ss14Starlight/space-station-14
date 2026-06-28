@@ -5,7 +5,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Objectives.Components;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Server._Starlight.Objectives.Events;
-using Content.Shared._Starlight.Railroading;
 using Content.Shared.Objectives;
 using Content.Server._Starlight.Railroading;
 using Content.Shared._Starlight.Railroading.Components;

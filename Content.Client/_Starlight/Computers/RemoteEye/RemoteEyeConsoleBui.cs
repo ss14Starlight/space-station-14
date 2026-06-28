@@ -1,5 +1,4 @@
-﻿using Content.Shared._Starlight.Computers.RemoteEye;
-using Content.Shared._Starlight.Computers.RemoteEye.UI;
+﻿using Content.Shared._Starlight.Computers.RemoteEye.UI;
 using JetBrains.Annotations;
 using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
