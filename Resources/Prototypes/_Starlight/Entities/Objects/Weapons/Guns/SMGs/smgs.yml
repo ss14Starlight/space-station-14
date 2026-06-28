@@ -370,7 +370,7 @@
   name: WT550g
   parent: [WeaponSubMachineGunWt550, BaseGrandTheftContraband] # Starlight, grand theft
   id: WeaponSubMachineGunWt550g
-  description: A special green-colored limited edition of the WT550, the WT550g.  Designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines and prefilled with HP ammo.
+  description: A special green-colored limited edition of the WT550, the WT550g.  Designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
   components:
     - type: Sprite
       sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550g.rsi
@@ -390,4 +390,4 @@
     - type: ItemSlots
       slots:
         gun_magazine:
-          startingItem: MagazinePistolSubMachineGunTopMountedHP
+          startingItem: MagazinePistolSubMachineGunTopMounted

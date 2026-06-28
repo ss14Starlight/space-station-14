@@ -47,9 +47,9 @@
       containers:
         storagebase: !type:AllSelector
           children:
-            - id: MagazinePistolSubMachineGunTopMountedHP
-            - id: MagazinePistolSubMachineGunTopMountedHP
-            - id: MagazinePistolSubMachineGunTopMountedHP
+            - id: MagazinePistolSubMachineGunTopMounted
+            - id: MagazinePistolSubMachineGunTopMounted
+            - id: MagazinePistolSubMachineGunTopMounted
             - id: JawsOfLifeMed
             - id: DefibrillatorCompact
             - id: TearGasGrenade
