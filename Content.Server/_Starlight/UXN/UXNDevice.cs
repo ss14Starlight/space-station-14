@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Linq;
 using System.Text;
 using Content.Server._Starlight.UXN.Devices;
 
@@ -212,6 +213,16 @@ public abstract class UxnEvent
     public abstract void PerformEvent(UXNProcessor proc);
 }
 
+public abstract class StatusUxnEvent : UxnEvent
+{
+    /// <summary>
+    /// Called when the UXN processor is exiting due to a status code raised on a break operation
+    /// </summary>
+    /// <param name="proc">the UXN processor this event is enqueued for</param>
+    /// <param name="code">the exit code of the processor</param>
+    public abstract void ExitingWithStatus(UXNProcessor proc, byte code);
+}
+
 [DataDefinition]
 public partial struct UxnFrame
 {
@@ -276,6 +287,7 @@ public sealed partial class UXNProcessor
     //public List<(ushort, string)> InstrLog { get; private set; } = new();
     //public List<UxnFrame> FrameLog { get; private set; } = new();
 
+    [ViewVariables]
     private Queue<UxnEvent> _events = new();
 
     /// <summary>
@@ -824,7 +836,7 @@ public sealed partial class UXNProcessor
     {
         foreach (var d in Devices)
         {
-            d.OnDetach(this);
+            d.OnDetach(this); //because we are about to delete the Device list let it do any destruct actions now.
         }
         PC = RESET_VECTOR;
         DevMem = new();
@@ -866,7 +878,7 @@ public sealed partial class UXNProcessor
             if (_events.Count == 0)
                 return true; // UXN is dead in the water. we stopped running and have no events to start it.
             if (_events.Peek().PreRun(this))
-                return false;
+                return false; //There is a event left to be resolved... but it isn't ready yet (eg: a delay event). delay execution for another tick
             _events.Dequeue().PerformEvent(this); //we have a event which should get us moving again
             Running = true;
         }
@@ -879,6 +891,11 @@ public sealed partial class UXNProcessor
                 if (SystemDevice.Status != 0)
                 {
                     Running = false;
+                    var status = SystemDevice.Status;
+                    foreach (var ev in _events.ToArray().OfType<StatusUxnEvent>())
+                    {
+                        ev.ExitingWithStatus(this, status);
+                    }
                     _events.Clear();
                     return true;
                 }

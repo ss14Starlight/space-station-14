@@ -26,12 +26,11 @@ namespace Content.Server._Starlight.UXN;
 
 public sealed partial class UxnSystem : SharedUxnSystem
 {
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IResourceManager _resourceManager = default!;
-    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IResourceManager _resourceManager = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ContainerSystem _containerSystem = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
 
     private readonly ResPath _compilerRom = new("/_Starlight/Uxn/Rom/drifloon.rom");
 
@@ -74,7 +73,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
             }
             comps.Add(comp1);
         }
-        var instrs = Math.Min(_maxInstrs / Math.Max(comps.Count,1), _defaultInstrs);
+        var instrs = Math.Min(_maxInstrs / Math.Max(comps.Count, 1), _defaultInstrs);
         foreach (var item in comps)
         {
             item.Uxn?.RunLimited(instrs);
@@ -91,17 +90,50 @@ public sealed partial class UxnSystem : SharedUxnSystem
 
         if (TryComp<PaperComponent>(target, out var paper))
         {
-            if (Compile(paper.Content, out var error, out var rom))
+            if (EnsureComp<UxnAttachedComponent>(ent, out var attached))
+                return; //the UXN is allready in the process of compiling a program.
+            var contId = ent.Comp.ContainerId;
+            ContainerSlot cont = _containerSystem.HasContainer(target, contId, null) ?
+                (_containerSystem.GetContainer(target, contId) as ContainerSlot)! :
+                _containerSystem.MakeContainer<ContainerSlot>(target, contId);
+
+            var uxn = new UXNProcessor();
+            if (!_resourceManager.ContentFileExists(_compilerRom))
             {
-                ent.Comp.AssembledSize = rom.Count;
-                ent.Comp.CompiledRom = rom;
-                ent.Comp.CompilerOutput = error;
-            } else
-            {
-                ent.Comp.AssembledSize = -1;
+                ent.Comp.CompilerOutput = $"Failed to load UXN assembler {_compilerRom}. Ask god for some help...";
                 ent.Comp.CompiledRom = new();
-                ent.Comp.CompilerOutput = error;
+                return; // the assembler rom could not be located... meaning assembly is borked meaning a PR will need to be submitted to fix this
             }
+
+            var mem = uxn.SystemMem;
+            ushort writeHead = 0x100;
+            var stream = _resourceManager.ContentFileRead(_compilerRom);
+            Span<byte> span = new byte[32]; //dump the assembler into the chip 32 bytes at a time...
+            while (stream.CanRead)
+            {
+                var amnt = stream.Read(span);
+                if (amnt == 0) break;
+                for (int i = 0; i < amnt; i++)
+                {
+                    mem[writeHead] = span[i];
+                    writeHead++;
+                }
+            }
+            stream.Dispose();
+
+            var stdio = uxn.AttachDevice(0x01, new FakeStdioDevice(paper.Content));
+
+            while (stdio.HasChars())
+                stdio.MakeEvent(uxn); //make all the events NOW instead of as needed.
+            stdio.MakeEvent(uxn); //and the final null EOF
+
+            uxn.PushEvent(new UxnPostCompileEvent(ent, EntityManager, Log));// and the final event to push it all into the chip...
+
+            attached.AttachedMessage = "uxn-attached-self";
+            attached.ChipHolder = cont;
+            attached.Uxn = uxn;
+            attached.Removable = false;
+
             Dirty(ent);
         }
 
@@ -161,12 +193,12 @@ public sealed partial class UxnSystem : SharedUxnSystem
         var uxn = ent.Comp.Uxn;
         if (uxn == null)
             return; //somehow we have an attached component but no uxn. shouldn't be possible but just in case.
-        ev.PushMarkup(Loc.GetString("uxn-attached-examine", [("running", uxn.Running), ("instrs", uxn.RealInstructionCounter)]));
+        ev.PushMarkup(Loc.GetString(ent.Comp.AttachedMessage, [("running", uxn.Running), ("instrs", uxn.RealInstructionCounter)]));
     }
 
     private void OnGetInteractionVerbAttached(Entity<UxnAttachedComponent> ent, ref GetVerbsEvent<InteractionVerb> ev)
     {
-        if (!ev.CanAccess)
+        if (!ev.CanAccess || !ent.Comp.Removable)
             return;
 
         var user = ev.User;
@@ -188,7 +220,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
     {
         var uxn = ent.Comp.Uxn!;
         var attached = uxn.SystemDevice.AttachedDevices;
-        var id = new FaxComponentDevice().Id;
+        var id = new FaxComponentDevice().Id.ToLower();
         if (!attached.TryGetValue(id, out var value))
             return; //it is not attached so dont have it listen for events.
         var dev = (FaxComponentDevice)uxn.Devices[value];
@@ -291,4 +323,34 @@ public struct OnGetUxnDevices
         => Devices[name.ToLower()] = dev;
 
     public OnGetUxnDevices() { }
+}
+
+public sealed partial class UxnPostCompileEvent(Entity<UxnComponent> Entity, EntityManager _entMan, ISawmill sawmill) : StatusUxnEvent
+{
+    public override void ExitingWithStatus(UXNProcessor proc, byte code) => PerformEvent(proc);
+
+    public override void PerformEvent(UXNProcessor proc)
+    {
+        sawmill.Info($"Assembled UXN program defered");
+        if (!_entMan.TryGetComponent<UxnComponent>(Entity, out var uxnComponent))
+            return; //entity no longer has UxnComponent. so uhh now what...
+        var dev = proc.Devices[0x1];
+        if (dev is not FakeStdioDevice)
+            return;
+
+        var stdio = (dev as FakeStdioDevice)!;
+        var stdErr = stdio.FakedError;
+        uxnComponent.CompilerOutput = new string(Encoding.ASCII.GetChars([.. stdErr]));
+        _entMan.RemoveComponent<UxnAttachedComponent>(Entity);
+        if (proc.SystemDevice.Status > 0x80)
+        {
+            uxnComponent.CompiledRom = [];
+        } else
+        {
+            uxnComponent.CompiledRom = stdio.FakedOutput;
+        }
+
+        uxnComponent.AssembledSize = uxnComponent.CompiledRom.Count;
+        return;
+    }
 }

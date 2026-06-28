@@ -82,6 +82,8 @@ public sealed class FakeStdioDevice : UXNDevice
         CharCount++;
         proc.PushEvent(new StdioCharEvent(letterByte, this));
     }
+
+    public bool HasChars() => _fakedInput.Length > 0;
 }
 
 public sealed class ArgvCharEvent(byte letter, byte type) : UxnEvent

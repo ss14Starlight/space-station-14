@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Text;
 using Content.Server._Starlight.Fax;
+using Content.Server._Starlight.Time;
 using Content.Server._Starlight.UXN.Devices.Events;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Fax;
@@ -49,11 +50,13 @@ namespace Content.Server._Starlight.UXN.Devices.ComponentDevices;
 public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
 {
     private FaxSystem _fax = null!;
+    private TimeSystem _time = null!;
     private DeviceNetworkSystem _deviceNetwork = null!;
     protected override void SetupCore(EntityUid entity, FaxMachineComponent component)
     {
         var _entMan = IoCManager.Resolve<IEntitySystemManager>();
         _fax = _entMan.GetEntitySystem<FaxSystem>();
+        _time = _entMan.GetEntitySystem<TimeSystem>();
         _deviceNetwork = _entMan.GetEntitySystem<DeviceNetworkSystem>();
     } // We dont need any extra setup/information from the ent. but we do need the systems
 
@@ -119,6 +122,8 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                     [DeviceNetworkConstants.Command] = FaxConstants.FaxPrintCommand,
                     [FaxConstants.FaxPaperNameData] = name,
                     [FaxConstants.FaxPaperContentData] = contents,
+                    [FaxConstants.FaxMetaSender] = component.FaxName,
+                    [FaxConstants.FaxMetaSentAt] = GetTimeStamp(),
                 };
                 var result = _deviceNetwork.QueuePacket(Entity, component.DestinationFaxAddress, payload)? FaxDeviceStatus.Okay : FaxDeviceStatus.UnknownError;
                 deviceMem[memTarget & 0xF0] = (byte)result;
@@ -276,6 +281,13 @@ public sealed class FaxComponentDevice : ComponentUxnDevice<FaxMachineComponent>
                 )
             )
          );
+    }
+
+    private string GetTimeStamp()
+    {
+        var date = _time.GetDate();
+        var time = _time.GetShiftDuration();
+        return string.Format($"{date} {time:hh\\:mm}");
     }
 }
 

@@ -17,4 +17,13 @@ public sealed partial class UxnAttachedComponent : Component
 
     [ViewVariables, AutoPausedField]
     public TimeSpan? DelayExecution = null;
+
+    /// <summary>
+    /// a LocId that has "Running" ("true" or "false) and "instrs" passed as variables.
+    /// </summary>
+    [DataField]
+    public LocId AttachedMessage = "uxn-attached-examine";
+
+    [DataField]
+    public bool Removable = true;
 }

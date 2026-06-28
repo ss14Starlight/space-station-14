@@ -3,6 +3,8 @@ uxn-attached-examine = This device has a UXN attached. It is {$running ->
     *[false] {"[color=red]Not Running[/color]"}
 } and has ran {$instrs} instructions
 
+uxn-attached-self = The chip is compiling a program! and has ran {$instrs} instructions
+
 uxn-component-examine =
     A small counter reads {$assembledSize}, And a tiny screen reads:
     {$compilerOutput}

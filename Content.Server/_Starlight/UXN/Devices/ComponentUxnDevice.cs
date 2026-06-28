@@ -1,10 +1,13 @@
 ﻿namespace Content.Server._Starlight.UXN.Devices;
 
-public abstract class ComponentUxnDevice<T> : UXNDevice where T : IComponent
+public abstract partial class ComponentUxnDevice<T> : UXNDevice where T : IComponent
 {
-    [Dependency] protected readonly IEntitySystemManager _entSysMan = default!;
+    [Dependency] protected IEntitySystemManager _entSysMan = default!;
     public ComponentUxnDevice() => IoCManager.InjectDependencies(this);
-    public virtual string Id => typeof(T).Name[..^"Component".Length];
+    /// <summary>
+    /// this should always be lowercase
+    /// </summary>
+    public virtual string Id => typeof(T).Name[..^"Component".Length].ToLower();
 
     protected Entity<T> Entity;
 
