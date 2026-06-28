@@ -36,15 +36,12 @@ public sealed class CharacterSelectionTest
       max: 10
   - type: AntagSelection
     antags:
-    - !type:AllSelector
-      antag: !type:Antag
-        prefRoles: [ Traitor ]
-        blacklist:
-          components:
-          - AntagImmune
-        lateJoinAdditional: true
-        mindRoles:
-        - MindRoleTraitor
+    - !type:LinearAntagCount
+      proto: Traitor
+      playerRatio: 1
+      range:
+        min: 1
+        max: 99
 
 - type: gamePreset
   id: {TraitorsMode}
