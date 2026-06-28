@@ -5,8 +5,10 @@
   - type: GameRule
     minPlayers: 15 # Realistically you won't get many good gamemodes rolling with less than 15 players.
   - type: DynamicRule
-    startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags.
+    startingBudgetMin: 250 # 200's a bit too low, can't even roll most minor antags alongside anything but traitor.
     startingBudgetMax: 550
+    maxRuleInterval: 1500
+    minRuleInterval: 900
     table: !type:AllSelector
       children:
       # Major Rules
@@ -202,19 +204,19 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1500 # 25 minutes
         - id: DragonSpawn
           weight: 15
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1800 # 30 minutes
         - id: NinjaSpawn
           weight: 20
           conditions:
           - !type:HasBudgetCondition
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1800 # 30 minutes
         - id: ParadoxCloneSpawn
           weight: 20
           conditions:
@@ -222,7 +224,7 @@
           - !type:MaxRuleOccurenceCondition
             max: 2 # We don't want this showing up too often as it's got high weight and isn't that interesting, so only 2.
           - !type:RoundDurationCondition
-            min: 600 # 10 minutes
+            min: 1200 # 20 minutes
         - id: ParadoxCrisisSpawn
           weight: 10
           conditions:
@@ -230,7 +232,7 @@
           - !type:MaxRuleOccurenceCondition
             max: 2
           - !type:RoundDurationCondition
-            min: 1200 # 20 minutes
+            min: 1800 # 30 minutes
         - id: LoneOpsSpawn
           weight: 5
           conditions:
@@ -238,7 +240,7 @@
           - !type:PlayerCountCondition
             min: 20
           - !type:RoundDurationCondition
-            min: 2100 # 35 minutes
+            min: 3300 # 55 minutes
         - id: WizardSpawn
           weight: 1
           conditions:
@@ -247,14 +249,6 @@
             min: 40
           - !type:RoundDurationCondition
             min: 1800 # 30 minutes
-        - id: SubXenoborgs
-          weight: 1
-          conditions:
-          - !type:HasBudgetCondition
-          - !type:PlayerCountCondition
-            min: 40
-          - !type:RoundDurationCondition
-            min: 2700 # 45 minutes
         - id: AbductorsSpawn
           weight: 15
           conditions:
@@ -270,4 +264,4 @@
           - !type:PlayerCountCondition
             min: 20
           - !type:RoundDurationCondition
-            min: 600 # 10 minutes
+            min: 900 # 15 minutes
