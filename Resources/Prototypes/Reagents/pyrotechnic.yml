@@ -59,7 +59,6 @@
   flavor: bitter
   color: "#FA00AF"
   flammability: 4 # Funky change
-  selfOxidizing: true # Funky change
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 5
