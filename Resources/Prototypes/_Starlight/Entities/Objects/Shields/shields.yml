@@ -402,7 +402,7 @@
       tags:
         - Shield
     - type: Pierceable
-      level: Metal
+      level: HardenedMetal
 
 - type: entity
   name: greenlight shield
