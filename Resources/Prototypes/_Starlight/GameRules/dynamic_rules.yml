@@ -240,7 +240,7 @@
           - !type:PlayerCountCondition
             min: 20
           - !type:RoundDurationCondition
-            min: 3300 # 55 minutes
+            min: 3000 # 50 minutes
         - id: WizardSpawn
           weight: 1
           conditions:
@@ -265,3 +265,11 @@
             min: 20
           - !type:RoundDurationCondition
             min: 900 # 15 minutes
+        - id: EeepEvent
+          weight: 1
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:PlayerCountCondition
+            min: 30
+          - !type:RoundDurationCondition
+            min: 1200 # 20 minutes
