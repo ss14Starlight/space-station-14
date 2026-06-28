@@ -123,10 +123,12 @@ public sealed class StationJobsTest
         var allSessions = tideSessions.Concat(capSessions).ToList();
         var allNetIds = allSessions.Select(s => s.UserId).ToHashSet();
 
-        var dummies = await server.AddDummySessions(TotalPlayers);
+        //var dummies = await server.AddDummySessions(TotalPlayers); // Starlight
         await server.WaitAssertion(() =>
         {
-            var fakePlayers = new Dictionary<NetUserId, HumanoidCharacterProfile>(TotalPlayers);
+            #region Starlight
+            // Not using this
+            /*var fakePlayers = new Dictionary<NetUserId, HumanoidCharacterProfile>(TotalPlayers);
             var i = 0;
             foreach (var dummy in dummies)
             {
@@ -142,7 +144,8 @@ public sealed class StationJobsTest
                     fakePlayers.AddJob(dummy, "TCaptain"); // Starlight
                 }
             }
-            Assert.That(fakePlayers, Is.Not.Empty);
+            Assert.That(fakePlayers, Is.Not.Empty);*/
+            #endregion
 
             var start = new Stopwatch();
             start.Start();
@@ -278,10 +281,12 @@ public sealed class StationJobsTest
     }
 }
 
-internal static class JobExtensions
+#region Starlight
+// We don't use this, so it's a waste of code.
+/*internal static class JobExtensions
 {
-    #region Starlight
-    /*public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
+
+    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium,
         int amount = 1)
     {
@@ -291,40 +296,14 @@ internal static class JobExtensions
         }
 
         return inp;
-    }*/
-    // Our job selection is arranged differently than Wizden's
-    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
-        this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
-        ICommonSession player,
-        string jobId)
-    {
-        inp.Add(
-            player.UserId,
-            HumanoidCharacterProfile.Random()
-                .WithJob(jobId)
-                .AsEnabled());
-
-        return inp;
     }
 
     /*public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
     {
         return inp.ToDictionary(x => x.Key, x => x.Value.WithJob(jobId).WithJobPriority(jobId, prio));
-    }*/
-    // Our preference selection is arranged differently than Wizden's due to multislot
-    public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
-     this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
-     string jobId)
-     {
-        foreach (var (player, profile) in inp.ToArray())
-        {
-            inp[player] = profile.WithJob(jobId);
-            }
-
-        return inp;
     }
-    #endregion
+
 
     public static Dictionary<NetUserId, HumanoidCharacterProfile> WithPlayers(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp,
@@ -332,4 +311,5 @@ internal static class JobExtensions
     {
         return new[] { inp, second }.SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value);
     }
-}
+}*/
+#endregion
