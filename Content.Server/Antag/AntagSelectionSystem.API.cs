@@ -12,6 +12,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Shared.Preferences; // Starlight
 
 namespace Content.Server.Antag;
 
@@ -552,10 +553,14 @@ public sealed partial class AntagSelectionSystem
         if (!_pref.TryGetCachedPreferences(session.UserId, out var prefs))
             yield break;
 
-        foreach (var antag in prefs.SelectedCharacter.AntagPreferences)
+        foreach (var antag in prefs.Characters.Values // Starlight start
+                    .OfType<HumanoidCharacterProfile>()
+                    .Where(profile => profile.Enabled)
+                    .SelectMany(profile => profile.AntagPreferences)
+                    .Distinct()) // Starlight end
         {
             // We also check this in IsSessionValid, but we also check it here since this is public API.
-            if (_ban.IsRoleBanned(session, antag) || !_playTime.IsAllowed(session, antag))
+            if (_ban.IsRoleBanned(session, [antag]) || !_playTime.IsAllowed(session, antag)) // Starlight, roleban needs lists now
                 continue;
 
             if (filter != null && !filter.Contains(antag))

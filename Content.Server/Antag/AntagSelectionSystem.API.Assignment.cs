@@ -185,7 +185,7 @@ public sealed partial class AntagSelectionSystem
         if (HasComp<GhostComponent>(uid))
             return false;
 
-        if (!def.AllowNonHumans && !HasComp<HumanoidProfileComponent>(uid))
+        if (!def.AllowNonHumans && !HasComp<HumanoidAppearanceComponent>(uid)) // Starlight, non-humans not allowed, at least at this time
             return false;
 
         return true;
