@@ -1,1 +1,1 @@
-roles-samurai-ghost-role-name = Samurai
+samurai-ghost-role-name = Samurai
