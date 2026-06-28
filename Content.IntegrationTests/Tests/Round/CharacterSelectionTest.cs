@@ -25,6 +25,15 @@ public sealed class CharacterSelectionTest
 
     [TestPrototypes]
     private static readonly string Prototypes = $@"
+- type: entity
+  parent: BaseTraitorRule
+  id: {TraitorsMode}
+  components:
+  - type: GameRule
+    minPlayers: 0
+    delay:
+      min: 5
+      max: 10
   - type: AntagSelection
     antags:
     - !type:AllSelector
