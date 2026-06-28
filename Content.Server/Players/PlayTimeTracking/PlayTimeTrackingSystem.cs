@@ -21,10 +21,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-#region NullLink
-using Content.Server._NullLink.PlayerData;
-#endregion
-
 namespace Content.Server.Players.PlayTimeTracking;
 
 /// <summary>
@@ -217,22 +213,6 @@ public sealed partial class PlayTimeTrackingSystem : EntitySystem
             {
                 playTimes = outPlayTimes;
             }
-
-            // NullLink-start
-
-            if (_tracking.TryGetTrackerTimes(player, out var rolePlayTime))
-            {
-                playTimes ??= new Dictionary<string, TimeSpan>();
-
-                foreach (var (role, time) in rolePlayTime)
-                {
-                    playTimes[role] = playTimes.TryGetValue(role, out var existing)
-                        ? existing + time
-                        : time;
-                }
-            }
-
-            // NullLink-end
         }
         return playTimes;
     }
