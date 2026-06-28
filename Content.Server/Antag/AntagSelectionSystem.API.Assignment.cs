@@ -175,6 +175,9 @@ public sealed partial class AntagSelectionSystem
     public bool IsEntityValid([NotNullWhen(true)] EntityUid? uid, AntagSpecifierPrototype def)
     {
         // If the player has not spawned in as any entity (e.g., in the lobby), they can be given an antag role/entity.
+        if (uid is null) // Starlight
+            return true; // Starlight
+
         if (!_whitelist.CheckBoth(uid, def.Blacklist, def.Whitelist))
             return false;
 
