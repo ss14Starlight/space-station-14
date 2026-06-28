@@ -1,20 +1,6 @@
 Entries:
 - author: wonderfulnewworld, Princess Gurchi
   changes:
-  - message: Protogen tails now correctly make the thump sound.
-    type: Fix
-  id: 405872
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Resomi use the base Resomi Gasp, Deathgasp, Sigh, Cough, and Yawn.
-    type: Fix
-  id: 405873
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
   - message: All Protogen can now get hand implants.
     type: Fix
   id: 405874
@@ -2799,4 +2785,18 @@ Entries:
   id: 406271
   time: '2026-06-28T10:01:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4923
+- author: mikeysaurus
+  changes:
+  - message: The "Toggle All" button in the "Mute TTS Channels" UI now properly mutes all TTS Streams.
+    type: Fix
+  id: 406272
+  time: '2026-06-28T15:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4939
+- author: mikeysaurus
+  changes:
+  - message: Alphabetically organizes the list of radio channels in the "Mute TTS Channels" UI.
+    type: Tweak
+  id: 406273
+  time: '2026-06-28T15:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4939
 Order: -1
