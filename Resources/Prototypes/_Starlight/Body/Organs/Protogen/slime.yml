@@ -2,6 +2,7 @@
   id: SentientProtoSlimeCore
   parent: SentientSlimeCore
   name: augmented sentient slime core
+  suffix: Proto-Slime
   description: "The source of incredible, unending gooeyness."
   components:
     - type: Stomach
@@ -31,6 +32,7 @@
   id: OrganProtoSlimeHeart
   parent: OrganSlimeHeart
   name: augmented slime circulator
+  suffix: Proto-Slime
   description: "A little circulator what makes the fluid move through the slime body."
   components:
   - type: Metabolizer
@@ -54,6 +56,7 @@
   id: OrganProtoSlimeLungs
   parent: OrganSlimeLungs
   name: augmented slime gas sacs
+  suffix: Proto-Slime
   description: "Collects nitrogen, which slime cells use for maintenance."
   components:
   - type: OrganDamage
@@ -68,6 +71,7 @@
   id: OrganProtoSlimePeepoids
   parent: OrganSlimePeepoids
   name: augmented peepoids
+  suffix: Proto-Slime
   description: "Primitive and goopy, but more or less just as good as the human equivalent."
   components:
   - type: Sprite
@@ -93,6 +97,7 @@
   id: OrganProtoSlimeSlurpoid
   parent: OrganSlimeSlurpoid
   name: augmented slurpoid
+  suffix: Proto-Slime
   description: "It has all the consistency of gelatin."
   components:
   - type: Sprite

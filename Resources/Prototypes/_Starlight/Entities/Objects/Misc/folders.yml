@@ -237,6 +237,11 @@
   suffix: White, Product Orders
 
 - type: entity
+  parent: [BoxFolderBlackEmpty, BoxFolderFillMorgueReport]
+  id: BoxFolderBlackMorgue
+  suffix: Black, Morgue DNR Reports
+
+- type: entity
   abstract: true
   id: BoxFolderFillProductOrder # For cargo locker folders
   suffix: Product Orders
@@ -246,6 +251,18 @@
       storagebase: !type:AllSelector
         children:
         - id: PrintedDocumentProductOrder
+          amount: 18
+
+- type: entity
+  abstract: true
+  id: BoxFolderFillMorgueReport # For morgue locker folders
+  suffix: Morgue DNR Reports
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PrintedDocumentReportMorgue
           amount: 18
 
 - type: entity

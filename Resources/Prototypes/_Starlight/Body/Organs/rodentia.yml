@@ -1,7 +1,7 @@
 - type: entity
   id: OrganRodentiaEyes
   parent: OrganHumanEyes
-  name: eyes
+  name: rodentia eyes
   suffix: Rodentia
   description: "The beady eyes of a Rodentia."
   components:
@@ -13,7 +13,7 @@
 - type: entity
   id: OrganRodentiaStomach
   parent: OrganHumanStomach
-  name: stomach
+  name: rodentia stomach
   suffix: Rodentia
   description: "The resistant stomach of a Rodentia."
   components:
@@ -23,7 +23,7 @@
 - type: entity
   id: OrganRodentiaHeart
   parent: OrganHumanHeart
-  name: heart
+  name: rodentia heart
   suffix: Rodentia
   description: "The animal-like heart of a Rodentia."
   components:
