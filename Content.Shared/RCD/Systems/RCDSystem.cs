@@ -53,6 +53,7 @@ public sealed partial class RCDSystem : EntitySystem
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private TileSystem _tile = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private SharedMapSystem _mapSystem = default!;
