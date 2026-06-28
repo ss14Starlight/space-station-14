@@ -38,7 +38,7 @@
     mask: ClothingMaskGasGSO
     belt: ClothingBeltGreenshieldFilled
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponSubMachineGunWt550f
+    suitstorage: WeaponSubMachineGunWt550g
     pocket1: WeaponEnergyMagnumGunGreenshield
     pocket2: GreenLightShield
 
@@ -57,7 +57,7 @@
     head: ClothingHeadHelmetGreenshield
     belt: ClothingBeltGreenshieldFilled
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponSubMachineGunWt550f
+    suitstorage: WeaponSubMachineGunWt550g
     pocket1: WeaponEnergyMagnumGunGreenshield
     pocket2: GreenLightShield
 
@@ -75,7 +75,7 @@
     mask: ClothingMaskGasGSO
     belt: ClothingBeltGreenshieldFilled
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponSubMachineGunWt550f
+    suitstorage: WeaponSubMachineGunWt550g
     pocket1: WeaponEnergyMagnumGunGreenshield
     pocket2: GreenLightShield
   inhand:
@@ -98,7 +98,7 @@
     head: ClothingHeadHelmetGreenshield
     belt: ClothingBeltGreenshieldFilled
     gloves: ClothingHandsGlovesCombat
-    suitstorage: WeaponSubMachineGunWt550f
+    suitstorage: WeaponSubMachineGunWt550g
     pocket1: WeaponEnergyMagnumGunGreenshield
     pocket2: GreenLightShield
   inhand:
