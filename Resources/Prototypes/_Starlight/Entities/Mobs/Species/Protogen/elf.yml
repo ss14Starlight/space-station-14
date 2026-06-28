@@ -38,6 +38,7 @@
     species: ProtoElf
     hideLayersOnEquip:
     - Hair
+    - Snout
   - type: Inventory
     templateId: protogen
     femaleDisplacements:

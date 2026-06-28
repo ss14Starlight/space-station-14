@@ -178,7 +178,7 @@ public sealed partial class CrayonSystem : SharedCrayonSystem
 
     private void OnGotEquipped(EntityUid uid, CrayonComponent component, ref GotEquippedEvent args)
     {
-        if (_handsSystem.GetActiveItem(args.Equipee) != uid)
+        if (_handsSystem.GetActiveItem(args.EquipTarget) != uid)
             return;
         SetPreviewVisible(uid, component, true);
     }

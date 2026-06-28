@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Urist McHands The Proto-Dwarf
+  name: Urist McHandster The Proto-Dwarf
   parent: [BaseMobProtogen, BaseSpeciesPickupable]
   id: BaseMobProtoDwarf
   abstract: true
@@ -55,6 +55,7 @@
     species: ProtoDwarf
     hideLayersOnEquip:
     - Hair
+    - Snout
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
