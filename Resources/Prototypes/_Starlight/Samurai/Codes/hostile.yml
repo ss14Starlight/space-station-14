@@ -1,6 +1,6 @@
 # The base samurai honour codes
 
-# Make sure to add new moods to this dataset or they will not be selected!!!!!!
+# Make sure to add new codes to this dataset or they will not be selected!!!!!!
 - type: dataset
   id: SamuraiCodesHostile
   values:

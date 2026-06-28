@@ -1,6 +1,6 @@
 # The base samurai honour codes
 
-# Make sure to add new moods to this dataset or they will not be selected!!!!!!
+# Make sure to add new codes to this dataset or they will not be selected!!!!!!
 - type: dataset
   id: SamuraiCodesBase
   values:
@@ -13,43 +13,36 @@
     - Cleanliness
 
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Hierarchy
   codeName: samurai-code-hierarchy-name
   codeDesc: samurai-code-hierarchy-desc
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Mercy
   codeName: samurai-code-mercy-name
   codeDesc: samurai-code-mercy-desc
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Polite
   codeName: samurai-code-polite-name
   codeDesc: samurai-code-polite-desc
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Law
   codeName: samurai-code-law-name
   codeDesc: samurai-code-law-desc
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Charity
   codeName: samurai-code-charity-name
   codeDesc: samurai-code-charity-desc
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Restraint
   codeName: samurai-code-restraint-name
   codeDesc: samurai-code-restraint-desc
 
-# Your Moods are a strictly-kept secret, and should never be revealed to anyone.
 - type: samuraiCode
   id: Cleanliness
   codeName: samurai-code-cleanliness-name

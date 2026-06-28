@@ -16,7 +16,16 @@
       "copyright": "Swonkus"
     },
     {
+      "name": "electrodachi_nocell",
+      "copyright": "Swonkus"
+    },
+    {
       "name": "equipped-BACKPACK",
+      "directions": 4,
+      "copyright": "Swonkus"
+    },
+    {
+      "name": "equipped-SUITSTORAGE",
       "directions": 4,
       "copyright": "Swonkus"
     },

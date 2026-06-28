@@ -112,4 +112,5 @@
 
 - type: playTimeTracker
   id: AntagSamurai
-  name: roles-antag-samurai-name
+  name: samurai-ghost-role-name
+
