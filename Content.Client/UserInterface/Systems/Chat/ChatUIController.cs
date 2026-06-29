@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
@@ -399,9 +399,16 @@ public sealed partial class ChatUIController : UIController
     private void FocusChannel(ChatSelectChannel channel)
     {
         // Starlight BEGIN
-        // We added the "MainChannel" property to fix the achatwindow not being prioritized.
-        // This code was altered to prioritize a chat box whose MainChannel == channel.
-        // If no such chat box is found, whichever chat box is Main (default) is used.
+        /*
+            We added the "MainChannel" property to fix the admin chat window not being prioritized
+            when the admin chat hotkey was pressed. This code was altered to prioritize a chat box
+            whose MainChannel == channel. If no such chat box is found, whichever chat box is
+            Main (the 'default' chat box) is used.
+
+            Note, I also tried to use the active chat filters to determine which box to select,
+            but it seems there's several boxes in the background that break this, so I opted
+            for this simpler approach of just having one "MainChannel".
+        */
         ChatBox? fallback = null;
         foreach (var chat in _chats)
         {
