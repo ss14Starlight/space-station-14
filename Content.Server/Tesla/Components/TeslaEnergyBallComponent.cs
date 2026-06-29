@@ -32,7 +32,7 @@ public sealed partial class TeslaEnergyBallComponent : Component
     /// The amount of energy to which the tesla must reach in order to be destroyed.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float EnergyToDespawn = -300f; #Starlight, original was 100
+    public float EnergyToDespawn = -300f; // Starlight, original was 100
 
     /// <summary>
     /// Played when energy reaches the lower limit (and entity destroyed)
