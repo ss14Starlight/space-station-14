@@ -43,6 +43,8 @@
   - type: Body
     prototype: ProtoDiona
     requiredLegs: 2
+  - type: BodyEmotes
+    soundsId: DionaBodyEmotes
   - type: Damageable
     damageContainer: Hybrid
     damageModifierSet: ProtoDiona

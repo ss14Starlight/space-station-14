@@ -1,6 +1,7 @@
 - type: entity
   parent: BaseStructureComputer
   id: nctterminal
+  categories: [ ShouldMapStation ]
   name: NCT Dispatch
   description: Contact NCT Dispatch for assistance.
   placement:
