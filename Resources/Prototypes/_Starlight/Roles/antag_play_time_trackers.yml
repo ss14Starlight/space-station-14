@@ -48,7 +48,7 @@
 
 - type: playTimeTracker
   id: AntagVampire
-  name: roles-antag-vamire-name
+  name: roles-antag-vampire-name
 
 - type: playTimeTracker
   id: AntagSurvivor

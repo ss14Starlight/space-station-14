@@ -58,28 +58,7 @@
   - type: DynamicRuleCost
     cost: 75
 
-#Subgamemode variant of vamps. There's less of them.
-- type: entity
-  parent: Vampire
-  id: VampireLess
-  components:
-  - type: VampireRule
-  - type: AntagSelection
-    agentName: vampire-roundend-name
-    definitions:
-    - prefRoles: [ Vampire ]
-      max: 6 # Starlight. Accounting for scaling. Not as many as the full gamemode.
-      playerRatio: 28 # Starlight. Scales similar to the other common sub-antags.
-      lateJoinAdditional: true
-      allowNonHumans: True
-      multiAntagSetting: None
-      mindRoles:
-      - MindRoleVampire
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-  - type: DynamicRuleCost
-    cost: 60
+
     # Starlight-end
 
 
@@ -109,32 +88,6 @@
         - CantBecomeRevolutionary
   - type: DynamicRuleCost
     cost: 70
-
-- type: entity
-  parent: Traitor
-  id: SubTraitor
-  components:
-  - type: GameRule
-    minPlayers: 5
-    delay:
-      min: 240
-      max: 420
-  - type: AntagRandomObjectives
-    sets:
-    - groups: SubTraitorObjectiveGroups
-    maxDifficulty: 4 # Less intrusive traitors.
-  - type: AntagSelection
-    definitions:
-    - prefRoles: [ Traitor ]
-      max: 6 # Starlight. Less intrusive traitors.
-      playerRatio: 21 # Starlight. Less intrusive traitors.
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: false
-      allowNonHumans: true
-      mindRoles:
-      - MindRoleTraitor
 
 - type: entity
   parent: BaseGameRule

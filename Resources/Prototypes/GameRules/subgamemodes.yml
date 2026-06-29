@@ -55,38 +55,6 @@
     cost: 75
       # Starlight-end
 
-- type: entity
-  parent: BaseGameRule
-  id: Vampire
-  components:
-  - type: VampireRule
-  - type: AntagObjectives
-    objectives:
-    - VampireKillRandomPersonObjective
-    - VampireDrainObjective
-  - type: AntagRandomObjectives
-    sets:
-    - groups: VampireObjectiveGroupsStateOnly
-      maxPicks: 1
-    - groups: VampireObjectiveGroupsStealOnly
-      maxPicks: 1
-    maxDifficulty: 10
-  - type: AntagSelection
-    agentName: vampire-roundend-name
-    definitions:
-    - prefRoles: [ Vampire ]
-      max: 10 # Starlight. Full gamemode Vamps scale higher to account for scaling.
-      playerRatio: 20 # Starlight. Accounting for scaling. This is for the full vampire gamemode, so it can keep this value.
-      lateJoinAdditional: true
-      allowNonHumans: True
-      multiAntagSetting: None
-      mindRoles:
-      - MindRoleVampire
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary # Same as lings, would be too strong.
-    # Starlight-end
-
 # Needs testing
 - type: entity
   parent: BaseWizardRule

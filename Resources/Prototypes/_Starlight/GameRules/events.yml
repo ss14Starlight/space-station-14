@@ -77,32 +77,6 @@
             - CantBecomeRevolutionary
           # Starlight-end
 
-# Roundender-less events table for survival
-- type: entityTable
-  id: BasicAntagEventsTableNoRoundenders
-  table:
-    !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - id: ClosetSkeleton
-      - id: DragonSpawn
-      - id: KingRatMigration
-      - id: NinjaSpawn
-      - id: ParadoxCloneSpawn
-      - id: ParadoxCrisisSpawn # Starlight
-      - id: RevenantSpawn
-      - id: SleeperAgents
-      #    - id: ZombieOutbreak
-      - id: LoneOpsSpawn
-      - !type:NestedSelector
-        tableId: DerelictBorgEventTable
-      - id: WizardSpawn
-      - id: SubXenoborgs # Starlight, make it spawn sub instead
-      - id: EeepEvent # imp
-      # Starlight gamerules:
-      - id: AbductorsSpawn
-      - id: RailroadingTerminator
-      - id: Brighteye
-
 - type: entity
   parent: BaseGameRule
   id: DerelictBorgiSpawn
@@ -245,7 +219,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgHeavyDerelictSpawn
+  id: DerelictHeavyXenoborgSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
@@ -257,10 +231,10 @@
     - type: SpaceSpawnRule
       spawnDistance: 0
     - type: AntagSpawner
-      prototype: PlayerXenoBorgHeavyDerelictGhostRole
+      prototype: PlayerDerelictHeavyXenoborgGhostRole
     - type: AntagSelection
       definitions:
-        - spawnerPrototype: SpawnPointGhostXenoBorgHeavyDerelict
+        - spawnerPrototype: SpawnPointGhostDerelictHeavyXenoborg
           min: 1
           max: 2
           playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
@@ -268,7 +242,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgEngiDerelictSpawn
+  id: DerelictEngiXenoborgSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
@@ -280,10 +254,10 @@
     - type: SpaceSpawnRule
       spawnDistance: 0
     - type: AntagSpawner
-      prototype: PlayerXenoBorgEngiDerelictGhostRole
+      prototype: PlayerDerelictEngiXenoborgGhostRole
     - type: AntagSelection
       definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgEngiDerelict
+        - spawnerPrototype: SpawnPointGhostDerelictEngiXenoborg
           min: 1
           max: 2
           playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
@@ -291,7 +265,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgScoutDerelictSpawn
+  id: DerelictScoutXenoborgSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
@@ -303,10 +277,10 @@
     - type: SpaceSpawnRule
       spawnDistance: 0
     - type: AntagSpawner
-      prototype: PlayerXenoborgScoutDerelictGhostRole
+      prototype: PlayerDerelictScoutXenoborgGhostRole
     - type: AntagSelection
       definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgScoutDerelict
+        - spawnerPrototype: SpawnPointGhostDerelictScoutXenoborg
           min: 1
           max: 2
           playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
@@ -314,7 +288,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgStealthDerelictSpawn
+  id: DerelictStealthXenoborgSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
@@ -326,10 +300,10 @@
     - type: SpaceSpawnRule
       spawnDistance: 0
     - type: AntagSpawner
-      prototype: PlayerXenoborgStealthDerelictGhostRole
+      prototype: PlayerDerelictStealthXenoborgGhostRole
     - type: AntagSelection
       definitions:
-        - spawnerPrototype: SpawnPointGhostXenoborgStealthDerelict
+        - spawnerPrototype: SpawnPointGhostDerelictStealthXenoborg
           min: 1
           max: 2
           playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
@@ -337,7 +311,7 @@
 
 - type: entity
   parent: BaseGameRule
-  id: XenoBorgiDerelictSpawn
+  id: DerelictXenoBorgiSpawn
   components:
     - type: StationEvent
       globalAnnouncement: false # Starlight
@@ -349,10 +323,10 @@
     - type: SpaceSpawnRule
       spawnDistance: 0
     - type: AntagSpawner
-      prototype: PlayerXenoBorgiDerelictGhostRole
+      prototype: PlayerDerelictXenoBorgiGhostRole
     - type: AntagSelection
       definitions:
-        - spawnerPrototype: SpawnPointGhostXenoBorgiDerelict
+        - spawnerPrototype: SpawnPointGhostDerelictXenoBorgi
           min: 1
           max: 2
           playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
