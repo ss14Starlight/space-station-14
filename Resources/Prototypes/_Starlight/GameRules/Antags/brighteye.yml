@@ -41,7 +41,7 @@
         max: 3
 
 - type: entity
-  parent: [BaseBrighteyeRule, BaseAntagGhostRule]
+  parent: [BaseBrighteyeRule, BaseAntagGhostRoleRule]
   id: BrighteyeSpawn
   components:
   - type: StationEvent
