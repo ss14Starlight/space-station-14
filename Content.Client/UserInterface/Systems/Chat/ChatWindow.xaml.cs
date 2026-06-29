@@ -43,7 +43,7 @@ public sealed partial class ChatWindow : PopOutFancyWindow // Starlight: PopOutF
     public void ConfigureForAdminChat()
     {
         Chatbox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Admin);
-        Chatbox.MainChannel = ChatSelectChannel.Admin;
+        Chatbox.MainChannel = ChatSelectChannel.Admin; // Starlight
 
         var filter = Chatbox.ChatInput.FilterButton.Popup;
         foreach (var c in Enum.GetValues(typeof(ChatChannel)))
