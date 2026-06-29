@@ -1437,6 +1437,8 @@
   loadouts:
   - WardenJumpsuit
   - WardenJumpskirt
+  - ClothingUniformJumpsuitFormalWarden #starlight
+  - ClothingUniformJumpskirtFormalWarden #starlight
 
 
 - type: loadoutGroup
@@ -1468,6 +1470,7 @@
   - SecurityBeret
   - SecurityHat
   - TrooperHat
+  - DeputyHat # starlight
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -1482,6 +1485,12 @@
   - TrooperUniform
   - SecurityJumpsuitBlue
   - SecurityJumpskirtBlue # starlight start
+  - FormalOfficerJumpsuit
+  - FormalOfficerJumpskirt
+  - FormalSeniorOfficerJumpsuit
+  - FormalSeniorOfficerJumpskirt
+  - DeputyFormalJumpskirt
+  - DeputyFormalJumpsuit
   - SecurityTshirt # starlight end
 
 - type: loadoutGroup

@@ -405,7 +405,7 @@
       level: HardenedMetal
 
 - type: entity
-  name: greenlight shield
+  name: X-03 green phase shield
   parent: [BaseItem, BaseCentcommContraband ]
   id: GreenLightShield
   categories: [ DoNotMap ]
@@ -442,24 +442,24 @@
     - type: Item
       size: Small
       sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
-      heldPrefix: greenlight_shield-off
+      heldPrefix: off
     - type: UseDelay
       delay: 0.5
     - type: ToggleableVisuals
       spriteLayer: shield
       inhandVisuals:
         left:
-          - state: greenlight_shield-on-inhand-left
+          - state: on-inhand-left
             shader: unshaded
         right:
-          - state: greenlight_shield-on-inhand-right
+          - state: on-inhand-right
             shader: unshaded
     - type: ItemTogglePointLight
     - type: Reflect
-      reflectProb: 0.50
+      reflectProb: 0.10
       reflects:
         - Energy
-      reflectEnergyDraw: 80 # final stat TBD
+      reflectEnergyDraw: 80
     - type: Appearance
     - type: PointLight
       netsync: false
@@ -467,7 +467,7 @@
       radius: 2
       energy: 3
       color: "#439909"
-      castShadows: false #SL lighting optimization
+      castShadows: false
     - type: PowerCellSlot
       cellSlotId: cell_slot
     - type: ItemSlots
@@ -479,29 +479,34 @@
     - type: ForceQuickDraw
     - type: ToggleCellDraw
     - type: PowerCellDraw
-      drawRate: 2  # watts while active # final stat TBD
-    - type: Blocking # Stats TBD
+      drawRate: 2  # watts while active
+    - type: Blocking
       passiveBlockModifier:
         coefficients:
           Blunt: 1.0
-          Slash: 0.9
+          Slash: 0.8
           Piercing: 0.85
           Heat: 0.6
       activeBlockModifier:
         coefficients:
-          Blunt: 1.2
-          Slash: 0.85
+          Blunt: 0.95
+          Slash: 0.75
           Piercing: 0.5
           Heat: 0.4
         flatReductions:
           Heat: 1
           Piercing: 1
-      damageEnergyDraw: 10 #Final stat STB
+      damageEnergyDraw: 4
     - type: Damageable
       damageContainer: Shield
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
 
 - type: entity
   parent: BaseShield
