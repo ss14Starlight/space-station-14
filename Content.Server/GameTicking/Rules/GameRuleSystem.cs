@@ -33,53 +33,6 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
     }
 
-    private void OnStartAttempt(RoundStartAttemptEvent args)
-    {
-        if (args.Forced || args.Cancelled)
-            return;
-
-        var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out var rule, out var gameRule)) // Starlight, need to out a rule here because of Terror Spiders overwriting it
-        {
-            var minPlayers = gameRule.MinPlayers;
-            var name = ToPrettyString(uid);
-
-            var effectivePlayers = GameTicker.GetEffectivePlayerCount(args.Players.Length); // Starlight
-            if (effectivePlayers >= minPlayers) // Starlight
-                continue;
-
-            // Starlight-start
-            if (!CanStartRule(uid, rule, gameRule, args, out var reason))
-            {
-                Chat.SendAdminAnnouncement(
-                    Loc.GetString("preset-cant-start", ("reason", reason)),
-                    null,
-                    null);
-                args.Cancel();
-                Log.Info($"Rule '{name}' can't start with reason: {reason}");
-            }
-            // Starlight-end
-
-            if (gameRule.CancelPresetOnTooFewPlayers)
-            {
-                Chat.SendAdminAnnouncement( // Starlight start
-                    Loc.GetString("preset-not-enough-ready-players-sl",
-                        ("readyPlayersCount", effectivePlayers),
-                        ("minimumPlayers", minPlayers),
-                        ("presetName", name)),
-                    null,
-                    null); // Starlight end
-                args.Cancel();
-                //TODO remove this once announcements are logged
-                Log.Info($"Rule '{name}' requires {minPlayers} players, but only {effectivePlayers} are effectively ready."); // Starlight
-            }
-            else
-            {
-                ForceEndSelf(uid, gameRule);
-            }
-        }
-    }
-
     private void OnGameRuleAdded(EntityUid uid, T component, ref GameRuleAddedEvent args)
     {
         if (!GameRuleQuery.TryComp(uid, out var ruleData))

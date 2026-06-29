@@ -384,7 +384,7 @@ public sealed partial class GameTicker
 
     #region Starlight
     //Helper function for effective player count
-    public int GetEffectivePlayerCount(int activePlayers)
+    private int GetEffectivePlayerCount(int activePlayers)
     {
         var onlinePlayers = PlayerGameStatuses.Count;
 
