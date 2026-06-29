@@ -1,3 +1,4 @@
+# Tratitor
 - type: entity
   abstract: true
   parent: BaseTraitorRule

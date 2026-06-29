@@ -1,3 +1,4 @@
+# Changeling
 - type: entity
   abstract: true
   parent: BaseGameRule

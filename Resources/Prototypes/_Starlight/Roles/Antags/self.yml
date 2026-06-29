@@ -20,6 +20,18 @@
     time: 5h # Starlight
   playTimeTracker: AntagSELFAgent
 
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: SELFAgent
+  prefRoles:
+  - SELFAgent
+  allowNonHumans: true
+  blacklist:
+    components:
+    - AntagImmune
+  mindRoles:
+  - MindRoleSELFAgent
+
 - type: startingGear
   id: SELFAgentGear
   storage:

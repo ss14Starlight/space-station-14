@@ -2,6 +2,11 @@
   parent: BaseGameRule
   id: Thief
   components:
+  - type: GameRule # Starlight start
+    minPlayers: 0
+    delay:
+      min: 240 # Delay their start so there can be some calm at the start.
+      max: 420 # Starlight end
   - type: ThiefRule
 #  - type: AntagObjectives # Starlight start
 #    objectives: # We won't be using this, we'll be taking it from GroupOuter instead so we can roll for Master Thief
