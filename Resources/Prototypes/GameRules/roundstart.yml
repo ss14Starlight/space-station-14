@@ -259,7 +259,10 @@
   parent: [BaseGameRule, BaseRoundstartAntagRule]
   components:
   - type: GameRule
-    minPlayers: 25
+    minPlayers: 25 # Starlight start
+    delay: # It doesn't really make lore sense that you can "remember" you're a Changeling, but it should give everyone some calm at the start.
+      min: 240
+      max: 420 # Starlight end
   - type: AntagSelection
     agentName: changeling-round-end-agent-name
     antags:
@@ -272,6 +275,8 @@
   - type: AntagObjectives
     objectives:
     - ChangelingSurviveObjective
+  - type: DynamicRuleCost # Starlight
+    cost: 150 # Starlight
 
 - type: entity
   id: Revolutionary

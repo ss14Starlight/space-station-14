@@ -1,23 +1,10 @@
 # Changeling
-- type: entity
-  abstract: true
-  parent: BaseGameRule
-  id: BaseSLChangelingRule
-  components:
-  - type: SLChangelingRule
-  - type: DynamicRuleCost
-    cost: 150
-  - type: GameRule # It doesn't really make lore sense that you can "remember" you're a Changeling, but it should give everyone some calm at the start.
-    minPlayers: 25
-    delay:
-      min: 240
-      max: 420
-
 # Full scaling, only shows up in Traitorling and Dynamic.
 - type: entity
-  parent: [Changeling, BaseSLChangelingRule, BaseRoundstartAntagRule]
+  parent: [Changeling, BaseRoundstartAntagRule]
   id: SLChangeling
   components:
+  - type: SLChangelingRule
   - type: AntagSelection
     agentName: changeling-round-end-agent-name
     lateJoinAdditional: true
@@ -34,6 +21,11 @@
   parent: SLChangeling
   id: SLChangelingLess
   components:
+  - type: GameRule
+    minPlayers: 15
+    delay:
+      min: 240
+      max: 420
   - type: AntagSelection
     agentName: changeling-round-end-agent-name
     lateJoinAdditional: true

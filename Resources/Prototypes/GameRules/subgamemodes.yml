@@ -48,7 +48,9 @@
       playerRatio: 55
       range:
         min: 1
-        max: 4 # Starlight end
+        max: 4
+  - type: DynamicRuleCost
+    cost: 150 # Starlight end
 
 - type: entity
   parent: BaseGameRule
