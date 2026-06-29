@@ -4,7 +4,7 @@
   id: TerrorSpidersSpawn
   components:
   - type: GameRule
-    minPlayers: 40
+    minPlayers: 50
     delay:
       min: 240
       max: 420
