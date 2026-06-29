@@ -6,8 +6,8 @@
   - type: GameRule
     minPlayers: 20
     delay:
-      min: 60
-      max: 120
+      min: 240 # Starlight
+      max: 420 # Starlight
   - type: AntagObjectives
     objectives:
     - CosmicFinalityObjective

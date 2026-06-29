@@ -279,6 +279,9 @@
   components:
   - type: GameRule
     minPlayers: 15
+    delay: # Starlight start
+      min: 240 # Delay it so people can have some calm at the start.
+      max: 420 # Starlight end
   - type: RevolutionaryRule
   - type: SpecialLobbyContent
     music: "/Audio/_Starlight/Lobby/Liberation.ogg"
