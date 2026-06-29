@@ -21,21 +21,21 @@
       proto: WizardDuelistRed
     - !type:FixedAntagCount
       proto: WizardDuelistBlue
-    - !type:FixedAntagCount
-      proto: WizardDuelistPurple # Starlight start
+    - !type:LinearAntagCount # Starlight start
+      proto: WizardDuelistPurple
       playerRatio: 90 # Only spawn above 90 players.
       range:
         min: 0
         max: 1
     - !type:FixedAntagCount
       proto: WizardDuelistYellow
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount
       proto: WizardDuelistGreen
       playerRatio: 70 # Only spawn above 70 players.
       range:
         min: 0
         max: 1
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount
       proto: WizardDuelistOrange
       playerRatio: 110 # Only spawn above 110 players.
       range:
