@@ -28,33 +28,6 @@
   - type: DynamicRuleCost
     cost: 75
 
-- type: entity
-  parent: BaseGameRule
-  id: SLChangeling
-  components:
-  - type: SLChangelingRule
-  - type: AntagSelection
-    agentName: changeling-roundend-name
-    definitions:
-    - prefRoles: [ Changeling ]
-      max: 5 # Starlight, same reasoning as the roundstart changeling change, for alpha.
-      playerRatio: 32 # Starlight. You should stop seeing 6 lings all the time now.
-      lateJoinAdditional: true
-      allowNonHumans: false
-      multiAntagSetting: None
-      mindRoles:
-      - MindRoleChangeling
-      components:
-        - type: ChangelingDevour
-        - type: ChangelingIdentity
-        - type: ChangelingTransform
-      # Starlight-start
-      tags:
-        - CantBecomeRevolutionary
-  - type: DynamicRuleCost
-    cost: 75
-      # Starlight-end
-
 # Needs testing
 - type: entity
   parent: BaseWizardRule
