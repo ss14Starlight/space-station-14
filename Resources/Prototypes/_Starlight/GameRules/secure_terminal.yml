@@ -269,5 +269,5 @@
   components:
   - type: EmitSoundOnTrigger
     sound:
-    path: /Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg
+      path: /Audio/_Starlight/CosmicCult/cleanse_deconversion.ogg
   - type: TriggerOnSpawn
