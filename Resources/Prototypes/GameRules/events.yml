@@ -61,7 +61,7 @@
     - id: LoneOpsSpawn
     - id: WizardSpawn
     - id: AbductorsSpawn # Starlight
-    - id: Brighteye # Starlight
+    - id: BrighteyeSpawn # Starlight
     - id: TerrorSpidersSpawn # Starlight
     - id: EeepEvent # imp
     - !type:NestedSelector

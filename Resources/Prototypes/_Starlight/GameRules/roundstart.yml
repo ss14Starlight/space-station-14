@@ -31,7 +31,7 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
-    - id: Brighteye
+    - id: SubBrighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
       prob: 0.20
@@ -52,7 +52,7 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
-    - id: Brighteye
+    - id: SubBrighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
 
@@ -70,7 +70,7 @@
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
-    - id: Brighteye
+    - id: SubBrighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
       prob: 0.20
@@ -87,7 +87,7 @@
       prob: 0.05
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
-    - id: Brighteye
+    - id: SubBrighteye
       prob: 0.05
     - id: SiliconLiberation
       prob: 0.15
@@ -108,7 +108,7 @@
       prob: 0.20
     - id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
       prob: 0.05
-    - id: Brighteye
+    - id: SubBrighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation # I mean technically there's nothing inherently wrong with them showing up.
       prob: 0.15
