@@ -355,21 +355,13 @@ public sealed partial class GameTicker
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
+            if (!IsGameRuleAdded(uid, gameRule)) // Starlight, don't bother with rules that have been ended but not fully removed.
+                continue; // Starlight, this'll probably never come up unless you're using commands to try it to happen, since round restart would normally clear them anyway.
+
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
-            #region Starlight
-            var readyPlayers = args.Players.Length;
-            var onlinePlayers = PlayerGameStatuses.Count;
-            var effectivePlayers = readyPlayers;
-
-            // If there are at least _effectivePlayerCutoff online players, we consider some unready players as effectively ready
-            if (onlinePlayers >= _effectivePlayerCutoff)
-            {
-                var unreadyPlayers = Math.Max(0, onlinePlayers - readyPlayers);
-                effectivePlayers += (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
-            }
-            #endregion
+            var effectivePlayers = GetEffectivePlayerCount(args.Players.Length); // Starlight, get effective players
             if (effectivePlayers >= minPlayers) // Starlight, args.Players.Length -> effectivePlayers
                 continue;
 
@@ -389,6 +381,20 @@ public sealed partial class GameTicker
             }
         }
     }
+
+    #region Starlight
+    //Helper function for effective player count
+    public int GetEffectivePlayerCount(int activePlayers)
+    {
+        var onlinePlayers = PlayerGameStatuses.Count;
+
+        if (onlinePlayers < _effectivePlayerCutoff)
+            return activePlayers;
+
+        var unreadyPlayers = Math.Max(0, onlinePlayers - activePlayers);
+        return activePlayers + (int) Math.Floor(unreadyPlayers * _unreadyPlayerMultiplier);
+    }
+    #endregion
 
     #region Command Implementations
 

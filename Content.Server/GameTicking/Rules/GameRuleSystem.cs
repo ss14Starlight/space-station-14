@@ -44,7 +44,8 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 
-            if (args.Players.Length >= minPlayers)
+            var effectivePlayers = GameTicker.GetEffectivePlayerCount(args.Players.Length); // Starlight
+            if (effectivePlayers >= minPlayers) // Starlight
                 continue;
 
             // Starlight-start
@@ -62,15 +63,15 @@ public abstract partial class GameRuleSystem<T> : EntitySystem where T : ICompon
             if (gameRule.CancelPresetOnTooFewPlayers)
             {
                 Chat.SendAdminAnnouncement( // Starlight start
-                    Loc.GetString("preset-not-enough-ready-players",
-                        ("readyPlayersCount", args.Players.Length),
+                    Loc.GetString("preset-not-enough-ready-players-sl",
+                        ("readyPlayersCount", effectivePlayers),
                         ("minimumPlayers", minPlayers),
                         ("presetName", name)),
                     null,
                     null); // Starlight end
                 args.Cancel();
                 //TODO remove this once announcements are logged
-                Log.Info($"Rule '{name}' requires {minPlayers} players, but only {args.Players.Length} are ready.");
+                Log.Info($"Rule '{name}' requires {minPlayers} players, but only {effectivePlayers} are effectively ready."); // Starlight
             }
             else
             {
