@@ -6,8 +6,8 @@
   - type: SLChangelingRule
   - type: DynamicRuleCost
     cost: 150
-  - type: GameRule # It doesn't really make lore sense that you can "remember" you're a vampire, but it's a request from Conf.
-    minPlayers: 5
+  - type: GameRule # It doesn't really make lore sense that you can "remember" you're a Changeling, but it should give everyone some calm at the start.
+    minPlayers: 25
     delay:
       min: 240
       max: 420
