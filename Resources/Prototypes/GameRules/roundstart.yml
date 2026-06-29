@@ -334,6 +334,8 @@
       proto: Wizard
   - type: AntagLoadProfileRule
     speciesOverride: Human
+  - type: DynamicRuleCost # Starlight
+    cost: 150 # Starlight
 
 - type: entity
   parent: [ BaseWizardRule, BaseRoundstartAntagRule ]
