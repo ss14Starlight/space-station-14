@@ -182,8 +182,8 @@
     - map: [ "mask" ]
     - map: [ "head" ]
     - map: [ "clownedon" ]
-      sprite: "Effects/creampie.rsi"
-      state: "creampie_human"
+      sprite: "_Starlight/Effects/creampie.rsi"
+      state: "creampie_chimpken"
       visible: false
   - type: Butcherable
     butcheringType: Spike
