@@ -713,6 +713,8 @@
       collection: MonkeyScreeches
     DefaultDeathgasp:
       collection: MonkeyScreeches
+
+- type: emoteSounds
   id: LagomorphBodyEmotes
   sounds:
     LagomorphStomp:
