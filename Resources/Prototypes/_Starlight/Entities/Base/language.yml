@@ -28,6 +28,7 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
 
 - type: entity
@@ -62,6 +63,7 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
 
 - type: entity
@@ -107,6 +109,7 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
       - Xeno
       - Xenomind
@@ -143,5 +146,6 @@
       - Classical
       - Grumbakul
       - Aielic
+      - Felyaic
       - Lagomorphian
       - Xeno
