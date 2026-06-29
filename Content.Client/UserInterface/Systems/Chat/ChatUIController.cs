@@ -398,14 +398,24 @@ public sealed partial class ChatUIController : UIController
 
     private void FocusChannel(ChatSelectChannel channel)
     {
+        // Starlight BEGIN
+        // We added the "MainChannel" property to fix the achatwindow not being prioritized.
+        // This code was altered to prioritize a chat box whose MainChannel == channel.
+        // If no such chat box is found, whichever chat box is Main (default) is used.
+        ChatBox? fallback = null;
         foreach (var chat in _chats)
         {
-            if (!chat.Main)
-                continue;
+            if (chat.MainChannel == channel)
+            {
+                chat.Focus(channel);
+                return;
+            }
 
-            chat.Focus(channel);
-            break;
+            if (chat.Main)
+                fallback = chat;
         }
+        fallback?.Focus(channel);
+        // Starlight END
     }
 
     private void CycleChatChannel(bool forward)

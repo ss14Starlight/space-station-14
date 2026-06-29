@@ -26,6 +26,11 @@ public sealed partial class ChatWindow : PopOutFancyWindow // Starlight: PopOutF
         var controller = UserInterfaceManager.GetUIController<ChatUIController>();
         controller.UpdateSelectedChannel(Chatbox);
         controller.UpdateLanguageNotifier(Chatbox); // Starlight
+
+        // BaseWindow.Close() only removes the window from the UI tree; it never disposes it.
+        // ChatBox.Dispose() is the only place that calls UnregisterChat, so we must call it
+        // explicitly when the window is fully closed (covers both X-button and pop-out close).
+        OnFinalClose += () => Chatbox.Dispose();
     }
 
     /// <summary>
@@ -35,6 +40,7 @@ public sealed partial class ChatWindow : PopOutFancyWindow // Starlight: PopOutF
     public void ConfigureForAdminChat()
     {
         Chatbox.ChatInput.ChannelSelector.Select(ChatSelectChannel.Admin);
+        Chatbox.MainChannel = ChatSelectChannel.Admin;
 
         var filter = Chatbox.ChatInput.FilterButton.Popup;
         foreach (var c in Enum.GetValues(typeof(ChatChannel)))
