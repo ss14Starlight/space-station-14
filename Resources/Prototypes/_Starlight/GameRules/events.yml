@@ -29,7 +29,7 @@
   id: DerelictPurrfusCyborgSpawn
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
+    globalAnnouncement: false
     weight: 2.5
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -53,7 +53,7 @@
   id: DerelictHeavyXenoborgSpawn
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
+    globalAnnouncement: false
     weight: 1
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -77,7 +77,7 @@
   id: DerelictEngiXenoborgSpawn
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
+    globalAnnouncement: false
     weight: 1
     earliestStart: 15
     reoccurrenceDelay: 20
@@ -100,73 +100,73 @@
   parent: BaseGameRule
   id: DerelictScoutXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerDerelictScoutXenoborgGhostRole
-    - type: AntagSelection
-      antags:
-      - !type:LinearAntagCount
-        proto: DerelictScoutXenoborg
-        playerRatio: 80
-        range:
-          min: 1
-          max: 2
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictScoutXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictScoutXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
   id: DerelictStealthXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerDerelictStealthXenoborgGhostRole
-    - type: AntagSelection
-      antags:
-      - !type:LinearAntagCount
-        proto: DerelictStealthXenoborg
-        playerRatio: 80
-        range:
-          min: 1
-          max: 2
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictStealthXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictStealthXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
   id: DerelictXenoBorgiSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerDerelictXenoBorgiGhostRole
-    - type: AntagSelection
-      antags:
-      - !type:LinearAntagCount
-        proto: DerelictXenoBorgi
-        playerRatio: 80
-        range:
-          min: 1
-          max: 2
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictXenoBorgiGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictXenoBorgi
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 # Syndicate dead drop
 - type: entity
@@ -206,7 +206,7 @@
   id: IonStormPlus # It's a more frequent Ion Storm, for ShitStation.
   components:
   - type: StationEvent
-    globalAnnouncement: false # Starlight
+    globalAnnouncement: false
     weight: 10
     reoccurrenceDelay: 15
     duration: 1
