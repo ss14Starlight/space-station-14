@@ -696,8 +696,12 @@
     prototype: PlayerEngineeringBorgDerelictGhostRole
   - type: AntagSelection
     antags:
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount # Starlight start
       proto: DerelictEngineeringCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
   parent: BaseDerelictCyborgSpawn
@@ -716,8 +720,12 @@
     prototype: PlayerBorgDerelictGhostRole
   - type: AntagSelection
     antags:
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount # Starlight start
       proto: DerelictGenericCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
   parent: BaseDerelictCyborgSpawn
@@ -736,8 +744,12 @@
     prototype: PlayerJanitorBorgDerelictGhostRole
   - type: AntagSelection
     antags:
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount # Starlight start
       proto: DerelictJanitorCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
   parent: BaseDerelictCyborgSpawn
@@ -756,8 +768,12 @@
     prototype: PlayerMedicalBorgDerelictGhostRole
   - type: AntagSelection
     antags:
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount # Starlight start
       proto: DerelictMedicalCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
   parent: BaseDerelictCyborgSpawn
@@ -776,8 +792,12 @@
     prototype: PlayerMiningBorgDerelictGhostRole
   - type: AntagSelection
     antags:
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount # Starlight start
       proto: DerelictMiningCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end
 
 - type: entity
   parent: BaseDerelictCyborgSpawn
@@ -792,5 +812,9 @@
     prototype: PlayerBorgSyndicateDerelictGhostRole
   - type: AntagSelection
     antags:
-    - !type:FixedAntagCount
+    - !type:LinearAntagCount # Starlight start
       proto: DerelictSyndicateAssaultCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2 # Starlight end

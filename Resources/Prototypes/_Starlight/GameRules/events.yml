@@ -2,24 +2,25 @@
   parent: BaseGameRule
   id: DerelictBorgiSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 5
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 4
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: DerelictBorgiChassis
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictBorgi
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false
+    weight: 5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: DerelictBorgiChassis
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictBorgi
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 # Derelict Cyborgs
 
@@ -39,58 +40,61 @@
   - type: AntagSpawner
     prototype: PlayerPurrfusBorgDerelictGhostRole
   - type: AntagSelection
-    definitions:
-    - spawnerPrototype: SpawnPointGhostDerelictPurrfusCyborg
-      min: 1
-      max: 2
-      playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-      pickPlayer: false
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictPurrfusCyborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
   id: DerelictHeavyXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerDerelictHeavyXenoborgGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictHeavyXenoborg
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictHeavyXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictHeavyXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
   id: DerelictEngiXenoborgSpawn
   components:
-    - type: StationEvent
-      globalAnnouncement: false # Starlight
-      weight: 1
-      earliestStart: 15
-      reoccurrenceDelay: 20
-      minimumPlayers: 15
-      duration: null
-    - type: SpaceSpawnRule
-      spawnDistance: 0
-    - type: AntagSpawner
-      prototype: PlayerDerelictEngiXenoborgGhostRole
-    - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictEngiXenoborg
-          min: 1
-          max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
+  - type: StationEvent
+    globalAnnouncement: false # Starlight
+    weight: 1
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 15
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerDerelictEngiXenoborgGhostRole
+  - type: AntagSelection
+    antags:
+    - !type:LinearAntagCount
+      proto: DerelictEngiXenoborg
+      playerRatio: 80
+      range:
+        min: 1
+        max: 2
 
 - type: entity
   parent: BaseGameRule
@@ -108,12 +112,13 @@
     - type: AntagSpawner
       prototype: PlayerDerelictScoutXenoborgGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictScoutXenoborg
+      antags:
+      - !type:LinearAntagCount
+        proto: DerelictScoutXenoborg
+        playerRatio: 80
+        range:
           min: 1
           max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
@@ -131,12 +136,13 @@
     - type: AntagSpawner
       prototype: PlayerDerelictStealthXenoborgGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictStealthXenoborg
+      antags:
+      - !type:LinearAntagCount
+        proto: DerelictStealthXenoborg
+        playerRatio: 80
+        range:
           min: 1
           max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
 
 - type: entity
   parent: BaseGameRule
@@ -154,12 +160,13 @@
     - type: AntagSpawner
       prototype: PlayerDerelictXenoBorgiGhostRole
     - type: AntagSelection
-      definitions:
-        - spawnerPrototype: SpawnPointGhostDerelictXenoBorgi
+      antags:
+      - !type:LinearAntagCount
+        proto: DerelictXenoBorgi
+        playerRatio: 80
+        range:
           min: 1
           max: 2
-          playerRatio: 80 # They don't do much, they're just borgs. Doesn't mean we need 5 of them running around.
-          pickPlayer: false
 
 # Syndicate dead drop
 - type: entity
