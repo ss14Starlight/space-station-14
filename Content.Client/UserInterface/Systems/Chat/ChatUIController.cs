@@ -1,4 +1,4 @@
-using System.Globalization;
+using System.Globalization; // Starlight: UTF-8 encode this file!
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
