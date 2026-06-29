@@ -265,11 +265,10 @@
           children:
             - id: Truncheon
             - id: Handcuffs
+            - id: Handcuffs
             - id: PinpointerUniversal
             - id: CombatMedipen
-            - id: CombatMedipen
             - id: MedkitCombatFilled
-            - id: CombatMedipen
             - id: CombatMedipen
             - id: FlashlightSeclite
             - id: BodyBagCCFolded

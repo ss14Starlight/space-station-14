@@ -364,3 +364,33 @@
     sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550r.rsi
   - type: StealTarget
     stealGroup: HOSWeapon # Proto5x and WT550r
+
+
+- type: entity
+  name: WT550g
+  parent: [ WeaponSubMachineGunWt550 ]
+  id: WeaponSubMachineGunWt550g
+  description: A special green-colored limited edition of the WT550, the WT550g.  Designed by NanoTrasen's Small Arms Division as a compact submachine gun fully controllable with one hand. It contains an exotic internal recoil buffer and feeds from special top-mounted .35 magazines.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550g.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: base-unshaded
+          map: ["enum.GunVisualLayers.BaseUnshaded"]
+          shader: unshaded
+        - state: mag-0
+          map: ["enum.GunVisualLayers.Mag"]
+        - state: mag-unshaded-0
+          map: ["enum.GunVisualLayers.MagUnshaded"]
+          shader: unshaded
+    - type: Clothing
+      sprite: _Starlight/Objects/Weapons/Guns/SMGs/wt550g.rsi
+    - type: ItemSlots
+      slots:
+        gun_magazine:
+          startingItem: MagazinePistolSubMachineGunTopMounted
+    - type: Contraband
+      allowedDepartments: [ CentralCommand ]
+      allowedJobs: []
