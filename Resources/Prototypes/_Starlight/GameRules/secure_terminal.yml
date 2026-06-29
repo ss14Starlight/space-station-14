@@ -257,7 +257,7 @@
     mindRoles:
     - MindRoleGhostCorporateAligned
     raffle:
-    settings: short
+      settings: short
     job: ERTChaplain
     important: true
 
