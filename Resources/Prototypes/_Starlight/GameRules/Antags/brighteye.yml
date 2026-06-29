@@ -1,5 +1,6 @@
 # Brighteye
 - type: entity
+  abstract: true
   parent: BaseGameRule
   id: BaseBrighteyeRule
   components:
