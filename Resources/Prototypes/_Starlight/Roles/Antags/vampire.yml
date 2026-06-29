@@ -14,12 +14,7 @@
   playTimeTracker: AntagVampire
 
 - type: antagSpecifier
-  abstract: true
   parent: RestrictedAntag
-  id: BaseVampire
-
-- type: antagSpecifier
-  parent: BaseVampire
   id: Vampire
   prefRoles:
   - Vampire
@@ -28,7 +23,6 @@
     - AntagImmune
   mindRoles:
   - MindRoleVampire
-
 
 - type: antag
   id: Thrall

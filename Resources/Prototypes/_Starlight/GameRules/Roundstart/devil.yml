@@ -1,0 +1,17 @@
+- type: entity
+  parent: BaseRoundstartAntagRule
+  id: Devil
+  components:
+  - type: DevilRule
+  - type: AntagObjectives
+    objectives:
+    - SurviveDevilObjective
+    - DamnSoulsDevilObjective
+  - type: AntagSelection
+    agentName: devil-round-end-agent-name
+    lateJoinAdditional: true
+    antags:
+    - !type:FixedAntagCount
+      proto: Devil
+  - type: DynamicRuleCost
+    cost: 100
