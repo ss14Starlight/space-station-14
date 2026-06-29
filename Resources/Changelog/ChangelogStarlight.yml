@@ -1,81 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Mimes can no longer use AAC tablets while their vow of silence is active.
-    type: Tweak
-  id: 405889
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by writing.
-    type: Tweak
-  id: 405890
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence using sign language nor hiveminds (e.g. the Nexus).
-    type: Tweak
-  id: 405891
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by using NanoChat.
-    type: Tweak
-  id: 405892
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by using NanoTasks (they may only print NanoTasks if the description is blank).
-    type: Tweak
-  id: 405893
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
-    type: Add
-  id: 405894
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Caws
-  changes:
-  - message: Removed the experimental RCD (recharging RCD) from engineering cyborgs due to budget cuts. Central Command apologies for the inconvenience.
-    type: Remove
-  id: 405895
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Musiklie
-  changes:
-  - message: added Avali hearts and lungs to the Med dispenser.
-    type: Add
-  id: 405896
-  time: '2026-06-10T19:31:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4667
-- author: wonderfulnewworld
-  changes:
-  - message: Added a line to Protogens' guidebooks specifying that they are a challenge/not new player species, like IPCs.
-    type: Add
-  id: 405897
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Computer boards restore a little more hunger. (I got the number wrong last time and accidentally made them near-worthless.).
-    type: Tweak
-  id: 405898
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Resomi are no longer poisoned by Amoxla.
-    type: Fix
-  id: 405899
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
 - author: wonderfulnewworld
   changes:
   - message: Proto-Diona can now eat computer boards.
@@ -2799,4 +2722,81 @@ Entries:
   id: 406288
   time: '2026-06-28T21:01:37.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: Johnny
+  changes:
+  - message: Added the advanced medipen as a lesser form of a combat medipen for ERT such as CBURN.
+    type: Add
+  id: 406289
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: Added a new role, the CBURN Corpsman.
+    type: Add
+  id: 406290
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: CBURN Agents loadout has been changed.
+    type: Tweak
+  id: 406291
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: All CBURN are automatically zombie immune.
+    type: Tweak
+  id: 406292
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: Changed CBURN suits to actually protect against injection based attacks like hardsuits.
+    type: Fix
+  id: 406293
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: mikeysaurus
+  changes:
+  - message: Silicon's now understand the Elvish language Felyaic.
+    type: Fix
+  id: 406294
+  time: '2026-06-29T08:21:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4961
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added six new uniforms to secoff.
+    type: Add
+  id: 406295
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to dutyoff.
+    type: Add
+  id: 406296
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to brigmed.
+    type: Add
+  id: 406297
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added two new uniforms to warden.
+    type: Add
+  id: 406298
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added new hat to secoff.
+    type: Add
+  id: 406299
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
 Order: -1
