@@ -15,3 +15,30 @@
     inverted: true
   playTimeTracker: AntagChangeling
   # Starlight end
+
+- type: antagSpecifier
+  parent: RestrictedAntag
+  id: Changeling
+  prefRoles: [ Changeling ]
+  briefing:
+    text: changeling-role-greeting
+    color: Red
+    sound: /Audio/Ambience/Antag/changeling_start.ogg
+  allowNonHumans: false # Starlight
+  components:
+  - type: ChangelingDevour
+  - type: ChangelingIdentity
+  - type: ChangelingTransform
+  - type: ActionGrant
+    actions:
+    - ActionChangelingStore
+  - type: Store
+    name: store-preset-name-changeling
+    categories:
+    - ChangelingAbilities
+    currencyWhitelist:
+    - ChangelingDNA
+    balance:
+      ChangelingDNA: 50
+  mindRoles:
+  - MindRoleChangeling

@@ -15,7 +15,7 @@ namespace Content.Server.GameTicking;
 public sealed partial class GameTicker
 {
     [ViewVariables] private readonly List<(TimeSpan, string)> _allPreviousGameRules = new();
-    readonly int _effectivePlayerCutoff = 40; // Starlight, the number of online players at which unready players start counting as effectively ready
+    readonly int _effectivePlayerCutoff = 30; // Starlight, the number of online players at which unready players start counting as effectively ready
     readonly double _unreadyPlayerMultiplier = 0.6; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
 
     /// <summary>

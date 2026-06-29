@@ -62,6 +62,15 @@
   components:
   - type: GameRule
     cancelPresetOnTooFewPlayers: false
+  - type: AntagSelection # Starlight start
+    agentName: wizard-round-end-name
+    antags:
+    - !type:LinearAntagCount
+      proto: Wizard
+      playerRatio: 55
+      range:
+        min: 1
+        max: 4 # Starlight end
 
 - type: entity
   parent: BaseGameRule
