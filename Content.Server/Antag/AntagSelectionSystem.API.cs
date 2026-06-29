@@ -18,6 +18,9 @@ namespace Content.Server.Antag;
 
 public sealed partial class AntagSelectionSystem
 {
+    readonly int _effectivePlayerCutoff = 40; // Starlight, the number of online players at which unready players start counting as effectively ready
+    readonly double _unreadyPlayerMultiplier = 0.4; // Starlight, the fraction of unready players that count as effectively ready when above the cutoff
+
     /// <inhereitdoc cref="GetActivePlayerCount(IList{ICommonSession})"/>
     [PublicAPI]
     public int GetActivePlayerCount()
@@ -48,6 +51,21 @@ public sealed partial class AntagSelectionSystem
 
         return count;
     }
+
+    #region Starlight
+    private int GetEffectivePlayerCount(int activePlayers)
+    {
+        var onlinePlayers = _playerManager.Sessions.Length;
+
+        if (onlinePlayers < _effectivePlayerCutoff)
+            return activePlayers;
+
+        var inactivePlayers = Math.Max(0, onlinePlayers - activePlayers);
+
+        // Count 60% of lobby/spectating/unready players.
+        return activePlayers + (int)(inactivePlayers * _unreadyPlayerMultiplier);
+    }
+    #endregion
 
     [PublicAPI]
     public IEnumerable<ICommonSession> GetActivePlayers()
@@ -86,6 +104,7 @@ public sealed partial class AntagSelectionSystem
     {
         var runningCount = 0;
         var count = 0;
+        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -95,7 +114,7 @@ public sealed partial class AntagSelectionSystem
             if (!Proto.Resolve(antag.Proto, out _))
                 continue;
 
-            count += GetTargetAntagCount(antag, playerCount, ref runningCount);
+            count += GetTargetAntagCount(antag, effectivePlayers, ref runningCount); // Starlight
         }
 
         return count;
@@ -122,6 +141,7 @@ public sealed partial class AntagSelectionSystem
     public int GetTargetAntagCount(Entity<AntagSelectionComponent> gameRule, int playerCount, AntagSpecifierPrototype proto)
     {
         var runningCount = 0;
+        var effectivePlayers = GetEffectivePlayerCount(playerCount); // Starlight, effective players to include *some* people who don't ready up
 
         // We assume that antag definitions are prioritized by order, and take up slots that other roles may take.
         // I.E for Nukies, it selects 1 commander which takes up 10 players, then one corpsman which takes up another 10, then we select X nukies based on the remaining player count.
@@ -132,7 +152,7 @@ public sealed partial class AntagSelectionSystem
                 continue;
 
             // We need to update our running count which is why we get the count for definitions we may not be assigning.
-            var count = GetTargetAntagCount(antag, playerCount, ref runningCount);
+            var count = GetTargetAntagCount(antag, effectivePlayers, ref runningCount); // Starlight
 
             if (antag.Proto == proto)
                 return count;
