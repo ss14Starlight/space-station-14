@@ -27,10 +27,13 @@ public sealed partial class ChatWindow : PopOutFancyWindow // Starlight: PopOutF
         controller.UpdateSelectedChannel(Chatbox);
         controller.UpdateLanguageNotifier(Chatbox); // Starlight
 
-        // BaseWindow.Close() only removes the window from the UI tree; it never disposes it.
-        // ChatBox.Dispose() is the only place that calls UnregisterChat, so we must call it
-        // explicitly when the window is fully closed (covers both X-button and pop-out close).
-        OnFinalClose += () => Chatbox.Dispose();
+        // Starlight BEGIN
+        /*
+            Turns out that if you open 10 admin chat windows and close them, they basically leak references
+            by adding themselves to the ChatUIController._chats list and never getting removed. This fixes that.
+        */
+        OnFinalClose += () => controller.UnregisterChat(Chatbox);
+        // Starlight END
     }
 
     /// <summary>
