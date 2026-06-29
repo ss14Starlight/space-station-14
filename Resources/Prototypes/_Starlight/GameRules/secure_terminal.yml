@@ -34,7 +34,7 @@
   - type: AntagSelection
     antags:
     - !type:FixedAntagCount
-    proto: ERTChaplain
+      proto: ERTChaplain
 
 - type: entity
   parent: BaseGameRule
