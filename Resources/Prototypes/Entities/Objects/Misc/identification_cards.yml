@@ -931,6 +931,9 @@
     jobIcon: JobIconVisitor
   - type: PresetIdCard
     job: Visitor
+  - type: Access
+    tags:
+    - Visitor
   - type: NanoChatCard # CD
     listNumber: false
 

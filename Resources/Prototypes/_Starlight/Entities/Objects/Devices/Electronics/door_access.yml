@@ -160,3 +160,12 @@
   components:
     - type: AccessReader
       access: [["MedTak"]]
+
+#Visitor
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsVisitor
+  suffix: Visitor, Locked
+  components:
+    - type: AccessReader
+      access: [["Visitor"]]
