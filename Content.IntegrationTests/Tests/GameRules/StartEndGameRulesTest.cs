@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
@@ -7,7 +8,7 @@ using Robust.Shared.GameObjects;
 namespace Content.IntegrationTests.Tests.GameRules;
 
 [TestFixture]
-public sealed class StartEndGameRulesTest
+public sealed class StartEndGameRulesTest : GameTest
 {
     public override PoolSettings PoolSettings => new PoolSettings
     {
