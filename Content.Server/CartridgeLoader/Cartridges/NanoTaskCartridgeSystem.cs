@@ -5,6 +5,7 @@ using Content.Shared.CartridgeLoader;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
+using Content.Shared.PDA; // Starlight - Tidr
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -59,9 +60,14 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         }
         if (printed.Task is NanoTaskItem item)
         {
-            // Starlight - Tidr: scan a printed task back onto the shared board
+            // Starlight - Tidr: scan a printed task back onto the shared board, stamping the scanner's ID as owner
             if (TryGetBoard(ent.Owner, out var scanBoard))
-                scanBoard.Tasks.Add(new(scanBoard.Counter++, printed.Task));
+            {
+                var newId = scanBoard.Counter++;
+                scanBoard.Tasks.Add(new(newId, printed.Task));
+                if (TryGetInsertedId(ent.Owner, out var scanCard))
+                    scanBoard.Owners[newId] = scanCard;
+            }
             else
                 program.Tasks.Add(new(program.Counter++, printed.Task));
             args.Handled = true;
@@ -112,14 +118,25 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         if (args is not NanoTaskUiMessageEvent message)
             return;
 
+        var loader = GetEntity(args.LoaderUid); // Starlight - Tidr
+
         switch (message.Payload)
         {
             case NanoTaskAddTask task:
                 if (!task.Item.Validate())
                     return;
-                // Starlight - Tidr: post to the shared station board
-                if (TryGetBoard(GetEntity(args.LoaderUid), out var addBoard))
-                    addBoard.Tasks.Add(new(addBoard.Counter++, task.Item));
+                // Starlight - Tidr: a task must be posted under an ID card inserted in the PDA
+                if (!TryGetInsertedId(loader, out var posterCard))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-no-id"), args.Actor, args.Actor);
+                    return;
+                }
+                if (TryGetBoard(loader, out var addBoard))
+                {
+                    var newId = addBoard.Counter++;
+                    addBoard.Tasks.Add(new(newId, task.Item));
+                    addBoard.Owners[newId] = posterCard; // stamp the poster's card as owner
+                }
                 else
                     ent.Comp.Tasks.Add(new(ent.Comp.Counter++, task.Item));
                 break;
@@ -127,17 +144,38 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
             {
                 if (!task.Item.Data.Validate())
                     return;
-                // Starlight - Tidr
-                var updTasks = TryGetBoard(GetEntity(args.LoaderUid), out var updBoard) ? updBoard.Tasks : ent.Comp.Tasks;
-                var idx = updTasks.FindIndex(t => t.Id == task.Item.Id);
-                if (idx != -1)
-                    updTasks[idx] = task.Item;
+                // Starlight - Tidr: only the owner card may edit or complete (Done) a task
+                if (TryGetBoard(loader, out var updBoard))
+                {
+                    if (!IsTaskOwner(updBoard, task.Item.Id, loader))
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-not-your-task"), args.Actor, args.Actor);
+                        return;
+                    }
+                    var idx = updBoard.Tasks.FindIndex(t => t.Id == task.Item.Id);
+                    if (idx != -1)
+                        updBoard.Tasks[idx] = task.Item;
+                }
+                else
+                {
+                    var idx = ent.Comp.Tasks.FindIndex(t => t.Id == task.Item.Id);
+                    if (idx != -1)
+                        ent.Comp.Tasks[idx] = task.Item;
+                }
                 break;
             }
             case NanoTaskDeleteTask task:
-                // Starlight - Tidr
-                if (TryGetBoard(GetEntity(args.LoaderUid), out var delBoard))
+                // Starlight - Tidr: only the owner card may delete a task
+                if (TryGetBoard(loader, out var delBoard))
+                {
+                    if (!IsTaskOwner(delBoard, task.Id, loader))
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-not-your-task"), args.Actor, args.Actor);
+                        return;
+                    }
                     delBoard.Tasks.RemoveAll(t => t.Id == task.Id);
+                    delBoard.Owners.Remove(task.Id);
+                }
                 else
                     ent.Comp.Tasks.RemoveAll(t => t.Id == task.Id);
                 break;
@@ -176,7 +214,7 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
             }
         }
 
-        UpdateUiState(ent, GetEntity(args.LoaderUid));
+        UpdateUiState(ent, loader);
     }
 
     private void UpdateUiState(Entity<NanoTaskCartridgeComponent> ent, EntityUid loaderUid)
@@ -195,5 +233,25 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
             return false;
         board = EnsureComp<TidrBoardComponent>(station);
         return true;
+    }
+
+    // Starlight - Tidr: read the ID card currently inserted in the PDA running this cartridge
+    private bool TryGetInsertedId(EntityUid loader, out EntityUid card)
+    {
+        card = default;
+        if (TryComp<PdaComponent>(loader, out var pda) && pda.ContainedId is { } id)
+        {
+            card = id;
+            return true;
+        }
+        return false;
+    }
+
+    // Starlight - Tidr: true if the card inserted in this PDA is the one that posted the task
+    private bool IsTaskOwner(TidrBoardComponent board, int taskId, EntityUid loader)
+    {
+        return TryGetInsertedId(loader, out var card)
+            && board.Owners.TryGetValue(taskId, out var owner)
+            && owner == card;
     }
 }
