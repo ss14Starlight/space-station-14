@@ -1,5 +1,6 @@
 using Content.Server.Station.Systems; // Starlight - Tidr
 using Content.Server._Starlight.Tidr;  // Starlight - Tidr
+using Content.Shared.Access.Components; // Starlight - Tidr
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Hands.EntitySystems;
@@ -136,14 +137,19 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                     _popupSystem.PopupEntity(Loc.GetString("tidr-no-id"), args.Actor, args.Actor);
                     return;
                 }
+                // Starlight - Tidr: stamp the requester name from the poster's ID card, not from client input
+                var posterName = TryComp<IdCardComponent>(posterCard, out var idCard) && !string.IsNullOrWhiteSpace(idCard.FullName)
+                    ? idCard.FullName!
+                    : Loc.GetString("tidr-unknown-poster");
+                var newItem = new NanoTaskItem(task.Item.Description, posterName, task.Item.IsTaskDone, task.Item.Priority, task.Item.Location, task.Item.Reward, task.Item.AcceptedBy);
                 if (TryGetBoard(loader, out var addBoard))
                 {
                     var newId = addBoard.Counter++;
-                    addBoard.Tasks.Add(new(newId, task.Item));
+                    addBoard.Tasks.Add(new(newId, newItem));
                     addBoard.Owners[newId] = posterCard; // stamp the poster's card as owner
                 }
                 else
-                    ent.Comp.Tasks.Add(new(ent.Comp.Counter++, task.Item));
+                    ent.Comp.Tasks.Add(new(ent.Comp.Counter++, newItem));
                 break;
             case NanoTaskUpdateTask task:
             {
