@@ -18,4 +18,4 @@
     color: orange
     sound: /Audio/_Starlight/Ambience/Antag/exterminator_start.ogg
   mindRoles:
-      - MindRoleTerminator
+    - MindRoleTerminator
