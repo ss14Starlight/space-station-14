@@ -1,6 +1,6 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                Title="{Loc nano-task-ui-item-title}"
-               MinSize="300 300">
+               MinSize="300 320">
     <PanelContainer StyleClasses="AngleRect">
         <BoxContainer Orientation="Vertical" Margin="4">
             <!-- Task Description Input -->
@@ -13,13 +13,23 @@
                 </PanelContainer>
             </BoxContainer>
 
-            <!-- Task Requester Input -->
+            <!-- Location Input (Starlight - Tidr) -->
             <BoxContainer Orientation="Vertical" Margin="0 4">
-                <Label Text="{Loc nano-task-ui-requester-label}"
+                <Label Text="{Loc tidr-location-label}"
                        StyleClasses="LabelHeading" />
                 <PanelContainer StyleClasses="ButtonSquare">
-                    <LineEdit Name="RequesterInput"
-                              PlaceHolder="{Loc nano-task-ui-requester-placeholder}" />
+                    <LineEdit Name="LocationInput"
+                              PlaceHolder="{Loc tidr-location-placeholder}" />
+                </PanelContainer>
+            </BoxContainer>
+
+            <!-- Reward Input (Starlight - Tidr) -->
+            <BoxContainer Orientation="Vertical" Margin="0 4">
+                <Label Text="{Loc tidr-reward-label}"
+                       StyleClasses="LabelHeading" />
+                <PanelContainer StyleClasses="ButtonSquare">
+                    <LineEdit Name="RewardInput"
+                              PlaceHolder="{Loc tidr-reward-placeholder}" />
                 </PanelContainer>
             </BoxContainer>
 

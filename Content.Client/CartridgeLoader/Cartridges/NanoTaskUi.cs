@@ -48,7 +48,10 @@ public sealed partial class NanoTaskUi : UIFragment
                 description: task.Data.Description,
                 taskIsFor: task.Data.TaskIsFor,
                 isTaskDone: !task.Data.IsTaskDone,
-                priority: task.Data.Priority
+                priority: task.Data.Priority,
+                location: task.Data.Location,      // Starlight - Tidr: preserve
+                reward: task.Data.Reward,          // Starlight - Tidr: preserve
+                acceptedBy: task.Data.AcceptedBy   // Starlight - Tidr: preserve
             ))))));
         };
         _popup.TaskSaved += (id, data) =>

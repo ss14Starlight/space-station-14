@@ -22,12 +22,20 @@ public sealed partial class NanoTaskItemControl : Control
 
         TaskLabel.Text = item.Data.Description;
         TaskLabel.FontColorOverride = Color.White;
-        TaskForLabel.Text = item.Data.TaskIsFor;
+
+        // Starlight - Tidr: requester name (auto-stamped) + location + reward
+        var sub = item.Data.TaskIsFor;
+        if (!string.IsNullOrWhiteSpace(item.Data.Location))
+            sub += $" - {item.Data.Location}";
+        if (item.Data.Reward > 0)
+            sub += $"  ({item.Data.Reward} cr)";
+        TaskForLabel.Text = sub;
 
         MainButton.OnPressed += _ => OnMainPressed?.Invoke(item.Id);
         DoneButton.OnPressed += _ => OnDonePressed?.Invoke(item.Id);
 
         MainButton.Disabled = item.Data.IsTaskDone;
-        DoneButton.Text = item.Data.IsTaskDone ? Loc.GetString("nano-task-ui-revert-done") : Loc.GetString("nano-task-ui-done");
+        // Starlight - Tidr: "Complete" / "Undo" wording
+        DoneButton.Text = item.Data.IsTaskDone ? Loc.GetString("tidr-revert") : Loc.GetString("tidr-complete");
     }
 }

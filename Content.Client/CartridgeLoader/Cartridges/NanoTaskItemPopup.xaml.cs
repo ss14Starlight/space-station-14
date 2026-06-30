@@ -15,6 +15,7 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
 {
     private readonly ButtonGroup _priorityGroup = new();
     private int? _editingTaskId = null;
+    private NanoTaskItem? _editingItem = null; // Starlight - Tidr: preserve server-controlled fields on edit
 
     public Action<int, NanoTaskItem>? TaskSaved;
     public Action<int>? TaskDeleted;
@@ -25,14 +26,18 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
     {
         return new(
             description: DescriptionInput.Text,
-            taskIsFor: RequesterInput.Text,
-            isTaskDone: false,
+            // Starlight - Tidr: name is stamped server-side from the poster's ID on create; preserved on edit
+            taskIsFor: _editingItem?.TaskIsFor ?? "",
+            isTaskDone: _editingItem?.IsTaskDone ?? false,
             priority: _priorityGroup.Pressed switch {
                 var item when item == LowButton => NanoTaskPriority.Low,
                 var item when item == MediumButton => NanoTaskPriority.Medium,
                 var item when item == HighButton => NanoTaskPriority.High,
                 _ => NanoTaskPriority.Medium,
-            }
+            },
+            location: LocationInput.Text,
+            reward: int.TryParse(RewardInput.Text, out var r) && r > 0 ? r : 0,
+            acceptedBy: _editingItem?.AcceptedBy
         );
     }
 
@@ -73,10 +78,17 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
             if (args.Text.Length > NanoTaskItem.MaximumStringLength)
                 DescriptionInput.Text = args.Text[..NanoTaskItem.MaximumStringLength];
         };
-        RequesterInput.OnTextChanged += args =>
+        LocationInput.OnTextChanged += args =>
         {
             if (args.Text.Length > NanoTaskItem.MaximumStringLength)
-                RequesterInput.Text = args.Text[..NanoTaskItem.MaximumStringLength];
+                LocationInput.Text = args.Text[..NanoTaskItem.MaximumStringLength];
+        };
+        RewardInput.OnTextChanged += args =>
+        {
+            // Starlight - Tidr: digits only
+            var filtered = new string(args.Text.Where(char.IsDigit).ToArray());
+            if (filtered != args.Text)
+                RewardInput.Text = filtered;
         };
     }
 
@@ -88,6 +100,7 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
 
     public void ResetInputs(NanoTaskItem? item)
     {
+        _editingItem = item; // Starlight - Tidr
         if (item is NanoTaskItem task)
         {
             var button = task.Priority switch
@@ -99,13 +112,15 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
             };
             button.Pressed = true;
             DescriptionInput.Text = task.Description;
-            RequesterInput.Text = task.TaskIsFor;
+            LocationInput.Text = task.Location;
+            RewardInput.Text = task.Reward > 0 ? task.Reward.ToString() : "";
         }
         else
         {
             MediumButton.Pressed = true;
             DescriptionInput.Text = "";
-            RequesterInput.Text = "";
+            LocationInput.Text = "";
+            RewardInput.Text = "";
         }
     }
 }
