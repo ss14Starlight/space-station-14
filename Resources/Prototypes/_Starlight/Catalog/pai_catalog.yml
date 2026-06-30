@@ -269,3 +269,19 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: Squeakish
+  name: language-Squeakish-name
+  description: language-Squeakish-description
+  productLanguage: Squeakish
+  icon:
+    sprite: /Textures/_Starlight/Interface/language_icon.rsi
+    state: rodentia
+  cost:
+    SiliconMemory: 5
+  categories:
+    - Languages
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
