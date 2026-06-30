@@ -636,3 +636,223 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/beep100.rsi
     state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitCCseesall
+  name: "CC Sees All"
+  description: "The AI is watching."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/CCseesall.rsi
+    state: CCseesall
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitAbductionFiles
+  name: "Abduction Files on NT-TV"
+  description: "Terrifying true tales of terror."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/AbductionFiles.rsi
+    state: AbductionFiles
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBelieve
+  name: "Greys - You Have to Believe on NT-TV"
+  description: "I want to believe."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/Believe.rsi
+    state: Believe
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSpaceMallCop
+  name: "Space Mall Cop on NT-TV"
+  description: "Reporting for laughs."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/SpaceMallCop.rsi
+    state: SpaceMallCop
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitNukieVII
+  name: "Nukie VII: Blood Red on NT-TV"
+  description: "They're back, and they want that disk."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/NukieVII.rsi
+    state: NukieVII
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSaySomething
+  name: "See Something? SaySomething"
+  description: "Reporting suspicious activity is everyone's responsibility."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/SaySomething.rsi
+    state: SaySomething
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSmileToday
+  name: "Smile Today"
+  description: "Mandatory cheer, brought to you by NanoTrasen HR."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/smiletoday.rsi
+    state: smiletoday
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitCallitout
+  name: "Call it out!"
+  description: "Report all anomalies to Science."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/smiletoday.rsi
+    state: smiletoday
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitXorgsII
+  name: "Xorgs II on NT-TV"
+  description: "M.O.T.H.E.R is back."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/XorgsII.rsi
+    state: XorgsII
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitAnom
+  name: "Anom on NT-NT"
+  description: "Fear what's inside."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/Anom.rsi
+    state: Anom
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMaintsToucher
+  name: "Maints Toucher on NT-NT Adults Only"
+  description: "He'll touch your body, and your heart."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/MaintsToucher.rsi
+    state: MaintsToucher
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitMaintsMauler
+  name: "Maints Mauler on NT-NT"
+  description: "Do you dare brave the Maints?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/MaintsMaulerrsi
+    state: MaintsMauler
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitNightTider
+  name: "Night Tider on NT-NT"
+  description: "A shadowy flight into the dangerous world of a man, who does not exist."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/NightTider.rsi
+    state: NightTider
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitAgentTango
+  name: "Agent Tango on NT-NT"
+  description: "The Sector is Not Enough."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/AgentTango.rsi
+    state: AgentTango
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSyndiCat
+  name: "SyndiCat IV on NT-NT"
+  description: "Tick, tick, tick, Meow."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/SyndiCat.rsi
+    state: SyndiCat
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitObey
+  name: "OBEY"
+  description: "...ominious."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/Obey.rsi
+    state: Obey
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitBinary
+  name: "Binary"
+  description: "OBEY"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/Binary.rsi
+    state: Binary
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitRobustTomato
+  name: "Robust Tomato"
+  description: "Only trust NanoTrasen brand Robust Plant Food."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/RobustTomato.rsi
+    state: RobustTomato
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitForIan
+  name: "Do It For Ian"
+  description: "...and Old Ian, and Clown Ian, and Lia."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/ForIan.rsi
+    state: ForIan
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitNothingEverHappens
+  name: "Nothing Ever Happens"
+  description: "EVER."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/NothingEverHappens.rsi
+    state: NothingEverHappens
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitNuggs
+  name: "Nuggs"
+  description: "Eat 'em."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/Asimov.rsi
+    state: Asimov
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitHoptohop
+  name: "HoP to HoP"
+  description: "Have you thanks your HoP today?"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/Hoptohop.rsi
+    state: Hoptohop
