@@ -1,3 +1,5 @@
+using Content.Server.Station.Systems; // Starlight - Tidr
+using Content.Server._Starlight.Tidr;  // Starlight - Tidr
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Hands.EntitySystems;
@@ -23,6 +25,7 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private PopupSystem _popupSystem = default!; // Starlight
+    [Dependency] private StationSystem _stationSystem = default!; // Starlight - Tidr
 
     public override void Initialize()
     {
@@ -108,24 +111,32 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         switch (message.Payload)
         {
             case NanoTaskAddTask task:
-                if (!task.Item.Validate())
-                    return;
-
-                ent.Comp.Tasks.Add(new(ent.Comp.Counter++, task.Item));
-                break;
-            case NanoTaskUpdateTask task:
-            {
-                if (!task.Item.Data.Validate())
-                    return;
-
-                var idx = ent.Comp.Tasks.FindIndex(t => t.Id == task.Item.Id);
-                if (idx != -1)
-                    ent.Comp.Tasks[idx] = task.Item;
-                break;
-            }
-            case NanoTaskDeleteTask task:
-                ent.Comp.Tasks.RemoveAll(t => t.Id == task.Id);
-                break;
+    if (!task.Item.Validate())
+        return;
+    // Starlight - Tidr: post to the shared station board
+    if (TryGetBoard(GetEntity(args.LoaderUid), out var addBoard))
+        addBoard.Tasks.Add(new(addBoard.Counter++, task.Item));
+    else
+        ent.Comp.Tasks.Add(new(ent.Comp.Counter++, task.Item));
+    break;
+case NanoTaskUpdateTask task:
+{
+    if (!task.Item.Data.Validate())
+        return;
+    // Starlight - Tidr
+    var updTasks = TryGetBoard(GetEntity(args.LoaderUid), out var updBoard) ? updBoard.Tasks : ent.Comp.Tasks;
+    var idx = updTasks.FindIndex(t => t.Id == task.Item.Id);
+    if (idx != -1)
+        updTasks[idx] = task.Item;
+    break;
+}
+case NanoTaskDeleteTask task:
+    // Starlight - Tidr
+    if (TryGetBoard(GetEntity(args.LoaderUid), out var delBoard))
+        delBoard.Tasks.RemoveAll(t => t.Id == task.Id);
+    else
+        ent.Comp.Tasks.RemoveAll(t => t.Id == task.Id);
+    break;
             case NanoTaskPrintTask task:
             {
                 if (!task.Item.Validate())
@@ -165,9 +176,19 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
     }
 
 
-    private void UpdateUiState(Entity<NanoTaskCartridgeComponent> ent, EntityUid loaderUid)
-    {
-        var state = new NanoTaskUiState(ent.Comp.Tasks);
-        _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
-    }
+private void UpdateUiState(Entity<NanoTaskCartridgeComponent> ent, EntityUid loaderUid)
+{
+    // Starlight - Tidr: show the shared station board, fall back to the local list off-station
+    var tasks = TryGetBoard(loaderUid, out var board) ? board.Tasks : ent.Comp.Tasks;
+    var state = new NanoTaskUiState(tasks);
+    _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
+}
+    // Starlight - Tidr: resolve the station-wide shared task board from any entity on the station
+private bool TryGetBoard(EntityUid source, out TidrBoardComponent board)
+{
+    board = default!;
+    if (_stationSystem.GetOwningStation(source) is not { } station)
+        return false;
+    board = EnsureComp<TidrBoardComponent>(station);
+    return true;
 }
