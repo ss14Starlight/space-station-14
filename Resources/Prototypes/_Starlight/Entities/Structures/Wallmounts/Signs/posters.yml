@@ -699,16 +699,6 @@
 
 - type: entity
   parent: PosterBase
-  id: PosterLegitSmileToday
-  name: "Smile Today"
-  description: "Mandatory cheer, brought to you by NanoTrasen HR."
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/smiletoday.rsi
-    state: smiletoday
-
-- type: entity
-  parent: PosterBase
   id: PosterLegitCallitout
   name: "Call it out!"
   description: "Report all anomalies to Science."
