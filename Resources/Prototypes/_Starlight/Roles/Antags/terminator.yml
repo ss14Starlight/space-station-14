@@ -12,7 +12,7 @@
 - type: antagSpecifier
   parent: RestrictedAntag
   id: Terminator
-  spawnerPrefab: SpawnPointGhostTerminator
+  spawnerPrototype: SpawnPointGhostTerminator
   briefing:
     text: terminator-role-greeting
     color: orange

@@ -68,9 +68,9 @@
   - type: StationEvent
   - type: SubRule
     table: !type:GroupSelector
-    children:
-      - id: TheDarkHideoutSpawn
-      - id: TheDarkGardenSpawn
+      children:
+        - id: TheDarkHideoutSpawn
+        - id: TheDarkGardenSpawn
 
 # Dark Maps
 - type: entity
