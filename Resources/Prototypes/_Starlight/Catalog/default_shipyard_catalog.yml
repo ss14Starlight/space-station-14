@@ -28,7 +28,7 @@
 - type: vessel
   id: Ingeniator
   name: NTS 'Jumpstart' Mini-Ingeniator
-  description: A large engineering vessel designed to "Jumpstart" a station without a working Engineering Departmen.
+  description: A large engineering vessel designed to "Jumpstart" a station without a working Engineering Department.
   price: 85000
   category: Large
   group: Civilian
