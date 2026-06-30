@@ -668,7 +668,9 @@ public sealed partial class AntagSelectionSystem
     public bool IsAssignedExclusiveAntag(ICommonSession player, params HashSet<EntityUid> ignored)
     {
         // First check our mindroles.
-        if (_role.MindIsExclusiveAntagonist(player.AttachedEntity))
+        if (player.AttachedEntity is { } entity && // Starlight start
+            _mind.TryGetMind(entity, out var mind, out _) && // It errors if we try to check the entity for a mind role
+            _role.MindIsExclusiveAntagonist(mind)) // Starlight end
             return true;
 
         var query = QueryAllRules();
