@@ -15,9 +15,9 @@
 
 - type: entity
   parent: MarkerBase
-  id: SpawnMobFoxRenaultLobster
+  id: SpawnMobFoxRenaultSnow
   name: Fox Renault Spawner
-  suffix: Lobster, White
+  suffix: Snow
   components:
   - type: Sprite
     layers:
@@ -25,4 +25,4 @@
     - state: ai
   - type: ConditionalSpawner
     prototypes:
-    - MobFoxRenaultLobster
+    - MobFoxRenaultSnow
