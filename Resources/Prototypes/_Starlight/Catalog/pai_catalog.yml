@@ -277,7 +277,7 @@
   productLanguage: Squeakish
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
-    state: rodentia
+    state: squeakish
   cost:
     SiliconMemory: 5
   categories:
