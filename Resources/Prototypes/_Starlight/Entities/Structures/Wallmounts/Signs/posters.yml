@@ -714,8 +714,8 @@
   description: "Report all anomalies to Science."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/smiletoday.rsi
-    state: smiletoday
+    sprite: _Starlight/Structures/Wallmounts/posters/Callitout.rsi
+    state: Callitout
 
 - type: entity
   parent: PosterBase
@@ -754,7 +754,7 @@
   description: "Do you dare brave the Maints?"
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/MaintsMaulerrsi
+    sprite: _Starlight/Structures/Wallmounts/posters/MaintsMauler.rsi
     state: MaintsMauler
 
 - type: entity
@@ -786,16 +786,6 @@
   - type: Sprite
     sprite: _Starlight/Structures/Wallmounts/posters/SyndiCat.rsi
     state: SyndiCat
-
-- type: entity
-  parent: PosterBase
-  id: PosterLegitObey
-  name: "OBEY"
-  description: "...ominious."
-  components:
-  - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/Obey.rsi
-    state: Obey
 
 - type: entity
   parent: PosterBase
@@ -844,8 +834,8 @@
   description: "Eat 'em."
   components:
   - type: Sprite
-    sprite: _Starlight/Structures/Wallmounts/posters/Asimov.rsi
-    state: Asimov
+    sprite: _Starlight/Structures/Wallmounts/posters/Nuggs.rsi
+    state: Nuggs
 
 - type: entity
   parent: PosterBase
