@@ -67,8 +67,8 @@
   id: DGRiflemanKit
   table: !type:AllSelector
     children:
-    - id: WeaponSubMachineGunC20r
-    - id: MagazinePistolSubMachineGunFMJ
+    - id: WeaponRifleM90GrenadeLauncher
+    - id: MagazineRifleFMJ
     - id: ClothingMaskGasMerc
     - id: ClothingHeadHatBeretMerc
 

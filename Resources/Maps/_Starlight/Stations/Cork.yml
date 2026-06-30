@@ -72509,7 +72509,7 @@ entities:
     - type: Transform
       pos: -2.5058594,4.7223663
       parent: 10280
-- proto:
+- proto: WeaponRifleM90GrenadeLauncher
   entities:
   - uid: 10585
     components:

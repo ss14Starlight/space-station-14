@@ -20561,7 +20561,7 @@ entities:
     - type: Transform
       pos: 73.5,41.5
       parent: 1
-- proto: WeaponRifleLawbringer
+- proto: WeaponRifleM90GrenadeLauncher
   entities:
   - uid: 2174
     components:
