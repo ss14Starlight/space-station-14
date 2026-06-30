@@ -12,3 +12,17 @@
   - type: ConditionalSpawner
     prototypes:
     - MobKoboldKiki
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnMobFoxRenaultLobster
+  name: Fox Renault Spawner
+  suffix: Lobster, White
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: ai
+  - type: ConditionalSpawner
+    prototypes:
+    - MobFoxRenaultLobster
