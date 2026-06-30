@@ -509,6 +509,42 @@
       level: HardenedMetal
 
 - type: entity
+  name: X-03 phase shield
+  parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
+  id: BlueLightShield
+  categories: [ DoNotMap ]
+  description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
+    - type: PointLight
+      color: "#87CEEB"
+    - type: Item
+      sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
+    - type: PowerCellDraw
+      drawRate: 2  # watts while active
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.9
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.85
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 4
+    - type: Contraband
+      allowedDepartments: []
+      allowedJobs: [ BlueShield ]
+
+- type: entity
   parent: BaseShield
   id: ChangelingShield
   name: oraganic shield

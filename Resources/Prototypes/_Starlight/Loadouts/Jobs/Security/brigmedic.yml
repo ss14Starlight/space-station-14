@@ -82,6 +82,17 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtCorpsman
 
+# Formal Jumpsuits
+- type: loadout
+  id: FormalBrigmedicJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalBrigmedic
+
+- type: loadout
+  id: FormalBrigmedicJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalBrigmedic
+
 # Veteran Jumpsuits
 - type: loadout
   id: CorpsmanResponse
@@ -98,6 +109,23 @@
         proto: VeteranBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpskirtCorpsmanTrauma
+
+# Senior Jumpsuits
+- type: loadout
+  id: SeniorBrigmedicJumpsuit
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorBrigmedic
+
+- type: loadout
+  id: SeniorBrigmedicJumpskirt
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorBrigmedic
 
 # Skilled Jumpsuits
 - type: loadout
