@@ -1,5 +1,5 @@
 - type: entity
-  id: EffectFlashBluespace
+  id: EffectFlashBluespaceUpstream # Moffstation - Namespaced
   categories: [ HideSpawnMenu ]
   components:
   - type: PointLight

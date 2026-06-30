@@ -1,0 +1,67 @@
+- type: entity
+  parent: ESEffectSparks
+  id: MoffEffectSparksSilent
+  name: sparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnSpawn
+    sound: null
+
+- type: entity
+  parent: ESEffectSparks
+  id: MoffEffectSparksWelding
+  name: sparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnSpawn
+    positional: true
+    sound:
+      collection: Welder
+      params:
+        volume: -3
+        variation: 0.250
+
+- type: entity
+  parent: ESEffectSparks
+  id: MoffEffectSparksBluespace
+  name: sparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/atmospherics.rsi
+    layers:
+    - state: frezon_old
+      shader: unshaded
+    drawdepth: Effects
+    noRot: true
+    loop: false
+  - type: EmitSoundOnSpawn
+    sound: null
+  - type: IgnitionSource
+    ignited: false
+  - type: PointLight
+    radius: 8
+    energy: 4
+    color: "#18abf5"
+  # story time
+  # the bluespace effect is added to portals
+  # because these get spawned by the effect rather than directly, they can fly back into the portal creating a new effect
+  # this by itself spams new portal effects, but these new effects can also fly into the portal, creating even more
+  # therefore I'm blocking them from teleporting
+  # the other ones are fine because they don't share this issue
+  - type: PortalBlacklist
+
+- type: entity
+  parent: ESEffectSparks
+  id: MoffEffectSparksRedspace
+  name: sparks
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnSpawn
+    sound: null
+  - type: IgnitionSource
+    ignited: false
+  - type: PointLight
+    radius: 8
+    energy: 4
+    color: "#960202"
