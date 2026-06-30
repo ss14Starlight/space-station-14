@@ -110,7 +110,12 @@
   - type: Sprite
     sprite: Clothing/Belt/holster.rsi
   - type: Clothing
-    sprite: Clothing/Belt/holster.rsi
+    slots: # Starlight start
+    - BELT
+    - NECK
+    equipSound:
+      path: /Audio/Items/belt_equip.ogg
+    sprite: _Starlight/Clothing/Multiple/holster.rsi # Starlight end
   - type: Storage
     grid:
     - 0,0,3,1

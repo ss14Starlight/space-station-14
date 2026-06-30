@@ -25,6 +25,7 @@
     species: ProtoCyclorite
     hideLayersOnEquip:
     - Hair
+    - Snout
   - type: Body
     prototype: ProtoCyclorite
     requiredLegs: 2
