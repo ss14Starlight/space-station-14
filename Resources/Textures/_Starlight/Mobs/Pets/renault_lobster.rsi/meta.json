@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "White recolour by Kasern (github.com/Kasern-ss14) for Starlight, based on the fox sprite from Taken from TG git https://github.com/tgstation/tgstation/blob/master/icons/mob/pets.dmi",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,7 +9,9 @@
   "states": [
     {
       "name": "fox",
-      "directions": 4
+      "directions": 4,
+      "copyright": "White recolour by Kasern (github.com/Kasern-ss14) for Starlight, based on the TG fox sprite (https://github.com/tgstation/tgstation/blob/master/icons/mob/pets.dmi)",
+      "license": "CC-BY-SA-3.0"
     },
     {
       "name": "fox-moving",
@@ -39,10 +41,14 @@
           0.2,
           0.2
         ]
-      ]
+      ],
+      "copyright": "White recolour by Kasern (github.com/Kasern-ss14) for Starlight, based on the TG fox sprite (https://github.com/tgstation/tgstation/blob/master/icons/mob/pets.dmi)",
+      "license": "CC-BY-SA-3.0"
     },
     {
-      "name": "fox_dead"
+      "name": "fox_dead",
+      "copyright": "White recolour by Kasern (github.com/Kasern-ss14) for Starlight, based on the TG fox sprite (https://github.com/tgstation/tgstation/blob/master/icons/mob/pets.dmi)",
+      "license": "CC-BY-SA-3.0"
     }
   ]
 }
