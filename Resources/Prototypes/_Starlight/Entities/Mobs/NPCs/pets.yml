@@ -261,8 +261,8 @@
 
 - type: entity
   parent: MobFoxRenault
-  id: MobFoxRenaultLobster
-  suffix: Lobster, White
+  id: MobFoxRenaultSnow
+  suffix: Snow
   components:
   - type: Sprite
     sprite: _Starlight/Mobs/Pets/renault_lobster.rsi
