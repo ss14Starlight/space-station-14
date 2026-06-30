@@ -10,7 +10,7 @@
   - type: BrighteyeRule
   - type: SubRule
     table: !type:GroupSelector
-    children:
+      children:
       - id: TheDarkHideoutSpawn
       - id: TheDarkGardenSpawn
   - type: AntagLoadProfileRule
