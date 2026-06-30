@@ -30,8 +30,6 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private CloningSystem _cloning = default!;
     [Dependency] private SharedMindSystem _mind = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private CloningSystem _cloning = default!;
     [Dependency] private SuitSensorSystem _sensor = default!;
     [Dependency] private IChatManager _chatManager = default!; // SL add
     [Dependency] private IPrototypeManager _proto = default!; // SL add
@@ -88,7 +86,8 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
             if (allAliveHumanoids.Count == 0)
             {
                 Log.Warning("Could not find any alive players to create a paradox clone from!");
-                _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role")); // SL edit
+                if (args.Session is { } session) // Starlight
+                    _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role")); // SL edit
                 _chatManager.SendAdminAnnouncement($"Player {args.Session} tried to claim Paradox Clone ghost role and it failed to spawn."); // SL edit
                 return;
             }
@@ -99,7 +98,8 @@ public sealed partial class ParadoxCloneRuleSystem : GameRuleSystem<ParadoxClone
             if (randomHumanoidMind is null)
             {
                 Log.Warning("Exhausted all alive players while searching for a valid target. Failed to create paradox clone.");
-                _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role"));
+                if (args.Session is { } session) // Starlight
+                    _chatManager.DispatchServerMessage(args.Session, Loc.GetString("alerts-error-failed-to-spawn-ghost-role"));
                 _chatManager.SendAdminAnnouncement($"Player {args.Session} tried to claim Paradox Clone ghost role and it failed to spawn.");
                 return;
             }
