@@ -173,6 +173,24 @@
       ballistic-ammo: !type:Container
 
 - type: entity
+  id: MagazinePistolSubMachineGunTopMountedFMJ
+  name: WT550 magazine (.35 FMJ auto top-mounted)
+  parent: [ MagazinePistolSubMachineGunTopMounted ]
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition. This one is loaded with FMJ.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgePistolFMJ # Starlight
+
+- type: entity
+  id: MagazinePistolSubMachineGunTopMountedHP
+  name: WT550 magazine (.35 HP auto top-mounted)
+  parent: [ MagazinePistolSubMachineGunTopMounted ]
+  description: Unconventional 30-round top feeding magazine for the WT550 SMG. Intended to hold general-purpose kinetic ammunition. This one is loaded with HP.
+  components:
+    - type: BallisticAmmoProvider
+      proto: CartridgePistolHP # Starlight
+
+- type: entity
   id: MagazinePistolSubMachineGunTopMountedEmpty
   name: WT550 magazine (.35 auto top-mounted any)
   parent: MagazinePistolSubMachineGunTopMounted

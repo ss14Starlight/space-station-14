@@ -43,6 +43,27 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecBlue
 
+- type: loadout
+  id: DutyOfficerJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSecoff
+
+- type: loadout
+  id: DutyOfficerJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSecoff
+
+- type: loadout
+  id: DutyOfficerSeniorJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
+
+- type: loadout
+  id: DutyOfficerSeniorJumpskirtFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
+
+
 # Outer Clothing
 - type: loadout
   id: DutyOfficerArmorRiot
