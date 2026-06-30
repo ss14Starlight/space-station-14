@@ -22,4 +22,11 @@ public sealed partial class TidrBoardComponent : Component
     /// </summary>
     [DataField]
     public int Counter = 1;
+
+    /// <summary>
+    ///     Maps each task id to the ID card entity that posted it.
+    ///     Server-only runtime state, so we store the raw card entity and use it
+    ///     to gate who may edit, complete, or delete a task. Not serialized.
+    /// </summary>
+    public Dictionary<int, EntityUid> Owners = new();
 }
