@@ -81,7 +81,8 @@
   prefRoles:
   - GenericTeamAntagonist # For antag ban purposes
   roleLoadout:
-  - RoleSurvivalNukie
+  - AntagNukeops # Starlight
+  allowNonHumans: true # Starlight
   components:
   - type: NukeOperative
   - type: NpcFactionMember
@@ -95,6 +96,8 @@
   - NukeopsCommander
   spawnerPrototype: SpawnPointNukeopsCommander
   startingGear: SyndicateCommanderGearFull
+  roleLoadout: # Starlight
+    - AntagNukeopsCommander # Starlight
   components:
   - type: RandomMetadata
     nameSegments:
@@ -110,6 +113,8 @@
   - NukeopsMedic
   spawnerPrototype: SpawnPointNukeopsMedic
   startingGear: SyndicateOperativeMedicFull
+  roleLoadout: # Starlight
+    - AntagNukeopsMedic # Starlight
   components:
   - type: RandomMetadata
     nameSegments:
@@ -125,6 +130,8 @@
   - Nukeops
   spawnerPrototype: SpawnPointNukeopsOperative
   startingGear: SyndicateOperativeGearFull
+  roleLoadout: # Starlight
+    - AntagNukeops # Starlight
   components:
   - type: RandomMetadata
     nameSegments:

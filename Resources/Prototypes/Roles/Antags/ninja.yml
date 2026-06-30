@@ -34,6 +34,7 @@
     sound: /Audio/Misc/ninja_greeting.ogg
   components:
   - type: SpaceNinja
+  - type: ThermalVision # Starlight
   - type: NpcFactionMember
     factions:
     - Syndicate

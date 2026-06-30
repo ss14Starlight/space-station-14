@@ -80,6 +80,7 @@
   name: changeling-gamemode-title
   description: changeling-gamemode-description
   showInVote: false
+  minPlayers: 25
   rules:
     - SLChangeling
     - SLChangelingLess

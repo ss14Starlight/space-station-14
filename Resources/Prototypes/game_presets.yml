@@ -265,7 +265,7 @@
     - xenoborgs
   name: xenoborgs-title
   description: xenoborgs-description
-  minPlayers: 20 # 🌟Starlight🌟
+  minPlayers: 30 # 🌟Starlight🌟
   showInVote: true # 🌟Starlight🌟
   rules:
   - Xenoborgs
