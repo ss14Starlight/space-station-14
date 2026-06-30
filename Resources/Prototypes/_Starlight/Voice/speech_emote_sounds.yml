@@ -632,44 +632,60 @@
       collection: MothDeathGasp
 
 - type: emoteSounds
-  id: UnisexRodentia
+  id: MaleRodentia
   sounds:
-    Laugh:
-      collection: FemaleLaugh
-    Sneeze:
-      collection: FemaleSneezes
-    Cough:
-      collection: FemaleCoughs
-    Crying:
-      collection: FemaleCry
-    Whistle:
-      collection: Whistles
-    Sigh:
-      collection: FemaleSigh
-    Yawn:
-      collection: FemaleYawn
-    Snore:
-      collection: Snores
     Scream:
       path: /Audio/Animals/mouse_squeak.ogg
-    Squeak:
-      path: /Audio/Animals/mouse_squeak.ogg
+    Laugh:
+      collection: MaleLaugh
+    Cough:
+      collection: MaleCoughs
+    Yawn:
+      collection: MaleYawn
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Sneeze:
+      collection: MaleSneezes
     Gasp:
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-    Weh:
-      collection: Weh
-    Hew:
-      collection: Hew
+    Snore:
+      collection: Snores
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
 
 - type: emoteSounds
-  parent: UnisexRodentia
-  id: MaleRodentia
-
-- type: emoteSounds
-  parent: UnisexRodentia
   id: FemaleRodentia
+  sounds:
+    Scream:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Laugh:
+      collection: FemaleLaugh
+    Cough:
+      collection: FemaleCoughs
+    Yawn:
+      collection: FemaleYawn
+    Sigh:
+      collection: FemaleSigh
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Sneeze:
+      collection: FemaleSneezes
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: FemaleDeathGasp
+    Snore:
+      collection: Snores
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
 
 - type: emoteSounds
   id: CluwneBeast

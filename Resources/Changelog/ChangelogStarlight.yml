@@ -1,130 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
-    type: Add
-  id: 405894
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Caws
-  changes:
-  - message: Removed the experimental RCD (recharging RCD) from engineering cyborgs due to budget cuts. Central Command apologies for the inconvenience.
-    type: Remove
-  id: 405895
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Musiklie
-  changes:
-  - message: added Avali hearts and lungs to the Med dispenser.
-    type: Add
-  id: 405896
-  time: '2026-06-10T19:31:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4667
-- author: wonderfulnewworld
-  changes:
-  - message: Added a line to Protogens' guidebooks specifying that they are a challenge/not new player species, like IPCs.
-    type: Add
-  id: 405897
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Computer boards restore a little more hunger. (I got the number wrong last time and accidentally made them near-worthless.).
-    type: Tweak
-  id: 405898
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Resomi are no longer poisoned by Amoxla.
-    type: Fix
-  id: 405899
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona can now eat computer boards.
-    type: Fix
-  id: 405900
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Laspi can now eat foods other than computer boards.
-    type: Fix
-  id: 405901
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Dwarves, Proto-Resomi, Proto-Laspi, Proto-Vox, and Proto-Diona are no longer poisoned by computer boards/battery acid.
-    type: Fix
-  id: 405902
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Dwarves and Proto-Laspi can now process raw meat like other Protogen.
-    type: Fix
-  id: 405903
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: Pon
-  changes:
-  - message: Changed BaseToySword Blunt damage from 0.3 to 0.1.
-    type: Tweak
-  id: 405904
-  time: '2026-06-11T16:03:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4731
-- author: wonderfulnewworld
-  changes:
-  - message: Diona/Proto-Diona now restore a little bit of hunger when drinking things with the word "water" in the name. It varies by type, but they're all less than x1.
-    type: Add
-  id: 405905
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona/Proto-Diona now crit at 125 Health, and die at 250 Health. A bit less than Cyclorites.
-    type: Tweak
-  id: 405906
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now gain Fire Stacks at 20 Heat, and can only gain 5 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405907
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona now gain Fire Stacks at 30 Heat, and can only gain 3 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405908
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now move 5% faster while rooted. (-15% as opposed to -20%). Proto-Diona keep the original -20%.
-    type: Tweak
-  id: 405909
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: The plant anomaly creatures are no longer hostile to Diona/Proto-Diona.
-    type: Tweak
-  id: 405910
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Kitchen Knife.
-    type: Tweak
-  id: 405911
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
 - author: Pon
   changes:
   - message: Changed the fixtures size of the Butcher's Cleaver.
@@ -2799,4 +2673,130 @@ Entries:
   id: 406293
   time: '2026-06-28T21:56:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: mikeysaurus
+  changes:
+  - message: Silicon's now understand the Elvish language Felyaic.
+    type: Fix
+  id: 406294
+  time: '2026-06-29T08:21:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4961
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added six new uniforms to secoff.
+    type: Add
+  id: 406295
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to dutyoff.
+    type: Add
+  id: 406296
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to brigmed.
+    type: Add
+  id: 406297
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added two new uniforms to warden.
+    type: Add
+  id: 406298
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added new hat to secoff.
+    type: Add
+  id: 406299
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: BornStellar and Hanz
+  changes:
+  - message: X-03 phase shield. A toggleable energy shield with an internal battery! While it is susceptible to EMPs and isn't as strong as its metal based counterparts, the fact that it self charges while not in use and stores easily in a pocket puts the 'Shield' into Blueshield officer.
+    type: Add
+  id: 406300
+  time: '2026-06-29T14:58:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4903
+- author: Tjmaxmillion
+  changes:
+  - message: CC Job icons now have a darker border.
+    type: Tweak
+  id: 406301
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: CC IDs now have the CC logo rather than the NT logo.
+    type: Tweak
+  id: 406302
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: CCO IDs are now green.
+    type: Tweak
+  id: 406303
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: GSO job icon now match CC and ERT.
+    type: Tweak
+  id: 406304
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: NTSF IDs not use NTSF job icon.
+    type: Tweak
+  id: 406305
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: Marine job icons now match NTSF.
+    type: Tweak
+  id: 406306
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: IDs that had an 8x7 job icon square are now 8x8.
+    type: Tweak
+  id: 406307
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Felyaic from their store.
+    type: Fix
+  id: 406308
+  time: '2026-06-30T15:27:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4963
+- author: mikeysaurus
+  changes:
+  - message: Silicons now understand Rodentia's language, Squeakish.
+    type: Fix
+  id: 406309
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Squeakish from their store.
+    type: Fix
+  id: 406310
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Adjusts Rodentia emote sounds to properly match their gender.
+    type: Fix
+  id: 406311
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
 Order: -1
