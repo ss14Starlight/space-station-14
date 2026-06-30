@@ -72,7 +72,11 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                 program.Tasks.Add(new(program.Counter++, printed.Task));
             args.Handled = true;
             Del(args.Used);
-            UpdateUiState(new Entity<NanoTaskCartridgeComponent>(uid.Value, program), ent.Owner);
+            // Starlight - Tidr: refresh the whole station if on one, else just this cartridge
+            if (_stationSystem.GetOwningStation(ent.Owner) is { } scanStation)
+                RefreshStation(scanStation);
+            else
+                UpdateUiState(new Entity<NanoTaskCartridgeComponent>(uid.Value, program), ent.Owner);
         }
     }
 
@@ -119,6 +123,7 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
             return;
 
         var loader = GetEntity(args.LoaderUid); // Starlight - Tidr
+        var station = _stationSystem.GetOwningStation(loader); // Starlight - Tidr
 
         switch (message.Payload)
         {
@@ -214,7 +219,11 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
             }
         }
 
-        UpdateUiState(ent, loader);
+        // Starlight - Tidr: push the updated board to every NanoTask app on the station, not just the sender
+        if (station is { } st)
+            RefreshStation(st);
+        else
+            UpdateUiState(ent, loader);
     }
 
     private void UpdateUiState(Entity<NanoTaskCartridgeComponent> ent, EntityUid loaderUid)
@@ -223,6 +232,19 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         var tasks = TryGetBoard(loaderUid, out var board) ? board.Tasks : ent.Comp.Tasks;
         var state = new NanoTaskUiState(tasks);
         _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
+    }
+
+    // Starlight - Tidr: push the current board to every NanoTask cartridge on the given station
+    private void RefreshStation(EntityUid station)
+    {
+        var board = EnsureComp<TidrBoardComponent>(station);
+        var state = new NanoTaskUiState(board.Tasks);
+        var query = EntityQueryEnumerator<NanoTaskCartridgeComponent, CartridgeComponent>();
+        while (query.MoveNext(out _, out _, out var cart))
+        {
+            if (cart.LoaderUid is { } loader && _stationSystem.GetOwningStation(loader) == station)
+                _cartridgeLoader.UpdateCartridgeUiState(loader, state);
+        }
     }
 
     // Starlight - Tidr: resolve the station-wide shared task board from any entity on the station
