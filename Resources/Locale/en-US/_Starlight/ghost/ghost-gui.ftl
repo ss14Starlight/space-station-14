@@ -22,3 +22,5 @@ ghost-role-information-cburn-corpsman-name = CBURN Corpsman
 ghost-role-information-cburn-corpsman-description = A highly trained CentComm medical agent, capable of fixing injuries from various threats.
 
 ghost-important-role = [bold]Now looking for candidates to play as {$rolename}[/bold]
+ghost-gui-aghost-toggle-ghost-visibility-popup-on = Invisible to non-admins.
+ghost-gui-aghost-toggle-ghost-visibility-popup-off = Visible to non-admins.
