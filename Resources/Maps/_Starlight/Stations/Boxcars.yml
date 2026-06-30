@@ -123350,7 +123350,7 @@ entities:
     - type: Transform
       pos: 24.53596,-43.31463
       parent: 2
-- proto: WeaponRifleM90GrenadeLauncher
+- proto: WeaponRifleLawbringer
   entities:
   - uid: 18897
     components:

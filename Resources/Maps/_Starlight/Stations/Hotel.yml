@@ -137151,7 +137151,7 @@ entities:
     - type: Transform
       pos: -44.56076,-1.1524997
       parent: 2
-- proto: WeaponRifleM90GrenadeLauncher
+- proto: WeaponRifleLawbringer
   entities:
   - uid: 21687
     components:
