@@ -1,7 +1,7 @@
 <Control xmlns="https://spacestation14.io" xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <BoxContainer Name="MainContainer"
                   Orientation="Horizontal"
-                  SetWidth="250">
+                  HorizontalExpand="True">
         <Button Name="MainButton"
                 HorizontalExpand="True"
                 VerticalExpand="True"
@@ -23,10 +23,17 @@
                 </BoxContainer>
             </BoxContainer>
         </Button>
+        <Button Name="AcceptButton"
+                VerticalExpand="True"
+                MinWidth="64">
+            <Button.StyleClasses>
+                <system:String>ButtonSmall</system:String>
+                <system:String>OpenRight</system:String>
+            </Button.StyleClasses>
+        </Button>
         <Button Name="DoneButton"
                 VerticalExpand="True"
-                MinWidth="60"
-                Text="{Loc 'nano-task-ui-done'}">
+                MinWidth="64">
             <Button.StyleClasses>
                 <system:String>ButtonSmall</system:String>
                 <system:String>OpenLeft</system:String>
