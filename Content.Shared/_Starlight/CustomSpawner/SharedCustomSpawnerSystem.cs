@@ -169,13 +169,15 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
     private void OnMapInit(Entity<CustomSpawnerComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.IsMarker) return;
+        Dirty(ent); // Force dirty to trigger update on client when spawned or during mapinit because client is fucking stupid.
         _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
         ent.Comp.HologramEntity = PredictedSpawnAttachedTo(ent.Comp.HologramProtoId, Transform(ent).Coordinates);
         _xform.SetParent(ent.Comp.HologramEntity.Value, ent); // PredictedSpawnAttachedTo seems to just not work for this??? so here we are i guess
+        _xform.SetLocalPosition(ent.Comp.HologramEntity.Value, ent.Comp.HologramOffset);
         UpdateHologram(ent, (
             ent.Comp.HologramEntity.Value,
             Comp<CustomSpawnerHologramComponent>(ent.Comp.HologramEntity.Value)
-            ));
+        ));
     }
 
     private void OnAfterAutoHandleState(Entity<CustomSpawnerComponent> ent, ref AfterAutoHandleStateEvent args)

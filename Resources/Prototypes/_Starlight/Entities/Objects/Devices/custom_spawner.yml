@@ -49,9 +49,20 @@
         state: default-holo
       hologramColor1: "#65b8e2"
       hologramColor2: "#3a6981"
+      hologramOffset: 0.01, 0.2
     - type: Sprite
       sprite: _Starlight/Objects/Devices/custom_spawner.rsi
-      state: pad
+      layers:
+        - state: pad
+        - map: [ "enabled" ]
+          state: powered
+          shader: unshaded
+        - map: [ "overlay" ]
+          state: overlay
+          shader: unshaded
+        - map: [ "overlay_anim" ]
+          state: activation
+          shader: unshaded
     - type: PointLight
       energy: 3
       radius: 3

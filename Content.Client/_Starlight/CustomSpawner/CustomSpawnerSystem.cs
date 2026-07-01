@@ -28,8 +28,28 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
     protected override void UpdateHologram(Entity<CustomSpawnerComponent> ent, Entity<CustomSpawnerHologramComponent> holo)
     {
         base.UpdateHologram(ent, holo);
-        if (!TryComp<SpriteComponent>(holo, out var sprite)) return;
-        _sprite.SetVisible((holo, sprite), ent.Comp.HologramVisible);
+        // update sprite layers for pad
+        if (TryComp<SpriteComponent>(ent, out var padSprite))
+        {
+            _sprite.LayerSetVisible((ent, padSprite), "enabled", ent.Comp.Enabled);
+            var color = Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f);
+            if (ent.Comp.Enabled)
+            {
+                var animColor = Color.InterpolateBetween(color, Color.White, 0.5f);
+                _sprite.LayerSetColor((ent, padSprite), "overlay", color);
+                _sprite.LayerSetVisible((ent, padSprite), "overlay_anim", true);
+                _sprite.LayerSetColor((ent, padSprite), "overlay_anim", animColor);
+            }
+            else
+            {
+                color = Color.InterpolateBetween(color, Color.Gray, 0.8f);
+                _sprite.LayerSetColor((ent, padSprite), "overlay", color);
+                _sprite.LayerSetVisible((ent, padSprite), "overlay_anim", false);
+            }
+        }
+        // update sprite layers for holo
+        if (!TryComp<SpriteComponent>(holo, out var holoSprite)) return;
+        _sprite.SetVisible((holo, holoSprite), ent.Comp is { HologramVisible: true, Enabled: true });
         UpdateHologramSprite(holo.Owner, holo.Comp);
     }
 

@@ -75,6 +75,7 @@ public sealed partial class CustomSpawnerComponent : Component
     /// Also affects light color if light component is present.
     [DataField, AutoNetworkedField] public Color HologramColor1 = Color.White;
     [DataField, AutoNetworkedField] public Color HologramColor2 = Color.White;
+    [DataField, AutoNetworkedField] public Vector2 HologramOffset = Vector2.Zero;
     /// Reference to the hologram entity so that it can be updated.
     [ViewVariables, AutoNetworkedField] public EntityUid? HologramEntity;
     /// Prototype ID for the hologram entity.

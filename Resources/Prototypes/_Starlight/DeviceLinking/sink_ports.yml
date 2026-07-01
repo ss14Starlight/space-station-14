@@ -36,4 +36,4 @@
 - type: sinkPort
   id: TriggerSpawn
   name: signal-port-name-trigger-spawn
-  description: signal-port-description-trigger-pawn
+  description: signal-port-description-trigger-spawn

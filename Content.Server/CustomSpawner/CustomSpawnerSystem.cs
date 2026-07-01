@@ -41,18 +41,21 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
             {
                 if (!ent.Comp.Enabled) _link.SendSignal(ent, ent.Comp.EnabledPort, true);
                 ent.Comp.Enabled = true;
+                Dirty(ent, ent.Comp);
             }
         if (args.Port == ent.Comp.OffPort)
             if (state is SignalState.High or SignalState.Momentary)
             {
                 if (ent.Comp.Enabled) _link.SendSignal(ent, ent.Comp.DisabledPort, true);
                 ent.Comp.Enabled = false;
+                Dirty(ent, ent.Comp);
             }
         if (args.Port == ent.Comp.TogglePort)
             if (state is SignalState.High or SignalState.Momentary)
             {
                 _link.SendSignal(ent, !ent.Comp.Enabled ? ent.Comp.EnabledPort : ent.Comp.DisabledPort, true);
                 ent.Comp.Enabled = !ent.Comp.Enabled;
+                Dirty(ent, ent.Comp);
             }
         if (args.Port == ent.Comp.TriggerSpawnPort)
             if (state is SignalState.High or SignalState.Momentary)
