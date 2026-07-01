@@ -43,7 +43,7 @@ public partial class InventorySystem
 {
     public void InitializeRelay()
     {
-        SubscribeLocalEvent<InventoryComponent, HitScanPierceAttemptEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, HitScanPierceAttemptEvent>(RefRelayInventoryEvent); // Starlight: Should be RefRelay
         SubscribeLocalEvent<InventoryComponent, DamageModifyEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, StaminaModifyEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, ElectrocutionAttemptEvent>(RelayInventoryEvent);
@@ -64,7 +64,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, ZombificationResistanceQueryEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IsEquippingTargetAttemptEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, IsUnequippingTargetAttemptEvent>(RelayInventoryEvent);
-        SubscribeLocalEvent<InventoryComponent, ChameleonControllerOutfitSelectedEvent>(RelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, ChameleonControllerOutfitSelectedEvent>(RefRelayInventoryEvent); // Starlight: Should be RefRelay
         SubscribeLocalEvent<InventoryComponent, BeforeEmoteEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, StoodEvent>(RelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, DownedEvent>(RelayInventoryEvent);
