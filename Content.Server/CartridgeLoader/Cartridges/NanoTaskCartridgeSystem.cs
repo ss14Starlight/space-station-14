@@ -175,6 +175,33 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                 }
                 break;
             }
+            case NanoTaskAcceptTask task:
+            {
+                // Starlight - Tidr: a Tider claims a job. Any crew may accept, but only once (lock).
+                if (!TryGetBoard(loader, out var accBoard))
+                    return; // accepting only makes sense on a shared station board
+                if (!TryGetInsertedId(loader, out var accCard))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-no-id"), args.Actor, args.Actor);
+                    return;
+                }
+                var accIdx = accBoard.Tasks.FindIndex(t => t.Id == task.Id);
+                if (accIdx == -1)
+                    return;
+                var existing = accBoard.Tasks[accIdx];
+                if (!string.IsNullOrEmpty(existing.Data.AcceptedBy))
+                {
+                    // already claimed by someone else: the lock
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-already-taken"), args.Actor, args.Actor);
+                    return;
+                }
+                var accName = TryComp<IdCardComponent>(accCard, out var accId) && !string.IsNullOrWhiteSpace(accId.FullName)
+                    ? accId.FullName!
+                    : Loc.GetString("tidr-unknown-poster");
+                var d = existing.Data;
+                accBoard.Tasks[accIdx] = new(existing.Id, new NanoTaskItem(d.Description, d.TaskIsFor, d.IsTaskDone, d.Priority, d.Location, d.Reward, accName));
+                break;
+            }
             case NanoTaskDeleteTask task:
                 // Starlight - Tidr: only the owner card may delete a task
                 if (TryGetBoard(loader, out var delBoard))
