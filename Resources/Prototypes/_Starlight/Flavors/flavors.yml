@@ -187,3 +187,38 @@
   id: spacecarpicecream
   flavorType: Complex
   description: flavor-complex-space-carp-icecream
+
+- type: flavor
+  id: silkthreadicecream
+  flavorType: Complex
+  description: flavor-complex-silk-thread-icecream
+
+- type: flavor
+  id: dimensionalicecream
+  flavorType: Complex
+  description: flavor-complex-dimensional-icecream
+
+- type: flavor
+  id: omnizineicecream
+  flavorType: Complex
+  description: flavor-complex-omnizine-icecream
+
+- type: flavor
+  id: meangirlicecream
+  flavorType: Complex
+  description: flavor-complex-mean-girl-icecream
+
+- type: flavor
+  id: hewicecream
+  flavorType: Complex
+  description: flavor-complex-hew-icecream
+
+- type: flavor
+  id: fluffyboyicecream
+  flavorType: Complex
+  description: flavor-complex-fluffy-boy-icecream
+
+- type: flavor
+  id: cinnamon
+  flavorType: Base
+  description: flavor-base-cinnamon

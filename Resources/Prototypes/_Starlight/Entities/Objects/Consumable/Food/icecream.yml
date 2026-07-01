@@ -704,3 +704,169 @@
           Quantity: 25
         - ReagentId: Ichor
           Quantity: 5
+
+- type: entity
+  name: silk thread icecream
+  parent: FoodIceCreamBase
+  id: FoodMothSilkIcecream
+  description: Silk threads flavored like vanilla ice cream for moths.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - silkthreadicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/silk_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/silk_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Fiber
+          Quantity: 10
+
+- type: entity
+  name: interdimensional napoleon icecream
+  parent: FoodIceCreamBase
+  id: FoodDimensionalIcecream
+  description: An icecream that will make you feel different dimensions.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - dimensionalicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/interdimension_napoleon.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/interdimension_napoleon.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: SpaceDrugs
+          Quantity: 10
+        - ReagentId: Happiness
+          Quantity: 10
+
+- type: entity
+  name: omnizine icecream
+  parent: FoodIceCreamBase
+  id: FoodOmnizineIcecream
+  description: An incredibly soothing icecream that mends your wounds.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - omnizineicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/omni_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/omni_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 22.5
+        - ReagentId: Omnizine
+          Quantity: 7.5
+
+- type: entity
+  name: mean girl icecream
+  parent: FoodIceCreamBase
+  id: FoodMeanGirlIcecream
+  description: The power of mean girls shines in this ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - meangirlicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/mean_girl_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/mean_girl_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: hew icecream
+  parent: FoodIceCreamBase
+  id: FoodHewIcecream
+  description: Blueberry ice cream in the shape of a lovable inverted weh.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - hewicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/hew_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/hew_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: JuiceThatMakesYouHew
+          Quantity: 15
+
+- type: entity
+  name: fluffy boy icecream
+  parent: FoodIceCreamBase
+  id: FoodFluffyBoyIcecream
+  description: The power of fluffy boys shines in this ice cream.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - fluffyboyicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/fluffy_boy_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/fluffy_boy_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30

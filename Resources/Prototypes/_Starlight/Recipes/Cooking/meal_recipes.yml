@@ -265,6 +265,7 @@
   group: Icecream
   solids:
     DrinkGlass : 1
+    FoodMintLeaf: 1
   reagents:
     IceCream: 20
     CocoaPowder: 5
@@ -461,6 +462,7 @@
     FoodApple: 1
   reagents:
     IceCream: 20
+    Cinnamon: 5
 
 - type: microwaveMealRecipe
   id: RecipeGoldAppleCinnamonIcecream
@@ -474,6 +476,7 @@
     FoodGoldenApple: 1
   reagents:
     IceCream: 20
+    Cinnamon: 5
 
 - type: microwaveMealRecipe
   id: RecipeHolyMelonIcecream
@@ -541,3 +544,86 @@
     FoodMeatDragonCutlet: 1
   reagents:
     IceCream: 10
+
+- type: microwaveMealRecipe
+  id: RecipeSilkThreadIceream
+  name: silk thread icecream
+  result: FoodMothSilkIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    Fiber: 10
+
+- type: microwaveMealRecipe
+  id: RecipeInterdimensionalIceream
+  name: interdimensional napoleon icecream
+  result: FoodDimensionalIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodExtradimensionalOrange: 1
+    FoodWorldPeas: 1
+  reagents:
+    IceCream: 10
+
+- type: microwaveMealRecipe
+  id: RecipeOmnizineIcecream
+  name: omnizine icecream
+  result: FoodOmnizineIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 1
+  reagents:
+    IceCream: 20
+    Omnizine: 5
+
+- type: microwaveMealRecipe
+  id: RecipeMeanGirlIcecream
+  name: mean girl icecream
+  result: FoodMeanGirlIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 1
+    CrayonWhite: 1
+  reagents:
+    IceCream: 20
+    Cream: 5
+
+- type: microwaveMealRecipe
+  id: RecipeHewIcecream
+  name: hew icecream
+  result: FoodHewIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+  reagents:
+    IceCream: 20
+    JuiceThatMakesYouHew: 5
+
+- type: microwaveMealRecipe
+  id: RecipeFluffyBoyIcecream
+  name: fluffy boy icecream
+  result: FoodFluffyBoyIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodLime: 1
+    CrayonGreen: 1
+  reagents:
+    IceCream: 20

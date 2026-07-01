@@ -30,3 +30,5 @@
           amount: 3
         - id: IcecreamMakerFlatpack
           amount: 1
+        - id: DrinkGlass
+          amount: 5
