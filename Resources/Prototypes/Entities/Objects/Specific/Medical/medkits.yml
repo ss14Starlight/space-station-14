@@ -8,7 +8,7 @@
     sprite: _Starlight/Objects/Specific/Medical/firstaidkits.rsi #SL Edit
     state: firstaid
   - type: Storage
-    maxItemSize: Small
+    maxItemSize: Normal #Starlight - upped from Small to Normal to allow PatchPacks to be added to medkits.
     grid:
     - 0,0,3,1
   - type: Item
@@ -122,6 +122,8 @@
         - BodyBag
         - Vial
         - AutoMender
+        - PatchPack
+        - OilPack
        components:
         - Injector
         - Pill
