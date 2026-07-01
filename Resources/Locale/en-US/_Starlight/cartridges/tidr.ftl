@@ -9,3 +9,8 @@ tidr-reward-placeholder = 0
 
 tidr-complete = Complete
 tidr-revert = Undo
+
+tidr-accept = Accept
+tidr-taken = Taken
+tidr-already-taken = This job has already been accepted.
+tidr-taken-by = Taken by {$name}
