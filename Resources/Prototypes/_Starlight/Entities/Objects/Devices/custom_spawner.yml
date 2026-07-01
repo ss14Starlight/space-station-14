@@ -79,8 +79,23 @@
       state: default-holo
     - type: Marker
     - type: CustomSpawner
-      usePadSprite: false
       isMarker: true
+      lightVisible: false
+
+- type: entity
+  id: CustomSpawnerMarkerHolo
+  parent: CustomSpawnerMarker
+  suffix: Marker, Hologram
+  components:
+    - type: CustomSpawner
+      isMarker: false
+      hologramVisible: true
+      hologramSprite:
+        sprite: _Starlight/Objects/Devices/custom_spawner.rsi
+        state: default-holo
+      hologramColor1: "#65b8e2"
+      hologramColor2: "#3a6981"
+    - type: PointLight
 
 - type: entity
   id: CustomSpawnerHologram

@@ -78,6 +78,7 @@ public sealed partial class CustomSpawnerComponent : Component
     [DataField, AutoNetworkedField] public Vector2 HologramOffset = Vector2.Zero;
     /// Reference to the hologram entity so that it can be updated.
     [ViewVariables, AutoNetworkedField] public EntityUid? HologramEntity;
+    [DataField, AutoNetworkedField] public bool LightVisible = true;
     /// Prototype ID for the hologram entity.
     [DataField] public EntProtoId HologramProtoId;
     /// Prevents spawning the hologram entity entirely if <see langword="true"/>.

@@ -168,9 +168,14 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
 
     private void OnMapInit(Entity<CustomSpawnerComponent> ent, ref MapInitEvent args)
     {
-        if (ent.Comp.IsMarker) return;
         Dirty(ent); // Force dirty to trigger update on client when spawned or during mapinit because client is fucking stupid.
-        _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
+        if (ent.Comp.LightVisible)
+        {
+            _light.SetEnabled(ent, true);
+            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
+        }
+        else _light.SetEnabled(ent, false);
+        if (ent.Comp.IsMarker) return;
         ent.Comp.HologramEntity = PredictedSpawnAttachedTo(ent.Comp.HologramProtoId, Transform(ent).Coordinates);
         _xform.SetParent(ent.Comp.HologramEntity.Value, ent); // PredictedSpawnAttachedTo seems to just not work for this??? so here we are i guess
         _xform.SetLocalPosition(ent.Comp.HologramEntity.Value, ent.Comp.HologramOffset);
@@ -182,8 +187,13 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
 
     private void OnAfterAutoHandleState(Entity<CustomSpawnerComponent> ent, ref AfterAutoHandleStateEvent args)
     {
+        if (ent.Comp.LightVisible)
+        {
+            _light.SetEnabled(ent, true);
+            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
+        }
+        else _light.SetEnabled(ent, false);
         if (ent.Comp.IsMarker) return;
-        _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
         if (TryComp<CustomSpawnerHologramComponent>(ent.Comp.HologramEntity, out var holo))
             UpdateHologram(ent, (ent.Comp.HologramEntity.Value, holo));
     }
@@ -203,5 +213,6 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
             holo.Comp.Rsi = ent.Comp.HologramSprite.RsiPath.ToString();
             holo.Comp.State = ent.Comp.HologramSprite.RsiState;
         }
+        _xform.SetLocalPosition(holo, ent.Comp.HologramOffset);
     }
 }
