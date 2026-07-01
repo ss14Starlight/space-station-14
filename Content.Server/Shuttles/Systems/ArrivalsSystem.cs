@@ -135,7 +135,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
 
         // Just saves mappers forgetting. (v2 boogaloo)
         args.Handled = true;
-        args.Tag = "DockArrivals";
+        args.Tag = ArrivalsPriorityTag; // Starlight: Use constant
     }
 
     private CompletionResult ArrivalsCompletion(IConsoleShell shell, string[] args)
