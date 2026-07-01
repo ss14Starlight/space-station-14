@@ -23,7 +23,6 @@ using Content.Shared.Database;
 using Content.Shared.Follower;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Players;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Roles;
 using Content.Shared.Whitelist;
@@ -36,16 +35,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
-using Content.Server.Bible.Components;
-using Content.Shared.Tag;
-using Content.Shared.Preferences;
-using Content.Shared.Preferences.Loadouts;
 using Prometheus;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics;
-using Content.Shared.Hands.Components;
-using Content.Shared.Humanoid;
 // Starlight End
 using static Content.Server.Antag.Components.AntagSelectionTime;
 
@@ -75,28 +65,22 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         ["type"]
     );
     #endregion
-    [Dependency] private readonly IBanManager _ban = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IServerPreferencesManager _pref = default!;
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly ArrivalsSystem _arrivals = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly FollowerSystem _follower = default!;
-    [Dependency] private readonly GhostRoleSystem _ghostRole = default!;
-    [Dependency] private readonly JobSystem _jobs = default!;
-    [Dependency] private readonly LoadoutSystem _loadout = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    #region Starlight
-    [Dependency] private SharedHumanoidAppearanceSystem _appearance = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private TagSystem _tag = default!;
-    [Dependency] private SharedPhysicsSystem _physics = default!;
-    #endregion
+    [Dependency] private IBanManager _ban = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private IServerPreferencesManager _pref = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private ArrivalsSystem _arrivals = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private FollowerSystem _follower = default!;
+    [Dependency] private GhostRoleSystem _ghostRole = default!;
+    [Dependency] private JobSystem _jobs = default!;
+    [Dependency] private LoadoutSystem _loadout = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private PlayTimeTrackingSystem _playTime = default!;
+    [Dependency] private RoleSystem _role = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -162,9 +146,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         if (component.SelectionTime == RuleStarted) // Only pre-select antags if we pre-select on rule start
             AssignAntags((uid, component), players);
-
-        // Any antags not spawned we make ghost roles for!
-        SpawnGhostRoles((uid, component), players.Length);
+        else // Otherwise, we only spawn the ghost roles!
+            SpawnGhostRoles((uid, component), players.Length);
     }
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
@@ -339,7 +322,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
     }
 
-    private List<AntagCount>  GetAntags(Entity<AntagSelectionComponent> gameRule,
+    private List<AntagCount> GetAntags(Entity<AntagSelectionComponent> gameRule,
         int playerCount)
     {
         var runningCount = 0;
@@ -742,49 +725,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         return ev.Handled;
     }
 
-    // Starlight Start: Antag Loadouts
-    private RoleLoadout? GetSelectedLoadout(ICommonSession? session, EntityUid player, List<ProtoId<RoleLoadoutPrototype>>? roleLoadouts, out RoleLoadoutPrototype? proto)
-    {
-        proto = null;
-
-        if (session == null || roleLoadouts == null || roleLoadouts.Count == 0)
-            return null;
-
-        ProtoId<RoleLoadoutPrototype>? selectedId = null;
-
-        foreach (var candidate in roleLoadouts)
-        {
-            if (_prototypeManager.HasIndex(candidate))
-            {
-                selectedId = candidate;
-                break;
-            }
-        }
-
-        if (selectedId == null || !_prototypeManager.TryIndex(selectedId.Value, out proto))
-            return null;
-
-        HumanoidCharacterProfile? profile = null;
-
-        if (_pref.TryGetCachedPreferences(session.UserId, out var pref))
-        {
-            profile = pref.Characters.Values
-                .OfType<HumanoidCharacterProfile>()
-                .FirstOrDefault(p => p.Enabled);
-        }
-
-        if (profile == null && TryComp<HumanoidAppearanceComponent>(player, out var humanoid))
-        {
-            profile = _appearance.GetBaseProfile((player, humanoid));
-        }
-
-        if (profile == null)
-            return null;
-
-        return profile.GetLoadoutOrDefault(selectedId.Value, session, profile.Species, EntityManager, _prototypeManager).Clone();
-    }
-    // Starlight End
-
     /// <summary>
     /// Assigns antag roles to sessions selected for it.
     /// </summary>
@@ -859,8 +799,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         _loadout.Equip(antag, gear, prototype.RoleLoadout);
 
-        // Ensure that we have a mind for our entity!
-        if (player.GetMind() is not { } mind)
+        // Ensure that we have the right mind for our entity.
+        if (!_mind.TryGetMind(player, out var mind, out var mindComp) || mindComp.OwnedEntity != antag)
             mind = _mind.CreateMind(player.UserId, Name(antag));
 
         _mind.TransferTo(mind, antag, ghostCheckOverride: true);
@@ -898,16 +838,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         args.Minds = GetAntagIdentities(ent.AsNullable()).ToList();
         args.AgentName = Loc.GetString(name);
     }
-
-    // Starlight Start: Refresh physics after antag spawn relocation.
-    private void RefreshSpawnedAntagPhysics(EntityUid uid)
-    {
-        if (!TryComp(uid, out PhysicsComponent? physics))
-            return;
-
-        _physics.WakeBody(uid, body: physics);
-    }
-    // Starlight End
 }
 
 /// <summary>
@@ -947,7 +877,7 @@ public record struct AntagSelectLocationEvent(Entity<AntagSelectionComponent> Ga
 }
 
 /// <summary>
-/// Event raised on a game rule entity after the setup logic for an antag is complete.
+/// Event raised on a game ruleR entity after the setup logic for an antag is complete.
 /// Used for applying additional more complex setup logic.
 /// </summary>
 [ByRefEvent]
