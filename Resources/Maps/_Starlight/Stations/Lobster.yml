@@ -129043,7 +129043,7 @@ entities:
     - type: Transform
       pos: 66.5,1.5
       parent: 2
-- proto: SpawnMobFoxMobFoxRenaultSnow
+- proto: SpawnMobFoxRenaultSnow
   entities:
   - uid: 20589
     components:
