@@ -14,6 +14,7 @@ public sealed partial class NanoTaskUiFragment : BoxContainer
 {
     public Action<int>? OpenTask;
     public Action<int>? ToggleTaskCompletion;
+    public Action<int>? AcceptTask; // Starlight - Tidr
     public Action? NewTask;
     public List<NanoTaskItemAndId> Tasks = new();
 
@@ -49,6 +50,7 @@ public sealed partial class NanoTaskUiFragment : BoxContainer
             container.AddChild(control);
             control.OnMainPressed += id => OpenTask?.Invoke(id);
             control.OnDonePressed += id => ToggleTaskCompletion?.Invoke(id);
+            control.OnAcceptPressed += id => AcceptTask?.Invoke(id); // Starlight - Tidr
         }
     }
 }
