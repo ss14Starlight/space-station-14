@@ -11,7 +11,7 @@ namespace Content.Client._Starlight.CustomSpawner;
 /// Handles client visuals related to custom spawners. Main code is in <see cref="SharedCustomSpawnerSystem"/>
 public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
 {
-    private static readonly string _shader = "Hologram";
+    private const float Lambda = 0.5f;
 
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IPrototypeManager _proto = default!;
@@ -32,7 +32,7 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         if (TryComp<SpriteComponent>(ent, out var padSprite))
         {
             _sprite.LayerSetVisible((ent, padSprite), "enabled", ent.Comp.Enabled);
-            var color = Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f);
+            var color = Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, Lambda);
             if (ent.Comp.Enabled)
             {
                 var animColor = Color.InterpolateBetween(color, Color.White, 0.5f);
@@ -93,7 +93,7 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         // Find the texture height of the largest layer
         float texHeight = sprite.AllLayers.Max(x => x.PixelSize.Y);
 
-        var instance = _proto.Index<ShaderPrototype>(_shader).InstanceUnique();
+        var instance = _proto.Index<ShaderPrototype>(comp.ShaderName).InstanceUnique();
         instance.SetParameter("color1", new Vector3(comp.Color1.R, comp.Color1.G, comp.Color1.B));
         instance.SetParameter("color2", new Vector3(comp.Color2.R, comp.Color2.G, comp.Color2.B));
         instance.SetParameter("alpha", comp.Alpha);

@@ -13,6 +13,8 @@ namespace Content.Shared._Starlight.CustomSpawner;
 
 public abstract partial class SharedCustomSpawnerSystem : EntitySystem
 {
+    private const float Lambda = 0.5f;
+
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SharedPointLightSystem _light = default!;
     [Dependency] private IRobustRandom _random = default!;
@@ -173,7 +175,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         if (ent.Comp.LightVisible)
         {
             _light.SetEnabled(ent, true);
-            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
+            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, Lambda));
         }
         else _light.SetEnabled(ent, false);
         if (ent.Comp.IsMarker) return;
@@ -191,7 +193,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         if (ent.Comp.LightVisible)
         {
             _light.SetEnabled(ent, true);
-            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, 0.5f));
+            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, Lambda));
         }
         else _light.SetEnabled(ent, false);
         if (ent.Comp.IsMarker) return;
