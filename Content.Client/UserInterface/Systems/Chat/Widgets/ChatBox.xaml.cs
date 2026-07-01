@@ -27,6 +27,7 @@ public partial class ChatBox : UIWidget
     private readonly ChatUIController _controller;
 
     public bool Main { get; set; }
+    public ChatSelectChannel? MainChannel { get; set; } // Starlight
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
     public RichTextLabel SelectedLanguage => LanguageNotifier; // Starlight
