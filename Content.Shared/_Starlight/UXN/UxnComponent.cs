@@ -23,6 +23,6 @@ public sealed partial class UxnComponent : Component
     [DataField, AutoNetworkedField]
     public int AssembledSize = 0;
 
-    [ViewVariables] //if you wanna manually sift through this be my guest
+    [DataField] //if you wanna manually sift through this be my guest, not autonetwork because the client has no reason to know the bytes yet, mabey enable it if eg: we add a hex viewer later
     public List<byte> CompiledRom = new();
 }

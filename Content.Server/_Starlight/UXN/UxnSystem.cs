@@ -220,7 +220,7 @@ public sealed partial class UxnSystem : SharedUxnSystem
     {
         var uxn = ent.Comp.Uxn!;
         var attached = uxn.SystemDevice.AttachedDevices;
-        var id = new FaxComponentDevice().Id.ToLower();
+        var id = new FaxComponentDevice().Id.ToLowerInvariant();
         if (!attached.TryGetValue(id, out var value))
             return; //it is not attached so dont have it listen for events.
         var dev = (FaxComponentDevice)uxn.Devices[value];
@@ -351,6 +351,7 @@ public sealed partial class UxnPostCompileEvent(Entity<UxnComponent> Entity, Ent
         }
 
         uxnComponent.AssembledSize = uxnComponent.CompiledRom.Count;
+        _entMan.Dirty(Entity);
         return;
     }
 }

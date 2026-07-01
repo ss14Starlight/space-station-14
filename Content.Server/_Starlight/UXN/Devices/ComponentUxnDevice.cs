@@ -7,7 +7,7 @@ public abstract partial class ComponentUxnDevice<T> : UXNDevice where T : ICompo
     /// <summary>
     /// this should always be lowercase
     /// </summary>
-    public virtual string Id => typeof(T).Name[..^"Component".Length].ToLower();
+    public virtual string Id => typeof(T).Name[..^"Component".Length].ToLowerInvariant();
 
     protected Entity<T> Entity;
 

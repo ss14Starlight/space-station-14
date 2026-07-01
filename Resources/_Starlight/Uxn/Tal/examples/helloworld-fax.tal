@@ -30,6 +30,7 @@ BRK ( execute the event )
 ;dict/contents .Fax/bnk2ptr DEO2 ( fax content )
 #0000 .Fax/bnk2len DEO2
 .Faxcmd/send .Fax/cmd DEO ( SEND IT! )
+BRK
 
 @dict
 &fax-name "faxmachine $1

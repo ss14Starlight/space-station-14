@@ -939,6 +939,11 @@ public sealed partial class UXNProcessor
                 if (SystemDevice.Status != 0)
                 {
                     Running = false;
+                    var status = SystemDevice.Status;
+                    foreach (var ev in _events.ToArray().OfType<StatusUxnEvent>())
+                    {
+                        ev.ExitingWithStatus(this, status);
+                    }
                     _events.Clear();
                     return true;
                 }

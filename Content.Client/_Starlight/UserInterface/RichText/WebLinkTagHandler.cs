@@ -10,7 +10,7 @@ using Content.Client.Guidebook.RichText;
 namespace Content.Client._Starlight.UserInterface.RichText;
 
 [UsedImplicitly]
-public sealed class WebLinkTag : IMarkupTagHandler
+public sealed partial class WebLinkTag : IMarkupTagHandler
 {
     [Dependency] private readonly IUriOpener _uriOpener = default!;
 
