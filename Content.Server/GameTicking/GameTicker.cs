@@ -17,6 +17,8 @@ using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.GameTicking;
+using Content.Shared.GameTicking.Components; // Starlight
+using Content.Shared._Starlight.EntityTable; // Starlight
 using Content.Shared.Mind;
 using Content.Shared.Roles;
 using Robust.Server;
@@ -103,7 +105,11 @@ namespace Content.Server.GameTicking
             InitializePlayer();
             InitializeLobbyBackground();
             InitializeGamePreset();
-            SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded); // Starlight
+
+            #region Starlight
+            SubscribeAllEvent<PresetConditionCheckEvent>(CheckPresetCondition);
+            SubscribeLocalEvent<NukeExplodedEvent>(OnNukeExploded);
+            #endregion
             DebugTools.Assert(_prototypeManager.Index(FallbackOverflowJob).Name == FallbackOverflowJobName,
                 "Overflow role does not have the correct name!");
             InitializeGameRules();
