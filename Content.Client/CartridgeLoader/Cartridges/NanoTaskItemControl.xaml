@@ -1,10 +1,12 @@
 <Control xmlns="https://spacestation14.io" xmlns:system="clr-namespace:System;assembly=System.Runtime">
     <BoxContainer Name="MainContainer"
                   Orientation="Horizontal"
-                  HorizontalExpand="True">
+                  HorizontalExpand="True"
+                  MinWidth="340">
         <Button Name="MainButton"
                 HorizontalExpand="True"
                 VerticalExpand="True"
+                MinWidth="200"
                 ClipText="True"
                 StyleClasses="ButtonSquare"
                 Margin="-1 0 0 0">
