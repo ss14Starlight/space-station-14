@@ -19,7 +19,7 @@
                 <GridContainer Name="HighContainer"
                                HorizontalExpand="True"
                                Access="Public"
-                               Columns="2" />
+                               Columns="1" />
 
                 <!-- Heading for Medium Priority Items -->
                 <BoxContainer Orientation="Horizontal">
@@ -34,7 +34,7 @@
                 <GridContainer Name="MediumContainer"
                                HorizontalExpand="True"
                                Access="Public"
-                               Columns="2" />
+                               Columns="1" />
 
                 <!-- Location for Low Priority Items -->
                 <BoxContainer Orientation="Horizontal">
@@ -49,7 +49,7 @@
                 <GridContainer Name="LowContainer"
                                HorizontalExpand="True"
                                Access="Public"
-                               Columns="2" />
+                               Columns="1" />
 
                 <Button Name="NewTaskButton" Text="{Loc 'nano-task-ui-new-task'}" HorizontalAlignment="Right"/>
             </BoxContainer>
