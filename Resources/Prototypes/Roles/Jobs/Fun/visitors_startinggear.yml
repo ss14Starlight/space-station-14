@@ -1,9 +1,21 @@
 ### Visitors with Visitor ID
 
+# Base set
+
+- type: startingGear
+  id: VisitorBase
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGrey
+    shoes: ClothingShoesColorBlack
+    id: VisitorPDA
+    back: ClothingBackpackSatchel
+    ears: ClothingHeadsetVisitor
+
 # Command
 
 - type: startingGear
   id: VisitorCaptain
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCaptain
     shoes: ClothingShoesBootsLaceup
@@ -11,89 +23,84 @@
     gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCaptain
     neck: ClothingNeckCloakCap
-    id: VisitorPDA
-    belt: WeaponDisabler
+    belt: ClothingBeltSheath
     back: ClothingBackpackCaptain
-    ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    pocket1: WeaponDisabler
+    pocket1: WeaponMiniEnergyGun
 
 - type: startingGear
   id: VisitorCaptainAlt
+  parent: VisitorCaptain
   equipment:
     jumpsuit: ClothingUniformJumpsuitCapFormal
-    shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesCommand
-    gloves: ClothingHandsGlovesCaptain
     head: ClothingHeadHatCapcap
     neck: ClothingNeckMantleCap
-    id: VisitorPDA
-    belt: WeaponDisabler
+    belt: BoxFolderClipboardThreePapers
     back: ClothingBackpackSatchelCaptain
-    ears: ClothingHeadsetAltCommand
     outerClothing: ClothingOuterArmorCaptainCarapace
-    pocket1: WeaponDisabler
+    pocket1: WeaponMiniEnergyGun
 
 - type: startingGear
   id: VisitorCE
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
     shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadHatBeretEngineering
     neck: ClothingNeckCloakCe
-    id: VisitorPDA
     belt: ClothingBeltChiefEngineerFilled
     back: ClothingBackpackDuffelEngineering
-    ears: ClothingHeadsetCE
     outerClothing: ClothingOuterVestHazard
-    pocket1: WeaponDisabler
+    pocket1: WeaponMiniEnergyGun
 
 - type: startingGear
   id: VisitorCEAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineerTurtle
     shoes: ClothingShoesColorWhite
+    gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadHatBeretEngineering
     neck: ClothingNeckMantleCE
-    id: VisitorPDA
     belt: ClothingBeltChiefEngineerFilled
     back: ClothingBackpackSatchelEngineering
-    ears: ClothingHeadsetCE
     outerClothing: ClothingOuterWinterCE
-    pocket1: WeaponDisabler
+    pocket1: WeaponMiniEnergyGun
 
 - type: startingGear
   id: VisitorCMO
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCMO
     shoes: ClothingShoesColorBrown
     gloves: ClothingHandsGlovesLatex
     head: ClothingHeadMirror
     neck: ClothingCloakCmo
-    id: VisitorPDA
     back: ClothingBackpackMedical
-    ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
     outerClothing: ClothingOuterCoatLabCmo
-    pocket1: WeaponDisabler
+    pocket1: WeaponMiniEnergyGun
+    pocket2: HandheldHealthAnalyzer
 
 - type: startingGear
   id: VisitorCMOAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCMOTurtle
     shoes: ClothingShoesColorBrown
     gloves: ClothingHandsGlovesNitrile
     head: ClothingHeadHatBeretCmo
     neck: ClothingNeckMantleCMO
-    id: VisitorPDA
     back: ClothingBackpackSatchelMedical
-    ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
     outerClothing: ClothingOuterCoatLabCmo
-    pocket1: WeaponDisabler
+    pocket1: WeaponMiniEnergyGun
+    pocket2: HandheldHealthAnalyzer
 
 - type: startingGear
   id: VisitorHOP
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoP
     shoes: ClothingShoesLeather
@@ -108,6 +115,7 @@
 
 - type: startingGear
   id: VisitorHOPAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoP
     shoes: ClothingShoesLeather
@@ -122,6 +130,7 @@
 
 - type: startingGear
   id: VisitorHOS
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitHoSParadeMale
     shoes: ClothingShoesBootsCowboyBlackFilled
@@ -141,6 +150,7 @@
 
 - type: startingGear
   id: VisitorHOSAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitHosFormal
     shoes: ClothingShoesBootsCowboyFancyFilled
@@ -159,6 +169,7 @@
 
 - type: startingGear
   id: VisitorRD
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitResearchDirector
     shoes: ClothingShoesColorBrown
@@ -173,6 +184,7 @@
 
 - type: startingGear
   id: VisitorRDAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitResearchDirector
     shoes: ClothingShoesColorBrown
@@ -187,6 +199,7 @@
 
 - type: startingGear
   id: VisitorQM
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitQMTurtleneck
     shoes: ClothingShoesColorBrown
@@ -201,6 +214,7 @@
 
 - type: startingGear
   id: VisitorQMAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitQMFormal
     shoes: ClothingShoesColorBrown
@@ -217,6 +231,7 @@
 
 - type: startingGear
   id: VisitorSecurityCadet
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
     shoes: ClothingShoesBootsCombatFilled
@@ -234,6 +249,7 @@
 
 - type: startingGear
   id: VisitorSecurityCadetAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSecGrey
     shoes: ClothingShoesBootsCombatFilled
@@ -252,6 +268,7 @@
 
 - type: startingGear
   id: VisitorSecurityOfficer
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSec
     shoes: ClothingShoesBootsCombatFilled
@@ -269,6 +286,7 @@
 
 - type: startingGear
   id: VisitorSecurityOfficerAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSecGrey
     shoes: ClothingShoesBootsCombatFilled
@@ -287,6 +305,7 @@
 
 - type: startingGear
   id: VisitorDetective
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetective
     shoes: ClothingShoesBootsCombatFilled
@@ -305,6 +324,7 @@
 
 - type: startingGear
   id: VisitorDetectiveAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitDetectiveGrey
     shoes: ClothingShoesBootsCombatFilled
@@ -323,6 +343,7 @@
 
 - type: startingGear
   id: VisitorWarden
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitWarden
     shoes: ClothingShoesBootsCombatFilled
@@ -343,6 +364,7 @@
 
 - type: startingGear
   id: VisitorWardenAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitWarden
     shoes: ClothingShoesBootsCombatFilled
@@ -364,6 +386,7 @@
 
 - type: startingGear
   id: VisitorCargoTech
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesColorBlack
@@ -378,6 +401,7 @@
 
 - type: startingGear
   id: VisitorCargoTechAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCargo
     shoes: ClothingShoesBootsWinterCargo
@@ -394,6 +418,7 @@
 
 - type: startingGear
   id: VisitorSalvageSpecialist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     shoes: ClothingShoesBootsSalvage
@@ -409,6 +434,7 @@
 
 - type: startingGear
   id: VisitorSalvageSpecialistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     shoes: ClothingShoesBootsSalvage
@@ -427,6 +453,7 @@
 
 - type: startingGear
   id: VisitorAtmosTech
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitAtmos
     shoes: ClothingShoesColorWhite
@@ -444,6 +471,7 @@
 
 - type: startingGear
   id: VisitorAtmosTechAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitAtmosCasual
     shoes: ClothingShoesColorWhite
@@ -463,6 +491,7 @@
 
 - type: startingGear
   id: VisitorTechnicalAssistant
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorYellow
     shoes: ClothingShoesBootsWork
@@ -479,6 +508,7 @@
 
 - type: startingGear
   id: VisitorTechnicalAssistantAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineeringHazard
     shoes: ClothingShoesColorBlack
@@ -497,6 +527,7 @@
 
 - type: startingGear
   id: VisitorEngineer
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitEngineering
     shoes: ClothingShoesBootsWork
@@ -516,6 +547,7 @@
 
 - type: startingGear
   id: VisitorEngineerAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorEngineer
     shoes: ClothingShoesBootsWork
@@ -536,6 +568,7 @@
 
 - type: startingGear
   id: VisitorChemist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChemistry
     shoes: ClothingShoesColorOrange
@@ -554,6 +587,7 @@
 
 - type: startingGear
   id: VisitorChemistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChemistry
     shoes: ClothingShoesColorOrange
@@ -572,6 +606,7 @@
 
 - type: startingGear
   id: VisitorGeneticist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitGenetics
     shoes: ClothingShoesColorBlue
@@ -590,6 +625,7 @@
 
 - type: startingGear
   id: VisitorGeneticistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitGenetics
     shoes: ClothingShoesColorBlue
@@ -608,6 +644,7 @@
 
 - type: startingGear
   id: VisitorVirologist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitVirology
     shoes: ClothingShoesColorGreen
@@ -626,6 +663,7 @@
 
 - type: startingGear
   id: VisitorVirologistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitVirology
     shoes: ClothingShoesColorGreen
@@ -645,6 +683,7 @@
 
 - type: startingGear
   id: VisitorMedicalDoctor
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     shoes: ClothingShoesColorWhite
@@ -664,6 +703,7 @@
 
 - type: startingGear
   id: VisitorMedicalDoctorAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMedicalDoctor
     shoes: ClothingShoesBootsWinterMed
@@ -683,6 +723,7 @@
 
 - type: startingGear
   id: VisitorDentist
+  parent: VisitorBase
   equipment:
     jumpsuit: UniformScrubsColorBlue
     shoes: ClothingShoesColorBlue
@@ -702,6 +743,7 @@
 
 - type: startingGear
   id: VisitorPsychologist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologist
     shoes: ClothingShoesLeather
@@ -720,6 +762,7 @@
 
 - type: startingGear
   id: VisitorPsychologistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitPsychologist
     shoes: ClothingShoesLeather
@@ -737,6 +780,7 @@
 
 - type: startingGear
   id: VisitorParamedic
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitParamedic
     shoes: ClothingShoesSwat
@@ -757,6 +801,7 @@
 
 - type: startingGear
   id: VisitorParamedicAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitParamedic
     shoes: ClothingShoesBootsWork
@@ -777,6 +822,7 @@
 
 - type: startingGear
   id: VisitorMedicalIntern
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
     shoes: ClothingShoesColorWhite
@@ -794,6 +840,7 @@
 
 - type: startingGear
   id: VisitorMedicalInternAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
     shoes: ClothingShoesColorWhite
@@ -811,6 +858,7 @@
 
 - type: startingGear
   id: VisitorScrubsPurple
+  parent: VisitorBase
   equipment:
     jumpsuit: UniformScrubsColorPurple
     shoes: ClothingShoesColorRed
@@ -829,6 +877,7 @@
 
 - type: startingGear
   id: VisitorScrubsGreen
+  parent: VisitorBase
   equipment:
     jumpsuit: UniformScrubsColorGreen
     shoes: ClothingShoesColorGreen
@@ -847,6 +896,7 @@
 
 - type: startingGear
   id: VisitorScrubsBlue
+  parent: VisitorBase
   equipment:
     jumpsuit: UniformScrubsColorBlue
     shoes: ClothingShoesColorBlue
@@ -867,6 +917,7 @@
 
 - type: startingGear
   id: VisitorResearchAssistant
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorPurple
     shoes: ClothingShoesColorBlack
@@ -881,6 +932,7 @@
 
 - type: startingGear
   id: VisitorResearchAssistantAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCasualPurple
     shoes: ClothingShoesColorBlack
@@ -895,6 +947,7 @@
 
 - type: startingGear
   id: VisitorScientist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitScientistFormal
     shoes: ClothingShoesColorPurple
@@ -909,6 +962,7 @@
 
 - type: startingGear
   id: VisitorScientistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitScientist
     shoes: ClothingShoesBootsWinterSci
@@ -926,6 +980,7 @@
 
 - type: startingGear
   id: VisitorBartender
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitBartender
     shoes: ClothingShoesColorBlack
@@ -941,6 +996,7 @@
 
 - type: startingGear
   id: VisitorBartenderAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitBartenderPurple
     shoes: ClothingShoesColorBlack
@@ -956,6 +1012,7 @@
 
 - type: startingGear
   id: VisitorBotanist
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitHydroponics
     shoes: ClothingShoesColorGreen
@@ -969,6 +1026,7 @@
 
 - type: startingGear
   id: VisitorBotanistAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitHydroponics
     shoes: ClothingShoesColorGreen
@@ -981,6 +1039,7 @@
 
 - type: startingGear
   id: VisitorBoxer
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShorts
     shoes: ClothingShoesColorBlack
@@ -993,6 +1052,7 @@
 
 - type: startingGear
   id: VisitorBoxerAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShorts
     shoes: ClothingShoesColorBlack
@@ -1006,6 +1066,7 @@
 
 - type: startingGear #!! make sure these are bible users.
   id: VisitorChaplain
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChaplain
     shoes: ClothingShoesColorBlack
@@ -1020,6 +1081,7 @@
 
 - type: startingGear
   id: VisitorChaplainAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChaplain
     shoes: ClothingShoesColorBlack
@@ -1033,6 +1095,7 @@
 
 - type: startingGear
   id: VisitorChef
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
     shoes: ClothingShoesChef
@@ -1051,6 +1114,7 @@
 
 - type: startingGear
   id: VisitorChefAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitChef
     shoes: ClothingShoesColorBlack
@@ -1069,6 +1133,7 @@
 
 - type: startingGear
   id: VisitorClown
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitClown
     shoes: ClothingShoesClown
@@ -1081,6 +1146,7 @@
 
 - type: startingGear
   id: VisitorJanitor
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitJanitor
     shoes: ClothingShoesGaloshes
@@ -1097,6 +1163,7 @@
 
 - type: startingGear
   id: VisitorJanitorAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitJanitor
     shoes: ClothingShoesGaloshes
@@ -1113,6 +1180,7 @@
 
 - type: startingGear
   id: VisitorLawyerAltA
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerService # Starlight
     shoes: ClothingShoesColorBlack
@@ -1129,6 +1197,7 @@
 
 - type: startingGear
   id: VisitorLawyerAltB
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerGray # Starlight
     shoes: ClothingShoesLeather
@@ -1145,6 +1214,7 @@
 
 - type: startingGear
   id: VisitorLawyerAltC
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerPink # Starlight
     shoes: ClothingShoesColorRed
@@ -1162,6 +1232,7 @@
 
 - type: startingGear
   id: VisitorLawyerAltD
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBlackTwo # Starlight
     shoes: ClothingShoesSnakeskinBoots
@@ -1181,6 +1252,7 @@
 
 - type: startingGear
   id: VisitorLawyerAltE
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitLawyerBad # Starlight
     shoes: ClothingShoesLeather
@@ -1216,6 +1288,7 @@
 
 - type: startingGear
   id: VisitorLibrarian
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitLibrarian
     shoes: ClothingShoesBootsLaceup
@@ -1232,6 +1305,7 @@
 
 - type: startingGear
   id: VisitorLibrarianAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitCurator
     shoes: ClothingShoesBootsLaceup
@@ -1248,6 +1322,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltA
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1262,6 +1337,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltB
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1276,6 +1352,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltC
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1290,6 +1367,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltD
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1304,6 +1382,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltE
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1318,6 +1397,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltF
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1332,6 +1412,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltG
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1346,6 +1427,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltH
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1360,6 +1442,7 @@
 
 - type: startingGear
   id: VisitorMusicianFancyAltI
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBrown
@@ -1374,6 +1457,7 @@
 
 - type: startingGear
   id: VisitorMusicianRelaxedAltA
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBlack
@@ -1388,6 +1472,7 @@
 
 - type: startingGear
   id: VisitorMusicianRelaxedAltB
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBlack
@@ -1402,6 +1487,7 @@
 
 - type: startingGear
   id: VisitorMusicianRelaxedAltC
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBrown
@@ -1416,6 +1502,7 @@
 
 - type: startingGear
   id: VisitorMusicianRelaxedAltD
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesColorBlack
@@ -1430,6 +1517,7 @@
 
 - type: startingGear
   id: VisitorMusicianRelaxedAltE
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMusician
     shoes: ClothingShoesBootsLaceup
@@ -1443,6 +1531,7 @@
 
 - type: startingGear
   id: VisitorMusicianRelaxedAltF
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformRandomShirt
     shoes: ClothingShoesWizard
@@ -1458,6 +1547,7 @@
 
 - type: startingGear
   id: VisitorMusicianMariachi
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorTeal
     shoes: ClothingShoesColorBrown
@@ -1474,6 +1564,7 @@
 
 - type: startingGear
   id: VisitorMime
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMime
     shoes: ClothingShoesColorWhite
@@ -1489,6 +1580,7 @@
 
 - type: startingGear
   id: VisitorMimeAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitMime
     shoes: ClothingShoesColorWhite
@@ -1507,6 +1599,7 @@
 
 - type: startingGear
   id: VisitorReporter
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitReporter
     shoes: ClothingShoesLeather
@@ -1518,6 +1611,7 @@
 
 - type: startingGear
   id: VisitorReporterAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitJournalist
     shoes: ClothingShoesColorBrown
@@ -1529,6 +1623,7 @@
 
 - type: startingGear
   id: VisitorServiceWorker
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitBartender
     shoes: ClothingShoesColorBlack
@@ -1541,6 +1636,7 @@
 
 - type: startingGear
   id: VisitorServiceWorkerAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
     shoes: ClothingShoesColorBlack
@@ -1554,6 +1650,7 @@
 
 - type: startingGear
   id: VisitorZookeeper
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSafari
     shoes: ClothingShoesBootsSalvage
@@ -1567,6 +1664,7 @@
 
 - type: startingGear
   id: VisitorZookeeperAlt
+  parent: VisitorBase
   equipment:
     jumpsuit: ClothingUniformJumpsuitSafari
     shoes: ClothingShoesBootsWork

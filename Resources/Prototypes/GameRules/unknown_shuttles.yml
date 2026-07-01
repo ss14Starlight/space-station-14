@@ -33,7 +33,7 @@
   - type: StationEvent
     maxOccurrences: 2
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/lost_cargo.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/Lost_Cargo.yml # Starlight
 
 - type: entity
   parent: BaseUnknownShuttleRule
@@ -43,7 +43,7 @@
     startAnnouncement: station-event-unknown-shuttle-incoming
     maxOccurrences: 2
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/traveling_china_cuisine.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Salami.yml # Starlight
 
 - type: entity
   parent: BaseUnknownShuttleRule
@@ -87,7 +87,7 @@
     earliestStart: 45 # late to hopefully have enough ghosts to fill all roles quickly.
     minimumPlayers: 25
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/quark.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Quark.yml # Starlight
 
 - type: entity
   id: UnknownShuttleCruiser
@@ -97,7 +97,7 @@
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
     weight: 2 # Its just a big ship, so it needs to be rarer to be interesting.
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/cruiser.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Cruiser.yml # Starlight
 
 - type: entity
   id: UnknownShuttleCryptid
@@ -106,7 +106,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/cryptid.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Cryptid.yml # Starlight
 
 - type: entity
   id: UnknownShuttleEternal
@@ -115,7 +115,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/eternal.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Eternal.yml # Starlight
 
 - type: entity
   id: UnknownShuttleFlatline
@@ -124,7 +124,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/flatline.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/EMS-Flatline.yml # Starlight
 
 - type: entity
   id: UnknownShuttleGym
@@ -134,7 +134,7 @@
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
     weight: 5 # Its just a big ship, so it needs to be rarer to be interesting.
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/gym.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Gym.yml # Starlight
 
 - type: entity
   id: UnknownShuttleNTIncorporation
@@ -145,7 +145,7 @@
     weight: 2 # Its just a big ship, so it needs to be rarer to be interesting.
     earliestStart: 45 # late to hopefully have enough ghosts to fill all roles quickly. (5-6)
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/incorporation.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Incorporation.yml # Starlight
 
 - type: entity
   id: UnknownShuttleInstigator
@@ -165,7 +165,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/joe.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Joe.yml # Starlight
 
 - type: entity
   id: UnknownShuttleLambordeere
@@ -174,7 +174,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/lambordeere.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Lambordeere.yml # Starlight
 
 - type: entity
   id: UnknownShuttleManOWar
@@ -194,7 +194,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/meatzone.yml
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/SRV-Meatzone.yml # Starlight
 
 - type: entity
   id: UnknownShuttleMicroshuttle
@@ -214,5 +214,4 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming #!!
   - type: LoadMapRule
-    gridPath: /Maps/Shuttles/ShuttleEvent/spacebus.yml
-
+    gridPath: /Maps/_Starlight/Shuttles/ShuttleEvent/NT-Route.yml # Starlight
