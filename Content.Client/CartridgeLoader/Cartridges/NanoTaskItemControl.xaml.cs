@@ -15,6 +15,7 @@ public sealed partial class NanoTaskItemControl : Control
 {
     public Action<int>? OnMainPressed;
     public Action<int>? OnDonePressed;
+    public Action<int>? OnAcceptPressed; // Starlight - Tidr
 
     public NanoTaskItemControl(NanoTaskItemAndId item)
     {
@@ -23,19 +24,28 @@ public sealed partial class NanoTaskItemControl : Control
         TaskLabel.Text = item.Data.Description;
         TaskLabel.FontColorOverride = Color.White;
 
-        // Starlight - Tidr: requester name (auto-stamped) + location + reward
+        // Starlight - Tidr: requester name (auto-stamped) + location + reward + who took it
+        var accepted = !string.IsNullOrEmpty(item.Data.AcceptedBy);
         var sub = item.Data.TaskIsFor;
         if (!string.IsNullOrWhiteSpace(item.Data.Location))
             sub += $" - {item.Data.Location}";
         if (item.Data.Reward > 0)
             sub += $"  ({item.Data.Reward} cr)";
+        if (accepted)
+            sub += $"  •  {Loc.GetString("tidr-taken-by", ("name", item.Data.AcceptedBy!))}";
         TaskForLabel.Text = sub;
 
         MainButton.OnPressed += _ => OnMainPressed?.Invoke(item.Id);
         DoneButton.OnPressed += _ => OnDonePressed?.Invoke(item.Id);
+        AcceptButton.OnPressed += _ => OnAcceptPressed?.Invoke(item.Id);
 
         MainButton.Disabled = item.Data.IsTaskDone;
-        // Starlight - Tidr: "Complete" / "Undo" wording
+
+        // Starlight - Tidr: Accept is open until someone claims it, then it locks
+        AcceptButton.Text = accepted ? Loc.GetString("tidr-taken") : Loc.GetString("tidr-accept");
+        AcceptButton.Disabled = accepted || item.Data.IsTaskDone;
+
+        // Starlight - Tidr: "Complete" / "Undo" wording (requester closes the job)
         DoneButton.Text = item.Data.IsTaskDone ? Loc.GetString("tidr-revert") : Loc.GetString("tidr-complete");
     }
 }
