@@ -627,3 +627,31 @@
     CrayonGreen: 1
   reagents:
     IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeLeaderIcecream
+  name: leader icecream
+  result: FoodLeaderIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    FoodBerries: 1
+    CrayonBlue: 1
+  reagents:
+    IceCream: 20
+
+- type: microwaveMealRecipe
+  id: RecipeTeslaIcecream
+  name: tesla icecream
+  result: FoodTeslaIcecream
+  deviceType: IcecreamMaker
+  time: 5
+  group: Icecream
+  solids:
+    DrinkGlass : 1
+    TeslaToy: 1
+  reagents:
+    IceCream: 20
+    Cream: 5

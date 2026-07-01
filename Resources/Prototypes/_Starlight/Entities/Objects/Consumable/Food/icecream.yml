@@ -870,3 +870,57 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 30
+
+- type: entity
+  name: leader icecream
+  parent: FoodIceCreamBase
+  id: FoodLeaderIcecream
+  description: The power of this ice cream shines with you.
+  components:
+  - type: FlavorProfile
+    flavors:
+    - leadericecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/leader_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/leader_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 30
+
+- type: entity
+  name: tesla icecream
+  parent: FoodIceCreamBase
+  id: FoodTeslaIcecream
+  description: Ice cream to give you a good zap in your step!
+  components:
+  - type: FlavorProfile
+    flavors:
+    - teslaicecream
+  - type: Edible
+    transferAmount: 5
+    trash:
+    - DrinkGlass
+  - type: Sprite
+    sprite: _Starlight/Objects/Consumable/Icecream/tesla_cream_bowl.rsi
+  - type: Icon
+    sprite: _Starlight/Objects/Consumable/Icecream/tesla_cream_bowl.rsi
+    state: icon
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Tazinide
+          Quantity: 10

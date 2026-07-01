@@ -43,4 +43,6 @@ flavor-complex-omnizine-icecream = like raspberry, cream, and a soothing medicin
 flavor-complex-mean-girl-icecream = like strawberry, bubble gum, and playful meanness
 flavor-complex-hew-icecream = like blueberry and a feeling to hew
 flavor-complex-fluffy-boy-icecream = like vanilla, lime, and a gentle kindness
+flavor-complex-leader-icecream = like vanilla, blueberry, and a crunchy sword cookie
+flavor-complex-tesla-icecream = like vanilla and your hairs raising up
 flavor-base-cinnamon = cinnamony

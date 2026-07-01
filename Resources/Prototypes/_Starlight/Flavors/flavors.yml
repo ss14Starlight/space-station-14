@@ -222,3 +222,13 @@
   id: cinnamon
   flavorType: Base
   description: flavor-base-cinnamon
+
+- type: flavor
+  id: leadericecream
+  flavorType: Complex
+  description: flavor-complex-leader-icecream
+
+- type: flavor
+  id: teslaicecream
+  flavorType: Complex
+  description: flavor-complex-tesla-icecream
