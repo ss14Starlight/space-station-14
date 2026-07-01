@@ -54,6 +54,11 @@ public sealed partial class NanoTaskUi : UIFragment
                 acceptedBy: task.Data.AcceptedBy   // Starlight - Tidr: preserve
             ))))));
         };
+        // Starlight - Tidr: a Tider claims the job
+        _fragment.AcceptTask += id =>
+        {
+            userInterface.SendMessage(new CartridgeUiMessage(new NanoTaskUiMessageEvent(new NanoTaskAcceptTask(id))));
+        };
         _popup.TaskSaved += (id, data) =>
         {
             userInterface.SendMessage(new CartridgeUiMessage(new NanoTaskUiMessageEvent(new NanoTaskUpdateTask(new(id, data)))));
