@@ -1,14 +1,16 @@
 ﻿using Content.Server._Starlight.Objectives.Events;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Objectives;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadingSurviveTaskSystem : EntitySystem
 {
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
 
     public override void Initialize()
     {

@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
+        eyes: OrganProtoResomiEyes
         tongue: OrganProtogenTongueForked
         eye_implant: null
         brain_implant: BrainImplantNexus
@@ -22,7 +22,7 @@
       - left leg
       organs:
         heart: OrganProtoResomiHeart
-        lungs: OrganProtogenLungs
+        lungs: OrganProtoResomiLungs
         stomach: OrganProtogenStomach
         liver: OrganProtogenLiver
         kidneys: OrganProtogenKidneys

@@ -1266,3 +1266,79 @@
       tags:
         - CorgiWearable
         - Hardsuit
+
+# Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander, AllowSuitStorageClothing, ClothingOuterStorageBase ]
+  categories: [ DoNotMap ]
+  id: ClothingOuterHardsuitGreenshield
+  name: greenshield hardsuit
+  description: A protective hardsuit worn by Greenshields. It even has pockets!
+  components:
+    - type: Sprite
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: Clothing
+      sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    - type: ExplosionResistance
+      damageCoefficient: 0.2
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.4
+          Slash: 0.4
+          Piercing: 0.3
+          Heat: 0.2
+          Radiation: 0.01
+          Caustic: 0.4
+    - type: ToggleableClothing
+      clothingPrototype: ClothingHeadHelmetHardsuitGreenshield
+    - type: Tag
+      tags:
+        - WhitelistChameleon
+        - Hardsuit
+        - CorgiWearable
+    - type: ClothingSpeedModifier
+      walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
+      sprintModifier: 0.95
+    - type: Storage
+      grid:
+        - 0,0,2,1
+    - type: ContainerContainer
+      containers:
+        toggleable-clothing: !type:ContainerSlot
+        cell_slot: !type:ContainerSlot
+        storagebase: !type:Container
+
+- type: entity
+  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
+  id: ChangelingClothingOuterHardsuit
+  name: organic space suit
+  description: A spaceworthy biomass of pressure and temperature resistant tissue.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: Changeling/ling_spacesuit.rsi
+  - type: Clothing
+    sprite: Changeling/ling_spacesuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.225
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Pierceable
+    level: Flesh
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.85
+        Heat: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: Unremoveable

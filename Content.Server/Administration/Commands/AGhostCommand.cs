@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Mind;
+using Content.Shared._Starlight.Administration.Events;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
 using Content.Shared.Mind;
@@ -13,10 +14,10 @@ using Robust.Shared.Player;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Moderator)]
-public sealed class AGhostCommand : LocalizedCommands
+public sealed partial class AGhostCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
     public override string Command => "aghost";
     public override string Help => "aghost";
@@ -118,5 +119,7 @@ public sealed class AGhostCommand : LocalizedCommands
 
         var comp = _entities.GetComponent<GhostComponent>(ghost);
         ghostSystem.SetCanReturnToBody((ghost, comp), canReturn);
+
+        _entities.EntityNetManager.SendSystemNetworkMessage(new AdminGhostEvent(), player.Channel); // Starlight
     }
 }

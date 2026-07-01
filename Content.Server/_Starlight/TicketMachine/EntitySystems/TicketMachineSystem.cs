@@ -6,10 +6,10 @@ using Content.Server.Atmos.EntitySystems;
 
 namespace Content.Server._Starlight.TicketMachine.EntitySystems;
 
-public sealed class TicketMachineSystem : SharedTicketMachineSystem
+public sealed partial class TicketMachineSystem : SharedTicketMachineSystem
 {
-    [Dependency] private readonly SharedPowerReceiverSystem _powerReceiverSystem = default!;
-    [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+    [Dependency] private SharedPowerReceiverSystem _powerReceiverSystem = default!;
+    [Dependency] private FlammableSystem _flammableSystem = default!;
 
     public override void Initialize()
     {

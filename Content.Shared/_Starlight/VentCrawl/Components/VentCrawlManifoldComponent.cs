@@ -1,5 +1,3 @@
-using Robust.Shared.GameStates;
-
 namespace Content.Shared._Starlight.VentCrawl.Components;
 
 [RegisterComponent]

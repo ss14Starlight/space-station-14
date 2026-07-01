@@ -1,10 +1,9 @@
 using System.Linq;
-using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Shared._Starlight.GhostTheme;
 using Content.Shared.Administration;
 using Content.Shared.Ghost;
-using Content.Shared.Starlight;
+using Content.Shared._Starlight;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Console;
@@ -14,13 +13,13 @@ using Robust.Shared.Prototypes;
 namespace Content.Server._Starlight.GhostTheme;
 
 [UsedImplicitly]
-public sealed class GhostThemeSystem : EntitySystem
+public sealed partial class GhostThemeSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IPlayerRolesManager _playerRoles = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPlayerRolesManager _playerRoles = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -132,9 +131,9 @@ public sealed class GhostThemeSystem : EntitySystem
 }
 
 [AnyCommand]
-public sealed class GhostTheme : IConsoleCommand
+public sealed partial class GhostTheme : IConsoleCommand
 {
-    [Dependency] private readonly IEntityManager _e = default!;
+    [Dependency] private IEntityManager _e = default!;
 
     public string Command => "ghostTheme";
     public string Description => "Opens ghost theme preferences window.";

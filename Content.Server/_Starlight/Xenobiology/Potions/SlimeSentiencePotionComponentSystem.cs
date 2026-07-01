@@ -6,10 +6,10 @@ using Content.Shared.Mind.Components;
 
 namespace Content.Server._Starlight.Xenobiology.Potions;
 
-public sealed class SlimeSentiencePotionComponentSystem : EntitySystem
+public sealed partial class SlimeSentiencePotionComponentSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMindSystem _sharedMindSystem = default!;
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private SharedMindSystem _sharedMindSystem = default!;
+    [Dependency] private EntityManager _entityManager = default!;
 
     public override void Initialize()
     {

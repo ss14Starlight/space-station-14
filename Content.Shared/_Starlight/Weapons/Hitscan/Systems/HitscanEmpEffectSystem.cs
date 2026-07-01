@@ -1,15 +1,13 @@
-using Robust.Shared.GameObjects;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Emp;
-using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
+using Content.Shared._Starlight.Weapons.Hitscan.Components;
 
-namespace Content.Shared.Weapons.Hitscan.Systems;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Systems;
 
-public sealed class HitscanEmpEffectSystem : EntitySystem
+public sealed partial class HitscanEmpEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedEmpSystem _emp = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedEmpSystem _emp = default!;
 
     public override void Initialize()
     {

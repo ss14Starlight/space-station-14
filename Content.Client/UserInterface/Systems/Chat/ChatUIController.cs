@@ -1,4 +1,4 @@
-﻿using System.Globalization;
+using System.Globalization; // Starlight: UTF-8 encode this file!
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.Managers;
@@ -55,18 +55,18 @@ namespace Content.Client.UserInterface.Systems.Chat;
 
 public sealed partial class ChatUIController : UIController
 {
-    [Dependency] private readonly IClientAdminManager _admin = default!;
-    [Dependency] private readonly IChatManager _manager = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IEyeManager _eye = default!;
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly IInputManager _input = default!;
-    [Dependency] private readonly IClientNetManager _net = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IStateManager _state = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IReplayRecordingManager _replayRecording = default!;
+    [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private IChatManager _manager = default!;
+    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IEyeManager _eye = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private IInputManager _input = default!;
+    [Dependency] private IClientNetManager _net = default!;
+    [Dependency] private IPlayerManager _player = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IStateManager _state = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IReplayRecordingManager _replayRecording = default!;
 
     [UISystemDependency] private readonly RadioChimeSystem? _chime = default;// 🌟Starlight🌟
     [UISystemDependency] private readonly ExamineSystem? _examine = default;
@@ -398,14 +398,31 @@ public sealed partial class ChatUIController : UIController
 
     private void FocusChannel(ChatSelectChannel channel)
     {
+        // Starlight BEGIN
+        /*
+            We added the "MainChannel" property to fix the admin chat window not being prioritized
+            when the admin chat hotkey was pressed. This code was altered to prioritize a chat box
+            whose MainChannel == channel. If no such chat box is found, whichever chat box is
+            Main (the 'default' chat box) is used.
+
+            Note, I also tried to use the active chat filters to determine which box to select,
+            but it seems there's several boxes in the background that break this, so I opted
+            for this simpler approach of just having one "MainChannel".
+        */
+        ChatBox? fallback = null;
         foreach (var chat in _chats)
         {
-            if (!chat.Main)
-                continue;
+            if (chat.MainChannel == channel)
+            {
+                chat.Focus(channel);
+                return;
+            }
 
-            chat.Focus(channel);
-            break;
+            if (chat.Main)
+                fallback = chat;
         }
+        fallback?.Focus(channel);
+        // Starlight END
     }
 
     private void CycleChatChannel(bool forward)
@@ -793,7 +810,7 @@ public sealed partial class ChatUIController : UIController
 
         if (chatChannel == ChatSelectChannel.Local)
         {
-            if (_ghost?.IsGhost != true && _ghost?.Player?.BypassGhostChat != true) // Starlight edit
+            if (_ghost?.IsGhost != true || _ghost?.Player?.BypassGhostChat == true) // Starlight edit
                 return (chatChannel, text, null, null, language); //Starlight edit
             else
                 chatChannel = ChatSelectChannel.Dead;
@@ -876,8 +893,11 @@ public sealed partial class ChatUIController : UIController
     }
 
     // Starlight begin: dumb event listener for updating channel permissions
-    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _) =>
+    private void OnCorporealChanged(GhostCorporealEvent ev, EntitySessionEventArgs _)
+    {
+        if (EntityManager.GetEntity(ev.Uid) != _player.LocalEntity) return;
         UpdateChannelPermissions();
+    }
     // Starlight end
 
     private void OnChatMessage(MsgChatMessage message)

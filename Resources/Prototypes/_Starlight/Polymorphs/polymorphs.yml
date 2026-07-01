@@ -68,3 +68,40 @@
     polymorphSound: /Audio/Magic/ethereal_enter.ogg
     exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
     duration: 5
+
+- type: polymorph
+  id: ForcedCluwneBeast
+  configuration:
+    entity: MobCluwneBeast
+    forced: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+    transferName: false
+    transferDamage: false
+
+- type: polymorph
+  id: PermanentCorgiMorph
+  configuration:
+    entity: MobCorgiSmart
+    forced: true
+    inventory: Drop
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: false
+
+#Vampire
+- type: polymorph
+  id: VampireMouse
+  configuration:
+    entity: MobMouse
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: polymorph
+  id: VampireBat
+  configuration:
+    entity: MobBat
+    revertOnDeath: true
+    revertOnCrit: true

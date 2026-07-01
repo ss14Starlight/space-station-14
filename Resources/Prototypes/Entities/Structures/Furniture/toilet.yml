@@ -72,7 +72,7 @@
   - type: Drain
     autoDrain: false
   - type: StaticPrice
-    price: 100
+    price: 125 # Starlight
   - type: ActivatableUI
     key: enum.DisposalUnitUiKey.Key
     verbOnly: true # Not strictly needed, but we want E to toggle lid
@@ -89,12 +89,7 @@
         maxVol: 100
       tank:
         maxVol: 500
-  - type: SolutionRegeneration
-    solution: tank
-    generated:
-      reagents:
-      - ReagentId: Water
-        Quantity: 1
+    # Starlight removed SolutionRegeneration for BaseToiletRegen
   - type: DrainableSolution
     solution: tank
   - type: ReagentTank
@@ -132,10 +127,13 @@
 # so theres not actually any way to replenish the gastrotoxin / gold in these.
 # I wouldn't add it to the solutionregeneration comp because that doesn't make a lot of sense imo.
 - type: entity
-  parent: ToiletEmpty
+  parent: BaseToiletRegen # Starlight
   id: ToiletDirtyWater
   suffix: Dirty Water
   components:
+  - type: Construction
+    graph: Toilet
+    node: toilet
   - type: SolutionContainerManager
     solutions:
       drainBuffer:
@@ -149,10 +147,13 @@
           Quantity: 20
 
 - type: entity
-  parent: ToiletEmpty
+  parent: BaseToiletRegen # Starlight
   id: ToiletFilled
   suffix: Empty, Random Cistern Loot
   components:
+  - type: Construction
+    graph: Toilet
+    node: toilet
   - type: EntityTableContainerFill
     containers:
       stash: !type:NestedSelector
@@ -173,7 +174,7 @@
           range: 0, 1
 
 - type: entity
-  parent: BaseToilet
+  parent: BaseToiletRegen # Starlight
   id: ToiletGoldenEmpty
   name: golden toilet
   description: The HT-451G is the gold version of the device. It says on the side that it is made of the purest Mercurian gold and a real leather seat.
@@ -211,6 +212,7 @@
 - type: entity
   parent: ToiletGoldenEmpty
   id: ToiletGoldenDirtyWater
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Dirty Water, StealTarget
   components:
   - type: StealTarget

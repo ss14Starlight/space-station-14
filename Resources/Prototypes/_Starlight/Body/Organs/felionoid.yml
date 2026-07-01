@@ -1,7 +1,7 @@
 - type: entity
   id: OrganFelionoidEyes
   parent: OrganHumanEyes
-  name: eyes
+  name: felionoid eyes
   suffix: Felionoid
   description: "The eyes of a Felionoid."
   components:
