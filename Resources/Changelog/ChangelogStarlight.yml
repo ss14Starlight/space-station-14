@@ -1,32 +1,4 @@
 Entries:
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona now gain Fire Stacks at 30 Heat, and can only gain 3 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405908
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now move 5% faster while rooted. (-15% as opposed to -20%). Proto-Diona keep the original -20%.
-    type: Tweak
-  id: 405909
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: The plant anomaly creatures are no longer hostile to Diona/Proto-Diona.
-    type: Tweak
-  id: 405910
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Kitchen Knife.
-    type: Tweak
-  id: 405911
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
 - author: Pon
   changes:
   - message: Changed the fixtures size of the Butcher's Cleaver.
@@ -2799,4 +2771,32 @@ Entries:
   id: 406307
   time: '2026-06-29T15:36:27.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Felyaic from their store.
+    type: Fix
+  id: 406308
+  time: '2026-06-30T15:27:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4963
+- author: mikeysaurus
+  changes:
+  - message: Silicons now understand Rodentia's language, Squeakish.
+    type: Fix
+  id: 406309
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Squeakish from their store.
+    type: Fix
+  id: 406310
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Adjusts Rodentia emote sounds to properly match their gender.
+    type: Fix
+  id: 406311
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
 Order: -1
