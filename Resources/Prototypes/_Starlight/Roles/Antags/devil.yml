@@ -8,6 +8,11 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 10h
+  - !type:SpeciesRequirement
+    species:
+    - IPC
+    inverted: true
+  playTimeTracker: AntagDevil
 
 - type: antagSpecifier
   parent: RestrictedAntag
@@ -33,4 +38,3 @@
     clumsyDefib: false
     clumsyHypo: false
     clumsyVaulting: false
-
