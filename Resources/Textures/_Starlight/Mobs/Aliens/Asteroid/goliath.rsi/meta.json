@@ -1,0 +1,127 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from TGstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/mob/simple/lavaland/lavaland_monsters.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "goliath",
+	  "copyright": "TGstation",
+      "directions": 4
+    },
+    {
+      "name": "goliath_alert",
+	  "copyright": "TGstation",
+      "directions": 4,
+      "delays": [
+        [
+          1,
+          0.2,
+          1,
+          0.5
+        ],
+        [
+          1,
+          0.2,
+          1,
+          0.5
+        ],
+        [
+          1,
+          0.2,
+          1,
+          0.5
+        ],
+        [
+          1,
+          0.2,
+          1,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "goliath_preattack",
+	  "copyright": "TGstation",
+      "directions": 4,
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "goliath_dead",
+	  "copyright": "TGstation"
+    },
+    {
+      "name": "goliath_tentacle_spawn",
+	  "copyright": "TGstation",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "goliath_tentacle_wiggle",
+	  "copyright": "TGstation",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "goliath_tentacle_retract",
+	  "copyright": "TGstation",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+		  0.1,
+		  0.1,
+		  0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

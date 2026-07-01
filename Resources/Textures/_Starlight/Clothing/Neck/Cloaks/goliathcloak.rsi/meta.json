@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from TGstation at https://github.com/tgstation/tgstation/blob/HEAD/icons/mob/clothing/suits/armor.dmi, sprites in hand by PuroSlavKing (Github) and RudeyCoolLeet#3875",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TGstation"
+    },
+	{
+      "name": "equipped-NECK",
+	  "copyright": "TGstation",
+      "directions": 4
+    },
+    {
+      "name": "inhand-left",
+	  "copyright": "PuroSlavKing (Github) and RudeyCoolLeet#3875",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+	  "copyright": "PuroSlavKing (Github) and RudeyCoolLeet#3875",
+      "directions": 4
+    }
+  ]
+}
