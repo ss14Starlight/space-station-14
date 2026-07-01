@@ -139,13 +139,11 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 15
-        Slash: 5
-        Structural: 5
+        Piercing: 12
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 25
+        Piercing: 12
 
 - type: entity
   name: cinnamon stick

@@ -14,6 +14,6 @@
     sprite: _Starlight/Structures/Machines/ice_cream_maker.rsi
     state: icon
   product: CrateServiceIcecreamMakerStarter
-  cost: 1000
+  cost: 2250
   category: cargoproduct-category-name-service
   group: market
