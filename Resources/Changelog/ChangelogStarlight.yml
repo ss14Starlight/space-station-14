@@ -1,284 +1,4 @@
 Entries:
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Protogen tails now correctly make the thump sound.
-    type: Fix
-  id: 405872
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Resomi use the base Resomi Gasp, Deathgasp, Sigh, Cough, and Yawn.
-    type: Fix
-  id: 405873
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: All Protogen can now get hand implants.
-    type: Fix
-  id: 405874
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: True Protogen can be picked up.
-    type: Fix
-  id: 405875
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: ProtoKin can hear Empathy now.
-    type: Fix
-  id: 405876
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: Proto-Vulps no longer starve 10x faster than they're supposed to.
-    type: Fix
-  id: 405877
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: wonderfulnewworld, Princess Gurchi
-  changes:
-  - message: The Duty Officer's Winter Coat now has a suit storage slot.
-    type: Fix
-  id: 405878
-  time: '2026-06-10T08:28:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4714
-- author: Cvlancer
-  changes:
-  - message: Fixed the east side security substation not receiving power by removing a cable terminal.
-    type: Fix
-  id: 405879
-  time: '2026-06-10T08:28:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4713
-- author: Caws
-  changes:
-  - message: The large version of the warden locker has been removed due to being unused.
-    type: Remove
-  id: 405880
-  time: '2026-06-10T09:12:15.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4708
-- author: Caws
-  changes:
-  - message: Security's Hybrid Taser now fits in your suit storage, just like the Disabler and Dominator.
-    type: Fix
-  id: 405881
-  time: '2026-06-10T09:32:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4707
-- author: Caws
-  changes:
-  - message: The Ion Rifle now fits in your suit storage, just like other rifles.
-    type: Fix
-  id: 405882
-  time: '2026-06-10T09:32:45.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4707
-- author: TaserTheFox
-  changes:
-  - message: Some reagent bottles now have the correct labels.
-    type: Fix
-  id: 405883
-  time: '2026-06-10T09:54:09.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4697
-- author: STARLIGHT TEAM
-  changes:
-  - message: (CC_SC17) Completely removed the old atmospherics piping and such.
-    type: Remove
-  id: 405884
-  time: '2026-06-10T10:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4687
-- author: STARLIGHT TEAM
-  changes:
-  - message: (CC_SC17) Completely new atmospherics piping and layout.
-    type: Add
-  id: 405885
-  time: '2026-06-10T10:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4687
-- author: STARLIGHT TEAM
-  changes:
-  - message: (CC_SC17) Security front entrance now stops those tiders from breakin in.
-    type: Tweak
-  id: 405886
-  time: '2026-06-10T10:15:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4687
-- author: Caws
-  changes:
-  - message: The siren for Code Violet is now a little quieter.
-    type: Tweak
-  id: 405887
-  time: '2026-06-10T18:15:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4722
-- author: Caws
-  changes:
-  - message: The siren for Code Violet now fades out instead of just cutting off at the end.
-    type: Fix
-  id: 405888
-  time: '2026-06-10T18:15:04.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4722
-- author: Caws
-  changes:
-  - message: Mimes can no longer use AAC tablets while their vow of silence is active.
-    type: Tweak
-  id: 405889
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by writing.
-    type: Tweak
-  id: 405890
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence using sign language nor hiveminds (e.g. the Nexus).
-    type: Tweak
-  id: 405891
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by using NanoChat.
-    type: Tweak
-  id: 405892
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Mimes can no longer bypass their vow of silence by using NanoTasks (they may only print NanoTasks if the description is blank).
-    type: Tweak
-  id: 405893
-  time: '2026-06-10T18:45:29.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4718
-- author: Caws
-  changes:
-  - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
-    type: Add
-  id: 405894
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Caws
-  changes:
-  - message: Removed the experimental RCD (recharging RCD) from engineering cyborgs due to budget cuts. Central Command apologies for the inconvenience.
-    type: Remove
-  id: 405895
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Musiklie
-  changes:
-  - message: added Avali hearts and lungs to the Med dispenser.
-    type: Add
-  id: 405896
-  time: '2026-06-10T19:31:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4667
-- author: wonderfulnewworld
-  changes:
-  - message: Added a line to Protogens' guidebooks specifying that they are a challenge/not new player species, like IPCs.
-    type: Add
-  id: 405897
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Computer boards restore a little more hunger. (I got the number wrong last time and accidentally made them near-worthless.).
-    type: Tweak
-  id: 405898
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Resomi are no longer poisoned by Amoxla.
-    type: Fix
-  id: 405899
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona can now eat computer boards.
-    type: Fix
-  id: 405900
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Laspi can now eat foods other than computer boards.
-    type: Fix
-  id: 405901
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Dwarves, Proto-Resomi, Proto-Laspi, Proto-Vox, and Proto-Diona are no longer poisoned by computer boards/battery acid.
-    type: Fix
-  id: 405902
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Dwarves and Proto-Laspi can now process raw meat like other Protogen.
-    type: Fix
-  id: 405903
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: Pon
-  changes:
-  - message: Changed BaseToySword Blunt damage from 0.3 to 0.1.
-    type: Tweak
-  id: 405904
-  time: '2026-06-11T16:03:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4731
-- author: wonderfulnewworld
-  changes:
-  - message: Diona/Proto-Diona now restore a little bit of hunger when drinking things with the word "water" in the name. It varies by type, but they're all less than x1.
-    type: Add
-  id: 405905
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona/Proto-Diona now crit at 125 Health, and die at 250 Health. A bit less than Cyclorites.
-    type: Tweak
-  id: 405906
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now gain Fire Stacks at 20 Heat, and can only gain 5 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405907
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona now gain Fire Stacks at 30 Heat, and can only gain 3 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405908
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now move 5% faster while rooted. (-15% as opposed to -20%). Proto-Diona keep the original -20%.
-    type: Tweak
-  id: 405909
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: The plant anomaly creatures are no longer hostile to Diona/Proto-Diona.
-    type: Tweak
-  id: 405910
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Kitchen Knife.
-    type: Tweak
-  id: 405911
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
 - author: Pon
   changes:
   - message: Changed the fixtures size of the Butcher's Cleaver.
@@ -2799,4 +2519,284 @@ Entries:
   id: 406271
   time: '2026-06-28T10:01:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4923
+- author: mikeysaurus
+  changes:
+  - message: The "Toggle All" button in the "Mute TTS Channels" UI now properly mutes all TTS Streams.
+    type: Fix
+  id: 406272
+  time: '2026-06-28T15:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4939
+- author: mikeysaurus
+  changes:
+  - message: Alphabetically organizes the list of radio channels in the "Mute TTS Channels" UI.
+    type: Tweak
+  id: 406273
+  time: '2026-06-28T15:55:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4939
+- author: BornStellat
+  changes:
+  - message: Pierceable comp to hand held shields.
+    type: Add
+  id: 406274
+  time: '2026-06-28T17:52:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4953
+- author: BornStellat
+  changes:
+  - message: Worn armor and handheld items with the shield tag will now stop bullets from piercing the entity if the bullet pierce level is lower than the armor value.
+    type: Fix
+  id: 406275
+  time: '2026-06-28T17:52:08.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4953
+- author: BornStellar
+  changes:
+  - message: greenlight shield renamed to X-03 green phase shield.
+    type: Tweak
+  id: 406276
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield HP changed from 36HP to 90HP.
+    type: Tweak
+  id: 406277
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield Slash resistance changed from 20% to 10%.
+    type: Tweak
+  id: 406278
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield active block modifiers are now better than their passive modifiers across the board instead of worse.
+    type: Tweak
+  id: 406279
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: X-03 shield reflect chance lowered from 50% to 10%, still only for lasers.
+    type: Tweak
+  id: 406280
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: WT550g, a variant of the WT550r that comes with a green colour scheme.
+    type: Add
+  id: 406281
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: WT550 magazine (.35 FMJ auto top-mounted). A WT550 mag with FMJ instead of SP loaded.
+    type: Add
+  id: 406282
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: WT550 magazine (.35 HP auto top-mounted). A WT550 mag with HP instead of SP loaded.
+    type: Add
+  id: 406283
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: removed two combat medipens from GSO belt and replaced with an extra set of cuffs.
+    type: Tweak
+  id: 406284
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: Taser fire mode on the MT-7G.
+    type: Add
+  id: 406285
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: department of the GSO job.
+    type: Fix
+  id: 406286
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: outfits for use in setting outfits of arbitrary entities (was requested by some admins).
+    type: Add
+  id: 406287
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: BornStellar
+  changes:
+  - message: names of the file names for the sprites of the X-03 shield to better match other sprite naming conventions.
+    type: Tweak
+  id: 406288
+  time: '2026-06-28T21:01:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4954
+- author: Johnny
+  changes:
+  - message: Added the advanced medipen as a lesser form of a combat medipen for ERT such as CBURN.
+    type: Add
+  id: 406289
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: Added a new role, the CBURN Corpsman.
+    type: Add
+  id: 406290
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: CBURN Agents loadout has been changed.
+    type: Tweak
+  id: 406291
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: All CBURN are automatically zombie immune.
+    type: Tweak
+  id: 406292
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: Johnny
+  changes:
+  - message: Changed CBURN suits to actually protect against injection based attacks like hardsuits.
+    type: Fix
+  id: 406293
+  time: '2026-06-28T21:56:55.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: mikeysaurus
+  changes:
+  - message: Silicon's now understand the Elvish language Felyaic.
+    type: Fix
+  id: 406294
+  time: '2026-06-29T08:21:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4961
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added six new uniforms to secoff.
+    type: Add
+  id: 406295
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to dutyoff.
+    type: Add
+  id: 406296
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to brigmed.
+    type: Add
+  id: 406297
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added two new uniforms to warden.
+    type: Add
+  id: 406298
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added new hat to secoff.
+    type: Add
+  id: 406299
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: BornStellar and Hanz
+  changes:
+  - message: X-03 phase shield. A toggleable energy shield with an internal battery! While it is susceptible to EMPs and isn't as strong as its metal based counterparts, the fact that it self charges while not in use and stores easily in a pocket puts the 'Shield' into Blueshield officer.
+    type: Add
+  id: 406300
+  time: '2026-06-29T14:58:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4903
+- author: Tjmaxmillion
+  changes:
+  - message: CC Job icons now have a darker border.
+    type: Tweak
+  id: 406301
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: CC IDs now have the CC logo rather than the NT logo.
+    type: Tweak
+  id: 406302
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: CCO IDs are now green.
+    type: Tweak
+  id: 406303
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: GSO job icon now match CC and ERT.
+    type: Tweak
+  id: 406304
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: NTSF IDs not use NTSF job icon.
+    type: Tweak
+  id: 406305
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: Marine job icons now match NTSF.
+    type: Tweak
+  id: 406306
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: IDs that had an 8x7 job icon square are now 8x8.
+    type: Tweak
+  id: 406307
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Felyaic from their store.
+    type: Fix
+  id: 406308
+  time: '2026-06-30T15:27:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4963
+- author: mikeysaurus
+  changes:
+  - message: Silicons now understand Rodentia's language, Squeakish.
+    type: Fix
+  id: 406309
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Squeakish from their store.
+    type: Fix
+  id: 406310
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Adjusts Rodentia emote sounds to properly match their gender.
+    type: Fix
+  id: 406311
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
 Order: -1

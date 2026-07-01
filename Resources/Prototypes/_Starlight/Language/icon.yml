@@ -235,5 +235,5 @@
   id: LanguageIconSqueakish
   icon:
     sprite: /Textures/_Starlight/Interface/language_icon.rsi
-    state: rodentia
+    state: squeakish
   allowSelection: false
