@@ -525,8 +525,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
                         targetGrid = mainGridId;
 
                     // If that didn't work, try to find the biggest grid.
-                    if (targetGrid != null)
-                        targetGrid = _station.GetLargestGrid(comp.Station);
+                    targetGrid ??= _station.GetLargestGrid(comp.Station);
 
                     // Only FTL if we found somewhere to go to.
                     if (targetGrid.HasValue)
