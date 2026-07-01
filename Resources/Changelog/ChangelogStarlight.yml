@@ -1,123 +1,4 @@
 Entries:
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Butcher's Cleaver.
-    type: Tweak
-  id: 405912
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Throwing Knife.
-    type: Tweak
-  id: 405913
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
-- author: Johnny
-  changes:
-  - message: Observers cant be used by aghosts as a mass scanner.
-    type: Fix
-  id: 405914
-  time: '2026-06-11T17:04:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4729
-- author: Johnny
-  changes:
-  - message: (Reach) Mega chad mega thrusters.
-    type: Add
-  id: 405915
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Theres an actual armoury and nuke now.
-    type: Add
-  id: 405916
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Itty bitty STUPID thrusters.
-    type: Remove
-  id: 405917
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Piping reworked to use pipe layering system.
-    type: Tweak
-  id: 405918
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Departments have been moved around to make it less cramped.
-    type: Tweak
-  id: 405919
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: salarua
-  changes:
-  - message: 'AAC tablet software has been updated: There are now buttons for aielith, IPC, and protogen in the Species tab.'
-    type: Add
-  id: 405920
-  time: '2026-06-11T20:35:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4726
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: DAGD Traitors now get 15 more TC and get access to the entire Nuclear Operative/Lone Op uplink, minus Zombies and some duplicate redundancies.
-    type: Add
-  id: 405921
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Added a Syndicate Footsoldier ID. It's functionally the same as a syndicate ID, but you actually have a job icon. (Not an Agent ID.).
-    type: Add
-  id: 405922
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Added a DAGD uplink, for admins to spawn without needing to have the objective.
-    type: Add
-  id: 405923
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Added DAGD Bundle variants of the Nukie Borgi/Cyborg Allies that come with 3 Syndicate IDs, so they can actually count as syndicate to them. (1 Operative [Agent] and 2 Footsoldier [Not Agent]).
-    type: Add
-  id: 405924
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: (Dev stuff) SharedEmitSoundSystem and EmitSoundOnTrigger now support global audio.
-    type: Add
-  id: 405925
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: (Dev stuff) RattleOnTriggerSystem now supports making announcements on trigger. (Including audio, color, etc).
-    type: Add
-  id: 405926
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: (Dev stuff) Shops now support destockTime, allowing items to NOT be purchasable after a certain amount of time passes.
-    type: Add
-  id: 405927
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Traitor Borgis now come with 3 Syndicate IDs. (1 Operative [Agent] and 2 Footsoldier [Not Agent]).
-    type: Tweak
-  id: 405928
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
 - author: wonderfulnewworld, A-Loose-Goose
   changes:
   - message: Fixed a lot of typos in the Syndicate Uplink. (Cybersan, missing periods, .50 shotgun ammo).
@@ -2799,4 +2680,123 @@ Entries:
   id: 406311
   time: '2026-06-30T15:27:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: Johnny
+  changes:
+  - message: (Reach) Added a parallax to the background that looks nice!
+    type: Add
+  id: 406312
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Multiple heads of staffs offices, such as CMO and QM.
+    type: Add
+  id: 406313
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Station anchor in the back incase the shuttle needs to anchor in place.
+    type: Add
+  id: 406314
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Reach is now able to FTL, do with this information what you will.
+    type: Add
+  id: 406315
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Reach's main orientation faces north instead of east, meaning bridge is up engineering is down.
+    type: Tweak
+  id: 406316
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Medical has been changed to hopefully be better.
+    type: Tweak
+  id: 406317
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Engineering has been altered to hopefully be better.
+    type: Tweak
+  id: 406318
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Multiple rooms have been expanded to hopefully be better.
+    type: Tweak
+  id: 406319
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Some pipes and cables were missing, nothing too bad but its fixed now.
+    type: Fix
+  id: 406320
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Hot_Mic
+  changes:
+  - message: Replace NTS 'Kickstart' Ingeniator with NTS 'Jumpstart' Mini-Ingeniator on Shipyard Console with a new pricing of 85,000 Spesos.
+    type: Tweak
+  id: 406321
+  time: '2026-07-01T08:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4945
+- author: Arkanic
+  changes:
+  - message: Devil to game pool, 5% chance side antag, with a maximum of 2 devils in a round.
+    type: Add
+  id: 406322
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Stink damnation.
+    type: Add
+  id: 406323
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Misspelled contracts now show up as a "misprinted infernal contract", and appear visually duller.
+    type: Tweak
+  id: 406324
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Reworked damnations UI, it now has categories and displays crew you have damned.
+    type: Tweak
+  id: 406325
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Brought back terminator damnation, but now with a limit of 1 use per devil.
+    type: Tweak
+  id: 406326
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: redmushie
+  changes:
+  - message: Admin chat window can now popout.
+    type: Add
+  id: 406327
+  time: '2026-07-01T08:41:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4962
+- author: redmushie
+  changes:
+  - message: When pressing the admin chat hotkey, the admin chat window input gets prioritized while the dedicated window is open.
+    type: Fix
+  id: 406328
+  time: '2026-07-01T08:41:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4962
 Order: -1
