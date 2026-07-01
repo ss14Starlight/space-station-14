@@ -4,6 +4,7 @@ using Content.Client.Lobby;
 using Content.Server.Antag;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
+using Content.Shared.Antag; // Starlight
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
@@ -384,16 +385,14 @@ public sealed class CharacterSelectionTest
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
             var playerManager = pair.Server.PlayerMan; // Starlight start
             var session = playerManager.GetSessionById(pair.Client.User!.Value);
-            var antags = antagSystem.GetPreSelectedAntags(session); // Starlight end
+            var antags = antagSystem.GetPreSelectedAntagSessions(new ProtoId<AntagSpecifierPrototype>(Traitor)); // Starlight end
             if (data.ExpectTraitor)
             {
-                Assert.That(antags.Count, Is.EqualTo(1));
-                //Assert.That(antags.First().MindRoles.Count, Is.EqualTo(1)); // Starlight
-                Assert.That(antags.First(), Does.Contain(Traitor)); //  Starlight
+                Assert.That(antags.Contains(session), Is.True); // Starlight
             }
             else
             {
-                Assert.That(antags.Count, Is.EqualTo(0));
+                Assert.That(antags.Contains(session), Is.False); // Starlight
             }
             var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
             var spawnedProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
