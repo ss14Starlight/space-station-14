@@ -20,7 +20,7 @@ public enum NanoTaskPriority : byte
 public sealed partial class NanoTaskItem
 {
     /// <summary>
-    ///     The maximum length of the Description and TaskIsFor fields
+    ///     The maximum length of the text fields
     /// </summary>
     public static int MaximumStringLength = 30;
 
@@ -30,7 +30,7 @@ public sealed partial class NanoTaskItem
     public readonly string Description;
 
     /// <summary>
-    ///     Who the task is for, i.e. "Cargo"
+    ///     Who the task is for. Starlight - Tidr: stamped server-side from the poster's ID card.
     /// </summary>
     public readonly string TaskIsFor;
 
@@ -44,16 +44,37 @@ public sealed partial class NanoTaskItem
     /// </summary>
     public readonly NanoTaskPriority Priority;
 
-    public NanoTaskItem(string description, string taskIsFor, bool isTaskDone, NanoTaskPriority priority)
+    /// <summary>
+    ///     Starlight - Tidr: where the requester can be met to hand off / collect.
+    /// </summary>
+    public readonly string Location;
+
+    /// <summary>
+    ///     Starlight - Tidr: credit reward offered for completing the task.
+    /// </summary>
+    public readonly int Reward;
+
+    /// <summary>
+    ///     Starlight - Tidr: name on the ID card of the Tider who accepted the job, or null if unclaimed.
+    /// </summary>
+    public readonly string? AcceptedBy;
+
+    public NanoTaskItem(string description, string taskIsFor, bool isTaskDone, NanoTaskPriority priority, string location = "", int reward = 0, string? acceptedBy = null)
     {
         Description = description;
         TaskIsFor = taskIsFor;
         IsTaskDone = isTaskDone;
         Priority = priority;
+        Location = location;
+        Reward = reward;
+        AcceptedBy = acceptedBy;
     }
     public bool Validate()
     {
-        return Description.Length <= MaximumStringLength && TaskIsFor.Length <= MaximumStringLength;
+        return Description.Length <= MaximumStringLength
+            && TaskIsFor.Length <= MaximumStringLength
+            && Location.Length <= MaximumStringLength
+            && Reward >= 0;
     }
 };
 
