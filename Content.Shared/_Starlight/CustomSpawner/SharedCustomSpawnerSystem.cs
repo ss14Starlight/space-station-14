@@ -44,6 +44,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
     protected virtual void DoSpawn(EntityUid uid, CustomSpawnerComponent comp)
     {
         if (!comp.Enabled) return;
+        if (comp.SpawnData.Count <= 0) return;
         if (comp.MaxTriggers >= 0)
         {
             if(comp.TimesTriggered >= comp.MaxTriggers) return;
