@@ -296,37 +296,52 @@ public sealed partial class StationJobsSystem
     /// <param name="selectedPriority">Priority to find, if any.</param>
     /// <param name="players">Players to select from</param>
     /// <returns>Players and a list of their matching jobs.</returns>
-    private Dictionary<NetUserId, List<ProtoId<JobPrototype>>> GetPlayersJobCandidates(int? weight, JobPriority? selectedPriority, ICollection<NetUserId> players) // Starlight, return job prototype
+    private Dictionary<NetUserId, List<string>> GetPlayersJobCandidates(int? weight, JobPriority? selectedPriority, ICollection<NetUserId> players)
     {
-        var outputDict = new Dictionary<NetUserId, List<ProtoId<JobPrototype>>>(players.Count); // Starlight, multi-slot
+        var outputDict = new Dictionary<NetUserId, List<string>>(players.Count);
 
         var antags = _antag.GetAntagJobs();
 
         foreach (var player in players)
         {
-            if (!_player.TryGetSessionById(player, out var session))
-                continue;
-
-            #region Starlight
-            // Multi-slot
-            if (!_serverPreferences.TryGetCachedPreferences(player, out var prefs))
-            continue;
-
-            var playerJobs = prefs.JobPrioritiesFiltered();
-            #endregion
-
             var roleBans = _banManager.GetJobBans(player);
-            var profileJobs = playerJobs.Keys.ToList(); // Starlight, multi-slot
+            #region Starlight
+            // Multi-slot stuff
+            var profile = _serverPreferences.GetPreferences(player);
+            var profileJobs = profile.JobPriorities.Keys.Select(k => new ProtoId<JobPrototype>(k)).ToList();
+
+            // Get all the jobs that a player has selected with a priority greater than Never and also that they
+            // have an enabled character with that job preference selected
+            var playerPrefs = _serverPreferences.GetPreferences(player);
+            var playerJobs = playerPrefs.JobPriorities;
+            var allCharacterJobs = new HashSet<ProtoId<JobPrototype>>();
+            foreach (var playerProfile in playerPrefs.Characters.Values)
+            {
+                if (playerProfile is not HumanoidCharacterProfile { Enabled: true } humanoid)
+                    continue;
+                allCharacterJobs.UnionWith(humanoid.JobPreferences);
+            }
+            var filteredPlayerJobs = new HashSet<ProtoId<JobPrototype>>();
+            foreach (var (job, priority) in playerJobs)
+            {
+                if (!(priority == selectedPriority || selectedPriority is null))
+                    continue;
+                if (!allCharacterJobs.Contains(job))
+                    continue;
+                filteredPlayerJobs.Add(job);
+            }
+
+            #endregion
             var ev = new StationJobsGetCandidatesEvent(player, profileJobs);
             RaiseLocalEvent(ref ev);
 
             // Shouldn't happen but you know :P
-            //if (!_player.TryGetSessionById(player, out var session)) // Starlight, we already do this earlier
-            //    continue; // Starlight
+            if (!_player.TryGetSessionById(player, out var session))
+                continue;
 
             var (whitelist, blacklist) = antags.GetValueOrDefault(session);
 
-            List<ProtoId<JobPrototype>>? availableJobs = null; // Starlight, return job prototype
+            List<string>? availableJobs = null;
 
             foreach (var jobId in profileJobs)
             {
@@ -342,7 +357,7 @@ public sealed partial class StationJobsSystem
                     continue;
 
                 if (blacklist != null && blacklist.Contains(jobId))
-                    continue;
+                                        continue;
 
                 if (weight is not null && job.Weight != weight.Value)
                     continue;
@@ -350,7 +365,7 @@ public sealed partial class StationJobsSystem
                 if (!(roleBans == null || !roleBans.Contains(jobId))) //TODO: Replace with IsRoleBanned
                     continue;
 
-                availableJobs ??= new List<ProtoId<JobPrototype>>(playerJobs.Count); // Starlight, return job prototype
+                availableJobs ??= new List<string>(playerJobs.Count);
                 availableJobs.Add(jobId);
             }
 

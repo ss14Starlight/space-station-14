@@ -355,9 +355,6 @@ public sealed partial class GameTicker
         var query = EntityQueryEnumerator<GameRuleComponent>();
         while (query.MoveNext(out var uid, out var gameRule))
         {
-            if (!IsGameRuleAdded(uid, gameRule)) // Starlight, don't bother with rules that have been ended but not fully removed.
-                continue; // Starlight, this'll probably never come up unless you're using commands to try it to happen, since round restart would normally clear them anyway.
-
             var minPlayers = gameRule.MinPlayers;
             var name = ToPrettyString(uid);
 

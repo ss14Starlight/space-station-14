@@ -4,13 +4,11 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
 using Content.Server.Preferences.Managers;
-using Content.Server.Traits;
 using Content.Shared._Starlight.Character.Info;
 using Content.Shared._Starlight.Station;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
-using Robust.Shared.GameObjects;
 using Robust.Shared.GameObjects.Components.Localization;
 using Robust.Shared.Prototypes;
 
@@ -19,7 +17,6 @@ namespace Content.Server.GameTicking.Rules;
 public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoadProfileRuleComponent>
 {
     [Dependency] private HumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IServerPreferencesManager _prefs = default!;
     [Dependency] private MetaDataSystem _metaSystem = default!; // Starlight
     [Dependency] private TraitSystem _traitSystem = default!; //Starlight
@@ -49,22 +46,22 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
         }
 
         // Startlight - Start (Changing fully so RandomWithSpecies loads with a specieID)
-        var species = _proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
+        var species = Proto.Index(SharedHumanoidAppearanceSystem.DefaultSpecies);
         if (profile is not null)
-            species = _proto.Index(profile.Species);
+            species = Proto.Index(profile.Species);
 
         if (ent.Comp.SpeciesHardOverride is not null)
-            species = _proto.Index(ent.Comp.SpeciesHardOverride.Value);
+            species = Proto.Index(ent.Comp.SpeciesHardOverride.Value);
         else if (ent.Comp.SpeciesOverride is not null
             && (ent.Comp.SpeciesOverrideBlacklist?.Contains(new ProtoId<SpeciesPrototype>(species.ID)) ?? false))
-            species = _proto.Index(ent.Comp.SpeciesOverride.Value);
+            species = Proto.Index(ent.Comp.SpeciesOverride.Value);
 
         if (profile is null)
             profile = HumanoidCharacterProfile.RandomWithSpecies(species.ID);
 
         if (profile?.ForcedPrototype != "" && profile is not null)
         {
-            if (!_proto.Resolve(profile.ForcedPrototype, out var forcedProto))
+            if (!Proto.Resolve(profile.ForcedPrototype, out var forcedProto))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
             args.Entity = Spawn(profile.ForcedPrototype);
             var resolvedEntity = (EntityUid)args.Entity;
