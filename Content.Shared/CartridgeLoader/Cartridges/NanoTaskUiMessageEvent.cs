@@ -61,6 +61,23 @@ public sealed partial class NanoTaskDeleteTask : INanoTaskUiMessagePayload
 }
 
 /// <summary>
+///     Starlight - Tidr: dispatched when a Tider accepts (claims) a task, locking others out
+/// </summary>
+[Serializable, NetSerializable, DataRecord]
+public sealed partial class NanoTaskAcceptTask : INanoTaskUiMessagePayload
+{
+    /// <summary>
+    ///     The ID of the task to accept
+    /// </summary>
+    public readonly int Id;
+
+    public NanoTaskAcceptTask(int id)
+    {
+        Id = id;
+    }
+}
+
+/// <summary>
 ///     Dispatched when a task is requested to be printed
 /// </summary>
 [Serializable, NetSerializable, DataRecord]
