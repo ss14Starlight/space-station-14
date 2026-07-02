@@ -9,6 +9,7 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
+using Content.Shared._Starlight.Medical.Surgery.Components;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 
@@ -41,6 +42,10 @@ public abstract partial class SharedSharpSystem : EntitySystem
     private void OnAfterInteract(EntityUid uid, SharpComponent component, AfterInteractEvent args)
     {
         if (args.Handled || args.Target is null || !args.CanReach)
+            return;
+
+        // Check to see if we can do surgery first.
+        if (HasComp<SurgeryToolComponent>(uid) && HasComp<SurgeryTargetComponent>(args.Target.Value))
             return;
 
         if (TryStartButcherDoafter(uid, args.Target.Value, args.User))
