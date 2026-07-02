@@ -619,6 +619,16 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterLegitChipIn
+  name: "Chip In!"
+  description: "A reminder to thank those who spend long hours to make your sectors a better place to work. Contribute where you can!"
+  components:
+  - type: Sprite
+    sprite: _Starlight/Structures/Wallmounts/posters/chip_in.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
   id: PosterContrabandHereticalExomorph
   name: "Heretic Exomorph"
   description: "They come out at night."
