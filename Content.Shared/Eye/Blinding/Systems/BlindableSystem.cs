@@ -58,10 +58,11 @@ public sealed partial class BlindableSystem : EntitySystem
         var old = blindable.Comp.IsBlind;
 
         var forceBlind = false;
-        if(TryComp<BodyComponent>(blindable.Owner, out var body))
+        if (TryComp<BodyComponent>(blindable.Owner, out var body))
         {
             var eyes = _bodySystem.GetBodyOrganEntityComps<OrganEyesComponent>((blindable.Owner, body));
-            forceBlind = eyes.Count == 0;
+
+            forceBlind = eyes.Count == 0 && _bodySystem.HasOrganSlot(blindable.Owner, body, "eyes");
         }
 
         // Don't bother raising an event if the eye is too damaged.

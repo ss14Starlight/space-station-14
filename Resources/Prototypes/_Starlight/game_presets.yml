@@ -151,6 +151,7 @@
     - SiliconLiberation
     - Brighteye
     - ThiefGamerule
+    - Devil
     - CosmicCult
 
 - type: gamePreset
@@ -191,6 +192,7 @@
     - LoneOpsSpawn
     - RailroadingTerminator
     - RailroadingMinor
+    - Devil
     - CosmicCult
 
 - type: gamePreset

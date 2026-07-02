@@ -1,20 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Edited by Conflee. grate_aurora from Aurora Station, grate_engie_monke and grate_sec_monke from Monke Station",
+  "copyright": "Edited by Conflee. Aurora Station, Monke Station, and TGstation",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "grate_aurora"
+      "name": "grate_aurora",
+	  "copyright": "Aurora Station"
     },
 	{
-      "name": "grate_sec_monke"
+      "name": "grate_sec_monke",
+	  "copyright": "Monke Station"
     },
 	{
-      "name": "grate_engie_monke"
+      "name": "grate_engie_monke",
+	  "copyright": "Monke Station"
+    },
+	{
+      "name": "lattice",
+	  "copyright": "tgstation commit 8abb19545828230d92ba18827feeb42a67a55d49"
     }
   ]
 }
