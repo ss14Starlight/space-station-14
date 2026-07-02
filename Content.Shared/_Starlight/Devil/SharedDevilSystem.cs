@@ -3,11 +3,15 @@ using System.Text.RegularExpressions;
 using Content.Shared._Starlight.Paper;
 using Content.Shared.Examine;
 using Content.Shared.Paper;
+using Content.Shared.Players;
 using Content.Shared.Popups;
 using Content.Shared.Silicons.Borgs.Components;
+using Content.Shared.UserInterface;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.GameStates;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using static Content.Shared.Paper.PaperComponent;
 
 namespace Content.Shared._Starlight.Devil;
@@ -20,16 +24,27 @@ public abstract partial class SharedDevilSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private MetaDataSystem _metadata = default!;
+    [Dependency] private IEntityManager _entity = default!;
+    [Dependency] private SharedPvsOverrideSystem _pvs = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+
+    private Dictionary<ProtoId<DamnationPrototype>, DamnationPrototype> _damnations = new();
     public override void Initialize()
     {
         base.Initialize();
 
+        SubscribeLocalEvent<InfernalContractComponent, ComponentInit>(OnContractInit);
         SubscribeLocalEvent<InfernalContractComponent, ExaminedEvent>(OnExamineEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperSignedEvent>(OnSignedEvent);
         SubscribeLocalEvent<InfernalContractComponent, PaperWriteAttemptEvent>(OnPaperWriteAttempt);
         SubscribeLocalEvent<InfernalContractComponent, PaperInputTextMessage>(OnPaperInputTextMessage, after: [typeof(PaperSystem)]);
 
+        SubscribeLocalEvent<DevilComponent, ComponentInit>(OnDevilInit);
         SubscribeLocalEvent<DevilComponent, OpenDamnationsMenuEvent>(OnOpenDamnationsMenu);
+        SubscribeLocalEvent<DevilComponent, BoundUIOpenedEvent>(OnBUIOpened);
+        SubscribeLocalEvent<DevilComponent, BoundUIClosedEvent>(OnBUIClosed);
 
         SubscribeLocalEvent<DamnedComponent, DamnationInitFailEvent>(OnDamnationInitFail);
         SubscribeLocalEvent<DamnedComponent, ComponentShutdown>(OnDamnationShutdown);
@@ -50,8 +65,21 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var cont = GetContractContent(contract);
         if (cont is not InfernalContractData content)
             return InfernalContractValidity.InvalidFormat;
+
         if (content.Cost > 0)
             return InfernalContractValidity.TooCostly;
+
+        if (TryComp<DevilComponent>(contractComp.Author, out var devil))
+        {
+            foreach (var damnation in content.Damnations)
+            {
+                var maxUses = _damnations[damnation].MaxUses;
+                if (maxUses == -1) continue;
+                if (!devil.DamnationUsage.ContainsKey(damnation) && maxUses != 0) continue; // edge case for 0 use
+                if (maxUses <= devil.DamnationUsage[damnation])
+                    return InfernalContractValidity.OverusedDamnation;
+            }
+        }
 
         return InfernalContractValidity.Valid;
     }
@@ -84,28 +112,25 @@ public abstract partial class SharedDevilSystem : EntitySystem
         var rawDamnations = rawSacrifices.Concat(rawBenefits);
 
         // we now have our string arrays of the wanted effects. Now we need to check them against existing ones.
-        // todo check for duplicates
         if (!TryComp<DevilComponent>(contractComp.Author, out var devilComp)) return null;
-        var availableDamnations = devilComp.AvailableDamnations.Select(d =>
-        {
-            _proto.TryIndex<DamnationPrototype>(d, out var damnationProto);
-            return damnationProto!.Name.ToLower();
-        }).ToList();
+        var availableDamnations = devilComp.AvailableDamnations.Select(d => _damnations[d].Name.ToLower()).ToList();
         foreach (var damnation in rawDamnations)
         {
             var index = availableDamnations.IndexOf(damnation.ToLower());
             if (index != -1)
                 data.Damnations.Add(devilComp.AvailableDamnations[index]);
-            else
-                data.InvalidDamnations.Add(damnation.ToLower());
+            else if (!damnation.Equals(contractComp.BlankClauseText))
+            {
+                // prevent tag injection
+                var sanitized = FormattedMessage.EscapeText(damnation);
+                data.InvalidDamnations.Add(sanitized.ToLower());
+            }
         }
+
         data.Damnations = data.Damnations.Distinct().ToList();
 
         foreach (var damnation in data.Damnations)
-        {
-            if (_proto.TryIndex<DamnationPrototype>(damnation, out var damnationProto))
-                data.Cost += damnationProto.Cost;
-        }
+            data.Cost += _damnations[damnation].Cost;
 
         return data;
     }
@@ -117,9 +142,13 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         args.PushMarkup(Loc.GetString($"infernal-contract-examined-{contractValidity}"));
 
-        var contractData = GetContractContent(uid);
-        if (contractData != null)
-            args.PushMarkup(Loc.GetString("infernal-contract-examine-cost", ("value", contractData.Value.Cost)));
+        if(GetContractContent(uid) is not InfernalContractData contractData) return;
+
+        args.PushMarkup(Loc.GetString("infernal-contract-examined-cost", ("value", contractData.Cost)));
+
+        if(contractData.InvalidDamnations.Count > 0)
+            args.PushMarkup(Loc.GetString("infernal-contract-examined-misspelling",
+                ("items", string.Join(", ", contractData.InvalidDamnations))));
     }
 
     private void OnPaperWriteAttempt(EntityUid uid, InfernalContractComponent contractComp, ref PaperWriteAttemptEvent args)
@@ -172,15 +201,24 @@ public abstract partial class SharedDevilSystem : EntitySystem
         if(GetContractContent(ent.Owner) is not InfernalContractData data)
             return;
 
-        var mispeltDamnations = data.InvalidDamnations
-                .Select(x => x.Trim())
-                .Where(x => !x.Contains("[form]"))
-                .ToArray(); // yes i will clean this up
-
-        if(mispeltDamnations.Length > 0)
-            _popup.PopupEntity(Loc.GetString("infernal-contract-popup-invalid-damnations",
-                ("items", string.Join(", ", mispeltDamnations))), ent.Owner, PopupType.SmallCaution);
+        // if the contract has misspellings, we give it the "blank" (dull) sprite, to provide some visual
+        // indication that something is slightly off
+        if(data.InvalidDamnations.Count > 0)
+        {
+            _appearance.SetData(ent.Owner, PaperVisuals.Status, PaperStatus.Blank);
+            _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.MispelledContractName));
+        }
+        else
+        {
+            _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.CorrectContractName));
+        }
     }
+
+    /// <summary>
+    /// for consistency's sake, set name to correct upon spawn - incase someone wants to change this for some reason
+    /// </summary>
+    private void OnContractInit(Entity<InfernalContractComponent> ent, ref ComponentInit args) => _metadata.SetEntityName(ent.Owner, Loc.GetString(ent.Comp.CorrectContractName));
+
     #endregion
 
     #region damnation
@@ -190,7 +228,8 @@ public abstract partial class SharedDevilSystem : EntitySystem
     {
         // here we shove all the components in, and then await their potential fails later via the event
         if (!CanDamn(entity, proto)) return false;
-        if (!_proto.TryIndex(proto, out var damnationPrototype)) return false;
+        if (!_damnations.ContainsKey(proto)) return false;
+        var damnationPrototype = _damnations[proto];
 
         EntityManager.AddComponents(entity.Owner, damnationPrototype.Components);
         EntityManager.RemoveComponents(entity.Owner, damnationPrototype.RemovedComponents);
@@ -208,6 +247,13 @@ public abstract partial class SharedDevilSystem : EntitySystem
 
         entity.Comp.NetCost += damnationPrototype.Cost;
         entity.Comp.Damnations.Add(proto);
+
+        // epic success, now lets log it on the devil
+        if (TryComp<DevilComponent>(entity.Comp.DamnedBy, out var devil))
+        {
+            if (!devil.DamnationUsage.ContainsKey(proto)) devil.DamnationUsage[proto] = 0;
+            devil.DamnationUsage[proto]++;
+        }
 
         return true;
     }
@@ -230,6 +276,7 @@ public abstract partial class SharedDevilSystem : EntitySystem
         // check to see that all of the damnations will work, before we try to add any
         foreach (var damnation in contract.Damnations)
         {
+            // p = np solved in ss14 (real) (3am challenge)
             if (!CanDamn((ent, damnedComp), damnation))
             {
                 var ev = new DamnationInitFailEvent();
@@ -256,7 +303,8 @@ public abstract partial class SharedDevilSystem : EntitySystem
     protected bool RemoveDamnation(Entity<DamnedComponent> entity, ProtoId<DamnationPrototype> damnation)
     {
         if (!entity.Comp.Damnations.Contains(damnation)) return false;
-        if (!_proto.TryIndex(damnation, out var damnationPrototype)) return false;
+        if (!_damnations.ContainsKey(damnation)) return false;
+        var damnationPrototype = _damnations[damnation];
 
         if (damnationPrototype.ReverseOnRemove)
         {
@@ -303,14 +351,50 @@ public abstract partial class SharedDevilSystem : EntitySystem
     #endregion
 
     #region abilities
-    private void OnOpenDamnationsMenu(EntityUid uid, DevilComponent devilComp, ref OpenDamnationsMenuEvent args)
+    private void OnOpenDamnationsMenu(Entity<DevilComponent> devil, ref OpenDamnationsMenuEvent args)
     {
-        if (!TryComp<UserInterfaceComponent>(uid, out var userInterfaceComp) || !TryComp<ActorComponent>(uid, out var actorComp)) return;
+        if (!TryComp<UserInterfaceComponent>(devil.Owner, out var userInterfaceComp) || !TryComp<ActorComponent>(devil.Owner, out var actorComp)) return;
 
-        var uiState = new DevilDamnationsBuiState(devilComp.AvailableDamnations);
-        _userInterface.SetUiState((uid, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
-        _userInterface.TryToggleUi((uid, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
+        var damnationsMeta = devil.Comp.AvailableDamnations.Select(x => (x, devil.Comp.DamnationUsage.GetValueOrDefault(x, 0))).ToList();
+        var damnedCrew = new List<(NetEntity, string)>();
+        foreach (var uid in devil.Comp.DamnedSouls)
+        {
+            _entity.TryGetNetEntity(uid, out var netuid);
+            if(netuid is { } netEnt) damnedCrew.Add((netEnt, Name(uid)));
+        }
+
+        var uiState = new DevilDamnationsBuiState(damnationsMeta, damnedCrew);
+        _userInterface.SetUiState((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, uiState);
+
+        _userInterface.TryToggleUi((devil.Owner, userInterfaceComp), DamnationsMenuUiKey.Key, actorComp.PlayerSession);
     }
+
+    /// <summary>
+    /// Add PVS overrides for damned players so they don't show up naked on the damned UI.
+    /// </summary>
+    private void OnBUIOpened(Entity<DevilComponent> devil, ref BoundUIOpenedEvent args)
+    {
+        if (!_player.TryGetSessionByEntity(devil.Owner, out var session)) return;
+
+        foreach (var uid in devil.Comp.DamnedSouls)
+            _pvs.AddSessionOverride(uid, session);
+    }
+    /// <summary>
+    /// Remove the PVS overrides we added when the BUI was opened.
+    /// </summary>
+    private void OnBUIClosed(Entity<DevilComponent> devil, ref BoundUIClosedEvent args)
+    {
+        if (!_player.TryGetSessionByEntity(devil.Owner, out var session)) return;
+
+        foreach (var uid in devil.Comp.DamnedSouls)
+            _pvs.RemoveSessionOverride(uid, session);
+    }
+
+    /// <summary>
+    /// Setup damnation map, prevent duplicate proto lookups as this will be happening very frequently.
+    /// </summary>
+    private void OnDevilInit(Entity<DevilComponent> devil, ref ComponentInit args) =>
+        _damnations = _proto.EnumeratePrototypes<DamnationPrototype>().ToDictionary(p => (ProtoId<DamnationPrototype>)p.ID, p => p);
     #endregion
 }
 
@@ -319,6 +403,7 @@ public enum InfernalContractValidity
     Valid,
     InvalidFormat,
     TooCostly,
+    OverusedDamnation,
     NotAContract,
     Signed
 }

@@ -86,6 +86,8 @@ public sealed partial class ArrivalsSystem : EntitySystem
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
 
+    private const string ArrivalsPriorityTag = "DockArrivals"; // Starlight
+
     private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
     {
         "Grasslands",
@@ -133,7 +135,7 @@ public sealed partial class ArrivalsSystem : EntitySystem
 
         // Just saves mappers forgetting. (v2 boogaloo)
         args.Handled = true;
-        args.Tag = "DockArrivals";
+        args.Tag = ArrivalsPriorityTag; // Starlight: Use constant
     }
 
     private CompletionResult ArrivalsCompletion(IConsoleShell shell, string[] args)
@@ -514,10 +516,21 @@ public sealed partial class ArrivalsSystem : EntitySystem
                 // Go to station
                 else
                 {
-                    var targetGrid = _station.GetLargestGrid(comp.Station);
+                    // Starlight BEGIN
+                    EntityUid? targetGrid = null;
 
-                    if (targetGrid != null)
-                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value);
+                    // Grab the "main grid" from the StationData comp.
+                    if (TryComp<StationDataComponent>(comp.Station, out var stationData) &&
+                        stationData.MainGrids.TryFirstOrNull(out var mainGridId))
+                        targetGrid = mainGridId;
+
+                    // If that didn't work, try to find the biggest grid.
+                    targetGrid ??= _station.GetLargestGrid(comp.Station);
+
+                    // Only FTL if we found somewhere to go to.
+                    if (targetGrid.HasValue)
+                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value, priorityTag: ArrivalsPriorityTag);
+                    // Starlight END
 
                     // The ArrivalsCooldown includes the trip there, so we only need to add the time taken for
                     // the trip back.
