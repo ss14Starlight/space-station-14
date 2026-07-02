@@ -1,0 +1,31 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc tidr-details-title}"
+               MinSize="300 260">
+    <PanelContainer StyleClasses="AngleRect">
+        <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+            <Label Name="DescriptionLabel" StyleClasses="LabelHeading" />
+
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc tidr-details-requester}" StyleClasses="LabelSubText" MinWidth="90" />
+                <Label Name="RequesterLabel" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc tidr-details-location}" StyleClasses="LabelSubText" MinWidth="90" />
+                <Label Name="LocationLabel" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc tidr-details-reward}" StyleClasses="LabelSubText" MinWidth="90" />
+                <Label Name="RewardLabel" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal">
+                <Label Text="{Loc tidr-details-status}" StyleClasses="LabelSubText" MinWidth="90" />
+                <Label Name="StatusLabel" />
+            </BoxContainer>
+
+            <Button Name="CloseButton"
+                    Text="{Loc tidr-details-close}"
+                    HorizontalAlignment="Right"
+                    Margin="0 8 0 0" />
+        </BoxContainer>
+    </PanelContainer>
+</DefaultWindow>
