@@ -1,249 +1,4 @@
 Entries:
-- author: Caws
-  changes:
-  - message: Engineering cyborgs now have a 'hand' slot that can pick up RCD ammo, used for refilling RCDs.
-    type: Add
-  id: 405894
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Caws
-  changes:
-  - message: Removed the experimental RCD (recharging RCD) from engineering cyborgs due to budget cuts. Central Command apologies for the inconvenience.
-    type: Remove
-  id: 405895
-  time: '2026-06-10T19:13:23.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4711
-- author: Musiklie
-  changes:
-  - message: added Avali hearts and lungs to the Med dispenser.
-    type: Add
-  id: 405896
-  time: '2026-06-10T19:31:52.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4667
-- author: wonderfulnewworld
-  changes:
-  - message: Added a line to Protogens' guidebooks specifying that they are a challenge/not new player species, like IPCs.
-    type: Add
-  id: 405897
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Computer boards restore a little more hunger. (I got the number wrong last time and accidentally made them near-worthless.).
-    type: Tweak
-  id: 405898
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Resomi are no longer poisoned by Amoxla.
-    type: Fix
-  id: 405899
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona can now eat computer boards.
-    type: Fix
-  id: 405900
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Laspi can now eat foods other than computer boards.
-    type: Fix
-  id: 405901
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Arachnids, Proto-Avali, Proto-Cyclorites, Proto-Dwarves, Proto-Resomi, Proto-Laspi, Proto-Vox, and Proto-Diona are no longer poisoned by computer boards/battery acid.
-    type: Fix
-  id: 405902
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Dwarves and Proto-Laspi can now process raw meat like other Protogen.
-    type: Fix
-  id: 405903
-  time: '2026-06-11T16:03:16.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4736
-- author: Pon
-  changes:
-  - message: Changed BaseToySword Blunt damage from 0.3 to 0.1.
-    type: Tweak
-  id: 405904
-  time: '2026-06-11T16:03:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4731
-- author: wonderfulnewworld
-  changes:
-  - message: Diona/Proto-Diona now restore a little bit of hunger when drinking things with the word "water" in the name. It varies by type, but they're all less than x1.
-    type: Add
-  id: 405905
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona/Proto-Diona now crit at 125 Health, and die at 250 Health. A bit less than Cyclorites.
-    type: Tweak
-  id: 405906
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now gain Fire Stacks at 20 Heat, and can only gain 5 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405907
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Proto-Diona now gain Fire Stacks at 30 Heat, and can only gain 3 Fire Stacks from this effect at once.
-    type: Tweak
-  id: 405908
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: Diona now move 5% faster while rooted. (-15% as opposed to -20%). Proto-Diona keep the original -20%.
-    type: Tweak
-  id: 405909
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: wonderfulnewworld
-  changes:
-  - message: The plant anomaly creatures are no longer hostile to Diona/Proto-Diona.
-    type: Tweak
-  id: 405910
-  time: '2026-06-11T16:03:21.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4735
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Kitchen Knife.
-    type: Tweak
-  id: 405911
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Butcher's Cleaver.
-    type: Tweak
-  id: 405912
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
-- author: Pon
-  changes:
-  - message: Changed the fixtures size of the Throwing Knife.
-    type: Tweak
-  id: 405913
-  time: '2026-06-11T17:04:00.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4724
-- author: Johnny
-  changes:
-  - message: Observers cant be used by aghosts as a mass scanner.
-    type: Fix
-  id: 405914
-  time: '2026-06-11T17:04:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4729
-- author: Johnny
-  changes:
-  - message: (Reach) Mega chad mega thrusters.
-    type: Add
-  id: 405915
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Theres an actual armoury and nuke now.
-    type: Add
-  id: 405916
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Itty bitty STUPID thrusters.
-    type: Remove
-  id: 405917
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Piping reworked to use pipe layering system.
-    type: Tweak
-  id: 405918
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: Johnny
-  changes:
-  - message: (Reach) Departments have been moved around to make it less cramped.
-    type: Tweak
-  id: 405919
-  time: '2026-06-11T17:30:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4702
-- author: salarua
-  changes:
-  - message: 'AAC tablet software has been updated: There are now buttons for aielith, IPC, and protogen in the Species tab.'
-    type: Add
-  id: 405920
-  time: '2026-06-11T20:35:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4726
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: DAGD Traitors now get 15 more TC and get access to the entire Nuclear Operative/Lone Op uplink, minus Zombies and some duplicate redundancies.
-    type: Add
-  id: 405921
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Added a Syndicate Footsoldier ID. It's functionally the same as a syndicate ID, but you actually have a job icon. (Not an Agent ID.).
-    type: Add
-  id: 405922
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Added a DAGD uplink, for admins to spawn without needing to have the objective.
-    type: Add
-  id: 405923
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Added DAGD Bundle variants of the Nukie Borgi/Cyborg Allies that come with 3 Syndicate IDs, so they can actually count as syndicate to them. (1 Operative [Agent] and 2 Footsoldier [Not Agent]).
-    type: Add
-  id: 405924
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: (Dev stuff) SharedEmitSoundSystem and EmitSoundOnTrigger now support global audio.
-    type: Add
-  id: 405925
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: (Dev stuff) RattleOnTriggerSystem now supports making announcements on trigger. (Including audio, color, etc).
-    type: Add
-  id: 405926
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: (Dev stuff) Shops now support destockTime, allowing items to NOT be purchasable after a certain amount of time passes.
-    type: Add
-  id: 405927
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Traitor Borgis now come with 3 Syndicate IDs. (1 Operative [Agent] and 2 Footsoldier [Not Agent]).
-    type: Tweak
-  id: 405928
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
 - author: wonderfulnewworld, A-Loose-Goose
   changes:
   - message: Fixed a lot of typos in the Syndicate Uplink. (Cybersan, missing periods, .50 shotgun ammo).
@@ -2799,4 +2554,249 @@ Entries:
   id: 406293
   time: '2026-06-28T21:56:55.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4936
+- author: mikeysaurus
+  changes:
+  - message: Silicon's now understand the Elvish language Felyaic.
+    type: Fix
+  id: 406294
+  time: '2026-06-29T08:21:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4961
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added six new uniforms to secoff.
+    type: Add
+  id: 406295
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to dutyoff.
+    type: Add
+  id: 406296
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added four new uniforms to brigmed.
+    type: Add
+  id: 406297
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added two new uniforms to warden.
+    type: Add
+  id: 406298
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: Teddiousbear, Hanz(rButler)
+  changes:
+  - message: Added new hat to secoff.
+    type: Add
+  id: 406299
+  time: '2026-06-29T08:21:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4947
+- author: BornStellar and Hanz
+  changes:
+  - message: X-03 phase shield. A toggleable energy shield with an internal battery! While it is susceptible to EMPs and isn't as strong as its metal based counterparts, the fact that it self charges while not in use and stores easily in a pocket puts the 'Shield' into Blueshield officer.
+    type: Add
+  id: 406300
+  time: '2026-06-29T14:58:53.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4903
+- author: Tjmaxmillion
+  changes:
+  - message: CC Job icons now have a darker border.
+    type: Tweak
+  id: 406301
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: CC IDs now have the CC logo rather than the NT logo.
+    type: Tweak
+  id: 406302
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: CCO IDs are now green.
+    type: Tweak
+  id: 406303
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: GSO job icon now match CC and ERT.
+    type: Tweak
+  id: 406304
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: NTSF IDs not use NTSF job icon.
+    type: Tweak
+  id: 406305
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: Marine job icons now match NTSF.
+    type: Tweak
+  id: 406306
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: Tjmaxmillion
+  changes:
+  - message: IDs that had an 8x7 job icon square are now 8x8.
+    type: Tweak
+  id: 406307
+  time: '2026-06-29T15:36:27.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4952
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Felyaic from their store.
+    type: Fix
+  id: 406308
+  time: '2026-06-30T15:27:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4963
+- author: mikeysaurus
+  changes:
+  - message: Silicons now understand Rodentia's language, Squeakish.
+    type: Fix
+  id: 406309
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Personal AIs can now purchase and learn Squeakish from their store.
+    type: Fix
+  id: 406310
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: mikeysaurus
+  changes:
+  - message: Adjusts Rodentia emote sounds to properly match their gender.
+    type: Fix
+  id: 406311
+  time: '2026-06-30T15:27:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4956
+- author: Johnny
+  changes:
+  - message: (Reach) Added a parallax to the background that looks nice!
+    type: Add
+  id: 406312
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Multiple heads of staffs offices, such as CMO and QM.
+    type: Add
+  id: 406313
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Station anchor in the back incase the shuttle needs to anchor in place.
+    type: Add
+  id: 406314
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Reach is now able to FTL, do with this information what you will.
+    type: Add
+  id: 406315
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Reach's main orientation faces north instead of east, meaning bridge is up engineering is down.
+    type: Tweak
+  id: 406316
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Medical has been changed to hopefully be better.
+    type: Tweak
+  id: 406317
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Engineering has been altered to hopefully be better.
+    type: Tweak
+  id: 406318
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Multiple rooms have been expanded to hopefully be better.
+    type: Tweak
+  id: 406319
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Johnny
+  changes:
+  - message: (Reach) Some pipes and cables were missing, nothing too bad but its fixed now.
+    type: Fix
+  id: 406320
+  time: '2026-07-01T08:09:44.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4946
+- author: Hot_Mic
+  changes:
+  - message: Replace NTS 'Kickstart' Ingeniator with NTS 'Jumpstart' Mini-Ingeniator on Shipyard Console with a new pricing of 85,000 Spesos.
+    type: Tweak
+  id: 406321
+  time: '2026-07-01T08:09:46.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4945
+- author: Arkanic
+  changes:
+  - message: Devil to game pool, 5% chance side antag, with a maximum of 2 devils in a round.
+    type: Add
+  id: 406322
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Stink damnation.
+    type: Add
+  id: 406323
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Misspelled contracts now show up as a "misprinted infernal contract", and appear visually duller.
+    type: Tweak
+  id: 406324
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Reworked damnations UI, it now has categories and displays crew you have damned.
+    type: Tweak
+  id: 406325
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: Arkanic
+  changes:
+  - message: Brought back terminator damnation, but now with a limit of 1 use per devil.
+    type: Tweak
+  id: 406326
+  time: '2026-07-01T08:41:20.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4941
+- author: redmushie
+  changes:
+  - message: Admin chat window can now popout.
+    type: Add
+  id: 406327
+  time: '2026-07-01T08:41:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4962
+- author: redmushie
+  changes:
+  - message: When pressing the admin chat hotkey, the admin chat window input gets prioritized while the dedicated window is open.
+    type: Fix
+  id: 406328
+  time: '2026-07-01T08:41:22.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4962
 Order: -1
