@@ -151,6 +151,14 @@ public sealed partial class TraitSystem : EntitySystem
                 continue;
             }
 
+            //Check white/blacklist srstly why is this in ApplyTrait and not in Validate???
+            if (_whitelistSystem.IsWhitelistFail(trait.Whitelist, player) ||
+            _whitelistSystem.IsWhitelistPass(trait.Blacklist, player))
+            {
+                Log.Warning($"Trait {traitId} rejected: white/blacklist fail");
+                continue;
+            }
+
             // Trait is valid, add it
             validTraits.Add(traitId);
             totalPoints += trait.Cost;

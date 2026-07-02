@@ -88,5 +88,6 @@ public abstract partial class SharedLanguageSystem
                 cache.UnderstandingCache.UnionWith(effect.LanguagesUnderstood);
             }
         }
+        Dirty(arts.Mob);
     }
 }
