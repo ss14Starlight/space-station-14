@@ -692,4 +692,28 @@ public sealed partial class AntagSelectionSystem
 
         return false;
     }
+
+    #region Starlight
+    /// <summary>
+    /// Returns a list of AntagSelectionDefinitions that this session has been preselected for
+    /// </summary>
+    public List<AntagSelectionComponent> GetPreSelectedAntagDefinitions(ICommonSession session)
+    {
+        var result = new List<AntagSelectionComponent>();
+        var query = QueryAllRules();
+        while (query.MoveNext(out var uid, out var comp, out _))
+        {
+            if (HasComp<EndedGameRuleComponent>(uid))
+                continue;
+
+            foreach (var def in comp.PreSelectedSessions)
+            {
+                if (comp.PreSelectedSessions.TryGetValue(def.Key, out var set) && set.Contains(session))
+                    result.Add(comp);
+            }
+        }
+
+        return result;
+    }
+    #endregion
 }
