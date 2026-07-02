@@ -125,12 +125,6 @@
                 volume: 1.0
                 variation: 0.125
 #FH - End
-# Starlight start - added ointment tag to allow whitelisting wherever ointments are whitelisted, since these functionally act the same for IPC and Protogen.
-    - type: Tag
-      tags:
-      - Ointment
-#Starlight end
-
 
 - type: entity
   parent: CableHVStack

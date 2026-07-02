@@ -89,10 +89,10 @@
         - Ointment
         - PillCanister
         - PatchPack
-        - OilPack
       components:
         - Injector
         - Pill
+        - ConditionalHealing
     grid:
     - 0,0,3,2
   - type: Item
