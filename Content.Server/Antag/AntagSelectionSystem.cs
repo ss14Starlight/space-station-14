@@ -175,11 +175,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         // We do this after TrySpawnAntagonist so we don't have to worry about a failed spawn adding permanent pre selections to a game rule.
+        Log.Warning($"ONTAKEGHOST ROLE - BEFORE PRESELECT SESSION, Player {args.Player.UserId}, Rule {ToPrettyString(ent)}, Coordinate {_transform.GetMapCoordinates(ent)}");
         PreSelectSession((rule, select), def, args.Player);
         InitializeAntag((rule, select), def, uid.Value, args.Player);
-
-        var xform = Transform(uid.Value); // Starlight
-        _transform.SetMapCoordinates((uid.Value, xform), _transform.GetMapCoordinates(ent)); // Starlight, actually teleport the person
+        Log.Warning($"ONTAKEGHOST ROLE - AFTER INITIALIZE ANTAG, Player {args.Player.UserId}, Rule {ToPrettyString(ent)}, Coordinate {_transform.GetMapCoordinates(ent)}");
         args.TookRole = true;
 
         // Move ghosts that were watching the raffle on the spawner over to the freshly spawned antag.
@@ -696,9 +695,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!TryGetValidSpawnPosition(gameRule, prototype, out var coordinates, player))
             return player.AttachedEntity;
 
-        //if (TrySpawnAntagonist(gameRule, prototype, player, coordinates.Value, out var entity)) // Starlight start
-        //            return entity;
-        TrySpawnAntagonist(gameRule, prototype, player, coordinates.Value, out var entity); // Starlight end, we need to actually teleport you
+        Log.Warning($"GETANTAGENTITY - BEFORE TRYSPAWNANTAGONIST, Player {player.UserId}, Rule {ToPrettyString(gameRule)}, Coordinates {coordinates}, Prototype {prototype.ID}");
+
+        if (TrySpawnAntagonist(gameRule, prototype, player, coordinates.Value, out var entity))
+            return entity;
+
+        Log.Warning($"GETANTAGENTITY - AFTER TRYSPAWNANTAGONIST, Player {player.UserId}, Rule {ToPrettyString(gameRule)}, Coordinates {coordinates}, Prototype {prototype.ID}");
 
         if (player.AttachedEntity is not { } uid)
         {
@@ -722,10 +724,12 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         MapCoordinates coordinates,
         [NotNullWhen(true)]out EntityUid? uid)
     {
+        Log.Warning($"TRYSPAWNANTAGONIST - BEFORE RAISE EVENT, Player {player.UserId}, Rule {ToPrettyString(gameRule)}, Coordinates {coordinates}, Prototype {prototype.ID}");
         var ev = new AntagSelectEntityEvent(gameRule, prototype, coordinates, player);
         RaiseLocalEvent(gameRule, ref ev, true);
 
         uid = ev.Entity;
+        Log.Warning($"TRYSPAWNANTAGONIST - AFTER RAISE EVENT, Player {player.UserId}, Rule {ToPrettyString(gameRule)}, Coordinates {coordinates}, Prototype {prototype.ID}, Entity {uid}");
         return ev.Handled;
     }
 
