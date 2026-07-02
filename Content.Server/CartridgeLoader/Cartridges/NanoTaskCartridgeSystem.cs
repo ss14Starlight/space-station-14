@@ -1,4 +1,4 @@
-using Content.Server.GameTicking; // Starlight - Tidr: round-end escrow refund
+using Content.Shared.GameTicking; // Starlight - Tidr: round-end escrow refund
 using Content.Server.Station.Systems; // Starlight - Tidr
 using Content.Server._Starlight.Tidr;  // Starlight - Tidr
 using Content.Shared.Access.Components; // Starlight - Tidr
