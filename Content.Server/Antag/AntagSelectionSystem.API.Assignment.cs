@@ -401,7 +401,7 @@ public sealed partial class AntagSelectionSystem
 
         if (!TryGetValidSpawnPosition(gameRule, proto, out var coordinates))
         {
-            Log.Warning( // Starlight
+            Log.Error(
                 $"Found no valid positions to place antag spawner for game rule: {ToPrettyString(gameRule)}, antag: {proto.ID}");
             return;
         }
