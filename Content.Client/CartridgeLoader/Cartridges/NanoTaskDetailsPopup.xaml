@@ -22,7 +22,7 @@
                 <Label Name="StatusLabel" />
             </BoxContainer>
 
-            <Button Name="CloseButton"
+            <Button Name="DismissButton"
                     Text="{Loc tidr-details-close}"
                     HorizontalAlignment="Right"
                     Margin="0 8 0 0" />
