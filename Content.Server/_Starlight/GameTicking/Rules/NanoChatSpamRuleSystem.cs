@@ -3,7 +3,6 @@ using System.Text.RegularExpressions;
 using Content.Server.CartridgeLoader;
 using Content.Server._CD.CartridgeLoader.Cartridges;
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Station.Systems;
 using Robust.Server.Player;
 using Content.Shared._CD.NanoChat;
@@ -29,20 +28,20 @@ namespace Content.Server._Starlight.GameTicking.Rules;
 /// <summary>
 /// Game rule that periodically sends spam advertisements via NanoChat.
 /// </summary>
-public sealed class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComponent>
+public sealed partial class NanoChatSpamRuleSystem : GameRuleSystem<NanoChatSpamRuleComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MindSystem _mind = default!;
-    [Dependency] private readonly SharedJobSystem _jobs = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly CartridgeLoaderSystem _cartridgeLoader = default!;
-    [Dependency] private readonly SharedTimeSystem _timeSystem = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private SharedNanoChatSystem _nanoChat = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MindSystem _mind = default!;
+    [Dependency] private SharedJobSystem _jobs = default!;
+    [Dependency] private SharedRoleSystem _roles = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridgeLoader = default!;
+    [Dependency] private SharedTimeSystem _timeSystem = default!;
+    [Dependency] private ContainerSystem _container = default!;
 
     private static readonly Regex _randomNumberPattern = new(@"\[\[randomnumber:(\d+):(\d+)\]\]", RegexOptions.Compiled);
 

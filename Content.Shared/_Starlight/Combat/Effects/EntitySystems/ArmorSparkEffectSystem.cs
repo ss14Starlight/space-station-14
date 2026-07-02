@@ -1,16 +1,12 @@
 using System.Numerics;
 using Content.Shared._Starlight.Combat.Effects.Components;
 using Content.Shared.Armor;
-using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Inventory;
 using Content.Shared.Materials;
-using Content.Shared.Silicons.Borgs;
-using Content.Shared.Weapons.Ranged;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 
@@ -18,10 +14,10 @@ namespace Content.Shared._Starlight.Combat.Effects.EntitySystems;
 /// Handles spawning spark visual effects when armor with high pierce resistance
 /// or Rock material is hit by SP or HP hitscan bullets.
 /// </summary>
-public abstract class SharedArmorSparkEffectSystem : EntitySystem
+public abstract partial class SharedArmorSparkEffectSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {

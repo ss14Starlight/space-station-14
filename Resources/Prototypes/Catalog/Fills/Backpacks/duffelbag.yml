@@ -105,7 +105,7 @@
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledRevolver
-  name: Python bundle
+  name: python bundle # Starlight, capitalization
   description: "Go loud and proud with a fully loaded Magnum Python, bundled with two speed loaders."
   components:
   - type: EntityTableContainerFill
@@ -280,27 +280,6 @@
       storagebase: !type:AllSelector
         children:
         - id: ChameleonPDA
-        - id: ClothingUniformJumpsuitChameleon
-        - id: ClothingOuterChameleon
-        - id: ClothingNeckChameleon
-        - id: ClothingMaskGasChameleon
-        - id: ClothingHeadHatChameleon
-        - id: ClothingHandsChameleon
-        - id: ClothingEyesChameleon
-        - id: ClothingHeadsetChameleon
-        - id: ClothingShoesChameleon
-        - id: ClothingMiscChameleon # Starlight Removed the Implanter from the backpack to make space for the Medal slot item.
-
-- type: entity
-  parent: ClothingBackpackChameleon
-  id: ClothingBackpackChameleonFillAgent
-  suffix: Fill, Chameleon, Syndie
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      storagebase: !type:AllSelector
-        children:
-        - id: ChameleonAgentPDA
         - id: ClothingUniformJumpsuitChameleon
         - id: ClothingOuterChameleon
         - id: ClothingNeckChameleon

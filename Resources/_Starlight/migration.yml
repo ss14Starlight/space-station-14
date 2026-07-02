@@ -110,3 +110,6 @@ ClothingHandsCatPawsBlackWhiteInsulated: null
 #2026-06-09 - Removing the large warden locker
 LockerWardenLarge: LockerWarden
 LockerWardenLargeFilled: LockerWardenFilled
+
+#2026-06-18 - Renaming a confusingly named M1911 pulse pistol
+WeaponM1911: WeaponPulseM1911

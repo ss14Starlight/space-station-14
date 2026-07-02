@@ -213,7 +213,7 @@
       amount: 1
     Ammonia:
       amount: 1
-    ZombieBlood:
+    Mortucussus: # starlight
       amount: 2
   products:
     Ambuzol: 4
@@ -582,24 +582,6 @@
       amount: 1
   products:
     Arcryox: 3
-
-- type: reaction
-  id: Necrosol
-  impact: Medium
-  minTemp: 370
-  reactants:
-  # Starlight-start
-    Blood:
-      amount: 1
-    Diphenhydramine:
-      amount: 1
-    Desoxyephedrine:
-      amount: 1
-    Cryoxadone:
-      amount: 1
-  products:
-    Necrosol: 2
-  # Starlight-end
 
 - type: reaction
   id: Aloxadone

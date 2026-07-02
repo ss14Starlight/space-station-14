@@ -22,17 +22,19 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.50 # Starlight. Adds up to 1.
+      prob: 0.48 # Starlight. Adds up to 1.
     - id: VampireLess # Starlight. The rework is here.
       prob: 0.25
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: Devil
+      prob: 0.05 # rare
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SiliconLiberation
-      prob: 0.20
+      prob: 0.17
 
 - type: entity
   parent: BaseGameRule
@@ -41,11 +43,11 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.41 # Starlight
+      prob: 0.40 # Starlight
     - id: SLChangeling #Starlight lings
-      prob: 0.15
+      prob: 0.175 # They can honestly just have the same chance as the vampires.
     - id: VampireLess # Starlight reworked
-      prob: 0.20
+      prob: 0.175
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
@@ -53,6 +55,7 @@
     - id: Brighteye
       prob: 0.05 # We can go back down to 0.05, since they scale now.
     # No SELF Agents in rev games because of the FREEmag.
+    # no devil because this is the secret set used for conversion antags i guess? either way dont want revs spamming devil
 
 - type: entity
   parent: BaseGameRule
@@ -61,11 +64,13 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.60 # Same as NoChangelings
+      prob: 0.55
     - id: SLChangeling #Starlight lings
       prob: 0.20 # Can be a little higher now, since lings don't have their standalone anymore.
     - id: SubWizard
       prob: 0.05 # We can go back down to 0.05, since they scale now.
+    - id: Devil
+      prob: 0.05 # rare
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
@@ -80,15 +85,17 @@
   - type: SubGamemodes
     rules:
     - id: ThiefLess # So that only 3 thieves max spawn in rev games.
-      prob: 0.30 # Starlight, to account for Wizard and Xenoborgs
+      prob: 0.28 # Starlight, to account for Wizard and Xenoborgs
     - id: SubWizard
+      prob: 0.05
+    - id: Devil
       prob: 0.05
     - id: SubXenoborgs # Subgamemode replaced with SubXenoborgs
       prob: 0.05 # Equalizing subgamemodes.
     - id: Brighteye
       prob: 0.05
     - id: SiliconLiberation
-      prob: 0.15
+      prob: 0.12
 
 - type: entity
   parent: BaseGameRule
@@ -101,9 +108,9 @@
     - id: SubTraitor # Special traitors with a curated set of objectives; they do not have Kill/Lesson/DAGD, and scale a lot less.
       prob: 0.25
     - id: VampireLess # This is probably the most interesting sub-gamemode for them.
-      prob: 0.25
+      prob: 0.20
     - id: SLChangelingLess # I have managed to make changelings lose their abilities when they turn into zombies, so the concern with them is gone.
-      prob: 0.15
+      prob: 0.20
     - id: SubXenoborgs # I think there's interesting roleplay opportunity if Xenoborgs spawn. You could willingly choose to get borged to prevent infection. I want to see how this plays out.
       prob: 0.05
     - id: Brighteye
@@ -127,8 +134,7 @@
       prob: 0.05
     - id: SubXenoborgs
       prob: 0.05
-    - id: SiliconLiberation
-      prob: 0.15
+    # No SELF Agents in Nukie games because of the FREEmag = free guns!!!
 
 - type: entity
   parent: BaseGameRule
@@ -208,8 +214,7 @@
     agentName: terror-princess-round-end-agent-name
     definitions:
     - spawnerPrototype: SpawnPointGhostTerrorPrincess
-      min: 1
-      max: 3
+      min: 1 # They don't need a max, since we're actually hitting 200 pop now...
       playerRatio: 50
       pickPlayer: false
       mindRoles:

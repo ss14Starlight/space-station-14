@@ -12,7 +12,6 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.Doors.Components;
 using Content.Shared.Ensnaring.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Mobs.Components;
@@ -38,34 +37,34 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Physics;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
-public sealed class GargantuaSystem : EntitySystem
+public sealed partial class GargantuaSystem : EntitySystem
 {
     private const string ChargeActionId = "ActionVampireCharge";
 
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
 
-    [Dependency] private readonly VampireSystem _vampire = default!;
+    [Dependency] private VampireSystem _vampire = default!;
 
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedVampireActionUseSystem _vampireActions = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _rand = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private ThrowingSystem _throwing = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedContainerSystem _container = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedVampireActionUseSystem _vampireActions = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _rand = default!;
 
     public override void Initialize()
     {

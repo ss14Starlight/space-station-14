@@ -697,12 +697,12 @@
 - type: loadoutGroup
   id: MimeShoes
   name: loadout-group-mime-shoes
-  minLimit: 0 # Starlight
-  defaultSelected: 1 # Starlight
+  minLimit: 0
+  defaultSelected: 1
   loadouts:
   - WhiteShoes
   - BlackShoes
-  - RollerSkatesLoadout # Starlight
+  - RollerSkatesLoadout
 
 # Service Worker
 - type: loadoutGroup
@@ -962,6 +962,10 @@
   - DutyOfficerJumpskirt
   - DutyOfficerJumpsuitBlue
   - DutyOfficerJumpskirtBlue
+  - DutyOfficerJumpsuitFormal
+  - DutyOfficerJumpskirtFormal
+  - DutyOfficerSeniorJumpsuitFormal
+  - DutyOfficerSeniorJumpskirtFormal
   - DutyOfficerJumpsuitOrange # DeltaV
   - DutyOfficerJumpskirtOrange # DeltaV
 
@@ -1085,3 +1089,146 @@
   loadouts:
   - ParamedicPDA
   - SeniorParamedicPDA
+
+
+- type: loadoutGroup
+  id: ResearchAssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieResearchAssistant
+
+- type: loadoutGroup
+  id: SalvageSpecialistJumpsuit
+  name: loadout-group-salvage-specialist-jumpsuit
+  loadouts:
+  - SalvageSpecialistJumpsuit
+  - SalvageSpecialistJumpskirt
+  - SalvageSpecialistJumpsuitFormal
+  - SalvageSpecialistJumpskirtFormal
+
+- type: loadoutGroup
+  id: LibrarianJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieLibrarian
+
+- type: loadoutGroup
+  id: ServiceWorkerJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieServiceWorker
+  - LizardPlushieBartender
+  - LizardPlushieBotanist
+  - LizardPlushieChef
+
+- type: loadoutGroup
+  id: AssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieAssistant
+
+- type: loadoutGroup
+  id: CaptainEyewear
+  name: loadout-group-captain-eyewear
+  loadouts:
+  - CaptainGlasses
+  - CaptainHud
+
+- type: loadoutGroup
+  id: CaptainJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieCaptain
+
+- type: loadoutGroup
+  id: SecurityEyewear
+  name: loadout-group-security-eyewear
+  loadouts:
+  - SecurityGlasses
+  - SecurityHud
+  - DetectiveNoirGlasses
+  - SecurityGlassesPrescription
+
+- type: loadoutGroup
+  id: BrigmedicHead
+  name: loadout-group-brigmedic-head
+  minLimit: 0
+  loadouts:
+  - BrigmedicBeret
+  - BrigmedicNurseHat
+  - CorpsmanBeret
+  - CorpsmanNurseHat
+  - BrigmedicNurseHatOfLife
+  - SecurityHelmet
+
+- type: loadoutGroup
+  id: BrigmedicJumpsuit
+  name: loadout-group-brigmedic-jumpsuit
+  loadouts:
+  - JumpsuitBrigmedic
+  - JumpskirtBrigmedic
+  - JumpsuitCorpsman
+  - JumpskirtCorpsman
+  - FormalBrigmedicJumpsuit
+  - FormalBrigmedicJumpskirt
+  - SeniorBrigmedicJumpsuit
+  - SeniorBrigmedicJumpskirt
+  - CorpsmanResponse
+  - CorpsmanTrauma
+  - BrigmedicJumpsuitOfLife
+  - BrigmedicJumpskirtOfLife
+
+- type: loadoutGroup
+  id: BrigmedicBackpack
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - BrigmedicBackpack
+  - BrigmedicSatchel
+  - BrigmedicDuffel
+  - CorpsmanBackpack
+  - CorpsmanSatchel
+  - CorpsmanDuffel
+  - LeatherSatchel
+
+- type: loadoutGroup
+  id: BrigmedicOuterClothing
+  name: loadout-group-brigmedic-outerclothing
+  minLimit: 0
+  defaultSelected: 1
+  loadouts:
+  - BrigmedicCoat
+  - BrigmedicLabCoat
+  - CorpsmanCoat
+  - CorpsmanLabCoat
+  - SecurityOfficerWintercoat
+
+- type: loadoutGroup
+  id: BrigmedicEyewear
+  name: loadout-group-brigmedic-eyewear
+  loadouts:
+  - BrigmedicGlasses
+  - BrigmedicHud
+  - BrigmedicEyePatchHud
+  - BrigmeicGlassesPrescription
+  - CorpsmanGlasses
+  - CorpsmanHud
+
+- type: loadoutGroup
+  id: BrigmedicBelt
+  name: loadout-group-brigmedic-belt
+  loadouts:
+  - BrigmedicRig
+  - BrigmedicBelt
+  - CorpsmanBelt
+
+- type: loadoutGroup
+  id: TechnicalAssistantJobTrinkets
+  name: loadout-group-jobtrinkets
+  minLimit: 0
+  loadouts:
+  - LizardPlushieTechnicalAssistant

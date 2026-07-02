@@ -12,10 +12,10 @@ using Content.Shared.Popups;
 
 namespace Content.Server._Starlight.Access;
 
-public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
+public sealed partial class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedIdCardSystem _card = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedIdCardSystem _card = default!;
 
     public override void Initialize()
     {
@@ -57,11 +57,11 @@ public sealed class IdClothingBlockerSystem : SharedIdClothingBlockerSystem
 
     protected override void OnUnequipAttempt(EntityUid uid, IdClothingBlockerComponent component, BeingUnequippedAttemptEvent args)
     {
-        var wearerHasAccess = HasAccess(args.Unequipee, component);
+        var wearerHasAccess = HasAccess(args.User, component);
         if (wearerHasAccess)
             return;
 
-        if (args.UnEquipTarget == args.Unequipee)
+        if (args.UnEquipTarget == args.User)
         {
             args.Cancel();
         }

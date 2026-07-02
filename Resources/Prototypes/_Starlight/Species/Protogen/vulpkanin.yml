@@ -37,10 +37,10 @@
     RArm: MobProtoVulpRArm
     LHand: MobProtoVulpLHand
     RHand: MobProtoVulpRHand
-    LLeg: MobProtoVulpLLeg
-    RLeg: MobProtoVulpRLeg
-    LFoot: MobProtoVulpLFoot
-    RFoot: MobProtoVulpRFoot
+    LLeg: MobVulpkaninLLeg
+    RLeg: MobVulpkaninRLeg
+    LFoot: MobVulpkaninLFoot
+    RFoot: MobVulpkaninRFoot
     FaceCover: MobHumanoidAnyMarking
     FaceCoverCover: MobHumanoidAnyMarking
     BodyCover: MobHumanoidAnyMarking
@@ -85,9 +85,6 @@
     Head:
       points: 3
       required: false
-    Chest:
-      points: 4
-      required: false
     Legs:
       points: 6
       required: false
@@ -126,25 +123,25 @@
 - type: humanoidBaseSprite
   id: MobProtoVulpTorso
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobProtoVulpTorsoMale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: torso_m
 
 - type: humanoidBaseSprite
   id: MobProtoVulpTorsoFemale
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # Let's give them a proper torso
     state: torso_f
 
 - type: humanoidBaseSprite
   id: MobProtoVulpLLeg
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi
     state: l_leg
 
 - type: humanoidBaseSprite
@@ -162,13 +159,13 @@
 - type: humanoidBaseSprite
   id: MobProtoVulpLFoot
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
     state: l_foot
 
 - type: humanoidBaseSprite
   id: MobProtoVulpRLeg
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Proto-Vulp/parts.rsi # New legs. They're not actually used right now, but the framework's there for someone to finish the displacement map later.
     state: r_leg
 
 - type: humanoidBaseSprite
@@ -186,5 +183,5 @@
 - type: humanoidBaseSprite
   id: MobProtoVulpRFoot
   baseSprite:
-    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    sprite: _Starlight/Mobs/Species/Vulpkanin/parts.rsi
     state: r_foot

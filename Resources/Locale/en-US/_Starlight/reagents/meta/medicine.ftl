@@ -12,3 +12,12 @@ reagent-desc-barozine-plus = An advanced form of Barozine only found in Space Me
 
 reagent-name-infernaline = infernaline
 reagent-desc-infernaline = An unstable chemical that defies logic, very effective at treating genetic damage, but capable of causing tears in the flesh in higher than minimal amounts.
+
+reagent-name-briomadine = briomadine
+reagent-desc-briomadine = An advanced semi-natural medicine used to treat serious brute damage.
+
+reagent-name-acrileni = acrileni
+reagent-desc-acrileni = A weak natural medicine able to treat light peircing damage.
+
+reagent-name-iceialin = iceialin
+reagent-desc-iceialin = Cool to the touch, a chem that can restore the temperature of a corpse back to normal.

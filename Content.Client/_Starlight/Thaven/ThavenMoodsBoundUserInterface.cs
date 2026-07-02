@@ -1,13 +1,13 @@
-using Content.Shared._Starlight.Thaven.Components;
+using Content.Shared._Starlight.Thaven;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 
 namespace Content.Client._Starlight.Thaven;
 
 [UsedImplicitly]
-public sealed class ThavenMoodsBoundUserInterface : BoundUserInterface
+public sealed partial class ThavenMoodsBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IEntityManager _entMan = default!;
 
     [ViewVariables]
     private ThavenMoodsMenu? _menu;

@@ -43,6 +43,13 @@
     state: genaric_doc
 
 - type: stealTargetGroup
+  id: ShipyardComputerCircuitboard
+  name: steal-target-groups-shipyard-computer-circuitboard
+  sprite:
+    sprite: Objects/Misc/module.rsi
+    state: cpu_supply
+
+- type: stealTargetGroup
   id: MiningShuttleConsoleCircuitboard
   name: steal-target-groups-mining-shuttle-console-circuitboard
   sprite:

@@ -1,3 +1,4 @@
+using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
 using Content.Shared.Administration;
@@ -6,15 +7,15 @@ using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Starlight.Administration.Systems.Commands;
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class AllowShuttleCallsCommand : LocalizedEntityCommands
+public sealed partial class AllowShuttleCallsCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly ChatSystem _chatSystem = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IResourceManager _res = default!;
-    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IResourceManager _res = default!;
+    [Dependency] private RoundEndSystem _roundEndSystem = default!;
 
     public override string Command => "shuttlecalls";
     public override string Description => "Enable, disable, toggle, or check the status of emergency shuttle calls.";

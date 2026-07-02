@@ -1,17 +1,11 @@
 using System.Linq;
-using Content.Shared.Bed.Sleep;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Events;
-using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Effects;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio.Systems;
@@ -20,15 +14,15 @@ using Robust.Shared.Player;
 
 namespace Content.Shared._Starlight.Combat.OnHit;
 
-public abstract class SharedOnHitSystem : EntitySystem
+public abstract partial class SharedOnHitSystem : EntitySystem
 {
-    [Dependency] protected readonly INetManager _net = default!;
-    [Dependency] protected readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] protected readonly SharedAudioSystem _audio = default!;
-    [Dependency] protected readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] protected readonly SharedSolutionContainerSystem _solutionContainers = default!;
-    [Dependency] protected readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] protected readonly SharedCuffableSystem _cuffs = default!;
+    [Dependency] protected INetManager _net = default!;
+    [Dependency] protected SharedDoAfterSystem _doAfter = default!;
+    [Dependency] protected SharedAudioSystem _audio = default!;
+    [Dependency] protected ReactiveSystem _reactiveSystem = default!;
+    [Dependency] protected SharedSolutionContainerSystem _solutionContainers = default!;
+    [Dependency] protected SharedColorFlashEffectSystem _color = default!;
+    [Dependency] protected SharedCuffableSystem _cuffs = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<InjectOnHitComponent, MeleeHitEvent>(OnInjectOnMeleeHit);

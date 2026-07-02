@@ -99,6 +99,48 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecBlue
 
+- type: loadout
+  id: FormalOfficerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSecoff
+
+- type: loadout
+  id: FormalOfficerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalSeniorSecoff
+
+- type: loadout
+  id: FormalSeniorOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalSeniorSecoff
+
+- type: loadout
+  id: DeputyFormalJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalDeputy
+
+- type: loadout
+  id: DeputyFormalJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalDeputy
+
 #Outerclothes
 - type: loadout
   id: SecurityBomber
@@ -126,3 +168,61 @@
   id: SecMittens
   equipment:
     gloves: ClothingHandsMittensSecurityRed
+
+- type: loadout
+  id: SecurityJumpsuitBlue
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecBlue
+
+- type: loadout
+  id: SecurityHelmetPlate
+  equipment:
+    head: ClothingHeadHelmetPlate
+
+- type: loadout
+  id: SecurityHelmetStabproof
+  equipment:
+    head: ClothingHeadHelmetStabproof
+
+- type: loadout
+  id: SecurityHelmetHeatAbsorbent
+  equipment:
+    head: ClothingHeadHelmetHeatAbsorbent
+
+- type: loadout
+  id: ArmorVestPlate
+  equipment:
+    outerClothing: ClothingOuterArmorPlate
+
+- type: loadout
+  id: ArmorVestStab
+  equipment:
+    outerClothing: ClothingOuterArmorStab
+
+- type: loadout
+  id: ArmorVestHeatAbsorb
+  equipment:
+    outerClothing: ClothingOuterArmorHeatAbsorb
+
+- type: loadout
+  id: WindbreakerSecurity
+  equipment:
+    outerClothing: ClothingOuterWindbreakerSecurity
+
+# Hats
+
+- type: loadout
+  id: DeputyHat
+  equipment:
+    head: ClothingHeadDeputyHat
+
+# Misc
+- type: loadout
+  id: SecurityGlasses
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+
+- type: loadout
+  id: SecurityHud
+  equipment:
+    eyes: ClothingEyesHudSecurity

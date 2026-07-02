@@ -2,7 +2,7 @@ using Content.Shared.StatusIcon;
 using Content.Shared.Access;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.Railroading.Components;
 
 [RegisterComponent]
 public sealed partial class RailroadModifyIdCardComponent : Component
