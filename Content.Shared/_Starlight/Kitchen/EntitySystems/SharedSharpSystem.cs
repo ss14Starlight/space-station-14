@@ -11,6 +11,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared._Starlight.Medical.Surgery.Components;
 using Robust.Shared.Containers;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Shared._Starlight.Kitchen.EntitySystems;
@@ -24,6 +25,7 @@ public abstract partial class SharedSharpSystem : EntitySystem
     [Dependency] protected SharedPopupSystem PopupSystem = default!;
     [Dependency] protected SharedContainerSystem ContainerSystem = default!;
     [Dependency] protected MobStateSystem MobStateSystem = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     /// <summary>
     ///     Subscribes standard interaction and verb-gathering events.
@@ -79,7 +81,9 @@ public abstract partial class SharedSharpSystem : EntitySystem
 
         if (butcher.Type != ButcheringType.Knife && target != user)
         {
-            PopupSystem.PopupEntity(Loc.GetString("butcherable-different-tool", ("target", target)), knife, user);
+            if (Timing.IsFirstTimePredicted)
+                PopupSystem.PopupEntity(Loc.GetString("butcherable-different-tool", ("target", target)), knife, user);
+
             return false;
         }
 
