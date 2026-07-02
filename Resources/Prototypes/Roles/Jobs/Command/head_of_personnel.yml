@@ -17,7 +17,11 @@
     - !type:RoleTimeRequirement
       role: JobJanitor
       time: 3h
-
+    - !type:TraitsRequirement # Starlight
+      traits:
+        - Iterator
+        - Muted
+      inverted: true
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
