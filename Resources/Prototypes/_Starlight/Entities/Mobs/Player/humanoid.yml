@@ -36,7 +36,7 @@
       implants:
         - DeathRattleImplantCentcomm
         - RadioImplantCentcomm
-        - BluespaceImplant
+        - DeathAcidifierImplant
         - FreedomImplant
         - MindShieldImplant
 

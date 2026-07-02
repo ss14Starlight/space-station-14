@@ -150,8 +150,8 @@
 - type: entity
   parent: ClothingEyesGlassesBlueShield
   id: ClothingEyesGlassesNanotrasen
-  name: nanotrasen glasses
-  description: The latest in nanotrasen technology has lead up to these glasses, only given to the best of the best.
+  name: NanoTrasen glasses
+  description: The latest in NanoTrasen technology has lead up to these glasses, only given to the best of the best.
   components:
   - type: FlashImmunity
     blocksSpecialVision: False
