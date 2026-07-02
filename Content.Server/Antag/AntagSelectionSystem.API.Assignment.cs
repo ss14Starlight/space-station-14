@@ -178,8 +178,9 @@ public sealed partial class AntagSelectionSystem
         if (!_whitelist.CheckBoth(uid, def.Blacklist, def.Whitelist))
             return false;
 
-        if (_arrivals.IsOnArrivals((uid.Value, null)))
-            return false;
+        //Starlight start, We can let arrivals players become antags
+        //if (_arrivals.IsOnArrivals((uid.Value, null)))
+        //    return false; // Starlight end
 
         // No ghosts!!!
         if (HasComp<GhostComponent>(uid))
@@ -400,7 +401,7 @@ public sealed partial class AntagSelectionSystem
 
         if (!TryGetValidSpawnPosition(gameRule, proto, out var coordinates))
         {
-            Log.Error(
+            Log.Warning( // Starlight
                 $"Found no valid positions to place antag spawner for game rule: {ToPrettyString(gameRule)}, antag: {proto.ID}");
             return;
         }

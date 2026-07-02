@@ -3,6 +3,11 @@
   parent: BaseRoundstartAntagRule
   id: Devil
   components:
+  - type: GameRule
+    minPlayers: 15
+    delay:
+      min: 240
+      max: 420
   - type: DevilRule
   - type: AntagObjectives
     objectives:
