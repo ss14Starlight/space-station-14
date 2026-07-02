@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Language;
+using Content.Shared._Starlight.Language.Components;
 using Content.Shared._Starlight.Language.Systems;
 using Robust.Shared.Prototypes;
 
@@ -37,6 +38,8 @@ public sealed partial class LanguageEffect : BaseTraitEffect
     {
         if (!ctx.EntMan.EntitySysManager.TryGetEntitySystem(out SharedLanguageSystem? language))
             return;
+        if (ctx.EntMan.HasComponent<LanguageCacheComponent>(ctx.Player))
+            return; //If the char has a LanguageCache component it should not add to main languages.
 
         if (RemoveLanguagesSpoken is not null)
             foreach (var lang in RemoveLanguagesSpoken)
