@@ -1,95 +1,4 @@
 Entries:
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Fixed a lot of typos in the Syndicate Uplink. (Cybersan, missing periods, .50 shotgun ammo).
-    type: Fix
-  id: 405929
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: pmjanus
-  changes:
-  - message: The Corporate Frontier, Fringe, Hunted, Paradox Clone, and USSP backgrounds now apply correctly instead of silently doing nothing.
-    type: Fix
-  id: 405930
-  time: '2026-06-11T21:20:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4723
-- author: Caws
-  changes:
-  - message: Shadekin now actually die when using the 'Succumb' or 'Say Last Words' actions while critically injured.
-    type: Fix
-  id: 405931
-  time: '2026-06-12T06:33:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4746
-- author: Caws
-  changes:
-  - message: Vox Roboticists now start with a tank harness.
-    type: Fix
-  id: 405932
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: Vox IAAs now start with a tank harness.
-    type: Fix
-  id: 405933
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: Vox Zookeepers now start with a tank harness.
-    type: Fix
-  id: 405934
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: Vox Boxers now start with a tank harness.
-    type: Fix
-  id: 405935
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: (Bagel) The missing NanoMed Security has been re-added to Brigmedic.
-    type: Fix
-  id: 405936
-  time: '2026-06-12T08:02:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4743
-- author: Pon
-  changes:
-  - message: Fixed being unable to store the IK-60 once equipped.
-    type: Fix
-  id: 405937
-  time: '2026-06-12T08:03:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4744
-- author: Caws
-  changes:
-  - message: The NTR's coat can now accept gas tanks in its suit storage. Vox NTRs rejoice.
-    type: Tweak
-  id: 405938
-  time: '2026-06-12T08:05:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4742
-- author: Caws
-  changes:
-  - message: The Magistrates's coat can now accept gas tanks in its suit storage. Vox Magistrates rejoice.
-    type: Tweak
-  id: 405939
-  time: '2026-06-12T08:05:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4742
-- author: Caws
-  changes:
-  - message: The NanoTrasen Career Trainer previously had a flash spawn in its suit storage, which you could never put back in. This flash now spawns in your backpack instead of your suit storage slot. This also means that Vox shouldn't have their suit storage blocked when they join as a NT Career Trainer.
-    type: Fix
-  id: 405940
-  time: '2026-06-12T08:05:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4742
-- author: redmushie
-  changes:
-  - message: Fax machine groups, colors and ordering! Faxes can now be sorted into departmental and faction groups, and are sorted for easier finding. (Pending mapping changes for a fuller rollout).
-    type: Add
-  id: 405941
-  time: '2026-06-12T10:37:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4706
 - author: RenMeow1
   changes:
   - message: Replaced all protogen sub species audio clips.
@@ -2799,4 +2708,95 @@ Entries:
   id: 406328
   time: '2026-07-01T08:41:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4962
+- author: redmushie
+  changes:
+  - message: The Arrivals and Evacuation shuttles now actually try to dock to the station instead of just the largest grid.
+    type: Fix
+  id: 406329
+  time: '2026-07-02T08:16:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4969
+- author: redmushie
+  changes:
+  - message: The Arrivals shuttle now actually prefers Arrivals docking ports.
+    type: Fix
+  id: 406330
+  time: '2026-07-02T08:16:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4969
+- author: wonderfulnewworld
+  changes:
+  - message: Added EeepEvent to Dynamic.
+    type: Add
+  id: 406331
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Reduced window between events in Dynamic by increasing the minimum time and decreasing the maximum time.
+    type: Tweak
+  id: 406332
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Increase Dynamic's minimum budget from 200 to 250.
+    type: Tweak
+  id: 406333
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Modified Dynamic midround antags to spawn closer to when they would normally spawn on the basic scheduler. It's not exactly the same, in theory it could be a bit earlier, because we need to account for less events on average due to Dynamic rolling events a lot slower than Extended.
+    type: Tweak
+  id: 406334
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Multiantags can now roll during midround during Dynamic (except Zombies), but aren't as likely as proper Midrounds.
+    type: Tweak
+  id: 406335
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaked Thief, SELF, and Abductor Dynamic Rule Costs.
+    type: Tweak
+  id: 406336
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Removed DummyNonAntag from Dynamic, and added Railroading to it too.
+    type: Tweak
+  id: 406337
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic will now ACTUALLY roll multiantags roundstart sometimes.
+    type: Fix
+  id: 406338
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Abductors can now actually spawn in Dynamic.
+    type: Fix
+  id: 406339
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic gamerule player requirements now match their actual gamemodes.
+    type: Fix
+  id: 406340
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: Mack
+  changes:
+  - message: Fix issue with butchering and surgery conflicting.
+    type: Fix
+  id: 406341
+  time: '2026-07-02T14:15:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4979
 Order: -1
