@@ -12,12 +12,12 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Numerics;
-using Content.Client._Starlight.UserInterface; // popout support
+using Content.Client._Starlight.UserInterface;
 
 namespace Content.Client._Starlight.Cargo.MailCompanion;
 
 [GenerateTypedNameReferences]
-public sealed partial class MailCompanionWindow : PopOutFancyWindow //popout support
+public sealed partial class MailCompanionWindow : PopOutFancyWindow
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;
@@ -26,7 +26,7 @@ public sealed partial class MailCompanionWindow : PopOutFancyWindow //popout sup
     private readonly SpriteSystem _spriteSystem;
     private Texture? _blipTexture;
 
-    protected override Control Control => RootContainer; // popout support
+    protected override Control Control => RootContainer;
 
     public MailCompanionWindow()
     {
