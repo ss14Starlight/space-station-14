@@ -1,3 +1,4 @@
+using Content.Server.GameTicking; // Starlight - Tidr: round-end escrow refund
 using Content.Server.Station.Systems; // Starlight - Tidr
 using Content.Server._Starlight.Tidr;  // Starlight - Tidr
 using Content.Shared.Access.Components; // Starlight - Tidr
@@ -7,8 +8,12 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
 using Content.Shared.PDA; // Starlight - Tidr
+using Content.Shared._NullLink; // Starlight - Tidr: player credit resources
+using Robust.Server.Player; // Starlight - Tidr
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network; // Starlight - Tidr
+using Robust.Shared.Player; // Starlight - Tidr
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Shared.Abilities.Mime; // Starlight
@@ -17,7 +22,9 @@ using Content.Server.Popups; // Starlight
 namespace Content.Server.CartridgeLoader.Cartridges;
 
 /// <summary>
-///     Server-side class implementing the core UI logic of NanoTask
+///     Server-side class implementing the core UI logic of Tidr (the NanoTask rework):
+///     a station-wide job board with credit escrow. Cards gate permissions; player
+///     accounts carry the money.
 /// </summary>
 public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSystem
 {
@@ -28,6 +35,14 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private PopupSystem _popupSystem = default!; // Starlight
     [Dependency] private StationSystem _stationSystem = default!; // Starlight - Tidr
+    [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!; // Starlight - Tidr
+    [Dependency] private IPlayerManager _players = default!; // Starlight - Tidr
+
+    /// <summary>
+    ///     Starlight - Tidr: NanoTrasen's cut of every completed bounty. Floor'd, so tiny
+    ///     rewards round in the Tider's favour.
+    /// </summary>
+    private const float NTCut = 0.05f;
 
     public override void Initialize()
     {
@@ -39,6 +54,24 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         SubscribeLocalEvent<NanoTaskCartridgeComponent, CartridgeRemovedEvent>(OnCartridgeRemoved);
 
         SubscribeLocalEvent<NanoTaskInteractionComponent, InteractUsingEvent>(OnInteractUsing);
+
+        // Starlight - Tidr: refund all outstanding escrow before the round tears down;
+        // credits live on persistent player accounts, so unrefunded escrow is destroyed money.
+        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+    }
+
+    private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        var query = EntityQueryEnumerator<TidrBoardComponent>();
+        while (query.MoveNext(out _, out var board))
+        {
+            foreach (var (taskId, amount) in board.Escrow)
+            {
+                if (board.OwnerUsers.TryGetValue(taskId, out var user))
+                    TryCredit(user, amount);
+            }
+            board.Escrow.Clear();
+        }
     }
 
     private void OnCartridgeRemoved(Entity<NanoTaskCartridgeComponent> ent, ref CartridgeRemovedEvent args)
@@ -61,19 +94,28 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         }
         if (printed.Task is NanoTaskItem item)
         {
-            // Starlight - Tidr: scan a printed task back onto the shared board, stamping the scanner's ID as owner
+            // Starlight - Tidr: scanning a printed task re-posts it under the scanner's own
+            // ID, unclaimed, with the reward zeroed. Paper can't carry funded escrow: honouring
+            // a printed reward would either mint unfunded bounties or drain the scanner blind.
             if (TryGetBoard(ent.Owner, out var scanBoard))
             {
+                if (!TryGetInsertedId(ent.Owner, out var scanCard))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-no-id"), args.User, args.User);
+                    return;
+                }
+                var scanName = GetCardName(scanCard);
+                var reposted = new NanoTaskItem(item.Description, scanName, false, item.Priority, item.Location, 0, null);
                 var newId = scanBoard.Counter++;
-                scanBoard.Tasks.Add(new(newId, printed.Task));
-                if (TryGetInsertedId(ent.Owner, out var scanCard))
-                    scanBoard.Owners[newId] = scanCard;
+                scanBoard.Tasks.Add(new(newId, reposted));
+                scanBoard.Owners[newId] = scanCard;
+                if (_players.TryGetSessionByEntity(args.User, out var scanSession))
+                    scanBoard.OwnerUsers[newId] = scanSession.UserId;
             }
             else
                 program.Tasks.Add(new(program.Counter++, printed.Task));
             args.Handled = true;
             Del(args.Used);
-            // Starlight - Tidr: refresh the whole station if on one, else just this cartridge
             if (_stationSystem.GetOwningStation(ent.Owner) is { } scanStation)
                 RefreshStation(scanStation);
             else
@@ -81,9 +123,6 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         }
     }
 
-    /// <summary>
-    /// This gets called when the ui fragment needs to be updated for the first time after activating
-    /// </summary>
     private void OnUiReady(Entity<NanoTaskCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
         UpdateUiState(ent, args.Loader);
@@ -102,6 +141,17 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         msg.PushNewline();
         msg.AddMarkupOrThrow(Loc.GetString("nano-task-printed-requester", ("requester", FormattedMessage.EscapeText(item.TaskIsFor))));
         msg.PushNewline();
+        // Starlight - Tidr: the physical ticket carries the meet point and the pay
+        if (!string.IsNullOrWhiteSpace(item.Location))
+        {
+            msg.AddMarkupOrThrow(Loc.GetString("tidr-printed-location", ("location", FormattedMessage.EscapeText(item.Location))));
+            msg.PushNewline();
+        }
+        if (item.Reward > 0)
+        {
+            msg.AddMarkupOrThrow(Loc.GetString("tidr-printed-reward", ("amount", item.Reward)));
+            msg.PushNewline();
+        }
         msg.AddMarkupOrThrow(item.Priority switch {
             NanoTaskPriority.High => Loc.GetString("nano-task-printed-high-priority"),
             NanoTaskPriority.Medium => Loc.GetString("nano-task-printed-medium-priority"),
@@ -112,12 +162,6 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         _paper.SetContent((uid, paper), msg.ToMarkup());
     }
 
-    /// <summary>
-    /// The ui messages received here get wrapped by a CartridgeMessageEvent and are relayed from the <see cref="CartridgeLoaderSystem"/>
-    /// </summary>
-    /// <remarks>
-    /// The cartridge specific ui message event needs to inherit from the CartridgeMessageEvent
-    /// </remarks>
     private void OnUiMessage(Entity<NanoTaskCartridgeComponent> ent, ref CartridgeMessageEvent args)
     {
         if (args is not NanoTaskUiMessageEvent message)
@@ -129,57 +173,134 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         switch (message.Payload)
         {
             case NanoTaskAddTask task:
+            {
                 if (!task.Item.Validate())
                     return;
-                // Starlight - Tidr: a task must be posted under an ID card inserted in the PDA
+                // Starlight - Tidr: posting requires an ID card in the PDA
                 if (!TryGetInsertedId(loader, out var posterCard))
                 {
                     _popupSystem.PopupEntity(Loc.GetString("tidr-no-id"), args.Actor, args.Actor);
                     return;
                 }
-                // Starlight - Tidr: stamp the requester name from the poster's ID card, not from client input
-                var posterName = TryComp<IdCardComponent>(posterCard, out var idCard) && !string.IsNullOrWhiteSpace(idCard.FullName)
-                    ? idCard.FullName!
-                    : Loc.GetString("tidr-unknown-poster");
-                var newItem = new NanoTaskItem(task.Item.Description, posterName, task.Item.IsTaskDone, task.Item.Priority, task.Item.Location, task.Item.Reward, task.Item.AcceptedBy);
-                if (TryGetBoard(loader, out var addBoard))
+                if (!TryGetBoard(loader, out var addBoard))
                 {
-                    var newId = addBoard.Counter++;
-                    addBoard.Tasks.Add(new(newId, newItem));
-                    addBoard.Owners[newId] = posterCard; // stamp the poster's card as owner
+                    // off-station: plain notepad behaviour, no board, no escrow
+                    ent.Comp.Tasks.Add(new(ent.Comp.Counter++, task.Item));
+                    break;
                 }
-                else
-                    ent.Comp.Tasks.Add(new(ent.Comp.Counter++, newItem));
+
+                var reward = Math.Max(task.Item.Reward, 0);
+                NetUserId? posterUser = null;
+
+                // Starlight - Tidr: escrow. The reward leaves the poster's account the moment
+                // the task goes up, so the money is guaranteed to exist when the job is done.
+                if (reward > 0)
+                {
+                    if (!_players.TryGetSessionByEntity(args.Actor, out var posterSession))
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-no-account"), args.Actor, args.Actor);
+                        return;
+                    }
+                    if (!_playerResources.TryGetResource(args.Actor, "credits", out var balance) || balance < reward)
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-insufficient-funds", ("amount", reward)), args.Actor, args.Actor);
+                        return;
+                    }
+                    _playerResources.TryUpdateResource(args.Actor, "credits", -reward);
+                    posterUser = posterSession.UserId;
+                }
+                else if (_players.TryGetSessionByEntity(args.Actor, out var posterSession))
+                    posterUser = posterSession.UserId;
+
+                // name is stamped from the card, never trusted from the client
+                var newItem = new NanoTaskItem(task.Item.Description, GetCardName(posterCard), false, task.Item.Priority, task.Item.Location, reward, null);
+                var newId = addBoard.Counter++;
+                addBoard.Tasks.Add(new(newId, newItem));
+                addBoard.Owners[newId] = posterCard;
+                if (posterUser is { } pu)
+                    addBoard.OwnerUsers[newId] = pu;
+                if (reward > 0)
+                    addBoard.Escrow[newId] = reward;
                 break;
+            }
             case NanoTaskUpdateTask task:
             {
                 if (!task.Item.Data.Validate())
                     return;
-                // Starlight - Tidr: only the owner card may edit or complete (Done) a task
-                if (TryGetBoard(loader, out var updBoard))
+                if (!TryGetBoard(loader, out var updBoard))
                 {
-                    if (!IsTaskOwner(updBoard, task.Item.Id, loader))
+                    var lidx = ent.Comp.Tasks.FindIndex(t => t.Id == task.Item.Id);
+                    if (lidx != -1)
+                        ent.Comp.Tasks[lidx] = task.Item;
+                    break;
+                }
+                // Starlight - Tidr: only the owner card may edit or complete a task
+                if (!IsTaskOwner(updBoard, task.Item.Id, loader))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-not-your-task"), args.Actor, args.Actor);
+                    return;
+                }
+                var idx = updBoard.Tasks.FindIndex(t => t.Id == task.Item.Id);
+                if (idx == -1)
+                    return;
+                var existing = updBoard.Tasks[idx];
+                var old = existing.Data;
+                var incoming = task.Item.Data;
+
+                // Starlight - Tidr: completion is final. Money moves on complete; there is no un-complete.
+                if (old.IsTaskDone && !incoming.IsTaskDone)
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-already-completed"), args.Actor, args.Actor);
+                    return;
+                }
+                if (old.IsTaskDone)
+                    return; // completed tasks are read-only apart from delete
+
+                // Server-controlled fields are rebuilt from server truth, never taken from the
+                // client: requester name, reward (escrowed, immutable), and AcceptedBy (a stale
+                // edit popup snapshot must not be able to wipe a claim made while it was open).
+                var completing = incoming.IsTaskDone;
+                var merged = new NanoTaskItem(
+                    incoming.Description,
+                    old.TaskIsFor,
+                    completing,
+                    incoming.Priority,
+                    incoming.Location,
+                    old.Reward,
+                    old.AcceptedBy);
+
+                if (completing && old.Reward > 0 && updBoard.Escrow.TryGetValue(existing.Id, out var pot))
+                {
+                    if (updBoard.AccepterUsers.TryGetValue(existing.Id, out var tider))
                     {
-                        _popupSystem.PopupEntity(Loc.GetString("tidr-not-your-task"), args.Actor, args.Actor);
-                        return;
+                        // pay the Tider, minus the NanoTrasen cut
+                        var cut = (int)Math.Floor(pot * NTCut);
+                        var payout = pot - cut;
+                        if (!TryCredit(tider, payout))
+                        {
+                            _popupSystem.PopupEntity(Loc.GetString("tidr-tider-offline"), args.Actor, args.Actor);
+                            return; // task stays open; escrow stays held
+                        }
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-paid-out", ("amount", payout)), args.Actor, args.Actor);
                     }
-                    var idx = updBoard.Tasks.FindIndex(t => t.Id == task.Item.Id);
-                    if (idx != -1)
-                        updBoard.Tasks[idx] = task.Item;
+                    else
+                    {
+                        // completing an unclaimed task: nobody to pay, refund the poster
+                        if (updBoard.OwnerUsers.TryGetValue(existing.Id, out var owner))
+                            TryCredit(owner, pot);
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-refunded", ("amount", pot)), args.Actor, args.Actor);
+                    }
+                    updBoard.Escrow.Remove(existing.Id);
                 }
-                else
-                {
-                    var idx = ent.Comp.Tasks.FindIndex(t => t.Id == task.Item.Id);
-                    if (idx != -1)
-                        ent.Comp.Tasks[idx] = task.Item;
-                }
+
+                updBoard.Tasks[idx] = new(existing.Id, merged);
                 break;
             }
             case NanoTaskAcceptTask task:
             {
-                // Starlight - Tidr: a Tider claims a job. Any crew may accept, but only once (lock).
+                // Starlight - Tidr: toggle claim. Free -> accept. Taken -> only accepter or owner may release.
                 if (!TryGetBoard(loader, out var accBoard))
-                    return; // accepting only makes sense on a shared station board
+                    return;
                 if (!TryGetInsertedId(loader, out var accCard))
                 {
                     _popupSystem.PopupEntity(Loc.GetString("tidr-no-id"), args.Actor, args.Actor);
@@ -189,34 +310,61 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                 if (accIdx == -1)
                     return;
                 var existing = accBoard.Tasks[accIdx];
-                if (!string.IsNullOrEmpty(existing.Data.AcceptedBy))
-                {
-                    // already claimed by someone else: the lock
-                    _popupSystem.PopupEntity(Loc.GetString("tidr-already-taken"), args.Actor, args.Actor);
-                    return;
-                }
-                var accName = TryComp<IdCardComponent>(accCard, out var accId) && !string.IsNullOrWhiteSpace(accId.FullName)
-                    ? accId.FullName!
-                    : Loc.GetString("tidr-unknown-poster");
                 var d = existing.Data;
-                accBoard.Tasks[accIdx] = new(existing.Id, new NanoTaskItem(d.Description, d.TaskIsFor, d.IsTaskDone, d.Priority, d.Location, d.Reward, accName));
+                if (d.IsTaskDone)
+                    return;
+
+                if (string.IsNullOrEmpty(d.AcceptedBy))
+                {
+                    // free -> claim it
+                    accBoard.Tasks[accIdx] = new(existing.Id, new NanoTaskItem(d.Description, d.TaskIsFor, d.IsTaskDone, d.Priority, d.Location, d.Reward, GetCardName(accCard)));
+                    accBoard.Accepters[existing.Id] = accCard;
+                    if (_players.TryGetSessionByEntity(args.Actor, out var accSession))
+                        accBoard.AccepterUsers[existing.Id] = accSession.UserId;
+                }
+                else
+                {
+                    // taken -> the accepter or the owner may release it; anyone else is locked out
+                    var isAccepter = accBoard.Accepters.TryGetValue(existing.Id, out var acc) && acc == accCard;
+                    var isOwner = accBoard.Owners.TryGetValue(existing.Id, out var own) && own == accCard;
+                    if (!isAccepter && !isOwner)
+                    {
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-already-taken"), args.Actor, args.Actor);
+                        return;
+                    }
+                    accBoard.Tasks[accIdx] = new(existing.Id, new NanoTaskItem(d.Description, d.TaskIsFor, d.IsTaskDone, d.Priority, d.Location, d.Reward, null));
+                    accBoard.Accepters.Remove(existing.Id);
+                    accBoard.AccepterUsers.Remove(existing.Id);
+                }
                 break;
             }
             case NanoTaskDeleteTask task:
-                // Starlight - Tidr: only the owner card may delete a task
-                if (TryGetBoard(loader, out var delBoard))
+            {
+                if (!TryGetBoard(loader, out var delBoard))
                 {
-                    if (!IsTaskOwner(delBoard, task.Id, loader))
-                    {
-                        _popupSystem.PopupEntity(Loc.GetString("tidr-not-your-task"), args.Actor, args.Actor);
-                        return;
-                    }
-                    delBoard.Tasks.RemoveAll(t => t.Id == task.Id);
-                    delBoard.Owners.Remove(task.Id);
-                }
-                else
                     ent.Comp.Tasks.RemoveAll(t => t.Id == task.Id);
+                    break;
+                }
+                // Starlight - Tidr: only the owner card may delete a task
+                if (!IsTaskOwner(delBoard, task.Id, loader))
+                {
+                    _popupSystem.PopupEntity(Loc.GetString("tidr-not-your-task"), args.Actor, args.Actor);
+                    return;
+                }
+                // deleting an open task refunds its escrow to the poster
+                if (delBoard.Escrow.TryGetValue(task.Id, out var refund))
+                {
+                    if (delBoard.OwnerUsers.TryGetValue(task.Id, out var owner) && TryCredit(owner, refund))
+                        _popupSystem.PopupEntity(Loc.GetString("tidr-refunded", ("amount", refund)), args.Actor, args.Actor);
+                    delBoard.Escrow.Remove(task.Id);
+                }
+                delBoard.Tasks.RemoveAll(t => t.Id == task.Id);
+                delBoard.Owners.Remove(task.Id);
+                delBoard.Accepters.Remove(task.Id);
+                delBoard.OwnerUsers.Remove(task.Id);
+                delBoard.AccepterUsers.Remove(task.Id);
                 break;
+            }
             case NanoTaskPrintTask task:
             {
                 if (!task.Item.Validate())
@@ -252,35 +400,94 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
             }
         }
 
-        // Starlight - Tidr: push the updated board to every NanoTask app on the station, not just the sender
+        // Starlight - Tidr: push the updated board to every Tidr app on the station
         if (station is { } st)
             RefreshStation(st);
         else
             UpdateUiState(ent, loader);
     }
 
-    private void UpdateUiState(Entity<NanoTaskCartridgeComponent> ent, EntityUid loaderUid)
+    // ===== Starlight - Tidr: money helpers =====
+
+    /// <summary>
+    ///     Credit a player's account by NetUserId. Fails (false) if they're not connected;
+    ///     callers decide whether that blocks the action or is best-effort.
+    /// </summary>
+    private bool TryCredit(NetUserId user, int amount)
     {
-        // Starlight - Tidr: show the shared station board, fall back to the local list off-station
-        var tasks = TryGetBoard(loaderUid, out var board) ? board.Tasks : ent.Comp.Tasks;
-        var state = new NanoTaskUiState(tasks);
-        _cartridgeLoader.UpdateCartridgeUiState(loaderUid, state);
+        if (amount <= 0)
+            return true;
+        if (!_players.TryGetSessionById(user, out var session))
+            return false;
+        return _playerResources.TryUpdateResource(session, "credits", amount);
     }
 
-    // Starlight - Tidr: push the current board to every NanoTask cartridge on the given station
+    /// <summary>
+    ///     Resolve the credit balance of whoever is holding this PDA, for the app header.
+    ///     -1 if there's no player attached (client hides the readout).
+    /// </summary>
+    private int GetHolderBalance(EntityUid loader)
+    {
+        var holder = Transform(loader).ParentUid;
+        if (!holder.IsValid())
+            return -1;
+        if (!_players.TryGetSessionByEntity(holder, out _))
+            return -1;
+        if (!_playerResources.TryGetResource(holder, "credits", out var balance))
+            return -1;
+        return (int)balance;
+    }
+
+    private string GetCardName(EntityUid card)
+    {
+        return TryComp<IdCardComponent>(card, out var id) && !string.IsNullOrWhiteSpace(id.FullName)
+            ? id.FullName!
+            : Loc.GetString("tidr-unknown-poster");
+    }
+
+    // ===== Starlight - Tidr: state building =====
+
+    // Build the UI state for one specific PDA, tagging each task with that viewer's
+    // ownership / acceptance and including the holder's balance for the header.
+    private NanoTaskUiState BuildViewerState(TidrBoardComponent board, EntityUid loader)
+    {
+        var hasCard = TryGetInsertedId(loader, out var card);
+        var entries = new List<NanoTaskViewerEntry>(board.Tasks.Count);
+        foreach (var t in board.Tasks)
+        {
+            var isOwner = hasCard && board.Owners.TryGetValue(t.Id, out var o) && o == card;
+            var isAccepter = hasCard && board.Accepters.TryGetValue(t.Id, out var a) && a == card;
+            entries.Add(new NanoTaskViewerEntry(t, isOwner, isAccepter));
+        }
+        return new NanoTaskUiState(entries, GetHolderBalance(loader));
+    }
+
+    private void UpdateUiState(Entity<NanoTaskCartridgeComponent> ent, EntityUid loaderUid)
+    {
+        if (TryGetBoard(loaderUid, out var board))
+        {
+            _cartridgeLoader.UpdateCartridgeUiState(loaderUid, BuildViewerState(board, loaderUid));
+            return;
+        }
+
+        var entries = new List<NanoTaskViewerEntry>(ent.Comp.Tasks.Count);
+        foreach (var t in ent.Comp.Tasks)
+            entries.Add(new NanoTaskViewerEntry(t, true, false)); // off-station notepad: you own everything
+        _cartridgeLoader.UpdateCartridgeUiState(loaderUid, new NanoTaskUiState(entries, GetHolderBalance(loaderUid)));
+    }
+
+    // Push each PDA on the station its own viewer-tagged copy of the board
     private void RefreshStation(EntityUid station)
     {
         var board = EnsureComp<TidrBoardComponent>(station);
-        var state = new NanoTaskUiState(board.Tasks);
         var query = EntityQueryEnumerator<NanoTaskCartridgeComponent, CartridgeComponent>();
         while (query.MoveNext(out _, out _, out var cart))
         {
             if (cart.LoaderUid is { } loader && _stationSystem.GetOwningStation(loader) == station)
-                _cartridgeLoader.UpdateCartridgeUiState(loader, state);
+                _cartridgeLoader.UpdateCartridgeUiState(loader, BuildViewerState(board, loader));
         }
     }
 
-    // Starlight - Tidr: resolve the station-wide shared task board from any entity on the station
     private bool TryGetBoard(EntityUid source, out TidrBoardComponent board)
     {
         board = default!;
@@ -290,7 +497,6 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         return true;
     }
 
-    // Starlight - Tidr: read the ID card currently inserted in the PDA running this cartridge
     private bool TryGetInsertedId(EntityUid loader, out EntityUid card)
     {
         card = default;
@@ -302,7 +508,6 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         return false;
     }
 
-    // Starlight - Tidr: true if the card inserted in this PDA is the one that posted the task
     private bool IsTaskOwner(TidrBoardComponent board, int taskId, EntityUid loader)
     {
         return TryGetInsertedId(loader, out var card)
