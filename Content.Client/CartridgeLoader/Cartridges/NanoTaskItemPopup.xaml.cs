@@ -8,7 +8,7 @@ using Content.Shared.CartridgeLoader.Cartridges;
 namespace Content.Client.CartridgeLoader.Cartridges;
 
 /// <summary>
-///     Popup displayed to edit a NanoTask item
+///     Popup displayed to create or edit a Tidr task
 /// </summary>
 [GenerateTypedNameReferences]
 public sealed partial class NanoTaskItemPopup : DefaultWindow
@@ -36,7 +36,11 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
                 _ => NanoTaskPriority.Medium,
             },
             location: LocationInput.Text,
-            reward: int.TryParse(RewardInput.Text, out var r) && r > 0 ? r : 0,
+            // Starlight - Tidr: reward is escrowed at post time and immutable after; on edit the
+            // server keeps its own value regardless, this just keeps the client honest
+            reward: _editingItem is not null
+                ? _editingItem.Reward
+                : (int.TryParse(RewardInput.Text, out var r) && r > 0 ? r : 0),
             acceptedBy: _editingItem?.AcceptedBy
         );
     }
@@ -114,6 +118,7 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
             DescriptionInput.Text = task.Description;
             LocationInput.Text = task.Location;
             RewardInput.Text = task.Reward > 0 ? task.Reward.ToString() : "";
+            RewardInput.Editable = false; // Starlight - Tidr: escrow is locked once posted
         }
         else
         {
@@ -121,6 +126,7 @@ public sealed partial class NanoTaskItemPopup : DefaultWindow
             DescriptionInput.Text = "";
             LocationInput.Text = "";
             RewardInput.Text = "";
+            RewardInput.Editable = true;
         }
     }
 }

@@ -4,6 +4,11 @@
 
     <PanelContainer StyleClasses="BackgroundDark"></PanelContainer>
     <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <!-- Starlight - Tidr: account readout -->
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="8 6 8 0">
+            <Label Text="{Loc 'tidr-balance-label'}" StyleClasses="LabelSubText" />
+            <Label Name="BalanceLabel" Margin="6 0 0 0" />
+        </BoxContainer>
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
             <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Vertical" Margin="8" SeparationOverride="8">
                 <!-- Heading for High Priority Items -->
@@ -15,7 +20,6 @@
                     </PanelContainer>
                     <Label Name="HighPriority" StyleClasses="LabelHeading"/>
                 </BoxContainer>
-                <!-- Location for High Priority Items -->
                 <GridContainer Name="HighContainer"
                                HorizontalExpand="True"
                                Access="Public"
@@ -30,13 +34,12 @@
                     </PanelContainer>
                     <Label Name="MediumPriority" StyleClasses="LabelHeading"/>
                 </BoxContainer>
-                <!-- Location for Medium Priority Items -->
                 <GridContainer Name="MediumContainer"
                                HorizontalExpand="True"
                                Access="Public"
                                Columns="1" />
 
-                <!-- Location for Low Priority Items -->
+                <!-- Heading for Low Priority Items -->
                 <BoxContainer Orientation="Horizontal">
                     <PanelContainer SetWidth="7" Margin="0 0 8 0">
                         <PanelContainer.PanelOverride>
@@ -45,8 +48,21 @@
                     </PanelContainer>
                     <Label Name="LowPriority" StyleClasses="LabelHeading"/>
                 </BoxContainer>
-                <!-- Location for Low Priority Items -->
                 <GridContainer Name="LowContainer"
+                               HorizontalExpand="True"
+                               Access="Public"
+                               Columns="1" />
+
+                <!-- Starlight - Tidr: Completed tasks live below Low priority -->
+                <BoxContainer Orientation="Horizontal">
+                    <PanelContainer SetWidth="7" Margin="0 0 8 0">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#8a8a8a"/>
+                        </PanelContainer.PanelOverride>
+                    </PanelContainer>
+                    <Label Name="CompletedHeading" StyleClasses="LabelHeading"/>
+                </BoxContainer>
+                <GridContainer Name="CompletedContainer"
                                HorizontalExpand="True"
                                Access="Public"
                                Columns="1" />

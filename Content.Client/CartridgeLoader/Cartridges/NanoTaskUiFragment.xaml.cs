@@ -7,7 +7,7 @@ using Content.Shared.CartridgeLoader.Cartridges;
 namespace Content.Client.CartridgeLoader.Cartridges;
 
 /// <summary>
-///     Class displaying the main UI of NanoTask
+///     Class displaying the main UI of Tidr (the NanoTask rework)
 /// </summary>
 [GenerateTypedNameReferences]
 public sealed partial class NanoTaskUiFragment : BoxContainer
@@ -16,7 +16,7 @@ public sealed partial class NanoTaskUiFragment : BoxContainer
     public Action<int>? ToggleTaskCompletion;
     public Action<int>? AcceptTask; // Starlight - Tidr
     public Action? NewTask;
-    public List<NanoTaskItemAndId> Tasks = new();
+    public List<NanoTaskViewerEntry> Tasks = new(); // Starlight - Tidr: entries carry viewer flags
 
     public NanoTaskUiFragment()
     {
@@ -26,31 +26,49 @@ public sealed partial class NanoTaskUiFragment : BoxContainer
         VerticalExpand = true;
         NewTaskButton.OnPressed += _ => NewTask?.Invoke();
     }
-    public void UpdateState(List<NanoTaskItemAndId> tasks)
+    public void UpdateState(List<NanoTaskViewerEntry> tasks, int viewerBalance)
     {
         Tasks = tasks;
         HighContainer.RemoveAllChildren();
         MediumContainer.RemoveAllChildren();
         LowContainer.RemoveAllChildren();
+        CompletedContainer.RemoveAllChildren();
 
-        HighPriority.Text = Loc.GetString("nano-task-ui-heading-high-priority-tasks", ("amount", tasks.Count(task => task.Data.Priority == NanoTaskPriority.High)));
-        MediumPriority.Text = Loc.GetString("nano-task-ui-heading-medium-priority-tasks", ("amount", tasks.Count(task => task.Data.Priority == NanoTaskPriority.Medium)));
-        LowPriority.Text = Loc.GetString("nano-task-ui-heading-low-priority-tasks", ("amount", tasks.Count(task => task.Data.Priority == NanoTaskPriority.Low)));
+        // Starlight - Tidr: account readout; -1 means no resolvable account
+        BalanceLabel.Text = viewerBalance >= 0
+            ? Loc.GetString("tidr-balance-value", ("amount", viewerBalance))
+            : Loc.GetString("tidr-balance-unknown");
 
-        foreach (var task in tasks)
+        // Starlight - Tidr: completed tasks leave their priority section and stack at the bottom
+        var open = tasks.Where(e => !e.Task.Data.IsTaskDone).ToList();
+        var done = tasks.Where(e => e.Task.Data.IsTaskDone).ToList();
+
+        HighPriority.Text = Loc.GetString("nano-task-ui-heading-high-priority-tasks", ("amount", open.Count(e => e.Task.Data.Priority == NanoTaskPriority.High)));
+        MediumPriority.Text = Loc.GetString("nano-task-ui-heading-medium-priority-tasks", ("amount", open.Count(e => e.Task.Data.Priority == NanoTaskPriority.Medium)));
+        LowPriority.Text = Loc.GetString("nano-task-ui-heading-low-priority-tasks", ("amount", open.Count(e => e.Task.Data.Priority == NanoTaskPriority.Low)));
+        CompletedHeading.Text = Loc.GetString("tidr-heading-completed", ("amount", done.Count));
+
+        foreach (var entry in open)
         {
-            var container = task.Data.Priority switch
+            var container = entry.Task.Data.Priority switch
             {
                 NanoTaskPriority.High => HighContainer,
                 NanoTaskPriority.Medium => MediumContainer,
                 NanoTaskPriority.Low => LowContainer,
                 _ => throw new ArgumentException("Invalid priority"),
             };
-            var control = new NanoTaskItemControl(task);
-            container.AddChild(control);
-            control.OnMainPressed += id => OpenTask?.Invoke(id);
-            control.OnDonePressed += id => ToggleTaskCompletion?.Invoke(id);
-            control.OnAcceptPressed += id => AcceptTask?.Invoke(id); // Starlight - Tidr
+            AddTaskControl(entry, container);
         }
+        foreach (var entry in done)
+            AddTaskControl(entry, CompletedContainer);
+    }
+
+    private void AddTaskControl(NanoTaskViewerEntry entry, GridContainer container)
+    {
+        var control = new NanoTaskItemControl(entry);
+        container.AddChild(control);
+        control.OnMainPressed += id => OpenTask?.Invoke(id);
+        control.OnDonePressed += id => ToggleTaskCompletion?.Invoke(id);
+        control.OnAcceptPressed += id => AcceptTask?.Invoke(id); // Starlight - Tidr
     }
 }

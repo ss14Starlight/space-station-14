@@ -8,7 +8,7 @@ using Content.Shared.CartridgeLoader.Cartridges;
 namespace Content.Client.CartridgeLoader.Cartridges;
 
 /// <summary>
-///     Represents a single control for a single NanoTask item
+///     Represents a single control for a single Tidr task
 /// </summary>
 [GenerateTypedNameReferences]
 public sealed partial class NanoTaskItemControl : Control
@@ -17,35 +17,70 @@ public sealed partial class NanoTaskItemControl : Control
     public Action<int>? OnDonePressed;
     public Action<int>? OnAcceptPressed; // Starlight - Tidr
 
-    public NanoTaskItemControl(NanoTaskItemAndId item)
+    public NanoTaskItemControl(NanoTaskViewerEntry entry) // Starlight - Tidr: entry carries viewer flags
     {
         RobustXamlLoader.Load(this);
 
-        TaskLabel.Text = item.Data.Description;
+        var data = entry.Task.Data;
+        var id = entry.Task.Id;
+
+        TaskLabel.Text = data.Description;
         TaskLabel.FontColorOverride = Color.White;
 
         // Starlight - Tidr: requester name (auto-stamped) + location + reward + who took it
-        var accepted = !string.IsNullOrEmpty(item.Data.AcceptedBy);
-        var sub = item.Data.TaskIsFor;
-        if (!string.IsNullOrWhiteSpace(item.Data.Location))
-            sub += $" - {item.Data.Location}";
-        if (item.Data.Reward > 0)
-            sub += $"  ({item.Data.Reward} cr)";
+        var accepted = !string.IsNullOrEmpty(data.AcceptedBy);
+        var sub = data.TaskIsFor;
+        if (!string.IsNullOrWhiteSpace(data.Location))
+            sub += $" - {data.Location}";
+        if (data.Reward > 0)
+            sub += $"  ({data.Reward} cr)";
         if (accepted)
-            sub += $"  •  {Loc.GetString("tidr-taken-by", ("name", item.Data.AcceptedBy!))}";
+            sub += $"  •  {Loc.GetString("tidr-taken-by", ("name", data.AcceptedBy!))}";
         TaskForLabel.Text = sub;
 
-        MainButton.OnPressed += _ => OnMainPressed?.Invoke(item.Id);
-        DoneButton.OnPressed += _ => OnDonePressed?.Invoke(item.Id);
-        AcceptButton.OnPressed += _ => OnAcceptPressed?.Invoke(item.Id);
+        MainButton.OnPressed += _ => OnMainPressed?.Invoke(id);
+        DoneButton.OnPressed += _ => OnDonePressed?.Invoke(id);
+        AcceptButton.OnPressed += _ => OnAcceptPressed?.Invoke(id);
 
-        MainButton.Disabled = item.Data.IsTaskDone;
+        if (data.IsTaskDone)
+        {
+            // Starlight - Tidr: completed rows are receipts. Open still works (details for
+            // crew, delete access for the owner); accept/complete are gone.
+            AcceptButton.Visible = false;
+            DoneButton.Visible = false;
+            TaskLabel.FontColorOverride = Color.Gray;
+            return;
+        }
 
-        // Starlight - Tidr: Accept is open until someone claims it, then it locks
-        AcceptButton.Text = accepted ? Loc.GetString("tidr-taken") : Loc.GetString("tidr-accept");
-        AcceptButton.Disabled = accepted || item.Data.IsTaskDone;
+        // Starlight - Tidr: Accept / Unaccept / Release / locked Taken
+        if (!accepted)
+        {
+            AcceptButton.Text = Loc.GetString("tidr-accept");
+            AcceptButton.Disabled = false;
+            AcceptButton.ToolTip = null;
+        }
+        else if (entry.ViewerIsAccepter)
+        {
+            AcceptButton.Text = Loc.GetString("tidr-unaccept");
+            AcceptButton.Disabled = false;
+            AcceptButton.ToolTip = Loc.GetString("tidr-unaccept-hint");
+        }
+        else if (entry.ViewerIsOwner)
+        {
+            AcceptButton.Text = Loc.GetString("tidr-taken");
+            AcceptButton.Disabled = false;
+            AcceptButton.ToolTip = Loc.GetString("tidr-release-hint", ("name", data.AcceptedBy!));
+        }
+        else
+        {
+            AcceptButton.Text = Loc.GetString("tidr-taken");
+            AcceptButton.Disabled = true;
+            AcceptButton.ToolTip = Loc.GetString("tidr-taken-by", ("name", data.AcceptedBy!));
+        }
 
-        // Starlight - Tidr: "Complete" / "Undo" wording (requester closes the job)
-        DoneButton.Text = item.Data.IsTaskDone ? Loc.GetString("tidr-revert") : Loc.GetString("tidr-complete");
+        // Starlight - Tidr: Complete is the requester's button; money moves when they press it
+        DoneButton.Text = Loc.GetString("tidr-complete");
+        DoneButton.Visible = entry.ViewerIsOwner;
+        DoneButton.ToolTip = data.Reward > 0 ? Loc.GetString("tidr-complete-hint", ("amount", data.Reward)) : null;
     }
 }

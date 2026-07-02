@@ -8,12 +8,13 @@ using Robust.Client.UserInterface;
 namespace Content.Client.CartridgeLoader.Cartridges;
 
 /// <summary>
-///     UI fragment responsible for displaying NanoTask controls in a PDA and coordinating with the NanoTaskCartridgeSystem for state
+///     UI fragment responsible for displaying Tidr controls in a PDA and coordinating with the NanoTaskCartridgeSystem for state
 /// </summary>
 public sealed partial class NanoTaskUi : UIFragment
 {
     private NanoTaskUiFragment? _fragment;
     private NanoTaskItemPopup? _popup;
+    private NanoTaskDetailsPopup? _details; // Starlight - Tidr: read-only view for non-owners
 
     public override Control GetUIFragmentRoot()
     {
@@ -24,37 +25,51 @@ public sealed partial class NanoTaskUi : UIFragment
     {
         _fragment = new NanoTaskUiFragment();
         _popup = new NanoTaskItemPopup();
+        _details = new NanoTaskDetailsPopup();
         _fragment.NewTask += () =>
         {
             _popup.ResetInputs(null);
             _popup.SetEditingTaskId(null);
             _popup.OpenCentered();
         };
+        // Starlight - Tidr: owners get the editable form; everyone else gets read-only details
         _fragment.OpenTask += id =>
         {
-            if (_fragment.Tasks.Find(task => task.Id == id) is not NanoTaskItemAndId task)
+            if (_fragment.Tasks.Find(e => e.Task.Id == id) is not NanoTaskViewerEntry entry)
                 return;
 
-            _popup.ResetInputs(task.Data);
-            _popup.SetEditingTaskId(task.Id);
-            _popup.OpenCentered();
+            if (entry.ViewerIsOwner)
+            {
+                _popup.ResetInputs(entry.Task.Data);
+                _popup.SetEditingTaskId(entry.Task.Id);
+                _popup.OpenCentered();
+            }
+            else
+            {
+                _details.SetTask(entry.Task.Data);
+                _details.OpenCentered();
+            }
         };
+        // Starlight - Tidr: Complete only (completion is final; there is no un-complete)
         _fragment.ToggleTaskCompletion += id =>
         {
-            if (_fragment.Tasks.Find(task => task.Id == id) is not NanoTaskItemAndId task)
+            if (_fragment.Tasks.Find(e => e.Task.Id == id) is not NanoTaskViewerEntry entry)
+                return;
+            var data = entry.Task.Data;
+            if (data.IsTaskDone)
                 return;
 
             userInterface.SendMessage(new CartridgeUiMessage(new NanoTaskUiMessageEvent(new NanoTaskUpdateTask(new(id, new(
-                description: task.Data.Description,
-                taskIsFor: task.Data.TaskIsFor,
-                isTaskDone: !task.Data.IsTaskDone,
-                priority: task.Data.Priority,
-                location: task.Data.Location,      // Starlight - Tidr: preserve
-                reward: task.Data.Reward,          // Starlight - Tidr: preserve
-                acceptedBy: task.Data.AcceptedBy   // Starlight - Tidr: preserve
+                description: data.Description,
+                taskIsFor: data.TaskIsFor,
+                isTaskDone: true,
+                priority: data.Priority,
+                location: data.Location,
+                reward: data.Reward,
+                acceptedBy: data.AcceptedBy
             ))))));
         };
-        // Starlight - Tidr: a Tider claims the job
+        // Starlight - Tidr: claim or release a job (server decides which based on the inserted card)
         _fragment.AcceptTask += id =>
         {
             userInterface.SendMessage(new CartridgeUiMessage(new NanoTaskUiMessageEvent(new NanoTaskAcceptTask(id))));
@@ -85,6 +100,6 @@ public sealed partial class NanoTaskUi : UIFragment
         if (state is not NanoTaskUiState nanoTaskState)
             return;
 
-        _fragment?.UpdateState(nanoTaskState.Tasks);
+        _fragment?.UpdateState(nanoTaskState.Tasks, nanoTaskState.ViewerBalance);
     }
 }
