@@ -28,13 +28,13 @@
 - type: entity
   parent: BasePDACartridge
   id: NanoTaskCartridge
-  name: NanoTask cartridge
-  description: A program that allows you to keep a list of tasks to do.
+  name: Tidr cartridge # Starlight - Tidr
+  description: NanoTrasens crew-to-crew job board. Post a task, set a bounty, and a Tider will handle it. # Starlight - Tidr
   components:
   - type: Sprite
     state: cart-nav
   - type: Cartridge
-    programName: nano-task-program-name
+    programName: tidr-program-name # Starlight - Tidr
     icon:
       sprite: Interface/Misc/program_icons.rsi
       state: nano_task
