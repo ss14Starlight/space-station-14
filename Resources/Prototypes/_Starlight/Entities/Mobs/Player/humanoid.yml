@@ -162,7 +162,7 @@
       state: ntsficon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -173,22 +173,21 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-special-forces-name
-      description: ghost-role-information-nanotrasen-special-forces-description
-      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      name: ghost-role-information-ntsf-name
+      description: ghost-role-information-ntsf-description
+      rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-        - MindRoleGhostCorporateAligned # Starlight
+        - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
       prototypes: [NanoTrasenSpecialForcesGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -202,7 +201,7 @@
       state: primusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -213,14 +212,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-primus
-      description: ghost-role-information-nanotrasen-primus-description
+      name: ghost-role-information-ntsf-primus
+      description: ghost-role-information-ntsf-primus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -228,7 +226,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -242,7 +240,7 @@
       state: secundusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -253,14 +251,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-secundus
-      description: ghost-role-information-nanotrasen-secundus-description
+      name: ghost-role-information-ntsf-secundus
+      description: ghost-role-information-ntsf-secundus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -282,7 +279,7 @@
       state: tertiusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -293,14 +290,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-tertius
-      description: ghost-role-information-nanotrasen-tertius-description
+      name: ghost-role-information-ntsf-tertius
+      description: ghost-role-information-ntsf-tertius-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -309,7 +305,7 @@
     - type: Thieving
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -323,7 +319,7 @@
       state: quartusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -334,14 +330,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-quartus
-      description: ghost-role-information-nanotrasen-quartus-description
+      name: ghost-role-information-ntsf-quartus
+      description: ghost-role-information-ntsf-quartus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -349,7 +344,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -363,7 +358,7 @@
       state: quintusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -374,14 +369,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-quintus
-      description: ghost-role-information-nanotrasen-quintus-description
+      name: ghost-role-information-ntsf-quintus
+      description: ghost-role-information-ntsf-quintus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -389,7 +383,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -403,7 +397,7 @@
       state: sextusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -414,14 +408,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-sextus
-      description: ghost-role-information-nanotrasen-sextus-description
+      name: ghost-role-information-ntsf-sextus
+      description: ghost-role-information-ntsf-sextus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -429,7 +422,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -443,7 +436,7 @@
       state: septimusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -454,14 +447,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-septimus
-      description: ghost-role-information-nanotrasen-septimus-description
+      name: ghost-role-information-ntsf-septimus
+      description: ghost-role-information-ntsf-septimus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -469,7 +461,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -483,7 +475,7 @@
       state: octaviusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -494,14 +486,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-octavius
-      description: ghost-role-information-nanotrasen-octavius-description
+      name: ghost-role-information-ntsf-octavius
+      description: ghost-role-information-ntsf-octavius-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -509,7 +500,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
 
@@ -523,7 +514,7 @@
       state: nonusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -534,14 +525,13 @@
   parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-nonus
-      description: ghost-role-information-nanotrasen-nonus-description
+      name: ghost-role-information-ntsf-nonus
+      description: ghost-role-information-ntsf-nonus-description
       rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
         - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
@@ -549,7 +539,7 @@
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: ThermalVision
@@ -564,7 +554,7 @@
       state: decimusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -577,20 +567,19 @@
     - type: GhostRole
       name: ghost-role-information-decimus-name
       description: ghost-role-information-decimus-description
-      rules: ghost-role-information-corporate-aligned-rules # Starlight
+      rules: ghost-role-information-corporate-aligned-rules
       important: true # SL
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-        - MindRoleGhostCorporateAligned # Starlight
+        - MindRoleGhostCorporateAligned
       job: Decimus
     - type: Loadout
       prototypes: [DecimusGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: ThermalVision
