@@ -50,7 +50,7 @@ public sealed partial class NanoTaskItem
     public readonly string Location;
 
     /// <summary>
-    ///     Starlight - Tidr: credit reward offered for completing the task.
+    ///     Starlight - Tidr: credit reward offered for completing the task. Held in escrow while the task is open.
     /// </summary>
     public readonly int Reward;
 
@@ -95,15 +95,42 @@ public sealed partial class NanoTaskItemAndId
 };
 
 /// <summary>
-///     The UI state of the NanoTask
+///     Starlight - Tidr: a task plus flags describing the viewing PDA's relationship to it.
+///     Computed server-side per PDA from the inserted ID card, so the client can show
+///     the edit form vs a read-only details card, and the accept vs release vs locked button.
+/// </summary>
+[Serializable, NetSerializable, DataRecord]
+public sealed partial class NanoTaskViewerEntry
+{
+    public readonly NanoTaskItemAndId Task;
+    public readonly bool ViewerIsOwner;
+    public readonly bool ViewerIsAccepter;
+
+    public NanoTaskViewerEntry(NanoTaskItemAndId task, bool viewerIsOwner, bool viewerIsAccepter)
+    {
+        Task = task;
+        ViewerIsOwner = viewerIsOwner;
+        ViewerIsAccepter = viewerIsAccepter;
+    }
+};
+
+/// <summary>
+///     The UI state of the NanoTask/Tidr app
 /// </summary>
 [Serializable, NetSerializable]
 public sealed class NanoTaskUiState : BoundUserInterfaceState
 {
-    public List<NanoTaskItemAndId> Tasks;
+    public List<NanoTaskViewerEntry> Tasks;
 
-    public NanoTaskUiState(List<NanoTaskItemAndId> tasks)
+    /// <summary>
+    ///     Starlight - Tidr: the viewing player's credit balance, shown in the app header.
+    ///     -1 means "couldn't resolve an account" and the client hides the readout.
+    /// </summary>
+    public int ViewerBalance;
+
+    public NanoTaskUiState(List<NanoTaskViewerEntry> tasks, int viewerBalance = -1)
     {
         Tasks = tasks;
+        ViewerBalance = viewerBalance;
     }
 }
