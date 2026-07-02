@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/29/2026 14:53:28
+  time: 07/02/2026 02:26:55
   entityCount: 10618
 maps:
 - 1
@@ -34285,15 +34285,6 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: FaxMachineBase
-  entities:
-  - uid: 4275
-    components:
-    - type: Transform
-      pos: 12.5,-3.5
-      parent: 2
-    - type: FaxMachine
-      name: Science
 - proto: FaxMachineCaptain
   entities:
   - uid: 4282
@@ -34370,6 +34361,13 @@ entities:
     components:
     - type: Transform
       pos: -23.5,-8.5
+      parent: 2
+- proto: FaxMachineScience
+  entities:
+  - uid: 4275
+    components:
+    - type: Transform
+      pos: 12.5,-3.5
       parent: 2
 - proto: FaxMachineScienceRD
   entities:
