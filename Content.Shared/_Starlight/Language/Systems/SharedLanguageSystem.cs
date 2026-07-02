@@ -8,6 +8,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Cloning.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared._Starlight.Traits;
 
 namespace Content.Shared._Starlight.Language.Systems;
 
@@ -17,6 +18,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SharedGameTicker _ticker = default!;
     [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private TraitSystem _trait = default!;
 
     /// <summary>
     ///     The language used as a fallback in cases where an entity suddenly becomes a Language Speaker (e.g. the usage of make-sentient).
@@ -57,6 +59,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
         SubscribeLocalEvent<AdditionalLanguageKnowledgeComponent, MapInitEvent>(OnMapInitAdditional);
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
     }
 
     public void CallLanguagesUpdate(EntityUid uid)

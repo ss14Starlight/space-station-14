@@ -21,14 +21,12 @@ public sealed partial class TowerOfBabelSystem : EntitySystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
-    [Dependency] private TraitSystem _trait = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<TowerOfBabelComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<TowerOfBabelComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<LanguageKnowledgeInitEvent>(OnLanguageKnowledgeInit);
-        SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
     }
 
     private void ShuffleLanguages(Entity<LanguageKnowledgeComponent> languageKnower, List<ProtoId<LanguagePrototype>>? allLangs = null)
@@ -109,51 +107,5 @@ public sealed partial class TowerOfBabelSystem : EntitySystem
         var ent = ev.Entity;
 
         ShuffleLanguages(ent);
-    }
-
-    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
-    {
-        if (!EntityQueryEnumerator<TowerOfBabelComponent>().MoveNext(out var _, out var _))
-            return; //if there is not atleast 1 tower of babel in existence do not shuttle languages.
-                // Check if player's job allows traits
-        if (args.JobId == null ||
-            !_prototype.TryIndex<JobPrototype>(args.JobId, out var jobProto) ||
-            !jobProto.ApplyTraits)
-            return;
-        if (!TryComp<LanguageCacheComponent>(args.Mob, out var cache))
-            return; //We dont have a cache on this entity somehow???
-
-        var validTraits = _trait.ValidateTraits(args.Mob, args.Profile.TraitPreferences, args.Player, args.Profile);
-
-        var effects = validTraits
-            .Select(t => _prototype.Index<TraitPrototype>(t))
-            .SelectMany(t => t.Effects)
-            .ToList();
-
-        var languageEffects = effects.OfType<LanguageEffect>();
-
-        foreach (var effect in languageEffects)
-        {
-            if (effect.RemoveLanguagesSpoken is not null)
-            {
-                cache.SpeakingCache ??= [];
-                cache.SpeakingCache.ExceptWith(effect.RemoveLanguagesSpoken);
-            }
-            if (effect.RemoveLanguagesUnderstood is not null)
-            {
-                cache.UnderstandingCache ??= [];
-                cache.UnderstandingCache.ExceptWith(effect.RemoveLanguagesUnderstood);
-            }
-            if (effect.LanguagesSpoken is not null)
-            {
-                cache.SpeakingCache ??= [];
-                cache.SpeakingCache.UnionWith(effect.LanguagesSpoken);
-            }
-            if (effect.LanguagesUnderstood is not null)
-            {
-                cache.UnderstandingCache ??= [];
-                cache.UnderstandingCache.UnionWith(effect.LanguagesUnderstood);
-            }
-        }
     }
 }

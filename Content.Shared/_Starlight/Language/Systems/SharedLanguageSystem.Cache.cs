@@ -1,5 +1,9 @@
 using System.Linq;
 using Content.Shared._Starlight.Language.Components;
+using Content.Shared._Starlight.Traits;
+using Content.Shared._Starlight.Traits.Effects;
+using Content.Shared.GameTicking;
+using Content.Shared.Roles;
 
 namespace Content.Shared._Starlight.Language.Systems;
 
@@ -41,5 +45,48 @@ public abstract partial class SharedLanguageSystem
         Dirty(ent, knowledge);
 
         RemComp<LanguageCacheComponent>(ent);
+    }
+
+    private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
+    {
+        if (args.JobId == null ||
+            !_prototype.TryIndex<JobPrototype>(args.JobId, out var jobProto) ||
+            !jobProto.ApplyTraits)
+            return;
+        if (!TryComp<LanguageCacheComponent>(args.Mob, out var cache))
+            return; //We dont have a cache on this entity somehow???
+
+        var validTraits = _trait.ValidateTraits(args.Mob, args.Profile.TraitPreferences, args.Player, args.Profile);
+
+        var effects = validTraits
+            .Select(t => _prototype.Index<TraitPrototype>(t))
+            .SelectMany(t => t.Effects)
+            .ToList();
+
+        var languageEffects = effects.OfType<LanguageEffect>();
+
+        foreach (var effect in languageEffects)
+        {
+            if (effect.RemoveLanguagesSpoken is not null)
+            {
+                cache.SpeakingCache ??= [];
+                cache.SpeakingCache.ExceptWith(effect.RemoveLanguagesSpoken);
+            }
+            if (effect.RemoveLanguagesUnderstood is not null)
+            {
+                cache.UnderstandingCache ??= [];
+                cache.UnderstandingCache.ExceptWith(effect.RemoveLanguagesUnderstood);
+            }
+            if (effect.LanguagesSpoken is not null)
+            {
+                cache.SpeakingCache ??= [];
+                cache.SpeakingCache.UnionWith(effect.LanguagesSpoken);
+            }
+            if (effect.LanguagesUnderstood is not null)
+            {
+                cache.UnderstandingCache ??= [];
+                cache.UnderstandingCache.UnionWith(effect.LanguagesUnderstood);
+            }
+        }
     }
 }
