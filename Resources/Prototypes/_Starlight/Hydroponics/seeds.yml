@@ -84,11 +84,10 @@
     - FoodMintLeaf
   mutationPrototypes:
     - spearMint
-  harvestRepeat: Repeat
   lifespan: 25
   maturation: 6
   production: 2
-  yield: 2
+  yield: 3
   potency: 5
   growthStages: 5
   waterConsumption: 0.3
@@ -131,7 +130,7 @@
   lifespan: 25
   maturation: 10
   production: 3
-  yield: 2
+  yield: 3
   potency: 5
   growthStages: 5
   waterConsumption: 0.3

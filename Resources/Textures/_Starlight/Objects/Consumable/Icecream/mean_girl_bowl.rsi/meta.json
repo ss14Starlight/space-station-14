@@ -6,11 +6,12 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "Art Sprite created by dreadfultaco. Fill levels by Tayrtahn on GitHub.",
+    "copyright": "State based Copyright",
     "states":
     [
         {
             "name": "icon",
+			"copyright": "Created by DreadfulTaco on Starlight Discord.",
             "delays":
             [
                 [
@@ -24,10 +25,12 @@
             ]
         },
         {
-            "name": "icon_empty"
+            "name": "icon_empty",
+			"copyright": "Created by DreadfulTaco on Starlight Discord."
         },
         {
             "name": "fill-1",
+			"copyright": "Created by DreadfulTaco on Starlight Discord.",
 			"delays":
             [
                 [
@@ -42,6 +45,7 @@
         },
         {
             "name": "fill-2",
+			"copyright": "Created by DreadfulTaco on Starlight Discord.",
             "delays":
             [
                 [
@@ -56,6 +60,7 @@
         },
         {
             "name": "fill-3",
+			"copyright": "Created by DreadfulTaco on Starlight Discord.",
             "delays":
             [
                 [
@@ -70,6 +75,7 @@
         },
         {
             "name": "fill-4",
+			"copyright": "Created by DreadfulTaco on Starlight Discord.",
             "delays":
             [
                 [
@@ -84,6 +90,7 @@
         },
         {
             "name": "fill-5",
+			"copyright": "Created by DreadfulTaco on Starlight Discord.",
             "delays":
             [
                 [

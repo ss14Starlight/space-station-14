@@ -17,9 +17,9 @@ namespace Content.Client._Starlight.UI.Kitchen
     public sealed class IcecreamMakerBoundUserInterface : BoundUserInterface
     {
         // Starlight-start
-        private IEntityManager _entManager;
+        // private IEntityManager _entManager;
 
-        private IGameTiming _timing = default!;
+        // private IGameTiming _timing = default!;
 
         [ViewVariables]
         private EntityUid? _owner;
@@ -38,8 +38,7 @@ namespace Content.Client._Starlight.UI.Kitchen
         {
             // Starlight-start
             _owner = owner;
-            _entManager = IoCManager.Resolve<IEntityManager>();
-            _timing = IoCManager.Resolve<IGameTiming>();
+            IoCManager.InjectDependencies(this);
             // Starlight-end
         }
 
@@ -49,7 +48,7 @@ namespace Content.Client._Starlight.UI.Kitchen
             _menu = this.CreateWindow<IcecreamMakerMenu>();
 
             // Starlight-start
-            if (!_entManager.TryGetComponent<CookingDeviceComponent>(_owner, out var cookingDevice))
+            if (!EntMan.TryGetComponent<CookingDeviceComponent>(_owner, out var cookingDevice))
                 return;
 
             _menu.StopButton.OnPressed += _ => SendPredictedMessage(new MicrowaveStopCookMessage());
@@ -97,7 +96,7 @@ namespace Content.Client._Starlight.UI.Kitchen
             _menu.StartedCooktime = cState.StartedCookTime;
 
             if (cState.StartedCookTime != TimeSpan.Zero)
-                _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (_timing.CurTime - cState.StartedCookTime).ToString(@"mm\:ss")));
+                _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (IoCManager.Resolve<IGameTiming>().CurTime - cState.StartedCookTime).ToString(@"mm\:ss")));
             else
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", cState.StartedCookTime.ToString(@"mm\:ss")));
 

@@ -757,7 +757,7 @@
 
 - type: microwaveMealRecipe
   id: RecipeSpaceCarpIceream
-  name: weh icecream
+  name: space carp icecream
   result: FoodSpaceCarpIcecream
   deviceType: IcecreamMaker
   time: 5

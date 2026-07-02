@@ -160,7 +160,7 @@
   name: coffee icecream
   parent: FoodIceCreamBase
   id: FoodCoffeeIcecream
-  description: Crisp mint ice cream with crunchy chocolate chips.
+  description: Coffee flavored ice cream with a few toasted coffee beans.
   components:
   - type: FlavorProfile
     flavors:
@@ -295,7 +295,7 @@
   name: blueberry icecream
   parent: FoodIceCreamBase
   id: FoodBlueberryIcecream
-  description: Vanilla ice cream with orange sherbet swirled together.
+  description: Ice cream mixed with blue berries.
   components:
   - type: FlavorProfile
     flavors:
