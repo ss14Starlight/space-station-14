@@ -2,8 +2,10 @@ using Content.Shared.GameTicking; // Starlight - Tidr: round-end escrow refund
 using Content.Server.Station.Systems; // Starlight - Tidr
 using Content.Server._Starlight.Tidr;  // Starlight - Tidr
 using Content.Shared.Access.Components; // Starlight - Tidr
+using Content.Shared.Administration.Logs; // Starlight - Tidr: money audit trail
 using Content.Shared.CartridgeLoader.Cartridges;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.Database; // Starlight - Tidr
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
@@ -37,6 +39,7 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
     [Dependency] private StationSystem _stationSystem = default!; // Starlight - Tidr
     [Dependency] private ISharedNullLinkPlayerResourcesManager _playerResources = default!; // Starlight - Tidr
     [Dependency] private IPlayerManager _players = default!; // Starlight - Tidr
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!; // Starlight - Tidr
 
     /// <summary>
     ///     Starlight - Tidr: NanoTrasen's cut of every completed bounty. Floor'd, so tiny
@@ -67,8 +70,11 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         {
             foreach (var (taskId, amount) in board.Escrow)
             {
-                if (board.OwnerUsers.TryGetValue(taskId, out var user))
-                    TryCredit(user, amount);
+                if (board.OwnerUsers.TryGetValue(taskId, out var user) && TryCredit(user, amount))
+                    _adminLogger.Add(
+                        LogType.Action,
+                        LogImpact.Medium,
+                        $"Round end: refunded {amount} cr. of Tidr escrow for task {taskId}");
             }
             board.Escrow.Clear();
         }
@@ -123,6 +129,9 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         }
     }
 
+    /// <summary>
+    /// This gets called when the ui fragment needs to be updated for the first time after activating
+    /// </summary>
     private void OnUiReady(Entity<NanoTaskCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
     {
         UpdateUiState(ent, args.Loader);
@@ -162,6 +171,12 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
         _paper.SetContent((uid, paper), msg.ToMarkup());
     }
 
+    /// <summary>
+    /// The ui messages received here get wrapped by a CartridgeMessageEvent and are relayed from the <see cref="CartridgeLoaderSystem"/>
+    /// </summary>
+    /// <remarks>
+    /// The cartridge specific ui message event needs to inherit from the CartridgeMessageEvent
+    /// </remarks>
     private void OnUiMessage(Entity<NanoTaskCartridgeComponent> ent, ref CartridgeMessageEvent args)
     {
         if (args is not NanoTaskUiMessageEvent message)
@@ -207,6 +222,10 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                         return;
                     }
                     _playerResources.TryUpdateResource(args.Actor, "credits", -reward);
+                    _adminLogger.Add(
+                        LogType.Action,
+                        LogImpact.Medium,
+                        $"{ToPrettyString(args.Actor):player} escrowed {reward} cr. posting Tidr task \"{task.Item.Description}\"");
                     posterUser = posterSession.UserId;
                 }
                 else if (_players.TryGetSessionByEntity(args.Actor, out var posterSession))
@@ -282,6 +301,10 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                             return; // task stays open; escrow stays held
                         }
                         _popupSystem.PopupEntity(Loc.GetString("tidr-paid-out", ("amount", payout)), args.Actor, args.Actor);
+                        _adminLogger.Add(
+                            LogType.Action,
+                            LogImpact.Medium,
+                            $"{ToPrettyString(args.Actor):player} completed Tidr task \"{old.Description}\" - paid {payout} cr. to {old.AcceptedBy ?? "unknown"} ({cut} cr. NT cut)");
                     }
                     else
                     {
@@ -289,6 +312,10 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                         if (updBoard.OwnerUsers.TryGetValue(existing.Id, out var owner))
                             TryCredit(owner, pot);
                         _popupSystem.PopupEntity(Loc.GetString("tidr-refunded", ("amount", pot)), args.Actor, args.Actor);
+                        _adminLogger.Add(
+                            LogType.Action,
+                            LogImpact.Medium,
+                            $"{ToPrettyString(args.Actor):player} completed unclaimed Tidr task \"{old.Description}\" - {pot} cr. refunded");
                     }
                     updBoard.Escrow.Remove(existing.Id);
                 }
@@ -355,7 +382,13 @@ public sealed partial class NanoTaskCartridgeSystem : SharedNanoTaskCartridgeSys
                 if (delBoard.Escrow.TryGetValue(task.Id, out var refund))
                 {
                     if (delBoard.OwnerUsers.TryGetValue(task.Id, out var owner) && TryCredit(owner, refund))
+                    {
                         _popupSystem.PopupEntity(Loc.GetString("tidr-refunded", ("amount", refund)), args.Actor, args.Actor);
+                        _adminLogger.Add(
+                            LogType.Action,
+                            LogImpact.Medium,
+                            $"{ToPrettyString(args.Actor):player} deleted Tidr task {task.Id} - {refund} cr. refunded to poster");
+                    }
                     delBoard.Escrow.Remove(task.Id);
                 }
                 delBoard.Tasks.RemoveAll(t => t.Id == task.Id);
