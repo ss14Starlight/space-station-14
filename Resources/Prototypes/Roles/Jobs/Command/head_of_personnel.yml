@@ -20,7 +20,6 @@
     - !type:TraitsRequirement # Starlight
       traits:
         - Iterator
-        - Muted
       inverted: true
   weight: 20
   startingGear: HoPGear
