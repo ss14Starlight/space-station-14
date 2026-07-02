@@ -1,7 +1,7 @@
 using Content.Shared._Starlight.Cargo.MailCompanion;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Content.Client._Starlight.UserInterface; // Starlight: popout support
+using Content.Client._Starlight.UserInterface; // popout support
 
 namespace Content.Client._Starlight.Cargo.MailCompanion;
 
@@ -25,7 +25,7 @@ public sealed class MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey)
                 stationName = metaData.EntityName;
         }
 
-        _window = this.CreatePopOutableWindow<MailCompanionWindow>(EntMan); // Starlight: popout support
+        _window = this.CreatePopOutableWindow<MailCompanionWindow>(EntMan); // popout support
         _window.Set(stationName, gridUid);
     }
 
@@ -37,7 +37,7 @@ public sealed class MailCompanionBoundUserInterface(EntityUid owner, Enum uiKey)
             _window?.UpdateState(companionState, Owner);
     }
 
-    // Starlight: close the popout when the BUI is disposed
+    // close the popout when the BUI is disposed
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
