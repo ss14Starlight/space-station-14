@@ -36,8 +36,8 @@
   - type: Cartridge
     programName: tidr-program-name # Starlight - Tidr
     icon:
-      sprite: Interface/Misc/program_icons.rsi
-      state: nano_task
+      sprite: _Starlight/Misc/program_icons.rsi # Starlight - Tidr
+      state: tidr # Starlight - Tidr
   - type: UIFragment
     ui: !type:NanoTaskUi
   - type: NanoTaskCartridge
