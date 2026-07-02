@@ -15,7 +15,7 @@ public sealed partial class NanoTaskDetailsPopup : DefaultWindow
     public NanoTaskDetailsPopup()
     {
         RobustXamlLoader.Load(this);
-        CloseButton.OnPressed += _ => Close();
+        DismissButton.OnPressed += _ => Close();
     }
 
     public void SetTask(NanoTaskItem task)
