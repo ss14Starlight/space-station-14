@@ -635,3 +635,38 @@
   components:
     - type: Loadout
       prototypes: [GSOGearHardsuit]
+
+## CBURN
+
+- type: entity
+  id: RandomHumanoidSpawnerCBURNCorpsman
+  name: CBURN Corpsman
+  suffix: ERTRole
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: cburn
+    - type: RandomHumanoidSpawner
+      settings: CBURNCorpsman
+
+- type: randomHumanoidSettings
+  id: CBURNCorpsman
+  parent: EventHumanoidCentcomm
+  components:
+    - type: Loadout
+      prototypes: [CBURNCorpsman]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: GhostRole
+      name: ghost-role-information-cburn-corpsman-name
+      description: ghost-role-information-cburn-corpsman-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true # SL
+      raffle:
+        settings: short
+      job: CBURN
+    - type: ZombieImmune
+    - type: RandomMetadata
+      nameSegments:
+      - NamesMilitaryFirst
+      - NamesMilitaryLast
+      nameFormat: name-format-ert
