@@ -39,6 +39,7 @@
       components:
         - type: NoObjectiveTarget
         - type: NCTAgent
+        - type: SeeNewPlayers
 
 - type: startingGear
   id: NanotrasenCareerTrainerGear

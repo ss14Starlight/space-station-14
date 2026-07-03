@@ -27,6 +27,9 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial #SL EDIT
+    components: #SL EDIT
+      - type: SeeNewPlayers # SL Edit
 
 - type: startingGear
   id: IAAGear

@@ -34,6 +34,7 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: SeeNewPlayers # SL Edit
 
 - type: startingGear
   id: ResearchDirectorGear

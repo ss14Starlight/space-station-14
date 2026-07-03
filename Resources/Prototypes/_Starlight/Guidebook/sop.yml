@@ -6,6 +6,7 @@
   children:
     - general-sop
     - departmental-sop
+    - new-player-icons
 
 
 - type: guideEntry
@@ -800,3 +801,9 @@
   name: guide-entry-sl-service-sop-lawyer
   text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Lawyer.xml"
   priority: 2
+
+- type: guideEntry
+  id: new-player-icons
+  priority: 3
+  name: "New Player Icons"
+  text: "/ServerInfo/Guidebook/_RMC14/Guides/RMCGuideNewIcons.xml"

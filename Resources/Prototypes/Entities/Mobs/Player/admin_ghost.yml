@@ -118,6 +118,7 @@
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowSyndicateIcons
+  - type: SeeNewPlayers # SL Edit
   - type: ShowHealthBars
     damageContainers:
       - Biological
