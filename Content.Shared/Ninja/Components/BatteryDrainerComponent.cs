@@ -54,4 +54,13 @@ public sealed partial class BatteryDrainerComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float? MinimumDrain;
+
+    // Starlight begin
+    /// <summary>
+    /// Hard cap (in Joules) on how much can be drained from the source per do-after cycle.
+    /// 0 means no cap (vanilla behaviour). Keeps drain gradual regardless of target MaxSupply.
+    /// </summary>
+    [DataField]
+    public float MaxDrainPerTick = 0f;
+    // Starlight end
 }

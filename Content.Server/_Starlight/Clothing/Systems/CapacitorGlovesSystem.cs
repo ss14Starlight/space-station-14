@@ -54,7 +54,7 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
 
     private void OnEquipped(Entity<CapacitorGlovesComponent> ent, ref GotEquippedEvent args)
     {
-        var wearer = args.Equipee;
+        var wearer = args.EquipTarget;
         var comp = ent.Comp;
 
         comp.WearerUid = wearer;
@@ -74,7 +74,7 @@ public sealed partial class CapacitorGlovesSystem : EntitySystem
 
     private void OnUnequipped(Entity<CapacitorGlovesComponent> ent, ref GotUnequippedEvent args)
     {
-        var wearer = args.Equipee;
+        var wearer = args.EquipTarget;
         var comp = ent.Comp;
 
         comp.WearerUid = null;
