@@ -144,7 +144,7 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelSyndicateFilledRifleGrenade
   name: firepower support bundle
-  suffix: [China Lake, Estoc]
+  suffix: Estoc, China Lake 
   description: "A marksman rifle and a grenade launcher, bundled with 3 magazines and 6 grenades of various capabilities. You even get to customize the grenade magazine yourself!"
   components:
   - type: EntityTableContainerFill
