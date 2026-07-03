@@ -17740,7 +17740,7 @@ entities:
       parent: 2
     - type: GridFill
       addComponents: []
-      path: /Maps/_Starlight/Shuttles/oasis_briggle.yml
+      path: /Maps/_Starlight/Shuttles/Security/oasis_briggle.yml
   - uid: 396
     components:
     - type: Transform

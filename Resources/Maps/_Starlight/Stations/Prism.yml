@@ -14247,7 +14247,7 @@ entities:
         DoorStatus: True
     - type: GridFill
       addComponents: []
-      path: /Maps/_Starlight/Shuttles/security_prism.yml
+      path: /Maps/_Starlight/Shuttles/Security/security_prism.yml
 - proto: AirlockExternalGlassShuttleLocked
   entities:
   - uid: 369
