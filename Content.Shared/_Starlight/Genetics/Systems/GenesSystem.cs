@@ -86,7 +86,7 @@ public sealed class GenesSystem : EntitySystem
     {
         var shape = 0.7;
         var target_sum = _robustRandom.NextDouble(0.5, 2.0);
-        var magnitude_budget = Math.Abs(target_sum) + _robustRandom.NextDouble(1.0, 3.0);
+        var magnitude_budget = Math.Abs(target_sum) + _robustRandom.NextDouble(6.0, 8.0);
         var P = (magnitude_budget + target_sum) / 2.0;
         var N = (magnitude_budget - target_sum) / 2.0;
 
