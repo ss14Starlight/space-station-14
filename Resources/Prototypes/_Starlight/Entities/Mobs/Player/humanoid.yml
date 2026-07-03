@@ -194,7 +194,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFPrimus
   name: NTSF Primus Operative
-  suffix: NTSF, Primus
+  description: Used as the primary strike team for any and all operations.
+  suffix: AllPurpose
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -233,7 +234,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFSecundus
   name: NTSF Secundus Operative
-  suffix: NTSF, Secundus
+  description: Used as general backup in situations where other NTSF teams have fallen.
+  suffix: Backup
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -272,7 +274,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFTertius
   name: NTSF Tertius Operative
-  suffix: NTSF, Tertius
+  description: Used to conduct repossession operations to recover lost assets.
+  suffix: Repossession
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -312,7 +315,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFQuartus
   name: NTSF Quartus Operative
-  suffix: NTSF, Quartus
+  description: Used to guard dangerous and anomalous assets in containment.
+  suffix: Anomaly
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -351,7 +355,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFQuintus
   name: NTSF Quintus Operative
-  suffix: NTSF, Quintus
+  description: Used to conduct raids and eliminate enemy targets.
+  suffix: Raiders
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -390,7 +395,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFSextus
   name: NTSF Sextus Operative
-  suffix: NTSF, Sextus
+  description: Used to kill anomalies, gods, cults, and other phenomena that is deemed magical.
+  suffix: Occult
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -420,6 +426,10 @@
     - type: Loadout
       prototypes: [NanoTrasenSpecialForcesSextusGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: BibleUser
+    - type: Tag
+      tags:
+        - Wizard
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirst
@@ -429,7 +439,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFSeptimus
   name: NTSF Septimus Operative
-  suffix: NTSF, Septimus
+  description: Used to kill zombies, xenos, and all forms of pests and monsters.
+  suffix: PestControl
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -459,6 +470,7 @@
     - type: Loadout
       prototypes: [NanoTrasenSpecialForcesSeptimusGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: ZombieImmune
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirst
@@ -468,7 +480,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFOctavius
   name: NTSF Octavius Operative
-  suffix: NTSF, Octavius
+  description: Used to bust unions and kill communist scum.
+  suffix: UnionBusters
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -507,7 +520,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFNonus
   name: NTSF Nonus Operative
-  suffix: NTSF, Nonus
+  description: Used to conduct assassinations and stealth operations.
+  suffix: Assassination
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -547,7 +561,8 @@
 - type: entity
   id: RandomHumanoidSpawnerDecimus
   name: Decimus Operative
-  suffix: ERTRole, Decimus
+  description: Used to conduct alert level epsilon and to exterminate any and all life.
+  suffix: ERTRole, Decimus, Extermination
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -577,6 +592,7 @@
     - type: Loadout
       prototypes: [DecimusGear]
       roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: ZombieImmune
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirst
