@@ -274,7 +274,7 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFTertius
   name: NTSF Tertius Operative
-  description: Used to conduct repossession operations and recover lost assets. (aka fuckin thieves).
+  description: Used to conduct repossession operations to recover lost assets.
   suffix: NTSF, Tertius, Repossession
   components:
     - type: Sprite
