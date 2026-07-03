@@ -21,13 +21,13 @@ namespace Content.Server._CD.Records;
 /// <summary>
 /// Keeps the runtime record database for players on a station and exposes helpers to mutate it.
 /// </summary>
-public sealed class CharacterRecordsSystem : EntitySystem
+public sealed partial class CharacterRecordsSystem : EntitySystem
 {
     private static readonly ISawmill Sawmill = Logger.GetSawmill("characterrecords");
 
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly InventorySystem _inventory = default!;
-    [Dependency] private readonly StationRecordsSystem _records = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private InventorySystem _inventory = default!;
+    [Dependency] private StationRecordsSystem _records = default!;
 
     /// <summary>
     /// Used when no usable species information is available.

@@ -68,6 +68,7 @@
     back:
     - RubberStampNtrep
     - CaneNT
+    - Flash
 
 - type: chameleonOutfit
   id: NanoTrasenRepresentativeChameleonOutfit

@@ -12,19 +12,21 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.StationEvents.Events;
+using Content.Server._Starlight.StationEvents.Components;
 
-namespace Content.Server.StationEvents.Events;
+namespace Content.Server._Starlight.StationEvents.Events;
 
-public sealed class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
+public sealed partial class WreckSwarmSystem : StationEventSystem<WreckSwarmComponent>
 {
     private readonly List<SalvageMapPrototype> _salvageMaps = [];
 
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private SharedMapSystem _mapSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     protected override void Added(EntityUid uid, WreckSwarmComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
         => base.Added(uid, component, gameRule, args);

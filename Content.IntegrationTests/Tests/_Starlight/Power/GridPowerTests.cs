@@ -1,17 +1,10 @@
-using System.Collections.Generic;
-using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.Power.Components;
-using Content.Server.Power.NodeGroups;
-using Content.Server.Power.Pow3r;
 using Content.Shared.Maps;
-using Content.Shared.NodeContainer;
-using Content.Shared.Power.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.IntegrationTests.Tests._Starlight.Power;
@@ -45,6 +38,7 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/LancePirates.yml"),
         new("/Maps/_Starlight/Shuttles/LynatiKr20/SmugglerMex.yml"),
         new("/Maps/_Starlight/Shuttles/Mining/breaker.yml"),
+        new("/Maps/_Starlight/Shuttles/Mining/asteroidcracker.yml"),
         new("/Maps/_Starlight/Shuttles/NSSV_MetaClass.yml"),
         new("/Maps/_Starlight/Shuttles/NT-Experimental-Botany-shuttle.yml"),
         new("/Maps/_Starlight/Shuttles/NTSV_HarrierClass.yml"),
@@ -52,7 +46,7 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/Reach.yml"),
         new("/Maps/_Starlight/Shuttles/RecluseClassSHC.yml"),
         new("/Maps/_Starlight/Shuttles/Salvage/pioneer.yml"),
-        new("/Maps/_Starlight/Shuttles/Salvage/pioneer_fuel.yml"),
+        new("/Maps/_Starlight/Shuttles/Salvage/expeditioneer.yml"),
         new("/Maps/_Starlight/Shuttles/Security/SP-4C3.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/ShadowBorgiGrid.yml"),
         new("/Maps/_Starlight/Shuttles/ShuttleEvent/UnknownShuttleFireResponse.yml"),
@@ -93,7 +87,10 @@ public sealed class GridPowerTests
         new("/Maps/_Starlight/Shuttles/pts.yml"),
         new("/Maps/_Starlight/Shuttles/barge.yml"),
         new("/Maps/_Starlight/Shuttles/prospector.yml"),
-        new("/Maps/_Starlight/Shuttles/emergency_lox.yml")
+        new("/Maps/_Starlight/Shuttles/emergency_lox.yml"),
+        new("/Maps/_Starlight/Shuttles/Mini_Ingeniator.yml"),
+        new("/Maps/_Starlight/Shuttles/Comet.yml"),
+        new("/Maps/_Starlight/Shuttles/Munchies.yml")
     ];
 
     [Test, TestCaseSource(nameof(GridPaths))]

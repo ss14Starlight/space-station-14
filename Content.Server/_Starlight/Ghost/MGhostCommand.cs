@@ -10,10 +10,10 @@ using Robust.Shared.Console;
 namespace Content.Server._Starlight.Ghost;
 
 [UsedImplicitly, AnyCommand]
-public sealed class MGhostCommand : LocalizedCommands
+public sealed partial class MGhostCommand : LocalizedCommands
 {
-    [Dependency] private readonly IEntityManager _entities = default!;
-    [Dependency] private readonly ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
+    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private ISharedNullLinkPlayerRolesReqManager _playerRoles = default!;
 
     public override string Command => "mghost";
     public override string Help => "mghost";

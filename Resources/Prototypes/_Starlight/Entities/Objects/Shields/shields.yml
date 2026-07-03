@@ -76,6 +76,11 @@
       fuelCost: 10 # 1/2 of a Welder for a full repair
       doAfterDelay: 5
       allowSelfRepair: false
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: Metal
 
 - type: entity
   name: paladin greatshield
@@ -393,3 +398,199 @@
           Heat: 7
     - type: StaticPrice
       price: 350
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
+
+- type: entity
+  name: X-03 green phase shield
+  parent: [BaseItem, BaseCentcommContraband ]
+  id: GreenLightShield
+  categories: [ DoNotMap ]
+  description: Reverse engineered from a prototype that NT loaned CentComm, the wavelength has been tweaked to the glorious CentComm Green. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  components:
+    - type: ItemToggle
+      soundActivate:
+        path: /Audio/Weapons/ebladeon.ogg
+      soundDeactivate:
+        path: /Audio/Weapons/ebladeoff.ogg
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Weapons/ebladehum.ogg
+    - type: ItemToggleSize
+      activatedSize: Huge
+    - type: ComponentToggler
+      components:
+        - type: DisarmMalus
+          malus: 0.6
+    - type: Clothing
+      quickEquip: false
+      slots:
+      - Belt
+      - suitStorage
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
+      layers:
+        - state: off-icon
+        - state: on-icon
+          color: "#FFFFFF"
+          visible: false
+          shader: unshaded
+          map: [ "shield" ]
+    - type: Item
+      size: Small
+      sprite: _Starlight/Objects/Weapons/Melee/greenlight_shield.rsi
+      heldPrefix: off
+    - type: UseDelay
+      delay: 0.5
+    - type: ToggleableVisuals
+      spriteLayer: shield
+      inhandVisuals:
+        left:
+          - state: on-inhand-left
+            shader: unshaded
+        right:
+          - state: on-inhand-right
+            shader: unshaded
+    - type: ItemTogglePointLight
+    - type: Reflect
+      reflectProb: 0.10
+      reflects:
+        - Energy
+      reflectEnergyDraw: 80
+    - type: Appearance
+    - type: PointLight
+      netsync: false
+      enabled: false
+      radius: 2
+      energy: 3
+      color: "#439909"
+      castShadows: false
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+          startingItem: PowerCellSmallNuclear
+          locked: true
+    - type: ForceQuickDraw
+    - type: ToggleCellDraw
+    - type: PowerCellDraw
+      drawRate: 2  # watts while active
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.8
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.95
+          Slash: 0.75
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 4
+    - type: Damageable
+      damageContainer: Shield
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: Tag
+      tags:
+        - Shield
+    - type: Pierceable
+      level: HardenedMetal
+
+- type: entity
+  name: X-03 phase shield
+  parent: [GreenLightShield, BaseBlueShieldContraband, BaseGrandTheftContraband ]
+  id: BlueLightShield
+  categories: [ DoNotMap ]
+  description: An experimental hardlight shield that has a micro reactor in place of the syndicate chemical based battery. While active, the micro-reactor cannot vent excess heat and needs to be shut off for a while to re-charge.
+  components:
+    - type: Sprite
+      sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
+    - type: PointLight
+      color: "#87CEEB"
+    - type: Item
+      sprite: _Starlight/Objects/Weapons/Melee/bluelight_shield.rsi
+    - type: PowerCellDraw
+      drawRate: 2  # watts while active
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.9
+          Piercing: 0.85
+          Heat: 0.6
+      activeBlockModifier:
+        coefficients:
+          Blunt: 1.0
+          Slash: 0.85
+          Piercing: 0.5
+          Heat: 0.4
+        flatReductions:
+          Heat: 1
+          Piercing: 1
+      damageEnergyDraw: 4
+    - type: Contraband
+      allowedDepartments: []
+      allowedJobs: [ BlueShield ]
+
+- type: entity
+  parent: BaseShield
+  id: ChangelingShield
+  name: oraganic shield
+  description: A large, fleshy shield.
+  components:
+    - type: Sprite
+      sprite: Changeling/shields.rsi
+      state: ling-icon
+    - type: Item
+      sprite: Changeling/shields.rsi
+      heldPrefix: ling
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 80
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+    - type: Blocking
+      passiveBlockModifier:
+        coefficients:
+          Blunt: 0.75 # It costs biomass to use, and makes you a target. A bit worse than the Paladin Shield.
+          Piercing: 0.85
+          Slash: 0.75
+      activeBlockModifier:
+        coefficients:
+          Blunt: 0.6
+          Piercing: 0.65
+          Slash: 0.6
+        flatReductions:
+          Blunt: 1
+          Piercing: 0.5
+          Slash: 1
+    - type: MeleeWeapon
+      damage:
+        types:
+          Blunt: 12 # I mean, you can swing it if you want.
+      soundHit:
+        path: "/Audio/Weapons/smash.ogg"

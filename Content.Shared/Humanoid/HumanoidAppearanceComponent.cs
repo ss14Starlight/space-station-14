@@ -1,7 +1,7 @@
 using Content.Shared.DisplacementMap;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
 using Content.Shared.Inventory;
 using Content.Shared.Preferences;
 using Robust.Shared.Enums;

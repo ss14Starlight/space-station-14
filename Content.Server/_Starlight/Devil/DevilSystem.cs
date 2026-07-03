@@ -3,7 +3,6 @@ using Content.Server.Actions;
 using Content.Shared.Hands.EntitySystems;
 using Content.Server.RandomMetadata;
 using Robust.Server.Audio;
-using Robust.Shared.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Server.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -21,15 +20,15 @@ namespace Content.Server._Starlight.Devil;
 
 public sealed partial class DevilSystem : SharedDevilSystem
 {
-    [Dependency] private readonly ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly RandomMetadataSystem _randomMetadata = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
-    [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly PointLightSystem _pointLight = default!;
-    [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private RandomMetadataSystem _randomMetadata = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private HumanoidAppearanceSystem _humanoidAppearance = default!;
+    [Dependency] private AmbientSoundSystem _ambientSound = default!;
+    [Dependency] private PointLightSystem _pointLight = default!;
+    [Dependency] private PaperSystem _paper = default!;
 
     public override void Initialize()
     {

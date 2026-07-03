@@ -4,7 +4,7 @@
   id: EarsShadekin
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: shadekin
@@ -13,7 +13,7 @@
   id: EarsShadekinStriped
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -33,7 +33,7 @@
   id: EarsShadekinMotley
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -53,7 +53,7 @@
   id: EarsShadekinShady
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: shady
@@ -62,7 +62,7 @@
   id: EarsShadekinPiercingAll
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -82,7 +82,7 @@
   id: EarsShadekinPiercingLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -102,7 +102,7 @@
   id: EarsShadekinPiercingRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -122,7 +122,7 @@
   id: EarsShadekinRingedAll
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -142,7 +142,7 @@
   id: EarsShadekinRingedLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -162,7 +162,7 @@
   id: EarsShadekinRingedRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   coloring:
     default:
       type:
@@ -182,7 +182,7 @@
   id: EarsShadekinGauzedAll
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: shadekin
@@ -193,7 +193,7 @@
   id: EarsShadekinGauzedLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: shadekin
@@ -204,7 +204,7 @@
   id: EarsShadekinGauzedRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: shadekin
@@ -215,7 +215,7 @@
   id: EarsShadekinFluffy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -224,7 +224,7 @@
   id: EarsShadekinFluffyButterfly
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -235,7 +235,7 @@
   id: EarsShadekinFluffyCowling
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -246,7 +246,7 @@
   id: EarsShadekinFluffyCrow
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -257,7 +257,7 @@
   id: EarsShadekinFluffyMotley
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -268,7 +268,7 @@
   id: EarsShadekinFluffySpidy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -279,7 +279,7 @@
   id: EarsShadekinFluffyRingedAll
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -290,7 +290,7 @@
   id: EarsShadekinFluffyRingedLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -301,7 +301,7 @@
   id: EarsShadekinFluffyRingedRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: fluffy_default
@@ -312,7 +312,7 @@
   id: EarsShadekinSaggy
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -321,7 +321,7 @@
   id: EarsShadekinSaggyBrawly
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -332,7 +332,7 @@
   id: EarsShadekinSaggyZebra
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -343,7 +343,7 @@
   id: EarsShadekinSaggyGradient
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -354,7 +354,7 @@
   id: EarsShadekinSaggyGauzedAll
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -365,7 +365,7 @@
   id: EarsShadekinSaggyGauzedLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -376,7 +376,7 @@
   id: EarsShadekinSaggyGauzedRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: saggy_default
@@ -387,7 +387,7 @@
   id: EarsShadekinShort
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: short_default
@@ -396,7 +396,7 @@
   id: EarsShadekinShortButterfly
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: short_default
@@ -407,7 +407,7 @@
   id: EarsShadekinShortRingedAll
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: short_default
@@ -418,7 +418,7 @@
   id: EarsShadekinShortRingedLeft
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: short_default
@@ -429,7 +429,7 @@
   id: EarsShadekinShortRingedRight
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: short_default
@@ -440,7 +440,7 @@
   id: EarsShadekinBull
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: bull_default
@@ -449,7 +449,7 @@
   id: EarsShadekinBullSmooth
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: bull_default
@@ -460,7 +460,7 @@
   id: EarsShadekinAqua
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: aqua_default
@@ -469,7 +469,7 @@
   id: EarsShadekinAquaIncolor
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/ears.rsi
       state: aqua_default
@@ -482,7 +482,7 @@
   id: TailShadekin
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
       state: shadekin
@@ -491,7 +491,7 @@
   id: TailShadekinBig
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
       state: shadekin_big
@@ -500,7 +500,7 @@
 #   id: TailShadekinBigFluff
 #   bodyPart: Tail
 #   markingCategory: Tail
-#   speciesRestriction: [Shadekin]
+#   speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
 #   sprites:
 #     - sprite: _Starlight/Mobs/Customization/shadekin/tails64x32.rsi
 #       state: shadekin_big_fluff
@@ -509,7 +509,7 @@
   id: TailShadekinShorter
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
       state: shadekin_shorter
@@ -518,7 +518,7 @@
   id: TailShadekinShorterBrush
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
       state: shadekin_shorter
@@ -529,7 +529,7 @@
   id: TailShadekinMedium
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
       state: shadekin_medium
@@ -538,7 +538,7 @@
   id: TailShadekinMediumTwoColored
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/tails32x32.rsi
       state: shadekin_medium
@@ -551,7 +551,7 @@
   id: BodyShadekinArrow
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_arrow
@@ -560,7 +560,7 @@
   id: BodyShadekinBlackHole
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_blackhole
@@ -569,7 +569,7 @@
   id: BodyShadekinBrace
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_brace
@@ -578,7 +578,7 @@
   id: BodyShadekinBrawly
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_brawly
@@ -587,7 +587,7 @@
   id: BodyShadekinHeart
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_heart
@@ -596,7 +596,7 @@
   id: BodyShadekinInk
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [ShaShadekindowkin]
+  speciesRestriction: [ShaShadekindowkin, Protogen]
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink
@@ -605,7 +605,7 @@
   id: BodyShadekinInk2
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink2
@@ -614,7 +614,7 @@
   id: BodyShadekinInk3
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink3
@@ -623,7 +623,7 @@
   id: BodyShadekinInk4
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink4
@@ -632,7 +632,7 @@
   id: BodyShadekinInk5
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink5
@@ -641,7 +641,7 @@
   id: BodyShadekinInk6
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink6
@@ -650,7 +650,7 @@
   id: BodyShadekinInkAnim
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_ink_anim
@@ -659,7 +659,7 @@
   id: BodyShadekinLines
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_lines
@@ -668,7 +668,7 @@
   id: BodyShadekinNeck
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_neck
@@ -677,7 +677,7 @@
   id: BodyShadekinShield
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_shield
@@ -686,7 +686,7 @@
   id: BodyShadekinVacuum
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Shadekin]
+  speciesRestriction: [Shadekin, ProtoKin, Protogen] #FH
   sprites:
     - sprite: _Starlight/Mobs/Customization/shadekin/overlay.rsi
       state: body_vacuum

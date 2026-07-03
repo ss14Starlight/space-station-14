@@ -46,6 +46,24 @@
     fiberMaterial: fibers-red-and-black-woven
 
 - type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesFingerlessBudget
+  name: fingerless budget insulated gloves
+  description: You're not sure what's more insulting, the fact that these are fingerless, or the fact that they're not even real insuls.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/fingerlessinsuls.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/fingerlessinsuls.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative-frayed
+    fiberColor: fibers-yellow
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 0
+
+- type: entity
   parent: ClothingHandsMittensBase # That's why these exist in real life.
   id: ClothingHandsCatPaws
   name: cat paw mittens
@@ -168,37 +186,16 @@
     fiberColor: fibers-white
 
 - type: entity
-  parent: [ ClothingHandsBase, BaseEngineeringContraband ]
-  id: ClothingHandsGlovesCapacitor
-  name: capacitor gloves
-  description: >
-    A pair of insulated engineering gloves with a miniaturized bluespace power storage woven into the
-    knuckle-plate. Slot in a power cell, then hand-interact with any APC, substation, or SMES to flood
-    the cell with charge. Rated for punishment. Do not lick.
+  parent: ClothingHandsGlovesColorBlack
+  id: ThievingGlovesReinforcement
+  suffix: Thieving, Reinforcement, Unremovable
   components:
-  - type: Sprite
-    sprite: _Starlight/Clothing/Hands/Gloves/capacitor_gloves.rsi
-  - type: Clothing
-    sprite: _Starlight/Clothing/Hands/Gloves/capacitor_gloves.rsi
-  - type: Fiber
-    fiberMaterial: fibers-insulative
-    fiberColor: fibers-yellow
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Thieving
+    stripTimeReduction: 0 # They don't have any steal time reduction
+    stealthy: true
+  - type: Unremoveable # Don't just take the free gloves from them, actually use them.
   - type: Insulated
-  - type: FingerprintMask
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        whitelist:
-          tags:
-            - PowerCell
-            - PowerCellSmall
-            - BluespaceCell
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: CapacitorGloves
-  - type: StealTarget
-    stealGroup: CapacitorGloves
+  - type: Fiber
+    fiberMaterial: fibers-grey

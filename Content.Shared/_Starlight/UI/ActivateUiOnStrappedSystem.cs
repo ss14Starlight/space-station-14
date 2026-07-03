@@ -2,12 +2,12 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.UserInterface;
 using Robust.Shared.Network;
 
-namespace Content.Shared._Starlight.Railroading;
+namespace Content.Shared._Starlight.UI;
 
 public sealed partial class ActivateUiOnStrappedSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private INetManager _net = default!;
     public override void Initialize()
     {
         base.Initialize();
