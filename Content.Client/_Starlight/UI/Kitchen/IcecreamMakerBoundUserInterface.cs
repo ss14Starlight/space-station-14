@@ -5,7 +5,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Timing;
 
 namespace Content.Client._Starlight.UI.Kitchen
 {
@@ -58,7 +57,11 @@ namespace Content.Client._Starlight.UI.Kitchen
 
             _menu.StartButton.OnPressed += _ =>
             {
-                SendPredictedMessage(new MicrowaveSelectCookTimeMessage(0, 5));
+                // Since there's only one button, use 0 for buttonindex. Same with the time, only 5 seconds exists in the UI.
+                var defaultButton = 0;
+                uint defaultTime = 5;
+
+                SendPredictedMessage(new MicrowaveSelectCookTimeMessage(defaultButton, defaultTime));
                 SendPredictedMessage(new MicrowaveStartCookMessage());
             };
             _menu.EjectButton.OnPressed += _ => SendPredictedMessage(new MicrowaveEjectMessage());
@@ -96,7 +99,7 @@ namespace Content.Client._Starlight.UI.Kitchen
             _menu.StartedCooktime = cState.StartedCookTime;
 
             if (cState.StartedCookTime != TimeSpan.Zero)
-                _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (IoCManager.Resolve<IGameTiming>().CurTime - cState.StartedCookTime).ToString(@"mm\:ss")));
+                _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", (cState.CurrentCookTimeEnd - cState.StartedCookTime).ToString(@"mm\:ss")));
             else
                 _menu.CurrentCookTimeInfoLabel.Text = Loc.GetString("microwave-bound-user-interface-current-cook-time-label", ("time", cState.StartedCookTime.ToString(@"mm\:ss")));
 
