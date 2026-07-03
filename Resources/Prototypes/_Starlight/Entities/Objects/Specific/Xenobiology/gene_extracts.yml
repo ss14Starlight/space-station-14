@@ -23,6 +23,8 @@
     - type: SolutionItemStatus
       solution: container
     - type: Genes
+      classes:
+        - SlimeExtract
       availableTraits:
         - Text0
         - Text1

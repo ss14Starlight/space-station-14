@@ -17,4 +17,11 @@ public sealed partial class GenesComponent : Component
     /// </summary>
     [ViewVariables, AutoNetworkedField, DataField(required: true)]
     public List<ProtoId<AbstractTraitPrototype>> AvailableTraits;
+
+    /// <summary>
+    /// The classes of traits this genome can apply to an entity. If a trait has one of the classes in this set, it can
+    /// be applied to the entity. See also <see cref="AbstractTraitPrototype"/>.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField, DataField(required: true)]
+    public HashSet<string> Classes;
 }

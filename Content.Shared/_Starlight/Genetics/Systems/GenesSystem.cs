@@ -92,13 +92,13 @@ public sealed class GenesSystem : EntitySystem
         foreach (var t in newTraits)
         {
             if (_prototypeManager.TryIndex<OnceTraitPrototype>(t.Key, out var proto1) &&
-                (!proto1.Threshold.HasValue || t.Value >= proto1.Threshold.Value))
+                (!proto1.Threshold.HasValue || t.Value >= proto1.Threshold.Value) && entity.Comp.Classes.Intersect(proto1.Classes).Any())
                 newOnceTraits.Add(proto1, t.Value);
             else if (_prototypeManager.TryIndex<OnSolutionChangedTraitPrototype>(t.Key, out var proto2) &&
-                     (!proto2.Threshold.HasValue || t.Value >= proto2.Threshold.Value))
+                     (!proto2.Threshold.HasValue || t.Value >= proto2.Threshold.Value) && entity.Comp.Classes.Intersect(proto2.Classes).Any())
                 newOnSolutionChangedTraits.Add(proto2, t.Value);
             else if (_prototypeManager.TryIndex<PassiveTraitPrototype>(t.Key, out var proto3) &&
-                     (!proto3.Threshold.HasValue || t.Value >= proto3.Threshold.Value))
+                     (!proto3.Threshold.HasValue || t.Value >= proto3.Threshold.Value) && entity.Comp.Classes.Intersect(proto3.Classes).Any())
             {
                 newPassiveTraits.Add(proto3, t.Value);
                 newPassiveTraitsCooldowns.Add(proto3, proto3.Cooldown + _gameTiming.CurTime);

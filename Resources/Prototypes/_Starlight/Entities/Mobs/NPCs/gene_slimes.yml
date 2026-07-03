@@ -31,6 +31,8 @@
     - type: Hunger
       baseDecayRate: 1
     - type: Genes
+      classes:
+        - Slime
       availableTraits:
         - Text0
         - Text1
@@ -149,6 +151,8 @@
   id: Text0
   name: Text Trait 0
   description: Does a text popup every 2 seconds.
+  classes:
+    - Slime
   entityEffect:
     effect: !type:Popup
       text: 000
@@ -160,6 +164,9 @@
   id: Text1
   name: Text Trait 1
   description: Does a text popup every 3 seconds.
+  classes:
+    - Slime
+    - SlimeExtract
   entityEffect:
     effect: !type:Popup
       text: 111
@@ -171,6 +178,8 @@
   id: Text2
   name: Text Trait 2
   description: Does a text popup every 7 seconds.
+  classes:
+    - SlimeExtract
   entityEffect:
     effect: !type:Popup
       text: 222
