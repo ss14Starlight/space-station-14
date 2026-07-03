@@ -117,5 +117,5 @@ WeaponM1911: WeaponPulseM1911
 #2026-06-26 - M90GL Reworked into Lawbringer
 WeaponRifleM90GrenadeLauncher : WeaponRifleLawbringer
 
-#2026-07-03 - Migrated the M-90gl bundle to a new rifle grenade bundle identifier
+#2026-07-03 - Migrated the M-90gl bundle to a new rifle grenade bundle
 ClothingBackpackDuffelSyndicateFilledCarbine: ClothingBackpackDuffelSyndicateFilledRifleGrenade
