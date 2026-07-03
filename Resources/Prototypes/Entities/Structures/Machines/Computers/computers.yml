@@ -863,6 +863,19 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  # Starlight Start - Book slot for Secure Terminal Manual
+  - type: ContainerContainer
+    containers:
+      book_slot: !type:ContainerSlot {}
+  - type: ItemSlots
+    slots:
+      book_slot:
+        name: comp-comms-book-slot-name
+        startingItem: BookSecureTerminalManual
+        whitelist:
+          tags:
+            - Book
+  # Starlight End
 
 - type: entity
   parent: ComputerComms

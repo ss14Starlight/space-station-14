@@ -230,6 +230,7 @@
     - captain
     - ai
     - general-command-staff
+    - secure-terminal
 
 
 - type: guideEntry
@@ -249,6 +250,12 @@
   name: guide-entry-sl-ai
   text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/ai.xml"
   priority: 3
+
+- type: guideEntry
+  id: secure-terminal
+  name: guide-entry-sl-secure-terminal
+  text: "/ServerInfo/Guidebook/StarlightSOP/CommandSOP/secure-terminal.xml"
+  priority: 4
 
 
 
