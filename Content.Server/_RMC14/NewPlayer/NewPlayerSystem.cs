@@ -1,5 +1,5 @@
 ﻿using System.Collections.Immutable;
-using Content.Server.GameTicking;
+using Content.Shared.GameTicking;
 using Content.Server.Players.PlayTimeTracking;
 using Content.Shared._RMC14.CCVar;
 using Content.Shared._RMC14.NewPlayer;
