@@ -34,6 +34,8 @@
           Empty: { visible: false }
   - type: BluespaceCapacitorBattery
   - type: EmpImmune
+  - type: StealTarget
+    stealGroup: PowerCellBluespace
   - type: StaticPrice
     price: 250
 

@@ -9,6 +9,7 @@ steal-target-groups-ntr-briefcase = nanotrasen representative's secure briefcase
 steal-target-groups-clothing-outer-hardsuit-cmo = chief medical officer's hardsuit
 steal-target-groups-clothing-outer-hardsuit-ce = chief engineer's hardsuit
 steal-target-groups-capacitor-gloves = chief engineer's capacitor gloves
+steal-target-groups-power-cell-bluespace = bluespace power cell
 steal-target-groups-jetpack-ce = chief engineer's void jetpack
 steal-target-groups-clothing-outer-hardsuit-hos = head of security's hardsuit
 steal-target-groups-clothing-outer-hardsuit-warden = warden's hardsuit

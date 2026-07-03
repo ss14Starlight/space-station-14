@@ -7,6 +7,13 @@
   sprite:
     sprite: _Starlight/Clothing/Hands/Gloves/capacitor_gloves.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: PowerCellBluespace
+  name: steal-target-groups-power-cell-bluespace
+  sprite:
+    sprite: _Starlight/Objects/Power/bluespace_cell.rsi
+    state: combat
 # Starlight end
 
 - type: stealTargetGroup
