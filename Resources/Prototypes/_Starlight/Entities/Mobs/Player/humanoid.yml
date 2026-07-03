@@ -3,11 +3,42 @@
 - type: randomHumanoidSettings
   id: EventHumanoidNTNC
   parent: EventHumanoidMindShielded
+  speciesBlacklist:
+    - Rodentia
+    - IPC
+    - Diona
+    - Resomi
+    - Vox
+    - Avali
+    - Shadekin
+    - Felionoid
+    - Thaven
+    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
+    - ProtoDiona
+    - ProtoReptilian
+    - ProtoResomi
+    - ProtoVox
+    - ProtoVulp
+    - ProtoAvali
+    - ProtoFelionoid
+    - ProtoKin
+    - ProtoThaven
+    - ProtoCyclorite
+    - ProtoDwarf
+    - ProtoMoth
+    - ProtoSlimePerson
+    - ProtoLagomorph
+    - ProtoElf
+    - Protogen
+    - ProtoHuman
   components:
     - type: AutoImplant
       implants:
         - DeathRattleImplantCentcomm
         - RadioImplantCentcomm
+        - DeathAcidifierImplant
+        - FreedomImplant
+        - MindShieldImplant
 
 ## NTCC Blueshield
 
@@ -42,7 +73,7 @@
       name: ghost-role-information-ntnc-consortium-officer-name
       description: ghost-role-information-ntnc-consortium-officer-description
       rules: ghost-role-information-corporate-aligned-rules
-      important: true # SL
+      important: true
       raffle:
         settings: default
       job: NTNCBlueShield
@@ -64,7 +95,7 @@
       name: ghost-role-information-ntnc-consortium-officer-name
       description: ghost-role-information-ntnc-consortium-officer-description
       rules: ghost-role-information-corporate-aligned-rules
-      important: true # SL
+      important: true
       raffle:
         settings: default
       job: NTNCBlueShield
@@ -102,7 +133,7 @@
       name: ghost-role-information-soviet-marine-name
       description: ghost-role-information-soviet-marine-desc
       rules: ghost-role-information-soviet-marine-rules
-      important: true # SL
+      important: true
       raffle:
         settings: default
       mindRoles:
@@ -131,7 +162,7 @@
       state: ntsficon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -139,56 +170,379 @@
 
 - type: randomHumanoidSettings
   id: NTSFoperative
-  parent: EventHumanoidCentcomm
-  speciesBlacklist:
-    - Arachnid
-    - Diona
-    - Reptilian
-    - Resomi
-    - Vox
-    - Vulpkanin
-    - Avali
-    - Felionoid
-    - Shadekin
-    - Thaven
-    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman
+  parent: EventHumanoidNTNC
   components:
     - type: GhostRole
-      name: ghost-role-information-nanotrasen-special-forces-name
-      description: ghost-role-information-nanotrasen-special-forces-description
-      rules: ghost-role-information-corporate-aligned-rules # Starlight
-      important: true # SL
+      name: ghost-role-information-ntsf-name
+      description: ghost-role-information-ntsf-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-        - MindRoleGhostCorporateAligned # Starlight
+        - MindRoleGhostCorporateAligned
       job: NanoTrasenSpecialForces
     - type: Loadout
       prototypes: [NanoTrasenSpecialForcesGear]
-      roleLoadout: [RoleSurvivalEVA]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFPrimus
+  name: NTSF Primus Operative
+  suffix: NTSF, Primus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: primusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFPrimusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFPrimusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-primus
+      description: ghost-role-information-ntsf-primus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesPrimusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSecundus
+  name: NTSF Secundus Operative
+  suffix: NTSF, Secundus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: secundusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSecundusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFSecundusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-secundus
+      description: ghost-role-information-ntsf-secundus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesSecondusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
         - NamesMilitaryFirstLeader
         - NamesMilitaryLast
       nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFTertius
+  name: NTSF Tertius Operative
+  suffix: NTSF, Tertius
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: tertiusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFTertiusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFTertiusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-tertius
+      description: ghost-role-information-ntsf-tertius-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesTertiusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: Thieving
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFQuartus
+  name: NTSF Quartus Operative
+  suffix: NTSF, Quartus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: quartusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFQuartusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFQuartusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-quartus
+      description: ghost-role-information-ntsf-quartus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesQuartusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFQuintus
+  name: NTSF Quintus Operative
+  suffix: NTSF, Quintus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: quintusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFQuintusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFQuintusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-quintus
+      description: ghost-role-information-ntsf-quintus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesQuintusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSextus
+  name: NTSF Sextus Operative
+  suffix: NTSF, Sextus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: sextusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSextusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFSextusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-sextus
+      description: ghost-role-information-ntsf-sextus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesSextusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFSeptimus
+  name: NTSF Septimus Operative
+  suffix: NTSF, Septimus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: septimusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFSeptimusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFSeptimusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-septimus
+      description: ghost-role-information-ntsf-septimus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesSeptimusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFOctavius
+  name: NTSF Octavius Operative
+  suffix: NTSF, Octavius
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: octaviusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFOctaviusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFOctaviusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-octavius
+      description: ghost-role-information-ntsf-octavius-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesOctaviusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+
+- type: entity
+  id: RandomHumanoidSpawnerNTSFNonus
+  name: NTSF Nonus Operative
+  suffix: NTSF, Nonus
+  components:
+    - type: Sprite
+      sprite: _Starlight/Markers/jobs.rsi
+      state: nonusicon
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: RandomHumanoidSpawner
+      settings: NTSFNonusoperative
+
+- type: randomHumanoidSettings
+  id: NTSFNonusoperative
+  parent: EventHumanoidNTNC
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ntsf-nonus
+      description: ghost-role-information-ntsf-nonus-description
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
+      raffle:
+        settings: short
+      mindRoles:
+        - MindRoleGhostCorporateAligned
+      job: NanoTrasenSpecialForces
+    - type: Loadout
+      prototypes: [NanoTrasenSpecialForcesNonusGear]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMilitaryFirst
+        - NamesMilitaryLast
+      nameFormat: name-format-ert
+    - type: ThermalVision
 
 - type: entity
   id: RandomHumanoidSpawnerDecimus
@@ -200,7 +554,7 @@
       state: decimusicon
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: RandomHumanoidSpawner
@@ -208,56 +562,27 @@
 
 - type: randomHumanoidSettings
   id: Decimusoperative
-  parent: EventHumanoidCentcomm
-  speciesBlacklist:
-    - Arachnid
-    - Diona
-    - Reptilian
-    - Resomi
-    - Vox
-    - Vulpkanin
-    - Avali
-    - Felionoid
-    - Shadekin
-    - Thaven
-    - ProtoArachnid # Can't let them spawn as ghost roles, at least, not until we can figure out how to force equip armor on them.
-    - ProtoDiona
-    - ProtoReptilian
-    - ProtoResomi
-    - ProtoVox
-    - ProtoVulp
-    - ProtoAvali
-    - ProtoFelionoid
-    - ProtoKin
-    - ProtoThaven
-    - ProtoCyclorite
-    - ProtoDwarf
-    - ProtoMoth
-    - ProtoSlimePerson
-    - ProtoLagomorph
-    - ProtoElf
-    - Protogen
-    - ProtoHuman
+  parent: EventHumanoidNTNC
   components:
     - type: GhostRole
       name: ghost-role-information-decimus-name
       description: ghost-role-information-decimus-description
-      rules: ghost-role-information-corporate-aligned-rules # Starlight
-      important: true # SL
+      rules: ghost-role-information-corporate-aligned-rules
+      important: true
       raffle:
         settings: short
       mindRoles:
-        #      - MindRoleGhostRoleFamiliar  # DOTS - look at deleting this entire line, if we are reclassifying DS. Does this break stuff?
-        - MindRoleGhostCorporateAligned # Starlight
+        - MindRoleGhostCorporateAligned
       job: Decimus
     - type: Loadout
       prototypes: [DecimusGear]
-      roleLoadout: [RoleSurvivalEVA]
+      roleLoadout: [RoleSurvivalMilitaryDouble]
     - type: RandomMetadata
       nameSegments:
-        - NamesMilitaryFirstLeader
+        - NamesMilitaryFirst
         - NamesMilitaryLast
       nameFormat: name-format-ert
+    - type: ThermalVision
 
 # TSF
 - type: entity
@@ -365,7 +690,7 @@
       name: ghost-role-information-tsf-officer-name
       description: ghost-role-information-tsf-officer-desc
       rules: ghost-role-information-tsf-aligned-rules
-      important: true # SL
+      important: true
       raffle:
         settings: default
       mindRoles:
@@ -382,7 +707,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-officer-Sheriff-name
-      important: true # SL
+      important: true
       mindRoles:
         - MindRoleGhostTSFAligned
       job: SolGovOfficerSheriff
@@ -407,7 +732,7 @@
       name: ghost-role-information-tsf-crew-name
       description: ghost-role-information-tsf-marine-desc
       rules: ghost-role-information-tsf-aligned-rules
-      important: true # SL
+      important: true
       raffle:
         settings: default
       mindRoles:
@@ -469,7 +794,7 @@
       name: ghost-role-information-tsf-marine-name
       description: ghost-role-information-tsf-marine-desc
       rules: ghost-role-information-tsf-aligned-rules
-      important: true # SL
+      important: true
       raffle:
         settings: default
       mindRoles:
@@ -506,7 +831,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-leader-name
-      important: true # SL
+      important: true
       job: TSFMarine
     - type: Loadout
       prototypes: [TSFMarineLeaderGear]
@@ -522,7 +847,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-Phantom-name
-      important: true # SL
+      important: true
       job: TSFMarineElite
     - type: Loadout
       prototypes: [TSFPhantomGear]
@@ -544,7 +869,7 @@
   components:
     - type: GhostRole
       name: ghost-role-information-tsf-MARSOC-name
-      important: true # SL
+      important: true
       job: TSFMarineElite
     - type: Loadout
       prototypes: [TSFMARSOCGear]

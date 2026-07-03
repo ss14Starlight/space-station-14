@@ -148,6 +148,15 @@
     stealGroup: RareGlassesCollection
 
 - type: entity
+  parent: ClothingEyesGlassesBlueShield
+  id: ClothingEyesGlassesNanotrasen
+  name: NanoTrasen glasses
+  description: The latest in NanoTrasen technology has lead up to these glasses, only given to the best of the best.
+  components:
+  - type: FlashImmunity
+    blocksSpecialVision: False
+
+- type: entity
   parent: [ClothingEyesBase, BaseCentcommContraband]
   id: ClothingEyesGlassesCentCommBase
   abstract: true

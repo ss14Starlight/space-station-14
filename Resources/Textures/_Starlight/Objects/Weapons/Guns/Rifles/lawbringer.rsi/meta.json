@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from Polaris at https://github.com/PolarisSS13/Polaris/commit/ff87150c3dfc387c46db7d1c956abf19ddff7819, backpack sprite by Peptide, backpack sling sprite edited by Boaz1111, wielded and in-hand by JustAdler for https://github.com/ss14Starlight/space-station-14",
+    "copyright": "Rework and new sprites by Littlemen07 at https://github.com/ss14Starlight/space-station-14/pull/4934/commits/3e756a5dfaf9a55b8a5fdac5d773b5dfd9e2e025, Original m90 by Polaris at https://github.com/PolarisSS13/Polaris/commit/ff87150c3dfc387c46db7d1c956abf19ddff7819",
     "size": {
         "x": 32,
         "y": 32

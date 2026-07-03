@@ -1,151 +1,4 @@
 Entries:
-- author: wonderfulnewworld, A-Loose-Goose
-  changes:
-  - message: Fixed a lot of typos in the Syndicate Uplink. (Cybersan, missing periods, .50 shotgun ammo).
-    type: Fix
-  id: 405929
-  time: '2026-06-11T20:35:37.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4501
-- author: pmjanus
-  changes:
-  - message: The Corporate Frontier, Fringe, Hunted, Paradox Clone, and USSP backgrounds now apply correctly instead of silently doing nothing.
-    type: Fix
-  id: 405930
-  time: '2026-06-11T21:20:06.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4723
-- author: Caws
-  changes:
-  - message: Shadekin now actually die when using the 'Succumb' or 'Say Last Words' actions while critically injured.
-    type: Fix
-  id: 405931
-  time: '2026-06-12T06:33:08.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4746
-- author: Caws
-  changes:
-  - message: Vox Roboticists now start with a tank harness.
-    type: Fix
-  id: 405932
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: Vox IAAs now start with a tank harness.
-    type: Fix
-  id: 405933
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: Vox Zookeepers now start with a tank harness.
-    type: Fix
-  id: 405934
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: Vox Boxers now start with a tank harness.
-    type: Fix
-  id: 405935
-  time: '2026-06-12T06:33:13.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4750
-- author: Caws
-  changes:
-  - message: (Bagel) The missing NanoMed Security has been re-added to Brigmedic.
-    type: Fix
-  id: 405936
-  time: '2026-06-12T08:02:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4743
-- author: Pon
-  changes:
-  - message: Fixed being unable to store the IK-60 once equipped.
-    type: Fix
-  id: 405937
-  time: '2026-06-12T08:03:01.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4744
-- author: Caws
-  changes:
-  - message: The NTR's coat can now accept gas tanks in its suit storage. Vox NTRs rejoice.
-    type: Tweak
-  id: 405938
-  time: '2026-06-12T08:05:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4742
-- author: Caws
-  changes:
-  - message: The Magistrates's coat can now accept gas tanks in its suit storage. Vox Magistrates rejoice.
-    type: Tweak
-  id: 405939
-  time: '2026-06-12T08:05:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4742
-- author: Caws
-  changes:
-  - message: The NanoTrasen Career Trainer previously had a flash spawn in its suit storage, which you could never put back in. This flash now spawns in your backpack instead of your suit storage slot. This also means that Vox shouldn't have their suit storage blocked when they join as a NT Career Trainer.
-    type: Fix
-  id: 405940
-  time: '2026-06-12T08:05:46.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4742
-- author: redmushie
-  changes:
-  - message: Fax machine groups, colors and ordering! Faxes can now be sorted into departmental and faction groups, and are sorted for easier finding. (Pending mapping changes for a fuller rollout).
-    type: Add
-  id: 405941
-  time: '2026-06-12T10:37:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4706
-- author: RenMeow1
-  changes:
-  - message: Replaced all protogen sub species audio clips.
-    type: Add
-  id: 405942
-  time: '2026-06-12T10:37:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4715
-- author: RenMeow1
-  changes:
-  - message: Updated attributions files with updated details as the file were recreated and not the original protogen sub species audio clips.
-    type: Tweak
-  id: 405943
-  time: '2026-06-12T10:37:59.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4715
-- author: wonderfulnewworld, Princess-Cheeseballs
-  changes:
-  - message: Rebalanced the syndicate reinforcement specializations to be more effective at their roles.
-    type: Tweak
-  id: 405944
-  time: '2026-06-12T11:14:41.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4699
-- author: Caws
-  changes:
-  - message: CMO accidentally had the CE's dresser instead of the CMO's dresser, now fixed.
-    type: Fix
-  id: 405945
-  time: '2026-06-12T11:38:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4748
-- author: Caws
-  changes:
-  - message: Replaced the empty surgery crate in Surgery with the not-empty 'surgical supplies crate'.
-    type: Fix
-  id: 405946
-  time: '2026-06-12T11:38:18.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4748
-- author: Musiklie
-  changes:
-  - message: Added Resinfera, a new botany plant, can be grinded down into Acrileni.
-    type: Add
-  id: 405947
-  time: '2026-06-12T11:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4675
-- author: Musiklie
-  changes:
-  - message: Added Acrileni, a new chem that can be mixed with Razorium and Bruizine into Briomadine.
-    type: Add
-  id: 405948
-  time: '2026-06-12T11:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4675
-- author: Musiklie
-  changes:
-  - message: Added Briomadine, A greater brute chem, twice as effective as Bicaridine with a lesser consequence if mixed with other brutes.
-    type: Add
-  id: 405949
-  time: '2026-06-12T11:38:19.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4675
 - author: wonderfulnewworld
   changes:
   - message: Added a section to Proto-Voxes guidebook stating that they no longer get put to sleep by Nitrous or exhale Ammonia, but are put to sleep by things that put other Nitrogen breathers to sleep.
@@ -2799,4 +2652,151 @@ Entries:
   id: 406328
   time: '2026-07-01T08:41:22.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4962
+- author: redmushie
+  changes:
+  - message: The Arrivals and Evacuation shuttles now actually try to dock to the station instead of just the largest grid.
+    type: Fix
+  id: 406329
+  time: '2026-07-02T08:16:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4969
+- author: redmushie
+  changes:
+  - message: The Arrivals shuttle now actually prefers Arrivals docking ports.
+    type: Fix
+  id: 406330
+  time: '2026-07-02T08:16:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4969
+- author: wonderfulnewworld
+  changes:
+  - message: Added EeepEvent to Dynamic.
+    type: Add
+  id: 406331
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Reduced window between events in Dynamic by increasing the minimum time and decreasing the maximum time.
+    type: Tweak
+  id: 406332
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Increase Dynamic's minimum budget from 200 to 250.
+    type: Tweak
+  id: 406333
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Modified Dynamic midround antags to spawn closer to when they would normally spawn on the basic scheduler. It's not exactly the same, in theory it could be a bit earlier, because we need to account for less events on average due to Dynamic rolling events a lot slower than Extended.
+    type: Tweak
+  id: 406334
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Multiantags can now roll during midround during Dynamic (except Zombies), but aren't as likely as proper Midrounds.
+    type: Tweak
+  id: 406335
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Tweaked Thief, SELF, and Abductor Dynamic Rule Costs.
+    type: Tweak
+  id: 406336
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Removed DummyNonAntag from Dynamic, and added Railroading to it too.
+    type: Tweak
+  id: 406337
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic will now ACTUALLY roll multiantags roundstart sometimes.
+    type: Fix
+  id: 406338
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Abductors can now actually spawn in Dynamic.
+    type: Fix
+  id: 406339
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: wonderfulnewworld
+  changes:
+  - message: Dynamic gamerule player requirements now match their actual gamemodes.
+    type: Fix
+  id: 406340
+  time: '2026-07-02T13:52:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4957
+- author: Mack
+  changes:
+  - message: Fix issue with butchering and surgery conflicting.
+    type: Fix
+  id: 406341
+  time: '2026-07-02T14:15:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4979
+- author: Conflee
+  changes:
+  - message: Updated Basilisk, Goliath, and Hivelord/Brood sprites. Basilisk and Goliath use the newer TGstation sprites, while Hivelord/Brood is an edit by myself.
+    type: Tweak
+  id: 406342
+  time: '2026-07-02T20:33:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4966
+- author: Conflee
+  changes:
+  - message: Updated the Goliath Meat, Goliath Steak, Goliath Hide, and Goliath Cloak/Hood sprites, to use newer TGstation sprites.
+    type: Tweak
+  id: 406343
+  time: '2026-07-02T20:33:04.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4966
+- author: Conflee
+  changes:
+  - message: Added Flimsy Lattice, which is an entity not a tile. Looks similar to lattice but with connected joints. Works like a carpet/catwalk/grate, sitting on top of tiles, allowing mappers to do more intricate detailing.
+    type: Add
+  id: 406344
+  time: '2026-07-02T21:00:29.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4968
+- author: Johnny
+  changes:
+  - message: Added multiple new prototypes/ghost role variants of NTSF and their gears.
+    type: Add
+  id: 406345
+  time: '2026-07-02T21:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4943
+- author: Johnny
+  changes:
+  - message: Changed some of the NTSF ghost roles to include more species and exclude others.
+    type: Tweak
+  id: 406346
+  time: '2026-07-02T21:00:31.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4943
+- author: wonderfulnewworld
+  changes:
+  - message: Added Devil to Dynamic.
+    type: Add
+  id: 406347
+  time: '2026-07-02T21:47:33.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4985
+- author: Romero
+  changes:
+  - message: Removed M90 GL.
+    type: Remove
+  id: 406348
+  time: '2026-07-02T21:47:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4934
+- author: Romero
+  changes:
+  - message: Added Lawbringer, as replacement of unused M90 GL, one per sec armory.
+    type: Add
+  id: 406349
+  time: '2026-07-02T21:47:35.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4934
 Order: -1
