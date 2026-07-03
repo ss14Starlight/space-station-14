@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Linq;
 using System.Text;
 using Content.Shared._Starlight.Genetics.Components;
@@ -6,7 +5,6 @@ using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Genetics.Systems;
@@ -106,7 +104,7 @@ public sealed class GenesSystem : EntitySystem
 
         }
 
-        if (_entityManager.TryGetComponent<OnceTraitsComponent>(entity, out var onceTraits))
+        if (_entityManager.TryGetComponent<Components.OnceTraitsComponent>(entity, out var onceTraits))
         {
             /*
              * Okay, this is going to be ugly.
@@ -153,10 +151,10 @@ public sealed class GenesSystem : EntitySystem
             onceTraits.Traits = newOnceTraits;
         }
 
-        if (_entityManager.TryGetComponent<OnSolutionChangedTraitsComponent>(entity, out var onSolutionChangedTraits))
+        if (_entityManager.TryGetComponent<Components.OnSolutionChangedTraitsComponent>(entity, out var onSolutionChangedTraits))
             onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
 
-        if (_entityManager.TryGetComponent<PassiveTraitsComponent>(entity, out var passiveTraits))
+        if (_entityManager.TryGetComponent<Components.PassiveTraitsComponent>(entity, out var passiveTraits))
         {
             passiveTraits.Traits = newPassiveTraits;
             passiveTraits.Cooldowns = newPassiveTraitsCooldowns;

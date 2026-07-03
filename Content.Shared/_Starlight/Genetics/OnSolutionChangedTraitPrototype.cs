@@ -1,6 +1,5 @@
 using Content.Shared._Starlight.Xenobiology;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Genetics;
 
@@ -16,5 +15,5 @@ public sealed partial class OnSolutionChangedTraitPrototype : AbstractTraitProto
     /// </summary>
     [ViewVariables]
     [DataField(required: true)]
-    public ProtoId<ExtractReactionPrototype> ExtractReaction = new();
+    public ScaledEntityEffect EntityEffect = new();
 }

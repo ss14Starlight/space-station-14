@@ -14,7 +14,7 @@ public sealed class PassiveTraitsSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        var query = EntityQueryEnumerator<PassiveTraitsComponent>();
+        var query = EntityQueryEnumerator<Components.PassiveTraitsComponent>();
         while (query.MoveNext(out var uid, out var passiveTraitsComponent))
         {
             if (passiveTraitsComponent.Paused)
@@ -36,9 +36,9 @@ public sealed class PassiveTraitsSystem : EntitySystem
         }
     }
 
-    private void OnPaused(Entity<PassiveTraitsComponent> entity, ref EntityPausedEvent args) => entity.Comp.Paused = true;
+    private void OnPaused(Entity<Components.PassiveTraitsComponent> entity, ref EntityPausedEvent args) => entity.Comp.Paused = true;
 
-    private void OnUnpaused(Entity<PassiveTraitsComponent> entity, ref EntityUnpausedEvent args)
+    private void OnUnpaused(Entity<Components.PassiveTraitsComponent> entity, ref EntityUnpausedEvent args)
     {
         entity.Comp.Paused = false;
         foreach (var k in entity.Comp.Traits.Keys)

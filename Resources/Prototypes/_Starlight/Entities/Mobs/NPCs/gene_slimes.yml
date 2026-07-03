@@ -84,29 +84,32 @@
     scalingOffset: 0
   cooldown: 60
 
-- type: extractReaction
-  id: blankSolutionReaction
-  requirements: {}
-  effects: []
-  shouldDelete: false
-
 - type: onSolutionChangedTrait
   id: Blank3
   name: Blank Trait 3 (On Solution Changed)
   description: Does nothing.
-  extractReaction: blankSolutionReaction
+  entityEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
 
 - type: onSolutionChangedTrait
   id: Blank4
   name: Blank Trait 4 (On Solution Changed)
   description: Does nothing.
-  extractReaction: blankSolutionReaction
+  entityEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
 
 - type: onSolutionChangedTrait
   id: Blank5
   name: Blank Trait 5 (On Solution Changed)
   description: Does nothing.
-  extractReaction: blankSolutionReaction
+  entityEffect:
+    effect: !type:Blank
+    scalingFactor: 1
+    scalingOffset: 0
 
 - type: onceTrait
   id: Blank6
