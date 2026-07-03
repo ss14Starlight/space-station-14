@@ -58,6 +58,7 @@
       - id: ClothingHeadHatFez
       - id: ClothingHeadHatPaper
       - id: ClothingHeadHatPirate
+      - id: ClothingHeadHatWitchyHat # Starlight
       - id: ClothingMaskSterile
       - id: ClothingMultipleHeadphones
       - id: ClothingNeckTieRed
