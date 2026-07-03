@@ -162,7 +162,7 @@ namespace Content.Shared.Roles
 
         [DataField]
         public bool Whitelisted;
-		
+
 		/// Starlight Start
 		/// <summary>
 		/// Used for the New Player Icon system to tell if someone is new to their job.

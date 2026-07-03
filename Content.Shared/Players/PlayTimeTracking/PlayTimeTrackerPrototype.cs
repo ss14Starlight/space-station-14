@@ -19,7 +19,7 @@ public sealed partial class PlayTimeTrackerPrototype : IPrototype
 
     [ViewVariables(VVAccess.ReadOnly)]
     public string LocalizedName => Loc.GetString(Name);
-	
+
 	[DataField]
     public bool IsHumanoid;
     // Starlight end
