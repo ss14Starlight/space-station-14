@@ -8,5 +8,11 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class PassiveTraitsComponent : Component
 {
     [ViewVariables, AutoNetworkedField]
-    public Dictionary<ProtoId<PassiveTraitPrototype>, (FixedPoint2, TimeSpan)> Traits = new();
+    public Dictionary<ProtoId<PassiveTraitPrototype>, FixedPoint2> Traits = new();
+
+    [ViewVariables, AutoNetworkedField]
+    public Dictionary<ProtoId<PassiveTraitPrototype>, TimeSpan> Cooldowns = new();
+
+    [AutoNetworkedField]
+    public bool Paused = false;
 }

@@ -87,26 +87,23 @@ public sealed class GenesSystem : EntitySystem
 
         Dictionary<ProtoId<OnceTraitPrototype>, FixedPoint2> newOnceTraits = new();
         Dictionary<ProtoId<OnSolutionChangedTraitPrototype>, FixedPoint2> newOnSolutionChangedTraits = new();
-        Dictionary<ProtoId<PassiveTraitPrototype>, (FixedPoint2, TimeSpan)> newPassiveTraits = new();
-        // I am not happy with this foreach loop. I really want to construct this instead from simple method calls on the IEnumerables.
-        // But that's not possible because dictionaries don't have proper compatability with the OfType method.
-        // See, when interpreted as an IEnumerable, which is necessary for access to the LINQ methods like OfType, the values become KeyValuePair
-        // So if you do OfType, you try to cast KeyValuePair<T, ...> to KeyValuePair<X, ...>.
-        // But that's not what you want, you want to cast T to X directly. There's no cast override that causes KeyValuePair to correctly interpret the above.
-        // So the casts fail and you end up with nothing.
-        // Thus I have to use this foreach loop instead.
+        Dictionary<ProtoId<PassiveTraitPrototype>, FixedPoint2> newPassiveTraits = new();
+        Dictionary<ProtoId<PassiveTraitPrototype>, TimeSpan> newPassiveTraitsCooldowns = new();
         foreach (var t in newTraits)
         {
-            var trait = _prototypeManager.Index(t.Key);
-            if (!trait.Threshold.HasValue || t.Value >= trait.Threshold.Value)
+            if (_prototypeManager.TryIndex<OnceTraitPrototype>(t.Key, out var proto1) &&
+                (!proto1.Threshold.HasValue || t.Value >= proto1.Threshold.Value))
+                newOnceTraits.Add(proto1, t.Value);
+            else if (_prototypeManager.TryIndex<OnSolutionChangedTraitPrototype>(t.Key, out var proto2) &&
+                     (!proto2.Threshold.HasValue || t.Value >= proto2.Threshold.Value))
+                newOnSolutionChangedTraits.Add(proto2, t.Value);
+            else if (_prototypeManager.TryIndex<PassiveTraitPrototype>(t.Key, out var proto3) &&
+                     (!proto3.Threshold.HasValue || t.Value >= proto3.Threshold.Value))
             {
-                if (trait is OnceTraitPrototype key1)
-                    newOnceTraits.Add(key1, t.Value);
-                else if (trait is OnSolutionChangedTraitPrototype key2)
-                    newOnSolutionChangedTraits.Add(key2, t.Value);
-                else if (trait is PassiveTraitPrototype key3)
-                    newPassiveTraits.Add(key3, (t.Value, key3.Cooldown + _gameTiming.CurTime));
+                newPassiveTraits.Add(proto3, t.Value);
+                newPassiveTraitsCooldowns.Add(proto3, proto3.Cooldown + _gameTiming.CurTime);
             }
+
         }
 
         if (_entityManager.TryGetComponent<OnceTraitsComponent>(entity, out var onceTraits))
@@ -160,6 +157,9 @@ public sealed class GenesSystem : EntitySystem
             onSolutionChangedTraits.Traits = newOnSolutionChangedTraits;
 
         if (_entityManager.TryGetComponent<PassiveTraitsComponent>(entity, out var passiveTraits))
+        {
             passiveTraits.Traits = newPassiveTraits;
+            passiveTraits.Cooldowns = newPassiveTraitsCooldowns;
+        }
     }
 }
