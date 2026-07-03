@@ -924,7 +924,7 @@
 - type: entity
   id: RCDChiefEngineer
   parent: RCD
-  name: CE's RCD
+  name: chief engineer's experimental RCD
   description: A highly advanced Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
   components:
   - type: LimitedCharges
