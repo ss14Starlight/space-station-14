@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon",
+	  "copyright": "TGstation https://github.com/tgstation/tgstation/pull/27537, original sprite by TechnoAlchemisto (https://github.com/TechnoAlchemisto), edited by Conflee for Starlight"
+    },
+    {
+      "name": "equipped-HELMET",
+	  "copyright": "TGstation https://github.com/tgstation/tgstation/pull/27537, original sprite by TechnoAlchemisto (https://github.com/TechnoAlchemisto), edited by Conflee for Starlight",
+      "directions": 4
+    }
+  ]
+}

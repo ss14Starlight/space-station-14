@@ -1,0 +1,283 @@
+- type: entity
+  save: false
+  name: Urist McDuskin #pronounced Dusk-Kin
+  parent: [MobBloodstream, MobAtmosStandard, MobFlammable, BaseMobSpecies, BaseSpeciesPickupableHuge]
+  id: BaseMobProtoKin
+  abstract: true
+  components:
+    - type: LanguageKnowledge
+      speaks:
+      - GalacticCommon
+      - Machine
+      - Marish
+      understands:
+      - GalacticCommon
+      - Machine
+      - Marish
+      - Empathy
+    - type: Repairable # So welder is just a special little snowflake in the code. I tried making healing with welder work through ConditionalHealing component, but it would require too many changes in too many places. So we will keep on the trend and have brute healing defined here. /shrug
+      doAfterDelay: 1 # Faster than normal so using welding to heal isn't absolute ass for protogens
+      selfRepairPenalty: 1.3 # It's not much, but it makes it a little slower.
+      allowSelfRepair: true
+      fuelCost: 7.5 # Little cheaper on protogens, since they're not fully cybernetic.
+      damage:
+        groups:
+          Brute: -24 # 4 for each type with reduction applied
+    - type: Shadekin
+      thresholds:
+        0.8: Low
+        5: Annoying
+        10: High
+        15: Extreme
+    - type: Absorbable
+    - type: Hunger
+    - type: Thirst
+    - type: HumanoidAppearance
+      species: ProtoKin
+      hideLayersOnEquip:
+      - Hair
+    - type: Inventory
+      speciesId: shadekin #to be replaced with proto[species] when new sprites are made
+      templateId: protogen
+    - type: Icon
+      sprite: _FarHorizons/Mobs/Species/Proto-Kin/parts.rsi
+      state: full
+    - type: Body
+      prototype: ProtoKin
+      requiredLegs: 2
+    - type: UserInterface
+      interfaces:
+        enum.HumanoidMarkingModifierKey.Key:
+          type: HumanoidMarkingModifierBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+        enum.StoreUiKey.Key:
+          type: StoreBoundUserInterface
+        enum.SurgeryUIKey.Key:
+          type: SurgeryBui
+        enum.ThavenMoodsUiKey.Key: # impstation edit
+          type: ThavenMoodsBoundUserInterface
+          requireInputValidation: false
+    - type: HumanoidEMP # HumanoidEMP is needed to receive EMP effects, it may carry its own innate effects, but doesn't have to
+      effectCooldown: 2
+      effect:
+        stunAmount: 5.0
+        knockdownAmount: 2.0
+        slowdownAmount: 15.0
+        walkSpeedModifier: 0.5
+        sprintSpeedModifier: 0.5
+        dropItemsFrom:
+          - body_part_slot_right hand
+          - body_part_slot_left hand
+        additionalEffects:
+          StatusEffectTemporaryBlindness: 2.0
+        damageAmount:
+          types:
+            Shock: 10
+            Heat: 10
+    - type: TypingIndicator
+      proto: robot
+    - type: Speech
+      speechVerb: Robotic
+      speechSounds: Borg
+      allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore']
+    - type: Vocal
+      sounds:
+        Male: ProtoShadekinMSounds
+        Female: ProtoShadekinFSounds
+        Unsexed: ProtoShadekinMSounds
+    - type: MeleeWeapon
+      soundHit:
+        collection: AlienClaw
+      angle: 30
+      animation: WeaponArcClaw
+      damage:
+        types:
+          Slash: 5
+    - type: Damageable
+      damageContainer: Hybrid
+      damageModifierSet: ProtoKin
+    - type: Deathgasp
+      damageType: Bloodloss
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+        Acidic: [ Touch, Ingestion ]
+      reactions:
+        - reagents: [Water, SpaceCleaner]
+          methods: [Touch]
+          effects:
+            - !type:WashCreamPie
+            - !type:Emote
+              emote: Hisses
+              showInChat: false
+    - type: Bloodstream
+      bloodlossDamage:
+        types:
+          Bloodloss: 1
+      bloodlossHealDamage:
+        types:
+          Bloodloss: -0.25
+      bloodReferenceSolution:
+        reagents:
+          - ReagentId: DarkBlood
+            Quantity: 300
+    - type: Flammable
+      damage:
+        types:
+          Heat: 1.5
+    - type: PassiveDamage
+      allowedStates:
+        - Alive
+      damageCap: 20
+      damage:
+        groups:
+          Brute: -0.07
+          Burn: -0.07
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTypeTrigger
+            damageType: Blunt
+            damage: 400
+          behaviors:
+            - !type:GibBehavior {}
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                ShadekinShadow:
+                  min: 1
+                  max: 1
+        - trigger: !type:DamageTypeTrigger
+            damageType: Heat
+            damage: 1500
+          behaviors:
+            - !type:SpawnEntitiesBehavior
+              spawnInContainer: true
+              spawn:
+                Ash:
+                  min: 1
+                  max: 1
+                ShadekinShadow:
+                  min: 1
+                  max: 1
+            - !type:BurnBodyBehavior {}
+    - type: Barotrauma
+      protectionSlots:
+      - head
+      alternativeProtectionSlots:
+      - - outerClothing
+        - outerClothing2
+      damage:
+        types:
+          Blunt: 0.85 #per second, scales with pressure and other constants.
+          Heat: 0.1
+    - type: Fingerprint
+    - type: Blindable
+    - type: DarkenedVision
+    # Other
+    - type: Temperature
+      currentTemperature: 310.15
+      specificHeat: 42
+    - type: TemperatureDamage
+      heatDamageThreshold: 325
+      coldDamageThreshold: 260
+      coldDamage:
+        types:
+          Cold: 0.1 #per second, scales with temperature & other constants
+      heatDamage:
+        types:
+          Heat: 1.5 #per second, scales with temperature & other constants
+    - type: TemperatureSpeed
+      thresholds:
+        293: 0.8
+        280: 0.6
+        260: 0.4
+    - type: ThermalRegulator
+      metabolismHeat: 800
+      radiatedHeat: 100
+      implicitHeatRegulation: 500
+      sweatHeatRegulation: 2000
+      shiveringHeatRegulation: 2000
+      normalBodyTemperature: 310.15
+      thermalRegulationTemperatureThreshold: 2
+    - type: Perishable
+    - type: Butcherable
+      butcheringType: Spike
+      spawned:
+        - id: FoodMeat
+          amount: 5
+    - type: FireVisuals
+      alternateState: Standing
+    - type: UniversalHealModifier
+      modifier: 0.5
+    - type: Sprite
+      layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+      - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+      - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+      - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+      - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+      - map: ["jumpsuit"]
+      - map: ["enum.HumanoidVisualLayers.LFoot"]
+      - map: ["enum.HumanoidVisualLayers.RFoot"]
+      - map: ["enum.HumanoidVisualLayers.LHand"]
+      - map: [ "outerClothing2" ] # FH
+      - map: ["enum.HumanoidVisualLayers.RHand"]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "eyes" ]
+      - map: [ "outerClothing" ]
+      - map: [ "belt" ]
+      - map: [ "id" ]
+      - map: [ "back" ]
+      - map: [ "neck" ]
+      - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "clownedon" ] # Dynamically generated
+        sprite: "Effects/creampie.rsi"
+        state: "creampie_human"
+        visible: false
+    - type: Tag
+      tags:
+        - CanPilot
+        - FootstepSound
+        - DoorBumpOpener
+        - AnomalyHost
+        - Protogen
+        - Shadekin
+        - ProtoKin
+        - SiliconEmotesFH
+        - NotLabelable
+
+- type: entity
+  save: false
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  id: AppearanceProtoKin
+  categories: [HideSpawnMenu]
+  description: A dummy protokin meant to be used in character setup.
+  components:
+    - type: HumanoidAppearance
+      species: ProtoKin

@@ -1,0 +1,290 @@
+- type: entity
+  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  id: BaseMobProtoVulp
+  name: Urist McVulpster
+  abstract: true
+  components:
+  - type: LanguageKnowledge
+    speaks:
+    - GalacticCommon
+    - Machine
+#    - Trinary # Starlight, no Trinary
+    - Canilunzt
+    understands:
+    - GalacticCommon
+    - Machine
+#    - Trinary # Starlight, no Trinary
+    - Canilunzt
+    - Fox
+    - Dog
+  - type: Wagging
+  - type: Hunger # on 1.5x more
+    thresholds:
+      Overfed: 250
+      Okay: 200
+      Peckish: 150
+      Starving: 100
+      Dead: 0
+    baseDecayRate: 0.018
+  - type: Thirst # Starlight start, on 1.5x more
+    thresholds:
+      OverHydrated: 650
+      Okay: 500
+      Thirsty: 350
+      Parched: 200
+      Dead: 0
+    baseDecayRate: 0.125
+  - type: TemperatureDamage # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
+    heatDamageThreshold: 325
+    coldDamageThreshold: 230
+    coldDamage:
+      types:
+        Cold : 0.05 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat : 1.75 #per second, scales with temperature & other constants
+  - type: Temperature # Ported over from CD. Afterall, it does make sense that something with fur can handle more cold/less heat. Basegame Moths, apparently, have similar resistances.
+    currentTemperature: 310.15
+    specificHeat: 46 # Starlight end
+  - type: TemperatureProtection
+    heatingCoefficient: 1.2
+    coolingCoefficient: 0.3
+  - type: Icon
+    sprite: _FarHorizons/Mobs/Species/Proto-Vulp/parts.rsi
+    state: full
+  - type: Damageable
+    damageContainer: Hybrid
+    damageModifierSet: ProtoVulp
+  - type: Body
+    prototype: ProtoVulp
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: ProtoVulp
+    hideLayersOnEquip:
+    - Snout
+    - SnoutCover
+    - HeadTop
+    - HeadSide
+    - FacialHair
+    - Hair
+  - type: Inventory
+    speciesId: vulpkanin #to be replaced with proto[species] when new sprites are made
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: head
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: outerClothing
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: shoes
+    femaleDisplacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: head
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: outerClothing
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: shoes
+  - type: ContentEye
+    targetZoom: "1.125, 1.125"
+    maxZoom: "1.125, 1.125"
+  - type: Vocal
+    sounds:
+      Male: ProtoVulpMSounds
+      Female: ProtoVulpFSounds
+      Unsexed: ProtoVulpMSounds
+  - type: MeleeWeapon # Starlight start
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 2
+        Slash: 3
+  - type: MessyDrinker
+    spillChance: 0.05 # 🌟Starlight🌟 26% chance to spill per 30u of liquid, Starlight end
+  - type: Sprite # Drawlayers. Top to bottom in order I believe.
+    netsync: false
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_vulpkanin"
+      visible: false
+
+- type: entity
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
+  id: AppearanceProtoVulp
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: ProtoVulp
+    hideLayersOnEquip:
+    - Snout
+    - SnoutCover
+    - HeadTop
+    - HeadSide
+    - FacialHair
+    - Hair
+  - type: Inventory
+    speciesId: vulpkanin #to be replaced with proto[species] when new sprites are made
+    displacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: head
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: outerClothing
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: shoes
+    femaleDisplacements:
+      head:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: head
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: outerClothing
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: jumpsuit
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Starlight/Mobs/Species/Vulpkanin/displacement.rsi
+            state: shoes
+  - type: Sprite # Drawlayers. Top to bottom in order I believe.
+    netsync: false
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FaceCoverCover" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCover" ]
+    - map: [ "enum.HumanoidVisualLayers.BodyCoverCover" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: [ "jumpsuit" ]
+    - map: [ "enum.HumanoidVisualLayers.LFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+    - map: [ "enum.HumanoidVisualLayers.LHand" ]
+    - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "outerClothing" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_vulpkanin"
+      visible: false

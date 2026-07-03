@@ -36,6 +36,7 @@
     whitelist:
       components:
       - GasTank
+      - CoolingUnit # Starlight - anywhere a Gas Tank should be allowed, a CoolingUnit should be allowed
 
 # for clothing that has a single item slot to insert and alt click out.
 # inheritors add a whitelisted slot named item

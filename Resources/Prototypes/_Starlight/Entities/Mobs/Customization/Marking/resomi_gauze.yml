@@ -3,7 +3,7 @@
   id: ResomiGauzeBlindfold
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -16,7 +16,7 @@
   id: ResomiGauzeHead
   bodyPart: Head
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -32,7 +32,7 @@
   id: ResomiLeftEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -45,7 +45,7 @@
   id: ResomiLeftEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -58,7 +58,7 @@
   id: ResomiRightEyePad
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -71,7 +71,7 @@
   id: ResomiRightEyePatch
   bodyPart: Eyes
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -87,7 +87,7 @@
   id: ResomiGauzeStomach
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -100,7 +100,7 @@
   id: ResomiGauzeShoulderRight
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -113,7 +113,7 @@
   id: ResomiGauzeShoulderLeft
   bodyPart: Chest
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -129,7 +129,7 @@
   id: ResomiGauzeLeftArm
   bodyPart: LArm
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -142,7 +142,7 @@
   id: ResomiGauzeRightArm
   bodyPart: RArm
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -158,7 +158,7 @@
   id: ResomiGauzeBoxerwrapRight
   bodyPart: RHand
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -171,7 +171,7 @@
   id: ResomiGauzeBoxerwrapLeft
   bodyPart: LHand
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -187,7 +187,7 @@
   id: ResomiGauzeLegRight
   bodyPart: RLeg
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -200,7 +200,7 @@
   id: ResomiGauzeLegLeft
   bodyPart: LLeg
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -216,7 +216,7 @@
   id: ResomiGauzeFootRight
   bodyPart: RFoot
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null
@@ -229,7 +229,7 @@
   id: ResomiGauzeFootLeft
   bodyPart: LFoot
   markingCategory: Overlay
-  speciesRestriction: [ Resomi ]
+  speciesRestriction: [ Resomi , ProtoResomi] #FH
   coloring:
     default:
       type: null

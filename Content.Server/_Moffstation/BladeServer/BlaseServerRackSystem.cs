@@ -8,7 +8,7 @@ namespace Content.Server._Moffstation.BladeServer;
 /// </summary>
 public sealed partial class BladeServerSystem : SharedBladeServerSystem
 {
-    [Dependency] private readonly InnerCableSystem _innerCable = default!;
+    [Dependency] private InnerCableSystem _innerCable = default!;
 
     protected override void SetSlotPower(Entity<BladeServerRackComponent> entity, BladeSlot slot, bool powered)
     {

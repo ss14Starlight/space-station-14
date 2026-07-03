@@ -23,19 +23,19 @@ public sealed partial class BatteryDrainerComponent : Component
     /// Conversion rate between joules in a device and joules added to battery.
     /// Should be very low since powercells store nothing compared to even an APC.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] /// imp add autonetwork
     public float DrainEfficiency = 0.001f;
 
     /// <summary>
     /// Time that the do after takes to drain charge from a battery, in seconds
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] /// imp add autonetwork
     public float DrainTime = 1f;
 
     /// <summary>
     /// Sound played after the doafter ends.
     /// </summary>
-    [DataField]
+    [DataField, AutoNetworkedField] /// imp add autonetwork
     public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks");
 
     // Far Horizons
@@ -43,12 +43,15 @@ public sealed partial class BatteryDrainerComponent : Component
     [DataField]
     public bool DisableHandInteraction = false;
 
-    // Starlight begin
     /// <summary>
-    /// Hard cap (in Joules) on how much can be drained from the source per do-after cycle.
-    /// 0 means no cap (vanilla behaviour). Keeps drain gradual regardless of target MaxSupply.
+    ///     Imp add. If true, will drain all of a battery.
     /// </summary>
-    [DataField]
-    public float MaxDrainPerTick = 0f;
-    // Starlight end
+    [DataField, AutoNetworkedField]
+    public bool FullDrain = false;
+
+    /// <summary>
+    ///     Imp add. Denotes the minimum amount of charge to drain.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float? MinimumDrain;
 }

@@ -14,14 +14,14 @@ using Content.Shared._Starlight.Camera; // Starlight | ES Screenshake
 
 namespace Content.Server.Damage.Systems;
 
-public sealed class DamageOtherOnHitSystem : SharedDamageOtherOnHitSystem
+public sealed partial class DamageOtherOnHitSystem : SharedDamageOtherOnHitSystem
 {
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly GunSystem _guns = default!;
-    [Dependency] private readonly Shared.Damage.Systems.DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
-    [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
-    [Dependency] private readonly ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private GunSystem _guns = default!;
+    [Dependency] private Shared.Damage.Systems.DamageableSystem _damageable = default!;
+    [Dependency] private SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private SharedColorFlashEffectSystem _color = default!;
+    [Dependency] private ScreenshakeSystem _shake = default!; // Starlight | ES Screenshake
 
     public override void Initialize()
     {

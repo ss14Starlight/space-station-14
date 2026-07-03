@@ -40,6 +40,16 @@
   equipment:
     head: ClothingHeadNurseHatOfLife
 
+- type: loadout
+  id: BrigmedicBeret
+  equipment:
+    head: ClothingHeadHatBeretBrigmedic
+
+- type: loadout
+  id: CorpsmanBeret
+  equipment:
+    head: ClothingHeadHatBeretCorpsman
+
 # Masks
 - type: loadout
   id: BrigmedicBreathMaskMedicalSecurity
@@ -51,6 +61,37 @@
   equipment:
     mask: ClothingMaskGasCorpsman
 
+# Jumpsuit
+- type: loadout
+  id: JumpsuitBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBrigmedic
+
+- type: loadout
+  id: JumpskirtBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBrigmedic
+
+- type: loadout
+  id: JumpsuitCorpsman
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCorpsman
+
+- type: loadout
+  id: JumpskirtCorpsman
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCorpsman
+
+# Formal Jumpsuits
+- type: loadout
+  id: FormalBrigmedicJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitFormalBrigmedic
+
+- type: loadout
+  id: FormalBrigmedicJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtFormalBrigmedic
 
 # Veteran Jumpsuits
 - type: loadout
@@ -68,6 +109,23 @@
         proto: VeteranBrigmedic
   equipment:
     jumpsuit: ClothingUniformJumpskirtCorpsmanTrauma
+
+# Senior Jumpsuits
+- type: loadout
+  id: SeniorBrigmedicJumpsuit
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorBrigmedic
+
+- type: loadout
+  id: SeniorBrigmedicJumpskirt
+  effects:
+    - !type:GroupLoadoutEffect
+        proto: VeteranBrigmedic
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorBrigmedic
 
 # Skilled Jumpsuits
 - type: loadout
@@ -102,6 +160,48 @@
   equipment:
     back: ClothingBackpackDuffelCorpsman
 
+- type: loadout
+  id: BrigmedicBackpack
+  equipment:
+    back: ClothingBackpackBrigmedic
+
+- type: loadout
+  id: BrigmedicSatchel
+  equipment:
+    back: ClothingBackpackSatchelBrigmedic
+
+- type: loadout
+  id: BrigmedicDuffel
+  equipment:
+    back: ClothingBackpackDuffelBrigmedic
+
+# Belt
+- type: loadout
+  id: BrigmedicBelt
+  equipment:
+    belt: ClothingBeltBrigmedicFilled
+
+- type: loadout
+  id: BrigmedicRig
+  equipment:
+    belt: ClothingBeltBrigmedicWebFilled
+
+- type: loadout
+  id: CorpsmanBelt
+  equipment:
+    belt: ClothingBeltCorpsmanFilled
+
+# Gloves
+- type: loadout
+  id: Nitrile
+  equipment:
+    gloves: ClothingHandsGlovesNitrile
+
+- type: loadout
+  id: BlackNitrile
+  equipment:
+    gloves: ClothingHandsGlovesBlackNitrile
+
 # Outer clothing
 - type: loadout
   id: BrigmedicLabCoat
@@ -115,6 +215,27 @@
         proto: VeteranBrigmedic
   equipment:
     outerClothing: ClothingOuterCoatLabCorpsman
+
+- type: loadout
+  id: BrigmedicCoat
+  equipment:
+    outerClothing: ClothingOuterCoatAMG
+
+- type: loadout
+  id: CorpsmanCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCorpsman
+
+- type: loadout
+  id: BrigmedicGlasses
+  equipment:
+    eyes: ClothingEyesGlassesBrigmedic
+
+- type: loadout
+  id: BrigmedicHud
+  equipment:
+    eyes: ClothingEyesHudBrigmedic
+
 
 # Eyewear
 - type: loadout

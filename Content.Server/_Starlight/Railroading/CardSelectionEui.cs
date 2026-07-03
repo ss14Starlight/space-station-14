@@ -1,14 +1,14 @@
 using System.Linq;
-using Content.Server._Starlight.Railroading;
 using Content.Server.EUI;
 using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
 using Content.Shared.Eui;
 
-namespace Content.Server.Ghost.Roles.UI;
+namespace Content.Server._Starlight.Railroading;
 
-public sealed class CardSelectionEui : BaseEui
+public sealed partial class CardSelectionEui : BaseEui
 {
-    [Dependency] private readonly IEntitySystemManager _systems = default!;
+    [Dependency] private IEntitySystemManager _systems = default!;
     public required Entity<RailroadableComponent> Subject { get; init; }
 
     public CardSelectionEui() => IoCManager.InjectDependencies(this);

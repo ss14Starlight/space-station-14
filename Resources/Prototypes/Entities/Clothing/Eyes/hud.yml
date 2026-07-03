@@ -14,6 +14,9 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
+    damageContainers: # Starlight start
+    - Biological
+    - Hybrid # Starlight end, Protogens
   - type: ShowHealthIcons
 
 - type: entity
@@ -31,6 +34,7 @@
     - Inorganic
     - Silicon
     - IPC # SL
+    - Hybrid # Starlight
   - type: ShowAccessReaderSettings
 
 - type: entity
@@ -194,6 +198,7 @@
     - Biological
     - Inorganic
     - IPC # SL
+    - Hybrid # Starlight
   - type: ShowSyndicateIcons
 
 - type: entity
@@ -211,6 +216,7 @@
     - Biological
     - Inorganic
     - IPC # SL
+    - Hybrid # Starlight
   - type: ShowHungerIcons
   - type: ShowThirstIcons
   - type: ShowSyndicateIcons
@@ -243,7 +249,10 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-  - type: SolutionScanner #starlight
+    damageContainers: # Starlight start
+    - Biological
+    - Hybrid # Protogens
+  - type: SolutionScanner # Starlight end
   - type: Tag
     tags:
     - PetWearable

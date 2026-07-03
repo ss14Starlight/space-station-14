@@ -15,6 +15,7 @@
   source: "https://linktr.ee/nahupyrope"
 
 - files:
+  - oubliette-loop.ogg
   - projectile_razor_hit.ogg
   - projectile_razor_reload.ogg
   - projectile_razor.ogg

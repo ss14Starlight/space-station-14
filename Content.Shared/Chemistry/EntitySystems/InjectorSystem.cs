@@ -32,17 +32,17 @@ namespace Content.Shared.Chemistry.EntitySystems;
 /// <seealso cref="InjectorModePrototype"/>
 public sealed partial class InjectorSystem : EntitySystem
 {
-    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedForensicsSystem _forensics = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
-    [Dependency] private readonly StandingStateSystem _standingState = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedForensicsSystem _forensics = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private OpenableSystem _openable = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ReactiveSystem _reactiveSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private StandingStateSystem _standingState = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     public override void Initialize()
     {
@@ -561,9 +561,19 @@ public sealed partial class InjectorSystem : EntitySystem
         }
 
         var applicableTargetSolution = targetSolution.Comp.Solution;
-        // If a whitelist exists, remove all non-whitelisted reagents from the target solution temporarily
+        var reagentWhitelist = injector.Comp.ReagentWhitelist;
+
+        // Check for whitelist, if the solution does not contain anything on the whitelist return false before going further.
+        if (reagentWhitelist is not null && !reagentWhitelist.Any(reagent => applicableTargetSolution.ContainsPrototype(reagent)))
+        {
+            var msg = target.Owner == user ? "injector-component-cannot-draw-message-self" : "injector-component-cannot-draw-message";
+            _popup.PopupClient(Loc.GetString(msg, ("target", Identity.Entity(target.Owner, EntityManager))), injector.Owner, user);
+            return false;
+        }
+
+        // remove all non-whitelisted reagents from the target solution temporarily.
         var temporarilyRemovedSolution = new Solution();
-        if (injector.Comp.ReagentWhitelist is { } reagentWhitelist)
+        if (reagentWhitelist is not null)
         {
             temporarilyRemovedSolution = applicableTargetSolution.SplitSolutionWithout(applicableTargetSolution.Volume, reagentWhitelist.ToArray());
         }

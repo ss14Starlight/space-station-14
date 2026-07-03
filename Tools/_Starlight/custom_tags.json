@@ -18,6 +18,7 @@
         "!type:ActionHivemindAccessEvent mapping",
         "!type:ActionLesserFormEvent mapping",
         "!type:ActionSpacesuitEvent mapping",
+        "!type:ActionProtogenDisguiseEvent mapping",
         "!type:ActivateImplantEvent mapping",
         "!type:ActivateWireAction mapping",
         "!type:ActiveHandComponentPrecondition mapping",

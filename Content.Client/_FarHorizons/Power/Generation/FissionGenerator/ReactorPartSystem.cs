@@ -4,10 +4,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._FarHorizons.Power.Generation.FissionGenerator;
 
-public sealed class ReactorPartSystem : EntitySystem
+public sealed partial class ReactorPartSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
