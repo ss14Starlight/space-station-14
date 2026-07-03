@@ -1,17 +1,19 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by musikly (discord)",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Sprited by musikly (discord)"
     },
     {
       "name": "equipped-HAND",
+      "copyright": "Sprited by musikly (discord)",
       "directions": 4
     }
   ]

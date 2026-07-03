@@ -1,20 +1,23 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "sprites based on https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068. power cells edited by EmoGarbage404 json restructured by scarletlightweaver_ss14 for starlight",
+  "copyright": "State based copyright",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "combat"
+      "name": "combat",
+      "copyright": "sprites based on https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068. power cells edited by EmoGarbage404"
     },
     {
-      "name": "o1"
+      "name": "o1",
+      "copyright": "sprites based on https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068. power cells edited by EmoGarbage404"
     },
     {
-      "name": "o2"
+      "name": "o2",
+      "copyright": "sprites based on https://github.com/vgstation-coders/vgstation13/commit/1dbcf389b0ec6b2c51b002df5fef8dd1519f8068. power cells edited by EmoGarbage404"
     }
   ]
 }
