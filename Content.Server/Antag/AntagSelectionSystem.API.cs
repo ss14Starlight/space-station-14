@@ -697,9 +697,9 @@ public sealed partial class AntagSelectionSystem
     /// <summary>
     /// Returns a list of AntagSelectionDefinitions that this session has been preselected for
     /// </summary>
-    public List<AntagSelectionComponent> GetPreSelectedAntagDefinitions(ICommonSession session)
+    public Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>> GetPreSelectedAntagDefinitions(ICommonSession session)
     {
-        var result = new List<AntagSelectionComponent>();
+        var result = new Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>>();
         var query = QueryAllRules();
         while (query.MoveNext(out var uid, out var comp, out _))
         {
@@ -709,7 +709,7 @@ public sealed partial class AntagSelectionSystem
             foreach (var def in comp.PreSelectedSessions)
             {
                 if (comp.PreSelectedSessions.TryGetValue(def.Key, out var set) && set.Contains(session))
-                    result.Add(comp);
+                    result.Add(def.Key, set);
             }
         }
 
