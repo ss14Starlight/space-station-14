@@ -1,11 +1,14 @@
 - type: playTimeTracker
   id: JobBrigmedic
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobRoboticist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobDutyOfficer
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobMagistrate
@@ -30,12 +33,15 @@
 
 - type: playTimeTracker
   id: JobMiningSpecialist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobSurgeon
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobMailTech
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobSalvageLead
@@ -63,12 +69,15 @@
 
 - type: playTimeTracker
   id: JobPerformer
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobBoxer
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobZookeeper
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobNanotrasenCareerTrainer

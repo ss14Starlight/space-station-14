@@ -6,36 +6,44 @@
 # Jobs
 - type: playTimeTracker
   id: JobAssistant
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobAtmosphericTechnician
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobBartender
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker # Used as a tracker for all borgs and midround borging.
   id: JobBorg
 
 - type: playTimeTracker
   id: JobBotanist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobCaptain
 
 - type: playTimeTracker
   id: JobCargoTechnician
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobCentralCommandOfficial
 
 - type: playTimeTracker
   id: JobChaplain
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobChef
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobChemist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobChiefEngineer
@@ -45,9 +53,11 @@
 
 - type: playTimeTracker
   id: JobClown
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobDetective
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobERTChaplain
@@ -81,69 +91,88 @@
 
 - type: playTimeTracker
   id: JobJanitor
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobLawyer
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobLibrarian
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobMedicalDoctor
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobMedicalIntern
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobMime
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobMusician
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobPassenger
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobParamedic
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobPsychologist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobQuartermaster
 
 - type: playTimeTracker
   id: JobReporter
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobResearchAssistant
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobResearchDirector
 
 - type: playTimeTracker
   id: JobSalvageSpecialist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobScientist
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobSecurityCadet
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobSecurityOfficer
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobServiceWorker
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobStationAi
 
 - type: playTimeTracker
   id: JobStationEngineer
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobTechnicalAssistant
+  isHumanoid: true #SL Edit
 
 - type: playTimeTracker
   id: JobVisitor
