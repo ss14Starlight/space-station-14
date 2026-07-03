@@ -195,7 +195,7 @@
   id: RandomHumanoidSpawnerNTSFPrimus
   name: NTSF Primus Operative
   description: Used as the primary strike team for any and all operations.
-  suffix: NTSF, Primus, AllPurpose
+  suffix: AllPurpose
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -235,7 +235,7 @@
   id: RandomHumanoidSpawnerNTSFSecundus
   name: NTSF Secundus Operative
   description: Used as general backup in situations where other NTSF teams have fallen.
-  suffix: NTSF, Secundus, Backup
+  suffix: Backup
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -275,7 +275,7 @@
   id: RandomHumanoidSpawnerNTSFTertius
   name: NTSF Tertius Operative
   description: Used to conduct repossession operations to recover lost assets.
-  suffix: NTSF, Tertius, Repossession
+  suffix: Repossession
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -315,8 +315,8 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFQuartus
   name: NTSF Quartus Operative
-  description: Used to protect dangerous and anomalous assets.
-  suffix: NTSF, Quartus, Anomaly
+  description: Used to guard dangerous and anomalous assets in containment.
+  suffix: Anomaly
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -356,7 +356,7 @@
   id: RandomHumanoidSpawnerNTSFQuintus
   name: NTSF Quintus Operative
   description: Used to conduct raids and eliminate enemy targets.
-  suffix: NTSF, Quintus, Raiders
+  suffix: Raiders
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -396,7 +396,7 @@
   id: RandomHumanoidSpawnerNTSFSextus
   name: NTSF Sextus Operative
   description: Used to kill anomalies, gods, cults, and other phenomena that is deemed magical.
-  suffix: NTSF, Sextus, Occult
+  suffix: Occult
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -440,7 +440,7 @@
   id: RandomHumanoidSpawnerNTSFSeptimus
   name: NTSF Septimus Operative
   description: Used to kill zombies, xenos, and all forms of pests and monsters.
-  suffix: NTSF, Septimus, Pests
+  suffix: PestControl
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -481,7 +481,7 @@
   id: RandomHumanoidSpawnerNTSFOctavius
   name: NTSF Octavius Operative
   description: Used to bust unions and kill communist scum.
-  suffix: NTSF, Octavius, Union
+  suffix: UnionBusters
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
@@ -521,7 +521,7 @@
   id: RandomHumanoidSpawnerNTSFNonus
   name: NTSF Nonus Operative
   description: Used to conduct assassinations and stealth operations.
-  suffix: NTSF, Nonus, Assassination
+  suffix: Assassination
   components:
     - type: Sprite
       sprite: _Starlight/Markers/jobs.rsi
