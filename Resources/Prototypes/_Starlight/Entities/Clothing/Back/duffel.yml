@@ -101,7 +101,7 @@
   parent: [ClothingBackpackDuffel, BaseMinorContraband]
   id: ClothingBackpackDuffelSyndicateDeluxe
   name: deluxe syndicate duffel bag
-  description: A huge duffel bag for holding an obscene amount of traitor goods.
+  description: A huge duffel bag for holding an obscene amount of syndicate goods.
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/syndicate.rsi
