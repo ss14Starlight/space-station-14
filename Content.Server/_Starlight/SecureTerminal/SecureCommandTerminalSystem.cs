@@ -532,6 +532,10 @@ public sealed partial class SecureCommandTerminalSystem : EntitySystem
             ? proposal.Requester
             : stationComp.DeployedArmoryRequesters.GetValueOrDefault(msg.RequestId, EntityUid.Invalid);
 
+        // If the recall is an armory recall, recall the armory.
+        if (proto.ArmoryKey != null)
+            _armory.RecallArmory(stationUid.Value, proto.ArmoryKey);
+
         stationComp.ActiveProposals.Remove(msg.RequestId);
         stationComp.DeployedArmories.Remove(msg.RequestId);
         stationComp.DeployedArmoryRequesters.Remove(msg.RequestId);

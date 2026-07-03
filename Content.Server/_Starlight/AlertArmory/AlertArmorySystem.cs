@@ -218,6 +218,9 @@ public sealed partial class AlertArmorySystem : EntitySystem
         if (xform.MapUid == shuttleComp.ArmorySpaceUid)
             return false;
 
+        // Clean up any lingering FTLComponent (which tracks the active cooldown) so that FTL can start immediately if recalled.
+        RemComp<FTLComponent>(shuttle);
+
         _shuttles.FTLToCoordinates(
             shuttle,
             Comp<ShuttleComponent>(shuttle),
