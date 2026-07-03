@@ -72,7 +72,7 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
         }
         else
         {
-            args.Entity = Spawn(species.Prototype);
+            args.Entity = Spawn(species.Prototype, args.Coords);
             _humanoid.LoadProfile(args.Entity.Value, profile?.WithSpecies(species.ID));
         }
 
