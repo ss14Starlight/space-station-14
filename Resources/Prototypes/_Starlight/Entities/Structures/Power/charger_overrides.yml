@@ -1,3 +1,0 @@
-# Starlight: bluespace cell charger restriction is now handled in
-#             Content.Server/_Starlight/Clothing/Systems/BluespaceCapacitorBatterySystem.cs
-#             via ContainerIsInsertingAttemptEvent on ChargerComponent.
