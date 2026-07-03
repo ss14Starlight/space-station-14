@@ -876,7 +876,7 @@
   id: MagazineGrenade # ShuttleGunDuster
 
 - type: Tag
-  id: MagazineLightRifle # WeaponRifleAk
+  id: MagazineLightRifle # WeaponRifleAk, WeaponRifleLawbringer
 
 - type: Tag
   id: MagazineLightRifleBox # WeaponLightMachineGunL6
@@ -900,7 +900,7 @@
   id: MagazinePistolSubMachineGunTopMounted # WeaponSubMachineGunWt550
 
 - type: Tag
-  id: MagazineRifle # WeaponRifleLecter, WeaponRifleEstoc, WeaponRifleM90GrenadeLauncher
+  id: MagazineRifle # WeaponRifleLecter, WeaponRifleEstoc
 
 - type: Tag
   id: MagazineShotgun # WeaponShotgunBulldog

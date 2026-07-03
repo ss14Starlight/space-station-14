@@ -104,11 +104,16 @@
           - !type:PlayerCountCondition
             min: 40
           - !type:MaxRuleOccurenceCondition
+        - id: Devil
+          prob: 0.05
+          conditions:
+          - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
       # Dynamic Multiantag, can spawn at the start, or midround. This is the actual intended purpose of Dynamic. Exciting, no? Run across the sky!
       - !type:GroupSelector
         children:
         - id: TraitorLess
-          weight: 21
+          weight: 20
           prob: 0.50 # Have a 50% chance to fail to add the gamemode, even if it wins the roll. Mostly a failsafe so the actual midrounds can trigger, but also to stop them from always rolling even if cost rolls high. We don't want things to be predictable, no?
           conditions:
           - !type:HasBudgetCondition
@@ -162,7 +167,7 @@
           - !type:PlayerCountCondition
             min: 50
         - id: ThiefLess
-          weight: 10
+          weight: 8
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
@@ -180,7 +185,7 @@
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
         - id: SiliconLiberation
-          weight: 10
+          weight: 8
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
@@ -192,6 +197,12 @@
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
             min: 40
+          - !type:MaxRuleOccurenceCondition
+        - id: Devil
+          weight: 5
+          prob: 0.50
+          conditions:
+          - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
       # Midround rules
       - !type:GroupSelector

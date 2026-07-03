@@ -558,3 +558,49 @@
   - type: Tag
     tags:
     - ForceableFollow
+
+- type: entity
+  name: Lawbringer
+  parent: [BaseWeaponRifle, BaseSecurityContraband]
+  id: WeaponRifleLawbringer
+  description: "A bullpup carbine of modern design, commissioned by CentCom for their security forces.\nFeeds from .30 rifle magazines."
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lawbringer.rsi
+    layers:
+    - state: base
+      map: [ "enum.GunVisualLayers.Base" ]
+    - state: mag-0
+      map: [ "enum.GunVisualLayers.Mag" ]
+  - type: Gun
+    fireRate: 4.7
+  - type: Clothing
+    sprite: _Starlight/Objects/Weapons/Guns/Rifles/lawbringer.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleSP
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot ""
+      gun_chamber: !type:ContainerSlot ""
+      firing_pin: !type:Container # starlight
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
