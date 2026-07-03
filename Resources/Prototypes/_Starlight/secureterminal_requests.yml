@@ -199,13 +199,11 @@
   authGroups:
     - [Captain, HeadOfSecurity, Ntrep]
     - [Captain, HeadOfSecurity, Ntrep]
-    - [Captain, HeadOfSecurity, Ntrep]
   authGroupLabels:
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
-    - "Captain / HoS / NTR (3)"
   cooldownSecs: 900
-  authTimer: 180 # 3 Minutes; 1 minute per person.
+  authTimer: 120 # 2 Minutes; 1 minute per person.
 
 # ── Code PSI ──────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
@@ -270,13 +268,11 @@
   authGroups:
     - [Captain, HeadOfSecurity, Ntrep]
     - [Captain, HeadOfSecurity, Ntrep]
-    - [Captain, HeadOfSecurity, Ntrep]
   authGroupLabels:
     - "Captain / HoS / NTR (1)"
     - "Captain / HoS / NTR (2)"
-    - "Captain / HoS / NTR (3)"
   cooldownSecs: 0
-  authTimer: 180 # 3 Minutes; 1 minute per person.
+  authTimer: 120 # 2 Minutes; 1 minute per person.
 
 # ── End Violet ─────────────────────────────────────────────────────────────────
 - type: secureTerminalRequest
