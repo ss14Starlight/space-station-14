@@ -162,6 +162,14 @@ namespace Content.Shared.Roles
 
         [DataField]
         public bool Whitelisted;
+		
+		/// Starlight Start
+		/// <summary>
+		/// Used for the New Player Icon system to tell if someone is new to their job.
+		/// </summary>
+		[DataField]
+        public string? NewToJobInfo;
+		/// Starlight End
 
         /// <summary>
         /// Optional list of guides associated with this role. If the guides are opened, the first entry in this list
