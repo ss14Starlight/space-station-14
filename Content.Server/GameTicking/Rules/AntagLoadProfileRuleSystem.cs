@@ -63,7 +63,7 @@ public sealed partial class AntagLoadProfileRuleSystem : GameRuleSystem<AntagLoa
         {
             if (!Proto.Resolve(profile.ForcedPrototype, out var forcedProto))
                 throw new ArgumentException($"Could not find ${profile.ForcedPrototype} prototype for spawn rule.");
-            args.Entity = Spawn(profile.ForcedPrototype);
+            args.Entity = Spawn(profile.ForcedPrototype, args.Coords);
             var resolvedEntity = (EntityUid)args.Entity;
             var grammar = EntityManager.EnsureComponent<GrammarComponent>(resolvedEntity);
             _grammarSystem.SetGender((resolvedEntity, grammar), profile.Gender);
