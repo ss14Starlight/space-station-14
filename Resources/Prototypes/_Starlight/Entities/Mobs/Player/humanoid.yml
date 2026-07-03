@@ -520,7 +520,7 @@
 - type: entity
   id: RandomHumanoidSpawnerNTSFNonus
   name: NTSF Nonus Operative
-  description: Used to conduct assassinations and steath operations.
+  description: Used to conduct assassinations and stealth operations.
   suffix: NTSF, Nonus, Assassination
   components:
     - type: Sprite
