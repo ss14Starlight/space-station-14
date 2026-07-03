@@ -9,7 +9,7 @@ public sealed partial class GenesComponent : Component
     /// <summary>
     /// The list of genes that this entity currently has.
     /// </summary>
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public List<Gene> Genes = new();
 
     /// <summary>

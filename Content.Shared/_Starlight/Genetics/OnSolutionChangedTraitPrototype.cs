@@ -10,10 +10,10 @@ namespace Content.Shared._Starlight.Genetics;
 public sealed partial class OnSolutionChangedTraitPrototype : AbstractTraitPrototype
 {
     /// <summary>
-    /// What occurs when this entity receives some specific reagent.
-    /// Each entry is a reagent reaction, consisting of the requirements and then the response
+    /// What occurs when this entity receives some solution recipe. The recipe is specified in the extract reaction
+    /// itself.
     /// </summary>
     [ViewVariables]
     [DataField(required: true)]
-    public ScaledEntityEffect EntityEffect = new();
+    public ProtoId<ExtractReactionPrototype> ExtractReaction = new();
 }

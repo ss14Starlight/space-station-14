@@ -30,8 +30,8 @@ public sealed partial class ExtractReactionPrototype : IPrototype
     /// <summary>
     /// Whether the extract should be deleted upon this reaction occuring.
     /// </summary>
-    [DataField("shouldDelete", required: true)]
-    public bool ShouldDelete = default!;
+    [DataField("shouldDelete")]
+    public bool ShouldDelete = false;
 
     /// <summary>
     /// If nonzero, how long until the effect actually occurs.

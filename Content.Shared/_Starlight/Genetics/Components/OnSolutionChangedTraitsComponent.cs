@@ -7,7 +7,7 @@ namespace Content.Shared._Starlight.Genetics.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class OnSolutionChangedTraitsComponent : Component
 {
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public Dictionary<ProtoId<OnSolutionChangedTraitPrototype>, FixedPoint2> Traits = new();
 
     /// <summary>
