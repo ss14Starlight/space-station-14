@@ -95,6 +95,10 @@ public sealed class BatteryDrainerSystem : SharedBatteryDrainerSystem
         // higher tier storages can charge more
         var maxDrained = pnb.MaxSupply * comp.DrainTime;
         var input = Math.Min(Math.Min(available, required / comp.DrainEfficiency), maxDrained);
+        // Starlight begin - cap per-tick drain for gradual transfer (e.g. capacitor gloves)
+        if (comp.MaxDrainPerTick > 0f)
+            input = Math.Min(input, comp.MaxDrainPerTick);
+        // Starlight end
         if (!_battery.TryUseCharge((target, targetBattery), input))
             return false;
 

@@ -1,5 +1,14 @@
 # Traitor single items
 
+# Starlight begin — capacitor gloves
+- type: stealTargetGroup
+  id: CapacitorGloves
+  name: steal-target-groups-capacitor-gloves
+  sprite:
+    sprite: _Starlight/Clothing/Hands/Gloves/capacitor_gloves.rsi
+    state: icon
+# Starlight end
+
 - type: stealTargetGroup
   id: RDDiplomaSteal
   name: steal-target-groups-rddiploma

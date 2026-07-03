@@ -1,0 +1,54 @@
+# this is made for CEs special gloves. capacitor gloves .
+- type: entity
+  id: PowerCellBluespace
+  name: bluespace power cell
+  description: A dense bluespace-folded energy cell. Far too energetic for conventional devices. Inserting it into any powered tool or weapon will violently overcharge them, drain every joule, and send an arc of electricity outward. Fits only in capacitor gloves.
+  parent: BaseItem
+  components:
+  - type: Item
+    storedRotation: -90
+  - type: Battery
+    maxCharge: 65000
+    startingCharge: 65000
+    pricePerJoule: 0.4
+  - type: PowerCell
+  - type: Tag
+    tags:
+    - BluespaceCell
+  - type: Sprite
+    sprite: _Starlight/Objects/Power/bluespace_cell.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: combat
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Appearance
+  - type: BatteryVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.BatteryVisuals.State:
+        enum.PowerCellVisualLayers.Unshaded:
+          Full: { visible: true, state: o2 }
+          Neither: { visible: true, state: o1 }
+          Empty: { visible: false }
+  - type: BluespaceCapacitorBattery
+  - type: EmpImmune
+  - type: StaticPrice
+    price: 250
+
+- type: entity
+  parent: PowerCellBluespace
+  id: PowerCellBluespaceEmpty
+  suffix: Empty
+  components:
+  - type: Battery
+    startingCharge: 0
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: combat
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+      visible: false

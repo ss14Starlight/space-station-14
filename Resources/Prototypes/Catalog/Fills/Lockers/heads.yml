@@ -254,6 +254,10 @@
         presets: #SL
         - Greenshift #SL
         - Sandbox #SL
+    # Starlight begin - capacitor gloves + bluespace cell
+    - id: ClothingHandsGlovesCapacitor
+    - id: PowerCellBluespace
+    # Starlight end
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

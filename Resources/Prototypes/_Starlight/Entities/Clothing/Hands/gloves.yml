@@ -166,3 +166,39 @@
     sprite: _Starlight/Clothing/Hands/Gloves/elegantmaidgloves.rsi
   - type: Fiber
     fiberColor: fibers-white
+
+- type: entity
+  parent: [ ClothingHandsBase, BaseEngineeringContraband ]
+  id: ClothingHandsGlovesCapacitor
+  name: capacitor gloves
+  description: >
+    A pair of insulated engineering gloves with a miniaturized bluespace power storage woven into the
+    knuckle-plate. Slot in a power cell, then hand-interact with any APC, substation, or SMES to flood
+    the cell with charge. Rated for punishment. Do not lick.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Hands/Gloves/capacitor_gloves.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Hands/Gloves/capacitor_gloves.rsi
+  - type: Fiber
+    fiberMaterial: fibers-insulative
+    fiberColor: fibers-yellow
+  - type: Insulated
+  - type: FingerprintMask
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+            - BluespaceCell
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: CapacitorGloves
+  - type: StealTarget
+    stealGroup: CapacitorGloves

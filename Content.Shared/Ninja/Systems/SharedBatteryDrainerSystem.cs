@@ -59,6 +59,23 @@ public abstract class SharedBatteryDrainerSystem : EntitySystem
         ent.Comp.BatteryUid = battery;
         Dirty(ent, ent.Comp);
     }
+
+    // Starlight begin
+    /// <summary>
+    /// Updates the drain efficiency, drain time, and per-tick cap on a dynamically-added drainer.
+    /// Called by external systems that add <see cref="BatteryDrainerComponent"/> at runtime
+    /// (e.g. capacitor gloves equip).
+    /// </summary>
+    public void SetDrainConfig(Entity<BatteryDrainerComponent?> ent, float drainEfficiency, float drainTime, float maxDrainPerTick = 0f)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        ent.Comp.DrainEfficiency = drainEfficiency;
+        ent.Comp.DrainTime = drainTime;
+        ent.Comp.MaxDrainPerTick = maxDrainPerTick;
+    }
+    // Starlight end
 }
 
 /// <summary>

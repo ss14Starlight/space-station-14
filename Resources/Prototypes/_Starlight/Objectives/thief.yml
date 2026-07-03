@@ -219,6 +219,18 @@
   - type: Objective
     difficulty: 1.1
 
+# Starlight begin — capacitor gloves
+- type: entity
+  parent: [BaseThiefStealObjective, BaseThiefEngineeringStealObjective]
+  id: CapacitorGlovesStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: CapacitorGloves
+    owner: job-name-ce
+  - type: Objective
+    difficulty: 2.5
+# Starlight end
+
 # Thief Collection
 # Various crewmonitors
 - type: entity
