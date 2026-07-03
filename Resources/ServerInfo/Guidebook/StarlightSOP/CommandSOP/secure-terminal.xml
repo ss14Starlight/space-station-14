@@ -32,7 +32,7 @@ All Keycard Authentication Devices on the station are identical; they are not ti
 
 Each [color=#ffd700]Main Communications Console[/color] and each [color=#ffd700]Keycard Authentication Device[/color] can only contribute [bold]one authorization per request[/bold]. Once a device has been used to authorise a proposal, it is locked out for that request; a second person cannot use the same device to co-authorize and will need to find a different [color=#ffd700]Keycard Authentication Device[/color] or [color=#ffd700]Main Communications Console[/color].
 
-Once all required co-authorizations are collected, the terminal begins its activation countdown. The request will then activate automatically when the timer runs out, unless it requires approval from Central Command. 
+Once all required co-authorizations are collected, the terminal begins its activation countdown. The request will then activate automatically when the timer runs out, unless it requires approval from Central Command.
 
 If the timer for collecting co-authorizations runs out before everyone has authorized, the proposal is cancelled and any held fee is refunded. As a general rule, you have roughly [bold]one minute per required authorizer[/bold] to get everyone to co-authorize.
 
