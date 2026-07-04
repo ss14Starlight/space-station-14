@@ -419,7 +419,7 @@ public sealed partial class ChatUIController : UIController
             }
 
             if (chat.Main)
-                fallback = chat;
+                fallback ??= chat;
         }
         fallback?.Focus(channel);
         // Starlight END
