@@ -695,25 +695,28 @@ public sealed partial class AntagSelectionSystem
 
     #region Starlight
     /// <summary>
-    /// Returns a list of AntagSelectionDefinitions that this session has been preselected for
+    /// Returns the antag specifier prototypes this session has been preselected for.
     /// </summary>
-    public Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>> GetPreSelectedAntagDefinitions(ICommonSession session)
+    [PublicAPI]
+    public IEnumerable<AntagSpecifierPrototype> GetPreSelectedAntagSpecifiers(ICommonSession session)
     {
-        var result = new Dictionary<ProtoId<AntagSpecifierPrototype>, HashSet<ICommonSession>>();
         var query = QueryAllRules();
         while (query.MoveNext(out var uid, out var comp, out _))
         {
             if (HasComp<EndedGameRuleComponent>(uid))
                 continue;
 
-            foreach (var def in comp.PreSelectedSessions)
+            foreach (var (protoId, sessions) in comp.PreSelectedSessions)
             {
-                if (comp.PreSelectedSessions.TryGetValue(def.Key, out var set) && set.Contains(session))
-                    result.Add(def.Key, set);
+                if (!sessions.Contains(session))
+                    continue;
+
+                if (!Proto.Resolve(protoId, out var proto))
+                    continue;
+
+                yield return proto;
             }
         }
-
-        return result;
     }
     #endregion
 }

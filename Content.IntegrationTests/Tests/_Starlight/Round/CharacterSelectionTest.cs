@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.Client.Lobby;
 using Content.Server.Antag;
+using Content.Shared.Antag;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
 using Content.Shared.CCVar;
@@ -9,6 +10,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
@@ -382,16 +384,20 @@ public sealed class CharacterSelectionTest
             Assert.That(ticker.PlayerGameStatuses[pair.Client.User!.Value], Is.EqualTo(PlayerGameStatus.JoinedGame));
             pair.AssertJob(data.ExpectedJob.ToString(), pair.Player!);
             var antagSystem = pair.Server.System<AntagSelectionSystem>();
-            var antags = antagSystem.GetPreSelectedAntagDefinitions(pair.Player);
+            var antags = antagSystem.GetPreSelectedAntagSpecifiers(pair.Player).ToArray();
             if (data.ExpectTraitor)
             {
-                Assert.That(antags.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.Count, Is.EqualTo(1));
-                Assert.That(antags.First().MindRoles.First(), Is.EqualTo("MindRoleTraitor"));
+                Assert.That(antags.Length, Is.EqualTo(1));
+
+                var antag = antags.First();
+
+                Assert.That(antag.MindRoles, Is.Not.Null);
+                Assert.That(antag.MindRoles!.Count, Is.EqualTo(1));
+                Assert.That(antag.MindRoles.First(), Is.EqualTo("MindRoleTraitor"));
             }
             else
             {
-                Assert.That(antags.Count, Is.EqualTo(0));
+                Assert.That(antags.Length, Is.EqualTo(0));
             }
             var humanoidAppearanceSystem = pair.Server.System<HumanoidAppearanceSystem>();
             var spawnedProfile = humanoidAppearanceSystem.GetBaseProfile(pair.Player!.AttachedEntity.Value);
