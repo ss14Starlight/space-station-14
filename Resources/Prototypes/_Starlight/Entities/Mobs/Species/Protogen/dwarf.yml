@@ -19,7 +19,6 @@
       0: Alive
       110: Critical
       220: Dead
-  - type: Absorbable
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
     state: full

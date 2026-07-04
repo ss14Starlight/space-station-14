@@ -19,7 +19,6 @@
       Male: ProtoDionaMSounds
       Female: ProtoDionaFSounds
       Unsexed: ProtoDionaMSounds
-  - type: Absorbable
   - type: Tag
     tags:
     - CanPilot

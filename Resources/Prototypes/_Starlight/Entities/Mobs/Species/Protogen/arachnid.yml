@@ -15,7 +15,6 @@
     - Machine
     - Chittin
   - type: IgnoreSpiderWeb
-  - type: Absorbable
   - type: Body
     prototype: ProtoArachnid
     requiredLegs: 2

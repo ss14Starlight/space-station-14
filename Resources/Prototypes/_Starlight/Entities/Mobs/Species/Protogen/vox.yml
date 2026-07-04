@@ -13,7 +13,6 @@
     - GalacticCommon
     - Machine
     - VoxPidgin
-  - type: Absorbable
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Vox/parts.rsi
     state: full

@@ -17,7 +17,6 @@
     - Mothroach
   - type: Jump
     action: JumpMoth
-  - type: Absorbable
   - type: HumanoidAppearance
     species: ProtoMoth
     hideLayersOnEquip:
