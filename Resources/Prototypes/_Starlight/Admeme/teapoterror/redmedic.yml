@@ -1,13 +1,13 @@
 - type: startingGear
-  id: BluMedicGear
+  id: RedMedicGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualBlue
-    gloves: ClothingHandsGlovesColorBlue
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    gloves: ClothingHandsGlovesColorRed
     shoes: ClothingShoesBootsCombat
     pocket1: HandheldHealthAnalyzer
     eyes: ClothingEyeGlassesMedicalPrescription
-    outerClothing: ClothingOuterCoatLabCmo
-    back: ClothingBackpackDuffelGenetics
+    outerClothing: ClothingOuterCoatRobo
+    back: ClothingBackpackDuffelSyndicateMedical
     inhand: Chainsaw
   storage:
     back:
@@ -34,3 +34,4 @@
     - MedicatedSuture
     - AntiPoisonMedipen
     - AntiPoisonMedipen
+    

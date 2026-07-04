@@ -1,7 +1,7 @@
 - type: startingGear
-  id: RedScoutGear
+  id: BluScoutGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformJumpsuitCasualBlue
     head: ClothingHeadHatBlacksoft
     neck: ClothingDogTags
     ears: ClothingHeadsetAltFreelancer
@@ -22,3 +22,4 @@
     - MagazinePistolSP
     - MagazinePistolSP
     - MagazinePistolSP 
+    

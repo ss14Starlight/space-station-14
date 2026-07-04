@@ -1,10 +1,11 @@
 - type: startingGear
-  id: BluHeavyGear
+  id: RedHeavyGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualBlue
+    jumpsuit: ClothingUniformJumpsuitCasualRed
     gloves: ClothingHandsKnuckleBoneCrushers
     outerClothing: ClothingOuterVestWeb
     shoes: ClothingShoesBootsCombat
     pocket1: FoodBurgerMcrib
     belt: ClothingBeltBandolier
     inhand: WeaponMinigun
+    

@@ -1,7 +1,7 @@
 - type: startingGear
-  id: RedHeavyGear
+  id: BluHeavyGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: ClothingUniformJumpsuitCasualBlue
     gloves: ClothingHandsKnuckleBoneCrushers
     outerClothing: ClothingOuterVestWeb
     shoes: ClothingShoesBootsCombat
