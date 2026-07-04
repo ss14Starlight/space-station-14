@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Content.Client.Lobby;
 using Content.Server.Antag;
-using Content.Shared.Antag;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
 using Content.Shared.CCVar;
@@ -10,7 +9,6 @@ using Content.Shared.GameTicking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
