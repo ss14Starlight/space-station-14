@@ -264,7 +264,8 @@ internal static class JobExtensions
     public static Dictionary<NetUserId, HumanoidCharacterProfile> AddJob(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp, ICommonSession session, string jobId, JobPriority prio = JobPriority.Medium)
     {
-        inp.Add(session.UserId, HumanoidCharacterProfile.Random().WithJobPriority(jobId, prio));
+        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority> {{ jobId, prio }}; // Starlight
+        inp.Add(session.UserId, HumanoidCharacterProfile.Random().WithJobPreferences(priorities.Keys)); // Starlight
 
         return inp;
     }
@@ -272,7 +273,8 @@ internal static class JobExtensions
     public static Dictionary<NetUserId, HumanoidCharacterProfile> AddPreference(
         this Dictionary<NetUserId, HumanoidCharacterProfile> inp, string jobId, JobPriority prio = JobPriority.Medium)
     {
-        return inp.ToDictionary(x => x.Key, x => x.Value.WithJobPriority(jobId, prio));
+        var priorities = new Dictionary<ProtoId<JobPrototype>, JobPriority> {{ jobId, prio }}; // Starlight
+        return inp.ToDictionary(x => x.Key, x => x.Value.WithJobPreferences(priorities.Keys));
     }
 
     public static Dictionary<NetUserId, HumanoidCharacterProfile> WithPlayers(

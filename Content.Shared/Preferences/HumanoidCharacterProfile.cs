@@ -40,15 +40,6 @@ namespace Content.Shared.Preferences
         [DataField]
         private HashSet<ProtoId<JobPrototype>> _jobPreferences = new() { SharedGameTicker.FallbackOverflowJob };
 
-        #region Starlight
-        // Technically this is from Wizden, but it's part of Visual Nubody, so I'm just taking what I need for the antag selection rewrite for now.
-        /// <summary>
-        /// Job priorities for each job.
-        /// </summary>
-        [DataField("_jobPriorities")]
-        private Dictionary<ProtoId<JobPrototype>, JobPriority> _jobPriorities = new();
-        #endregion
-
         /// <summary>
         /// Antags we have opted in to.
         /// </summary>
@@ -121,14 +112,6 @@ namespace Content.Shared.Preferences
         /// </summary>
         public IReadOnlySet<ProtoId<JobPrototype>> JobPreferences => _jobPreferences;
 
-        #region Starlight
-        // Technically this is from Wizden, but it's part of Visual Nubody, so I'm just taking what I need for the antag selection rewrite for now.
-        /// <summary>
-        /// <see cref="_jobPriorities"/>
-        /// </summary>
-        public IReadOnlyDictionary<ProtoId<JobPrototype>, JobPriority> JobPriorities => _jobPriorities;
-        #endregion
-
         /// <summary>
         /// <see cref="_antagPreferences"/>
         /// </summary>
@@ -158,7 +141,6 @@ namespace Content.Shared.Preferences
             HumanoidCharacterAppearance appearance,
             SpawnPriorityPreference spawnPriority,
             HashSet<ProtoId<JobPrototype>> jobPreferences,
-            Dictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities, // Starlight, but technically Wizden
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
@@ -184,7 +166,6 @@ namespace Content.Shared.Preferences
             Appearance = appearance;
             SpawnPriority = spawnPriority;
             _jobPreferences = jobPreferences;
-            _jobPriorities = jobPriorities; // Starlight, but technically Wizden
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
@@ -213,7 +194,6 @@ namespace Content.Shared.Preferences
                 other.Appearance.Clone(),
                 other.SpawnPriority,
                 new HashSet<ProtoId<JobPrototype>>(other.JobPreferences),
-                new Dictionary<ProtoId<JobPrototype>, JobPriority>(other.JobPriorities), // Starlight, but technically Wizden
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
@@ -403,62 +383,6 @@ namespace Content.Shared.Preferences
                 _jobPreferences = new HashSet<ProtoId<JobPrototype>>(jobPreferences),
             };
         }
-
-        #region Starlight
-        // Once again, these two are technically from Wizden, but I'm only porting what I need. Visual Nubody will finish this later.
-        public HumanoidCharacterProfile WithJobPriorities(IEnumerable<KeyValuePair<ProtoId<JobPrototype>, JobPriority>> jobPriorities)
-        {
-            var dictionary = new Dictionary<ProtoId<JobPrototype>, JobPriority>(jobPriorities);
-            var hasHighPrority = false;
-
-            foreach (var (key, value) in dictionary)
-            {
-                if (value == JobPriority.Never)
-                    dictionary.Remove(key);
-                else if (value != JobPriority.High)
-                    continue;
-
-                if (hasHighPrority)
-                    dictionary[key] = JobPriority.Medium;
-
-                hasHighPrority = true;
-            }
-
-            return new(this)
-            {
-                _jobPriorities = dictionary
-            };
-        }
-
-        public HumanoidCharacterProfile WithJobPriority(ProtoId<JobPrototype> jobId, JobPriority priority)
-        {
-            var dictionary = new Dictionary<ProtoId<JobPrototype>, JobPriority>(_jobPriorities);
-            if (priority == JobPriority.Never)
-            {
-                dictionary.Remove(jobId);
-            }
-            else if (priority == JobPriority.High)
-            {
-                // There can only ever be one high priority job.
-                foreach (var (job, value) in dictionary)
-                {
-                    if (value == JobPriority.High)
-                        dictionary[job] = JobPriority.Medium;
-                }
-
-                dictionary[jobId] = priority;
-            }
-            else
-            {
-                dictionary[jobId] = priority;
-            }
-
-            return new(this)
-            {
-                _jobPriorities = dictionary,
-            };
-        }
-        #endregion
 
         public HumanoidCharacterProfile WithJob(ProtoId<JobPrototype> jobId, bool include = true)
         {
