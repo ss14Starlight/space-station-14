@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/12/2026 03:21:39
-  entityCount: 10617
+  time: 07/02/2026 02:26:55
+  entityCount: 10618
 maps:
 - 1
 grids:
@@ -27373,7 +27373,6 @@ entities:
   - uid: 3322
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 35.5,-13.5
       parent: 2
   - uid: 3323
@@ -29997,6 +29996,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 20.5,14.5
       parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 3734
+    components:
+    - type: Transform
+      pos: 2.5,2.5
+      parent: 2
 - proto: ComputerShuttle
   entities:
   - uid: 10436
@@ -30557,7 +30563,7 @@ entities:
   - uid: 3717
     components:
     - type: Transform
-      pos: 2.5,2.5
+      pos: -0.5,-0.5
       parent: 2
 - proto: CrateSecurityTrackingMindshieldImplants
   entities:
@@ -30672,12 +30678,6 @@ entities:
       parent: 8834
 - proto: CryogenicSleepUnit
   entities:
-  - uid: 3734
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -0.5,-0.5
-      parent: 2
   - uid: 3735
     components:
     - type: Transform
@@ -30699,8 +30699,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -9.5,-4.5
       parent: 2
-- proto: CryogenicSleepUnitSpawnerLateJoin
-  entities:
   - uid: 3738
     components:
     - type: Transform
@@ -32685,6 +32683,11 @@ entities:
       rot: 3.141592653589793 rad
       pos: 12.5,-13.5
       parent: 2
+  - uid: 7731
+    components:
+    - type: Transform
+      pos: 4.5,16.5
+      parent: 2
   - uid: 9224
     components:
     - type: Transform
@@ -33405,10 +33408,10 @@ entities:
       parent: 8834
 - proto: DrinkWineBottleFull
   entities:
-  - uid: 4129
+  - uid: 4289
     components:
     - type: Transform
-      pos: 2.4440482,2.4109066
+      pos: 2.2103405,1.5442941
       parent: 2
 - proto: EmergencyLight
   entities:
@@ -34282,133 +34285,132 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
-- proto: FaxMachineBase
+- proto: FaxMachineCaptain
   entities:
-  - uid: 4272
+  - uid: 4282
     components:
     - type: Transform
-      pos: 12.5,21.5
+      pos: -3.5,1.5
       parent: 2
-  - uid: 4273
+- proto: FaxMachineCargo
+  entities:
+  - uid: 4286
     components:
     - type: Transform
-      pos: -6.5,21.5
+      pos: 16.5,7.5
       parent: 2
-    - type: FaxMachine
-      name: Warden
-  - uid: 4274
+- proto: FaxMachineCargoQM
+  entities:
+  - uid: 4285
     components:
     - type: Transform
-      pos: -16.5,13.5
+      pos: 17.5,14.5
       parent: 2
-    - type: FaxMachine
-      name: HoS
-  - uid: 4275
-    components:
-    - type: Transform
-      pos: 12.5,-3.5
-      parent: 2
-    - type: FaxMachine
-      name: Science
+- proto: FaxMachineCommandBridge
+  entities:
   - uid: 4276
-    components:
-    - type: Transform
-      pos: 14.5,2.5
-      parent: 2
-    - type: FaxMachine
-      name: Engineering
-  - uid: 4277
     components:
     - type: Transform
       pos: 2.5,-0.5
       parent: 2
-    - type: FaxMachine
-      name: Bridge
-      receiveNukeCodes: True
-  - uid: 4278
+- proto: FaxMachineEngineering
+  entities:
+  - uid: 4274
     components:
     - type: Transform
-      pos: -7.5,9.5
+      pos: 14.5,2.5
       parent: 2
-    - type: FaxMachine
-      name: Security
-  - uid: 4279
+- proto: FaxMachineEngineeringCE
+  entities:
+  - uid: 4288
+    components:
+    - type: Transform
+      pos: 19.5,6.5
+      parent: 2
+- proto: FaxMachineMedical
+  entities:
+  - uid: 4278
     components:
     - type: Transform
       pos: 8.5,15.5
       parent: 2
-    - type: FaxMachine
-      name: Medical
+- proto: FaxMachineMedicalChemistry
+  entities:
   - uid: 4280
     components:
     - type: Transform
       pos: 6.5,9.5
       parent: 2
-    - type: FaxMachine
-      name: Chemistry
-  - uid: 4281
+- proto: FaxMachineMedicalCMO
+  entities:
+  - uid: 4129
     components:
     - type: Transform
-      pos: 21.5,-1.5
+      pos: 12.5,21.5
       parent: 2
-    - type: FaxMachine
-      name: RD
-  - uid: 4282
-    components:
-    - type: Transform
-      pos: -23.5,-8.5
-      parent: 2
-    - type: FaxMachine
-      name: NTR
+- proto: FaxMachineNTMagiInternalAffairs
+  entities:
   - uid: 4283
-    components:
-    - type: Transform
-      pos: -3.5,1.5
-      parent: 2
-    - type: FaxMachine
-      name: Captain
-  - uid: 4284
     components:
     - type: Transform
       pos: -11.5,6.5
       parent: 2
-    - type: FaxMachine
-      name: Law
-  - uid: 4285
+- proto: FaxMachineNTRep
+  entities:
+  - uid: 4281
+    components:
+    - type: Transform
+      pos: -23.5,-8.5
+      parent: 2
+- proto: FaxMachineScience
+  entities:
+  - uid: 4275
+    components:
+    - type: Transform
+      pos: 12.5,-3.5
+      parent: 2
+- proto: FaxMachineScienceRD
+  entities:
+  - uid: 4279
+    components:
+    - type: Transform
+      pos: 21.5,-1.5
+      parent: 2
+- proto: FaxMachineSecurity
+  entities:
+  - uid: 4277
+    components:
+    - type: Transform
+      pos: -7.5,9.5
+      parent: 2
+- proto: FaxMachineSecurityHoS
+  entities:
+  - uid: 4273
+    components:
+    - type: Transform
+      pos: -16.5,13.5
+      parent: 2
+- proto: FaxMachineSecurityWarden
+  entities:
+  - uid: 4272
+    components:
+    - type: Transform
+      pos: -6.5,21.5
+      parent: 2
+- proto: FaxMachineServiceHoP
+  entities:
+  - uid: 4284
     components:
     - type: Transform
       pos: 4.5,-2.5
       parent: 2
-    - type: FaxMachine
-      name: HOP
-  - uid: 4286
-    components:
-    - type: Transform
-      pos: 17.5,14.5
-      parent: 2
-    - type: FaxMachine
-      name: QM
+- proto: FaxMachineServiceLibrary
+  entities:
   - uid: 4287
     components:
     - type: Transform
       pos: -20.5,20.5
       parent: 2
-    - type: FaxMachine
-      name: Library
-  - uid: 4288
-    components:
-    - type: Transform
-      pos: 16.5,7.5
-      parent: 2
-    - type: FaxMachine
-      name: Cargo
-  - uid: 4289
-    components:
-    - type: Transform
-      pos: 19.5,6.5
-      parent: 2
-    - type: FaxMachine
-      name: CE
 - proto: FenceMetalBroken
   entities:
   - uid: 4290
@@ -60134,6 +60136,13 @@ entities:
     - type: Transform
       pos: 9.5,41.5
       parent: 2
+- proto: SpawnMobKoboldKiki
+  entities:
+  - uid: 10618
+    components:
+    - type: Transform
+      pos: 11.5,-13.5
+      parent: 2
 - proto: SpawnMobLizard
   entities:
   - uid: 7393
@@ -62613,11 +62622,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 7.5,-10.5
-      parent: 2
-  - uid: 7731
-    components:
-    - type: Transform
-      pos: 2.5,2.5
       parent: 2
   - uid: 7732
     components:
