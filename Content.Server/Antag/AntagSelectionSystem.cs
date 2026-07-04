@@ -36,6 +36,9 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 // Starlight Start
 using Prometheus;
+using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
+using Content.Shared.Humanoid;
 // Starlight End
 using static Content.Server.Antag.Components.AntagSelectionTime;
 
@@ -81,6 +84,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private PlayTimeTrackingSystem _playTime = default!;
     [Dependency] private RoleSystem _role = default!;
     [Dependency] private TransformSystem _transform = default!;
+
+    #region Starlight
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    #endregion
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -797,7 +804,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (prototype.StartingGear is not null)
             gear.Add(prototype.StartingGear.Value);
 
-        _loadout.Equip(antag, gear, prototype.RoleLoadout);
+        var selectedLoadout = GetSelectedLoadout(player, prototype.RoleLoadout, out var selectedLoadoutProto); // Starlight, antag loadouts
+        _loadout.Equip(antag, gear, prototype.RoleLoadout, selectedLoadout, selectedLoadoutProto); // Starlight
 
         // Ensure that we have the right mind for our entity.
         if (!_mind.TryGetMind(player, out var mind, out var mindComp) || mindComp.OwnedEntity != antag)
@@ -838,6 +846,45 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         args.Minds = GetAntagIdentities(ent.AsNullable()).ToList();
         args.AgentName = Loc.GetString(name);
     }
+
+    #region Starlight
+    // Starlight - Antag Loadouts
+        private RoleLoadout? GetSelectedLoadout(ICommonSession? session, List<ProtoId<RoleLoadoutPrototype>>? roleLoadouts, out RoleLoadoutPrototype? proto)
+    {
+        proto = null;
+
+        if (session == null || roleLoadouts == null || roleLoadouts.Count == 0)
+            return null;
+
+        ProtoId<RoleLoadoutPrototype>? selectedId = null;
+
+        foreach (var candidate in roleLoadouts)
+        {
+            if (_prototypeManager.HasIndex(candidate))
+            {
+                selectedId = candidate;
+                break;
+            }
+        }
+
+        if (selectedId == null || !_prototypeManager.TryIndex(selectedId.Value, out proto))
+            return null;
+
+        HumanoidCharacterProfile? profile = null;
+
+        if (_pref.TryGetCachedPreferences(session.UserId, out var pref))
+        {
+            profile = pref.Characters.Values
+                .OfType<HumanoidCharacterProfile>()
+                .FirstOrDefault(p => p.Enabled);
+        }
+
+        if (profile == null)
+            return null;
+
+        return profile.GetLoadoutOrDefault(selectedId.Value, session, profile.Species, EntityManager, _prototypeManager).Clone();
+    }
+    #endregion
 }
 
 /// <summary>
