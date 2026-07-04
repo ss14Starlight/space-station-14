@@ -1,13 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: Added a section to Proto-Voxes guidebook stating that they no longer get put to sleep by Nitrous or exhale Ammonia, but are put to sleep by things that put other Nitrogen breathers to sleep.
-    type: Add
-  id: 405950
-  time: '2026-06-12T12:10:35.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4739
-- author: wonderfulnewworld
-  changes:
   - message: Protogen can now heal Cellular and Poison with Uranium Glass/Reinforced Uranium Glass. (2.5 and 5 respectively.). This has also been added to the guidebook.
     type: Add
   id: 405951
@@ -2799,4 +2792,11 @@ Entries:
   id: 406349
   time: '2026-07-02T21:47:35.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4934
+- author: Johnny
+  changes:
+  - message: Fixed sextus being unable to wizard.
+    type: Fix
+  id: 406350
+  time: '2026-07-03T15:59:07.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4999
 Order: -1
