@@ -110,7 +110,7 @@
   id: GreenshieldOutfit
   name: job-name-greenshield
   startingGear: GreenshieldGear
-  icon: JobIconNTNCBlueShield
+  icon: JobIconCCGreenShield
   hasMindShield: true
   job: CentralCommandGreenShield
   equipment:
