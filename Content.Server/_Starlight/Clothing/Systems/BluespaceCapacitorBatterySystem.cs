@@ -72,17 +72,17 @@ public sealed partial class BluespaceCapacitorBatterySystem : EntitySystem
             _battery.SetCharge(new Entity<BatteryComponent?>(cell.Owner, cellBat), 0f);
 
         // EMP pulse (disables electronics, drains nearby batteries).
-        _emp.EmpPulse(coords, 3f, 20000f, TimeSpan.FromSeconds(5));
+        _emp.EmpPulse(coords, cell.Comp.OverchargeEmpRange, cell.Comp.OverchargeEmpEnergy, cell.Comp.OverchargeEmpDuration);
 
         // Lightning arcs out from the overcharging cell.
-        _lightning.ShootRandomLightnings(cell.Owner, 4f, 5);
+        _lightning.ShootRandomLightnings(cell.Owner, cell.Comp.OverchargeLightningRange, cell.Comp.OverchargeLightningCount);
 
         // Electrocute mobs nearby.
         var nearby = new HashSet<Entity<MobStateComponent>>();
-        _lookup.GetEntitiesInRange(xform.Coordinates, 2f, nearby);
+        _lookup.GetEntitiesInRange(xform.Coordinates, cell.Comp.OverchargeElectrocuteRange, nearby);
         foreach (var uid in nearby)
         {
-            _electrocution.TryDoElectrocution(uid.Owner, cell.Owner, 20, TimeSpan.FromSeconds(5), true, ignoreInsulation: true);
+            _electrocution.TryDoElectrocution(uid.Owner, cell.Owner, cell.Comp.OverchargeElectrocuteDamage, cell.Comp.OverchargeElectrocuteDuration, true, ignoreInsulation: true);
         }
     }
 }

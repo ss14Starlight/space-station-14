@@ -21,4 +21,36 @@ public sealed partial class BluespaceCapacitorBatteryComponent : Component
     /// <summary>Minimum seconds between consecutive inject ticks when using this cell.</summary>
     [DataField]
     public float TransferCooldown = 1.0f;
+
+    /// <summary>EMP pulse radius on overcharge (metres).</summary>
+    [DataField]
+    public float OverchargeEmpRange = 3f;
+
+    /// <summary>Energy consumed by the EMP pulse on overcharge (J).</summary>
+    [DataField]
+    public float OverchargeEmpEnergy = 20000f;
+
+    /// <summary>Duration of the EMP effect on overcharge.</summary>
+    [DataField]
+    public TimeSpan OverchargeEmpDuration = TimeSpan.FromSeconds(5);
+
+    /// <summary>Radius of the lightning arcs on overcharge (metres).</summary>
+    [DataField]
+    public float OverchargeLightningRange = 4f;
+
+    /// <summary>Number of lightning bolts fired on overcharge.</summary>
+    [DataField]
+    public int OverchargeLightningCount = 5;
+
+    /// <summary>Radius in which mobs are electrocuted on overcharge (metres).</summary>
+    [DataField]
+    public float OverchargeElectrocuteRange = 2f;
+
+    /// <summary>Shock damage dealt per mob on overcharge.</summary>
+    [DataField]
+    public int OverchargeElectrocuteDamage = 20;
+
+    /// <summary>Duration of electrocution stun on overcharge.</summary>
+    [DataField]
+    public TimeSpan OverchargeElectrocuteDuration = TimeSpan.FromSeconds(5);
 }

@@ -74,6 +74,7 @@ public abstract class SharedBatteryDrainerSystem : EntitySystem
         ent.Comp.DrainEfficiency = drainEfficiency;
         ent.Comp.DrainTime = drainTime;
         ent.Comp.MaxDrainPerTick = maxDrainPerTick;
+        Dirty(ent, ent.Comp);
     }
     // Starlight end
 }
