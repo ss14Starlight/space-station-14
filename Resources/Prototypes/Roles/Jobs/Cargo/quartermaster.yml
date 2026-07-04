@@ -13,6 +13,11 @@
     - !type:DepartmentTimeRequirement
       department: Cargo
       time: 30h # Starlight
+    - !type:TraitsRequirement # Starlight
+      traits:
+        - Iterator
+        - Muted
+      inverted: true
   weight: 10
   startingGear: QuartermasterGear
   icon: "JobIconQuartermaster" #Starlight
