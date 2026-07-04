@@ -1,0 +1,36 @@
+- type: startingGear
+  id: BluMedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualBlue
+    gloves: ClothingHandsGlovesColorBlue
+    shoes: ClothingShoesBootsCombat
+    pocket1: HandheldHealthAnalyzer
+    eyes: ClothingEyeGlassesMedicalPrescription
+    outerClothing: ClothingOuterCoatLabCmo
+    back: ClothingBackpackDuffelGenetics
+    inhand: Chainsaw
+  storage:
+    back:
+    - LauncherSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - ChemistryBottleToxin
+    - ChemistryBottleToxin
+    - ChemistryBottleToxin
+    - ChemistryBottleToxin
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - MedicatedSuture
+    - MedicatedSuture
+    - AntiPoisonMedipen
+    - AntiPoisonMedipen

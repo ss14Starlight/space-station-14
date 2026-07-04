@@ -1,0 +1,24 @@
+- type: startingGear
+  id: RedScoutGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    head: ClothingHeadHatBlacksoft
+    neck: ClothingDogTags
+    ears: ClothingHeadsetAltFreelancer
+    gloves: ClothingHandsGlovesFingerless
+    shoes: ClothingShoesBootsSpeed
+    pocket1: PowerCellMicroreactor
+    pocket2: WeaponShotgunSawn
+    back: ClothingBackpackSatchel
+  storage:
+    back:
+    - HomerunBat
+    - SpeedLoaderMagnumBasic
+    - SpeedLoaderMagnumBasic
+    - SpeedLoaderMagnumBasic
+    - SpeedLoaderMagnumBasic
+    - SpeedLoaderMagnumBasic
+    - WeaponPistolMk58
+    - MagazinePistolSP
+    - MagazinePistolSP
+    - MagazinePistolSP 

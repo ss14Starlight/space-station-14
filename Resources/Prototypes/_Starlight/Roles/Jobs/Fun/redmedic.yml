@@ -1,0 +1,36 @@
+- type: startingGear
+  id: RedMedicGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCasualRed
+    gloves: ClothingHandsGlovesColorRed
+    shoes: ClothingShoesBootsCombat
+    pocket1: HandheldHealthAnalyzer
+    eyes: ClothingEyeGlassesMedicalPrescription
+    outerClothing: ClothingOuterCoatRobo
+    back: ClothingBackpackDuffelSyndicateMedical
+    inhand: Chainsaw
+  storage:
+    back:
+    - LauncherSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
+    - ChemistryBottleToxin
+    - ChemistryBottleToxin
+    - ChemistryBottleToxin
+    - ChemistryBottleToxin
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - CombatMedipen
+    - MedicatedSuture
+    - MedicatedSuture
+    - AntiPoisonMedipen
+    - AntiPoisonMedipen
