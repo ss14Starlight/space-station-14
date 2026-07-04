@@ -3,7 +3,7 @@
   parent: RestrictedAntag
   id: ERTChaplain
   spawnerPrototype: SpawnPointGhostERTChaplain
-  pickPlayer: false
+  pickPlayer: false # As funny as it would be, we can't let your characters be CC. Tragic!
   startingGear: ERTChaplainGearEVA
   roleLoadout:
   - RoleSurvivalMilitaryDouble

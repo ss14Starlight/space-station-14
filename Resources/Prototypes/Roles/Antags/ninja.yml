@@ -24,7 +24,7 @@
   parent: RestrictedAntag
   id: SpaceNinja
   spawnerPrototype: SpawnPointGhostSpaceNinja
-  pickPlayer: false
+  #pickPlayer: false # Starlight, you can be a ninja.
   startingGear: SpaceNinjaGear
   roleLoadout:
   - RoleSurvivalSpaceNinja

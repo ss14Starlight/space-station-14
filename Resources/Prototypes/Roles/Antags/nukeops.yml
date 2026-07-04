@@ -144,7 +144,7 @@
   parent: BaseNukeops
   id: LoneOp
   spawnerPrototype: SpawnPointLoneNukeOperative
-  pickPlayer: false
+  #pickPlayer: false # Starlight, uh, yeah, we want it to be you.
   startingGear: SyndicateLoneOperativeGearFull
   components:
   - type: RandomMetadata
