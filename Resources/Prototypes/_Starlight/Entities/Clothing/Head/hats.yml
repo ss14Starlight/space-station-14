@@ -644,7 +644,6 @@
   - type: Clothing
     sprite: _Starlight/Clothing/Head/Hats/retro_officer_cap.rsi
 
-# For Starlight
 - type: entity
   parent: ClothingHeadHatWizard
   id: ClothingHeadHatWitchyHat
