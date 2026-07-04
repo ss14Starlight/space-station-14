@@ -137,11 +137,11 @@
   recognizable: true
   physicalDesc: reagent-physical-desc-pungent
 
-- type: reagent
+- type: reagent #starlight start
   id: ZombieBlood
-  name: reagent-name-zombie-blood
+  name: reagent-name-putrid-blood
   group: Biological
-  desc: reagent-desc-zombie-blood
+  desc: reagent-desc-putrid-blood
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#2b0700"
@@ -158,7 +158,7 @@
           types:
             Poison: 4
       - !type:Vomit
-        probability: 0.25
+        probability: 0.25 # starlight end
 
 - type: reagent
   id: Ichor
@@ -253,31 +253,3 @@
         damage:
           types:
             Cellular: 2
-
-- type: reagent
-  parent: Blood
-  id: BloodChangeling
-
-- type: reaction
-  id: ChangelingBloodBreakdown
-  source: true
-  requiredMixerCategories:
-  - Centrifuge
-  reactants:
-    BloodChangeling:
-      amount: 5
-  products:
-    Water: 11
-    Iron: 0.5
-    Sugar: 2
-    CarbonDioxide: 3
-    Protein: 4
-  effects:
-    - !type:SpawnEntity
-      entity: FleshKudzu
-    - !type:Explosion
-      explosionType: Default
-      maxIntensity: 2
-      intensityPerUnit: 0.5
-      intensitySlope: 4
-      maxTotalIntensity: 1

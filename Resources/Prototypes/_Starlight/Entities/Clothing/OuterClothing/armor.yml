@@ -87,6 +87,39 @@
               damageCoefficient: 0.5
 
 - type: entity
+  parent: ClothingOuterBaseLarge
+  id: ChangelingClothingOuterArmor
+  name: chitinous armor
+  description: An all-consuming chitinous mass of armor.
+  suffix: Unremoveable
+  components:
+  - type: Sprite
+    sprite: Changeling/ling_armor.rsi
+  - type: Clothing
+    sprite: Changeling/ling_armor.rsi
+  - type: Pierceable
+    level: Metal
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+    staminaModifier: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: GroupExamine
+  - type: Unremoveable
+
+
+- type: entity
   parent: [ClothingOuterArmorBase, BaseSecurityContraband]
   id: ClothingOuterArmorPlate
   name: plate carrier
@@ -403,3 +436,54 @@
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/OuterClothing/Vests/retro_officer_hivis_vest.rsi
+
+# Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterArmorRaid, ClothingOuterStorageBase ]
+  categories: [ DoNotMap ]
+  id: ClothingOuterVestGreenshield
+  name: greenshield vest
+  description: A protective vest worn by Greenshields. It even has pockets and a flashlight!
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
+    - type: Tag
+      tags:
+        - WhitelistChameleon
+    - type: ClothingSpeedModifier
+      walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
+    - type: Storage
+      grid:
+        - 0,0,2,1
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+
+# Reporter armor vest
+- type: entity
+  parent: [BaseReporterContraband, ClothingOuterArmorBase]
+  id: ClothingOuterPressArmor
+  name: press armor
+  description: It has 'PRESS' written on it in white. It will help you stay alive while sniffing out ledes!
+  components:
+    - type: Item
+      size: Large
+      shape:
+      - 0, 0, 1, 1
+    - type: Pierceable
+      level: Metal
+    - type: Sprite
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reportersuit.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/OuterClothing/Armor/reportersuit.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.65
+          Slash: 0.65
+          Piercing: 0.60
+          Heat: 0.80
+    - type: ExplosionResistance
+      damageCoefficient: 0.85

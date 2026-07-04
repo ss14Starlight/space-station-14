@@ -95,6 +95,22 @@
       collection: ProtoShadekinWurble
     Snarl:
       collection: ProtoVulpSnarls
+    ThavenGlub: # Starlight start
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenMHum
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSneeze:
+      collection: LagomorphSneeze
+    LagomorphSnore:
+      collection: LagomorphSnore
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops # Starlight end
 
 - type: emoteSounds
   id: ProtoHumanFSounds
@@ -193,32 +209,68 @@
       path: /Audio/Items/bikehorn.ogg
     Ping:
       path: /Audio/Effects/Cargo/ping.ogg
+    ThavenGlub: # Starlight start
+      collection: ThavenGlub
+    ThavenHum:
+      collection: ThavenFHum
+    Squee:
+      collection: LagomorphSqueak
+    Snort:
+      collection: LagomorphSnort
+    LagomorphSneeze:
+      collection: LagomorphSneeze
+    LagomorphSnore:
+      collection: LagomorphSnore
+    Bubble:
+      collection: Bubbles
+    Pop:
+      collection: Pops # Starlight end
 
 - type: emoteSounds
   parent: ProtoHumanMSounds
   id: ProtoResomiMSounds
   sounds:
     Scream:
-      collection: ProtoAvaliScreams # Starlight
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
     Laugh:
       collection: ProtoResomiLaugh
     Whistle:
       collection: ProtoResomiWhistles
     Growl:
       collection: ProtoFelionoidGrowl
+    Gasp: # Starlight start
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
+    DefaultDeathgasp:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
+    Sigh:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
+    Yawn:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg # Starlight end
 
 - type: emoteSounds
   parent: ProtoHumanFSounds
   id: ProtoResomiFSounds
   sounds:
     Scream:
-      collection: ProtoAvaliScreams # Starlight
+      path: /Audio/_Starlight/Voice/Resomi/resomi_scream.ogg
     Laugh:
       collection: ProtoResomiLaugh
     Whistle:
       collection: ProtoResomiWhistles
     Growl:
       collection: ProtoFelionoidGrowl
+    Gasp: # Starlight start
+      path: /Audio/_Starlight/Voice/Resomi/resomi_gasp.ogg
+    DefaultDeathgasp:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_deathgrasp.ogg
+    Sigh:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_sigh.ogg
+    Cough:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cough.ogg
+    Yawn:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_yawn.ogg # Starligth end
 
 - type: emoteSounds
   parent: ProtoHumanMSounds

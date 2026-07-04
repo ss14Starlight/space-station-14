@@ -1,0 +1,117 @@
+- type: job
+  id: CentralCommandGreenShield
+  name: job-name-greenshield
+  description: job-description-greenshield
+  playTimeTracker: JobCCGreenShield
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobBlueShield
+    time: 3h # You are a bodyguard of the highest ranking people in the sector, you have to have some experience in the closest related role.
+  - !type:RolesRequirement
+    proto: ExtRolesReq
+  setPreference: false
+  startingGear: GSOGear
+  icon: JobIconNTNCBlueShield # The icon works fine, no need to change it imo
+  rules: job-rules-cc-aligned
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  bypassEorPacification: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant, DeathRattleImplantCentcomm ]
+
+- type: startingGear
+  id: GSOGearHardsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGreenshield
+    back: ClothingBackpackGreenshieldFilled
+    shoes: ClothingShoesBootsMagGreenshield
+    outerClothing: ClothingOuterHardsuitGreenshield
+    neck: ClothingNeckGreenshield
+    id: CentCommGreenShieldPDA
+    eyes: ClothingEyesGlassesCentComm
+    ears: ClothingHeadsetCentCom
+    mask: ClothingMaskGasGSO
+    belt: ClothingBeltGreenshieldFilled
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponSubMachineGunWt550g
+    pocket1: WeaponEnergyMagnumGunGreenshield
+    pocket2: GreenLightShield
+
+- type: startingGear
+  id: GSOGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGreenshield
+    back: ClothingBackpackGreenshieldFilled
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterVestGreenshield
+    neck: ClothingNeckGreenshield
+    id: CentCommGreenShieldPDA
+    eyes: ClothingEyesGlassesCentComm
+    ears: ClothingHeadsetCentCom
+    mask: ClothingMaskGasGSO
+    head: ClothingHeadHelmetGreenshield
+    belt: ClothingBeltGreenshieldFilled
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponSubMachineGunWt550g
+    pocket1: WeaponEnergyMagnumGunGreenshield
+    pocket2: GreenLightShield
+
+- type: startingGear
+  id: GreenshieldGearHardsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGreenshield
+    back: ClothingBackpackGreenshieldFilled
+    shoes: ClothingShoesBootsMagGreenshield
+    outerClothing: ClothingOuterHardsuitGreenshield
+    neck: ClothingNeckGreenshield
+    id: CentCommGreenShieldPDA
+    eyes: ClothingEyesGlassesCentComm
+    ears: ClothingHeadsetCentCom
+    mask: ClothingMaskGasGSO
+    belt: ClothingBeltGreenshieldFilled
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponSubMachineGunWt550g
+    pocket1: WeaponEnergyMagnumGunGreenshield
+    pocket2: GreenLightShield
+  inhand:
+    - RadioImplanterCentcomm
+    - MindShieldImplanter
+    - DeathRattleImplanterCentcomm
+
+- type: startingGear
+  id: GreenshieldGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitGreenshield
+    back: ClothingBackpackGreenshieldFilled
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterVestGreenshield
+    neck: ClothingNeckGreenshield
+    id: CentCommGreenShieldPDA
+    eyes: ClothingEyesGlassesCentComm
+    ears: ClothingHeadsetCentCom
+    mask: ClothingMaskGasGSO
+    head: ClothingHeadHelmetGreenshield
+    belt: ClothingBeltGreenshieldFilled
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: WeaponSubMachineGunWt550g
+    pocket1: WeaponEnergyMagnumGunGreenshield
+    pocket2: GreenLightShield
+  inhand:
+    - RadioImplanterCentcomm
+    - MindShieldImplanter
+    - DeathRattleImplanterCentcomm
+
+- type: chameleonOutfit
+  id: GreenshieldOutfit
+  name: job-name-greenshield
+  startingGear: GreenshieldGear
+  icon: JobIconNTNCBlueShield
+  hasMindShield: true
+  job: CentralCommandGreenShield
+  equipment:
+    misc: ClothingNeckBronzeheart

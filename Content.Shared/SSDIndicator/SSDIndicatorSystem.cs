@@ -12,7 +12,7 @@ using Content.Shared._Starlight.SSDIndicator.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Events;
-using Content.Shared.Starlight.CryoTeleportation;
+using Content.Shared._Starlight.CryoTeleportation;
 // Starlight-end
 
 namespace Content.Shared.SSDIndicator;
@@ -20,16 +20,16 @@ namespace Content.Shared.SSDIndicator;
 /// <summary>
 ///     Handle changing player SSD indicator status
 /// </summary>
-public sealed class SSDIndicatorSystem : EntitySystem
+public sealed partial class SSDIndicatorSystem : EntitySystem
 {
     public static readonly EntProtoId StatusEffectSSDSleeping = "StatusEffectSSDSleeping";
     private static readonly TimeSpan SsdDoAfterDelay = TimeSpan.FromSeconds(10);
 
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SleepingSystem _sleep = default!; // Starlight
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!; // Starlight
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SleepingSystem _sleep = default!; // Starlight
+    [Dependency] private SharedDoAfterSystem _doAfter = default!; // Starlight
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;

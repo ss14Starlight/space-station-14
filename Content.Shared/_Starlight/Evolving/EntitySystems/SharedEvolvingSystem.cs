@@ -1,5 +1,4 @@
 using System.Linq;
-using Content.Shared._Starlight.Evolving;
 using Content.Shared._Starlight.Weapons.Melee.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
@@ -13,13 +12,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared._Starlight.Evolving.EntitySystems;
 
-public abstract class SharedEvolvingSystem : EntitySystem
+public abstract partial class SharedEvolvingSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedMindSystem _mindSystem = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private MobStateSystem _mobStateSystem = default!;
+    [Dependency] private SharedObjectivesSystem _objectivesSystem = default!;
 
     public override void Initialize()
     {

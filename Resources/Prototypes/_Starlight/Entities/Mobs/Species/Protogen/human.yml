@@ -38,6 +38,7 @@
     species: ProtoHuman
     hideLayersOnEquip:
     - Hair
+    - Snout
   - type: Inventory
     templateId: protogen
     femaleDisplacements:
@@ -50,7 +51,7 @@
 
 
 - type: entity
-  parent: BaseSpeciesDummy
+  parent: [BaseProtogenAppearance, BaseSpeciesDummy]
   id: AppearanceProtoHuman
   categories: [ HideSpawnMenu ]
   components:

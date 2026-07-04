@@ -37,17 +37,21 @@
       - left hand
     right hand:
       part: RightHandProtoVulp
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandProtoVulp
+      organs:
+        hand_implant: null
     right leg:
-      part: RightLegProtoVulp
+      part: RightLegVulpkanin
       connections:
       - right foot
     left leg:
-      part: LeftLegProtoVulp
+      part: LeftLegVulpkanin
       connections:
       - left foot
     right foot:
-      part: RightFootProtoVulp
+      part: RightFootVulpkanin
     left foot:
-      part: LeftFootProtoVulp
+      part: LeftFootVulpkanin

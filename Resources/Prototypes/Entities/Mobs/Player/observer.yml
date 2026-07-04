@@ -88,8 +88,6 @@
   - type: ComplexInteraction # Starlight-start
   - type: RadarConsole
     followEntity: true
-  - type: ActivatableUI
-    key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
     interfaces:
         enum.RadarConsoleUiKey.Key:

@@ -1,7 +1,7 @@
 using Robust.Shared.GameStates;
-using Content.Shared.Starlight.Utility;
+using Content.Shared._Starlight.Utility;
 
-namespace Content.Shared.Weapons.Hitscan.Components;
+namespace Content.Shared._Starlight.Weapons.Hitscan.Components;
 
 /// <summary>
 /// Hitscan entities that have this component will cause an EMP pulse when striking a target.

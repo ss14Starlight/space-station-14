@@ -184,6 +184,7 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
   id: WeaponEnergyTurretAIControlPanel
+  categories: [ ShouldMapStation ] # Starlight
   suffix: AI # Starlight edit
   components:
   - type: AccessReader
@@ -211,6 +212,7 @@
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
   id: WeaponEnergyTurretSecurityControlPanel
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Security
   components:
   - type: AccessReader

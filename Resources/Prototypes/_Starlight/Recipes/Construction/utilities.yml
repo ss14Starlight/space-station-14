@@ -1,3 +1,13 @@
+# SURVEILLANCE
+- type: construction
+  id: cameraReinforced
+  graph: SurveillanceCamera
+  startNode: start
+  targetNode: camera_reinforced
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+
 # region unary
 
 - type: construction

@@ -1,17 +1,19 @@
 ﻿using System.Linq;
 using Content.Server._Starlight.Objectives.Events;
-using Content.Shared._Starlight.Railroading;
+using Content.Shared._Starlight.Railroading.Components;
+using Content.Shared._Starlight.Railroading.Components.Tasks;
+using Content.Shared._Starlight.Railroading.Components.Watchers;
 using Content.Shared._Starlight.Railroading.Events;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Objectives;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server._Starlight.Railroading;
+namespace Content.Server._Starlight.Railroading.TaskSystems;
 
 public sealed partial class RailroadingMetabolizeTaskSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly RailroadingSystem _railroading = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private RailroadingSystem _railroading = default!;
     public override void Initialize()
     {
         base.Initialize();

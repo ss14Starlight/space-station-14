@@ -460,3 +460,18 @@
     stampState: "paper_stamp-syndicate"
   - type: Sprite
     state: stamp-syndicate
+
+# Civilian stamps
+- type: entity
+  name: reporter rubber stamp
+  parent: RubberStampBase
+  id: RubberStampReporter
+  description: A rubber stamp for stamping important documents. Write all the articles!
+  components:
+    - type: Stamp
+      stampedName: Reporter
+      stampedColor: "#4B75FF"
+      stampState: "paper_stamp-psychologist"
+    - type: Sprite
+      state: stamp-hop
+

@@ -2,11 +2,11 @@
   id: SpiderWebAirtight
   parent: SpiderWebBase
   name: airtight spider web
-  description: It's stringy, sticky and airtight.
+  description: It's stringy, sticky, and airtight.
   components:
   - type: Airtight
   - type: Sprite
-    color: "#ffffffdd"
+    color: "#bdd5e7ff"
   - type: Fixtures
     fixtures:
       fix1:
@@ -19,23 +19,12 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 30
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWebSilk:
-            min: 1
-            max: 3
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -47,7 +36,7 @@
   id: SpiderWebStrong
   parent: SpiderWebBase
   name: strong spider web
-  description: It's stringy, sticky and strong.
+  description: It's stringy, sticky, and strong.
   components:
   - type: Sprite
     color: "#ffffffdd"
@@ -63,23 +52,12 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 75
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 30
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWebSilk:
-            min: 1
-            max: 3
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.5
     sprintSpeedModifier: 0.5
@@ -91,34 +69,25 @@
   id: SpiderWebStrongThick
   parent: SpiderWebStrong
   name: thick spider web
-  description: It's stringy, sticky, opaque and strong.
+  description: It's stringy, sticky, solid, and strong.
   components:
+  - type: Sprite
+    color: "#826d8cdd"
   - type: Occluder
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 150
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 60
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWebSilk:
-            min: 1
-            max: 3
 
 - type: entity
   id: SpiderWebSlime
   parent: SpiderWebBase
   name: slime spider web
-  description: It's stringy and sticky.
+  description: It's stringy, sticky, and slimy.
   components:
   - type: Sprite
     color: "#94ffcdbe"
@@ -134,23 +103,12 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 50
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 10
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWebSilk:
-            min: 0
-            max: 1
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.3
     sprintSpeedModifier: 0.3
@@ -170,7 +128,7 @@
   id: SpiderWebPoison
   parent: SpiderWebSlime
   name: poison spider web
-  description: It's stringy and sticky.
+  description: It's stringy, sticky, and sickly.
   components:
   - type: Sprite
     color: "#009926bd"
@@ -190,7 +148,7 @@
   id: SpiderWebStealth
   parent: SpiderWebBase
   name: stealth spider web
-  description: It's stringy, sticky.
+  description: It's stringy and sticky.
   components:
   - type: Sprite
     color: "#ffffff5e"
@@ -206,23 +164,12 @@
         - MidImpassable
   - type: Destructible
     thresholds:
-    - trigger: # Excess damage, don't spawn entities
-        !type:DamageTrigger
-        damage: 25
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
         damage: 5
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          MaterialWebSilk:
-            min: 0
-            max: 1
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.7
     sprintSpeedModifier: 0.7
@@ -232,10 +179,12 @@
 
 - type: entity
   id: SpiderWebSpiderlings
-  parent: SpiderWeb
+  parent: SpiderWebBase
   name: spiderlings spider web
-  description: It's stringy, sticky. Contains a solution that keeps spiderlings away.
+  description: It's stringy and sticky. Contains a solution that keeps spiderlings away.
   components:
+  - type: Sprite
+    color: "#eaadc6ff"
   - type: Fixtures
     fixtures:
       fix1:
@@ -253,3 +202,17 @@
           bounds: "-0.5,-0.5,0.5,0.5"
         layer:
         - SpiderlingImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.7
+    sprintSpeedModifier: 0.7
+    blacklist:
+      components:
+      - IgnoreSpiderWeb

@@ -19,32 +19,34 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Body.Components; // Starlight
 using System.Linq;
 using Content.Shared.EntityEffects.Effects.Solution;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
+#region Starlight
 using Content.Server._Starlight.Medical.Body.Systems;
+using Content.Server.Body.Components;
+#endregion
 
 namespace Content.Server.Fluids.EntitySystems;
 
 /// <summary>
 /// Handles non-atmos solution entities similar to puddles.
 /// </summary>
-public sealed class SmokeSystem : EntitySystem
+public sealed partial class SmokeSystem : EntitySystem
 {
     // If I could do it all again this could probably use a lot more of puddles.
-    [Dependency] private readonly IAdminLogManager _logger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly BloodstreamSystem _blood = default!;
-    [Dependency] private readonly InternalsSystem _internals = default!;
-    [Dependency] private readonly ReactiveSystem _reactive = default!;
-    [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private IAdminLogManager _logger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private BloodstreamSystem _blood = default!;
+    [Dependency] private InternalsSystem _internals = default!;
+    [Dependency] private ReactiveSystem _reactive = default!;
+    [Dependency] private SharedBroadphaseSystem _broadphase = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     private EntityQuery<SmokeComponent> _smokeQuery;
     private EntityQuery<SmokeAffectedComponent> _smokeAffectedQuery;

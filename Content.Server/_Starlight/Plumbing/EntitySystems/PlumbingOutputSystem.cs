@@ -13,10 +13,10 @@ namespace Content.Server._Starlight.Plumbing.EntitySystems;
 ///     Pulling from the network is handled by <see cref="PlumbingInletSystem"/> via <see cref="PlumbingInletComponent"/>.
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingOutputSystem : EntitySystem
+public sealed partial class PlumbingOutputSystem : EntitySystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {

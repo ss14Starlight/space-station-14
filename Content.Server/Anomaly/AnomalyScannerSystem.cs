@@ -7,10 +7,10 @@ using Content.Shared.DoAfter;
 namespace Content.Server.Anomaly;
 
 /// <inheritdoc cref="SharedAnomalyScannerSystem"/>
-public sealed class AnomalyScannerSystem : SharedAnomalyScannerSystem
+public sealed partial class AnomalyScannerSystem : SharedAnomalyScannerSystem
 {
-    [Dependency] private readonly SecretDataAnomalySystem _secretData = default!;
-    [Dependency] private readonly AnomalySystem _anomaly = default!;
+    [Dependency] private SecretDataAnomalySystem _secretData = default!;
+    [Dependency] private AnomalySystem _anomaly = default!;
 
     public override void Initialize()
     {
@@ -59,8 +59,13 @@ public sealed class AnomalyScannerSystem : SharedAnomalyScannerSystem
             return;
 
         TimeSpan? nextPulse = null;
-        if (TryComp<AnomalyComponent>(component.ScannedAnomaly, out var anomalyComponent))
+        // Starlight edit Start
+        if (TryComp<AnomalyComponent>(component.ScannedAnomaly, out var anomalyComponent) &&
+            anomalyComponent.CanPulse)
+        {
             nextPulse = anomalyComponent.NextPulseTime;
+        }
+        // Starlight edit End
 
         var state = new AnomalyScannerUserInterfaceState(_anomaly.GetScannerMessage(component), nextPulse);
         UI.SetUiState(uid, AnomalyScannerUiKey.Key, state);

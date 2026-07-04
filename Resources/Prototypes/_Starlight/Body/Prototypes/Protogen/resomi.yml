@@ -9,7 +9,7 @@
       - torso
       organs:
         brain: OrganProtogenBrain
-        eyes: OrganProtogenEyes
+        eyes: OrganProtoResomiEyes
         tongue: OrganProtogenTongueForked
         eye_implant: null
         brain_implant: BrainImplantNexus
@@ -21,8 +21,8 @@
       - right leg
       - left leg
       organs:
-        heart: OrganProtogenHeart
-        lungs: OrganProtogenLungs
+        heart: OrganProtoResomiHeart
+        lungs: OrganProtoResomiLungs
         stomach: OrganProtogenStomach
         liver: OrganProtogenLiver
         kidneys: OrganProtogenKidneys
@@ -37,8 +37,12 @@
       - left hand
     right hand:
       part: RightHandResomi
+      organs:
+        hand_implant: null
     left hand:
       part: LeftHandResomi
+      organs:
+        hand_implant: null
     right leg:
       part: RightLegResomi
       connections:

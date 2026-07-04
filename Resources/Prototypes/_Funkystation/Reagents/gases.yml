@@ -292,6 +292,14 @@
         - !type:MetabolizerTypeCondition
           type: [Plant]
 
+      # Starlight start, Protogens
+      - !type:Oxygenate
+        factor: 8
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Protogen]
+      # Starlight end
+
       - !type:ModifyLungGas
         ratios:
           CarbonDioxide: 1.0
