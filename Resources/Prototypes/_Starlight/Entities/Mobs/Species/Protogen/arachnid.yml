@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McWebster
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoArachnid
   abstract: true
   components:

@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McHandster The Proto-Dwarf
-  parent: [BaseMobProtogen, BaseSpeciesPickupable]
+  parent: [BaseSpeciesPickupable, BaseMobProtogen]
   id: BaseMobProtoDwarf
   abstract: true
   components:
