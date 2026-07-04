@@ -154,7 +154,7 @@
 
 - type: onSolutionChangedTrait
   id: waterToMonkeyCube
-  name: Monkey Cube Hydrogenesis
+  name: Monkey Cube Hydrosynthesis
   description: Converts water to monkey cubes.
   classes:
     - SlimeExtract
