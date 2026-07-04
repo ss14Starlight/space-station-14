@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Added new fax machines.
-    type: Add
-  id: 406027
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: Way
-  changes:
   - message: (Hotel) Added Kiki to Botany.
     type: Add
   id: 406028
@@ -2799,4 +2792,11 @@ Entries:
   id: 406426
   time: '2026-07-04T09:06:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4993
+- author: mikeysaurus
+  changes:
+  - message: Updated lobby observe warning text to make more sense now that players can edit their character in-round.
+    type: Tweak
+  id: 406427
+  time: '2026-07-04T10:25:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5007
 Order: -1
