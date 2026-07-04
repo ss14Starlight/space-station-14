@@ -84,3 +84,15 @@
       - Nexus
       understood:
       - Nexus
+
+- type: entity
+  id: BrainImplantPacifism
+  name: Pacifism implant
+  description: A high-tech implant that prevents you from harming others. It will not allow you to attack, even in self-defense.
+  parent: BaseEntityBrainImplant
+  components:
+  - type: Sprite
+    state: brain_implant_comms
+  - type: FunctionalOrgan
+    comps:
+    - type: Pacified

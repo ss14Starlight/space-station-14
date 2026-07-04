@@ -63,3 +63,16 @@
         - id: ClothingMaskBreath
         - id: NitrousOxideTankFilled
         - id: NitrousOxideTankFilled
+
+- type: entity
+  id: CrateArmoryPacifismImplants
+  parent: [ CrateWeaponSecure, BaseSecurityContraband ]
+  name: pacifism brain implant crate
+  description: Incase you didnt want to execute the prisoner, this will stop them from being a threat. Requires surgery though.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BrainImplantPacifism
+        - id: BrainImplantPacifism
