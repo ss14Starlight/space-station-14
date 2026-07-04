@@ -66,10 +66,10 @@
     price: 500
 
 - type: entity
-  name: Deckard
+  name: deckard # Starlight, capitalization
   parent: [BaseWeaponRevolver, BaseSecurityCommandContraband]
   id: WeaponRevolverDeckard
-  description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 5 rounds of .45 magnum.
+  description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 6 rounds of .45 magnum. # Starlight, 5 -> 6
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/deckard.rsi
@@ -80,11 +80,11 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 2
+    fireRate: 2.5 # Starlight
   - type: RevolverAmmoProvider
-    capacity: 5
-    chambers: [ True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null ]
+    capacity: 6 # Starlight start, bigger chamber
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ] # Starlight end
   - type: MagazineVisuals
     magState: mag
     steps: 4
@@ -94,10 +94,10 @@
     price: 1500
 
 - type: entity
-  name: Inspector
+  name: inspector # Starlight, capitalization
   parent: [BaseWeaponRevolver, BaseSecurityContraband]
   id: WeaponRevolverInspector
-  description: A double-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 6 rounds of .45 magnum.
+  description: A double-action revolver manufactured by various companies. It is readily available on the civilian market, making it a popular choice among private investigators. You feel lucky just holding it. Loads 8 rounds of .45 magnum. # Starlight 6 -> 8
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
@@ -106,9 +106,15 @@
   - type: Item
     storedOffset: 0,-2
   - type: RevolverAmmoProvider
-    capacity: 6
-    chambers: [ True, True, True, True, True, True ]
-    ammoSlots: [ null, null, null, null, null, null ]
+    capacity: 9 # Starlight start, bigger chamber
+    chambers: [ True, True, True, True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null, null, null, null ]
+  - type: Gun
+    fireRate: 2.225
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/revolver.ogg # Starlight end
   - type: StealTarget
     stealGroup: OfficerHandgun
   - type: SentienceTarget #Starlight
@@ -116,7 +122,7 @@
     weight: 0.01 #Starlight
 
 - type: entity
-  name: Mateba
+  name: mateba # Starlight, capitalization
   parent: [BaseWeaponRevolver, BaseMajorContraband]
   id: WeaponRevolverMateba
   description: A modern revolver used by NanoTrasen’s elite, near mythical ‘Death Squad’ task force. Its unique trigger action and barrel placement enable a high fire rate with minimal muzzle flip. Many have looked down this barrel, but few have lived to tell of it. Loads 6 rounds of .45 magnum. # SL
@@ -141,7 +147,7 @@
     proto: CartridgeMagnumAP
 
 - type: entity
-  name: Python
+  name: python # Starlight, capitalization
   parent: [BaseWeaponRevolver, BaseSyndicateContraband]
   id: WeaponRevolverPython
   description: A powerful double-action revolver manufactured by the Syndicate. Loud and flashy, perfect for any agent looking to make a statement. Loads 6 rounds of .45 magnum. Can be double-shot burst fired to really bring the pain. # Starlight
@@ -190,7 +196,7 @@
   - type: Item
     storedOffset: 1,-5
   - type: Gun
-    fireRate: 1
+    fireRate: 1.2 # Starlight, it's pretty bad... this is just a small buff.
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container
