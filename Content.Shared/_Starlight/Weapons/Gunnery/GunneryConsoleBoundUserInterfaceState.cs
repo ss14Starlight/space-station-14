@@ -1,4 +1,5 @@
 using Content.Shared._Starlight.Shuttles.BUIStates;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
