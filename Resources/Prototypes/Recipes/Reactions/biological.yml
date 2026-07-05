@@ -91,7 +91,9 @@
     ZombieBlood:
       amount: 1
   products:
-    Mortucussus: 1 # starlight end
+    Mold: 2
+    Protein: 1
+    Toxin: 1 # starlight end
 
 - type: reaction
   id: CycloriteBloodBreakdown
