@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McHandster The Proto-Dwarf
-  parent: [BaseMobProtogen, BaseSpeciesPickupable]
+  parent: [BaseSpeciesPickupable, BaseMobProtogen]
   id: BaseMobProtoDwarf
   abstract: true
   components:
@@ -19,7 +19,6 @@
       0: Alive
       110: Critical
       220: Dead
-  - type: Absorbable
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Proto-Humie/parts.rsi
     state: full

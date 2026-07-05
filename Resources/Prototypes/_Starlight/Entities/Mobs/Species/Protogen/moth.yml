@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McFluffster
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoMoth
   abstract: true
   components:
@@ -17,7 +17,6 @@
     - Mothroach
   - type: Jump
     action: JumpMoth
-  - type: Absorbable
   - type: HumanoidAppearance
     species: ProtoMoth
     hideLayersOnEquip:
