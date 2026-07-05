@@ -34,6 +34,7 @@
     species: ProtoLagomorph
     hideLayersOnEquip:
     - Hair
+    - Snout
   - type: Hunger
     thresholds:
       Overfed: 210
@@ -49,6 +50,17 @@
       Thirsty: 310
       Parched: 155
       Dead: 0
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+    allowedEmotes: ['Chirp', 'Hisses', 'Squish', 'Bubble', 'Pop', 'Bubble', 'Pop', 'Purr', 'Growl', 'Trill', 'Scree', 'Call', 'Squawk', 'Bark', 'Snarl', 'Whine', 'Howl', 'Yip', 'Mew', 'Meow', 'Liss', 'Lurr', 'Rattle', "Marr", "Wurble", 'Chitter', 'Squeak', 'Click', 'Beep', 'Ping', 'Buzz', 'Buzz-Two', 'Chime', 'Honk', 'ThavenHum', 'ThavenGlub', 'Squee', 'Snort', 'LagomorphSneeze', 'LagomorphSnore', 'LagomorphStomp']
+  - type: BodyEmotes
+    soundsId: LagomorphBodyEmotes
+  - type: ChatListenerRange # way better at hearing, +2 to all
+    voiceRange: 12
+    whisperClearRange: 4
+    whisperMuffledRange: 7
+    allowExtendListenRange: true
   - type: Inventory
     speciesId: lagomorph #to be replaced with proto[species] when new sprites are made
     templateId: protogen

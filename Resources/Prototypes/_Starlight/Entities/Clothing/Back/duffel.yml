@@ -96,3 +96,25 @@
     grid:
     - 0,0,19,19
   - type: ReadOnlyStorage
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseMinorContraband]
+  id: ClothingBackpackDuffelSyndicateDeluxe
+  name: deluxe syndicate duffel bag
+  description: A huge duffel bag for holding an obscene amount of Syndicate goods.
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: Storage
+    grid:
+    - 0,0,9,5
+
+- type: entity
+  parent: [ ClothingBackpackDuffelSyndicateDeluxe, BaseMinorContraband ]
+  id: ClothingBackpackDuffelSyndicateBundleDeluxe
+  abstract: true
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
