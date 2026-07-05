@@ -79,6 +79,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
+    category: Ballistic
   - type: StaticPrice
     price: 5000
   - type: AutoLoader
@@ -324,6 +325,7 @@
     shape: Triangle
     requireInSpace: false
   - type: GunneryTrackable
+    category: Ballistic
   - type: StaticPrice
     price: 25000
 
@@ -401,6 +403,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
+    category: Ballistic
   - type: StaticPrice
     price: 5500
   - type: AutoLoader
@@ -580,7 +583,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
-    category: Energy
+    category: Ballistic
 
 # Dravon 75mm Artillery Cannon - Full-auto, medium range, longer reach than AK570
 - type: entity
@@ -658,6 +661,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
+    category: Ballistic
   - type: StaticPrice
     price: 7500
   - type: AutoLoader
@@ -742,6 +746,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
+    category: Ballistic
   - type: StaticPrice
     price: 7000
   - type: AutoLoader
@@ -828,6 +833,7 @@
     shape: Triangle
     requireInSpace: false
   - type: GunneryTrackable
+    category: Ballistic
   - type: StaticPrice
     price: 50000
 
