@@ -15,6 +15,10 @@
       time: 3h # Lower stakes version of the same role, and forces you to get Paramed time too. Totals to about 8 hours paramed+brigmed combined.
     - !type:RolesRequirement
       proto: ExtRolesReq
+    - !type:TraitsRequirement
+      traits:
+        - Iterator
+      inverted: true
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   rules: job-rules-corporate-aligned
