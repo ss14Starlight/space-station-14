@@ -1,5 +1,4 @@
 using Content.Shared.Disposal.Components;
-using Content.Shared.Disposal.Mailing;
 using Content.Shared.Popups;
 using Content.Shared._Starlight.Restrict;
 
@@ -12,10 +11,10 @@ public sealed partial class RestrictNestingItemSystem : SharedRestrictNestingIte
         base.Initialize();
 
         //fun, so for SOME reason mailing system is server only. fml
-        SubscribeLocalEvent<MailingUnitComponent, BeforeMailFlushEvent>(OnMailingUnitFlush);
+        //SubscribeLocalEvent<MailingUnitComponent, BeforeDisposalFlushEvent>(OnMailingUnitFlush);
     }
 
-    private void OnMailingUnitFlush(Entity<MailingUnitComponent> ent, ref BeforeMailFlushEvent args)
+    private void OnMailingUnitFlush(Entity<MailingUnitComponent> ent, ref BeforeDisposalFlushEvent args)
     {
         //get the storage of the mailing unit
         if (RecursivelyCheckForNesting(ent, skipInitialItem: false))

@@ -1,6 +1,6 @@
 - type: entity
   id: AutoLoaderUnit
-  parent: DisposalUnit
+  parent: DisposalUnitBase
   name: autoloader unit
   description: A pneumatic autoloader delivery unit.
   components:
@@ -8,21 +8,53 @@
     sprite: Structures/Piping/disposal.rsi
     snapCardinals: true
     layers:
-    - state: disposal
-      map: [ "enum.DisposalUnitVisualLayers.Unanchored" ]
-    - state: disposal
-      map: [ "enum.DisposalUnitVisualLayers.Base" ]
-    - state: disposal-charging
-      map: [ "enum.DisposalUnitVisualLayers.BaseCharging" ]
-    - state: disposal-flush
-      map: [ "enum.DisposalUnitVisualLayers.OverlayFlush" ]
-    - state: dispover-charge
-      map: [ "enum.DisposalUnitVisualLayers.OverlayCharging" ]
-    - state: dispover-ready
-      map: [ "enum.DisposalUnitVisualLayers.OverlayReady" ]
-    - state: dispover-full
-      map: [ "enum.DisposalUnitVisualLayers.OverlayFull" ]
-    - state: dispover-handle
-      map: [ "enum.DisposalUnitVisualLayers.OverlayEngaged" ]
+    - map: [ "enum.DisposalUnitVisualLayers.Base" ]
+      state: disposal
+    - map: [ "enum.DisposalUnitVisualLayers.OverlayCharging" ]
+      state: dispover-charge
+      visible: false
+    - map: [ "enum.DisposalUnitVisualLayers.OverlayFull" ]
+      state: dispover-full
+      visible: false
+    - map: [ "enum.DisposalUnitVisualLayers.OverlayFlushing" ]
+      state: disposal-flush
+      visible: false
+    - map: [ "enum.DisposalUnitVisualLayers.OverlayEngaged" ]
+      state: dispover-handle
+      visible: false
     - sprite: _Starlight/Structures/Piping/disposal.rsi
       state: red
+  - type: GenericVisualizer
+    visuals:
+      enum.DisposalUnitVisuals.IsReady:
+        enum.DisposalUnitVisualLayers.Base:
+          True: { state: disposal }
+          False: { state: disposal-charging }
+      enum.DisposalUnitVisuals.IsCharging:
+        enum.DisposalUnitVisualLayers.OverlayCharging:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DisposalUnitVisuals.IsFull:
+        enum.DisposalUnitVisualLayers.OverlayFull:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DisposalUnitVisuals.IsEngaged:
+        enum.DisposalUnitVisualLayers.OverlayEngaged:
+          True: { visible: true }
+          False: { visible: false }
+      enum.DisposalUnitVisuals.IsFlushing:
+        enum.DisposalUnitVisualLayers.OverlayFlushing:
+          True: { visible: true }
+          False: { visible: false }
+      enum.AnchorVisuals.Anchored:
+        enum.DisposalUnitVisualLayers.Base:
+          True: { state: disposal }
+          False: { state: condisposal }
+        enum.DisposalUnitVisualLayers.OverlayEngaged:
+          False: { visible: false }
+        enum.DisposalUnitVisualLayers.OverlayCharging:
+          False: { visible: false }
+        enum.DisposalUnitVisualLayers.OverlayFull:
+          False: { visible: false }
+        enum.DisposalUnitVisualLayers.OverlayFlushing:
+          False: { visible: false }
