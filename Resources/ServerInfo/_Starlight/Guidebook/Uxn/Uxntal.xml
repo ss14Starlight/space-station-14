@@ -5,10 +5,10 @@
 
 ## Introduction
 Firstly, there are [weblink="no precedence rules" link="https://wiki.xxiivv.com/site/notation.html"], the calculations are merely performed in the sequence in which they are presented. The order with which elements come off the stack is known as Last In, First Out. In the stack a b c, the c item was the last to be added, and will be the first to be removed.
-[mono][color]
+<ColorBox Color="#151622">
 <Table Columns="7">
     <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-    [color]#01[/color]
+    [color]#01
     </Box>
     <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
     DUP
@@ -17,7 +17,7 @@ Firstly, there are [weblink="no precedence rules" link="https://wiki.xxiivv.com/
     ADD
     </Box>
     <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
-    [color]#03[/color]
+    [color]#03
     </Box>
     <Box HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="2">
     MUL
@@ -58,48 +58,47 @@ Firstly, there are [weblink="no precedence rules" link="https://wiki.xxiivv.com/
      02
     </Box>
 </Table>
-[/color][/mono]
+</ColorBox>
 
 Uxntal numbers are expressed in [weblink="hexadecimal" link="https://wiki.xxiivv.com/site/hexadecimal.html"]. Which means that counting goes like: one, two, three, four, five, six, seven, eight, nine, A, B, C, D, E, F, ten! It takes some getting used to, but don't worry, you'll get the hang of it. Now, without further ado..
 
 ## Let's dive into it!
 The following example program prints the phrase "Hello World!" by pushing the address to a label on the stack, and iterating through each letter of the [textlink="string" link="UxntalStrings"] found at that address. A loop increments the pointer until it reaches end of the text, at which point, the stack is emptied and the evaluation ends.
-[mono]( This is a comment, and is ignored by the assembler.<br/>
-​    Click the Run button to evaluate the program.<br/>
-​    Select the next example with the dropdown. )
-
-;text                   ( Push text pointer )
-
-@while                  ( Create while label )
-
-​    LDAk DUP ?{         ( Load byte at address, jump if not null )<br/>
-​        POP POP2 BRK }  ( When null, pop text pointer, halt )<br/>
-​    #18 DEO             ( Send byte to Console/write port )<br/>
-​    INC2 !while         ( Incr text pointer, jump to label )
-
-@text                   ( Create text label )
-
+<ColorBox Color="#151622">
+[mono]\n( This is a comment, and is ignored by the assembler.\n
+​    Click the Run button to evaluate the program.\n
+​    Select the next example with the dropdown. )\n\n
+;text                   ( Push text pointer )\n\n
+@while                  ( Create while label )\n\n
+​    LDAk DUP ?{         ( Load byte at address, jump if not null )\n
+​        POP POP2 BRK }  ( When null, pop text pointer, halt )\n
+​    #18 DEO             ( Send byte to Console/write port )\n
+​    INC2 !while         ( Incr text pointer, jump to label )\n\n
+@text                   ( Create text label )\n\n
 ​	"Hello 20 "World! 00
-[/mono]
+</ColorBox>
 
-A word starting with [mono]@[/mono] defines a label, and one starting with [mono];[/mono] pushes the [weblink="absolute address" link="https://wiki.xxiivv.com/site/uxntal_labels.html#addressing"] of a label to the stack. With that in mind, [mono];text[/mono] pushes the two bytes equal to the address of the @text label to the stack. In the interpreter above, press "step" to walk through each step of the evaluation.
+A word starting with [bgcolor="@" color="#000000" ocolor="#1a1a1a"] defines a label, and one starting with [bgcolor=";" color="#000000" ocolor="#1a1a1a"] pushes the [weblink="absolute address" link="https://wiki.xxiivv.com/site/uxntal_labels.html#addressing"] of a label to the stack. With that in mind, [bgcolor=";text" color="#000000" ocolor="#1a1a1a"] pushes the two bytes equal to the address of the @text label to the stack. In the interpreter above, press "step" to walk through each step of the evaluation.
 
 Next, we define a [weblink="new label" link="https://wiki.xxiivv.com/site/uxntal_labels.html"] named [mono]@while[/mono], to mark the start of the loop that will print each character stored at the text label.
 
-The [mono]LDAk[/mono] opcode loads a byte at the address currently at the top of the stack, in this case, the [weblink="ascii" link="https://wiki.xxiivv.com/site/ascii.html"] letter [italic]H[/italic](48). The [weblink="k-mode" link="https://wiki.xxiivv.com/site/uxntal_opcodes.html#modes"] indicates that the operator will not consume the address.
+The [bgcolor="LDAk" color="#000000" ocolor="#1a1a1a"] opcode loads a byte at the address currently at the top of the stack, in this case, the [weblink="ascii" link="https://wiki.xxiivv.com/site/ascii.html"] letter [italic]H[/italic](48). The [weblink="k-mode" link="https://wiki.xxiivv.com/site/uxntal_opcodes.html#modes"] indicates that the operator will not consume the address.
 
-The [mono]DUP[/mono] opcode makes a copy of the letter. The [mono]?{[/mono] pops that copy from the stack, and if it is not zero, we jump to the corresponding [mono]}[/mono], which is an [weblink="anonymous label(λ00)" link="https://wiki.xxiivv.com/site/uxntal_labels.html#anonymous"].
+The [bgcolor="DUP" color="#000000" ocolor="#1a1a1a"] opcode makes a copy of the letter. The [bgcolor="?{" color="#000000" ocolor="#1a1a1a"] pops that copy from the stack, and if it is not zero, we jump to the corresponding [bgcolor="}" color="#000000" ocolor="#1a1a1a"], which is an [weblink="anonymous label(λ00)" link="https://wiki.xxiivv.com/site/uxntal_labels.html#anonymous"].
+<ColorBox Color="#151622">
+[mono]( Disassembly of the example above:\n
+|addr   bytecode   Uxntal\n
+​-----   --------   ------- )\n
+|0100   a0 01 12   ( ;text )\n\n
+@while\n
+|0103   94         ( LDAk )\n
+|0104   06         ( DUP )\n
+|0105   20 00 03   ( ?λ00 )\n
+|0108   02         ( POP )\n
+|0109   22         ( POP2 )\n
+|010a   00         ( BRK )[/mono]
+</ColorBox>
 
-( Disassembly of the example above:
-|addr   bytecode   Uxntal
------   --------   ------- )
-|0100   a0 01 12   ( ;text )
+Test [bgcolor="Test 2" color="#000000" ocolor="#1a1a1a"] Test3
 
-@while
-|0103   94         ( LDAk )
-|0104   06         ( DUP )
-|0105   20 00 03   ( ?λ00 )
-|0108   02         ( POP )
-|0109   22         ( POP2 )
-|010a   00         ( BRK )
 </Document>
