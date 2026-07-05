@@ -277,16 +277,24 @@
 - type: entityTable
   id: FillGunSafeRifleLecter
   table: !type:AllSelector
+# Starlight-start
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 2 # Starlight
+      amount: 2
     - id: WeaponRifleLeikha
       amount: 1
+    - id: WeaponRifleLawbringer
+      amount: 1
     - id: MagazineRifleHP
-      amount: 4 # Starlight
+      amount: 4
     - id: MagazineRifleSP
-      amount: 4 # Starlight
+      amount: 4
+    - id: MagazineLightRifleSP
+      amount: 1
+    - id: MagazineLightRifleHP
+      amount: 1
+# Starlight-end
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

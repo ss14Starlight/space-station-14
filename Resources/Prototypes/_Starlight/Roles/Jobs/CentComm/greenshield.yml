@@ -11,7 +11,7 @@
     proto: ExtRolesReq
   setPreference: false
   startingGear: GSOGear
-  icon: JobIconNTNCBlueShield # The icon works fine, no need to change it imo
+  icon: JobIconCCGreenShield
   rules: job-rules-cc-aligned
   supervisors: job-supervisors-centcom
   canBeAntag: false
@@ -110,7 +110,7 @@
   id: GreenshieldOutfit
   name: job-name-greenshield
   startingGear: GreenshieldGear
-  icon: JobIconNTNCBlueShield
+  icon: JobIconCCGreenShield
   hasMindShield: true
   job: CentralCommandGreenShield
   equipment:
