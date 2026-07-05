@@ -48,6 +48,7 @@
 - type: entity
   parent: BaseDispenser
   id: CleanerDispenser
+  categories: [ ShouldMapStation ] # Starlight
   name: space cleaner dispenser
   description: Wallmount Space Cleaner dispenser.
   components:
