@@ -1,13 +1,6 @@
 Entries:
 - author: Way
   changes:
-  - message: (Hotel) Added Kiki to Botany.
-    type: Add
-  id: 406028
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: Way
-  changes:
   - message: (Hotel) Shipyard console.
     type: Add
   id: 406029
@@ -2799,4 +2792,11 @@ Entries:
   id: 406427
   time: '2026-07-04T10:25:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5007
+- author: Tjmaxmillion
+  changes:
+  - message: Fixed GSO Job icon.
+    type: Fix
+  id: 406428
+  time: '2026-07-05T08:56:05.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5014
 Order: -1
