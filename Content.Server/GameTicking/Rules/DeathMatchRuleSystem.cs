@@ -46,7 +46,7 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
             if (!GameTicker.IsGameRuleActive(uid, rule))
                 continue;
 
-            var newMind = _mind.CreateMind(ev.Player.UserId, ev.Profile.Name);
+            var newMind = _mind.CreateMind(ev.Player.UserId, ev.Profile?.Name ?? "Unknown"); // Starlight,ev.Profile might be null so use Unknown as fallback
             _mind.SetUserId(newMind, ev.Player.UserId);
 
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, ev.Profile);
