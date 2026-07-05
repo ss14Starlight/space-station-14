@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McAvalister
-  parent: [ BaseMobProtogen, BaseColdBird, BaseSpeciesPickupable ]
+  parent: [ BaseSpeciesPickupable, BaseMobProtogen, BaseColdBird ]
   id: BaseMobProtoAvali
   abstract: true
   components:

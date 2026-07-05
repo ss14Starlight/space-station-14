@@ -1,41 +1,6 @@
 Entries:
 - author: wonderfulnewworld
   changes:
-  - message: SELF can no longer show up during NukeOps.
-    type: Tweak
-  id: 406037
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Tweaked abductor scaling, to try and get the additional ones to spawn more often.
-    type: Tweak
-  id: 406038
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Vampires and Changelings now have an equal chance to show up on gamemodes they're both allowed to show up in.
-    type: Tweak
-  id: 406039
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Reduced the chance Ninja spawns Eep to be equal to the old Terror Spider chance.
-    type: Tweak
-  id: 406040
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Removed upper limit on princess of terror spawns, since we're actually hitting 200pop frequently now.
-    type: Tweak
-  id: 406041
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
   - message: Terror Spiders now call evac on victory/loss, instead of instantly ending the round.
     type: Tweak
   id: 406042
@@ -2799,4 +2764,39 @@ Entries:
   id: 406436
   time: '2026-07-05T14:29:36.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: ku-mo
+  changes:
+  - message: Added Document Printer to the Supply department on Ming.
+    type: Add
+  id: 406437
+  time: '2026-07-05T15:10:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4992
+- author: Musikly
+  changes:
+  - message: Changed name of the speed cyberlimb from "speg" to "speed leg".
+    type: Tweak
+  id: 406438
+  time: '2026-07-05T15:48:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5017
+- author: wonderfulnewworld
+  changes:
+  - message: All Protogens are now properly absorbable by Changelings, regardless of frame type.
+    type: Fix
+  id: 406439
+  time: '2026-07-05T15:48:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5008
+- author: wonderfulnewworld
+  changes:
+  - message: All Protogens now occupy the same bag space as their non-Proto variants.
+    type: Fix
+  id: 406440
+  time: '2026-07-05T15:48:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5008
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Moths use the correct death sounds now.
+    type: Fix
+  id: 406441
+  time: '2026-07-05T15:48:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5008
 Order: -1
