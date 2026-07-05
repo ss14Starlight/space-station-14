@@ -428,7 +428,7 @@ public abstract partial class SharedDisposalUnitSystem : EntitySystem
 
             if (GetState(ent) != DisposalsPressureState.Ready)
             {
-                newFlush += ent.Comp.NextPressurized;
+                newFlush += ent.Comp.NextPressurized - _timing.CurTime; // Starlight
             }
 
             nextFlush = (ent.Comp.NextFlush ?? TimeSpan.MaxValue);
