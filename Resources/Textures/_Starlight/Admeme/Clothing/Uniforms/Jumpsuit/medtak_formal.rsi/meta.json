@@ -8,19 +8,23 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "SevenShades"
     },
     {
       "name": "equipped-INNERCLOTHING",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     }
   ]
 }

@@ -9,33 +9,41 @@
   "states": [
     {
       "name": "equipped-FEET",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
       "name": "on-equipped-FEET",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
-      "name": "icon"
+      "name": "icon",
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
-      "name": "icon-on"
+      "name": "icon-on",
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
       "name": "on-inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     },
     {
       "name": "on-inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "Edited from magboots-advanced.rsi by SevenShades"
     }
   ]
 }

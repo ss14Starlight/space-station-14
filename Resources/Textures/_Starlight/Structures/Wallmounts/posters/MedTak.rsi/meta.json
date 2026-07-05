@@ -8,8 +8,8 @@
     },
   "states": [
     {
-      "name": "medtak"
+      "name": "medtak",
+      "copyright": "Sprite by Conflee"
     }
-
   ]
 }

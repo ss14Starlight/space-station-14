@@ -1,23 +1,27 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by SevenShades",
+  "copyright": "Sprites by SevenShades",
   "size": {
     "x": 8,
     "y": 8
   },
   "states": [
     {
-      "name": "bronze"
+      "name": "bronze",
+      "copyright": "SevenShades"
     },
     {
-      "name": "gold"
+      "name": "gold",
+      "copyright": "SevenShades"
     },
     {
-      "name": "medtak"
+      "name": "medtak",
+      "copyright": "SevenShades"
     },
     {
-      "name": "silver"
+      "name": "silver",
+      "copyright": "SevenShades"
     }
   ]
 }

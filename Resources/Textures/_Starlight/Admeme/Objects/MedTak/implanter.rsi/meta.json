@@ -1,31 +1,37 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Sprited by SevenShades",
+  "copyright": "Sprites by SevenShades",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
-      "name": "broken"
+      "name": "broken",
+      "copyright": "SevenShades"
     },
     {
       "name": "implanter-inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     },
     {
       "name": "implanter-inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     },
     {
-      "name": "implanter0"
+      "name": "implanter0",
+      "copyright": "SevenShades"
     },
     {
-      "name": "implanter1"
+      "name": "implanter1",
+      "copyright": "SevenShades"
     },
     {
-      "name": "gold"
+      "name": "gold",
+      "copyright": "SevenShades"
     }
   ]
 }

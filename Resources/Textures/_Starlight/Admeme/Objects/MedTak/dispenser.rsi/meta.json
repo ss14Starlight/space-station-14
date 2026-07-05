@@ -8,16 +8,20 @@
   },
   "states": [
     {
-      "name": "dispenser-screen"
+      "name": "dispenser-screen",
+      "copyright": "SevenShades"
     },
     {
-      "name": "dispenser"
+      "name": "dispenser",
+      "copyright": "SevenShades"
     },
     {
-      "name": "wallmount-screen"
+      "name": "wallmount-screen",
+      "copyright": "SevenShades"
     },
     {
-      "name": "wallmount"
+      "name": "wallmount",
+      "copyright": "SevenShades"
     }
   ]
 }

@@ -8,24 +8,30 @@
   },
   "states": [
     {
-      "name": "hypo"
+      "name": "hypo",
+      "copyright": "SevenShades"
     },
     {
-      "name": "hypo_fill1"
+      "name": "hypo_fill1",
+      "copyright": "SevenShades"
     },
     {
-      "name": "hypo_fill2"
+      "name": "hypo_fill2",
+      "copyright": "SevenShades"
     },
     {
-      "name": "hypo_fill3"
+      "name": "hypo_fill3",
+      "copyright": "SevenShades"
     },
     {
       "name": "inhand-left",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     },
     {
       "name": "inhand-right",
-      "directions": 4
+      "directions": 4,
+      "copyright": "SevenShades"
     }
   ]
 }
