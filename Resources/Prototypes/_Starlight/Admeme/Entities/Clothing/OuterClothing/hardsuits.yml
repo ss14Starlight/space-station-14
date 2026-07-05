@@ -29,8 +29,7 @@
         - Hardsuit
         - WhitelistChameleon
 
-#region MedTak
-# Standard hardsuit
+# MedTak
 - type: entity
   parent: [ ClothingOuterHardsuitBase, BaseMedTakContraband ]
   id: ClothingOuterHardsuitMedTak
@@ -71,7 +70,7 @@
         - Hardsuit
         - CorgiWearable
 
-#region Medic
+# Medic
 - type: entity
   parent: ClothingOuterHardsuitMedTak
   id: ClothingOuterHardsuitMedTakMedic
@@ -101,7 +100,7 @@
             tags:
             - MechReactor
 
-#region Pilot
+# Pilot
 - type: entity
   parent: ClothingOuterHardsuitMedTak
   id: ClothingOuterHardsuitMedTakPilot
@@ -110,7 +109,7 @@
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitMedTakPilot
 
-#region Heavy
+# Heavy
 - type: entity
   parent: ClothingOuterHardsuitMedTak
   id: ClothingOuterHardsuitMedTakHeavy

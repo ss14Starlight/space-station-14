@@ -41,7 +41,7 @@
       coefficients:
         Heat: 0.9
 
-#region MedTak
+# MedTak
 - type: entity
   parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseMedTakContraband ]
   id: ClothingHeadHelmetHardsuitMedTak

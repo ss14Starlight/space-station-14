@@ -59,7 +59,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         SubscribeLocalEvent<WearableDefibrillatorComponent, GotUnequippedEvent>(OnUnequipped); // Starlight end
     }
 
-#region Starlight
+    #region Starlight
     /// <summary>
     /// Starlight: Adds the defib action to the user.
     /// </summary>
@@ -102,7 +102,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
             if (doAfter.Args.Event is DefibrillatorZapDoAfterEvent)
                 _doAfter.Cancel(args.EquipTarget, doAfter.Index);
     }
-#endregion
+    #endregion
 
     private void OnAfterInteract(Entity<DefibrillatorComponent> ent, ref AfterInteractEvent args)
     {
@@ -110,7 +110,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
             return;
 
         // Starlight - To stop you from being able to defib someone by clicking on them with a hardsuit.
-        if (TryComp<WearableDefibrillatorComponent>(ent, out _))
+        if (HasComp<WearableDefibrillatorComponent>(ent))
             return;
 
         args.Handled = TryStartZap(ent.AsNullable(), target, args.User);
@@ -148,7 +148,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_toggle.IsActivated(ent.Owner)) // Starlight edit - check for wearable field
+        if (!HasComp<WearableDefibrillatorComponent>(ent) && !_toggle.IsActivated(ent.Owner)) // Starlight edit - check for wearable field
         {
             _popup.PopupClient(Loc.GetString("defibrillator-not-on"), ent.Owner, user);
             return false;
@@ -194,7 +194,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
             new DoAfterArgs(EntityManager, user, ent.Comp.DoAfterDuration, new DefibrillatorZapDoAfterEvent(),
             ent.Owner, target, ent.Owner)
             {
-                NeedHand = !TryComp<WearableDefibrillatorComponent>(ent, out _),  // Starlight edit - check for wearable field
+                NeedHand = !HasComp<WearableDefibrillatorComponent>(ent),  // Starlight edit - check for wearable field
                 BreakOnMove = !ent.Comp.AllowDoAfterMovement
             });
     }
@@ -298,7 +298,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         _audio.PlayPredicted(sound, ent.Owner, user);
 
         // if we don't have enough power left for another shot, turn it off
-        if (!TryComp<WearableDefibrillatorComponent>(ent, out _) && !_powerCell.HasActivatableCharge(ent.Owner))  // Starlight edit - check for wearable field
+        if (!HasComp<WearableDefibrillatorComponent>(ent) && !_powerCell.HasActivatableCharge(ent.Owner))  // Starlight edit - check for wearable field
             _toggle.TryDeactivate(ent.Owner);
 
         var ev = new TargetDefibrillatedEvent(user, (ent.Owner, ent.Comp));

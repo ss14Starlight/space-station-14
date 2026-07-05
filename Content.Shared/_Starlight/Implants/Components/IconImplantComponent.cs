@@ -5,7 +5,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 namespace Content.Shared._Starlight.Implants.Components;
 
 /// <summary>
-/// Sets the icon shown when implanted.
+/// Sets the icon shown by the <see cref="ImplantedIconComponent"/> when implanted.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
 public sealed partial class IconImplantComponent : Component

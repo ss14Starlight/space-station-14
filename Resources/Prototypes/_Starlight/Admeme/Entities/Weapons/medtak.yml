@@ -1,4 +1,4 @@
-#region LMG
+# LMG
 - type: entity
   name: CODE-6 "Arbitration"
   id: WeaponMedTakLightMachineGun
@@ -58,7 +58,7 @@
     angleDecay: 10
     fireRate: 6
 
-#region Rifle
+# Rifle
 - type: entity
   name: CODE-9 "Compliance"
   parent: [ BaseWeaponRifle, BaseMedTakContraband ]
@@ -155,7 +155,7 @@
     affectedByEmp: true
   - type: AmmoCounter
 
-#region Pistol
+# Pistol
 - type: entity
   name: CODE-4 "Triage"
   description: "A heavy sidearm issued to MedTak operators.\nAccepts .40 pistol magazines."
@@ -190,7 +190,7 @@
     - type: Sprite
       sprite: _Starlight/Admeme/Weapons/MedTak/Pistol.rsi
 
-#region SMG
+# SMG
 - type: entity
   name: CODE-10 "Intervention"
   parent: [BaseWeaponSubMachineGun, BaseMedTakContraband]
@@ -228,7 +228,7 @@
     zeroVisible: true
   - type: Appearance
 
-#region Shotgun
+# Shotgun
 - type: entity
   name: CODE-11 "Compromise"
   parent: [BaseWeaponShotgunAny, BaseGunWieldable, BaseMedTakContraband]

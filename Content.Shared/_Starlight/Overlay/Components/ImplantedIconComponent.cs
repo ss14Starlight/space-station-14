@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared._Starlight.Overlay.Components;
 
 /// <summary>
-/// Shows granted icons.
+/// Shows the icon granted by the <see cref="IconImplantComponent"/>.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ImplantedIconComponent : Component
