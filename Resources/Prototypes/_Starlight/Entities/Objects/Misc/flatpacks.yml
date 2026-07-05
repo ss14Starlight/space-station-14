@@ -74,9 +74,9 @@
 
 - type: entity
   parent: BaseFlatpack
-  id: IcecreamMakerFlatpack
-  name: Icecream Maker Flatpack
+  id: IceCreamMakerFlatpack
+  name: Ice Cream Maker Flatpack
   description: One ice cream maker in one multitool press!
   components:
   - type: Flatpack
-    entity: IcecreamMaker
+    entity: IceCreamMaker

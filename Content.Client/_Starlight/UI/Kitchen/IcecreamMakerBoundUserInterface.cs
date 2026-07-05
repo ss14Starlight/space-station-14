@@ -13,19 +13,16 @@ namespace Content.Client._Starlight.UI.Kitchen
     /// It will use IcecreamMakerMenu.xaml.cs and .xaml which are also based on the Microwave versions.
     /// </summary>
     [UsedImplicitly]
-    public sealed class IcecreamMakerBoundUserInterface : BoundUserInterface
+    public sealed class IceCreamMakerBoundUserInterface : BoundUserInterface
     {
         // Starlight-start
-        // private IEntityManager _entManager;
-
-        // private IGameTiming _timing = default!;
 
         [ViewVariables]
         private EntityUid? _owner;
         // Starlight-end
 
         [ViewVariables]
-        private IcecreamMakerMenu? _menu;
+        private IceCreamMakerMenu? _menu;
 
         [ViewVariables]
         private readonly Dictionary<int, EntityUid> _solids = new();
@@ -33,7 +30,7 @@ namespace Content.Client._Starlight.UI.Kitchen
         [ViewVariables]
         private readonly Dictionary<int, ReagentQuantity> _reagents = new();
 
-        public IcecreamMakerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
+        public IceCreamMakerBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
             // Starlight-start
             _owner = owner;
@@ -44,7 +41,7 @@ namespace Content.Client._Starlight.UI.Kitchen
         protected override void Open()
         {
             base.Open();
-            _menu = this.CreateWindow<IcecreamMakerMenu>();
+            _menu = this.CreateWindow<IceCreamMakerMenu>();
 
             // Starlight-start
             if (!EntMan.TryGetComponent<CookingDeviceComponent>(_owner, out var cookingDevice))

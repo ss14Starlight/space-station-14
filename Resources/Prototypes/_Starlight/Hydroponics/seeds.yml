@@ -104,7 +104,7 @@
   noun: seeds-noun-seeds
   displayName: seeds-spear-mint-display-name
   plantRsi: _Starlight/Objects/Specific/Hydroponics/spearmint.rsi
-  packetPrototype: spearMintSeeds
+  packetPrototype: SpearMintSeeds
   productPrototypes:
     - SpearMint
   lifespan: 40

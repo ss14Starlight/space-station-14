@@ -42,7 +42,7 @@
 - type: entity
   parent: SeedBase
   name: packet of spear mint seeds
-  id: spearMintSeeds
+  id: SpearMintSeeds
   components:
     - type: Seed
       seedId: spearMint

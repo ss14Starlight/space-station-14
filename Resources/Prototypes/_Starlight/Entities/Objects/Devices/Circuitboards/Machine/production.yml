@@ -1286,14 +1286,14 @@
         defaultPrototype: PowerCellHigh
 
 - type: entity
-  id: IcecreamMakerMachineCircuitBoard
+  id: IceCreamMakerMachineCircuitBoard
   parent: BaseMachineCircuitboard
   name: ice cream maker machine board
   components:
     - type: Sprite
       state: service
     - type: MachineBoard
-      prototype: IcecreamMaker
+      prototype: IceCreamMaker
       stackRequirements:
         Steel: 5
       tagRequirements:

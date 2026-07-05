@@ -9,11 +9,11 @@
   group: market
 
 - type: cargoProduct
-  id: ServiceIcecreamMakerStarter
+  id: ServiceIceCreamMakerStarter
   icon:
     sprite: _Starlight/Structures/Machines/ice_cream_maker.rsi
     state: icon
-  product: CrateServiceIcecreamMakerStarter
+  product: CrateServiceIceCreamMakerStarter
   cost: 2250
   category: cargoproduct-category-name-service
   group: market

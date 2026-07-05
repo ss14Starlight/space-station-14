@@ -10,7 +10,7 @@ namespace Content.Client._Starlight.UI.Kitchen
     /// IcecreammakerMenu is a modified version of MicrowaveMenu.xaml.cs to remove extra buttons and only have a start, stop, and eject.
     /// </summary>
     [GenerateTypedNameReferences]
-    public sealed partial class IcecreamMakerMenu : FancyWindow
+    public sealed partial class IceCreamMakerMenu : FancyWindow
     {
         [Dependency] private readonly IGameTiming _timing = default!;
 
@@ -23,7 +23,7 @@ namespace Content.Client._Starlight.UI.Kitchen
         public TimeSpan CurrentCooktimeEnd;
         public TimeSpan StartedCooktime = TimeSpan.FromSeconds(10); // Starlight-edit
 
-        public IcecreamMakerMenu()
+        public IceCreamMakerMenu()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);

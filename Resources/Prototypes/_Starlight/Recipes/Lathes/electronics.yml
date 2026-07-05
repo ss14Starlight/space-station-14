@@ -85,5 +85,5 @@
 
 - type: latheRecipe
   parent: BaseCircuitboardRecipe
-  id: IcecreamMakerMachineCircuitBoard
-  result: IcecreamMakerMachineCircuitBoard
+  id: IceCreamMakerMachineCircuitBoard
+  result: IceCreamMakerMachineCircuitBoard

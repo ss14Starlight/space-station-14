@@ -1,12 +1,12 @@
 - type: entity
-  id: IcecreamMaker
+  id: IceCreamMaker
   parent: [BaseMachinePowered, SmallConstructibleMachine]
   name: ice cream maker
   description: "Morale boosting deserts coming up."
   components:
   - type: CookingDevice
     capacity: 10
-    deviceType: IcecreamMaker
+    deviceType: IceCreamMaker
     foodDoneSound: "/Audio/Machines/vending_jingle.ogg"
     loopingSound: "/Audio/Machines/machine_vend_hot_drink.ogg"
   - type: Appearance
@@ -28,7 +28,7 @@
   - type: ActivatableUI
     key: enum.MicrowaveUiKey.Key
   - type: Machine
-    board: IcecreamMakerMachineCircuitBoard
+    board: IceCreamMakerMachineCircuitBoard
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -37,7 +37,7 @@
   - type: UserInterface
     interfaces:
       enum.MicrowaveUiKey.Key:
-        type: IcecreamMakerBoundUserInterface
+        type: IceCreamMakerBoundUserInterface
   - type: Physics
   - type: Fixtures
     fixtures:

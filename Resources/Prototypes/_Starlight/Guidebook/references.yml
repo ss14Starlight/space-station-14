@@ -5,7 +5,7 @@
   filterEnabled: True
 
 - type: guideEntry
-  id: IcecreamRecipes
-  name: guide-entry-sl-icecream-recipes
-  text: "/ServerInfo/_Starlight/Guidebook/Service/IcecreamMakerRecipes.xml"
+  id: IceCreamRecipes
+  name: guide-entry-sl-ice-cream-recipes
+  text: "/ServerInfo/_Starlight/Guidebook/Service/IceCreamMakerRecipes.xml"
   filterEnabled: True

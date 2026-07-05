@@ -442,12 +442,12 @@
     FoodApple: 1
 
 - type: microwaveMealRecipe
-  id: RecipeVanillaIcecream
+  id: RecipeVanillaIceCream
   name: vanilla icecream
-  result: FoodVanillaIcecream
-  deviceType: IcecreamMaker
+  result: FoodVanillaIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -455,12 +455,12 @@
     Cream: 5
 
 - type: microwaveMealRecipe
-  id: RecipeChocolateIcecream
+  id: RecipeChocolateIceCream
   name: chocolate icecream
-  result: FoodChocolateIcecream
-  deviceType: IcecreamMaker
+  result: FoodChocolateIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -468,12 +468,12 @@
     CocoaPowder: 10
 
 - type: microwaveMealRecipe
-  id: RecipeStrawberryIcecream
+  id: RecipeStrawberryIceCream
   name: strawberry icecream
-  result: FoodStrawberryIcecream
-  deviceType: IcecreamMaker
+  result: FoodStrawberryIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 1
@@ -481,12 +481,12 @@
     IceCream: 20
 
 - type: microwaveMealRecipe
-  id: RecipeMintIcecream
+  id: RecipeMintIceCream
   name: mint chocolate chip icecream
-  result: FoodMintChocolateIcecream
-  deviceType: IcecreamMaker
+  result: FoodMintChocolateIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodMintLeaf: 1
@@ -495,12 +495,12 @@
     CocoaPowder: 5
 
 - type: microwaveMealRecipe
-  id: RecipeCoffeeIcecream
+  id: RecipeCoffeeIceCream
   name: coffee icecream
-  result: FoodCoffeeIcecream
-  deviceType: IcecreamMaker
+  result: FoodCoffeeIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -508,12 +508,12 @@
     Coffee: 10
 
 - type: microwaveMealRecipe
-  id: RecipeSnowcreamIcecream
+  id: RecipeSnowcreamIceCream
   name: snowcream icecream
-  result: FoodSnowcreamIcecream
-  deviceType: IcecreamMaker
+  result: FoodSnowcreamIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodFrozenSandwich : 1
@@ -521,12 +521,12 @@
     IceCream: 20
 
 - type: microwaveMealRecipe
-  id: RecipeSherbetIcecream
+  id: RecipeSherbetIceCream
   name: sherbet icecream
-  result: FoodSherbetIcecream
-  deviceType: IcecreamMaker
+  result: FoodSherbetIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries : 1
@@ -537,12 +537,12 @@
     IceCream: 10
 
 - type: microwaveMealRecipe
-  id: RecipeBananaSplitIcecream
+  id: RecipeBananaSplitIceCream
   name: banana split icecream
-  result: FoodBananaSplitIcecream
-  deviceType: IcecreamMaker
+  result: FoodBananaSplitIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBanana : 1
@@ -552,12 +552,12 @@
     CocoaPowder: 5
 
 - type: microwaveMealRecipe
-  id: RecipeOrangeSwirlIcecream
+  id: RecipeOrangeSwirlIceCream
   name: orange swirl icecream
-  result: FoodOrangeSwirlIcecream
-  deviceType: IcecreamMaker
+  result: FoodOrangeSwirlIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodOrange: 1
@@ -566,12 +566,12 @@
     Cream: 5
 
 - type: microwaveMealRecipe
-  id: RecipeBlueberryIcecream
+  id: RecipeBlueberryIceCream
   name: blueberry icecream
-  result: FoodBlueberryIcecream
-  deviceType: IcecreamMaker
+  result: FoodBlueberryIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 2
@@ -580,12 +580,12 @@
     Cream: 5
 
 - type: microwaveMealRecipe
-  id: RecipeNeapolitanIcecream
+  id: RecipeNeapolitanIceCream
   name: neapolitan icecream
-  result: FoodNeapolitanIcecream
-  deviceType: IcecreamMaker
+  result: FoodNeapolitanIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 1
@@ -594,12 +594,12 @@
     CocoaPowder: 5
 
 - type: microwaveMealRecipe
-  id: RecipeSaltedCaramelIcecream
+  id: RecipeSaltedCaramelIceCream
   name: salted caramel icecream
-  result: FoodSaltedCaramelIcecream
-  deviceType: IcecreamMaker
+  result: FoodSaltedCaramelIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -608,12 +608,12 @@
     TableSalt: 5
 
 - type: microwaveMealRecipe
-  id: RecipeRockyRoadIcecream
+  id: RecipeRockyRoadIceCream
   name: rocky road icecream
-  result: FoodRockyRoadIcecream
-  deviceType: IcecreamMaker
+  result: FoodRockyRoadIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodSnackPistachios: 1
@@ -622,12 +622,12 @@
     CocoaPowder: 10
 
 - type: microwaveMealRecipe
-  id: RecipeMatchaIcecream
+  id: RecipeMatchaIceCream
   name: matcha icecream
-  result: FoodMatchaIcecream
-  deviceType: IcecreamMaker
+  result: FoodMatchaIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -635,12 +635,12 @@
     GreenTea: 10
 
 - type: microwaveMealRecipe
-  id: RecipePistachioIcecream
+  id: RecipePistachioIceCream
   name: pistachio icecream
-  result: FoodPistachioIcecream
-  deviceType: IcecreamMaker
+  result: FoodPistachioIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodSnackPistachios: 1
@@ -648,12 +648,12 @@
     IceCream: 25
 
 - type: microwaveMealRecipe
-  id: RecipePeanutButterIcecream
+  id: RecipePeanutButterIceCream
   name: peanut butter icecream
-  result: FoodPeanutButterIcecream
-  deviceType: IcecreamMaker
+  result: FoodPeanutButterIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodButterSlice: 1
@@ -662,12 +662,12 @@
     CocoaPowder: 5
 
 - type: microwaveMealRecipe
-  id: RecipeCherryIcecream
+  id: RecipeCherryIceCream
   name: cherry icecream
-  result: FoodCherryIcecream
-  deviceType: IcecreamMaker
+  result: FoodCherryIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodCherry: 1
@@ -675,12 +675,12 @@
     IceCream: 25
 
 - type: microwaveMealRecipe
-  id: RecipeAppleCinnamonIcecream
+  id: RecipeAppleCinnamonIceCream
   name: apple cinnamon icecream
-  result: FoodAppleCinnamonIcecream
-  deviceType: IcecreamMaker
+  result: FoodAppleCinnamonIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodApple: 1
@@ -689,12 +689,12 @@
     Cinnamon: 5
 
 - type: microwaveMealRecipe
-  id: RecipeGoldAppleCinnamonIcecream
+  id: RecipeGoldAppleCinnamonIceCream
   name: gold apple cinnamon icecream
-  result: FoodGoldAppleCinnamonIcecream
-  deviceType: IcecreamMaker
+  result: FoodGoldAppleCinnamonIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodGoldenApple: 1
@@ -703,12 +703,12 @@
     Cinnamon: 5
 
 - type: microwaveMealRecipe
-  id: RecipeHolyMelonIcecream
+  id: RecipeHolyMelonIceCream
   name: holy melon icecream
-  result: FoodHolyMelonIcecream
-  deviceType: IcecreamMaker
+  result: FoodHolyMelonIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodHolymelonSlice: 1
@@ -716,12 +716,12 @@
     IceCream: 20
 
 - type: microwaveMealRecipe
-  id: RecipeRainbowHighIcecream
+  id: RecipeRainbowHighIceCream
   name: rainbow high icecream
-  result: FoodRainbowHighIcecream
-  deviceType: IcecreamMaker
+  result: FoodRainbowHighIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     GroundCannabisRainbow: 1
@@ -731,10 +731,10 @@
 - type: microwaveMealRecipe
   id: RecipeMeatIceream
   name: meat icecream
-  result: FoodMeatIcecream
-  deviceType: IcecreamMaker
+  result: FoodMeatIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodMeat : 1
@@ -744,10 +744,10 @@
 - type: microwaveMealRecipe
   id: RecipeWehIceream
   name: weh icecream
-  result: FoodWehIcecream
-  deviceType: IcecreamMaker
+  result: FoodWehIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodLime: 1
@@ -758,10 +758,10 @@
 - type: microwaveMealRecipe
   id: RecipeSpaceCarpIceream
   name: space carp icecream
-  result: FoodSpaceCarpIcecream
-  deviceType: IcecreamMaker
+  result: FoodSpaceCarpIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 1
@@ -772,10 +772,10 @@
 - type: microwaveMealRecipe
   id: RecipeSilkThreadIceream
   name: silk thread icecream
-  result: FoodMothSilkIcecream
-  deviceType: IcecreamMaker
+  result: FoodMothSilkIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -785,10 +785,10 @@
 - type: microwaveMealRecipe
   id: RecipeInterdimensionalIceream
   name: interdimensional napoleon icecream
-  result: FoodDimensionalIcecream
-  deviceType: IcecreamMaker
+  result: FoodDimensionalIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodExtradimensionalOrange: 1
@@ -797,12 +797,12 @@
     IceCream: 10
 
 - type: microwaveMealRecipe
-  id: RecipeOmnizineIcecream
+  id: RecipeOmnizineIceCream
   name: omnizine icecream
-  result: FoodOmnizineIcecream
-  deviceType: IcecreamMaker
+  result: FoodOmnizineIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 1
@@ -811,12 +811,12 @@
     Omnizine: 5
 
 - type: microwaveMealRecipe
-  id: RecipeMeanGirlIcecream
+  id: RecipeMeanGirlIceCream
   name: mean girl icecream
-  result: FoodMeanGirlIcecream
-  deviceType: IcecreamMaker
+  result: FoodMeanGirlIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 1
@@ -826,12 +826,12 @@
     Cream: 5
 
 - type: microwaveMealRecipe
-  id: RecipeHewIcecream
+  id: RecipeHewIceCream
   name: hew icecream
-  result: FoodHewIcecream
-  deviceType: IcecreamMaker
+  result: FoodHewIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
   reagents:
@@ -839,12 +839,12 @@
     JuiceThatMakesYouHew: 5
 
 - type: microwaveMealRecipe
-  id: RecipeFluffyBoyIcecream
+  id: RecipeFluffyBoyIceCream
   name: fluffy boy icecream
-  result: FoodFluffyBoyIcecream
-  deviceType: IcecreamMaker
+  result: FoodFluffyBoyIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodLime: 1
@@ -853,12 +853,12 @@
     IceCream: 20
 
 - type: microwaveMealRecipe
-  id: RecipeLeaderIcecream
+  id: RecipeLeaderIceCream
   name: leader icecream
-  result: FoodLeaderIcecream
-  deviceType: IcecreamMaker
+  result: FoodLeaderIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     FoodBerries: 1
@@ -867,12 +867,12 @@
     IceCream: 20
 
 - type: microwaveMealRecipe
-  id: RecipeTeslaIcecream
+  id: RecipeTeslaIceCream
   name: tesla icecream
-  result: FoodTeslaIcecream
-  deviceType: IcecreamMaker
+  result: FoodTeslaIceCream
+  deviceType: IceCreamMaker
   time: 5
-  group: Icecream
+  group: IceCream
   solids:
     DrinkGlass : 1
     TeslaToy: 1
