@@ -146,6 +146,13 @@ public sealed partial class GunneryConsoleSystem : EntitySystem
         if (!TryComp<GunComponent>(cannon, out var gunComp))
             return;
 
+        // Security: reject forged messages targeting guns not owned by this console's grid.
+        if (!TryComp<GunneryTrackableComponent>(cannon, out _))
+            return;
+        var consoleGrid = Transform(uid).GridUid;
+        if (consoleGrid == null || Transform(cannon).GridUid != consoleGrid)
+            return;
+
         var targetCoords = GetCoordinates(msg.Target);
 
         // Rotate cannon to face the target before firing so it visually aims correctly.

@@ -175,26 +175,20 @@ public sealed class GunneryConsoleWindow : FancyWindow
             btn.Pressed = _radarControl.SelectedCannons.Contains(entity);
     }
 
+    // ── Cannon state colors (single source of truth — must match XAML legend) ──
+
+    private static readonly Color ColorReady    = Color.FromHex("#44FF44");
+    private static readonly Color ColorCooldown = Color.FromHex("#FF4444");
+    private static readonly Color ColorNoAmmo   = Color.FromHex("#FF8800");
+
     // ── Helpers ────────────────────────────────────────────────────────────
 
     /// <summary>Applies the correct text color to a cannon button based on its state.</summary>
     private static void ApplyButtonColor(Button btn, CannonBlipData cannon)
     {
-        if (cannon.CooldownSeconds > 0f)
-        {
-            // Red while on cooldown.
-            btn.Label.FontColorOverride = Color.FromHex("#FF4444");
-        }
-        else if (!cannon.HasAmmo)
-        {
-            // Orange/amber when out of ammo.
-            btn.Label.FontColorOverride = Color.FromHex("#FF8800");
-        }
-        else
-        {
-            // Green when ready.
-            btn.Label.FontColorOverride = Color.FromHex("#44FF44");
-        }
+        btn.Label.FontColorOverride = cannon.CooldownSeconds > 0f ? ColorCooldown
+                                    : cannon.HasAmmo             ? ColorReady
+                                                                 : ColorNoAmmo;
     }
 
     private static string GetCannonLabel(CannonBlipData cannon)

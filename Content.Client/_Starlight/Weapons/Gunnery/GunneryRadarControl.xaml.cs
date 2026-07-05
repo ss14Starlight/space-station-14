@@ -55,6 +55,8 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
     private Vector2? _cursorRelativePos;  // control-local pixel position
     private bool     _lmbHeld;
     private bool     _firingLmb; // true while LMB held for firing (not selection/guidance)
+    private float    _fireThrottle; // accumulated seconds; fire intent sent once per interval
+    private const float FireThrottleInterval = 0.05f; // 20 Hz — enough for any gun, avoids per-frame spam
 
     private List<Entity<MapGridComponent>> _grids = new();
 
@@ -152,9 +154,17 @@ public sealed partial class GunneryRadarControl : BaseShuttleControl
         base.FrameUpdate(args);
 
         // Keep sending fire requests while LMB is held (full-auto / burst auto-repeat).
-        // The server's NextFire gate handles actual rate limiting — we just spam intents.
+        // Throttled to 20 Hz so we don't spam a raycast/CannonBlocked check every rendered frame.
         if (!_firingLmb || SelectedCannons.Count == 0 || _cursorRelativePos == null)
+        {
+            _fireThrottle = FireThrottleInterval; // ready to fire the instant the next press lands
             return;
+        }
+
+        _fireThrottle += args.DeltaSeconds;
+        if (_fireThrottle < FireThrottleInterval)
+            return;
+        _fireThrottle -= FireThrottleInterval;
 
         var worldPos = ScreenToWorld(_cursorRelativePos.Value);
         foreach (var selected in SelectedCannons)
