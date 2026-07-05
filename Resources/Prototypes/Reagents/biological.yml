@@ -139,9 +139,9 @@
 
 - type: reagent #starlight start
   id: ZombieBlood
-  name: reagent-name-putrid-blood
+  name: reagent-name-mortucussus
   group: Biological
-  desc: reagent-desc-putrid-blood
+  desc: reagent-desc-mortucussus
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#2b0700"
