@@ -46,7 +46,20 @@ public sealed partial class DisposalRouterSystem : EntitySystem
             return;
         }
 
-        _disposalTube.SelectNextDirection((ent, disposalTube), exits.Skip(1).ToArray(), ref args);
+        #region Starlight
+        // Direction we entered the tube from
+        var cameFrom = args.Holder.Comp.CurrentDirection.GetOpposite();
+
+        // Makes disposals consistent.
+        var straightThru = exits[0];
+        var filterExit = exits.Length > 1 ? exits[1] : straightThru;
+        var reverse = exits[2];
+
+        // Prefer routing out out from 'reverse' side, unless we just came from that direction.
+        // This conditional looks unintuative, but it does send items the right way.
+        args.Next = (cameFrom == Direction.Invalid || cameFrom != reverse) ? reverse : filterExit;
+        #endregion Starlight
+
         args.Handled = true;
     }
 
