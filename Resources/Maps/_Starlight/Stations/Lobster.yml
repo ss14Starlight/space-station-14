@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/26/2026 18:54:51
-  entityCount: 25032
+  time: 06/29/2026 23:59:37
+  entityCount: 25035
 maps:
 - 1
 grids:
@@ -7359,19 +7359,19 @@ entities:
             4: 1632
           13,-1:
             0: 57344
-            6: 238
+            5: 238
           14,0:
             0: 57906
             1: 3276
           14,1:
-            5: 816
+            6: 816
             1: 34944
           14,2:
             0: 65527
             1: 8
           14,-1:
             0: 60620
-            6: 19
+            5: 19
           15,0:
             0: 56797
           15,2:
@@ -7585,7 +7585,7 @@ entities:
             0: 39935
             1: 25600
           13,-2:
-            6: 65256
+            5: 65256
           13,-5:
             0: 65535
           14,-4:
@@ -7595,7 +7595,7 @@ entities:
             0: 52479
             1: 13056
           14,-2:
-            6: 4368
+            5: 4368
             0: 52428
           14,-5:
             0: 65535
@@ -7846,7 +7846,8 @@ entities:
             0: 65160
             1: 100
           18,-9:
-            0: 53504
+            0: 20736
+            7: 32768
             1: 78
           18,-4:
             0: 59647
@@ -8341,14 +8342,19 @@ entities:
           moles:
             Oxygen: 6666.982
         - volume: 2500
-          temperature: 293.15
-          moles:
-            Nitrogen: 6666.982
-        - volume: 2500
           temperature: 235
           moles:
             Oxygen: 27.225372
             Nitrogen: 102.419266
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Nitrogen: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles:
+            Oxygen: 21.6852
+            Nitrogen: 81.57766
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -9468,7 +9474,7 @@ entities:
       pos: -1.5,5.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -47334.195
+      secondsUntilStateChange: -48080.598
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -9741,7 +9747,7 @@ entities:
       pos: 67.5,48.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -84154.516
+      secondsUntilStateChange: -84900.92
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -10203,7 +10209,7 @@ entities:
       pos: 87.5,-23.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -135294.72
+      secondsUntilStateChange: -136041.12
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -69183,12 +69189,6 @@ entities:
       parent: 2
 - proto: ComputerRadar
   entities:
-  - uid: 11399
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,45.5
-      parent: 2
   - uid: 11400
     components:
     - type: Transform
@@ -69266,6 +69266,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 28.5,32.5
+      parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 11399
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 1.5,45.5
       parent: 2
 - proto: ComputerShuttleCargo
   entities:
@@ -70533,6 +70541,13 @@ entities:
       parent: 2
     - type: Fixtures
       fixtures: {}
+- proto: d20Dice
+  entities:
+  - uid: 12966
+    components:
+    - type: Transform
+      pos: 16.58182,34.49031
+      parent: 2
 - proto: DawInstrumentMachineCircuitboard
   entities:
   - uid: 11603
@@ -77699,6 +77714,11 @@ entities:
     - type: Transform
       pos: 36.5,31.5
       parent: 2
+  - uid: 25034
+    components:
+    - type: Transform
+      pos: 62.5,2.5
+      parent: 2
 - proto: DonkpocketBoxSpawner
   entities:
   - uid: 12836
@@ -78370,139 +78390,6 @@ entities:
       parent: 2
 - proto: FaxMachineBase
   entities:
-  - uid: 12946
-    components:
-    - type: Transform
-      pos: -24.5,20.5
-      parent: 2
-    - type: FaxMachine
-      name: NCT
-  - uid: 12947
-    components:
-    - type: Transform
-      pos: -11.5,38.5
-      parent: 2
-    - type: FaxMachine
-      name: NTR
-  - uid: 12948
-    components:
-    - type: Transform
-      pos: -29.5,50.5
-      parent: 2
-    - type: FaxMachine
-      name: BSO
-  - uid: 12949
-    components:
-    - type: Transform
-      pos: -3.5,33.5
-      parent: 2
-    - type: FaxMachine
-      name: HoP
-  - uid: 12950
-    components:
-    - type: Transform
-      pos: -7.5,50.5
-      parent: 2
-    - type: FaxMachine
-      name: Bridge
-  - uid: 12951
-    components:
-    - type: Transform
-      pos: -17.5,10.5
-      parent: 2
-    - type: FaxMachine
-      name: IAA Office
-  - uid: 12952
-    components:
-    - type: Transform
-      pos: -18.5,-5.5
-      parent: 2
-    - type: FaxMachine
-      name: Detective's Office
-  - uid: 12953
-    components:
-    - type: Transform
-      pos: 0.5,10.5
-      parent: 2
-    - type: FaxMachine
-      name: Warden
-  - uid: 12954
-    components:
-    - type: Transform
-      pos: -21.5,5.5
-      parent: 2
-    - type: FaxMachine
-      name: Magistrate
-  - uid: 12955
-    components:
-    - type: Transform
-      pos: -1.5,-16.5
-      parent: 2
-    - type: FaxMachine
-      name: HoS
-  - uid: 12956
-    components:
-    - type: Transform
-      pos: -54.5,-1.5
-      parent: 2
-    - type: FaxMachine
-      name: Medical
-  - uid: 12957
-    components:
-    - type: Transform
-      pos: -51.5,-2.5
-      parent: 2
-    - type: FaxMachine
-      name: CMO
-  - uid: 12958
-    components:
-    - type: Transform
-      pos: -67.5,14.5
-      parent: 2
-    - type: FaxMachine
-      name: Chaplain
-  - uid: 12959
-    components:
-    - type: Transform
-      pos: -38.5,27.5
-      parent: 2
-    - type: FaxMachine
-      name: RD
-  - uid: 12960
-    components:
-    - type: Transform
-      pos: -43.5,26.5
-      parent: 2
-    - type: FaxMachine
-      name: Science
-  - uid: 12961
-    components:
-    - type: Transform
-      pos: 22.5,19.5
-      parent: 2
-    - type: FaxMachine
-      name: QM
-  - uid: 12962
-    components:
-    - type: Transform
-      pos: 16.5,22.5
-      parent: 2
-    - type: FaxMachine
-      name: Cargo Front
-  - uid: 12963
-    components:
-    - type: Transform
-      pos: 36.5,27.5
-      parent: 2
-    - type: FaxMachine
-      name: Engineering
-  - uid: 12964
-    components:
-    - type: Transform
-      pos: 41.5,31.5
-      parent: 2
-    - type: FaxMachine
-      name: CE
   - uid: 12965
     components:
     - type: Transform
@@ -78510,13 +78397,6 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Toolroom
-  - uid: 12966
-    components:
-    - type: Transform
-      pos: 16.5,34.5
-      parent: 2
-    - type: FaxMachine
-      name: Cargo Bay
   - uid: 12967
     components:
     - type: Transform
@@ -78531,24 +78411,159 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Library
-  - uid: 12969
-    components:
-    - type: Transform
-      pos: 3.5,-9.5
-      parent: 2
-  - uid: 12970
-    components:
-    - type: Transform
-      pos: 6.5,1.5
-      parent: 2
-    - type: FaxMachine
-      name: Security
 - proto: FaxMachineCaptain
   entities:
   - uid: 12971
     components:
     - type: Transform
       pos: -1.5,48.5
+      parent: 2
+- proto: FaxMachineCargo
+  entities:
+  - uid: 12962
+    components:
+    - type: Transform
+      pos: 16.5,22.5
+      parent: 2
+- proto: FaxMachineCargoQM
+  entities:
+  - uid: 12961
+    components:
+    - type: Transform
+      pos: 22.5,19.5
+      parent: 2
+- proto: FaxMachineCommandBridge
+  entities:
+  - uid: 12950
+    components:
+    - type: Transform
+      pos: -7.5,50.5
+      parent: 2
+- proto: FaxMachineEngineering
+  entities:
+  - uid: 12963
+    components:
+    - type: Transform
+      pos: 36.5,27.5
+      parent: 2
+- proto: FaxMachineEngineeringCE
+  entities:
+  - uid: 12964
+    components:
+    - type: Transform
+      pos: 41.5,31.5
+      parent: 2
+- proto: FaxMachineMedical
+  entities:
+  - uid: 12956
+    components:
+    - type: Transform
+      pos: -54.5,-1.5
+      parent: 2
+- proto: FaxMachineMedicalCMO
+  entities:
+  - uid: 12957
+    components:
+    - type: Transform
+      pos: -51.5,-2.5
+      parent: 2
+- proto: FaxMachineNTBlueshield
+  entities:
+  - uid: 12948
+    components:
+    - type: Transform
+      pos: -29.5,50.5
+      parent: 2
+- proto: FaxMachineNTCareerTrainer
+  entities:
+  - uid: 12946
+    components:
+    - type: Transform
+      pos: -24.5,20.5
+      parent: 2
+- proto: FaxMachineNTInternalAffairs
+  entities:
+  - uid: 12951
+    components:
+    - type: Transform
+      pos: -17.5,10.5
+      parent: 2
+- proto: FaxMachineNTMagi
+  entities:
+  - uid: 12954
+    components:
+    - type: Transform
+      pos: -21.5,5.5
+      parent: 2
+- proto: FaxMachineNTRep
+  entities:
+  - uid: 12947
+    components:
+    - type: Transform
+      pos: -11.5,38.5
+      parent: 2
+- proto: FaxMachineScience
+  entities:
+  - uid: 12960
+    components:
+    - type: Transform
+      pos: -43.5,26.5
+      parent: 2
+- proto: FaxMachineScienceRD
+  entities:
+  - uid: 12959
+    components:
+    - type: Transform
+      pos: -38.5,27.5
+      parent: 2
+- proto: FaxMachineSecurity
+  entities:
+  - uid: 12970
+    components:
+    - type: Transform
+      pos: 6.5,1.5
+      parent: 2
+- proto: FaxMachineSecurityDetective
+  entities:
+  - uid: 12952
+    components:
+    - type: Transform
+      pos: -18.5,-5.5
+      parent: 2
+- proto: FaxMachineSecurityHoS
+  entities:
+  - uid: 12955
+    components:
+    - type: Transform
+      pos: -1.5,-16.5
+      parent: 2
+- proto: FaxMachineSecurityPrison
+  entities:
+  - uid: 12969
+    components:
+    - type: Transform
+      pos: 3.5,-9.5
+      parent: 2
+- proto: FaxMachineSecurityWarden
+  entities:
+  - uid: 12953
+    components:
+    - type: Transform
+      pos: 0.5,10.5
+      parent: 2
+- proto: FaxMachineServiceChaplain
+  entities:
+  - uid: 12958
+    components:
+    - type: Transform
+      pos: -67.5,14.5
+      parent: 2
+- proto: FaxMachineServiceHoP
+  entities:
+  - uid: 12949
+    components:
+    - type: Transform
+      pos: -3.5,33.5
       parent: 2
 - proto: FenceMetalBroken
   entities:
@@ -110422,30 +110437,30 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-          Oxygen: 1.7459903
-          Nitrogen: 6.568249
+          Oxygen: 1.8856695
+          Nitrogen: 7.0937095
     - type: ContainerContainer
       containers:
         entity_storage: !type:Container
           showEnts: False
           occludes: True
           ents:
-          - 11117
           - 11115
-          - 11121
-          - 11124
-          - 11114
-          - 11122
-          - 11126
-          - 11113
-          - 11112
-          - 11118
-          - 11123
-          - 11125
-          - 11120
-          - 11116
-          - 11119
           - 11127
+          - 11119
+          - 11116
+          - 11120
+          - 11125
+          - 11123
+          - 11118
+          - 11112
+          - 11113
+          - 11126
+          - 11122
+          - 11114
+          - 11124
+          - 11121
+          - 11117
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -113179,6 +113194,13 @@ entities:
         20857:
         - - AiLawConsoleSender
           - AiLawConsoleReceiver
+- proto: PlayingCardDeckBoxNanotrasen
+  entities:
+  - uid: 25035
+    components:
+    - type: Transform
+      pos: 16.050571,34.719475
+      parent: 2
 - proto: PlayingCardDeckBoxSyndicate
   entities:
   - uid: 17948
@@ -129082,6 +129104,13 @@ entities:
     components:
     - type: Transform
       pos: 50.5,-32.5
+      parent: 2
+- proto: SpawnMobKoboldKiki
+  entities:
+  - uid: 25033
+    components:
+    - type: Transform
+      pos: 62.5,2.5
       parent: 2
 - proto: SpawnMobLizard
   entities:
@@ -152142,7 +152171,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -23846.568
+      secondsUntilStateChange: -24592.969
       state: Opening
     - type: Airlock
       autoClose: False

@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/26/2026 20:07:01
-  entityCount: 29483
+  time: 07/01/2026 19:27:58
+  entityCount: 29479
 maps:
 - 1
 grids:
@@ -5335,7 +5335,7 @@ entities:
             2: 61713
           -9,6:
             2: 65280
-            6: 7
+            4: 7
           -8,7:
             0: 13104
             2: 34952
@@ -5548,7 +5548,7 @@ entities:
           -9,3:
             3: 1799
           -9,4:
-            4: 7
+            5: 7
             3: 1792
           -12,-4:
             0: 63675
@@ -6090,7 +6090,7 @@ entities:
             0: 65535
           -9,5:
             3: 7
-            5: 1792
+            6: 1792
           -12,9:
             0: 30704
           -13,9:
@@ -7567,15 +7567,15 @@ entities:
         - volume: 2500
           temperature: 293.15
           moles:
+            Oxygen: 6666.982
+        - volume: 2500
+          temperature: 293.15
+          moles:
             Plasma: 6666.982
         - volume: 2500
           temperature: 293.15
           moles:
             Nitrogen: 6666.982
-        - volume: 2500
-          temperature: 293.15
-          moles:
-            Oxygen: 6666.982
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
@@ -12579,14 +12579,6 @@ entities:
     - type: Transform
       pos: -12.5,-5.5
       parent: 2
-- proto: AirlockInternalAffairsLocked
-  entities:
-  - uid: 464
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -7.5,-5.5
-      parent: 2
 - proto: AirlockJanitorLocked
   entities:
   - uid: 465
@@ -12692,14 +12684,6 @@ entities:
     components:
     - type: Transform
       pos: 14.5,-20.5
-      parent: 2
-- proto: AirlockMaintInternalAffairsLocked
-  entities:
-  - uid: 480
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -6.5,-5.5
       parent: 2
 - proto: AirlockMaintLegalLocked
   entities:
@@ -37457,11 +37441,6 @@ entities:
     - type: Transform
       pos: -26.5,-45.5
       parent: 2
-  - uid: 4896
-    components:
-    - type: Transform
-      pos: -4.5,58.5
-      parent: 2
   - uid: 4897
     components:
     - type: Transform
@@ -37516,11 +37495,6 @@ entities:
     components:
     - type: Transform
       pos: 35.5,45.5
-      parent: 2
-  - uid: 4908
-    components:
-    - type: Transform
-      pos: -3.5,58.5
       parent: 2
   - uid: 4909
     components:
@@ -43443,11 +43417,6 @@ entities:
   - uid: 6015
     components:
     - type: Transform
-      pos: 3.5,68.5
-      parent: 2
-  - uid: 6016
-    components:
-    - type: Transform
       pos: 2.5,68.5
       parent: 2
   - uid: 6017
@@ -45915,16 +45884,6 @@ entities:
     - type: Transform
       pos: -63.5,0.5
       parent: 2
-  - uid: 6510
-    components:
-    - type: Transform
-      pos: 3.5,67.5
-      parent: 2
-  - uid: 6511
-    components:
-    - type: Transform
-      pos: 1.5,68.5
-      parent: 2
   - uid: 6512
     components:
     - type: Transform
@@ -47810,6 +47769,11 @@ entities:
     - type: Transform
       pos: 47.5,38.5
       parent: 2
+  - uid: 13575
+    components:
+    - type: Transform
+      pos: 1.5,68.5
+      parent: 2
   - uid: 28987
     components:
     - type: Transform
@@ -47892,6 +47856,16 @@ entities:
       parent: 28908
 - proto: CableMV
   entities:
+  - uid: 4896
+    components:
+    - type: Transform
+      pos: 0.5,68.5
+      parent: 2
+  - uid: 6016
+    components:
+    - type: Transform
+      pos: 2.5,68.5
+      parent: 2
   - uid: 6894
     components:
     - type: Transform
@@ -53587,11 +53561,6 @@ entities:
     - type: Transform
       pos: -52.5,15.5
       parent: 2
-  - uid: 8033
-    components:
-    - type: Transform
-      pos: 1.5,67.5
-      parent: 2
   - uid: 8034
     components:
     - type: Transform
@@ -55191,6 +55160,12 @@ entities:
       parent: 2
 - proto: CableTerminal
   entities:
+  - uid: 4908
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,67.5
+      parent: 2
   - uid: 8349
     components:
     - type: Transform
@@ -55244,12 +55219,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -45.5,37.5
-      parent: 2
-  - uid: 8358
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,68.5
       parent: 2
   - uid: 8359
     components:
@@ -75466,6 +75435,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 50.5,-35.5
       parent: 2
+- proto: ComputerShipyard
+  entities:
+  - uid: 6511
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 2.5,36.5
+      parent: 2
 - proto: ComputerShuttleCargo
   entities:
   - uid: 11972
@@ -75521,12 +75498,6 @@ entities:
       parent: 2
 - proto: ComputerStationRecords
   entities:
-  - uid: 11980
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 2.5,36.5
-      parent: 2
   - uid: 11981
     components:
     - type: Transform
@@ -83244,6 +83215,11 @@ entities:
       parent: 2
 - proto: DisposalTrunk
   entities:
+  - uid: 464
+    components:
+    - type: Transform
+      pos: 53.5,34.5
+      parent: 2
   - uid: 13172
     components:
     - type: Transform
@@ -83522,6 +83498,11 @@ entities:
       parent: 2
 - proto: DisposalUnit
   entities:
+  - uid: 480
+    components:
+    - type: Transform
+      pos: 53.5,34.5
+      parent: 2
   - uid: 13220
     components:
     - type: Transform
@@ -85654,146 +85635,6 @@ entities:
       fixtures: {}
 - proto: FaxMachineBase
   entities:
-  - uid: 13556
-    components:
-    - type: Transform
-      pos: -9.5,-4.5
-      parent: 2
-    - type: FaxMachine
-      name: Cybersun Legal Dept.
-  - uid: 13557
-    components:
-    - type: Transform
-      pos: -6.5,-19.5
-      parent: 2
-    - type: FaxMachine
-      name: Chaplain
-  - uid: 13558
-    components:
-    - type: Transform
-      pos: -33.5,-26.5
-      parent: 2
-    - type: FaxMachine
-      name: News room
-  - uid: 13559
-    components:
-    - type: Transform
-      pos: -13.5,-48.5
-      parent: 2
-    - type: FaxMachine
-      name: Interdyne front
-  - uid: 13560
-    components:
-    - type: Transform
-      pos: 59.5,-28.5
-      parent: 2
-    - type: FaxMachine
-      name: Donk co. Qm's office
-  - uid: 13561
-    components:
-    - type: Transform
-      pos: -14.5,11.5
-      parent: 2
-    - type: FaxMachine
-      name: Gorlex command
-  - uid: 13562
-    components:
-    - type: Transform
-      pos: -10.5,6.5
-      parent: 2
-    - type: FaxMachine
-      name: Gorlex office
-  - uid: 13563
-    components:
-    - type: Transform
-      pos: 57.5,16.5
-      parent: 2
-    - type: FaxMachine
-      name: RD's office
-  - uid: 13564
-    components:
-    - type: Transform
-      pos: 13.5,-56.5
-      parent: 2
-    - type: FaxMachine
-      name: Interdyne CMO
-  - uid: 13565
-    components:
-    - type: Transform
-      pos: 50.5,8.5
-      parent: 2
-    - type: FaxMachine
-      name: Cybersun R&D
-  - uid: 13566
-    components:
-    - type: Transform
-      pos: -61.5,27.5
-      parent: 2
-    - type: FaxMachine
-      name: CE's office
-  - uid: 13567
-    components:
-    - type: Transform
-      pos: -54.5,4.5
-      parent: 2
-    - type: FaxMachine
-      name: Engineering
-  - uid: 13568
-    components:
-    - type: Transform
-      pos: 5.5,50.5
-      parent: 2
-    - type: FaxMachine
-      name: NTR/BSO office
-  - uid: 13569
-    components:
-    - type: Transform
-      pos: 25.5,47.5
-      parent: 2
-    - type: FaxMachine
-      name: HOP's office
-  - uid: 13570
-    components:
-    - type: Transform
-      pos: -21.5,46.5
-      parent: 2
-    - type: FaxMachine
-      name: Bridge
-  - uid: 13571
-    components:
-    - type: Transform
-      pos: 48.5,-17.5
-      parent: 2
-    - type: FaxMachine
-      name: Donk co. shipping
-  - uid: 13572
-    components:
-    - type: Transform
-      pos: -0.5,48.5
-      parent: 2
-    - type: FaxMachine
-      name: Command Conference
-  - uid: 13573
-    components:
-    - type: Transform
-      pos: 5.5,9.5
-      parent: 2
-    - type: FaxMachine
-      name: Warden's office
-  - uid: 13574
-    components:
-    - type: Transform
-      pos: 3.5,-24.5
-      parent: 2
-    - type: FaxMachine
-      name: NCT office
-  - uid: 13575
-    components:
-    - type: Transform
-      pos: -5.5,-27.5
-      parent: 2
-    - type: FaxMachine
-      name: Lawyer
   - uid: 13576
     components:
     - type: Transform
@@ -85801,22 +85642,160 @@ entities:
       parent: 2
     - type: FaxMachine
       name: Courtroom
-  - uid: 13577
-    components:
-    - type: Transform
-      pos: -16.5,-10.5
-      parent: 2
-    - type: FaxMachine
-      name: Library
 - proto: FaxMachineCaptain
   entities:
-  - uid: 13578
+  - uid: 13574
     components:
     - type: Transform
       pos: -4.5,34.5
       parent: 2
-    - type: FaxMachine
-      name: Captain's office
+- proto: FaxMachineCargo
+  entities:
+  - uid: 13568
+    components:
+    - type: Transform
+      pos: 48.5,-17.5
+      parent: 2
+- proto: FaxMachineCargoQM
+  entities:
+  - uid: 13557
+    components:
+    - type: Transform
+      pos: 59.5,-28.5
+      parent: 2
+- proto: FaxMachineCommandBridge
+  entities:
+  - uid: 13567
+    components:
+    - type: Transform
+      pos: -21.5,46.5
+      parent: 2
+- proto: FaxMachineCommandConference
+  entities:
+  - uid: 13569
+    components:
+    - type: Transform
+      pos: -0.5,48.5
+      parent: 2
+- proto: FaxMachineEngineering
+  entities:
+  - uid: 13564
+    components:
+    - type: Transform
+      pos: -54.5,4.5
+      parent: 2
+- proto: FaxMachineEngineeringCE
+  entities:
+  - uid: 13563
+    components:
+    - type: Transform
+      pos: -61.5,27.5
+      parent: 2
+- proto: FaxMachineMedical
+  entities:
+  - uid: 13556
+    components:
+    - type: Transform
+      pos: -13.5,-48.5
+      parent: 2
+- proto: FaxMachineMedicalCMO
+  entities:
+  - uid: 13561
+    components:
+    - type: Transform
+      pos: 13.5,-56.5
+      parent: 2
+- proto: FaxMachineNTCareerTrainer
+  entities:
+  - uid: 13571
+    components:
+    - type: Transform
+      pos: 3.5,-24.5
+      parent: 2
+- proto: FaxMachineNTInternalAffairs
+  entities:
+  - uid: 8033
+    components:
+    - type: Transform
+      pos: -9.5,-4.5
+      parent: 2
+- proto: FaxMachineNTRepBSO
+  entities:
+  - uid: 13565
+    components:
+    - type: Transform
+      pos: 5.5,50.5
+      parent: 2
+- proto: FaxMachineScience
+  entities:
+  - uid: 13562
+    components:
+    - type: Transform
+      pos: 50.5,8.5
+      parent: 2
+- proto: FaxMachineScienceRD
+  entities:
+  - uid: 13560
+    components:
+    - type: Transform
+      pos: 57.5,16.5
+      parent: 2
+- proto: FaxMachineSecurity
+  entities:
+  - uid: 13559
+    components:
+    - type: Transform
+      pos: -10.5,6.5
+      parent: 2
+- proto: FaxMachineSecurityHoS
+  entities:
+  - uid: 13558
+    components:
+    - type: Transform
+      pos: -14.5,11.5
+      parent: 2
+- proto: FaxMachineSecurityWarden
+  entities:
+  - uid: 13570
+    components:
+    - type: Transform
+      pos: 5.5,9.5
+      parent: 2
+- proto: FaxMachineServiceChaplain
+  entities:
+  - uid: 8358
+    components:
+    - type: Transform
+      pos: -6.5,-19.5
+      parent: 2
+- proto: FaxMachineServiceHoP
+  entities:
+  - uid: 13566
+    components:
+    - type: Transform
+      pos: 25.5,47.5
+      parent: 2
+- proto: FaxMachineServiceLawyer
+  entities:
+  - uid: 13572
+    components:
+    - type: Transform
+      pos: -5.5,-27.5
+      parent: 2
+- proto: FaxMachineServiceLibrary
+  entities:
+  - uid: 13573
+    components:
+    - type: Transform
+      pos: -16.5,-10.5
+      parent: 2
+- proto: FaxMachineServiceReporter
+  entities:
+  - uid: 11980
+    components:
+    - type: Transform
+      pos: -33.5,-26.5
+      parent: 2
 - proto: filingCabinetDrawerRandom
   entities:
   - uid: 13579
@@ -118493,13 +118472,6 @@ entities:
     - type: Transform
       pos: -7.5,-3.5
       parent: 29092
-- proto: GeneratorBasic15kW
-  entities:
-  - uid: 17606
-    components:
-    - type: Transform
-      pos: 3.5,68.5
-      parent: 2
 - proto: Girder
   entities:
   - uid: 17607
@@ -155574,6 +155546,11 @@ entities:
       parent: 2
 - proto: SMESBasic
   entities:
+  - uid: 13578
+    components:
+    - type: Transform
+      pos: 1.5,68.5
+      parent: 2
   - uid: 23582
     components:
     - type: Transform
@@ -155583,11 +155560,6 @@ entities:
     components:
     - type: Transform
       pos: 72.5,5.5
-      parent: 2
-  - uid: 23584
-    components:
-    - type: Transform
-      pos: 2.5,68.5
       parent: 2
   - uid: 23585
     components:
@@ -158109,6 +158081,13 @@ entities:
     - type: Transform
       pos: -36.5,-46.5
       parent: 2
+- proto: SpawnMobKoboldKiki
+  entities:
+  - uid: 6510
+    components:
+    - type: Transform
+      pos: 13.5,-18.5
+      parent: 2
 - proto: SpawnMobLizard
   entities:
   - uid: 24013
@@ -159611,6 +159590,11 @@ entities:
       parent: 2
 - proto: SubstationBasic
   entities:
+  - uid: 13577
+    components:
+    - type: Transform
+      pos: 2.5,68.5
+      parent: 2
   - uid: 24258
     components:
     - type: MetaData
@@ -159686,11 +159670,6 @@ entities:
       name: Engineering substation
     - type: Transform
       pos: -59.5,29.5
-      parent: 2
-  - uid: 24269
-    components:
-    - type: Transform
-      pos: 1.5,68.5
       parent: 2
   - uid: 24270
     components:
@@ -186827,14 +186806,6 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 28771
-  - uid: 28767
-    components:
-    - type: Transform
-      pos: -5.5,58.5
-      parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 28771
 - proto: WeaponEnergyTurretAIControlPanel
   entities:
   - uid: 28768
@@ -186873,7 +186844,6 @@ entities:
       devices:
       - 28765
       - 28766
-      - 28767
 - proto: WeaponEnergyTurretCommand
   entities:
   - uid: 28772

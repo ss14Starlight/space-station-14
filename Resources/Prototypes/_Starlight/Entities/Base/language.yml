@@ -30,6 +30,7 @@
       - Aielic
       - Felyaic
       - Lagomorphian
+      - Squeakish
 
 - type: entity
   id: BaseBorgiLanguages
@@ -65,6 +66,7 @@
       - Aielic
       - Felyaic
       - Lagomorphian
+      - Squeakish
 
 - type: entity
   id: BaseSiliconBrainLanguages
@@ -111,6 +113,7 @@
       - Aielic
       - Felyaic
       - Lagomorphian
+      - Squeakish
       - Xeno
       - Xenomind
 
@@ -148,4 +151,5 @@
       - Aielic
       - Felyaic
       - Lagomorphian
+      - Squeakish
       - Xeno

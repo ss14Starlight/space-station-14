@@ -48,8 +48,26 @@ ghost-role-information-tsf-aligned-rules = You are [color={role-type-tsf-aligned
                                              You are absolutely [color=red]NOT[/color] allowed to remember, say, the name, appearance, etc. of your previous character.
 
 
-ghost-role-information-nanotrasen-special-forces-name = NTSF Operative
-ghost-role-information-nanotrasen-special-forces-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
+ghost-role-information-ntsf-name = NTSF Operative
+ghost-role-information-ntsf-description = You are a NanoTrasen Special Forces Operative. Perform your assigned task.
+ghost-role-information-ntsf-primus = NTSF Primus Operative
+ghost-role-information-ntsf-primus-description = You are a part of the Primus division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-secundus = NTSF Secundus Operative
+ghost-role-information-ntsf-secundus-description = You are a part of the Secundus division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-tertius = NTSF Tertius Operative
+ghost-role-information-ntsf-tertius-description = You are a part of the Tertius division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-quartus = NTSF Quartus Operative
+ghost-role-information-ntsf-quartus-description = You are a part of the Quartus division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-quintus = NTSF Quintus Operative
+ghost-role-information-ntsf-quintus-description = You are a part of the Quintus division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-sextus = NTSF Sextus Operative
+ghost-role-information-ntsf-sextus-description = You are a part of the Sextus division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-septimus = NTSF Septimus Operative
+ghost-role-information-ntsf-septimus-description = You are a part of the Septimus division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-octavius = NTSF Octavius Operative
+ghost-role-information-ntsf-octavius-description = You are a part of the Octavius division of the NanoTrasen Special Forces. Perform your assigned task.
+ghost-role-information-ntsf-nonus = NTSF Nonus Operative
+ghost-role-information-ntsf-nonus-description = You are a part of the Nonus division of the NanoTrasen Special Forces. Perform your assigned task.
 ghost-role-information-decimus-name = Decimus Operative
 ghost-role-information-decimus-description = You are a Decimus Operative. Enact Code Epsilon. Recovery of NanoTrasen Personnel may or may not be an objective, seek directives from your superiors.
 
