@@ -111,7 +111,6 @@ public sealed partial class DisposalHolderComponent : Component, IGasMixtureHold
     /// is inside a true loop, it will be able to escape once a third full loop is made.
     /// Do not set this value less than 4, it will result in more checks than are necessary.
     /// </remarks>
-    /// </summary>
     [DataField]
     public float DirectionBiasThreshold = 8;
 
