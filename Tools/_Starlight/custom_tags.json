@@ -218,6 +218,7 @@
         "!type:FrezonCoolantReaction mapping",
         "!type:FrezonProductionReaction mapping",
         "!type:FridayThirteenth mapping",
+        "!type:GeneralCreateItemEvent mapping",
         "!type:GeneratedParallaxTextureSource mapping",
         "!type:GenericStatusEffect mapping",
         "!type:GibActionEvent mapping",

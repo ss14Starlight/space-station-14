@@ -13,3 +13,36 @@
       - Medal
   - type: StaticPrice
     price: 250
+
+- type: entity
+  parent: ClothingNeckGoldmedal
+  id: ClothingNeckDeathmatchMedal
+  name: bold medal
+  suffix: Deathmatch, Unremoveable
+  description: Given to bold fighters.
+  components:
+  - type: Unremoveable
+  # create toolbox
+  - type: GeneralItemCreator
+    action: ActionCreateRobustToolbox
+    charge: 250
+    spawnedPrototype: WeaponMeleeToolboxRobustDeathmatch
+    noPowerPopup: deathmatch-no-power
+  - type: EmpResistance
+    strengthMultiplier: 0
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    # you can't unequip it anyways
+    fitsInCharger: false
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactorPrintedUnremoveable
+        disableEject: true
+        whitelist:
+          tags:
+            - PowerCell

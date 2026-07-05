@@ -1,6 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Ninja.Systems;
+using Content.Shared._Starlight.GeneralItemCreator.Systems; // Starlight
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -10,8 +11,8 @@ namespace Content.Shared.Ninja.Components;
 /// Uses battery charge to spawn an item and place it in the user's hands.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedItemCreatorSystem))]
-public sealed partial class ItemCreatorComponent : Component
+[Access(typeof(SharedItemCreatorSystem), typeof(SharedGeneralItemCreatorSystem))]  // Starlight
+public partial class ItemCreatorComponent : Component // Starlight, not sealed
 {
     /// <summary>
     /// The battery entity to use charge from

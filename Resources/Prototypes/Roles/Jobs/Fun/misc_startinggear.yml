@@ -124,8 +124,9 @@
     shoes: ClothingShoesBootsJack
     ears: ClothingHeadsetAssistant
     gloves: ClothingHandsGlovesFingerless
+    misc: ClothingNeckDeathmatchMedal # Starlight
   inhand:
-    - WeaponMeleeToolboxRobust
+    - WeaponMeleeToolboxRobustDeathmatch # Starlight
 
 # Aghost
 - type: startingGear
