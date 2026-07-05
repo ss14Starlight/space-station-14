@@ -12,6 +12,8 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
     <PackageReference Include="NetCord" />
+    <PackageReference Include="NuLua" />
+    <PackageReference Include="NuLua.Luau" />
     <PackageReference Include="prometheus-net" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" />
     <PackageReference Include="Microsoft.Orleans.Client" />

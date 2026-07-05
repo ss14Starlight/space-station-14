@@ -24,6 +24,8 @@
     <PackageVersion Include="Microsoft.Orleans.Sdk" Version="10.0.1" />
     <PackageVersion Include="NAudio" Version="2.2.1" />
     <PackageVersion Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.0" />
+    <PackageVersion Include="NuLua" Version="0.1.0" />
+    <PackageVersion Include="NuLua.Luau" Version="0.1.0" />
     <PackageVersion Include="OggVorbisEncoder" Version="1.2.2" />
     <PackageVersion Include="SS14.Starlight.NullLink" Version="1.0.69" />
     <PackageVersion Include="OpenTK" Version="4.9.4" />
