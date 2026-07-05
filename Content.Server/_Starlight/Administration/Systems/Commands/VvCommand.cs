@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Reflection;
 using Content.Server.Administration;
 using Content.Shared._Starlight.ViewVariables;
 using Content.Shared.Administration;
@@ -37,56 +36,6 @@ public sealed partial class VvCommand : ToolshedCommand
     {
         if (path.StartsWith('/')) path = path[1..];
         _vvm.WritePath($"/entity/{uid}/{path}", value);
-        return uid;
-    }
-
-    [CommandImplementation("instantiate")]
-    public EntityUid Instantiate(IInvocationContext ctx, [PipedArgument] EntityUid uid, string path, string typeName)
-    {
-        var resPath = _vvm.ResolvePath($"/entity/{uid}/{path}");
-        if (resPath is null)
-        {
-            ctx.WriteLine("Could not find path.");
-            return uid;
-        }
-
-        var targetType = resPath.Type;
-        // if (targetType is null)
-        // {
-        //     ctx.WriteLine("Path leads to a null type.");
-        //     return uid;
-        // }
-
-        var resolvedType = AppDomain.CurrentDomain.GetAssemblies()
-            .SelectMany(a =>
-            {
-                try
-                {
-                    return a.GetTypes();
-                }
-                catch (ReflectionTypeLoadException e)
-                {
-                    return e.Types.Where(t => t != null);
-                }
-            })
-            .FirstOrDefault(t => t?.Name == typeName);
-
-        if (resolvedType is null)
-        {
-            ctx.WriteLine("Could not resolve type.");
-            return uid;
-        }
-
-        if (!targetType.IsAssignableFrom(resolvedType))
-        {
-            ctx.WriteLine($"{resolvedType} does not implement/derive from {targetType}.");
-            return uid;
-        }
-
-        var instance = Activator.CreateInstance(resolvedType) ??
-                       throw new Exception($"Failed to instantiate {resolvedType}");
-
-        resPath.Set(instance);
         return uid;
     }
 
