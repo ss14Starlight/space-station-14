@@ -88,10 +88,7 @@ public sealed partial class DisposalTubeSystem : EntitySystem
                 {
                     // If it isn't, pick one of the remaining exits at random
                     var directions = exits.Skip(1).ToArray();
-                    #region Starlight
-                    // args.Next = _random.Pick(directions);
-                    args.Next = exits[2]; // Starlight: Making disposals more consistent. HEAVILY RELIES ON THE '180' BEING DEFINED 2ND.
-                    #endregion Starlight
+                    args.Next = _random.Pick(directions);
                 }
 
                 return;
