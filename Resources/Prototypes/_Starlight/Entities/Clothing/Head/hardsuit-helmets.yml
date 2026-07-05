@@ -649,6 +649,7 @@
     lowPressureMultiplier: 1000
   - type: FireProtection
     reduction: 0.2
+  - type: ClothesNightVision
   - type: Pierceable
     level: Rock
   - type: Armor
@@ -698,6 +699,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -731,6 +733,7 @@
       map: [ "light" ]
   - type: HandheldLight
     addPrefix: false
+  - type: TrayScanner
   - type: ToggleableVisuals
     spriteLayer: light
     clothingVisuals:
@@ -749,6 +752,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -800,6 +804,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -851,6 +856,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -899,9 +905,12 @@
         shader: unshaded
   - type: PointLight
     color: "#0035ff"
+  - type: ShowNullSpace
+    showShader: False
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -953,6 +962,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -1004,6 +1014,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
+  - type: ClothesNightVision
   - type: FireProtection
     reduction: 0.2
   - type: Pierceable
@@ -1237,3 +1248,52 @@
     tags:
     - WhitelistChameleon
     - CorgiWearable
+
+#Greenshield Officer
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadLightParamsProfessional, ClothingHeadHelmetHardsuitSyndieCommander ] # Starlight
+  id: ClothingHeadHelmetHardsuitGreenshield
+  categories: [ DoNotMap ]
+  name: Greenshield hardsuit helmet
+  description: A special hardsuit helmet worn by Greenshield Officers.
+  components:
+    - type: Sprite
+      sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+    - type: Clothing
+      sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
+    - type: PointLight
+      color: "#addbff"
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.9
+          Heat: 0.9
+    - type: Tag
+      tags:
+        - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ChangelingClothingHeadHelmetHardsuit
+  name: organic space helmet
+  description: A spaceworthy biomass of pressure and temperature resistant tissue.
+  suffix: Unremoveable
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: Changeling/ling_spacesuit_helmet.rsi
+  - type: Clothing
+    sprite: Changeling/ling_spacesuit_helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.225
+    lowPressureMultiplier: 1000
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9 # It's pretty thick, and should give *something* so you have a reason to use it over a hardsuit.
+        Slash: 0.9
+        Piercing: 0.95
+        Heat: 0.85

@@ -48,8 +48,7 @@
   components:
   - type: Matchbox
   - type: Storage
-    grid:
-    - 0,0,1,1
+    grid: [] # starlight
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -70,8 +69,7 @@
   suffix: Filled
   components:
   - type: Storage
-    grid:
-    - 0,0,1,1
+    grid: [] # starlight
   - type: ContainerFill
     containers:
       item:

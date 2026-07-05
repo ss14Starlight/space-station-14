@@ -1,0 +1,81 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "hivelord",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight",
+      "delays": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "hivelord_nocore",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight",
+      "delays": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "hivelord_alert",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight",
+      "delays": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "hivelord_alert_nocore",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight",
+      "delays": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "hivelord_dead",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight"
+    },
+    {
+      "name": "hivelord_dead_nocore",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight"
+    },
+    {
+      "name": "hivelordbrood",
+	  "copyright": "vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/9bd459b27c73575fd5e3bf2efea13b816d0ac7c8/icons/mob/animal.dmi, edited by Conflee for Starlight",
+      "delays": [
+        [
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ]
+}

@@ -16,10 +16,10 @@ namespace Content.Client._Starlight.Plumbing;
 ///     Layers hide when covered by floor tiles (server sends CoveredByFloor state).
 /// </summary>
 [UsedImplicitly]
-public sealed class PlumbingConnectorAppearanceSystem : EntitySystem
+public sealed partial class PlumbingConnectorAppearanceSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     private static readonly Color _inletColor = new(1.0f, 0.35f, 0.35f);  // Vibrant Red
     private static readonly Color _outletColor = new(0.35f, 0.6f, 1.0f);  // Vibrant Blue

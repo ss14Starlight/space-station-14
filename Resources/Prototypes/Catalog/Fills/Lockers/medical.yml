@@ -79,6 +79,7 @@
 - type: entity
   parent: LockerMedical
   id: LockerMedicalFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -132,6 +133,7 @@
 - type: entity
   parent: LockerChemistry
   id: LockerChemistryFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   components:
   - type: EntityTableContainerFill
@@ -162,6 +164,7 @@
 - type: entity
   parent: LockerParamedic
   id: LockerParamedicFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   components:
   - type: EntityTableContainerFill

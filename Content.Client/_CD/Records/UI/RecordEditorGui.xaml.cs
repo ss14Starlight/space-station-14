@@ -14,7 +14,7 @@ namespace Content.Client._CD.Records.UI;
 [GenerateTypedNameReferences]
 public sealed partial class RecordEditorGui : Control
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!; // Starlight
+    [Dependency] private IPrototypeManager _prototype = default!; // Starlight
 
     /// <summary>
     /// Delegate that tells the editor to save records when the save button is pressed

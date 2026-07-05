@@ -8,17 +8,20 @@ using Content.Shared.PowerCell;
 using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
-using Robust.Shared.Timing; // _Starlight
+using Robust.Shared.Timing;
+using Content.Server._Starlight.Shuttles.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
+using Content.Server._Starlight.Shuttles.Components; // _Starlight
 
 namespace Content.Server.Shuttles.Systems;
 
-public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
+public sealed partial class RadarConsoleSystem : SharedRadarConsoleSystem
 {
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!; // _Starlight
-    [Dependency] private readonly RadarLaserSystem _laserSystem = default!; // _Starlight
-    [Dependency] private readonly IGameTiming _timing = default!; // _Starlight
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedTransformSystem _transformSystem = default!; // _Starlight
+    [Dependency] private RadarLaserSystem _laserSystem = default!; // _Starlight
+    [Dependency] private IGameTiming _timing = default!; // _Starlight
 
     #region Starlight
     // Periodic blip/laser update

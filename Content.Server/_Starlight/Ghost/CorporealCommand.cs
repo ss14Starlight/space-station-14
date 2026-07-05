@@ -1,13 +1,15 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Ghost;
+using Content.Shared._Starlight.Administration.Components;
 using Content.Shared.Administration;
 using Content.Shared.Emoting;
 using Content.Shared.Eye;
 using Content.Shared.Ghost;
 using Content.Shared.Speech;
 using Content.Shared.Speech.Components;
-using Content.Shared.Starlight.TextToSpeech;
+using Content.Shared._Starlight.TextToSpeech;
+using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Toolshed;
@@ -107,11 +109,14 @@ public sealed class CorporealCommand : ToolshedCommand
         {
             _visibility.AddLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
             _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
+            _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Admin, false);
         }
         else
         {
-            _visibility.AddLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
             _visibility.RemoveLayer((uid, visComp), (int)VisibilityFlags.Normal, false);
+            if(TryComp<AdminGhostComponent>(uid, out var aghost) && aghost.HiddenFromNonAdminGhosts)
+                _visibility.AddLayer(uid, (int)VisibilityFlags.Admin, false);
+            else _visibility.AddLayer((uid, visComp), (int)VisibilityFlags.Ghost, false);
         }
         _visibility.RefreshVisibility((uid, visComp));
     }
