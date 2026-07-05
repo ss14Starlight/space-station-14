@@ -1610,7 +1610,7 @@
     count: 9
     spread: 10
 
-# Apollo Plasma Bolt - Small plasma projectile that explodes on impact
+# Apollo Plasma Bolt - Focused ship-to-ship bolt: high direct heat, small blast
 - type: entity
   id: ApolloHeavyLaser
   name: apollo plasma bolt
@@ -1626,14 +1626,14 @@
   - type: Projectile
     damage:
       types:
-        Heat: 150
-        Structural: 50
+        Heat: 200
+        Structural: 80
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 280
-    intensitySlope: 7
-    maxIntensity: 22
+    totalIntensity: 140
+    intensitySlope: 10
+    maxIntensity: 14
     canCreateVacuum: true
   - type: TimedDespawn
     lifetime: 2.0
@@ -1722,7 +1722,7 @@
         state: impact_blue
 
 
-# Scylla Laser Bolt - Massive laser bolt, longest range, explodes on impact
+# Scylla Laser Bolt - Devastatingly concentrated energy bolt
 - type: entity
   id: ScyllaWideLaser
   name: scylla laser bolt
@@ -1738,20 +1738,20 @@
   - type: Projectile
     damage:
       types:
-        Heat: 600
-        Structural: 300
+        Heat: 1100           # laser burns straight through armour
+        Structural: 700
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 800
-    intensitySlope: 5
-    maxIntensity: 50
+    totalIntensity: 700      # concentrated, intense at epicenter — not wide like Leviathan
+    intensitySlope: 9
+    maxIntensity: 110
     canCreateVacuum: true
   - type: TimedDespawn
     lifetime: 5.0
   - type: PointLight
-    radius: 7.0
-    energy: 5.0
+    radius: 9.0
+    energy: 7.0
     color: "#00CCFF"
   - type: RadarBlip
     color: "#00CCFF"
@@ -1759,7 +1759,7 @@
     shape: Circle
     requireInSpace: true
 
-# AMX-9 DYNAMRE Large Plasma Blob - Large plasma projectile that explodes on impact
+# AMX-9 DYNAMRE Large Plasma Blob - Devastating AoE plasma blob (violent capital-class)
 - type: entity
   id: DynamreDualLaser
   name: dynamre plasma blob
@@ -1771,28 +1771,28 @@
     layers:
     - state: heavylaser
       color: "#FF44FF"
-    scale: 1.5, 1.5
+    scale: 1.8, 1.8
   - type: Projectile
     damage:
       types:
-        Heat: 350
-        Structural: 100
+        Heat: 450
+        Structural: 150
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 550
-    intensitySlope: 6
-    maxIntensity: 35
+    totalIntensity: 780
+    intensitySlope: 5
+    maxIntensity: 50
     canCreateVacuum: true
   - type: TimedDespawn
     lifetime: 2.5
   - type: PointLight
-    radius: 5.0
-    energy: 4.0
+    radius: 6.5
+    energy: 5.5
     color: "#FF44FF"
   - type: RadarBlip
     color: "#FF44FF"
-    scale: 1.3
+    scale: 1.6
     shape: Circle
     requireInSpace: true
 

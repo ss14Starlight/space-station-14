@@ -87,12 +87,12 @@
       tags:
       - MagazineGrenade120mm
 
-# Apollo Heavy Laser Cannon - Slow firing devastating energy weapon
+# Apollo Heavy Laser Cannon - Precision ship-to-ship energy weapon
 - type: entity
   id: ShuttleGunApollo
   parent: ShuttleGunBase
   name: Apollo Heavy Laser Cannon
-  description: A heavy plasma cannon. Launches charged plasma bolts that detonate on impact, dealing direct heat damage and a moderate area-of-effect explosion. Sustained fire possible while power cells remain. [Hardpoint Class]
+  description: A precision ship-to-ship plasma cannon. Fires focused plasma bolts that deal concentrated heat damage with a small detonation radius — ideal for disabling enemy systems without collateral devastation. Sustained fire possible while power cells remain. [Hardpoint Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Apollo.rsi
@@ -143,6 +143,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
+    category: Energy
   - type: AutoLoader
     container: cell_slot
     whitelist:
@@ -235,6 +236,7 @@
     shape: Circle
     requireInSpace: false
   - type: GunneryTrackable
+    category: Rocket
   - type: StaticPrice
     price: 6000
   - type: AutoLoader
@@ -248,7 +250,7 @@
   id: ShuttleGunCharon
   parent: ShuttleGunBase
   name: M321-CHARYBDIS 'Thanatos' 280mm Railgun
-  description: A single-shot electromagnetic railgun of unparalleled destructive capability. Accelerates a 280mm slug to devastating velocities. Requires manual loading of each round into the open chamber before firing. Named for the devouring whirlpool of legend - because that is what awaits those who face one.
+  description: A single-shot electromagnetic railgun of unparalleled destructive capability. Accelerates a 280mm slug to devastating velocities. The standard kinetic slug punches through layered armour and structure with minimal blast — a surgical penetrator. Load a subnuclear slug instead to trade penetration for a ship-annihilating nuclear detonation. Requires manual loading of each round. Named for the devouring whirlpool of legend.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Charon.rsi
@@ -370,7 +372,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 25
+    projectileSpeed: 35
     fireRate: 0.5
     selectedMode: FullAuto
     angleDecay: 30
@@ -494,6 +496,7 @@
     shape: Circle
     requireInSpace: false
   - type: GunneryTrackable
+    category: Rocket
   - type: StaticPrice
     price: 6000
   - type: AutoLoader
@@ -577,6 +580,7 @@
     shape: Square
     requireInSpace: false
   - type: GunneryTrackable
+    category: Energy
 
 # Dravon 75mm Artillery Cannon - Full-auto, medium range, longer reach than AK570
 - type: entity
@@ -746,12 +750,12 @@
       tags:
       - MagazineAK570_90mm
 
-# Leviathan 240mm Siege Cannon - Single-shot, manually loaded, colossal damage
+# Leviathan 240mm Siege Cannon - Single-shot, manually loaded, colossal AOE
 - type: entity
   id: ShuttleGunLeviathan
   parent: ShuttleGunBase
   name: Leviathan 240mm Siege Cannon
-  description: The largest artillery piece cleared for shuttle deployment. This monstrous 240mm siege cannon fires a single manually-loaded shell that can penetrate layered armor and obliterate fortified positions. Extremely difficult to anchor. Each shot requires the crew to physically insert a 240mm shell into the open breech. The Leviathan does not forgive mistakes.
+  description: The largest area-of-effect artillery piece cleared for shuttle deployment. This monstrous 240mm siege cannon fires a single manually-loaded HE shell that detonates in a catastrophic blast radius, obliterating everything within its kill zone. It does not discriminate between armour, crew, and structure. Extremely difficult to anchor. Each shot requires physically inserting a 240mm shell into the open breech. The Leviathan does not forgive mistakes.
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Leviathan.rsi
@@ -827,12 +831,12 @@
   - type: StaticPrice
     price: 50000
 
-# Scylla Laser Railgun - Grid-powered, cyan beam, extreme 1.2km range
+# Scylla Laser Railgun - Experimental, grid-powered, extreme energy draw
 - type: entity
   id: ShuttleGunScylla
   parent: ShuttleGunBase
   name: Scylla Laser Railgun
-  description: An experimental grid-powered laser cannon. Charges ship power into a massive laser bolt that travels at extreme velocity and detonates on impact with a catastrophic explosion. The longest effective range of any ship-mounted weapon. Draws directly from the ship's APC grid. [Capital Class]
+  description: An experimental capital-class energy railgun. Charges enormous amounts of ship power into a single concentrated laser bolt that travels at extreme velocity, burning through armour and detonating in an intense focused blast on impact. The energy draw is so severe it can destabilise under-powered ships. Draws directly from the ship's APC grid. [Capital Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Scylla.rsi
@@ -867,12 +871,12 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
   - type: Gun
-    projectileSpeed: 120
+    projectileSpeed: 220    # laser bolt — fastest projectile in the game
     fireRate: 1
     selectedMode: FullAuto
     availableModes:
     - FullAuto
-    burstCooldown: 30     # 30-second recharge after each shot
+    burstCooldown: 35     # 35-second recharge after each shot
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
       params:
@@ -881,25 +885,26 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 5000
-    startingCharge: 5000
+    maxCharge: 12000
+    startingCharge: 12000   # starts fully charged and ready to fire
     netsync: false
   - type: ApcPowerReceiverBattery
-    idleLoad: 500
-    batteryRechargeRate: 167     # recharge full in ~30s at full draw
+    idleLoad: 1000
+    batteryRechargeRate: 400     # 30s to full charge at full draw
     batteryRechargeEfficiency: 1.0
   - type: ApcPowerReceiver
-    powerLoad: 5000
+    powerLoad: 18000             # enormous draw — can brown-out weak ships
   - type: ExtensionCableReceiver
   - type: BatteryAmmoProvider
     proto: ScyllaWideLaser
-    fireCost: 5000
+    fireCost: 12000              # consumes the entire battery per shot
   - type: RadarBlip
     color: "#00CCFF"
     scale: 2.0
     shape: Triangle
     requireInSpace: false
   - type: GunneryTrackable
+    category: Energy
   - type: StaticPrice
     price: 40000
 
@@ -908,7 +913,7 @@
   id: ShuttleGunDynamre
   parent: ShuttleGunBase
   name: AMX-9 DYNAMRE Dual Turbolaser
-  description: A twin-barreled plasma cannon. Each trigger pull launches two large plasma blobs simultaneously, each detonating on impact with a devastating area-of-effect explosion. Significantly heavier than the standard Apollo. Requires an Omega-capacity power cage to operate. [Capital Class]
+  description: A twin-barreled plasma cannon built for violent area destruction. Each trigger pull launches two massive plasma blobs simultaneously — each detonating in a catastrophic explosion that obliterates armour, crew, and structure alike. Significantly heavier than the Apollo and requires an Omega-capacity power cage. [Capital Class]
   components:
   - type: Sprite
     sprite: _Starlight/Objects/Weapons/Guns/Shuttleguns/Dynamre.rsi
@@ -979,6 +984,7 @@
     shape: Triangle
     requireInSpace: false
   - type: GunneryTrackable
+    category: Energy
   - type: AutoLoader
     container: cell_slot
     whitelist:

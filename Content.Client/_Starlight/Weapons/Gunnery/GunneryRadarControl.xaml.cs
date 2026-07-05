@@ -121,6 +121,10 @@ public sealed class GunneryRadarControl : BaseShuttleControl
         if (TrySelectCannonAt(args.RelativePixelPosition))
             return;
 
+        // While a guided projectile is active, LMB steers rather than fires.
+        if (_trackedGuidedProjectile != null)
+            return;
+
         // Clicking empty space with a cannon selected → start firing.
         if (_coordinates == null || _rotation == null || SelectedCannons.Count == 0)
             return;

@@ -69,12 +69,20 @@ public readonly struct CannonBlipData
     /// <summary>Radar blip shape; Triangle indicates a capital-class weapon.</summary>
     public readonly BlipShape Shape;
 
-    public CannonBlipData(NetCoordinates coordinates, NetEntity entity, string name, float cooldownSeconds = 0f, BlipShape shape = BlipShape.Square)
+    /// <summary>Whether the cannon currently has ammunition available to fire.</summary>
+    public readonly bool HasAmmo;
+
+    /// <summary>Weapon category used for UI filtering.</summary>
+    public readonly CannonCategory Category;
+
+    public CannonBlipData(NetCoordinates coordinates, NetEntity entity, string name, float cooldownSeconds = 0f, BlipShape shape = BlipShape.Square, bool hasAmmo = true, CannonCategory category = CannonCategory.Unknown)
     {
         Coordinates     = coordinates;
         Entity          = entity;
         Name            = name;
         CooldownSeconds = cooldownSeconds;
         Shape           = shape;
+        HasAmmo         = hasAmmo;
+        Category        = category;
     }
 }

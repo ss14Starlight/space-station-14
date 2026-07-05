@@ -3,10 +3,12 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Starlight.Weapons.Gunnery;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Physics;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Server.GameObjects;
@@ -34,6 +36,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
     [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
 
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.
@@ -265,11 +268,14 @@ public sealed class GunneryConsoleSystem : EntitySystem
             navState = _console.GetNavState(uid);
 
         // Populate standard radar blips (rockets, shells, etc.)
+        // Exclude GunneryTrackable entities — they are rendered as cannon diamonds, not blips.
         var maxRangeSq = navState.MaxRange * navState.MaxRange;
 
         var blipQuery = AllEntityQuery<RadarBlipComponent, TransformComponent>();
         while (blipQuery.MoveNext(out var blipUid, out var blip, out var blipXform))
         {
+            if (HasComp<GunneryTrackableComponent>(blipUid))
+                continue; // Shown as cannon diamond instead
             if (blip.RequireInSpace && blipXform.GridUid != null)
                 continue;
             if (blipXform.MapID != consoleMapCoords.MapId)
@@ -310,7 +316,7 @@ public sealed class GunneryConsoleSystem : EntitySystem
         if (gridId != null && HasComp<MapGridComponent>(gridId.Value))
         {
             var gunQuery = AllEntityQuery<GunneryTrackableComponent, GunComponent, TransformComponent>();
-            while (gunQuery.MoveNext(out var gunUid, out _, out var gunComp, out var gunXform))
+            while (gunQuery.MoveNext(out var gunUid, out var trackable, out var gunComp, out var gunXform))
             {
                 if (gunXform.GridUid != gridId)
                     continue;
@@ -324,12 +330,15 @@ public sealed class GunneryConsoleSystem : EntitySystem
 
                 var cooldown = (float)Math.Max(0.0, (gunComp.NextFire - _timing.CurTime).TotalSeconds);
                 var shape = TryComp<RadarBlipComponent>(gunUid, out var blip) ? blip.Shape : BlipShape.Square;
+                var hasAmmo = DetectHasAmmo(gunUid);
                 cannons.Add(new CannonBlipData(
                     GetNetCoordinates(gunXform.Coordinates),
                     GetNetEntity(gunUid),
                     MetaData(gunUid).EntityName,
                     cooldown,
-                    shape));
+                    shape,
+                    hasAmmo,
+                    trackable.Category));
             }
         }
 
@@ -346,6 +355,34 @@ public sealed class GunneryConsoleSystem : EntitySystem
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────
+
+    /// <summary>Returns true if the cannon has at least one round/charge available.</summary>
+    private bool DetectHasAmmo(EntityUid gun)
+    {
+        // Battery-fed energy weapons.
+        if (TryComp<BatteryAmmoProviderComponent>(gun, out var battery))
+            return battery.Shots > 0;
+
+        // Ballistic chamber (single-load weapons like Leviathan/Charon/Tarnyx).
+        if (TryComp<BallisticAmmoProviderComponent>(gun, out var ballistic))
+            return ballistic.Count > 0;
+
+        // Magazine-fed weapons: check whether the loaded magazine still has rounds.
+        if (HasComp<MagazineAmmoProviderComponent>(gun))
+        {
+            // The magazine slot is named "gun_magazine" by convention.
+            var magazine = _itemSlots.GetItemOrNull(gun, "gun_magazine");
+            if (magazine == null)
+                return false;
+            if (TryComp<BallisticAmmoProviderComponent>(magazine.Value, out var magBallistic))
+                return magBallistic.Count > 0;
+            // If we can't check the count, assume loaded.
+            return true;
+        }
+
+        // Unknown ammo provider — assume available.
+        return true;
+    }
 
     /// <summary>Scans for any <see cref="GuidedProjectileComponent"/> whose controller is this console.</summary>
     private EntityUid? FindControlledProjectile(EntityUid consoleUid)

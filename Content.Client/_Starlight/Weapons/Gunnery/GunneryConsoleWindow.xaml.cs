@@ -20,26 +20,33 @@ public sealed class GunneryConsoleWindow : FancyWindow
     // ── Controls ───────────────────────────────────────────────────────────
 
     private readonly GunneryRadarControl _radarControl;
-    private readonly ItemList _cannonList;
-    private readonly Label _statusLabel;
-    private readonly Label _guidanceLabel;
-    private readonly Label _noServerLabel;
+    private readonly BoxContainer        _cannonContainer;
+    private readonly Label               _guidanceLabel;
+    private readonly Label               _noServerLabel;
+    private readonly CheckBox            _filterEnergy;
+    private readonly CheckBox            _filterRocket;
+    private readonly CheckBox            _filterBallistic;
+    private readonly CheckBox            _filterUnknown;
 
     // ── Cannon list state ──────────────────────────────────────────────────
 
     private List<CannonBlipData> _cannons = [];
-    /// <summary>Re-entrancy guard: true while we are programmatically syncing list selection.</summary>
-    private bool _syncingList;
+
+    // Mapping from cannon NetEntity → the toggle button in the list.
+    private readonly Dictionary<NetEntity, Button> _cannonButtons = new();
 
     public GunneryConsoleWindow()
     {
         RobustXamlLoader.Load(this);
 
-        _radarControl  = FindControl<GunneryRadarControl>("RadarControl");
-        _cannonList    = FindControl<ItemList>("CannonList");
-        _statusLabel   = FindControl<Label>("StatusLabel");
-        _guidanceLabel = FindControl<Label>("GuidanceLabel");
-        _noServerLabel = FindControl<Label>("NoServerLabel");
+        _radarControl    = FindControl<GunneryRadarControl>("RadarControl");
+        _cannonContainer = FindControl<BoxContainer>("CannonContainer");
+        _guidanceLabel   = FindControl<Label>("GuidanceLabel");
+        _noServerLabel   = FindControl<Label>("NoServerLabel");
+        _filterEnergy    = FindControl<CheckBox>("FilterEnergy");
+        _filterRocket    = FindControl<CheckBox>("FilterRocket");
+        _filterBallistic = FindControl<CheckBox>("FilterBallistic");
+        _filterUnknown   = FindControl<CheckBox>("FilterUnknown");
 
         // Wire radar-control callbacks to window-level callbacks.
         _radarControl.OnFireRequested  = (cannon, target) => OnFireRequested?.Invoke(cannon, target);
@@ -48,13 +55,14 @@ public sealed class GunneryConsoleWindow : FancyWindow
         // Sync cannon-list selection to radar control.
         _radarControl.OnSelectionChanged = () =>
         {
-            SyncListSelectionToRadarSelection();
-            UpdateStatus();
+            SyncButtonSelectionToRadarSelection();
         };
 
-        _cannonList.SelectMode = ItemList.ItemListSelectMode.Multiple;
-        _cannonList.OnItemSelected   += OnListItemSelected;
-        _cannonList.OnItemDeselected += OnListItemDeselected;
+        // Category filter changes → rebuild visible list.
+        _filterEnergy.OnToggled    += _ => RebuildCannonButtons();
+        _filterRocket.OnToggled    += _ => RebuildCannonButtons();
+        _filterBallistic.OnToggled += _ => RebuildCannonButtons();
+        _filterUnknown.OnToggled   += _ => RebuildCannonButtons();
     }
 
     // ── Update state ───────────────────────────────────────────────────────
@@ -67,9 +75,8 @@ public sealed class GunneryConsoleWindow : FancyWindow
         {
             _noServerLabel.Visible = true;
             _radarControl.Visible = false;
-            _cannonList.Clear();
             _radarControl.SelectedCannons.Clear();
-            UpdateStatus();
+            RebuildCannonButtons();
             return;
         }
 
@@ -77,7 +84,7 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
         var newCannons = state.Cannons;
 
-        // Determine whether the set of cannons changed or only their cooldowns did.
+        // Determine whether the set of cannons changed or only their status did.
         var setChanged = newCannons.Count != _cannons.Count;
         if (!setChanged)
         {
@@ -95,28 +102,17 @@ public sealed class GunneryConsoleWindow : FancyWindow
 
         if (setChanged)
         {
-            // Cannon set changed — fully rebuild list, then restore selection.
-            _syncingList = true;
-            try
-            {
-                _cannonList.Clear();
-                foreach (var cannon in _cannons)
-                {
-                    _cannonList.AddItem(GetCannonLabel(cannon));
-                }
-            }
-            finally
-            {
-                _syncingList = false;
-            }
-            SyncListSelectionToRadarSelection();
+            RebuildCannonButtons();
         }
         else
         {
-            // Only cooldowns changed — update text in-place so scroll position is preserved.
-            for (var i = 0; i < _cannons.Count; i++)
+            // Only status changed — update button labels and colors in-place.
+            foreach (var cannon in _cannons)
             {
-                _cannonList[i].Text = GetCannonLabel(_cannons[i]);
+                if (!_cannonButtons.TryGetValue(cannon.Entity, out var btn))
+                    continue;
+                btn.Text = GetCannonLabel(cannon);
+                ApplyButtonColor(btn, cannon);
             }
         }
 
@@ -124,75 +120,86 @@ public sealed class GunneryConsoleWindow : FancyWindow
         _guidanceLabel.Text = state.TrackedGuidedProjectile != null
             ? "GUIDANCE ACTIVE"
             : string.Empty;
+    }
 
-        UpdateStatus();
+    // ── Cannon button list ─────────────────────────────────────────────────
+
+    private void RebuildCannonButtons()
+    {
+        _cannonContainer.RemoveAllChildren();
+        _cannonButtons.Clear();
+
+        foreach (var cannon in _cannons)
+        {
+            if (!PassesFilter(cannon))
+                continue;
+
+            var btn = new Button
+            {
+                Text        = GetCannonLabel(cannon),
+                ToggleMode  = true,
+                Pressed     = _radarControl.SelectedCannons.Contains(cannon.Entity),
+                HorizontalExpand = true,
+                MinHeight   = 24,
+            };
+            ApplyButtonColor(btn, cannon);
+
+            var captured = cannon;
+            btn.OnToggled += args =>
+            {
+                if (args.Pressed)
+                    _radarControl.SelectedCannons.Add(captured.Entity);
+                else
+                    _radarControl.SelectedCannons.Remove(captured.Entity);
+            };
+
+            _cannonButtons[cannon.Entity] = btn;
+            _cannonContainer.AddChild(btn);
+        }
+    }
+
+    private bool PassesFilter(CannonBlipData cannon)
+    {
+        return cannon.Category switch
+        {
+            CannonCategory.Energy    => _filterEnergy.Pressed,
+            CannonCategory.Rocket    => _filterRocket.Pressed,
+            CannonCategory.Ballistic => _filterBallistic.Pressed,
+            _                        => _filterUnknown.Pressed,
+        };
+    }
+
+    private void SyncButtonSelectionToRadarSelection()
+    {
+        foreach (var (entity, btn) in _cannonButtons)
+            btn.Pressed = _radarControl.SelectedCannons.Contains(entity);
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────
 
+    /// <summary>Applies the correct text color to a cannon button based on its state.</summary>
+    private static void ApplyButtonColor(Button btn, CannonBlipData cannon)
+    {
+        if (cannon.CooldownSeconds > 0f)
+        {
+            // Red while on cooldown.
+            btn.Label.FontColorOverride = Color.FromHex("#FF4444");
+        }
+        else if (!cannon.HasAmmo)
+        {
+            // Orange/amber when out of ammo.
+            btn.Label.FontColorOverride = Color.FromHex("#FF8800");
+        }
+        else
+        {
+            // Green when ready.
+            btn.Label.FontColorOverride = Color.FromHex("#44FF44");
+        }
+    }
+
     private static string GetCannonLabel(CannonBlipData cannon)
     {
-        // Only show the ticking cooldown for capital-class guns (Triangle blip shape).
-        // On fast guns the changing number causes the layout to reflow and shift the radar.
-        if (cannon.Shape == BlipShape.Triangle && cannon.CooldownSeconds > 0f)
-            return $"{cannon.Name} [{cannon.CooldownSeconds:F1}s]";
         return cannon.Name;
     }
-
-    private void OnListItemSelected(ItemList.ItemListSelectedEventArgs args)
-    {
-        if (_syncingList) return;
-        if (args.ItemIndex < 0 || args.ItemIndex >= _cannons.Count)
-            return;
-
-        _radarControl.SelectedCannons.Add(_cannons[args.ItemIndex].Entity);
-        UpdateStatus();
-    }
-
-    private void OnListItemDeselected(ItemList.ItemListDeselectedEventArgs args)
-    {
-        if (_syncingList) return;
-        if (args.ItemIndex < 0 || args.ItemIndex >= _cannons.Count)
-            return;
-
-        _radarControl.SelectedCannons.Remove(_cannons[args.ItemIndex].Entity);
-        UpdateStatus();
-    }
-
-    private void SyncListSelectionToRadarSelection()
-    {
-        if (_syncingList) return;
-        _syncingList = true;
-        try
-        {
-            for (var i = 0; i < _cannons.Count; i++)
-                _cannonList[i].Selected = _radarControl.SelectedCannons.Contains(_cannons[i].Entity);
-        }
-        finally
-        {
-            _syncingList = false;
-        }
-    }
-
-    private void UpdateStatus()
-    {
-        if (_radarControl.SelectedCannons.Count == 0)
-        {
-            _statusLabel.Text = "No cannon selected";
-            return;
-        }
-
-        var sb = new System.Text.StringBuilder();
-        foreach (var cannon in _cannons)
-        {
-            if (!_radarControl.SelectedCannons.Contains(cannon.Entity))
-                continue;
-
-            if (sb.Length > 0) sb.Append('\n');
-            sb.Append(cannon.CooldownSeconds > 0f
-                ? $"{cannon.Name}: COOLDOWN {cannon.CooldownSeconds:F1}s"
-                : cannon.Name);
-        }
-        _statusLabel.Text = sb.Length > 0 ? sb.ToString() : "No cannon selected";
-    }
 }
+

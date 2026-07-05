@@ -1,6 +1,23 @@
 using System.Numerics;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Starlight.Weapons.Gunnery;
+
+/// <summary>
+/// Broad weapon category used for filtering in the gunnery console UI.
+/// </summary>
+[Serializable, NetSerializable]
+public enum CannonCategory : byte
+{
+    /// <summary>Unknown / uncategorised weapon.</summary>
+    Unknown,
+    /// <summary>Energy weapons (battery-powered lasers / plasma cannons).</summary>
+    Energy,
+    /// <summary>Rocket or missile launchers.</summary>
+    Rocket,
+    /// <summary>Ballistic / shell-based artillery.</summary>
+    Ballistic,
+}
 
 /// <summary>
 /// A simple marker that lets the gunnery console identify shuttle-mounted guns
@@ -8,7 +25,12 @@ namespace Content.Shared._Starlight.Weapons.Gunnery;
 /// should appear as a cannon blip in the gunnery console radar.
 /// </summary>
 [RegisterComponent]
-public sealed partial class GunneryTrackableComponent : Component { }
+public sealed partial class GunneryTrackableComponent : Component
+{
+    /// <summary>Category used for filtering in the Gunnery Console UI.</summary>
+    [DataField]
+    public CannonCategory Category = CannonCategory.Ballistic;
+}
 
 /// <summary>
 /// Marks a projectile as remotely guidable via a <see cref="GunneryConsoleComponent"/>.
