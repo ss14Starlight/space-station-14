@@ -40,7 +40,7 @@ public sealed partial class DisposalRouterSystem : EntitySystem
 
         var exits = _disposalTube.GetTubeConnectableDirections((ent, disposalTube));
 
-        if (exits.Length < 3 || _disposalHolder.TagsOverlap(args.Holder, ent.Comp.Tags))
+        if (exits.Length < 3 || _disposalHolder.TagsOverlap(args.Holder, ent.Comp.Tags) || ent.Comp.Tags.Contains("*")) // Starlight, wildcard support
         {
             _disposalTube.SelectNextDirection((ent, disposalTube), exits, ref args);
             return;

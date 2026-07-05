@@ -4,10 +4,6 @@
   suffix: Flipped, Command
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Command"]
 
 
@@ -17,10 +13,6 @@
   suffix: Flipped, Bridge
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Bridge"]
 
 
@@ -30,10 +22,6 @@
   suffix: Flipped, Vault
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Vault"]
 
 
@@ -43,10 +31,6 @@
   suffix: Flipped, Gateway
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Gateway"]
 
 
@@ -56,10 +40,6 @@
   suffix: Flipped, Captain
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Captain"]
 
 
@@ -69,10 +49,6 @@
   suffix: Flipped, HoP
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["HoP"]
 
 
@@ -82,10 +58,6 @@
   suffix: Flipped, Security
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Security"]
 
 
@@ -95,10 +67,6 @@
   suffix: Flipped, Brig
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Brig"]
 
 
@@ -108,10 +76,6 @@
   suffix: Flipped, BrigMed
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["BrigMed"]
 
 
@@ -121,10 +85,6 @@
   suffix: Flipped, Warden
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Warden"]
 
 
@@ -134,10 +94,6 @@
   suffix: Flipped, HoS
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["HoS"]
 
 
@@ -147,10 +103,6 @@
   suffix: Flipped, Armory
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Armory"]
 
 
@@ -160,10 +112,6 @@
   suffix: Flipped, Perma
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Perma"]
 
 
@@ -173,10 +121,6 @@
   suffix: Flipped, Detective
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Detective"]
 
 
@@ -186,10 +130,6 @@
   suffix: Flipped, Courtroom
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Courtroom"]
 
 
@@ -199,10 +139,6 @@
   suffix: Flipped, Law
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Law"]
 
 
@@ -212,10 +148,6 @@
   suffix: Flipped, SecurityCheckpoint
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["SecurityCheckpoint"]
 
 
@@ -225,10 +157,6 @@
   suffix: Flipped, Medical
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Medical"]
 
 
@@ -238,10 +166,6 @@
   suffix: Flipped, Medbay
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Medbay"]
 
 
@@ -251,10 +175,6 @@
   suffix: Flipped, Chemistry
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Chemistry"]
 
 
@@ -264,10 +184,6 @@
   suffix: Flipped, Cryogenics
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Cryogenics"]
 
 
@@ -277,10 +193,6 @@
   suffix: Flipped, CMO
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["CMO"]
 
 
@@ -290,10 +202,6 @@
   suffix: Flipped, Morgue
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Morgue"]
 
 
@@ -303,10 +211,6 @@
   suffix: Flipped, Surgery
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Surgery"]
 
 
@@ -316,10 +220,6 @@
   suffix: Flipped, Psychology
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Psychology"]
 
 
@@ -329,10 +229,6 @@
   suffix: Flipped, Clinic
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Clinic"]
 
 
@@ -342,10 +238,6 @@
   suffix: Flipped, Science
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Science"]
 
 
@@ -355,10 +247,6 @@
   suffix: Flipped, R&D
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["R&D"]
 
 
@@ -368,10 +256,6 @@
   suffix: Flipped, RD
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["RD"]
 
 
@@ -381,10 +265,6 @@
   suffix: Flipped, Robotics
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Robotics"]
 
 
@@ -394,10 +274,6 @@
   suffix: Flipped, Artifact
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Artifact"]
 
 
@@ -407,10 +283,6 @@
   suffix: Flipped, Anomaly
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Anomaly"]
 
 
@@ -420,10 +292,6 @@
   suffix: Flipped, Supply
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Supply"]
 
 
@@ -433,10 +301,6 @@
   suffix: Flipped, Cargo
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Cargo"]
 
 
@@ -446,10 +310,6 @@
   suffix: Flipped, CargoBay
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["CargoBay"]
 
 
@@ -459,10 +319,6 @@
   suffix: Flipped, QM
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["QM"]
 
 
@@ -472,10 +328,6 @@
   suffix: Flipped, Salvage
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Salvage"]
 
 
@@ -485,10 +337,6 @@
   suffix: Flipped, Engineering
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Engineering"]
 
 
@@ -498,10 +346,6 @@
   suffix: Flipped, CE
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["CE"]
 
 
@@ -511,10 +355,6 @@
   suffix: Flipped, AME
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["AME"]
 
 
@@ -524,10 +364,6 @@
   suffix: Flipped, GravityGenerator
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["GravityGenerator"]
 
 
@@ -537,10 +373,6 @@
   suffix: Flipped, Anchor
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Anchor"]
 
 
@@ -550,10 +382,6 @@
   suffix: Flipped, ParticleAccelerator
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["ParticleAccelerator"]
 
 
@@ -563,10 +391,6 @@
   suffix: Flipped, Telecomms
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Telecomms"]
 
 
@@ -576,10 +400,6 @@
   suffix: Flipped, Atmos
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Atmos"]
 
 
@@ -589,10 +409,6 @@
   suffix: Flipped, TEG
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["TEG"]
 
 
@@ -602,10 +418,6 @@
   suffix: Flipped, TechVault
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["TechVault"]
 
 
@@ -615,10 +427,6 @@
   suffix: Flipped, Service
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Service"]
 
 
@@ -628,10 +436,6 @@
   suffix: Flipped, Kitchen
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Kitchen"]
 
 
@@ -641,10 +445,6 @@
   suffix: Flipped, Bar
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Bar"]
 
 
@@ -654,10 +454,6 @@
   suffix: Flipped, Botany
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Botany"]
 
 
@@ -667,10 +463,6 @@
   suffix: Flipped, Janitor
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Janitor"]
 
 
@@ -680,10 +472,6 @@
   suffix: Flipped, AI
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["AI"]
 
 
@@ -693,10 +481,6 @@
   suffix: Flipped, AISatellite
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["AISatellite"]
 
 
@@ -706,10 +490,6 @@
   suffix: Flipped, AICore
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["AICore"]
 
 
@@ -719,10 +499,6 @@
   suffix: Flipped, AIUpload
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["AIUpload"]
 
 
@@ -732,10 +508,6 @@
   suffix: Flipped, AIPower
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["AIPower"]
 
 
@@ -745,10 +517,6 @@
   suffix: Flipped, Arrivals
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Arrivals"]
 
 
@@ -758,10 +526,6 @@
   suffix: Flipped, Evac
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Evac"]
 
 
@@ -771,10 +535,6 @@
   suffix: Flipped, DockingArm
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["DockingArm"]
 
 
@@ -784,10 +544,6 @@
   suffix: Flipped, EVAStorage
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["EVAStorage"]
 
 
@@ -797,10 +553,6 @@
   suffix: Flipped, Shrine # Starlight: Chapel -> Shrine
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Chapel"]
 
 
@@ -810,10 +562,6 @@
   suffix: Flipped, Library
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Library"]
 
 
@@ -823,10 +571,6 @@
   suffix: Flipped, Reporter
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Reporter"]
 
 
@@ -836,10 +580,6 @@
   suffix: Flipped, Theater
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Theater"]
 
 
@@ -849,10 +589,6 @@
   suffix: Flipped, Dorms
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Dorms"]
 
 
@@ -862,10 +598,6 @@
   suffix: Flipped, Tools
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Tools"]
 
 
@@ -875,10 +607,6 @@
   suffix: Flipped, Disposals
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Disposals"]
 
 
@@ -888,10 +616,6 @@
   suffix: Flipped, Cryosleep
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Cryosleep"]
 
 
@@ -901,10 +625,6 @@
   suffix: Flipped, Vox
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["Vox"]
 
 
@@ -914,8 +634,4 @@
   suffix: Flipped, Wildcard
   components:
   - type: DisposalRouter
-    degrees:
-    - 0
-    - 90
-    - 180
     tags: ["*"]
