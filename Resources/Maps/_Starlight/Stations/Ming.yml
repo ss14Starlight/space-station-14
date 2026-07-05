@@ -11502,7 +11502,7 @@ entities:
       parent: 2
     - type: GridFill
       addComponents: []
-      path: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
+      path: /Maps/_Starlight/Shuttles/Security/pursuit.yml
     - type: Door
       secondsUntilStateChange: -85725.29
       state: Opening
