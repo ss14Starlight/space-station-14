@@ -119,7 +119,6 @@
     - map: [ "pipe" ]
       state: conpipe-s
   - type: DisposalTube
-    containerId: DisposalTransit
     exits:
     - South
     - North

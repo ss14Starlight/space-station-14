@@ -25,7 +25,7 @@ public abstract partial class SharedDisposalUnitSystem
                 _power.TogglePower(ent.Owner, user: args.Actor);
                 break;
             default:
-                throw new ArgumentOutOfRangeException($"{ToPrettyString(player):player} attempted to hit a nonexistant button on {ToPrettyString(ent)}");
+                throw new ArgumentOutOfRangeException(nameof(args.Button), $"{ToPrettyString(player):player} attempted to hit a nonexistent button on {ToPrettyString(ent)}"); // Starlight
         }
     }
 

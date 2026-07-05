@@ -34,6 +34,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
     /// Allowed characters for tagging disposed entities.
     /// </summary>
     public static readonly Regex TagRegex = new("^[a-zA-Z0-9, ]*$", RegexOptions.Compiled);
+    private const float DestinationEpsilon = 1e-3f; // Starlight
 
     public override void Initialize()
     {
@@ -216,6 +217,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
     public void AddTag(Entity<DisposalHolderComponent> ent, string tag)
     {
         ent.Comp.Tags.Add(tag);
+        Dirty(ent); // Starlight
     }
 
     /// <summary>
@@ -226,6 +228,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
     public void RemoveTag(Entity<DisposalHolderComponent> ent, string tag)
     {
         ent.Comp.Tags.Remove(tag);
+        Dirty(ent); // Starlight
     }
 
     /// <summary>
@@ -295,7 +298,7 @@ public abstract partial class SharedDisposalHolderSystem : EntitySystem
         var entDestDiff = destination - entCoords;
 
         // If we're really close, don't bother updating our velocity
-        if (entDestDiff.Length() > 1e-3)
+        if (entDestDiff.Length() > DestinationEpsilon) // Starlight
         {
             // Set velocity
             var velocity = entDestDiff.Normalized() * ent.Comp.TraversalSpeed;

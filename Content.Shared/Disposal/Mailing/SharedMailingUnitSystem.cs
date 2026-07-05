@@ -143,6 +143,7 @@ public abstract partial class SharedMailingUnitSystem : EntitySystem
         if (!configuration.ContainsKey(TagConfigurationKey) || configuration[TagConfigurationKey] == string.Empty)
         {
             ent.Comp.Tag = null;
+            Dirty(ent); // Starlight
             return;
         }
 
