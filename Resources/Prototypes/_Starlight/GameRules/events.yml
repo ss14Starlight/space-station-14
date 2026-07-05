@@ -76,6 +76,8 @@
           tags:
             - CantBecomeRevolutionary
           # Starlight-end
+    - type: DynamicRuleCost
+      cost: 125 # They're not that special.
 
 # Roundender-less events table for survival
 - type: entityTable
