@@ -1,6 +1,7 @@
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: Electrolyzer
+  categories: [ ShouldMapStation ] # Starlight
   name: electrolyzer
   description: A machine that processes and transforms gases through electrolysis. Fueled by plasma or uranium sheets. # Starlight
   components:

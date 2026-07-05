@@ -232,3 +232,150 @@
           reagent: Infernaline
           amount: -0.5
           # Starlight-End
+
+- type: reagent
+  id: Briomadine
+  name: reagent-name-briomadine
+  group: Medicine
+  desc: reagent-desc-briomadine
+  physicalDesc: reagent-physical-desc-soothing
+  flavor: medicine
+  color: "#ffd275"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:EvenHealthChange
+        damage:
+          Brute: -3.0
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 20
+        damage:
+          types:
+            Asphyxiation: 1.5
+            Poison: 3.0
+      - !type:Vomit
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 40
+        probability: 0.02
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Briomadine
+          min: 20
+      - !type:Drunk
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Briomadine
+        amount: -0.5
+
+- type: reagent
+  id: Acrileni
+  name: reagent-name-acrileni
+  group: Medicine
+  desc: reagent-desc-acrileni
+  physicalDesc: reagent-physical-desc-resinfera
+  flavor: medicine
+  color: "#99ff33"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Piercing: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Cyclorite ]
+        reagent: Acrileni
+        amount: -0.5
+
+- type: reagent
+  id: Iceialin
+  name: reagent-name-iceialin
+  group: Medicine
+  desc: reagent-desc-iceialin
+  physicalDesc: reagent-physical-desc-pungent
+  flavor: medicine
+  color: "#7DFAFF"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      metabolismRate: 0.5
+      effects:
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 4000.00
+        amount: -5000000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 1000.00
+          max: 3999.99
+        amount: -1000000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 500.00
+          max: 999.99
+        amount: -400000
+      - !type:AdjustTemperature
+        conditions:
+        - !type:TemperatureCondition
+          min: 293.15
+          max: 499.99
+        amount: -100000
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "leporazine-effect-temperature-adjusting" ]
+        probability: 0.2
+
+- type: reagent
+  id: Necrosol
+  name: reagent-name-necrosol
+  group: Medicine
+  desc: reagent-desc-necrosol
+  physicalDesc: reagent-physical-desc-necrotic
+  flavor: medicine
+  color: "#86a5bd"
+  worksOnTheDead: true
+  plantMetabolism:
+  - !type:PlantAdjustToxins
+    amount: -5
+  - !type:PlantAdjustHealth
+    amount: 5
+  - !type:PlantCryoxadone {}
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:EvenHealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          damage:
+            Brute: -2
+            Burn: -2
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            max: 213.0
+          damage:
+            types:
+              Poison: -2
+        # Starlight-Start: Cyclorite Metabolism
+        - !type:AdjustReagent
+          conditions:
+            - !type:MetabolizerTypeCondition
+             type: [ Cyclorite ]
+          reagent: Necrosol
+          amount: -0.5
+        # Starlight-End

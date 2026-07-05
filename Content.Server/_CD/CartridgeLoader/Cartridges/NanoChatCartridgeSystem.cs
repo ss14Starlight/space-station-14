@@ -14,17 +14,20 @@ using Content.Shared.PDA;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Content.Shared.Abilities.Mime; // Starlight
+using Content.Server.Popups; // Starlight
 
 namespace Content.Server._CD.CartridgeLoader.Cartridges;
 
-public sealed class NanoChatCartridgeSystem : EntitySystem
+public sealed partial class NanoChatCartridgeSystem : EntitySystem
 {
-    [Dependency] private readonly CartridgeLoaderSystem _cartridge = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private CartridgeLoaderSystem _cartridge = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private SharedNanoChatSystem _nanoChat = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private PopupSystem _popupSystem = default!; // Starlight
 
     // Messages in notifications get cut off after this point
     // no point in storing it on the comp
@@ -230,13 +233,20 @@ public sealed class NanoChatCartridgeSystem : EntitySystem
         if (!EnsureRecipientExists(card, msg.RecipientNumber.Value))
             return;
 
-        // Starlight Start
+        #region Starlight
+        // NanoChat is not pantomiming! Mimes have to break their vow of silence to speak in any form
+        if(TryComp<MimePowersComponent>(msg.Actor, out var mime) && !mime.VowBroken)
+        {
+            _popupSystem.PopupEntity(Loc.GetString("mime-cant-speak"), msg.Actor, msg.Actor);
+            return;
+        }
+
         var content = msg.Content;
         if (!string.IsNullOrWhiteSpace(content))
         {
             content = content.Trim();
         }
-        // Starlight End
+        #endregion
 
         // Create and store message for sender
         var message = new NanoChatMessage(

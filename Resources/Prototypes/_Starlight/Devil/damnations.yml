@@ -1,8 +1,25 @@
+# Devil damnations
+
+## Categories:
+### Constitution - relating to health, body
+### Psyche - relating to mind, ability to do things
+### Materiel - relating to physical things, taking something away or giving something
+
+## Cost:
+### Cost should be balanced such that "Soul" remains the most desirable punishment.
+### Even if your damnation has a fate worse than having your soul taken, you should not go above 10 points,
+### otherwise it becomes the focus of the deals that the devil does.
+### Also keep in mind that if your deal is fatal, the cost should not necessarily be high, because people are
+### likely to chain it on along with Soul anyway if it guaranteed round removes them at some point
+### Devil deals should focus on enhancing existing chaos, deals that create new chaos (i.e. spawn a terminator or minor antag)
+### Should be heavily limited in use, otherwise we just end up with people spawning 12 terminators for shits and giggles.
+
 # CURSES
 
 - type: damnation
   id: Soul
   name: my soul
+  category: psyche
   description: The signator forfeits their soul to you. Upon death, their soul will be sent to the depths of hell, rendering their corpse unrevivable.
   cost: -10
   components:
@@ -16,6 +33,7 @@
 - type: damnation
   id: Pacifism
   name: give up my will to fight
+  category: psyche
   description: The signator gives up their inner fight, becoming unable to bring harm to anything living or inanimate.
   cost: -3
   components:
@@ -25,6 +43,7 @@
 - type: damnation
   id: Blindness
   name: give up my sight
+  category: constitution
   description: The signator forfeits their ability to see.
   cost: -3
   components:
@@ -34,6 +53,7 @@
 - type: damnation
   id: Time
   name: give up my life
+  category: constitution
   description: The signator forfeits their life, leaving them with five minutes left to live.
   cost: -8
   reverseOnRemove: false # prevent cheesing it for points
@@ -43,6 +63,7 @@
 - type: damnation
   id: Credits
   name: give up my riches
+  category: materiel
   description: The signator forfeits 5000 credits.
   cost: -5
   actions:
@@ -52,6 +73,7 @@
 - type: damnation
   id: Purpose
   name: lose my purpose
+  category: psyche
   description: The signator received a fate worse than death.
   cost: -6
   components:
@@ -60,6 +82,7 @@
 - type: damnation
   id: Humanity
   name: lose my humanity
+  category: constitution
   description: The signator will regress into a more primitive form.
   cost: -5
   actions:
@@ -69,6 +92,7 @@
 - type: damnation
   id: Organ
   name: give up an organ
+  category: constitution
   description: The signator loses a random organ. This could be anything from their lungs to a kidney.
   cost: -6
   actions:
@@ -77,24 +101,40 @@
 - type: damnation
   id: Terminator
   name: become a target
+  category: materiel
   description: The future is imperceptibly modified, putting the signator square in the sights of a vengeful actor.
   cost: -4
+  maxUses: 1
   actions:
   - !type:DamnationActionTerminator
 
 - type: damnation
   id: Mute
   name: lose my voice
+  category: constitution
   description: Makes the signator mute
   cost: -2
   components:
   - type: Muted
+
+- type: damnation
+  id: Stink
+  name: have a foul odor
+  category: constitution
+  description: The signator constantly leeches ammonia.
+  cost: -1
+  components:
+  - type: IntermittentGasEmitter
+    gasType: Ammonia
+    emitPeriod: 5
+    moles: 5
 
 # REWARDS
 
 - type: damnation
   id: SpaceImmunity
   name: gain immunity to space
+  category: constitution
   description: The signator becomes immune to space, no longer bound by their fear.
   cost: 8
   removedComponents:
@@ -115,6 +155,7 @@
 - type: damnation
   id: AllSeeing
   name: gain knowledge of my surroundings
+  category: psyche
   description: the signator can perceive through walls.
   cost: 6
   components:
@@ -124,8 +165,10 @@
 - type: damnation
   id: Magic
   name: gain arcane powers
+  category: materiel
   description: The signator learns some magical transport spells.
   cost: 16
+  maxUses: 2
   components:
     - type: Jaunt
   reverseOnRemove: true
@@ -133,6 +176,7 @@
 - type: damnation
   id: Health
   name: gain self rejuvenation
+  category: constitution
   description: The signator gains the ability to totally restore their health, once.
   cost: 10
   reverseOnRemove: true
@@ -144,6 +188,7 @@
 - type: damnation
   id: Power
   name: gain power over others
+  category: materiel
   description: The signator gains a piece of armor and a blade, so that they can rend their will upon the world.
   cost: 6
   actions:
@@ -153,6 +198,7 @@
 - type: damnation
   id: Gun
   name: receive a great equalizer
+  category: materiel
   description: The signator receives a gun. We bought some arms futures and it didn't exactly turn out, need to get this crap off our hands.
   cost: 10
   actions:
@@ -162,6 +208,7 @@
 - type: damnation
   id: Electricity
   name: gain immunity to electricity
+  category: constitution
   description: The signator becomes.... insulated
   cost: 4
   components:
@@ -170,6 +217,7 @@
 - type: damnation
   id: Noslip
   name: gain a sure footing
+  category: constitution
   description: The signator cannot slip anymore
   cost: 5
   components:

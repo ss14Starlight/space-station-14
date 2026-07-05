@@ -1,7 +1,8 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server.Shuttles.Components;
+using Content.Server._Starlight.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Starlight.Shuttles.Components;
 using Content.Shared._Starlight.Weapons.Gunnery;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Physics;
@@ -26,7 +27,7 @@ namespace Content.Server._Starlight.Weapons.Gunnery;
 /// containing the standard radar data, cannon blip positions, and guided-projectile
 /// tracking info. Also handles fire and guidance BUI messages from the client.
 /// </summary>
-public sealed class GunneryConsoleSystem : EntitySystem
+public sealed partial class GunneryConsoleSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
@@ -37,6 +38,13 @@ public sealed class GunneryConsoleSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private SharedGunSystem _gun = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedPowerReceiverSystem _power = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
 
     /// <summary>
     /// How often to transmit UI updates when a player is actively looking at a console.

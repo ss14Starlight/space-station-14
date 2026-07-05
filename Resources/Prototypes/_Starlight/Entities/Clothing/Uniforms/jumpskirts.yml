@@ -98,6 +98,38 @@
     zombificationResistanceCoefficient: 0.90
 
 - type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalBrigmedic
+  name: formal brigmedic jumpskirt
+  description: A formal suit for the brigmedic.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_alt.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_alt.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtSeniorBrigmedic
+  name: senior formal brigmedic jumpskirt
+  description: A formal suit for the seasoned brigmedic.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_senior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/brigmedic_senior.rsi
+  - type: Armor # so zombification resistance shows up
+    modifiers:
+      coefficients: { }
+  - type: ZombificationResistance
+    zombificationResistanceCoefficient: 0.90
+
+- type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtSecBlue
   name: blue skirt and tie
@@ -107,6 +139,50 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/security_blue.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalDeputy
+  name: deputy's formal jumpskirt
+  description: A formal attire for one who feels destined for the desert.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy_formal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/deputy_formal.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalSecoff
+  name: formal security jumpskirt
+  description: A formal attire for the security officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalSeniorSecoff
+  name: formal senior security jumpskirt
+  description: A formal attire for the senior security officer.
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal_senior.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/secoff_formal_senior.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
+  id: ClothingUniformJumpskirtFormalWarden
+  name: warden's formal jumpskirt
+  description: A formal attire for the warden, missing a holster for the truncheon sadly...
+  components:
+  - type: Sprite
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/warden_formal.rsi
+  - type: Clothing
+    sprite: _Starlight/Clothing/Uniforms/Jumpskirt/warden_formal.rsi
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
@@ -425,7 +501,6 @@
   name: mining specialist's jumpskirt
   description: A suit passed down through many generations. a fine layer of dust trails behind it.
   components:
-  - type: RollUpSleeves
   - type: Sprite
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/mining.rsi
   - type: Clothing
@@ -783,3 +858,33 @@
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
   - type: Clothing
     sprite: _Starlight/Clothing/Uniforms/Jumpskirt/nct.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAssistant
+  name: assistant jumpskirt
+  description: A tasteful green jumpskirt that reminds you of the good old days.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    layers:
+    - state: icon
+      color: "#639137"
+    - state: trinkets-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#639137"
+      - state: trinkets-inhand-left
+      right:
+      - state: inhand-right
+        color: "#639137"
+      - state: trinkets-inhand-right
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/color.rsi
+    clothingVisuals:
+      jumpsuit:
+      - state: equipped-INNERCLOTHING
+        color: "#639137"
+      - state: trinkets-equipped-INNERCLOTHING

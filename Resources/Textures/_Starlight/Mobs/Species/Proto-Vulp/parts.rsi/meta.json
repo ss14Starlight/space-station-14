@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright. Protogen species by Malice-Risu.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "torso_m",
+      "directions": 4,
+	  "copyright": "Original Sprites by SuperJoelD00D, Occulus-Eris, discord:kuro_0001, Reworked Sprites by Killer_Tamashi (Discord)"
+    },
+    {
+      "name": "torso_f",
+      "directions": 4,
+	  "copyright": "Original Sprites by SuperJoelD00D, Occulus-Eris, discord:kuro_0001"
+    },
+    {
+      "name": "l_leg",
+      "directions": 4,
+	  "copyright": "Original Sprites by SuperJoelD00D, Occulus-Eris, discord:kuro_0001, Reworked Sprites by Killer_Tamashi (Discord), modified further by wonderfulnewworld (GitHub)"
+    },
+    {
+      "name": "r_leg",
+      "directions": 4,
+	  "copyright": "Original Sprites by SuperJoelD00D, Occulus-Eris, discord:kuro_0001, Reworked Sprites by Killer_Tamashi (Discord), modified further by wonderfulnewworld (GitHub)"
+    }
+  ]
+}

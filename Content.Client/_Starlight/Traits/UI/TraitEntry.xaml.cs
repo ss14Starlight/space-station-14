@@ -6,7 +6,6 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Starlight.Traits.UI;
@@ -14,8 +13,8 @@ namespace Content.Client._Starlight.Traits.UI;
 [GenerateTypedNameReferences]
 public sealed partial class TraitEntry : PanelContainer
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly JobRequirementsManager _requirementsManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
+    [Dependency] private JobRequirementsManager _requirementsManager = default!;
 
     public event Action<bool>? OnToggled;
 

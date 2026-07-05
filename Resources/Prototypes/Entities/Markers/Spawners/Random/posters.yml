@@ -117,6 +117,8 @@
       - PosterContrabandARFRadio
       - PosterContrabandGEC
       - PosterContrabandHereticalExomorph
+      - PosterContrabandBeep100
+      - PosterContraband300Hotdogs
       #endregion Starlight
     chance: 1
 
@@ -212,5 +214,6 @@
       - PosterLegitSpaceCops2
       - PosterLegitStarkistFancy
       - PosterLegitTSPDRangers
+      - PosterLegitChipIn
       #endregion Starlight
     chance: 1

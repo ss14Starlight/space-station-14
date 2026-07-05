@@ -2,7 +2,7 @@ using Content.Shared.DeviceLinking;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.EnergyDome;
+namespace Content.Server._Starlight.EnergyDome;
 
 /// <summary>
 /// component, allows an entity to generate a battery-powered energy dome of a specific type.

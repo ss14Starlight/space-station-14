@@ -1,0 +1,114 @@
+# Group
+- type: faxGroup
+  id: FaxGroupService
+  name: fax-group-service
+  order: 9000
+  color: "#539c00"
+
+# Base
+- type: entity
+  abstract: true
+  parent: FaxMachineBase
+  id: FaxMachineServiceBase
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#539c00"
+
+# Fax machines
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineService
+  suffix: "SRV: Service"
+  components:
+    - type: Sprite
+      layers:
+        - state: icon
+          map: [ "base" ]
+          color: "#539c00"
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Service"
+      order: 100
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceHoP
+  suffix: "SRV: HoP"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Head of Personnel"
+      order: 200
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceReporter
+  suffix: "SRV: Reporter"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Reporter"
+      order: 300
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceLawyer
+  suffix: "SRV: Lawyer"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Lawyer"
+      order: 310
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceLibrary
+  suffix: "SRV: Library"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Library"
+      order: 400
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceBar
+  suffix: "SRV: Bar"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Bar"
+      order: 500
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceShrine
+  suffix: "SRV: Shrine"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Shrine"
+      order: 600
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceChaplain
+  suffix: "SRV: Chaplain"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Chaplain"
+      order: 610
+
+- type: entity
+  parent: FaxMachineServiceBase
+  id: FaxMachineServiceTheater
+  suffix: "SRV: Theater"
+  components:
+    - type: FaxMachine
+      group: FaxGroupService
+      name: "Theater"
+      order: 700

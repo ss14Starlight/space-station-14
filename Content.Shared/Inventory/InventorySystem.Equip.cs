@@ -24,17 +24,17 @@ namespace Content.Shared.Inventory;
 
 public abstract partial class InventorySystem
 {
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly SharedItemSystem _item = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private readonly SharedStrippableSystem _strippable = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeed = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private SharedItemSystem _item = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private SharedStrippableSystem _strippable = default!;
 
     private static readonly ProtoId<ItemSizePrototype> PocketableItemSize = "Small";
 
@@ -142,7 +142,7 @@ public abstract partial class InventorySystem
     {
         if (!Resolve(target, ref inventory, false))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-equip-cannot"));
             return false;
         }
@@ -153,14 +153,14 @@ public abstract partial class InventorySystem
 
         if (!TryGetSlotContainer(target, slot, out var slotContainer, out var slotDefinition, inventory))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-equip-cannot"));
             return false;
         }
 
         if (!force && !CanEquip(actor, target, itemUid, slot, out var reason, slotDefinition, inventory, clothing))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString(reason));
             return false;
         }
@@ -188,9 +188,17 @@ public abstract partial class InventorySystem
             return false;
         }
 
+        // give other systems a chance to do stuff before equipping
+        var beforeGettingEquippedEvent = new BeforeGettingEquippedEvent(actor, target, itemUid, slotDefinition);
+        var beforeEquipEvent = new BeforeEquipEvent(actor, target, itemUid, slotDefinition);
+
+        RaiseLocalEvent(itemUid, beforeGettingEquippedEvent);
+        RaiseLocalEvent(target, beforeEquipEvent);
+
+        // actually equip the item
         if (!_containerSystem.Insert(itemUid, slotContainer))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-unequip-cannot"));
             return false;
         }
@@ -251,7 +259,11 @@ public abstract partial class InventorySystem
             return false;
 
         DebugTools.Assert(slotDefinition.Name == slot);
-        if (slotDefinition.DependsOn != null)
+        #region Starlight
+        // We're going to check for alternative dependencies here, so we'll have to extend this down below.
+        if (!AreSlotDependenciesMet(target, itemUid, slotDefinition, inventory))
+            return false;
+        /*if (slotDefinition.DependsOn != null)
         {
             if (!TryGetSlotEntity(target, slotDefinition.DependsOn, out EntityUid? slotEntity, inventory))
                 return false;
@@ -268,7 +280,8 @@ public abstract partial class InventorySystem
                         return false;
                 }
             }
-        }
+        }*/
+        #endregion
 
         var fittingInPocket = slotDefinition.SlotFlags.HasFlag(SlotFlags.POCKET) &&
                               item != null &&
@@ -409,14 +422,14 @@ public abstract partial class InventorySystem
 
         if (!Resolve(target, ref inventory, false))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-unequip-cannot"));
             return false;
         }
 
         if (!TryGetSlotContainer(target, slot, out var slotContainer, out var slotDefinition, inventory))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString("inventory-component-can-unequip-cannot"));
             return false;
         }
@@ -428,7 +441,7 @@ public abstract partial class InventorySystem
 
         if (!force && !CanUnequip(actor, target, slot, out var reason, slotContainer, slotDefinition, inventory))
         {
-            if(!silent)
+            if (!silent)
                 _popup.PopupCursor(Loc.GetString(reason));
             return false;
         }
@@ -459,6 +472,14 @@ public abstract partial class InventorySystem
             return false;
         }
 
+        // give other systems a chance do stuff before unequipping
+        var beforeGettingUnequippedEvent = new BeforeGettingUnequippedEvent(actor, target, removedItem.Value, slotDefinition);
+        var beforeUnequipEvent = new BeforeUnequipEvent(actor, target, removedItem.Value, slotDefinition);
+
+        RaiseLocalEvent(removedItem.Value, beforeGettingUnequippedEvent);
+        RaiseLocalEvent(target, beforeUnequipEvent);
+
+        // actually unequip the item
         if (!_containerSystem.Remove(removedItem.Value, slotContainer, force: force, reparent: reparent))
             return false;
 
@@ -466,13 +487,24 @@ public abstract partial class InventorySystem
         var firstRun = itemsDropped == 0;
         ++itemsDropped;
 
+        // TODO: This is not being checked at the moment if we remove clothing by any other means than TryUnequip, for example when deleting the item or teleporting it away.
+        // But checking this in a EntGotRemovedFromContainerMessage subscription is fundamentally incompatible with the current prediction API for popups and audio since we don't have a user.
         foreach (var slotDef in inventory.Slots)
         {
-            if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
-            {
+        #region Starlight
+                if (slotDef == slotDefinition || !SlotDependsOn(slotDef, slotDefinition.Name))
+                    continue;
+
+                // If this slot has an OR dependency, do not drop it as long as one of the other dependency slots is still occupied
+                // and satisfies dependsOnComponents.
+                if (TryGetSlotEntity(target, slotDef.Name, out var dependentItem, inventory) &&
+                    AreSlotDependenciesMet(target, dependentItem.Value, slotDef, inventory))
+                    continue;
+        #endregion
+            //{ // Starlight
                 //this recursive call might be risky
                 TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
-            }
+            //} // Starlight
         }
 
         // we check if any items were dropped, and make a popup if they were.
@@ -555,7 +587,58 @@ public abstract partial class InventorySystem
 
         return true;
     }
+    #region Starlight
+    // Extended alternative slot region.
+    private bool AreSlotDependenciesMet(EntityUid target, EntityUid itemUid, SlotDefinition slotDefinition, InventoryComponent inventory)
+    {
+        if (slotDefinition.DependsOn != null &&
+            !IsDependencySlotValid(target, itemUid, slotDefinition, slotDefinition.DependsOn, inventory))
+            return false;
 
+        if (slotDefinition.DependsOnAny.Count > 0)
+        {
+            // I don't like how many fors this gets into, but since realistically the most anyone will ever use this for is 2 or 3... it's not the worst, right?
+            foreach (var dependencySlot in slotDefinition.DependsOnAny)
+            {
+                if (IsDependencySlotValid(target, itemUid, slotDefinition, dependencySlot, inventory))
+                    return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }
+
+    private bool IsDependencySlotValid(EntityUid target, EntityUid itemUid, SlotDefinition slotDefinition, string dependencySlot, InventoryComponent inventory)
+    {
+        if (!TryGetSlotEntity(target, dependencySlot, out EntityUid? slotEntity, inventory))
+            return false;
+
+        if (slotDefinition.DependsOnComponents is not { } componentRegistry)
+            return true;
+
+        foreach (var (_, entry) in componentRegistry)
+        {
+            if (!HasComp(slotEntity, entry.Component.GetType()))
+                return false;
+
+            if (TryComp<AllowSuitStorageComponent>(slotEntity, out var comp) &&
+                _whitelistSystem.IsWhitelistFailOrNull(comp.Whitelist, itemUid))
+                return false;
+        }
+
+        return true;
+    }
+
+    private static bool SlotDependsOn(SlotDefinition slotDefinition, string dependencySlot)
+    {
+        if (slotDefinition.DependsOn == dependencySlot)
+            return true;
+
+        return slotDefinition.DependsOnAny.Contains(dependencySlot);
+    }
+    #endregion
     public bool TryGetSlotEntity(EntityUid uid, string slot, [NotNullWhen(true)] out EntityUid? entityUid, InventoryComponent? inventoryComponent = null, ContainerManagerComponent? containerManagerComponent = null)
     {
         entityUid = null;
