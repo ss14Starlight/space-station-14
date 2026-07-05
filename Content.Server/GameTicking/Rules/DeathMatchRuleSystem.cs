@@ -3,6 +3,7 @@ using Content.Server.GameTicking.Rules.Components;
 using Content.Server.KillTracking;
 using Content.Server.Mind;
 using Content.Server.Points;
+using Content.Server.Preferences.Managers; // Starlight
 using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.EntityTable;
@@ -26,6 +27,7 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
     [Dependency] private RespawnRuleSystem _respawn = default!;
     [Dependency] private RoundEndSystem _roundEnd = default!;
     [Dependency] private StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private IServerPreferencesManager _preferences = default!; // Starlight
     [Dependency] private EntityTableSystem _entityTable = default!;
 
     public override void Initialize()
@@ -46,10 +48,18 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
             if (!GameTicker.IsGameRuleActive(uid, rule))
                 continue;
 
-            var newMind = _mind.CreateMind(ev.Player.UserId, ev.Profile?.Name ?? "Unknown"); // Starlight,ev.Profile might be null so use Unknown as fallback
+            #region Starlight
+            // Spawn in as YOUR character
+            // If no profile is provided here, try to get any enabled profile for the player...
+            var profile = ev.Profile ?? _preferences.GetPreferences(ev.Player.UserId).GetRandomEnabledProfile();
+            if (profile == null)
+                return;
+            #endregion
+
+            var newMind = _mind.CreateMind(ev.Player.UserId, profile.Name); // Starlight
             _mind.SetUserId(newMind, ev.Player.UserId);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, ev.Profile);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(ev.Station, null, profile);  // Starlight
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 
