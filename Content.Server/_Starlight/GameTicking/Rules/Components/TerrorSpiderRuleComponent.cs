@@ -8,7 +8,7 @@ namespace Content.Server._Starlight.GameTicking.Rules.Components;
 public sealed partial class TerrorSpiderRuleComponent : Component
 {
     /// <summary>
-    /// What happens if all of the cultists die.
+    /// What happens if all of the terror spiders die.
     /// </summary>
     [DataField]
     public RoundEndBehavior RoundEndBehavior = RoundEndBehavior.ShuttleCall;
