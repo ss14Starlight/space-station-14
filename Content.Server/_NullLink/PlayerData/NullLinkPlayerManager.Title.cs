@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Server.Chat.Managers;
 using Content.Shared._NullLink;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
@@ -7,14 +8,6 @@ namespace Content.Server._NullLink.PlayerData;
 
 public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
 {
-    private static readonly Dictionary<string, string> PatronOocColors = new()
-    {
-        // I had plans for multiple colors and those went nowhere so...
-        { "nuclear_operative", "#aa00ff" },
-        { "syndicate_agent", "#aa00ff" },
-        { "revolutionary", "#aa00ff" }
-    };
-
     private void UpdateTitleBuilder(string obj)
     {
         if (_builder?.ID == obj)
@@ -41,7 +34,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager
                     continue;
                 if (title.Color != null)
                     result.Add($"[color={title.Color.Value.ToHex()}]{title.Text}[/color]");
-                else if (player.Channel.UserData.PatronTier is { } patron && PatronOocColors.TryGetValue(patron, out var patronColor))
+                else if (player.Channel.UserData.PatronTier is { } patron && ChatManager.PatronOocColors.TryGetValue(patron, out var patronColor))
                     result.Add($"[color={patronColor}]{title.Text}[/color]");
                 else
                     result.Add(title.Text);

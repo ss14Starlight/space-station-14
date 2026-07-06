@@ -27,7 +27,7 @@ namespace Content.Server.Chat.Managers;
 /// </summary>
 internal sealed partial class ChatManager : IChatManager
 {
-    private static readonly Dictionary<string, string> PatronOocColors = new()
+    public static readonly Dictionary<string, string> PatronOocColors = new() // Starlight-edit: now public
     {
         // I had plans for multiple colors and those went nowhere so...
         { "nuclear_operative", "#aa00ff" },
