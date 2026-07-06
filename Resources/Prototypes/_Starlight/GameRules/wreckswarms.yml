@@ -15,8 +15,8 @@
   components:
   - type: GameRule
   - type: StationEvent
-    reoccurrenceDelay: 10
-    earliestStart: 12
+    reoccurrenceDelay: 5
+    earliestStart: 15
     minimumPlayers: 25
     globalAnnouncement: false
   - type: WreckSwarm
