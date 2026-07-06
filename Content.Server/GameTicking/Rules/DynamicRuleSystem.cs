@@ -83,7 +83,13 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
     {
         var duration = (float)(Timing.CurTime - entity.Comp.LastBudgetUpdate).TotalSeconds;
 
-        entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #region Starlight
+        // If the budget has reached or exceeded the variant threshold, we use the variant budget per second, otherwise we use the normal budget per second.
+        if (entity.Comp.Budget >= entity.Comp.VariantBudgetThreshold)
+            entity.Comp.Budget += duration * entity.Comp.VariantBudgetPerSecond;
+        else
+            entity.Comp.Budget += duration * entity.Comp.BudgetPerSecond;
+        #endregion
         entity.Comp.LastBudgetUpdate = Timing.CurTime;
     }
 

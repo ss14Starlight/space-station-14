@@ -140,11 +140,11 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 50 # 🌟Starlight🌟
+  minPlayers: 15 # 🌟Starlight🌟
   rules:
   - SLDynamicRule # Starlight, we have a modified scheduler.
 #  - DummyNonAntag # Starlight, remove DummyNonAntag
-  - DynamicStationEventScheduler
+#  - DynamicStationEventScheduler # Starlight, we're adding this to Dynamic itself, so we can make it compete with Dynamic Survival, Kessler, and ShitStation.
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
