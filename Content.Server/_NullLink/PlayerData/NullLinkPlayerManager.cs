@@ -32,6 +32,7 @@ public sealed partial class NullLinkPlayerManager : INullLinkPlayerManager, IAch
     [Dependency] private IServerDbManager _dbManager = default!;
     [Dependency] private IAdminManager _adminManager = default!;
     [Dependency] private ITaskManager _taskManager = default!;
+    [Dependency] private INetConfigurationManager _netConfigManager = default!;
 
     private readonly ConcurrentDictionary<Guid, PlayerData> _playerById = [];
     private readonly ConcurrentDictionary<Guid, ICommonSession> _mentors = [];
