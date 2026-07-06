@@ -103,3 +103,10 @@
   id: HolyStarsTrail
   kind: source
   path: "/Textures/_Starlight/Shaders/holy_stars_trail.swsl"
+
+- type: shader
+  id: DisplacedDrawUnshaded
+  kind: source
+  path: "/Textures/_Starlight/Shaders/displacement_unshaded.swsl"
+  params:
+    displacementSize: 127
