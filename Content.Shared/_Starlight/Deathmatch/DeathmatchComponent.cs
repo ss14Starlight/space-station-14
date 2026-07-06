@@ -6,7 +6,8 @@ namespace Content.Shared._Starlight.Deathmatch;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class DeathmatchComponent : Component
 {
-    public readonly List<ProtoId<EntityPrototype>> BaseDeathmatchActions = new()
+    [DataField]
+    public List<ProtoId<EntityPrototype>> BaseDeathmatchActions = new()
     {
         "ActionCreateRobustToolbox"
     };

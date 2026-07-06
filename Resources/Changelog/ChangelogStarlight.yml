@@ -1,11 +1,4 @@
 Entries:
-- author: AegisShield
-  changes:
-  - message: Fixed Xenoroaches having full vision in pipes.
-    type: Fix
-  id: 406047
-  time: '2026-06-16T12:07:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4817
 - author: CrazyPhantom
   changes:
   - message: Fixed a server-side bug that Is likely the cause for Xenoborg Lag.
@@ -2799,4 +2792,11 @@ Entries:
   id: 406446
   time: '2026-07-05T17:08:28.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5015
+- author: Johnny
+  changes:
+  - message: Added a custom RCD that is given to the chief engineer.
+    type: Add
+  id: 406447
+  time: '2026-07-05T20:25:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4995
 Order: -1
