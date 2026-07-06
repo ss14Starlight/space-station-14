@@ -127,7 +127,7 @@
 
 - type: startingGear
   id: VisitorHOSAlt
-  parent: VisitorBase # Starlight
+  parent: VisitorHOS # Starlight
   equipment:
     jumpsuit: ClothingUniformJumpsuitHosFormal
     shoes: ClothingShoesBootsCowboyFancyFilled
