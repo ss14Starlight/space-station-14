@@ -9,6 +9,8 @@
     sprite: Clothing/OuterClothing/Armor/security.rsi
   - type: Clothing
     sprite: Clothing/OuterClothing/Armor/security.rsi # Just a placeholder, since it's overwritten below.
+    slots:
+    - outerClothing2
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Mecha/mechmove03.ogg
   - type: ArmorSparkEffect
@@ -207,7 +209,7 @@
   id: ChangelingClothingProtogenArmor
   name: Basic-Class light protogen frame
   description: Comes in-built with light armor plating to shield the cybernetics within. Removal of this would require killing you.
-  suffix: Unremoveable
+  suffix: Changeling
   components:
   - type: Sprite
     sprite: _FarHorizons/Clothing/OuterClothing/Armor/protogen.rsi
