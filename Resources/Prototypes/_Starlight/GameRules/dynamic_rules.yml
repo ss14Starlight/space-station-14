@@ -19,28 +19,28 @@
           max: 5 # 5 seconds, really just here to ensure it rolls roundstart and then doesn't roll again
         children:
         - id: Dynamic
-          weight: 90
+          weight: 88
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 15
         - id: Survival
-          weight: 2.5
+          weight: 6
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
         - id: KesslerSyndrome
-          weight: 2.5
+          weight: 2
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
           - !type:PlayerCountCondition
             min: 10
         - id: ShitStation
-          weight: 5
+          weight: 4
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition

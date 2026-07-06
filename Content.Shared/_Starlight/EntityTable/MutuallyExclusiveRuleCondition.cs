@@ -4,7 +4,7 @@ using Content.Shared.EntityTable.EntitySelectors;
 using Content.Shared.GameTicking;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared._Starlight.EntityTable.Conditions;
+namespace Content.Shared._Starlight.EntityTable;
 
 /// <summary>
 /// Condition that succeeds only when none of the specified gamerules have already run.
