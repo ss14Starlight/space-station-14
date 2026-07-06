@@ -23,6 +23,20 @@
     - Recyclable
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
+  # Forky - start - clothing stains
+  - type: Appearance
+  - type: Stainable
+    clothingVisuals:
+      shoes:
+      - sprite: _Funkystation/Effects/blood.rsi
+        state: shoeblood
+    iconVisuals:
+    - sprite: _Funkystation/Effects/blood.rsi
+      state: shoebloodicon
+  - type: SolutionManager
+    solutions:
+    - SolutionStain
+  # Forky - end
 
 - type: entity
   abstract: true
