@@ -359,6 +359,21 @@
           Quantity: 100
 
 - type: entity
+  suffix: opporozidone
+  parent: LargeBeaker
+  id: OpporozidoneBeakerLarge
+  components:
+  - type: Label
+    currentLabel: reagent-name-opporozidone
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 100
+        reagents:
+        - ReagentId: Opporozidone
+          Quantity: 100
+
+- type: entity
   parent: Jug
   id: JugLacer
   suffix: lacer

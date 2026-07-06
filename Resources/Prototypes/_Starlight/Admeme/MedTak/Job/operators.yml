@@ -6,7 +6,7 @@
     back: ClothingBackpackMedTakFilledLeader
     shoes: ClothingShoesBootsMagMedTak
     outerClothing: ClothingOuterHardsuitMedTak
-    id: MedTakTeamLeadPDA
+    id: MedTakPDATeamLead
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
@@ -23,7 +23,7 @@
     back: ClothingBackpackMedTakFilledMedic
     shoes: ClothingShoesBootsMagMedTak
     outerClothing: ClothingOuterHardsuitMedTakMedic
-    id: MedTakMedicPDA
+    id: MedTakPDAMedic
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
@@ -39,7 +39,7 @@
     back: ClothingBackpackMedTakFilledBasic
     shoes: ClothingShoesBootsMagMedTak
     outerClothing: ClothingOuterHardsuitMedTakPilot
-    id: MedTakPilotPDA
+    id: MedTakPDAPilot
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
@@ -56,7 +56,7 @@
     back: ClothingBackpackMedTakFilledRifle
     shoes: ClothingShoesBootsMagMedTak
     outerClothing: ClothingOuterHardsuitMedTak
-    id: MedTakSecurityPDA
+    id: MedTakPDASecurity
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
@@ -73,7 +73,7 @@
     back: ClothingBackpackMedTakFilledHeavy
     shoes: ClothingShoesBootsMagMedTak
     outerClothing: ClothingOuterHardsuitMedTakHeavy
-    id: MedTakSecurityPDA
+    id: MedTakPDASecurity
     eyes: ClothingEyesVisorMedTak
     ears: ClothingHeadsetAltMedTak
     mask: ClothingMaskGasSecurity
@@ -89,7 +89,7 @@
     jumpsuit: ClothingUniformMedTakJumpsuitFormal
     back: ClothingBackpackSatchelMedTakFilledDispatcher
     shoes: ClothingShoesBootsCombatFilled
-    id: MedTakDispatcherPDA
+    id: MedTakPDADispatcher
     head: ClothingHeadHatBeretMedTak
     eyes: ClothingEyesGlassesMedTak
     ears: ClothingHeadsetAltMedTak

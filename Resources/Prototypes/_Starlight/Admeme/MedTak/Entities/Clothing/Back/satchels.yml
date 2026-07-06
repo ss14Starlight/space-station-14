@@ -1,4 +1,3 @@
-# MedTak
 - type: entity
   parent: [ ClothingBackpackSatchel, BaseMedTakContraband ]
   id: ClothingBackpackSatchelMedTak
