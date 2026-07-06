@@ -301,6 +301,7 @@
         "!type:ModifyStatusEffect mapping",
         "!type:MoveToOperator mapping",
         "!type:MovespeedModifier mapping",
+        "!type:MutuallyExclusiveRuleCondition mapping",
         "!type:N2ODecompositionReaction mapping",
         "!type:NanoTaskUi mapping",
         "!type:NanotrasenNameGenerator mapping",
