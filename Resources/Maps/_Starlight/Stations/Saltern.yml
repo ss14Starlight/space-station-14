@@ -40324,9 +40324,6 @@ entities:
     - type: Transform
       pos: -33.5,3.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -1647.1044
-      state: Closing
   - uid: 6446
     components:
     - type: Transform
@@ -40707,9 +40704,6 @@ entities:
     - type: Transform
       pos: -19.5,-15.5
       parent: 2
-    - type: Door
-      secondsUntilStateChange: -1004.5717
-      state: Closing
   - uid: 6513
     components:
     - type: Transform
