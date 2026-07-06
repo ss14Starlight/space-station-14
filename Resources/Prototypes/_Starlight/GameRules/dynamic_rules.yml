@@ -9,7 +9,7 @@
     startingBudgetMax: 550
     variantBudgetThreshold: 350 # When the budget reaches this threshold, the variant budget per second will be used instead of the normal budget per second. Aka, stop hoarding your budget!!!
     maxRuleInterval: 1500
-    minRuleInterval: 600
+    minRuleInterval: 750
     table: !type:AllSelector
       children:
       # Event Schedulers, we roll these first so we're guaranteed to get one of them. Weird combinations of them will also eat away at our normal budget for other rules, so that's a good thing to restrict chaos.
@@ -52,7 +52,7 @@
         children:
         - id: Traitor
           weight: 35
-          prob: 0.75 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
+          prob: 0.80 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -152,12 +152,18 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
-        - id: Nukeops
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Traitor # This is the most likely scenario; we don't want 24 traitors.
+        - id: NukeopsLate
           weight: 9
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Nukeops # Just... don't roll double Nukies.
           - !type:PlayerCountCondition
             min: 20
         - id: Revolutionary

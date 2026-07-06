@@ -298,3 +298,10 @@
       - MindRoleTerrorPrincess
   - type: DynamicRuleCost
     cost: 200
+
+- type: entity
+  parent: Nukeops
+  id: NukeopsLate
+  components:
+  - type: DynamicRuleCost
+    cost: 300
