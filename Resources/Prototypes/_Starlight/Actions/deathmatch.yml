@@ -6,11 +6,13 @@
   description: Creates a robust toolbox.
   components:
   - type: Action
-    useDelay: 0.5
+    useDelay: 60
     icon:
       sprite: Objects/Tools/Toolboxes/toolbox_red.rsi
       state: icon
     itemIconStyle: NoItem
     priority: -10
   - type: InstantAction
-    event: !type:GeneralCreateItemEvent {}
+    event: !type:SpawnItemInHandEvent
+      spawned: WeaponMeleeToolboxRobustDeathmatch
+      requiresFreeHand: true

@@ -12,6 +12,7 @@ using Content.Shared.GameTicking.Components;
 using Content.Shared.Points;
 using Robust.Server.Player;
 using Robust.Shared.Utility;
+using Content.Shared._Starlight.Deathmatch; // Starlight
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -66,6 +67,7 @@ public sealed partial class DeathMatchRuleSystem : GameRuleSystem<DeathMatchRule
             _mind.TransferTo(newMind, mob);
             _outfitSystem.SetOutfit(mob, dm.Gear);
             EnsureComp<KillTrackerComponent>(mob);
+            EnsureComp<DeathmatchComponent>(mob); // Starlight
             _respawn.AddToTracker(ev.Player.UserId, (uid, tracker));
 
             _point.EnsurePlayer(ev.Player.UserId, uid, point);

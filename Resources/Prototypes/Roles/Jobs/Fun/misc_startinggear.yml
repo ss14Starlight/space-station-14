@@ -124,7 +124,6 @@
     shoes: ClothingShoesBootsJack
     ears: ClothingHeadsetAssistant
     gloves: ClothingHandsGlovesFingerless
-    misc: ClothingNeckDeathmatchMedal # Starlight
   inhand:
     - WeaponMeleeToolboxRobustDeathmatch # Starlight
 
