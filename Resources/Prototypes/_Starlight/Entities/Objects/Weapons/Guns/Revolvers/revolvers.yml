@@ -1,5 +1,5 @@
 - type: entity
-  name: Makeshift Revolver
+  name: makeshift revolver
   parent: [BaseWeaponRevolver, BaseMinorContraband]
   id: WeaponRevolverMakeshift
   description: Little more than a hand-cannon with a high chance of blowing up in your face.
@@ -40,7 +40,7 @@
         prob: 0.80
 
 - type: entity
-  name: Improvised Revolver
+  name: improvised revolver
   parent: WeaponRevolverMakeshift
   id: WeaponRevolverImprovised
   description: A revolver that has two barrels and no cylinder. Can you really call this a revolver?
@@ -73,7 +73,7 @@
         prob: 0.80
 
 - type: entity
-  name: Forged Revolver
+  name: forged revolver
   parent: WeaponRevolverImprovised
   id: WeaponRevolverForged
   description: The best Tider engineering can offer, a revolver with the ability to hold 4 bullets!
