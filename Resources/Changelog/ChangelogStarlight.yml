@@ -1,137 +1,4 @@
 Entries:
-- author: Way
-  changes:
-  - message: (Hotel) Shipyard console.
-    type: Add
-  id: 406029
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: Way
-  changes:
-  - message: (Hotel) More decal and tile tweaks.
-    type: Tweak
-  id: 406030
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: Way
-  changes:
-  - message: (Bagel) Added new fax machines.
-    type: Add
-  id: 406031
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: Way
-  changes:
-  - message: (Bagel) Added Kiki to Botany.
-    type: Add
-  id: 406032
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: Way
-  changes:
-  - message: (Bagel) Shipyard console.
-    type: Add
-  id: 406033
-  time: '2026-06-16T10:27:03.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4791
-- author: wonderfulnewworld
-  changes:
-  - message: Adjusted Alpha gamemode weights to correct balance between action and calmer shifts.
-    type: Tweak
-  id: 406034
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Terror Spiders can now show up in All at Once/Aller at Once.
-    type: Tweak
-  id: 406035
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: The Cosmic Cult can now show up in All at Once, Aller at Once, Almost All at Once, and Almost Aller at Once.
-    type: Tweak
-  id: 406036
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: SELF can no longer show up during NukeOps.
-    type: Tweak
-  id: 406037
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Tweaked abductor scaling, to try and get the additional ones to spawn more often.
-    type: Tweak
-  id: 406038
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Vampires and Changelings now have an equal chance to show up on gamemodes they're both allowed to show up in.
-    type: Tweak
-  id: 406039
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Reduced the chance Ninja spawns Eep to be equal to the old Terror Spider chance.
-    type: Tweak
-  id: 406040
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Removed upper limit on princess of terror spawns, since we're actually hitting 200pop frequently now.
-    type: Tweak
-  id: 406041
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Terror Spiders now call evac on victory/loss, instead of instantly ending the round.
-    type: Tweak
-  id: 406042
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Terror spiders announcements actually have localization now.
-    type: Fix
-  id: 406043
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: wonderfulnewworld
-  changes:
-  - message: Ninjas can no longer call terror spiders.
-    type: Fix
-  id: 406044
-  time: '2026-06-16T10:27:36.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4794
-- author: CrazyPhantom
-  changes:
-  - message: The rules tab is now near the top of the guidebook.
-    type: Tweak
-  id: 406045
-  time: '2026-06-16T12:07:12.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4820
-- author: AegisShield
-  changes:
-  - message: Fixed Xenoroaches having flash immunity.
-    type: Fix
-  id: 406046
-  time: '2026-06-16T12:07:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4817
-- author: AegisShield
-  changes:
-  - message: Fixed Xenoroaches having full vision in pipes.
-    type: Fix
-  id: 406047
-  time: '2026-06-16T12:07:14.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4817
 - author: CrazyPhantom
   changes:
   - message: Fixed a server-side bug that Is likely the cause for Xenoborg Lag.
@@ -2799,4 +2666,137 @@ Entries:
   id: 406428
   time: '2026-07-05T08:56:05.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5014
+- author: Conflee
+  changes:
+  - message: Putrid Blood has been renamed to Mortucussus, which is now directly used for the Ambuzol recipe. Centrifuging the blood drawn from Zombies is no longer required. All other Metashiled changes from PR 4747 are kept.
+    type: Tweak
+  id: 406429
+  time: '2026-07-05T13:16:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5009
+- author: Mack
+  changes:
+  - message: Cyberarm tool icons not showing for some species.
+    type: Fix
+  id: 406430
+  time: '2026-07-05T14:08:25.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4986
+- author: Caws
+  changes:
+  - message: Added a NanoMed Security to the Security shuttle's Medbay.
+    type: Add
+  id: 406431
+  time: '2026-07-05T14:29:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: Caws
+  changes:
+  - message: Added a cell recharger to the Security shuttle's Medbay.
+    type: Add
+  id: 406432
+  time: '2026-07-05T14:29:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: Caws
+  changes:
+  - message: Added a SecTech to the Security shuttle.
+    type: Add
+  id: 406433
+  time: '2026-07-05T14:29:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: Caws
+  changes:
+  - message: Security shuttle's power setup has been fixed.
+    type: Tweak
+  id: 406434
+  time: '2026-07-05T14:29:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: Caws
+  changes:
+  - message: Security shuttle's lockers are no longer empty.
+    type: Tweak
+  id: 406435
+  time: '2026-07-05T14:29:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: Caws
+  changes:
+  - message: Security shuttle's mass scanner faces forward for easier navigation.
+    type: Tweak
+  id: 406436
+  time: '2026-07-05T14:29:36.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4998
+- author: ku-mo
+  changes:
+  - message: Added Document Printer to the Supply department on Ming.
+    type: Add
+  id: 406437
+  time: '2026-07-05T15:10:14.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4992
+- author: Musikly
+  changes:
+  - message: Changed name of the speed cyberlimb from "speg" to "speed leg".
+    type: Tweak
+  id: 406438
+  time: '2026-07-05T15:48:37.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5017
+- author: wonderfulnewworld
+  changes:
+  - message: All Protogens are now properly absorbable by Changelings, regardless of frame type.
+    type: Fix
+  id: 406439
+  time: '2026-07-05T15:48:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5008
+- author: wonderfulnewworld
+  changes:
+  - message: All Protogens now occupy the same bag space as their non-Proto variants.
+    type: Fix
+  id: 406440
+  time: '2026-07-05T15:48:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5008
+- author: wonderfulnewworld
+  changes:
+  - message: Proto-Moths use the correct death sounds now.
+    type: Fix
+  id: 406441
+  time: '2026-07-05T15:48:38.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5008
+- author: r3d3mpt1on
+  changes:
+  - message: Oil Packs, HV Cables, Patch Packs to the Combat Medkit and BrigKit whitelists.
+    type: Add
+  id: 406442
+  time: '2026-07-05T17:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4970
+- author: r3d3mpt1on
+  changes:
+  - message: Patch Packs are now 1x2 instead of 1x1.
+    type: Tweak
+  id: 406443
+  time: '2026-07-05T17:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4970
+- author: r3d3mpt1on
+  changes:
+  - message: Patches are now 1x1 instead of 1x2.
+    type: Tweak
+  id: 406444
+  time: '2026-07-05T17:08:24.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4970
+- author: ku-mo
+  changes:
+  - message: Rodentia's glowing hair now properly displaces.
+    type: Fix
+  id: 406445
+  time: '2026-07-05T17:08:26.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4994
+- author: Johnny
+  changes:
+  - message: (Reach) Uhhhh.... Yeah I dont want to talk about it, godo. I fixed disposals.
+    type: Fix
+  id: 406446
+  time: '2026-07-05T17:08:28.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5015
+- author: Johnny
+  changes:
+  - message: Added a custom RCD that is given to the chief engineer.
+    type: Add
+  id: 406447
+  time: '2026-07-05T20:25:45.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/4995
 Order: -1
