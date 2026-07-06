@@ -75,9 +75,12 @@ public sealed partial class DynamicRuleSystem : GameRuleSystem<DynamicRuleCompon
         return _entityTable.GetSpawns(entity.Comp.Table, ctx: ctx);
     }
 
+    // Starlight, added variant budget
     /// <summary>
     /// Updates the budget of the provided dynamic rule component based on the amount of time since the last update
     /// multiplied by the <see cref="DynamicRuleComponent.BudgetPerSecond"/> value.
+    /// After the budget has reached <see cref="DynamicRuleComponent.VariantBudgetThreshold"/> value,
+    /// the budget will increase at the rate specified by <see cref="DynamicRuleComponent.VariantBudgetPerSecond"/> instead.
     /// </summary>
     private void UpdateBudget(Entity<DynamicRuleComponent> entity)
     {

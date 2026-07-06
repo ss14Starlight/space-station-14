@@ -29,7 +29,7 @@ public sealed partial class DynamicRuleComponent : Component
 
     #region Starlight
     /// <summary>
-    /// The amount of budget accumulated every second.
+    /// The amount of budget accumulated every second after reaching <see cref="DynamicRuleComponent.VariantBudgetThreshold"/>.
     /// </summary>
     [DataField]
     public float VariantBudgetPerSecond = 0.05f;
