@@ -15,7 +15,7 @@
   components:
   - type: GameRule
   - type: StationEvent
-    reoccurrenceDelay: 1
+    reoccurrenceDelay: 10
     earliestStart: 12
     minimumPlayers: 25
     globalAnnouncement: false
