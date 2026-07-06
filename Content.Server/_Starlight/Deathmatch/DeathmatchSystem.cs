@@ -14,8 +14,6 @@ public sealed partial class DeathmatchSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DeathmatchComponent, ComponentStartup>(OnStartup);
-
-        SubscribeAbilities();
     }
 
     private void OnStartup(EntityUid uid, DeathmatchComponent comp, ref ComponentStartup args)
