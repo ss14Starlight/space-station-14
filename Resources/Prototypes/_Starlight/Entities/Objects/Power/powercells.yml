@@ -291,11 +291,3 @@
   - type: Battery
     maxCharge: 3600
     startingCharge: 3600
-
-# Unremoveable Microreactor
-- type: entity
-  parent: PowerCellMicroreactorPrinted
-  id: PowerCellMicroreactorPrintedUnremoveable
-  suffix: Empty, Unremoveable
-  components:
-  - type: Unremoveable
