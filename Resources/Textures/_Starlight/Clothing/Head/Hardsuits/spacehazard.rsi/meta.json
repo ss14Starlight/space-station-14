@@ -24,6 +24,10 @@
 	  "copyright": "Made by Sparlight (GitHub).",
 	  "license": "CC-BY-SA-3.0"
 	},
+  {
+    "name": "equipped-HELMET-vox",
+    "directions": 4
+  },
     {
       "name": "inhand-left",
       "directions": 4
