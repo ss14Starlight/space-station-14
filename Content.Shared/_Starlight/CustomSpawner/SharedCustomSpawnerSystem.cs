@@ -89,7 +89,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         SpawnFromData(uid, comp,
             _random.PickPredicted(_timing, comp.SpawnData.ToDictionary(data => data, data => data.PickWeight)));
 
-    private void SpawnFromData(EntityUid uid, CustomSpawnerComponent comp, CSpawnData data)
+    private void SpawnFromData(EntityUid uid, CustomSpawnerComponent comp, CustomSpawnData data)
     {
         var xform = Transform(uid);
         EntityCoordinates? storedPosition = null;
@@ -124,7 +124,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         }
     }
 
-    private EntityCoordinates GetSpawnPosition(CustomSpawnerComponent comp, CSpawnData data, TransformComponent xform, System.Random rng)
+    private EntityCoordinates GetSpawnPosition(CustomSpawnerComponent comp, CustomSpawnData data, TransformComponent xform, System.Random rng)
     {
         var pos = xform.Coordinates + new EntityCoordinates(xform.ParentUid, comp.GlobalSpawnOffset);
         switch (data.SpawnOffsets.Count)
@@ -148,7 +148,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         return pos;
     }
 
-    private float GetSpawnRotation(CustomSpawnerComponent comp, CSpawnData data, System.Random rng)
+    private float GetSpawnRotation(CustomSpawnerComponent comp, CustomSpawnData data, System.Random rng)
     {
         var rotation = comp.GlobalSpawnRotation;
         switch (data.SpawnRotations.Count)
@@ -172,33 +172,35 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
     private void OnMapInit(Entity<CustomSpawnerComponent> ent, ref MapInitEvent args)
     {
         Dirty(ent); // Force dirty to trigger update on client when spawned or during mapinit because client is fucking stupid.
-        if (ent.Comp.LightVisible)
+        var uid = ent.Owner;
+        var comp = ent.Comp;
+        if (comp.LightVisible)
         {
-            _light.SetEnabled(ent, true);
-            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, Lambda));
+            _light.SetEnabled(uid, true);
+            _light.SetColor(uid, Color.InterpolateBetween(comp.HologramColor1, comp.HologramColor2, Lambda));
         }
-        else _light.SetEnabled(ent, false);
-        if (ent.Comp.IsMarker) return;
-        ent.Comp.HologramEntity = PredictedSpawnAttachedTo(ent.Comp.HologramProtoId, Transform(ent).Coordinates);
-        _xform.SetParent(ent.Comp.HologramEntity.Value, ent); // PredictedSpawnAttachedTo seems to just not work for this??? so here we are i guess
-        _xform.SetLocalPosition(ent.Comp.HologramEntity.Value, ent.Comp.HologramOffset);
-        UpdateHologram(ent, (
-            ent.Comp.HologramEntity.Value,
-            Comp<CustomSpawnerHologramComponent>(ent.Comp.HologramEntity.Value)
-        ));
+        else _light.SetEnabled(uid, false);
+        if (comp.IsMarker) return;
+        comp.HologramEntity = PredictedSpawnAttachedTo(comp.HologramProtoId, Transform(uid).Coordinates);
+        _xform.SetParent(comp.HologramEntity.Value, uid); // PredictedSpawnAttachedTo seems to just not work for this??? so here we are i guess
+        _xform.SetLocalPosition(comp.HologramEntity.Value, comp.HologramOffset);
+        UpdateHologram(uid, comp, comp.HologramEntity.Value,
+            Comp<CustomSpawnerHologramComponent>(comp.HologramEntity.Value));
     }
 
     private void OnAfterAutoHandleState(Entity<CustomSpawnerComponent> ent, ref AfterAutoHandleStateEvent args)
     {
-        if (ent.Comp.LightVisible)
+        var uid = ent.Owner;
+        var comp = ent.Comp;
+        if (comp.LightVisible)
         {
-            _light.SetEnabled(ent, true);
-            _light.SetColor(ent, Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, Lambda));
+            _light.SetEnabled(uid, true);
+            _light.SetColor(uid, Color.InterpolateBetween(comp.HologramColor1, comp.HologramColor2, Lambda));
         }
-        else _light.SetEnabled(ent, false);
-        if (ent.Comp.IsMarker) return;
-        if (TryComp<CustomSpawnerHologramComponent>(ent.Comp.HologramEntity, out var holo))
-            UpdateHologram(ent, (ent.Comp.HologramEntity.Value, holo));
+        else _light.SetEnabled(uid, false);
+        if (comp.IsMarker) return;
+        if (TryComp<CustomSpawnerHologramComponent>(comp.HologramEntity, out var holo))
+            UpdateHologram(uid, comp, comp.HologramEntity.Value, holo);
     }
 
     private void OnShutdown(Entity<CustomSpawnerComponent> ent, ref ComponentShutdown args)
@@ -207,15 +209,15 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
             PredictedQueueDel(ent.Comp.HologramEntity.Value);
     }
 
-    protected virtual void UpdateHologram(Entity<CustomSpawnerComponent> ent, Entity<CustomSpawnerHologramComponent> holo)
+    protected virtual void UpdateHologram(EntityUid spawner, CustomSpawnerComponent sComp, EntityUid hologram, CustomSpawnerHologramComponent hComp)
     {
-        holo.Comp.Color1 = ent.Comp.HologramColor1;
-        holo.Comp.Color2 = ent.Comp.HologramColor2;
-        if (ent.Comp.HologramSprite is not null)
+        hComp.Color1 = sComp.HologramColor1;
+        hComp.Color2 = sComp.HologramColor2;
+        if (sComp.HologramSprite is not null)
         {
-            holo.Comp.Rsi = ent.Comp.HologramSprite.RsiPath.ToString();
-            holo.Comp.State = ent.Comp.HologramSprite.RsiState;
+            hComp.Rsi = sComp.HologramSprite.RsiPath.ToString();
+            hComp.State = sComp.HologramSprite.RsiState;
         }
-        _xform.SetLocalPosition(holo, ent.Comp.HologramOffset);
+        _xform.SetLocalPosition(hologram, sComp.HologramOffset);
     }
 }

@@ -12,6 +12,7 @@ namespace Content.Client._Starlight.CustomSpawner;
 public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
 {
     private const float Lambda = 0.5f;
+    private const float GrayLambda = 0.8f;
 
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private IPrototypeManager _proto = default!;
@@ -25,32 +26,32 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         SubscribeLocalEvent<CustomSpawnerHologramComponent, BeforePostShaderRenderEvent>(OnShaderRender);
     }
 
-    protected override void UpdateHologram(Entity<CustomSpawnerComponent> ent, Entity<CustomSpawnerHologramComponent> holo)
+    protected override void UpdateHologram(EntityUid spawner, CustomSpawnerComponent sComp, EntityUid hologram, CustomSpawnerHologramComponent hComp)
     {
-        base.UpdateHologram(ent, holo);
+        base.UpdateHologram(spawner, sComp, hologram, hComp);
         // update sprite layers for pad
-        if (TryComp<SpriteComponent>(ent, out var padSprite))
+        if (TryComp<SpriteComponent>(spawner, out var padSprite))
         {
-            _sprite.LayerSetVisible((ent, padSprite), "enabled", ent.Comp.Enabled);
-            var color = Color.InterpolateBetween(ent.Comp.HologramColor1, ent.Comp.HologramColor2, Lambda);
-            if (ent.Comp.Enabled)
+            _sprite.LayerSetVisible((spawner, padSprite), "enabled", sComp.Enabled);
+            var color = Color.InterpolateBetween(sComp.HologramColor1, sComp.HologramColor2, Lambda);
+            if (sComp.Enabled)
             {
-                var animColor = Color.InterpolateBetween(color, Color.White, 0.5f);
-                _sprite.LayerSetColor((ent, padSprite), "overlay", color);
-                _sprite.LayerSetVisible((ent, padSprite), "overlay_anim", true);
-                _sprite.LayerSetColor((ent, padSprite), "overlay_anim", animColor);
+                var animColor = Color.InterpolateBetween(color, Color.White, Lambda);
+                _sprite.LayerSetColor((spawner, padSprite), "overlay", color);
+                _sprite.LayerSetVisible((spawner, padSprite), "overlay_anim", true);
+                _sprite.LayerSetColor((spawner, padSprite), "overlay_anim", animColor);
             }
             else
             {
-                color = Color.InterpolateBetween(color, Color.Gray, 0.8f);
-                _sprite.LayerSetColor((ent, padSprite), "overlay", color);
-                _sprite.LayerSetVisible((ent, padSprite), "overlay_anim", false);
+                color = Color.InterpolateBetween(color, Color.Gray, GrayLambda);
+                _sprite.LayerSetColor((spawner, padSprite), "overlay", color);
+                _sprite.LayerSetVisible((spawner, padSprite), "overlay_anim", false);
             }
         }
         // update sprite layers for holo
-        if (!TryComp<SpriteComponent>(holo, out var holoSprite)) return;
-        _sprite.SetVisible((holo, holoSprite), ent.Comp is { HologramVisible: true, Enabled: true });
-        UpdateHologramSprite(holo.Owner, holo.Comp);
+        if (!TryComp<SpriteComponent>(hologram, out var holoSprite)) return;
+        _sprite.SetVisible((hologram, holoSprite), sComp is { HologramVisible: true, Enabled: true });
+        UpdateHologramSprite(hologram, hComp);
     }
 
     private void OnStartup(Entity<CustomSpawnerHologramComponent> ent, ref ComponentStartup args)

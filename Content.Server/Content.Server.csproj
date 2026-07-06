@@ -32,7 +32,6 @@
   <ItemGroup>
     <Folder Include="Objectives\Interfaces\" />
     <Folder Include="_Starlight\Achievement\" />
-    <Folder Include="_Starlight\CustomSpawner\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="build.json">

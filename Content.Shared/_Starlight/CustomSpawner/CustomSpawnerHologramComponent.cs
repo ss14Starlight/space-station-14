@@ -2,6 +2,7 @@ using System.Numerics;
 
 namespace Content.Shared._Starlight.CustomSpawner;
 
+/// Component for keeping track of visual data for the hologram for a CustomSpawner.
 [RegisterComponent]
 public sealed partial class CustomSpawnerHologramComponent : Component
 {
