@@ -36,9 +36,9 @@ public sealed class MedTekAnalyzerSystem : EntitySystem
             InnateVerb verb = new()
             {
                 Act = () => _interactionSystem.InteractDoAfter(user, ent.Owner, target, patientCoordinates, true),
-                Text = Loc.GetString(ent.Comp.VerbText),
+                Text = Loc.GetString("med-tek-analyze-verb-name"),
                 IconEntity = GetNetEntity(ent),
-                Priority = ent.Comp.VerbPriority,
+                Priority = 2,
             };
             args.Args.Verbs.Add(verb);
         }
