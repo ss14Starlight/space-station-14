@@ -5,7 +5,7 @@
   description: The Interdyne M7 monitor can track the vital signs and coordinates of any implants on its secure frequency, to ensure rapid location of your clients.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/monitor.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/monitor.rsi
     layers:
       - state: frame
         map: ["enum.CrewMonitorLayers.Frame"]

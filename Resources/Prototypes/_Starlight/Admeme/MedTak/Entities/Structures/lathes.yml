@@ -10,7 +10,7 @@
     - sprite: &base-rsi Structures/Machines/techfab.rsi
       state: icon
       map: ["enum.LatheVisualLayers.IsRunning"]
-    - sprite: _Starlight/Admeme/Objects/MedTak/lathe.rsi
+    - sprite: _Starlight/Admeme/MedTak/Objects/lathe.rsi
       state: lathe-medtak
     - sprite: *base-rsi
       state: unlit

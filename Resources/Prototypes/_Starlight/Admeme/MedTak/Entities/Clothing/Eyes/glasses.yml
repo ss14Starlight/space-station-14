@@ -5,9 +5,9 @@
   description: A pair of glasses issued to MedTak dispatchers, with a built in heads up display and active flash adjustment.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/medtak.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Glasses/medtak.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Eyes/Glasses/medtak.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Glasses/medtak.rsi
   - type: Tag
     tags:
     - HudMedical

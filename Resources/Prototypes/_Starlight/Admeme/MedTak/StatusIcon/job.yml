@@ -2,7 +2,7 @@
   parent: JobIcon
   id: JobIconMedTakLeader
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTakLeader
   jobName: job-name-medtak-leader
   allowSelection: false
@@ -11,7 +11,7 @@
   parent: JobIcon
   id: JobIconMedTakDispatcher
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTakDispatcher
   jobName: job-name-medtak-dispatcher
   allowSelection: false
@@ -20,7 +20,7 @@
   parent: JobIcon
   id: JobIconMedTakMedic
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTakMedic
   jobName: job-name-medtak-medic
   allowSelection: false
@@ -29,7 +29,7 @@
   parent: JobIcon
   id: JobIconMedTakPilot
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTakPilot
   jobName: job-name-medtak-pilot
   allowSelection: false
@@ -38,7 +38,7 @@
   parent: JobIcon
   id: JobIconMedTakSecurity
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTakSecurity
   jobName: job-name-medtak-security
   allowSelection: false
@@ -47,7 +47,7 @@
   parent: JobIcon
   id: JobIconMedTakBorg
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTakBorg
   jobName: job-name-medtak-borg
   allowSelection: false

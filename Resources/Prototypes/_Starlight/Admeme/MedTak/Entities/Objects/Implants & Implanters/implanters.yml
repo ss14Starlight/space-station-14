@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/implanter.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
     state: implanter0
     layers:
     - state: implanter1
@@ -14,7 +14,7 @@
     - state: implanter0
       map: [ "implantOnly" ]
   - type: Item
-    sprite: _Starlight/Admeme/Objects/MedTak/implanter.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
     heldPrefix: implanter
   - type: Implanter
     implantTime: 2.5
@@ -50,7 +50,7 @@
   parent: MedTakImplanter
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/implanter.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/implanter.rsi
     state: implanter0
     layers:
     - state: implanter1

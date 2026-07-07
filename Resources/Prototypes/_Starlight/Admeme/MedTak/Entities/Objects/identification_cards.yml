@@ -5,7 +5,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/id_cards.rsi
   - type: IdCard
   - type: Access
     tags:
@@ -25,7 +25,7 @@
   - type: Sprite
     layers:
       - state: medtak
-      - sprite: &starlight-icon-rsi _Starlight/Interface/Misc/job_icons.rsi
+      - sprite: &starlight-icon-rsi _Starlight/Admeme/MedTak/Interface/job_icons.rsi
         offset: &icon-offset -0.09375, 0.0625
         state: MedTakLeader
   - type: IdCard

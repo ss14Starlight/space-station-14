@@ -5,7 +5,7 @@
   description: A spacious backpack with lots of pockets, worn by MedTak operators.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Back/Backpacks/medtak.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Back/Backpacks/medtak.rsi
   - type: Storage
     grid:
     - 0,0,8,3

@@ -7,10 +7,10 @@
   components:
   - type: Sprite
     layers:
-    - sprite: _Starlight/Admeme/Objects/MedTak/paper.rsi
+    - sprite: _Starlight/Admeme/MedTak/Objects/paper.rsi
       state: paper
       color: "#ffffff"
-    - sprite: _Starlight/Admeme/Objects/MedTak/paper.rsi
+    - sprite: _Starlight/Admeme/MedTak/Objects/paper.rsi
       state: paper-words
       map: ["enum.PaperVisualLayers.Writing"]
       color: "#ffffff"
@@ -20,7 +20,7 @@
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
   - type: PaperVisuals
-    headerImagePath: "/Textures/_Starlight/Interface/Paper/paper_heading_medtak_logo.svg.96dpi.png"
+    headerImagePath: "/Textures/_Starlight/Admeme/MedTak/Interface/Paper/paper_heading_medtak_logo.svg.96dpi.png"
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
     backgroundPatchMargin: 16.0, 16.0, 16.0, 16.0
     contentMargin: 8.0, 16.0, 8.0, 0.0

@@ -4,9 +4,9 @@
   name: secure body bag
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/bodybag.rsi
   - type: Icon
-    sprite: _Starlight/Admeme/Objects/MedTak/bodybag.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/bodybag.rsi
     state: bag
   - type: AccessReader
     access: [["MedTak"]]

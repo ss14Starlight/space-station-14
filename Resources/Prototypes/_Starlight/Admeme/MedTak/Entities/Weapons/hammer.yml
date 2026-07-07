@@ -6,7 +6,7 @@
   suffix: One-Handed
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Weapons/MedTak/Hammer.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Hammer.rsi
     layers:
     - state: icon
       map: [ "enum.ToggleableVisuals.Layer" ]

@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "dispenser-screen",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "dispenser",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "wallmount-screen",
+      "copyright": "SevenShades"
+    },
+    {
+      "name": "wallmount",
+      "copyright": "SevenShades"
+    }
+  ]
+}

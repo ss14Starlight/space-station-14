@@ -1,0 +1,65 @@
+﻿{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "State based copyright",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+    "name": "bottle1",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle2",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle3",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle4",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle5",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle6",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle7",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottle8",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "bottlecase",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "injectorpack",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "surgerykit",
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "inhand-left",
+    "directions": 4,
+	  "copyright": "SevenShades"
+    },
+    {
+    "name": "inhand-right",
+    "directions": 4,
+	  "copyright": "SevenShades"
+    }
+  ]
+}

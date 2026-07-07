@@ -12,6 +12,6 @@
           - EncryptionKeyCommon
           - EncryptionKeyMedical
     - type: Sprite
-      sprite: _Starlight/Admeme/Clothing/Ears/Headsets/medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi
     - type: Clothing
-      sprite: _Starlight/Admeme/Clothing/Ears/Headsets/medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/Ears/Headsets/medtak.rsi

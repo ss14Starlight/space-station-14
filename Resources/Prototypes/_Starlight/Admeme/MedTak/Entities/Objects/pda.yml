@@ -12,9 +12,21 @@
     accentVColor: "#d7d7d0"
     borderColor: "#600000"
   - type: Sprite
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: Objects/Devices/pda.rsi
+    layers:
+    - sprite: _Starlight/Admeme/MedTak/Objects/pda.rsi
+      map: [ "enum.PdaVisualLayers.Base" ]
+      state: "pda"
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
   - type: Icon
-    sprite: _Starlight/Objects/Devices/pda.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/pda.rsi
     state: pda-medtak
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key

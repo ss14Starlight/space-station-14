@@ -5,9 +5,9 @@
   description: A visor for MedTak operators with a built in heads up display and active flash adjustment.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Eyes/Hud/medtak.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Hud/medtak.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Eyes/Hud/medtak.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Eyes/Hud/medtak.rsi
   - type: FlashImmunity
   - type: ShowImplantedIcons
     shownIcons:

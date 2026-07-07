@@ -8,7 +8,7 @@
   components:
     - type: TextToSpeech
     - type: Sprite
-      sprite: _Starlight/Admeme/Mobs/Silicon/Chassis/medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Mobs/Silicon/Chassis/medtak.rsi
       layers:
       - state: borg
       - state: borg_e

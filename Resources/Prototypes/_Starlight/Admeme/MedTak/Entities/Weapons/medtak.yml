@@ -6,7 +6,7 @@
   description: "An ultralight assault LMG developed for MedTak security.\nAccepts .30 box magazines."
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/LMG.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -18,9 +18,9 @@
     zeroVisible: true
   - type: Appearance
   - type: Item
-    sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/LMG.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Weapons/MedTak/LMG.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/LMG.rsi
     quickEquip: false
   - type: ChamberMagazineAmmoProvider
     soundRack:
@@ -66,16 +66,16 @@
   description: "A bullpuped heavy rifle designed for MedTak operators.\nAccepts heavy .20 rifle magazines."
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Rifle.rsi
     layers:
     - state: base
       map: [ "enum.GunVisualLayers.Base" ]
     - state: mag-3
       map: [ "enum.GunVisualLayers.Mag" ]
   - type: Clothing
-    sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Rifle.rsi
   - type: Item
-    sprite: _Starlight/Admeme/Weapons/MedTak/Rifle.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Rifle.rsi
   - type: Gun
     fireRate: 8
     selectedMode: FullAuto
@@ -117,7 +117,7 @@
   description: "A cut-down CODE-9 designed for cyborgs, feeding from a slowly recharging internal ammo fabricator"
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Weapons/MedTak/CyborgRifle.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/CyborgRifle.rsi
     layers:
     - state: icon
       map: [ "enum.GunVisualLayers.Base" ]
@@ -188,7 +188,7 @@
             tags:
               - CartridgePistolDP
     - type: Sprite
-      sprite: _Starlight/Admeme/Weapons/MedTak/Pistol.rsi
+      sprite: _Starlight/Admeme/MedTak/Weapons/Pistol.rsi
 
 # SMG
 - type: entity
@@ -198,14 +198,14 @@
   description: A compact submachine gun with an integral supressor. It features an advanced recoil system, but suffers slightly in rate of fire.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Weapons/MedTak/SMG.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/SMG.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Starlight/Admeme/Weapons/MedTak/SMG.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/SMG.rsi
   - type: Wieldable
     unwieldOnUse: false
   - type: GunWieldBonus
@@ -236,16 +236,16 @@
   description: An sleek drum-fed shotgun, rounds are chambered semi-automatically with the secondary trigger.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Weapons/MedTak/Shotgun.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Shotgun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Starlight/Admeme/Weapons/MedTak/Shotgun.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Shotgun.rsi
   - type: Item
-    sprite: _Starlight/Admeme/Weapons/MedTak/Shotgun.rsi
+    sprite: _Starlight/Admeme/MedTak/Weapons/Shotgun.rsi
   - type: GunRequiresWield
   - type: Gun
     spread: 15

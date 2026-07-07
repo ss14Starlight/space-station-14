@@ -5,9 +5,9 @@
   description: A mantle indicating the leader of a MedTak team.
   components:
     - type: Sprite
-      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/leader-medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/Neck/Mantles/leader-medtak.rsi
     - type: Clothing
-      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/leader-medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/Neck/Mantles/leader-medtak.rsi
 
 - type: entity
   parent: [ ClothingNeckBase, BaseMedTakContraband ]
@@ -16,6 +16,6 @@
   description: A formal mantle and cape given to decorated MedTak team leaders.
   components:
     - type: Sprite
-      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/formal-medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/Neck/Mantles/formal-medtak.rsi
     - type: Clothing
-      sprite: _Starlight/Admeme/Clothing/Neck/Mantles/formal-medtak.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/Neck/Mantles/formal-medtak.rsi

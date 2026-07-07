@@ -5,7 +5,7 @@
   description: A high quality injector for rapid administration of chemicals, compatibile with most standard hardsuit injection ports.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/hypo.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/hypo.rsi
     layers:
       - state: hypo
         map: ["enum.SolutionContainerLayers.Base"]
@@ -13,7 +13,7 @@
         map: ["enum.SolutionContainerLayers.Fill"]
         visible: false
   - type: Item
-    sprite: _Starlight/Admeme/Objects/MedTak/hypo.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/hypo.rsi
   - type: SolutionContainerManager
     solutions:
       hypospray:

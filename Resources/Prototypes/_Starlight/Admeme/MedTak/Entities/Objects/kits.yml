@@ -6,7 +6,7 @@
   description: A reinforced case with padded slots for bottles.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/cases.rsi
     layers:
     - state: bottlecase
     - state: bottle1
@@ -34,7 +34,7 @@
       map: ["bottle8"]
       visible: false
   - type: Item
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/cases.rsi
     size: Small
     shape:
     - 0,0,1,1
@@ -49,10 +49,10 @@
   description: An operator's personal medical kit.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/medkit.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/medkit.rsi
     state: medkit
   - type: Item
-    sprite: _Starlight/Admeme/Objects/MedTak/medkit.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/medkit.rsi
     heldPrefix: medtak
     size: Normal
 
@@ -65,11 +65,11 @@
   description: A pouch loaded with autoinjectors.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/cases.rsi
     state: injectorpack
   - type: Item
     size: Small
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/cases.rsi
   - type: EntityTableContainerFill
     containers:
       storagebase: !type:AllSelector
@@ -81,7 +81,6 @@
         - id: PyraAutoInjector
         - id: AirlossAutoInjector
 
-
 # Surgical Kit
 - type: entity
   name: advanced surgical kit
@@ -91,13 +90,13 @@
   id: SurgicalKitMedTak
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/cases.rsi
     state: surgerykit
   - type: Item
     size: Normal
     shape:
     - 0,0,2,1
-    sprite: _Starlight/Admeme/Objects/MedTak/cases.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/cases.rsi
   - type: Storage
     maxItemSize: Normal
     grid:

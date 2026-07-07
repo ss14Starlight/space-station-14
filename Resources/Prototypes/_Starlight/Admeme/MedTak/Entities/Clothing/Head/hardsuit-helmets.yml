@@ -6,9 +6,9 @@
   description: An armoured helmet worn by MedTak operators.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/MedTak/standard_helmet.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/standard_helmet.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/MedTak/standard_helmet.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/standard_helmet.rsi
   - type: HandheldLight
     wattage: 0.2
   - type: PointLight
@@ -37,6 +37,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/MedTak/pilot_helmet.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/pilot_helmet.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Head/Hardsuits/MedTak/pilot_helmet.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Head/Hardsuits/pilot_helmet.rsi

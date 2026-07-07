@@ -5,9 +5,9 @@
   description: An armoured hardsuit worn by MedTak operators.
   components:
     - type: Sprite
-      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/MedTak/standard.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/standard.rsi
     - type: Clothing
-      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/MedTak/standard.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/standard.rsi
     - type: ToggleableClothing
       clothingPrototype: ClothingHeadHelmetHardsuitMedTak
     - type: PressureProtection
@@ -46,9 +46,9 @@
   description: An armoured hardsuit worn by MedTak medics, with a defibrillator system built into it.
   components:
     - type: Sprite
-      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/MedTak/medic.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/medic.rsi
     - type: Clothing
-      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/MedTak/medic.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/medic.rsi
     - type: Defibrillator
       zapHeal:
         types:
@@ -85,9 +85,9 @@
   description: A heavily armoured hardsuit worn by MedTak heavy security.
   components:
     - type: Sprite
-      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/MedTak/heavy.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/heavy.rsi
     - type: Clothing
-      sprite: _Starlight/Admeme/Clothing/OuterClothing/Hardsuits/MedTak/heavy.rsi
+      sprite: _Starlight/Admeme/MedTak/Clothing/OuterClothing/Hardsuits/heavy.rsi
     - type: ClothingSpeedModifier
       walkModifier: 0.9
       sprintModifier: 0.9

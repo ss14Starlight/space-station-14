@@ -6,7 +6,7 @@
   suffix: Filled
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/dispenser.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
     noRot: true
     layers:
     - state: dispenser
@@ -72,7 +72,7 @@
   suffix: Filled
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/dispenser.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/dispenser.rsi
     noRot: false
     layers:
     - state: wallmount

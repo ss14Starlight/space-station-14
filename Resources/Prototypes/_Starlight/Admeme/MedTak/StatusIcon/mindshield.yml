@@ -2,5 +2,5 @@
   parent: MindShieldIcon
   id: MedTakMindShieldIcon
   icon:
-    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Starlight/Admeme/MedTak/Interface/job_icons.rsi
     state: MedTak_Mindshield

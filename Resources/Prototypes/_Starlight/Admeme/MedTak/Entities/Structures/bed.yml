@@ -13,7 +13,7 @@
         Cold: -0.5
         Blunt: -0.5
   - type: Sprite
-    sprite: _Starlight/Admeme/Objects/MedTak/bed.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/bed.rsi
     noRot: true
     layers:
     - state: bed

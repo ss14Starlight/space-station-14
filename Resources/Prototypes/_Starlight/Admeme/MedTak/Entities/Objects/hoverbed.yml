@@ -5,7 +5,7 @@
   description: A repulsor-suspended stretcher system used by MedTak operators to transport patients.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/hoverbed.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/hoverbed.rsi
     layers:
     - state: hover_unfolded
       map: ["unfoldedLayer"]
@@ -16,7 +16,7 @@
       map: ["buckledLayer"]
       visible: false
   - type: Item
-    sprite: _Starlight/Admeme/hoverbed.rsi
+    sprite: _Starlight/Admeme/MedTak/Objects/hoverbed.rsi
     heldPrefix:
   - type: Pullable
     ignoreNeedsHands: True

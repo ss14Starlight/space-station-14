@@ -5,9 +5,9 @@
   description: Standard issue MedTak uniform.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_uniform.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Uniforms/Jumpsuit/medtak_uniform.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_uniform.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Uniforms/Jumpsuit/medtak_uniform.rsi
   - type: Tag
     tags: []
 
@@ -18,8 +18,8 @@
   description: A formal MedTak uniform.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_formal.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Uniforms/Jumpsuit/medtak_formal.rsi
   - type: Clothing
-    sprite: _Starlight/Admeme/Clothing/Uniforms/Jumpsuit/medtak_formal.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Uniforms/Jumpsuit/medtak_formal.rsi
   - type: Tag
     tags: []

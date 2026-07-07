@@ -5,7 +5,7 @@
   description: A spacious satchel.
   components:
   - type: Sprite
-    sprite: _Starlight/Admeme/Clothing/Back/Satchels/medtak.rsi
+    sprite: _Starlight/Admeme/MedTak/Clothing/Back/Satchels/medtak.rsi
   - type: Storage
     grid:
     - 0,0,1,3
