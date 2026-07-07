@@ -385,7 +385,6 @@
     size: Small
     shape:
     - 0,0,1,1
-    - 0,0,1,1
   - type: Clothing
     sprite: Objects/Tools/rcd.rsi
     quickEquip: false
