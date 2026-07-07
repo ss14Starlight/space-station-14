@@ -78,3 +78,21 @@
   category: Medium
   group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
+
+
+
+
+
+
+
+
+
+
+- type: vessel
+  id: Honeybee
+  name: NTS "Honeybee" Mini-Flores
+  description: A small sized botany shuttle made for advance farming operations, comes with one mutation room.
+  price: 30000
+  category: Small
+  group: Civilian
+  shuttlePath: /Maps/_Starlight/Shuttles/Honeybee.yml
