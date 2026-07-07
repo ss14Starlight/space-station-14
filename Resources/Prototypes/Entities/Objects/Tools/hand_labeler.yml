@@ -21,7 +21,7 @@
           type: HandLabelerBoundUserInterface
     - type: HandLabeler
     # Starlight-start
-      blacklist:1
+      blacklist:
         tags:
           - NotLabelable
     # Starlight-end
