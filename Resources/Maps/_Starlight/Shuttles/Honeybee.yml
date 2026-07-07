@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/07/2026 02:56:16
-  entityCount: 311
+  time: 07/07/2026 06:38:05
+  entityCount: 312
 maps: []
 grids:
 - 1
@@ -84,14 +84,81 @@ entities:
             3: 1,-8
         - node:
             color: '#FFFFFFFF'
-            id: BrickTileSteelLineE
-          decals:
-            2: 1,-9
-        - node:
-            color: '#FFFFFFFF'
             id: BrickTileSteelLineS
           decals:
             1: 2,-8
+        - node:
+            color: '#A91409FF'
+            id: BrickTileWhiteEndE
+          decals:
+            37: 5,-4
+        - node:
+            color: '#0096AAFF'
+            id: BrickTileWhiteEndN
+          decals:
+            16: -2,-3
+        - node:
+            color: '#3D8C40FF'
+            id: BrickTileWhiteEndN
+          decals:
+            24: 0,-4
+        - node:
+            color: '#CC8000FF'
+            id: BrickTileWhiteEndN
+          decals:
+            34: 2,-3
+        - node:
+            color: '#0096AAFF'
+            id: BrickTileWhiteEndS
+          decals:
+            17: -2,-5
+        - node:
+            color: '#3D8C40FF'
+            id: BrickTileWhiteEndS
+          decals:
+            25: 0,-7
+        - node:
+            color: '#CC8000FF'
+            id: BrickTileWhiteEndS
+          decals:
+            35: 2,-5
+        - node:
+            color: '#A91409FF'
+            id: BrickTileWhiteEndW
+          decals:
+            36: 4,-4
+        - node:
+            color: '#0096AAFF'
+            id: BrickTileWhiteLineE
+          decals:
+            18: -2,-4
+        - node:
+            color: '#3D8C40FF'
+            id: BrickTileWhiteLineE
+          decals:
+            26: 0,-6
+            27: 0,-5
+        - node:
+            color: '#CC8000FF'
+            id: BrickTileWhiteLineE
+          decals:
+            33: 2,-4
+        - node:
+            color: '#0096AAFF'
+            id: BrickTileWhiteLineW
+          decals:
+            19: -2,-4
+        - node:
+            color: '#3D8C40FF'
+            id: BrickTileWhiteLineW
+          decals:
+            28: 0,-5
+            29: 0,-6
+        - node:
+            color: '#CC8000FF'
+            id: BrickTileWhiteLineW
+          decals:
+            30: 2,-4
         - node:
             color: '#FFFFFFFF'
             id: WarnLineE
@@ -107,15 +174,21 @@ entities:
             9: 2,-1
             15: 2,1
         - node:
+            cleanable: True
+            color: '#CC8000FF'
+            id: poisongas
+          decals:
+            40: 5,-7
+        - node:
             color: '#951710FF'
             id: trimlinearrowccwsw
           decals:
             11: 1,-6
         - node:
-            color: '#951710FF'
+            color: '#A91409FF'
             id: trimlinearrowccwwest
           decals:
-            12: 1,-5
+            38: 1,-5
     - type: GridAtmosphere
       version: 2
       data:
@@ -236,10 +309,10 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
-  - uid: 68
+  - uid: 312
     components:
     - type: Transform
-      pos: -1.5,1.5
+      pos: -0.5,-0.5
       parent: 1
 - proto: AirlockExternalGlassShuttleLocked
   entities:
@@ -250,10 +323,10 @@ entities:
       parent: 1
     - type: DeviceLinkSource
       linkedPorts:
-        290:
+        289:
         - - DockStatus
           - InputB
-        289:
+        290:
         - - DoorStatus
           - InputA
         - - DockStatus
@@ -272,7 +345,7 @@ entities:
       invokeCounter: 1
     - type: DeviceLinkSource
       linkedPorts:
-        290:
+        289:
         - - DoorStatus
           - InputA
   - uid: 9
@@ -1516,6 +1589,13 @@ entities:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
+- proto: Gyroscope
+  entities:
+  - uid: 68
+    components:
+    - type: Transform
+      pos: -1.5,1.5
+      parent: 1
 - proto: hydroponicsTray
   entities:
   - uid: 12
@@ -1604,25 +1684,9 @@ entities:
     - type: Transform
       pos: -4.5,-2.5
       parent: 1
-- proto: LogicGateNor
+- proto: LogicGateXor
   entities:
   - uid: 289
-    components:
-    - type: Transform
-      anchored: True
-      pos: 0.5,-8.5
-      parent: 1
-    - type: DeviceLinkSink
-      invokeCounter: 1
-    - type: DeviceLinkSource
-      linkedPorts:
-        7:
-        - - Output
-          - DoorBolt
-    - type: Physics
-      canCollide: False
-      bodyType: Static
-  - uid: 290
     components:
     - type: Transform
       anchored: True
@@ -1633,6 +1697,22 @@ entities:
     - type: DeviceLinkSource
       linkedPorts:
         6:
+        - - Output
+          - DoorBolt
+    - type: Physics
+      canCollide: False
+      bodyType: Static
+  - uid: 290
+    components:
+    - type: Transform
+      anchored: True
+      pos: 0.5,-8.5
+      parent: 1
+    - type: DeviceLinkSink
+      invokeCounter: 1
+    - type: DeviceLinkSource
+      linkedPorts:
+        7:
         - - Output
           - DoorBolt
     - type: Physics
