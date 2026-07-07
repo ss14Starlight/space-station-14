@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/07/2026 06:38:05
+  time: 07/07/2026 06:48:55
   entityCount: 312
 maps: []
 grids:
@@ -82,6 +82,11 @@ entities:
             id: BrickTileSteelInnerSe
           decals:
             3: 1,-8
+        - node:
+            color: '#FFFFFFFF'
+            id: BrickTileSteelLineE
+          decals:
+            43: 1,-9
         - node:
             color: '#FFFFFFFF'
             id: BrickTileSteelLineS
