@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "State based copyright",
+  "copyright": "State based Copyright",
   "size": {
     "x": 32,
     "y": 32
@@ -9,21 +9,16 @@
   "states": [
     {
       "name": "icon",
-      "copyright": "Hanz5579(discord)"
-    },
-    {
-      "name": "equipped-HELMET",
-      "copyright": "Hanz5579(discord)",
-      "directions": 4
+      "copyright": "Made by Johnny (Discord: johnny012602)"
     },
     {
       "name": "inhand-left",
-      "copyright": "Hanz5579(discord)",
+      "copyright": "Made by Johnny (Discord: johnny012602)",
       "directions": 4
     },
     {
       "name": "inhand-right",
-      "copyright": "Hanz5579(discord)",
+      "copyright": "Made by Johnny (Discord: johnny012602)",
       "directions": 4
     }
   ]
