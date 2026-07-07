@@ -11,7 +11,9 @@ namespace Content.Client._Starlight.CustomSpawner;
 /// Handles client visuals related to custom spawners. Main code is in <see cref="SharedCustomSpawnerSystem"/>
 public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
 {
+    /// Color interpolation lambda
     private const float Lambda = 0.5f;
+    /// Color interpolation lambda for when disabled
     private const float GrayLambda = 0.8f;
 
     [Dependency] private SpriteSystem _sprite = default!;
@@ -34,18 +36,17 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         {
             _sprite.LayerSetVisible((spawner, padSprite), "enabled", sComp.Enabled);
             var color = Color.InterpolateBetween(sComp.HologramColor1, sComp.HologramColor2, Lambda);
+            _sprite.LayerSetVisible((spawner, padSprite), "overlay_anim", sComp.Enabled);
             if (sComp.Enabled)
             {
                 var animColor = Color.InterpolateBetween(color, Color.White, Lambda);
                 _sprite.LayerSetColor((spawner, padSprite), "overlay", color);
-                _sprite.LayerSetVisible((spawner, padSprite), "overlay_anim", true);
                 _sprite.LayerSetColor((spawner, padSprite), "overlay_anim", animColor);
             }
             else
             {
                 color = Color.InterpolateBetween(color, Color.Gray, GrayLambda);
                 _sprite.LayerSetColor((spawner, padSprite), "overlay", color);
-                _sprite.LayerSetVisible((spawner, padSprite), "overlay_anim", false);
             }
         }
         // update sprite layers for holo
@@ -70,6 +71,7 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
+        // Remove all sprite layers
         for (var i = sprite.AllLayers.Count() - 1; i >= 0; i--)
             _sprite.RemoveLayer((uid, sprite), i);
 

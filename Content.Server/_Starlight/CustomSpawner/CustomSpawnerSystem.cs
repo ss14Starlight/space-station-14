@@ -40,19 +40,28 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
 
         if (args.Port == ent.Comp.OnPort)
         {
-            if (!ent.Comp.Enabled) _link.SendSignal(ent, ent.Comp.EnabledPort, true);
+            if (!ent.Comp.Enabled)
+            {
+                _link.SendSignal(ent, ent.Comp.EnabledPort, true);
+                _link.SendSignal(ent, ent.Comp.DisabledPort, false);
+            }
             ent.Comp.Enabled = true;
             Dirty(ent, ent.Comp);
         }
         if (args.Port == ent.Comp.OffPort)
         {
-            if (ent.Comp.Enabled) _link.SendSignal(ent, ent.Comp.DisabledPort, true);
+            if (ent.Comp.Enabled)
+            {
+                _link.SendSignal(ent, ent.Comp.DisabledPort, true);
+                _link.SendSignal(ent, ent.Comp.EnabledPort, false);
+            }
             ent.Comp.Enabled = false;
             Dirty(ent, ent.Comp);
         }
         if (args.Port == ent.Comp.TogglePort)
         {
             _link.SendSignal(ent, !ent.Comp.Enabled ? ent.Comp.EnabledPort : ent.Comp.DisabledPort, true);
+            _link.SendSignal(ent, !ent.Comp.Enabled ? ent.Comp.DisabledPort : ent.Comp.EnabledPort, false);
             ent.Comp.Enabled = !ent.Comp.Enabled;
             Dirty(ent, ent.Comp);
         }

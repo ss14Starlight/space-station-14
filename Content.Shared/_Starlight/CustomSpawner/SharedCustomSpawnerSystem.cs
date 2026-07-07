@@ -13,6 +13,7 @@ namespace Content.Shared._Starlight.CustomSpawner;
 
 public abstract partial class SharedCustomSpawnerSystem : EntitySystem
 {
+    /// Color interpolation lambda
     private const float Lambda = 0.5f;
 
     [Dependency] private SharedTransformSystem _xform = default!;
