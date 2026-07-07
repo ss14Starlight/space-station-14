@@ -79,15 +79,6 @@
   group: Cargo
   shuttlePath: /Maps/_Starlight/Shuttles/Mining/breaker.yml
 
-
-
-
-
-
-
-
-
-
 - type: vessel
   id: Honeybee
   name: NTS "Honeybee" Mini-Flores
