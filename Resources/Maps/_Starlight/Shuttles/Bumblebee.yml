@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/04/2026 23:59:47
-  entityCount: 799
+  time: 07/07/2026 18:46:26
+  entityCount: 800
 maps: []
 grids:
 - 1
@@ -1768,7 +1768,7 @@ entities:
       pos: -24.5,2.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -12974.718
+      secondsUntilStateChange: -13216.635
       state: Opening
 - proto: DresserFilled
   entities:
@@ -4442,6 +4442,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -35.5,-10.5
       parent: 1
+- proto: SeedExtractor
+  entities:
+  - uid: 777
+    components:
+    - type: Transform
+      pos: -27.5,-4.5
+      parent: 1
 - proto: ShuttleWindow
   entities:
   - uid: 227
@@ -5799,10 +5806,10 @@ entities:
       parent: 1
 - proto: WaterTankFull
   entities:
-  - uid: 777
+  - uid: 800
     components:
     - type: Transform
-      pos: -27.5,-4.5
+      pos: -26.5,-4.5
       parent: 1
 - proto: WindoorHydroponicsLocked
   entities:
