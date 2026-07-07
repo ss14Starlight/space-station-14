@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 05/28/2026 07:28:54
-  entityCount: 8690
+  time: 07/07/2026 19:18:34
+  entityCount: 8694
 maps: []
 grids:
 - 1
@@ -20367,6 +20367,37 @@ entities:
     - type: Transform
       pos: 25.5,9.5
       parent: 1
+- proto: CCBartenderSpawnerPostRound
+  entities:
+  - uid: 8693
+    components:
+    - type: Transform
+      pos: -33.5,26.5
+      parent: 1
+  - uid: 8694
+    components:
+    - type: Transform
+      pos: -28.5,25.5
+      parent: 1
+- proto: CCJanitorSpawnerPostRound
+  entities:
+  - uid: 8690
+    components:
+    - type: Transform
+      pos: 9.5,7.5
+      parent: 1
+- proto: CCServiceWorkerSpawnerPostRound
+  entities:
+  - uid: 8691
+    components:
+    - type: Transform
+      pos: 8.5,48.5
+      parent: 1
+  - uid: 8692
+    components:
+    - type: Transform
+      pos: -40.5,37.5
+      parent: 1
 - proto: CentcommComputerComms
   entities:
   - uid: 3246
@@ -23192,13 +23223,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingShoesClownBanana
-  entities:
-  - uid: 3623
-    components:
-    - type: Transform
-      pos: 9.357211,4.5726533
-      parent: 1
 - proto: ClothingShoesGaloshes
   entities:
   - uid: 127
@@ -23232,21 +23256,21 @@ entities:
       storage: 156
 - proto: ClothingShoeSlippersLizard
   entities:
-  - uid: 3624
+  - uid: 3623
     components:
     - type: Transform
       pos: -6.53141,60.773598
       parent: 1
 - proto: ClothingUniformJumpsuitClownBanana
   entities:
-  - uid: 3625
+  - uid: 3624
     components:
     - type: Transform
       pos: 9.533137,4.60969
       parent: 1
 - proto: ClothingUniformJumpsuitCoroner
   entities:
-  - uid: 3626
+  - uid: 3625
     components:
     - type: Transform
       pos: -8.545806,6.598489
@@ -23371,7 +23395,7 @@ entities:
       canCollide: False
 - proto: ClothingUniformJumpsuitHawaiRed
   entities:
-  - uid: 3627
+  - uid: 3626
     components:
     - type: Transform
       pos: -10.386609,53.169304
@@ -23471,87 +23495,87 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 3628
+  - uid: 3627
     components:
     - type: Transform
       pos: -4.5186486,84.44246
       parent: 1
-  - uid: 3629
+  - uid: 3628
     components:
     - type: Transform
       pos: -3.5537329,76.78327
       parent: 1
-  - uid: 3630
+  - uid: 3629
     components:
     - type: Transform
       pos: -3.539844,76.56105
       parent: 1
-  - uid: 3631
+  - uid: 3630
     components:
     - type: Transform
       pos: -3.539844,76.40827
       parent: 1
-  - uid: 3632
+  - uid: 3631
     components:
     - type: Transform
       pos: -3.5537329,76.68605
       parent: 1
-  - uid: 3633
+  - uid: 3632
     components:
     - type: Transform
       pos: -3.539844,76.4916
       parent: 1
 - proto: ComfyChairBlue
   entities:
-  - uid: 3634
+  - uid: 3633
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,25.5
       parent: 1
-  - uid: 3635
+  - uid: 3634
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 2.5,22.5
       parent: 1
-  - uid: 3636
+  - uid: 3635
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 4.5,24.5
       parent: 1
-  - uid: 3637
+  - uid: 3636
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,24.5
       parent: 1
-  - uid: 3638
+  - uid: 3637
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -3.5,25.5
       parent: 1
-  - uid: 3639
+  - uid: 3638
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,22.5
       parent: 1
-  - uid: 3640
+  - uid: 3639
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 0.5,22.5
       parent: 1
-  - uid: 3641
+  - uid: 3640
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 1.5,22.5
       parent: 1
-  - uid: 3642
+  - uid: 3641
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -23559,7 +23583,7 @@ entities:
       parent: 1
 - proto: ComputerAlert
   entities:
-  - uid: 3643
+  - uid: 3642
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -23567,7 +23591,7 @@ entities:
       parent: 1
 - proto: ComputerAtmosMonitoringDesktop
   entities:
-  - uid: 8690
+  - uid: 3643
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -52945,7 +52969,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -106471.484
+      secondsUntilStateChange: -106591.78
       state: Opening
     - type: Airlock
       autoClose: False
@@ -52960,7 +52984,7 @@ entities:
     - type: AccessReader
       accessListsOriginal: []
     - type: Door
-      secondsUntilStateChange: -106469.62
+      secondsUntilStateChange: -106589.914
       state: Opening
     - type: Airlock
       autoClose: False
@@ -52979,7 +53003,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -14633.471
+      secondsUntilStateChange: -14753.767
       state: Opening
     - type: Airlock
       autoClose: False
@@ -52992,7 +53016,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -14634.67
+      secondsUntilStateChange: -14754.966
       state: Opening
     - type: Airlock
       autoClose: False

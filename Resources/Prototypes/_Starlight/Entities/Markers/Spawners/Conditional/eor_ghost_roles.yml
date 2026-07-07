@@ -1,0 +1,67 @@
+- type: entity
+  name: centcomm service worker spawner (post-round)
+  id: CCServiceWorkerSpawnerPostRound
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Decoration/banner.rsi
+          state: banner
+    - type: TriggerOnRoundEnd
+    - type: AddComponentsOnTrigger
+      components:
+        - type: RandomSpawner
+          prototypes:
+          - RandomHumanoidCCServiceWorker
+
+- type: entity
+  name: centcomm chef spawner (post-round)
+  id: CCChefSpawnerPostRound
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Decoration/banner.rsi
+          state: banner
+    - type: TriggerOnRoundEnd
+    - type: AddComponentsOnTrigger
+      components:
+        - type: RandomSpawner
+          prototypes:
+          - RandomHumanoidCCChef
+
+- type: entity
+  name: centcomm bartender spawner (post-round)
+  id: CCBartenderSpawnerPostRound
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Decoration/banner.rsi
+          state: banner
+    - type: TriggerOnRoundEnd
+    - type: AddComponentsOnTrigger
+      components:
+        - type: RandomSpawner
+          prototypes:
+          - RandomHumanoidCCBartender
+
+- type: entity
+  name: centcomm janitor spawner (post-round)
+  id: CCJanitorSpawnerPostRound
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+        - sprite: Structures/Decoration/banner.rsi
+          state: banner
+    - type: TriggerOnRoundEnd
+    - type: AddComponentsOnTrigger
+      components:
+        - type: RandomSpawner
+          prototypes:
+          - RandomHumanoidCCJanitor

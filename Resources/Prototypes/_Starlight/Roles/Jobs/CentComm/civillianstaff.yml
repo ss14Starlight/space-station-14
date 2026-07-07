@@ -1,0 +1,56 @@
+- type: startingGear
+  id: CCChefGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitChef
+    shoes: ClothingShoesColorGreen
+    head: ClothingHeadHatChef
+#    mask: ClothingMaskItalianMoustache # right now this is broken for vox, so its inhand.
+    id: CentcomServicePDA
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltChefFilled
+    ears: ClothingHeadsetService
+    outerClothing: ClothingOuterCoatChefCentComm
+    pocket1: ButchCleaver
+    pocket2: BookHowToCookForFortySpaceman
+  inhand:
+  - ClothingMaskItalianMoustache
+  - DrinkWineBottleFull
+
+- type: startingGear
+  id: CCServiceWorkerGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcommServiceWorker
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadBandGreen
+    id: CentcomServicePDA
+    back: ClothingBackpack
+    ears: ClothingHeadsetService
+    pocket1: Fork
+    pocket2: FoodShakerPepper
+
+- type: startingGear
+  id: CCBartenderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcommBartender
+    shoes: ClothingShoesColorBlack
+    head: ClothingHeadHatTophat
+    id: CentcomServicePDA
+    back: ClothingBackpack
+    ears: ClothingHeadsetService
+    eyes: ClothingEyesGlassesSunglasses
+    pocket1: DrinkVodkaBottleFull
+    pocket2: BarSpoon
+
+- type: startingGear
+  id: CCJanitorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcommServiceWorker
+    shoes: ClothingShoesGaloshes
+    gloves: ClothingHandsGlovesJanitor
+    id: CentcomServicePDA
+    back: ClothingBackpackSatchel
+    belt: ClothingBeltJanitorFilled
+    ears: ClothingHeadsetService
+  inhand:
+  - MopItem
+  - Bucket

@@ -496,6 +496,42 @@
 
 - type: entity
   parent: IDCardStandard
+  id: CentcomIDCardService
+  name: Centcomm Service ID card
+  components:
+  - type: Sprite
+    sprite: _Starlight/Objects/Misc/id_cards.rsi
+    layers:
+    - state: centcom
+    - sprite: *id-rsi
+      state: stripe_top
+      color: "#cfa500"
+    - sprite: *id-rsi
+      state: stripe_bottom
+      color: "#876c00"
+    - sprite: *starlight-icon-rsi #Starlight
+      offset: *icon-offset
+      state: CCServiceWorker
+  - type: Item
+    sprite: Objects/Misc/id_cards.rsi
+    heldPrefix: white
+  - type: IdCard
+    jobTitle: job-name-ccserviceworker
+    jobIcon: JobIconCCServiceWorker
+  - type: Access
+    tags:
+    - Service
+    - Maintenance
+    - Bar
+    - Kitchen
+    - Hydroponics
+    - Janitor
+    listNumber: false
+
+
+
+- type: entity
+  parent: IDCardStandard
   id: CentcomIDCardDecimus
   name: ERROR ID card
   components:

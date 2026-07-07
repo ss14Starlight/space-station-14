@@ -949,3 +949,35 @@
   - type: Icon
     state: pda-cluwne
   - type: Unremoveable
+
+- type: entity
+  parent: BasePDA
+  id: CentcomServicePDA
+  name: CentComm Service PDA
+  description: The crappy version they give to the people who make their food, mop their floors, and serve their drinks.
+  components:
+  - type: Pda
+    id: CentcomIDCardService
+    penSlot:
+      startingItem: PenCentcom
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-centcom
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-centcom
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NanoTaskCartridge
+      - NewsReaderCartridge
+      - NanoChatCartridge # CD
