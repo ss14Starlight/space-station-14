@@ -146,6 +146,26 @@
         - id: MagazineGrenadeBlast #SL
         - id: MagazineGrenadeFrag  #SL
 
+#- type: entity # Starlight start, we don't use the M90 since it doesn't actually work
+#  parent: ClothingBackpackDuffelSyndicateBundle
+#  id: ClothingBackpackDuffelSyndicateFilledCarbine
+#  name: M-90gl bundle
+#  description: "A versatile battle rifle with an attached grenade launcher, bundled with 3 magazines and 6 grenades of various capabilities."
+#  components:
+#  - type: EntityTableContainerFill
+#    containers:
+#      storagebase: !type:AllSelector
+#        children:
+#        - id: WeaponRifleM90GrenadeLauncher
+#        - id: MagazineRifleFMJ
+#          amount: 2
+#        - id: GrenadeBlast
+#          amount: 2
+#        - id: GrenadeFlash
+#          amount: 2
+#        - id: GrenadeFrag
+#          amount: 2 # Starlight end
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoFilled
