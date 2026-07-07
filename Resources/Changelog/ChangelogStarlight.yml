@@ -1,25 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Fixed a server-side bug that Is likely the cause for Xenoborg Lag.
-    type: Fix
-  id: 406048
-  time: '2026-06-16T12:55:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4819
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Greenshield Officer Job (3 hours of BSO time + extra roles). Admin only spawn.
-    type: Add
-  id: 406049
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: CentComm alignment.
-    type: Add
-  id: 406050
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
 - author: Bornstellar and Hanz (Adrian Butler)
   changes:
   - message: Toggleable shields now require the shield to be toggled to actually give protection.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406447
   time: '2026-07-05T20:25:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4995
+- author: TeddiousbearPA
+  changes:
+  - message: Added time requirements for senior formal uniforms and deputy for Sec/Dutyoff.
+    type: Tweak
+  id: 406448
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: TeddiousbearPA
+  changes:
+  - message: Renamed Deputy Formal to Deputy.
+    type: Tweak
+  id: 406449
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: TeddiousbearPA
+  changes:
+  - message: Updated Meta files to new Copyright standard.
+    type: Tweak
+  id: 406450
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
 Order: -1
