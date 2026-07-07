@@ -1,6 +1,6 @@
 - type: entity
   id: LockerRepresentativeFilled
-#  categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerRepresentative
   components:
@@ -40,7 +40,7 @@
 
 - type: entity
   id: LockerMagistrateFilled
-#  categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerMagistrate
   components:
@@ -78,7 +78,7 @@
 
 - type: entity
   id: LockerIAAFilled
-#  categories: [ ShouldMapStation ]
+  categories: [ ShouldMapStation ]
   suffix: Filled
   parent: LockerIAA
   components:
@@ -133,6 +133,7 @@
           amount: 3
         - id: MedkitAdvancedFilled
         - id: WeaponMultiphaseGun
+        - id: BlueLightShield
         - id: ClothingEyesGlassesBlueShield
         - id: ClothingEyesHudBlueShield
         - id: ClothingHeadHatBeretBlueShield

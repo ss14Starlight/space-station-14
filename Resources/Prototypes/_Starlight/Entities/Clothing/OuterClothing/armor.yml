@@ -450,7 +450,8 @@
     - type: Clothing
       sprite: _Starlight/Clothing/OuterClothing/Vests/greenshield_vest.rsi
     - type: Tag
-      tags: []
+      tags:
+        - WhitelistChameleon
     - type: ClothingSpeedModifier
       walkModifier: 1 #Got to be able to keep up with the nice walk of the officials
     - type: Storage

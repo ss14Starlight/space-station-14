@@ -922,6 +922,19 @@
       - Screwdriver
 
 - type: entity
+  id: RCDChiefEngineer
+  parent: RCD
+  name: chief engineer's experimental RCD
+  description: A highly advanced Rapid Construction Device which creates compressed matter on the fly using an internal fabricator.
+  components:
+  - type: LimitedCharges
+    maxCharges: 40
+  - type: AutoRecharge
+    rechargeDuration: 15
+  - type: Sprite
+    sprite: _Starlight/Objects/Tools/rcd.rsi
+
+- type: entity
   id: RPD
   parent: RCD
   name: RPD

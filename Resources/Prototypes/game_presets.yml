@@ -57,6 +57,7 @@
     - ThiefGamerule # Starlight, Event Light
     - CosmicCult #Starlight
     - TerrorSpidersSpawn # Starlight
+    - Devil # Starlight
 
 - type: gamePreset
   id: AllerAtOnce
@@ -101,6 +102,7 @@
     - RailroadingMinor # Starlight
     - CosmicCult # Starlight
     - TerrorSpidersSpawn # Starlight
+    - Devil # Starlight
 
 - type: gamePreset
   id: Extended
@@ -138,14 +140,15 @@
   name: dynamic-title
   showInVote: false # admin-only for now until we fix some bugs
   description: dynamic-description
-  minPlayers: 5 # 🌟Starlight🌟
+  minPlayers: 50 # 🌟Starlight🌟
   rules:
-  - DynamicRule
-  - DummyNonAntag
+  - SLDynamicRule # Starlight, we have a modified scheduler.
+#  - DummyNonAntag # Starlight, remove DummyNonAntag
   - DynamicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
+  - RailroadingMinor # Starlight, railroading
 
 - type: gamePreset
   id: Secret

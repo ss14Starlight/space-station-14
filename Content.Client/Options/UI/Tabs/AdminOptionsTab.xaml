@@ -5,6 +5,11 @@
         <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Margin="8">
                 <!-- Starlight BEGIN -->
+                <Label Text="{Loc 'ui-options-admin-ghost'}" StyleClasses="LabelKeyText"/>
+                <BoxContainer Orientation="Horizontal">
+	                <Label ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Text="{Loc 'ui-options-admin-ghost-script-label'}"/>
+	                <LineEdit ToolTip="{Loc 'ui-options-admin-ghost-script-tooltip'}" Name="AghostScriptName" HorizontalExpand="True"></LineEdit>
+                </BoxContainer>
                 <Label Text="{Loc 'ui-options-admin-ghost-hud'}" StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownAGhostJobIconSetting" Title="{Loc 'ui-options-admin-ghost-hud-setting-job'}" />
                 <ui:OptionDropDown Name="DropDownAGhostHealthIconSetting" Title="{Loc 'ui-options-admin-ghost-hud-setting-health'}" />

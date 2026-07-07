@@ -200,6 +200,23 @@
         - HamsterWearable
         - WhitelistChameleon
 
+- type: entity
+  parent: [ClothingHeadBase, BaseSecurityContraband]
+  id: ClothingHeadDeputyHat
+  name: deputy's hat
+  description: el desperados...
+  components:
+    - type: Sprite
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Clothing
+      sprite: _Starlight/Clothing/Head/Hats/deputy_hat.rsi
+    - type: Tag
+      tags:
+        - ClothMade
+        - Recyclable
+        - HamsterWearable
+        - WhitelistChameleon
+
 #USSP
 - type: entity
   parent: [ClothingHeadBase, BaseSovietContraband]
