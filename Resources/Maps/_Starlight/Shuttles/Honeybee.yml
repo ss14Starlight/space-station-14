@@ -4,7 +4,7 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/07/2026 22:34:32
+  time: 07/07/2026 22:37:14
   entityCount: 309
 maps: []
 grids:
@@ -306,7 +306,9 @@ entities:
       parent: 1
     - type: DeviceList
       devices:
+      - 212
       - 277
+      - 216
     - type: Fixtures
       fixtures: {}
   - uid: 284
@@ -318,8 +320,10 @@ entities:
     - type: DeviceList
       devices:
       - 209
+      - 275
       - 279
       - 208
+      - 178
       - 220
       - 219
       - 210
@@ -1374,6 +1378,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-6.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 284
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 215
@@ -1393,6 +1400,9 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 283
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 218
@@ -1434,6 +1444,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-6.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 284
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubberAlt3
@@ -1520,6 +1533,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-0.5
       parent: 1
+    - type: DeviceNetwork
+      deviceLists:
+      - 283
     - type: AtmosPipeColor
       color: '#990000FF'
 - proto: GeneratorBasic20kW
