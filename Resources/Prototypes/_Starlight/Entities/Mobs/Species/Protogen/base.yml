@@ -73,6 +73,7 @@
   - type: Icon
     sprite: _FarHorizons/Mobs/Species/Protogen/parts.rsi
     state: full
+  - type: Absorbable
   - type: Thirst
   - type: Damageable
     damageContainer: Hybrid
