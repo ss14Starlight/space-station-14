@@ -96,5 +96,5 @@
     activatedDamage:
       types:
         Blunt: 5
-        Shock: 15
-        Structural: 115
+        Shock: 10
+        Structural: 110
