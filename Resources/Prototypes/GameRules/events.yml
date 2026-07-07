@@ -55,12 +55,17 @@
     - id: DragonSpawn
     - id: NinjaSpawn
     - id: ParadoxCloneSpawn
+    - id: ParadoxCrisisSpawn # Starlight
     - id: SleeperAgents
  #   - id: ZombieOutbreak starlight - no more midround zeds
     - id: LoneOpsSpawn
     - id: WizardSpawn
-    - id: AbductorsSpawn # Starlight
-    - id: TerrorSpidersSpawn # Starlight
+    - id: AbductorsSpawn # Starlight start
+    - id: SubXenoborgs
+    - id: TerrorSpidersSpawn
+    - id: RailroadingTerminator
+    - id: Brighteye
+    - id: ColossusSpawn # Starlight end
     - id: EeepEvent # imp
     - !type:NestedSelector
       tableId: DerelictBorgEventTable
