@@ -1,60 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Fixed a server-side bug that Is likely the cause for Xenoborg Lag.
-    type: Fix
-  id: 406048
-  time: '2026-06-16T12:55:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4819
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Greenshield Officer Job (3 hours of BSO time + extra roles). Admin only spawn.
-    type: Add
-  id: 406049
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: CentComm alignment.
-    type: Add
-  id: 406050
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Toggleable shields now require the shield to be toggled to actually give protection.
-    type: Fix
-  id: 406051
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: pAI's and other minded entities no longer prevent you from raising your shield as long as they are in a container of some kind.
-    type: Fix
-  id: 406052
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Greenshield Officer role and equipment, including a green energy shield that requires a power cell to operate. Self-charging power cells like micros cannot be used with them due to balance.
-    type: Add
-  id: 406053
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Changes to the underlying code of blocking and reflection to enable power draw when reducing damage.
-    type: Tweak
-  id: 406054
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Power cells with a recharge pause time will now not start recharging until their pause has been satisfied with zero power draw. This only affects xenoborg stealth module and the newly added greenlight shield.
-    type: Fix
-  id: 406055
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
 - author: Bornstellar and Hanz (Adrian Butler)
   changes:
   - message: Pistols, handheld computers like station maps/portable crew monitors, and holoprojectors no longer eject their magazine/battery when using a hotkey to grab them from a pocket.
@@ -2799,4 +2743,60 @@ Entries:
   id: 406447
   time: '2026-07-05T20:25:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4995
+- author: TeddiousbearPA
+  changes:
+  - message: Added time requirements for senior formal uniforms and deputy for Sec/Dutyoff.
+    type: Tweak
+  id: 406448
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: TeddiousbearPA
+  changes:
+  - message: Renamed Deputy Formal to Deputy.
+    type: Tweak
+  id: 406449
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: TeddiousbearPA
+  changes:
+  - message: Updated Meta files to new Copyright standard.
+    type: Tweak
+  id: 406450
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: wonderfulnewworld
+  changes:
+  - message: The Lone Colossus will now spawn again occasionally.
+    type: Tweak
+  id: 406451
+  time: '2026-07-07T12:47:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5031
+- author: wonderfulnewworld
+  changes:
+  - message: The Cosmic Cult and Terror Spiders now call 8 minute evac shuttles instead of 5 and 10 minutes respectively.
+    type: Tweak
+  id: 406452
+  time: '2026-07-07T13:32:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5030
+- author: ku-mo
+  changes:
+  - message: Marking names in the character editor no longer spam localization warnings.
+    type: Fix
+  id: 406453
+  time: '2026-07-07T13:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5005
+- author: ku-mo
+  changes:
+  - message: Material storage eject buttons no longer spam localization warnings.
+    type: Fix
+  id: 406454
+  time: '2026-07-07T13:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5005
+- author: ku-mo
+  changes:
+  - message: Antag playtime requirements no longer spam localization warnings.
+    type: Fix
+  id: 406455
+  time: '2026-07-07T13:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5005
 Order: -1

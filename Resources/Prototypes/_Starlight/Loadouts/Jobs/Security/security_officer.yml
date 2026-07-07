@@ -213,6 +213,9 @@
 
 - type: loadout
   id: DeputyHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SkilledOfficer
   equipment:
     head: ClothingHeadDeputyHat
 
