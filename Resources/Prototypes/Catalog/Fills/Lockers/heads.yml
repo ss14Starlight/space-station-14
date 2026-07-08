@@ -245,7 +245,7 @@
     - id: AstroNavCartridge #FH
     - id: SheetSteel #FH
     - id: SheetGlass #FH
-    - id: RCD
+    - id: RCDChiefEngineer
     - id: RPD # Starlight: RPD
     - id: RCDAmmo
     - id: RubberStampCE

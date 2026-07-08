@@ -6,3 +6,6 @@ roles-antag-pirate-objective = You are a crew member of the pirate vessel. Follo
 roles-antag-devil-name = Devil
 roles-antag-devil-description = Sign away the souls of the weak, be canonically evil.
 roles-antag-devil-objective = Get the crew to sign contracts to reap their souls, promising them fickle material benefits in return.
+
+roles-antag-ssf-name = Soviet Special Forces
+roles-antag-ssf-objective = Carry out your mission for the Union and eliminate any threats to it.

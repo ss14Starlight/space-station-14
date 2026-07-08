@@ -79,32 +79,6 @@
     - type: DynamicRuleCost
       cost: 125 # They're not that special.
 
-# Roundender-less events table for survival
-- type: entityTable
-  id: BasicAntagEventsTableNoRoundenders
-  table:
-    !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
-    children:
-      - id: ClosetSkeleton
-      - id: DragonSpawn
-      - id: KingRatMigration
-      - id: NinjaSpawn
-      - id: ParadoxCloneSpawn
-      - id: ParadoxCrisisSpawn # Starlight
-      - id: RevenantSpawn
-      - id: SleeperAgents
-      #    - id: ZombieOutbreak
-      - id: LoneOpsSpawn
-      - !type:NestedSelector
-        tableId: DerelictBorgEventTable
-      - id: WizardSpawn
-      - id: SubXenoborgs # Starlight, make it spawn sub instead
-      - id: EeepEvent # imp
-      # Starlight gamerules:
-      - id: AbductorsSpawn
-      - id: RailroadingTerminator
-      - id: Brighteye
-
 - type: entity
   parent: BaseGameRule
   id: DerelictBorgiSpawn

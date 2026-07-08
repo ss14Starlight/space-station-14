@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/01/2026 00:31:31
-  entityCount: 29841
+  time: 07/04/2026 22:53:50
+  entityCount: 29842
 maps:
 - 1
 grids:
@@ -11502,7 +11502,7 @@ entities:
       parent: 2
     - type: GridFill
       addComponents: []
-      path: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
+      path: /Maps/_Starlight/Shuttles/Security/pursuit.yml
     - type: Door
       secondsUntilStateChange: -85725.29
       state: Opening
@@ -139942,6 +139942,18 @@ entities:
     components:
     - type: Transform
       pos: 9.5,-30.5
+      parent: 2
+    - type: TechnologyDatabase
+      supportedDisciplines:
+      - Industrial
+      - Arsenal
+      - Experimental
+      - CivilianServices
+      - Biochemical
+  - uid: 29842
+    components:
+    - type: Transform
+      pos: 3.5,-62.5
       parent: 2
     - type: TechnologyDatabase
       supportedDisciplines:
