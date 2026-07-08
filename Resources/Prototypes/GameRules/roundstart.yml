@@ -591,7 +591,7 @@
   components:
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
-      tableId: BasicGameRulesTableNoRoundenders # 🌟Starlight🌟
+      tableId: BasicGameRulesTable
 
 - type: entity
   id: SpaceTrafficControlEventScheduler # iff we make a selector for EntityTables that can respect StationEventComp restrictions, or somehow impliment them otherwise in said tables,

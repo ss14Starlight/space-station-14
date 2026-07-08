@@ -1720,7 +1720,7 @@
   parent: BaseFelionoidPlushie
   id: PlushieBrighteyes
   name: brighteyes plushie
-  description:  It's Brighteyes, Sentinel Pack, now in adorable marketable plushie form! This tiny kitty always packs a fiery punch to protect the station, particularly her family and friends. She won't let you give her uppies, but at least this plush will.
+  description:  It's Brighteyes Sentinel, now in adorable marketable plushie form! This tiny kitty was one of Security's finest officers, but hasn't been seen since she went looking for her missing wife.
   components:
   - type: Item
     size: Small
@@ -1737,7 +1737,7 @@
       - type: DatasetVocalizer
         dataset: PlushiesBrighteyes
       - type: TextToSpeech
-        voice: ICASSP43
+        voice: usagichan
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Animals/cat_meow.ogg
@@ -1780,7 +1780,7 @@
       - type: DatasetVocalizer
         dataset: PlushiesNebula
       - type: TextToSpeech
-        voice: piksqu
+        voice: kassssandra
 
 - type: entity
   parent: BaseVulpkaninPlushie

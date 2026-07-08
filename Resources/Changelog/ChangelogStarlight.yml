@@ -1,81 +1,4 @@
 Entries:
-- author: CrazyPhantom
-  changes:
-  - message: Fixed a server-side bug that Is likely the cause for Xenoborg Lag.
-    type: Fix
-  id: 406048
-  time: '2026-06-16T12:55:34.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4819
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Greenshield Officer Job (3 hours of BSO time + extra roles). Admin only spawn.
-    type: Add
-  id: 406049
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: CentComm alignment.
-    type: Add
-  id: 406050
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Toggleable shields now require the shield to be toggled to actually give protection.
-    type: Fix
-  id: 406051
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: pAI's and other minded entities no longer prevent you from raising your shield as long as they are in a container of some kind.
-    type: Fix
-  id: 406052
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Greenshield Officer role and equipment, including a green energy shield that requires a power cell to operate. Self-charging power cells like micros cannot be used with them due to balance.
-    type: Add
-  id: 406053
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Changes to the underlying code of blocking and reflection to enable power draw when reducing damage.
-    type: Tweak
-  id: 406054
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Power cells with a recharge pause time will now not start recharging until their pause has been satisfied with zero power draw. This only affects xenoborg stealth module and the newly added greenlight shield.
-    type: Fix
-  id: 406055
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Pistols, handheld computers like station maps/portable crew monitors, and holoprojectors no longer eject their magazine/battery when using a hotkey to grab them from a pocket.
-    type: Tweak
-  id: 406056
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: STARLIGHT TEAM
-  changes:
-  - message: The comet is now a purchasable option in the shipyard console for 98,500 spesos. (Credit of ship design goes to thoughtlessuser).
-    type: Add
-  id: 406057
-  time: '2026-06-16T15:34:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4751
-- author: Huaqas
-  changes:
-  - message: Displacement maps for Rodentia have been tweaked to hopefully remove all floating pixels.
-    type: Fix
-  id: 406058
-  time: '2026-06-16T16:08:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4821
 - author: Huaqas
   changes:
   - message: Belts, PDAs and Suit Storage items should now appear correctly on Rodentia.
@@ -2799,4 +2722,81 @@ Entries:
   id: 406447
   time: '2026-07-05T20:25:45.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/4995
+- author: TeddiousbearPA
+  changes:
+  - message: Added time requirements for senior formal uniforms and deputy for Sec/Dutyoff.
+    type: Tweak
+  id: 406448
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: TeddiousbearPA
+  changes:
+  - message: Renamed Deputy Formal to Deputy.
+    type: Tweak
+  id: 406449
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: TeddiousbearPA
+  changes:
+  - message: Updated Meta files to new Copyright standard.
+    type: Tweak
+  id: 406450
+  time: '2026-07-06T11:53:13.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5006
+- author: wonderfulnewworld
+  changes:
+  - message: The Lone Colossus will now spawn again occasionally.
+    type: Tweak
+  id: 406451
+  time: '2026-07-07T12:47:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5031
+- author: wonderfulnewworld
+  changes:
+  - message: The Cosmic Cult and Terror Spiders now call 8 minute evac shuttles instead of 5 and 10 minutes respectively.
+    type: Tweak
+  id: 406452
+  time: '2026-07-07T13:32:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5030
+- author: ku-mo
+  changes:
+  - message: Marking names in the character editor no longer spam localization warnings.
+    type: Fix
+  id: 406453
+  time: '2026-07-07T13:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5005
+- author: ku-mo
+  changes:
+  - message: Material storage eject buttons no longer spam localization warnings.
+    type: Fix
+  id: 406454
+  time: '2026-07-07T13:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5005
+- author: ku-mo
+  changes:
+  - message: Antag playtime requirements no longer spam localization warnings.
+    type: Fix
+  id: 406455
+  time: '2026-07-07T13:54:16.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5005
+- author: Rtasva
+  changes:
+  - message: 'Saltern: Added Theater.'
+    type: Add
+  id: 406456
+  time: '2026-07-07T18:24:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5012
+- author: Rtasva
+  changes:
+  - message: 'Saltern: Relocated NCT, IAA, and Disposals.'
+    type: Tweak
+  id: 406457
+  time: '2026-07-07T18:24:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5012
+- author: Rtasva
+  changes:
+  - message: 'Saltern: General mapping updates.'
+    type: Fix
+  id: 406458
+  time: '2026-07-07T18:24:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5012
 Order: -1
