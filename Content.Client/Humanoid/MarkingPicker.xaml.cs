@@ -254,7 +254,7 @@ public sealed partial class MarkingPicker : Control
         var sortedMarkings = GetMarkings(_selectedMarkingCategory).Values.Where(m =>
             m.ID.ToLower().Contains(filter.ToLower()) ||
             GetMarkingName(m).ToLower().Contains(filter.ToLower())
-        ).OrderBy(p => Loc.GetString(GetMarkingName(p)));
+        ).OrderBy(p => GetMarkingName(p)); // Starlight
 
         foreach (var marking in sortedMarkings)
         {

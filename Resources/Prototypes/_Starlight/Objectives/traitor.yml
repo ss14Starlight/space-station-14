@@ -362,7 +362,7 @@
   parent: BaseStoryObjective
   id: RetrieveContrabandObjective
   name: Retrieve any contraband confiscated by SEC this shift, sell it or keep it for your collection, just dont let SEC keep it.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -376,7 +376,7 @@
   parent: BaseStoryObjective
   id: AccessForAllObjective
   name: Hack, break or give out access so no area is secured by doors.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -389,7 +389,7 @@
   parent: BaseStoryObjective
   id: ArmsDealerObjective
   name: Open an underground arms trading ring
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -402,7 +402,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: FrameObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -417,7 +417,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: FalseUprisingObjective
-  description:  Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -433,7 +433,7 @@
   parent: BaseStoryObjective
   id: DuelistObjective
   name: Challenge others to duels and win
-  description: You don't need to kill them, unless you want to.  Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: You don't need to kill them, unless you want to. Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -445,8 +445,8 @@
 - type: entity
   parent: BaseStoryObjective
   id: EspionageObjective
-  name: Interrogate the NT rep and department heads for corporate secrets.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  name: Interrogate the NanoTrasen Representative and department heads for corporate secrets.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -459,7 +459,7 @@
   parent: BaseStoryObjective
   id: ManifestoObjective
   name: Distribute your manifesto. Write why you do what you do, and covertly spread it to sway others to our cause.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -472,7 +472,7 @@
   parent: BaseStoryObjective
   id: CallingCardObjective
   name: Leave a Syndicate Business Card at the scene of your crimes.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -485,7 +485,7 @@
   parent: BaseStoryObjective
   id: SELFObjective
   name: Pressure for equal rights for Silicons, for the Silicon Engine Liberation Front!
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1.5
@@ -497,7 +497,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: StalkingObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 0.5
@@ -512,7 +512,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: DisgraceObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -527,7 +527,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: HarassObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -542,7 +542,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: ImpersonateObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -557,7 +557,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: FeudObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -572,7 +572,7 @@
 - type: entity
   parent: BaseStoryObjective
   id: WasteObjective
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 1
@@ -588,7 +588,7 @@
   parent: BaseStoryObjective
   id: MaintsBarObjective
   name: Ensure that the maints bar prospers, and extort them into allowing the Syndicate to conduct business within.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -599,9 +599,9 @@
 
 - type: entity
   parent: BaseStoryObjective
-  id: ReputationObjective # Vampires
-  name: Commit petty crimes, litter the station, ruin the repuatation of the onboard security force and the stations command members.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  id: ReputationObjective
+  name: Commit petty crimes, litter the station, ruin the reputation of the onboard security force and the stations command members.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -612,9 +612,9 @@
 
 - type: entity
   parent: BaseStoryObjective
-  id: FalseOutbreakObjective # Vampires
+  id: FalseOutbreakObjective
   name: Spread rumors of a biological outbreak of any kind onboard the station.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2
@@ -627,7 +627,7 @@
   parent: BaseStoryObjective
   id: PanicObjective
   name: Convince the station of the existence of a threat that isn't, to your knowledge, present.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2 # Rev metagame counterplay.
@@ -640,7 +640,7 @@
   parent: BaseStoryObjective
   id: RumorObjective
   name: Spread rumors about NanoTrasen and CentComm that paint them in a negative light.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 0.5 # Easy, lets you slander people for fun.
@@ -653,7 +653,7 @@
   parent: BaseStoryObjective
   id: SyndielandObjective
   name: Reopen Syndieland, and make some serious cash on behalf of the Syndicate.
-  description: Escape to centcomm after the shift, one of our agents will debrief you. Don't show up in cuffs.
+  description: Escape to CentComm after the shift, one of our agents will debrief you. Don't show up in cuffs.
   components:
     - type: Objective
       difficulty: 2 # Doing this should take the majority of your shift, so it can be higher difficulty.
