@@ -4,7 +4,6 @@ using Content.Server.Bible.Components;
 using Content.Shared._Starlight.Antags.Vampires;
 using Content.Shared._Starlight.Antags.Vampires.Components;
 using Content.Shared._Starlight.Antags.Vampires.Components.Classes;
-using Content.Shared._Starlight.Antags.Vampires.Systems;
 using Content.Shared._Starlight.Medical.Damage;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CombatMode.Pacification;
@@ -34,36 +33,36 @@ using Content.Server.EUI;
 using Content.Server._Starlight.Language;
 using Content.Server.Roles;
 
-namespace Content.Server._Starlight.Antags.Vampires.Systems;
+namespace Content.Server._Starlight.Antags.Vampires.Systems.Classes;
 
-public sealed class DantalionSystem : EntitySystem
+public sealed partial class DantalionSystem : EntitySystem
 {
     private static readonly ProtoId<DamageGroupPrototype> _bruteGroupId = "Brute";
     private static readonly ProtoId<DamageGroupPrototype> _burnGroupId = "Burn";
     private static readonly ProtoId<DamageTypePrototype> _asphyxiationTypeId = "Asphyxiation";
 
-    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly Content.Shared.Mind.SharedMindSystem _mind = default!;
-    [Dependency] private readonly VampireSystem _vampire = default!;
-    [Dependency] private readonly Content.Server.Actions.ActionsSystem _actions = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
-    [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
-    [Dependency] private readonly Shared.Examine.ExamineSystemShared _examine = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private readonly EuiManager _euiMan = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly LanguageSystem _language = default!;
-    [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private Content.Shared.Mind.SharedMindSystem _mind = default!;
+    [Dependency] private VampireSystem _vampire = default!;
+    [Dependency] private Content.Server.Actions.ActionsSystem _actions = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private MovementModStatusSystem _movementMod = default!;
+    [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private SharedStunSystem _stun = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
+    [Dependency] private Shared.Examine.ExamineSystemShared _examine = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedFlashSystem _flash = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private EuiManager _euiMan = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private LanguageSystem _language = default!;
+    [Dependency] private RoleSystem _role = default!;
 
     public override void Initialize()
     {

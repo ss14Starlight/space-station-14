@@ -1,11 +1,11 @@
-using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing;
 using Content.Shared.Tag;
 
-namespace Content.Shared.Clothing.EntitySystems;
+namespace Content.Shared._Starlight.Clothing;
 
-public sealed class AddTagsOnClothingEquipSystem : EntitySystem
+public sealed partial class AddTagsOnClothingEquipSystem : EntitySystem
 {
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     public override void Initialize()
     {

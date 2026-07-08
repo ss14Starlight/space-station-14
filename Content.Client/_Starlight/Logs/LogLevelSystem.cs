@@ -1,4 +1,4 @@
-using Content.Shared.Starlight.CCVar;
+using Content.Shared._Starlight.CCVar;
 using Robust.Shared.Configuration;
 
 namespace Content.Client._Starlight.Logs;
@@ -6,10 +6,10 @@ namespace Content.Client._Starlight.Logs;
 /// <summary>
 /// Restores persisted sawmill log levels from CVar on startup.
 /// </summary>
-public sealed class LogLevelSystem : EntitySystem
+public sealed partial class LogLevelSystem : EntitySystem
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {

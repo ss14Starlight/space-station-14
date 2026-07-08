@@ -35,6 +35,15 @@
     department: Security
     time: 36000 #10 hrs
 
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgSecurity
+
 # Syndicate borgs
 
 - type: borgType
@@ -160,6 +169,7 @@
   - Science
   - Law
 
+  # Access
   addComponents:
   - type: Access
     groups:
@@ -209,3 +219,12 @@
   # Pet
   petSuccessString: petting-success-cargo-cyborg
   petFailureString: petting-failure-cargo-cyborg
+
+  # Access
+  addComponents:
+    - type: Access
+      groups:
+        - CyborgAllAccess
+      tags:
+        - Borg
+        - BorgCargo

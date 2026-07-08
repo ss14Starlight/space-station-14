@@ -4,6 +4,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Shadekin
+    - ProtoKin
 
 - type: loadoutEffectGroup
   id: OxygenBreatherDwarf
@@ -11,6 +12,14 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Dwarf
+    - ProtoDwarf
+
+- type: loadoutEffectGroup
+  id: EffectsSpeciesRodentia
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Rodentia
 
 - type: loadoutEffectGroup
   id: IPC
@@ -175,6 +184,7 @@
   - !type:SpeciesLoadoutEffect
     species:
     - Elf
+    - ProtoElf
 
 - type: loadout
   id: EmergencyNonbreatherSecurity
@@ -250,3 +260,76 @@
   storage:
     back:
     - BoxSurvivalMilitaryDouble # no dwarf version; doesn't include a drink
+
+# Rodentia Cheese Loadouts
+- type: loadout
+  id: EmergencyCheese # Default Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalCheese
+
+- type: loadout
+  id: EmergencyCheeseExtended # Extended Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalExtendedCheese
+
+- type: loadout
+  id: EmergencyCheeseMedical # Medical Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalMedicalCheese
+
+- type: loadout
+  id: EmergencyCheeseSecurity # Security Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalSecurityCheese
+
+- type: loadout
+  id: EmergencyCheeseMime # Mime Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalMimeCheese
+
+- type: loadout
+  id: EmergencyCheeseClown # Clown Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalClownCheese
+
+- type: loadout
+  id: EmergencyCheeseSyndicate # Syndicate Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalSyndicateCheese
+
+- type: loadout
+  id: EmergencyCheeseMilitary # Military Rodentia box
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectsSpeciesRodentia
+  storage:
+    back:
+    - BoxSurvivalMilitaryDouble # Military budget cuts mean Military Rodentia don't get cheese. Sad days.

@@ -32,6 +32,14 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconCCGreenShield
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: CCGreenShield
+  jobName: job-name-greenshield
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconSurgeon
   icon:
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
@@ -299,3 +307,19 @@
     sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
     state: MedTakBorg
   jobName: job-name-medtak-borg
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenoborg
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Xenoborg
+  jobName: chat-radio-xenoborg
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconXenoborgMothership
+  icon:
+    sprite: /Textures/_Starlight/Interface/Misc/job_icons.rsi
+    state: Mothership
+  jobName: chat-radio-mothership

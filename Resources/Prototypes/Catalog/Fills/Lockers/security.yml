@@ -14,6 +14,7 @@
 
 - type: entity
   id: LockerWardenFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerWarden
   components:
@@ -39,8 +40,8 @@
     - id: ClothingShoesBootsJack
     - id: ClothingOuterCoatWarden
     - id: ClothingOuterWinterWarden
-    - id: RubberStampWarden
     - id: DoorRemoteArmory
+    - id: BoxWardenStamps #Starlight
     - id: HoloprojectorSecurity
     - id: BookSpaceLaw
     - id: ClothingBackpackElectropack
@@ -166,6 +167,7 @@
 
 - type: entity
   id: LockerDetectiveFilled
+  categories: [ ShouldMapStation ] # Starlight
   suffix: Filled
   parent: LockerDetective
   components:
@@ -275,16 +277,24 @@
 - type: entityTable
   id: FillGunSafeRifleLecter
   table: !type:AllSelector
+# Starlight-start
     children:
     - id: BoxFiringPin # Starlight, firing pins
     - id: WeaponRifleLecter
-      amount: 2 # Starlight
+      amount: 2
     - id: WeaponRifleLeikha
       amount: 1
+    - id: WeaponRifleLawbringer
+      amount: 1
     - id: MagazineRifleHP
-      amount: 4 # Starlight
+      amount: 4
     - id: MagazineRifleSP
-      amount: 4 # Starlight
+      amount: 4
+    - id: MagazineLightRifleSP
+      amount: 1
+    - id: MagazineLightRifleHP
+      amount: 1
+# Starlight-end
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseSecurityContraband]

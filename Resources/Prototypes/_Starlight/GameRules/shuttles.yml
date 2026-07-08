@@ -194,15 +194,6 @@
 # Misc
 - type: entity
   parent: BaseGameRule
-  id: shuttle_empty_salvage_pioneerRequiresFuel
-  components:
-    - type: StationEvent
-      startAnnouncement: null # It should be silent.
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Salvage/pioneer_fuel.yml # no preload cause that leads to a warp point in shuttle space
-
-- type: entity
-  parent: BaseGameRule
   id: LotteryShuttle
   components:
     - type: RuleGrids
@@ -240,19 +231,11 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SecurityShuttleSpawn_KillerTamashi
+  id: SecurityShuttleSpawn
   components:
     - type: RuleGrids
     - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/KillerTamashi-SecShuttle.yml
-
-- type: entity
-  parent: BaseGameRule
-  id: SecurityShuttleSpawn_SP-4C3
-  components:
-    - type: RuleGrids
-    - type: LoadMapRule
-      gridPath: /Maps/_Starlight/Shuttles/Security/SP-4C3.yml
+      gridPath: /Maps/_Starlight/Shuttles/Security/pursuit.yml
 
 # Solgov/TSF
 - type: entity
