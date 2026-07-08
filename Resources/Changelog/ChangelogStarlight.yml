@@ -1,25 +1,4 @@
 Entries:
-- author: Bornstellar and Hanz (Adrian Butler)
-  changes:
-  - message: Pistols, handheld computers like station maps/portable crew monitors, and holoprojectors no longer eject their magazine/battery when using a hotkey to grab them from a pocket.
-    type: Tweak
-  id: 406056
-  time: '2026-06-16T15:11:07.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4671
-- author: STARLIGHT TEAM
-  changes:
-  - message: The comet is now a purchasable option in the shipyard console for 98,500 spesos. (Credit of ship design goes to thoughtlessuser).
-    type: Add
-  id: 406057
-  time: '2026-06-16T15:34:11.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4751
-- author: Huaqas
-  changes:
-  - message: Displacement maps for Rodentia have been tweaked to hopefully remove all floating pixels.
-    type: Fix
-  id: 406058
-  time: '2026-06-16T16:08:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4821
 - author: Huaqas
   changes:
   - message: Belts, PDAs and Suit Storage items should now appear correctly on Rodentia.
@@ -2799,4 +2778,25 @@ Entries:
   id: 406455
   time: '2026-07-07T13:54:16.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5005
+- author: Rtasva
+  changes:
+  - message: 'Saltern: Added Theater.'
+    type: Add
+  id: 406456
+  time: '2026-07-07T18:24:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5012
+- author: Rtasva
+  changes:
+  - message: 'Saltern: Relocated NCT, IAA, and Disposals.'
+    type: Tweak
+  id: 406457
+  time: '2026-07-07T18:24:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5012
+- author: Rtasva
+  changes:
+  - message: 'Saltern: General mapping updates.'
+    type: Fix
+  id: 406458
+  time: '2026-07-07T18:24:11.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5012
 Order: -1
