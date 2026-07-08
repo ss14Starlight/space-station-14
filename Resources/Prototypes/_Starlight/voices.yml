@@ -6,6 +6,14 @@
   silicon: false
   copyright: Colorfinger
   license: The use of the voice is authorized by the voice holder
+  pitch: Low
+  tags:
+  - american
+  - british
+  - european
+  - raspy
+  - robotic
+  - serious
 
 - type: voice
   id: mozillaAu1
@@ -15,6 +23,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu2
@@ -24,6 +37,13 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Low
+  tags:
+  - american
+  - british
+  - clear
+  - european
+  - serious
 
 - type: voice
   id: karma
@@ -33,6 +53,13 @@
   silicon: false
   copyright: Karma
   license: The use of the voice is authorized by the voice holder
+  pitch: High
+  tags:
+  - american
+  - breathy
+  - clear
+  - smooth
+  - soft
 
 - type: voice
   id: felinoid
@@ -41,6 +68,10 @@
   sex: Unsexed
   silicon: false
   license: The use of the voice is authorized by the voice holder
+  pitch: High
+  tags:
+  - american
+  - soft
 
 - type: voice
   id: xoan
@@ -50,6 +81,11 @@
   silicon: false
   copyright: Xoan
   license: The use of the voice is authorized by the voice holder
+  pitch: Medium
+  tags:
+  - american
+  - nasal
+  - serious
 
 - type: voice
   id: vikaPvi
@@ -58,6 +94,15 @@
   sex: Female
   silicon: false
   license: The use of the voice is authorized by the voice holder
+  pitch: Medium
+  tags:
+  - asian
+  - clear
+  - european
+  - nasal
+  - raspy
+  - serious
+  - southeast asian
 
 - type: voice
   id: piksqu
@@ -67,6 +112,12 @@
   silicon: false
   copyright: Piksqu
   license: The use of the voice is authorized by the voice holder
+  pitch: High
+  tags:
+  - breathy
+  - european
+  - french
+  - serious
 
 - type: voice
   id: marcaisse
@@ -76,6 +127,13 @@
   silicon: false
   copyright: Marcaisse
   license: The use of the voice is authorized by the voice holder
+  pitch: High
+  tags:
+  - american
+  - clear
+  - european
+  - french
+  - lisp
 
 - type: voice
   id: slr1
@@ -85,6 +143,12 @@
   silicon: false
   copyright: Nigel G. Ward and Divette Marco
   license: CC0-1.0
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - european
+  - serious
 
 - type: voice
   id: slr2
@@ -94,6 +158,12 @@
   silicon: false
   copyright: Nigel G. Ward and Divette Marco
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - lisp
+  - soft
 
 - type: voice
   id: slr3
@@ -103,6 +173,12 @@
   silicon: false
   copyright: Nigel G. Ward and Divette Marco
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - soft
 
 - type: voice
   id: slr4
@@ -112,6 +188,12 @@
   silicon: false
   copyright: Nigel G. Ward and Divette Marco
   license: CC0-1.0
+  pitch: High
+  tags:
+  - clear
+  - monotone
+  - serious
+  - soft
 
 - type: voice
   id: mozillaAu3
@@ -121,6 +203,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu4
@@ -130,6 +217,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu5
@@ -139,6 +231,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: mozillaAu6
@@ -148,6 +246,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: mozillaAu7
@@ -157,6 +261,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - australian
+  - breathy
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu8
@@ -166,6 +276,10 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: mozillaAu9
@@ -175,6 +289,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu10
@@ -184,6 +303,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu11
@@ -193,6 +317,13 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - harsh
+  - robotic
+  - serious
 
 - type: voice
   id: mozillaAu12
@@ -202,6 +333,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - robotic
+  - serious
 
 - type: voice
   id: mozillaAu13
@@ -211,6 +348,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu14
@@ -220,6 +362,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu15
@@ -229,6 +376,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - british
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu16
@@ -238,6 +390,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP29
@@ -247,6 +404,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - little
+  - soft
 
 - type: voice
   id: ICASSP30
@@ -256,6 +419,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP31
@@ -265,6 +434,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - soft
 
 - type: voice
   id: ICASSP32
@@ -274,6 +448,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP33
@@ -283,6 +464,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP34
@@ -292,6 +480,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP35
@@ -301,6 +494,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP36
@@ -310,6 +508,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - nasal
 
 - type: voice
   id: ICASSP37
@@ -319,6 +521,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP38
@@ -328,6 +535,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP39
@@ -337,6 +550,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP40
@@ -346,6 +564,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - robotic
 
 - type: voice
   id: ICASSP41
@@ -355,6 +577,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP42
@@ -364,6 +591,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP43
@@ -373,6 +605,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP45
@@ -382,6 +618,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - raspy
+  - serious
 
 - type: voice
   id: ICASSP46
@@ -391,6 +633,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP47
@@ -400,6 +647,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP48
@@ -409,6 +662,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP49
@@ -418,6 +678,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP50
@@ -427,6 +693,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP51
@@ -436,6 +707,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP52
@@ -445,6 +721,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP53
@@ -454,6 +734,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP54
@@ -463,6 +748,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP55
@@ -472,6 +762,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP56
@@ -481,6 +776,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP57
@@ -490,6 +790,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP58
@@ -499,6 +805,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP59
@@ -508,6 +819,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP60
@@ -517,6 +833,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP61
@@ -526,6 +848,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP63
@@ -535,6 +862,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP64
@@ -544,6 +876,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP65
@@ -553,6 +890,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP66
@@ -562,6 +906,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP67
@@ -571,6 +920,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP68
@@ -580,6 +934,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP69
@@ -589,6 +949,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP70
@@ -598,6 +963,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP71
@@ -607,6 +977,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP72
@@ -616,6 +991,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP73
@@ -625,6 +1005,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP74
@@ -634,6 +1019,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP75
@@ -643,6 +1033,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - breathy
+  - clear
+  - monotone
+  - serious
 
 - type: voice
   id: ICASSP76
@@ -652,6 +1049,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP77
@@ -661,6 +1064,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - raspy
+  - serious
 
 - type: voice
   id: ICASSP78
@@ -670,6 +1078,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP79
@@ -679,6 +1093,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP80
@@ -688,6 +1107,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP81
@@ -697,6 +1122,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP82
@@ -706,6 +1135,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP83
@@ -715,6 +1150,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP84
@@ -724,6 +1163,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP85
@@ -733,6 +1178,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP86
@@ -742,6 +1193,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP87
@@ -751,6 +1208,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP88
@@ -760,6 +1221,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP89
@@ -769,6 +1235,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP90
@@ -778,6 +1249,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP91
@@ -787,6 +1263,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP92
@@ -796,6 +1277,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP93
@@ -805,6 +1291,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - robotic
+  - serious
 
 - type: voice
   id: ICASSP94
@@ -814,6 +1306,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP95
@@ -823,6 +1320,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP96
@@ -832,6 +1334,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP97
@@ -841,6 +1349,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - soft
 
 - type: voice
   id: ICASSP98
@@ -850,6 +1363,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP99
@@ -859,6 +1378,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP100
@@ -868,6 +1392,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP101
@@ -877,6 +1407,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP102
@@ -886,6 +1423,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP103
@@ -895,6 +1436,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP104
@@ -904,6 +1450,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP105
@@ -913,6 +1464,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP106
@@ -922,6 +1478,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP107
@@ -931,6 +1492,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP108
@@ -940,6 +1506,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP109
@@ -949,6 +1522,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP110
@@ -958,6 +1537,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - monotone
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP111
@@ -967,6 +1553,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP112
@@ -976,6 +1569,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP113
@@ -985,6 +1585,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP114
@@ -994,6 +1598,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP115
@@ -1003,6 +1612,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP116
@@ -1012,6 +1627,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - asian
+  - indian
+  - raspy
+  - serious
 
 - type: voice
   id: ICASSP117
@@ -1021,6 +1642,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP118
@@ -1030,6 +1657,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP119
@@ -1039,6 +1671,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP120
@@ -1048,6 +1686,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP121
@@ -1057,6 +1700,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP122
@@ -1066,6 +1715,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP123
@@ -1075,6 +1729,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP125
@@ -1084,6 +1743,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP126
@@ -1093,6 +1758,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - soft
 
 - type: voice
   id: ICASSP127
@@ -1102,6 +1772,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP128
@@ -1111,6 +1786,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP129
@@ -1120,6 +1800,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP130
@@ -1129,6 +1815,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP131
@@ -1138,6 +1829,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP132
@@ -1147,6 +1844,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP133
@@ -1156,6 +1859,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP134
@@ -1165,6 +1873,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP135
@@ -1174,6 +1888,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP136
@@ -1183,6 +1902,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP137
@@ -1192,6 +1917,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP138
@@ -1201,6 +1932,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - raspy
+  - serious
 
 - type: voice
   id: ICASSP139
@@ -1210,6 +1947,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - clear
+  - sad
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP140
@@ -1219,6 +1962,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP141
@@ -1228,6 +1976,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP142
@@ -1237,6 +1991,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP143
@@ -1246,6 +2005,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP144
@@ -1255,6 +2019,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP146
@@ -1264,6 +2033,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP147
@@ -1273,6 +2047,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP148
@@ -1282,6 +2063,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP149
@@ -1291,6 +2077,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP150
@@ -1300,6 +2092,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - british
+  - clear
+  - fancy
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP151
@@ -1309,6 +2108,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP152
@@ -1318,6 +2122,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - robotic
+  - serious
 
 - type: voice
   id: ICASSP153
@@ -1327,6 +2138,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP154
@@ -1336,6 +2152,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - booming
+  - robotic
+  - serious
 
 - type: voice
   id: ICASSP155
@@ -1345,6 +2167,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP156
@@ -1354,6 +2181,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP157
@@ -1363,6 +2196,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP158
@@ -1372,6 +2210,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - muffled
+  - serious
 
 - type: voice
   id: ICASSP159
@@ -1381,6 +2224,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP160
@@ -1390,6 +2238,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - raspy
+  - serious
 
 - type: voice
   id: ICASSP161
@@ -1399,6 +2253,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP162
@@ -1408,6 +2267,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: ICASSP163
@@ -1417,6 +2282,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu17
@@ -1426,6 +2296,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu18
@@ -1435,6 +2310,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: mozillaAu19
@@ -1444,6 +2325,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - serious
+  - smooth
 
 - type: voice
   id: mozillaAu20
@@ -1453,6 +2339,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP163dot5
@@ -1462,6 +2353,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP164
@@ -1471,6 +2368,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP165
@@ -1480,6 +2382,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP166
@@ -1489,6 +2396,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP167
@@ -1498,6 +2410,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP168
@@ -1507,6 +2423,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP169
@@ -1516,6 +2437,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP170
@@ -1525,6 +2450,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP171
@@ -1534,6 +2464,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP172
@@ -1543,6 +2478,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP173
@@ -1552,6 +2492,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP175
@@ -1561,6 +2506,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP176
@@ -1570,6 +2520,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP177
@@ -1579,6 +2534,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP178
@@ -1588,6 +2548,10 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: ICASSP179
@@ -1597,6 +2561,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP181
@@ -1606,6 +2575,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP182
@@ -1615,6 +2589,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP183
@@ -1624,6 +2603,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - soft
 
 - type: voice
   id: ICASSP185
@@ -1633,6 +2617,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP186
@@ -1642,6 +2632,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP187
@@ -1651,6 +2646,13 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: ICASSP188
@@ -1660,6 +2662,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: ICASSP189
@@ -1669,6 +2676,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: ICASSP190
@@ -1678,6 +2691,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - soft
 
 - type: voice
   id: ICASSP191
@@ -1687,6 +2706,12 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - muffled
+  - robotic
+  - serious
 
 - type: voice
   id: ICASSP192
@@ -1696,6 +2721,11 @@
   silicon: false
   copyright: Williams, Jennifer and Yazdanpanah, Vahid and Stein, Sebastian. Modified.
   license: CC BY-SA 3.0 US
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - serious
 
 - type: voice
   id: mozillaAu21
@@ -1705,6 +2735,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu22
@@ -1714,6 +2749,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu23
@@ -1723,6 +2763,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: mozillaAu24
@@ -1732,6 +2778,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - serious
+  - smooth
 
 - type: voice
   id: mozillaAu25
@@ -1741,6 +2792,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu26
@@ -1750,6 +2806,11 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: mozillaAu27
@@ -1759,6 +2820,10 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: mozillaAu28
@@ -1768,6 +2833,12 @@
   silicon: false
   copyright: "https://datacollective.mozillafoundation.org/datasets/cmko7havo02f5nw07rbwwhowe"
   license: CC0-1.0
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: nevec
@@ -1776,6 +2847,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - clear
+  - european
+  - russian
+  - serious
 
 - type: voice
   id: distant
@@ -1784,6 +2861,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - breathy
+  - monotone
+  - muffled
+  - sad
+  - slow
 
 - type: voice
   id: dracula
@@ -1792,6 +2876,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - booming
+  - european
+  - harsh
+  - old
+  - serious
+  - sinister
 
 - type: voice
   id: goblin
@@ -1800,6 +2892,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - nasal
+  - silly
 
 - type: voice
   id: gravely
@@ -1808,6 +2905,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - breathy
+  - british
+  - fancy
+  - harsh
+  - monotone
+  - serious
+  - sinister
 
 - type: voice
   id: haughty
@@ -1816,6 +2922,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - european
+  - fancy
+  - nasal
+  - serious
 
 - type: voice
   id: jowels
@@ -1824,6 +2936,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - british
+  - clear
+  - smooth
 
 - type: voice
   id: lizardish
@@ -1832,6 +2949,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - breathy
+  - harsh
+  - lisp
+  - monstrous
+  - raspy
 
 - type: voice
   id: madDoctor
@@ -1840,6 +2964,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - european
+  - german
+  - harsh
+  - muffled
+  - nasal
+  - raspy
+  - sinister
 
 - type: voice
   id: monstrous
@@ -1848,6 +2981,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - booming
+  - british
+  - harsh
+  - monstrous
+  - raspy
+  - serious
+  - sinister
 
 - type: voice
   id: rich
@@ -1856,6 +2998,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - british
+  - fancy
+  - muffled
+  - nasal
 
 - type: voice
   id: nurgle
@@ -1864,6 +3012,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - breathy
+  - monotone
+  - sad
+  - serious
+  - sinister
+  - slow
 
 - type: voice
   id: skeletor
@@ -1872,6 +3028,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - booming
+  - dramatic
+  - muffled
+  - nasal
+  - old-timey
+  - raspy
+  - silly
 
 - type: voice
   id: smooth
@@ -1880,6 +3045,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - british
+  - european
+  - fancy
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: snake
@@ -1888,6 +3061,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
 
 - type: voice
   id: stuffedUp
@@ -1896,6 +3074,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - nasal
+  - silly
 
 - type: voice
   id: western1
@@ -1904,6 +3087,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
+  - southern
 
 - type: voice
   id: western2
@@ -1912,6 +3102,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - nasal
+  - serious
 
 - type: voice
   id: darkish
@@ -1920,6 +3115,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - british
+  - raspy
+  - serious
 
 - type: voice
   id: nasaly
@@ -1928,6 +3129,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
+  - silly
 
 - type: voice
   id: quiet
@@ -1936,6 +3143,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - british
+  - muffled
+  - robotic
 
 - type: voice
   id: smoothLoud
@@ -1944,6 +3156,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - booming
+  - british
+  - fancy
+  - smooth
 
 - type: voice
   id: powerArmor
@@ -1952,6 +3170,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - muffled
+  - old-timey
+  - serious
+  - smooth
 
 - type: voice
   id: angryJowels
@@ -1960,6 +3186,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - booming
+  - muffled
+  - nasal
+  - serious
+  - silly
 
 - type: voice
   id: butler
@@ -1968,6 +3201,16 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - breathy
+  - british
+  - clear
+  - european
+  - fancy
+  - flamboyant
+  - serious
+  - soft
 
 - type: voice
   id: darkDramatic
@@ -1976,6 +3219,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - breathy
+  - british
+  - clear
+  - fancy
+  - serious
+  - slow
+  - smooth
 
 - type: voice
   id: deepQuiet
@@ -1984,6 +3236,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - harsh
+  - monstrous
+  - quiet
+  - raspy
+  - sinister
+  - slow
 
 - type: voice
   id: walksanator
@@ -1993,6 +3254,11 @@
   silicon: false
   copyright: walksanator
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - nasal
+  - silly
 
 - type: voice
   id: powerhouse
@@ -2001,6 +3267,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - monotone
+  - serious
 
 - type: voice
   id: scottish
@@ -2009,6 +3281,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - british
+  - scottish
+  - soft
 
 - type: voice
   id: serious
@@ -2017,6 +3294,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - harsh
+  - raspy
+  - serious
 
 - type: voice
   id: boonies
@@ -2025,6 +3309,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
+  - southern
 
 - type: voice
   id: bugs
@@ -2033,6 +3324,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - nasal
+  - serious
 
 - type: voice
   id: australium
@@ -2041,6 +3337,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - australian
+  - clear
+  - serious
 
 - type: voice
   id: bored
@@ -2049,6 +3350,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - monotone
+  - raspy
+  - serious
+  - slow
 
 - type: voice
   id: bostonish
@@ -2057,6 +3365,15 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - muffled
+  - nasal
+  - old-timey
+  - serious
+  - smooth
 
 - type: voice
   id: caveJ
@@ -2065,6 +3382,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - nasal
 
 - type: voice
   id: clownish
@@ -2073,6 +3395,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - silly
 
 - type: voice
   id: cockney
@@ -2081,6 +3408,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - british
+  - clear
+  - fancy
+  - smooth
+  - soft
 
 - type: voice
   id: concerned
@@ -2089,6 +3423,13 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - muffled
+  - sad
+  - serious
+  - soft
 
 - type: voice
   id: concerning
@@ -2097,6 +3438,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - british
+  - raspy
+  - silly
+  - sinister
 
 - type: voice
   id: daffy
@@ -2105,6 +3452,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - lisp
+  - nasal
+  - silly
 
 - type: voice
   id: doomed
@@ -2113,6 +3466,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - booming
+  - british
+  - serious
+  - smooth
 
 - type: voice
   id: downUnder
@@ -2121,6 +3480,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - australian
+  - clear
+  - serious
 
 - type: voice
   id: excitable
@@ -2129,6 +3493,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - british
+  - european
+  - quiet
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: forceful
@@ -2137,6 +3509,10 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - clear
+  - serious
 
 - type: voice
   id: jittery
@@ -2145,6 +3521,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - asian
+  - clear
+  - european
+  - indian
+  - serious
+  - smooth
 
 - type: voice
   id: kind
@@ -2153,6 +3537,10 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: macho
@@ -2161,6 +3549,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - harsh
+  - raspy
 
 - type: voice
   id: meek
@@ -2169,6 +3563,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - breathy
+  - british
+  - european
+  - monotone
+  - sinister
+  - smooth
 
 - type: voice
   id: monstrous2
@@ -2177,6 +3579,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - breathy
+  - clear
+  - harsh
+  - monstrous
+  - serious
+  - sinister
 
 - type: voice
   id: powerful
@@ -2185,6 +3595,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - clear
+  - raspy
+  - serious
 
 - type: voice
   id: powerful2
@@ -2193,6 +3608,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - european
+  - harsh
+  - monstrous
+  - serious
 
 - type: voice
   id: protagonistic
@@ -2201,6 +3622,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: sad
@@ -2209,6 +3636,16 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - british
+  - clear
+  - european
+  - fancy
+  - nasal
+  - sad
+  - serious
+  - soft
 
 - type: voice
   id: scottishish
@@ -2217,6 +3654,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - british
+  - european
+  - raspy
+  - scottish
 
 - type: voice
   id: strahdVonZarovich
@@ -2225,6 +3668,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - booming
+  - clear
+  - european
+  - fancy
+  - serious
+  - sinister
 
 - type: voice
   id: tazmanianDevil
@@ -2233,6 +3684,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - lisp
+  - raspy
+  - silly
+  - sinister
 
 - type: voice
   id: theBrain
@@ -2241,6 +3698,14 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - british
+  - european
+  - fancy
+  - silly
+  - smooth
+  - soft
 
 - type: voice
   id: igon
@@ -2250,6 +3715,12 @@
   silicon: false
   copyright: "Bukkataro, YT: https://www.youtube.com/@Bukkataro"
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - breathy
+  - raspy
+  - silly
 
 - type: voice
   id: softspokenNebie
@@ -2259,6 +3730,12 @@
   silicon: false
   copyright: Nebula
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - smooth
+  - soft
 
 - type: voice
   id: thornNebie
@@ -2268,6 +3745,15 @@
   silicon: false
   copyright: Nebula
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - breathy
+  - british
+  - clear
+  - european
+  - fancy
+  - serious
+  - smooth
 
 - type: voice
   id: valleyNebie
@@ -2277,6 +3763,11 @@
   silicon: false
   copyright: Nebula
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - breathy
+  - raspy
 
 - type: voice
   id: readingNebie
@@ -2286,6 +3777,10 @@
   silicon: false
   copyright: Nebula
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - serious
 
 - type: voice
   id: mole
@@ -2294,6 +3789,11 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - american
+  - nasal
+  - silly
 
 - type: voice
   id: solidFake
@@ -2302,6 +3802,12 @@
   sex: Male
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - clear
+  - harsh
+  - raspy
 
 - type: voice
   id: ogre
@@ -2310,6 +3816,14 @@
   sex: Unsexed
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: Low
+  tags:
+  - american
+  - breathy
+  - clear
+  - monstrous
+  - silly
+  - soft
 
 - type: voice
   id: snakeU
@@ -2318,6 +3832,16 @@
   sex: Unsexed
   silicon: false
   license: Private license, permission granted for SLN use only.
+  pitch: High
+  tags:
+  - breathy
+  - british
+  - clear
+  - european
+  - fancy
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: starlingNebie
@@ -2327,6 +3851,13 @@
   silicon: false
   copyright: Nebula
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - clear
+  - nasal
+  - serious
 
 - type: voice
   id: rye
@@ -2336,6 +3867,10 @@
   silicon: false
   copyright: Ryan "Levienci" Wayne
   license: Private license, permission granted for SLN use only.
+  pitch: Medium
+  tags:
+  - american
+  - clear
 
 - type: voice
   id: cybe
@@ -2345,6 +3880,12 @@
   silicon: false
   copyright: "https://x.com/ArtCybes"
   license: MIT
+  pitch: Medium
+  tags:
+  - european
+  - french
+  - serious
+  - soft
 
 - type: voice
   id: antiri
@@ -2354,6 +3895,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - british
+  - clear
+  - european
+  - serious
 
 - type: voice
   id: arborfield
@@ -2363,6 +3910,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
 
 - type: voice
   id: blastergranny
@@ -2372,6 +3925,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - nasal
+  - raspy
+  - silly
 
 - type: voice
   id: bridget
@@ -2381,6 +3940,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - british
+  - clear
+  - european
+  - serious
+  - soft
 
 - type: voice
   id: chandraki
@@ -2390,6 +3957,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - asian
+  - clear
+  - indian
+  - soft
 
 - type: voice
   id: croakiecaw
@@ -2399,6 +3972,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - monstrous
+  - raspy
+  - serious
 
 - type: voice
   id: crystalina
@@ -2408,6 +3987,11 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - breathy
+  - soft
 
 - type: voice
   id: fidget
@@ -2417,6 +4001,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - little
+  - nasal
+  - raspy
+  - silly
 
 - type: voice
   id: gisele
@@ -2426,6 +4017,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - breathy
+  - european
+  - french
+  - smooth
+  - soft
 
 - type: voice
   id: governess
@@ -2435,6 +4033,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - breathy
+  - british
+  - clear
+  - european
+  - fancy
+  - serious
 
 - type: voice
   id: hotmess
@@ -2444,6 +4050,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - breathy
+  - muffled
+  - nasal
+  - silly
+  - soft
 
 - type: voice
   id: impastalady
@@ -2453,6 +4067,11 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - little
+  - raspy
 
 - type: voice
   id: janetrauma
@@ -2462,6 +4081,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - breathy
+  - clear
+  - serious
+  - soft
+  - southern
 
 - type: voice
   id: jarana
@@ -2471,6 +4098,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - breathy
+  - clear
+  - european
+  - french
+  - serious
+  - spanish
 
 - type: voice
   id: kassssandra
@@ -2480,6 +4115,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - little
+  - nasal
+  - serious
 
 - type: voice
   id: kusochan
@@ -2489,6 +4130,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - little
+  - nasal
+  - silly
+  - soft
 
 - type: voice
   id: kusohime
@@ -2498,6 +4146,15 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - asian
+  - breathy
+  - harsh
+  - nasal
+  - robotic
+  - silly
 
 - type: voice
   id: ladykommandant
@@ -2507,6 +4164,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - british
+  - european
+  - german
+  - serious
 
 - type: voice
   id: madamtophat
@@ -2516,6 +4179,15 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - breathy
+  - british
+  - clear
+  - european
+  - fancy
+  - serious
+  - smooth
 
 - type: voice
   id: maryjane
@@ -2525,6 +4197,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - serious
+  - smooth
+  - soft
 
 - type: voice
   id: miriam
@@ -2534,6 +4212,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - arabic
+  - asian
+  - indian
+  - raspy
 
 - type: voice
   id: operativejumpskirt
@@ -2543,6 +4227,15 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - little
+  - nasal
+  - old-timey
+  - raspy
+  - serious
 
 - type: voice
   id: salome
@@ -2552,6 +4245,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - european
+  - italian
+  - little
+  - raspy
+  - serious
 
 - type: voice
   id: sarcastica
@@ -2561,6 +4261,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - british
+  - raspy
+  - serious
 
 - type: voice
   id: shahrazad
@@ -2570,6 +4276,11 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - arabic
+  - asian
+  - clear
 
 - type: voice
   id: spaceempress
@@ -2579,6 +4290,11 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: steele
@@ -2588,6 +4304,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - breathy
+  - raspy
+  - robotic
+  - silly
 
 - type: voice
   id: sujeong
@@ -2597,6 +4320,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - asian
+  - clear
+  - korean
+  - serious
+  - smooth
 
 - type: voice
   id: thalia
@@ -2606,6 +4336,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - british
+  - european
+  - serious
+  - smooth
 
 - type: voice
   id: tipsymcgee
@@ -2615,6 +4351,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - silly
 
 - type: voice
   id: usagichan
@@ -2624,6 +4366,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - asian
+  - little
+  - silly
+  - soft
 
 - type: voice
   id: usagitan
@@ -2633,6 +4382,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - asian
+  - little
+  - raspy
+  - silly
 
 - type: voice
   id: valaya
@@ -2642,6 +4398,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - british
+  - european
+  - old
+  - raspy
+  - serious
+  - squalky
 
 - type: voice
   id: xiene
@@ -2651,6 +4415,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - british
+  - clear
+  - european
+  - fancy
+  - serious
+  - smooth
 
 - type: voice
   id: zorpina
@@ -2660,6 +4432,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - nasal
+  - raspy
+  - robotic
 
 - type: voice
   id: monster
@@ -2669,6 +4448,15 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - booming
+  - breathy
+  - monstrous
+  - muffled
+  - raspy
+  - silly
 
 - type: voice
   id: apokalypsis
@@ -2678,6 +4466,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - european
+  - russian
+  - serious
+  - smooth
 
 - type: voice
   id: bozoschlomo
@@ -2687,6 +4481,11 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - silly
 
 - type: voice
   id: chadkegger
@@ -2696,6 +4495,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - clear
+  - silly
 
 - type: voice
   id: coulros
@@ -2705,6 +4510,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - nasal
+  - silly
 
 - type: voice
   id: detectivegrowler
@@ -2714,6 +4525,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Medium
+  tags:
+  - american
+  - harsh
+  - monstrous
+  - raspy
 
 - type: voice
   id: dodger
@@ -2723,6 +4540,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - muffled
+  - old-timey
+  - serious
+  - smooth
 
 - type: voice
   id: dorri
@@ -2732,6 +4557,15 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - british
+  - european
+  - harsh
+  - raspy
+  - serious
+  - squalky
 
 - type: voice
   id: fartley
@@ -2741,6 +4575,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - british
+  - clear
+  - european
+  - silly
 
 - type: voice
   id: gangerunt
@@ -2750,6 +4590,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - european
+  - german
+  - harsh
+  - silly
 
 - type: voice
   id: goughman
@@ -2759,6 +4606,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - clear
+  - old-timey
+  - serious
+  - smooth
 
 - type: voice
   id: harrier
@@ -2768,6 +4623,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - british
+  - clear
+  - european
+  - serious
+  - smooth
 
 - type: voice
   id: ioannissouvlakis
@@ -2777,6 +4639,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - clear
+  - european
+  - greek
+  - serious
 
 - type: voice
   id: ivanheadrev
@@ -2786,6 +4655,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - booming
+  - european
+  - harsh
+  - russian
+  - serious
 
 - type: voice
   id: jimmynanotrasen
@@ -2795,6 +4671,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - clear
+  - fast
+  - robotic
 
 - type: voice
   id: johnnanotrasen
@@ -2804,6 +4686,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - muffled
+  - old-timey
+  - smooth
+  - trans-atlantic
 
 - type: voice
   id: kaeltharion
@@ -2813,6 +4702,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - australian
+  - british
+  - clear
+  - european
+  - serious
 
 - type: voice
   id: ledavid
@@ -2822,6 +4718,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - european
+  - french
+  - raspy
+  - serious
 
 - type: voice
   id: pterry
@@ -2831,6 +4734,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - monstrous
+  - raspy
+  - silly
 
 - type: voice
   id: rockman
@@ -2840,6 +4750,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: Low
+  tags:
+  - american
+  - booming
+  - clear
+  - serious
+  - smooth
 
 - type: voice
   id: roper
@@ -2849,6 +4766,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - british
+  - clear
+  - european
 
 - type: voice
   id: slopbad
@@ -2858,6 +4781,14 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - harsh
+  - old
+  - raspy
+  - silly
 
 - type: voice
   id: snorri
@@ -2867,6 +4798,17 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - booming
+  - british
+  - european
+  - harsh
+  - nordic
+  - old
+  - raspy
+  - serious
+  - squalky
 
 - type: voice
   id: walmartoog
@@ -2876,6 +4818,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - monstrous
+  - silly
+  - slow
 
 - type: voice
   id: weakgood
@@ -2885,6 +4834,15 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - booming
+  - little
+  - mexican
+  - muffled
+  - raspy
+  - silly
 
 - type: voice
   id: wheezy
@@ -2894,6 +4852,12 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - harsh
+  - nasal
+  - silly
 
 - type: voice
   id: zorp
@@ -2903,6 +4867,13 @@
   silicon: false
   copyright: None
   license: This voice was generated using a neural network and cannot be copyrighted.
+  pitch: High
+  tags:
+  - american
+  - little
+  - muffled
+  - raspy
+  - silly
 
 - type: voice
   id: kaur
@@ -2914,6 +4885,11 @@
   license: This voice was generated using a neural network and cannot be copyrighted.
 
 # -----------------------------------------------------------------------------
+  pitch: Medium
+  tags:
+  - american
+  - clear
+  - serious
 
 - type: voice
   id: borgColorfingert

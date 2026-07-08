@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Content.Shared.Humanoid;
 using Robust.Shared.Prototypes;
 
@@ -28,4 +29,10 @@ public sealed partial class VoicePrototype : IPrototype
 
     [DataField]
     public string? License { get; private set; }
+
+    [DataField("pitch")]
+    public string? Pitch { get; private set; } = null;
+
+    [DataField("tags")]
+    public List<string> Tags { get; private set; } = new();
 }
