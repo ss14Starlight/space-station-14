@@ -8,19 +8,6 @@
       hologramProtoId: CustomSpawnerHologram
     - type: InteractionOutline
     - type: Clickable
-    - type: Physics
-      bodyType: Dynamic
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.2
-          density: 100
-          mask:
-            - TableMask
-    - type: Pullable
-    - type: Anchorable
     - type: DeviceLinkSource
       ports:
         - SpawnTriggered
@@ -42,6 +29,19 @@
   id: CustomSpawner
   parent: BaseCustomSpawner
   components:
+    - type: Physics
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.2
+          density: 100
+          mask:
+            - TableMask
+    - type: Pullable
+    - type: Anchorable
     - type: CustomSpawner
       hologramVisible: true
       hologramSprite:
