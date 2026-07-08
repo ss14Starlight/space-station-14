@@ -4,18 +4,18 @@ using Robust.Shared.Serialization.Manager.Attributes;
 
 namespace Content.Shared._Starlight.TextToSpeech;
 
-[Prototype("voiceTagFilterConfig")]
+[Prototype]
 public sealed partial class VoiceTagFilterConfigPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
 
-    [DataField("maxPresentedTags")]
+    [DataField]
     public int MaxPresentedTags { get; private set; } = 25;
 
-    [DataField("explicitlyIncludedTags")]
+    [DataField]
     public HashSet<ProtoId<VoiceTagPrototype>> ExplicitlyIncludedTags { get; private set; } = new();
 
-    [DataField("excludedTags")]
+    [DataField]
     public HashSet<ProtoId<VoiceTagPrototype>> ExcludedTags { get; private set; } = new();
 }

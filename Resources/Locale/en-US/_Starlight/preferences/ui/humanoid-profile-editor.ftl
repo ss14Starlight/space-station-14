@@ -18,9 +18,7 @@ voice-selector-pitch-all = All Pitches
 voice-selector-pitch-low = Low
 voice-selector-pitch-medium = Medium
 voice-selector-pitch-high = High
-
 voice-selector-tag-all = All Tags
-
 tts-tag-american = American
 tts-tag-british = British
 tts-tag-european = European

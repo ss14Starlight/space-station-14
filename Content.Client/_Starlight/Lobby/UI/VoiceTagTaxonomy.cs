@@ -23,42 +23,48 @@ public sealed class VoiceTagTaxonomy
         _config = prototypeManager.Index(DefaultConfigId);
 
         _presentingTags = ComputePresentingTags(voices);
-        _cachedTags = voices.SelectMany(GetMappedTags).Distinct().OrderBy(t => t).ToList();
+        _cachedTags = voices.SelectMany(ResolvePresentingTags).Distinct().OrderBy(t => t).ToList();
     }
 
     public List<string> CachedTags => _cachedTags;
 
-    public List<string> GetMappedTags(VoicePrototype v)
+    public HashSet<string> ResolvePresentingTags(VoicePrototype v)
     {
-        var list = new List<string>();
+        var result = new HashSet<string>();
+        var visited = new HashSet<string>();
+
         foreach (var protoId in v.Tags)
         {
-            var tag = protoId.Id.Trim().ToLowerInvariant();
-            if (_config.ExcludedTags.Contains(tag))
-                continue;
+            ResolveAncestors(protoId.Id.Trim().ToLowerInvariant(), result, visited);
+        }
 
-            if (_presentingTags.Contains(tag))
-            {
-                if (!list.Contains(tag))
-                    list.Add(tag);
-                continue;
-            }
+        return result;
+    }
 
-            // Look up parent hierarchies
-            if (_prototypeManager.TryIndex<VoiceTagPrototype>(tag, out var tagProto))
+    private void ResolveAncestors(string tag, HashSet<string> resolved, HashSet<string> visited, int depth = 0)
+    {
+        // Safety guard against infinite recursion from malformed/cyclic tag prototype configurations
+        if (depth > 10)
+            return;
+
+        if (!visited.Add(tag))
+            return;
+
+        if (_config.ExcludedTags.Contains(tag))
+            return;
+
+        if (_presentingTags.Contains(tag))
+        {
+            resolved.Add(tag);
+        }
+
+        if (_prototypeManager.TryIndex<VoiceTagPrototype>(tag, out var tagProto))
+        {
+            foreach (var parentProtoId in tagProto.Parents)
             {
-                foreach (var parentProtoId in tagProto.Parents)
-                {
-                    var parent = parentProtoId.Id;
-                    if (_presentingTags.Contains(parent))
-                    {
-                        if (!list.Contains(parent))
-                            list.Add(parent);
-                    }
-                }
+                ResolveAncestors(parentProtoId.Id.Trim().ToLowerInvariant(), resolved, visited, depth + 1);
             }
         }
-        return list;
     }
 
     private HashSet<string> ComputePresentingTags(List<VoicePrototype> voices)
@@ -66,15 +72,14 @@ public sealed class VoiceTagTaxonomy
         var rawCounts = new Dictionary<string, int>();
         foreach (var v in voices)
         {
-            var processed = new List<string>();
+            var processed = new HashSet<string>();
             foreach (var protoId in v.Tags)
             {
                 var tag = protoId.Id.Trim().ToLowerInvariant();
                 if (_config.ExcludedTags.Contains(tag))
                     continue;
 
-                if (!processed.Contains(tag))
-                    processed.Add(tag);
+                processed.Add(tag);
             }
             foreach (var tag in processed)
             {

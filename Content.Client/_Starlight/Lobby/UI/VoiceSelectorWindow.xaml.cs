@@ -118,7 +118,7 @@ public sealed partial class VoiceSelectorWindow : DefaultWindow
 
         var voices = Voices.Where(v =>
         {
-            var mappedTags = _taxonomy.GetMappedTags(v);
+            var mappedTags = _taxonomy.ResolvePresentingTags(v);
             return (_sexFilter == null || v.Sex == _sexFilter) &&
                    (_pitchFilter == null || v.Pitch == _pitchFilter) &&
                    (_tagFilter == null || mappedTags.Contains(_tagFilter)) &&
