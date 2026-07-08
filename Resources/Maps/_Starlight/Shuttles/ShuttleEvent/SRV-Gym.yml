@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 06/29/2026 07:45:00
-  entityCount: 686
+  time: 07/08/2026 01:31:41
+  entityCount: 696
 maps: []
 grids:
 - 1
@@ -346,25 +346,25 @@ entities:
       bodyType: Static
 - proto: AirlockExternalGlass
   entities:
-  - uid: 4
+  - uid: 3
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 7.5,-0.5
       parent: 1
-  - uid: 5
+  - uid: 4
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,-0.5
       parent: 1
-  - uid: 6
+  - uid: 5
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,1.5
       parent: 1
-  - uid: 7
+  - uid: 6
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -372,25 +372,25 @@ entities:
       parent: 1
 - proto: AirlockExternalGlassShuttleLocked
   entities:
-  - uid: 8
+  - uid: 7
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -11.5,-0.5
       parent: 1
-  - uid: 9
+  - uid: 8
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -11.5,1.5
       parent: 1
-  - uid: 10
+  - uid: 9
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.5,1.5
       parent: 1
-  - uid: 11
+  - uid: 10
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -398,19 +398,19 @@ entities:
       parent: 1
 - proto: AirlockMaint
   entities:
-  - uid: 12
+  - uid: 11
     components:
     - type: Transform
       pos: -2.5,-8.5
       parent: 1
-  - uid: 13
+  - uid: 12
     components:
     - type: Transform
       pos: 3.5,-8.5
       parent: 1
 - proto: AirlockVisitorLocked
   entities:
-  - uid: 3
+  - uid: 13
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -1305,7 +1305,7 @@ entities:
       storage: 182
 - proto: ClothingHeadHatBeretFrench
   entities:
-  - uid: 193
+  - uid: 184
     components:
     - type: Transform
       parent: 182
@@ -1359,7 +1359,7 @@ entities:
       storage: 182
 - proto: ClothingOuterWinterMime
   entities:
-  - uid: 184
+  - uid: 189
     components:
     - type: Transform
       parent: 182
@@ -1660,6 +1660,13 @@ entities:
     - type: Transform
       pos: 3.4850762,13.548973
       parent: 1
+- proto: FoodMealNachos
+  entities:
+  - uid: 695
+    components:
+    - type: Transform
+      pos: -6.444633,4.604352
+      parent: 1
 - proto: FoodMealNachosCheesy
   entities:
   - uid: 236
@@ -1681,6 +1688,13 @@ entities:
     components:
     - type: Transform
       pos: -7.4593453,3.629079
+      parent: 1
+- proto: FoodMealNachosCuban
+  entities:
+  - uid: 694
+    components:
+    - type: Transform
+      pos: -7.382133,-5.520648
       parent: 1
 - proto: FoodPlateSmall
   entities:
@@ -2980,6 +2994,16 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 6.5,0.5
       parent: 1
+  - uid: 416
+    components:
+    - type: Transform
+      pos: -4.5,0.5
+      parent: 1
+  - uid: 664
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 1
 - proto: Gyroscope
   entities:
   - uid: 408
@@ -3009,8 +3033,8 @@ entities:
           showEnts: False
           occludes: True
           ents:
+          - 184
           - 193
-          - 189
           - 190
           - 191
           - 192
@@ -3019,7 +3043,7 @@ entities:
           - 186
           - 185
           - 188
-          - 184
+          - 189
         paper_label: !type:ContainerSlot
           showEnts: False
           occludes: True
@@ -3080,14 +3104,32 @@ entities:
       rot: 3.141592653589793 rad
       pos: 2.5,11.5
       parent: 1
-- proto: PoweredlightLED
-  entities:
-  - uid: 416
+  - uid: 520
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,2.5
+      parent: 1
+  - uid: 663
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: -4.5,0.5
+      pos: -4.5,2.5
       parent: 1
+  - uid: 671
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -4.5,-1.5
+      parent: 1
+  - uid: 687
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 6.5,-1.5
+      parent: 1
+- proto: PoweredlightLED
+  entities:
   - uid: 417
     components:
     - type: Transform
@@ -3111,12 +3153,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 5.5,-4.5
-      parent: 1
-  - uid: 421
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,0.5
       parent: 1
   - uid: 422
     components:
@@ -3175,12 +3211,38 @@ entities:
       parent: 1
 - proto: ReinforcedWindow
   entities:
+  - uid: 421
+    components:
+    - type: Transform
+      pos: -4.5,0.5
+      parent: 1
   - uid: 431
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 6.5,0.5
       parent: 1
+  - uid: 680
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 1
+- proto: ScreenTimer
+  entities:
+  - uid: 519
+    components:
+    - type: Transform
+      pos: -4.5,0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
+  - uid: 688
+    components:
+    - type: Transform
+      pos: 5.5,0.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: ShuttleWindow
   entities:
   - uid: 432
@@ -3706,20 +3768,6 @@ entities:
     - type: Transform
       pos: -3.5,-9.5
       parent: 1
-- proto: TableReinforced
-  entities:
-  - uid: 519
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,0.5
-      parent: 1
-  - uid: 520
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -4.5,0.5
-      parent: 1
 - proto: TableWood
   entities:
   - uid: 521
@@ -3789,6 +3837,13 @@ entities:
     components:
     - type: Transform
       pos: 7.5,9.5
+      parent: 1
+- proto: VendingMachineClothing
+  entities:
+  - uid: 696
+    components:
+    - type: Transform
+      pos: -3.5,9.5
       parent: 1
 - proto: VisitorMimeSpawner
   entities:
@@ -4501,7 +4556,7 @@ entities:
       parent: 1
 - proto: Whistle
   entities:
-  - uid: 189
+  - uid: 193
     components:
     - type: Transform
       parent: 182
@@ -4509,6 +4564,21 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
       storage: 182
+  - uid: 691
+    components:
+    - type: Transform
+      pos: -3.2623634,11.571297
+      parent: 1
+  - uid: 692
+    components:
+    - type: Transform
+      pos: -3.4733012,11.571297
+      parent: 1
+  - uid: 693
+    components:
+    - type: Transform
+      pos: -3.6373637,11.571297
+      parent: 1
 - proto: WindoorSecure
   entities:
   - uid: 655
@@ -4558,18 +4628,6 @@ entities:
     - type: Transform
       pos: -0.5,-6.5
       parent: 1
-  - uid: 663
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,0.5
-      parent: 1
-  - uid: 664
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 5.5,0.5
-      parent: 1
   - uid: 665
     components:
     - type: Transform
@@ -4605,12 +4663,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -4.5,2.5
-      parent: 1
-  - uid: 671
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,0.5
       parent: 1
   - uid: 672
     components:
@@ -4660,11 +4712,17 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 5.5,5.5
       parent: 1
-  - uid: 680
+  - uid: 689
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
-      pos: 5.5,0.5
+      pos: 6.5,-1.5
+      parent: 1
+  - uid: 690
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 6.5,2.5
       parent: 1
 - proto: WoodenBench
   entities:

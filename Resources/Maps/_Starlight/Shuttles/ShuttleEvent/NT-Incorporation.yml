@@ -4,8 +4,8 @@ meta:
   engineVersion: 277.0.0
   forkId: ""
   forkVersion: ""
-  time: 07/01/2026 23:37:08
-  entityCount: 870
+  time: 07/08/2026 01:16:49
+  entityCount: 871
 maps: []
 grids:
 - 1
@@ -2538,6 +2538,16 @@ entities:
       parent: 1
     - type: FaxMachine
       name: NT-Incorporation
+- proto: FloorDrain
+  entities:
+  - uid: 871
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-2.5
+      parent: 1
+    - type: Fixtures
+      fixtures: {}
 - proto: FluteInstrument
   entities:
   - uid: 343
