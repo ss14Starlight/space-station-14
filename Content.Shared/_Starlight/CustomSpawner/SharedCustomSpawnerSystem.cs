@@ -182,6 +182,7 @@ public abstract partial class SharedCustomSpawnerSystem : EntitySystem
         }
         else _light.SetEnabled(uid, false);
         if (comp.IsMarker) return;
+        if (comp.HologramProtoId is null) return;
         comp.HologramEntity = PredictedSpawnAttachedTo(comp.HologramProtoId, Transform(uid).Coordinates);
         _xform.SetParent(comp.HologramEntity.Value, uid); // PredictedSpawnAttachedTo seems to just not work for this??? so here we are i guess
         _xform.SetLocalPosition(comp.HologramEntity.Value, comp.HologramOffset);

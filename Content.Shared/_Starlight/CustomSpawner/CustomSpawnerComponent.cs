@@ -88,7 +88,7 @@ public sealed partial class CustomSpawnerComponent : Component
     [DataField, AutoNetworkedField] public bool LightVisible = true;
 
     /// Prototype ID for the hologram entity.
-    [DataField] public EntProtoId HologramProtoId;
+    [DataField] public EntProtoId? HologramProtoId;
 
     /// Prevents spawning the hologram entity entirely if <see langword="true"/>.
     [DataField] public bool IsMarker;

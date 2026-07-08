@@ -55,10 +55,8 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         UpdateHologramSprite(hologram, hComp);
     }
 
-    private void OnStartup(Entity<CustomSpawnerHologramComponent> ent, ref ComponentStartup args)
-    {
+    private void OnStartup(Entity<CustomSpawnerHologramComponent> ent, ref ComponentStartup args) =>
         UpdateHologramSprite(ent, ent.Comp);
-    }
 
     private void OnShaderRender(Entity<CustomSpawnerHologramComponent> ent, ref BeforePostShaderRenderEvent args)
     {
