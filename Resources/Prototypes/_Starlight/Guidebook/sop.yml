@@ -787,6 +787,7 @@
   children:
     - service-sop-headofpersonnel
     - service-sop-lawyer
+    - service-sop-reporter
 
 
 - type: guideEntry
@@ -800,3 +801,9 @@
   name: guide-entry-sl-service-sop-lawyer
   text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Lawyer.xml"
   priority: 2
+
+- type: guideEntry
+  id: service-sop-reporter
+  name: guide-entry-sl-service-sop-reporter
+  text: "/ServerInfo/Guidebook/StarlightSOP/ServiceSOP/Reporter.xml"
+  priority: 3
