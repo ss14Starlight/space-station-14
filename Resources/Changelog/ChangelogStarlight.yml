@@ -1,13 +1,6 @@
 Entries:
 - author: Cvlancer
   changes:
-  - message: (ORWELL) Fixed security shooting range linking.
-    type: Fix
-  id: 406091
-  time: '2026-06-17T08:31:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4824
-- author: Cvlancer
-  changes:
   - message: (OASIS) Fixed roboticist and chem having wrong facing fuel dispensers.
     type: Fix
   id: 406092
@@ -2799,4 +2792,11 @@ Entries:
   id: 406490
   time: '2026-07-08T14:36:26.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5041
+- author: Caws
+  changes:
+  - message: Ported updated security camera sprites / animations from Upstream.
+    type: Tweak
+  id: 406491
+  time: '2026-07-08T16:11:01.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5019
 Order: -1
