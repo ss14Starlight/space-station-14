@@ -59,7 +59,7 @@ public sealed partial class CosmicCultRuleComponent : Component
     /// Time for emergency shuttle arrival.
     /// </summary>
     [DataField]
-    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(5);
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(8);
 
     [DataField]
     public HashSet<EntityUid> Cultists = [];

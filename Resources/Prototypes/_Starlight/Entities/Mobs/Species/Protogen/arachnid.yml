@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McWebster
-  parent: [BaseMobProtogen, BaseSpeciesPickupableLarge]
+  parent: BaseMobProtogen
   id: BaseMobProtoArachnid
   abstract: true
   components:
@@ -15,7 +15,6 @@
     - Machine
     - Chittin
   - type: IgnoreSpiderWeb
-  - type: Absorbable
   - type: Body
     prototype: ProtoArachnid
     requiredLegs: 2

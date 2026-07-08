@@ -22,21 +22,21 @@ public sealed partial class ClothesVisionSystem : EntitySystem
             || !clothing.Slots.HasFlag(args.SlotFlags))
             return;
 
-        if (!HasComp<NightVisionComponent>(args.Equipee) || HasComp<ShadekinComponent>(args.Equipee))
+        if (!HasComp<NightVisionComponent>(args.EquipTarget) || HasComp<ShadekinComponent>(args.EquipTarget))
         {
-            var nightvision = EnsureComp<NightVisionComponent>(args.Equipee);
+            var nightvision = EnsureComp<NightVisionComponent>(args.EquipTarget);
             nightvision.Clothes = true;
         }
     }
 
     private void OnUnequipped(EntityUid uid, ClothesNightVisionComponent component, GotUnequippedEvent args)
     {
-        if (TryComp<NightVisionComponent>(args.Equipee, out var nightvision) && !nightvision.Clothes)
+        if (TryComp<NightVisionComponent>(args.EquipTarget, out var nightvision) && !nightvision.Clothes)
         {
             nightvision.Clothes = false;
             return;
         }
 
-        RemComp<NightVisionComponent>(args.Equipee);
+        RemComp<NightVisionComponent>(args.EquipTarget);
     }
 }
