@@ -45,6 +45,7 @@
   - type: Tag
     tags:
       - AirAlarm
+      - Labelable # Starlight
   - type: AtmosDevice
   - type: AirAlarm
   - type: AtmosAlertsDevice
