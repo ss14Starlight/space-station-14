@@ -10,8 +10,8 @@
                 Title="{Loc 'guidebook-window-title'}">
     <SplitContainer Orientation="Horizontal" HorizontalExpand="True" Name="Split" Margin="0 0 7 0">
         <!-- Guide select -->
+        <!-- Starlight start -->
         <BoxContainer Orientation="Vertical" Name="TreeBox" VerticalExpand="True" MinWidth="160">
-            <!-- Starlight start -->
             <LineEdit Name="CategorySearchBar"
                       PlaceHolder="{Loc 'guidebook-category-search-placeholder'}"
                       HorizontalExpand="True"
