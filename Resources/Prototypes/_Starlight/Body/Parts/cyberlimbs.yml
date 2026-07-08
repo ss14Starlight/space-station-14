@@ -259,7 +259,7 @@
 # Speed legs
 - type: entity
   id: LeftLegCyberSpeed
-  name: "left speg"
+  name: "left speed leg"
   parent: [PartCyber, BaseLeftLeg]
   description: Gotta Go Fast!
   components:
@@ -286,7 +286,7 @@
 
 - type: entity
   id: RightLegCyberSpeed
-  name: "right speg"
+  name: "right speed leg"
   parent: [PartCyber, BaseRightLeg]
   description: Gotta Go Fast!
   components:

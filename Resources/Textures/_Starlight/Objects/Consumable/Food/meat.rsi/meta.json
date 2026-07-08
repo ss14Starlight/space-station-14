@@ -14,6 +14,26 @@
     {
       "name": "goliath-cooked",
 	  "copyright": "TGstation"
+    },
+	{
+      "name": "plain-inhand-right",
+	  "copyright": "TGstation, in-hand edits by Orsoniks",
+      "directions": 4
+    },
+    {
+      "name": "plain-inhand-left",
+	  "copyright": "TGstation, in-hand edits by Orsoniks",
+      "directions": 4
+    },
+    {
+      "name": "plain-cooked-inhand-right",
+	  "copyright": "TGstation, in-hand edits by Orsoniks",
+      "directions": 4
+    },
+    {
+      "name": "plain-cooked-inhand-left",
+	  "copyright": "TGstation, in-hand edits by Orsoniks",
+      "directions": 4
     }
   ]
 }
