@@ -16,7 +16,7 @@
     layers:
     - sprite: _Starlight/Admeme/MedTak/Objects/pda.rsi
       map: [ "enum.PdaVisualLayers.Base" ]
-      state: "pda"
+      state: "pda-medtak"
     - state: "light_overlay"
       map: [ "enum.PdaVisualLayers.Flashlight" ]
       shader: "unshaded"
