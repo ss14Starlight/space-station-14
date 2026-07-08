@@ -89,6 +89,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
         - id: Xenoborgs
@@ -135,9 +138,12 @@
           prob: 0.05
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
-          - !type:MaxRuleOccurenceCondition
         - id: Devil
           prob: 0.05
           conditions:
@@ -188,6 +194,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 35
         - id: SubXenoborgs
@@ -241,9 +250,12 @@
           prob: 0.50
           conditions:
           - !type:HasBudgetCondition
+          - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
-          - !type:MaxRuleOccurenceCondition
         - id: Devil
           weight: 5
           prob: 0.50
@@ -303,6 +315,9 @@
           weight: 1
           conditions:
           - !type:HasBudgetCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Zombie # Wizards don't lose their abilities in Zombie games, so they can't be allowed together
           - !type:PlayerCountCondition
             min: 40
           - !type:RoundDurationCondition
