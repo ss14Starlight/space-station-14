@@ -40,6 +40,13 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
         {
             HandleFilter();
         };
+
+        // Starlight start
+        CategorySearchBar.OnTextChanged += _ =>
+        {
+            HandleCategorySearch();
+        };
+        // Starlight end
     }
 
     public void HandleClick(string link)
@@ -265,6 +272,58 @@ public sealed partial class GuidebookWindow : FancyWindow, ILinkClickHandler, IA
 
         return item;
     }
+
+    // Starlight start
+    private void HandleCategorySearch()
+    {
+        var query = CategorySearchBar.Text.Trim();
+
+        if (query.Length == 0)
+        {
+            CategoryNoResultsLabel.Visible = false;
+            foreach (var topLevel in Tree.Body.Children.ToList())
+                topLevel.Visible = true;
+            return;
+        }
+
+        var anyVisible = false;
+        foreach (var topLevel in Tree.Body.Children.ToList())
+        {
+            if (topLevel is not TreeItem item)
+                continue;
+
+            // Show root if it or any descendant matches
+            var matches = SubtreeContainsMatch(item, query);
+            item.Visible = matches;
+            if (matches)
+                anyVisible = true;
+        }
+
+        CategoryNoResultsLabel.Visible = !anyVisible;
+    }
+
+    private static bool SubtreeContainsMatch(TreeItem item, string query)
+    {
+        if (MatchesCategoryQuery(item.Label.Text ?? string.Empty, query))
+            return true;
+
+        foreach (var child in item.Body.Children)
+        {
+            if (child is TreeItem childItem && SubtreeContainsMatch(childItem, query))
+                return true;
+        }
+
+        return false;
+    }
+
+    private static bool MatchesCategoryQuery(string name, string query)
+    {
+        var words = query.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        if (words.Length == 0)
+            return true;
+        return words.All(word => name.Contains(word, StringComparison.OrdinalIgnoreCase));
+    }
+    // Starlight end
 
     private void HandleFilter()
     {
