@@ -258,7 +258,7 @@
     - id: BasicRoundstartVariation
       prob: 1
   - type: DynamicRuleCost
-    cost: 200
+    cost: 150 # Lowering this, since BasicRoundstartVariation doesn't do much in Dynamic due to how Dynamic functions.
 
 - type: entity
   id: ShitStationEventScheduler

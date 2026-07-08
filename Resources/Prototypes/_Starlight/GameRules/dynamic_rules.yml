@@ -52,7 +52,7 @@
         children:
         - id: Traitor
           weight: 35
-          prob: 0.80 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
+          prob: 0.85 # Give traitor a chance to fail, since it's so common. In essence, this means we have a chance at getting Extended.
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -212,6 +212,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - Thief # Don't double thieves
         - id: VampireLess
           weight: 6
           prob: 0.50
@@ -224,6 +227,9 @@
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
+          - !type:MutuallyExclusiveRuleCondition
+            rules:
+            - SLChangeling # Don't double changelings
         - id: SiliconLiberation
           weight: 8
           prob: 0.50
@@ -270,6 +276,7 @@
             min: 1800 # 30 minutes
         - id: ParadoxCloneSpawn
           weight: 20
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
           conditions:
           - !type:HasBudgetCondition
           - !type:MaxRuleOccurenceCondition
@@ -302,12 +309,13 @@
             min: 1800 # 30 minutes
         - id: AbductorsSpawn
           weight: 15
+          prob: 0.85 # Give it a small chance to fail, since it'll basically happen every round if I don't do this...
           conditions:
           - !type:HasBudgetCondition
           - !type:PlayerCountCondition
             min: 10
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1200 # 20 minutes
         - id: Brighteye
           weight: 1
           conditions:
@@ -315,7 +323,7 @@
           - !type:PlayerCountCondition
             min: 20
           - !type:RoundDurationCondition
-            min: 900 # 15 minutes
+            min: 1200 # 20 minutes
         - id: EeepEvent
           weight: 1
           conditions:
