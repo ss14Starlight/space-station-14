@@ -1,46 +1,4 @@
 Entries:
-- author: Johnny
-  changes:
-  - message: Added the Pioneer as a buyable ship in the shipyard.
-    type: Add
-  id: 406065
-  time: '2026-06-17T08:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4810
-- author: Johnny
-  changes:
-  - message: Added the Breaker as a buyable ship in the shipyard.
-    type: Add
-  id: 406066
-  time: '2026-06-17T08:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4810
-- author: Johnny
-  changes:
-  - message: Added the Munchies as a buyable ship in the shipyard.
-    type: Add
-  id: 406067
-  time: '2026-06-17T08:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4810
-- author: Johnny
-  changes:
-  - message: Added the Plasma as a buyable ship in the shipyard.
-    type: Add
-  id: 406068
-  time: '2026-06-17T08:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4810
-- author: Johnny
-  changes:
-  - message: The private transport shuttle in the shipyard has been changed/reworked.
-    type: Tweak
-  id: 406069
-  time: '2026-06-17T08:31:53.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4810
-- author: Cvlancer
-  changes:
-  - message: (ORWELL) Added nuclear reactor to engineering.
-    type: Add
-  id: 406070
-  time: '2026-06-17T08:31:55.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4824
 - author: Cvlancer
   changes:
   - message: (ORWELL) Added a new docking area south of arrivals.
@@ -2799,4 +2757,46 @@ Entries:
   id: 406464
   time: '2026-07-08T09:15:52.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5040
+- author: OMEGA
+  changes:
+  - message: Air alarms can now be labeled.
+    type: Tweak
+  id: 406465
+  time: '2026-07-08T11:11:30.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5037
+- author: OMEGA
+  changes:
+  - message: (Elkridge) Atmos locker and spawn point to match the available job slots.
+    type: Add
+  id: 406466
+  time: '2026-07-08T11:11:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5036
+- author: OMEGA
+  changes:
+  - message: (Elkridge) Blast doors linked to their respective buttons in TEG and Atmos.
+    type: Tweak
+  id: 406467
+  time: '2026-07-08T11:11:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5036
+- author: OMEGA
+  changes:
+  - message: (Elkridge) Atmos airlock expanded, doors now linked.
+    type: Tweak
+  id: 406468
+  time: '2026-07-08T11:11:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5036
+- author: OMEGA
+  changes:
+  - message: (Elkridge) Access to TEG changed to Atmospherics.
+    type: Tweak
+  id: 406469
+  time: '2026-07-08T11:11:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5036
+- author: OMEGA
+  changes:
+  - message: (Elkridge) Firelocks by vault entrance linked to relevant fire alarm console.
+    type: Tweak
+  id: 406470
+  time: '2026-07-08T11:11:32.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5036
 Order: -1
