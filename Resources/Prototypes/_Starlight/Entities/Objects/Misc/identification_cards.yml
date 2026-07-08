@@ -514,7 +514,7 @@
       state: CCServiceWorker
   - type: Item
     sprite: Objects/Misc/id_cards.rsi
-    heldPrefix: white
+    heldPrefix: green
   - type: IdCard
     jobTitle: job-name-ccserviceworker
     jobIcon: JobIconCCServiceWorker
@@ -526,7 +526,9 @@
     - Kitchen
     - Hydroponics
     - Janitor
+  - type: NanoChatCard
     listNumber: false
+
 
 
 
