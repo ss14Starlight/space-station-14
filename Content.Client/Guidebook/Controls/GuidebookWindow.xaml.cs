@@ -45,10 +45,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
         };
 
         // Starlight start
-        CategorySearchBar.OnTextChanged += _ =>
-        {
-            HandleCategorySearch();
-        };
+        CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
         // Starlight end
     }
 
