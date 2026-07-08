@@ -1,46 +1,4 @@
 Entries:
-- author: Huaqas
-  changes:
-  - message: Belts, PDAs and Suit Storage items should now appear correctly on Rodentia.
-    type: Fix
-  id: 406059
-  time: '2026-06-16T16:08:57.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4821
-- author: Johnny
-  changes:
-  - message: Shoes no longer consume items that you're trying to put into them, they just reject you doing that now.
-    type: Fix
-  id: 406060
-  time: '2026-06-16T17:48:56.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4740
-- author: BornStellar
-  changes:
-  - message: Mind controlled players are now marked as proper antags (and lose the status if the implant is extracted!).
-    type: Tweak
-  id: 406061
-  time: '2026-06-17T08:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4814
-- author: BornStellar
-  changes:
-  - message: mind controlled players' objective is a free 'obey your handler' since sometimes the order will be to NOT get on the escape shuttle.
-    type: Tweak
-  id: 406062
-  time: '2026-06-17T08:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4814
-- author: BornStellar
-  changes:
-  - message: Wording of mind control objective uses the term Handler instead of Master.
-    type: Tweak
-  id: 406063
-  time: '2026-06-17T08:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4814
-- author: BornStellar
-  changes:
-  - message: Vampire thrall localization that wouldn't show up.
-    type: Fix
-  id: 406064
-  time: '2026-06-17T08:31:51.000000+00:00'
-  url: https://github.com/ss14Starlight/space-station-14/pull/4814
 - author: Johnny
   changes:
   - message: Added the Pioneer as a buyable ship in the shipyard.
@@ -2799,4 +2757,46 @@ Entries:
   id: 406458
   time: '2026-07-07T18:24:11.000000+00:00'
   url: https://github.com/ss14Starlight/space-station-14/pull/5012
+- author: Roro
+  changes:
+  - message: Engineering Hardsuit slowdown 30% -> 15%.
+    type: Tweak
+  id: 406459
+  time: '2026-07-08T09:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5040
+- author: Roro
+  changes:
+  - message: Atmos Hardsuit slowdown 30% -> 15%.
+    type: Tweak
+  id: 406460
+  time: '2026-07-08T09:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5040
+- author: Roro
+  changes:
+  - message: Chief Engineer Hardsuit slowdown 20% -> 10%.
+    type: Tweak
+  id: 406461
+  time: '2026-07-08T09:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5040
+- author: Roro
+  changes:
+  - message: Atmos Fire suit slowdown 20% -> 10%.
+    type: Tweak
+  id: 406462
+  time: '2026-07-08T09:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5040
+- author: Roro
+  changes:
+  - message: RCD now fits in pocket.
+    type: Tweak
+  id: 406463
+  time: '2026-07-08T09:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5040
+- author: Roro
+  changes:
+  - message: Atmos Hardsuit now has shock and caustic resists, as well as higher heat resist 20% -> 35%.
+    type: Tweak
+  id: 406464
+  time: '2026-07-08T09:15:52.000000+00:00'
+  url: https://github.com/ss14Starlight/space-station-14/pull/5040
 Order: -1
