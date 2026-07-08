@@ -38,13 +38,10 @@ public sealed partial class CustomSpawnerSystem : SharedCustomSpawnerSystem
         args.Data?.TryGetValue(DeviceNetworkConstants.LogicState, out state);
         if (state is not (SignalState.High or SignalState.Momentary)) return;
 
-        if (args.Port == ent.Comp.OnPort)
+        if (args.Port == ent.Comp.OnPort && !ent.Comp.Enabled)
         {
-            if (!ent.Comp.Enabled)
-            {
-                _link.SendSignal(ent, ent.Comp.EnabledPort, true);
-                _link.SendSignal(ent, ent.Comp.DisabledPort, false);
-            }
+            _link.SendSignal(ent, ent.Comp.EnabledPort, true);
+            _link.SendSignal(ent, ent.Comp.DisabledPort, false);
             ent.Comp.Enabled = true;
             Dirty(ent, ent.Comp);
         }
