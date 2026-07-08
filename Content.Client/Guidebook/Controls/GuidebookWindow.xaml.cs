@@ -44,9 +44,9 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
             HandleFilter();
         };
 
-        // Starlight start
+        #region Starlight
         CategorySearchBar.OnTextChanged += _ => HandleCategorySearch();
-        // Starlight end
+        #endregion
     }
 
     public void HandleClick(string link)
@@ -137,7 +137,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
 
         LastEntry = entry.Id;
 
-        // Starlight start
+        #region Starlight
         void RefreshLinks()
         {
             var (linkableControls, linkControls) = GetLinkableControlsAndLinks(EntryContainer);
@@ -171,7 +171,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
         }
 
         RefreshLinks();
-        // Starlight end
+        #endregion
     }
 
     public void UpdateGuides(
@@ -273,7 +273,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
         return item;
     }
 
-    // Starlight start
+    #region Starlight
     private void HandleCategorySearch()
     {
         var query = CategorySearchBar.Text.Trim();
@@ -323,7 +323,7 @@ public sealed partial class GuidebookWindow : PopOutFancyWindow, ILinkClickHandl
             return true;
         return words.All(word => name.Contains(word, StringComparison.OrdinalIgnoreCase));
     }
-    // Starlight end
+    #endregion
 
     private void HandleFilter()
     {
