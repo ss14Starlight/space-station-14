@@ -27,7 +27,7 @@ public abstract partial class SharedStunSystem
 
     private void OnSleepStateChanged(Entity<StunVisualsComponent> entity, ref SleepStateChangedEvent args)
     {
-        if (!args.FellAsleep) return; // Starlight - don't re-apply the stunned visuals when making up from sleep
+        if (!args.FellAsleep) return; // Starlight - don't re-apply the stunned visuals when waking up from sleep
 
         Appearance.SetData(entity, StunVisuals.SeeingStars, GetStarsData(entity));
     }
