@@ -11,7 +11,7 @@ namespace Content.Shared._Starlight.EntityTable;
 /// </summary>
 /// <remarks>
 /// This is meant for mutually exclusive gamerules. For example, Nukeops and NukeopsLate
-/// should not both happen in the same round, list both of them here.
+/// should not both happen in the same round.
 /// </remarks>
 public sealed partial class MutuallyExclusiveRuleCondition : EntityTableCondition
 {
